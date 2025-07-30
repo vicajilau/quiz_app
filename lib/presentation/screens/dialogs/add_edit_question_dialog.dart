@@ -5,7 +5,7 @@ import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:quiz_app/domain/use_cases/validate_question_use_case.dart';
 import 'package:quiz_app/domain/models/custom_exceptions/question_error_type.dart';
 
-import '../../../../../core/l10n/app_localizations.dart';
+import '../../../../core/l10n/app_localizations.dart';
 
 /// Dialog widget for creating or editing a Question.
 class AddEditQuestionDialog extends StatefulWidget {

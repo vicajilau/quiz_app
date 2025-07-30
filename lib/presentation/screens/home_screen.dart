@@ -13,7 +13,7 @@ import '../../routes/app_router.dart';
 import '../blocs/file_bloc/file_bloc.dart';
 import '../blocs/file_bloc/file_event.dart';
 import '../blocs/file_bloc/file_state.dart';
-import 'widgets/dialogs/create_quiz_dialog.dart';
+import 'dialogs/create_quiz_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
