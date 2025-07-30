@@ -150,7 +150,7 @@
   "exitButton": "Exit",
   "saveDialogTitle": "Please select an output file:",
   "fillAllFieldsError": "Please fill in all the fields.",
-  "createMasoFileTitle": "Create Quiz File",
+  "createQuizFileTitle": "Create Quiz File",
   "fileNameLabel": "File Name",
   "fileDescriptionLabel": "File Description",
   "createButton": "Create",

@@ -76,7 +76,7 @@ class _CreateQuizFileDialogState extends State<CreateQuizFileDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-          AppLocalizations.of(context)!.createMasoFileTitle), // Dialog title.
+          AppLocalizations.of(context)!.createQuizFileTitle), // Dialog title.
       content: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,

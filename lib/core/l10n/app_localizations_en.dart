@@ -121,7 +121,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fillAllFieldsError => 'Please fill in all the fields.';
 
   @override
-  String get createMasoFileTitle => 'Create Quiz File';
+  String get createQuizFileTitle => 'Create Quiz File';
 
   @override
   String get fileNameLabel => 'File Name';

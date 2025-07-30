@@ -284,11 +284,11 @@ abstract class AppLocalizations {
   /// **'Please fill in all the fields.'**
   String get fillAllFieldsError;
 
-  /// No description provided for @createMasoFileTitle.
+  /// No description provided for @createQuizFileTitle.
   ///
   /// In en, this message translates to:
   /// **'Create Quiz File'**
-  String get createMasoFileTitle;
+  String get createQuizFileTitle;
 
   /// No description provided for @fileNameLabel.
   ///
