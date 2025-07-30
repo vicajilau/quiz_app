@@ -119,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               body: PlatformDetail.isMobile
-                  ? Center(child: Image.asset('QUIZ.png', fit: BoxFit.contain))
+                  ? Center(child: Image.asset('images/QUIZ.png', fit: BoxFit.contain))
                   : DropTarget(
                       onDragDone: (details) {
                         if (context.read<FileBloc>().state is! FileLoaded) {
