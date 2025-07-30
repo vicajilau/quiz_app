@@ -4,137 +4,134 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
-import 'package:quiz_app/domain/models/custom_exceptions/bad_maso_file_exception.dart';
+import 'package:quiz_app/data/services/file_service/i_file_service.dart';
+import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 import 'package:platform_detail/platform_detail.dart';
 
-import '../../../domain/models/custom_exceptions/bad_maso_file_error_type.dart';
-import '../../../domain/models/maso/maso_file.dart';
-import 'i_file_service.dart';
+import '../../../domain/models/custom_exceptions/bad_quiz_file_error_type.dart';
+import '../../../domain/models/quiz/quiz_file.dart';
 
-/// The `FileService` class provides functionalities for managing `.maso` files.
-/// This includes reading a `.maso` file, saving a `MasoFile` object to the file system,
+/// The `QuizFileService` class provides functionalities for managing `.quiz` files.
+/// This includes reading a `.quiz` file, saving a `QuizFile` object to the file system,
 /// and interacting with the user for file selection.
-class FileService implements IFileService {
+class QuizFileService implements IFileService {
   @override
-  MasoFile? originalFile;
+  QuizFile? originalFile;
 
-  /// Reads a `.maso` file from the specified [filePath] and parses it into a `MasoFile` object.
+  /// Reads a `.quiz` file from the specified [filePath] and parses it into a `QuizFile` object.
   ///
-  /// Throws a [FileInvalidException] if the file does not have a `.maso` extension.
+  /// Throws a [BadQuizFileException] if the file does not have a `.quiz` extension.
   ///
-  /// - [filePath]: The path to the `.maso` file.
-  /// - Returns: A `MasoFile` object containing the parsed data from the file.
-  /// - Throws: [FileInvalidException] if the file extension is invalid.
+  /// - [filePath]: The path to the `.quiz` file.
+  /// - Returns: A `QuizFile` object containing the parsed data from the file.
+  /// - Throws: [BadQuizFileException] if the file extension is invalid.
   @override
-  Future<MasoFile> readMasoFile(String filePath) async {
-    if (!filePath.endsWith('.maso')) {
-      throw BadMasoFileException(type: BadMasoFileErrorType.invalidExtension);
+  Future<QuizFile> readQuizFile(String filePath) async {
+    if (!filePath.endsWith('.quiz')) {
+      throw BadQuizFileException(type: BadQuizFileErrorType.invalidExtension);
     }
     // Create a File object for the provided file path
     final file = File(filePath);
     // Read the file content as a string
     final content = await file.readAsString();
 
-    // Decode the string content into a Map and convert it to a MasoFile object
+    // Decode the string content into a Map and convert it to a QuizFile object
     final json = jsonDecode(content) as Map<String, dynamic>;
-    final masoFile = MasoFile.fromJson(json, filePath);
-    originalFile = masoFile.copyWith();
-    return masoFile;
+    final quizFile = QuizFile.fromJson(json, filePath);
+    originalFile = quizFile.copyWith();
+    return quizFile;
   }
 
-  /// Saves a `MasoFile` object to the file system.
+  /// Saves a `QuizFile` object to the file system.
   ///
   /// This method opens a save dialog for the user to choose the file path
-  /// and writes the `MasoFile` data in JSON format to the selected file.
+  /// and writes the `QuizFile` data in JSON format to the selected file.
   ///
-  /// - [masoFile]: The `MasoFile` object to save.
-  /// - [dialogTitle]: The title for the save dialog window.
-  /// - [fileName]: The name for the file.
-  /// - Returns: The `MasoFile` object with an updated file path if the user selects a path.
+  /// - [quizFile]: The `QuizFile` object to save.
+  /// - [dialogTitle]: The title for the save dialog.
+  /// - [fileName]: The name of the file.
+  /// - Returns: The `QuizFile` object with the updated file path, or `null` if the user cancels.
   @override
-  Future<MasoFile?> saveMasoFile(
-    MasoFile masoFile,
+  Future<QuizFile?> saveQuizFile(
+    QuizFile quizFile,
     String dialogTitle,
     String fileName,
   ) async {
-    // Convert the MasoFile object to JSON string and encode it to bytes
-    String jsonString = jsonEncode(masoFile.toJson());
-    final bytes = utf8.encode(jsonString);
-
-    // Open a save dialog for the user to select a file path
-    final pathSaved = await FilePicker.platform.saveFile(
+    String? outputFile = await FilePicker.platform.saveFile(
       dialogTitle: dialogTitle,
       fileName: fileName,
-      initialDirectory: masoFile.filePath,
-      bytes: bytes,
+      allowedExtensions: ['quiz'],
+      type: FileType.custom,
     );
 
-    if (pathSaved == null) return null;
-
-    masoFile.filePath = pathSaved;
-    originalFile = masoFile.copyWith();
-    return masoFile;
+    if (outputFile != null) {
+      final file = File(outputFile);
+      final content = jsonEncode(quizFile.toJson());
+      await file.writeAsString(content);
+      quizFile = quizFile.copyWith(filePath: outputFile);
+      originalFile = quizFile.copyWith();
+      return quizFile;
+    }
+    return null;
   }
 
-  /// Saves a `MasoFile` object to the file system.
+  /// Saves an exported file to the file system.
   ///
-  /// This method opens a save dialog for the user to choose the file path
-  /// and writes the `MasoFile` data in JSON format to the selected file.
+  /// Opens a save dialog for the user to choose the file path and writes
+  /// the provided `Uint8List` byte data to the selected file.
   ///
-  /// - [masoFile]: The `MasoFile` object to save.
+  /// - [bytes]: The binary content to be saved.
   /// - [dialogTitle]: The title for the save dialog window.
-  /// - [fileName]: The name for the file.
-  /// - Returns: The `MasoFile` object with an updated file path if the user selects a path.
+  /// - [fileName]: The name of the file.
   @override
   Future<void> saveExportedFile(
     Uint8List bytes,
     String dialogTitle,
     String fileName,
   ) async {
-    // Convert the MasoFile object to JSON string and encode it to bytes
-
-    // Open a save dialog for the user to select a file path
-    final path = await FilePicker.platform.saveFile(
+    String? outputFile = await FilePicker.platform.saveFile(
       dialogTitle: dialogTitle,
       fileName: fileName,
-      bytes: bytes,
     );
 
-    // If a path is selected and the platform is desktop, write the file
-    if (path != null && PlatformDetail.isDesktop) {
-      await _writeExportedFile(bytes, path);
+    if (outputFile != null) {
+      final file = File(outputFile);
+      await file.writeAsBytes(bytes);
     }
   }
 
-  /// Writes a `Uint8List` object to its file path.
+  /// Opens a file picker dialog for the user to select a `.quiz` file.
   ///
-  /// This is a helper method used internally to perform the actual file writing
-  /// after a file path has been determined.
-  Future<void> _writeExportedFile(Uint8List bytes, String path) async {
-    // Create a File object for the provided file path
-    final file = File(path);
-
-    // Write the content to the file
-    await file.writeAsBytes(bytes);
-  }
-
-  /// Opens a file picker dialog for the user to select a `.maso` file.
+  /// If a valid file is selected, it reads and parses the file into a `QuizFile` object.
   ///
-  /// If a file is selected, it reads and parses the file into a `MasoFile` object.
-  ///
-  /// - Returns: A `MasoFile` object if a valid file is selected, or `null` if no file is selected.
+  /// - Returns: A `QuizFile` object if a valid file is selected, or `null` if no file is selected.
   @override
-  Future<MasoFile?> pickFile() async {
-    // Open the file picker dialog
-    final result = await FilePicker.platform.pickFiles();
+  Future<QuizFile?> pickFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['quiz'],
+      allowMultiple: false,
+    );
 
-    // If a file is selected, read and return the file as a MasoFile object
     if (result != null) {
-      final filePath = result.files.single.path;
-      if (filePath != null) {
-        return readMasoFile(filePath);
+      final platformFile = result.files.first;
+
+      if (PlatformDetail.isWeb) {
+        // Handle web platform
+        if (platformFile.bytes != null) {
+          final content = String.fromCharCodes(platformFile.bytes!);
+          final json = jsonDecode(content) as Map<String, dynamic>;
+          final quizFile = QuizFile.fromJson(json, platformFile.name);
+          originalFile = quizFile.copyWith();
+          return quizFile;
+        }
+      } else {
+        // Handle desktop/mobile platforms
+        if (platformFile.path != null) {
+          return await readQuizFile(platformFile.path!);
+        }
       }
     }
-    return null; // Return null if no file is selected
+    return null;
   }
 }

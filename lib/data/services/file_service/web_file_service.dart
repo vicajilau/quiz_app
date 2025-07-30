@@ -4,81 +4,81 @@ import 'dart:js_interop';
 import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:web/web.dart';
 
-import '../../../domain/models/maso/maso_file.dart';
 import 'i_file_service.dart';
 
-/// The `FileService` class provides functionalities for managing `.maso` files.
-/// This includes reading, decoding, saving, and picking `.maso` files across platforms.
-class FileService implements IFileService {
-  /// Keep an original copy of the Maso document in order to detect changes in the Maso document.
+/// The `FileService` class provides functionalities for managing `.quiz` files.
+/// This includes reading, decoding, saving, and picking `.quiz` files across platforms.
+class QuizFileService implements IFileService {
+  /// Keep an original copy of the Quiz document in order to detect changes in the Quiz document.
   @override
-  MasoFile? originalFile;
+  QuizFile? originalFile;
 
-  /// Reads a `.maso` file from the specified [filePath], retrieves its binary data,
-  /// and decodes it into a `MasoFile` object.
+  /// Reads a `.quiz` file from the specified [filePath], retrieves its binary data,
+  /// and decodes it into a `QuizFile` object.
   ///
-  /// - [filePath]: The path or URL of the `.maso` file.
-  /// - Returns: A `MasoFile` object containing the parsed data from the file.
+  /// - [filePath]: The path or URL of the `.quiz` file.
+  /// - Returns: A `QuizFile` object containing the parsed data from the file.
   /// - Throws: An exception if there is an error reading or decoding the file.
   @override
-  Future<MasoFile> readMasoFile(String filePath) async {
+  Future<QuizFile> readQuizFile(String filePath) async {
     final codeUnits = await readBlobFile(filePath);
-    final masoFile = decodeAndCreateMasoFile(filePath, codeUnits);
-    originalFile = masoFile.copyWith();
-    return masoFile;
+    final quizFile = decodeAndCreateQuizFile(filePath, codeUnits);
+    originalFile = quizFile.copyWith();
+    return quizFile;
   }
 
-  /// Decodes binary data [codeUnits] into a `MasoFile` object using the provided [filePath].
+  /// Decodes binary data [codeUnits] into a `QuizFile` object using the provided [filePath].
   ///
   /// - [filePath]: The path of the file being decoded.
   /// - [codeUnits]: The binary content of the file as `Uint8List`.
-  /// - Returns: A `MasoFile` object containing the parsed data.
-  MasoFile decodeAndCreateMasoFile(String? filePath, Uint8List codeUnits) {
+  /// - Returns: A `QuizFile` object containing the parsed data.
+  QuizFile decodeAndCreateQuizFile(String? filePath, Uint8List codeUnits) {
     // Decode the binary data to a UTF-8 string
     final content = utf8.decode(codeUnits);
 
-    // Convert the string content to a JSON Map and create a MasoFile object
+    // Convert the string content to a JSON Map and create a QuizFile object
     final json = jsonDecode(content) as Map<String, dynamic>;
-    return MasoFile.fromJson(json, filePath);
+    return QuizFile.fromJson(json, filePath);
   }
 
-  /// Saves a `MasoFile` object to the file system by opening a save dialog.
+  /// Saves a `QuizFile` object to the file system by opening a save dialog.
   ///
-  /// - [masoFile]: The `MasoFile` object to save.
+  /// - [quizFile]: The `QuizFile` object to save.
   /// - [dialogTitle]: The title of the save dialog window.
-  /// - Returns: The `MasoFile` object with an updated file path if the user selects a path.
+  /// - Returns: The `QuizFile` object with an updated file path if the user selects a path.
   /// - Throws: An exception if there is an error saving the file.
   @override
-  Future<MasoFile?> saveMasoFile(
-      MasoFile masoFile, String dialogTitle, String fileName) async {
-    String jsonString = jsonEncode(masoFile.toJson());
+  Future<QuizFile?> saveQuizFile(
+      QuizFile quizFile, String dialogTitle, String fileName) async {
+    String jsonString = jsonEncode(quizFile.toJson());
     final bytes = utf8.encode(jsonString);
 
     // Open a save dialog for the user to select a file path
     final pathSaved = await FilePicker.platform.saveFile(
         dialogTitle: dialogTitle,
         fileName: fileName,
-        initialDirectory: masoFile.filePath,
+        initialDirectory: quizFile.filePath,
         bytes: bytes);
 
     if (pathSaved == null) return null;
 
-    masoFile.filePath = pathSaved;
-    originalFile = masoFile.copyWith();
-    return masoFile;
+    quizFile.filePath = pathSaved;
+    originalFile = quizFile.copyWith();
+    return quizFile;
   }
 
   /// Saves a `Exported` object to the file system.
   ///
   /// This method opens a save dialog for the user to choose the file path
-  /// and writes the `MasoFile` data in JSON format to the selected file.
+  /// and writes the `QuizFile` data in JSON format to the selected file.
   ///
-  /// - [masoFile]: The `MasoFile` object to save.
+  /// - [quizFile]: The `QuizFile` object to save.
   /// - [dialogTitle]: The title for the save dialog window.
   /// - [fileName]: The name for the file.
-  /// - Returns: The `MasoFile` object with an updated file path if the user selects a path.
+  /// - Returns: The `QuizFile` object with an updated file path if the user selects a path.
   @override
   Future<void> saveExportedFile(
       Uint8List bytes, String dialogTitle, String fileName) async {
@@ -100,21 +100,21 @@ class FileService implements IFileService {
     URL.revokeObjectURL(url); // Cleans up the URL to release memory.
   }
 
-  /// Opens a file picker dialog for the user to select a `.maso` file.
+  /// Opens a file picker dialog for the user to select a `.quiz` file.
   ///
-  /// If a file is selected, it retrieves the file's binary data and decodes it into a `MasoFile` object.
+  /// If a file is selected, it retrieves the file's binary data and decodes it into a `QuizFile` object.
   ///
-  /// - Returns: A `MasoFile` object if a valid file is selected, or `null` if no file is selected.
+  /// - Returns: A `QuizFile` object if a valid file is selected, or `null` if no file is selected.
   @override
-  Future<MasoFile?> pickFile() async {
+  Future<QuizFile?> pickFile() async {
     // Open the file picker dialog
     final result = await FilePicker.platform.pickFiles();
 
-    // If a file is selected, read and return the file as a MasoFile object
+    // If a file is selected, read and return the file as a QuizFile object
     if (result != null) {
       final bytes = result.files.single.bytes;
       if (bytes != null) {
-        return decodeAndCreateMasoFile(result.files.single.path, bytes);
+        return decodeAndCreateQuizFile(result.files.single.path, bytes);
       }
     }
     return null; // Return null if no file is selected

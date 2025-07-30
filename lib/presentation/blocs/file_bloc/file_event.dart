@@ -1,8 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:quiz_app/domain/models/export_formats.dart';
-
-import '../../../domain/models/maso/maso_file.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 
 /// Abstract class representing the base event for file operations.
 abstract class FileEvent {}
@@ -14,11 +13,11 @@ class FileDropped extends FileEvent {
 }
 
 /// Event triggered when a file save is requested, with the file path and data.
-class MasoFileSaveRequested extends FileEvent {
-  MasoFile masoFile; // The MasoFile object to be saved
+class QuizFileSaveRequested extends FileEvent {
+  QuizFile quizFile; // The QuizFile object to be saved
   final String dialogTitle;
   final String fileName;
-  MasoFileSaveRequested(this.masoFile, this.dialogTitle, this.fileName);
+  QuizFileSaveRequested(this.quizFile, this.dialogTitle, this.fileName);
 }
 
 /// Event triggered when a exported file save is requested, with the file path and data.
@@ -37,21 +36,23 @@ class ExportedFileSaveRequested extends FileEvent {
 
 /// Event triggered when a file is requested to be picked.
 /// This event can be used to initiate the file selection process.
-class MasoFilePickRequested extends FileEvent {}
+class QuizFilePickRequested extends FileEvent {}
 
 /// Event triggered when a file is requested to be picked.
 /// This event can be used to initiate the file selection process.
-class CreateMasoMetadata extends FileEvent {
+class CreateQuizMetadata extends FileEvent {
   final String name;
   final String version;
   final String description;
-  CreateMasoMetadata({
+  final String author;
+  CreateQuizMetadata({
     required this.name,
     required this.version,
     required this.description,
+    required this.author,
   });
 }
 
 /// Event triggered to reset the file state.
 /// This event can be used to clear any file-related data or state.
-class MasoFileReset extends FileEvent {}
+class QuizFileReset extends FileEvent {}

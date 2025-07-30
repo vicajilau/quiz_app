@@ -121,7 +121,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get fillAllFieldsError => 'Por favor, completa todos los campos.';
 
   @override
-  String get createMasoFileTitle => 'Crear Archivo Quiz';
+  String get createQuizFileTitle => 'Crear Archivo Quiz';
 
   @override
   String get fileNameLabel => 'Nombre del Archivo';
@@ -207,10 +207,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get saveDisabledTooltip => 'No hay cambios para guardar';
 
   @override
-  String get executeTooltip => 'Ejecutar el proceso';
+  String get executeTooltip => 'Ejecutar el exámen';
 
   @override
-  String get addTooltip => 'Agregar un nuevo proceso';
+  String get addTooltip => 'Agregar una nueva pregunta';
 
   @override
   String get backSemanticLabel => 'Botón de volver';

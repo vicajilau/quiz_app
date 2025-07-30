@@ -14,7 +14,7 @@ class RequestFileNameDialog extends StatefulWidget {
 
 class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
   late TextEditingController
-      _controller; // Controller for the file name input field.
+  _controller; // Controller for the file name input field.
   String? _errorMessage; // Error message to display if validation fails.
 
   @override
@@ -36,13 +36,14 @@ class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
     // Check if the filename is empty.
     if (filename.isEmpty) {
       setState(() {
-        _errorMessage = AppLocalizations.of(context)!
-            .emptyFileNameMessage; // Set error message for empty filename.
+        _errorMessage = AppLocalizations.of(
+          context,
+        )!.emptyFileNameMessage; // Set error message for empty filename.
       });
       return false;
     }
 
-    // Check if the filename ends with '.maso'; if not, append it.
+    // Check if the filename ends with '.quiz'; if not, append it.
     if (!filename.endsWith(widget.format)) {
       _controller.text =
           "$filename${widget.format}"; // Update the text with the correct extension.
@@ -57,16 +58,18 @@ class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
   /// Handle submission of the dialog.
   void _submit() {
     if (_validateInput()) {
-      context.pop(_controller.text
-          .trim()); // Return the valid filename to the previous context.
+      context.pop(
+        _controller.text.trim(),
+      ); // Return the valid filename to the previous context.
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(AppLocalizations.of(context)!
-          .requestFileNameTitle), // Title of the dialog.
+      title: Text(
+        AppLocalizations.of(context)!.requestFileNameTitle,
+      ), // Title of the dialog.
       content: SingleChildScrollView(
         child: Column(
           mainAxisSize:
@@ -76,8 +79,9 @@ class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
             TextFormField(
               controller: _controller,
               decoration: InputDecoration(
-                hintText: AppLocalizations.of(context)!
-                    .fileNameHint, // Hint text for the input field.
+                hintText: AppLocalizations.of(
+                  context,
+                )!.fileNameHint, // Hint text for the input field.
                 errorText:
                     _errorMessage, // Display error message if validation fails.
                 border: const OutlineInputBorder(), // Define border style.

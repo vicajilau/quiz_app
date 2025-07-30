@@ -284,11 +284,11 @@ abstract class AppLocalizations {
   /// **'Please fill in all the fields.'**
   String get fillAllFieldsError;
 
-  /// No description provided for @createMasoFileTitle.
+  /// No description provided for @createQuizFileTitle.
   ///
   /// In en, this message translates to:
   /// **'Create Quiz File'**
-  String get createMasoFileTitle;
+  String get createQuizFileTitle;
 
   /// No description provided for @fileNameLabel.
   ///
@@ -419,13 +419,13 @@ abstract class AppLocalizations {
   /// No description provided for @executeTooltip.
   ///
   /// In en, this message translates to:
-  /// **'Execute the process'**
+  /// **'Execute the exam'**
   String get executeTooltip;
 
   /// No description provided for @addTooltip.
   ///
   /// In en, this message translates to:
-  /// **'Add a new process'**
+  /// **'Add a new question'**
   String get addTooltip;
 
   /// No description provided for @backSemanticLabel.

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/domain/models/export_formats.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 
 import '../../../core/l10n/app_localizations.dart';
-import '../../../domain/models/maso/maso_file.dart';
 
 /// Abstract class representing the base state for file operations.
 abstract class FileState {}
@@ -15,9 +15,9 @@ class FileLoading extends FileState {}
 
 /// State representing a successfully loaded file, containing the file data and path.
 class FileLoaded extends FileState {
-  final MasoFile masoFile; // The loaded MasoFile object
+  final QuizFile quizFile; // The loaded QuizFile object
 
-  FileLoaded(this.masoFile);
+  FileLoaded(this.quizFile);
 }
 
 /// State representing a successfully exported file, containing the file data and path.
@@ -40,7 +40,7 @@ class FileError extends FileState {
       case FileErrorType.invalidExtension:
         return AppLocalizations.of(context)!.errorInvalidFile;
       case FileErrorType.errorOpeningFile:
-      case FileErrorType.errorSavingMasoFile:
+      case FileErrorType.errorSavingQuizFile:
       case FileErrorType.errorPickingFileManually:
         return AppLocalizations.of(context)!.errorLoadingFile(error.toString());
       case FileErrorType.errorSavingExportedFile:
@@ -59,8 +59,8 @@ enum FileErrorType {
   /// There was an error while trying to open the file.
   errorOpeningFile,
 
-  /// There was an error while trying to save the Maso file.
-  errorSavingMasoFile,
+  /// There was an error while trying to save the Quiz file.
+  errorSavingQuizFile,
 
   /// There was an error while trying to save the exported file.
   errorSavingExportedFile,

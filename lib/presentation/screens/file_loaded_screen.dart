@@ -2,38 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/context_extension.dart';
-import 'package:quiz_app/core/service_locator.dart';
-import 'package:quiz_app/domain/models/execution_setup.dart';
+import 'package:quiz_app/domain/models/quiz/question.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
+import 'package:quiz_app/presentation/widgets/dialogs/add_edit_question_dialog.dart';
+import 'package:quiz_app/presentation/widgets/question_list_widget.dart';
 import 'package:quiz_app/routes/app_router.dart';
 import 'package:platform_detail/platform_detail.dart';
 
-import '../../core/constants/maso_metadata.dart';
 import '../../core/l10n/app_localizations.dart';
-import '../../domain/models/maso/i_process.dart';
-import '../../domain/models/maso/maso_file.dart';
-import '../../domain/models/maso/process_mode.dart';
-import '../../domain/models/settings_maso.dart';
 import '../../domain/use_cases/check_file_changes_use_case.dart';
 import '../blocs/file_bloc/file_bloc.dart';
 import '../blocs/file_bloc/file_event.dart';
 import '../blocs/file_bloc/file_state.dart';
-import '../widgets/dialogs/add_edit_process_dialog/add_edit_process_dialog.dart';
-import '../widgets/dialogs/execution_setup_dialog.dart';
 import '../widgets/dialogs/exit_confirmation_dialog.dart';
-import '../widgets/dialogs/process_list_widget/process_list_widget.dart';
-import '../widgets/dialogs/settings_dialog.dart';
 import '../widgets/request_file_name_dialog.dart';
 
 class FileLoadedScreen extends StatefulWidget {
   final FileBloc fileBloc;
   final CheckFileChangesUseCase checkFileChangesUseCase;
-  final MasoFile masoFile;
+  final QuizFile quizFile;
 
   const FileLoadedScreen({
     super.key,
     required this.fileBloc,
     required this.checkFileChangesUseCase,
-    required this.masoFile,
+    required this.quizFile,
   });
 
   @override
@@ -41,19 +34,19 @@ class FileLoadedScreen extends StatefulWidget {
 }
 
 class _FileLoadedScreenState extends State<FileLoadedScreen> {
-  late MasoFile cachedMasoFile;
+  late QuizFile cachedQuizFile;
   bool _hasFileChanged = false; // Variable to track file change status
 
   // Function to check if the file has changed
   void _checkFileChange() {
-    final hasChanged = widget.checkFileChangesUseCase.execute(cachedMasoFile);
+    final hasChanged = widget.checkFileChangesUseCase.execute(cachedQuizFile);
     setState(() {
       _hasFileChanged = hasChanged;
     });
   }
 
   Future<bool> _confirmExit() async {
-    if (widget.checkFileChangesUseCase.execute(cachedMasoFile)) {
+    if (widget.checkFileChangesUseCase.execute(cachedQuizFile)) {
       return await showDialog<bool>(
             context: context,
             builder: (context) => ExitConfirmationDialog(),
@@ -66,7 +59,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
   @override
   void initState() {
     super.initState();
-    cachedMasoFile = widget.masoFile;
+    cachedQuizFile = widget.quizFile;
     _checkFileChange(); // Check the file change status when the screen is loaded
   }
 
@@ -86,7 +79,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
               context.presentSnackBar(
                 AppLocalizations.of(
                   context,
-                )!.fileSaved(state.masoFile.filePath!),
+                )!.fileSaved(state.quizFile.filePath!),
               );
               _checkFileChange();
             }
@@ -99,7 +92,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
               return Scaffold(
                 appBar: AppBar(
                   title: Text(
-                    "${cachedMasoFile.metadata.name} - ${cachedMasoFile.metadata.description}",
+                    "${cachedQuizFile.metadata.title} - ${cachedQuizFile.metadata.description}",
                   ),
                   leading: IconButton(
                     icon: Icon(
@@ -117,45 +110,14 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                   ),
                   actions: [
                     IconButton(
-                      icon: const Icon(Icons.settings),
-                      tooltip: 'Settings',
                       onPressed: () async {
-                        final settings = await SettingsMaso.loadFromPreferences(
-                          cachedMasoFile.processes.mode,
-                        );
-                        if (!context.mounted) return;
-                        await showDialog<ProcessesMode>(
-                          context: context,
-                          builder: (context) => SettingsDialog(
-                            settings: settings,
-                            onSettingsChanged: (SettingsMaso modifiedSettings) {
-                              modifiedSettings.saveToPreferences();
-                              ServiceLocator.instance.registerSettings(
-                                modifiedSettings,
-                              );
-                              if (modifiedSettings.processesMode !=
-                                  cachedMasoFile.processes.mode) {
-                                cachedMasoFile.processes.elements.clear();
-                                cachedMasoFile.processes.mode =
-                                    modifiedSettings.processesMode;
-                                setState(() {
-                                  _checkFileChange();
-                                });
-                              }
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                    IconButton(
-                      onPressed: () async {
-                        final createdProcess = await showDialog<IProcess>(
+                        final createdQuestion = await showDialog<Question>(
                           context: context,
                           builder: (context) =>
-                              AddEditProcessDialog(masoFile: cachedMasoFile),
+                              AddEditQuestionDialog(quizFile: cachedQuizFile),
                         );
-                        if (createdProcess != null) {
-                          cachedMasoFile.processes.elements.add(createdProcess);
+                        if (createdQuestion != null) {
+                          cachedQuizFile.questions.add(createdQuestion);
                           _checkFileChange();
                         }
                       },
@@ -176,31 +138,16 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                     ),
                   ],
                 ),
-                body: ProcessListWidget(
-                  maso: cachedMasoFile,
+                body: QuestionListWidget(
+                  quizFile: cachedQuizFile,
                   onFileChange: _checkFileChange,
                 ),
-                floatingActionButton:
-                    cachedMasoFile.processes.elements.isNotEmpty
+                floatingActionButton: cachedQuizFile.questions.isNotEmpty
                     ? FloatingActionButton(
                         tooltip: AppLocalizations.of(context)!.executeTooltip,
                         onPressed: () async {
-                          final executionSetup =
-                              await showDialog<ExecutionSetup>(
-                                context: context,
-                                builder: (context) => ExecutionSetupDialog(),
-                              );
-                          if (executionSetup != null) {
-                            ServiceLocator.instance.registerExecutionSetup(
-                              executionSetup,
-                            );
-                            executionSetup.settings =
-                                await SettingsMaso.loadFromPreferences(
-                                  cachedMasoFile.processes.mode,
-                                );
-                            if (context.mounted) {
-                              context.push(AppRoutes.masoFileExecutionScreen);
-                            }
+                          if (context.mounted) {
+                            context.push(AppRoutes.quizFileExecutionScreen);
                           }
                         },
                         child: const Icon(Icons.play_arrow),
@@ -219,7 +166,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
     if (PlatformDetail.isWeb) {
       final result = await showDialog<String>(
         context: context,
-        builder: (_) => RequestFileNameDialog(format: '.maso'),
+        builder: (_) => RequestFileNameDialog(format: '.quiz'),
       );
       fileName = result;
     } else {
@@ -227,11 +174,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
     }
     if (fileName != null && context.mounted) {
       context.read<FileBloc>().add(
-        MasoFileSaveRequested(
-          cachedMasoFile,
-          fileName,
-          MasoMetadata.masoFileName,
-        ),
+        QuizFileSaveRequested(cachedQuizFile, fileName, "output-file.quiz"),
       );
     }
   }

@@ -4,18 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/context_extension.dart';
 import 'package:platform_detail/platform_detail.dart';
+import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 
-import '../../core/constants/maso_metadata.dart';
 import '../../core/file_handler.dart';
 import '../../core/l10n/app_localizations.dart';
 import '../../core/service_locator.dart';
-import '../../domain/models/custom_exceptions/bad_maso_file_exception.dart';
-import '../../domain/models/settings_maso.dart';
 import '../../routes/app_router.dart';
 import '../blocs/file_bloc/file_bloc.dart';
 import '../blocs/file_bloc/file_event.dart';
 import '../blocs/file_bloc/file_state.dart';
-import '../widgets/dialogs/create_maso_dialog.dart';
+import '../widgets/dialogs/create_quiz_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,10 +25,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool _isLoading = false; // Variable to track loading state
 
-  Future<void> _showCreateMasoFileDialog(BuildContext context) async {
+  Future<void> _showCreateQuizFileDialog(BuildContext context) async {
     final result = await showDialog<Map<String, String>>(
       context: context,
-      builder: (_) => const CreateMasoFileDialog(),
+      builder: (_) => const CreateQuizFileDialog(),
     );
 
     if (result != null &&
@@ -38,10 +36,11 @@ class _HomeScreenState extends State<HomeScreen> {
         result['description'] != null &&
         context.mounted) {
       context.read<FileBloc>().add(
-        CreateMasoMetadata(
+        CreateQuizMetadata(
           name: result['name']!,
-          version: MasoMetadata.version,
+          version: result['version']!,
           description: result['description']!,
+          author: result['author']!,
         ),
       );
     }
@@ -56,23 +55,19 @@ class _HomeScreenState extends State<HomeScreen> {
           if (state is FileLoaded) {
             context.presentSnackBar(
               AppLocalizations.of(context)!.fileLoaded(
-                state.masoFile.filePath ??
-                    "${state.masoFile.metadata.name}${MasoMetadata.format}",
+                state.quizFile.filePath ??
+                    "${state.quizFile.metadata.title}.quiz",
               ),
             );
-            final settings = await SettingsMaso.loadFromPreferences(
-              state.masoFile.processes.mode,
-            );
-            ServiceLocator.instance.registerSettings(settings);
             if (!context.mounted) return;
             final _ = await context.push(AppRoutes.fileLoadedScreen);
             if (!context.mounted) return;
-            context.read<FileBloc>().add(MasoFileReset());
+            context.read<FileBloc>().add(QuizFileReset());
           }
           if (state is FileError && context.mounted) {
-            if (state.error is BadMasoFileException) {
-              final badFileException = state.error as BadMasoFileException;
-              context.presentSnackBar(badFileException.description(context));
+            if (state.error is BadQuizFileException) {
+              final badFileException = state.error as BadQuizFileException;
+              context.presentSnackBar(badFileException.toString());
             } else {
               context.presentSnackBar(state.getDescription(context));
             }
@@ -100,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: TextButton(
                       onPressed: _isLoading
                           ? null
-                          : () => _showCreateMasoFileDialog(context),
+                          : () => _showCreateQuizFileDialog(context),
                       child: Text(
                         AppLocalizations.of(context)!.create,
                         style: const TextStyle(color: Colors.white),
@@ -113,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: _isLoading
                           ? null
                           : () => context.read<FileBloc>().add(
-                              MasoFilePickRequested(),
+                              QuizFilePickRequested(),
                             ),
                       child: Text(
                         AppLocalizations.of(context)!.load,
@@ -124,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               body: PlatformDetail.isMobile
-                  ? Center(child: Image.asset('MASO.png', fit: BoxFit.contain))
+                  ? Center(child: Image.asset('QUIZ.png', fit: BoxFit.contain))
                   : DropTarget(
                       onDragDone: (details) {
                         if (context.read<FileBloc>().state is! FileLoaded) {
