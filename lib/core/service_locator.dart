@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:quiz_app/domain/use_cases/check_file_changes_use_case.dart';
 
 import '../data/repositories/quiz_file_repository.dart';
 import '../data/services/file_service/mobile_desktop_file_service.dart'
@@ -24,6 +25,10 @@ class ServiceLocator {
   // Function to set up the service locator and register dependencies
   void setup() {
     getIt.registerLazySingleton<QuizFileService>(() => QuizFileService());
+    getIt.registerLazySingleton<CheckFileChangesUseCase>(
+      () =>
+          CheckFileChangesUseCase(fileRepository: getIt<QuizFileRepository>()),
+    );
     getIt.registerLazySingleton<QuizFileRepository>(
       () => QuizFileRepository(fileService: getIt<QuizFileService>()),
     );
