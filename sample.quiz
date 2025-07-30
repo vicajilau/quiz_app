@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "title": "Sample Quiz",
+    "description": "A multiple-choice quiz with multiple correct answers possible",
+    "version": "1.0",
+    "author": "Author Name"
+  },
+  "questions": [
+    {
+      "type": "multiple_choice",
+      "text": "What is the capital of France?",
+      "options": ["Madrid", "Paris", "Rome", "Berlin"],
+      "correct_answers": [1]
+    },
+    {
+      "type": "multiple_choice",
+      "text": "Which of the following are programming languages?",
+      "options": ["Python", "HTML", "C++", "CSS"],
+      "correct_answers": [0, 2]
+    },
+    {
+      "type": "multiple_choice",
+      "text": "Which of these are planets in the solar system?",
+      "options": ["Mars", "Jupiter", "Pluto", "Venus"],
+      "correct_answers": [0, 1, 3]
+    }
+  ]
+}

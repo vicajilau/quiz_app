@@ -1,16 +1,10 @@
 /// Provides metadata constants and version management for Quiz files.
-class MasoMetadata {
+class QuizMetadataConstants {
   /// The current supported Quiz file version.
   static const String version = "1.0.0";
 
   /// The default name format for exported Quiz files.
-  static const String masoFileName = "output-file$format";
-
-  /// The default name for exported execution timeline images.
-  static const String exportImageFileName = "execution_timeline.png";
-
-  /// The default name for exported execution timeline PDFs.
-  static const String exportPdfFileName = "execution_timeline.pdf";
+  static const String quizFileName = "quiz-file$format";
 
   /// The file extension for Quiz files.
   static const String format = ".quiz";
@@ -25,13 +19,13 @@ class MasoMetadata {
   ///
   /// Example:
   /// ```dart
-  /// MasoMetadata.isSupportedVersion("1.2.3"); // true (if Quiz version is "1.2.0")
-  /// MasoMetadata.isSupportedVersion("1.0.0"); // true (if Quiz version is "1.0.0")
-  /// MasoMetadata.isSupportedVersion("0.9.9"); // false (if Quiz version is "1.0.0")
+  /// QuizMetadataConstants.isSupportedVersion("1.2.3"); // true (if Quiz version is "1.2.0")
+  /// QuizMetadataConstants.isSupportedVersion("1.0.0"); // true (if Quiz version is "1.0.0")
+  /// QuizMetadataConstants.isSupportedVersion("0.9.9"); // false (if Quiz version is "1.0.0")
   /// ```
   static bool isSupportedVersion(String v1) {
     /// `v2` represents the highest Quiz file version that the current application can support.
-    const v2 = MasoMetadata.version;
+    const v2 = QuizMetadataConstants.version;
 
     // Split the version strings into lists of integers
     List<int> v1Parts = v1.split('.').map(int.parse).toList();
@@ -48,6 +42,6 @@ class MasoMetadata {
       if (v1Parts[i] < v2Parts[i]) return true; // `v1` is older
     }
 
-    return true; // Versions are identical
+    return true; // Versions are equal
   }
 }

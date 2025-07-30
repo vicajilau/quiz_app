@@ -1,75 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quiz_app/domain/models/quiz/question.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
+import 'package:quiz_app/presentation/widgets/dialogs/add_edit_question_dialog.dart';
 
 import '../../../../core/l10n/app_localizations.dart';
-import '../../../../domain/models/maso/i_process.dart';
-import '../../../../domain/models/maso/maso_file.dart';
-import '../../../../domain/models/maso/regular_process.dart';
-import '../add_edit_process_dialog/add_edit_process_dialog.dart';
 
-class RegularProcessList extends StatefulWidget {
-  final MasoFile masoFile;
+class QuestionListWidget extends StatefulWidget {
+  final QuizFile quizFile;
   final VoidCallback onFileChange;
-  const RegularProcessList({
+  const QuestionListWidget({
     super.key,
-    required this.masoFile,
+    required this.quizFile  ,
     required this.onFileChange,
   });
 
   @override
-  State<RegularProcessList> createState() => _RegularProcessListState();
+  State<QuestionListWidget> createState() => _QuestionListWidgetState();
 }
 
-class _RegularProcessListState extends State<RegularProcessList> {
+class _QuestionListWidgetState extends State<QuestionListWidget> {
   @override
   Widget build(BuildContext context) {
     return ReorderableListView(
       onReorder: _onReorder,
       children:
-          List.generate(widget.masoFile.processes.elements.length, (index) {
-        final process =
-            widget.masoFile.processes.elements[index] as RegularProcess;
+          List.generate(widget.quizFile.questions.length, (index) {
+        final question =
+            widget.quizFile.questions[index];
         return _buildDismissible(
-          process,
+          question,
           index,
           _buildListTile(
-            process,
+            question,
             index,
-            '${AppLocalizations.of(context)!.arrivalTimeLabel(process.arrivalTime.toString())} '
-            '${AppLocalizations.of(context)!.serviceTimeLabel(process.serviceTime.toString())}',
+            widget.quizFile.questions[index].text,
           ),
         );
       }),
     );
   }
 
-  Widget _buildListTile(IProcess process, int index, String subtitle) {
+  Widget _buildListTile(Question question, int index, String subtitle) {
     return ListTile(
-      title: Text(process.id),
+      title: Text(question.text),
       subtitle: Text(subtitle),
-      leading: Switch(
-        value: process.enabled,
-        onChanged: (value) {
-          setState(() {
-            process.enabled = value;
-            widget.onFileChange();
-          });
-        },
-        activeColor: Colors.green,
-        inactiveThumbColor: Colors.red,
-      ),
       onTap: () async {
-        final updatedProcess = await showDialog<RegularProcess>(
+        final updatedQuestion = await showDialog<Question>(
           context: context,
-          builder: (context) => AddEditProcessDialog(
-            process: process,
-            masoFile: widget.masoFile,
-            processPosition: index,
+          builder: (context) => AddEditQuestionDialog(
+            question: question,
+            quizFile: widget.quizFile,
+            questionPosition: index,
           ),
         );
-        if (updatedProcess != null) {
+        if (updatedQuestion != null) {
           setState(() {
-            widget.masoFile.processes.elements[index] = updatedProcess;
+            widget.quizFile.questions[index] = updatedQuestion;
             widget.onFileChange();
           });
         }
@@ -77,13 +64,13 @@ class _RegularProcessListState extends State<RegularProcessList> {
     );
   }
 
-  Future<bool> _confirmDismiss(BuildContext context, IProcess process) async {
+  Future<bool> _confirmDismiss(BuildContext context, Question question) async {
     return await showDialog<bool>(
           context: context,
           builder: (context) => AlertDialog(
             title: Text(AppLocalizations.of(context)!.confirmDeleteTitle),
             content: Text(
-                AppLocalizations.of(context)!.confirmDeleteMessage(process.id)),
+                AppLocalizations.of(context)!.confirmDeleteMessage(question.text)),
             actions: [
               TextButton(
                 onPressed: () => context.pop(false),
@@ -102,20 +89,20 @@ class _RegularProcessListState extends State<RegularProcessList> {
   void _onReorder(int oldIndex, int newIndex) {
     setState(() {
       if (newIndex > oldIndex) newIndex -= 1;
-      final process = widget.masoFile.processes.elements.removeAt(oldIndex);
-      widget.masoFile.processes.elements.insert(newIndex, process);
+      final question = widget.quizFile.questions.removeAt(oldIndex);
+      widget.quizFile.questions.insert(newIndex, question);
       widget.onFileChange();
     });
   }
 
-  Widget _buildDismissible(IProcess process, int index, Widget child) {
+  Widget _buildDismissible(Question question, int index, Widget child) {
     return Dismissible(
-      key: ValueKey(process.id),
+      key: ValueKey(question),
       direction: DismissDirection.horizontal,
-      confirmDismiss: (direction) => _confirmDismiss(context, process),
+      confirmDismiss: (direction) => _confirmDismiss(context, question),
       onDismissed: (direction) {
         setState(() {
-          widget.masoFile.processes.elements.removeAt(index);
+          widget.quizFile.questions.removeAt(index);
           widget.onFileChange();
         });
       },

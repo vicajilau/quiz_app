@@ -1,12 +1,12 @@
-import '../../data/repositories/file_repository.dart';
-import '../models/maso/maso_file.dart';
+import 'package:quiz_app/data/repositories/quiz_file_repository.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 
 /// Use case for checking if a MasoFile has changed.
 class CheckFileChangesUseCase {
-  final FileRepository _fileRepository;
+  final QuizFileRepository _fileRepository;
 
   /// Constructor that receives the repository as a dependency.
-  CheckFileChangesUseCase({required FileRepository fileRepository})
+  CheckFileChangesUseCase({required QuizFileRepository fileRepository})
       : _fileRepository = fileRepository;
 
   /// Executes the business logic to check if the file has changed.
@@ -14,8 +14,8 @@ class CheckFileChangesUseCase {
   /// [cachedFile] is the MasoFile that needs to be checked for changes.
   /// It calls the repository method to check whether the file has changed.
   /// Returns true if the file has changed, false otherwise.
-  bool execute(MasoFile cachedFile) {
+  bool execute(QuizFile cachedFile) {
     // Calls the repository to check if the file has changed
-    return _fileRepository.hasMasoFileChanged(cachedFile);
+    return _fileRepository.hasQuizFileChanged(cachedFile);
   }
 }

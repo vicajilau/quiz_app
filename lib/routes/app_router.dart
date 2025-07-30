@@ -1,10 +1,9 @@
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/debug_print.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:quiz_app/presentation/screens/file_loaded_screen.dart';
-import 'package:quiz_app/presentation/screens/maso_file_execution_screen.dart';
 
 import '../core/service_locator.dart';
-import '../domain/models/maso/maso_file.dart';
 import '../domain/use_cases/check_file_changes_use_case.dart';
 import '../presentation/blocs/file_bloc/file_bloc.dart';
 import '../presentation/screens/home_screen.dart';
@@ -27,12 +26,8 @@ final GoRouter appRouter = GoRouter(
         fileBloc: ServiceLocator.instance.getIt<FileBloc>(),
         checkFileChangesUseCase: ServiceLocator.instance
             .getIt<CheckFileChangesUseCase>(),
-        masoFile: ServiceLocator.instance.getIt<MasoFile>(),
+        masoFile: ServiceLocator.instance.getIt<QuizFile>(),
       ),
-    ),
-    GoRoute(
-      path: AppRoutes.masoFileExecutionScreen,
-      builder: (context, state) => const MasoFileExecutionScreen(),
     ),
   ],
   redirect: (context, state) {

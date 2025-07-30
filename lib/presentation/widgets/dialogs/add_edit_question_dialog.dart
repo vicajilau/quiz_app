@@ -1,39 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quiz_app/domain/models/maso/regular_process.dart';
+import 'package:quiz_app/domain/models/quiz/question.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 
 import '../../../../core/l10n/app_localizations.dart';
 import '../../../../domain/models/custom_exceptions/regular_process_error_type.dart';
-import '../../../../domain/models/maso/maso_file.dart';
-import '../../../../domain/use_cases/validate_maso_regular_processes_use_case.dart';
 
-/// Dialog widget for creating or editing a RegularProcess.
-class AddEditRegularProcessDialog extends StatefulWidget {
-  final RegularProcess? process; // Optional process for editing.
-  final MasoFile masoFile; // The file containing all processes.
-  final int? processPosition; // Optional index for editing a specific process.
+/// Dialog widget for creating or editing a Question.
+class AddEditQuestionDialog extends StatefulWidget {
+  final Question? question; // Optional question for editing.
+  final QuizFile quizFile; // The file containing all questions.
+  final int? questionPosition; // Optional index for editing a specific question.
 
   /// Constructor for the dialog.
-  const AddEditRegularProcessDialog({
+  const AddEditQuestionDialog({
     super.key,
-    this.process,
-    required this.masoFile,
-    this.processPosition,
+    this.question,
+    required this.quizFile,
+    this.questionPosition,
   });
 
   @override
-  State<AddEditRegularProcessDialog> createState() =>
-      _AddEditRegularProcessDialogState();
+  State<AddEditQuestionDialog> createState() =>
+      _AddEditQuestionDialogState();
 }
 
-class _AddEditRegularProcessDialogState
-    extends State<AddEditRegularProcessDialog> {
+class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
   late TextEditingController
-  _nameController; // Controller for the name input field.
+      _nameController; // Controller for the name input field.
   late TextEditingController
-  _arrivalTimeController; // Controller for the arrival time input field.
+      _arrivalTimeController; // Controller for the arrival time input field.
   late TextEditingController
-  _serviceTimeController; // Controller for the service time input field.
+      _serviceTimeController; // Controller for the service time input field.
   late bool _isEnabled; // Indicates if the process is enabled or disabled.
 
   String? _nameError; // Error message for the name field.
@@ -47,11 +45,11 @@ class _AddEditRegularProcessDialogState
     _nameController = TextEditingController();
     _arrivalTimeController = TextEditingController();
     _serviceTimeController = TextEditingController();
-    if (widget.process != null) {
-      _nameController.text = widget.process!.id;
-      _arrivalTimeController.text = widget.process!.arrivalTime.toString();
-      _serviceTimeController.text = widget.process!.serviceTime.toString();
-      _isEnabled = widget.process!.enabled;
+    if (widget.question != null) {
+      _nameController.text = widget.question!.text;
+      _arrivalTimeController.text = widget.question!.arrivalTime.toString();
+      _serviceTimeController.text = widget.question!.serviceTime.toString();
+      _isEnabled = widget.question!.enabled;
     } else {
       _isEnabled = true;
     }
@@ -76,13 +74,11 @@ class _AddEditRegularProcessDialogState
     });
 
     final validateInput = ValidateMasoProcessUseCase.validateRegularProcess(
-      _nameController.text,
-      _arrivalTimeController.text,
-      _serviceTimeController.text,
-      widget.processPosition,
-      widget.masoFile,
-    );
-
+        _nameController.text,
+        _arrivalTimeController.text,
+        _serviceTimeController.text,
+        widget.questionPosition,
+        widget.quizFile);
     if (validateInput.success) return true;
 
     switch (validateInput.errorType) {
@@ -109,17 +105,15 @@ class _AddEditRegularProcessDialogState
         enabled: _isEnabled,
       );
       context.pop(
-        newOrUpdatedProcess,
-      ); // Return the new/updated process to the previous context.
+          newOrUpdatedProcess); // Return the new/updated process to the previous context.
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(
-        AppLocalizations.of(context)!.createRegularProcessTitle,
-      ), // Title of the dialog.
+      title: Text(AppLocalizations.of(context)!
+          .createRegularProcessTitle), // Title of the dialog.
       content: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
