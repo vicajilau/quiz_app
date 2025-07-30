@@ -40,11 +40,11 @@ static void my_application_activate(GApplication* application) {
   if (use_header_bar) {
     GtkHeaderBar* header_bar = GTK_HEADER_BAR(gtk_header_bar_new());
     gtk_widget_show(GTK_WIDGET(header_bar));
-    gtk_header_bar_set_title(header_bar, "quiz_app");
+    gtk_header_bar_set_title(header_bar, "Quiz App");
     gtk_header_bar_set_show_close_button(header_bar, TRUE);
     gtk_window_set_titlebar(window, GTK_WIDGET(header_bar));
   } else {
-    gtk_window_set_title(window, "quiz_app");
+    gtk_window_set_title(window, "Quiz App");
   }
 
   gtk_window_set_default_size(window, 1280, 720);
@@ -60,6 +60,20 @@ static void my_application_activate(GApplication* application) {
   fl_register_plugins(FL_PLUGIN_REGISTRY(view));
 
   gtk_widget_grab_focus(GTK_WIDGET(view));
+
+  // Add support for the application to handle Quiz file opening.
+  // Get Flutter engine to communicate with Dart.
+  FlEngine* engine = fl_view_get_engine(view);
+  FlBinaryMessenger* messenger = fl_engine_get_binary_messenger(engine);
+
+  // Create the MethodChannel
+  g_autoptr(FlMethodChannel) channel = fl_method_channel_new(messenger, "quiz.file", FL_METHOD_CODEC(fl_standard_method_codec_new()));
+
+  // Send file argument if exists
+  if (self->dart_entrypoint_arguments && self->dart_entrypoint_arguments[0] != nullptr) {
+    g_autoptr(FlValue) file_path = fl_value_new_string(self->dart_entrypoint_arguments[0]);
+    fl_method_channel_invoke_method(channel, "openFile", file_path, nullptr, nullptr, nullptr);
+  }
 }
 
 // Implements GApplication::local_command_line.
