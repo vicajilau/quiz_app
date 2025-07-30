@@ -2,7 +2,7 @@
   "metadata": {
     "title": "Sample Quiz",
     "description": "A multiple-choice quiz with multiple correct answers possible",
-    "version": "1.0",
+    "version": "1.0.0",
     "author": "Author Name"
   },
   "questions": [

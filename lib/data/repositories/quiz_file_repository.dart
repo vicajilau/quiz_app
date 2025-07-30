@@ -2,22 +2,22 @@ import 'dart:typed_data';
 
 import 'package:quiz_app/core/debug_print.dart';
 import 'package:quiz_app/core/service_locator.dart';
+import 'package:quiz_app/data/services/file_service/i_file_service.dart';
 
 import '../../domain/models/quiz/quiz_file.dart';
 import '../../domain/models/quiz/quiz_metadata.dart';
-import '../services/file_service/i_quiz_file_service.dart';
 
 /// The `QuizFileRepository` class manages file-related operations such as loading, saving,
-/// and selecting quiz files. It delegates these tasks to an instance of `QuizFileService`.
+/// and selecting quiz files. It delegates these tasks to an instance of `FileService`.
 class QuizFileRepository {
-  /// Instance of `IQuizFileService` to handle file operations.
-  final IQuizFileService _fileService;
+  /// Instance of `IFileService` to handle file operations.
+  final IFileService _fileService;
 
-  /// Constructor to initialize `QuizFileRepository` with a `QuizFileService` instance.
+  /// Constructor to initialize `QuizFileRepository` with a `FileService` instance.
   /// This allows for the delegation of file-related tasks.
   ///
-  /// - [fileService]: The `QuizFileService` instance that handles file operations.
-  QuizFileRepository({required IQuizFileService fileService})
+  /// - [fileService]: The `FileService` instance that handles file operations.
+  QuizFileRepository({required IFileService fileService})
     : _fileService = fileService;
 
   /// Loads a `QuizFile` from a file at the specified [filePath].

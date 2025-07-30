@@ -4,17 +4,17 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:quiz_app/data/services/file_service/i_file_service.dart';
 import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 import 'package:platform_detail/platform_detail.dart';
 
 import '../../../domain/models/custom_exceptions/bad_quiz_file_error_type.dart';
 import '../../../domain/models/quiz/quiz_file.dart';
-import 'i_quiz_file_service.dart';
 
 /// The `QuizFileService` class provides functionalities for managing `.quiz` files.
 /// This includes reading a `.quiz` file, saving a `QuizFile` object to the file system,
 /// and interacting with the user for file selection.
-class QuizFileService implements IQuizFileService {
+class QuizFileService implements IFileService {
   @override
   QuizFile? originalFile;
 

@@ -4,11 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/context_extension.dart';
 import 'package:platform_detail/platform_detail.dart';
+import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 
 import '../../core/file_handler.dart';
 import '../../core/l10n/app_localizations.dart';
 import '../../core/service_locator.dart';
-import '../../domain/models/custom_exceptions/bad_maso_file_exception.dart';
 import '../../routes/app_router.dart';
 import '../blocs/file_bloc/file_bloc.dart';
 import '../blocs/file_bloc/file_event.dart';
@@ -65,9 +65,9 @@ class _HomeScreenState extends State<HomeScreen> {
             context.read<FileBloc>().add(MasoFileReset());
           }
           if (state is FileError && context.mounted) {
-            if (state.error is BadMasoFileException) {
-              final badFileException = state.error as BadMasoFileException;
-              context.presentSnackBar(badFileException.description(context));
+            if (state.error is BadQuizFileException) {
+              final badFileException = state.error as BadQuizFileException;
+              context.presentSnackBar(badFileException.toString());
             } else {
               context.presentSnackBar(state.getDescription(context));
             }

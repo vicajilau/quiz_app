@@ -3,7 +3,6 @@ import 'package:get_it/get_it.dart';
 import '../data/repositories/quiz_file_repository.dart';
 import '../data/services/file_service/mobile_desktop_file_service.dart'
     if (dart.library.html) '../../data/services/file_service/web_file_service.dart';
-import '../data/services/file_service/quiz_file_service.dart';
 import '../domain/models/quiz/quiz_file.dart';
 
 import '../presentation/blocs/file_bloc/file_bloc.dart';
@@ -24,7 +23,10 @@ class ServiceLocator {
 
   // Function to set up the service locator and register dependencies
   void setup() {
-    getIt.registerLazySingleton<QuizFileService>(() => QuizFileService());    
+    getIt.registerLazySingleton<QuizFileService>(() => QuizFileService());
+    getIt.registerLazySingleton<QuizFileRepository>(
+      () => QuizFileRepository(fileService: getIt<QuizFileService>()),
+    );
     getIt.registerFactory<FileBloc>(
       () => FileBloc(fileRepository: getIt<QuizFileRepository>()),
     );
