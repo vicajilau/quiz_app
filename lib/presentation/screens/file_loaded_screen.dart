@@ -20,13 +20,13 @@ import '../widgets/request_file_name_dialog.dart';
 class FileLoadedScreen extends StatefulWidget {
   final FileBloc fileBloc;
   final CheckFileChangesUseCase checkFileChangesUseCase;
-  final QuizFile masoFile;
+  final QuizFile quizFile;
 
   const FileLoadedScreen({
     super.key,
     required this.fileBloc,
     required this.checkFileChangesUseCase,
-    required this.masoFile,
+    required this.quizFile,
   });
 
   @override
@@ -59,7 +59,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
   @override
   void initState() {
     super.initState();
-    cachedQuizFile = widget.masoFile;
+    cachedQuizFile = widget.quizFile;
     _checkFileChange(); // Check the file change status when the screen is loaded
   }
 
@@ -147,7 +147,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                         tooltip: AppLocalizations.of(context)!.executeTooltip,
                         onPressed: () async {
                           if (context.mounted) {
-                            context.push(AppRoutes.masoFileExecutionScreen);
+                            context.push(AppRoutes.quizFileExecutionScreen);
                           }
                         },
                         child: const Icon(Icons.play_arrow),

@@ -40,7 +40,7 @@ class FileError extends FileState {
       case FileErrorType.invalidExtension:
         return AppLocalizations.of(context)!.errorInvalidFile;
       case FileErrorType.errorOpeningFile:
-      case FileErrorType.errorSavingMasoFile:
+      case FileErrorType.errorSavingQuizFile:
       case FileErrorType.errorPickingFileManually:
         return AppLocalizations.of(context)!.errorLoadingFile(error.toString());
       case FileErrorType.errorSavingExportedFile:
@@ -59,8 +59,8 @@ enum FileErrorType {
   /// There was an error while trying to open the file.
   errorOpeningFile,
 
-  /// There was an error while trying to save the Maso file.
-  errorSavingMasoFile,
+  /// There was an error while trying to save the Quiz file.
+  errorSavingQuizFile,
 
   /// There was an error while trying to save the exported file.
   errorSavingExportedFile,

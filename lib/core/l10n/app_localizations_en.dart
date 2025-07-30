@@ -206,10 +206,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get saveDisabledTooltip => 'No changes to save';
 
   @override
-  String get executeTooltip => 'Execute the process';
+  String get executeTooltip => 'Execute the exam';
 
   @override
-  String get addTooltip => 'Add a new process';
+  String get addTooltip => 'Add a new question';
 
   @override
   String get backSemanticLabel => 'Back button';

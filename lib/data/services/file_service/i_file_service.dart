@@ -8,7 +8,7 @@ abstract class IFileService {
   /// Stores an original copy of the `QuizFile` to track changes.
   QuizFile? originalFile;
 
-  /// Reads a `.quiz` file from the specified [filePath] and returns a `MasoFile` object.
+  /// Reads a `.quiz` file from the specified [filePath] and returns a `QuizFile` object.
   ///
   /// - Throws a [FileInvalidException] if the file does not have a `.quiz` extension.
   /// - [filePath]: The path to the `.quiz` file.
@@ -48,6 +48,6 @@ abstract class IFileService {
   ///
   /// If a valid file is selected, it reads and parses the file into a `QuizFile` object.
   ///
-  /// - Returns: A `MasoFile` object if a valid file is selected, or `null` if no file is selected.
+  /// - Returns: A `QuizFile` object if a valid file is selected, or `null` if no file is selected.
   Future<QuizFile?> pickFile();
 }

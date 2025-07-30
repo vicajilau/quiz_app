@@ -81,12 +81,12 @@ class FileBloc extends Bloc<FileEvent, FileState> {
         }
       } on Exception catch (e) {
         emit(
-          FileError(reason: FileErrorType.errorSavingMasoFile, error: e),
+          FileError(reason: FileErrorType.errorSavingQuizFile, error: e),
         ); // Emit error if file saving fails
       } catch (e) {
         emit(
           FileError(
-            reason: FileErrorType.errorSavingMasoFile,
+            reason: FileErrorType.errorSavingQuizFile,
             error: Exception(e),
           ),
         );
@@ -120,8 +120,8 @@ class FileBloc extends Bloc<FileEvent, FileState> {
       }
     });
 
-    // Handling the MasoFileReset event
-    on<MasoFileReset>((event, emit) async {
+    // Handling the QuizFileReset event
+    on<QuizFileReset>((event, emit) async {
       emit(FileInitial()); // Emit initial state after reset
     });
 

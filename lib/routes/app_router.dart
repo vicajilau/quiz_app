@@ -11,7 +11,7 @@ import '../presentation/screens/home_screen.dart';
 class AppRoutes {
   static const String home = '/';
   static const String fileLoadedScreen = '/file_loaded_screen';
-  static const String masoFileExecutionScreen = '/maso_file_execution_screen';
+  static const String quizFileExecutionScreen = '/quiz_file_execution_screen';
 }
 
 final GoRouter appRouter = GoRouter(
@@ -26,7 +26,7 @@ final GoRouter appRouter = GoRouter(
         fileBloc: ServiceLocator.instance.getIt<FileBloc>(),
         checkFileChangesUseCase: ServiceLocator.instance
             .getIt<CheckFileChangesUseCase>(),
-        masoFile: ServiceLocator.instance.getIt<QuizFile>(),
+        quizFile: ServiceLocator.instance.getIt<QuizFile>(),
       ),
     ),
   ],

@@ -3,14 +3,14 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/l10n/app_localizations.dart';
 
-class CreateMasoFileDialog extends StatefulWidget {
-  const CreateMasoFileDialog({super.key});
+class CreateQuizFileDialog extends StatefulWidget {
+  const CreateQuizFileDialog({super.key});
 
   @override
-  State<CreateMasoFileDialog> createState() => _CreateMasoFileDialogState();
+  State<CreateQuizFileDialog> createState() => _CreateQuizFileDialogState();
 }
 
-class _CreateMasoFileDialogState extends State<CreateMasoFileDialog> {
+class _CreateQuizFileDialogState extends State<CreateQuizFileDialog> {
   // Controllers to manage text input for the file name and description.
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();

@@ -9,18 +9,18 @@ import 'package:web/web.dart';
 
 import 'i_file_service.dart';
 
-/// The `FileService` class provides functionalities for managing `.maso` files.
-/// This includes reading, decoding, saving, and picking `.maso` files across platforms.
+/// The `FileService` class provides functionalities for managing `.quiz` files.
+/// This includes reading, decoding, saving, and picking `.quiz` files across platforms.
 class QuizFileService implements IFileService {
-  /// Keep an original copy of the Maso document in order to detect changes in the Maso document.
+  /// Keep an original copy of the Quiz document in order to detect changes in the Quiz document.
   @override
   QuizFile? originalFile;
 
-  /// Reads a `.maso` file from the specified [filePath], retrieves its binary data,
-  /// and decodes it into a `MasoFile` object.
+  /// Reads a `.quiz` file from the specified [filePath], retrieves its binary data,
+  /// and decodes it into a `QuizFile` object.
   ///
-  /// - [filePath]: The path or URL of the `.maso` file.
-  /// - Returns: A `MasoFile` object containing the parsed data from the file.
+  /// - [filePath]: The path or URL of the `.quiz` file.
+  /// - Returns: A `QuizFile` object containing the parsed data from the file.
   /// - Throws: An exception if there is an error reading or decoding the file.
   @override
   Future<QuizFile> readQuizFile(String filePath) async {
@@ -73,12 +73,12 @@ class QuizFileService implements IFileService {
   /// Saves a `Exported` object to the file system.
   ///
   /// This method opens a save dialog for the user to choose the file path
-  /// and writes the `MasoFile` data in JSON format to the selected file.
+  /// and writes the `QuizFile` data in JSON format to the selected file.
   ///
-  /// - [masoFile]: The `MasoFile` object to save.
+  /// - [quizFile]: The `QuizFile` object to save.
   /// - [dialogTitle]: The title for the save dialog window.
   /// - [fileName]: The name for the file.
-  /// - Returns: The `MasoFile` object with an updated file path if the user selects a path.
+  /// - Returns: The `QuizFile` object with an updated file path if the user selects a path.
   @override
   Future<void> saveExportedFile(
       Uint8List bytes, String dialogTitle, String fileName) async {
@@ -100,11 +100,11 @@ class QuizFileService implements IFileService {
     URL.revokeObjectURL(url); // Cleans up the URL to release memory.
   }
 
-  /// Opens a file picker dialog for the user to select a `.maso` file.
+  /// Opens a file picker dialog for the user to select a `.quiz` file.
   ///
-  /// If a file is selected, it retrieves the file's binary data and decodes it into a `MasoFile` object.
+  /// If a file is selected, it retrieves the file's binary data and decodes it into a `QuizFile` object.
   ///
-  /// - Returns: A `MasoFile` object if a valid file is selected, or `null` if no file is selected.
+  /// - Returns: A `QuizFile` object if a valid file is selected, or `null` if no file is selected.
   @override
   Future<QuizFile?> pickFile() async {
     // Open the file picker dialog

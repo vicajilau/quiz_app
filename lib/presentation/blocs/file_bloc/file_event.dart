@@ -55,4 +55,4 @@ class CreateQuizMetadata extends FileEvent {
 
 /// Event triggered to reset the file state.
 /// This event can be used to clear any file-related data or state.
-class MasoFileReset extends FileEvent {}
+class QuizFileReset extends FileEvent {}

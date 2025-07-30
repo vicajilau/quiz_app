@@ -8,17 +8,17 @@ import 'core/service_locator.dart';
 
 void main() {
   ServiceLocator.instance.setup();
-  runApp(const MasoApp());
+  runApp(const QuizApplication());
 }
 
-class MasoApp extends StatefulWidget {
-  const MasoApp({super.key});
+class QuizApplication extends StatefulWidget {
+  const QuizApplication({super.key});
 
   @override
-  State<MasoApp> createState() => _MasoAppState();
+  State<QuizApplication> createState() => _QuizApplicationState();
 }
 
-class _MasoAppState extends State<MasoApp> {
+class _QuizApplicationState extends State<QuizApplication> {
   @override
   void initState() {
     super.initState();

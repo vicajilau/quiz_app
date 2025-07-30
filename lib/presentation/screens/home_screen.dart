@@ -13,7 +13,7 @@ import '../../routes/app_router.dart';
 import '../blocs/file_bloc/file_bloc.dart';
 import '../blocs/file_bloc/file_event.dart';
 import '../blocs/file_bloc/file_state.dart';
-import '../widgets/dialogs/create_maso_dialog.dart';
+import '../widgets/dialogs/create_quiz_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,10 +25,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool _isLoading = false; // Variable to track loading state
 
-  Future<void> _showCreateMasoFileDialog(BuildContext context) async {
+  Future<void> _showCreateQuizFileDialog(BuildContext context) async {
     final result = await showDialog<Map<String, String>>(
       context: context,
-      builder: (_) => const CreateMasoFileDialog(),
+      builder: (_) => const CreateQuizFileDialog(),
     );
 
     if (result != null &&
@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
             if (!context.mounted) return;
             final _ = await context.push(AppRoutes.fileLoadedScreen);
             if (!context.mounted) return;
-            context.read<FileBloc>().add(MasoFileReset());
+            context.read<FileBloc>().add(QuizFileReset());
           }
           if (state is FileError && context.mounted) {
             if (state.error is BadQuizFileException) {
@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: TextButton(
                       onPressed: _isLoading
                           ? null
-                          : () => _showCreateMasoFileDialog(context),
+                          : () => _showCreateQuizFileDialog(context),
                       child: Text(
                         AppLocalizations.of(context)!.create,
                         style: const TextStyle(color: Colors.white),
@@ -119,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               body: PlatformDetail.isMobile
-                  ? Center(child: Image.asset('MASO.png', fit: BoxFit.contain))
+                  ? Center(child: Image.asset('QUIZ.png', fit: BoxFit.contain))
                   : DropTarget(
                       onDragDone: (details) {
                         if (context.read<FileBloc>().state is! FileLoaded) {
