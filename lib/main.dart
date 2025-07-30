@@ -5,6 +5,8 @@ import 'core/constants/theme.dart';
 import 'core/file_handler.dart';
 import 'core/l10n/app_localizations.dart';
 import 'core/service_locator.dart';
+import 'presentation/blocs/file_bloc/file_bloc.dart';
+import 'presentation/blocs/file_bloc/file_event.dart';
 
 void main() {
   ServiceLocator.instance.setup();
@@ -25,6 +27,9 @@ class _QuizApplicationState extends State<QuizApplication> {
 
     FileHandler.initialize((filePath) {
       if (mounted) {
+        // Cargar el archivo cuando se abre desde un intent
+        final fileBloc = ServiceLocator.instance.getIt<FileBloc>();
+        fileBloc.add(FileDropped(filePath));
         appRouter.go(AppRoutes.home);
       }
     });
