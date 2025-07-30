@@ -1,0 +1,245 @@
+{
+  "titleAppBar": "Quiz - Exam Simulator",
+  "@titleAppBar": {
+    "description": "Title of the application displayed in the AppBar."
+  },
+  "create": "Create",
+  "@create": {
+    "description": "Label for the Create Quiz file button in the AppBar."
+  },
+  "load": "Load",
+  "@load": {
+    "description": "Label for the Load Quiz file button in the AppBar."
+  },
+  "fileLoaded": "File loaded: {filePath}",
+  "@fileLoaded": {
+    "description": "Message displayed when a file is successfully loaded.",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/path/to/file.quiz"
+      }
+    }
+  },
+  "fileSaved": "File saved: {filePath}",
+  "@fileSaved": {
+    "description": "Message displayed when a file is successfully saved.",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/path/to/file.quiz"
+      }
+    }
+  },
+  "fileError": "Error: {message}",
+  "@fileError": {
+    "description": "Message displayed when there is an error loading or saving a file.",
+    "placeholders": {
+      "message": {
+        "type": "String",
+        "example": "Invalid file format"
+      }
+    }
+  },
+  "dropFileHere": "Drag a .quiz file here",
+  "@dropFileHere": {
+    "description": "Text displayed inside the drop area for dragging files."
+  },
+  "errorInvalidFile": "Error: Invalid file. Must be a .quiz file.",
+    "@errorInvalidFile": {
+      "description": "Message displayed when the dropped file is not a .quiz file."
+    },
+    "errorLoadingFile": "Error loading the Quiz file: {error}",
+    "@errorLoadingFile": {
+      "description": "Message displayed when there is an error while loading a Quiz file.",
+      "placeholders": {
+        "error": {
+          "type": "String",
+          "example": "File not found"
+        }
+      }
+    },
+  "errorExportingFile": "Error exporting the file: {error}",
+  "@errorExportingFile": {
+    "description": "Message displayed when there is an error while exporting a file.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "File not found"
+      }
+    }
+  },
+    "errorSavingFile": "Error saving file: {error}",
+    "@errorSavingFile": {
+      "description": "Message displayed when there is an error while saving a file.",
+      "placeholders": {
+        "error": {
+          "type": "String",
+          "example": "Permission denied"
+        }
+      }
+    },
+  "arrivalTimeLabel": "Arrival Time: {arrivalTime}",
+  "@arrivalTimeLabel": {
+    "description": "Label for displaying the arrival time of a process.",
+    "placeholders": {
+      "arrivalTime": {
+        "type": "String",
+        "example": "10"
+      }
+    }
+  },
+  "serviceTimeLabel": "Service Time: {serviceTime}",
+  "@serviceTimeLabel": {
+    "description": "Label for displaying the service time of a process.",
+    "placeholders": {
+      "serviceTime": {
+        "type": "String",
+        "example": "5"
+      }
+    }
+  },
+  "editProcessTitle": "Edit Process",
+  "@editProcessTitle": {
+    "description": "Title of the screen for editing a process."
+  },
+  "createRegularProcessTitle": "Create Regular Process",
+  "@createRegularProcessTitle": {
+    "description": "Title of the screen for creating a regular process."
+  },
+  "createBurstProcessTitle": "Create Burst Process",
+  "@createBurstProcessTitle": {
+    "description": "Title of the screen for creating a burst process."
+  },
+  "processNameLabel": "Process Name",
+  "@processNameLabel": {
+    "description": "Label for the process name input field."
+  },
+  "arrivalTimeDialogLabel": "Arrival Time",
+  "@arrivalTimeDialogLabel": {
+    "description": "Label for the arrival time input field."
+  },
+  "serviceTimeDialogLabel": "Service Time",
+  "@serviceTimeDialogLabel": {
+    "description": "Label for the service time input field."
+  },
+  "cancelButton": "Cancel",
+  "@cancelButton": {
+    "description": "Cancel button."
+  },
+  "saveButton": "Save",
+  "@saveButton": {
+    "description": "Save button."
+  },
+  "confirmDeleteTitle": "Confirm Deletion",
+  "@confirmDeleteTitle": {
+    "description": "Title for the confirmation dialog when deleting a process."
+  },
+  "confirmDeleteMessage": "Are you sure you want to delete `{processName}` process?",
+  "@confirmDeleteMessage": {
+    "description": "Message in the confirmation dialog for deletion."
+  },
+  "deleteButton": "Delete",
+  "@deleteButton": {
+    "description": "Button text for confirming deletion."
+  },
+  "enabledLabel": "Enabled",
+  "disabledLabel": "Disabled",
+  "confirmExitTitle": "Confirm Exit",
+  "confirmExitMessage": "Are you sure you want to leave without saving?",
+  "exitButton": "Exit",
+  "saveDialogTitle": "Please select an output file:",
+  "fillAllFieldsError": "Please fill in all the fields.",
+  "createMasoFileTitle": "Create Quiz File",
+  "fileNameLabel": "File Name",
+  "fileDescriptionLabel": "File Description",
+  "createButton": "Create",
+  "emptyNameError": "The name cannot be empty.",
+  "duplicateNameError": "A process with this name already exists.",
+  "invalidArrivalTimeError": "Arrival time must be a positive integer.",
+  "invalidServiceTimeError": "Service time must be a positive integer.",
+  "invalidTimeDifferenceError": "Service time must be greater than arrival time.",
+  "timeDifferenceTooSmallError": "Service time must be at least 1 unit greater than arrival time.",
+  "requestFileNameTitle": "Enter the Quiz file name",
+  "fileNameHint": "File name",
+  "acceptButton": "Accept",
+  "errorTitle": "Error",
+  "emptyFileNameMessage": "The file name cannot be empty.",
+  "fileNameRequiredError": "The file name is required.",
+  "fileDescriptionRequiredError": "The file description is required.",
+  "executionSetupTitle": "Execution Setup",
+  "selectAlgorithmLabel": "Select Algorithm",
+  "algorithmLabel": "{algorithm, select, firstComeFirstServed {First Come First Served} shortestJobFirst {Shortest Job First} shortestRemainingTimeFirst {Shortest Remaining Time First} roundRobin {Round Robin} priorityBased {Priority Based} multiplePriorityQueues {Multiple Priority Queues} multiplePriorityQueuesWithFeedback {Multiple Priority Queues with Feedback} timeLimit {Time Limit} other {Unknown}}",
+  "saveTooltip": "Save the file",
+  "saveDisabledTooltip": "No changes to save",
+  "executeTooltip": "Execute the process",
+  "addTooltip": "Add a new process",
+  "backSemanticLabel": "Back button",
+  "createFileTooltip": "Create a new Quiz file",
+  "loadFileTooltip": "Load an existing Quiz file",
+  "executionScreenTitle": "Execution Overview",
+  "executionTimelineTitle": "Execution Timeline",
+  "failedToCaptureImage": "Failed to capture image: {error}",
+  "imageCopiedToClipboard": "Image copied to clipboard",
+  "exportTimelineImage": "Export as Image",
+  "exportTimelinePdf": "Export as PDF",
+  "clipboardTooltip": "Copy to clipboard",
+  "exportTooltip": "Export execution timeline",
+  "timelineProcessDescription": "{processName} (Arrival: {arrivalTime}, Service: {serviceTime})",
+  "executionTimeDescription": "Execution Time: {executionTime}",
+  "executionTimeUnavailable": "N/A",
+  "imageExported": "Image exported",
+  "pdfExported": "PDF exported",
+  "metadataBadContent": "The file metadata is invalid or corrupted.",
+  "processesBadContent": "The process list contains invalid data.",
+  "unsupportedVersion": "The file version is not supported by the current application.",
+  "invalidExtension": "The file does not have a valid .quiz extension.",
+  "settingsDialogTitle": "Settings",
+  "settingsDialogWarningTitle": "Warning",
+  "settingsDialogWarningContent": "Changing the mode will erase all processes from the quiz file. Do you want to proceed?",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "close": "Close",
+  "settingsDialogDescription": "The type of processes configured",
+  "processModeRegular": "Regular",
+  "processModeBurst": "Burst",
+  "processIdLabel": "Process ID",
+  "burstDurationLabel": "Burst Duration",
+  "addBurstButton": "Add Burst",
+  "addThreadButton": "Add Thread",
+  "deleteThreadTitle": "Delete Thread",
+  "deleteThreadConfirmation": "Are you sure you want to delete the thread \"{threadId}\"?",
+  "confirmButton": "Confirm",
+  "arrivalTimeLabelDecorator": "Arrival Time",
+  "deleteBurstTitle": "Delete Burst",
+  "deleteBurstConfirmation": "Are you sure you want to delete {type} burst with {duration} ut duration?",
+  "invalidBurstSequenceError": "The burst sequence ({thread}) must start and end with CPU, and there cannot be two consecutive I/O bursts.",
+  "selectBurstType": "Select burst type",
+  "burstCpuType": "CPU",
+  "burstIoType": "I/O",
+  "burstTypeLabel": "Burst type",
+  "burstNameLabel": "Burst {name}",
+  "burstTypeListLabel": "Burst Type: {type}",
+  "threadIdLabel": "Thread: {id}",
+  "contextSwitchTime": "Context Switch Time",
+  "ioChannels": "I/O Channels",
+  "cpuCount": "CPU Count",
+  "quantumLabel": "Quantum",
+  "invalidQuantumError": "Please enter a valid quantum (greater than 0).",
+  "queueQuantaLabel": "Quanta List",
+  "invalidQueueQuantaError": "Please enter valid quantum values (greater than 0) separated with commas.",
+  "timeLimitLabel": "Time Limit",
+  "invalidTimeLimitError": "Please enter a valid time limit (greater than 0).",
+  "emptyNameProcessBadContent": "The process with index ({index}) needs a name (id)",
+  "duplicatedNameProcessBadContent": "There are two or more processes with the same name",
+  "invalidArrivalTimeBadContent": "The process ({process}) has the property arrival_time set to null or <= 0",
+  "invalidServiceTimeBadContent": "The process ({process}) has the property service_time set to null or <= 0",
+  "emptyThreadError": "Process ({process}) has no associated threads",
+  "emptyBurstError": "Thread ({thread}) of the process ({process}) has no associated bursts",
+  "startAndEndCpuSequenceError": "The burst sequence of thread ({thread}) must start and end with a CPU burst.",
+  "invalidBurstSequenceError": "The burst sequence of thread ({thread}) cannot contain two consecutive I/O bursts.",
+  "startAndEndCpuSequenceBadContent": "The burst sequence of thread ({thread}) in process ({process}) must start and end with a CPU burst.",
+  "invalidBurstSequenceBadContent": "The burst sequence of thread ({thread}) in process ({process}) cannot contain two consecutive I/O bursts.",
+  "invalidBurstDuration": "The burst ({burst}) of thread ({thread}) in process ({process}) cannot contain is null or <= 0.",
+  "unknownError": "Unknown error"
+}
