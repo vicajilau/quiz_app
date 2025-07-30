@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/l10n/app_localizations.dart';
+import '../../../core/l10n/app_localizations.dart';
 
 /// A dialog widget for requesting a file name from the user.
 class RequestFileNameDialog extends StatefulWidget {

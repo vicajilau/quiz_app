@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
-import 'package:quiz_app/presentation/widgets/dialogs/add_edit_question_dialog.dart';
+import 'package:quiz_app/presentation/screens/widgets/dialogs/add_edit_question_dialog.dart';
 
-import '../../../../core/l10n/app_localizations.dart';
+import '../../../../../core/l10n/app_localizations.dart';
 
 class QuestionListWidget extends StatefulWidget {
   final QuizFile quizFile;

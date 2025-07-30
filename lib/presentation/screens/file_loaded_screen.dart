@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/context_extension.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
-import 'package:quiz_app/presentation/widgets/dialogs/add_edit_question_dialog.dart';
-import 'package:quiz_app/presentation/widgets/question_list_widget.dart';
+import 'package:quiz_app/presentation/screens/widgets/dialogs/add_edit_question_dialog.dart';
+import 'package:quiz_app/presentation/screens/widgets/question_list_widget.dart';
 import 'package:quiz_app/routes/app_router.dart';
 import 'package:platform_detail/platform_detail.dart';
 
@@ -14,8 +14,8 @@ import '../../domain/use_cases/check_file_changes_use_case.dart';
 import '../blocs/file_bloc/file_bloc.dart';
 import '../blocs/file_bloc/file_event.dart';
 import '../blocs/file_bloc/file_state.dart';
-import '../widgets/dialogs/exit_confirmation_dialog.dart';
-import '../widgets/request_file_name_dialog.dart';
+import 'widgets/dialogs/exit_confirmation_dialog.dart';
+import 'widgets/request_file_name_dialog.dart';
 
 class FileLoadedScreen extends StatefulWidget {
   final FileBloc fileBloc;
