@@ -347,4 +347,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get tapToZoom => 'Toca para ampliar';
+
+  @override
+  String get trueLabel => 'Verdadero';
+
+  @override
+  String get falseLabel => 'Falso';
 }

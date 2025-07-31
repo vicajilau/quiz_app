@@ -8,6 +8,8 @@ import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 
 import '../../../../core/l10n/app_localizations.dart';
+import '../../../../core/constants/question_constants.dart';
+import '../../utils/question_translation_helper.dart';
 
 /// Dialog widget for creating or editing a Question.
 class AddEditQuestionDialog extends StatefulWidget {
@@ -55,6 +57,8 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
       _explanationController.text = widget.question!.explanation;
       _imageData = widget.question!.image;
       _selectedType = widget.question!.type;
+      
+      // Translate options for display in UI (this will be done after build)
       _optionControllers = widget.question!.options
           .map((option) => TextEditingController(text: option))
           .toList();
@@ -67,6 +71,23 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
       _selectedType = QuestionType.multipleChoice;
       _optionControllers = List.generate(4, (index) => TextEditingController());
       _correctAnswers = List.generate(4, (index) => false);
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Translate options after context is available
+    if (widget.question != null) {
+      final localizations = AppLocalizations.of(context)!;
+      for (int i = 0; i < _optionControllers.length; i++) {
+        final originalOption = widget.question!.options[i];
+        final translatedOption = QuestionTranslationHelper.translateOption(
+          originalOption, 
+          localizations,
+        );
+        _optionControllers[i].text = translatedOption;
+      }
     }
   }
 
@@ -141,11 +162,15 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
   /// Submit the form if input is valid.
   void _submit() {
     if (_validateForm()) {
-      // Get option texts and correct answer indices
+      final localizations = AppLocalizations.of(context)!;
+      
+      // Get option texts and convert back to model values
       final options = _optionControllers
           .map((controller) => controller.text.trim())
           .where((text) => text.isNotEmpty)
+          .map((optionText) => _translateOptionBackToModel(optionText, localizations))
           .toList();
+          
       final correctAnswers = <int>[];
       for (int i = 0; i < _correctAnswers.length && i < options.length; i++) {
         if (_correctAnswers[i]) {
@@ -167,6 +192,16 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
         newOrUpdatedQuestion,
       ); // Return the new/updated question to the previous context.
     }
+  }
+
+  /// Convert translated option text back to model values
+  String _translateOptionBackToModel(String optionText, AppLocalizations localizations) {
+    if (optionText == localizations.trueLabel) {
+      return QuestionConstants.defaultTrueOption;
+    } else if (optionText == localizations.falseLabel) {
+      return QuestionConstants.defaultFalseOption;
+    }
+    return optionText; // Return as-is for custom options
   }
 
   @override
@@ -552,11 +587,12 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
       controller.dispose();
     }
 
+    final localizations = AppLocalizations.of(context)!;
     switch (type) {
       case QuestionType.trueFalse:
         _optionControllers = [
-          TextEditingController(text: 'Verdadero'),
-          TextEditingController(text: 'Falso'),
+          TextEditingController(text: localizations.trueLabel),
+          TextEditingController(text: localizations.falseLabel),
         ];
         _correctAnswers = [false, false];
         break;

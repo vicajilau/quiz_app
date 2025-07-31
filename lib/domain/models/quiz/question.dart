@@ -1,4 +1,5 @@
 import 'question_type.dart';
+import '../../../core/constants/question_constants.dart';
 
 /// Represents a question in a quiz.
 class Question {
@@ -45,7 +46,7 @@ class Question {
       options = List<String>.from(json['options']);
     } else if (questionType == QuestionType.trueFalse) {
       // For true/false questions without options, create default options
-      options = ['Verdadero', 'Falso'];
+      options = QuestionConstants.defaultTrueFalseOptions;
     }
 
     // Handle correct answers

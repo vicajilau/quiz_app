@@ -448,5 +448,13 @@
   "tapToZoom": "Toca para ampliar",
   "@tapToZoom": {
     "description": "Texto instructivo para indicar que se puede ampliar la imagen"
+  },
+  "trueLabel": "Verdadero",
+  "@trueLabel": {
+    "description": "Etiqueta para la opción verdadero en preguntas de verdadero/falso"
+  },
+  "falseLabel": "Falso",
+  "@falseLabel": {
+    "description": "Etiqueta para la opción falso en preguntas de verdadero/falso"
   }
 }

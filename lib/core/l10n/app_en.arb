@@ -508,5 +508,13 @@
   "tapToZoom": "Tap to zoom",
   "@tapToZoom": {
     "description": "Instructional text to indicate image can be zoomed"
+  },
+  "trueLabel": "True",
+  "@trueLabel": {
+    "description": "Label for true option in true/false questions"
+  },
+  "falseLabel": "False",
+  "@falseLabel": {
+    "description": "Label for false option in true/false questions"
   }
 }

@@ -4,6 +4,8 @@ import '../../../domain/models/quiz/question_type.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
+import '../../../core/l10n/app_localizations.dart';
+import '../../utils/question_translation_helper.dart';
 
 class QuizQuestionOptions extends StatelessWidget {
   final QuizExecutionInProgress state;
@@ -46,9 +48,10 @@ class QuizQuestionOptions extends StatelessWidget {
   ) {
     // For multiple choice questions, use CheckboxListTile
     if (questionType == QuestionType.multipleChoice) {
+      final localizations = AppLocalizations.of(context)!;
       return CheckboxListTile(
         title: Text(
-          option,
+          QuestionTranslationHelper.translateOption(option, localizations),
           style: TextStyle(
             fontSize: 16,
             fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
@@ -72,9 +75,10 @@ class QuizQuestionOptions extends StatelessWidget {
           ? currentAnswers.first
           : -1;
 
+      final localizations = AppLocalizations.of(context)!;
       return RadioListTile<int>(
         title: Text(
-          option,
+          QuestionTranslationHelper.translateOption(option, localizations),
           style: TextStyle(
             fontSize: 16,
             fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,

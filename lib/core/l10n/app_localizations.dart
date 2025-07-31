@@ -691,6 +691,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tap to zoom'**
   String get tapToZoom;
+
+  /// Label for true option in true/false questions
+  ///
+  /// In en, this message translates to:
+  /// **'True'**
+  String get trueLabel;
+
+  /// Label for false option in true/false questions
+  ///
+  /// In en, this message translates to:
+  /// **'False'**
+  String get falseLabel;
 }
 
 class _AppLocalizationsDelegate

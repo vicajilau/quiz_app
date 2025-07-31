@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
+import '../../utils/question_translation_helper.dart';
 
 class QuizQuestionResultCard extends StatelessWidget {
   final QuestionResult result;
@@ -138,7 +139,12 @@ class QuizQuestionResultCard extends StatelessWidget {
                             color: isCorrect ? Colors.green : Colors.red,
                           ),
                         const SizedBox(width: 8),
-                        Expanded(child: Text(optionText)),
+                        Expanded(child: Text(
+                          QuestionTranslationHelper.translateOption(
+                            optionText, 
+                            AppLocalizations.of(context)!,
+                          ),
+                        )),
                       ],
                     ),
                   );
