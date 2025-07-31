@@ -369,7 +369,7 @@ class QuizFileExecutionScreen extends StatelessWidget {
                       ],
                     ),
                   );
-                }).toList(),
+                }),
               ],
             ),
           ),
