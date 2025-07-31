@@ -275,7 +275,6 @@
   "selectQuestionCountMessage": "¿Cuántas preguntas te gustaría responder en este quiz?",
   "allQuestions": "Todas las preguntas ({count})",
   "startQuiz": "Iniciar Quiz",
-  "questionsCount": "{count} preguntas",
   "customNumberLabel": "O ingresa un número personalizado:",
   "numberInputLabel": "Número de preguntas",
   "customNumberHelper": "Ingresa cualquier número (máx {total}). Si es mayor, las preguntas se repetirán.",

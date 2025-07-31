@@ -452,12 +452,6 @@ abstract class AppLocalizations {
   /// **'Start Quiz'**
   String get startQuiz;
 
-  /// Text showing number of questions
-  ///
-  /// In en, this message translates to:
-  /// **'{count} questions'**
-  String questionsCount(int count);
-
   /// Label for custom number input field
   ///
   /// In en, this message translates to:

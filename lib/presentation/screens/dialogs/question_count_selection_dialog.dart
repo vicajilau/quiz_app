@@ -21,14 +21,12 @@ class _QuestionCountSelectionDialogState
   @override
   void initState() {
     super.initState();
-    // Set default to all questions if less than 10, otherwise 10
-    selectedCount = widget.totalQuestions <= 10 ? widget.totalQuestions : 10;
+    // Set default to all questions
+    selectedCount = widget.totalQuestions;
   }
 
   @override
   Widget build(BuildContext context) {
-    final suggestedCounts = _getSuggestedCounts();
-
     return AlertDialog(
       title: Text(AppLocalizations.of(context)!.selectQuestionCountTitle),
       content: Column(
@@ -38,24 +36,20 @@ class _QuestionCountSelectionDialogState
           Text(AppLocalizations.of(context)!.selectQuestionCountMessage),
           const SizedBox(height: 16),
 
-          // Radio buttons for suggested counts
-          ...suggestedCounts.map(
-            (count) => RadioListTile<int>(
-              title: Text(
-                count == widget.totalQuestions
-                    ? AppLocalizations.of(context)!.allQuestions(count)
-                    : AppLocalizations.of(context)!.questionsCount(count),
-              ),
-              value: count,
-              groupValue: selectedCount,
-              onChanged: (value) {
-                if (value != null) {
-                  setState(() {
-                    selectedCount = value;
-                  });
-                }
-              },
+          // Only show "All Questions" option
+          RadioListTile<int>(
+            title: Text(
+              AppLocalizations.of(context)!.allQuestions(widget.totalQuestions),
             ),
+            value: widget.totalQuestions,
+            groupValue: selectedCount,
+            onChanged: (value) {
+              if (value != null) {
+                setState(() {
+                  selectedCount = value;
+                });
+              }
+            },
           ),
 
           // Custom count option (always available)
@@ -107,27 +101,6 @@ class _QuestionCountSelectionDialogState
         ),
       ],
     );
-  }
-
-  List<int> _getSuggestedCounts() {
-    final counts = <int>[];
-    final total = widget.totalQuestions;
-
-    // Add common counts that are available
-    final suggestions = [5, 10, 15, 20, 25, 30];
-
-    for (final count in suggestions) {
-      if (count <= total) {
-        counts.add(count);
-      }
-    }
-
-    // Always add the total count if it's not already included
-    if (!counts.contains(total)) {
-      counts.add(total);
-    }
-
-    return counts;
   }
 
   String? _getErrorText() {

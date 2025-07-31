@@ -211,11 +211,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get startQuiz => 'Start Quiz';
 
   @override
-  String questionsCount(int count) {
-    return '$count questions';
-  }
-
-  @override
   String get customNumberLabel => 'Or enter a custom number:';
 
   @override
