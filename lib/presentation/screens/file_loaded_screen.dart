@@ -18,7 +18,7 @@ import '../blocs/file_bloc/file_state.dart';
 import 'dialogs/exit_confirmation_dialog.dart';
 import 'dialogs/question_count_selection_dialog.dart';
 import 'widgets/request_file_name_dialog.dart';
-import '../widgets/dialogs/question_order_config_dialog.dart';
+import 'dialogs/question_order_config_dialog.dart';
 
 class FileLoadedScreen extends StatefulWidget {
   final FileBloc fileBloc;

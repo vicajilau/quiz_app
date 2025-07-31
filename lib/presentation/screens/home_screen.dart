@@ -14,7 +14,7 @@ import '../blocs/file_bloc/file_bloc.dart';
 import '../blocs/file_bloc/file_event.dart';
 import '../blocs/file_bloc/file_state.dart';
 import 'dialogs/create_quiz_dialog.dart';
-import '../widgets/dialogs/question_order_config_dialog.dart';
+import 'dialogs/question_order_config_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
