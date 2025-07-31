@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/service_locator.dart';
+import '../../core/l10n/app_localizations.dart';
 import '../../data/services/configuration_service.dart';
 import '../../domain/models/quiz/question.dart';
 import '../../domain/models/quiz/quiz_file.dart';
@@ -38,7 +39,11 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
           return Scaffold(
             appBar: AppBar(title: Text(widget.quizFile.metadata.title)),
             body: Center(
-              child: Text('Error al preparar el quiz: ${snapshot.error}'),
+              child: Text(
+                AppLocalizations.of(
+                  context,
+                )!.errorLoadingFile(snapshot.error.toString()),
+              ),
             ),
           );
         }
