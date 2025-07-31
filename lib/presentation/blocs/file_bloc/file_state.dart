@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/domain/models/export_formats.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 
 import '../../../core/l10n/app_localizations.dart';
@@ -18,12 +17,6 @@ class FileLoaded extends FileState {
   final QuizFile quizFile; // The loaded QuizFile object
 
   FileLoaded(this.quizFile);
-}
-
-/// State representing a successfully exported file, containing the file data and path.
-class FileExported extends FileState {
-  final ExportFormats fileFormat;
-  FileExported(this.fileFormat);
 }
 
 /// State representing an error during file operation, with an error message.

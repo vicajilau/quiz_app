@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:quiz_app/core/debug_print.dart';
 import 'package:quiz_app/core/service_locator.dart';
 import 'package:quiz_app/data/services/file_service/i_file_service.dart';
@@ -84,20 +82,6 @@ class QuizFileRepository {
       ServiceLocator.instance.registerQuizFile(savedFile);
     }
     return savedFile;
-  }
-
-  /// Saves an exported file to the file system.
-  /// This method calls `saveExportedFile` from `QuizFileService` to save the file.
-  ///
-  /// - [bytes]: The binary content to be saved.
-  /// - [dialogTitle]: The title for the save dialog window.
-  /// - [fileName]: The name of the file.
-  Future<void> saveExportedFile(
-    Uint8List bytes,
-    String dialogTitle,
-    String fileName,
-  ) async {
-    return await _fileService.saveExportedFile(bytes, dialogTitle, fileName);
   }
 
   /// Opens a file picker for the user to select a quiz file.

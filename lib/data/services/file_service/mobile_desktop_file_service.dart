@@ -57,47 +57,31 @@ class QuizFileService implements IFileService {
     String dialogTitle,
     String fileName,
   ) async {
+    final content = jsonEncode(quizFile.toJson());
+    final bytes = Uint8List.fromList(utf8.encode(content));
+
     String? outputFile = await FilePicker.platform.saveFile(
       dialogTitle: dialogTitle,
       fileName: fileName,
       allowedExtensions: ['quiz'],
       type: FileType.custom,
+      bytes: bytes,
     );
 
     if (outputFile != null) {
-      final file = File(outputFile);
-      final content = jsonEncode(quizFile.toJson());
-      await file.writeAsString(content);
+      // On mobile platforms (Android/iOS), FilePicker.saveFile() with bytes parameter
+      // already saves the file, so we don't need to write it manually.
+      // On desktop platforms, we need to write the file manually.
+      if (PlatformDetail.isDesktop) {
+        final file = File(outputFile);
+        await file.writeAsString(content);
+      }
+
       quizFile = quizFile.copyWith(filePath: outputFile);
       originalFile = quizFile.deepCopy();
       return quizFile;
     }
     return null;
-  }
-
-  /// Saves an exported file to the file system.
-  ///
-  /// Opens a save dialog for the user to choose the file path and writes
-  /// the provided `Uint8List` byte data to the selected file.
-  ///
-  /// - [bytes]: The binary content to be saved.
-  /// - [dialogTitle]: The title for the save dialog window.
-  /// - [fileName]: The name of the file.
-  @override
-  Future<void> saveExportedFile(
-    Uint8List bytes,
-    String dialogTitle,
-    String fileName,
-  ) async {
-    String? outputFile = await FilePicker.platform.saveFile(
-      dialogTitle: dialogTitle,
-      fileName: fileName,
-    );
-
-    if (outputFile != null) {
-      final file = File(outputFile);
-      await file.writeAsBytes(bytes);
-    }
   }
 
   /// Opens a file picker dialog for the user to select a `.quiz` file.

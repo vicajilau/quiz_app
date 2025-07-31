@@ -1,6 +1,3 @@
-import 'dart:typed_data';
-
-import 'package:quiz_app/domain/models/export_formats.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 
 /// Abstract class representing the base event for file operations.
@@ -18,20 +15,6 @@ class QuizFileSaveRequested extends FileEvent {
   final String dialogTitle;
   final String fileName;
   QuizFileSaveRequested(this.quizFile, this.dialogTitle, this.fileName);
-}
-
-/// Event triggered when a exported file save is requested, with the file path and data.
-class ExportedFileSaveRequested extends FileEvent {
-  final Uint8List bytes; // The object to be saved
-  final String dialogTitle;
-  final String fileName;
-  final ExportFormats fileFormat;
-  ExportedFileSaveRequested(
-    this.bytes,
-    this.dialogTitle,
-    this.fileName,
-    this.fileFormat,
-  );
 }
 
 /// Event triggered when a file is requested to be picked.

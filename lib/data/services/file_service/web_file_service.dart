@@ -74,41 +74,6 @@ class QuizFileService implements IFileService {
     return quizFile;
   }
 
-  /// Saves a `Exported` object to the file system.
-  ///
-  /// This method opens a save dialog for the user to choose the file path
-  /// and writes the `QuizFile` data in JSON format to the selected file.
-  ///
-  /// - [quizFile]: The `QuizFile` object to save.
-  /// - [dialogTitle]: The title for the save dialog window.
-  /// - [fileName]: The name for the file.
-  /// - Returns: The `QuizFile` object with an updated file path if the user selects a path.
-  @override
-  Future<void> saveExportedFile(
-    Uint8List bytes,
-    String dialogTitle,
-    String fileName,
-  ) async {
-    // Open a save dialog for the user to select a file path
-    // Create a new Blob containing the bytes
-    final blob = Blob([bytes.toJS].toJS);
-
-    // Generate a URL for the Blob, allowing it to be downloaded
-    final url = URL.createObjectURL(blob);
-
-    // Create an anchor element for triggering the download
-    HTMLAnchorElement()
-      ..href = url
-      ..target =
-          'blank' // Open the file in a new tab (if supported)
-      ..download =
-          fileName // Set the file name for the download
-      ..click(); // Simulate a click to start the download
-
-    // Release the Blob URL to free up memory after the download
-    URL.revokeObjectURL(url); // Cleans up the URL to release memory.
-  }
-
   /// Opens a file picker dialog for the user to select a `.quiz` file.
   ///
   /// If a file is selected, it retrieves the file's binary data and decodes it into a `QuizFile` object.

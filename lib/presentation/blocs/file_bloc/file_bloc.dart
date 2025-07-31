@@ -93,33 +93,6 @@ class FileBloc extends Bloc<FileEvent, FileState> {
       }
     });
 
-    // Handling the ExportedFileSaveRequested event
-    on<ExportedFileSaveRequested>((event, emit) async {
-      emit(FileLoading()); // Emit loading state while saving the file
-      try {
-        // Save the exported file and update the state
-        await _fileRepository.saveExportedFile(
-          event.bytes,
-          event.dialogTitle,
-          event.fileName,
-        );
-        emit(
-          FileExported(event.fileFormat),
-        ); // Emit the FileExported state after saving
-      } on Exception catch (e) {
-        emit(
-          FileError(reason: FileErrorType.errorSavingExportedFile, error: e),
-        ); // Emit error if file saving fails
-      } catch (e) {
-        emit(
-          FileError(
-            reason: FileErrorType.errorSavingExportedFile,
-            error: Exception(e),
-          ),
-        );
-      }
-    });
-
     // Handling the QuizFileReset event
     on<QuizFileReset>((event, emit) async {
       emit(FileInitial()); // Emit initial state after reset
