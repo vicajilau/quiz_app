@@ -76,8 +76,8 @@ class FileBloc extends Bloc<FileEvent, FileState> {
           event.fileName,
         );
         if (quizFile != null) {
-          event.quizFile = quizFile;
-          emit(FileLoaded(event.quizFile));
+          // Use the returned quizFile with updated path instead of modifying the event
+          emit(FileLoaded(quizFile));
         }
       } on Exception catch (e) {
         emit(

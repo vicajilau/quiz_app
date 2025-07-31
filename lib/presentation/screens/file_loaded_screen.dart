@@ -83,6 +83,10 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
         child: BlocListener<FileBloc, FileState>(
           listener: (context, state) {
             if (state is FileLoaded) {
+              // Update the cached file reference when a file is saved successfully
+              // This ensures that change detection works correctly with the new file path
+              cachedQuizFile = state.quizFile.deepCopy();
+
               context.presentSnackBar(
                 AppLocalizations.of(
                   context,

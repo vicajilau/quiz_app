@@ -77,9 +77,14 @@ class QuizFileService implements IFileService {
         await file.writeAsString(content);
       }
 
-      quizFile = quizFile.copyWith(filePath: outputFile);
-      originalFile = quizFile.deepCopy();
-      return quizFile;
+      // Create updated quiz file with new path
+      final updatedQuizFile = quizFile.copyWith(filePath: outputFile);
+
+      // Update the original file reference to be the newly saved file
+      // This ensures that the saved file becomes the new baseline for change detection
+      originalFile = updatedQuizFile.deepCopy();
+
+      return updatedQuizFile;
     }
     return null;
   }
