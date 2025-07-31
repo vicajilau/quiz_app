@@ -112,7 +112,7 @@ class QuizFileRepository {
     return quizFile;
   }
 
-    /// Picks a file manually using the file picker dialog.
+  /// Picks a file manually using the file picker dialog.
   /// This method delegates the task of selecting a file to the `_fileService`'s
   /// `pickFile` method, and registers the selected file in the service locator.
   ///
@@ -125,7 +125,7 @@ class QuizFileRepository {
     return quizFile;
   }
 
-    /// Checks if a `QuizFile` has changed by comparing the current file content
+  /// Checks if a `QuizFile` has changed by comparing the current file content
   /// with the cached version of the file. This method reads the original file
   /// content from [filePath] and compares it with the [cachedQuizFile].
   ///
@@ -134,13 +134,15 @@ class QuizFileRepository {
   /// - Returns: A `Future<bool>` indicating whether the file content has changed (`true`) or not (`false`).
   bool hasQuizFileChanged(QuizFile cachedQuizFile) {
     if (cachedQuizFile.filePath == null) return true;
-    
+
     final originalFile = _fileService.originalFile;
     if (originalFile == null) return true;
-    
+
     final hasChanged = originalFile != cachedQuizFile;
-    printInDebug("File changed: $hasChanged (Original questions: ${originalFile.questions.length}, Cached questions: ${cachedQuizFile.questions.length})");
-    
+    printInDebug(
+      "File changed: $hasChanged (Original questions: ${originalFile.questions.length}, Cached questions: ${cachedQuizFile.questions.length})",
+    );
+
     return hasChanged;
   }
 }
