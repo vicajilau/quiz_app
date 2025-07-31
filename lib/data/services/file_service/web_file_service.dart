@@ -26,7 +26,7 @@ class QuizFileService implements IFileService {
   Future<QuizFile> readQuizFile(String filePath) async {
     final codeUnits = await readBlobFile(filePath);
     final quizFile = decodeAndCreateQuizFile(filePath, codeUnits);
-    originalFile = quizFile.copyWith();
+    originalFile = quizFile.deepCopy();
     return quizFile;
   }
 
@@ -52,21 +52,25 @@ class QuizFileService implements IFileService {
   /// - Throws: An exception if there is an error saving the file.
   @override
   Future<QuizFile?> saveQuizFile(
-      QuizFile quizFile, String dialogTitle, String fileName) async {
+    QuizFile quizFile,
+    String dialogTitle,
+    String fileName,
+  ) async {
     String jsonString = jsonEncode(quizFile.toJson());
     final bytes = utf8.encode(jsonString);
 
     // Open a save dialog for the user to select a file path
     final pathSaved = await FilePicker.platform.saveFile(
-        dialogTitle: dialogTitle,
-        fileName: fileName,
-        initialDirectory: quizFile.filePath,
-        bytes: bytes);
+      dialogTitle: dialogTitle,
+      fileName: fileName,
+      initialDirectory: quizFile.filePath,
+      bytes: bytes,
+    );
 
     if (pathSaved == null) return null;
 
     quizFile.filePath = pathSaved;
-    originalFile = quizFile.copyWith();
+    originalFile = quizFile.deepCopy();
     return quizFile;
   }
 
@@ -81,7 +85,10 @@ class QuizFileService implements IFileService {
   /// - Returns: The `QuizFile` object with an updated file path if the user selects a path.
   @override
   Future<void> saveExportedFile(
-      Uint8List bytes, String dialogTitle, String fileName) async {
+    Uint8List bytes,
+    String dialogTitle,
+    String fileName,
+  ) async {
     // Open a save dialog for the user to select a file path
     // Create a new Blob containing the bytes
     final blob = Blob([bytes.toJS].toJS);
@@ -92,8 +99,10 @@ class QuizFileService implements IFileService {
     // Create an anchor element for triggering the download
     HTMLAnchorElement()
       ..href = url
-      ..target = 'blank' // Open the file in a new tab (if supported)
-      ..download = fileName // Set the file name for the download
+      ..target =
+          'blank' // Open the file in a new tab (if supported)
+      ..download =
+          fileName // Set the file name for the download
       ..click(); // Simulate a click to start the download
 
     // Release the Blob URL to free up memory after the download

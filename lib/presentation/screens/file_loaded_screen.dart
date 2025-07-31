@@ -66,7 +66,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
   @override
   void initState() {
     super.initState();
-    cachedQuizFile = widget.quizFile;
+    cachedQuizFile = widget.quizFile.deepCopy();
     _checkFileChange(); // Check the file change status when the screen is loaded
   }
 

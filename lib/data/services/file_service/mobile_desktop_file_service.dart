@@ -38,7 +38,7 @@ class QuizFileService implements IFileService {
     // Decode the string content into a Map and convert it to a QuizFile object
     final json = jsonDecode(content) as Map<String, dynamic>;
     final quizFile = QuizFile.fromJson(json, filePath);
-    originalFile = quizFile.copyWith();
+    originalFile = quizFile.deepCopy();
     return quizFile;
   }
 
@@ -69,7 +69,7 @@ class QuizFileService implements IFileService {
       final content = jsonEncode(quizFile.toJson());
       await file.writeAsString(content);
       quizFile = quizFile.copyWith(filePath: outputFile);
-      originalFile = quizFile.copyWith();
+      originalFile = quizFile.deepCopy();
       return quizFile;
     }
     return null;
@@ -122,7 +122,7 @@ class QuizFileService implements IFileService {
           final content = String.fromCharCodes(platformFile.bytes!);
           final json = jsonDecode(content) as Map<String, dynamic>;
           final quizFile = QuizFile.fromJson(json, platformFile.name);
-          originalFile = quizFile.copyWith();
+          originalFile = quizFile.deepCopy();
           return quizFile;
         }
       } else {

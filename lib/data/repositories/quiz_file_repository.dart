@@ -134,8 +134,13 @@ class QuizFileRepository {
   /// - Returns: A `Future<bool>` indicating whether the file content has changed (`true`) or not (`false`).
   bool hasQuizFileChanged(QuizFile cachedQuizFile) {
     if (cachedQuizFile.filePath == null) return true;
-    printInDebug("El original es: ${_fileService.originalFile}");
-    printInDebug("El cached es: $cachedQuizFile");
-    return _fileService.originalFile != cachedQuizFile;
+    
+    final originalFile = _fileService.originalFile;
+    if (originalFile == null) return true;
+    
+    final hasChanged = originalFile != cachedQuizFile;
+    printInDebug("File changed: $hasChanged (Original questions: ${originalFile.questions.length}, Cached questions: ${cachedQuizFile.questions.length})");
+    
+    return hasChanged;
   }
 }

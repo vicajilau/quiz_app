@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_error_type.dart';
 import 'quiz_metadata.dart';
@@ -70,18 +71,32 @@ class QuizFile {
     );
   }
 
+  /// Creates a deep copy of the `QuizFile` with all nested objects copied.
+  ///
+  /// This method ensures that modifying the returned `QuizFile` will not
+  /// affect the original instance, including its metadata and questions.
+  ///
+  /// - Returns: A new `QuizFile` instance with deep copies of all properties.
+  QuizFile deepCopy() {
+    return QuizFile(
+      metadata: metadata.copyWith(),
+      questions: questions.map((q) => q.copyWith()).toList(),
+      filePath: filePath,
+    );
+  }
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     return other is QuizFile &&
         other.metadata == metadata &&
-        other.questions == questions &&
+        listEquals(other.questions, questions) &&
         other.filePath == filePath;
   }
 
   @override
   int get hashCode {
-    return metadata.hashCode ^ questions.hashCode ^ filePath.hashCode;
+    return metadata.hashCode ^ Object.hashAll(questions) ^ filePath.hashCode;
   }
 
   @override
