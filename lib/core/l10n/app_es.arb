@@ -383,5 +383,13 @@
   "deleteAction": "Eliminar",
   "@deleteAction": {
     "description": "Texto de acción eliminar mostrado al deslizar para eliminar"
+  },
+  "explanationLabel": "Explicación (opcional)",
+  "@explanationLabel": {
+    "description": "Etiqueta para el campo de entrada de explicación"
+  },
+  "explanationHint": "Ingresa una explicación para la(s) respuesta(s) correcta(s)",
+  "@explanationHint": {
+    "description": "Texto de ayuda para el campo de entrada de explicación"
   }
 }

@@ -452,5 +452,13 @@
   "deleteAction": "Delete",
   "@deleteAction": {
     "description": "Delete action text shown when swiping to delete"
+  },
+  "explanationLabel": "Explanation (optional)",
+  "@explanationLabel": {
+    "description": "Label for the explanation input field"
+  },
+  "explanationHint": "Enter an explanation for the correct answer(s)",
+  "@explanationHint": {
+    "description": "Hint text for the explanation input field"
   }
 }

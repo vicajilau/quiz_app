@@ -607,6 +607,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delete'**
   String get deleteAction;
+
+  /// Label for the explanation input field
+  ///
+  /// In en, this message translates to:
+  /// **'Explanation (optional)'**
+  String get explanationLabel;
+
+  /// Hint text for the explanation input field
+  ///
+  /// In en, this message translates to:
+  /// **'Enter an explanation for the correct answer(s)'**
+  String get explanationHint;
 }
 
 class _AppLocalizationsDelegate

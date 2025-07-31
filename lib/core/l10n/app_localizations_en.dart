@@ -300,4 +300,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deleteAction => 'Delete';
+
+  @override
+  String get explanationLabel => 'Explanation (optional)';
+
+  @override
+  String get explanationHint =>
+      'Enter an explanation for the correct answer(s)';
 }

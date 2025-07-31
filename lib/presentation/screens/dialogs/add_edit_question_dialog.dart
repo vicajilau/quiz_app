@@ -29,6 +29,8 @@ class AddEditQuestionDialog extends StatefulWidget {
 class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
   late TextEditingController
   _questionTextController; // Controller for the question text input field.
+  late TextEditingController
+  _explanationController; // Controller for the explanation text input field.
   late List<TextEditingController>
   _optionControllers; // Controllers for option input fields.
   late List<bool> _correctAnswers; // List of booleans for correct answers.
@@ -41,9 +43,11 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
     super.initState();
     // Initialize the text controllers.
     _questionTextController = TextEditingController();
+    _explanationController = TextEditingController();
 
     if (widget.question != null) {
       _questionTextController.text = widget.question!.text;
+      _explanationController.text = widget.question!.explanation;
       _optionControllers = widget.question!.options
           .map((option) => TextEditingController(text: option))
           .toList();
@@ -62,6 +66,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
   void dispose() {
     // Dispose of the text controllers to free up resources.
     _questionTextController.dispose();
+    _explanationController.dispose();
     for (var controller in _optionControllers) {
       controller.dispose();
     }
@@ -132,11 +137,13 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
       }
 
       // Create a new or updated question instance.
+      final explanationText = _explanationController.text.trim();
       final newOrUpdatedQuestion = Question(
         type: "multiple_choice",
         text: _questionTextController.text.trim(),
         options: options,
         correctAnswers: correctAnswers,
+        explanation: explanationText,
       );
       context.pop(
         newOrUpdatedQuestion,
@@ -169,6 +176,18 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
                   _questionTextError = null; // Clear error when the user types.
                 });
               },
+            ),
+            const SizedBox(height: 16),
+
+            // Explanation text input field.
+            TextFormField(
+              controller: _explanationController,
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.explanationLabel,
+                hintText: AppLocalizations.of(context)!.explanationHint,
+                border: const OutlineInputBorder(),
+              ),
+              maxLines: 3,
             ),
             const SizedBox(height: 16),
 
