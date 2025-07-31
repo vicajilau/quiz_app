@@ -183,4 +183,41 @@ class AppLocalizationsEs extends AppLocalizations {
   String question(String question) {
     return 'Pregunta: $question';
   }
+
+  @override
+  String get selectQuestionCountTitle => 'Seleccionar Número de Preguntas';
+
+  @override
+  String get selectQuestionCountMessage =>
+      '¿Cuántas preguntas te gustaría responder en este quiz?';
+
+  @override
+  String allQuestions(int count) {
+    return 'Todas las preguntas ($count)';
+  }
+
+  @override
+  String get startQuiz => 'Iniciar Quiz';
+
+  @override
+  String questionsCount(int count) {
+    return '$count preguntas';
+  }
+
+  @override
+  String get customNumberLabel => 'O introduce un número personalizado:';
+
+  @override
+  String get numberInputLabel => 'Número de preguntas';
+
+  @override
+  String customNumberHelper(int total) {
+    return 'Si es mayor que $total, las preguntas se repetirán';
+  }
+
+  @override
+  String get errorInvalidNumber => 'Por favor ingresa un número válido';
+
+  @override
+  String get errorNumberMustBePositive => 'El número debe ser mayor que 0';
 }

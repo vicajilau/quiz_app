@@ -44,4 +44,23 @@ class ServiceLocator {
     }
     getIt.registerLazySingleton<QuizFile>(() => quizFile);
   }
+
+  // Function to register quiz configuration (number of questions)
+  void registerQuizConfig({required int questionCount}) {
+    if (getIt.isRegistered<int>(instanceName: 'questionCount')) {
+      getIt.unregister<int>(instanceName: 'questionCount');
+    }
+    getIt.registerLazySingleton<int>(
+      () => questionCount,
+      instanceName: 'questionCount',
+    );
+  }
+
+  // Function to get the registered question count
+  int? getQuestionCount() {
+    if (getIt.isRegistered<int>(instanceName: 'questionCount')) {
+      return getIt<int>(instanceName: 'questionCount');
+    }
+    return null;
+  }
 }

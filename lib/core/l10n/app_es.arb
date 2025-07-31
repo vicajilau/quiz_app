@@ -254,5 +254,18 @@
         "example": "¿Cuál es la capital de Francia?"
       }
     }
-  }
+  },
+  "selectQuestionCountTitle": "Seleccionar Número de Preguntas",
+  "selectQuestionCountMessage": "¿Cuántas preguntas te gustaría responder en este quiz?",
+  "allQuestions": "Todas las preguntas ({count})",
+  "startQuiz": "Iniciar Quiz",
+  "questionsCount": "{count} preguntas",
+  "customNumberLabel": "O ingresa un número personalizado:",
+  "numberInputLabel": "Número de preguntas",
+  "customNumberHelper": "Ingresa cualquier número (máx {total}). Si es mayor, las preguntas se repetirán.",
+  "errorInvalidNumber": "Por favor ingresa un número válido",
+  "errorNumberMustBePositive": "El número debe ser mayor que 0",
+  "customNumberLabel": "O introduce un número personalizado:",
+  "customNumberHelper": "Si es mayor que {total}, las preguntas se repetirán",
+  "numberInputLabel": "Número de preguntas"
 }

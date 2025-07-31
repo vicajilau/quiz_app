@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/l10n/app_localizations.dart';
+import '../../core/service_locator.dart';
 import '../../domain/models/quiz/quiz_file.dart';
+import '../../domain/services/quiz_service.dart';
 import '../blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import '../blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import '../blocs/quiz_execution_bloc/quiz_execution_state.dart';
@@ -14,9 +16,19 @@ class QuizFileExecutionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the configured question count from service locator
+    final questionCount =
+        ServiceLocator.instance.getQuestionCount() ?? quizFile.questions.length;
+
+    // Select the questions to use for the quiz
+    final questionsToUse = QuizService.selectRandomQuestions(
+      quizFile.questions,
+      questionCount,
+    );
+
     return BlocProvider(
       create: (context) =>
-          QuizExecutionBloc()..add(QuizExecutionStarted(quizFile.questions)),
+          QuizExecutionBloc()..add(QuizExecutionStarted(questionsToUse)),
       child: Scaffold(
         appBar: AppBar(
           title: Text(quizFile.metadata.title),
@@ -107,7 +119,9 @@ class QuizFileExecutionScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          AppLocalizations.of(context)!.questionNumber(state.currentQuestionIndex + 1),
+          AppLocalizations.of(
+            context,
+          )!.questionNumber(state.currentQuestionIndex + 1),
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
             color: Colors.grey[600],
             fontWeight: FontWeight.w500,

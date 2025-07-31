@@ -260,5 +260,81 @@
         "example": "What is the capital of France?"
       }
     }
+  },
+  "selectQuestionCountTitle": "Select Number of Questions",
+  "@selectQuestionCountTitle": {
+    "description": "Title for the dialog to select number of questions for the quiz"
+  },
+  "selectQuestionCountMessage": "How many questions would you like to answer in this quiz?",
+  "@selectQuestionCountMessage": {
+    "description": "Message explaining the question count selection"
+  },
+  "allQuestions": "All questions ({count})",
+  "@allQuestions": {
+    "description": "Option to select all available questions",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "startQuiz": "Start Quiz",
+  "@startQuiz": {
+    "description": "Button text to start the quiz"
+  },
+  "questionsCount": "{count} questions",
+  "@questionsCount": {
+    "description": "Text showing number of questions",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "customNumberLabel": "Or enter a custom number:",
+  "@customNumberLabel": {
+    "description": "Label for custom number input section"
+  },
+  "numberInputLabel": "Number of questions",
+  "@numberInputLabel": {
+    "description": "Label for the number input field"
+  },
+  "customNumberHelper": "Enter any number (max {total}). If higher, questions will repeat.",
+  "@customNumberHelper": {
+    "description": "Helper text explaining custom number input",
+    "placeholders": {
+      "total": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "errorInvalidNumber": "Please enter a valid number",
+  "@errorInvalidNumber": {
+    "description": "Error message for invalid number input"
+  },
+  "errorNumberMustBePositive": "Number must be greater than 0",
+  "@errorNumberMustBePositive": {
+    "description": "Error message when number is zero or negative"
+  },
+  "customNumberLabel": "Or enter a custom number:",
+  "@customNumberLabel": {
+    "description": "Label for custom number input field"
+  },
+  "customNumberHelper": "If greater than {total}, questions will repeat",
+  "@customNumberHelper": {
+    "description": "Helper text for custom number input",
+    "placeholders": {
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "numberInputLabel": "Number of questions",
+  "@numberInputLabel": {
+    "description": "Label for the number input field"
   }
 }

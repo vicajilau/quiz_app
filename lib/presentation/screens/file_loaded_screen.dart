@@ -10,11 +10,13 @@ import 'package:quiz_app/routes/app_router.dart';
 import 'package:platform_detail/platform_detail.dart';
 
 import '../../core/l10n/app_localizations.dart';
+import '../../core/service_locator.dart';
 import '../../domain/use_cases/check_file_changes_use_case.dart';
 import '../blocs/file_bloc/file_bloc.dart';
 import '../blocs/file_bloc/file_event.dart';
 import '../blocs/file_bloc/file_state.dart';
 import 'dialogs/exit_confirmation_dialog.dart';
+import 'dialogs/question_count_selection_dialog.dart';
 import 'widgets/request_file_name_dialog.dart';
 
 class FileLoadedScreen extends StatefulWidget {
@@ -146,7 +148,21 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                     ? FloatingActionButton(
                         tooltip: AppLocalizations.of(context)!.executeTooltip,
                         onPressed: () async {
-                          if (context.mounted) {
+                          final selectedQuestionCount = await showDialog<int>(
+                            context: context,
+                            builder: (context) => QuestionCountSelectionDialog(
+                              totalQuestions: cachedQuizFile.questions.length,
+                            ),
+                          );
+
+                          if (selectedQuestionCount != null &&
+                              context.mounted) {
+                            // Register the selected question count in the service locator
+                            ServiceLocator.instance.registerQuizConfig(
+                              questionCount: selectedQuestionCount,
+                            );
+
+                            // Navigate to the quiz execution screen
                             context.push(AppRoutes.quizFileExecutionScreen);
                           }
                         },

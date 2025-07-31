@@ -403,6 +403,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Question: {question}'**
   String question(String question);
+
+  /// Title for the dialog to select number of questions for the quiz
+  ///
+  /// In en, this message translates to:
+  /// **'Select Number of Questions'**
+  String get selectQuestionCountTitle;
+
+  /// Message explaining the question count selection
+  ///
+  /// In en, this message translates to:
+  /// **'How many questions would you like to answer in this quiz?'**
+  String get selectQuestionCountMessage;
+
+  /// Option to select all available questions
+  ///
+  /// In en, this message translates to:
+  /// **'All questions ({count})'**
+  String allQuestions(int count);
+
+  /// Button text to start the quiz
+  ///
+  /// In en, this message translates to:
+  /// **'Start Quiz'**
+  String get startQuiz;
+
+  /// Text showing number of questions
+  ///
+  /// In en, this message translates to:
+  /// **'{count} questions'**
+  String questionsCount(int count);
+
+  /// Label for custom number input field
+  ///
+  /// In en, this message translates to:
+  /// **'Or enter a custom number:'**
+  String get customNumberLabel;
+
+  /// Label for the number input field
+  ///
+  /// In en, this message translates to:
+  /// **'Number of questions'**
+  String get numberInputLabel;
+
+  /// Helper text for custom number input
+  ///
+  /// In en, this message translates to:
+  /// **'If greater than {total}, questions will repeat'**
+  String customNumberHelper(int total);
+
+  /// Error message for invalid number input
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid number'**
+  String get errorInvalidNumber;
+
+  /// Error message when number is zero or negative
+  ///
+  /// In en, this message translates to:
+  /// **'Number must be greater than 0'**
+  String get errorNumberMustBePositive;
 }
 
 class _AppLocalizationsDelegate
