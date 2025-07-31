@@ -28,11 +28,6 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String fileError(String message) {
-    return 'Error: $message';
-  }
-
-  @override
   String get dropFileHere => 'Drag a .quiz file here';
 
   @override
@@ -49,39 +44,6 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String errorSavingFile(String error) {
-    return 'Error saving file: $error';
-  }
-
-  @override
-  String arrivalTimeLabel(String arrivalTime) {
-    return 'Arrival Time: $arrivalTime';
-  }
-
-  @override
-  String serviceTimeLabel(String serviceTime) {
-    return 'Service Time: $serviceTime';
-  }
-
-  @override
-  String get editProcessTitle => 'Edit Process';
-
-  @override
-  String get createRegularProcessTitle => 'Create Regular Process';
-
-  @override
-  String get createBurstProcessTitle => 'Create Burst Process';
-
-  @override
-  String get processNameLabel => 'Process Name';
-
-  @override
-  String get arrivalTimeDialogLabel => 'Arrival Time';
-
-  @override
-  String get serviceTimeDialogLabel => 'Service Time';
-
-  @override
   String get cancelButton => 'Cancel';
 
   @override
@@ -91,18 +53,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get confirmDeleteTitle => 'Confirm Deletion';
 
   @override
-  String confirmDeleteMessage(Object processName) {
+  String confirmDeleteMessage(String processName) {
     return 'Are you sure you want to delete `$processName` process?';
   }
 
   @override
   String get deleteButton => 'Delete';
-
-  @override
-  String get enabledLabel => 'Enabled';
-
-  @override
-  String get disabledLabel => 'Disabled';
 
   @override
   String get confirmExitTitle => 'Confirm Exit';
@@ -118,9 +74,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get saveDialogTitle => 'Please select an output file:';
 
   @override
-  String get fillAllFieldsError => 'Please fill in all the fields.';
-
-  @override
   String get createQuizFileTitle => 'Create Quiz File';
 
   @override
@@ -133,26 +86,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createButton => 'Create';
 
   @override
-  String get emptyNameError => 'The name cannot be empty.';
+  String get fileNameRequiredError => 'The file name is required.';
 
   @override
-  String get duplicateNameError => 'A process with this name already exists.';
-
-  @override
-  String get invalidArrivalTimeError =>
-      'Arrival time must be a positive integer.';
-
-  @override
-  String get invalidServiceTimeError =>
-      'Service time must be a positive integer.';
-
-  @override
-  String get invalidTimeDifferenceError =>
-      'Service time must be greater than arrival time.';
-
-  @override
-  String get timeDifferenceTooSmallError =>
-      'Service time must be at least 1 unit greater than arrival time.';
+  String get fileDescriptionRequiredError =>
+      'The file description is required.';
 
   @override
   String get requestFileNameTitle => 'Enter the Quiz file name';
@@ -161,43 +99,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fileNameHint => 'File name';
 
   @override
-  String get acceptButton => 'Accept';
-
-  @override
-  String get errorTitle => 'Error';
-
-  @override
   String get emptyFileNameMessage => 'The file name cannot be empty.';
 
   @override
-  String get fileNameRequiredError => 'The file name is required.';
-
-  @override
-  String get fileDescriptionRequiredError =>
-      'The file description is required.';
-
-  @override
-  String get executionSetupTitle => 'Execution Setup';
-
-  @override
-  String get selectAlgorithmLabel => 'Select Algorithm';
-
-  @override
-  String algorithmLabel(String algorithm) {
-    String _temp0 = intl.Intl.selectLogic(algorithm, {
-      'firstComeFirstServed': 'First Come First Served',
-      'shortestJobFirst': 'Shortest Job First',
-      'shortestRemainingTimeFirst': 'Shortest Remaining Time First',
-      'roundRobin': 'Round Robin',
-      'priorityBased': 'Priority Based',
-      'multiplePriorityQueues': 'Multiple Priority Queues',
-      'multiplePriorityQueuesWithFeedback':
-          'Multiple Priority Queues with Feedback',
-      'timeLimit': 'Time Limit',
-      'other': 'Unknown',
-    });
-    return '$_temp0';
-  }
+  String get acceptButton => 'Accept';
 
   @override
   String get saveTooltip => 'Save the file';
@@ -221,245 +126,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loadFileTooltip => 'Load an existing Quiz file';
 
   @override
-  String get executionScreenTitle => 'Execution Overview';
-
-  @override
-  String get executionTimelineTitle => 'Execution Timeline';
-
-  @override
-  String failedToCaptureImage(Object error) {
-    return 'Failed to capture image: $error';
-  }
-
-  @override
-  String get imageCopiedToClipboard => 'Image copied to clipboard';
-
-  @override
-  String get exportTimelineImage => 'Export as Image';
-
-  @override
-  String get exportTimelinePdf => 'Export as PDF';
-
-  @override
-  String get clipboardTooltip => 'Copy to clipboard';
-
-  @override
-  String get exportTooltip => 'Export execution timeline';
-
-  @override
-  String timelineProcessDescription(
-    Object arrivalTime,
-    Object processName,
-    Object serviceTime,
-  ) {
-    return '$processName (Arrival: $arrivalTime, Service: $serviceTime)';
-  }
-
-  @override
-  String executionTimeDescription(Object executionTime) {
-    return 'Execution Time: $executionTime';
-  }
-
-  @override
-  String get executionTimeUnavailable => 'N/A';
-
-  @override
-  String get imageExported => 'Image exported';
-
-  @override
-  String get pdfExported => 'PDF exported';
-
-  @override
-  String get metadataBadContent => 'The file metadata is invalid or corrupted.';
-
-  @override
-  String get processesBadContent => 'The process list contains invalid data.';
-
-  @override
-  String get unsupportedVersion =>
-      'The file version is not supported by the current application.';
-
-  @override
-  String get invalidExtension =>
-      'The file does not have a valid .quiz extension.';
-
-  @override
-  String get settingsDialogTitle => 'Settings';
-
-  @override
-  String get settingsDialogWarningTitle => 'Warning';
-
-  @override
-  String get settingsDialogWarningContent =>
-      'Changing the mode will erase all processes from the quiz file. Do you want to proceed?';
-
-  @override
-  String get cancel => 'Cancel';
-
-  @override
-  String get confirm => 'Confirm';
-
-  @override
-  String get close => 'Close';
-
-  @override
-  String get settingsDialogDescription => 'The type of processes configured';
-
-  @override
-  String get processModeRegular => 'Regular';
-
-  @override
-  String get processModeBurst => 'Burst';
-
-  @override
-  String get processIdLabel => 'Process ID';
-
-  @override
-  String get burstDurationLabel => 'Burst Duration';
-
-  @override
-  String get addBurstButton => 'Add Burst';
-
-  @override
-  String get addThreadButton => 'Add Thread';
-
-  @override
-  String get deleteThreadTitle => 'Delete Thread';
-
-  @override
-  String deleteThreadConfirmation(Object threadId) {
-    return 'Are you sure you want to delete the thread \"$threadId\"?';
-  }
-
-  @override
-  String get confirmButton => 'Confirm';
-
-  @override
-  String get arrivalTimeLabelDecorator => 'Arrival Time';
-
-  @override
-  String get deleteBurstTitle => 'Delete Burst';
-
-  @override
-  String deleteBurstConfirmation(Object duration, Object type) {
-    return 'Are you sure you want to delete $type burst with $duration ut duration?';
-  }
-
-  @override
-  String invalidBurstSequenceError(Object thread) {
-    return 'The burst sequence of thread ($thread) cannot contain two consecutive I/O bursts.';
-  }
-
-  @override
-  String get selectBurstType => 'Select burst type';
-
-  @override
-  String get burstCpuType => 'CPU';
-
-  @override
-  String get burstIoType => 'I/O';
-
-  @override
-  String get burstTypeLabel => 'Burst type';
-
-  @override
-  String burstNameLabel(Object name) {
-    return 'Burst $name';
-  }
-
-  @override
-  String burstTypeListLabel(Object type) {
-    return 'Burst Type: $type';
-  }
-
-  @override
-  String threadIdLabel(Object id) {
-    return 'Thread: $id';
-  }
-
-  @override
-  String get contextSwitchTime => 'Context Switch Time';
-
-  @override
-  String get ioChannels => 'I/O Channels';
-
-  @override
-  String get cpuCount => 'CPU Count';
-
-  @override
-  String get quantumLabel => 'Quantum';
-
-  @override
-  String get invalidQuantumError =>
-      'Please enter a valid quantum (greater than 0).';
-
-  @override
-  String get queueQuantaLabel => 'Quanta List';
-
-  @override
-  String get invalidQueueQuantaError =>
-      'Please enter valid quantum values (greater than 0) separated with commas.';
-
-  @override
-  String get timeLimitLabel => 'Time Limit';
-
-  @override
-  String get invalidTimeLimitError =>
-      'Please enter a valid time limit (greater than 0).';
-
-  @override
-  String emptyNameProcessBadContent(Object index) {
-    return 'The process with index ($index) needs a name (id)';
-  }
-
-  @override
-  String get duplicatedNameProcessBadContent =>
-      'There are two or more processes with the same name';
-
-  @override
-  String invalidArrivalTimeBadContent(Object process) {
-    return 'The process ($process) has the property arrival_time set to null or <= 0';
-  }
-
-  @override
-  String invalidServiceTimeBadContent(Object process) {
-    return 'The process ($process) has the property service_time set to null or <= 0';
-  }
-
-  @override
-  String emptyThreadError(Object process) {
-    return 'Process ($process) has no associated threads';
-  }
-
-  @override
-  String emptyBurstError(Object process, Object thread) {
-    return 'Thread ($thread) of the process ($process) has no associated bursts';
-  }
-
-  @override
-  String startAndEndCpuSequenceError(Object thread) {
-    return 'The burst sequence of thread ($thread) must start and end with a CPU burst.';
-  }
-
-  @override
-  String startAndEndCpuSequenceBadContent(Object process, Object thread) {
-    return 'The burst sequence of thread ($thread) in process ($process) must start and end with a CPU burst.';
-  }
-
-  @override
-  String invalidBurstSequenceBadContent(Object process, Object thread) {
-    return 'The burst sequence of thread ($thread) in process ($process) cannot contain two consecutive I/O bursts.';
-  }
-
-  @override
-  String invalidBurstDuration(Object burst, Object process, Object thread) {
-    return 'The burst ($burst) of thread ($thread) in process ($process) cannot contain is null or <= 0.';
-  }
-
-  @override
-  String get unknownError => 'Unknown error';
-
-  @override
   String questionNumber(int number) {
     return 'Question $number';
   }
@@ -479,6 +145,9 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get finishQuizConfirmation =>
       'Are you sure you want to finish the quiz? You won\'t be able to change your answers afterwards.';
+
+  @override
+  String get cancel => 'Cancel';
 
   @override
   String get abandonQuiz => 'Abandon Quiz';

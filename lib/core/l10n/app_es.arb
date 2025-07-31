@@ -1,19 +1,19 @@
 {
-  "titleAppBar": "Quiz - Simulador de exámenes",
+  "titleAppBar": "Quiz - Simulador de Exámenes",
   "@titleAppBar": {
-    "description": "Título de la aplicación mostrado en el AppBar."
+    "description": "Título de la aplicación mostrado en la AppBar."
   },
   "create": "Crear",
   "@create": {
-    "description": "Etiqueta para el botón de Crear fichero Quiz en el AppBar."
+    "description": "Etiqueta para el botón Crear archivo Quiz en la AppBar."
   },
   "load": "Cargar",
   "@load": {
-    "description": "Etiqueta para el botón de Cargar fichero Quiz en el AppBar."
+    "description": "Etiqueta para el botón Cargar archivo Quiz en la AppBar."
   },
   "fileLoaded": "Archivo cargado: {filePath}",
   "@fileLoaded": {
-    "description": "Mensaje mostrado cuando un archivo se carga con éxito.",
+    "description": "Mensaje mostrado cuando un archivo se carga exitosamente.",
     "placeholders": {
       "filePath": {
         "type": "String",
@@ -23,7 +23,7 @@
   },
   "fileSaved": "Archivo guardado: {filePath}",
   "@fileSaved": {
-    "description": "Mensaje mostrado cuando un archivo se guarda con éxito.",
+    "description": "Mensaje mostrado cuando un archivo se guarda exitosamente.",
     "placeholders": {
       "filePath": {
         "type": "String",
@@ -31,37 +31,19 @@
       }
     }
   },
-  "fileError": "Error: {message}",
-  "@fileError": {
-    "description": "Mensaje mostrado cuando hay un error al cargar o guardar un archivo.",
+  "errorExportingFile": "Error al exportar el archivo: {error}",
+  "@errorExportingFile": {
+    "description": "Mensaje de error mostrado cuando falla la exportación de un archivo.",
     "placeholders": {
-      "message": {
+      "error": {
         "type": "String",
-        "example": "Formato de archivo no válido"
+        "example": "Acceso denegado"
       }
     }
   },
-  "dropFileHere": "Arrastra un archivo .quiz aquí",
-  "@dropFileHere": {
-    "description": "Texto mostrado dentro del área de arrastre para archivos."
-  },
-  "errorInvalidFile": "Error: archivo no válido. Debe ser un archivo .quiz.",
-    "@errorInvalidFile": {
-      "description": "Mensaje mostrado cuando el archivo arrastrado no es un archivo .quiz."
-    },
-    "errorLoadingFile": "Error al cargar el archivo Quiz: {error}",
-    "@errorLoadingFile": {
-      "description": "Mensaje mostrado cuando hay un error al cargar un archivo Quiz.",
-      "placeholders": {
-        "error": {
-          "type": "String",
-          "example": "Archivo no encontrado"
-        }
-      }
-    },
-  "errorExportingFile": "Error al exportar : {error}",
-  "@errorExportingFile": {
-    "description": "Mensaje mostrado cuando hay un error al exportar un archivo.",
+  "errorLoadingFile": "Error al cargar el archivo: {error}",
+  "@errorLoadingFile": {
+    "description": "Mensaje de error mostrado cuando falla la carga de un archivo.",
     "placeholders": {
       "error": {
         "type": "String",
@@ -69,59 +51,25 @@
       }
     }
   },
-    "errorSavingFile": "Error al guardar el archivo: {error}",
-    "@errorSavingFile": {
-      "description": "Mensaje mostrado cuando hay un error al guardar un archivo.",
-      "placeholders": {
-        "error": {
-          "type": "String",
-          "example": "Permiso denegado"
-        }
-      }
-    },
-  "arrivalTimeLabel": "Tiempo de Llegada: {arrivalTime}",
-  "@arrivalTimeLabel": {
-    "description": "Etiqueta para mostrar el tiempo de llegada de un proceso.",
-    "placeholders": {
-      "arrivalTime": {
-        "type": "String",
-        "example": "10"
-      }
-    }
+  "fileNameHint": "Nombre del archivo (opcional)",
+  "@fileNameHint": {
+    "description": "Texto de ayuda para el campo de nombre de archivo."
   },
-  "serviceTimeLabel": "Tiempo de Servicio: {serviceTime}",
-  "@serviceTimeLabel": {
-    "description": "Etiqueta para mostrar el tiempo de servicio de un proceso.",
-    "placeholders": {
-      "serviceTime": {
-        "type": "String",
-        "example": "5"
-      }
-    }
+  "emptyFileNameMessage": "Por favor, ingresa un nombre de archivo",
+  "@emptyFileNameMessage": {
+    "description": "Mensaje de validación mostrado cuando el nombre del archivo está vacío."
   },
-  "editProcessTitle": "Editar Proceso",
-  "@editProcessTitle": {
-    "description": "Título de la pantalla para editar un proceso."
+  "score": "Puntuación",
+  "@score": {
+    "description": "Etiqueta para mostrar la puntuación del usuario."
   },
-  "createRegularProcessTitle": "Crear Proceso Regular",
-  "@createRegularProcessTitle": {
-    "description": "Título de la pantalla para crear un proceso regular."
+  "dropFileHere": "Arrastra un archivo .quiz aquí",
+  "@dropFileHere": {
+    "description": "Texto mostrado dentro del área de arrastre para archivos."
   },
-  "createBurstProcessTitle": "Crear Proceso con Ráfagas",
-  "@createBurstProcessTitle": {
-    "description": "Título de la pantalla para crear un proceso con Ráfagas."
-  },
-  "processNameLabel": "Nombre del Proceso",
-  "@processNameLabel": {
-    "description": "Etiqueta para el campo de entrada del nombre del proceso."
-  },
-  "arrivalTimeDialogLabel": "Tiempo de Llegada",
-  "@arrivalTimeDialogLabel": {
-    "description": "Etiqueta para el campo de entrada del tiempo de llegada."
-  },
-  "serviceTimeDialogLabel": "Tiempo de Servicio",
-  "@serviceTimeDialogLabel": {
-    "description": "Etiqueta para el campo de entrada del tiempo de servicio."
+  "errorInvalidFile": "Error: archivo no válido. Debe ser un archivo .quiz.",
+  "@errorInvalidFile": {
+    "description": "Mensaje mostrado cuando el archivo arrastrado no es un archivo .quiz."
   },
   "cancelButton": "Cancelar",
   "@cancelButton": {
@@ -131,117 +79,100 @@
   "@saveButton": {
     "description": "Botón de guardar."
   },
-  "confirmDeleteTitle": "Confirmar eliminación",
+  "confirmDeleteTitle": "Confirmar Eliminación",
   "@confirmDeleteTitle": {
-    "description": "Título para el cuadro de diálogo de confirmación al eliminar un proceso."
+    "description": "Título para el diálogo de confirmación al eliminar un proceso."
   },
-  "confirmDeleteMessage": "¿Estás seguro de que deseas eliminar el proceso `{processName}`?",
+  "confirmDeleteMessage": "¿Estás seguro de que quieres eliminar `{processName}`?",
   "@confirmDeleteMessage": {
-    "description": "Mensaje en el cuadro de diálogo de confirmación para eliminar."
+    "description": "Mensaje en el diálogo de confirmación para eliminación.",
+    "placeholders": {
+      "processName": {
+        "type": "String",
+        "example": "Pregunta 1"
+      }
+    }
   },
   "deleteButton": "Eliminar",
   "@deleteButton": {
-    "description": "Texto del botón para confirmar la eliminación."
+    "description": "Texto del botón para confirmar eliminación."
   },
-  "enabledLabel": "Habilitado",
-  "disabledLabel": "Deshabilitado",
-  "confirmExitTitle": "Confirmar salida",
-  "confirmExitMessage": "¿Seguro que quieres salir sin guardar?",
+  "confirmExitTitle": "Confirmar Salida",
+  "@confirmExitTitle": {
+    "description": "Título para el diálogo de confirmación al salir."
+  },
+  "confirmExitMessage": "¿Estás seguro de que quieres salir sin guardar?",
+  "@confirmExitMessage": {
+    "description": "Mensaje en el diálogo de confirmación para salir."
+  },
   "exitButton": "Salir",
-  "saveDialogTitle": "Por favor, seleccione un archivo de salida:",
-  "fillAllFieldsError": "Por favor, completa todos los campos.",
+  "@exitButton": {
+    "description": "Texto del botón de salir."
+  },
+  "saveDialogTitle": "Por favor selecciona un archivo de salida:",
+  "@saveDialogTitle": {
+    "description": "Título para el diálogo de guardar."
+  },
   "createQuizFileTitle": "Crear Archivo Quiz",
+  "@createQuizFileTitle": {
+    "description": "Título para el diálogo de crear archivo quiz."
+  },
   "fileNameLabel": "Nombre del Archivo",
+  "@fileNameLabel": {
+    "description": "Etiqueta para la entrada del nombre del archivo."
+  },
   "fileDescriptionLabel": "Descripción del Archivo",
+  "@fileDescriptionLabel": {
+    "description": "Etiqueta para la entrada de la descripción del archivo."
+  },
   "createButton": "Crear",
-  "emptyNameError": "El nombre no puede estar vacío.",
-  "duplicateNameError": "Ya existe un proceso con este nombre.",
-  "invalidArrivalTimeError": "El tiempo de llegada debe ser un número entero positivo.",
-  "invalidServiceTimeError": "El tiempo de servicio debe ser un número entero positivo.",
-  "invalidTimeDifferenceError": "El tiempo de servicio debe ser mayor que el tiempo de llegada.",
-  "timeDifferenceTooSmallError": "El tiempo de servicio debe ser al menos 1 unidad mayor que el tiempo de llegada.",
-  "requestFileNameTitle": "Introduce el nombre del archivo Quiz",
-  "fileNameHint": "Nombre del archivo",
+  "@createButton": {
+    "description": "Texto del botón crear."
+  },
+  "fileNameRequiredError": "El nombre del archivo es requerido.",
+  "@fileNameRequiredError": {
+    "description": "Mensaje de error cuando el nombre del archivo está vacío."
+  },
+  "fileDescriptionRequiredError": "La descripción del archivo es requerida.",
+  "@fileDescriptionRequiredError": {
+    "description": "Mensaje de error cuando la descripción del archivo está vacía."
+  },
+  "requestFileNameTitle": "Ingresa el nombre del archivo Quiz",
+  "@requestFileNameTitle": {
+    "description": "Título para el diálogo de solicitar nombre de archivo."
+  },
   "acceptButton": "Aceptar",
-  "errorTitle": "Error",
-  "emptyFileNameMessage": "El nombre del fichero no puede estar vacío.",
-  "fileNameRequiredError": "El nombre del archivo es obligatorio.",
-  "fileDescriptionRequiredError": "La descripción del archivo es obligatoria.",
-  "executionSetupTitle": "Configuración de Ejecución",
-  "selectAlgorithmLabel": "Seleccionar Algoritmo",
-  "algorithmLabel": "{algorithm, select, firstComeFirstServed {Primero en Llegar, Primero en Servir} shortestJobFirst {El Trabajo Más Corto Primero} shortestRemainingTimeFirst {El Tiempo Restante Más Corto Primero} roundRobin {Round Robin} priorityBased {Basado en Prioridad} multiplePriorityQueues {Colas de Prioridad Múltiples} multiplePriorityQueuesWithFeedback {Colas de Prioridad Múltiples con Retroalimentación} timeLimit {Límite de Tiempo} other {Desconocido}}",
+  "@acceptButton": {
+    "description": "Texto del botón aceptar."
+  },
   "saveTooltip": "Guardar el archivo",
-  "saveDisabledTooltip": "No hay cambios para guardar",
-  "executeTooltip": "Ejecutar el exámen",
+  "@saveTooltip": {
+    "description": "Tooltip para el botón guardar."
+  },
+  "saveDisabledTooltip": "No hay cambios que guardar",
+  "@saveDisabledTooltip": {
+    "description": "Tooltip para el botón guardar deshabilitado."
+  },
+  "executeTooltip": "Ejecutar el examen",
+  "@executeTooltip": {
+    "description": "Tooltip para el botón ejecutar."
+  },
   "addTooltip": "Agregar una nueva pregunta",
-  "backSemanticLabel": "Botón de volver",
+  "@addTooltip": {
+    "description": "Tooltip para el botón agregar."
+  },
+  "backSemanticLabel": "Botón volver",
+  "@backSemanticLabel": {
+    "description": "Etiqueta semántica para el botón volver."
+  },
   "createFileTooltip": "Crear un nuevo archivo Quiz",
+  "@createFileTooltip": {
+    "description": "Tooltip para el botón crear archivo."
+  },
   "loadFileTooltip": "Cargar un archivo Quiz existente",
-  "executionScreenTitle": "Resumen de Ejecución",
-  "executionTimelineTitle": "Línea de Tiempo de Ejecución",
-  "failedToCaptureImage": "No se pudo capturar la imagen: {error}",
-  "imageCopiedToClipboard": "Imagen copiada al portapapeles",
-  "exportTimelineImage": "Exportar como Imagen",
-  "exportTimelinePdf": "Exportar como PDF",
-  "clipboardTooltip": "Copiar al portapapeles",
-  "exportTooltip": "Exportar línea de tiempo de ejecución",
-  "timelineProcessDescription": "{processName} (Llegada: {arrivalTime}, Servicio: {serviceTime})",
-  "executionTimeDescription": "Tiempo de Ejecución: {executionTime}",
-  "executionTimeUnavailable": "N/D",
-  "imageExported": "Imagen exportada",
-  "pdfExported": "PDF exportado",
-  "metadataBadContent": "Los metadatos del archivo son inválidos o están corruptos.",
-  "processesBadContent": "La lista de procesos contiene datos inválidos.",
-  "unsupportedVersion": "La versión del archivo no es compatible con la aplicación actual.",
-  "invalidExtension": "El archivo no tiene una extensión .quiz válida.",
-  "settingsDialogTitle": "Configuración",
-  "settingsDialogWarningTitle": "Advertencia",
-  "settingsDialogWarningContent": "Cambiar el modo borrará todos los procesos del archivo quiz. ¿Deseas continuar?",
-  "cancel": "Cancelar",
-  "confirm": "Confirmar",
-  "close": "Cerrar",
-  "settingsDialogDescription": "El tipo de procesos configurado",
-  "processModeRegular": "Normales",
-  "processModeBurst": "Con ráfagas",
-  "processIdLabel": "ID del Proceso",
-  "burstDurationLabel": "Duración del Burst",
-  "addBurstButton": "Agregar Burst",
-  "addThreadButton": "Agregar Hilo",
-  "deleteThreadTitle": "Eliminar Hilo",
-  "deleteThreadConfirmation": "¿Estás seguro de que deseas eliminar el hilo \"{threadId}\"?",
-  "confirmButton": "Confirmar",
-  "arrivalTimeLabelDecorator": "Tiempo de Llegada",
-  "deleteBurstTitle": "Borrar Ráfaga",
-  "deleteBurstConfirmation": "¿Está seguro de que desea eliminar la ráfaga {type} con una duración de {duration} ut?",
-  "invalidBurstSequenceError": "La secuencia de ráfagas del hilo ({thread}) debe comenzar y terminar con CPU, y no puede haber dos ráfagas de E/S consecutivas.",
-  "selectBurstType": "Selecciona el tipo de ráfaga",
-  "burstCpuType": "CPU",
-  "burstIoType": "E/S",
-  "burstTypeLabel": "Tipo de ráfaga",
-  "burstNameLabel": "Ráfaga {name}",
-  "burstTypeListLabel": "Tipo de ráfaga: {type}",
-  "threadIdLabel": "Hilo: {id}",
-  "contextSwitchTime": "Tiempo de Cambio de Contexto",
-  "ioChannels": "Canales de E/S",
-  "cpuCount": "Cantidad de CPUs",
-  "quantumLabel": "Quantum",
-  "invalidQuantumError": "Por favor, ingresa un valor de quantum válido (mayor que 0).",
-  "queueQuantaLabel": "Lista de Quantums",
-  "invalidQueueQuantaError": "Por favor, ingresa valores de quantum válidos (mayores que 0) separados con comas.",
-  "timeLimitLabel": "Límite de tiempo",
-  "invalidTimeLimitError": "Por favor, ingresa una duración máxima por turno válida (mayor que 0).",
-  "emptyNameProcessBadContent": "El proceso con el índice ({index} necesita un nombre (id))",
-  "duplicatedNameProcessBadContent": "Hay dos o más procesos con el mismo nombre",
-  "invalidArrivalTimeBadContent": "El preceso ({process}) tiene la propiedad arrival_time a null o <= 0",
-  "invalidServiceTimeBadContent": "El preceso ({process}) tiene la propiedad service_time a null o <= 0",
-  "emptyThreadError": "El proceso ({process}) no tiene hilos asociados",
-  "emptyBurstError": "El hilo ({thread}) del proceso ({process}) no tiene ráfagas asociadas",
-  "startAndEndCpuSequenceError": "La secuencia de ráfagas del hilo ({thread}) debe comenzar y terminar con CPU",
-  "invalidBurstSequenceError": "La secuencia de ráfagas del hilo ({thread}) no puede contener dos ráfagas de E/S consecutivas.",
-  "startAndEndCpuSequenceBadContent": "La secuencia de ráfagas del hilo ({thread}) en el proceso ({process}) debe comenzar y terminar con CPU.",
-  "invalidBurstSequenceBadContent": "La secuencia de ráfagas del hilo ({thread}) en el proceso ({process}) no puede contener dos ráfagas de E/S consecutivas.",
-  "invalidBurstDuration": "La ráfaga ({burst}) del hilo ({thread}) en el proceso ({process}) es nulo o <= 0",
-  "unknownError": "Error desconocido",
+  "@loadFileTooltip": {
+    "description": "Tooltip para el botón cargar archivo."
+  },
   "questionNumber": "Pregunta {number}",
   "@questionNumber": {
     "description": "Etiqueta del número de pregunta en la ejecución del quiz",
@@ -292,19 +223,9 @@
   "@quizCompleted": {
     "description": "Mensaje de quiz completado"
   },
-  "score": "Puntuación: {score}%",
-  "@score": {
-    "description": "Mostrar puntuación",
-    "placeholders": {
-      "score": {
-        "type": "String",
-        "example": "85.5"
-      }
-    }
-  },
   "correctAnswers": "{correct} de {total} respuestas correctas",
   "@correctAnswers": {
-    "description": "Conteo de respuestas correctas",
+    "description": "Contador de respuestas correctas",
     "placeholders": {
       "correct": {
         "type": "int",

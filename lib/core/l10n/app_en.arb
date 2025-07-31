@@ -31,34 +31,24 @@
       }
     }
   },
-  "fileError": "Error: {message}",
-  "@fileError": {
-    "description": "Message displayed when there is an error loading or saving a file.",
-    "placeholders": {
-      "message": {
-        "type": "String",
-        "example": "Invalid file format"
-      }
-    }
-  },
   "dropFileHere": "Drag a .quiz file here",
   "@dropFileHere": {
     "description": "Text displayed inside the drop area for dragging files."
   },
   "errorInvalidFile": "Error: Invalid file. Must be a .quiz file.",
-    "@errorInvalidFile": {
-      "description": "Message displayed when the dropped file is not a .quiz file."
-    },
-    "errorLoadingFile": "Error loading the Quiz file: {error}",
-    "@errorLoadingFile": {
-      "description": "Message displayed when there is an error while loading a Quiz file.",
-      "placeholders": {
-        "error": {
-          "type": "String",
-          "example": "File not found"
-        }
+  "@errorInvalidFile": {
+    "description": "Message displayed when the dropped file is not a .quiz file."
+  },
+  "errorLoadingFile": "Error loading the Quiz file: {error}",
+  "@errorLoadingFile": {
+    "description": "Message displayed when there is an error while loading a Quiz file.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "File not found"
       }
-    },
+    }
+  },
   "errorExportingFile": "Error exporting the file: {error}",
   "@errorExportingFile": {
     "description": "Message displayed when there is an error while exporting a file.",
@@ -68,60 +58,6 @@
         "example": "File not found"
       }
     }
-  },
-    "errorSavingFile": "Error saving file: {error}",
-    "@errorSavingFile": {
-      "description": "Message displayed when there is an error while saving a file.",
-      "placeholders": {
-        "error": {
-          "type": "String",
-          "example": "Permission denied"
-        }
-      }
-    },
-  "arrivalTimeLabel": "Arrival Time: {arrivalTime}",
-  "@arrivalTimeLabel": {
-    "description": "Label for displaying the arrival time of a process.",
-    "placeholders": {
-      "arrivalTime": {
-        "type": "String",
-        "example": "10"
-      }
-    }
-  },
-  "serviceTimeLabel": "Service Time: {serviceTime}",
-  "@serviceTimeLabel": {
-    "description": "Label for displaying the service time of a process.",
-    "placeholders": {
-      "serviceTime": {
-        "type": "String",
-        "example": "5"
-      }
-    }
-  },
-  "editProcessTitle": "Edit Process",
-  "@editProcessTitle": {
-    "description": "Title of the screen for editing a process."
-  },
-  "createRegularProcessTitle": "Create Regular Process",
-  "@createRegularProcessTitle": {
-    "description": "Title of the screen for creating a regular process."
-  },
-  "createBurstProcessTitle": "Create Burst Process",
-  "@createBurstProcessTitle": {
-    "description": "Title of the screen for creating a burst process."
-  },
-  "processNameLabel": "Process Name",
-  "@processNameLabel": {
-    "description": "Label for the process name input field."
-  },
-  "arrivalTimeDialogLabel": "Arrival Time",
-  "@arrivalTimeDialogLabel": {
-    "description": "Label for the arrival time input field."
-  },
-  "serviceTimeDialogLabel": "Service Time",
-  "@serviceTimeDialogLabel": {
-    "description": "Label for the service time input field."
   },
   "cancelButton": "Cancel",
   "@cancelButton": {
@@ -137,111 +73,102 @@
   },
   "confirmDeleteMessage": "Are you sure you want to delete `{processName}` process?",
   "@confirmDeleteMessage": {
-    "description": "Message in the confirmation dialog for deletion."
+    "description": "Message in the confirmation dialog for deletion.",
+    "placeholders": {
+      "processName": {
+        "type": "String",
+        "example": "Question 1"
+      }
+    }
   },
   "deleteButton": "Delete",
   "@deleteButton": {
     "description": "Button text for confirming deletion."
   },
-  "enabledLabel": "Enabled",
-  "disabledLabel": "Disabled",
   "confirmExitTitle": "Confirm Exit",
+  "@confirmExitTitle": {
+    "description": "Title for the confirmation dialog when exiting."
+  },
   "confirmExitMessage": "Are you sure you want to leave without saving?",
+  "@confirmExitMessage": {
+    "description": "Message in the confirmation dialog for exiting."
+  },
   "exitButton": "Exit",
+  "@exitButton": {
+    "description": "Exit button text."
+  },
   "saveDialogTitle": "Please select an output file:",
-  "fillAllFieldsError": "Please fill in all the fields.",
+  "@saveDialogTitle": {
+    "description": "Title for the save dialog."
+  },
   "createQuizFileTitle": "Create Quiz File",
+  "@createQuizFileTitle": {
+    "description": "Title for create quiz file dialog."
+  },
   "fileNameLabel": "File Name",
+  "@fileNameLabel": {
+    "description": "Label for file name input."
+  },
   "fileDescriptionLabel": "File Description",
+  "@fileDescriptionLabel": {
+    "description": "Label for file description input."
+  },
   "createButton": "Create",
-  "emptyNameError": "The name cannot be empty.",
-  "duplicateNameError": "A process with this name already exists.",
-  "invalidArrivalTimeError": "Arrival time must be a positive integer.",
-  "invalidServiceTimeError": "Service time must be a positive integer.",
-  "invalidTimeDifferenceError": "Service time must be greater than arrival time.",
-  "timeDifferenceTooSmallError": "Service time must be at least 1 unit greater than arrival time.",
-  "requestFileNameTitle": "Enter the Quiz file name",
-  "fileNameHint": "File name",
-  "acceptButton": "Accept",
-  "errorTitle": "Error",
-  "emptyFileNameMessage": "The file name cannot be empty.",
+  "@createButton": {
+    "description": "Create button text."
+  },
   "fileNameRequiredError": "The file name is required.",
+  "@fileNameRequiredError": {
+    "description": "Error message when file name is empty."
+  },
   "fileDescriptionRequiredError": "The file description is required.",
-  "executionSetupTitle": "Execution Setup",
-  "selectAlgorithmLabel": "Select Algorithm",
-  "algorithmLabel": "{algorithm, select, firstComeFirstServed {First Come First Served} shortestJobFirst {Shortest Job First} shortestRemainingTimeFirst {Shortest Remaining Time First} roundRobin {Round Robin} priorityBased {Priority Based} multiplePriorityQueues {Multiple Priority Queues} multiplePriorityQueuesWithFeedback {Multiple Priority Queues with Feedback} timeLimit {Time Limit} other {Unknown}}",
+  "@fileDescriptionRequiredError": {
+    "description": "Error message when file description is empty."
+  },
+  "requestFileNameTitle": "Enter the Quiz file name",
+  "@requestFileNameTitle": {
+    "description": "Title for request file name dialog."
+  },
+  "fileNameHint": "File name",
+  "@fileNameHint": {
+    "description": "Hint text for file name input."
+  },
+  "emptyFileNameMessage": "The file name cannot be empty.",
+  "@emptyFileNameMessage": {
+    "description": "Error message when file name is empty."
+  },
+  "acceptButton": "Accept",
+  "@acceptButton": {
+    "description": "Accept button text."
+  },
   "saveTooltip": "Save the file",
+  "@saveTooltip": {
+    "description": "Tooltip for save button."
+  },
   "saveDisabledTooltip": "No changes to save",
+  "@saveDisabledTooltip": {
+    "description": "Tooltip for disabled save button."
+  },
   "executeTooltip": "Execute the exam",
+  "@executeTooltip": {
+    "description": "Tooltip for execute button."
+  },
   "addTooltip": "Add a new question",
+  "@addTooltip": {
+    "description": "Tooltip for add button."
+  },
   "backSemanticLabel": "Back button",
+  "@backSemanticLabel": {
+    "description": "Semantic label for back button."
+  },
   "createFileTooltip": "Create a new Quiz file",
+  "@createFileTooltip": {
+    "description": "Tooltip for create file button."
+  },
   "loadFileTooltip": "Load an existing Quiz file",
-  "executionScreenTitle": "Execution Overview",
-  "executionTimelineTitle": "Execution Timeline",
-  "failedToCaptureImage": "Failed to capture image: {error}",
-  "imageCopiedToClipboard": "Image copied to clipboard",
-  "exportTimelineImage": "Export as Image",
-  "exportTimelinePdf": "Export as PDF",
-  "clipboardTooltip": "Copy to clipboard",
-  "exportTooltip": "Export execution timeline",
-  "timelineProcessDescription": "{processName} (Arrival: {arrivalTime}, Service: {serviceTime})",
-  "executionTimeDescription": "Execution Time: {executionTime}",
-  "executionTimeUnavailable": "N/A",
-  "imageExported": "Image exported",
-  "pdfExported": "PDF exported",
-  "metadataBadContent": "The file metadata is invalid or corrupted.",
-  "processesBadContent": "The process list contains invalid data.",
-  "unsupportedVersion": "The file version is not supported by the current application.",
-  "invalidExtension": "The file does not have a valid .quiz extension.",
-  "settingsDialogTitle": "Settings",
-  "settingsDialogWarningTitle": "Warning",
-  "settingsDialogWarningContent": "Changing the mode will erase all processes from the quiz file. Do you want to proceed?",
-  "cancel": "Cancel",
-  "confirm": "Confirm",
-  "close": "Close",
-  "settingsDialogDescription": "The type of processes configured",
-  "processModeRegular": "Regular",
-  "processModeBurst": "Burst",
-  "processIdLabel": "Process ID",
-  "burstDurationLabel": "Burst Duration",
-  "addBurstButton": "Add Burst",
-  "addThreadButton": "Add Thread",
-  "deleteThreadTitle": "Delete Thread",
-  "deleteThreadConfirmation": "Are you sure you want to delete the thread \"{threadId}\"?",
-  "confirmButton": "Confirm",
-  "arrivalTimeLabelDecorator": "Arrival Time",
-  "deleteBurstTitle": "Delete Burst",
-  "deleteBurstConfirmation": "Are you sure you want to delete {type} burst with {duration} ut duration?",
-  "invalidBurstSequenceError": "The burst sequence ({thread}) must start and end with CPU, and there cannot be two consecutive I/O bursts.",
-  "selectBurstType": "Select burst type",
-  "burstCpuType": "CPU",
-  "burstIoType": "I/O",
-  "burstTypeLabel": "Burst type",
-  "burstNameLabel": "Burst {name}",
-  "burstTypeListLabel": "Burst Type: {type}",
-  "threadIdLabel": "Thread: {id}",
-  "contextSwitchTime": "Context Switch Time",
-  "ioChannels": "I/O Channels",
-  "cpuCount": "CPU Count",
-  "quantumLabel": "Quantum",
-  "invalidQuantumError": "Please enter a valid quantum (greater than 0).",
-  "queueQuantaLabel": "Quanta List",
-  "invalidQueueQuantaError": "Please enter valid quantum values (greater than 0) separated with commas.",
-  "timeLimitLabel": "Time Limit",
-  "invalidTimeLimitError": "Please enter a valid time limit (greater than 0).",
-  "emptyNameProcessBadContent": "The process with index ({index}) needs a name (id)",
-  "duplicatedNameProcessBadContent": "There are two or more processes with the same name",
-  "invalidArrivalTimeBadContent": "The process ({process}) has the property arrival_time set to null or <= 0",
-  "invalidServiceTimeBadContent": "The process ({process}) has the property service_time set to null or <= 0",
-  "emptyThreadError": "Process ({process}) has no associated threads",
-  "emptyBurstError": "Thread ({thread}) of the process ({process}) has no associated bursts",
-  "startAndEndCpuSequenceError": "The burst sequence of thread ({thread}) must start and end with a CPU burst.",
-  "invalidBurstSequenceError": "The burst sequence of thread ({thread}) cannot contain two consecutive I/O bursts.",
-  "startAndEndCpuSequenceBadContent": "The burst sequence of thread ({thread}) in process ({process}) must start and end with a CPU burst.",
-  "invalidBurstSequenceBadContent": "The burst sequence of thread ({thread}) in process ({process}) cannot contain two consecutive I/O bursts.",
-  "invalidBurstDuration": "The burst ({burst}) of thread ({thread}) in process ({process}) cannot contain is null or <= 0.",
-  "unknownError": "Unknown error",
+  "@loadFileTooltip": {
+    "description": "Tooltip for load file button."
+  },
   "questionNumber": "Question {number}",
   "@questionNumber": {
     "description": "Question number label in quiz execution",
