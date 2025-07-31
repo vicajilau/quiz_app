@@ -93,6 +93,18 @@ class AppLocalizationsEn extends AppLocalizations {
       'The file description is required.';
 
   @override
+  String get versionLabel => 'Version';
+
+  @override
+  String get authorLabel => 'Author';
+
+  @override
+  String get authorRequiredError => 'The author is required.';
+
+  @override
+  String get requiredFieldsError => 'All required fields must be completed.';
+
+  @override
   String get requestFileNameTitle => 'Enter the Quiz file name';
 
   @override

@@ -137,6 +137,22 @@
   "@fileDescriptionRequiredError": {
     "description": "Mensaje de error cuando la descripción del archivo está vacía."
   },
+  "versionLabel": "Versión",
+  "@versionLabel": {
+    "description": "Etiqueta para el campo de versión del quiz"
+  },
+  "authorLabel": "Autor",
+  "@authorLabel": {
+    "description": "Etiqueta para el campo de autor del quiz"
+  },
+  "authorRequiredError": "El autor es requerido.",
+  "@authorRequiredError": {
+    "description": "Mensaje de error cuando el campo de autor está vacío"
+  },
+  "requiredFieldsError": "Todos los campos requeridos deben ser completados.",
+  "@requiredFieldsError": {
+    "description": "Mensaje de error cuando faltan campos requeridos"
+  },
   "requestFileNameTitle": "Ingresa el nombre del archivo Quiz",
   "@requestFileNameTitle": {
     "description": "Título para el diálogo de solicitar nombre de archivo."

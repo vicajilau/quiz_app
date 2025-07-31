@@ -242,6 +242,30 @@ abstract class AppLocalizations {
   /// **'The file description is required.'**
   String get fileDescriptionRequiredError;
 
+  /// Label for quiz version field
+  ///
+  /// In en, this message translates to:
+  /// **'Version'**
+  String get versionLabel;
+
+  /// Label for quiz author field
+  ///
+  /// In en, this message translates to:
+  /// **'Author'**
+  String get authorLabel;
+
+  /// Error message when author field is empty
+  ///
+  /// In en, this message translates to:
+  /// **'The author is required.'**
+  String get authorRequiredError;
+
+  /// Error message when required fields are missing
+  ///
+  /// In en, this message translates to:
+  /// **'All required fields must be completed.'**
+  String get requiredFieldsError;
+
   /// Title for request file name dialog.
   ///
   /// In en, this message translates to:

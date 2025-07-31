@@ -11,19 +11,26 @@ class CreateQuizFileDialog extends StatefulWidget {
 }
 
 class _CreateQuizFileDialogState extends State<CreateQuizFileDialog> {
-  // Controllers to manage text input for the file name and description.
+  // Controllers to manage text input for the file metadata.
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _versionController = TextEditingController(
+    text: '1.0',
+  );
+  final TextEditingController _authorController = TextEditingController();
 
   // Error messages for input validation.
   String? _nameError;
   String? _descriptionError;
+  String? _authorError;
 
   @override
   void dispose() {
     // Dispose controllers to release resources when the widget is removed.
     _nameController.dispose();
     _descriptionController.dispose();
+    _versionController.dispose();
+    _authorController.dispose();
     super.dispose();
   }
 
@@ -45,12 +52,21 @@ class _CreateQuizFileDialogState extends State<CreateQuizFileDialog> {
     }
   }
 
+  /// Clears the author error message when the user types into the author field.
+  void _onAuthorChanged(String value) {
+    if (_authorError != null && value.isNotEmpty) {
+      setState(() {
+        _authorError = null;
+      });
+    }
+  }
+
   /// Validates inputs and handles form submission.
   void _submit() {
-    final name =
-        _nameController.text.trim(); // Trim whitespace from the name input.
-    final description = _descriptionController.text
-        .trim(); // Trim whitespace from the description input.
+    final name = _nameController.text.trim();
+    final description = _descriptionController.text.trim();
+    final version = _versionController.text.trim();
+    final author = _authorController.text.trim();
 
     // Validate inputs and update error messages if necessary.
     setState(() {
@@ -60,14 +76,21 @@ class _CreateQuizFileDialogState extends State<CreateQuizFileDialog> {
       _descriptionError = description.isEmpty
           ? AppLocalizations.of(context)!.fileDescriptionRequiredError
           : null;
+      _authorError = author.isEmpty
+          ? AppLocalizations.of(context)!.authorRequiredError
+          : null;
     });
 
-    // If both inputs are valid, process the submission.
-    if (_nameError == null && _descriptionError == null) {
-      // Return the name and description to the previous screen.
+    // If all inputs are valid, process the submission.
+    if (_nameError == null &&
+        _descriptionError == null &&
+        _authorError == null) {
+      // Return all metadata to the previous screen.
       context.pop({
         'name': name,
         'description': description,
+        'version': version,
+        'author': author,
       });
     }
   }
@@ -75,52 +98,104 @@ class _CreateQuizFileDialogState extends State<CreateQuizFileDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(
-          AppLocalizations.of(context)!.createQuizFileTitle), // Dialog title.
-      content: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // Text field for entering the file name.
-            TextField(
-              controller: _nameController,
-              decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.fileNameLabel,
-                errorText:
-                    _nameError, // Displays error message if validation fails.
-                border: const OutlineInputBorder(),
+      title: Row(
+        children: [
+          Icon(
+            Icons.quiz_outlined,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          const SizedBox(width: 8),
+          Text(AppLocalizations.of(context)!.createQuizFileTitle),
+        ],
+      ),
+      content: SizedBox(
+        width: MediaQuery.of(context).size.width * 0.8,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Text field for entering the file name.
+              TextField(
+                controller: _nameController,
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.fileNameLabel,
+                  errorText: _nameError,
+                  border: const OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.title),
+                ),
+                onChanged: _onNameChanged,
+                textCapitalization: TextCapitalization.words,
               ),
-              onChanged:
-                  _onNameChanged, // Removes error message on input change.
-            ),
-            const SizedBox(height: 10), // Adds vertical spacing.
+              const SizedBox(height: 16),
 
-            // Text field for entering the file description.
-            TextField(
-              controller: _descriptionController,
-              decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.fileDescriptionLabel,
-                errorText:
-                    _descriptionError, // Displays error message if validation fails.
-                border: const OutlineInputBorder(),
+              // Text field for entering the file description.
+              TextField(
+                controller: _descriptionController,
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.fileDescriptionLabel,
+                  errorText: _descriptionError,
+                  border: const OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.description),
+                ),
+                maxLines: 2,
+                onChanged: _onDescriptionChanged,
+                textCapitalization: TextCapitalization.sentences,
               ),
-              onChanged:
-                  _onDescriptionChanged, // Removes error message on input change.
-            ),
-          ],
+              const SizedBox(height: 16),
+
+              // Row for version and author fields
+              Row(
+                children: [
+                  // Text field for entering the version.
+                  Expanded(
+                    flex: 1,
+                    child: TextField(
+                      controller: _versionController,
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context)!.versionLabel,
+                        border: const OutlineInputBorder(),
+                        hintText: '1.0',
+                        prefixIcon: const Icon(Icons.numbers),
+                      ),
+                      keyboardType: TextInputType.text,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+
+                  // Text field for entering the author.
+                  Expanded(
+                    flex: 2,
+                    child: TextField(
+                      controller: _authorController,
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context)!.authorLabel,
+                        errorText: _authorError,
+                        border: const OutlineInputBorder(),
+                        prefixIcon: const Icon(Icons.person),
+                      ),
+                      onChanged: _onAuthorChanged,
+                      textCapitalization: TextCapitalization.words,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
       actions: [
         // Cancel button to close the dialog without saving.
         TextButton(
-          onPressed: () => context.pop(), // Closes the dialog.
+          onPressed: () => context.pop(),
           child: Text(AppLocalizations.of(context)!.cancelButton),
         ),
 
         // Create button to validate and submit the form.
-        ElevatedButton(
-          onPressed: _submit, // Calls the _submit method.
-          child: Text(AppLocalizations.of(context)!.createButton),
+        FilledButton.icon(
+          onPressed: _submit,
+          icon: const Icon(Icons.create),
+          label: Text(AppLocalizations.of(context)!.createButton),
         ),
       ],
     );

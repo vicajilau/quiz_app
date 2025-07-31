@@ -29,21 +29,32 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _showCreateQuizFileDialog(BuildContext context) async {
     final result = await showDialog<Map<String, String>>(
       context: context,
+      barrierDismissible: false, // Prevent dismissing by tapping outside
       builder: (_) => const CreateQuizFileDialog(),
     );
 
-    if (result != null &&
-        result['name'] != null &&
-        result['description'] != null &&
-        context.mounted) {
-      context.read<FileBloc>().add(
-        CreateQuizMetadata(
-          name: result['name']!,
-          version: result['version']!,
-          description: result['description']!,
-          author: result['author']!,
-        ),
-      );
+    if (result != null && result.isNotEmpty && context.mounted) {
+      // Validate required fields before proceeding
+      final name = result['name']?.trim() ?? '';
+      final description = result['description']?.trim() ?? '';
+      final version = result['version']?.trim() ?? '1.0';
+      final author = result['author']?.trim() ?? '';
+
+      if (name.isNotEmpty && description.isNotEmpty && author.isNotEmpty) {
+        context.read<FileBloc>().add(
+          CreateQuizMetadata(
+            name: name,
+            version: version,
+            description: description,
+            author: author,
+          ),
+        );
+      } else {
+        // Show error if required fields are missing
+        context.presentSnackBar(
+          AppLocalizations.of(context)!.requiredFieldsError,
+        );
+      }
     }
   }
 

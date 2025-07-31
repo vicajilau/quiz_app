@@ -125,6 +125,22 @@
   "@fileDescriptionRequiredError": {
     "description": "Error message when file description is empty."
   },
+  "versionLabel": "Version",
+  "@versionLabel": {
+    "description": "Label for quiz version field"
+  },
+  "authorLabel": "Author",
+  "@authorLabel": {
+    "description": "Label for quiz author field"
+  },
+  "authorRequiredError": "The author is required.",
+  "@authorRequiredError": {
+    "description": "Error message when author field is empty"
+  },
+  "requiredFieldsError": "All required fields must be completed.",
+  "@requiredFieldsError": {
+    "description": "Error message when required fields are missing"
+  },
   "requestFileNameTitle": "Enter the Quiz file name",
   "@requestFileNameTitle": {
     "description": "Title for request file name dialog."
