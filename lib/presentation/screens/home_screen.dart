@@ -14,7 +14,7 @@ import '../blocs/file_bloc/file_bloc.dart';
 import '../blocs/file_bloc/file_event.dart';
 import '../blocs/file_bloc/file_state.dart';
 import 'dialogs/create_quiz_dialog.dart';
-import 'dialogs/question_order_config_dialog.dart';
+import 'dialogs/settings_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -47,11 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  Future<void> _showQuestionOrderConfigDialog(BuildContext context) async {
-    await showDialog(
-      context: context,
-      builder: (_) => const QuestionOrderConfigDialog(),
-    );
+  Future<void> _showSettingsDialog(BuildContext context) async {
+    await showDialog(context: context, builder: (_) => const SettingsDialog());
   }
 
   @override
@@ -126,11 +123,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   // Configuration button
                   Tooltip(
-                    message: AppLocalizations.of(context)!.questionOrderConfigTooltip,
+                    message: AppLocalizations.of(
+                      context,
+                    )!.questionOrderConfigTooltip,
                     child: IconButton(
                       onPressed: _isLoading
                           ? null
-                          : () => _showQuestionOrderConfigDialog(context),
+                          : () => _showSettingsDialog(context),
                       icon: const Icon(Icons.settings, color: Colors.white),
                     ),
                   ),

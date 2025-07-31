@@ -4,15 +4,14 @@ import '../../../core/l10n/app_localizations.dart';
 import '../../../data/services/configuration_service.dart';
 import '../../../domain/models/quiz/question_order.dart';
 
-class QuestionOrderConfigDialog extends StatefulWidget {
-  const QuestionOrderConfigDialog({super.key});
+class SettingsDialog extends StatefulWidget {
+  const SettingsDialog({super.key});
 
   @override
-  State<QuestionOrderConfigDialog> createState() =>
-      _QuestionOrderConfigDialogState();
+  State<SettingsDialog> createState() => _SettingsDialogState();
 }
 
-class _QuestionOrderConfigDialogState extends State<QuestionOrderConfigDialog> {
+class _SettingsDialogState extends State<SettingsDialog> {
   QuestionOrder _selectedOrder = QuestionOrder.random;
   bool _isLoading = true;
 
@@ -49,32 +48,39 @@ class _QuestionOrderConfigDialogState extends State<QuestionOrderConfigDialog> {
                 child: CircularProgressIndicator(),
               ),
             )
-          : Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.questionOrderConfigDescription,
-                  style: const TextStyle(fontSize: 14),
-                ),
-                const SizedBox(height: 16),
-                ...QuestionOrder.values.map((order) {
-                  return RadioListTile<QuestionOrder>(
-                    title: Text(_getLocalizedOrderName(context, order)),
-                    subtitle: Text(
-                      _getLocalizedOrderDescription(context, order),
-                    ),
-                    value: order,
-                    groupValue: _selectedOrder,
-                    onChanged: (QuestionOrder? value) {
-                      if (value != null) {
-                        setState(() {
-                          _selectedOrder = value;
-                        });
-                      }
-                    },
-                  );
-                }),
-              ],
+          : SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Question Order Section
+                  Text(
+                    AppLocalizations.of(
+                      context,
+                    )!.questionOrderConfigDescription,
+                    style: const TextStyle(fontSize: 14),
+                  ),
+                  const SizedBox(height: 16),
+                  ...QuestionOrder.values.map((order) {
+                    return RadioListTile<QuestionOrder>(
+                      title: Text(_getLocalizedOrderName(context, order)),
+                      subtitle: Text(
+                        _getLocalizedOrderDescription(context, order),
+                      ),
+                      value: order,
+                      groupValue: _selectedOrder,
+                      onChanged: (QuestionOrder? value) {
+                        if (value != null) {
+                          setState(() {
+                            _selectedOrder = value;
+                          });
+                        }
+                      },
+                    );
+                  }),
+                  // Future settings sections can be added here
+                ],
+              ),
             ),
       actions: [
         TextButton(

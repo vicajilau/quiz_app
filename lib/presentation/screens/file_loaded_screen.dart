@@ -18,7 +18,7 @@ import '../blocs/file_bloc/file_state.dart';
 import 'dialogs/exit_confirmation_dialog.dart';
 import 'dialogs/question_count_selection_dialog.dart';
 import 'widgets/request_file_name_dialog.dart';
-import 'dialogs/question_order_config_dialog.dart';
+import 'dialogs/settings_dialog.dart';
 
 class FileLoadedScreen extends StatefulWidget {
   final FileBloc fileBloc;
@@ -59,11 +59,8 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
     return true;
   }
 
-  Future<void> _showQuestionOrderConfigDialog(BuildContext context) async {
-    await showDialog(
-      context: context,
-      builder: (_) => const QuestionOrderConfigDialog(),
-    );
+  Future<void> _showSettingsDialog(BuildContext context) async {
+    await showDialog(context: context, builder: (_) => const SettingsDialog());
   }
 
   @override
@@ -148,9 +145,11 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                     ),
                     // Configuration button
                     IconButton(
-                      onPressed: () => _showQuestionOrderConfigDialog(context),
+                      onPressed: () => _showSettingsDialog(context),
                       icon: const Icon(Icons.settings),
-                      tooltip: AppLocalizations.of(context)!.questionOrderConfigTooltip,
+                      tooltip: AppLocalizations.of(
+                        context,
+                      )!.questionOrderConfigTooltip,
                     ),
                   ],
                 ),
