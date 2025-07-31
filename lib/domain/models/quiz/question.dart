@@ -12,12 +12,16 @@ class Question {
   /// The list of indices of correct answers.
   final List<int> correctAnswers;
 
+  /// The explanation for the correct answer(s).
+  final String explanation;
+
   /// Constructor for creating a `Question` instance.
   const Question({
     required this.type,
     required this.text,
     required this.options,
     required this.correctAnswers,
+    required this.explanation,
   });
 
   /// Creates a `Question` instance from a JSON map.
@@ -30,6 +34,7 @@ class Question {
       text: json['text'] ?? '',
       options: List<String>.from(json['options'] ?? []),
       correctAnswers: List<int>.from(json['correct_answers'] ?? []),
+      explanation: json['explanation'] ?? '',
     );
   }
 
@@ -42,6 +47,7 @@ class Question {
       'text': text,
       'options': options,
       'correct_answers': correctAnswers,
+      'explanation': explanation,
     };
   }
 
@@ -51,18 +57,21 @@ class Question {
   /// - [text]: New text to replace the current one.
   /// - [options]: New options to replace the current ones.
   /// - [correctAnswers]: New correct answers to replace the current ones.
+  /// - [explanation]: New explanation to replace the current one.
   /// - Returns: A new `Question` instance with the specified modifications.
   Question copyWith({
     String? type,
     String? text,
     List<String>? options,
     List<int>? correctAnswers,
+    String? explanation,
   }) {
     return Question(
       type: type ?? this.type,
       text: text ?? this.text,
       options: options ?? this.options,
       correctAnswers: correctAnswers ?? this.correctAnswers,
+      explanation: explanation ?? this.explanation,
     );
   }
 
@@ -72,6 +81,7 @@ class Question {
     return other is Question &&
         other.type == type &&
         other.text == text &&
+        other.explanation == explanation &&
         _listEquals(other.options, options) &&
         _listEquals(other.correctAnswers, correctAnswers);
   }
@@ -81,7 +91,8 @@ class Question {
     return type.hashCode ^
         text.hashCode ^
         options.hashCode ^
-        correctAnswers.hashCode;
+        correctAnswers.hashCode ^
+        explanation.hashCode;
   }
 
   /// Helper method to compare two lists for equality.
@@ -96,6 +107,6 @@ class Question {
 
   @override
   String toString() {
-    return 'Question(type: $type, text: $text, options: $options, correctAnswers: $correctAnswers)';
+    return 'Question(type: $type, text: $text, options: $options, correctAnswers: $correctAnswers, explanation: $explanation)';
   }
 }
