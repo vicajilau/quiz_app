@@ -336,5 +336,45 @@
   "numberInputLabel": "Number of questions",
   "@numberInputLabel": {
     "description": "Label for the number input field"
+  },
+  "questionOrderConfigTitle": "Question Order Configuration",
+  "@questionOrderConfigTitle": {
+    "description": "Title for the question order configuration dialog"
+  },
+  "questionOrderConfigDescription": "Select the order in which you want questions to appear during the exam:",
+  "@questionOrderConfigDescription": {
+    "description": "Description text for the question order configuration dialog"
+  },
+  "questionOrderAscending": "Ascending Order",
+  "@questionOrderAscending": {
+    "description": "Label for ascending question order option"
+  },
+  "questionOrderAscendingDesc": "Questions will appear in order from 1 to the end",
+  "@questionOrderAscendingDesc": {
+    "description": "Description for ascending question order option"
+  },
+  "questionOrderDescending": "Descending Order",
+  "@questionOrderDescending": {
+    "description": "Label for descending question order option"
+  },
+  "questionOrderDescendingDesc": "Questions will appear from the end to 1",
+  "@questionOrderDescendingDesc": {
+    "description": "Description for descending question order option"
+  },
+  "questionOrderRandom": "Random",
+  "@questionOrderRandom": {
+    "description": "Label for random question order option"
+  },
+  "questionOrderRandomDesc": "Questions will appear in random order",
+  "@questionOrderRandomDesc": {
+    "description": "Description for random question order option"
+  },
+  "questionOrderConfigTooltip": "Question order configuration",
+  "@questionOrderConfigTooltip": {
+    "description": "Tooltip for the question order configuration button"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Label for the save button"
   }
 }

@@ -14,6 +14,7 @@ import '../blocs/file_bloc/file_bloc.dart';
 import '../blocs/file_bloc/file_event.dart';
 import '../blocs/file_bloc/file_state.dart';
 import 'dialogs/create_quiz_dialog.dart';
+import '../widgets/dialogs/question_order_config_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -44,6 +45,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
     }
+  }
+
+  Future<void> _showQuestionOrderConfigDialog(BuildContext context) async {
+    await showDialog(
+      context: context,
+      builder: (_) => const QuestionOrderConfigDialog(),
+    );
   }
 
   @override
@@ -116,10 +124,25 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
+                  // Configuration button
+                  Tooltip(
+                    message: AppLocalizations.of(context)!.questionOrderConfigTooltip,
+                    child: IconButton(
+                      onPressed: _isLoading
+                          ? null
+                          : () => _showQuestionOrderConfigDialog(context),
+                      icon: const Icon(Icons.settings, color: Colors.white),
+                    ),
+                  ),
                 ],
               ),
               body: PlatformDetail.isMobile
-                  ? Center(child: Image.asset('images/QUIZ.png', fit: BoxFit.contain))
+                  ? Center(
+                      child: Image.asset(
+                        'images/QUIZ.png',
+                        fit: BoxFit.contain,
+                      ),
+                    )
                   : DropTarget(
                       onDragDone: (details) {
                         if (context.read<FileBloc>().state is! FileLoaded) {

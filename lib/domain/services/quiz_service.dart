@@ -1,42 +1,58 @@
 import 'dart:math';
 import '../models/quiz/question.dart';
+import '../models/quiz/question_order.dart';
 
 /// Service to handle quiz question selection and randomization
 class QuizService {
   static final Random _random = Random();
 
-  /// Selects a random subset of questions from the provided list
+  /// Selects questions from the provided list based on count and order preference
   ///
   /// - [allQuestions]: The complete list of questions
   /// - [count]: The number of questions to select
-  /// - Returns: A randomized list of the specified number of questions
+  /// - [order]: The order preference for questions (default: random)
+  /// - Returns: A list of questions in the specified order
   ///
   /// If count > allQuestions.length, questions will be repeated to reach the desired count
-  /// If count <= allQuestions.length, a random subset will be selected
-  static List<Question> selectRandomQuestions(
+  /// If count <= allQuestions.length, a subset will be selected
+  static List<Question> selectQuestions(
     List<Question> allQuestions,
-    int count,
-  ) {
+    int count, {
+    QuestionOrder order = QuestionOrder.random,
+  }) {
     if (allQuestions.isEmpty || count <= 0) {
       return [];
     }
 
-    final result = <Question>[];
-    final shuffledQuestions = List<Question>.from(allQuestions);
-    shuffledQuestions.shuffle(_random);
+    List<Question> orderedQuestions;
 
-    if (count <= allQuestions.length) {
-      // Take the first 'count' questions from the shuffled list
-      return shuffledQuestions.take(count).toList();
+    switch (order) {
+      case QuestionOrder.ascending:
+        orderedQuestions = List<Question>.from(allQuestions);
+        break;
+      case QuestionOrder.descending:
+        orderedQuestions = List<Question>.from(allQuestions.reversed);
+        break;
+      case QuestionOrder.random:
+        orderedQuestions = List<Question>.from(allQuestions);
+        orderedQuestions.shuffle(_random);
+        break;
+    }
+
+    final result = <Question>[];
+
+    if (count <= orderedQuestions.length) {
+      // Take the first 'count' questions from the ordered list
+      return orderedQuestions.take(count).toList();
     } else {
       // Need to repeat questions to reach the desired count
       int remainingCount = count;
 
       while (remainingCount > 0) {
-        final questionsToAdd = shuffledQuestions
+        final questionsToAdd = orderedQuestions
             .take(
-              remainingCount > shuffledQuestions.length
-                  ? shuffledQuestions.length
+              remainingCount > orderedQuestions.length
+                  ? orderedQuestions.length
                   : remainingCount,
             )
             .toList();
@@ -44,14 +60,26 @@ class QuizService {
         result.addAll(questionsToAdd);
         remainingCount -= questionsToAdd.length;
 
-        // Shuffle again for the next iteration to avoid patterns
-        if (remainingCount > 0) {
-          shuffledQuestions.shuffle(_random);
+        // For random order, shuffle again for the next iteration to avoid patterns
+        if (remainingCount > 0 && order == QuestionOrder.random) {
+          orderedQuestions.shuffle(_random);
         }
       }
 
       return result;
     }
+  }
+
+  /// Legacy method for backward compatibility
+  ///
+  /// - [allQuestions]: The complete list of questions
+  /// - [count]: The number of questions to select
+  /// - Returns: A randomized list of the specified number of questions
+  static List<Question> selectRandomQuestions(
+    List<Question> allQuestions,
+    int count,
+  ) {
+    return selectQuestions(allQuestions, count, order: QuestionOrder.random);
   }
 
   /// Shuffles a list of questions randomly

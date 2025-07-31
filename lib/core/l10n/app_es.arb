@@ -267,5 +267,45 @@
   "errorNumberMustBePositive": "El número debe ser mayor que 0",
   "customNumberLabel": "O introduce un número personalizado:",
   "customNumberHelper": "Si es mayor que {total}, las preguntas se repetirán",
-  "numberInputLabel": "Número de preguntas"
+  "numberInputLabel": "Número de preguntas",
+  "questionOrderConfigTitle": "Configuración del Orden de Preguntas",
+  "@questionOrderConfigTitle": {
+    "description": "Título para el diálogo de configuración del orden de preguntas"
+  },
+  "questionOrderConfigDescription": "Selecciona el orden en que deseas que aparezcan las preguntas durante el examen:",
+  "@questionOrderConfigDescription": {
+    "description": "Texto descriptivo para el diálogo de configuración del orden de preguntas"
+  },
+  "questionOrderAscending": "Orden Ascendente",
+  "@questionOrderAscending": {
+    "description": "Etiqueta para la opción de orden ascendente de preguntas"
+  },
+  "questionOrderAscendingDesc": "Las preguntas aparecerán en orden del 1 al final",
+  "@questionOrderAscendingDesc": {
+    "description": "Descripción para la opción de orden ascendente de preguntas"
+  },
+  "questionOrderDescending": "Orden Descendente",
+  "@questionOrderDescending": {
+    "description": "Etiqueta para la opción de orden descendente de preguntas"
+  },
+  "questionOrderDescendingDesc": "Las preguntas aparecerán del final al 1",
+  "@questionOrderDescendingDesc": {
+    "description": "Descripción para la opción de orden descendente de preguntas"
+  },
+  "questionOrderRandom": "Aleatorio",
+  "@questionOrderRandom": {
+    "description": "Etiqueta para la opción de orden aleatorio de preguntas"
+  },
+  "questionOrderRandomDesc": "Las preguntas aparecerán en orden aleatorio",
+  "@questionOrderRandomDesc": {
+    "description": "Descripción para la opción de orden aleatorio de preguntas"
+  },
+  "questionOrderConfigTooltip": "Configuración del orden de preguntas",
+  "@questionOrderConfigTooltip": {
+    "description": "Tooltip para el botón de configuración del orden de preguntas"
+  },
+  "save": "Guardar",
+  "@save": {
+    "description": "Etiqueta para el botón guardar"
+  }
 }

@@ -219,4 +219,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorNumberMustBePositive => 'Number must be greater than 0';
+
+  @override
+  String get questionOrderConfigTitle => 'Question Order Configuration';
+
+  @override
+  String get questionOrderConfigDescription =>
+      'Select the order in which you want questions to appear during the exam:';
+
+  @override
+  String get questionOrderAscending => 'Ascending Order';
+
+  @override
+  String get questionOrderAscendingDesc =>
+      'Questions will appear in order from 1 to the end';
+
+  @override
+  String get questionOrderDescending => 'Descending Order';
+
+  @override
+  String get questionOrderDescendingDesc =>
+      'Questions will appear from the end to 1';
+
+  @override
+  String get questionOrderRandom => 'Random';
+
+  @override
+  String get questionOrderRandomDesc => 'Questions will appear in random order';
+
+  @override
+  String get questionOrderConfigTooltip => 'Question order configuration';
+
+  @override
+  String get save => 'Save';
 }

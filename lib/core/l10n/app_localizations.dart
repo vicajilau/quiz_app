@@ -463,6 +463,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Number must be greater than 0'**
   String get errorNumberMustBePositive;
+
+  /// Title for the question order configuration dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Question Order Configuration'**
+  String get questionOrderConfigTitle;
+
+  /// Description text for the question order configuration dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Select the order in which you want questions to appear during the exam:'**
+  String get questionOrderConfigDescription;
+
+  /// Label for ascending question order option
+  ///
+  /// In en, this message translates to:
+  /// **'Ascending Order'**
+  String get questionOrderAscending;
+
+  /// Description for ascending question order option
+  ///
+  /// In en, this message translates to:
+  /// **'Questions will appear in order from 1 to the end'**
+  String get questionOrderAscendingDesc;
+
+  /// Label for descending question order option
+  ///
+  /// In en, this message translates to:
+  /// **'Descending Order'**
+  String get questionOrderDescending;
+
+  /// Description for descending question order option
+  ///
+  /// In en, this message translates to:
+  /// **'Questions will appear from the end to 1'**
+  String get questionOrderDescendingDesc;
+
+  /// Label for random question order option
+  ///
+  /// In en, this message translates to:
+  /// **'Random'**
+  String get questionOrderRandom;
+
+  /// Description for random question order option
+  ///
+  /// In en, this message translates to:
+  /// **'Questions will appear in random order'**
+  String get questionOrderRandomDesc;
+
+  /// Tooltip for the question order configuration button
+  ///
+  /// In en, this message translates to:
+  /// **'Question order configuration'**
+  String get questionOrderConfigTooltip;
+
+  /// Label for the save button
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
 }
 
 class _AppLocalizationsDelegate
