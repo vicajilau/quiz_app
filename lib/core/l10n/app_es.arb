@@ -349,5 +349,39 @@
         "example": "45"
       }
     }
+  },
+  "questionTypeMultipleChoice": "Opción múltiple",
+  "@questionTypeMultipleChoice": {
+    "description": "Etiqueta para el tipo de pregunta de opción múltiple"
+  },
+  "questionTypeSingleChoice": "Opción única",
+  "@questionTypeSingleChoice": {
+    "description": "Etiqueta para el tipo de pregunta de opción única"
+  },
+  "questionTypeTrueFalse": "Verdadero/Falso",
+  "@questionTypeTrueFalse": {
+    "description": "Etiqueta para el tipo de pregunta de verdadero/falso"
+  },
+  "questionTypeEssay": "Ensayo",
+  "@questionTypeEssay": {
+    "description": "Etiqueta para el tipo de pregunta de ensayo"
+  },
+  "questionTypeUnknown": "Desconocido",
+  "@questionTypeUnknown": {
+    "description": "Etiqueta para el tipo de pregunta desconocido"
+  },
+  "optionsCount": "{count} opciones",
+  "@optionsCount": {
+    "description": "Texto que muestra el número de opciones para una pregunta",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "4"
+      }
+    }
+  },
+  "deleteAction": "Eliminar",
+  "@deleteAction": {
+    "description": "Texto de acción eliminar mostrado al deslizar para eliminar"
   }
 }

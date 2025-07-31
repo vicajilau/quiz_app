@@ -565,6 +565,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{hours}:{minutes}:{seconds}'**
   String remainingTime(String hours, String minutes, String seconds);
+
+  /// Label for multiple choice question type
+  ///
+  /// In en, this message translates to:
+  /// **'Multiple Choice'**
+  String get questionTypeMultipleChoice;
+
+  /// Label for single choice question type
+  ///
+  /// In en, this message translates to:
+  /// **'Single Choice'**
+  String get questionTypeSingleChoice;
+
+  /// Label for true/false question type
+  ///
+  /// In en, this message translates to:
+  /// **'True/False'**
+  String get questionTypeTrueFalse;
+
+  /// Label for essay question type
+  ///
+  /// In en, this message translates to:
+  /// **'Essay'**
+  String get questionTypeEssay;
+
+  /// Label for unknown question type
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get questionTypeUnknown;
+
+  /// Text showing number of options for a question
+  ///
+  /// In en, this message translates to:
+  /// **'{count} options'**
+  String optionsCount(int count);
+
+  /// Delete action text shown when swiping to delete
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get deleteAction;
 }
 
 class _AppLocalizationsDelegate

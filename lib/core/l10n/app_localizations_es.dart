@@ -280,4 +280,27 @@ class AppLocalizationsEs extends AppLocalizations {
   String remainingTime(String hours, String minutes, String seconds) {
     return '$hours:$minutes:$seconds';
   }
+
+  @override
+  String get questionTypeMultipleChoice => 'Opción múltiple';
+
+  @override
+  String get questionTypeSingleChoice => 'Opción única';
+
+  @override
+  String get questionTypeTrueFalse => 'Verdadero/Falso';
+
+  @override
+  String get questionTypeEssay => 'Ensayo';
+
+  @override
+  String get questionTypeUnknown => 'Desconocido';
+
+  @override
+  String optionsCount(int count) {
+    return '$count opciones';
+  }
+
+  @override
+  String get deleteAction => 'Eliminar';
 }

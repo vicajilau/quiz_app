@@ -418,5 +418,39 @@
         "example": "45"
       }
     }
+  },
+  "questionTypeMultipleChoice": "Multiple Choice",
+  "@questionTypeMultipleChoice": {
+    "description": "Label for multiple choice question type"
+  },
+  "questionTypeSingleChoice": "Single Choice",
+  "@questionTypeSingleChoice": {
+    "description": "Label for single choice question type"
+  },
+  "questionTypeTrueFalse": "True/False",
+  "@questionTypeTrueFalse": {
+    "description": "Label for true/false question type"
+  },
+  "questionTypeEssay": "Essay",
+  "@questionTypeEssay": {
+    "description": "Label for essay question type"
+  },
+  "questionTypeUnknown": "Unknown",
+  "@questionTypeUnknown": {
+    "description": "Label for unknown question type"
+  },
+  "optionsCount": "{count} options",
+  "@optionsCount": {
+    "description": "Text showing number of options for a question",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "4"
+      }
+    }
+  },
+  "deleteAction": "Delete",
+  "@deleteAction": {
+    "description": "Delete action text shown when swiping to delete"
   }
 }

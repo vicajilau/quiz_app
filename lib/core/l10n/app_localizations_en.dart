@@ -277,4 +277,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String remainingTime(String hours, String minutes, String seconds) {
     return '$hours:$minutes:$seconds';
   }
+
+  @override
+  String get questionTypeMultipleChoice => 'Multiple Choice';
+
+  @override
+  String get questionTypeSingleChoice => 'Single Choice';
+
+  @override
+  String get questionTypeTrueFalse => 'True/False';
+
+  @override
+  String get questionTypeEssay => 'Essay';
+
+  @override
+  String get questionTypeUnknown => 'Unknown';
+
+  @override
+  String optionsCount(int count) {
+    return '$count options';
+  }
+
+  @override
+  String get deleteAction => 'Delete';
 }

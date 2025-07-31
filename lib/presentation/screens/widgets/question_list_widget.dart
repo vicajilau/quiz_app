@@ -70,7 +70,9 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                     width: 32,
                     height: 32,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor.withOpacity(0.1),
+                      color: Theme.of(
+                        context,
+                      ).primaryColor.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Center(
@@ -104,13 +106,17 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                             Icon(
                               _getQuestionTypeIcon(question.type),
                               size: 16,
-                              color: Colors.grey[600],
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurfaceVariant,
                             ),
                             const SizedBox(width: 4),
                             Text(
                               _getQuestionTypeLabel(question.type),
                               style: TextStyle(
-                                color: Colors.grey[600],
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onSurfaceVariant,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -123,14 +129,21 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                                   vertical: 2,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.grey[200],
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.primaryContainer,
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 child: Text(
-                                  '${question.options.length} opciones',
-                                  style: const TextStyle(
+                                  AppLocalizations.of(
+                                    context,
+                                  )!.optionsCount(question.options.length),
+                                  style: TextStyle(
                                     fontSize: 11,
                                     fontWeight: FontWeight.w500,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onPrimaryContainer,
                                   ),
                                 ),
                               ),
@@ -140,7 +153,12 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Icon(Icons.drag_handle, color: Colors.grey[400]),
+                  Icon(
+                    Icons.drag_handle,
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
+                  ),
                 ],
               ),
             ],
@@ -155,12 +173,8 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
       case 'multiple_choice':
       case 'single_choice':
         return Icons.radio_button_checked;
-      case 'multiple_answer':
-        return Icons.check_box;
       case 'true_false':
         return Icons.toggle_on;
-      case 'short_answer':
-        return Icons.short_text;
       case 'essay':
         return Icons.article;
       default:
@@ -169,20 +183,18 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
   }
 
   String _getQuestionTypeLabel(String type) {
+    final localizations = AppLocalizations.of(context)!;
     switch (type.toLowerCase()) {
       case 'multiple_choice':
+        return localizations.questionTypeMultipleChoice;
       case 'single_choice':
-        return 'Opción múltiple';
-      case 'multiple_answer':
-        return 'Respuesta múltiple';
+        return localizations.questionTypeSingleChoice;
       case 'true_false':
-        return 'Verdadero/Falso';
-      case 'short_answer':
-        return 'Respuesta corta';
+        return localizations.questionTypeTrueFalse;
       case 'essay':
-        return 'Ensayo';
+        return localizations.questionTypeEssay;
       default:
-        return 'Desconocido';
+        return localizations.questionTypeUnknown;
     }
   }
 
@@ -252,7 +264,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
           Icon(Icons.delete_forever, color: Colors.white, size: 28),
           const SizedBox(height: 4),
           Text(
-            'Eliminar',
+            AppLocalizations.of(context)!.deleteAction,
             style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w600,
