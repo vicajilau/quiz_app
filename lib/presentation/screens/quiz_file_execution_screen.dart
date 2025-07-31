@@ -78,47 +78,60 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
           create: (context) =>
               QuizExecutionBloc()..add(QuizExecutionStarted(questionsToUse)),
           child: Builder(
-            builder: (context) => Scaffold(
-              appBar: AppBar(
-                title: Text(widget.quizFile.metadata.title),
-                leading: IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () => BackPressHandler.handle(
-                    context,
-                    context.read<QuizExecutionBloc>(),
+            builder: (context) => SafeArea(
+              child: Scaffold(
+                appBar: AppBar(
+                  title: Text(widget.quizFile.metadata.title),
+                  leading: IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () => BackPressHandler.handle(
+                      context,
+                      context.read<QuizExecutionBloc>(),
+                    ),
                   ),
-                ),
-                actions: [
-                  if (_examTimeEnabled)
-                    Padding(
-                      padding: const EdgeInsets.only(right: 16.0),
-                      child: Center(
-                        child: ExamTimerWidget(
-                          initialDurationMinutes: _examTimeMinutes,
-                          onTimeExpired: () {
-                            // Force complete the quiz
-                            final bloc = context.read<QuizExecutionBloc>();
-                            bloc.add(QuizSubmitted());
-                          },
+                  actions: [
+                    if (_examTimeEnabled)
+                      Padding(
+                        padding: const EdgeInsets.only(right: 16.0),
+                        child: Center(
+                          child:
+                              BlocBuilder<
+                                QuizExecutionBloc,
+                                QuizExecutionState
+                              >(
+                                builder: (context, state) {
+                                  return ExamTimerWidget(
+                                    initialDurationMinutes: _examTimeMinutes,
+                                    isQuizCompleted:
+                                        state is QuizExecutionCompleted,
+                                    onTimeExpired: () {
+                                      // Force complete the quiz
+                                      final bloc = context
+                                          .read<QuizExecutionBloc>();
+                                      bloc.add(QuizSubmitted());
+                                    },
+                                  );
+                                },
+                              ),
                         ),
                       ),
-                    ),
-                ],
-              ),
-              body: BlocConsumer<QuizExecutionBloc, QuizExecutionState>(
-                listener: (context, state) {
-                  // Handle any side effects if needed
-                },
-                builder: (context, state) {
-                  if (state is QuizExecutionInitial) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (state is QuizExecutionInProgress) {
-                    return QuizInProgressView(state: state);
-                  } else if (state is QuizExecutionCompleted) {
-                    return QuizCompletedView(state: state);
-                  }
-                  return const SizedBox.shrink();
-                },
+                  ],
+                ),
+                body: BlocConsumer<QuizExecutionBloc, QuizExecutionState>(
+                  listener: (context, state) {
+                    // Handle any side effects if needed
+                  },
+                  builder: (context, state) {
+                    if (state is QuizExecutionInitial) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is QuizExecutionInProgress) {
+                      return QuizInProgressView(state: state);
+                    } else if (state is QuizExecutionCompleted) {
+                      return QuizCompletedView(state: state);
+                    }
+                    return const SizedBox.shrink();
+                  },
+                ),
               ),
             ),
           ),
@@ -150,11 +163,13 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
 class ExamTimerWidget extends StatefulWidget {
   final int initialDurationMinutes;
   final VoidCallback onTimeExpired;
+  final bool isQuizCompleted;
 
   const ExamTimerWidget({
     super.key,
     required this.initialDurationMinutes,
     required this.onTimeExpired,
+    this.isQuizCompleted = false,
   });
 
   @override
@@ -175,7 +190,19 @@ class _ExamTimerWidgetState extends State<ExamTimerWidget>
       vsync: this,
     );
     _remainingTime = Duration(minutes: widget.initialDurationMinutes);
-    _startExamTimer();
+    if (!widget.isQuizCompleted) {
+      _startExamTimer();
+    }
+  }
+
+  @override
+  void didUpdateWidget(ExamTimerWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    // Stop timer when quiz is completed
+    if (!oldWidget.isQuizCompleted && widget.isQuizCompleted) {
+      _stopTimer();
+    }
   }
 
   @override
@@ -183,6 +210,11 @@ class _ExamTimerWidgetState extends State<ExamTimerWidget>
     _examTimer?.cancel();
     _timerAnimationController.dispose();
     super.dispose();
+  }
+
+  void _stopTimer() {
+    _examTimer?.cancel();
+    _timerAnimationController.stop();
   }
 
   void _startExamTimer() {
@@ -208,8 +240,7 @@ class _ExamTimerWidgetState extends State<ExamTimerWidget>
   }
 
   void _handleTimeExpired() {
-    _examTimer?.cancel();
-    _timerAnimationController.stop();
+    _stopTimer();
 
     if (!mounted) return;
 
@@ -264,7 +295,9 @@ class _ExamTimerWidgetState extends State<ExamTimerWidget>
         mainAxisSize: MainAxisSize.min,
         children: [
           RotationTransition(
-            turns: _timerAnimationController,
+            turns: widget.isQuizCompleted
+                ? const AlwaysStoppedAnimation(0)
+                : _timerAnimationController,
             child: Icon(
               Icons.hourglass_empty,
               size: 16,
