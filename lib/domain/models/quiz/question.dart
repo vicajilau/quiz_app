@@ -1,7 +1,9 @@
+import 'question_type.dart';
+
 /// Represents a question in a quiz.
 class Question {
-  /// The type of the question (e.g., "multiple_choice").
-  final String type;
+  /// The type of the question.
+  final QuestionType type;
 
   /// The text of the question.
   final String text;
@@ -33,12 +35,43 @@ class Question {
   /// - [json]: The JSON map containing the question data.
   /// - Returns: A `Question` instance populated with the data from the JSON.
   factory Question.fromJson(Map<String, dynamic> json) {
+    final questionType = QuestionType.fromString(
+      json['type'] ?? 'multiple_choice',
+    );
+
+    // Handle options
+    List<String> options = [];
+    if (json['options'] != null) {
+      options = List<String>.from(json['options']);
+    } else if (questionType == QuestionType.trueFalse) {
+      // For true/false questions without options, create default options
+      options = ['Verdadero', 'Falso'];
+    }
+
+    // Handle correct answers
+    List<int> correctAnswers = [];
+    if (json['correct_answers'] != null) {
+      final correctAnswersJson = json['correct_answers'] as List;
+
+      if (questionType == QuestionType.trueFalse &&
+          correctAnswersJson.isNotEmpty) {
+        // Handle boolean values in true/false questions
+        if (correctAnswersJson.first is bool) {
+          correctAnswers = [correctAnswersJson.first == true ? 0 : 1];
+        } else {
+          correctAnswers = List<int>.from(correctAnswersJson);
+        }
+      } else {
+        correctAnswers = List<int>.from(correctAnswersJson);
+      }
+    }
+
     return Question(
-      type: json['type'] ?? 'multiple_choice',
+      type: questionType,
       text: json['text'] ?? '',
       image: json['image'],
-      options: List<String>.from(json['options'] ?? []),
-      correctAnswers: List<int>.from(json['correct_answers'] ?? []),
+      options: options,
+      correctAnswers: correctAnswers,
       explanation: json['explanation'] ?? '',
     );
   }
@@ -48,7 +81,7 @@ class Question {
   /// - Returns: A JSON map representation of the question.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> json = {
-      'type': type,
+      'type': type.toJson(),
       'text': text,
       'options': options,
       'correct_answers': correctAnswers,
@@ -67,12 +100,12 @@ class Question {
   /// - [type]: New type to replace the current one.
   /// - [text]: New text to replace the current one.
   /// - [image]: New image to replace the current one.
-  /// - [options]: New options to replace the current ones.
-  /// - [correctAnswers]: New correct answers to replace the current ones.
+  /// - [options]: New options list to replace the current one.
+  /// - [correctAnswers]: New correct answers list to replace the current one.
   /// - [explanation]: New explanation to replace the current one.
   /// - Returns: A new `Question` instance with the specified modifications.
   Question copyWith({
-    String? type,
+    QuestionType? type,
     String? text,
     String? image,
     List<String>? options,
@@ -130,6 +163,6 @@ class Question {
 
   @override
   String toString() {
-    return 'Question(type: $type, text: $text, image: $image, options: $options, correctAnswers: $correctAnswers, explanation: $explanation)';
+    return 'Question(type: ${type.value}, text: $text, image: $image, options: $options, correctAnswers: $correctAnswers, explanation: $explanation)';
   }
 }

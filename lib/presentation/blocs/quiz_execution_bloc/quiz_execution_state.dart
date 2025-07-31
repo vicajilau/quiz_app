@@ -38,6 +38,11 @@ class QuizExecutionInProgress extends QuizExecutionState {
     return currentQuestionAnswers.contains(optionIndex);
   }
 
+  /// Check if current question has been answered
+  bool get hasCurrentQuestionAnswered {
+    return currentQuestionAnswers.isNotEmpty;
+  }
+
   /// Get progress percentage
   double get progress => (currentQuestionIndex + 1) / totalQuestions;
 

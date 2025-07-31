@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
+import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:quiz_app/presentation/screens/dialogs/add_edit_question_dialog.dart';
 
@@ -168,33 +169,29 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
     );
   }
 
-  IconData _getQuestionTypeIcon(String type) {
-    switch (type.toLowerCase()) {
-      case 'multiple_choice':
-      case 'single_choice':
+  IconData _getQuestionTypeIcon(QuestionType type) {
+    switch (type) {
+      case QuestionType.multipleChoice:
+      case QuestionType.singleChoice:
         return Icons.radio_button_checked;
-      case 'true_false':
+      case QuestionType.trueFalse:
         return Icons.toggle_on;
-      case 'essay':
+      case QuestionType.essay:
         return Icons.article;
-      default:
-        return Icons.help_outline;
     }
   }
 
-  String _getQuestionTypeLabel(String type) {
+  String _getQuestionTypeLabel(QuestionType type) {
     final localizations = AppLocalizations.of(context)!;
-    switch (type.toLowerCase()) {
-      case 'multiple_choice':
+    switch (type) {
+      case QuestionType.multipleChoice:
         return localizations.questionTypeMultipleChoice;
-      case 'single_choice':
+      case QuestionType.singleChoice:
         return localizations.questionTypeSingleChoice;
-      case 'true_false':
+      case QuestionType.trueFalse:
         return localizations.questionTypeTrueFalse;
-      case 'essay':
+      case QuestionType.essay:
         return localizations.questionTypeEssay;
-      default:
-        return localizations.questionTypeUnknown;
     }
   }
 

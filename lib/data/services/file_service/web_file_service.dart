@@ -41,7 +41,7 @@ class QuizFileService implements IFileService {
 
     // Convert the string content to a JSON Map and create a QuizFile object
     final json = jsonDecode(content) as Map<String, dynamic>;
-    return QuizFile.fromJson(json, filePath);
+    return QuizFile.fromJson(json, filePath: filePath);
   }
 
   /// Saves a `QuizFile` object to the file system by opening a save dialog.

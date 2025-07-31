@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
+import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
-import 'package:quiz_app/domain/use_cases/validate_question_use_case.dart';
-import 'package:quiz_app/domain/models/custom_exceptions/question_error_type.dart';
 
 import '../../../../core/l10n/app_localizations.dart';
 
@@ -41,6 +40,8 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
   String? _questionTextError; // Error message for the question text field.
   String? _optionsError; // Error message for the options field.
   String? _imageData; // Base64 image data
+  QuestionType _selectedType =
+      QuestionType.multipleChoice; // Selected question type
 
   @override
   void initState() {
@@ -53,6 +54,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
       _questionTextController.text = widget.question!.text;
       _explanationController.text = widget.question!.explanation;
       _imageData = widget.question!.image;
+      _selectedType = widget.question!.type;
       _optionControllers = widget.question!.options
           .map((option) => TextEditingController(text: option))
           .toList();
@@ -61,7 +63,8 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
         (index) => widget.question!.correctAnswers.contains(index),
       );
     } else {
-      // Default: 4 empty options
+      // Default: 4 empty options for multiple choice
+      _selectedType = QuestionType.multipleChoice;
       _optionControllers = List.generate(4, (index) => TextEditingController());
       _correctAnswers = List.generate(4, (index) => false);
     }
@@ -79,56 +82,65 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
   }
 
   /// Validate the input fields.
-  bool _validateInput() {
-    // Reset error messages.
+  bool _validateForm() {
+    bool isValid = true;
+
+    // Reset all error messages
     setState(() {
       _questionTextError = null;
       _optionsError = null;
     });
 
-    // Get option texts and correct answer indices
-    final options = _optionControllers
-        .map((controller) => controller.text)
-        .toList();
-    final correctAnswers = <int>[];
-    for (int i = 0; i < _correctAnswers.length; i++) {
-      if (_correctAnswers[i]) {
-        correctAnswers.add(i);
+    // Validate question text
+    if (_questionTextController.text.trim().isEmpty) {
+      setState(() {
+        _questionTextError = "Question text is required";
+      });
+      isValid = false;
+    }
+
+    // Validate options only for questions that have options
+    if (_selectedType != QuestionType.essay) {
+      // Check if all options have text
+      bool allOptionsEmpty = _optionControllers.every(
+        (controller) => controller.text.trim().isEmpty,
+      );
+      if (allOptionsEmpty) {
+        setState(() {
+          _optionsError = "At least one option must have text";
+        });
+        isValid = false;
+      }
+
+      // Check if at least one correct answer is selected (except for essay)
+      bool hasCorrectAnswer = _correctAnswers.any((answer) => answer);
+      if (!hasCorrectAnswer) {
+        setState(() {
+          _optionsError = "At least one correct answer must be selected";
+        });
+        isValid = false;
+      }
+
+      // Validate specific question types
+      if (_selectedType == QuestionType.singleChoice ||
+          _selectedType == QuestionType.trueFalse) {
+        int correctCount = _correctAnswers.where((answer) => answer).length;
+        if (correctCount > 1) {
+          setState(() {
+            _optionsError =
+                "Only one correct answer is allowed for this question type";
+          });
+          isValid = false;
+        }
       }
     }
 
-    final validateInput = ValidateQuestionUseCase.validateQuestion(
-      _questionTextController.text,
-      options,
-      correctAnswers,
-      widget.questionPosition,
-      widget.quizFile,
-    );
-
-    if (validateInput.success) return true;
-
-    setState(() {
-      switch (validateInput.errorType) {
-        case QuestionErrorType.emptyText:
-          _questionTextError = validateInput.getDescriptionForInputError(
-            context,
-          );
-        case QuestionErrorType.duplicatedText:
-          _questionTextError = validateInput.getDescriptionForInputError(
-            context,
-          );
-        case QuestionErrorType.insufficientOptions:
-        case QuestionErrorType.invalidCorrectAnswers:
-        case QuestionErrorType.emptyOption:
-          _optionsError = validateInput.getDescriptionForInputError(context);
-      }
-    });
-    return false;
+    return isValid;
   }
 
   /// Submit the form if input is valid.
   void _submit() {
-    if (_validateInput()) {
+    if (_validateForm()) {
       // Get option texts and correct answer indices
       final options = _optionControllers
           .map((controller) => controller.text.trim())
@@ -144,7 +156,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
       // Create a new or updated question instance.
       final explanationText = _explanationController.text.trim();
       final newOrUpdatedQuestion = Question(
-        type: "multiple_choice",
+        type: _selectedType,
         text: _questionTextController.text.trim(),
         image: _imageData,
         options: options,
@@ -181,6 +193,31 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
                 setState(() {
                   _questionTextError = null; // Clear error when the user types.
                 });
+              },
+            ),
+            const SizedBox(height: 16),
+
+            // Question type selector
+            DropdownButtonFormField<QuestionType>(
+              value: _selectedType,
+              decoration: InputDecoration(
+                labelText: 'Tipo de pregunta',
+                border: const OutlineInputBorder(),
+                prefixIcon: Icon(_getQuestionTypeIcon(_selectedType)),
+              ),
+              items: QuestionType.values.map((type) {
+                return DropdownMenuItem(
+                  value: type,
+                  child: Text(_getQuestionTypeLabel(type)),
+                );
+              }).toList(),
+              onChanged: (QuestionType? newType) {
+                if (newType != null) {
+                  setState(() {
+                    _selectedType = newType;
+                    _updateOptionsForType(newType);
+                  });
+                }
               },
             ),
             const SizedBox(height: 16),
@@ -306,67 +343,94 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
             ],
             const SizedBox(height: 16),
 
-            // Options section
-            Text("Options", style: Theme.of(context).textTheme.titleMedium),
-            if (_optionsError != null)
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Text(
-                  _optionsError!,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.error,
-                    fontSize: 12,
+            // Options section (only for non-essay questions)
+            if (_selectedType != QuestionType.essay) ...[
+              Text("Options", style: Theme.of(context).textTheme.titleMedium),
+              if (_optionsError != null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    _optionsError!,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.error,
+                      fontSize: 12,
+                    ),
                   ),
                 ),
-              ),
-            const SizedBox(height: 8),
+              const SizedBox(height: 8),
 
-            // Option input fields with checkboxes
-            ...List.generate(_optionControllers.length, (index) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: Row(
-                  children: [
-                    Checkbox(
-                      value: _correctAnswers[index],
-                      onChanged: (value) {
-                        setState(() {
-                          _correctAnswers[index] = value ?? false;
-                          _optionsError = null;
-                        });
-                      },
-                    ),
-                    Expanded(
-                      child: TextFormField(
-                        controller: _optionControllers[index],
-                        decoration: InputDecoration(
-                          labelText: "Option ${index + 1}",
-                          border: const OutlineInputBorder(),
+              // Option input fields with checkboxes/radio buttons
+              ...List.generate(_optionControllers.length, (index) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: Row(
+                    children: [
+                      // Use different input types based on question type
+                      if (_selectedType == QuestionType.multipleChoice)
+                        Checkbox(
+                          value: _correctAnswers[index],
+                          onChanged: (value) {
+                            setState(() {
+                              _correctAnswers[index] = value ?? false;
+                              _optionsError = null;
+                            });
+                          },
+                        )
+                      else if (_selectedType == QuestionType.singleChoice ||
+                          _selectedType == QuestionType.trueFalse)
+                        Radio<int>(
+                          value: index,
+                          groupValue: _correctAnswers.indexWhere(
+                            (element) => element,
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              // Reset all to false, then set selected to true
+                              for (int i = 0; i < _correctAnswers.length; i++) {
+                                _correctAnswers[i] = (i == value);
+                              }
+                              _optionsError = null;
+                            });
+                          },
                         ),
-                        onChanged: (value) {
-                          setState(() {
-                            _optionsError = null;
-                          });
-                        },
+                      Expanded(
+                        child: TextFormField(
+                          controller: _optionControllers[index],
+                          decoration: InputDecoration(
+                            labelText: "Option ${index + 1}",
+                            border: const OutlineInputBorder(),
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              _optionsError = null;
+                            });
+                          },
+                          readOnly: _selectedType == QuestionType.trueFalse,
+                        ),
                       ),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.remove_circle_outline),
-                      onPressed: _optionControllers.length > 2
-                          ? () => _removeOption(index)
-                          : null,
-                    ),
-                  ],
-                ),
-              );
-            }),
+                      if (_selectedType != QuestionType.trueFalse)
+                        IconButton(
+                          icon: const Icon(Icons.remove_circle_outline),
+                          onPressed: _optionControllers.length > 2
+                              ? () => _removeOption(index)
+                              : null,
+                        ),
+                    ],
+                  ),
+                );
+              }),
 
-            // Add option button
-            TextButton.icon(
-              onPressed: _addOption,
-              icon: const Icon(Icons.add),
-              label: const Text("Add Option"),
-            ),
+              // Add option button (only for multiple/single choice)
+              if (_selectedType == QuestionType.multipleChoice ||
+                  _selectedType == QuestionType.singleChoice)
+                TextButton.icon(
+                  onPressed: _addOption,
+                  icon: const Icon(Icons.add),
+                  label: const Text("Add Option"),
+                ),
+
+              const SizedBox(height: 16),
+            ],
           ],
         ),
       ),
@@ -450,6 +514,65 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
     setState(() {
       _imageData = null;
     });
+  }
+
+  /// Get icon for question type
+  IconData _getQuestionTypeIcon(QuestionType type) {
+    switch (type) {
+      case QuestionType.multipleChoice:
+        return Icons.checklist;
+      case QuestionType.singleChoice:
+        return Icons.radio_button_checked;
+      case QuestionType.trueFalse:
+        return Icons.toggle_on;
+      case QuestionType.essay:
+        return Icons.article;
+    }
+  }
+
+  /// Get label for question type
+  String _getQuestionTypeLabel(QuestionType type) {
+    final localizations = AppLocalizations.of(context)!;
+    switch (type) {
+      case QuestionType.multipleChoice:
+        return localizations.questionTypeMultipleChoice;
+      case QuestionType.singleChoice:
+        return localizations.questionTypeSingleChoice;
+      case QuestionType.trueFalse:
+        return localizations.questionTypeTrueFalse;
+      case QuestionType.essay:
+        return localizations.questionTypeEssay;
+    }
+  }
+
+  /// Update options based on question type
+  void _updateOptionsForType(QuestionType type) {
+    // Dispose current controllers
+    for (var controller in _optionControllers) {
+      controller.dispose();
+    }
+
+    switch (type) {
+      case QuestionType.trueFalse:
+        _optionControllers = [
+          TextEditingController(text: 'Verdadero'),
+          TextEditingController(text: 'Falso'),
+        ];
+        _correctAnswers = [false, false];
+        break;
+      case QuestionType.essay:
+        _optionControllers = [];
+        _correctAnswers = [];
+        break;
+      case QuestionType.multipleChoice:
+      case QuestionType.singleChoice:
+        _optionControllers = List.generate(
+          4,
+          (index) => TextEditingController(),
+        );
+        _correctAnswers = List.generate(4, (index) => false);
+        break;
+    }
   }
 
   /// Extract image data from base64 string for preview

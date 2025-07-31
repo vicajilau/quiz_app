@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../domain/models/quiz/question_type.dart';
 import 'quiz_execution_event.dart';
 import 'quiz_execution_state.dart';
 
@@ -21,6 +22,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
       if (state is QuizExecutionInProgress) {
         final currentState = state as QuizExecutionInProgress;
         final currentQuestionIndex = currentState.currentQuestionIndex;
+        final currentQuestion = currentState.currentQuestion;
         final newUserAnswers = Map<int, List<int>>.from(
           currentState.userAnswers,
         );
@@ -30,14 +32,27 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
           newUserAnswers[currentQuestionIndex] ?? [],
         );
 
-        if (event.isSelected) {
-          // Add answer if not already present
-          if (!currentAnswers.contains(event.optionIndex)) {
-            currentAnswers.add(event.optionIndex);
+        // Handle different question types
+        if (currentQuestion.type == QuestionType.multipleChoice) {
+          // Multiple choice: allow multiple selections
+          if (event.isSelected) {
+            // Add answer if not already present
+            if (!currentAnswers.contains(event.optionIndex)) {
+              currentAnswers.add(event.optionIndex);
+            }
+          } else {
+            // Remove answer if present
+            currentAnswers.remove(event.optionIndex);
           }
         } else {
-          // Remove answer if present
-          currentAnswers.remove(event.optionIndex);
+          // Single choice, true/false, essay: allow only one selection
+          if (event.isSelected) {
+            // Clear all previous answers and set only the selected one
+            currentAnswers.clear();
+            currentAnswers.add(event.optionIndex);
+          }
+          // For single selection types, we don't handle deselection
+          // The radio button behavior handles this automatically
         }
 
         // Update the answers map
@@ -51,6 +66,14 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
     on<NextQuestionRequested>((event, emit) {
       if (state is QuizExecutionInProgress) {
         final currentState = state as QuizExecutionInProgress;
+
+        // Check if current question has been answered
+        if (!currentState.hasCurrentQuestionAnswered) {
+          // Don't proceed if no answer is selected
+          // You could emit a specific state here to show an error message if needed
+          return;
+        }
+
         if (!currentState.isLastQuestion) {
           emit(
             currentState.copyWith(

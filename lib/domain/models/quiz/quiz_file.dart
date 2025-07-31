@@ -22,10 +22,10 @@ class QuizFile {
   /// Creates a `QuizFile` instance from a JSON map.
   ///
   /// - [json]: The JSON map containing the quiz file data.
-  /// - [filePath]: The file path of the quiz file.
+  /// - [filePath]: Optional file path of the quiz file.
   /// - Returns: A `QuizFile` instance populated with the data from the JSON.
-  /// - Throws: [BadQuizFileException] if the JSON structure is invalid.
-  factory QuizFile.fromJson(Map<String, dynamic> json, String? filePath) {
+  /// - Throws: `BadQuizFileException` if the JSON structure is invalid.
+  factory QuizFile.fromJson(Map<String, dynamic> json, {String? filePath}) {
     try {
       final metadata = QuizMetadata.fromJson(json['metadata'] ?? {});
       final questionsJson = json['questions'] as List<dynamic>? ?? [];
@@ -39,7 +39,10 @@ class QuizFile {
         filePath: filePath,
       );
     } catch (e) {
-      throw BadQuizFileException(type: BadQuizFileErrorType.invalidFormat);
+      throw BadQuizFileException(
+        type: BadQuizFileErrorType.invalidFormat,
+        message: 'Error parsing quiz file: $e',
+      );
     }
   }
 

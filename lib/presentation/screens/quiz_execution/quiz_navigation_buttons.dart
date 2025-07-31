@@ -36,18 +36,20 @@ class QuizNavigationButtons extends StatelessWidget {
           // Next/Submit button
           Expanded(
             child: ElevatedButton.icon(
-              onPressed: () {
-                if (state.isLastQuestion) {
-                  SubmitQuizDialog.show(
-                    context,
-                    context.read<QuizExecutionBloc>(),
-                  );
-                } else {
-                  context.read<QuizExecutionBloc>().add(
-                    NextQuestionRequested(),
-                  );
-                }
-              },
+              onPressed: state.hasCurrentQuestionAnswered
+                  ? () {
+                      if (state.isLastQuestion) {
+                        SubmitQuizDialog.show(
+                          context,
+                          context.read<QuizExecutionBloc>(),
+                        );
+                      } else {
+                        context.read<QuizExecutionBloc>().add(
+                          NextQuestionRequested(),
+                        );
+                      }
+                    }
+                  : null, // Disable button if no answer selected
               icon: Icon(
                 state.isLastQuestion ? Icons.check : Icons.arrow_forward,
               ),

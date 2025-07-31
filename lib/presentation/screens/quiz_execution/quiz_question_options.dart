@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../domain/models/quiz/question_type.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
@@ -11,6 +12,8 @@ class QuizQuestionOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final questionType = state.currentQuestion.type;
+
     return ListView.builder(
       itemCount: state.currentQuestion.options.length,
       itemBuilder: (context, index) {
@@ -21,26 +24,73 @@ class QuizQuestionOptions extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 12.0),
           child: Card(
             elevation: isSelected ? 4 : 1,
-            child: CheckboxListTile(
-              title: Text(
-                option,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-                ),
-              ),
-              value: isSelected,
-              onChanged: (bool? value) {
-                context.read<QuizExecutionBloc>().add(
-                  AnswerSelected(index, value ?? false),
-                );
-              },
-              activeColor: Theme.of(context).primaryColor,
-              controlAffinity: ListTileControlAffinity.leading,
+            child: _buildOptionTile(
+              context,
+              questionType,
+              option,
+              index,
+              isSelected,
             ),
           ),
         );
       },
     );
+  }
+
+  Widget _buildOptionTile(
+    BuildContext context,
+    QuestionType questionType,
+    String option,
+    int index,
+    bool isSelected,
+  ) {
+    // For multiple choice questions, use CheckboxListTile
+    if (questionType == QuestionType.multipleChoice) {
+      return CheckboxListTile(
+        title: Text(
+          option,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+          ),
+        ),
+        value: isSelected,
+        onChanged: (bool? value) {
+          context.read<QuizExecutionBloc>().add(
+            AnswerSelected(index, value ?? false),
+          );
+        },
+        activeColor: Theme.of(context).primaryColor,
+        controlAffinity: ListTileControlAffinity.leading,
+      );
+    }
+    // For single choice, true/false, and essay questions, use RadioListTile
+    else {
+      // Get the currently selected option (if any)
+      final currentAnswers = state.currentQuestionAnswers;
+      final selectedIndex = currentAnswers.isNotEmpty
+          ? currentAnswers.first
+          : -1;
+
+      return RadioListTile<int>(
+        title: Text(
+          option,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+          ),
+        ),
+        value: index,
+        groupValue: selectedIndex >= 0 ? selectedIndex : null,
+        onChanged: (int? value) {
+          if (value != null) {
+            // For single selection, first deselect all, then select the chosen one
+            context.read<QuizExecutionBloc>().add(AnswerSelected(value, true));
+          }
+        },
+        activeColor: Theme.of(context).primaryColor,
+        controlAffinity: ListTileControlAffinity.leading,
+      );
+    }
   }
 }
