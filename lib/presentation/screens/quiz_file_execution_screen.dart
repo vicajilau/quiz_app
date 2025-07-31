@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import '../../core/l10n/app_localizations.dart';
 import '../../domain/models/quiz/quiz_file.dart';
 import '../blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import '../blocs/quiz_execution_bloc/quiz_execution_event.dart';
@@ -21,7 +22,8 @@ class QuizFileExecutionScreen extends StatelessWidget {
           title: Text(quizFile.metadata.title),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            onPressed: () => _handleBackPress(context, context.read<QuizExecutionBloc>()),
+            onPressed: () =>
+                _handleBackPress(context, context.read<QuizExecutionBloc>()),
           ),
         ),
         body: BlocConsumer<QuizExecutionBloc, QuizExecutionState>(
@@ -105,7 +107,7 @@ class QuizFileExecutionScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Pregunta ${state.currentQuestionIndex + 1}',
+          AppLocalizations.of(context)!.questionNumber(state.currentQuestionIndex + 1),
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
             color: Colors.grey[600],
             fontWeight: FontWeight.w500,
@@ -177,7 +179,7 @@ class QuizFileExecutionScreen extends StatelessWidget {
                   );
                 },
                 icon: const Icon(Icons.arrow_back),
-                label: const Text('Anterior'),
+                label: Text(AppLocalizations.of(context)!.previous),
               ),
             ),
 
@@ -198,7 +200,11 @@ class QuizFileExecutionScreen extends StatelessWidget {
               icon: Icon(
                 state.isLastQuestion ? Icons.check : Icons.arrow_forward,
               ),
-              label: Text(state.isLastQuestion ? 'Finalizar' : 'Siguiente'),
+              label: Text(
+                state.isLastQuestion
+                    ? AppLocalizations.of(context)!.finish
+                    : AppLocalizations.of(context)!.next,
+              ),
             ),
           ),
         ],
@@ -227,14 +233,16 @@ class QuizFileExecutionScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    '¡Quiz Completado!',
+                    AppLocalizations.of(context)!.quizCompleted,
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Puntuación: ${state.score.toStringAsFixed(1)}%',
+                    AppLocalizations.of(
+                      context,
+                    )!.score(state.score.toStringAsFixed(1)),
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: state.score >= 70 ? Colors.green : Colors.orange,
                       fontWeight: FontWeight.w600,
@@ -242,7 +250,10 @@ class QuizFileExecutionScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    '${state.correctAnswers} de ${state.totalQuestions} respuestas correctas',
+                    AppLocalizations.of(context)!.correctAnswers(
+                      state.correctAnswers,
+                      state.totalQuestions,
+                    ),
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ],
@@ -276,7 +287,7 @@ class QuizFileExecutionScreen extends StatelessWidget {
                       bloc.add(QuizRestarted());
                     },
                     icon: const Icon(Icons.refresh),
-                    label: const Text('Reintentar'),
+                    label: Text(AppLocalizations.of(context)!.retry),
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -284,7 +295,7 @@ class QuizFileExecutionScreen extends StatelessWidget {
                   child: ElevatedButton.icon(
                     onPressed: () => context.pop(),
                     icon: const Icon(Icons.home),
-                    label: const Text('Volver'),
+                    label: Text(AppLocalizations.of(context)!.goBack),
                   ),
                 ),
               ],
@@ -308,7 +319,7 @@ class QuizFileExecutionScreen extends StatelessWidget {
           color: result.isCorrect ? Colors.green : Colors.red,
         ),
         title: Text(
-          'Pregunta $questionNumber',
+          AppLocalizations.of(context)!.questionNumber(questionNumber),
           style: const TextStyle(fontWeight: FontWeight.w600),
         ),
         subtitle: Text(
@@ -323,7 +334,7 @@ class QuizFileExecutionScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Pregunta: ${result.question.text}',
+                  AppLocalizations.of(context)!.question(result.question.text),
                   style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 12),
@@ -383,21 +394,19 @@ class QuizFileExecutionScreen extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Finalizar Quiz'),
-          content: const Text(
-            '¿Estás seguro de que quieres finalizar el quiz? No podrás cambiar tus respuestas después.',
-          ),
+          title: Text(AppLocalizations.of(context)!.finishQuiz),
+          content: Text(AppLocalizations.of(context)!.finishQuizConfirmation),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cancelar'),
+              child: Text(AppLocalizations.of(context)!.cancel),
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
                 bloc.add(QuizSubmitted());
               },
-              child: const Text('Finalizar'),
+              child: Text(AppLocalizations.of(context)!.finish),
             ),
           ],
         );
@@ -413,21 +422,21 @@ class QuizFileExecutionScreen extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('Abandonar Quiz'),
-            content: const Text(
-              '¿Estás seguro de que quieres abandonar el quiz? Se perderá todo el progreso.',
+            title: Text(AppLocalizations.of(context)!.abandonQuiz),
+            content: Text(
+              AppLocalizations.of(context)!.abandonQuizConfirmation,
             ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Cancelar'),
+                child: Text(AppLocalizations.of(context)!.cancel),
               ),
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                   context.pop();
                 },
-                child: const Text('Abandonar'),
+                child: Text(AppLocalizations.of(context)!.abandon),
               ),
             ],
           );

@@ -461,4 +461,59 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get unknownError => 'Error desconocido';
+
+  @override
+  String questionNumber(int number) {
+    return 'Pregunta $number';
+  }
+
+  @override
+  String get previous => 'Anterior';
+
+  @override
+  String get next => 'Siguiente';
+
+  @override
+  String get finish => 'Finalizar';
+
+  @override
+  String get finishQuiz => 'Finalizar Quiz';
+
+  @override
+  String get finishQuizConfirmation =>
+      '¿Estás seguro de que quieres finalizar el quiz? No podrás cambiar tus respuestas después.';
+
+  @override
+  String get abandonQuiz => 'Abandonar Quiz';
+
+  @override
+  String get abandonQuizConfirmation =>
+      '¿Estás seguro de que quieres abandonar el quiz? Se perderá todo el progreso.';
+
+  @override
+  String get abandon => 'Abandonar';
+
+  @override
+  String get quizCompleted => '¡Quiz Completado!';
+
+  @override
+  String score(String score) {
+    return 'Puntuación: $score%';
+  }
+
+  @override
+  String correctAnswers(int correct, int total) {
+    return '$correct de $total respuestas correctas';
+  }
+
+  @override
+  String get retry => 'Reintentar';
+
+  @override
+  String get goBack => 'Volver';
+
+  @override
+  String question(String question) {
+    return 'Pregunta: $question';
+  }
 }

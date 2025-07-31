@@ -458,4 +458,59 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unknownError => 'Unknown error';
+
+  @override
+  String questionNumber(int number) {
+    return 'Question $number';
+  }
+
+  @override
+  String get previous => 'Previous';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get finish => 'Finish';
+
+  @override
+  String get finishQuiz => 'Finish Quiz';
+
+  @override
+  String get finishQuizConfirmation =>
+      'Are you sure you want to finish the quiz? You won\'t be able to change your answers afterwards.';
+
+  @override
+  String get abandonQuiz => 'Abandon Quiz';
+
+  @override
+  String get abandonQuizConfirmation =>
+      'Are you sure you want to abandon the quiz? All progress will be lost.';
+
+  @override
+  String get abandon => 'Abandon';
+
+  @override
+  String get quizCompleted => 'Quiz Completed!';
+
+  @override
+  String score(String score) {
+    return 'Score: $score%';
+  }
+
+  @override
+  String correctAnswers(int correct, int total) {
+    return '$correct of $total correct answers';
+  }
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get goBack => 'Go Back';
+
+  @override
+  String question(String question) {
+    return 'Question: $question';
+  }
 }

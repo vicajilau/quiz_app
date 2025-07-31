@@ -570,7 +570,7 @@ abstract class AppLocalizations {
   /// **'Changing the mode will erase all processes from the quiz file. Do you want to proceed?'**
   String get settingsDialogWarningContent;
 
-  /// No description provided for @cancel.
+  /// Cancel button text
   ///
   /// In en, this message translates to:
   /// **'Cancel'**
@@ -833,6 +833,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unknown error'**
   String get unknownError;
+
+  /// Question number label in quiz execution
+  ///
+  /// In en, this message translates to:
+  /// **'Question {number}'**
+  String questionNumber(int number);
+
+  /// Previous button text in quiz navigation
+  ///
+  /// In en, this message translates to:
+  /// **'Previous'**
+  String get previous;
+
+  /// Next button text in quiz navigation
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// Finish button text in quiz navigation
+  ///
+  /// In en, this message translates to:
+  /// **'Finish'**
+  String get finish;
+
+  /// Title of finish quiz dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Finish Quiz'**
+  String get finishQuiz;
+
+  /// Confirmation message for finishing quiz
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to finish the quiz? You won\'t be able to change your answers afterwards.'**
+  String get finishQuizConfirmation;
+
+  /// Title of abandon quiz dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Abandon Quiz'**
+  String get abandonQuiz;
+
+  /// Confirmation message for abandoning quiz
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to abandon the quiz? All progress will be lost.'**
+  String get abandonQuizConfirmation;
+
+  /// Abandon button text
+  ///
+  /// In en, this message translates to:
+  /// **'Abandon'**
+  String get abandon;
+
+  /// Quiz completed message
+  ///
+  /// In en, this message translates to:
+  /// **'Quiz Completed!'**
+  String get quizCompleted;
+
+  /// Score display
+  ///
+  /// In en, this message translates to:
+  /// **'Score: {score}%'**
+  String score(String score);
+
+  /// Correct answers count
+  ///
+  /// In en, this message translates to:
+  /// **'{correct} of {total} correct answers'**
+  String correctAnswers(int correct, int total);
+
+  /// Retry button text
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// Go back button text
+  ///
+  /// In en, this message translates to:
+  /// **'Go Back'**
+  String get goBack;
+
+  /// Question text in results
+  ///
+  /// In en, this message translates to:
+  /// **'Question: {question}'**
+  String question(String question);
 }
 
 class _AppLocalizationsDelegate

@@ -241,5 +241,97 @@
   "startAndEndCpuSequenceBadContent": "The burst sequence of thread ({thread}) in process ({process}) must start and end with a CPU burst.",
   "invalidBurstSequenceBadContent": "The burst sequence of thread ({thread}) in process ({process}) cannot contain two consecutive I/O bursts.",
   "invalidBurstDuration": "The burst ({burst}) of thread ({thread}) in process ({process}) cannot contain is null or <= 0.",
-  "unknownError": "Unknown error"
+  "unknownError": "Unknown error",
+  "questionNumber": "Question {number}",
+  "@questionNumber": {
+    "description": "Question number label in quiz execution",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "previous": "Previous",
+  "@previous": {
+    "description": "Previous button text in quiz navigation"
+  },
+  "next": "Next",
+  "@next": {
+    "description": "Next button text in quiz navigation"
+  },
+  "finish": "Finish",
+  "@finish": {
+    "description": "Finish button text in quiz navigation"
+  },
+  "finishQuiz": "Finish Quiz",
+  "@finishQuiz": {
+    "description": "Title of finish quiz dialog"
+  },
+  "finishQuizConfirmation": "Are you sure you want to finish the quiz? You won't be able to change your answers afterwards.",
+  "@finishQuizConfirmation": {
+    "description": "Confirmation message for finishing quiz"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
+  "abandonQuiz": "Abandon Quiz",
+  "@abandonQuiz": {
+    "description": "Title of abandon quiz dialog"
+  },
+  "abandonQuizConfirmation": "Are you sure you want to abandon the quiz? All progress will be lost.",
+  "@abandonQuizConfirmation": {
+    "description": "Confirmation message for abandoning quiz"
+  },
+  "abandon": "Abandon",
+  "@abandon": {
+    "description": "Abandon button text"
+  },
+  "quizCompleted": "Quiz Completed!",
+  "@quizCompleted": {
+    "description": "Quiz completed message"
+  },
+  "score": "Score: {score}%",
+  "@score": {
+    "description": "Score display",
+    "placeholders": {
+      "score": {
+        "type": "String",
+        "example": "85.5"
+      }
+    }
+  },
+  "correctAnswers": "{correct} of {total} correct answers",
+  "@correctAnswers": {
+    "description": "Correct answers count",
+    "placeholders": {
+      "correct": {
+        "type": "int",
+        "example": "8"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button text"
+  },
+  "goBack": "Go Back",
+  "@goBack": {
+    "description": "Go back button text"
+  },
+  "question": "Question: {question}",
+  "@question": {
+    "description": "Question text in results",
+    "placeholders": {
+      "question": {
+        "type": "String",
+        "example": "What is the capital of France?"
+      }
+    }
+  }
 }
