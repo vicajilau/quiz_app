@@ -391,5 +391,9 @@
   "explanationHint": "Ingresa una explicación para la(s) respuesta(s) correcta(s)",
   "@explanationHint": {
     "description": "Texto de ayuda para el campo de entrada de explicación"
+  },
+  "explanationTitle": "Explicación",
+  "@explanationTitle": {
+    "description": "Título para la sección de explicación en los resultados del quiz"
   }
 }

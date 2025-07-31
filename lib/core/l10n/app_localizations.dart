@@ -619,6 +619,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter an explanation for the correct answer(s)'**
   String get explanationHint;
+
+  /// Title for the explanation section in quiz results
+  ///
+  /// In en, this message translates to:
+  /// **'Explanation'**
+  String get explanationTitle;
 }
 
 class _AppLocalizationsDelegate

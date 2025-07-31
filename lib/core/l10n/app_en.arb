@@ -460,5 +460,9 @@
   "explanationHint": "Enter an explanation for the correct answer(s)",
   "@explanationHint": {
     "description": "Hint text for the explanation input field"
+  },
+  "explanationTitle": "Explanation",
+  "@explanationTitle": {
+    "description": "Title for the explanation section in quiz results"
   }
 }

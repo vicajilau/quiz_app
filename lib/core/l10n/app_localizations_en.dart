@@ -307,4 +307,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get explanationHint =>
       'Enter an explanation for the correct answer(s)';
+
+  @override
+  String get explanationTitle => 'Explanation';
 }

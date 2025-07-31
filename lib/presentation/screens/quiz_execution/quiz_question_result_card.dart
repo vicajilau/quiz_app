@@ -84,6 +84,53 @@ class QuizQuestionResultCard extends StatelessWidget {
                     ),
                   );
                 }),
+
+                // Show explanation if available
+                if (result.question.explanation.isNotEmpty) ...[
+                  const SizedBox(height: 16),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(12.0),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: Border.all(
+                        color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.lightbulb_outline,
+                              size: 20,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              AppLocalizations.of(context)!.explanationTitle,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          result.question.explanation,
+                          style: TextStyle(
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ],
             ),
           ),
