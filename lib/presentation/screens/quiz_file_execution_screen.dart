@@ -29,29 +29,31 @@ class QuizFileExecutionScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           QuizExecutionBloc()..add(QuizExecutionStarted(questionsToUse)),
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(quizFile.metadata.title),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () =>
-                _handleBackPress(context, context.read<QuizExecutionBloc>()),
+      child: Builder(
+        builder: (context) => Scaffold(
+          appBar: AppBar(
+            title: Text(quizFile.metadata.title),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () =>
+                  _handleBackPress(context, context.read<QuizExecutionBloc>()),
+            ),
           ),
-        ),
-        body: BlocConsumer<QuizExecutionBloc, QuizExecutionState>(
-          listener: (context, state) {
-            // Handle any side effects if needed
-          },
-          builder: (context, state) {
-            if (state is QuizExecutionInitial) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is QuizExecutionInProgress) {
-              return _buildQuizInProgress(context, state);
-            } else if (state is QuizExecutionCompleted) {
-              return _buildQuizCompleted(context, state);
-            }
-            return const SizedBox.shrink();
-          },
+          body: BlocConsumer<QuizExecutionBloc, QuizExecutionState>(
+            listener: (context, state) {
+              // Handle any side effects if needed
+            },
+            builder: (context, state) {
+              if (state is QuizExecutionInitial) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state is QuizExecutionInProgress) {
+                return _buildQuizInProgress(context, state);
+              } else if (state is QuizExecutionCompleted) {
+                return _buildQuizCompleted(context, state);
+              }
+              return const SizedBox.shrink();
+            },
+          ),
         ),
       ),
     );
