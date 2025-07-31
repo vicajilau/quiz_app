@@ -376,5 +376,47 @@
   "save": "Save",
   "@save": {
     "description": "Label for the save button"
+  },
+  "examTimeLimitTitle": "Exam Time Limit",
+  "@examTimeLimitTitle": {
+    "description": "Title for exam time limit section"
+  },
+  "examTimeLimitDescription": "Set a time limit for the exam. When enabled, a countdown timer will be displayed during the quiz.",
+  "@examTimeLimitDescription": {
+    "description": "Description for exam time limit feature"
+  },
+  "enableTimeLimit": "Enable time limit",
+  "@enableTimeLimit": {
+    "description": "Label for enable exam time limit switch"
+  },
+  "timeLimitMinutes": "Time limit (minutes)",
+  "@timeLimitMinutes": {
+    "description": "Label for exam time minutes input"
+  },
+  "examTimeExpiredTitle": "Time's Up!",
+  "@examTimeExpiredTitle": {
+    "description": "Title for exam time expired dialog"
+  },
+  "examTimeExpiredMessage": "The exam time has expired. Your answers have been automatically submitted.",
+  "@examTimeExpiredMessage": {
+    "description": "Message for exam time expired dialog"
+  },
+  "remainingTime": "{hours}:{minutes}:{seconds}",
+  "@remainingTime": {
+    "description": "Format for remaining time display (hours:minutes:seconds)",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "01"
+      },
+      "minutes": {
+        "type": "String",
+        "example": "30"
+      },
+      "seconds": {
+        "type": "String",
+        "example": "45"
+      }
+    }
   }
 }

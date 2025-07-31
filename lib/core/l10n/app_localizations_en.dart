@@ -252,4 +252,29 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get save => 'Save';
+
+  @override
+  String get examTimeLimitTitle => 'Exam Time Limit';
+
+  @override
+  String get examTimeLimitDescription =>
+      'Set a time limit for the exam. When enabled, a countdown timer will be displayed during the quiz.';
+
+  @override
+  String get enableTimeLimit => 'Enable time limit';
+
+  @override
+  String get timeLimitMinutes => 'Time limit (minutes)';
+
+  @override
+  String get examTimeExpiredTitle => 'Time\'s Up!';
+
+  @override
+  String get examTimeExpiredMessage =>
+      'The exam time has expired. Your answers have been automatically submitted.';
+
+  @override
+  String remainingTime(String hours, String minutes, String seconds) {
+    return '$hours:$minutes:$seconds';
+  }
 }

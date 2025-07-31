@@ -307,5 +307,47 @@
   "save": "Guardar",
   "@save": {
     "description": "Etiqueta para el botón guardar"
+  },
+  "examTimeLimitTitle": "Límite de Tiempo del Examen",
+  "@examTimeLimitTitle": {
+    "description": "Título para la sección de límite de tiempo del examen"
+  },
+  "examTimeLimitDescription": "Establece un límite de tiempo para el examen. Cuando esté habilitado, se mostrará un cronómetro durante el quiz.",
+  "@examTimeLimitDescription": {
+    "description": "Descripción para la funcionalidad de límite de tiempo del examen"
+  },
+  "enableTimeLimit": "Habilitar límite de tiempo",
+  "@enableTimeLimit": {
+    "description": "Etiqueta para el switch de habilitar límite de tiempo del examen"
+  },
+  "timeLimitMinutes": "Límite de tiempo (minutos)",
+  "@timeLimitMinutes": {
+    "description": "Etiqueta para la entrada de minutos del tiempo del examen"
+  },
+  "examTimeExpiredTitle": "¡Se acabó el tiempo!",
+  "@examTimeExpiredTitle": {
+    "description": "Título para el diálogo de tiempo de examen expirado"
+  },
+  "examTimeExpiredMessage": "El tiempo del examen ha expirado. Tus respuestas han sido enviadas automáticamente.",
+  "@examTimeExpiredMessage": {
+    "description": "Mensaje para el diálogo de tiempo de examen expirado"
+  },
+  "remainingTime": "{hours}:{minutes}:{seconds}",
+  "@remainingTime": {
+    "description": "Formato para mostrar el tiempo restante (horas:minutos:segundos)",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "01"
+      },
+      "minutes": {
+        "type": "String",
+        "example": "30"
+      },
+      "seconds": {
+        "type": "String",
+        "example": "45"
+      }
+    }
   }
 }

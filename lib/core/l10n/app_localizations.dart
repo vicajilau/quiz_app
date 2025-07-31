@@ -523,6 +523,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save'**
   String get save;
+
+  /// Title for exam time limit section
+  ///
+  /// In en, this message translates to:
+  /// **'Exam Time Limit'**
+  String get examTimeLimitTitle;
+
+  /// Description for exam time limit feature
+  ///
+  /// In en, this message translates to:
+  /// **'Set a time limit for the exam. When enabled, a countdown timer will be displayed during the quiz.'**
+  String get examTimeLimitDescription;
+
+  /// Label for enable exam time limit switch
+  ///
+  /// In en, this message translates to:
+  /// **'Enable time limit'**
+  String get enableTimeLimit;
+
+  /// Label for exam time minutes input
+  ///
+  /// In en, this message translates to:
+  /// **'Time limit (minutes)'**
+  String get timeLimitMinutes;
+
+  /// Title for exam time expired dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Time\'s Up!'**
+  String get examTimeExpiredTitle;
+
+  /// Message for exam time expired dialog
+  ///
+  /// In en, this message translates to:
+  /// **'The exam time has expired. Your answers have been automatically submitted.'**
+  String get examTimeExpiredMessage;
+
+  /// Format for remaining time display (hours:minutes:seconds)
+  ///
+  /// In en, this message translates to:
+  /// **'{hours}:{minutes}:{seconds}'**
+  String remainingTime(String hours, String minutes, String seconds);
 }
 
 class _AppLocalizationsDelegate

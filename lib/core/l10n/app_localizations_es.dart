@@ -255,4 +255,29 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get save => 'Guardar';
+
+  @override
+  String get examTimeLimitTitle => 'Límite de Tiempo del Examen';
+
+  @override
+  String get examTimeLimitDescription =>
+      'Establece un límite de tiempo para el examen. Cuando esté habilitado, se mostrará un cronómetro durante el quiz.';
+
+  @override
+  String get enableTimeLimit => 'Habilitar límite de tiempo';
+
+  @override
+  String get timeLimitMinutes => 'Límite de tiempo (minutos)';
+
+  @override
+  String get examTimeExpiredTitle => '¡Se acabó el tiempo!';
+
+  @override
+  String get examTimeExpiredMessage =>
+      'El tiempo del examen ha expirado. Tus respuestas han sido enviadas automáticamente.';
+
+  @override
+  String remainingTime(String hours, String minutes, String seconds) {
+    return '$hours:$minutes:$seconds';
+  }
 }

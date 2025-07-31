@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:async';
 import '../../core/service_locator.dart';
 import '../../core/l10n/app_localizations.dart';
 import '../../data/services/configuration_service.dart';
@@ -24,6 +25,29 @@ class QuizFileExecutionScreen extends StatefulWidget {
 }
 
 class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
+  bool _examTimeEnabled = false;
+  int _examTimeMinutes = 60;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadExamTimeSettings();
+  }
+
+  Future<void> _loadExamTimeSettings() async {
+    final examTimeEnabled = await ConfigurationService.instance
+        .getExamTimeEnabled();
+    final examTimeMinutes = await ConfigurationService.instance
+        .getExamTimeMinutes();
+
+    if (mounted) {
+      setState(() {
+        _examTimeEnabled = examTimeEnabled;
+        _examTimeMinutes = examTimeMinutes;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -64,6 +88,22 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
                     context.read<QuizExecutionBloc>(),
                   ),
                 ),
+                actions: [
+                  if (_examTimeEnabled)
+                    Padding(
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: Center(
+                        child: ExamTimerWidget(
+                          initialDurationMinutes: _examTimeMinutes,
+                          onTimeExpired: () {
+                            // Force complete the quiz
+                            final bloc = context.read<QuizExecutionBloc>();
+                            bloc.add(QuizSubmitted());
+                          },
+                        ),
+                      ),
+                    ),
+                ],
               ),
               body: BlocConsumer<QuizExecutionBloc, QuizExecutionState>(
                 listener: (context, state) {
@@ -102,6 +142,152 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
       widget.quizFile.questions,
       questionCount,
       order: questionOrder,
+    );
+  }
+}
+
+// Separate widget for the exam timer to avoid rebuilding the entire screen
+class ExamTimerWidget extends StatefulWidget {
+  final int initialDurationMinutes;
+  final VoidCallback onTimeExpired;
+
+  const ExamTimerWidget({
+    super.key,
+    required this.initialDurationMinutes,
+    required this.onTimeExpired,
+  });
+
+  @override
+  State<ExamTimerWidget> createState() => _ExamTimerWidgetState();
+}
+
+class _ExamTimerWidgetState extends State<ExamTimerWidget>
+    with TickerProviderStateMixin {
+  Timer? _examTimer;
+  Duration? _remainingTime;
+  late AnimationController _timerAnimationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _timerAnimationController = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
+    _remainingTime = Duration(minutes: widget.initialDurationMinutes);
+    _startExamTimer();
+  }
+
+  @override
+  void dispose() {
+    _examTimer?.cancel();
+    _timerAnimationController.dispose();
+    super.dispose();
+  }
+
+  void _startExamTimer() {
+    if (_remainingTime == null) return;
+
+    _timerAnimationController.repeat();
+
+    _examTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) {
+        timer.cancel();
+        return;
+      }
+
+      if (_remainingTime!.inSeconds <= 0) {
+        _handleTimeExpired();
+        return;
+      }
+
+      setState(() {
+        _remainingTime = _remainingTime! - const Duration(seconds: 1);
+      });
+    });
+  }
+
+  void _handleTimeExpired() {
+    _examTimer?.cancel();
+    _timerAnimationController.stop();
+
+    if (!mounted) return;
+
+    // Show time expired dialog
+    _showTimeExpiredDialog();
+  }
+
+  void _showTimeExpiredDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: Text(AppLocalizations.of(context)!.examTimeExpiredTitle),
+        content: Text(AppLocalizations.of(context)!.examTimeExpiredMessage),
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              widget.onTimeExpired();
+            },
+            child: Text(AppLocalizations.of(context)!.finish),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_remainingTime == null) {
+      return const SizedBox.shrink();
+    }
+
+    final hours = _remainingTime!.inHours.toString().padLeft(2, '0');
+    final minutes = (_remainingTime!.inMinutes % 60).toString().padLeft(2, '0');
+    final seconds = (_remainingTime!.inSeconds % 60).toString().padLeft(2, '0');
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: _remainingTime!.inMinutes < 5
+            ? Colors.red.withValues(alpha: 0.1)
+            : Theme.of(context).primaryColor.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: _remainingTime!.inMinutes < 5
+              ? Colors.red
+              : Theme.of(context).primaryColor,
+        ),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          RotationTransition(
+            turns: _timerAnimationController,
+            child: Icon(
+              Icons.hourglass_empty,
+              size: 16,
+              color: _remainingTime!.inMinutes < 5
+                  ? Colors.red
+                  : Theme.of(context).primaryColor,
+            ),
+          ),
+          const SizedBox(width: 6),
+          Text(
+            AppLocalizations.of(
+              context,
+            )!.remainingTime(hours, minutes, seconds),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+              color: _remainingTime!.inMinutes < 5
+                  ? Colors.red
+                  : Theme.of(context).primaryColor,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

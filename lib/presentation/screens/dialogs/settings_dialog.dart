@@ -14,23 +14,35 @@ class SettingsDialog extends StatefulWidget {
 class _SettingsDialogState extends State<SettingsDialog> {
   QuestionOrder _selectedOrder = QuestionOrder.random;
   bool _isLoading = true;
+  bool _examTimeEnabled = false;
+  int _examTimeMinutes = 60;
 
   @override
   void initState() {
     super.initState();
-    _loadCurrentOrder();
+    _loadCurrentSettings();
   }
 
-  Future<void> _loadCurrentOrder() async {
+  Future<void> _loadCurrentSettings() async {
     final currentOrder = await ConfigurationService.instance.getQuestionOrder();
+    final examTimeEnabled = await ConfigurationService.instance
+        .getExamTimeEnabled();
+    final examTimeMinutes = await ConfigurationService.instance
+        .getExamTimeMinutes();
+
     setState(() {
       _selectedOrder = currentOrder;
+      _examTimeEnabled = examTimeEnabled;
+      _examTimeMinutes = examTimeMinutes;
       _isLoading = false;
     });
   }
 
-  Future<void> _saveOrder() async {
+  Future<void> _saveSettings() async {
     await ConfigurationService.instance.saveQuestionOrder(_selectedOrder);
+    await ConfigurationService.instance.saveExamTimeEnabled(_examTimeEnabled);
+    await ConfigurationService.instance.saveExamTimeMinutes(_examTimeMinutes);
+
     if (mounted) {
       context.pop(_selectedOrder);
     }
@@ -78,6 +90,44 @@ class _SettingsDialogState extends State<SettingsDialog> {
                       },
                     );
                   }),
+
+                  // Exam Time Limit Section
+                  const SizedBox(height: 24),
+                  const Divider(),
+                  const SizedBox(height: 16),
+
+                  SwitchListTile(
+                    title: Text(AppLocalizations.of(context)!.examTimeLimitTitle),
+                    subtitle: Text(AppLocalizations.of(context)!.examTimeLimitDescription),
+                    value: _examTimeEnabled,
+                    onChanged: (bool value) {
+                      setState(() {
+                        _examTimeEnabled = value;
+                      });
+                    },
+                  ),
+
+                  if (_examTimeEnabled) ...[
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      initialValue: _examTimeMinutes.toString(),
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(
+                          context,
+                        )!.timeLimitMinutes,
+                        border: const OutlineInputBorder(),
+                        suffixText: 'min',
+                      ),
+                      keyboardType: TextInputType.number,
+                      onChanged: (value) {
+                        final minutes = int.tryParse(value);
+                        if (minutes != null && minutes > 0) {
+                          _examTimeMinutes = minutes;
+                        }
+                      },
+                    ),
+                  ],
+
                   // Future settings sections can be added here
                 ],
               ),
@@ -88,7 +138,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
           child: Text(AppLocalizations.of(context)!.cancel),
         ),
         ElevatedButton(
-          onPressed: _isLoading ? null : _saveOrder,
+          onPressed: _isLoading ? null : _saveSettings,
           child: Text(AppLocalizations.of(context)!.saveButton),
         ),
       ],
