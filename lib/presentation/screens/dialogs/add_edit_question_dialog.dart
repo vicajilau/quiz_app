@@ -57,7 +57,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
       _explanationController.text = widget.question!.explanation;
       _imageData = widget.question!.image;
       _selectedType = widget.question!.type;
-      
+
       // Translate options for display in UI (this will be done after build)
       _optionControllers = widget.question!.options
           .map((option) => TextEditingController(text: option))
@@ -83,7 +83,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
       for (int i = 0; i < _optionControllers.length; i++) {
         final originalOption = widget.question!.options[i];
         final translatedOption = QuestionTranslationHelper.translateOption(
-          originalOption, 
+          originalOption,
           localizations,
         );
         _optionControllers[i].text = translatedOption;
@@ -163,14 +163,17 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
   void _submit() {
     if (_validateForm()) {
       final localizations = AppLocalizations.of(context)!;
-      
+
       // Get option texts and convert back to model values
       final options = _optionControllers
           .map((controller) => controller.text.trim())
           .where((text) => text.isNotEmpty)
-          .map((optionText) => _translateOptionBackToModel(optionText, localizations))
+          .map(
+            (optionText) =>
+                _translateOptionBackToModel(optionText, localizations),
+          )
           .toList();
-          
+
       final correctAnswers = <int>[];
       for (int i = 0; i < _correctAnswers.length && i < options.length; i++) {
         if (_correctAnswers[i]) {
@@ -195,7 +198,10 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
   }
 
   /// Convert translated option text back to model values
-  String _translateOptionBackToModel(String optionText, AppLocalizations localizations) {
+  String _translateOptionBackToModel(
+    String optionText,
+    AppLocalizations localizations,
+  ) {
     if (optionText == localizations.trueLabel) {
       return QuestionConstants.defaultTrueOption;
     } else if (optionText == localizations.falseLabel) {

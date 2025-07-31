@@ -139,12 +139,14 @@ class QuizQuestionResultCard extends StatelessWidget {
                             color: isCorrect ? Colors.green : Colors.red,
                           ),
                         const SizedBox(width: 8),
-                        Expanded(child: Text(
-                          QuestionTranslationHelper.translateOption(
-                            optionText, 
-                            AppLocalizations.of(context)!,
+                        Expanded(
+                          child: Text(
+                            QuestionTranslationHelper.translateOption(
+                              optionText,
+                              AppLocalizations.of(context)!,
+                            ),
                           ),
-                        )),
+                        ),
                       ],
                     ),
                   );
