@@ -464,5 +464,43 @@
   "explanationTitle": "Explanation",
   "@explanationTitle": {
     "description": "Title for the explanation section in quiz results"
+  },
+  "imageLabel": "Image",
+  "@imageLabel": {
+    "description": "Label for the image section in question editor"
+  },
+  "changeImage": "Change image",
+  "@changeImage": {
+    "description": "Text for button to change current image"
+  },
+  "removeImage": "Remove image",
+  "@removeImage": {
+    "description": "Text for button to remove current image"
+  },
+  "addImageTap": "Tap to add image",
+  "@addImageTap": {
+    "description": "Instructional text for adding an image"
+  },
+  "imageFormats": "Formats: JPG, PNG, GIF",
+  "@imageFormats": {
+    "description": "Text indicating supported image formats"
+  },
+  "imageLoadError": "Error loading image",
+  "@imageLoadError": {
+    "description": "Error message when image cannot be loaded"
+  },
+  "imagePickError": "Error loading image: {error}",
+  "@imagePickError": {
+    "description": "Error message when image selection fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Invalid file"
+      }
+    }
+  },
+  "tapToZoom": "Tap to zoom",
+  "@tapToZoom": {
+    "description": "Instructional text to indicate image can be zoomed"
   }
 }

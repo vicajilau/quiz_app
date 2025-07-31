@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
@@ -11,6 +13,19 @@ class QuizQuestionResultCard extends StatelessWidget {
     required this.result,
     required this.questionNumber,
   });
+
+  /// Extract image data from base64 string for preview
+  Uint8List? _getImageBytes(String? imageData) {
+    if (imageData == null) return null;
+
+    try {
+      // Extract base64 data after the comma
+      final base64Data = imageData.split(',').last;
+      return base64Decode(base64Data);
+    } catch (e) {
+      return null;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +56,50 @@ class QuizQuestionResultCard extends StatelessWidget {
                   style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 12),
+
+                // Show image if available
+                if (result.question.image != null) ...[
+                  Container(
+                    width: double.infinity,
+                    constraints: const BoxConstraints(maxHeight: 200),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Theme.of(context).dividerColor),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.memory(
+                        _getImageBytes(result.question.image)!,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            height: 100,
+                            alignment: Alignment.center,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.error_outline,
+                                  color: Theme.of(context).colorScheme.error,
+                                  size: 32,
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  AppLocalizations.of(context)!.imageLoadError,
+                                  style: TextStyle(
+                                    color: Theme.of(context).colorScheme.error,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                ],
 
                 // Show all options with indicators
                 ...result.question.options.asMap().entries.map((entry) {

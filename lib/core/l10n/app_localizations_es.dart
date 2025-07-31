@@ -313,4 +313,30 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get explanationTitle => 'Explicación';
+
+  @override
+  String get imageLabel => 'Imagen';
+
+  @override
+  String get changeImage => 'Cambiar imagen';
+
+  @override
+  String get removeImage => 'Quitar imagen';
+
+  @override
+  String get addImageTap => 'Toca para agregar imagen';
+
+  @override
+  String get imageFormats => 'Formatos: JPG, PNG, GIF';
+
+  @override
+  String get imageLoadError => 'Error al cargar la imagen';
+
+  @override
+  String imagePickError(String error) {
+    return 'Error al cargar la imagen: $error';
+  }
+
+  @override
+  String get tapToZoom => 'Toca para ampliar';
 }

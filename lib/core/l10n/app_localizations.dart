@@ -625,6 +625,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Explanation'**
   String get explanationTitle;
+
+  /// Label for the image section in question editor
+  ///
+  /// In en, this message translates to:
+  /// **'Image'**
+  String get imageLabel;
+
+  /// Text for button to change current image
+  ///
+  /// In en, this message translates to:
+  /// **'Change image'**
+  String get changeImage;
+
+  /// Text for button to remove current image
+  ///
+  /// In en, this message translates to:
+  /// **'Remove image'**
+  String get removeImage;
+
+  /// Instructional text for adding an image
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to add image'**
+  String get addImageTap;
+
+  /// Text indicating supported image formats
+  ///
+  /// In en, this message translates to:
+  /// **'Formats: JPG, PNG, GIF'**
+  String get imageFormats;
+
+  /// Error message when image cannot be loaded
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading image'**
+  String get imageLoadError;
+
+  /// Error message when image selection fails
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading image: {error}'**
+  String imagePickError(String error);
+
+  /// Instructional text to indicate image can be zoomed
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to zoom'**
+  String get tapToZoom;
 }
 
 class _AppLocalizationsDelegate

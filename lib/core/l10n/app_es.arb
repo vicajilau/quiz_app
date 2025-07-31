@@ -395,5 +395,43 @@
   "explanationTitle": "Explicación",
   "@explanationTitle": {
     "description": "Título para la sección de explicación en los resultados del quiz"
+  },
+  "imageLabel": "Imagen",
+  "@imageLabel": {
+    "description": "Etiqueta para la sección de imagen en el editor de preguntas"
+  },
+  "changeImage": "Cambiar imagen",
+  "@changeImage": {
+    "description": "Texto del botón para cambiar la imagen actual"
+  },
+  "removeImage": "Quitar imagen",
+  "@removeImage": {
+    "description": "Texto del botón para quitar la imagen actual"
+  },
+  "addImageTap": "Toca para agregar imagen",
+  "@addImageTap": {
+    "description": "Texto instructivo para agregar una imagen"
+  },
+  "imageFormats": "Formatos: JPG, PNG, GIF",
+  "@imageFormats": {
+    "description": "Texto que indica los formatos de imagen soportados"
+  },
+  "imageLoadError": "Error al cargar la imagen",
+  "@imageLoadError": {
+    "description": "Mensaje de error cuando no se puede cargar una imagen"
+  },
+  "imagePickError": "Error al cargar la imagen: {error}",
+  "@imagePickError": {
+    "description": "Mensaje de error cuando falla la selección de imagen",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Archivo no válido"
+      }
+    }
+  },
+  "tapToZoom": "Toca para ampliar",
+  "@tapToZoom": {
+    "description": "Texto instructivo para indicar que se puede ampliar la imagen"
   }
 }
