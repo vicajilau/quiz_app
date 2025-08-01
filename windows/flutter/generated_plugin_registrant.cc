@@ -7,11 +7,8 @@
 #include "generated_plugin_registrant.h"
 
 #include <desktop_drop/desktop_drop_plugin.h>
-#include <pasteboard/pasteboard_plugin.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
   DesktopDropPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("DesktopDropPlugin"));
-  PasteboardPluginRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("PasteboardPlugin"));
 }
