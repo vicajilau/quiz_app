@@ -3,16 +3,16 @@ name: Deploy Flutter Web to GitHub Pages
 on:
   push:
     tags:
-      - "*" # Se ejecuta cuando se crea cualquier tag
+      - "*"
     branches:
-      - master # También se ejecuta en push directo a master
+      - main
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Solo permite una ejecución concurrente de este workflow
+
 concurrency:
   group: "pages"
   cancel-in-progress: false
