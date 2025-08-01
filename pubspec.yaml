@@ -1,5 +1,5 @@
 name: quiz_app
-description: "A new Flutter project."
+description: "Quiz App - An interactive quiz application built with Flutter."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
@@ -107,34 +107,34 @@ flutter_launcher_icons:
   android: "launcher_icon"
   adaptive_icon_background: "#FFFFFF"
   adaptive_icon_foreground: "images/QUIZ.png"
-  
+
   # iOS
   ios: true
   remove_alpha_ios: true
-  
+
   # Windows
   windows:
     generate: true
     image_path: "images/QUIZ.png"
     icon_size: 48
-  
+
   # macOS
   macos:
     generate: true
     image_path: "images/QUIZ_macos.png"
-  
+
   # Linux
   linux:
     generate: true
     image_path: "images/QUIZ.png"
-  
+
   # Web
   web:
     generate: true
     image_path: "images/QUIZ.png"
     background_color: "#FFFFFF"
     theme_color: "#000000"
-  
+
   # Imagen base
   image_path: "images/QUIZ.png"
   min_sdk_android: 21

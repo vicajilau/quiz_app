@@ -1,6 +1,6 @@
 {
-    "name": "quiz_app",
-    "short_name": "quiz_app",
+    "name": "Quiz App",
+    "short_name": "Quiz App",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#FFFFFF",
