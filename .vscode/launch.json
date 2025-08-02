@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "quiz_app",
+            "name": "Quiz App",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "quiz_app (profile mode)",
+            "name": "Quiz App (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "quiz_app (release mode)",
+            "name": "Quiz App (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
