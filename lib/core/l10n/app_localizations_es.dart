@@ -353,4 +353,39 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get falseLabel => 'Falso';
+
+  @override
+  String get addQuestion => 'Agregar Pregunta';
+
+  @override
+  String get editQuestion => 'Editar Pregunta';
+
+  @override
+  String get questionText => 'Texto de la Pregunta';
+
+  @override
+  String get questionType => 'Tipo de Pregunta';
+
+  @override
+  String get addOption => 'Agregar Opción';
+
+  @override
+  String get optionsLabel => 'Opciones';
+
+  @override
+  String get optionLabel => 'Opción';
+
+  @override
+  String get questionTextRequired => 'El texto de la pregunta es obligatorio';
+
+  @override
+  String get atLeastOneOptionRequired => 'Al menos una opción debe tener texto';
+
+  @override
+  String get atLeastOneCorrectAnswerRequired =>
+      'Debe seleccionar al menos una respuesta correcta';
+
+  @override
+  String get onlyOneCorrectAnswerAllowed =>
+      'Solo se permite una respuesta correcta para este tipo de pregunta';
 }

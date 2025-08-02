@@ -105,6 +105,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
   /// Validate the input fields.
   bool _validateForm() {
     bool isValid = true;
+    final localizations = AppLocalizations.of(context)!;
 
     // Reset all error messages
     setState(() {
@@ -115,7 +116,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
     // Validate question text
     if (_questionTextController.text.trim().isEmpty) {
       setState(() {
-        _questionTextError = "Question text is required";
+        _questionTextError = localizations.questionTextRequired;
       });
       isValid = false;
     }
@@ -128,7 +129,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
       );
       if (allOptionsEmpty) {
         setState(() {
-          _optionsError = "At least one option must have text";
+          _optionsError = localizations.atLeastOneOptionRequired;
         });
         isValid = false;
       }
@@ -137,7 +138,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
       bool hasCorrectAnswer = _correctAnswers.any((answer) => answer);
       if (!hasCorrectAnswer) {
         setState(() {
-          _optionsError = "At least one correct answer must be selected";
+          _optionsError = localizations.atLeastOneCorrectAnswerRequired;
         });
         isValid = false;
       }
@@ -148,8 +149,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
         int correctCount = _correctAnswers.where((answer) => answer).length;
         if (correctCount > 1) {
           setState(() {
-            _optionsError =
-                "Only one correct answer is allowed for this question type";
+            _optionsError = localizations.onlyOneCorrectAnswerAllowed;
           });
           isValid = false;
         }
@@ -212,9 +212,12 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     return AlertDialog(
       title: Text(
-        widget.question == null ? "Add Question" : "Edit Question",
+        widget.question == null
+            ? localizations.addQuestion
+            : localizations.editQuestion,
       ), // Title of the dialog.
       content: SingleChildScrollView(
         child: Column(
@@ -224,7 +227,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
             TextFormField(
               controller: _questionTextController,
               decoration: InputDecoration(
-                labelText: "Question Text",
+                labelText: localizations.questionText,
                 errorText: _questionTextError,
                 errorMaxLines: 2,
                 border: const OutlineInputBorder(),
@@ -242,7 +245,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
             DropdownButtonFormField<QuestionType>(
               value: _selectedType,
               decoration: InputDecoration(
-                labelText: 'Tipo de pregunta',
+                labelText: localizations.questionType,
                 border: const OutlineInputBorder(),
                 prefixIcon: Icon(_getQuestionTypeIcon(_selectedType)),
               ),
@@ -386,7 +389,10 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
 
             // Options section (only for non-essay questions)
             if (_selectedType != QuestionType.essay) ...[
-              Text("Options", style: Theme.of(context).textTheme.titleMedium),
+              Text(
+                localizations.optionsLabel,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
               if (_optionsError != null)
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
@@ -438,7 +444,8 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
                         child: TextFormField(
                           controller: _optionControllers[index],
                           decoration: InputDecoration(
-                            labelText: "Option ${index + 1}",
+                            labelText:
+                                "${localizations.optionLabel} ${index + 1}",
                             border: const OutlineInputBorder(),
                           ),
                           onChanged: (value) {
@@ -467,7 +474,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
                 TextButton.icon(
                   onPressed: _addOption,
                   icon: const Icon(Icons.add),
-                  label: const Text("Add Option"),
+                  label: Text(localizations.addOption),
                 ),
 
               const SizedBox(height: 16),

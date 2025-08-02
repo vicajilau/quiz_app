@@ -516,5 +516,49 @@
   "falseLabel": "False",
   "@falseLabel": {
     "description": "Label for false option in true/false questions"
+  },
+  "addQuestion": "Add Question",
+  "@addQuestion": {
+    "description": "Title for adding a new question dialog"
+  },
+  "editQuestion": "Edit Question",
+  "@editQuestion": {
+    "description": "Title for editing an existing question dialog"
+  },
+  "questionText": "Question Text",
+  "@questionText": {
+    "description": "Label for question text input field"
+  },
+  "questionType": "Question Type",
+  "@questionType": {
+    "description": "Label for question type dropdown"
+  },
+  "addOption": "Add Option",
+  "@addOption": {
+    "description": "Label for add option button"
+  },
+  "optionsLabel": "Options",
+  "@optionsLabel": {
+    "description": "Label for options section"
+  },
+  "optionLabel": "Option",
+  "@optionLabel": {
+    "description": "Label for individual option input field"
+  },
+  "questionTextRequired": "Question text is required",
+  "@questionTextRequired": {
+    "description": "Error message when question text is empty"
+  },
+  "atLeastOneOptionRequired": "At least one option must have text",
+  "@atLeastOneOptionRequired": {
+    "description": "Error message when all options are empty"
+  },
+  "atLeastOneCorrectAnswerRequired": "At least one correct answer must be selected",
+  "@atLeastOneCorrectAnswerRequired": {
+    "description": "Error message when no correct answer is selected"
+  },
+  "onlyOneCorrectAnswerAllowed": "Only one correct answer is allowed for this question type",
+  "@onlyOneCorrectAnswerAllowed": {
+    "description": "Error message when multiple correct answers are selected for single choice questions"
   }
 }

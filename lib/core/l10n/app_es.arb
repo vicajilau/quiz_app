@@ -456,5 +456,49 @@
   "falseLabel": "Falso",
   "@falseLabel": {
     "description": "Etiqueta para la opción falso en preguntas de verdadero/falso"
+  },
+  "addQuestion": "Agregar Pregunta",
+  "@addQuestion": {
+    "description": "Título para el diálogo de agregar nueva pregunta"
+  },
+  "editQuestion": "Editar Pregunta",
+  "@editQuestion": {
+    "description": "Título para el diálogo de editar pregunta existente"
+  },
+  "questionText": "Texto de la Pregunta",
+  "@questionText": {
+    "description": "Etiqueta para el campo de entrada del texto de la pregunta"
+  },
+  "questionType": "Tipo de Pregunta",
+  "@questionType": {
+    "description": "Etiqueta para el desplegable del tipo de pregunta"
+  },
+  "addOption": "Agregar Opción",
+  "@addOption": {
+    "description": "Etiqueta para el botón de agregar opción"
+  },
+  "optionsLabel": "Opciones",
+  "@optionsLabel": {
+    "description": "Etiqueta para la sección de opciones"
+  },
+  "optionLabel": "Opción",
+  "@optionLabel": {
+    "description": "Etiqueta para el campo de entrada de opción individual"
+  },
+  "questionTextRequired": "El texto de la pregunta es obligatorio",
+  "@questionTextRequired": {
+    "description": "Mensaje de error cuando el texto de la pregunta está vacío"
+  },
+  "atLeastOneOptionRequired": "Al menos una opción debe tener texto",
+  "@atLeastOneOptionRequired": {
+    "description": "Mensaje de error cuando todas las opciones están vacías"
+  },
+  "atLeastOneCorrectAnswerRequired": "Debe seleccionar al menos una respuesta correcta",
+  "@atLeastOneCorrectAnswerRequired": {
+    "description": "Mensaje de error cuando no se selecciona ninguna respuesta correcta"
+  },
+  "onlyOneCorrectAnswerAllowed": "Solo se permite una respuesta correcta para este tipo de pregunta",
+  "@onlyOneCorrectAnswerAllowed": {
+    "description": "Mensaje de error cuando se seleccionan múltiples respuestas correctas para preguntas de opción única"
   }
 }

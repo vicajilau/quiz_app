@@ -349,4 +349,39 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get falseLabel => 'False';
+
+  @override
+  String get addQuestion => 'Add Question';
+
+  @override
+  String get editQuestion => 'Edit Question';
+
+  @override
+  String get questionText => 'Question Text';
+
+  @override
+  String get questionType => 'Question Type';
+
+  @override
+  String get addOption => 'Add Option';
+
+  @override
+  String get optionsLabel => 'Options';
+
+  @override
+  String get optionLabel => 'Option';
+
+  @override
+  String get questionTextRequired => 'Question text is required';
+
+  @override
+  String get atLeastOneOptionRequired => 'At least one option must have text';
+
+  @override
+  String get atLeastOneCorrectAnswerRequired =>
+      'At least one correct answer must be selected';
+
+  @override
+  String get onlyOneCorrectAnswerAllowed =>
+      'Only one correct answer is allowed for this question type';
 }

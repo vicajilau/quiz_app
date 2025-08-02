@@ -703,6 +703,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'False'**
   String get falseLabel;
+
+  /// Title for adding a new question dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Add Question'**
+  String get addQuestion;
+
+  /// Title for editing an existing question dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Question'**
+  String get editQuestion;
+
+  /// Label for question text input field
+  ///
+  /// In en, this message translates to:
+  /// **'Question Text'**
+  String get questionText;
+
+  /// Label for question type dropdown
+  ///
+  /// In en, this message translates to:
+  /// **'Question Type'**
+  String get questionType;
+
+  /// Label for add option button
+  ///
+  /// In en, this message translates to:
+  /// **'Add Option'**
+  String get addOption;
+
+  /// Label for options section
+  ///
+  /// In en, this message translates to:
+  /// **'Options'**
+  String get optionsLabel;
+
+  /// Label for individual option input field
+  ///
+  /// In en, this message translates to:
+  /// **'Option'**
+  String get optionLabel;
+
+  /// Error message when question text is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Question text is required'**
+  String get questionTextRequired;
+
+  /// Error message when all options are empty
+  ///
+  /// In en, this message translates to:
+  /// **'At least one option must have text'**
+  String get atLeastOneOptionRequired;
+
+  /// Error message when no correct answer is selected
+  ///
+  /// In en, this message translates to:
+  /// **'At least one correct answer must be selected'**
+  String get atLeastOneCorrectAnswerRequired;
+
+  /// Error message when multiple correct answers are selected for single choice questions
+  ///
+  /// In en, this message translates to:
+  /// **'Only one correct answer is allowed for this question type'**
+  String get onlyOneCorrectAnswerAllowed;
 }
 
 class _AppLocalizationsDelegate
