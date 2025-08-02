@@ -384,4 +384,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get onlyOneCorrectAnswerAllowed =>
       'Only one correct answer is allowed for this question type';
+
+  @override
+  String get removeOption => 'Remove option';
 }

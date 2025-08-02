@@ -500,5 +500,9 @@
   "onlyOneCorrectAnswerAllowed": "Solo se permite una respuesta correcta para este tipo de pregunta",
   "@onlyOneCorrectAnswerAllowed": {
     "description": "Mensaje de error cuando se seleccionan múltiples respuestas correctas para preguntas de opción única"
+  },
+  "removeOption": "Eliminar opción",
+  "@removeOption": {
+    "description": "Tooltip para el botón de eliminar opción"
   }
 }

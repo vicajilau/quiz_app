@@ -769,6 +769,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Only one correct answer is allowed for this question type'**
   String get onlyOneCorrectAnswerAllowed;
+
+  /// Tooltip for remove option button
+  ///
+  /// In en, this message translates to:
+  /// **'Remove option'**
+  String get removeOption;
 }
 
 class _AppLocalizationsDelegate

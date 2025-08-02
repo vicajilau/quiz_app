@@ -459,6 +459,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
                       if (_selectedType != QuestionType.trueFalse)
                         IconButton(
                           icon: const Icon(Icons.remove_circle_outline),
+                          tooltip: localizations.removeOption,
                           onPressed: _optionControllers.length > 2
                               ? () => _removeOption(index)
                               : null,

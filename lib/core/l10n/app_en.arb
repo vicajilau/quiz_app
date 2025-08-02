@@ -560,5 +560,9 @@
   "onlyOneCorrectAnswerAllowed": "Only one correct answer is allowed for this question type",
   "@onlyOneCorrectAnswerAllowed": {
     "description": "Error message when multiple correct answers are selected for single choice questions"
+  },
+  "removeOption": "Remove option",
+  "@removeOption": {
+    "description": "Tooltip for remove option button"
   }
 }
