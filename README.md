@@ -1,9 +1,11 @@
 <p align="center">
   <img src=".github/assets/quiz.png" alt="Quiz App logo" width="128" height="128">
-<h1 align="center">Quiz App</h1>
 
 <p align="center">
   <img src="https://github.com/vicajilau/quiz_app/actions/workflows/flutter_workflow.yml/badge.svg" alt="CI Status">
+</p>
+<p align="center">
+  <img src="https://github.com/vicajilau/quiz_app/actions/workflows/deploy-web.yml/badge.svg" alt="CD Status">
 </p>
 
 A cross-platform Flutter application that provides an interactive and engaging quiz experience with customizable questions, real-time scoring, and beautiful animations.
