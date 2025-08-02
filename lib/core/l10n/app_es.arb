@@ -407,6 +407,70 @@
   "@explanationTooltip": {
     "description": "Texto del tooltip para el badge indicador de explicación"
   },
+  "aiPrompt": "Eres un asistente experto en ayudar a estudiantes a comprender preguntas tipo test. No respondas a nada que no esté relacionado con esta pregunta. Responde en el idioma que te pregunten.",
+  "@aiPrompt": {
+    "description": "Prompt base para el asistente de IA"
+  },
+  "questionLabel": "Pregunta",
+  "@questionLabel": {
+    "description": "Etiqueta para pregunta en diálogo de IA"
+  },
+  "optionsLabel": "Opciones",
+  "@optionsLabel": {
+    "description": "Etiqueta para opciones en diálogo de IA"
+  },
+  "explanationLabel": "Explicación",
+  "@explanationLabel": {
+    "description": "Etiqueta para explicación en diálogo de IA"
+  },
+  "studentComment": "Comentario del estudiante",
+  "@studentComment": {
+    "description": "Etiqueta para comentario del estudiante en diálogo de IA"
+  },
+  "aiAssistantTitle": "Asistente de Estudio IA",
+  "@aiAssistantTitle": {
+    "description": "Título para diálogo del asistente de IA"
+  },
+  "questionContext": "Contexto de la Pregunta",
+  "@questionContext": {
+    "description": "Etiqueta para sección de contexto de pregunta"
+  },
+  "aiAssistant": "Asistente IA",
+  "@aiAssistant": {
+    "description": "Etiqueta del asistente IA en chat"
+  },
+  "aiThinking": "La IA está pensando...",
+  "@aiThinking": {
+    "description": "Mensaje de carga mientras la IA procesa"
+  },
+  "askAIHint": "Haz tu pregunta sobre este tema...",
+  "@askAIHint": {
+    "description": "Texto de ayuda para input de pregunta a IA"
+  },
+  "aiPlaceholderResponse": "Esta es una respuesta de ejemplo. En una implementación real, esto se conectaría a un servicio de IA para proporcionar explicaciones útiles sobre la pregunta.",
+  "@aiPlaceholderResponse": {
+    "description": "Respuesta de ejemplo de IA para demo"
+  },
+  "aiErrorResponse": "Lo siento, hubo un error al procesar tu pregunta. Por favor, inténtalo de nuevo.",
+  "@aiErrorResponse": {
+    "description": "Mensaje de error cuando falla la petición a IA"
+  },
+  "aiButtonTooltip": "Asistente de Estudio IA",
+  "@aiButtonTooltip": {
+    "description": "Tooltip para botón del asistente de IA"
+  },
+  "aiButtonText": "IA",
+  "@aiButtonText": {
+    "description": "Texto para botón del asistente de IA"
+  },
+  "aiAssistantSettingsTitle": "Asistente de Estudio IA (Preview)",
+  "@aiAssistantSettingsTitle": {
+    "description": "Título para sección de configuración del asistente de IA"
+  },
+  "aiAssistantSettingsDescription": "Habilitar o deshabilitar el asistente de IA para las preguntas",
+  "@aiAssistantSettingsDescription": {
+    "description": "Descripción para configuración del asistente de IA"
+  },
   "deleteAction": "Eliminar",
   "@deleteAction": {
     "description": "Texto de acción eliminar mostrado al deslizar para eliminar"

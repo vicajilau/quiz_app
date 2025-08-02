@@ -16,6 +16,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
   bool _isLoading = true;
   bool _examTimeEnabled = false;
   int _examTimeMinutes = 60;
+  bool _aiAssistantEnabled = true;
 
   @override
   void initState() {
@@ -29,11 +30,14 @@ class _SettingsDialogState extends State<SettingsDialog> {
         .getExamTimeEnabled();
     final examTimeMinutes = await ConfigurationService.instance
         .getExamTimeMinutes();
+    final aiAssistantEnabled = await ConfigurationService.instance
+        .getAIAssistantEnabled();
 
     setState(() {
       _selectedOrder = currentOrder;
       _examTimeEnabled = examTimeEnabled;
       _examTimeMinutes = examTimeMinutes;
+      _aiAssistantEnabled = aiAssistantEnabled;
       _isLoading = false;
     });
   }
@@ -42,6 +46,9 @@ class _SettingsDialogState extends State<SettingsDialog> {
     await ConfigurationService.instance.saveQuestionOrder(_selectedOrder);
     await ConfigurationService.instance.saveExamTimeEnabled(_examTimeEnabled);
     await ConfigurationService.instance.saveExamTimeMinutes(_examTimeMinutes);
+    await ConfigurationService.instance.saveAIAssistantEnabled(
+      _aiAssistantEnabled,
+    );
 
     if (mounted) {
       context.pop(_selectedOrder);
@@ -97,8 +104,12 @@ class _SettingsDialogState extends State<SettingsDialog> {
                   const SizedBox(height: 16),
 
                   SwitchListTile(
-                    title: Text(AppLocalizations.of(context)!.examTimeLimitTitle),
-                    subtitle: Text(AppLocalizations.of(context)!.examTimeLimitDescription),
+                    title: Text(
+                      AppLocalizations.of(context)!.examTimeLimitTitle,
+                    ),
+                    subtitle: Text(
+                      AppLocalizations.of(context)!.examTimeLimitDescription,
+                    ),
                     value: _examTimeEnabled,
                     onChanged: (bool value) {
                       setState(() {
@@ -127,6 +138,40 @@ class _SettingsDialogState extends State<SettingsDialog> {
                       },
                     ),
                   ],
+
+                  // AI Assistant Section
+                  const SizedBox(height: 24),
+                  const Divider(),
+                  const SizedBox(height: 16),
+
+                  SwitchListTile(
+                    title: Row(
+                      children: [
+                        Icon(
+                          Icons.auto_awesome,
+                          size: 20,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          AppLocalizations.of(
+                            context,
+                          )!.aiAssistantSettingsTitle,
+                        ),
+                      ],
+                    ),
+                    subtitle: Text(
+                      AppLocalizations.of(
+                        context,
+                      )!.aiAssistantSettingsDescription,
+                    ),
+                    value: _aiAssistantEnabled,
+                    onChanged: (bool value) {
+                      setState(() {
+                        _aiAssistantEnabled = value;
+                      });
+                    },
+                  ),
 
                   // Future settings sections can be added here
                 ],

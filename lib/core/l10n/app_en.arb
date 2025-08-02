@@ -467,6 +467,70 @@
   "@explanationTooltip": {
     "description": "Tooltip text for the explanation indicator badge"
   },
+  "aiPrompt": "You are an expert assistant helping students understand test questions. Do not respond to anything unrelated to this question. Respond in the language you are asked in.",
+  "@aiPrompt": {
+    "description": "Base prompt for AI assistant"
+  },
+  "questionLabel": "Question",
+  "@questionLabel": {
+    "description": "Label for question in AI dialog"
+  },
+  "optionsLabel": "Options",
+  "@optionsLabel": {
+    "description": "Label for options in AI dialog"
+  },
+  "explanationLabel": "Explanation",
+  "@explanationLabel": {
+    "description": "Label for explanation in AI dialog"
+  },
+  "studentComment": "Student comment",
+  "@studentComment": {
+    "description": "Label for student comment in AI dialog"
+  },
+  "aiAssistantTitle": "AI Study Assistant",
+  "@aiAssistantTitle": {
+    "description": "Title for AI assistant dialog"
+  },
+  "questionContext": "Question Context",
+  "@questionContext": {
+    "description": "Label for question context section"
+  },
+  "aiAssistant": "AI Assistant",
+  "@aiAssistant": {
+    "description": "AI assistant label in chat"
+  },
+  "aiThinking": "AI is thinking...",
+  "@aiThinking": {
+    "description": "Loading message while AI processes"
+  },
+  "askAIHint": "Ask your question about this topic...",
+  "@askAIHint": {
+    "description": "Hint text for AI question input"
+  },
+  "aiPlaceholderResponse": "This is a placeholder response. In a real implementation, this would connect to an AI service to provide helpful explanations about the question.",
+  "@aiPlaceholderResponse": {
+    "description": "Placeholder AI response for demo"
+  },
+  "aiErrorResponse": "Sorry, there was an error processing your question. Please try again.",
+  "@aiErrorResponse": {
+    "description": "Error message when AI request fails"
+  },
+  "aiButtonTooltip": "AI Study Assistant",
+  "@aiButtonTooltip": {
+    "description": "Tooltip for AI assistant button"
+  },
+  "aiButtonText": "AI",
+  "@aiButtonText": {
+    "description": "Text for AI assistant button"
+  },
+  "aiAssistantSettingsTitle": "AI Study Assistant (Preview)",
+  "@aiAssistantSettingsTitle": {
+    "description": "Title for AI assistant settings section"
+  },
+  "aiAssistantSettingsDescription": "Enable or disable the AI study assistant for questions",
+  "@aiAssistantSettingsDescription": {
+    "description": "Description for AI assistant settings"
+  },
   "deleteAction": "Delete",
   "@deleteAction": {
     "description": "Delete action text shown when swiping to delete"

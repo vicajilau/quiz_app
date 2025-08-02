@@ -638,17 +638,107 @@ abstract class AppLocalizations {
   /// **'This question has an explanation'**
   String get explanationTooltip;
 
-  /// Delete action text shown when swiping to delete
+  /// Base prompt for AI assistant
   ///
   /// In en, this message translates to:
-  /// **'Delete'**
-  String get deleteAction;
+  /// **'You are an expert assistant helping students understand test questions. Do not respond to anything unrelated to this question. Respond in the language you are asked in.'**
+  String get aiPrompt;
+
+  /// Label for question in AI dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Question'**
+  String get questionLabel;
+
+  /// Label for options section
+  ///
+  /// In en, this message translates to:
+  /// **'Options'**
+  String get optionsLabel;
 
   /// Label for the explanation input field
   ///
   /// In en, this message translates to:
   /// **'Explanation (optional)'**
   String get explanationLabel;
+
+  /// Label for student comment in AI dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Student comment'**
+  String get studentComment;
+
+  /// Title for AI assistant dialog
+  ///
+  /// In en, this message translates to:
+  /// **'AI Study Assistant'**
+  String get aiAssistantTitle;
+
+  /// Label for question context section
+  ///
+  /// In en, this message translates to:
+  /// **'Question Context'**
+  String get questionContext;
+
+  /// AI assistant label in chat
+  ///
+  /// In en, this message translates to:
+  /// **'AI Assistant'**
+  String get aiAssistant;
+
+  /// Loading message while AI processes
+  ///
+  /// In en, this message translates to:
+  /// **'AI is thinking...'**
+  String get aiThinking;
+
+  /// Hint text for AI question input
+  ///
+  /// In en, this message translates to:
+  /// **'Ask your question about this topic...'**
+  String get askAIHint;
+
+  /// Placeholder AI response for demo
+  ///
+  /// In en, this message translates to:
+  /// **'This is a placeholder response. In a real implementation, this would connect to an AI service to provide helpful explanations about the question.'**
+  String get aiPlaceholderResponse;
+
+  /// Error message when AI request fails
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, there was an error processing your question. Please try again.'**
+  String get aiErrorResponse;
+
+  /// Tooltip for AI assistant button
+  ///
+  /// In en, this message translates to:
+  /// **'AI Study Assistant'**
+  String get aiButtonTooltip;
+
+  /// Text for AI assistant button
+  ///
+  /// In en, this message translates to:
+  /// **'AI'**
+  String get aiButtonText;
+
+  /// Title for AI assistant settings section
+  ///
+  /// In en, this message translates to:
+  /// **'AI Study Assistant (Preview)'**
+  String get aiAssistantSettingsTitle;
+
+  /// Description for AI assistant settings
+  ///
+  /// In en, this message translates to:
+  /// **'Enable or disable the AI study assistant for questions'**
+  String get aiAssistantSettingsDescription;
+
+  /// Delete action text shown when swiping to delete
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get deleteAction;
 
   /// Hint text for the explanation input field
   ///
@@ -751,12 +841,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add Option'**
   String get addOption;
-
-  /// Label for options section
-  ///
-  /// In en, this message translates to:
-  /// **'Options'**
-  String get optionsLabel;
 
   /// Label for individual option input field
   ///

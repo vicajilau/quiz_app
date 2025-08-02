@@ -4,6 +4,8 @@ import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:quiz_app/presentation/screens/dialogs/add_edit_question_dialog.dart';
+import 'package:quiz_app/presentation/screens/dialogs/ai_question_dialog.dart';
+import 'package:quiz_app/data/services/configuration_service.dart';
 
 import '../../../../../core/l10n/app_localizations.dart';
 
@@ -21,6 +23,22 @@ class QuestionListWidget extends StatefulWidget {
 }
 
 class _QuestionListWidgetState extends State<QuestionListWidget> {
+  bool _aiAssistantEnabled = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAISettings();
+  }
+
+  Future<void> _loadAISettings() async {
+    final aiEnabled = await ConfigurationService.instance
+        .getAIAssistantEnabled();
+    setState(() {
+      _aiAssistantEnabled = aiEnabled;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ReorderableListView(
@@ -35,6 +53,13 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
         );
       }),
     );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Recargar configuración cuando el widget se actualiza
+    _loadAISettings();
   }
 
   Widget _buildQuestionCard(Question question, int index) {
@@ -217,6 +242,59 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                                 ),
                               ),
                             ],
+                            const SizedBox(width: 8),
+                            if (_aiAssistantEnabled)
+                              GestureDetector(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) =>
+                                        AIQuestionDialog(question: question),
+                                  );
+                                },
+                                child: Tooltip(
+                                  message: AppLocalizations.of(
+                                    context,
+                                  )!.aiButtonTooltip,
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                      vertical: 2,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.primaryContainer,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          AppLocalizations.of(
+                                            context,
+                                          )!.aiButtonText,
+                                          style: TextStyle(
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.onPrimaryContainer,
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 4),
+                                        Icon(
+                                          Icons.auto_awesome,
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.onPrimaryContainer,
+                                          size: 12,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
                           ],
                         ),
                       ],

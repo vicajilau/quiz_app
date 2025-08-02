@@ -321,10 +321,59 @@ class AppLocalizationsEn extends AppLocalizations {
   String get explanationTooltip => 'This question has an explanation';
 
   @override
-  String get deleteAction => 'Delete';
+  String get aiPrompt =>
+      'You are an expert assistant helping students understand test questions. Do not respond to anything unrelated to this question. Respond in the language you are asked in.';
+
+  @override
+  String get questionLabel => 'Question';
+
+  @override
+  String get optionsLabel => 'Options';
 
   @override
   String get explanationLabel => 'Explanation (optional)';
+
+  @override
+  String get studentComment => 'Student comment';
+
+  @override
+  String get aiAssistantTitle => 'AI Study Assistant';
+
+  @override
+  String get questionContext => 'Question Context';
+
+  @override
+  String get aiAssistant => 'AI Assistant';
+
+  @override
+  String get aiThinking => 'AI is thinking...';
+
+  @override
+  String get askAIHint => 'Ask your question about this topic...';
+
+  @override
+  String get aiPlaceholderResponse =>
+      'This is a placeholder response. In a real implementation, this would connect to an AI service to provide helpful explanations about the question.';
+
+  @override
+  String get aiErrorResponse =>
+      'Sorry, there was an error processing your question. Please try again.';
+
+  @override
+  String get aiButtonTooltip => 'AI Study Assistant';
+
+  @override
+  String get aiButtonText => 'AI';
+
+  @override
+  String get aiAssistantSettingsTitle => 'AI Study Assistant (Preview)';
+
+  @override
+  String get aiAssistantSettingsDescription =>
+      'Enable or disable the AI study assistant for questions';
+
+  @override
+  String get deleteAction => 'Delete';
 
   @override
   String get explanationHint =>
@@ -379,9 +428,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get addOption => 'Add Option';
-
-  @override
-  String get optionsLabel => 'Options';
 
   @override
   String get optionLabel => 'Option';

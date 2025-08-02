@@ -326,10 +326,59 @@ class AppLocalizationsEs extends AppLocalizations {
   String get explanationTooltip => 'Esta pregunta tiene una explicación';
 
   @override
-  String get deleteAction => 'Eliminar';
+  String get aiPrompt =>
+      'Eres un asistente experto en ayudar a estudiantes a comprender preguntas tipo test. No respondas a nada que no esté relacionado con esta pregunta. Responde en el idioma que te pregunten.';
+
+  @override
+  String get questionLabel => 'Pregunta';
+
+  @override
+  String get optionsLabel => 'Opciones';
 
   @override
   String get explanationLabel => 'Explicación (opcional)';
+
+  @override
+  String get studentComment => 'Comentario del estudiante';
+
+  @override
+  String get aiAssistantTitle => 'Asistente de Estudio IA';
+
+  @override
+  String get questionContext => 'Contexto de la Pregunta';
+
+  @override
+  String get aiAssistant => 'Asistente IA';
+
+  @override
+  String get aiThinking => 'La IA está pensando...';
+
+  @override
+  String get askAIHint => 'Haz tu pregunta sobre este tema...';
+
+  @override
+  String get aiPlaceholderResponse =>
+      'Esta es una respuesta de ejemplo. En una implementación real, esto se conectaría a un servicio de IA para proporcionar explicaciones útiles sobre la pregunta.';
+
+  @override
+  String get aiErrorResponse =>
+      'Lo siento, hubo un error al procesar tu pregunta. Por favor, inténtalo de nuevo.';
+
+  @override
+  String get aiButtonTooltip => 'Asistente de Estudio IA';
+
+  @override
+  String get aiButtonText => 'IA';
+
+  @override
+  String get aiAssistantSettingsTitle => 'Asistente de Estudio IA (Preview)';
+
+  @override
+  String get aiAssistantSettingsDescription =>
+      'Habilitar o deshabilitar el asistente de IA para las preguntas';
+
+  @override
+  String get deleteAction => 'Eliminar';
 
   @override
   String get explanationHint =>
@@ -384,9 +433,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get addOption => 'Agregar Opción';
-
-  @override
-  String get optionsLabel => 'Opciones';
 
   @override
   String get optionLabel => 'Opción';

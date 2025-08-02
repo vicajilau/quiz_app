@@ -5,6 +5,7 @@ class ConfigurationService {
   static const String _questionOrderKey = 'question_order';
   static const String _examTimeEnabledKey = 'exam_time_enabled';
   static const String _examTimeMinutesKey = 'exam_time_minutes';
+  static const String _aiAssistantEnabledKey = 'ai_assistant_enabled';
 
   static ConfigurationService? _instance;
   static ConfigurationService get instance =>
@@ -52,5 +53,17 @@ class ConfigurationService {
   Future<int> getExamTimeMinutes() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getInt(_examTimeMinutesKey) ?? 60;
+  }
+
+  /// Guarda si el asistente de IA está habilitado
+  Future<void> saveAIAssistantEnabled(bool enabled) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_aiAssistantEnabledKey, enabled);
+  }
+
+  /// Obtiene si el asistente de IA está habilitado, por defecto es true
+  Future<bool> getAIAssistantEnabled() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_aiAssistantEnabledKey) ?? true;
   }
 }
