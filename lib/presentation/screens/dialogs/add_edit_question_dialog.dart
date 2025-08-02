@@ -414,31 +414,41 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
                     children: [
                       // Use different input types based on question type
                       if (_selectedType == QuestionType.multipleChoice)
-                        Checkbox(
-                          value: _correctAnswers[index],
-                          onChanged: (value) {
-                            setState(() {
-                              _correctAnswers[index] = value ?? false;
-                              _optionsError = null;
-                            });
-                          },
+                        Tooltip(
+                          message: localizations.selectCorrectAnswers,
+                          child: Checkbox(
+                            value: _correctAnswers[index],
+                            onChanged: (value) {
+                              setState(() {
+                                _correctAnswers[index] = value ?? false;
+                                _optionsError = null;
+                              });
+                            },
+                          ),
                         )
                       else if (_selectedType == QuestionType.singleChoice ||
                           _selectedType == QuestionType.trueFalse)
-                        Radio<int>(
-                          value: index,
-                          groupValue: _correctAnswers.indexWhere(
-                            (element) => element,
+                        Tooltip(
+                          message: localizations.selectCorrectAnswer,
+                          child: Radio<int>(
+                            value: index,
+                            groupValue: _correctAnswers.indexWhere(
+                              (element) => element,
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                // Reset all to false, then set selected to true
+                                for (
+                                  int i = 0;
+                                  i < _correctAnswers.length;
+                                  i++
+                                ) {
+                                  _correctAnswers[i] = (i == value);
+                                }
+                                _optionsError = null;
+                              });
+                            },
                           ),
-                          onChanged: (value) {
-                            setState(() {
-                              // Reset all to false, then set selected to true
-                              for (int i = 0; i < _correctAnswers.length; i++) {
-                                _correctAnswers[i] = (i == value);
-                              }
-                              _optionsError = null;
-                            });
-                          },
                         ),
                       Expanded(
                         child: TextFormField(

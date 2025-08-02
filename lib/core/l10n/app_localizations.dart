@@ -775,6 +775,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Remove option'**
   String get removeOption;
+
+  /// Tooltip for radio button to select correct answer
+  ///
+  /// In en, this message translates to:
+  /// **'Select correct answer'**
+  String get selectCorrectAnswer;
+
+  /// Tooltip for checkbox to select correct answers
+  ///
+  /// In en, this message translates to:
+  /// **'Select correct answers'**
+  String get selectCorrectAnswers;
 }
 
 class _AppLocalizationsDelegate

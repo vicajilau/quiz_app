@@ -504,5 +504,13 @@
   "removeOption": "Eliminar opción",
   "@removeOption": {
     "description": "Tooltip para el botón de eliminar opción"
+  },
+  "selectCorrectAnswer": "Seleccionar respuesta correcta",
+  "@selectCorrectAnswer": {
+    "description": "Tooltip para el botón de radio para seleccionar respuesta correcta"
+  },
+  "selectCorrectAnswers": "Seleccionar respuestas correctas",
+  "@selectCorrectAnswers": {
+    "description": "Tooltip para el checkbox para seleccionar respuestas correctas"
   }
 }

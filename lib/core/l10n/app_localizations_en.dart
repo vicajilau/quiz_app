@@ -387,4 +387,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get removeOption => 'Remove option';
+
+  @override
+  String get selectCorrectAnswer => 'Select correct answer';
+
+  @override
+  String get selectCorrectAnswers => 'Select correct answers';
 }
