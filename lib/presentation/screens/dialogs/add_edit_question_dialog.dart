@@ -123,35 +123,50 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
 
     // Validate options only for questions that have options
     if (_selectedType != QuestionType.essay) {
-      // Check if all options have text
-      bool allOptionsEmpty = _optionControllers.every(
-        (controller) => controller.text.trim().isEmpty,
-      );
-      if (allOptionsEmpty) {
-        setState(() {
-          _optionsError = localizations.atLeastOneOptionRequired;
-        });
-        isValid = false;
+      // Check for empty options
+      List<int> emptyOptionIndexes = [];
+      for (int i = 0; i < _optionControllers.length; i++) {
+        if (_optionControllers[i].text.trim().isEmpty) {
+          emptyOptionIndexes.add(i + 1); // +1 for human-readable numbering
+        }
       }
 
-      // Check if at least one correct answer is selected (except for essay)
-      bool hasCorrectAnswer = _correctAnswers.any((answer) => answer);
-      if (!hasCorrectAnswer) {
+      // If there are empty options, show specific error message
+      if (emptyOptionIndexes.isNotEmpty) {
         setState(() {
-          _optionsError = localizations.atLeastOneCorrectAnswerRequired;
+          if (emptyOptionIndexes.length == 1) {
+            // Singular: only one empty option
+            _optionsError = localizations.emptyOptionError(
+              emptyOptionIndexes.first.toString(),
+            );
+          } else {
+            // Plural: multiple empty options
+            _optionsError = localizations.emptyOptionsError(
+              emptyOptionIndexes.join(', '),
+            );
+          }
         });
         isValid = false;
-      }
-
-      // Validate specific question types
-      if (_selectedType == QuestionType.singleChoice ||
-          _selectedType == QuestionType.trueFalse) {
-        int correctCount = _correctAnswers.where((answer) => answer).length;
-        if (correctCount > 1) {
+      } else {
+        // Check if at least one correct answer is selected (except for essay)
+        bool hasCorrectAnswer = _correctAnswers.any((answer) => answer);
+        if (!hasCorrectAnswer) {
           setState(() {
-            _optionsError = localizations.onlyOneCorrectAnswerAllowed;
+            _optionsError = localizations.atLeastOneCorrectAnswerRequired;
           });
           isValid = false;
+        }
+
+        // Validate specific question types
+        if (_selectedType == QuestionType.singleChoice ||
+            _selectedType == QuestionType.trueFalse) {
+          int correctCount = _correctAnswers.where((answer) => answer).length;
+          if (correctCount > 1) {
+            setState(() {
+              _optionsError = localizations.onlyOneCorrectAnswerAllowed;
+            });
+            isValid = false;
+          }
         }
       }
     }
@@ -457,6 +472,14 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
                             labelText:
                                 "${localizations.optionLabel} ${index + 1}",
                             border: const OutlineInputBorder(),
+                            errorText:
+                                _optionsError != null &&
+                                    _optionControllers[index].text
+                                        .trim()
+                                        .isEmpty &&
+                                    _selectedType != QuestionType.trueFalse
+                                ? localizations.optionEmptyError
+                                : null,
                           ),
                           onChanged: (value) {
                             setState(() {

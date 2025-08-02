@@ -572,5 +572,29 @@
   "selectCorrectAnswers": "Select correct answers",
   "@selectCorrectAnswers": {
     "description": "Tooltip for checkbox to select correct answers"
+  },
+  "emptyOptionsError": "Options {optionNumbers} are empty. Please add text to them or remove them.",
+  "@emptyOptionsError": {
+    "description": "Error message when some options are empty",
+    "placeholders": {
+      "optionNumbers": {
+        "type": "String",
+        "example": "1, 3, 4"
+      }
+    }
+  },
+  "emptyOptionError": "Option {optionNumber} is empty. Please add text to it or remove it.",
+  "@emptyOptionError": {
+    "description": "Error message when one option is empty",
+    "placeholders": {
+      "optionNumber": {
+        "type": "String",
+        "example": "3"
+      }
+    }
+  },
+  "optionEmptyError": "This option cannot be empty",
+  "@optionEmptyError": {
+    "description": "Error message for individual empty option field"
   }
 }

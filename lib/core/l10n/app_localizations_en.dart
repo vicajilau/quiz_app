@@ -393,4 +393,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get selectCorrectAnswers => 'Select correct answers';
+
+  @override
+  String emptyOptionsError(String optionNumbers) {
+    return 'Options $optionNumbers are empty. Please add text to them or remove them.';
+  }
+
+  @override
+  String emptyOptionError(String optionNumber) {
+    return 'Option $optionNumber is empty. Please add text to it or remove it.';
+  }
+
+  @override
+  String get optionEmptyError => 'This option cannot be empty';
 }

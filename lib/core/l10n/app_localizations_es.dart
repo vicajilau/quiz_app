@@ -397,4 +397,17 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get selectCorrectAnswers => 'Seleccionar respuestas correctas';
+
+  @override
+  String emptyOptionsError(String optionNumbers) {
+    return 'Las opciones $optionNumbers están vacías. Por favor añade texto o elimínalas.';
+  }
+
+  @override
+  String emptyOptionError(String optionNumber) {
+    return 'La opción $optionNumber está vacía. Por favor añade texto o elimínala.';
+  }
+
+  @override
+  String get optionEmptyError => 'Esta opción no puede estar vacía';
 }

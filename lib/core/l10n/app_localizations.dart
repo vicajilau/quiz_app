@@ -787,6 +787,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Select correct answers'**
   String get selectCorrectAnswers;
+
+  /// Error message when some options are empty
+  ///
+  /// In en, this message translates to:
+  /// **'Options {optionNumbers} are empty. Please add text to them or remove them.'**
+  String emptyOptionsError(String optionNumbers);
+
+  /// Error message when one option is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Option {optionNumber} is empty. Please add text to it or remove it.'**
+  String emptyOptionError(String optionNumber);
+
+  /// Error message for individual empty option field
+  ///
+  /// In en, this message translates to:
+  /// **'This option cannot be empty'**
+  String get optionEmptyError;
 }
 
 class _AppLocalizationsDelegate
