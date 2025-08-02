@@ -302,8 +302,23 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String optionsCount(int count) {
-    return '$count options';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count options',
+      one: '1 option',
+    );
+    return '$_temp0';
   }
+
+  @override
+  String get optionsTooltip => 'Number of answer options for this question';
+
+  @override
+  String get imageTooltip => 'This question has an associated image';
+
+  @override
+  String get explanationTooltip => 'This question has an explanation';
 
   @override
   String get deleteAction => 'Delete';
@@ -406,4 +421,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get optionEmptyError => 'This option cannot be empty';
+
+  @override
+  String get hasImage => 'Image';
+
+  @override
+  String get hasExplanation => 'Explanation';
 }

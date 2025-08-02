@@ -614,11 +614,29 @@ abstract class AppLocalizations {
   /// **'Unknown'**
   String get questionTypeUnknown;
 
-  /// Text showing number of options for a question
+  /// Text showing the number of options in a question
   ///
   /// In en, this message translates to:
-  /// **'{count} options'**
+  /// **'{count, plural, =1{1 option} other{{count} options}}'**
   String optionsCount(int count);
+
+  /// Tooltip text for the options count badge
+  ///
+  /// In en, this message translates to:
+  /// **'Number of answer options for this question'**
+  String get optionsTooltip;
+
+  /// Tooltip text for the image indicator badge
+  ///
+  /// In en, this message translates to:
+  /// **'This question has an associated image'**
+  String get imageTooltip;
+
+  /// Tooltip text for the explanation indicator badge
+  ///
+  /// In en, this message translates to:
+  /// **'This question has an explanation'**
+  String get explanationTooltip;
 
   /// Delete action text shown when swiping to delete
   ///
@@ -805,6 +823,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This option cannot be empty'**
   String get optionEmptyError;
+
+  /// Label indicating that a question has an image
+  ///
+  /// In en, this message translates to:
+  /// **'Image'**
+  String get hasImage;
+
+  /// Label indicating that a question has an explanation
+  ///
+  /// In en, this message translates to:
+  /// **'Explanation'**
+  String get hasExplanation;
 }
 
 class _AppLocalizationsDelegate

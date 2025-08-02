@@ -445,15 +445,27 @@
   "@questionTypeUnknown": {
     "description": "Label for unknown question type"
   },
-  "optionsCount": "{count} options",
+    "optionsCount": "{count, plural, =1{1 option} other{{count} options}}",
   "@optionsCount": {
-    "description": "Text showing number of options for a question",
+    "description": "Text showing the number of options in a question",
     "placeholders": {
       "count": {
         "type": "int",
-        "example": "4"
+        "example": "3"
       }
     }
+  },
+  "optionsTooltip": "Number of answer options for this question",
+  "@optionsTooltip": {
+    "description": "Tooltip text for the options count badge"
+  },
+  "imageTooltip": "This question has an associated image",
+  "@imageTooltip": {
+    "description": "Tooltip text for the image indicator badge"
+  },
+  "explanationTooltip": "This question has an explanation",
+  "@explanationTooltip": {
+    "description": "Tooltip text for the explanation indicator badge"
   },
   "deleteAction": "Delete",
   "@deleteAction": {
@@ -596,5 +608,13 @@
   "optionEmptyError": "This option cannot be empty",
   "@optionEmptyError": {
     "description": "Error message for individual empty option field"
+  },
+  "hasImage": "Image",
+  "@hasImage": {
+    "description": "Label indicating that a question has an image"
+  },
+  "hasExplanation": "Explanation",
+  "@hasExplanation": {
+    "description": "Label indicating that a question has an explanation"
   }
 }

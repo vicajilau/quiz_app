@@ -385,15 +385,27 @@
   "@questionTypeUnknown": {
     "description": "Etiqueta para el tipo de pregunta desconocido"
   },
-  "optionsCount": "{count} opciones",
+    "optionsCount": "{count, plural, =1{1 opción} other{{count} opciones}}",
   "@optionsCount": {
-    "description": "Texto que muestra el número de opciones para una pregunta",
+    "description": "Texto que muestra el número de opciones en una pregunta",
     "placeholders": {
       "count": {
         "type": "int",
-        "example": "4"
+        "example": "3"
       }
     }
+  },
+  "optionsTooltip": "Número de opciones de respuesta para esta pregunta",
+  "@optionsTooltip": {
+    "description": "Texto del tooltip para el badge de conteo de opciones"
+  },
+  "imageTooltip": "Esta pregunta tiene una imagen asociada",
+  "@imageTooltip": {
+    "description": "Texto del tooltip para el badge indicador de imagen"
+  },
+  "explanationTooltip": "Esta pregunta tiene una explicación",
+  "@explanationTooltip": {
+    "description": "Texto del tooltip para el badge indicador de explicación"
   },
   "deleteAction": "Eliminar",
   "@deleteAction": {
@@ -536,5 +548,13 @@
   "optionEmptyError": "Esta opción no puede estar vacía",
   "@optionEmptyError": {
     "description": "Mensaje de error para campo de opción individual vacío"
+  },
+  "hasImage": "Imagen",
+  "@hasImage": {
+    "description": "Etiqueta que indica que una pregunta tiene una imagen"
+  },
+  "hasExplanation": "Explicación",
+  "@hasExplanation": {
+    "description": "Etiqueta que indica que una pregunta tiene una explicación"
   }
 }
