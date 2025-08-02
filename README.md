@@ -3,8 +3,6 @@
 
 <p align="center">
   <img src="https://github.com/vicajilau/quiz_app/actions/workflows/flutter_workflow.yml/badge.svg" alt="CI Status">
-</p>
-<p align="center">
   <img src="https://github.com/vicajilau/quiz_app/actions/workflows/deploy-web.yml/badge.svg" alt="CD Status">
 </p>
 
