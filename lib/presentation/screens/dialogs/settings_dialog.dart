@@ -17,6 +17,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
   bool _examTimeEnabled = false;
   int _examTimeMinutes = 60;
   bool _aiAssistantEnabled = true;
+  final TextEditingController _apiKeyController = TextEditingController();
 
   @override
   void initState() {
@@ -32,17 +33,36 @@ class _SettingsDialogState extends State<SettingsDialog> {
         .getExamTimeMinutes();
     final aiAssistantEnabled = await ConfigurationService.instance
         .getAIAssistantEnabled();
+    final apiKey = await ConfigurationService.instance.getOpenAIApiKey();
 
     setState(() {
       _selectedOrder = currentOrder;
       _examTimeEnabled = examTimeEnabled;
       _examTimeMinutes = examTimeMinutes;
       _aiAssistantEnabled = aiAssistantEnabled;
+      _apiKeyController.text = apiKey ?? '';
       _isLoading = false;
     });
   }
 
   Future<void> _saveSettings() async {
+    // Validar que si AI Assistant está habilitado, se debe proporcionar API Key
+    final apiKey = _apiKeyController.text.trim();
+    if (_aiAssistantEnabled && apiKey.isEmpty) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              AppLocalizations.of(context)!.aiAssistantRequiresApiKeyError,
+            ),
+            backgroundColor: Theme.of(context).colorScheme.error,
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
+      return; // No guardar si falta la validación
+    }
+
     await ConfigurationService.instance.saveQuestionOrder(_selectedOrder);
     await ConfigurationService.instance.saveExamTimeEnabled(_examTimeEnabled);
     await ConfigurationService.instance.saveExamTimeMinutes(_examTimeMinutes);
@@ -50,9 +70,22 @@ class _SettingsDialogState extends State<SettingsDialog> {
       _aiAssistantEnabled,
     );
 
+    // Save API Key securely
+    if (apiKey.isNotEmpty) {
+      await ConfigurationService.instance.saveOpenAIApiKey(apiKey);
+    } else {
+      await ConfigurationService.instance.deleteOpenAIApiKey();
+    }
+
     if (mounted) {
       context.pop(_selectedOrder);
     }
+  }
+
+  @override
+  void dispose() {
+    _apiKeyController.dispose();
+    super.dispose();
   }
 
   @override
@@ -127,7 +160,9 @@ class _SettingsDialogState extends State<SettingsDialog> {
                           context,
                         )!.timeLimitMinutes,
                         border: const OutlineInputBorder(),
-                        suffixText: 'min',
+                        suffixText: AppLocalizations.of(
+                          context,
+                        )!.minutesAbbreviation,
                       ),
                       keyboardType: TextInputType.number,
                       onChanged: (value) {
@@ -172,6 +207,53 @@ class _SettingsDialogState extends State<SettingsDialog> {
                       });
                     },
                   ),
+
+                  if (_aiAssistantEnabled) ...[
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      controller: _apiKeyController,
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(
+                          context,
+                        )!.openaiApiKeyLabel,
+                        hintText: AppLocalizations.of(
+                          context,
+                        )!.openaiApiKeyHint,
+                        helperText: AppLocalizations.of(
+                          context,
+                        )!.openaiApiKeyDescription,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: _apiKeyController.text.trim().isEmpty
+                                ? Theme.of(context).colorScheme.error
+                                : Theme.of(context).colorScheme.outline,
+                          ),
+                        ),
+                        prefixIcon: Icon(
+                          Icons.key,
+                          color: _apiKeyController.text.trim().isEmpty
+                              ? Theme.of(context).colorScheme.error
+                              : null,
+                        ),
+                        suffixIcon: _apiKeyController.text.trim().isEmpty
+                            ? Icon(
+                                Icons.warning,
+                                color: Theme.of(context).colorScheme.error,
+                              )
+                            : Icon(
+                                Icons.check_circle,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                      ),
+                      obscureText: true,
+                      maxLines: 1,
+                      onChanged: (value) {
+                        setState(() {
+                          // Trigger rebuild to update visual indicators
+                        });
+                      },
+                    ),
+                  ],
 
                   // Future settings sections can be added here
                 ],

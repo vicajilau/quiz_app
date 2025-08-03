@@ -365,6 +365,41 @@ class AppLocalizationsEs extends AppLocalizations {
       'Lo siento, hubo un error al procesar tu pregunta. Por favor, inténtalo de nuevo.';
 
   @override
+  String get configureApiKeyMessage =>
+      'Por favor, configura tu clave API de OpenAI en Ajustes.';
+
+  @override
+  String get errorLabel => 'Error:';
+
+  @override
+  String get noResponseReceived => 'No se recibió respuesta';
+
+  @override
+  String get invalidApiKeyError =>
+      'Clave API inválida. Por favor, verifica tu clave API de OpenAI en ajustes.';
+
+  @override
+  String get rateLimitError =>
+      'Se ha superado el límite de uso. Por favor, inténtalo de nuevo más tarde.';
+
+  @override
+  String get modelNotFoundError =>
+      'Modelo no encontrado. Por favor, verifica tu acceso a la API.';
+
+  @override
+  String get unknownError => 'Error desconocido';
+
+  @override
+  String get networkError =>
+      'Error de red: No se puede conectar a OpenAI. Por favor, verifica tu conexión a internet.';
+
+  @override
+  String get openaiApiKeyNotConfigured => 'Clave API de OpenAI no configurada';
+
+  @override
+  String get minutesAbbreviation => 'min';
+
+  @override
   String get aiButtonTooltip => 'Asistente de Estudio IA';
 
   @override
@@ -376,6 +411,20 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get aiAssistantSettingsDescription =>
       'Habilitar o deshabilitar el asistente de IA para las preguntas';
+
+  @override
+  String get openaiApiKeyLabel => 'Clave API de OpenAI';
+
+  @override
+  String get openaiApiKeyHint => 'Ingresa tu clave API de OpenAI (sk-...)';
+
+  @override
+  String get openaiApiKeyDescription =>
+      'Requerido para la funcionalidad de IA. Tu clave se almacena de forma segura.';
+
+  @override
+  String get aiAssistantRequiresApiKeyError =>
+      'El Asistente de Estudio IA requiere una clave API de OpenAI. Por favor, ingresa tu clave API o desactiva el Asistente de IA.';
 
   @override
   String get deleteAction => 'Eliminar';

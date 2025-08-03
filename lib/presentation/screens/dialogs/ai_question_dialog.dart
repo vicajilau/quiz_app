@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/data/services/openai_service.dart';
+import 'package:quiz_app/data/services/configuration_service.dart';
 
 class AIQuestionDialog extends StatefulWidget {
   final Question question;
@@ -50,8 +52,28 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
     return prompt;
   }
 
+  /// Extrae el mensaje de error limpio sin prefijos "Exception:"
+  String _extractErrorMessage(Object error) {
+    String errorMessage = error.toString();
+
+    // Remover prefijo "Exception: " si existe
+    if (errorMessage.startsWith('Exception: ')) {
+      errorMessage = errorMessage.substring('Exception: '.length);
+    }
+
+    // Remover prefijo "OpenAI API Error: " si existe (por si acaso)
+    if (errorMessage.startsWith('OpenAI API Error: ')) {
+      errorMessage = errorMessage.substring('OpenAI API Error: '.length);
+    }
+
+    return errorMessage.trim();
+  }
+
   Future<void> _askAI() async {
     if (_questionController.text.trim().isEmpty) return;
+
+    // Capture localizations early to avoid async gap warnings
+    final localizations = AppLocalizations.of(context)!;
 
     setState(() {
       _isLoading = true;
@@ -59,12 +81,29 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
     });
 
     try {
-      // Aquí iría la integración con la API de IA
-      // Por ahora, simularemos una respuesta
-      await Future.delayed(const Duration(seconds: 2));
+      // Check if API key is configured
+      final apiKey = await ConfigurationService.instance.getOpenAIApiKey();
+
+      if (apiKey == null || apiKey.isEmpty) {
+        setState(() {
+          _aiResponse =
+              '${localizations.aiErrorResponse}\n\n${localizations.configureApiKeyMessage}';
+          _isLoading = false;
+        });
+        return;
+      }
+
+      // Build the prompt with question context
+      final prompt = _buildPrompt();
+
+      // Make actual API call to OpenAI
+      final response = await OpenAIService.getChatResponse(
+        prompt,
+        localizations,
+      );
 
       setState(() {
-        _aiResponse = AppLocalizations.of(context)!.aiPlaceholderResponse;
+        _aiResponse = response;
         _isLoading = false;
       });
 
@@ -78,7 +117,8 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
       });
     } catch (e) {
       setState(() {
-        _aiResponse = AppLocalizations.of(context)!.aiErrorResponse;
+        _aiResponse =
+            '${localizations.aiErrorResponse}\n\n${localizations.errorLabel} ${_extractErrorMessage(e)}';
         _isLoading = false;
       });
     }

@@ -710,6 +710,66 @@ abstract class AppLocalizations {
   /// **'Sorry, there was an error processing your question. Please try again.'**
   String get aiErrorResponse;
 
+  /// Message to configure API key when not set
+  ///
+  /// In en, this message translates to:
+  /// **'Please configure your OpenAI API Key in Settings.'**
+  String get configureApiKeyMessage;
+
+  /// Error label prefix for error messages
+  ///
+  /// In en, this message translates to:
+  /// **'Error:'**
+  String get errorLabel;
+
+  /// Message when no response is received from AI
+  ///
+  /// In en, this message translates to:
+  /// **'No response received'**
+  String get noResponseReceived;
+
+  /// Error message for invalid API key
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid API Key. Please check your OpenAI API Key in settings.'**
+  String get invalidApiKeyError;
+
+  /// Error message for rate limit exceeded
+  ///
+  /// In en, this message translates to:
+  /// **'Rate limit exceeded. Please try again later.'**
+  String get rateLimitError;
+
+  /// Error message for model not found
+  ///
+  /// In en, this message translates to:
+  /// **'Model not found. Please check your API access.'**
+  String get modelNotFoundError;
+
+  /// Generic unknown error message
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown error'**
+  String get unknownError;
+
+  /// Network connectivity error message
+  ///
+  /// In en, this message translates to:
+  /// **'Network error: Unable to connect to OpenAI. Please check your internet connection.'**
+  String get networkError;
+
+  /// Error message when API key is not configured
+  ///
+  /// In en, this message translates to:
+  /// **'OpenAI API Key not configured'**
+  String get openaiApiKeyNotConfigured;
+
+  /// Abbreviation for minutes
+  ///
+  /// In en, this message translates to:
+  /// **'min'**
+  String get minutesAbbreviation;
+
   /// Tooltip for AI assistant button
   ///
   /// In en, this message translates to:
@@ -733,6 +793,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enable or disable the AI study assistant for questions'**
   String get aiAssistantSettingsDescription;
+
+  /// Label for OpenAI API Key field
+  ///
+  /// In en, this message translates to:
+  /// **'OpenAI API Key'**
+  String get openaiApiKeyLabel;
+
+  /// Hint text for OpenAI API Key field
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your OpenAI API Key (sk-...)'**
+  String get openaiApiKeyHint;
+
+  /// Description for OpenAI API Key field
+  ///
+  /// In en, this message translates to:
+  /// **'Required for AI functionality. Your key is stored securely.'**
+  String get openaiApiKeyDescription;
+
+  /// Error message when AI Assistant is enabled but no API key is provided
+  ///
+  /// In en, this message translates to:
+  /// **'AI Study Assistant requires an OpenAI API Key. Please enter your API key or disable the AI Assistant.'**
+  String get aiAssistantRequiresApiKeyError;
 
   /// Delete action text shown when swiping to delete
   ///

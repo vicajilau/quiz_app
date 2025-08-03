@@ -515,6 +515,46 @@
   "@aiErrorResponse": {
     "description": "Error message when AI request fails"
   },
+  "configureApiKeyMessage": "Please configure your OpenAI API Key in Settings.",
+  "@configureApiKeyMessage": {
+    "description": "Message to configure API key when not set"
+  },
+  "errorLabel": "Error:",
+  "@errorLabel": {
+    "description": "Error label prefix for error messages"
+  },
+  "noResponseReceived": "No response received",
+  "@noResponseReceived": {
+    "description": "Message when no response is received from AI"
+  },
+  "invalidApiKeyError": "Invalid API Key. Please check your OpenAI API Key in settings.",
+  "@invalidApiKeyError": {
+    "description": "Error message for invalid API key"
+  },
+  "rateLimitError": "Rate limit exceeded. Please try again later.",
+  "@rateLimitError": {
+    "description": "Error message for rate limit exceeded"
+  },
+  "modelNotFoundError": "Model not found. Please check your API access.",
+  "@modelNotFoundError": {
+    "description": "Error message for model not found"
+  },
+  "unknownError": "Unknown error",
+  "@unknownError": {
+    "description": "Generic unknown error message"
+  },
+  "networkError": "Network error: Unable to connect to OpenAI. Please check your internet connection.",
+  "@networkError": {
+    "description": "Network connectivity error message"
+  },
+  "openaiApiKeyNotConfigured": "OpenAI API Key not configured",
+  "@openaiApiKeyNotConfigured": {
+    "description": "Error message when API key is not configured"
+  },
+  "minutesAbbreviation": "min",
+  "@minutesAbbreviation": {
+    "description": "Abbreviation for minutes"
+  },
   "aiButtonTooltip": "AI Study Assistant",
   "@aiButtonTooltip": {
     "description": "Tooltip for AI assistant button"
@@ -530,6 +570,22 @@
   "aiAssistantSettingsDescription": "Enable or disable the AI study assistant for questions",
   "@aiAssistantSettingsDescription": {
     "description": "Description for AI assistant settings"
+  },
+  "openaiApiKeyLabel": "OpenAI API Key",
+  "@openaiApiKeyLabel": {
+    "description": "Label for OpenAI API Key field"
+  },
+  "openaiApiKeyHint": "Enter your OpenAI API Key (sk-...)",
+  "@openaiApiKeyHint": {
+    "description": "Hint text for OpenAI API Key field"
+  },
+  "openaiApiKeyDescription": "Required for AI functionality. Your key is stored securely.",
+  "@openaiApiKeyDescription": {
+    "description": "Description for OpenAI API Key field"
+  },
+  "aiAssistantRequiresApiKeyError": "AI Study Assistant requires an OpenAI API Key. Please enter your API key or disable the AI Assistant.",
+  "@aiAssistantRequiresApiKeyError": {
+    "description": "Error message when AI Assistant is enabled but no API key is provided"
   },
   "deleteAction": "Delete",
   "@deleteAction": {

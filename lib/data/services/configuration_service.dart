@@ -1,11 +1,13 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../domain/models/quiz/question_order.dart';
+import '../../core/security/encryption_service.dart';
 
 class ConfigurationService {
   static const String _questionOrderKey = 'question_order';
   static const String _examTimeEnabledKey = 'exam_time_enabled';
   static const String _examTimeMinutesKey = 'exam_time_minutes';
   static const String _aiAssistantEnabledKey = 'ai_assistant_enabled';
+  static const String _openaiApiKeyKey = 'openai_api_key';
 
   static ConfigurationService? _instance;
   static ConfigurationService get instance =>
@@ -65,5 +67,30 @@ class ConfigurationService {
   Future<bool> getAIAssistantEnabled() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(_aiAssistantEnabledKey) ?? true;
+  }
+
+  /// Guarda la API Key de OpenAI de forma segura (encriptada)
+  Future<void> saveOpenAIApiKey(String apiKey) async {
+    final prefs = await SharedPreferences.getInstance();
+    final encryptedApiKey = EncryptionService.encrypt(apiKey);
+    await prefs.setString(_openaiApiKeyKey, encryptedApiKey);
+  }
+
+  /// Obtiene la API Key de OpenAI (desencriptada)
+  Future<String?> getOpenAIApiKey() async {
+    final prefs = await SharedPreferences.getInstance();
+    final encryptedApiKey = prefs.getString(_openaiApiKeyKey);
+
+    if (encryptedApiKey == null || encryptedApiKey.isEmpty) {
+      return null;
+    }
+
+    return EncryptionService.decrypt(encryptedApiKey);
+  }
+
+  /// Elimina la API Key de OpenAI
+  Future<void> deleteOpenAIApiKey() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_openaiApiKeyKey);
   }
 }

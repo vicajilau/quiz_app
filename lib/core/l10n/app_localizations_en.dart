@@ -360,6 +360,40 @@ class AppLocalizationsEn extends AppLocalizations {
       'Sorry, there was an error processing your question. Please try again.';
 
   @override
+  String get configureApiKeyMessage =>
+      'Please configure your OpenAI API Key in Settings.';
+
+  @override
+  String get errorLabel => 'Error:';
+
+  @override
+  String get noResponseReceived => 'No response received';
+
+  @override
+  String get invalidApiKeyError =>
+      'Invalid API Key. Please check your OpenAI API Key in settings.';
+
+  @override
+  String get rateLimitError => 'Rate limit exceeded. Please try again later.';
+
+  @override
+  String get modelNotFoundError =>
+      'Model not found. Please check your API access.';
+
+  @override
+  String get unknownError => 'Unknown error';
+
+  @override
+  String get networkError =>
+      'Network error: Unable to connect to OpenAI. Please check your internet connection.';
+
+  @override
+  String get openaiApiKeyNotConfigured => 'OpenAI API Key not configured';
+
+  @override
+  String get minutesAbbreviation => 'min';
+
+  @override
   String get aiButtonTooltip => 'AI Study Assistant';
 
   @override
@@ -371,6 +405,20 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get aiAssistantSettingsDescription =>
       'Enable or disable the AI study assistant for questions';
+
+  @override
+  String get openaiApiKeyLabel => 'OpenAI API Key';
+
+  @override
+  String get openaiApiKeyHint => 'Enter your OpenAI API Key (sk-...)';
+
+  @override
+  String get openaiApiKeyDescription =>
+      'Required for AI functionality. Your key is stored securely.';
+
+  @override
+  String get aiAssistantRequiresApiKeyError =>
+      'AI Study Assistant requires an OpenAI API Key. Please enter your API key or disable the AI Assistant.';
 
   @override
   String get deleteAction => 'Delete';

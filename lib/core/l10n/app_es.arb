@@ -455,6 +455,46 @@
   "@aiErrorResponse": {
     "description": "Mensaje de error cuando falla la petición a IA"
   },
+  "configureApiKeyMessage": "Por favor, configura tu clave API de OpenAI en Ajustes.",
+  "@configureApiKeyMessage": {
+    "description": "Mensaje para configurar clave API cuando no está establecida"
+  },
+  "errorLabel": "Error:",
+  "@errorLabel": {
+    "description": "Prefijo de etiqueta para mensajes de error"
+  },
+  "noResponseReceived": "No se recibió respuesta",
+  "@noResponseReceived": {
+    "description": "Mensaje cuando no se recibe respuesta de la IA"
+  },
+  "invalidApiKeyError": "Clave API inválida. Por favor, verifica tu clave API de OpenAI en ajustes.",
+  "@invalidApiKeyError": {
+    "description": "Mensaje de error para clave API inválida"
+  },
+  "rateLimitError": "Se ha superado el límite de uso. Por favor, inténtalo de nuevo más tarde.",
+  "@rateLimitError": {
+    "description": "Mensaje de error para límite de uso excedido"
+  },
+  "modelNotFoundError": "Modelo no encontrado. Por favor, verifica tu acceso a la API.",
+  "@modelNotFoundError": {
+    "description": "Mensaje de error para modelo no encontrado"
+  },
+  "unknownError": "Error desconocido",
+  "@unknownError": {
+    "description": "Mensaje de error genérico desconocido"
+  },
+  "networkError": "Error de red: No se puede conectar a OpenAI. Por favor, verifica tu conexión a internet.",
+  "@networkError": {
+    "description": "Mensaje de error de conectividad de red"
+  },
+  "openaiApiKeyNotConfigured": "Clave API de OpenAI no configurada",
+  "@openaiApiKeyNotConfigured": {
+    "description": "Mensaje de error cuando la clave API no está configurada"
+  },
+  "minutesAbbreviation": "min",
+  "@minutesAbbreviation": {
+    "description": "Abreviación para minutos"
+  },
   "aiButtonTooltip": "Asistente de Estudio IA",
   "@aiButtonTooltip": {
     "description": "Tooltip para botón del asistente de IA"
@@ -470,6 +510,22 @@
   "aiAssistantSettingsDescription": "Habilitar o deshabilitar el asistente de IA para las preguntas",
   "@aiAssistantSettingsDescription": {
     "description": "Descripción para configuración del asistente de IA"
+  },
+  "openaiApiKeyLabel": "Clave API de OpenAI",
+  "@openaiApiKeyLabel": {
+    "description": "Etiqueta para campo de clave API de OpenAI"
+  },
+  "openaiApiKeyHint": "Ingresa tu clave API de OpenAI (sk-...)",
+  "@openaiApiKeyHint": {
+    "description": "Texto de ayuda para campo de clave API de OpenAI"
+  },
+    "openaiApiKeyDescription": "Requerido para la funcionalidad de IA. Tu clave se almacena de forma segura.",
+  "@openaiApiKeyDescription": {
+    "description": "Descripción para el campo de clave API de OpenAI"
+  },
+  "aiAssistantRequiresApiKeyError": "El Asistente de Estudio IA requiere una clave API de OpenAI. Por favor, ingresa tu clave API o desactiva el Asistente de IA.",
+  "@aiAssistantRequiresApiKeyError": {
+    "description": "Mensaje de error cuando el Asistente de IA está habilitado pero no se proporciona clave API"
   },
   "deleteAction": "Eliminar",
   "@deleteAction": {
