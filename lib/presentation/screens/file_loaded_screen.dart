@@ -203,11 +203,15 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
       );
       fileName = result;
     } else {
-      fileName = AppLocalizations.of(context)!.saveDialogTitle;
+      fileName = "output-file.quiz";
     }
     if (fileName != null && context.mounted) {
       context.read<FileBloc>().add(
-        QuizFileSaveRequested(cachedQuizFile, fileName, "output-file.quiz"),
+        QuizFileSaveRequested(
+          cachedQuizFile,
+          AppLocalizations.of(context)!.saveDialogTitle,
+          fileName,
+        ),
       );
     }
   }
