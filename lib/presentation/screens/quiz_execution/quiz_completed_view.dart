@@ -14,7 +14,7 @@ class QuizCompletedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
@@ -62,81 +62,75 @@ class QuizCompletedView extends StatelessWidget {
           const SizedBox(height: 16),
 
           // Question results
-          Expanded(
-            child: ListView.builder(
-              itemCount: state.questionResults.length,
-              itemBuilder: (context, index) {
-                final result = state.questionResults[index];
-                return QuizQuestionResultCard(
-                  result: result,
-                  questionNumber: index + 1,
-                );
-              },
-            ),
-          ),
+          ...state.questionResults.asMap().entries.map((entry) {
+            final index = entry.key;
+            final result = entry.value;
+            return QuizQuestionResultCard(
+              result: result,
+              questionNumber: index + 1,
+            );
+          }),
+
+          const SizedBox(height: 16),
 
           // Action buttons
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: IntrinsicHeight(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // First column of buttons (Repetir y Reintentar errores)
-                  Expanded(
-                    child: Column(
-                      children: [
+          IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // First column of buttons (Repetir y Reintentar errores)
+                Expanded(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: double.infinity,
+                        child: OutlinedButton.icon(
+                          onPressed: () {
+                            // Get the bloc from the current context since we're inside BlocConsumer
+                            final bloc = BlocProvider.of<QuizExecutionBloc>(
+                              context,
+                            );
+                            bloc.add(QuizRestarted());
+                          },
+                          icon: const Icon(Icons.refresh),
+                          label: Text(AppLocalizations.of(context)!.retry),
+                        ),
+                      ),
+                      // Second row - button for failed questions
+                      if (_hasIncorrectAnswers()) ...[
+                        const SizedBox(height: 12),
                         SizedBox(
                           width: double.infinity,
                           child: OutlinedButton.icon(
-                            onPressed: () {
-                              // Get the bloc from the current context since we're inside BlocConsumer
-                              final bloc = BlocProvider.of<QuizExecutionBloc>(
+                            onPressed: () => _startFailedQuestionsQuiz(context),
+                            icon: const Icon(Icons.quiz),
+                            label: Text(
+                              AppLocalizations.of(
                                 context,
-                              );
-                              bloc.add(QuizRestarted());
-                            },
-                            icon: const Icon(Icons.refresh),
-                            label: Text(AppLocalizations.of(context)!.retry),
-                          ),
-                        ),
-                        // Second row - button for failed questions
-                        if (_hasIncorrectAnswers()) ...[
-                          const SizedBox(height: 12),
-                          SizedBox(
-                            width: double.infinity,
-                            child: OutlinedButton.icon(
-                              onPressed: () =>
-                                  _startFailedQuestionsQuiz(context),
-                              icon: const Icon(Icons.quiz),
-                              label: Text(
-                                AppLocalizations.of(
-                                  context,
-                                )!.retryFailedQuestions,
-                              ),
-                              style: OutlinedButton.styleFrom(
-                                foregroundColor: Colors.orange,
-                                side: const BorderSide(color: Colors.orange),
-                              ),
+                              )!.retryFailedQuestions,
+                            ),
+                            style: OutlinedButton.styleFrom(
+                              foregroundColor: Colors.orange,
+                              side: const BorderSide(color: Colors.orange),
                             ),
                           ),
-                        ],
+                        ),
                       ],
-                    ),
+                    ],
                   ),
+                ),
 
-                  const SizedBox(width: 12),
+                const SizedBox(width: 12),
 
-                  // Second column (Finalizar) - same height as first column
-                  Expanded(
-                    child: ElevatedButton.icon(
-                      onPressed: () => context.pop(),
-                      icon: const Icon(Icons.home),
-                      label: Text(AppLocalizations.of(context)!.goBack),
-                    ),
+                // Second column (Finalizar) - same height as first column
+                Expanded(
+                  child: ElevatedButton.icon(
+                    onPressed: () => context.pop(),
+                    icon: const Icon(Icons.home),
+                    label: Text(AppLocalizations.of(context)!.goBack),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],
