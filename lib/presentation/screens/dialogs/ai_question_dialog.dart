@@ -4,6 +4,7 @@ import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/data/services/ai/ai_service_selector.dart';
 import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
+import 'package:gpt_markdown/gpt_markdown.dart';
 
 class AIQuestionDialog extends StatefulWidget {
   final Question question;
@@ -493,7 +494,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                               ],
                             ),
                             const SizedBox(height: 8),
-                            Text(
+                            GptMarkdown(
                               _aiResponse!,
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),

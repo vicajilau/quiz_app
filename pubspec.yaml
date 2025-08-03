@@ -45,9 +45,10 @@ dependencies:
   flutter_launcher_icons: ^0.14.4
   shared_preferences: ^2.5.3
   web: ^1.1.1
-  http: ^1.2.2
-  crypto: ^3.0.3
+  http: ^1.4.0
+  crypto: ^3.0.6
   url_launcher: ^6.3.2
+  gpt_markdown: ^1.1.2
 
 dev_dependencies:
   flutter_test:
