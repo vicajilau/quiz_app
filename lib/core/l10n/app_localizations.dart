@@ -422,6 +422,12 @@ abstract class AppLocalizations {
   /// **'Go Back'**
   String get goBack;
 
+  /// Button text to retry only the questions that were answered incorrectly
+  ///
+  /// In en, this message translates to:
+  /// **'Review Failed Questions'**
+  String get retryFailedQuestions;
+
   /// Question text in results
   ///
   /// In en, this message translates to:

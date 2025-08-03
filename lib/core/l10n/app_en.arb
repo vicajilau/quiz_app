@@ -267,6 +267,10 @@
   "@goBack": {
     "description": "Go back button text"
   },
+  "retryFailedQuestions": "Review Failed Questions",
+  "@retryFailedQuestions": {
+    "description": "Button text to retry only the questions that were answered incorrectly"
+  },
   "question": "Question: {question}",
   "@question": {
     "description": "Question text in results",

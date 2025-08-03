@@ -261,6 +261,10 @@
   "@goBack": {
     "description": "Texto del botón volver"
   },
+  "retryFailedQuestions": "Repasar Preguntas Fallidas",
+  "@retryFailedQuestions": {
+    "description": "Texto del botón para repasar solo las preguntas que se respondieron incorrectamente"
+  },
   "question": "Pregunta: {question}",
   "@question": {
     "description": "Texto de pregunta en resultados",

@@ -194,6 +194,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get goBack => 'Volver';
 
   @override
+  String get retryFailedQuestions => 'Repasar Preguntas Fallidas';
+
+  @override
   String question(String question) {
     return 'Pregunta: $question';
   }
