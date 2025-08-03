@@ -36,9 +36,15 @@ class _SettingsDialogState extends State<SettingsDialog> {
       _selectedOrder = await service.getQuestionOrder();
       _examTimeEnabled = await service.getExamTimeEnabled();
       _examTimeMinutes = await service.getExamTimeMinutes();
-      _aiAssistantEnabled = await service.getAIAssistantEnabled();
+      final savedAiAssistantEnabled = await service.getAIAssistantEnabled();
       final apiKey = await service.getOpenAIApiKey();
       final geminiApiKey = await service.getGeminiApiKey();
+
+      // Only enable AI Assistant if there's at least one API key configured
+      final hasAnyApiKey =
+          (apiKey != null && apiKey.isNotEmpty) ||
+          (geminiApiKey != null && geminiApiKey.isNotEmpty);
+      _aiAssistantEnabled = savedAiAssistantEnabled && hasAnyApiKey;
 
       if (mounted) {
         setState(() {
