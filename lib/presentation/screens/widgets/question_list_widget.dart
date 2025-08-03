@@ -129,22 +129,14 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                         const SizedBox(height: 4),
                         Row(
                           children: [
-                            Icon(
-                              _getQuestionTypeIcon(question.type),
-                              size: 16,
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.onSurfaceVariant,
-                            ),
-                            const SizedBox(width: 4),
-                            Text(
-                              _getQuestionTypeLabel(question.type),
-                              style: TextStyle(
+                            Tooltip(
+                              message: _getQuestionTypeLabel(question.type),
+                              child: Icon(
+                                _getQuestionTypeIcon(question.type),
+                                size: 16,
                                 color: Theme.of(
                                   context,
                                 ).colorScheme.onSurfaceVariant,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             if (question.options.isNotEmpty) ...[
@@ -312,6 +304,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
   IconData _getQuestionTypeIcon(QuestionType type) {
     switch (type) {
       case QuestionType.multipleChoice:
+        return Icons.checklist;
       case QuestionType.singleChoice:
         return Icons.radio_button_checked;
       case QuestionType.trueFalse:
