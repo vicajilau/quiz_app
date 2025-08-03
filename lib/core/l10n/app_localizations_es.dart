@@ -427,6 +427,9 @@ class AppLocalizationsEs extends AppLocalizations {
       'El Asistente de Estudio IA requiere una clave API de OpenAI. Por favor, ingresa tu clave API o desactiva el Asistente de IA.';
 
   @override
+  String get getApiKeyTooltip => 'Obtener clave API de OpenAI';
+
+  @override
   String get deleteAction => 'Eliminar';
 
   @override

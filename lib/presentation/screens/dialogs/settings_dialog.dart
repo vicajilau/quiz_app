@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../../data/services/configuration_service.dart';
 import '../../../domain/models/quiz/question_order.dart';
@@ -79,6 +80,22 @@ class _SettingsDialogState extends State<SettingsDialog> {
 
     if (mounted) {
       context.pop(_selectedOrder);
+    }
+  }
+
+  Future<void> _openApiKeysUrl() async {
+    final url = Uri.parse('https://platform.openai.com/api-keys');
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Could not open ${url.toString()}'),
+            backgroundColor: Theme.of(context).colorScheme.error,
+          ),
+        );
+      }
     }
   }
 
@@ -210,48 +227,71 @@ class _SettingsDialogState extends State<SettingsDialog> {
 
                   if (_aiAssistantEnabled) ...[
                     const SizedBox(height: 16),
-                    TextFormField(
-                      controller: _apiKeyController,
-                      decoration: InputDecoration(
-                        labelText: AppLocalizations.of(
-                          context,
-                        )!.openaiApiKeyLabel,
-                        hintText: AppLocalizations.of(
-                          context,
-                        )!.openaiApiKeyHint,
-                        helperText: AppLocalizations.of(
-                          context,
-                        )!.openaiApiKeyDescription,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: _apiKeyController.text.trim().isEmpty
-                                ? Theme.of(context).colorScheme.error
-                                : Theme.of(context).colorScheme.outline,
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: _apiKeyController,
+                            decoration: InputDecoration(
+                              labelText: AppLocalizations.of(
+                                context,
+                              )!.openaiApiKeyLabel,
+                              hintText: AppLocalizations.of(
+                                context,
+                              )!.openaiApiKeyHint,
+                              helperText: AppLocalizations.of(
+                                context,
+                              )!.openaiApiKeyDescription,
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: _apiKeyController.text.trim().isEmpty
+                                      ? Theme.of(context).colorScheme.error
+                                      : Theme.of(context).colorScheme.outline,
+                                ),
+                              ),
+                              prefixIcon: Icon(
+                                Icons.key,
+                                color: _apiKeyController.text.trim().isEmpty
+                                    ? Theme.of(context).colorScheme.error
+                                    : null,
+                              ),
+                              suffixIcon: _apiKeyController.text.trim().isEmpty
+                                  ? Icon(
+                                      Icons.warning,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.error,
+                                    )
+                                  : Icon(
+                                      Icons.check_circle,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.primary,
+                                    ),
+                            ),
+                            obscureText: true,
+                            maxLines: 1,
+                            onChanged: (value) {
+                              setState(() {
+                                // Trigger rebuild to update visual indicators
+                              });
+                            },
                           ),
                         ),
-                        prefixIcon: Icon(
-                          Icons.key,
-                          color: _apiKeyController.text.trim().isEmpty
-                              ? Theme.of(context).colorScheme.error
-                              : null,
+                        const SizedBox(width: 8),
+                        IconButton(
+                          onPressed: _openApiKeysUrl,
+                          icon: const Icon(Icons.info_outline),
+                          tooltip: AppLocalizations.of(
+                            context,
+                          )!.getApiKeyTooltip,
+                          style: IconButton.styleFrom(
+                            backgroundColor: Theme.of(
+                              context,
+                            ).colorScheme.surfaceContainerHighest,
+                          ),
                         ),
-                        suffixIcon: _apiKeyController.text.trim().isEmpty
-                            ? Icon(
-                                Icons.warning,
-                                color: Theme.of(context).colorScheme.error,
-                              )
-                            : Icon(
-                                Icons.check_circle,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                      ),
-                      obscureText: true,
-                      maxLines: 1,
-                      onChanged: (value) {
-                        setState(() {
-                          // Trigger rebuild to update visual indicators
-                        });
-                      },
+                      ],
                     ),
                   ],
 

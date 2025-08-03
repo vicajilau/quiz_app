@@ -818,6 +818,12 @@ abstract class AppLocalizations {
   /// **'AI Study Assistant requires an OpenAI API Key. Please enter your API key or disable the AI Assistant.'**
   String get aiAssistantRequiresApiKeyError;
 
+  /// Tooltip for the button to get API key from OpenAI
+  ///
+  /// In en, this message translates to:
+  /// **'Get API Key from OpenAI'**
+  String get getApiKeyTooltip;
+
   /// Delete action text shown when swiping to delete
   ///
   /// In en, this message translates to:

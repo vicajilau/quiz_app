@@ -47,6 +47,7 @@ dependencies:
   web: ^1.1.1
   http: ^1.2.2
   crypto: ^3.0.3
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:

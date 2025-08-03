@@ -587,6 +587,10 @@
   "@aiAssistantRequiresApiKeyError": {
     "description": "Error message when AI Assistant is enabled but no API key is provided"
   },
+  "getApiKeyTooltip": "Get API Key from OpenAI",
+  "@getApiKeyTooltip": {
+    "description": "Tooltip for the button to get API key from OpenAI"
+  },
   "deleteAction": "Delete",
   "@deleteAction": {
     "description": "Delete action text shown when swiping to delete"

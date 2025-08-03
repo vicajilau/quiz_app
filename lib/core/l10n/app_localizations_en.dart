@@ -421,6 +421,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'AI Study Assistant requires an OpenAI API Key. Please enter your API key or disable the AI Assistant.';
 
   @override
+  String get getApiKeyTooltip => 'Get API Key from OpenAI';
+
+  @override
   String get deleteAction => 'Delete';
 
   @override
