@@ -185,13 +185,13 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get retry => 'Retry';
+  String get retry => 'Repeat';
 
   @override
-  String get goBack => 'Go Back';
+  String get goBack => 'Finish';
 
   @override
-  String get retryFailedQuestions => 'Review Failed Questions';
+  String get retryFailedQuestions => 'Retry Failed';
 
   @override
   String question(String question) {

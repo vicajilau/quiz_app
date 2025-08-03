@@ -78,54 +78,65 @@ class QuizCompletedView extends StatelessWidget {
           // Action buttons
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: Column(
-              children: [
-                // Primera fila de botones
-                Row(
-                  children: [
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        onPressed: () {
-                          // Get the bloc from the current context since we're inside BlocConsumer
-                          final bloc = BlocProvider.of<QuizExecutionBloc>(
-                            context,
-                          );
-                          bloc.add(QuizRestarted());
-                        },
-                        icon: const Icon(Icons.refresh),
-                        label: Text(AppLocalizations.of(context)!.retry),
-                      ),
+            child: IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // First column of buttons (Repetir y Reintentar errores)
+                  Expanded(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          width: double.infinity,
+                          child: OutlinedButton.icon(
+                            onPressed: () {
+                              // Get the bloc from the current context since we're inside BlocConsumer
+                              final bloc = BlocProvider.of<QuizExecutionBloc>(
+                                context,
+                              );
+                              bloc.add(QuizRestarted());
+                            },
+                            icon: const Icon(Icons.refresh),
+                            label: Text(AppLocalizations.of(context)!.retry),
+                          ),
+                        ),
+                        // Second row - button for failed questions
+                        if (_hasIncorrectAnswers()) ...[
+                          const SizedBox(height: 12),
+                          SizedBox(
+                            width: double.infinity,
+                            child: OutlinedButton.icon(
+                              onPressed: () =>
+                                  _startFailedQuestionsQuiz(context),
+                              icon: const Icon(Icons.quiz),
+                              label: Text(
+                                AppLocalizations.of(
+                                  context,
+                                )!.retryFailedQuestions,
+                              ),
+                              style: OutlinedButton.styleFrom(
+                                foregroundColor: Colors.orange,
+                                side: const BorderSide(color: Colors.orange),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ],
                     ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: () => context.pop(),
-                        icon: const Icon(Icons.home),
-                        label: Text(AppLocalizations.of(context)!.goBack),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
 
-                // Segunda fila - botón para preguntas fallidas
-                if (_hasIncorrectAnswers()) ...[
-                  const SizedBox(height: 12),
-                  SizedBox(
-                    width: double.infinity,
-                    child: OutlinedButton.icon(
-                      onPressed: () => _startFailedQuestionsQuiz(context),
-                      icon: const Icon(Icons.quiz),
-                      label: Text(
-                        AppLocalizations.of(context)!.retryFailedQuestions,
-                      ),
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: Colors.orange,
-                        side: const BorderSide(color: Colors.orange),
-                      ),
+                  const SizedBox(width: 12),
+
+                  // Second column (Finalizar) - same height as first column
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed: () => context.pop(),
+                      icon: const Icon(Icons.home),
+                      label: Text(AppLocalizations.of(context)!.goBack),
                     ),
                   ),
                 ],
-              ],
+              ),
             ),
           ),
         ],

@@ -413,19 +413,19 @@ abstract class AppLocalizations {
   /// Retry button text
   ///
   /// In en, this message translates to:
-  /// **'Retry'**
+  /// **'Repeat'**
   String get retry;
 
   /// Go back button text
   ///
   /// In en, this message translates to:
-  /// **'Go Back'**
+  /// **'Finish'**
   String get goBack;
 
   /// Button text to retry only the questions that were answered incorrectly
   ///
   /// In en, this message translates to:
-  /// **'Review Failed Questions'**
+  /// **'Retry Failed'**
   String get retryFailedQuestions;
 
   /// Question text in results

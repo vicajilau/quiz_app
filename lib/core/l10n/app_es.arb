@@ -253,15 +253,15 @@
       }
     }
   },
-  "retry": "Reintentar",
+  "retry": "Repetir",
   "@retry": {
     "description": "Texto del botón reintentar"
   },
-  "goBack": "Volver",
+  "goBack": "Finalizar",
   "@goBack": {
     "description": "Texto del botón volver"
   },
-  "retryFailedQuestions": "Repasar Preguntas Fallidas",
+  "retryFailedQuestions": "Reintentar errores",
   "@retryFailedQuestions": {
     "description": "Texto del botón para repasar solo las preguntas que se respondieron incorrectamente"
   },

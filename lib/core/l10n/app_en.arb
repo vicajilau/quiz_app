@@ -259,15 +259,15 @@
       }
     }
   },
-  "retry": "Retry",
+  "retry": "Repeat",
   "@retry": {
     "description": "Retry button text"
   },
-  "goBack": "Go Back",
+  "goBack": "Finish",
   "@goBack": {
     "description": "Go back button text"
   },
-  "retryFailedQuestions": "Review Failed Questions",
+  "retryFailedQuestions": "Retry Failed",
   "@retryFailedQuestions": {
     "description": "Button text to retry only the questions that were answered incorrectly"
   },
