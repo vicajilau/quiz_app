@@ -30,12 +30,6 @@ class QuizInProgressView extends StatelessWidget {
               children: [
                 QuizQuestionHeader(state: state),
 
-                // Image section if exists
-                if (hasImage) ...[
-                  const SizedBox(height: 16),
-                  _buildImageSection(),
-                ],
-
                 const SizedBox(height: 16),
 
                 // Options section - usar el widget original pero sin scroll
