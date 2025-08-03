@@ -18,7 +18,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
   bool _examTimeEnabled = false;
   int _examTimeMinutes = 60;
   bool _aiAssistantEnabled = true;
-  final TextEditingController _apiKeyController = TextEditingController();
+  final TextEditingController _openAiApiKeyController = TextEditingController();
   final TextEditingController _geminiApiKeyController = TextEditingController();
   String? _apiKeyErrorMessage;
 
@@ -42,7 +42,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
 
       if (mounted) {
         setState(() {
-          _apiKeyController.text = apiKey ?? '';
+          _openAiApiKeyController.text = apiKey ?? '';
           _geminiApiKeyController.text = geminiApiKey ?? '';
           _isLoading = false; // Important: set as finished
         });
@@ -71,7 +71,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
     });
 
     // Validate that if AI Assistant is enabled, at least one API Key must be provided
-    final apiKey = _apiKeyController.text.trim();
+    final apiKey = _openAiApiKeyController.text.trim();
     final geminiApiKey = _geminiApiKeyController.text.trim();
 
     if (_aiAssistantEnabled && apiKey.isEmpty && geminiApiKey.isEmpty) {
@@ -109,7 +109,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
     }
   }
 
-  Future<void> _openApiKeysUrl() async {
+  Future<void> _openAiApiKeysUrl() async {
     final url = Uri.parse('https://platform.openai.com/api-keys');
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
@@ -147,7 +147,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
 
   @override
   void dispose() {
-    _apiKeyController.dispose();
+    _openAiApiKeyController.dispose();
     _geminiApiKeyController.dispose();
     super.dispose();
   }
@@ -286,74 +286,6 @@ class _SettingsDialogState extends State<SettingsDialog> {
                       children: [
                         Expanded(
                           child: TextFormField(
-                            controller: _apiKeyController,
-                            decoration: InputDecoration(
-                              labelText: AppLocalizations.of(
-                                context,
-                              )!.openaiApiKeyLabel,
-                              hintText: AppLocalizations.of(
-                                context,
-                              )!.openaiApiKeyHint,
-                              helperText: AppLocalizations.of(
-                                context,
-                              )!.openaiApiKeyDescription,
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: _apiKeyController.text.trim().isEmpty
-                                      ? Theme.of(context).colorScheme.error
-                                      : Theme.of(context).colorScheme.outline,
-                                ),
-                              ),
-                              prefixIcon: Icon(
-                                Icons.key,
-                                color: _apiKeyController.text.trim().isEmpty
-                                    ? Theme.of(context).colorScheme.error
-                                    : null,
-                              ),
-                              suffixIcon: _apiKeyController.text.trim().isEmpty
-                                  ? Icon(
-                                      Icons.warning,
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.error,
-                                    )
-                                  : Icon(
-                                      Icons.check_circle,
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.primary,
-                                    ),
-                            ),
-                            obscureText: true,
-                            maxLines: 1,
-                            onChanged: (value) {
-                              _clearApiKeyError();
-                              setState(() {
-                                // Trigger rebuild to update visual indicators
-                              });
-                            },
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        IconButton(
-                          onPressed: _openApiKeysUrl,
-                          icon: const Icon(Icons.info_outline),
-                          tooltip: AppLocalizations.of(
-                            context,
-                          )!.getApiKeyTooltip,
-                          style: IconButton.styleFrom(
-                            backgroundColor: Theme.of(
-                              context,
-                            ).colorScheme.surfaceContainerHighest,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: TextFormField(
                             controller: _geminiApiKeyController,
                             decoration: InputDecoration(
                               labelText: AppLocalizations.of(
@@ -422,7 +354,79 @@ class _SettingsDialogState extends State<SettingsDialog> {
                         ),
                       ],
                     ),
-
+                    const SizedBox(height: 16),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: _openAiApiKeyController,
+                            decoration: InputDecoration(
+                              labelText: AppLocalizations.of(
+                                context,
+                              )!.openaiApiKeyLabel,
+                              hintText: AppLocalizations.of(
+                                context,
+                              )!.openaiApiKeyHint,
+                              helperText: AppLocalizations.of(
+                                context,
+                              )!.openaiApiKeyDescription,
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color:
+                                      _openAiApiKeyController.text
+                                          .trim()
+                                          .isEmpty
+                                      ? Theme.of(context).colorScheme.error
+                                      : Theme.of(context).colorScheme.outline,
+                                ),
+                              ),
+                              prefixIcon: Icon(
+                                Icons.key,
+                                color:
+                                    _openAiApiKeyController.text.trim().isEmpty
+                                    ? Theme.of(context).colorScheme.error
+                                    : null,
+                              ),
+                              suffixIcon:
+                                  _openAiApiKeyController.text.trim().isEmpty
+                                  ? Icon(
+                                      Icons.warning,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.error,
+                                    )
+                                  : Icon(
+                                      Icons.check_circle,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.primary,
+                                    ),
+                            ),
+                            obscureText: true,
+                            maxLines: 1,
+                            onChanged: (value) {
+                              _clearApiKeyError();
+                              setState(() {
+                                // Trigger rebuild to update visual indicators
+                              });
+                            },
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        IconButton(
+                          onPressed: _openAiApiKeysUrl,
+                          icon: const Icon(Icons.info_outline),
+                          tooltip: AppLocalizations.of(
+                            context,
+                          )!.getApiKeyTooltip,
+                          style: IconButton.styleFrom(
+                            backgroundColor: Theme.of(
+                              context,
+                            ).colorScheme.surfaceContainerHighest,
+                          ),
+                        ),
+                      ],
+                    ),
                     // Error message for API keys
                     if (_apiKeyErrorMessage != null) ...[
                       const SizedBox(height: 8),

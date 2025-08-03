@@ -380,7 +380,9 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      localizations.usingAiService(_selectedService?.serviceName ?? 'AI'),
+                      localizations.usingAiService(
+                        _selectedService?.serviceName ?? 'AI',
+                      ),
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         fontWeight: FontWeight.w500,
                         color: Theme.of(context).colorScheme.primary,
