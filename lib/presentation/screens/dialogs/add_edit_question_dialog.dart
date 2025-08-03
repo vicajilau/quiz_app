@@ -433,6 +433,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
                           message: localizations.selectCorrectAnswers,
                           child: Checkbox(
                             value: _correctAnswers[index],
+                            activeColor: Colors.green,
                             onChanged: (value) {
                               setState(() {
                                 _correctAnswers[index] = value ?? false;
@@ -447,6 +448,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
                           message: localizations.selectCorrectAnswer,
                           child: Radio<int>(
                             value: index,
+                            activeColor: Colors.green,
                             groupValue: _correctAnswers.indexWhere(
                               (element) => element,
                             ),
@@ -491,7 +493,10 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog> {
                       ),
                       if (_selectedType != QuestionType.trueFalse)
                         IconButton(
-                          icon: const Icon(Icons.remove_circle_outline),
+                          icon: Icon(
+                            Icons.remove_circle_outline,
+                            color: Theme.of(context).colorScheme.error,
+                          ),
                           tooltip: localizations.removeOption,
                           onPressed: _optionControllers.length > 2
                               ? () => _removeOption(index)
