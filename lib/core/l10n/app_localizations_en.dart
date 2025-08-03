@@ -28,7 +28,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get dropFileHere => 'Drag a .quiz file here';
+  String get dropFileHere => 'Click here or drag a .quiz file to the screen';
 
   @override
   String get errorInvalidFile => 'Error: Invalid file. Must be a .quiz file.';

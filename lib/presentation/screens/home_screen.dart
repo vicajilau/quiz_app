@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/context_extension.dart';
-import 'package:platform_detail/platform_detail.dart';
 import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 
 import '../../core/file_handler.dart';
@@ -146,38 +145,57 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              body: PlatformDetail.isMobile
-                  ? Center(
-                      child: Image.asset(
-                        'images/QUIZ.png',
-                        fit: BoxFit.contain,
-                      ),
-                    )
-                  : DropTarget(
-                      onDragDone: (details) {
-                        if (context.read<FileBloc>().state is! FileLoaded) {
-                          context.read<FileBloc>().add(
-                            FileDropped(details.files.first.path),
-                          );
-                        }
-                      },
-                      child: Center(
-                        child: DragTarget<String>(
-                          builder: (context, candidateData, rejectedData) {
-                            return Container(
-                              padding: const EdgeInsets.all(20.0),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blue),
-                                borderRadius: BorderRadius.circular(8.0),
+              body: DropTarget(
+                onDragDone: (details) {
+                  if (context.read<FileBloc>().state is! FileLoaded) {
+                    context.read<FileBloc>().add(
+                      FileDropped(details.files.first.path),
+                    );
+                  }
+                },
+                child: Center(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: _isLoading
+                                ? null
+                                : () => context.read<FileBloc>().add(
+                                    QuizFilePickRequested(),
+                                  ),
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(
+                                maxWidth:
+                                    MediaQuery.of(context).size.width * 0.7,
+                                maxHeight:
+                                    MediaQuery.of(context).size.height * 0.4,
                               ),
-                              child: Text(
-                                AppLocalizations.of(context)!.dropFileHere,
+                              child: Image.asset(
+                                'images/QUIZ.png',
+                                fit: BoxFit.contain,
                               ),
-                            );
-                          },
-                        ),
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          Text(
+                            AppLocalizations.of(context)!.dropFileHere,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: _isLoading
+                                  ? Colors.grey
+                                  : Colors.grey[600],
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
                       ),
                     ),
+                  ),
+                ),
+              ),
             );
           },
         ),

@@ -63,7 +63,7 @@
   "@score": {
     "description": "Etiqueta para mostrar la puntuación del usuario."
   },
-  "dropFileHere": "Arrastra un archivo .quiz aquí",
+  "dropFileHere": "Haz clic aquí o arrastra un archivo .quiz a la pantalla",
   "@dropFileHere": {
     "description": "Texto mostrado dentro del área de arrastre para archivos."
   },
