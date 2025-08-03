@@ -391,6 +391,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String get openaiApiKeyNotConfigured => 'OpenAI API Key not configured';
 
   @override
+  String get geminiApiKeyNotConfigured => 'Gemini API Key not configured';
+
+  @override
+  String get geminiApiKeyLabel => 'Google Gemini API Key';
+
+  @override
+  String get geminiApiKeyHint => 'Enter your Gemini API Key';
+
+  @override
+  String get geminiApiKeyDescription =>
+      'Required for Gemini AI functionality. Your key is stored securely.';
+
+  @override
+  String get getGeminiApiKeyTooltip => 'Get API Key from Google AI Studio';
+
+  @override
+  String get aiRequiresAtLeastOneApiKeyError =>
+      'AI Study Assistant requires at least one API Key (OpenAI or Gemini). Please enter an API key or disable the AI Assistant.';
+
+  @override
   String get minutesAbbreviation => 'min';
 
   @override
@@ -524,4 +544,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get hasExplanation => 'Explanation';
+
+  @override
+  String errorLoadingSettings(String error) {
+    return 'Error loading settings: $error';
+  }
+
+  @override
+  String couldNotOpenUrl(String url) {
+    return 'Could not open $url';
+  }
+
+  @override
+  String get loadingAiServices => 'Loading AI services...';
+
+  @override
+  String usingAiService(String serviceName) {
+    return 'Using: $serviceName';
+  }
+
+  @override
+  String get aiServiceLabel => 'AI Service:';
 }

@@ -8,6 +8,7 @@ class ConfigurationService {
   static const String _examTimeMinutesKey = 'exam_time_minutes';
   static const String _aiAssistantEnabledKey = 'ai_assistant_enabled';
   static const String _openaiApiKeyKey = 'openai_api_key';
+  static const String _geminiApiKeyKey = 'gemini_api_key';
 
   static ConfigurationService? _instance;
   static ConfigurationService get instance =>
@@ -92,5 +93,30 @@ class ConfigurationService {
   Future<void> deleteOpenAIApiKey() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_openaiApiKeyKey);
+  }
+
+  /// Guarda la API Key de Gemini de forma segura (encriptada)
+  Future<void> saveGeminiApiKey(String apiKey) async {
+    final prefs = await SharedPreferences.getInstance();
+    final encryptedApiKey = EncryptionService.encrypt(apiKey);
+    await prefs.setString(_geminiApiKeyKey, encryptedApiKey);
+  }
+
+  /// Obtiene la API Key de Gemini (desencriptada)
+  Future<String?> getGeminiApiKey() async {
+    final prefs = await SharedPreferences.getInstance();
+    final encryptedApiKey = prefs.getString(_geminiApiKeyKey);
+
+    if (encryptedApiKey == null || encryptedApiKey.isEmpty) {
+      return null;
+    }
+
+    return EncryptionService.decrypt(encryptedApiKey);
+  }
+
+  /// Elimina la API Key de Gemini
+  Future<void> deleteGeminiApiKey() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_geminiApiKeyKey);
   }
 }

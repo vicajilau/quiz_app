@@ -491,6 +491,30 @@
   "@openaiApiKeyNotConfigured": {
     "description": "Mensaje de error cuando la clave API no está configurada"
   },
+  "geminiApiKeyNotConfigured": "Clave API de Gemini no configurada",
+  "@geminiApiKeyNotConfigured": {
+    "description": "Mensaje de error cuando la clave API de Gemini no está configurada"
+  },
+  "geminiApiKeyLabel": "Clave API de Google Gemini",
+  "@geminiApiKeyLabel": {
+    "description": "Etiqueta para el campo de clave API de Gemini"
+  },
+  "geminiApiKeyHint": "Ingresa tu clave API de Gemini",
+  "@geminiApiKeyHint": {
+    "description": "Texto de ayuda para el campo de clave API de Gemini"
+  },
+  "geminiApiKeyDescription": "Requerida para la funcionalidad de IA Gemini. Tu clave se guarda de forma segura.",
+  "@geminiApiKeyDescription": {
+    "description": "Descripción para el campo de clave API de Gemini"
+  },
+  "getGeminiApiKeyTooltip": "Obtener clave API de Google AI Studio",
+  "@getGeminiApiKeyTooltip": {
+    "description": "Tooltip para el botón de obtener clave API de Gemini"
+  },
+  "aiRequiresAtLeastOneApiKeyError": "El Asistente de Estudio IA requiere al menos una clave API (OpenAI o Gemini). Por favor, ingresa una clave API o deshabilita el Asistente de IA.",
+  "@aiRequiresAtLeastOneApiKeyError": {
+    "description": "Mensaje de error cuando el Asistente de IA está habilitado pero no se proporcionan claves API"
+  },
   "minutesAbbreviation": "min",
   "@minutesAbbreviation": {
     "description": "Abreviación para minutos"
@@ -680,5 +704,43 @@
   "hasExplanation": "Explicación",
   "@hasExplanation": {
     "description": "Etiqueta que indica que una pregunta tiene una explicación"
+  },
+  "errorLoadingSettings": "Error al cargar configuraciones: {error}",
+  "@errorLoadingSettings": {
+    "description": "Mensaje mostrado cuando hay un error al cargar las configuraciones de la aplicación.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "El mensaje de error"
+      }
+    }
+  },
+  "couldNotOpenUrl": "No se pudo abrir {url}",
+  "@couldNotOpenUrl": {
+    "description": "Mensaje mostrado cuando no se puede abrir una URL.",
+    "placeholders": {
+      "url": {
+        "type": "String",
+        "description": "La URL que no se pudo abrir"
+      }
+    }
+  },
+  "loadingAiServices": "Cargando servicios de IA...",
+  "@loadingAiServices": {
+    "description": "Mensaje mostrado mientras se cargan los servicios de IA disponibles."
+  },
+  "usingAiService": "Usando: {serviceName}",
+  "@usingAiService": {
+    "description": "Mensaje mostrado indicando qué servicio de IA se está usando.",
+    "placeholders": {
+      "serviceName": {
+        "type": "String",
+        "description": "El nombre del servicio de IA"
+      }
+    }
+  },
+  "aiServiceLabel": "Servicio de IA:",
+  "@aiServiceLabel": {
+    "description": "Etiqueta para el selector de servicio de IA."
   }
 }

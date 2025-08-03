@@ -19,49 +19,68 @@ class _SettingsDialogState extends State<SettingsDialog> {
   int _examTimeMinutes = 60;
   bool _aiAssistantEnabled = true;
   final TextEditingController _apiKeyController = TextEditingController();
+  final TextEditingController _geminiApiKeyController = TextEditingController();
+  String? _apiKeyErrorMessage;
 
   @override
   void initState() {
     super.initState();
-    _loadCurrentSettings();
+    _loadSettings();
   }
 
-  Future<void> _loadCurrentSettings() async {
-    final currentOrder = await ConfigurationService.instance.getQuestionOrder();
-    final examTimeEnabled = await ConfigurationService.instance
-        .getExamTimeEnabled();
-    final examTimeMinutes = await ConfigurationService.instance
-        .getExamTimeMinutes();
-    final aiAssistantEnabled = await ConfigurationService.instance
-        .getAIAssistantEnabled();
-    final apiKey = await ConfigurationService.instance.getOpenAIApiKey();
+  Future<void> _loadSettings() async {
+    try {
+      final service = ConfigurationService.instance;
 
-    setState(() {
-      _selectedOrder = currentOrder;
-      _examTimeEnabled = examTimeEnabled;
-      _examTimeMinutes = examTimeMinutes;
-      _aiAssistantEnabled = aiAssistantEnabled;
-      _apiKeyController.text = apiKey ?? '';
-      _isLoading = false;
-    });
-  }
+      // Load all configurations
+      _selectedOrder = await service.getQuestionOrder();
+      _examTimeEnabled = await service.getExamTimeEnabled();
+      _examTimeMinutes = await service.getExamTimeMinutes();
+      _aiAssistantEnabled = await service.getAIAssistantEnabled();
+      final apiKey = await service.getOpenAIApiKey();
+      final geminiApiKey = await service.getGeminiApiKey();
 
-  Future<void> _saveSettings() async {
-    // Validar que si AI Assistant está habilitado, se debe proporcionar API Key
-    final apiKey = _apiKeyController.text.trim();
-    if (_aiAssistantEnabled && apiKey.isEmpty) {
       if (mounted) {
+        setState(() {
+          _apiKeyController.text = apiKey ?? '';
+          _geminiApiKeyController.text = geminiApiKey ?? '';
+          _isLoading = false; // Important: set as finished
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _isLoading = false; // Also set in case of error
+        });
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              AppLocalizations.of(context)!.aiAssistantRequiresApiKeyError,
+              AppLocalizations.of(context)!.errorLoadingSettings(e.toString()),
             ),
             backgroundColor: Theme.of(context).colorScheme.error,
-            behavior: SnackBarBehavior.floating,
           ),
         );
       }
-      return; // No guardar si falta la validación
+    }
+  }
+
+  Future<void> _saveSettings() async {
+    // Clear previous error message
+    setState(() {
+      _apiKeyErrorMessage = null;
+    });
+
+    // Validate that if AI Assistant is enabled, at least one API Key must be provided
+    final apiKey = _apiKeyController.text.trim();
+    final geminiApiKey = _geminiApiKeyController.text.trim();
+
+    if (_aiAssistantEnabled && apiKey.isEmpty && geminiApiKey.isEmpty) {
+      setState(() {
+        _apiKeyErrorMessage = AppLocalizations.of(
+          context,
+        )!.aiRequiresAtLeastOneApiKeyError;
+      });
+      return; // Don't save if validation fails
     }
 
     await ConfigurationService.instance.saveQuestionOrder(_selectedOrder);
@@ -71,11 +90,18 @@ class _SettingsDialogState extends State<SettingsDialog> {
       _aiAssistantEnabled,
     );
 
-    // Save API Key securely
+    // Save OpenAI API Key securely
     if (apiKey.isNotEmpty) {
       await ConfigurationService.instance.saveOpenAIApiKey(apiKey);
     } else {
       await ConfigurationService.instance.deleteOpenAIApiKey();
+    }
+
+    // Save Gemini API Key securely
+    if (geminiApiKey.isNotEmpty) {
+      await ConfigurationService.instance.saveGeminiApiKey(geminiApiKey);
+    } else {
+      await ConfigurationService.instance.deleteGeminiApiKey();
     }
 
     if (mounted) {
@@ -91,7 +117,27 @@ class _SettingsDialogState extends State<SettingsDialog> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Could not open ${url.toString()}'),
+            content: Text(
+              AppLocalizations.of(context)!.couldNotOpenUrl(url.toString()),
+            ),
+            backgroundColor: Theme.of(context).colorScheme.error,
+          ),
+        );
+      }
+    }
+  }
+
+  Future<void> _openGeminiApiKeysUrl() async {
+    final url = Uri.parse('https://aistudio.google.com/app/apikey');
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              AppLocalizations.of(context)!.couldNotOpenUrl(url.toString()),
+            ),
             backgroundColor: Theme.of(context).colorScheme.error,
           ),
         );
@@ -102,7 +148,16 @@ class _SettingsDialogState extends State<SettingsDialog> {
   @override
   void dispose() {
     _apiKeyController.dispose();
+    _geminiApiKeyController.dispose();
     super.dispose();
+  }
+
+  void _clearApiKeyError() {
+    if (_apiKeyErrorMessage != null) {
+      setState(() {
+        _apiKeyErrorMessage = null;
+      });
+    }
   }
 
   @override
@@ -272,6 +327,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
                             obscureText: true,
                             maxLines: 1,
                             onChanged: (value) {
+                              _clearApiKeyError();
                               setState(() {
                                 // Trigger rebuild to update visual indicators
                               });
@@ -293,6 +349,117 @@ class _SettingsDialogState extends State<SettingsDialog> {
                         ),
                       ],
                     ),
+                    const SizedBox(height: 16),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: _geminiApiKeyController,
+                            decoration: InputDecoration(
+                              labelText: AppLocalizations.of(
+                                context,
+                              )!.geminiApiKeyLabel,
+                              hintText: AppLocalizations.of(
+                                context,
+                              )!.geminiApiKeyHint,
+                              helperText: AppLocalizations.of(
+                                context,
+                              )!.geminiApiKeyDescription,
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color:
+                                      _geminiApiKeyController.text
+                                          .trim()
+                                          .isEmpty
+                                      ? Theme.of(context).colorScheme.error
+                                      : Theme.of(context).colorScheme.outline,
+                                ),
+                              ),
+                              prefixIcon: Icon(
+                                Icons.key,
+                                color:
+                                    _geminiApiKeyController.text.trim().isEmpty
+                                    ? Theme.of(context).colorScheme.error
+                                    : null,
+                              ),
+                              suffixIcon:
+                                  _geminiApiKeyController.text.trim().isEmpty
+                                  ? Icon(
+                                      Icons.warning,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.error,
+                                    )
+                                  : Icon(
+                                      Icons.check_circle,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.primary,
+                                    ),
+                            ),
+                            obscureText: true,
+                            maxLines: 1,
+                            onChanged: (value) {
+                              _clearApiKeyError();
+                              setState(() {
+                                // Trigger rebuild to update visual indicators
+                              });
+                            },
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        IconButton(
+                          onPressed: _openGeminiApiKeysUrl,
+                          icon: const Icon(Icons.info_outline),
+                          tooltip: AppLocalizations.of(
+                            context,
+                          )!.getGeminiApiKeyTooltip,
+                          style: IconButton.styleFrom(
+                            backgroundColor: Theme.of(
+                              context,
+                            ).colorScheme.surfaceContainerHighest,
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    // Error message for API keys
+                    if (_apiKeyErrorMessage != null) ...[
+                      const SizedBox(height: 8),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.errorContainer,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.error,
+                            width: 1,
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.error_outline,
+                              color: Theme.of(context).colorScheme.error,
+                              size: 20,
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                _apiKeyErrorMessage!,
+                                style: Theme.of(context).textTheme.bodySmall
+                                    ?.copyWith(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onErrorContainer,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ],
 
                   // Future settings sections can be added here

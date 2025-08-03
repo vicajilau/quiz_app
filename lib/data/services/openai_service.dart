@@ -2,8 +2,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'configuration_service.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'ai/ai_service.dart';
 
-class OpenAIService {
+class OpenAIService extends AIService {
   static const String _baseUrl = 'https://api.openai.com/v1';
   static const String _chatEndpoint = '/chat/completions';
 
@@ -12,8 +13,21 @@ class OpenAIService {
 
   OpenAIService._();
 
+  @override
+  String get serviceName => 'OpenAI GPT';
+
+  @override
+  String get defaultModel => 'gpt-3.5-turbo';
+
+  @override
+  Future<bool> isAvailable() async {
+    final apiKey = await ConfigurationService.instance.getOpenAIApiKey();
+    return apiKey != null && apiKey.isNotEmpty;
+  }
+
   /// Realiza una petición a la API de ChatGPT
-  static Future<String> getChatResponse(
+  @override
+  Future<String> getChatResponse(
     String prompt,
     AppLocalizations localizations,
   ) async {

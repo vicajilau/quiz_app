@@ -764,6 +764,42 @@ abstract class AppLocalizations {
   /// **'OpenAI API Key not configured'**
   String get openaiApiKeyNotConfigured;
 
+  /// Error message when Gemini API key is not configured
+  ///
+  /// In en, this message translates to:
+  /// **'Gemini API Key not configured'**
+  String get geminiApiKeyNotConfigured;
+
+  /// Label for Gemini API Key field
+  ///
+  /// In en, this message translates to:
+  /// **'Google Gemini API Key'**
+  String get geminiApiKeyLabel;
+
+  /// Hint text for Gemini API Key field
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your Gemini API Key'**
+  String get geminiApiKeyHint;
+
+  /// Description for Gemini API Key field
+  ///
+  /// In en, this message translates to:
+  /// **'Required for Gemini AI functionality. Your key is stored securely.'**
+  String get geminiApiKeyDescription;
+
+  /// Tooltip for the button to get Gemini API key
+  ///
+  /// In en, this message translates to:
+  /// **'Get API Key from Google AI Studio'**
+  String get getGeminiApiKeyTooltip;
+
+  /// Error message when AI Assistant is enabled but no API keys are provided
+  ///
+  /// In en, this message translates to:
+  /// **'AI Study Assistant requires at least one API Key (OpenAI or Gemini). Please enter an API key or disable the AI Assistant.'**
+  String get aiRequiresAtLeastOneApiKeyError;
+
   /// Abbreviation for minutes
   ///
   /// In en, this message translates to:
@@ -1009,6 +1045,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Explanation'**
   String get hasExplanation;
+
+  /// Message displayed when there is an error while loading application settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading settings: {error}'**
+  String errorLoadingSettings(String error);
+
+  /// Message displayed when a URL cannot be opened.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open {url}'**
+  String couldNotOpenUrl(String url);
+
+  /// Message displayed while loading available AI services.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading AI services...'**
+  String get loadingAiServices;
+
+  /// Message displayed showing which AI service is being used.
+  ///
+  /// In en, this message translates to:
+  /// **'Using: {serviceName}'**
+  String usingAiService(String serviceName);
+
+  /// Label for the AI service selector.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Service:'**
+  String get aiServiceLabel;
 }
 
 class _AppLocalizationsDelegate

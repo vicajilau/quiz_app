@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
-import 'package:quiz_app/data/services/openai_service.dart';
+import 'package:quiz_app/data/services/ai/ai_service_selector.dart';
+import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
 
 class AIQuestionDialog extends StatefulWidget {
@@ -18,6 +19,34 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
   final ScrollController _scrollController = ScrollController();
   bool _isLoading = false;
   String? _aiResponse;
+  List<AIService> _availableServices = [];
+  AIService? _selectedService;
+  bool _isLoadingServices = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAvailableServices();
+  }
+
+  Future<void> _loadAvailableServices() async {
+    try {
+      final services = await AIServiceSelector.instance.getAvailableServices();
+      if (mounted) {
+        setState(() {
+          _availableServices = services;
+          _selectedService = services.isNotEmpty ? services.first : null;
+          _isLoadingServices = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _isLoadingServices = false;
+        });
+      }
+    }
+  }
 
   @override
   void dispose() {
@@ -70,21 +99,31 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
   }
 
   Future<void> _askAI() async {
-    if (_questionController.text.trim().isEmpty) return;
-
-    // Capture localizations early to avoid async gap warnings
-    final localizations = AppLocalizations.of(context)!;
+    if (_questionController.text.trim().isEmpty) {
+      return;
+    }
 
     setState(() {
       _isLoading = true;
       _aiResponse = null;
     });
 
-    try {
-      // Check if API key is configured
-      final apiKey = await ConfigurationService.instance.getOpenAIApiKey();
+    final localizations = AppLocalizations.of(context)!;
 
-      if (apiKey == null || apiKey.isEmpty) {
+    try {
+      // Check if AI assistant is enabled
+      final isAiEnabled = await ConfigurationService.instance
+          .getAIAssistantEnabled();
+      if (!isAiEnabled) {
+        setState(() {
+          _aiResponse = localizations.aiAssistantSettingsDescription;
+          _isLoading = false;
+        });
+        return;
+      }
+
+      // Check if we have a selected AI service
+      if (_selectedService == null) {
         setState(() {
           _aiResponse =
               '${localizations.aiErrorResponse}\n\n${localizations.configureApiKeyMessage}';
@@ -96,8 +135,8 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
       // Build the prompt with question context
       final prompt = _buildPrompt();
 
-      // Make actual API call to OpenAI
-      final response = await OpenAIService.getChatResponse(
+      // Make API call to the selected AI service
+      final response = await _selectedService!.getChatResponse(
         prompt,
         localizations,
       );
@@ -116,11 +155,13 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
         );
       });
     } catch (e) {
-      setState(() {
-        _aiResponse =
-            '${localizations.aiErrorResponse}\n\n${localizations.errorLabel} ${_extractErrorMessage(e)}';
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _aiResponse =
+              '${localizations.aiErrorResponse}\n\n${localizations.errorLabel} ${_extractErrorMessage(e)}';
+          _isLoading = false;
+        });
+      }
     }
   }
 
@@ -173,6 +214,183 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
               ],
             ),
             const SizedBox(height: 16),
+
+            // AI Service Selector
+            if (_isLoadingServices) ...[
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.outline.withValues(alpha: 0.2),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      localizations.loadingAiServices,
+                      style: Theme.of(context).textTheme.labelMedium,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+            ] else if (_availableServices.length > 1) ...[
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.outline.withValues(alpha: 0.2),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.psychology,
+                      size: 20,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      localizations.aiServiceLabel,
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<AIService>(
+                          value: _selectedService,
+                          isExpanded: true,
+                          items: _availableServices.map((service) {
+                            return DropdownMenuItem<AIService>(
+                              value: service,
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    service.serviceName.contains('OpenAI')
+                                        ? Icons.auto_awesome
+                                        : Icons.auto_fix_high,
+                                    size: 16,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.primary,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    service.serviceName,
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.bodyMedium,
+                                  ),
+                                ],
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (AIService? newService) {
+                            if (newService != null) {
+                              setState(() {
+                                _selectedService = newService;
+                                _aiResponse =
+                                    null; // Clear previous response when switching
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+            ] else if (_availableServices.isEmpty && !_isLoadingServices) ...[
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.errorContainer,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.error.withValues(alpha: 0.2),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.warning_outlined,
+                      size: 20,
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        localizations.configureApiKeyMessage,
+                        style: Theme.of(context).textTheme.labelMedium
+                            ?.copyWith(
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onErrorContainer,
+                            ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+            ] else if (_availableServices.length == 1) ...[
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.outline.withValues(alpha: 0.2),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      _selectedService?.serviceName.contains('OpenAI') == true
+                          ? Icons.auto_awesome
+                          : Icons.auto_fix_high,
+                      size: 20,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      localizations.usingAiService(_selectedService?.serviceName ?? 'AI'),
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+            ],
 
             // Question context
             Container(
@@ -238,8 +456,19 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                           children: [
                             Row(
                               children: [
+                                Icon(
+                                  _selectedService?.serviceName.contains(
+                                            'OpenAI',
+                                          ) ==
+                                          true
+                                      ? Icons.auto_awesome
+                                      : Icons.auto_fix_high,
+                                  size: 16,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                                const SizedBox(width: 4),
                                 Text(
-                                  AppLocalizations.of(context)!.aiButtonText,
+                                  _selectedService?.serviceName ?? 'AI',
                                   style: TextStyle(
                                     color: Theme.of(
                                       context,
@@ -247,12 +476,6 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,
                                   ),
-                                ),
-                                const SizedBox(width: 4),
-                                Icon(
-                                  Icons.auto_awesome,
-                                  size: 16,
-                                  color: Theme.of(context).colorScheme.primary,
                                 ),
                                 const SizedBox(width: 8),
                                 Text(

@@ -551,6 +551,30 @@
   "@openaiApiKeyNotConfigured": {
     "description": "Error message when API key is not configured"
   },
+  "geminiApiKeyNotConfigured": "Gemini API Key not configured",
+  "@geminiApiKeyNotConfigured": {
+    "description": "Error message when Gemini API key is not configured"
+  },
+  "geminiApiKeyLabel": "Google Gemini API Key",
+  "@geminiApiKeyLabel": {
+    "description": "Label for Gemini API Key field"
+  },
+  "geminiApiKeyHint": "Enter your Gemini API Key",
+  "@geminiApiKeyHint": {
+    "description": "Hint text for Gemini API Key field"
+  },
+  "geminiApiKeyDescription": "Required for Gemini AI functionality. Your key is stored securely.",
+  "@geminiApiKeyDescription": {
+    "description": "Description for Gemini API Key field"
+  },
+  "getGeminiApiKeyTooltip": "Get API Key from Google AI Studio",
+  "@getGeminiApiKeyTooltip": {
+    "description": "Tooltip for the button to get Gemini API key"
+  },
+  "aiRequiresAtLeastOneApiKeyError": "AI Study Assistant requires at least one API Key (OpenAI or Gemini). Please enter an API key or disable the AI Assistant.",
+  "@aiRequiresAtLeastOneApiKeyError": {
+    "description": "Error message when AI Assistant is enabled but no API keys are provided"
+  },
   "minutesAbbreviation": "min",
   "@minutesAbbreviation": {
     "description": "Abbreviation for minutes"
@@ -740,5 +764,43 @@
   "hasExplanation": "Explanation",
   "@hasExplanation": {
     "description": "Label indicating that a question has an explanation"
+  },
+  "errorLoadingSettings": "Error loading settings: {error}",
+  "@errorLoadingSettings": {
+    "description": "Message displayed when there is an error while loading application settings.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "The error message"
+      }
+    }
+  },
+  "couldNotOpenUrl": "Could not open {url}",
+  "@couldNotOpenUrl": {
+    "description": "Message displayed when a URL cannot be opened.",
+    "placeholders": {
+      "url": {
+        "type": "String",
+        "description": "The URL that could not be opened"
+      }
+    }
+  },
+  "loadingAiServices": "Loading AI services...",
+  "@loadingAiServices": {
+    "description": "Message displayed while loading available AI services."
+  },
+  "usingAiService": "Using: {serviceName}",
+  "@usingAiService": {
+    "description": "Message displayed showing which AI service is being used.",
+    "placeholders": {
+      "serviceName": {
+        "type": "String",
+        "description": "The name of the AI service"
+      }
+    }
+  },
+  "aiServiceLabel": "AI Service:",
+  "@aiServiceLabel": {
+    "description": "Label for the AI service selector."
   }
 }
