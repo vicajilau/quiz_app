@@ -14,66 +14,79 @@ class QuizCompletedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          // Results header
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(24.0),
+          // Scrollable content area
+          Expanded(
+            child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Icon(
-                    state.score >= 70 ? Icons.celebration : Icons.info,
-                    size: 64,
-                    color: state.score >= 70 ? Colors.green : Colors.orange,
+                  // Results header
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: Column(
+                        children: [
+                          Icon(
+                            state.score >= 70 ? Icons.celebration : Icons.info,
+                            size: 64,
+                            color: state.score >= 70
+                                ? Colors.green
+                                : Colors.orange,
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            AppLocalizations.of(context)!.quizCompleted,
+                            style: Theme.of(context).textTheme.headlineSmall
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            AppLocalizations.of(
+                              context,
+                            )!.score(state.score.toStringAsFixed(1)),
+                            style: Theme.of(context).textTheme.titleLarge
+                                ?.copyWith(
+                                  color: state.score >= 70
+                                      ? Colors.green
+                                      : Colors.orange,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            AppLocalizations.of(context)!.correctAnswers(
+                              state.correctAnswers,
+                              state.totalQuestions,
+                            ),
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
+
                   const SizedBox(height: 16),
-                  Text(
-                    AppLocalizations.of(context)!.quizCompleted,
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    AppLocalizations.of(
-                      context,
-                    )!.score(state.score.toStringAsFixed(1)),
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: state.score >= 70 ? Colors.green : Colors.orange,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    AppLocalizations.of(context)!.correctAnswers(
-                      state.correctAnswers,
-                      state.totalQuestions,
-                    ),
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
+
+                  // Question results
+                  ...state.questionResults.asMap().entries.map((entry) {
+                    final index = entry.key;
+                    final result = entry.value;
+                    return QuizQuestionResultCard(
+                      result: result,
+                      questionNumber: index + 1,
+                    );
+                  }),
+
+                  const SizedBox(height: 16),
                 ],
               ),
             ),
           ),
-
-          const SizedBox(height: 16),
-
-          // Question results
-          ...state.questionResults.asMap().entries.map((entry) {
-            final index = entry.key;
-            final result = entry.value;
-            return QuizQuestionResultCard(
-              result: result,
-              questionNumber: index + 1,
-            );
-          }),
-
-          const SizedBox(height: 16),
-
-          // Action buttons
+          const SizedBox(height: 12),
+          // Fixed action buttons at bottom
           IntrinsicHeight(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
