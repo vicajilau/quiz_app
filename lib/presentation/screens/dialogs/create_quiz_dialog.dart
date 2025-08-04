@@ -100,12 +100,14 @@ class _CreateQuizFileDialogState extends State<CreateQuizFileDialog> {
     return AlertDialog(
       title: Row(
         children: [
-          Icon(
-            Icons.quiz_outlined,
-            color: Theme.of(context).colorScheme.primary,
-          ),
+          Icon(Icons.note_add, color: Theme.of(context).colorScheme.primary),
           const SizedBox(width: 8),
-          Text(AppLocalizations.of(context)!.createQuizFileTitle),
+          Expanded(
+            child: Text(
+              AppLocalizations.of(context)!.createQuizFileTitle,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
         ],
       ),
       content: SizedBox(
