@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:desktop_drop/desktop_drop.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:quiz_app/core/context_extension.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
@@ -17,6 +19,7 @@ import '../blocs/file_bloc/file_event.dart';
 import '../blocs/file_bloc/file_state.dart';
 import 'dialogs/exit_confirmation_dialog.dart';
 import 'dialogs/question_count_selection_dialog.dart';
+import 'dialogs/import_questions_dialog.dart';
 import 'widgets/request_file_name_dialog.dart';
 import 'dialogs/settings_dialog.dart';
 
@@ -61,6 +64,116 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
 
   Future<void> _showSettingsDialog(BuildContext context) async {
     await showDialog(context: context, builder: (_) => const SettingsDialog());
+  }
+
+  /// Handle importing questions from a dropped file
+  Future<void> _handleFileImport(String filePath) async {
+    try {
+      // Create a temporary file bloc to load the dropped file
+      final tempFileBloc = FileBloc(
+        fileRepository: ServiceLocator.instance.getIt(),
+      );
+
+      tempFileBloc.add(FileDropped(filePath));
+
+      // Listen to the file load result
+      await for (final state in tempFileBloc.stream) {
+        if (state is FileLoaded) {
+          final importedQuizFile = state.quizFile;
+
+          if (importedQuizFile.questions.isEmpty) {
+            if (mounted) {
+              context.presentSnackBar(
+                AppLocalizations.of(
+                  context,
+                )!.errorLoadingFile('No questions found in the imported file'),
+              );
+            }
+            break;
+          }
+
+          // Show import dialog
+          final position = await showDialog<String>(
+            context: context,
+            builder: (context) => ImportQuestionsDialog(
+              questionCount: importedQuizFile.questions.length,
+              fileName: filePath.split('/').last,
+            ),
+          );
+
+          if (position != null && mounted) {
+            setState(() {
+              if (position == 'beginning') {
+                // Insert at the beginning
+                cachedQuizFile.questions.insertAll(
+                  0,
+                  importedQuizFile.questions,
+                );
+              } else {
+                // Insert at the end
+                cachedQuizFile.questions.addAll(importedQuizFile.questions);
+              }
+            });
+            _checkFileChange();
+
+            if (mounted) {
+              context.presentSnackBar(
+                AppLocalizations.of(
+                  context,
+                )!.questionsImportedSuccess(importedQuizFile.questions.length),
+              );
+            }
+          }
+          break;
+        } else if (state is FileError) {
+          if (mounted) {
+            context.presentSnackBar(state.getDescription(context));
+          }
+          break;
+        }
+      }
+
+      tempFileBloc.close();
+    } catch (e) {
+      if (mounted) {
+        context.presentSnackBar(
+          AppLocalizations.of(context)!.errorLoadingFile(e.toString()),
+        );
+      }
+    }
+  }
+
+  /// Handle importing questions using file picker
+  Future<void> _pickAndImportFile() async {
+    try {
+      final result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['quiz'],
+        withData: false,
+        withReadStream: false,
+      );
+
+      if (result != null && result.files.isNotEmpty) {
+        final pickedFile = result.files.first;
+        if (pickedFile.path != null) {
+          await _handleFileImport(pickedFile.path!);
+        } else {
+          if (mounted) {
+            context.presentSnackBar(
+              AppLocalizations.of(
+                context,
+              )!.errorLoadingFile('Could not access the selected file'),
+            );
+          }
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        context.presentSnackBar(
+          AppLocalizations.of(context)!.errorLoadingFile(e.toString()),
+        );
+      }
+    }
   }
 
   @override
@@ -137,6 +250,16 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                       icon: const Icon(Icons.add),
                       tooltip: AppLocalizations.of(context)!.addTooltip,
                     ),
+                    // Import Action
+                    IconButton(
+                      onPressed: () async {
+                        await _pickAndImportFile();
+                      },
+                      icon: const Icon(Icons.file_upload),
+                      tooltip: AppLocalizations.of(
+                        context,
+                      )!.importQuestionsTooltip,
+                    ),
                     // Save Action
                     IconButton(
                       icon: const Icon(Icons.save),
@@ -159,9 +282,20 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                     ),
                   ],
                 ),
-                body: QuestionListWidget(
-                  quizFile: cachedQuizFile,
-                  onFileChange: _checkFileChange,
+                body: DropTarget(
+                  onDragDone: (details) {
+                    // Handle file drop for importing questions
+                    if (details.files.isNotEmpty) {
+                      final firstFile = details.files.first;
+                      if (firstFile.path.isNotEmpty) {
+                        _handleFileImport(firstFile.path);
+                      }
+                    }
+                  },
+                  child: QuestionListWidget(
+                    quizFile: cachedQuizFile,
+                    onFileChange: _checkFileChange,
+                  ),
                 ),
                 floatingActionButton: cachedQuizFile.questions.isNotEmpty
                     ? FloatingActionButton(

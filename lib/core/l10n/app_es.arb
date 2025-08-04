@@ -746,5 +746,53 @@
   "aiServiceLabel": "Servicio de IA:",
   "@aiServiceLabel": {
     "description": "Etiqueta para el selector de servicio de IA."
+  },
+  "importQuestionsTitle": "Importar Preguntas",
+  "@importQuestionsTitle": {
+    "description": "Título para el diálogo de importar preguntas."
+  },
+  "importQuestionsMessage": "Se encontraron {count} preguntas en \"{fileName}\". ¿Dónde te gustaría importarlas?",
+  "@importQuestionsMessage": {
+    "description": "Mensaje preguntando dónde importar preguntas de otro archivo.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      },
+      "fileName": {
+        "type": "String",
+        "example": "preguntas.quiz"
+      }
+    }
+  },
+  "importQuestionsPositionQuestion": "¿Dónde te gustaría añadir estas preguntas?",
+  "@importQuestionsPositionQuestion": {
+    "description": "Pregunta sobre la posición de importación."
+  },
+  "importAtBeginning": "Al Inicio",
+  "@importAtBeginning": {
+    "description": "Botón para importar preguntas al inicio de la lista."
+  },
+  "importAtEnd": "Al Final",
+  "@importAtEnd": {
+    "description": "Botón para importar preguntas al final de la lista."
+  },
+  "questionsImportedSuccess": "Se importaron exitosamente {count} preguntas",
+  "@questionsImportedSuccess": {
+    "description": "Mensaje de éxito cuando se importan preguntas.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "importQuestionsTooltip": "Importar preguntas desde otro archivo de quiz",
+  "@importQuestionsTooltip": {
+    "description": "Tooltip para el botón de importar preguntas."
+  },
+  "dragDropHintText": "También puedes arrastrar y soltar archivos .quiz aquí para importar preguntas",
+  "@dragDropHintText": {
+    "description": "Texto de sugerencia mostrado cuando la lista de preguntas está vacía, indicando la funcionalidad de arrastrar y soltar."
   }
 }

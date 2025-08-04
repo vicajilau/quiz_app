@@ -575,4 +575,35 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get aiServiceLabel => 'Servicio de IA:';
+
+  @override
+  String get importQuestionsTitle => 'Importar Preguntas';
+
+  @override
+  String importQuestionsMessage(int count, String fileName) {
+    return 'Se encontraron $count preguntas en \"$fileName\". ¿Dónde te gustaría importarlas?';
+  }
+
+  @override
+  String get importQuestionsPositionQuestion =>
+      '¿Dónde te gustaría añadir estas preguntas?';
+
+  @override
+  String get importAtBeginning => 'Al Inicio';
+
+  @override
+  String get importAtEnd => 'Al Final';
+
+  @override
+  String questionsImportedSuccess(int count) {
+    return 'Se importaron exitosamente $count preguntas';
+  }
+
+  @override
+  String get importQuestionsTooltip =>
+      'Importar preguntas desde otro archivo de quiz';
+
+  @override
+  String get dragDropHintText =>
+      'También puedes arrastrar y soltar archivos .quiz aquí para importar preguntas';
 }

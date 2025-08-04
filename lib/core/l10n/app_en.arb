@@ -806,5 +806,53 @@
   "aiServiceLabel": "AI Service:",
   "@aiServiceLabel": {
     "description": "Label for the AI service selector."
+  },
+  "importQuestionsTitle": "Import Questions",
+  "@importQuestionsTitle": {
+    "description": "Title for the import questions dialog."
+  },
+  "importQuestionsMessage": "Found {count} questions in \"{fileName}\". Where would you like to import them?",
+  "@importQuestionsMessage": {
+    "description": "Message asking where to import questions from another file.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      },
+      "fileName": {
+        "type": "String",
+        "example": "questions.quiz"
+      }
+    }
+  },
+  "importQuestionsPositionQuestion": "Where would you like to add these questions?",
+  "@importQuestionsPositionQuestion": {
+    "description": "Question asking about import position."
+  },
+  "importAtBeginning": "At Beginning",
+  "@importAtBeginning": {
+    "description": "Button to import questions at the beginning of the list."
+  },
+  "importAtEnd": "At End",
+  "@importAtEnd": {
+    "description": "Button to import questions at the end of the list."
+  },
+  "questionsImportedSuccess": "Successfully imported {count} questions",
+  "@questionsImportedSuccess": {
+    "description": "Success message when questions are imported.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "importQuestionsTooltip": "Import questions from another quiz file",
+  "@importQuestionsTooltip": {
+    "description": "Tooltip for the import questions button."
+  },
+  "dragDropHintText": "You can also drag and drop .quiz files here to import questions",
+  "@dragDropHintText": {
+    "description": "Hint text shown when the question list is empty, indicating drag and drop functionality."
   }
 }

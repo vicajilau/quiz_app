@@ -1081,6 +1081,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'AI Service:'**
   String get aiServiceLabel;
+
+  /// Title for the import questions dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Import Questions'**
+  String get importQuestionsTitle;
+
+  /// Message asking where to import questions from another file.
+  ///
+  /// In en, this message translates to:
+  /// **'Found {count} questions in \"{fileName}\". Where would you like to import them?'**
+  String importQuestionsMessage(int count, String fileName);
+
+  /// Question asking about import position.
+  ///
+  /// In en, this message translates to:
+  /// **'Where would you like to add these questions?'**
+  String get importQuestionsPositionQuestion;
+
+  /// Button to import questions at the beginning of the list.
+  ///
+  /// In en, this message translates to:
+  /// **'At Beginning'**
+  String get importAtBeginning;
+
+  /// Button to import questions at the end of the list.
+  ///
+  /// In en, this message translates to:
+  /// **'At End'**
+  String get importAtEnd;
+
+  /// Success message when questions are imported.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully imported {count} questions'**
+  String questionsImportedSuccess(int count);
+
+  /// Tooltip for the import questions button.
+  ///
+  /// In en, this message translates to:
+  /// **'Import questions from another quiz file'**
+  String get importQuestionsTooltip;
+
+  /// Hint text shown when the question list is empty, indicating drag and drop functionality.
+  ///
+  /// In en, this message translates to:
+  /// **'You can also drag and drop .quiz files here to import questions'**
+  String get dragDropHintText;
 }
 
 class _AppLocalizationsDelegate

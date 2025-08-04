@@ -568,4 +568,35 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aiServiceLabel => 'AI Service:';
+
+  @override
+  String get importQuestionsTitle => 'Import Questions';
+
+  @override
+  String importQuestionsMessage(int count, String fileName) {
+    return 'Found $count questions in \"$fileName\". Where would you like to import them?';
+  }
+
+  @override
+  String get importQuestionsPositionQuestion =>
+      'Where would you like to add these questions?';
+
+  @override
+  String get importAtBeginning => 'At Beginning';
+
+  @override
+  String get importAtEnd => 'At End';
+
+  @override
+  String questionsImportedSuccess(int count) {
+    return 'Successfully imported $count questions';
+  }
+
+  @override
+  String get importQuestionsTooltip =>
+      'Import questions from another quiz file';
+
+  @override
+  String get dragDropHintText =>
+      'You can also drag and drop .quiz files here to import questions';
 }
