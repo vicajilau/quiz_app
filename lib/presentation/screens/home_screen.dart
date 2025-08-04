@@ -147,10 +147,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               body: DropTarget(
                 onDragDone: (details) {
-                  if (context.read<FileBloc>().state is! FileLoaded) {
-                    context.read<FileBloc>().add(
-                      FileDropped(details.files.first.path),
-                    );
+                  // Validate that we have files and the file bloc is not already loaded
+                  if (context.read<FileBloc>().state is! FileLoaded &&
+                      details.files.isNotEmpty) {
+                    final firstFile = details.files.first;
+                    // Additional validation: check if the file has a valid path
+                    if (firstFile.path.isNotEmpty) {
+                      context.read<FileBloc>().add(FileDropped(firstFile.path));
+                    }
                   }
                 },
                 child: Center(
