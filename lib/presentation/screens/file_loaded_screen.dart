@@ -176,7 +176,10 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
 
                           if (selectedQuestionCount != null &&
                               context.mounted) {
-                            // Register the selected question count in the service locator
+                            // Register the updated quiz file and question count in the service locator
+                            ServiceLocator.instance.registerQuizFile(
+                              cachedQuizFile,
+                            );
                             ServiceLocator.instance.registerQuizConfig(
                               questionCount: selectedQuestionCount,
                             );
