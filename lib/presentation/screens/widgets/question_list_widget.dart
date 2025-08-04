@@ -64,7 +64,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
 
   Widget _buildQuestionCard(Question question, int index) {
     return Card(
-      key: Key('question_card_$index'),
+      key: ValueKey('${question.text}_${question.type}_$index'),
       margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -354,16 +354,23 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
 
   void _onReorder(int oldIndex, int newIndex) {
     setState(() {
-      if (newIndex > oldIndex) newIndex -= 1;
+      // Adjust newIndex if dragging down
+      if (newIndex > oldIndex) {
+        newIndex -= 1;
+      }
+
+      // Remove the item from old position and insert at new position
       final question = widget.quizFile.questions.removeAt(oldIndex);
       widget.quizFile.questions.insert(newIndex, question);
+
+      // Notify parent that file has changed
       widget.onFileChange();
     });
   }
 
   Widget _buildDismissible(Question question, int index, Widget child) {
     return Dismissible(
-      key: Key('dismissible_$index'),
+      key: ValueKey('dismissible_${question.text}_${question.type}_$index'),
       direction: DismissDirection.horizontal,
       confirmDismiss: (direction) => _confirmDismiss(context, question),
       onDismissed: (direction) {

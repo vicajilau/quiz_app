@@ -128,7 +128,9 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                               AddEditQuestionDialog(quizFile: cachedQuizFile),
                         );
                         if (createdQuestion != null) {
-                          cachedQuizFile.questions.add(createdQuestion);
+                          setState(() {
+                            cachedQuizFile.questions.add(createdQuestion);
+                          });
                           _checkFileChange();
                         }
                       },

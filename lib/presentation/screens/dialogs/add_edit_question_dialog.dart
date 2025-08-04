@@ -150,13 +150,10 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
       image: _imageData,
     );
 
-    // Add or update the question in the quiz file
+    // Update the question in the quiz file if editing
     if (widget.questionPosition != null) {
       // Editing existing question
       widget.quizFile.questions[widget.questionPosition!] = newQuestion;
-    } else {
-      // Adding new question
-      widget.quizFile.questions.add(newQuestion);
     }
 
     // Close the dialog and return the new/updated question
