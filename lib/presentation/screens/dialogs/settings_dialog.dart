@@ -18,6 +18,8 @@ class _SettingsDialogState extends State<SettingsDialog> {
   bool _examTimeEnabled = false;
   int _examTimeMinutes = 60;
   bool _aiAssistantEnabled = true;
+  bool _randomizeAnswers = false;
+  bool _showCorrectAnswerCount = false;
   final TextEditingController _openAiApiKeyController = TextEditingController();
   final TextEditingController _geminiApiKeyController = TextEditingController();
   String? _apiKeyErrorMessage;
@@ -39,6 +41,8 @@ class _SettingsDialogState extends State<SettingsDialog> {
       final savedAiAssistantEnabled = await service.getAIAssistantEnabled();
       final apiKey = await service.getOpenAIApiKey();
       final geminiApiKey = await service.getGeminiApiKey();
+      _randomizeAnswers = await service.getRandomizeAnswers();
+      _showCorrectAnswerCount = await service.getShowCorrectAnswerCount();
 
       // Only enable AI Assistant if there's at least one API key configured
       final hasAnyApiKey =
@@ -94,6 +98,10 @@ class _SettingsDialogState extends State<SettingsDialog> {
     await ConfigurationService.instance.saveExamTimeMinutes(_examTimeMinutes);
     await ConfigurationService.instance.saveAIAssistantEnabled(
       _aiAssistantEnabled,
+    );
+    await ConfigurationService.instance.saveRandomizeAnswers(_randomizeAnswers);
+    await ConfigurationService.instance.saveShowCorrectAnswerCount(
+      _showCorrectAnswerCount,
     );
 
     // Save OpenAI API Key securely
@@ -208,6 +216,45 @@ class _SettingsDialogState extends State<SettingsDialog> {
                       },
                     );
                   }),
+
+                  // Answer Randomization Section
+                  const SizedBox(height: 24),
+                  const Divider(),
+                  const SizedBox(height: 16),
+
+                  SwitchListTile(
+                    title: Text(
+                      AppLocalizations.of(context)!.randomizeAnswersTitle,
+                    ),
+                    subtitle: Text(
+                      AppLocalizations.of(context)!.randomizeAnswersDescription,
+                    ),
+                    value: _randomizeAnswers,
+                    onChanged: (bool value) {
+                      setState(() {
+                        _randomizeAnswers = value;
+                      });
+                    },
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  SwitchListTile(
+                    title: Text(
+                      AppLocalizations.of(context)!.showCorrectAnswerCountTitle,
+                    ),
+                    subtitle: Text(
+                      AppLocalizations.of(
+                        context,
+                      )!.showCorrectAnswerCountDescription,
+                    ),
+                    value: _showCorrectAnswerCount,
+                    onChanged: (bool value) {
+                      setState(() {
+                        _showCorrectAnswerCount = value;
+                      });
+                    },
+                  ),
 
                   // Exam Time Limit Section
                   const SizedBox(height: 24),

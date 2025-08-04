@@ -1129,6 +1129,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You can also drag and drop .quiz files here to import questions'**
   String get dragDropHintText;
+
+  /// Title for the setting to randomize answer options.
+  ///
+  /// In en, this message translates to:
+  /// **'Randomize Answer Options'**
+  String get randomizeAnswersTitle;
+
+  /// Description for the randomize answers setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Shuffle the order of answer options during quiz execution'**
+  String get randomizeAnswersDescription;
+
+  /// Title for the setting to show correct answer count.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Correct Answer Count'**
+  String get showCorrectAnswerCountTitle;
+
+  /// Description for the show correct answer count setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Display the number of correct answers in multiple choice questions'**
+  String get showCorrectAnswerCountDescription;
+
+  /// Text showing how many correct answers to select in a multiple choice question.
+  ///
+  /// In en, this message translates to:
+  /// **'Select {count} correct answers'**
+  String correctAnswersCount(int count);
 }
 
 class _AppLocalizationsDelegate

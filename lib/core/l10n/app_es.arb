@@ -794,5 +794,31 @@
   "dragDropHintText": "También puedes arrastrar y soltar archivos .quiz aquí para importar preguntas",
   "@dragDropHintText": {
     "description": "Texto de sugerencia mostrado cuando la lista de preguntas está vacía, indicando la funcionalidad de arrastrar y soltar."
+  },
+  "randomizeAnswersTitle": "Aleatorizar Opciones de Respuesta",
+  "@randomizeAnswersTitle": {
+    "description": "Título para la configuración de aleatorizar opciones de respuesta."
+  },
+  "randomizeAnswersDescription": "Mezclar el orden de las opciones de respuesta durante la ejecución del quiz",
+  "@randomizeAnswersDescription": {
+    "description": "Descripción para la configuración de aleatorizar respuestas."
+  },
+  "showCorrectAnswerCountTitle": "Mostrar Número de Respuestas Correctas",
+  "@showCorrectAnswerCountTitle": {
+    "description": "Título para la configuración de mostrar el número de respuestas correctas."
+  },
+  "showCorrectAnswerCountDescription": "Mostrar el número de respuestas correctas en preguntas de opción múltiple",
+  "@showCorrectAnswerCountDescription": {
+    "description": "Descripción para la configuración de mostrar número de respuestas correctas."
+  },
+  "correctAnswersCount": "Selecciona {count} respuestas correctas",
+  "@correctAnswersCount": {
+    "description": "Texto que muestra cuántas respuestas correctas seleccionar en una pregunta de opción múltiple.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
   }
 }

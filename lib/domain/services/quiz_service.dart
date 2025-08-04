@@ -91,4 +91,44 @@ class QuizService {
     shuffledQuestions.shuffle(_random);
     return shuffledQuestions;
   }
+
+  /// Randomizes the order of answer options for a question
+  ///
+  /// - [question]: The question whose options should be randomized
+  /// - Returns: A new Question with randomized options
+  static Question randomizeAnswerOptions(Question question) {
+    // Create a copy of the question with shuffled options
+    final shuffledOptions = List<String>.from(question.options);
+    shuffledOptions.shuffle(_random);
+
+    // Create mapping from old index to new index
+    final indexMapping = <int, int>{};
+    for (int i = 0; i < question.options.length; i++) {
+      final originalOption = question.options[i];
+      final newIndex = shuffledOptions.indexOf(originalOption);
+      indexMapping[i] = newIndex;
+    }
+
+    // Update correct answers based on the new positions
+    final newCorrectAnswers = question.correctAnswers.map((oldIndex) {
+      return indexMapping[oldIndex] ?? oldIndex;
+    }).toList();
+
+    return Question(
+      type: question.type,
+      text: question.text,
+      image: question.image,
+      options: shuffledOptions,
+      correctAnswers: newCorrectAnswers,
+      explanation: question.explanation,
+    );
+  }
+
+  /// Randomizes answer options for a list of questions
+  ///
+  /// - [questions]: The list of questions to process
+  /// - Returns: A new list of questions with randomized options
+  static List<Question> randomizeQuestionsAnswers(List<Question> questions) {
+    return questions.map(randomizeAnswerOptions).toList();
+  }
 }

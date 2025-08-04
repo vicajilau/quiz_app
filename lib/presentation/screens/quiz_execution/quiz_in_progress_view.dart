@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'quiz_progress_indicator.dart';
 import 'quiz_question_header.dart';
-import 'quiz_question_options.dart';
+import 'quiz_options_wrapper.dart';
 import 'quiz_navigation_buttons.dart';
 
 class QuizInProgressView extends StatelessWidget {
@@ -28,12 +28,12 @@ class QuizInProgressView extends StatelessWidget {
 
                 const SizedBox(height: 16),
 
-                // Options section - usar el widget original pero sin scroll
+                // Options section - usar el widget wrapper para cargar configuración
                 SizedBox(
                   height:
-                      state.currentQuestion.options.length *
-                      80.0, // altura estimada por opción
-                  child: QuizQuestionOptions(state: state),
+                      (state.currentQuestion.options.length * 80.0) +
+                      60.0, // altura estimada por opción + espacio para el indicador
+                  child: QuizOptionsWrapper(state: state),
                 ),
 
                 const SizedBox(height: 16),

@@ -9,6 +9,8 @@ class ConfigurationService {
   static const String _aiAssistantEnabledKey = 'ai_assistant_enabled';
   static const String _openaiApiKeyKey = 'openai_api_key';
   static const String _geminiApiKeyKey = 'gemini_api_key';
+  static const String _randomizeAnswersKey = 'randomize_answers';
+  static const String _showCorrectAnswerCountKey = 'show_correct_answer_count';
 
   static ConfigurationService? _instance;
   static ConfigurationService get instance =>
@@ -118,5 +120,29 @@ class ConfigurationService {
   Future<void> deleteGeminiApiKey() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_geminiApiKeyKey);
+  }
+
+  /// Guarda si las respuestas deben ser aleatorizadas
+  Future<void> saveRandomizeAnswers(bool randomize) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_randomizeAnswersKey, randomize);
+  }
+
+  /// Obtiene si las respuestas deben ser aleatorizadas, por defecto es false
+  Future<bool> getRandomizeAnswers() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_randomizeAnswersKey) ?? false;
+  }
+
+  /// Guarda si se debe mostrar el número de respuestas correctas
+  Future<void> saveShowCorrectAnswerCount(bool show) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_showCorrectAnswerCountKey, show);
+  }
+
+  /// Obtiene si se debe mostrar el número de respuestas correctas, por defecto es false
+  Future<bool> getShowCorrectAnswerCount() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_showCorrectAnswerCountKey) ?? false;
   }
 }

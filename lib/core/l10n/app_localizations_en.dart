@@ -599,4 +599,23 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get dragDropHintText =>
       'You can also drag and drop .quiz files here to import questions';
+
+  @override
+  String get randomizeAnswersTitle => 'Randomize Answer Options';
+
+  @override
+  String get randomizeAnswersDescription =>
+      'Shuffle the order of answer options during quiz execution';
+
+  @override
+  String get showCorrectAnswerCountTitle => 'Show Correct Answer Count';
+
+  @override
+  String get showCorrectAnswerCountDescription =>
+      'Display the number of correct answers in multiple choice questions';
+
+  @override
+  String correctAnswersCount(int count) {
+    return 'Select $count correct answers';
+  }
 }

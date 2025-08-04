@@ -27,11 +27,13 @@ class QuizFileExecutionScreen extends StatefulWidget {
 class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
   bool _examTimeEnabled = false;
   int _examTimeMinutes = 60;
+  bool _randomizeAnswers = false;
 
   @override
   void initState() {
     super.initState();
     _loadExamTimeSettings();
+    _loadQuizSettings();
   }
 
   Future<void> _loadExamTimeSettings() async {
@@ -44,6 +46,17 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
       setState(() {
         _examTimeEnabled = examTimeEnabled;
         _examTimeMinutes = examTimeMinutes;
+      });
+    }
+  }
+
+  Future<void> _loadQuizSettings() async {
+    final randomizeAnswers = await ConfigurationService.instance
+        .getRandomizeAnswers();
+
+    if (mounted) {
+      setState(() {
+        _randomizeAnswers = randomizeAnswers;
       });
     }
   }
@@ -151,11 +164,20 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
         .getQuestionOrder();
 
     // Select the questions to use for the quiz with the configured order
-    return QuizService.selectQuestions(
+    List<Question> selectedQuestions = QuizService.selectQuestions(
       widget.quizFile.questions,
       questionCount,
       order: questionOrder,
     );
+
+    // Apply answer randomization if enabled
+    if (_randomizeAnswers) {
+      selectedQuestions = QuizService.randomizeQuestionsAnswers(
+        selectedQuestions,
+      );
+    }
+
+    return selectedQuestions;
   }
 }
 

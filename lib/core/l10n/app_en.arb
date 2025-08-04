@@ -854,5 +854,31 @@
   "dragDropHintText": "You can also drag and drop .quiz files here to import questions",
   "@dragDropHintText": {
     "description": "Hint text shown when the question list is empty, indicating drag and drop functionality."
+  },
+  "randomizeAnswersTitle": "Randomize Answer Options",
+  "@randomizeAnswersTitle": {
+    "description": "Title for the setting to randomize answer options."
+  },
+  "randomizeAnswersDescription": "Shuffle the order of answer options during quiz execution",
+  "@randomizeAnswersDescription": {
+    "description": "Description for the randomize answers setting."
+  },
+  "showCorrectAnswerCountTitle": "Show Correct Answer Count",
+  "@showCorrectAnswerCountTitle": {
+    "description": "Title for the setting to show correct answer count."
+  },
+  "showCorrectAnswerCountDescription": "Display the number of correct answers in multiple choice questions",
+  "@showCorrectAnswerCountDescription": {
+    "description": "Description for the show correct answer count setting."
+  },
+  "correctAnswersCount": "Select {count} correct answers",
+  "@correctAnswersCount": {
+    "description": "Text showing how many correct answers to select in a multiple choice question.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
   }
 }

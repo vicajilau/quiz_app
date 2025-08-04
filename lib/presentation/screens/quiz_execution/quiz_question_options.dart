@@ -9,33 +9,85 @@ import '../../utils/question_translation_helper.dart';
 
 class QuizQuestionOptions extends StatelessWidget {
   final QuizExecutionInProgress state;
+  final bool showCorrectAnswerCount;
 
-  const QuizQuestionOptions({super.key, required this.state});
+  const QuizQuestionOptions({
+    super.key,
+    required this.state,
+    this.showCorrectAnswerCount = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     final questionType = state.currentQuestion.type;
+    final correctAnswersCount = state.currentQuestion.correctAnswers.length;
 
-    return ListView.builder(
-      itemCount: state.currentQuestion.options.length,
-      itemBuilder: (context, index) {
-        final option = state.currentQuestion.options[index];
-        final isSelected = state.isOptionSelected(index);
-
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 12.0),
-          child: Card(
-            elevation: isSelected ? 4 : 1,
-            child: _buildOptionTile(
-              context,
-              questionType,
-              option,
-              index,
-              isSelected,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Show correct answer count hint for multiple choice questions
+        if (showCorrectAnswerCount &&
+            questionType == QuestionType.multipleChoice &&
+            correctAnswersCount > 1)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: Theme.of(context).primaryColor.withValues(alpha: 0.3),
+                ),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.info_outline,
+                    size: 16,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    AppLocalizations.of(
+                      context,
+                    )!.correctAnswersCount(correctAnswersCount),
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-        );
-      },
+
+        // Options list
+        Expanded(
+          child: ListView.builder(
+            itemCount: state.currentQuestion.options.length,
+            itemBuilder: (context, index) {
+              final option = state.currentQuestion.options[index];
+              final isSelected = state.isOptionSelected(index);
+
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 12.0),
+                child: Card(
+                  elevation: isSelected ? 4 : 1,
+                  child: _buildOptionTile(
+                    context,
+                    questionType,
+                    option,
+                    index,
+                    isSelected,
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 
