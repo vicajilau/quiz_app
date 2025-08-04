@@ -6,8 +6,8 @@ import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 
 import '../../../../core/l10n/app_localizations.dart';
 import '../../utils/question_translation_helper.dart';
-import 'widgets/add_edit_question/question_image_section.dart';
-import 'widgets/add_edit_question/question_options_section.dart';
+import 'widgets/image_section.dart';
+import 'widgets/options_section.dart';
 import 'mixins/option_management_mixin.dart';
 import 'mixins/validation_mixin.dart';
 
@@ -159,8 +159,8 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
       widget.quizFile.questions.add(newQuestion);
     }
 
-    // Close the dialog and return the new/updated question
-    context.pop(newQuestion);
+    // Close the dialog and return the updated quiz file
+    context.pop(widget.quizFile);
   }
 
   @override
@@ -211,7 +211,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
               const SizedBox(height: 16),
 
               // Image Section
-              QuestionImageSection(
+              ImageSection(
                 imageData: _imageData,
                 onImagePicked: () {}, // Will be handled by onImageChanged
                 onImageRemoved: _onImageRemoved,
@@ -221,7 +221,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
 
               // Options Section (only for non-essay questions)
               if (_selectedType != QuestionType.essay)
-                QuestionOptionsSection(
+                OptionsSection(
                   questionType: _selectedType,
                   optionControllers: optionControllers,
                   correctAnswersNotifier: correctAnswersNotifier,
