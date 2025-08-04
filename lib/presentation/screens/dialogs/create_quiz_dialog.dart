@@ -103,10 +103,7 @@ class _CreateQuizFileDialogState extends State<CreateQuizFileDialog> {
           Icon(Icons.note_add, color: Theme.of(context).colorScheme.primary),
           const SizedBox(width: 8),
           Expanded(
-            child: Text(
-              AppLocalizations.of(context)!.createQuizFileTitle,
-              overflow: TextOverflow.ellipsis,
-            ),
+            child: Text(AppLocalizations.of(context)!.createQuizFileTitle),
           ),
         ],
       ),

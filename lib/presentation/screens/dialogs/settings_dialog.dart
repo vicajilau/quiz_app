@@ -266,10 +266,12 @@ class _SettingsDialogState extends State<SettingsDialog> {
                           color: Theme.of(context).colorScheme.primary,
                         ),
                         const SizedBox(width: 8),
-                        Text(
-                          AppLocalizations.of(
-                            context,
-                          )!.aiAssistantSettingsTitle,
+                        Expanded(
+                          child: Text(
+                            AppLocalizations.of(
+                              context,
+                            )!.aiAssistantSettingsTitle,
+                          ),
                         ),
                       ],
                     ),
