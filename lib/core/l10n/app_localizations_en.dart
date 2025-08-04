@@ -364,7 +364,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get configureApiKeyMessage =>
-      'Please configure your OpenAI API Key in Settings.';
+      'Please configure your AI API Key in Settings.';
 
   @override
   String get errorLabel => 'Error:';

@@ -519,7 +519,7 @@
   "@aiErrorResponse": {
     "description": "Error message when AI request fails"
   },
-  "configureApiKeyMessage": "Please configure your OpenAI API Key in Settings.",
+  "configureApiKeyMessage": "Please configure your AI API Key in Settings.",
   "@configureApiKeyMessage": {
     "description": "Message to configure API key when not set"
   },

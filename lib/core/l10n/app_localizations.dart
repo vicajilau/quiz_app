@@ -719,7 +719,7 @@ abstract class AppLocalizations {
   /// Message to configure API key when not set
   ///
   /// In en, this message translates to:
-  /// **'Please configure your OpenAI API Key in Settings.'**
+  /// **'Please configure your AI API Key in Settings.'**
   String get configureApiKeyMessage;
 
   /// Error label prefix for error messages
