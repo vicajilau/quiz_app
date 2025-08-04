@@ -3,11 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
+import 'package:quiz_app/presentation/screens/widgets/add_edit_question/question_image_section.dart';
+import 'package:quiz_app/presentation/screens/widgets/add_edit_question/question_options_section.dart';
 
 import '../../../../core/l10n/app_localizations.dart';
 import '../../utils/question_translation_helper.dart';
-import 'widgets/image_section.dart';
-import 'widgets/options_section.dart';
 import 'mixins/option_management_mixin.dart';
 import 'mixins/validation_mixin.dart';
 
@@ -211,7 +211,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
               const SizedBox(height: 16),
 
               // Image Section
-              ImageSection(
+              QuestionImageSection(
                 imageData: _imageData,
                 onImagePicked: () {}, // Will be handled by onImageChanged
                 onImageRemoved: _onImageRemoved,
@@ -221,7 +221,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
 
               // Options Section (only for non-essay questions)
               if (_selectedType != QuestionType.essay)
-                OptionsSection(
+                QuestionOptionsSection(
                   questionType: _selectedType,
                   optionControllers: optionControllers,
                   correctAnswersNotifier: correctAnswersNotifier,

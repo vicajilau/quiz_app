@@ -64,6 +64,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
 
   Widget _buildQuestionCard(Question question, int index) {
     return Card(
+      key: Key('question_card_$index'),
       margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -362,7 +363,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
 
   Widget _buildDismissible(Question question, int index, Widget child) {
     return Dismissible(
-      key: ValueKey(question),
+      key: Key('dismissible_$index'),
       direction: DismissDirection.horizontal,
       confirmDismiss: (direction) => _confirmDismiss(context, question),
       onDismissed: (direction) {
