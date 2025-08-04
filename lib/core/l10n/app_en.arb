@@ -880,5 +880,17 @@
         "example": "2"
       }
     }
+  },
+  "correctSelectedLabel": "Correct",
+  "@correctSelectedLabel": {
+    "description": "Label for correctly selected answers in quiz results."
+  },
+  "correctMissedLabel": "Correct",
+  "@correctMissedLabel": {
+    "description": "Label for correct answers that were not selected in quiz results."
+  },
+  "incorrectSelectedLabel": "Wrong",
+  "@incorrectSelectedLabel": {
+    "description": "Label for incorrectly selected answers in quiz results."
   }
 }

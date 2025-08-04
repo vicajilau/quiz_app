@@ -1159,6 +1159,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Select {count} correct answers'**
   String correctAnswersCount(int count);
+
+  /// Label for correctly selected answers in quiz results.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct'**
+  String get correctSelectedLabel;
+
+  /// Label for correct answers that were not selected in quiz results.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct'**
+  String get correctMissedLabel;
+
+  /// Label for incorrectly selected answers in quiz results.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong'**
+  String get incorrectSelectedLabel;
 }
 
 class _AppLocalizationsDelegate

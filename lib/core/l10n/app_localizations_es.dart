@@ -626,4 +626,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String correctAnswersCount(int count) {
     return 'Selecciona $count respuestas correctas';
   }
+
+  @override
+  String get correctSelectedLabel => 'Correcta';
+
+  @override
+  String get correctMissedLabel => 'Correcta';
+
+  @override
+  String get incorrectSelectedLabel => 'Incorrecta';
 }

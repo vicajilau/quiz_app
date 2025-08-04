@@ -110,43 +110,139 @@ class QuizQuestionResultCard extends StatelessWidget {
                   final wasSelected = result.userAnswers.contains(optionIndex);
 
                   Color? backgroundColor;
+                  Color? borderColor;
                   IconData? icon;
+                  Color? iconColor;
+                  Color? textColor;
+                  FontWeight fontWeight = FontWeight.normal;
 
                   if (isCorrect && wasSelected) {
-                    backgroundColor = Colors.green.withValues(alpha: 0.1);
+                    // Respuesta correcta seleccionada - Verde brillante
+                    backgroundColor = Colors.green.withValues(alpha: 0.15);
+                    borderColor = Colors.green;
                     icon = Icons.check_circle;
+                    iconColor = Colors.green;
+                    textColor = Colors.green.shade800;
+                    fontWeight = FontWeight.w600;
                   } else if (isCorrect && !wasSelected) {
-                    backgroundColor = Colors.green.withValues(alpha: 0.1);
-                    icon = Icons.check_circle_outline;
+                    // Respuesta correcta NO seleccionada - Naranja/Amarillo (perdida)
+                    backgroundColor = Colors.orange.withValues(alpha: 0.1);
+                    borderColor = Colors.orange;
+                    icon = Icons.radio_button_unchecked;
+                    iconColor = Colors.orange;
+                    textColor = Colors.orange.shade800;
+                    fontWeight = FontWeight.w500;
                   } else if (!isCorrect && wasSelected) {
+                    // Respuesta incorrecta seleccionada - Rojo
                     backgroundColor = Colors.red.withValues(alpha: 0.1);
+                    borderColor = Colors.red;
                     icon = Icons.cancel;
+                    iconColor = Colors.red;
+                    textColor = Colors.red.shade800;
+                    fontWeight = FontWeight.w500;
+                  } else {
+                    // Respuesta no seleccionada e incorrecta - Gris neutro
+                    backgroundColor = null;
+                    borderColor = null;
+                    icon = null;
+                    iconColor = null;
+                    textColor = Theme.of(context).colorScheme.onSurface;
                   }
 
                   return Container(
                     margin: const EdgeInsets.only(bottom: 4.0),
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(12.0),
                     decoration: BoxDecoration(
                       color: backgroundColor,
-                      borderRadius: BorderRadius.circular(4.0),
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: borderColor != null
+                          ? Border.all(color: borderColor, width: 1.5)
+                          : Border.all(
+                              color: Theme.of(
+                                context,
+                              ).dividerColor.withValues(alpha: 0.3),
+                            ),
                     ),
                     child: Row(
                       children: [
                         if (icon != null)
-                          Icon(
-                            icon,
-                            size: 20,
-                            color: isCorrect ? Colors.green : Colors.red,
-                          ),
-                        const SizedBox(width: 8),
+                          Icon(icon, size: 22, color: iconColor),
+                        if (icon != null) const SizedBox(width: 12),
                         Expanded(
                           child: Text(
                             QuestionTranslationHelper.translateOption(
                               optionText,
                               AppLocalizations.of(context)!,
                             ),
+                            style: TextStyle(
+                              color: textColor,
+                              fontWeight: fontWeight,
+                              fontSize: 15,
+                            ),
                           ),
                         ),
+                        // Agregar texto explicativo para claridad
+                        if (isCorrect && wasSelected)
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 2,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              AppLocalizations.of(
+                                context,
+                              )!.correctSelectedLabel,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        if (isCorrect && !wasSelected)
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 2,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.orange,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              AppLocalizations.of(context)!.correctMissedLabel,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        if (!isCorrect && wasSelected)
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 2,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              AppLocalizations.of(
+                                context,
+                              )!.incorrectSelectedLabel,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
                       ],
                     ),
                   );
