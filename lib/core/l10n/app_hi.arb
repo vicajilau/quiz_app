@@ -1146,5 +1146,21 @@
         "example": "20"
       }
     }
+  },
+  "enableQuestion": "प्रश्न सक्रिय करें",
+  "@enableQuestion": {
+    "description": "निष्क्रिय प्रश्न को सक्रिय करने के लिए टूलटिप टेक्स्ट"
+  },
+  "disableQuestion": "प्रश्न निष्क्रिय करें",
+  "@disableQuestion": {
+    "description": "सक्रिय प्रश्न को निष्क्रिय करने के लिए टूलटिप टेक्स्ट"
+  },
+  "questionDisabled": "निष्क्रिय",
+  "@questionDisabled": {
+    "description": "निष्क्रिय प्रश्नों पर दिखाया गया बैज टेक्स्ट"
+  },
+  "noEnabledQuestionsError": "क्विज़ चलाने के लिए कोई सक्रिय प्रश्न उपलब्ध नहीं है",
+  "@noEnabledQuestionsError": {
+    "description": "सक्रिय प्रश्नों के बिना क्विज़ शुरू करने का प्रयास करते समय त्रुटि संदेश"
   }
 }

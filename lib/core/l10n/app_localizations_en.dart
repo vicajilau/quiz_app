@@ -802,4 +802,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String aiValidationMinWords(int minWords, int moreNeeded) {
     return 'Minimum $minWords words required ($moreNeeded more needed)';
   }
+
+  @override
+  String get enableQuestion => 'Enable question';
+
+  @override
+  String get disableQuestion => 'Disable question';
+
+  @override
+  String get questionDisabled => 'Disabled';
+
+  @override
+  String get noEnabledQuestionsError =>
+      'No enabled questions available to run the quiz';
 }

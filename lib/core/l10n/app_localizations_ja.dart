@@ -771,4 +771,16 @@ class AppLocalizationsJa extends AppLocalizations {
   String aiValidationMinWords(int minWords, int moreNeeded) {
     return '最低$minWords語が必要です（あと$moreNeeded語必要）';
   }
+
+  @override
+  String get enableQuestion => '質問を有効にする';
+
+  @override
+  String get disableQuestion => '質問を無効にする';
+
+  @override
+  String get questionDisabled => '無効';
+
+  @override
+  String get noEnabledQuestionsError => 'クイズを実行するための有効な質問がありません';
 }

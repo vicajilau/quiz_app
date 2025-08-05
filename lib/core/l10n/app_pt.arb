@@ -1146,5 +1146,21 @@
         "example": "20"
       }
     }
+  },
+  "enableQuestion": "Ativar pergunta",
+  "@enableQuestion": {
+    "description": "Texto da dica para ativar uma pergunta desativada"
+  },
+  "disableQuestion": "Desativar pergunta",
+  "@disableQuestion": {
+    "description": "Texto da dica para desativar uma pergunta ativa"
+  },
+  "questionDisabled": "Desativada",
+  "@questionDisabled": {
+    "description": "Texto do distintivo mostrado em perguntas desativadas"
+  },
+  "noEnabledQuestionsError": "Nenhuma pergunta ativada disponível para executar o quiz",
+  "@noEnabledQuestionsError": {
+    "description": "Mensagem de erro ao tentar iniciar um quiz sem perguntas ativadas"
   }
 }

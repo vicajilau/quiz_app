@@ -797,4 +797,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String aiValidationMinWords(int minWords, int moreNeeded) {
     return 'مطلوب الحد الأدنى $minWords كلمة (نحتاج $moreNeeded أكثر)';
   }
+
+  @override
+  String get enableQuestion => 'تفعيل السؤال';
+
+  @override
+  String get disableQuestion => 'تعطيل السؤال';
+
+  @override
+  String get questionDisabled => 'معطل';
+
+  @override
+  String get noEnabledQuestionsError => 'لا توجد أسئلة مفعلة لتشغيل الاختبار';
 }

@@ -449,10 +449,29 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                     ? FloatingActionButton(
                         tooltip: AppLocalizations.of(context)!.executeTooltip,
                         onPressed: () async {
+                          // Filter enabled questions first
+                          final enabledQuestions = cachedQuizFile.questions
+                              .where((question) => question.isEnabled)
+                              .toList();
+
+                          if (enabledQuestions.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  AppLocalizations.of(
+                                    context,
+                                  )!.noEnabledQuestionsError,
+                                ),
+                                backgroundColor: Colors.orange,
+                              ),
+                            );
+                            return;
+                          }
+
                           final selectedQuestionCount = await showDialog<int>(
                             context: context,
                             builder: (context) => QuestionCountSelectionDialog(
-                              totalQuestions: cachedQuizFile.questions.length,
+                              totalQuestions: enabledQuestions.length,
                             ),
                           );
 

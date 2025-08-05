@@ -802,4 +802,17 @@ class AppLocalizationsHi extends AppLocalizations {
   String aiValidationMinWords(int minWords, int moreNeeded) {
     return 'न्यूनतम $minWords शब्द आवश्यक ($moreNeeded और चाहिए)';
   }
+
+  @override
+  String get enableQuestion => 'प्रश्न सक्रिय करें';
+
+  @override
+  String get disableQuestion => 'प्रश्न निष्क्रिय करें';
+
+  @override
+  String get questionDisabled => 'निष्क्रिय';
+
+  @override
+  String get noEnabledQuestionsError =>
+      'क्विज़ चलाने के लिए कोई सक्रिय प्रश्न उपलब्ध नहीं है';
 }

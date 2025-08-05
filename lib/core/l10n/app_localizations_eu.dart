@@ -811,4 +811,17 @@ class AppLocalizationsEu extends AppLocalizations {
   String aiValidationMinWords(int minWords, int moreNeeded) {
     return 'Gutxienez $minWords hitz behar dira ($moreNeeded gehiago behar dira)';
   }
+
+  @override
+  String get enableQuestion => 'Galdera gaitu';
+
+  @override
+  String get disableQuestion => 'Galdera desgaitu';
+
+  @override
+  String get questionDisabled => 'Desgaituta';
+
+  @override
+  String get noEnabledQuestionsError =>
+      'Ez dago gaitutako galderarik eskuragarri galdetegia exekutatzeko';
 }

@@ -1146,5 +1146,21 @@
         "example": "20"
       }
     }
+  },
+  "enableQuestion": "Galdera gaitu",
+  "@enableQuestion": {
+    "description": "Desgaitutako galdera bat gaitzeko aholku testua"
+  },
+  "disableQuestion": "Galdera desgaitu",
+  "@disableQuestion": {
+    "description": "Galdera aktibo bat desgaitzeko aholku testua"
+  },
+  "questionDisabled": "Desgaituta",
+  "@questionDisabled": {
+    "description": "Desgaitutako galderetan erakutsitako etiketa testua"
+  },
+  "noEnabledQuestionsError": "Ez dago gaitutako galderarik eskuragarri galdetegia exekutatzeko",
+  "@noEnabledQuestionsError": {
+    "description": "Errore mezua gaitutako galderarik gabe galdetegia hasi saiatzerakoan"
   }
 }

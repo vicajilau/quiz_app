@@ -768,4 +768,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String aiValidationMinWords(int minWords, int moreNeeded) {
     return '需要至少$minWords个单词（还需要$moreNeeded个）';
   }
+
+  @override
+  String get enableQuestion => '启用问题';
+
+  @override
+  String get disableQuestion => '禁用问题';
+
+  @override
+  String get questionDisabled => '已禁用';
+
+  @override
+  String get noEnabledQuestionsError => '没有启用的问题可以运行测验';
 }

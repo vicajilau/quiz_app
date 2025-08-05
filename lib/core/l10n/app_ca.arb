@@ -1146,5 +1146,21 @@
         "example": "20"
       }
     }
+  },
+  "enableQuestion": "Activar pregunta",
+  "@enableQuestion": {
+    "description": "Text del consell per activar una pregunta desactivada"
+  },
+  "disableQuestion": "Desactivar pregunta",
+  "@disableQuestion": {
+    "description": "Text del consell per desactivar una pregunta activa"
+  },
+  "questionDisabled": "Desactivada",
+  "@questionDisabled": {
+    "description": "Text de l'insígnia mostrada en preguntes desactivades"
+  },
+  "noEnabledQuestionsError": "No hi ha preguntes activades disponibles per executar el qüestionari",
+  "@noEnabledQuestionsError": {
+    "description": "Missatge d'error en intentar iniciar un qüestionari sense preguntes activades"
   }
 }

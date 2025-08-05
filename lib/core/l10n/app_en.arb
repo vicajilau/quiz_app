@@ -1172,5 +1172,12 @@
         "example": "20"
       }
     }
+  },
+  "enableQuestion": "Enable question",
+  "disableQuestion": "Disable question",
+  "questionDisabled": "Disabled",
+  "noEnabledQuestionsError": "No enabled questions available to run the quiz",
+  "@noEnabledQuestionsError": {
+    "description": "Error message when trying to start quiz with no enabled questions"
   }
 }

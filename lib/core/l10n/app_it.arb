@@ -1146,5 +1146,21 @@
         "example": "20"
       }
     }
+  },
+  "enableQuestion": "Abilita domanda",
+  "@enableQuestion": {
+    "description": "Testo del tooltip per abilitare una domanda disabilitata"
+  },
+  "disableQuestion": "Disabilita domanda",
+  "@disableQuestion": {
+    "description": "Testo del tooltip per disabilitare una domanda attiva"
+  },
+  "questionDisabled": "Disabilitata",
+  "@questionDisabled": {
+    "description": "Testo del badge mostrato sulle domande disabilitate"
+  },
+  "noEnabledQuestionsError": "Nessuna domanda abilitata disponibile per avviare il quiz",
+  "@noEnabledQuestionsError": {
+    "description": "Messaggio di errore quando si tenta di avviare un quiz senza domande abilitate"
   }
 }

@@ -1146,5 +1146,21 @@
         "example": "20"
       }
     }
+  },
+  "enableQuestion": "启用问题",
+  "@enableQuestion": {
+    "description": "启用已禁用问题的工具提示文本"
+  },
+  "disableQuestion": "禁用问题",
+  "@disableQuestion": {
+    "description": "禁用活动问题的工具提示文本"
+  },
+  "questionDisabled": "已禁用",
+  "@questionDisabled": {
+    "description": "在禁用问题上显示的徽章文本"
+  },
+  "noEnabledQuestionsError": "没有启用的问题可以运行测验",
+  "@noEnabledQuestionsError": {
+    "description": "尝试在没有启用问题的情况下开始测验时的错误消息"
   }
 }

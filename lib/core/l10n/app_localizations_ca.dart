@@ -812,4 +812,17 @@ class AppLocalizationsCa extends AppLocalizations {
   String aiValidationMinWords(int minWords, int moreNeeded) {
     return 'Mínim $minWords paraules necessàries ($moreNeeded més necessàries)';
   }
+
+  @override
+  String get enableQuestion => 'Activar pregunta';
+
+  @override
+  String get disableQuestion => 'Desactivar pregunta';
+
+  @override
+  String get questionDisabled => 'Desactivada';
+
+  @override
+  String get noEnabledQuestionsError =>
+      'No hi ha preguntes activades disponibles per executar el qüestionari';
 }

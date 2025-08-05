@@ -811,4 +811,17 @@ class AppLocalizationsPt extends AppLocalizations {
   String aiValidationMinWords(int minWords, int moreNeeded) {
     return 'Mínimo de $minWords palavras necessárias ($moreNeeded mais necessárias)';
   }
+
+  @override
+  String get enableQuestion => 'Ativar pergunta';
+
+  @override
+  String get disableQuestion => 'Desativar pergunta';
+
+  @override
+  String get questionDisabled => 'Desativada';
+
+  @override
+  String get noEnabledQuestionsError =>
+      'Nenhuma pergunta ativada disponível para executar o quiz';
 }

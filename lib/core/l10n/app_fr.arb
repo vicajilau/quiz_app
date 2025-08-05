@@ -1146,5 +1146,21 @@
         "example": "20"
       }
     }
+  },
+  "enableQuestion": "Activer la question",
+  "@enableQuestion": {
+    "description": "Texte d'info-bulle pour activer une question désactivée"
+  },
+  "disableQuestion": "Désactiver la question",
+  "@disableQuestion": {
+    "description": "Texte d'info-bulle pour désactiver une question active"
+  },
+  "questionDisabled": "Désactivée",
+  "@questionDisabled": {
+    "description": "Texte du badge affiché sur les questions désactivées"
+  },
+  "noEnabledQuestionsError": "Aucune question activée disponible pour lancer le quiz",
+  "@noEnabledQuestionsError": {
+    "description": "Message d'erreur lors de la tentative de démarrage d'un quiz sans questions activées"
   }
 }

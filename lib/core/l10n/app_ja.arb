@@ -1146,5 +1146,21 @@
         "example": "20"
       }
     }
+  },
+  "enableQuestion": "質問を有効にする",
+  "@enableQuestion": {
+    "description": "質問を有効にするためのツールチップテキスト"
+  },
+  "disableQuestion": "質問を無効にする",
+  "@disableQuestion": {
+    "description": "質問を無効にするためのツールチップテキスト"
+  },
+  "questionDisabled": "無効",
+  "@questionDisabled": {
+    "description": "無効な質問のバッジテキスト"
+  },
+  "noEnabledQuestionsError": "クイズを実行するための有効な質問がありません",
+  "@noEnabledQuestionsError": {
+    "description": "有効な質問がない場合のエラーメッセージ"
   }
 }

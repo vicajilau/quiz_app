@@ -1493,6 +1493,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Minimum {minWords} words required ({moreNeeded} more needed)'**
   String aiValidationMinWords(int minWords, int moreNeeded);
+
+  /// No description provided for @enableQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable question'**
+  String get enableQuestion;
+
+  /// No description provided for @disableQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable question'**
+  String get disableQuestion;
+
+  /// No description provided for @questionDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled'**
+  String get questionDisabled;
+
+  /// Error message when trying to start quiz with no enabled questions
+  ///
+  /// In en, this message translates to:
+  /// **'No enabled questions available to run the quiz'**
+  String get noEnabledQuestionsError;
 }
 
 class _AppLocalizationsDelegate

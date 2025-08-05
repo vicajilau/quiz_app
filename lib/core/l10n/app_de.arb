@@ -1146,5 +1146,21 @@
         "example": "20"
       }
     }
+  },
+  "enableQuestion": "Frage aktivieren",
+  "@enableQuestion": {
+    "description": "Tooltip-Text zum Aktivieren einer deaktivierten Frage"
+  },
+  "disableQuestion": "Frage deaktivieren",
+  "@disableQuestion": {
+    "description": "Tooltip-Text zum Deaktivieren einer aktiven Frage"
+  },
+  "questionDisabled": "Deaktiviert",
+  "@questionDisabled": {
+    "description": "Badge-Text, der bei deaktivierten Fragen angezeigt wird"
+  },
+  "noEnabledQuestionsError": "Keine aktivierten Fragen verfügbar, um das Quiz zu starten",
+  "@noEnabledQuestionsError": {
+    "description": "Fehlermeldung beim Versuch, ein Quiz ohne aktivierte Fragen zu starten"
   }
 }

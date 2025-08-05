@@ -1099,7 +1099,7 @@
       }
     }
   },
-  "aiValidationMinWords": "Mínimo {minWords} palabras requeridas ({moreNeeded} más necesarias)",
+    "aiValidationMinWords": "Mínimo {minWords} palabras necesarias ({moreNeeded} más necesarias)",
   "@aiValidationMinWords": {
     "description": "Mensaje de validación cuando no se proporcionan suficientes palabras",
     "placeholders": {
@@ -1112,5 +1112,12 @@
         "example": "20"
       }
     }
+  },
+  "enableQuestion": "Activar la pregunta",
+  "disableQuestion": "Desactivar la pregunta",
+  "questionDisabled": "Desactivada",
+  "noEnabledQuestionsError": "No hay preguntas habilitadas para ejecutar el examen",
+  "@noEnabledQuestionsError": {
+    "description": "Mensaje de error al intentar iniciar un examen sin preguntas habilitadas"
   }
 }

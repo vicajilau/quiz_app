@@ -163,9 +163,14 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
     final questionOrder = await ConfigurationService.instance
         .getQuestionOrder();
 
+    // Filter out disabled questions first
+    final enabledQuestions = widget.quizFile.questions
+        .where((question) => question.isEnabled)
+        .toList();
+
     // Select the questions to use for the quiz with the configured order
     List<Question> selectedQuestions = QuizService.selectQuestions(
-      widget.quizFile.questions,
+      enabledQuestions,
       questionCount,
       order: questionOrder,
     );

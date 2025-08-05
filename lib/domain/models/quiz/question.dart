@@ -21,6 +21,9 @@ class Question {
   /// The explanation for the correct answer(s).
   final String explanation;
 
+  /// Whether this question is enabled/active or disabled.
+  final bool isEnabled;
+
   /// Constructor for creating a `Question` instance.
   const Question({
     required this.type,
@@ -29,6 +32,7 @@ class Question {
     required this.options,
     required this.correctAnswers,
     required this.explanation,
+    this.isEnabled = true,
   });
 
   /// Creates a `Question` instance from a JSON map.
@@ -74,6 +78,7 @@ class Question {
       options: options,
       correctAnswers: correctAnswers,
       explanation: json['explanation'] ?? '',
+      isEnabled: json['isEnabled'] ?? true,
     );
   }
 
@@ -87,6 +92,7 @@ class Question {
       'options': options,
       'correct_answers': correctAnswers,
       'explanation': explanation,
+      'isEnabled': isEnabled,
     };
 
     if (image != null) {
@@ -104,6 +110,7 @@ class Question {
   /// - [options]: New options list to replace the current one.
   /// - [correctAnswers]: New correct answers list to replace the current one.
   /// - [explanation]: New explanation to replace the current one.
+  /// - [isEnabled]: New enabled state to replace the current one.
   /// - Returns: A new `Question` instance with the specified modifications.
   Question copyWith({
     QuestionType? type,
@@ -112,6 +119,7 @@ class Question {
     List<String>? options,
     List<int>? correctAnswers,
     String? explanation,
+    bool? isEnabled,
   }) {
     return Question(
       type: type ?? this.type,
@@ -120,6 +128,7 @@ class Question {
       options: options ?? this.options,
       correctAnswers: correctAnswers ?? this.correctAnswers,
       explanation: explanation ?? this.explanation,
+      isEnabled: isEnabled ?? this.isEnabled,
     );
   }
 
@@ -131,6 +140,7 @@ class Question {
         other.text == text &&
         other.image == image &&
         other.explanation == explanation &&
+        other.isEnabled == isEnabled &&
         _listEquals(other.options, options) &&
         _listEquals(other.correctAnswers, correctAnswers);
   }
@@ -142,14 +152,16 @@ class Question {
           text.hashCode ^
           options.hashCode ^
           correctAnswers.hashCode ^
-          explanation.hashCode;
+          explanation.hashCode ^
+          isEnabled.hashCode;
     }
     return type.hashCode ^
         text.hashCode ^
         image.hashCode ^
         options.hashCode ^
         correctAnswers.hashCode ^
-        explanation.hashCode;
+        explanation.hashCode ^
+        isEnabled.hashCode;
   }
 
   /// Helper method to compare two lists for equality.
@@ -164,6 +176,6 @@ class Question {
 
   @override
   String toString() {
-    return 'Question(type: ${type.value}, text: $text, image: $image, options: $options, correctAnswers: $correctAnswers, explanation: $explanation)';
+    return 'Question(type: ${type.value}, text: $text, image: $image, options: $options, correctAnswers: $correctAnswers, explanation: $explanation, isEnabled: $isEnabled)';
   }
 }

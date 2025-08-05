@@ -1146,5 +1146,21 @@
         "example": "20"
       }
     }
+  },
+  "enableQuestion": "تفعيل السؤال",
+  "@enableQuestion": {
+    "description": "نص تلميح لتفعيل السؤال"
+  },
+  "disableQuestion": "تعطيل السؤال",
+  "@disableQuestion": {
+    "description": "نص تلميح لتعطيل السؤال"
+  },
+  "questionDisabled": "معطل",
+  "@questionDisabled": {
+    "description": "نص شارة للسؤال المعطل"
+  },
+  "noEnabledQuestionsError": "لا توجد أسئلة مفعلة لتشغيل الاختبار",
+  "@noEnabledQuestionsError": {
+    "description": "رسالة خطأ عند عدم وجود أسئلة مفعلة"
   }
 }
