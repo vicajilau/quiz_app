@@ -635,4 +635,131 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get incorrectSelectedLabel => 'Incorrecta';
+
+  @override
+  String get generateQuestionsWithAI => 'Generar preguntas con IA';
+
+  @override
+  String get aiGenerateDialogTitle => 'Generar Preguntas con IA';
+
+  @override
+  String get aiQuestionCountLabel => 'Número de Preguntas (Opcional)';
+
+  @override
+  String get aiQuestionCountHint => 'Déjalo vacío para que la IA decida';
+
+  @override
+  String get aiQuestionCountValidation => 'Debe ser un número entre 1 y 50';
+
+  @override
+  String get aiQuestionTypeLabel => 'Tipo de Preguntas';
+
+  @override
+  String get aiQuestionTypeRandom => 'Aleatorio (Mezcla)';
+
+  @override
+  String get aiLanguageLabel => 'Idioma de las Preguntas';
+
+  @override
+  String get aiContentLabel => 'Contenido para generar preguntas';
+
+  @override
+  String aiWordCount(int current, int max) {
+    return '$current / $max palabras';
+  }
+
+  @override
+  String get aiContentHint =>
+      'Introduce el texto, tema o contenido del cual quieres generar preguntas...';
+
+  @override
+  String get aiContentHelperText =>
+      'La IA creará preguntas basadas en este contenido';
+
+  @override
+  String aiWordLimitError(int max) {
+    return 'Has superado el límite de $max palabras';
+  }
+
+  @override
+  String get aiContentRequiredError =>
+      'Debes proporcionar contenido para generar las preguntas';
+
+  @override
+  String aiContentLimitError(int max) {
+    return 'El contenido supera el límite de $max palabras';
+  }
+
+  @override
+  String get aiMinWordsError =>
+      'Proporciona al menos 10 palabras para generar preguntas de calidad';
+
+  @override
+  String get aiInfoTitle => 'Información';
+
+  @override
+  String get aiInfoDescription =>
+      '• La IA analizará el contenido y generará preguntas relevantes\n• Puedes incluir texto, definiciones, explicaciones o cualquier material educativo\n• Las preguntas incluirán opciones de respuesta y explicaciones\n• El proceso puede tardar unos segundos';
+
+  @override
+  String get aiGenerateButton => 'Generar Preguntas';
+
+  @override
+  String get languageSpanish => 'Español';
+
+  @override
+  String get languageEnglish => 'English';
+
+  @override
+  String get languageFrench => 'Français';
+
+  @override
+  String get languageGerman => 'Deutsch';
+
+  @override
+  String get languageItalian => 'Italiano';
+
+  @override
+  String get languagePortuguese => 'Português';
+
+  @override
+  String get languageCatalan => 'Català';
+
+  @override
+  String get languageBasque => 'Euskera';
+
+  @override
+  String get languageGalician => 'Galego';
+
+  @override
+  String get aiServicesLoading => 'Cargando servicios de IA...';
+
+  @override
+  String get aiServicesNotConfigured => 'No hay servicios de IA configurados';
+
+  @override
+  String get aiGeneratedQuestions => 'IA Generadas';
+
+  @override
+  String get aiApiKeyRequired =>
+      'Por favor, configura al menos una clave API de IA en Ajustes para usar la generación con IA.';
+
+  @override
+  String get aiGenerationFailed =>
+      'No se pudieron generar preguntas. Intenta con un contenido diferente.';
+
+  @override
+  String aiGenerationError(String error) {
+    return 'Error al generar preguntas: $error';
+  }
+
+  @override
+  String get noQuestionsInFile =>
+      'No se encontraron preguntas en el archivo importado';
+
+  @override
+  String get couldNotAccessFile => 'No se pudo acceder al archivo seleccionado';
+
+  @override
+  String get defaultOutputFileName => 'archivo-salida.quiz';
 }

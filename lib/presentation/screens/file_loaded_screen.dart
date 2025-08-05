@@ -13,6 +13,7 @@ import 'package:platform_detail/platform_detail.dart';
 
 import '../../core/l10n/app_localizations.dart';
 import '../../core/service_locator.dart';
+import '../../data/services/configuration_service.dart';
 import '../../domain/use_cases/check_file_changes_use_case.dart';
 import '../blocs/file_bloc/file_bloc.dart';
 import '../blocs/file_bloc/file_event.dart';
@@ -20,8 +21,10 @@ import '../blocs/file_bloc/file_state.dart';
 import 'dialogs/exit_confirmation_dialog.dart';
 import 'dialogs/question_count_selection_dialog.dart';
 import 'dialogs/import_questions_dialog.dart';
+import 'dialogs/ai_generate_questions_dialog.dart';
 import 'widgets/request_file_name_dialog.dart';
 import 'dialogs/settings_dialog.dart';
+import '../../data/services/ai_question_generation_service.dart';
 
 class FileLoadedScreen extends StatefulWidget {
   final FileBloc fileBloc;
@@ -84,9 +87,9 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
           if (importedQuizFile.questions.isEmpty) {
             if (mounted) {
               context.presentSnackBar(
-                AppLocalizations.of(
-                  context,
-                )!.errorLoadingFile('No questions found in the imported file'),
+                AppLocalizations.of(context)!.errorLoadingFile(
+                  AppLocalizations.of(context)!.noQuestionsInFile,
+                ),
               );
             }
             break;
@@ -160,9 +163,9 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
         } else {
           if (mounted) {
             context.presentSnackBar(
-              AppLocalizations.of(
-                context,
-              )!.errorLoadingFile('Could not access the selected file'),
+              AppLocalizations.of(context)!.errorLoadingFile(
+                AppLocalizations.of(context)!.couldNotAccessFile,
+              ),
             );
           }
         }
@@ -172,6 +175,108 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
         context.presentSnackBar(
           AppLocalizations.of(context)!.errorLoadingFile(e.toString()),
         );
+      }
+    }
+  }
+
+  /// Handle generating questions with AI
+  Future<void> _generateQuestionsWithAI() async {
+    try {
+      // Check if AI is enabled and has API keys
+      final openaiKey = await ConfigurationService.instance.getOpenAIApiKey();
+      final geminiKey = await ConfigurationService.instance.getGeminiApiKey();
+
+      if ((openaiKey?.isEmpty ?? true) && (geminiKey?.isEmpty ?? true)) {
+        if (mounted) {
+          context.presentSnackBar(
+            AppLocalizations.of(context)!.aiApiKeyRequired,
+          );
+        }
+        return;
+      }
+
+      // Show AI generation dialog
+      if (!mounted) return;
+      final config = await showDialog<AiQuestionGenerationConfig>(
+        context: context,
+        builder: (context) => const AiGenerateQuestionsDialog(),
+      );
+
+      if (config == null || !mounted) return;
+
+      // Show loading indicator
+      if (!mounted) return;
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(child: CircularProgressIndicator()),
+      );
+
+      try {
+        // Generate questions with AI
+        final aiService = AiQuestionGenerationService();
+        final localizations = AppLocalizations.of(context)!;
+        final generatedQuestions = await aiService.generateQuestions(
+          config,
+          localizations: localizations,
+        );
+
+        // Close loading dialog
+        if (mounted) {
+          Navigator.of(context).pop();
+        }
+
+        if (generatedQuestions.isEmpty) {
+          if (mounted) {
+            context.presentSnackBar(
+              AppLocalizations.of(context)!.aiGenerationFailed,
+            );
+          }
+          return;
+        }
+
+        // Show import dialog to choose position
+        if (!mounted) return;
+        final position = await showDialog<String>(
+          context: context,
+          builder: (context) => ImportQuestionsDialog(
+            questionCount: generatedQuestions.length,
+            fileName: AppLocalizations.of(context)!.aiGeneratedQuestions,
+          ),
+        );
+
+        if (position != null && mounted) {
+          setState(() {
+            if (position == 'beginning') {
+              // Insert at the beginning
+              cachedQuizFile.questions.insertAll(0, generatedQuestions);
+            } else {
+              // Insert at the end
+              cachedQuizFile.questions.addAll(generatedQuestions);
+            }
+          });
+          _checkFileChange();
+
+          if (mounted) {
+            context.presentSnackBar(
+              AppLocalizations.of(
+                context,
+              )!.questionsImportedSuccess(generatedQuestions.length),
+            );
+          }
+        }
+      } catch (e) {
+        // Close loading dialog if still open
+        if (mounted) {
+          Navigator.of(context).pop();
+          context.presentSnackBar(
+            AppLocalizations.of(context)!.aiGenerationError(e.toString()),
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        context.presentSnackBar('Error: ${e.toString()}');
       }
     }
   }
@@ -249,6 +354,19 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                       },
                       icon: const Icon(Icons.add),
                       tooltip: AppLocalizations.of(context)!.addTooltip,
+                    ),
+                    // Generate with AI Action
+                    IconButton(
+                      onPressed: () async {
+                        await _generateQuestionsWithAI();
+                      },
+                      icon: const Icon(
+                        Icons.auto_awesome,
+                        color: Colors.purple,
+                      ),
+                      tooltip: AppLocalizations.of(
+                        context,
+                      )!.generateQuestionsWithAI,
                     ),
                     // Import Action
                     IconButton(
@@ -342,7 +460,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
       );
       fileName = result;
     } else {
-      fileName = "output-file.quiz";
+      fileName = AppLocalizations.of(context)!.defaultOutputFileName;
     }
     if (fileName != null && context.mounted) {
       context.read<FileBloc>().add(

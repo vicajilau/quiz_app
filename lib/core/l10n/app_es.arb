@@ -832,5 +832,181 @@
   "incorrectSelectedLabel": "Incorrecta",
   "@incorrectSelectedLabel": {
     "description": "Etiqueta para respuestas incorrectas seleccionadas en resultados del quiz."
+  },
+  "generateQuestionsWithAI": "Generar preguntas con IA",
+  "@generateQuestionsWithAI": {
+    "description": "Tooltip para el botón de generar preguntas con IA."
+  },
+  "aiGenerateDialogTitle": "Generar Preguntas con IA",
+  "@aiGenerateDialogTitle": {
+    "description": "Título del diálogo de generación de preguntas con IA."
+  },
+  "aiQuestionCountLabel": "Número de Preguntas (Opcional)",
+  "@aiQuestionCountLabel": {
+    "description": "Etiqueta para el campo de número de preguntas."
+  },
+  "aiQuestionCountHint": "Déjalo vacío para que la IA decida",
+  "@aiQuestionCountHint": {
+    "description": "Texto de ayuda para el campo de número de preguntas."
+  },
+  "aiQuestionCountValidation": "Debe ser un número entre 1 y 50",
+  "@aiQuestionCountValidation": {
+    "description": "Mensaje de validación para el número de preguntas."
+  },
+  "aiQuestionTypeLabel": "Tipo de Preguntas",
+  "@aiQuestionTypeLabel": {
+    "description": "Etiqueta para el selector de tipo de preguntas."
+  },
+  "aiQuestionTypeRandom": "Aleatorio (Mezcla)",
+  "@aiQuestionTypeRandom": {
+    "description": "Opción de tipo aleatorio para preguntas."
+  },
+  "aiLanguageLabel": "Idioma de las Preguntas",
+  "@aiLanguageLabel": {
+    "description": "Etiqueta para el selector de idioma."
+  },
+  "aiContentLabel": "Contenido para generar preguntas",
+  "@aiContentLabel": {
+    "description": "Etiqueta para el campo de contenido."
+  },
+  "aiWordCount": "{current} / {max} palabras",
+  "@aiWordCount": {
+    "description": "Contador de palabras para el contenido.",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "150"
+      },
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiContentHint": "Introduce el texto, tema o contenido del cual quieres generar preguntas...",
+  "@aiContentHint": {
+    "description": "Texto de ayuda para el campo de contenido."
+  },
+  "aiContentHelperText": "La IA creará preguntas basadas en este contenido",
+  "@aiContentHelperText": {
+    "description": "Texto de ayuda adicional para el campo de contenido."
+  },
+  "aiWordLimitError": "Has superado el límite de {max} palabras",
+  "@aiWordLimitError": {
+    "description": "Error cuando se supera el límite de palabras.",
+    "placeholders": {
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiContentRequiredError": "Debes proporcionar contenido para generar las preguntas",
+  "@aiContentRequiredError": {
+    "description": "Error cuando no se proporciona contenido."
+  },
+  "aiContentLimitError": "El contenido supera el límite de {max} palabras",
+  "@aiContentLimitError": {
+    "description": "Error de validación por límite de palabras.",
+    "placeholders": {
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiMinWordsError": "Proporciona al menos 10 palabras para generar preguntas de calidad",
+  "@aiMinWordsError": {
+    "description": "Error cuando el contenido es muy corto."
+  },
+  "aiInfoTitle": "Información",
+  "@aiInfoTitle": {
+    "description": "Título de la sección de información."
+  },
+  "aiInfoDescription": "• La IA analizará el contenido y generará preguntas relevantes\n• Puedes incluir texto, definiciones, explicaciones o cualquier material educativo\n• Las preguntas incluirán opciones de respuesta y explicaciones\n• El proceso puede tardar unos segundos",
+  "@aiInfoDescription": {
+    "description": "Descripción informativa sobre el proceso de generación con IA."
+  },
+  "aiGenerateButton": "Generar Preguntas",
+  "@aiGenerateButton": {
+    "description": "Texto del botón para generar preguntas."
+  },
+  "languageSpanish": "Español",
+  "@languageSpanish": {
+    "description": "Nombre del idioma español."
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "Nombre del idioma inglés."
+  },
+  "languageFrench": "Français",
+  "@languageFrench": {
+    "description": "Nombre del idioma francés."
+  },
+  "languageGerman": "Deutsch",
+  "@languageGerman": {
+    "description": "Nombre del idioma alemán."
+  },
+  "languageItalian": "Italiano",
+  "@languageItalian": {
+    "description": "Nombre del idioma italiano."
+  },
+  "languagePortuguese": "Português",
+  "@languagePortuguese": {
+    "description": "Nombre del idioma portugués."
+  },
+  "languageCatalan": "Català",
+  "@languageCatalan": {
+    "description": "Nombre del idioma catalán."
+  },
+  "languageBasque": "Euskera",
+  "@languageBasque": {
+    "description": "Nombre del idioma euskera."
+  },
+  "languageGalician": "Galego",
+  "@languageGalician": {
+    "description": "Nombre del idioma gallego."
+  },
+  "aiServicesLoading": "Cargando servicios de IA...",
+  "@aiServicesLoading": {
+    "description": "Mensaje mostrado mientras se cargan los servicios de IA disponibles."
+  },
+  "aiServicesNotConfigured": "No hay servicios de IA configurados",
+  "@aiServicesNotConfigured": {
+    "description": "Mensaje mostrado cuando no hay servicios de IA configurados."
+  },
+  "aiGeneratedQuestions": "IA Generadas",
+  "@aiGeneratedQuestions": {
+    "description": "Nombre para las preguntas generadas por IA en el diálogo de importación."
+  },
+  "aiApiKeyRequired": "Por favor, configura al menos una clave API de IA en Ajustes para usar la generación con IA.",
+  "@aiApiKeyRequired": {
+    "description": "Mensaje mostrado cuando no hay claves API configuradas para IA."
+  },
+  "aiGenerationFailed": "No se pudieron generar preguntas. Intenta con un contenido diferente.",
+  "@aiGenerationFailed": {
+    "description": "Mensaje mostrado cuando la generación de preguntas con IA falla."
+  },
+  "aiGenerationError": "Error al generar preguntas: {error}",
+  "@aiGenerationError": {
+    "description": "Mensaje de error al generar preguntas con IA.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "API key invalid"
+      }
+    }
+  },
+  "noQuestionsInFile": "No se encontraron preguntas en el archivo importado",
+  "@noQuestionsInFile": {
+    "description": "Mensaje mostrado cuando un archivo importado no contiene preguntas."
+  },
+  "couldNotAccessFile": "No se pudo acceder al archivo seleccionado",
+  "@couldNotAccessFile": {
+    "description": "Mensaje mostrado cuando no se puede acceder a un archivo seleccionado."
+  },
+  "defaultOutputFileName": "archivo-salida.quiz",
+  "@defaultOutputFileName": {
+    "description": "Nombre por defecto para archivos de salida."
   }
 }

@@ -1175,8 +1175,230 @@ abstract class AppLocalizations {
   /// Label for incorrectly selected answers in quiz results.
   ///
   /// In en, this message translates to:
-  /// **'Wrong'**
+  /// **'Incorrect'**
   String get incorrectSelectedLabel;
+
+  /// Tooltip for the generate questions with AI button.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate questions with AI'**
+  String get generateQuestionsWithAI;
+
+  /// Title of the AI question generation dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate Questions with AI'**
+  String get aiGenerateDialogTitle;
+
+  /// Label for the question count field.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of Questions (Optional)'**
+  String get aiQuestionCountLabel;
+
+  /// Hint text for the question count field.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave empty for AI to decide'**
+  String get aiQuestionCountHint;
+
+  /// Validation message for question count.
+  ///
+  /// In en, this message translates to:
+  /// **'Must be a number between 1 and 50'**
+  String get aiQuestionCountValidation;
+
+  /// Label for the question type selector.
+  ///
+  /// In en, this message translates to:
+  /// **'Question Type'**
+  String get aiQuestionTypeLabel;
+
+  /// Random type option for questions.
+  ///
+  /// In en, this message translates to:
+  /// **'Random (Mixed)'**
+  String get aiQuestionTypeRandom;
+
+  /// Label for the language selector.
+  ///
+  /// In en, this message translates to:
+  /// **'Question Language'**
+  String get aiLanguageLabel;
+
+  /// Label for the content field.
+  ///
+  /// In en, this message translates to:
+  /// **'Content to generate questions from'**
+  String get aiContentLabel;
+
+  /// Word counter for content.
+  ///
+  /// In en, this message translates to:
+  /// **'{current} / {max} words'**
+  String aiWordCount(int current, int max);
+
+  /// Hint text for the content field.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the text, topic, or content from which you want to generate questions...'**
+  String get aiContentHint;
+
+  /// Additional helper text for the content field.
+  ///
+  /// In en, this message translates to:
+  /// **'AI will create questions based on this content'**
+  String get aiContentHelperText;
+
+  /// Error when word limit is exceeded.
+  ///
+  /// In en, this message translates to:
+  /// **'You have exceeded the limit of {max} words'**
+  String aiWordLimitError(int max);
+
+  /// Error when no content is provided.
+  ///
+  /// In en, this message translates to:
+  /// **'You must provide content to generate questions'**
+  String get aiContentRequiredError;
+
+  /// Validation error for word limit.
+  ///
+  /// In en, this message translates to:
+  /// **'Content exceeds the limit of {max} words'**
+  String aiContentLimitError(int max);
+
+  /// Error when content is too short.
+  ///
+  /// In en, this message translates to:
+  /// **'Provide at least 10 words to generate quality questions'**
+  String get aiMinWordsError;
+
+  /// Title of the information section.
+  ///
+  /// In en, this message translates to:
+  /// **'Information'**
+  String get aiInfoTitle;
+
+  /// Informative description about the AI generation process.
+  ///
+  /// In en, this message translates to:
+  /// **'• AI will analyze the content and generate relevant questions\n• You can include text, definitions, explanations, or any educational material\\n• Questions will include answer options and explanations\\n• The process may take a few seconds'**
+  String get aiInfoDescription;
+
+  /// Text for the generate questions button.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate Questions'**
+  String get aiGenerateButton;
+
+  /// Spanish language name.
+  ///
+  /// In en, this message translates to:
+  /// **'Español'**
+  String get languageSpanish;
+
+  /// English language name.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get languageEnglish;
+
+  /// French language name.
+  ///
+  /// In en, this message translates to:
+  /// **'Français'**
+  String get languageFrench;
+
+  /// German language name.
+  ///
+  /// In en, this message translates to:
+  /// **'Deutsch'**
+  String get languageGerman;
+
+  /// Italian language name.
+  ///
+  /// In en, this message translates to:
+  /// **'Italiano'**
+  String get languageItalian;
+
+  /// Portuguese language name.
+  ///
+  /// In en, this message translates to:
+  /// **'Português'**
+  String get languagePortuguese;
+
+  /// Catalan language name.
+  ///
+  /// In en, this message translates to:
+  /// **'Català'**
+  String get languageCatalan;
+
+  /// Basque language name.
+  ///
+  /// In en, this message translates to:
+  /// **'Euskera'**
+  String get languageBasque;
+
+  /// Galician language name.
+  ///
+  /// In en, this message translates to:
+  /// **'Galego'**
+  String get languageGalician;
+
+  /// Message shown while loading available AI services.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading AI services...'**
+  String get aiServicesLoading;
+
+  /// Message shown when no AI services are configured.
+  ///
+  /// In en, this message translates to:
+  /// **'No AI services configured'**
+  String get aiServicesNotConfigured;
+
+  /// Name for AI generated questions in the import dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Generated'**
+  String get aiGeneratedQuestions;
+
+  /// Message shown when no API keys are configured for AI.
+  ///
+  /// In en, this message translates to:
+  /// **'Please configure at least one AI API key in Settings to use AI generation.'**
+  String get aiApiKeyRequired;
+
+  /// Message shown when AI question generation fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not generate questions. Try with different content.'**
+  String get aiGenerationFailed;
+
+  /// Error message when generating questions with AI.
+  ///
+  /// In en, this message translates to:
+  /// **'Error generating questions: {error}'**
+  String aiGenerationError(String error);
+
+  /// Message shown when an imported file contains no questions.
+  ///
+  /// In en, this message translates to:
+  /// **'No questions found in the imported file'**
+  String get noQuestionsInFile;
+
+  /// Message shown when a selected file cannot be accessed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not access the selected file'**
+  String get couldNotAccessFile;
+
+  /// Default name for output files.
+  ///
+  /// In en, this message translates to:
+  /// **'output-file.quiz'**
+  String get defaultOutputFileName;
 }
 
 class _AppLocalizationsDelegate

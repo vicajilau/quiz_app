@@ -889,8 +889,188 @@
   "@correctMissedLabel": {
     "description": "Label for correct answers that were not selected in quiz results."
   },
-  "incorrectSelectedLabel": "Wrong",
+  "incorrectSelectedLabel": "Incorrect",
   "@incorrectSelectedLabel": {
     "description": "Label for incorrectly selected answers in quiz results."
+  },
+    "generateQuestionsWithAI": "Generate questions with AI",
+  "@generateQuestionsWithAI": {
+    "description": "Tooltip for the generate questions with AI button."
+  },
+  "aiGenerateDialogTitle": "Generate Questions with AI",
+  "@aiGenerateDialogTitle": {
+    "description": "Title of the AI question generation dialog."
+  },
+  "aiQuestionCountLabel": "Number of Questions (Optional)",
+  "@aiQuestionCountLabel": {
+    "description": "Label for the question count field."
+  },
+  "aiQuestionCountHint": "Leave empty for AI to decide",
+  "@aiQuestionCountHint": {
+    "description": "Hint text for the question count field."
+  },
+  "aiQuestionCountValidation": "Must be a number between 1 and 50",
+  "@aiQuestionCountValidation": {
+    "description": "Validation message for question count."
+  },
+  "aiQuestionTypeLabel": "Question Type",
+  "@aiQuestionTypeLabel": {
+    "description": "Label for the question type selector."
+  },
+  "aiQuestionTypeRandom": "Random (Mixed)",
+  "@aiQuestionTypeRandom": {
+    "description": "Random type option for questions."
+  },
+  "aiLanguageLabel": "Question Language",
+  "@aiLanguageLabel": {
+    "description": "Label for the language selector."
+  },
+  "aiContentLabel": "Content to generate questions from",
+  "@aiContentLabel": {
+    "description": "Label for the content field."
+  },
+  "aiWordCount": "{current} / {max} words",
+  "@aiWordCount": {
+    "description": "Word counter for content.",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "150"
+      },
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiContentHint": "Enter the text, topic, or content from which you want to generate questions...",
+  "@aiContentHint": {
+    "description": "Hint text for the content field."
+  },
+  "aiContentHelperText": "AI will create questions based on this content",
+  "@aiContentHelperText": {
+    "description": "Additional helper text for the content field."
+  },
+  "aiWordLimitError": "You have exceeded the limit of {max} words",
+  "@aiWordLimitError": {
+    "description": "Error when word limit is exceeded.",
+    "placeholders": {
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiContentRequiredError": "You must provide content to generate questions",
+  "@aiContentRequiredError": {
+    "description": "Error when no content is provided."
+  },
+  "aiContentLimitError": "Content exceeds the limit of {max} words",
+  "@aiContentLimitError": {
+    "description": "Validation error for word limit.",
+    "placeholders": {
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiMinWordsError": "Provide at least 10 words to generate quality questions",
+  "@aiMinWordsError": {
+    "description": "Error when content is too short."
+  },
+  "aiInfoTitle": "Information",
+  "@aiInfoTitle": {
+    "description": "Title of the information section."
+  },
+  "aiInfoDescription": "• AI will analyze the content and generate relevant questions\n• You can include text, definitions, explanations, or any educational material\\n• Questions will include answer options and explanations\\n• The process may take a few seconds",
+  "@aiInfoDescription": {
+    "description": "Informative description about the AI generation process."
+  },
+  "aiGenerateButton": "Generate Questions",
+  "@aiGenerateButton": {
+    "description": "Text for the generate questions button."
+  },
+  "languageSpanish": "Español",
+  "@languageSpanish": {
+    "description": "Spanish language name."
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "English language name."
+  },
+  "languageFrench": "Français",
+  "@languageFrench": {
+    "description": "French language name."
+  },
+  "languageGerman": "Deutsch",
+  "@languageGerman": {
+    "description": "German language name."
+  },
+  "languageItalian": "Italiano",
+  "@languageItalian": {
+    "description": "Italian language name."
+  },
+  "languagePortuguese": "Português",
+  "@languagePortuguese": {
+    "description": "Portuguese language name."
+  },
+  "languageCatalan": "Català",
+  "@languageCatalan": {
+    "description": "Catalan language name."
+  },
+  "languageBasque": "Euskera",
+  "@languageBasque": {
+    "description": "Basque language name."
+  },
+  "languageGalician": "Galego",
+  "@languageGalician": {
+    "description": "Galician language name."
+  },
+  "aiServicesLoading": "Loading AI services...",
+  "@aiServicesLoading": {
+    "description": "Message shown while loading available AI services."
+  },
+  "aiServicesNotConfigured": "No AI services configured",
+  "@aiServicesNotConfigured": {
+    "description": "Message shown when no AI services are configured."
+  },
+  "aiGeneratedQuestions": "AI Generated",
+  "@aiGeneratedQuestions": {
+    "description": "Name for AI generated questions in the import dialog."
+  },
+  "aiApiKeyRequired": "Please configure at least one AI API key in Settings to use AI generation.",
+  "@aiApiKeyRequired": {
+    "description": "Message shown when no API keys are configured for AI."
+  },
+  "aiGenerationFailed": "Could not generate questions. Try with different content.",
+  "@aiGenerationFailed": {
+    "description": "Message shown when AI question generation fails."
+  },
+  "aiGenerationError": "Error generating questions: {error}",
+  "@aiGenerationError": {
+    "description": "Error message when generating questions with AI.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "API key invalid"
+      }
+    }
+  },
+  "noQuestionsInFile": "No questions found in the imported file",
+  "@noQuestionsInFile": {
+    "description": "Message shown when an imported file contains no questions."
+  },
+  "couldNotAccessFile": "Could not access the selected file",
+  "@couldNotAccessFile": {
+    "description": "Message shown when a selected file cannot be accessed."
+  },
+  "defaultOutputFileName": "output-file.quiz",
+  "@defaultOutputFileName": {
+    "description": "Default name for output files."
+  },
+  "generateQuestionsWithAI": "Generate questions with AI",
+  "@generateQuestionsWithAI": {
+    "description": "Tooltip for the generate questions with AI button."
   }
 }
