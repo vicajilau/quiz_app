@@ -29,7 +29,6 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   List<AIService> _availableServices = [];
   AIService? _selectedService;
   bool _isLoadingServices = true;
-  bool _isAiEnabled = true; // Track AI status
 
   // Check if content meets minimum requirements
   bool get _hasMinimumWords {
@@ -525,7 +524,6 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                     onPressed:
                         (_selectedService != null &&
                             !_isLoadingServices &&
-                            _isAiEnabled &&
                             _hasMinimumWords)
                         ? () {
                             if (_formKey.currentState!.validate()) {
