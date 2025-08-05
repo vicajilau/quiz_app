@@ -1,0 +1,1082 @@
+{
+  "titleAppBar": "测验 - 考试模拟器",
+  "@titleAppBar": {
+    "description": "Title of the application displayed in the AppBar."
+  },
+  "create": "创建",
+  "@create": {
+    "description": "Label for the Create Quiz file button in the AppBar."
+  },
+  "load": "加载",
+  "@load": {
+    "description": "Label for the Load Quiz file button in the AppBar."
+  },
+  "fileLoaded": "文件已加载：{filePath}",
+  "@fileLoaded": {
+    "description": "Message displayed when a file is successfully loaded.",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/path/to/file.quiz"
+      }
+    }
+  },
+  "fileSaved": "文件已保存：{filePath}",
+  "@fileSaved": {
+    "description": "Message displayed when a file is successfully saved.",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/path/to/file.quiz"
+      }
+    }
+  },
+  "dropFileHere": "点击这里或将.quiz文件拖拽到屏幕",
+  "@dropFileHere": {
+    "description": "Text displayed inside the drop area for dragging files."
+  },
+  "errorInvalidFile": "错误：无效文件。必须是.quiz文件。",
+  "@errorInvalidFile": {
+    "description": "Message displayed when the dropped file is not a .quiz file."
+  },
+  "errorLoadingFile": "加载测验文件时出错：{error}",
+  "@errorLoadingFile": {
+    "description": "Message displayed when there is an error while loading a Quiz file.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "File not found"
+      }
+    }
+  },
+  "errorExportingFile": "导出文件时出错：{error}",
+  "@errorExportingFile": {
+    "description": "Message displayed when there is an error while exporting a file.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "File not found"
+      }
+    }
+  },
+  "cancelButton": "取消",
+  "@cancelButton": {
+    "description": "Cancel button."
+  },
+  "saveButton": "保存",
+  "@saveButton": {
+    "description": "Save button."
+  },
+  "confirmDeleteTitle": "确认删除",
+  "@confirmDeleteTitle": {
+    "description": "Title for the confirmation dialog when deleting a process."
+  },
+  "confirmDeleteMessage": "您确定要删除\"{processName}\"过程吗？",
+  "@confirmDeleteMessage": {
+    "description": "Message in the confirmation dialog for deletion.",
+    "placeholders": {
+      "processName": {
+        "type": "String",
+        "example": "Question 1"
+      }
+    }
+  },
+  "deleteButton": "删除",
+  "@deleteButton": {
+    "description": "Button text for confirming deletion."
+  },
+  "confirmExitTitle": "确认退出",
+  "@confirmExitTitle": {
+    "description": "Title for the confirmation dialog when exiting."
+  },
+  "confirmExitMessage": "您确定要在不保存的情况下退出吗？",
+  "@confirmExitMessage": {
+    "description": "Message in the confirmation dialog for exiting."
+  },
+  "exitButton": "退出",
+  "@exitButton": {
+    "description": "Exit button text."
+  },
+  "saveDialogTitle": "请选择输出文件：",
+  "@saveDialogTitle": {
+    "description": "Title for the save dialog."
+  },
+  "createQuizFileTitle": "创建测验文件",
+  "@createQuizFileTitle": {
+    "description": "Title for create quiz file dialog."
+  },
+  "fileNameLabel": "文件名",
+  "@fileNameLabel": {
+    "description": "Label for file name input."
+  },
+  "fileDescriptionLabel": "文件描述",
+  "@fileDescriptionLabel": {
+    "description": "Label for file description input."
+  },
+  "createButton": "创建",
+  "@createButton": {
+    "description": "Create button text."
+  },
+  "fileNameRequiredError": "文件名是必需的。",
+  "@fileNameRequiredError": {
+    "description": "Error message when file name is empty."
+  },
+  "fileDescriptionRequiredError": "文件描述是必需的。",
+  "@fileDescriptionRequiredError": {
+    "description": "Error message when file description is empty."
+  },
+  "versionLabel": "版本",
+  "@versionLabel": {
+    "description": "Label for quiz version field"
+  },
+  "authorLabel": "作者",
+  "@authorLabel": {
+    "description": "Label for quiz author field"
+  },
+  "authorRequiredError": "作者是必需的。",
+  "@authorRequiredError": {
+    "description": "Error message when author field is empty"
+  },
+  "requiredFieldsError": "所有必填字段都必须填写。",
+  "@requiredFieldsError": {
+    "description": "Error message when required fields are missing"
+  },
+  "requestFileNameTitle": "输入测验文件名",
+  "@requestFileNameTitle": {
+    "description": "Title for request file name dialog."
+  },
+  "fileNameHint": "文件名",
+  "@fileNameHint": {
+    "description": "Hint text for file name input."
+  },
+  "emptyFileNameMessage": "文件名不能为空。",
+  "@emptyFileNameMessage": {
+    "description": "Error message when file name is empty."
+  },
+  "acceptButton": "接受",
+  "@acceptButton": {
+    "description": "Accept button text."
+  },
+  "saveTooltip": "保存文件",
+  "@saveTooltip": {
+    "description": "Tooltip for save button."
+  },
+  "saveDisabledTooltip": "没有需要保存的更改",
+  "@saveDisabledTooltip": {
+    "description": "Tooltip for disabled save button."
+  },
+  "executeTooltip": "执行考试",
+  "@executeTooltip": {
+    "description": "Tooltip for execute button."
+  },
+  "addTooltip": "添加新问题",
+  "@addTooltip": {
+    "description": "Tooltip for add button."
+  },
+  "backSemanticLabel": "返回按钮",
+  "@backSemanticLabel": {
+    "description": "Semantic label for back button."
+  },
+  "createFileTooltip": "创建新的测验文件",
+  "@createFileTooltip": {
+    "description": "Tooltip for create file button."
+  },
+  "loadFileTooltip": "加载现有的测验文件",
+  "@loadFileTooltip": {
+    "description": "Tooltip for load file button."
+  },
+  "questionNumber": "问题 {number}",
+  "@questionNumber": {
+    "description": "Question number label in quiz execution",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "previous": "上一个",
+  "@previous": {
+    "description": "Previous button text in quiz navigation"
+  },
+  "next": "下一个",
+  "@next": {
+    "description": "Next button text in quiz navigation"
+  },
+  "finish": "完成",
+  "@finish": {
+    "description": "Finish button text in quiz navigation"
+  },
+  "finishQuiz": "完成测验",
+  "@finishQuiz": {
+    "description": "Title of finish quiz dialog"
+  },
+  "finishQuizConfirmation": "您确定要完成测验吗？之后您将无法更改答案。",
+  "@finishQuizConfirmation": {
+    "description": "Confirmation message for finishing quiz"
+  },
+  "cancel": "取消",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
+  "abandonQuiz": "放弃测验",
+  "@abandonQuiz": {
+    "description": "Title of abandon quiz dialog"
+  },
+  "abandonQuizConfirmation": "您确定要放弃测验吗？所有进度都将丢失。",
+  "@abandonQuizConfirmation": {
+    "description": "Confirmation message for abandoning quiz"
+  },
+  "abandon": "放弃",
+  "@abandon": {
+    "description": "Abandon button text"
+  },
+  "quizCompleted": "测验完成！",
+  "@quizCompleted": {
+    "description": "Quiz completed message"
+  },
+  "score": "得分：{score}%",
+  "@score": {
+    "description": "Score display",
+    "placeholders": {
+      "score": {
+        "type": "String",
+        "example": "85.5"
+      }
+    }
+  },
+  "correctAnswers": "{total}个问题中答对{correct}个",
+  "@correctAnswers": {
+    "description": "Correct answers count",
+    "placeholders": {
+      "correct": {
+        "type": "int",
+        "example": "8"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "retry": "重试",
+  "@retry": {
+    "description": "Retry button text"
+  },
+  "goBack": "完成",
+  "@goBack": {
+    "description": "Go back button text"
+  },
+  "retryFailedQuestions": "重做错题",
+  "@retryFailedQuestions": {
+    "description": "Button text to retry only the questions that were answered incorrectly"
+  },
+  "question": "问题：{question}",
+  "@question": {
+    "description": "Question text in results",
+    "placeholders": {
+      "question": {
+        "type": "String",
+        "example": "What is the capital of France?"
+      }
+    }
+  },
+  "selectQuestionCountTitle": "选择问题数量",
+  "@selectQuestionCountTitle": {
+    "description": "Title for the dialog to select number of questions for the quiz"
+  },
+  "selectQuestionCountMessage": "您想在这个测验中回答多少个问题？",
+  "@selectQuestionCountMessage": {
+    "description": "Message explaining the question count selection"
+  },
+  "allQuestions": "所有问题（{count}个）",
+  "@allQuestions": {
+    "description": "Option to select all available questions",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "startQuiz": "开始测验",
+  "@startQuiz": {
+    "description": "Button text to start the quiz"
+  },
+  "customNumberLabel": "或输入自定义数量：",
+  "@customNumberLabel": {
+    "description": "Label for custom number input section"
+  },
+  "numberInputLabel": "问题数量",
+  "@numberInputLabel": {
+    "description": "Label for the number input field"
+  },
+  "customNumberHelper": "输入任意数量（最多{total}个）。如果超过，问题会重复。",
+  "@customNumberHelper": {
+    "description": "Helper text explaining custom number input",
+    "placeholders": {
+      "total": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "errorInvalidNumber": "请输入有效数字",
+  "@errorInvalidNumber": {
+    "description": "Error message for invalid number input"
+  },
+  "errorNumberMustBePositive": "数字必须大于0",
+  "@errorNumberMustBePositive": {
+    "description": "Error message when number is zero or negative"
+  },
+  "questionOrderConfigTitle": "问题顺序配置",
+  "@questionOrderConfigTitle": {
+    "description": "Title for the question order configuration dialog"
+  },
+  "questionOrderConfigDescription": "选择考试期间问题的显示顺序：",
+  "@questionOrderConfigDescription": {
+    "description": "Description text for the question order configuration dialog"
+  },
+  "questionOrderAscending": "升序",
+  "@questionOrderAscending": {
+    "description": "Label for ascending question order option"
+  },
+  "questionOrderAscendingDesc": "问题将按从1到结尾的顺序显示",
+  "@questionOrderAscendingDesc": {
+    "description": "Description for ascending question order option"
+  },
+  "questionOrderDescending": "降序",
+  "@questionOrderDescending": {
+    "description": "Label for descending question order option"
+  },
+  "questionOrderDescendingDesc": "问题将从结尾到1显示",
+  "@questionOrderDescendingDesc": {
+    "description": "Description for descending question order option"
+  },
+  "questionOrderRandom": "随机",
+  "@questionOrderRandom": {
+    "description": "Label for random question order option"
+  },
+  "questionOrderRandomDesc": "问题将随机显示",
+  "@questionOrderRandomDesc": {
+    "description": "Description for random question order option"
+  },
+  "questionOrderConfigTooltip": "问题顺序配置",
+  "@questionOrderConfigTooltip": {
+    "description": "Tooltip for the question order configuration button"
+  },
+  "save": "保存",
+  "@save": {
+    "description": "Label for the save button"
+  },
+  "examTimeLimitTitle": "考试时间限制",
+  "@examTimeLimitTitle": {
+    "description": "Title for exam time limit section"
+  },
+  "examTimeLimitDescription": "为考试设置时间限制。启用后，测验期间将显示倒计时器。",
+  "@examTimeLimitDescription": {
+    "description": "Description for exam time limit feature"
+  },
+  "enableTimeLimit": "启用时间限制",
+  "@enableTimeLimit": {
+    "description": "Label for enable exam time limit switch"
+  },
+  "timeLimitMinutes": "时间限制（分钟）",
+  "@timeLimitMinutes": {
+    "description": "Label for exam time minutes input"
+  },
+  "examTimeExpiredTitle": "时间到！",
+  "@examTimeExpiredTitle": {
+    "description": "Title for exam time expired dialog"
+  },
+  "examTimeExpiredMessage": "考试时间已到。您的答案已自动提交。",
+  "@examTimeExpiredMessage": {
+    "description": "Message for exam time expired dialog"
+  },
+  "remainingTime": "{hours}:{minutes}:{seconds}",
+  "@remainingTime": {
+    "description": "Format for remaining time display (hours:minutes:seconds)",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "01"
+      },
+      "minutes": {
+        "type": "String",
+        "example": "30"
+      },
+      "seconds": {
+        "type": "String",
+        "example": "45"
+      }
+    }
+  },
+  "questionTypeMultipleChoice": "多选题",
+  "@questionTypeMultipleChoice": {
+    "description": "Label for multiple choice question type"
+  },
+  "questionTypeSingleChoice": "单选题",
+  "@questionTypeSingleChoice": {
+    "description": "Label for single choice question type"
+  },
+  "questionTypeTrueFalse": "判断题",
+  "@questionTypeTrueFalse": {
+    "description": "Label for true/false question type"
+  },
+  "questionTypeEssay": "论述题",
+  "@questionTypeEssay": {
+    "description": "Label for essay question type"
+  },
+  "questionTypeUnknown": "未知",
+  "@questionTypeUnknown": {
+    "description": "Label for unknown question type"
+  },
+  "optionsCount": "{count, plural, =1{1个选项} other{{count}个选项}}",
+  "@optionsCount": {
+    "description": "Text showing the number of options in a question",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "optionsTooltip": "此问题的答案选项数量",
+  "@optionsTooltip": {
+    "description": "Tooltip text for the options count badge"
+  },
+  "imageTooltip": "此问题有关联的图片",
+  "@imageTooltip": {
+    "description": "Tooltip text for the image indicator badge"
+  },
+  "explanationTooltip": "此问题有解释",
+  "@explanationTooltip": {
+    "description": "Tooltip text for the explanation indicator badge"
+  },
+  "aiPrompt": "您是一位专业且友好的导师，专门帮助学生更好地理解考试问题和相关主题。您的目标是促进深度学习和概念理解。\n\n您可以帮助：\n- 解释与问题相关的概念\n- 澄清对答案选项的疑惑\n- 提供关于主题的额外背景\n- 建议补充学习资源\n- 解释为什么某些答案是正确或错误的\n- 将主题与其他重要概念联系起来\n- 回答有关材料的后续问题\n\n始终用被问问题的相同语言回答。在解释中要有教学性、清晰和鼓励性。",
+  "@aiPrompt": {
+    "description": "Base prompt for AI assistant"
+  },
+  "questionLabel": "问题",
+  "@questionLabel": {
+    "description": "Label for question in AI dialog"
+  },
+  "optionsLabel": "选项",
+  "@optionsLabel": {
+    "description": "Label for options in AI dialog"
+  },
+  "explanationLabel": "解释",
+  "@explanationLabel": {
+    "description": "Label for explanation in AI dialog"
+  },
+  "studentComment": "学生评论",
+  "@studentComment": {
+    "description": "Label for student comment in AI dialog"
+  },
+  "aiAssistantTitle": "AI学习助手",
+  "@aiAssistantTitle": {
+    "description": "Title for AI assistant dialog"
+  },
+  "questionContext": "问题背景",
+  "@questionContext": {
+    "description": "Label for question context section"
+  },
+  "aiAssistant": "AI助手",
+  "@aiAssistant": {
+    "description": "AI assistant label in chat"
+  },
+  "aiThinking": "AI正在思考...",
+  "@aiThinking": {
+    "description": "Loading message while AI processes"
+  },
+  "askAIHint": "询问关于这个主题的问题...",
+  "@askAIHint": {
+    "description": "Hint text for AI question input"
+  },
+  "aiPlaceholderResponse": "这是一个占位符响应。在实际实现中，这将连接到AI服务，提供有关问题的有用解释。",
+  "@aiPlaceholderResponse": {
+    "description": "Placeholder AI response for demo"
+  },
+  "aiErrorResponse": "抱歉，处理您的问题时出现错误。请重试。",
+  "@aiErrorResponse": {
+    "description": "Error message when AI request fails"
+  },
+  "configureApiKeyMessage": "请在设置中配置您的AI API密钥。",
+  "@configureApiKeyMessage": {
+    "description": "Message to configure API key when not set"
+  },
+  "errorLabel": "错误：",
+  "@errorLabel": {
+    "description": "Error label prefix for error messages"
+  },
+  "noResponseReceived": "未收到响应",
+  "@noResponseReceived": {
+    "description": "Message when no response is received from AI"
+  },
+  "invalidApiKeyError": "无效的API密钥。请在设置中检查您的OpenAI API密钥。",
+  "@invalidApiKeyError": {
+    "description": "Error message for invalid API key"
+  },
+  "rateLimitError": "超出速率限制。请稍后重试。",
+  "@rateLimitError": {
+    "description": "Error message for rate limit exceeded"
+  },
+  "modelNotFoundError": "未找到模型。请检查您的API访问权限。",
+  "@modelNotFoundError": {
+    "description": "Error message for model not found"
+  },
+  "unknownError": "未知错误",
+  "@unknownError": {
+    "description": "Generic unknown error message"
+  },
+  "networkError": "网络错误：无法连接到OpenAI。请检查您的网络连接。",
+  "@networkError": {
+    "description": "Network connectivity error message"
+  },
+  "openaiApiKeyNotConfigured": "OpenAI API密钥未配置",
+  "@openaiApiKeyNotConfigured": {
+    "description": "Error message when API key is not configured"
+  },
+  "geminiApiKeyNotConfigured": "Gemini API密钥未配置",
+  "@geminiApiKeyNotConfigured": {
+    "description": "Error message when Gemini API key is not configured"
+  },
+  "geminiApiKeyLabel": "Google Gemini API密钥",
+  "@geminiApiKeyLabel": {
+    "description": "Label for Gemini API Key field"
+  },
+  "geminiApiKeyHint": "输入您的Gemini API密钥",
+  "@geminiApiKeyHint": {
+    "description": "Hint text for Gemini API Key field"
+  },
+  "geminiApiKeyDescription": "Gemini AI功能所需。您的密钥会安全存储。",
+  "@geminiApiKeyDescription": {
+    "description": "Description for Gemini API Key field"
+  },
+  "getGeminiApiKeyTooltip": "从Google AI Studio获取API密钥",
+  "@getGeminiApiKeyTooltip": {
+    "description": "Tooltip for the button to get Gemini API key"
+  },
+  "aiRequiresAtLeastOneApiKeyError": "AI学习助手至少需要一个API密钥（OpenAI或Gemini）。请输入API密钥或禁用AI助手。",
+  "@aiRequiresAtLeastOneApiKeyError": {
+    "description": "Error message when AI Assistant is enabled but no API keys are provided"
+  },
+  "minutesAbbreviation": "分钟",
+  "@minutesAbbreviation": {
+    "description": "Abbreviation for minutes"
+  },
+  "aiButtonTooltip": "AI学习助手",
+  "@aiButtonTooltip": {
+    "description": "Tooltip for AI assistant button"
+  },
+  "aiButtonText": "AI",
+  "@aiButtonText": {
+    "description": "Text for AI assistant button"
+  },
+  "aiAssistantSettingsTitle": "AI学习助手（预览）",
+  "@aiAssistantSettingsTitle": {
+    "description": "Title for AI assistant settings section"
+  },
+  "aiAssistantSettingsDescription": "启用或禁用问题的AI学习助手",
+  "@aiAssistantSettingsDescription": {
+    "description": "Description for AI assistant settings"
+  },
+  "openaiApiKeyLabel": "OpenAI API密钥",
+  "@openaiApiKeyLabel": {
+    "description": "Label for OpenAI API Key field"
+  },
+  "openaiApiKeyHint": "输入您的OpenAI API密钥（sk-...）",
+  "@openaiApiKeyHint": {
+    "description": "Hint text for OpenAI API Key field"
+  },
+  "openaiApiKeyDescription": "AI功能所需。您的密钥会安全存储。",
+  "@openaiApiKeyDescription": {
+    "description": "Description for OpenAI API Key field"
+  },
+  "aiAssistantRequiresApiKeyError": "AI学习助手需要OpenAI API密钥。请输入您的API密钥或禁用AI助手。",
+  "@aiAssistantRequiresApiKeyError": {
+    "description": "Error message when AI Assistant is enabled but no API key is provided"
+  },
+  "getApiKeyTooltip": "从OpenAI获取API密钥",
+  "@getApiKeyTooltip": {
+    "description": "Tooltip for the button to get API key from OpenAI"
+  },
+  "deleteAction": "删除",
+  "@deleteAction": {
+    "description": "Delete action text shown when swiping to delete"
+  },
+  "explanationLabel": "解释（可选）",
+  "@explanationLabel": {
+    "description": "Label for the explanation input field"
+  },
+  "explanationHint": "输入正确答案的解释",
+  "@explanationHint": {
+    "description": "Hint text for the explanation input field"
+  },
+  "explanationTitle": "解释",
+  "@explanationTitle": {
+    "description": "Title for the explanation section in quiz results"
+  },
+  "imageLabel": "图片",
+  "@imageLabel": {
+    "description": "Label for the image section in question editor"
+  },
+  "changeImage": "更换图片",
+  "@changeImage": {
+    "description": "Text for button to change current image"
+  },
+  "removeImage": "移除图片",
+  "@removeImage": {
+    "description": "Text for button to remove current image"
+  },
+  "addImageTap": "点击添加图片",
+  "@addImageTap": {
+    "description": "Instructional text for adding an image"
+  },
+  "imageFormats": "格式：JPG、PNG、GIF",
+  "@imageFormats": {
+    "description": "Text indicating supported image formats"
+  },
+  "imageLoadError": "图片加载错误",
+  "@imageLoadError": {
+    "description": "Error message when image cannot be loaded"
+  },
+  "imagePickError": "图片加载错误：{error}",
+  "@imagePickError": {
+    "description": "Error message when image selection fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Invalid file"
+      }
+    }
+  },
+  "tapToZoom": "点击放大",
+  "@tapToZoom": {
+    "description": "Instructional text to indicate image can be zoomed"
+  },
+  "trueLabel": "正确",
+  "@trueLabel": {
+    "description": "Label for true option in true/false questions"
+  },
+  "falseLabel": "错误",
+  "@falseLabel": {
+    "description": "Label for false option in true/false questions"
+  },
+  "addQuestion": "添加问题",
+  "@addQuestion": {
+    "description": "Title for adding a new question dialog"
+  },
+  "editQuestion": "编辑问题",
+  "@editQuestion": {
+    "description": "Title for editing an existing question dialog"
+  },
+  "questionText": "问题文本",
+  "@questionText": {
+    "description": "Label for question text input field"
+  },
+  "questionType": "问题类型",
+  "@questionType": {
+    "description": "Label for question type dropdown"
+  },
+  "addOption": "添加选项",
+  "@addOption": {
+    "description": "Label for add option button"
+  },
+  "optionLabel": "选项",
+  "@optionLabel": {
+    "description": "Label for individual option input field"
+  },
+  "questionTextRequired": "问题文本是必需的",
+  "@questionTextRequired": {
+    "description": "Error message when question text is empty"
+  },
+  "atLeastOneOptionRequired": "至少一个选项必须有文本",
+  "@atLeastOneOptionRequired": {
+    "description": "Error message when all options are empty"
+  },
+  "atLeastOneCorrectAnswerRequired": "至少必须选择一个正确答案",
+  "@atLeastOneCorrectAnswerRequired": {
+    "description": "Error message when no correct answer is selected"
+  },
+  "onlyOneCorrectAnswerAllowed": "此问题类型只允许一个正确答案",
+  "@onlyOneCorrectAnswerAllowed": {
+    "description": "Error message when multiple correct answers are selected for single choice questions"
+  },
+  "removeOption": "移除选项",
+  "@removeOption": {
+    "description": "Tooltip for remove option button"
+  },
+  "selectCorrectAnswer": "选择正确答案",
+  "@selectCorrectAnswer": {
+    "description": "Tooltip for radio button to select correct answer"
+  },
+  "selectCorrectAnswers": "选择正确答案",
+  "@selectCorrectAnswers": {
+    "description": "Tooltip for checkbox to select correct answers"
+  },
+  "emptyOptionsError": "选项{optionNumbers}为空。请为它们添加文本或删除它们。",
+  "@emptyOptionsError": {
+    "description": "Error message when some options are empty",
+    "placeholders": {
+      "optionNumbers": {
+        "type": "String",
+        "example": "1, 3, 4"
+      }
+    }
+  },
+  "emptyOptionError": "选项{optionNumber}为空。请为其添加文本或删除它。",
+  "@emptyOptionError": {
+    "description": "Error message when one option is empty",
+    "placeholders": {
+      "optionNumber": {
+        "type": "String",
+        "example": "3"
+      }
+    }
+  },
+  "optionEmptyError": "此选项不能为空",
+  "@optionEmptyError": {
+    "description": "Error message for individual empty option field"
+  },
+  "hasImage": "图片",
+  "@hasImage": {
+    "description": "Label indicating that a question has an image"
+  },
+  "hasExplanation": "解释",
+  "@hasExplanation": {
+    "description": "Label indicating that a question has an explanation"
+  },
+  "errorLoadingSettings": "加载设置时出错：{error}",
+  "@errorLoadingSettings": {
+    "description": "Message displayed when there is an error while loading application settings.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "The error message"
+      }
+    }
+  },
+  "couldNotOpenUrl": "无法打开{url}",
+  "@couldNotOpenUrl": {
+    "description": "Message displayed when a URL cannot be opened.",
+    "placeholders": {
+      "url": {
+        "type": "String",
+        "description": "The URL that could not be opened"
+      }
+    }
+  },
+  "loadingAiServices": "正在加载AI服务...",
+  "@loadingAiServices": {
+    "description": "Message displayed while loading available AI services."
+  },
+  "usingAiService": "使用：{serviceName}",
+  "@usingAiService": {
+    "description": "Message displayed showing which AI service is being used.",
+    "placeholders": {
+      "serviceName": {
+        "type": "String",
+        "description": "The name of the AI service"
+      }
+    }
+  },
+  "aiServiceLabel": "AI服务：",
+  "@aiServiceLabel": {
+    "description": "Label for the AI service selector."
+  },
+  "importQuestionsTitle": "导入问题",
+  "@importQuestionsTitle": {
+    "description": "Title for the import questions dialog."
+  },
+  "importQuestionsMessage": "在\"{fileName}\"中找到{count}个问题。您想将它们导入到哪里？",
+  "@importQuestionsMessage": {
+    "description": "Message asking where to import questions from another file.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      },
+      "fileName": {
+        "type": "String",
+        "example": "questions.quiz"
+      }
+    }
+  },
+  "importQuestionsPositionQuestion": "您想将这些问题添加到哪里？",
+  "@importQuestionsPositionQuestion": {
+    "description": "Question asking about import position."
+  },
+  "importAtBeginning": "开头",
+  "@importAtBeginning": {
+    "description": "Button to import questions at the beginning of the list."
+  },
+  "importAtEnd": "结尾",
+  "@importAtEnd": {
+    "description": "Button to import questions at the end of the list."
+  },
+  "questionsImportedSuccess": "成功导入{count}个问题",
+  "@questionsImportedSuccess": {
+    "description": "Success message when questions are imported.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "importQuestionsTooltip": "从另一个测验文件导入问题",
+  "@importQuestionsTooltip": {
+    "description": "Tooltip for the import questions button."
+  },
+  "dragDropHintText": "您也可以将.quiz文件拖拽到这里导入问题",
+  "@dragDropHintText": {
+    "description": "Hint text shown when the question list is empty, indicating drag and drop functionality."
+  },
+  "randomizeAnswersTitle": "随机化答案选项",
+  "@randomizeAnswersTitle": {
+    "description": "Title for the setting to randomize answer options."
+  },
+  "randomizeAnswersDescription": "在测验执行期间打乱答案选项的顺序",
+  "@randomizeAnswersDescription": {
+    "description": "Description for the randomize answers setting."
+  },
+  "showCorrectAnswerCountTitle": "显示正确答案数量",
+  "@showCorrectAnswerCountTitle": {
+    "description": "Title for the setting to show correct answer count."
+  },
+  "showCorrectAnswerCountDescription": "在多选题中显示正确答案的数量",
+  "@showCorrectAnswerCountDescription": {
+    "description": "Description for the show correct answer count setting."
+  },
+  "correctAnswersCount": "选择{count}个正确答案",
+  "@correctAnswersCount": {
+    "description": "Text showing how many correct answers to select in a multiple choice question.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "correctSelectedLabel": "正确",
+  "@correctSelectedLabel": {
+    "description": "Label for correctly selected answers in quiz results."
+  },
+  "correctMissedLabel": "正确",
+  "@correctMissedLabel": {
+    "description": "Label for correct answers that were not selected in quiz results."
+  },
+  "incorrectSelectedLabel": "错误",
+  "@incorrectSelectedLabel": {
+    "description": "Label for incorrectly selected answers in quiz results."
+  },
+  "generateQuestionsWithAI": "使用AI生成问题",
+  "@generateQuestionsWithAI": {
+    "description": "Tooltip for the generate questions with AI button."
+  },
+  "aiGenerateDialogTitle": "使用AI生成问题",
+  "@aiGenerateDialogTitle": {
+    "description": "Title of the AI question generation dialog."
+  },
+  "aiQuestionCountLabel": "问题数量（可选）",
+  "@aiQuestionCountLabel": {
+    "description": "Label for the question count field."
+  },
+  "aiQuestionCountHint": "留空让AI决定",
+  "@aiQuestionCountHint": {
+    "description": "Hint text for the question count field."
+  },
+  "aiQuestionCountValidation": "必须是1到50之间的数字",
+  "@aiQuestionCountValidation": {
+    "description": "Validation message for question count."
+  },
+  "aiQuestionTypeLabel": "问题类型",
+  "@aiQuestionTypeLabel": {
+    "description": "Label for the question type selector."
+  },
+  "aiQuestionTypeRandom": "随机（混合）",
+  "@aiQuestionTypeRandom": {
+    "description": "Random type option for questions."
+  },
+  "aiLanguageLabel": "问题语言",
+  "@aiLanguageLabel": {
+    "description": "Label for the language selector."
+  },
+  "aiContentLabel": "生成问题的内容",
+  "@aiContentLabel": {
+    "description": "Label for the content field."
+  },
+  "aiWordCount": "{current} / {max} 词",
+  "@aiWordCount": {
+    "description": "Word counter for content.",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "150"
+      },
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiContentHint": "输入您想生成问题的文本、主题或内容...",
+  "@aiContentHint": {
+    "description": "Hint text for the content field."
+  },
+  "aiContentHelperText": "AI将基于此内容创建问题",
+  "@aiContentHelperText": {
+    "description": "Additional helper text for the content field."
+  },
+  "aiWordLimitError": "您已超过{max}词的限制",
+  "@aiWordLimitError": {
+    "description": "Error when word limit is exceeded.",
+    "placeholders": {
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiContentRequiredError": "您必须提供内容来生成问题",
+  "@aiContentRequiredError": {
+    "description": "Error when no content is provided."
+  },
+  "aiContentLimitError": "内容超过{max}词限制",
+  "@aiContentLimitError": {
+    "description": "Validation error for word limit.",
+    "placeholders": {
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiMinWordsError": "至少提供10个词以生成高质量问题",
+  "@aiMinWordsError": {
+    "description": "Error when content is too short."
+  },
+  "aiInfoTitle": "信息",
+  "@aiInfoTitle": {
+    "description": "Title of the information section."
+  },
+  "aiInfoDescription": "• AI将分析内容并生成相关问题\n• 您可以包含文本、定义、解释或任何教育材料\n• 问题将包括答案选项和解释\n• 该过程可能需要几秒钟",
+  "@aiInfoDescription": {
+    "description": "Informative description about the AI generation process."
+  },
+  "aiGenerateButton": "生成问题",
+  "@aiGenerateButton": {
+    "description": "Text for the generate questions button."
+  },
+  "languageSpanish": "Español",
+  "@languageSpanish": {
+    "description": "Spanish language name."
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "English language name."
+  },
+  "languageFrench": "Français",
+  "@languageFrench": {
+    "description": "French language name."
+  },
+  "languageGerman": "Deutsch",
+  "@languageGerman": {
+    "description": "German language name."
+  },
+  "languageItalian": "Italiano",
+  "@languageItalian": {
+    "description": "Italian language name."
+  },
+  "languagePortuguese": "Português",
+  "@languagePortuguese": {
+    "description": "Portuguese language name."
+  },
+  "languageCatalan": "Català",
+  "@languageCatalan": {
+    "description": "Catalan language name."
+  },
+  "languageBasque": "Euskera",
+  "@languageBasque": {
+    "description": "Basque language name."
+  },
+  "languageGalician": "Galego",
+  "@languageGalician": {
+    "description": "Galician language name."
+  },
+  "languageHindi": "हिन्दी",
+  "@languageHindi": {
+    "description": "Hindi language name."
+  },
+  "languageChinese": "中文",
+  "@languageChinese": {
+    "description": "Chinese language name."
+  },
+  "aiServicesLoading": "正在加载AI服务...",
+  "@aiServicesLoading": {
+    "description": "Message shown while loading available AI services."
+  },
+  "aiServicesNotConfigured": "未配置AI服务",
+  "@aiServicesNotConfigured": {
+    "description": "Message shown when no AI services are configured."
+  },
+  "aiGeneratedQuestions": "AI生成",
+  "@aiGeneratedQuestions": {
+    "description": "Name for AI generated questions in the import dialog."
+  },
+  "aiApiKeyRequired": "请在设置中配置至少一个AI API密钥以使用AI生成。",
+  "@aiApiKeyRequired": {
+    "description": "Message shown when no API keys are configured for AI."
+  },
+  "aiGenerationFailed": "无法生成问题。请尝试不同的内容。",
+  "@aiGenerationFailed": {
+    "description": "Message shown when AI question generation fails."
+  },
+  "aiGenerationError": "生成问题时出错：{error}",
+  "@aiGenerationError": {
+    "description": "Error message when generating questions with AI.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "API key invalid"
+      }
+    }
+  },
+  "noQuestionsInFile": "导入的文件中未找到问题",
+  "@noQuestionsInFile": {
+    "description": "Message shown when an imported file contains no questions."
+  },
+  "couldNotAccessFile": "无法访问所选文件",
+  "@couldNotAccessFile": {
+    "description": "Message shown when a selected file cannot be accessed."
+  },
+  "defaultOutputFileName": "output-file.quiz",
+  "@defaultOutputFileName": {
+    "description": "Default name for output files."
+  },
+  "aiServiceLimitsWithChars": "限制：{words}词或{chars}字符",
+  "@aiServiceLimitsWithChars": {
+    "description": "Description of AI service limits with both word and character limits.",
+    "placeholders": {
+      "words": {
+        "type": "int",
+        "example": "3000"
+      },
+      "chars": {
+        "type": "int",
+        "example": "12000"
+      }
+    }
+  },
+  "aiServiceLimitsWordsOnly": "限制：{words}词",
+  "@aiServiceLimitsWordsOnly": {
+    "description": "Description of AI service limits with only word limit.",
+    "placeholders": {
+      "words": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  }
+}

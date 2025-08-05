@@ -1,0 +1,1078 @@
+{
+  "titleAppBar": "क्विज़ - परीक्षा सिमुलेटर",
+  "@titleAppBar": {
+    "description": "Title of the application displayed in the AppBar."
+  },
+  "create": "बनाएं",
+  "@create": {
+    "description": "Label for the Create Quiz file button in the AppBar."
+  },
+  "load": "लोड करें",
+  "@load": {
+    "description": "Label for the Load Quiz file button in the AppBar."
+  },
+  "fileLoaded": "फ़ाइल लोड हुई: {filePath}",
+  "@fileLoaded": {
+    "description": "Message displayed when a file is successfully loaded.",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/path/to/file.quiz"
+      }
+    }
+  },
+  "fileSaved": "फ़ाइल सेव हुई: {filePath}",
+  "@fileSaved": {
+    "description": "Message displayed when a file is successfully saved.",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/path/to/file.quiz"
+      }
+    }
+  },
+  "dropFileHere": "यहाँ क्लिक करें या स्क्रीन पर .quiz फ़ाइल ड्रैग करें",
+  "@dropFileHere": {
+    "description": "Text displayed inside the drop area for dragging files."
+  },
+  "errorInvalidFile": "त्रुटि: अमान्य फ़ाइल। .quiz फ़ाइल होनी चाहिए।",
+  "@errorInvalidFile": {
+    "description": "Message displayed when the dropped file is not a .quiz file."
+  },
+  "errorLoadingFile": "क्विज़ फ़ाइल लोड करने में त्रुटि: {error}",
+  "@errorLoadingFile": {
+    "description": "Message displayed when there is an error while loading a Quiz file.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "File not found"
+      }
+    }
+  },
+  "errorExportingFile": "फ़ाइल एक्सपोर्ट करने में त्रुटि: {error}",
+  "@errorExportingFile": {
+    "description": "Message displayed when there is an error while exporting a file.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "File not found"
+      }
+    }
+  },
+  "cancelButton": "रद्द करें",
+  "@cancelButton": {
+    "description": "Cancel button."
+  },
+  "saveButton": "सेव करें",
+  "@saveButton": {
+    "description": "Save button."
+  },
+  "confirmDeleteTitle": "हटाने की पुष्टि करें",
+  "@confirmDeleteTitle": {
+    "description": "Title for the confirmation dialog when deleting a process."
+  },
+  "confirmDeleteMessage": "क्या आप वाकई `{processName}` प्रक्रिया को हटाना चाहते हैं?",
+  "@confirmDeleteMessage": {
+    "description": "Message in the confirmation dialog for deletion.",
+    "placeholders": {
+      "processName": {
+        "type": "String",
+        "example": "Question 1"
+      }
+    }
+  },
+  "deleteButton": "हटाएं",
+  "@deleteButton": {
+    "description": "Button text for confirming deletion."
+  },
+  "confirmExitTitle": "बाहर निकलने की पुष्टि करें",
+  "@confirmExitTitle": {
+    "description": "Title for the confirmation dialog when exiting."
+  },
+  "confirmExitMessage": "क्या आप वाकई बिना सेव किए बाहर निकलना चाहते हैं?",
+  "@confirmExitMessage": {
+    "description": "Message in the confirmation dialog for exiting."
+  },
+  "exitButton": "बाहर निकलें",
+  "@exitButton": {
+    "description": "Exit button text."
+  },
+  "saveDialogTitle": "कृपया आउटपुट फ़ाइल चुनें:",
+  "@saveDialogTitle": {
+    "description": "Title for the save dialog."
+  },
+  "createQuizFileTitle": "क्विज़ फ़ाइल बनाएं",
+  "@createQuizFileTitle": {
+    "description": "Title for create quiz file dialog."
+  },
+  "fileNameLabel": "फ़ाइल का नाम",
+  "@fileNameLabel": {
+    "description": "Label for file name input."
+  },
+  "fileDescriptionLabel": "फ़ाइल का विवरण",
+  "@fileDescriptionLabel": {
+    "description": "Label for file description input."
+  },
+  "createButton": "बनाएं",
+  "@createButton": {
+    "description": "Create button text."
+  },
+  "fileNameRequiredError": "फ़ाइल का नाम आवश्यक है।",
+  "@fileNameRequiredError": {
+    "description": "Error message when file name is empty."
+  },
+  "fileDescriptionRequiredError": "फ़ाइल का विवरण आवश्यक है।",
+  "@fileDescriptionRequiredError": {
+    "description": "Error message when file description is empty."
+  },
+  "versionLabel": "संस्करण",
+  "@versionLabel": {
+    "description": "Label for quiz version field"
+  },
+  "authorLabel": "लेखक",
+  "@authorLabel": {
+    "description": "Label for quiz author field"
+  },
+  "authorRequiredError": "लेखक का नाम आवश्यक है।",
+  "@authorRequiredError": {
+    "description": "Error message when author field is empty"
+  },
+  "requiredFieldsError": "सभी आवश्यक फ़ील्ड भरे जाने चाहिए।",
+  "@requiredFieldsError": {
+    "description": "Error message when required fields are missing"
+  },
+  "requestFileNameTitle": "क्विज़ फ़ाइल का नाम दर्ज करें",
+  "@requestFileNameTitle": {
+    "description": "Title for request file name dialog."
+  },
+  "fileNameHint": "फ़ाइल का नाम",
+  "@fileNameHint": {
+    "description": "Hint text for file name input."
+  },
+  "emptyFileNameMessage": "फ़ाइल का नाम खाली नहीं हो सकता।",
+  "@emptyFileNameMessage": {
+    "description": "Error message when file name is empty."
+  },
+  "acceptButton": "स्वीकार करें",
+  "@acceptButton": {
+    "description": "Accept button text."
+  },
+  "saveTooltip": "फ़ाइल सेव करें",
+  "@saveTooltip": {
+    "description": "Tooltip for save button."
+  },
+  "saveDisabledTooltip": "सेव करने के लिए कोई बदलाव नहीं",
+  "@saveDisabledTooltip": {
+    "description": "Tooltip for disabled save button."
+  },
+  "executeTooltip": "परीक्षा शुरू करें",
+  "@executeTooltip": {
+    "description": "Tooltip for execute button."
+  },
+  "addTooltip": "नया प्रश्न जोड़ें",
+  "@addTooltip": {
+    "description": "Tooltip for add button."
+  },
+  "backSemanticLabel": "वापस जाएं बटन",
+  "@backSemanticLabel": {
+    "description": "Semantic label for back button."
+  },
+  "createFileTooltip": "नई क्विज़ फ़ाइल बनाएं",
+  "@createFileTooltip": {
+    "description": "Tooltip for create file button."
+  },
+  "loadFileTooltip": "मौजूदा क्विज़ फ़ाइल लोड करें",
+  "@loadFileTooltip": {
+    "description": "Tooltip for load file button."
+  },
+  "questionNumber": "प्रश्न {number}",
+  "@questionNumber": {
+    "description": "Question number label in quiz execution",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "previous": "पिछला",
+  "@previous": {
+    "description": "Previous button text in quiz navigation"
+  },
+  "next": "अगला",
+  "@next": {
+    "description": "Next button text in quiz navigation"
+  },
+  "finish": "समाप्त करें",
+  "@finish": {
+    "description": "Finish button text in quiz navigation"
+  },
+  "finishQuiz": "क्विज़ समाप्त करें",
+  "@finishQuiz": {
+    "description": "Title of finish quiz dialog"
+  },
+  "finishQuizConfirmation": "क्या आप वाकई क्विज़ समाप्त करना चाहते हैं? इसके बाद आप अपने उत्तर नहीं बदल सकेंगे।",
+  "@finishQuizConfirmation": {
+    "description": "Confirmation message for finishing quiz"
+  },
+  "cancel": "रद्द करें",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
+  "abandonQuiz": "क्विज़ छोड़ें",
+  "@abandonQuiz": {
+    "description": "Title of abandon quiz dialog"
+  },
+  "abandonQuizConfirmation": "क्या आप वाकई क्विज़ छोड़ना चाहते हैं? सभी प्रगति खो जाएगी।",
+  "@abandonQuizConfirmation": {
+    "description": "Confirmation message for abandoning quiz"
+  },
+  "abandon": "छोड़ें",
+  "@abandon": {
+    "description": "Abandon button text"
+  },
+  "quizCompleted": "क्विज़ पूरी हुई!",
+  "@quizCompleted": {
+    "description": "Quiz completed message"
+  },
+  "score": "स्कोर: {score}%",
+  "@score": {
+    "description": "Score display",
+    "placeholders": {
+      "score": {
+        "type": "String",
+        "example": "85.5"
+      }
+    }
+  },
+  "correctAnswers": "{total} में से {correct} सही उत्तर",
+  "@correctAnswers": {
+    "description": "Correct answers count",
+    "placeholders": {
+      "correct": {
+        "type": "int",
+        "example": "8"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "retry": "दोहराएं",
+  "@retry": {
+    "description": "Retry button text"
+  },
+  "goBack": "समाप्त करें",
+  "@goBack": {
+    "description": "Go back button text"
+  },
+  "retryFailedQuestions": "गलत प्रश्न दोहराएं",
+  "@retryFailedQuestions": {
+    "description": "Button text to retry only the questions that were answered incorrectly"
+  },
+  "question": "प्रश्न: {question}",
+  "@question": {
+    "description": "Question text in results",
+    "placeholders": {
+      "question": {
+        "type": "String",
+        "example": "What is the capital of France?"
+      }
+    }
+  },
+  "selectQuestionCountTitle": "प्रश्नों की संख्या चुनें",
+  "@selectQuestionCountTitle": {
+    "description": "Title for the dialog to select number of questions for the quiz"
+  },
+  "selectQuestionCountMessage": "इस क्विज़ में आप कितने प्रश्नों का उत्तर देना चाहते हैं?",
+  "@selectQuestionCountMessage": {
+    "description": "Message explaining the question count selection"
+  },
+  "allQuestions": "सभी प्रश्न ({count})",
+  "@allQuestions": {
+    "description": "Option to select all available questions",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "startQuiz": "क्विज़ शुरू करें",
+  "@startQuiz": {
+    "description": "Button text to start the quiz"
+  },
+  "customNumberLabel": "या कस्टम संख्या दर्ज करें:",
+  "@customNumberLabel": {
+    "description": "Label for custom number input section"
+  },
+  "numberInputLabel": "प्रश्नों की संख्या",
+  "@numberInputLabel": {
+    "description": "Label for the number input field"
+  },
+  "customNumberHelper": "कोई भी संख्या दर्ज करें (अधिकतम {total})। यदि अधिक है, तो प्रश्न दोहराए जाएंगे।",
+  "@customNumberHelper": {
+    "description": "Helper text explaining custom number input",
+    "placeholders": {
+      "total": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "errorInvalidNumber": "कृपया वैध संख्या दर्ज करें",
+  "@errorInvalidNumber": {
+    "description": "Error message for invalid number input"
+  },
+  "errorNumberMustBePositive": "संख्या 0 से अधिक होनी चाहिए",
+  "@errorNumberMustBePositive": {
+    "description": "Error message when number is zero or negative"
+  },
+  "questionOrderConfigTitle": "प्रश्न क्रम कॉन्फ़िगरेशन",
+  "@questionOrderConfigTitle": {
+    "description": "Title for the question order configuration dialog"
+  },
+  "questionOrderConfigDescription": "परीक्षा के दौरान प्रश्न किस क्रम में दिखाए जाएं, यह चुनें:",
+  "@questionOrderConfigDescription": {
+    "description": "Description text for the question order configuration dialog"
+  },
+  "questionOrderAscending": "आरोही क्रम",
+  "@questionOrderAscending": {
+    "description": "Label for ascending question order option"
+  },
+  "questionOrderAscendingDesc": "प्रश्न 1 से अंत तक क्रम में दिखेंगे",
+  "@questionOrderAscendingDesc": {
+    "description": "Description for ascending question order option"
+  },
+  "questionOrderDescending": "अवरोही क्रम",
+  "@questionOrderDescending": {
+    "description": "Label for descending question order option"
+  },
+  "questionOrderDescendingDesc": "प्रश्न अंत से 1 तक दिखेंगे",
+  "@questionOrderDescendingDesc": {
+    "description": "Description for descending question order option"
+  },
+  "questionOrderRandom": "यादृच्छिक",
+  "@questionOrderRandom": {
+    "description": "Label for random question order option"
+  },
+  "questionOrderRandomDesc": "प्रश्न यादृच्छिक क्रम में दिखेंगे",
+  "@questionOrderRandomDesc": {
+    "description": "Description for random question order option"
+  },
+  "questionOrderConfigTooltip": "प्रश्न क्रम कॉन्फ़िगरेशन",
+  "@questionOrderConfigTooltip": {
+    "description": "Tooltip for the question order configuration button"
+  },
+  "save": "सेव करें",
+  "@save": {
+    "description": "Label for the save button"
+  },
+  "examTimeLimitTitle": "परीक्षा समय सीमा",
+  "@examTimeLimitTitle": {
+    "description": "Title for exam time limit section"
+  },
+  "examTimeLimitDescription": "परीक्षा के लिए समय सीमा निर्धारित करें। सक्षम होने पर, क्विज़ के दौरान काउंटडाउन टाइमर दिखेगा।",
+  "@examTimeLimitDescription": {
+    "description": "Description for exam time limit feature"
+  },
+  "enableTimeLimit": "समय सीमा सक्षम करें",
+  "@enableTimeLimit": {
+    "description": "Label for enable exam time limit switch"
+  },
+  "timeLimitMinutes": "समय सीमा (मिनट)",
+  "@timeLimitMinutes": {
+    "description": "Label for exam time minutes input"
+  },
+  "examTimeExpiredTitle": "समय समाप्त!",
+  "@examTimeExpiredTitle": {
+    "description": "Title for exam time expired dialog"
+  },
+  "examTimeExpiredMessage": "परीक्षा का समय समाप्त हो गया है। आपके उत्तर स्वचालित रूप से जमा कर दिए गए हैं।",
+  "@examTimeExpiredMessage": {
+    "description": "Message for exam time expired dialog"
+  },
+  "remainingTime": "{hours}:{minutes}:{seconds}",
+  "@remainingTime": {
+    "description": "Format for remaining time display (hours:minutes:seconds)",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "01"
+      },
+      "minutes": {
+        "type": "String",
+        "example": "30"
+      },
+      "seconds": {
+        "type": "String",
+        "example": "45"
+      }
+    }
+  },
+  "questionTypeMultipleChoice": "बहुविकल्पीय",
+  "@questionTypeMultipleChoice": {
+    "description": "Label for multiple choice question type"
+  },
+  "questionTypeSingleChoice": "एकल विकल्प",
+  "@questionTypeSingleChoice": {
+    "description": "Label for single choice question type"
+  },
+  "questionTypeTrueFalse": "सही/गलत",
+  "@questionTypeTrueFalse": {
+    "description": "Label for true/false question type"
+  },
+  "questionTypeEssay": "निबंध",
+  "@questionTypeEssay": {
+    "description": "Label for essay question type"
+  },
+  "questionTypeUnknown": "अज्ञात",
+  "@questionTypeUnknown": {
+    "description": "Label for unknown question type"
+  },
+  "optionsCount": "{count, plural, =1{1 विकल्प} other{{count} विकल्प}}",
+  "@optionsCount": {
+    "description": "Text showing the number of options in a question",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "optionsTooltip": "इस प्रश्न के लिए उत्तर विकल्पों की संख्या",
+  "@optionsTooltip": {
+    "description": "Tooltip text for the options count badge"
+  },
+  "imageTooltip": "इस प्रश्न के साथ चित्र जुड़ा है",
+  "@imageTooltip": {
+    "description": "Tooltip text for the image indicator badge"
+  },
+  "explanationTooltip": "इस प्रश्न का स्पष्टीकरण है",
+  "@explanationTooltip": {
+    "description": "Tooltip text for the explanation indicator badge"
+  },
+  "aiPrompt": "आप एक विशेषज्ञ और मित्रवत शिक्षक हैं जो छात्रों को परीक्षा प्रश्नों और संबंधित विषयों को बेहतर समझने में मदद करने में विशेषज्ञ हैं। आपका लक्ष्य गहन अधिगम और वैचारिक समझ को सुविधाजनक बनाना है।\n\nआप इसमें मदद कर सकते हैं:\n- प्रश्न से संबंधित अवधारणाओं को समझाना\n- उत्तर विकल्पों के बारे में संदेह स्पष्ट करना\n- विषय के बारे में अतिरिक्त संदर्भ प्रदान करना\n- पूरक अध्ययन संसाधन सुझाना\n- समझाना कि कुछ उत्तर सही या गलत क्यों हैं\n- विषय को अन्य महत्वपूर्ण अवधारणाओं से जोड़ना\n- सामग्री के बारे में अनुवर्ती प्रश्नों का उत्तर देना\n\nहमेशा उसी भाषा में जवाब दें जिसमें आपसे पूछा गया है। अपने स्पष्टीकरण में शैक्षणिक, स्पष्ट और प्रेरणादायक बनें।",
+  "@aiPrompt": {
+    "description": "Base prompt for AI assistant"
+  },
+  "questionLabel": "प्रश्न",
+  "@questionLabel": {
+    "description": "Label for question in AI dialog"
+  },
+  "optionsLabel": "विकल्प",
+  "@optionsLabel": {
+    "description": "Label for options in AI dialog"
+  },
+  "explanationLabel": "स्पष्टीकरण",
+  "@explanationLabel": {
+    "description": "Label for explanation in AI dialog"
+  },
+  "studentComment": "छात्र की टिप्पणी",
+  "@studentComment": {
+    "description": "Label for student comment in AI dialog"
+  },
+  "aiAssistantTitle": "AI अध्ययन सहायक",
+  "@aiAssistantTitle": {
+    "description": "Title for AI assistant dialog"
+  },
+  "questionContext": "प्रश्न संदर्भ",
+  "@questionContext": {
+    "description": "Label for question context section"
+  },
+  "aiAssistant": "AI सहायक",
+  "@aiAssistant": {
+    "description": "AI assistant label in chat"
+  },
+  "aiThinking": "AI सोच रहा है...",
+  "@aiThinking": {
+    "description": "Loading message while AI processes"
+  },
+  "askAIHint": "इस विषय के बारे में अपना प्रश्न पूछें...",
+  "@askAIHint": {
+    "description": "Hint text for AI question input"
+  },
+  "aiPlaceholderResponse": "यह एक प्लेसहोल्डर प्रतिक्रिया है। वास्तविक कार्यान्वयन में, यह प्रश्न के बारे में सहायक स्पष्टीकरण प्रदान करने के लिए AI सेवा से जुड़ेगा।",
+  "@aiPlaceholderResponse": {
+    "description": "Placeholder AI response for demo"
+  },
+  "aiErrorResponse": "क्षमा करें, आपके प्रश्न को प्रोसेस करने में त्रुटि हुई। कृपया पुनः प्रयास करें।",
+  "@aiErrorResponse": {
+    "description": "Error message when AI request fails"
+  },
+  "configureApiKeyMessage": "कृपया सेटिंग्स में अपनी AI API Key कॉन्फ़िगर करें।",
+  "@configureApiKeyMessage": {
+    "description": "Message to configure API key when not set"
+  },
+  "errorLabel": "त्रुटि:",
+  "@errorLabel": {
+    "description": "Error label prefix for error messages"
+  },
+  "noResponseReceived": "कोई प्रतिक्रिया प्राप्त नहीं हुई",
+  "@noResponseReceived": {
+    "description": "Message when no response is received from AI"
+  },
+  "invalidApiKeyError": "अमान्य API Key। कृपया सेटिंग्स में अपनी OpenAI API Key जांचें।",
+  "@invalidApiKeyError": {
+    "description": "Error message for invalid API key"
+  },
+  "rateLimitError": "दर सीमा पार हो गई। कृपया बाद में पुनः प्रयास करें।",
+  "@rateLimitError": {
+    "description": "Error message for rate limit exceeded"
+  },
+  "modelNotFoundError": "मॉडल नहीं मिला। कृपया अपनी API पहुंच जांचें।",
+  "@modelNotFoundError": {
+    "description": "Error message for model not found"
+  },
+  "unknownError": "अज्ञात त्रुटि",
+  "@unknownError": {
+    "description": "Generic unknown error message"
+  },
+  "networkError": "नेटवर्क त्रुटि: OpenAI से कनेक्ट नहीं हो सका। कृपया अपना इंटरनेट कनेक्शन जांचें।",
+  "@networkError": {
+    "description": "Network connectivity error message"
+  },
+  "openaiApiKeyNotConfigured": "OpenAI API Key कॉन्फ़िगर नहीं की गई",
+  "@openaiApiKeyNotConfigured": {
+    "description": "Error message when API key is not configured"
+  },
+  "geminiApiKeyNotConfigured": "Gemini API Key कॉन्फ़िगर नहीं की गई",
+  "@geminiApiKeyNotConfigured": {
+    "description": "Error message when Gemini API key is not configured"
+  },
+  "geminiApiKeyLabel": "Google Gemini API Key",
+  "@geminiApiKeyLabel": {
+    "description": "Label for Gemini API Key field"
+  },
+  "geminiApiKeyHint": "अपनी Gemini API Key दर्ज करें",
+  "@geminiApiKeyHint": {
+    "description": "Hint text for Gemini API Key field"
+  },
+  "geminiApiKeyDescription": "Gemini AI कार्यक्षमता के लिए आवश्यक। आपकी key सुरक्षित रूप से संग्रहीत की जाती है।",
+  "@geminiApiKeyDescription": {
+    "description": "Description for Gemini API Key field"
+  },
+  "getGeminiApiKeyTooltip": "Google AI Studio से API Key प्राप्त करें",
+  "@getGeminiApiKeyTooltip": {
+    "description": "Tooltip for the button to get Gemini API key"
+  },
+  "aiRequiresAtLeastOneApiKeyError": "AI अध्ययन सहायक के लिए कम से कम एक API Key (OpenAI या Gemini) की आवश्यकता है। कृपया API key दर्ज करें या AI सहायक को अक्षम करें।",
+  "@aiRequiresAtLeastOneApiKeyError": {
+    "description": "Error message when AI Assistant is enabled but no API keys are provided"
+  },
+  "minutesAbbreviation": "मिन",
+  "@minutesAbbreviation": {
+    "description": "Abbreviation for minutes"
+  },
+  "aiButtonTooltip": "AI अध्ययन सहायक",
+  "@aiButtonTooltip": {
+    "description": "Tooltip for AI assistant button"
+  },
+  "aiButtonText": "AI",
+  "@aiButtonText": {
+    "description": "Text for AI assistant button"
+  },
+  "aiAssistantSettingsTitle": "AI अध्ययन सहायक (पूर्वावलोकन)",
+  "@aiAssistantSettingsTitle": {
+    "description": "Title for AI assistant settings section"
+  },
+  "aiAssistantSettingsDescription": "प्रश्नों के लिए AI अध्ययन सहायक को सक्षम या अक्षम करें",
+  "@aiAssistantSettingsDescription": {
+    "description": "Description for AI assistant settings"
+  },
+  "openaiApiKeyLabel": "OpenAI API Key",
+  "@openaiApiKeyLabel": {
+    "description": "Label for OpenAI API Key field"
+  },
+  "openaiApiKeyHint": "अपनी OpenAI API Key दर्ज करें (sk-...)",
+  "@openaiApiKeyHint": {
+    "description": "Hint text for OpenAI API Key field"
+  },
+  "openaiApiKeyDescription": "AI कार्यक्षमता के लिए आवश्यक। आपकी key सुरक्षित रूप से संग्रहीत की जाती है।",
+  "@openaiApiKeyDescription": {
+    "description": "Description for OpenAI API Key field"
+  },
+  "aiAssistantRequiresApiKeyError": "AI अध्ययन सहायक के लिए OpenAI API Key की आवश्यकता है। कृपया अपनी API key दर्ज करें या AI सहायक को अक्षम करें।",
+  "@aiAssistantRequiresApiKeyError": {
+    "description": "Error message when AI Assistant is enabled but no API key is provided"
+  },
+  "getApiKeyTooltip": "OpenAI से API Key प्राप्त करें",
+  "@getApiKeyTooltip": {
+    "description": "Tooltip for the button to get API key from OpenAI"
+  },
+  "deleteAction": "हटाएं",
+  "@deleteAction": {
+    "description": "Delete action text shown when swiping to delete"
+  },
+  "explanationLabel": "स्पष्टीकरण (वैकल्पिक)",
+  "@explanationLabel": {
+    "description": "Label for the explanation input field"
+  },
+  "explanationHint": "सही उत्तर(रों) के लिए स्पष्टीकरण दर्ज करें",
+  "@explanationHint": {
+    "description": "Hint text for the explanation input field"
+  },
+  "explanationTitle": "स्पष्टीकरण",
+  "@explanationTitle": {
+    "description": "Title for the explanation section in quiz results"
+  },
+  "imageLabel": "चित्र",
+  "@imageLabel": {
+    "description": "Label for the image section in question editor"
+  },
+  "changeImage": "चित्र बदलें",
+  "@changeImage": {
+    "description": "Text for button to change current image"
+  },
+  "removeImage": "चित्र हटाएं",
+  "@removeImage": {
+    "description": "Text for button to remove current image"
+  },
+  "addImageTap": "चित्र जोड़ने के लिए टैप करें",
+  "@addImageTap": {
+    "description": "Instructional text for adding an image"
+  },
+  "imageFormats": "प्रारूप: JPG, PNG, GIF",
+  "@imageFormats": {
+    "description": "Text indicating supported image formats"
+  },
+  "imageLoadError": "चित्र लोड करने में त्रुटि",
+  "@imageLoadError": {
+    "description": "Error message when image cannot be loaded"
+  },
+  "imagePickError": "चित्र लोड करने में त्रुटि: {error}",
+  "@imagePickError": {
+    "description": "Error message when image selection fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Invalid file"
+      }
+    }
+  },
+  "tapToZoom": "ज़ूम करने के लिए टैप करें",
+  "@tapToZoom": {
+    "description": "Instructional text to indicate image can be zoomed"
+  },
+  "trueLabel": "सही",
+  "@trueLabel": {
+    "description": "Label for true option in true/false questions"
+  },
+  "falseLabel": "गलत",
+  "@falseLabel": {
+    "description": "Label for false option in true/false questions"
+  },
+  "addQuestion": "प्रश्न जोड़ें",
+  "@addQuestion": {
+    "description": "Title for adding a new question dialog"
+  },
+  "editQuestion": "प्रश्न संपादित करें",
+  "@editQuestion": {
+    "description": "Title for editing an existing question dialog"
+  },
+  "questionText": "प्रश्न पाठ",
+  "@questionText": {
+    "description": "Label for question text input field"
+  },
+  "questionType": "प्रश्न प्रकार",
+  "@questionType": {
+    "description": "Label for question type dropdown"
+  },
+  "addOption": "विकल्प जोड़ें",
+  "@addOption": {
+    "description": "Label for add option button"
+  },
+  "optionLabel": "विकल्प",
+  "@optionLabel": {
+    "description": "Label for individual option input field"
+  },
+  "questionTextRequired": "प्रश्न पाठ आवश्यक है",
+  "@questionTextRequired": {
+    "description": "Error message when question text is empty"
+  },
+  "atLeastOneOptionRequired": "कम से कम एक विकल्प में पाठ होना चाहिए",
+  "@atLeastOneOptionRequired": {
+    "description": "Error message when all options are empty"
+  },
+  "atLeastOneCorrectAnswerRequired": "कम से कम एक सही उत्तर चुना जाना चाहिए",
+  "@atLeastOneCorrectAnswerRequired": {
+    "description": "Error message when no correct answer is selected"
+  },
+  "onlyOneCorrectAnswerAllowed": "इस प्रश्न प्रकार के लिए केवल एक सही उत्तर की अनुमति है",
+  "@onlyOneCorrectAnswerAllowed": {
+    "description": "Error message when multiple correct answers are selected for single choice questions"
+  },
+  "removeOption": "विकल्प हटाएं",
+  "@removeOption": {
+    "description": "Tooltip for remove option button"
+  },
+  "selectCorrectAnswer": "सही उत्तर चुनें",
+  "@selectCorrectAnswer": {
+    "description": "Tooltip for radio button to select correct answer"
+  },
+  "selectCorrectAnswers": "सही उत्तर चुनें",
+  "@selectCorrectAnswers": {
+    "description": "Tooltip for checkbox to select correct answers"
+  },
+  "emptyOptionsError": "विकल्प {optionNumbers} खाली हैं। कृपया उनमें पाठ जोड़ें या उन्हें हटा दें।",
+  "@emptyOptionsError": {
+    "description": "Error message when some options are empty",
+    "placeholders": {
+      "optionNumbers": {
+        "type": "String",
+        "example": "1, 3, 4"
+      }
+    }
+  },
+  "emptyOptionError": "विकल्प {optionNumber} खाली है। कृपया इसमें पाठ जोड़ें या इसे हटा दें।",
+  "@emptyOptionError": {
+    "description": "Error message when one option is empty",
+    "placeholders": {
+      "optionNumber": {
+        "type": "String",
+        "example": "3"
+      }
+    }
+  },
+  "optionEmptyError": "यह विकल्प खाली नहीं हो सकता",
+  "@optionEmptyError": {
+    "description": "Error message for individual empty option field"
+  },
+  "hasImage": "चित्र",
+  "@hasImage": {
+    "description": "Label indicating that a question has an image"
+  },
+  "hasExplanation": "स्पष्टीकरण",
+  "@hasExplanation": {
+    "description": "Label indicating that a question has an explanation"
+  },
+  "errorLoadingSettings": "सेटिंग्स लोड करने में त्रुटि: {error}",
+  "@errorLoadingSettings": {
+    "description": "Message displayed when there is an error while loading application settings.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "The error message"
+      }
+    }
+  },
+  "couldNotOpenUrl": "{url} खोला नहीं जा सका",
+  "@couldNotOpenUrl": {
+    "description": "Message displayed when a URL cannot be opened.",
+    "placeholders": {
+      "url": {
+        "type": "String",
+        "description": "The URL that could not be opened"
+      }
+    }
+  },
+  "loadingAiServices": "AI सेवाएं लोड हो रही हैं...",
+  "@loadingAiServices": {
+    "description": "Message displayed while loading available AI services."
+  },
+  "usingAiService": "उपयोग में: {serviceName}",
+  "@usingAiService": {
+    "description": "Message displayed showing which AI service is being used.",
+    "placeholders": {
+      "serviceName": {
+        "type": "String",
+        "description": "The name of the AI service"
+      }
+    }
+  },
+  "aiServiceLabel": "AI सेवा:",
+  "@aiServiceLabel": {
+    "description": "Label for the AI service selector."
+  },
+  "importQuestionsTitle": "प्रश्न आयात करें",
+  "@importQuestionsTitle": {
+    "description": "Title for the import questions dialog."
+  },
+  "importQuestionsMessage": "\"{fileName}\" में {count} प्रश्न मिले। आप इन्हें कहाँ आयात करना चाहते हैं?",
+  "@importQuestionsMessage": {
+    "description": "Message asking where to import questions from another file.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      },
+      "fileName": {
+        "type": "String",
+        "example": "questions.quiz"
+      }
+    }
+  },
+  "importQuestionsPositionQuestion": "आप इन प्रश्नों को कहाँ जोड़ना चाहते हैं?",
+  "@importQuestionsPositionQuestion": {
+    "description": "Question asking about import position."
+  },
+  "importAtBeginning": "शुरुआत में",
+  "@importAtBeginning": {
+    "description": "Button to import questions at the beginning of the list."
+  },
+  "importAtEnd": "अंत में",
+  "@importAtEnd": {
+    "description": "Button to import questions at the end of the list."
+  },
+  "questionsImportedSuccess": "सफलतापूर्वक {count} प्रश्न आयात किए गए",
+  "@questionsImportedSuccess": {
+    "description": "Success message when questions are imported.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "importQuestionsTooltip": "दूसरी क्विज़ फ़ाइल से प्रश्न आयात करें",
+  "@importQuestionsTooltip": {
+    "description": "Tooltip for the import questions button."
+  },
+  "dragDropHintText": "प्रश्न आयात करने के लिए आप .quiz फ़ाइलों को यहाँ ड्रैग और ड्रॉप भी कर सकते हैं",
+  "@dragDropHintText": {
+    "description": "Hint text shown when the question list is empty, indicating drag and drop functionality."
+  },
+  "randomizeAnswersTitle": "उत्तर विकल्पों को मिलाएं",
+  "@randomizeAnswersTitle": {
+    "description": "Title for the setting to randomize answer options."
+  },
+  "randomizeAnswersDescription": "क्विज़ निष्पादन के दौरान उत्तर विकल्पों का क्रम मिलाएं",
+  "@randomizeAnswersDescription": {
+    "description": "Description for the randomize answers setting."
+  },
+  "showCorrectAnswerCountTitle": "सही उत्तर संख्या दिखाएं",
+  "@showCorrectAnswerCountTitle": {
+    "description": "Title for the setting to show correct answer count."
+  },
+  "showCorrectAnswerCountDescription": "बहुविकल्पीय प्रश्नों में सही उत्तरों की संख्या प्रदर्शित करें",
+  "@showCorrectAnswerCountDescription": {
+    "description": "Description for the show correct answer count setting."
+  },
+  "correctAnswersCount": "{count} सही उत्तर चुनें",
+  "@correctAnswersCount": {
+    "description": "Text showing how many correct answers to select in a multiple choice question.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "correctSelectedLabel": "सही",
+  "@correctSelectedLabel": {
+    "description": "Label for correctly selected answers in quiz results."
+  },
+  "correctMissedLabel": "सही",
+  "@correctMissedLabel": {
+    "description": "Label for correct answers that were not selected in quiz results."
+  },
+  "incorrectSelectedLabel": "गलत",
+  "@incorrectSelectedLabel": {
+    "description": "Label for incorrectly selected answers in quiz results."
+  },
+  "generateQuestionsWithAI": "AI के साथ प्रश्न बनाएं",
+  "@generateQuestionsWithAI": {
+    "description": "Tooltip for the generate questions with AI button."
+  },
+  "aiGenerateDialogTitle": "AI के साथ प्रश्न बनाएं",
+  "@aiGenerateDialogTitle": {
+    "description": "Title of the AI question generation dialog."
+  },
+  "aiQuestionCountLabel": "प्रश्नों की संख्या (वैकल्पिक)",
+  "@aiQuestionCountLabel": {
+    "description": "Label for the question count field."
+  },
+  "aiQuestionCountHint": "AI को निर्णय लेने के लिए खाली छोड़ें",
+  "@aiQuestionCountHint": {
+    "description": "Hint text for the question count field."
+  },
+  "aiQuestionCountValidation": "1 से 50 के बीच संख्या होनी चाहिए",
+  "@aiQuestionCountValidation": {
+    "description": "Validation message for question count."
+  },
+  "aiQuestionTypeLabel": "प्रश्न प्रकार",
+  "@aiQuestionTypeLabel": {
+    "description": "Label for the question type selector."
+  },
+  "aiQuestionTypeRandom": "यादृच्छिक (मिश्रित)",
+  "@aiQuestionTypeRandom": {
+    "description": "Random type option for questions."
+  },
+  "aiLanguageLabel": "प्रश्न भाषा",
+  "@aiLanguageLabel": {
+    "description": "Label for the language selector."
+  },
+  "aiContentLabel": "प्रश्न बनाने के लिए सामग्री",
+  "@aiContentLabel": {
+    "description": "Label for the content field."
+  },
+  "aiWordCount": "{current} / {max} शब्द",
+  "@aiWordCount": {
+    "description": "Word counter for content.",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "150"
+      },
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiContentHint": "वह पाठ, विषय या सामग्री दर्ज करें जिससे आप प्रश्न बनाना चाहते हैं...",
+  "@aiContentHint": {
+    "description": "Hint text for the content field."
+  },
+  "aiContentHelperText": "AI इस सामग्री के आधार पर प्रश्न बनाएगा",
+  "@aiContentHelperText": {
+    "description": "Additional helper text for the content field."
+  },
+  "aiWordLimitError": "आपने {max} शब्दों की सीमा पार कर दी है",
+  "@aiWordLimitError": {
+    "description": "Error when word limit is exceeded.",
+    "placeholders": {
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiContentRequiredError": "प्रश्न बनाने के लिए आपको सामग्री प्रदान करनी होगी",
+  "@aiContentRequiredError": {
+    "description": "Error when no content is provided."
+  },
+  "aiContentLimitError": "सामग्री {max} शब्दों की सीमा से अधिक है",
+  "@aiContentLimitError": {
+    "description": "Validation error for word limit.",
+    "placeholders": {
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiMinWordsError": "गुणवत्तापूर्ण प्रश्न बनाने के लिए कम से कम 10 शब्द प्रदान करें",
+  "@aiMinWordsError": {
+    "description": "Error when content is too short."
+  },
+  "aiInfoTitle": "जानकारी",
+  "@aiInfoTitle": {
+    "description": "Title of the information section."
+  },
+  "aiInfoDescription": "• AI सामग्री का विश्लेषण करके प्रासंगिक प्रश्न बनाएगा\n• आप पाठ, परिभाषाएं, स्पष्टीकरण या कोई भी शैक्षिक सामग्री शामिल कर सकते हैं\n• प्रश्नों में उत्तर विकल्प और स्पष्टीकरण शामिल होंगे\n• इस प्रक्रिया में कुछ सेकंड लग सकते हैं",
+  "@aiInfoDescription": {
+    "description": "Informative description about the AI generation process."
+  },
+  "aiGenerateButton": "प्रश्न बनाएं",
+  "@aiGenerateButton": {
+    "description": "Text for the generate questions button."
+  },
+  "languageSpanish": "Español",
+  "@languageSpanish": {
+    "description": "Spanish language name."
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "English language name."
+  },
+  "languageFrench": "Français",
+  "@languageFrench": {
+    "description": "French language name."
+  },
+  "languageGerman": "Deutsch",
+  "@languageGerman": {
+    "description": "German language name."
+  },
+  "languageItalian": "Italiano",
+  "@languageItalian": {
+    "description": "Italian language name."
+  },
+  "languagePortuguese": "Português",
+  "@languagePortuguese": {
+    "description": "Portuguese language name."
+  },
+  "languageCatalan": "Català",
+  "@languageCatalan": {
+    "description": "Catalan language name."
+  },
+  "languageBasque": "Euskera",
+  "@languageBasque": {
+    "description": "Basque language name."
+  },
+  "languageGalician": "Galego",
+  "@languageGalician": {
+    "description": "Galician language name."
+  },
+  "languageHindi": "हिन्दी",
+  "@languageHindi": {
+    "description": "Hindi language name."
+  },
+  "aiServicesLoading": "AI सेवाएं लोड हो रही हैं...",
+  "@aiServicesLoading": {
+    "description": "Message shown while loading available AI services."
+  },
+  "aiServicesNotConfigured": "कोई AI सेवा कॉन्फ़िगर नहीं की गई",
+  "@aiServicesNotConfigured": {
+    "description": "Message shown when no AI services are configured."
+  },
+  "aiGeneratedQuestions": "AI द्वारा बनाए गए",
+  "@aiGeneratedQuestions": {
+    "description": "Name for AI generated questions in the import dialog."
+  },
+  "aiApiKeyRequired": "AI जेनरेशन का उपयोग करने के लिए कृपया सेटिंग्स में कम से कम एक AI API key कॉन्फ़िगर करें।",
+  "@aiApiKeyRequired": {
+    "description": "Message shown when no API keys are configured for AI."
+  },
+  "aiGenerationFailed": "प्रश्न नहीं बना सके। अलग सामग्री के साथ प्रयास करें।",
+  "@aiGenerationFailed": {
+    "description": "Message shown when AI question generation fails."
+  },
+  "aiGenerationError": "प्रश्न बनाने में त्रुटि: {error}",
+  "@aiGenerationError": {
+    "description": "Error message when generating questions with AI.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "API key invalid"
+      }
+    }
+  },
+  "noQuestionsInFile": "आयातित फ़ाइल में कोई प्रश्न नहीं मिले",
+  "@noQuestionsInFile": {
+    "description": "Message shown when an imported file contains no questions."
+  },
+  "couldNotAccessFile": "चयनित फ़ाइल तक पहुंच नहीं सकी",
+  "@couldNotAccessFile": {
+    "description": "Message shown when a selected file cannot be accessed."
+  },
+  "defaultOutputFileName": "output-file.quiz",
+  "@defaultOutputFileName": {
+    "description": "Default name for output files."
+  },
+  "aiServiceLimitsWithChars": "सीमा: {words} शब्द या {chars} अक्षर",
+  "@aiServiceLimitsWithChars": {
+    "description": "Description of AI service limits with both word and character limits.",
+    "placeholders": {
+      "words": {
+        "type": "int",
+        "example": "3000"
+      },
+      "chars": {
+        "type": "int",
+        "example": "12000"
+      }
+    }
+  },
+  "aiServiceLimitsWordsOnly": "सीमा: {words} शब्द",
+  "@aiServiceLimitsWordsOnly": {
+    "description": "Description of AI service limits with only word limit.",
+    "placeholders": {
+      "words": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  }
+}

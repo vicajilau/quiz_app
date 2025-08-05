@@ -260,6 +260,12 @@ IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
         return 'Galician';
       case 'hi':
         return 'Hindi';
+      case 'zh':
+        return 'Chinese';
+      case 'ar':
+        return 'Arabic';
+      case 'ja':
+        return 'Japanese';
       default:
         return 'English';
     }

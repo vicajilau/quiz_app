@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localizations_ar.dart';
 import 'app_localizations_ca.dart';
 import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
@@ -12,8 +13,11 @@ import 'app_localizations_es.dart';
 import 'app_localizations_eu.dart';
 import 'app_localizations_fr.dart';
 import 'app_localizations_gl.dart';
+import 'app_localizations_hi.dart';
 import 'app_localizations_it.dart';
+import 'app_localizations_ja.dart';
 import 'app_localizations_pt.dart';
+import 'app_localizations_zh.dart';
 
 // ignore_for_file: type=lint
 
@@ -101,6 +105,7 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('ar'),
     Locale('ca'),
     Locale('de'),
     Locale('en'),
@@ -108,8 +113,11 @@ abstract class AppLocalizations {
     Locale('eu'),
     Locale('fr'),
     Locale('gl'),
+    Locale('hi'),
     Locale('it'),
+    Locale('ja'),
     Locale('pt'),
+    Locale('zh'),
   ];
 
   /// Title of the application displayed in the AppBar.
@@ -1438,6 +1446,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) => <String>[
+    'ar',
     'ca',
     'de',
     'en',
@@ -1445,8 +1454,11 @@ class _AppLocalizationsDelegate
     'eu',
     'fr',
     'gl',
+    'hi',
     'it',
+    'ja',
     'pt',
+    'zh',
   ].contains(locale.languageCode);
 
   @override
@@ -1456,6 +1468,8 @@ class _AppLocalizationsDelegate
 AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar':
+      return AppLocalizationsAr();
     case 'ca':
       return AppLocalizationsCa();
     case 'de':
@@ -1470,10 +1484,16 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsFr();
     case 'gl':
       return AppLocalizationsGl();
+    case 'hi':
+      return AppLocalizationsHi();
     case 'it':
       return AppLocalizationsIt();
+    case 'ja':
+      return AppLocalizationsJa();
     case 'pt':
       return AppLocalizationsPt();
+    case 'zh':
+      return AppLocalizationsZh();
   }
 
   throw FlutterError(

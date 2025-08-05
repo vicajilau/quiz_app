@@ -31,7 +31,7 @@ _The app provides an intuitive interface for taking quizzes with smooth animatio
 - **Multi-AI Service Support**: Integrated support for Google Gemini and OpenAI GPT
 - **Intelligent Question Creation**: Generate quiz questions from any text content using AI
 - **Flexible Question Types**: AI can create multiple choice, single choice, true/false, essay, or random question types
-- **Multi-language Support**: Generate questions in Spanish, English, French, German, Italian, Portuguese, Catalan, Basque, and Galician
+- **Multi-language Support**: Generate questions in 13 languages including English, Spanish, French, German, Italian, Portuguese, Catalan, Basque, Galician, Hindi, Chinese, Arabic, and Japanese
 - **Smart Content Analysis**: AI analyzes your content and creates relevant, educational questions
 - **Service-Specific Optimization**: Dynamic limits and validation based on selected AI service
 - **Configurable Limits**: Intelligent word and character limits that adapt to each AI service's capabilities
@@ -39,7 +39,7 @@ _The app provides an intuitive interface for taking quizzes with smooth animatio
 
 ### 🌍 Internationalization
 
-- **Full Localization**: Complete Spanish and English support with easy extensibility for more languages
+- **Full Localization**: Complete support for 13 languages including English, Spanish, French, German, Italian, Portuguese, Catalan, Basque, Galician, Hindi, Chinese, Arabic, and Japanese
 - **Dynamic Language Switching**: Seamless language changes throughout the app
 - **Localized AI Content**: AI-generated questions respect the selected language preference
 
@@ -116,7 +116,7 @@ For detailed information about AI service limits and configuration, see: **[AI L
 2. **Configure generation settings**:
    - **Question Count**: How many questions to generate (1-50)
    - **Question Type**: Multiple choice, single choice, true/false, essay, or random mix
-   - **Language**: Select from 9 supported languages
+   - **Language**: Select from 13 supported languages
    - **AI Service**: Choose your preferred AI service
 3. **Monitor content limits**: The app shows real-time word count and service-specific limits
 4. **Generate**: Click generate and the AI will create relevant questions from your content
@@ -130,18 +130,6 @@ For detailed information about AI service limits and configuration, see: **[AI L
 | **Generation Style** | Consistent format, reliable  | Large context, creative      |
 | **Study Assistant**  | Structured explanations      | Conversational help          |
 | **Best For**         | Quick questions & generation | Long content & deep learning |
-
-### Supported Languages for AI Generation
-
-- 🇪🇸 **Spanish** (Español)
-- 🇺🇸 **English** (English)
-- 🇫🇷 **French** (Français)
-- 🇩🇪 **German** (Deutsch)
-- 🇮🇹 **Italian** (Italiano)
-- 🇵🇹 **Portuguese** (Português)
-- 🇪🇸 **Catalan** (Català)
-- 🇪🇸 **Basque** (Euskera)
-- 🇪🇸 **Galician** (Galego)
 
 ## ⏱️ Getting Started with Timer & AI Assistant
 
@@ -486,7 +474,7 @@ For detailed information, see: **[AI Limits System Documentation](docs/AI_LIMITS
 - **AI Question Generation**: Automatic question creation from text content using multiple AI services
 - **AI Study Assistant**: Interactive tutor for explaining concepts and providing context-aware help during quizzes
 - **Exam Timer System**: Configurable time limits with visual countdown and automatic submission
-- **Multi-language Support**: Full internationalization with 9 language support
+- **Multi-language Support**: Full internationalization with 13 language support
 - **Dynamic Service Limits**: Intelligent content validation based on selected AI service capabilities
 - **Cross-platform Compatibility**: Seamless operation across iOS, Android, web, and desktop platforms
 - **Question Randomization**: Flexible ordering and answer shuffling for varied quiz experiences

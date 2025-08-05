@@ -1,0 +1,1086 @@
+{
+  "titleAppBar": "اختبار - محاكي الامتحان",
+  "@titleAppBar": {
+    "description": "Title of the application displayed in the AppBar."
+  },
+  "create": "إنشاء",
+  "@create": {
+    "description": "Label for the Create Quiz file button in the AppBar."
+  },
+  "load": "تحميل",
+  "@load": {
+    "description": "Label for the Load Quiz file button in the AppBar."
+  },
+  "fileLoaded": "تم تحميل الملف: {filePath}",
+  "@fileLoaded": {
+    "description": "Message displayed when a file is successfully loaded.",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/path/to/file.quiz"
+      }
+    }
+  },
+  "fileSaved": "تم حفظ الملف: {filePath}",
+  "@fileSaved": {
+    "description": "Message displayed when a file is successfully saved.",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/path/to/file.quiz"
+      }
+    }
+  },
+  "dropFileHere": "انقر هنا أو اسحب ملف .quiz إلى الشاشة",
+  "@dropFileHere": {
+    "description": "Text displayed inside the drop area for dragging files."
+  },
+  "errorInvalidFile": "خطأ: ملف غير صالح. يجب أن يكون ملف .quiz.",
+  "@errorInvalidFile": {
+    "description": "Message displayed when the dropped file is not a .quiz file."
+  },
+  "errorLoadingFile": "خطأ في تحميل ملف الاختبار: {error}",
+  "@errorLoadingFile": {
+    "description": "Message displayed when there is an error while loading a Quiz file.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "File not found"
+      }
+    }
+  },
+  "errorExportingFile": "خطأ في تصدير الملف: {error}",
+  "@errorExportingFile": {
+    "description": "Message displayed when there is an error while exporting a file.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "File not found"
+      }
+    }
+  },
+  "cancelButton": "إلغاء",
+  "@cancelButton": {
+    "description": "Cancel button."
+  },
+  "saveButton": "حفظ",
+  "@saveButton": {
+    "description": "Save button."
+  },
+  "confirmDeleteTitle": "تأكيد الحذف",
+  "@confirmDeleteTitle": {
+    "description": "Title for the confirmation dialog when deleting a process."
+  },
+  "confirmDeleteMessage": "هل أنت متأكد من أنك تريد حذف العملية `{processName}`؟",
+  "@confirmDeleteMessage": {
+    "description": "Message in the confirmation dialog for deletion.",
+    "placeholders": {
+      "processName": {
+        "type": "String",
+        "example": "Question 1"
+      }
+    }
+  },
+  "deleteButton": "حذف",
+  "@deleteButton": {
+    "description": "Button text for confirming deletion."
+  },
+  "confirmExitTitle": "تأكيد الخروج",
+  "@confirmExitTitle": {
+    "description": "Title for the confirmation dialog when exiting."
+  },
+  "confirmExitMessage": "هل أنت متأكد من أنك تريد الخروج بدون حفظ؟",
+  "@confirmExitMessage": {
+    "description": "Message in the confirmation dialog for exiting."
+  },
+  "exitButton": "خروج",
+  "@exitButton": {
+    "description": "Exit button text."
+  },
+  "saveDialogTitle": "يرجى اختيار ملف الإخراج:",
+  "@saveDialogTitle": {
+    "description": "Title for the save dialog."
+  },
+  "createQuizFileTitle": "إنشاء ملف اختبار",
+  "@createQuizFileTitle": {
+    "description": "Title for create quiz file dialog."
+  },
+  "fileNameLabel": "اسم الملف",
+  "@fileNameLabel": {
+    "description": "Label for file name input."
+  },
+  "fileDescriptionLabel": "وصف الملف",
+  "@fileDescriptionLabel": {
+    "description": "Label for file description input."
+  },
+  "createButton": "إنشاء",
+  "@createButton": {
+    "description": "Create button text."
+  },
+  "fileNameRequiredError": "اسم الملف مطلوب.",
+  "@fileNameRequiredError": {
+    "description": "Error message when file name is empty."
+  },
+  "fileDescriptionRequiredError": "وصف الملف مطلوب.",
+  "@fileDescriptionRequiredError": {
+    "description": "Error message when file description is empty."
+  },
+  "versionLabel": "الإصدار",
+  "@versionLabel": {
+    "description": "Label for quiz version field"
+  },
+  "authorLabel": "المؤلف",
+  "@authorLabel": {
+    "description": "Label for quiz author field"
+  },
+  "authorRequiredError": "المؤلف مطلوب.",
+  "@authorRequiredError": {
+    "description": "Error message when author field is empty"
+  },
+  "requiredFieldsError": "يجب ملء جميع الحقول المطلوبة.",
+  "@requiredFieldsError": {
+    "description": "Error message when required fields are missing"
+  },
+  "requestFileNameTitle": "أدخل اسم ملف الاختبار",
+  "@requestFileNameTitle": {
+    "description": "Title for request file name dialog."
+  },
+  "fileNameHint": "اسم الملف",
+  "@fileNameHint": {
+    "description": "Hint text for file name input."
+  },
+  "emptyFileNameMessage": "اسم الملف لا يمكن أن يكون فارغاً.",
+  "@emptyFileNameMessage": {
+    "description": "Error message when file name is empty."
+  },
+  "acceptButton": "قبول",
+  "@acceptButton": {
+    "description": "Accept button text."
+  },
+  "saveTooltip": "حفظ الملف",
+  "@saveTooltip": {
+    "description": "Tooltip for save button."
+  },
+  "saveDisabledTooltip": "لا توجد تغييرات للحفظ",
+  "@saveDisabledTooltip": {
+    "description": "Tooltip for disabled save button."
+  },
+  "executeTooltip": "تنفيذ الامتحان",
+  "@executeTooltip": {
+    "description": "Tooltip for execute button."
+  },
+  "addTooltip": "إضافة سؤال جديد",
+  "@addTooltip": {
+    "description": "Tooltip for add button."
+  },
+  "backSemanticLabel": "زر الرجوع",
+  "@backSemanticLabel": {
+    "description": "Semantic label for back button."
+  },
+  "createFileTooltip": "إنشاء ملف اختبار جديد",
+  "@createFileTooltip": {
+    "description": "Tooltip for create file button."
+  },
+  "loadFileTooltip": "تحميل ملف اختبار موجود",
+  "@loadFileTooltip": {
+    "description": "Tooltip for load file button."
+  },
+  "questionNumber": "السؤال {number}",
+  "@questionNumber": {
+    "description": "Question number label in quiz execution",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "previous": "السابق",
+  "@previous": {
+    "description": "Previous button text in quiz navigation"
+  },
+  "next": "التالي",
+  "@next": {
+    "description": "Next button text in quiz navigation"
+  },
+  "finish": "إنهاء",
+  "@finish": {
+    "description": "Finish button text in quiz navigation"
+  },
+  "finishQuiz": "إنهاء الاختبار",
+  "@finishQuiz": {
+    "description": "Title of finish quiz dialog"
+  },
+  "finishQuizConfirmation": "هل أنت متأكد من أنك تريد إنهاء الاختبار؟ لن تتمكن من تغيير إجاباتك بعد ذلك.",
+  "@finishQuizConfirmation": {
+    "description": "Confirmation message for finishing quiz"
+  },
+  "cancel": "إلغاء",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
+  "abandonQuiz": "التخلي عن الاختبار",
+  "@abandonQuiz": {
+    "description": "Title of abandon quiz dialog"
+  },
+  "abandonQuizConfirmation": "هل أنت متأكد من أنك تريد التخلي عن الاختبار؟ سيتم فقدان جميع التقدم.",
+  "@abandonQuizConfirmation": {
+    "description": "Confirmation message for abandoning quiz"
+  },
+  "abandon": "التخلي",
+  "@abandon": {
+    "description": "Abandon button text"
+  },
+  "quizCompleted": "تم إكمال الاختبار!",
+  "@quizCompleted": {
+    "description": "Quiz completed message"
+  },
+  "score": "النتيجة: {score}%",
+  "@score": {
+    "description": "Score display",
+    "placeholders": {
+      "score": {
+        "type": "String",
+        "example": "85.5"
+      }
+    }
+  },
+  "correctAnswers": "{correct} من {total} إجابات صحيحة",
+  "@correctAnswers": {
+    "description": "Correct answers count",
+    "placeholders": {
+      "correct": {
+        "type": "int",
+        "example": "8"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "retry": "إعادة المحاولة",
+  "@retry": {
+    "description": "Retry button text"
+  },
+  "goBack": "إنهاء",
+  "@goBack": {
+    "description": "Go back button text"
+  },
+  "retryFailedQuestions": "إعادة الأسئلة الخاطئة",
+  "@retryFailedQuestions": {
+    "description": "Button text to retry only the questions that were answered incorrectly"
+  },
+  "question": "السؤال: {question}",
+  "@question": {
+    "description": "Question text in results",
+    "placeholders": {
+      "question": {
+        "type": "String",
+        "example": "What is the capital of France?"
+      }
+    }
+  },
+  "selectQuestionCountTitle": "اختر عدد الأسئلة",
+  "@selectQuestionCountTitle": {
+    "description": "Title for the dialog to select number of questions for the quiz"
+  },
+  "selectQuestionCountMessage": "كم عدد الأسئلة التي تريد الإجابة عليها في هذا الاختبار؟",
+  "@selectQuestionCountMessage": {
+    "description": "Message explaining the question count selection"
+  },
+  "allQuestions": "جميع الأسئلة ({count})",
+  "@allQuestions": {
+    "description": "Option to select all available questions",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "startQuiz": "بدء الاختبار",
+  "@startQuiz": {
+    "description": "Button text to start the quiz"
+  },
+  "customNumberLabel": "أو أدخل رقماً مخصصاً:",
+  "@customNumberLabel": {
+    "description": "Label for custom number input section"
+  },
+  "numberInputLabel": "عدد الأسئلة",
+  "@numberInputLabel": {
+    "description": "Label for the number input field"
+  },
+  "customNumberHelper": "أدخل أي رقم (بحد أقصى {total}). إذا كان أكبر، ستتكرر الأسئلة.",
+  "@customNumberHelper": {
+    "description": "Helper text explaining custom number input",
+    "placeholders": {
+      "total": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "errorInvalidNumber": "يرجى إدخال رقم صالح",
+  "@errorInvalidNumber": {
+    "description": "Error message for invalid number input"
+  },
+  "errorNumberMustBePositive": "يجب أن يكون الرقم أكبر من 0",
+  "@errorNumberMustBePositive": {
+    "description": "Error message when number is zero or negative"
+  },
+  "questionOrderConfigTitle": "إعداد ترتيب الأسئلة",
+  "@questionOrderConfigTitle": {
+    "description": "Title for the question order configuration dialog"
+  },
+  "questionOrderConfigDescription": "اختر الترتيب الذي تريد أن تظهر به الأسئلة أثناء الامتحان:",
+  "@questionOrderConfigDescription": {
+    "description": "Description text for the question order configuration dialog"
+  },
+  "questionOrderAscending": "الترتيب التصاعدي",
+  "@questionOrderAscending": {
+    "description": "Label for ascending question order option"
+  },
+  "questionOrderAscendingDesc": "ستظهر الأسئلة بترتيب من 1 إلى النهاية",
+  "@questionOrderAscendingDesc": {
+    "description": "Description for ascending question order option"
+  },
+  "questionOrderDescending": "الترتيب التنازلي",
+  "@questionOrderDescending": {
+    "description": "Label for descending question order option"
+  },
+  "questionOrderDescendingDesc": "ستظهر الأسئلة من النهاية إلى 1",
+  "@questionOrderDescendingDesc": {
+    "description": "Description for descending question order option"
+  },
+  "questionOrderRandom": "عشوائي",
+  "@questionOrderRandom": {
+    "description": "Label for random question order option"
+  },
+  "questionOrderRandomDesc": "ستظهر الأسئلة بترتيب عشوائي",
+  "@questionOrderRandomDesc": {
+    "description": "Description for random question order option"
+  },
+  "questionOrderConfigTooltip": "إعداد ترتيب الأسئلة",
+  "@questionOrderConfigTooltip": {
+    "description": "Tooltip for the question order configuration button"
+  },
+  "save": "حفظ",
+  "@save": {
+    "description": "Label for the save button"
+  },
+  "examTimeLimitTitle": "حد وقت الامتحان",
+  "@examTimeLimitTitle": {
+    "description": "Title for exam time limit section"
+  },
+  "examTimeLimitDescription": "تعيين حد زمني للامتحان. عند التفعيل، سيتم عرض عداد تنازلي أثناء الاختبار.",
+  "@examTimeLimitDescription": {
+    "description": "Description for exam time limit feature"
+  },
+  "enableTimeLimit": "تفعيل الحد الزمني",
+  "@enableTimeLimit": {
+    "description": "Label for enable exam time limit switch"
+  },
+  "timeLimitMinutes": "الحد الزمني (دقائق)",
+  "@timeLimitMinutes": {
+    "description": "Label for exam time minutes input"
+  },
+  "examTimeExpiredTitle": "انتهى الوقت!",
+  "@examTimeExpiredTitle": {
+    "description": "Title for exam time expired dialog"
+  },
+  "examTimeExpiredMessage": "انتهى وقت الامتحان. تم تقديم إجاباتك تلقائياً.",
+  "@examTimeExpiredMessage": {
+    "description": "Message for exam time expired dialog"
+  },
+  "remainingTime": "{hours}:{minutes}:{seconds}",
+  "@remainingTime": {
+    "description": "Format for remaining time display (hours:minutes:seconds)",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "01"
+      },
+      "minutes": {
+        "type": "String",
+        "example": "30"
+      },
+      "seconds": {
+        "type": "String",
+        "example": "45"
+      }
+    }
+  },
+  "questionTypeMultipleChoice": "اختيار متعدد",
+  "@questionTypeMultipleChoice": {
+    "description": "Label for multiple choice question type"
+  },
+  "questionTypeSingleChoice": "اختيار واحد",
+  "@questionTypeSingleChoice": {
+    "description": "Label for single choice question type"
+  },
+  "questionTypeTrueFalse": "صح/خطأ",
+  "@questionTypeTrueFalse": {
+    "description": "Label for true/false question type"
+  },
+  "questionTypeEssay": "مقالي",
+  "@questionTypeEssay": {
+    "description": "Label for essay question type"
+  },
+  "questionTypeUnknown": "غير معروف",
+  "@questionTypeUnknown": {
+    "description": "Label for unknown question type"
+  },
+  "optionsCount": "{count, plural, =1{خيار واحد} other{{count} خيارات}}",
+  "@optionsCount": {
+    "description": "Text showing the number of options in a question",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "optionsTooltip": "عدد خيارات الإجابة لهذا السؤال",
+  "@optionsTooltip": {
+    "description": "Tooltip text for the options count badge"
+  },
+  "imageTooltip": "هذا السؤال له صورة مرتبطة",
+  "@imageTooltip": {
+    "description": "Tooltip text for the image indicator badge"
+  },
+  "explanationTooltip": "هذا السؤال له شرح",
+  "@explanationTooltip": {
+    "description": "Tooltip text for the explanation indicator badge"
+  },
+  "aiPrompt": "أنت مدرس خبير وودود متخصص في مساعدة الطلاب على فهم أسئلة الامتحانات والمواضيع ذات الصلة بشكل أفضل. هدفك هو تسهيل التعلم العميق والفهم المفاهيمي.\n\nيمكنك المساعدة في:\n- شرح المفاهيم المتعلقة بالسؤال\n- توضيح الشكوك حول خيارات الإجابة\n- تقديم سياق إضافي حول الموضوع\n- اقتراح موارد دراسة تكميلية\n- شرح لماذا إجابات معينة صحيحة أو خاطئة\n- ربط الموضوع بمفاهيم مهمة أخرى\n- الإجابة على أسئلة متابعة حول المادة\n\nاستجب دائماً بنفس اللغة التي يُطرح بها السؤال. كن تعليمياً وواضحاً ومحفزاً في شروحاتك.",
+  "@aiPrompt": {
+    "description": "Base prompt for AI assistant"
+  },
+  "questionLabel": "السؤال",
+  "@questionLabel": {
+    "description": "Label for question in AI dialog"
+  },
+  "optionsLabel": "الخيارات",
+  "@optionsLabel": {
+    "description": "Label for options in AI dialog"
+  },
+  "explanationLabel": "الشرح",
+  "@explanationLabel": {
+    "description": "Label for explanation in AI dialog"
+  },
+  "studentComment": "تعليق الطالب",
+  "@studentComment": {
+    "description": "Label for student comment in AI dialog"
+  },
+  "aiAssistantTitle": "مساعد الدراسة الذكي",
+  "@aiAssistantTitle": {
+    "description": "Title for AI assistant dialog"
+  },
+  "questionContext": "سياق السؤال",
+  "@questionContext": {
+    "description": "Label for question context section"
+  },
+  "aiAssistant": "المساعد الذكي",
+  "@aiAssistant": {
+    "description": "AI assistant label in chat"
+  },
+  "aiThinking": "الذكاء الاصطناعي يفكر...",
+  "@aiThinking": {
+    "description": "Loading message while AI processes"
+  },
+  "askAIHint": "اطرح سؤالك حول هذا الموضوع...",
+  "@askAIHint": {
+    "description": "Hint text for AI question input"
+  },
+  "aiPlaceholderResponse": "هذه استجابة مؤقتة. في التطبيق الحقيقي، سيتصل هذا بخدمة الذكاء الاصطناعي لتقديم شروحات مفيدة حول السؤال.",
+  "@aiPlaceholderResponse": {
+    "description": "Placeholder AI response for demo"
+  },
+  "aiErrorResponse": "عذراً، حدث خطأ في معالجة سؤالك. يرجى المحاولة مرة أخرى.",
+  "@aiErrorResponse": {
+    "description": "Error message when AI request fails"
+  },
+  "configureApiKeyMessage": "يرجى تكوين مفتاح API للذكاء الاصطناعي في الإعدادات.",
+  "@configureApiKeyMessage": {
+    "description": "Message to configure API key when not set"
+  },
+  "errorLabel": "خطأ:",
+  "@errorLabel": {
+    "description": "Error label prefix for error messages"
+  },
+  "noResponseReceived": "لم يتم استلام رد",
+  "@noResponseReceived": {
+    "description": "Message when no response is received from AI"
+  },
+  "invalidApiKeyError": "مفتاح API غير صالح. يرجى التحقق من مفتاح OpenAI API في الإعدادات.",
+  "@invalidApiKeyError": {
+    "description": "Error message for invalid API key"
+  },
+  "rateLimitError": "تم تجاوز حد المعدل. يرجى المحاولة مرة أخرى لاحقاً.",
+  "@rateLimitError": {
+    "description": "Error message for rate limit exceeded"
+  },
+  "modelNotFoundError": "النموذج غير موجود. يرجى التحقق من إمكانية الوصول إلى API.",
+  "@modelNotFoundError": {
+    "description": "Error message for model not found"
+  },
+  "unknownError": "خطأ غير معروف",
+  "@unknownError": {
+    "description": "Generic unknown error message"
+  },
+  "networkError": "خطأ في الشبكة: غير قادر على الاتصال بـ OpenAI. يرجى التحقق من اتصال الإنترنت.",
+  "@networkError": {
+    "description": "Network connectivity error message"
+  },
+  "openaiApiKeyNotConfigured": "مفتاح OpenAI API غير مُكوَّن",
+  "@openaiApiKeyNotConfigured": {
+    "description": "Error message when API key is not configured"
+  },
+  "geminiApiKeyNotConfigured": "مفتاح Gemini API غير مُكوَّن",
+  "@geminiApiKeyNotConfigured": {
+    "description": "Error message when Gemini API key is not configured"
+  },
+  "geminiApiKeyLabel": "مفتاح Google Gemini API",
+  "@geminiApiKeyLabel": {
+    "description": "Label for Gemini API Key field"
+  },
+  "geminiApiKeyHint": "أدخل مفتاح Gemini API الخاص بك",
+  "@geminiApiKeyHint": {
+    "description": "Hint text for Gemini API Key field"
+  },
+  "geminiApiKeyDescription": "مطلوب لوظائف Gemini AI. يتم تخزين مفتاحك بأمان.",
+  "@geminiApiKeyDescription": {
+    "description": "Description for Gemini API Key field"
+  },
+  "getGeminiApiKeyTooltip": "احصل على مفتاح API من Google AI Studio",
+  "@getGeminiApiKeyTooltip": {
+    "description": "Tooltip for the button to get Gemini API key"
+  },
+  "aiRequiresAtLeastOneApiKeyError": "مساعد الدراسة الذكي يتطلب مفتاح API واحد على الأقل (OpenAI أو Gemini). يرجى إدخال مفتاح API أو تعطيل المساعد الذكي.",
+  "@aiRequiresAtLeastOneApiKeyError": {
+    "description": "Error message when AI Assistant is enabled but no API keys are provided"
+  },
+  "minutesAbbreviation": "د",
+  "@minutesAbbreviation": {
+    "description": "Abbreviation for minutes"
+  },
+  "aiButtonTooltip": "مساعد الدراسة الذكي",
+  "@aiButtonTooltip": {
+    "description": "Tooltip for AI assistant button"
+  },
+  "aiButtonText": "AI",
+  "@aiButtonText": {
+    "description": "Text for AI assistant button"
+  },
+  "aiAssistantSettingsTitle": "مساعد الدراسة الذكي (معاينة)",
+  "@aiAssistantSettingsTitle": {
+    "description": "Title for AI assistant settings section"
+  },
+  "aiAssistantSettingsDescription": "تفعيل أو تعطيل مساعد الدراسة الذكي للأسئلة",
+  "@aiAssistantSettingsDescription": {
+    "description": "Description for AI assistant settings"
+  },
+  "openaiApiKeyLabel": "مفتاح OpenAI API",
+  "@openaiApiKeyLabel": {
+    "description": "Label for OpenAI API Key field"
+  },
+  "openaiApiKeyHint": "أدخل مفتاح OpenAI API الخاص بك (sk-...)",
+  "@openaiApiKeyHint": {
+    "description": "Hint text for OpenAI API Key field"
+  },
+  "openaiApiKeyDescription": "مطلوب لوظائف الذكاء الاصطناعي. يتم تخزين مفتاحك بأمان.",
+  "@openaiApiKeyDescription": {
+    "description": "Description for OpenAI API Key field"
+  },
+  "aiAssistantRequiresApiKeyError": "مساعد الدراسة الذكي يتطلب مفتاح OpenAI API. يرجى إدخال مفتاح API أو تعطيل المساعد الذكي.",
+  "@aiAssistantRequiresApiKeyError": {
+    "description": "Error message when AI Assistant is enabled but no API key is provided"
+  },
+  "getApiKeyTooltip": "احصل على مفتاح API من OpenAI",
+  "@getApiKeyTooltip": {
+    "description": "Tooltip for the button to get API key from OpenAI"
+  },
+  "deleteAction": "حذف",
+  "@deleteAction": {
+    "description": "Delete action text shown when swiping to delete"
+  },
+  "explanationLabel": "الشرح (اختياري)",
+  "@explanationLabel": {
+    "description": "Label for the explanation input field"
+  },
+  "explanationHint": "أدخل شرحاً للإجابة/الإجابات الصحيحة",
+  "@explanationHint": {
+    "description": "Hint text for the explanation input field"
+  },
+  "explanationTitle": "الشرح",
+  "@explanationTitle": {
+    "description": "Title for the explanation section in quiz results"
+  },
+  "imageLabel": "الصورة",
+  "@imageLabel": {
+    "description": "Label for the image section in question editor"
+  },
+  "changeImage": "تغيير الصورة",
+  "@changeImage": {
+    "description": "Text for button to change current image"
+  },
+  "removeImage": "إزالة الصورة",
+  "@removeImage": {
+    "description": "Text for button to remove current image"
+  },
+  "addImageTap": "انقر لإضافة صورة",
+  "@addImageTap": {
+    "description": "Instructional text for adding an image"
+  },
+  "imageFormats": "التنسيقات: JPG، PNG، GIF",
+  "@imageFormats": {
+    "description": "Text indicating supported image formats"
+  },
+  "imageLoadError": "خطأ في تحميل الصورة",
+  "@imageLoadError": {
+    "description": "Error message when image cannot be loaded"
+  },
+  "imagePickError": "خطأ في تحميل الصورة: {error}",
+  "@imagePickError": {
+    "description": "Error message when image selection fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Invalid file"
+      }
+    }
+  },
+  "tapToZoom": "انقر للتكبير",
+  "@tapToZoom": {
+    "description": "Instructional text to indicate image can be zoomed"
+  },
+  "trueLabel": "صحيح",
+  "@trueLabel": {
+    "description": "Label for true option in true/false questions"
+  },
+  "falseLabel": "خطأ",
+  "@falseLabel": {
+    "description": "Label for false option in true/false questions"
+  },
+  "addQuestion": "إضافة سؤال",
+  "@addQuestion": {
+    "description": "Title for adding a new question dialog"
+  },
+  "editQuestion": "تحرير السؤال",
+  "@editQuestion": {
+    "description": "Title for editing an existing question dialog"
+  },
+  "questionText": "نص السؤال",
+  "@questionText": {
+    "description": "Label for question text input field"
+  },
+  "questionType": "نوع السؤال",
+  "@questionType": {
+    "description": "Label for question type dropdown"
+  },
+  "addOption": "إضافة خيار",
+  "@addOption": {
+    "description": "Label for add option button"
+  },
+  "optionLabel": "الخيار",
+  "@optionLabel": {
+    "description": "Label for individual option input field"
+  },
+  "questionTextRequired": "نص السؤال مطلوب",
+  "@questionTextRequired": {
+    "description": "Error message when question text is empty"
+  },
+  "atLeastOneOptionRequired": "يجب أن يحتوي خيار واحد على الأقل على نص",
+  "@atLeastOneOptionRequired": {
+    "description": "Error message when all options are empty"
+  },
+  "atLeastOneCorrectAnswerRequired": "يجب اختيار إجابة صحيحة واحدة على الأقل",
+  "@atLeastOneCorrectAnswerRequired": {
+    "description": "Error message when no correct answer is selected"
+  },
+  "onlyOneCorrectAnswerAllowed": "إجابة صحيحة واحدة فقط مسموحة لهذا النوع من الأسئلة",
+  "@onlyOneCorrectAnswerAllowed": {
+    "description": "Error message when multiple correct answers are selected for single choice questions"
+  },
+  "removeOption": "إزالة الخيار",
+  "@removeOption": {
+    "description": "Tooltip for remove option button"
+  },
+  "selectCorrectAnswer": "اختر الإجابة الصحيحة",
+  "@selectCorrectAnswer": {
+    "description": "Tooltip for radio button to select correct answer"
+  },
+  "selectCorrectAnswers": "اختر الإجابات الصحيحة",
+  "@selectCorrectAnswers": {
+    "description": "Tooltip for checkbox to select correct answers"
+  },
+  "emptyOptionsError": "الخيارات {optionNumbers} فارغة. يرجى إضافة نص إليها أو إزالتها.",
+  "@emptyOptionsError": {
+    "description": "Error message when some options are empty",
+    "placeholders": {
+      "optionNumbers": {
+        "type": "String",
+        "example": "1, 3, 4"
+      }
+    }
+  },
+  "emptyOptionError": "الخيار {optionNumber} فارغ. يرجى إضافة نص إليه أو إزالته.",
+  "@emptyOptionError": {
+    "description": "Error message when one option is empty",
+    "placeholders": {
+      "optionNumber": {
+        "type": "String",
+        "example": "3"
+      }
+    }
+  },
+  "optionEmptyError": "هذا الخيار لا يمكن أن يكون فارغاً",
+  "@optionEmptyError": {
+    "description": "Error message for individual empty option field"
+  },
+  "hasImage": "صورة",
+  "@hasImage": {
+    "description": "Label indicating that a question has an image"
+  },
+  "hasExplanation": "شرح",
+  "@hasExplanation": {
+    "description": "Label indicating that a question has an explanation"
+  },
+  "errorLoadingSettings": "خطأ في تحميل الإعدادات: {error}",
+  "@errorLoadingSettings": {
+    "description": "Message displayed when there is an error while loading application settings.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "The error message"
+      }
+    }
+  },
+  "couldNotOpenUrl": "لا يمكن فتح {url}",
+  "@couldNotOpenUrl": {
+    "description": "Message displayed when a URL cannot be opened.",
+    "placeholders": {
+      "url": {
+        "type": "String",
+        "description": "The URL that could not be opened"
+      }
+    }
+  },
+  "loadingAiServices": "جاري تحميل خدمات الذكاء الاصطناعي...",
+  "@loadingAiServices": {
+    "description": "Message displayed while loading available AI services."
+  },
+  "usingAiService": "الاستخدام: {serviceName}",
+  "@usingAiService": {
+    "description": "Message displayed showing which AI service is being used.",
+    "placeholders": {
+      "serviceName": {
+        "type": "String",
+        "description": "The name of the AI service"
+      }
+    }
+  },
+  "aiServiceLabel": "خدمة الذكاء الاصطناعي:",
+  "@aiServiceLabel": {
+    "description": "Label for the AI service selector."
+  },
+  "importQuestionsTitle": "استيراد الأسئلة",
+  "@importQuestionsTitle": {
+    "description": "Title for the import questions dialog."
+  },
+  "importQuestionsMessage": "وجدت {count} أسئلة في \"{fileName}\". أين تريد استيرادها؟",
+  "@importQuestionsMessage": {
+    "description": "Message asking where to import questions from another file.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      },
+      "fileName": {
+        "type": "String",
+        "example": "questions.quiz"
+      }
+    }
+  },
+  "importQuestionsPositionQuestion": "أين تريد إضافة هذه الأسئلة؟",
+  "@importQuestionsPositionQuestion": {
+    "description": "Question asking about import position."
+  },
+  "importAtBeginning": "في البداية",
+  "@importAtBeginning": {
+    "description": "Button to import questions at the beginning of the list."
+  },
+  "importAtEnd": "في النهاية",
+  "@importAtEnd": {
+    "description": "Button to import questions at the end of the list."
+  },
+  "questionsImportedSuccess": "تم استيراد {count} أسئلة بنجاح",
+  "@questionsImportedSuccess": {
+    "description": "Success message when questions are imported.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "importQuestionsTooltip": "استيراد أسئلة من ملف اختبار آخر",
+  "@importQuestionsTooltip": {
+    "description": "Tooltip for the import questions button."
+  },
+  "dragDropHintText": "يمكنك أيضاً سحب وإفلات ملفات .quiz هنا لاستيراد الأسئلة",
+  "@dragDropHintText": {
+    "description": "Hint text shown when the question list is empty, indicating drag and drop functionality."
+  },
+  "randomizeAnswersTitle": "عشوائية خيارات الإجابة",
+  "@randomizeAnswersTitle": {
+    "description": "Title for the setting to randomize answer options."
+  },
+  "randomizeAnswersDescription": "خلط ترتيب خيارات الإجابة أثناء تنفيذ الاختبار",
+  "@randomizeAnswersDescription": {
+    "description": "Description for the randomize answers setting."
+  },
+  "showCorrectAnswerCountTitle": "إظهار عدد الإجابات الصحيحة",
+  "@showCorrectAnswerCountTitle": {
+    "description": "Title for the setting to show correct answer count."
+  },
+  "showCorrectAnswerCountDescription": "عرض عدد الإجابات الصحيحة في أسئلة الاختيار المتعدد",
+  "@showCorrectAnswerCountDescription": {
+    "description": "Description for the show correct answer count setting."
+  },
+  "correctAnswersCount": "اختر {count} إجابات صحيحة",
+  "@correctAnswersCount": {
+    "description": "Text showing how many correct answers to select in a multiple choice question.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "correctSelectedLabel": "صحيح",
+  "@correctSelectedLabel": {
+    "description": "Label for correctly selected answers in quiz results."
+  },
+  "correctMissedLabel": "صحيح",
+  "@correctMissedLabel": {
+    "description": "Label for correct answers that were not selected in quiz results."
+  },
+  "incorrectSelectedLabel": "خطأ",
+  "@incorrectSelectedLabel": {
+    "description": "Label for incorrectly selected answers in quiz results."
+  },
+  "generateQuestionsWithAI": "إنتاج أسئلة بالذكاء الاصطناعي",
+  "@generateQuestionsWithAI": {
+    "description": "Tooltip for the generate questions with AI button."
+  },
+  "aiGenerateDialogTitle": "إنتاج أسئلة بالذكاء الاصطناعي",
+  "@aiGenerateDialogTitle": {
+    "description": "Title of the AI question generation dialog."
+  },
+  "aiQuestionCountLabel": "عدد الأسئلة (اختياري)",
+  "@aiQuestionCountLabel": {
+    "description": "Label for the question count field."
+  },
+  "aiQuestionCountHint": "اتركه فارغاً ليقرر الذكاء الاصطناعي",
+  "@aiQuestionCountHint": {
+    "description": "Hint text for the question count field."
+  },
+  "aiQuestionCountValidation": "يجب أن يكون رقماً بين 1 و 50",
+  "@aiQuestionCountValidation": {
+    "description": "Validation message for question count."
+  },
+  "aiQuestionTypeLabel": "نوع السؤال",
+  "@aiQuestionTypeLabel": {
+    "description": "Label for the question type selector."
+  },
+  "aiQuestionTypeRandom": "عشوائي (مختلط)",
+  "@aiQuestionTypeRandom": {
+    "description": "Random type option for questions."
+  },
+  "aiLanguageLabel": "لغة الأسئلة",
+  "@aiLanguageLabel": {
+    "description": "Label for the language selector."
+  },
+  "aiContentLabel": "المحتوى لإنتاج الأسئلة منه",
+  "@aiContentLabel": {
+    "description": "Label for the content field."
+  },
+  "aiWordCount": "{current} / {max} كلمة",
+  "@aiWordCount": {
+    "description": "Word counter for content.",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "150"
+      },
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiContentHint": "أدخل النص أو الموضوع أو المحتوى الذي تريد إنتاج أسئلة منه...",
+  "@aiContentHint": {
+    "description": "Hint text for the content field."
+  },
+  "aiContentHelperText": "سينشئ الذكاء الاصطناعي أسئلة بناءً على هذا المحتوى",
+  "@aiContentHelperText": {
+    "description": "Additional helper text for the content field."
+  },
+  "aiWordLimitError": "لقد تجاوزت حد {max} كلمة",
+  "@aiWordLimitError": {
+    "description": "Error when word limit is exceeded.",
+    "placeholders": {
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiContentRequiredError": "يجب أن تقدم محتوى لإنتاج الأسئلة",
+  "@aiContentRequiredError": {
+    "description": "Error when no content is provided."
+  },
+  "aiContentLimitError": "المحتوى يتجاوز حد {max} كلمة",
+  "@aiContentLimitError": {
+    "description": "Validation error for word limit.",
+    "placeholders": {
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiMinWordsError": "قدم 10 كلمات على الأقل لإنتاج أسئلة عالية الجودة",
+  "@aiMinWordsError": {
+    "description": "Error when content is too short."
+  },
+  "aiInfoTitle": "معلومات",
+  "@aiInfoTitle": {
+    "description": "Title of the information section."
+  },
+  "aiInfoDescription": "• سيحلل الذكاء الاصطناعي المحتوى وينتج أسئلة ذات صلة\n• يمكنك تضمين نصوص وتعريفات وشروحات أو أي مادة تعليمية\n• ستتضمن الأسئلة خيارات إجابة وشروحات\n• قد تستغرق العملية بضع ثوانٍ",
+  "@aiInfoDescription": {
+    "description": "Informative description about the AI generation process."
+  },
+  "aiGenerateButton": "إنتاج الأسئلة",
+  "@aiGenerateButton": {
+    "description": "Text for the generate questions button."
+  },
+  "languageSpanish": "Español",
+  "@languageSpanish": {
+    "description": "Spanish language name."
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "English language name."
+  },
+  "languageFrench": "Français",
+  "@languageFrench": {
+    "description": "French language name."
+  },
+  "languageGerman": "Deutsch",
+  "@languageGerman": {
+    "description": "German language name."
+  },
+  "languageItalian": "Italiano",
+  "@languageItalian": {
+    "description": "Italian language name."
+  },
+  "languagePortuguese": "Português",
+  "@languagePortuguese": {
+    "description": "Portuguese language name."
+  },
+  "languageCatalan": "Català",
+  "@languageCatalan": {
+    "description": "Catalan language name."
+  },
+  "languageBasque": "Euskera",
+  "@languageBasque": {
+    "description": "Basque language name."
+  },
+  "languageGalician": "Galego",
+  "@languageGalician": {
+    "description": "Galician language name."
+  },
+  "languageHindi": "हिन्दी",
+  "@languageHindi": {
+    "description": "Hindi language name."
+  },
+  "languageChinese": "中文",
+  "@languageChinese": {
+    "description": "Chinese language name."
+  },
+  "languageArabic": "العربية",
+  "@languageArabic": {
+    "description": "Arabic language name."
+  },
+  "aiServicesLoading": "جاري تحميل خدمات الذكاء الاصطناعي...",
+  "@aiServicesLoading": {
+    "description": "Message shown while loading available AI services."
+  },
+  "aiServicesNotConfigured": "لم يتم تكوين خدمات الذكاء الاصطناعي",
+  "@aiServicesNotConfigured": {
+    "description": "Message shown when no AI services are configured."
+  },
+  "aiGeneratedQuestions": "منتج بالذكاء الاصطناعي",
+  "@aiGeneratedQuestions": {
+    "description": "Name for AI generated questions in the import dialog."
+  },
+  "aiApiKeyRequired": "يرجى تكوين مفتاح API واحد على الأقل للذكاء الاصطناعي في الإعدادات لاستخدام الإنتاج بالذكاء الاصطناعي.",
+  "@aiApiKeyRequired": {
+    "description": "Message shown when no API keys are configured for AI."
+  },
+  "aiGenerationFailed": "لم أتمكن من إنتاج الأسئلة. جرب بمحتوى مختلف.",
+  "@aiGenerationFailed": {
+    "description": "Message shown when AI question generation fails."
+  },
+  "aiGenerationError": "خطأ في إنتاج الأسئلة: {error}",
+  "@aiGenerationError": {
+    "description": "Error message when generating questions with AI.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "API key invalid"
+      }
+    }
+  },
+  "noQuestionsInFile": "لم توجد أسئلة في الملف المستورد",
+  "@noQuestionsInFile": {
+    "description": "Message shown when an imported file contains no questions."
+  },
+  "couldNotAccessFile": "لا يمكن الوصول إلى الملف المحدد",
+  "@couldNotAccessFile": {
+    "description": "Message shown when a selected file cannot be accessed."
+  },
+  "defaultOutputFileName": "output-file.quiz",
+  "@defaultOutputFileName": {
+    "description": "Default name for output files."
+  },
+  "aiServiceLimitsWithChars": "الحد: {words} كلمة أو {chars} حرف",
+  "@aiServiceLimitsWithChars": {
+    "description": "Description of AI service limits with both word and character limits.",
+    "placeholders": {
+      "words": {
+        "type": "int",
+        "example": "3000"
+      },
+      "chars": {
+        "type": "int",
+        "example": "12000"
+      }
+    }
+  },
+  "aiServiceLimitsWordsOnly": "الحد: {words} كلمة",
+  "@aiServiceLimitsWordsOnly": {
+    "description": "Description of AI service limits with only word limit.",
+    "placeholders": {
+      "words": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  }
+}
