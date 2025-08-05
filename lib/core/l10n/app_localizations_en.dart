@@ -753,4 +753,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get defaultOutputFileName => 'output-file.quiz';
+
+  @override
+  String aiServiceLimitsWithChars(int words, int chars) {
+    return 'Limit: $words words or $chars characters';
+  }
+
+  @override
+  String aiServiceLimitsWordsOnly(int words) {
+    return 'Limit: $words words';
+  }
 }

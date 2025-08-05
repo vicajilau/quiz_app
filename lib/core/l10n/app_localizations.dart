@@ -1399,6 +1399,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'output-file.quiz'**
   String get defaultOutputFileName;
+
+  /// Description of AI service limits with both word and character limits.
+  ///
+  /// In en, this message translates to:
+  /// **'Limit: {words} words or {chars} characters'**
+  String aiServiceLimitsWithChars(int words, int chars);
+
+  /// Description of AI service limits with only word limit.
+  ///
+  /// In en, this message translates to:
+  /// **'Limit: {words} words'**
+  String aiServiceLimitsWordsOnly(int words);
 }
 
 class _AppLocalizationsDelegate

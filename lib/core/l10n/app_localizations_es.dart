@@ -762,4 +762,14 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get defaultOutputFileName => 'archivo-salida.quiz';
+
+  @override
+  String aiServiceLimitsWithChars(int words, int chars) {
+    return 'Límite: $words palabras o $chars caracteres';
+  }
+
+  @override
+  String aiServiceLimitsWordsOnly(int words) {
+    return 'Límite: $words palabras';
+  }
 }

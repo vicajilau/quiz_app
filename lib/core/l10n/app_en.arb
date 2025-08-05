@@ -1072,5 +1072,29 @@
   "generateQuestionsWithAI": "Generate questions with AI",
   "@generateQuestionsWithAI": {
     "description": "Tooltip for the generate questions with AI button."
+  },
+  "aiServiceLimitsWithChars": "Limit: {words} words or {chars} characters",
+  "@aiServiceLimitsWithChars": {
+    "description": "Description of AI service limits with both word and character limits.",
+    "placeholders": {
+      "words": {
+        "type": "int",
+        "example": "3000"
+      },
+      "chars": {
+        "type": "int",
+        "example": "12000"
+      }
+    }
+  },
+  "aiServiceLimitsWordsOnly": "Limit: {words} words",
+  "@aiServiceLimitsWordsOnly": {
+    "description": "Description of AI service limits with only word limit.",
+    "placeholders": {
+      "words": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
   }
 }

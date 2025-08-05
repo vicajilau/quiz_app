@@ -20,6 +20,13 @@ class GeminiService extends AIService {
   @override
   String get defaultModel => _model;
 
+  // These will be overridden by AILimitsConfig if configured
+  @override
+  int get maxInputWords => 8000; // Fallback if not in config
+
+  @override
+  int? get maxInputCharacters => 30000; // Fallback if not in config
+
   @override
   Future<bool> isAvailable() async {
     final apiKey = await ConfigurationService.instance.getGeminiApiKey();

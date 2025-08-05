@@ -21,12 +21,17 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   AiQuestionType _selectedQuestionType = AiQuestionType.random;
   String _selectedLanguage = 'es';
   int _currentWordCount = 0;
-  static const int _maxWords = 3000; // AI word limit
 
   // Variables for AI selector
   List<AIService> _availableServices = [];
   AIService? _selectedService;
   bool _isLoadingServices = true;
+
+  // Dynamic AI word limit based on selected service
+  int get _maxWords {
+    return _selectedService?.maxInputWords ??
+        3000; // Fallback to 3000 if no service selected
+  }
 
   // Get supported languages from AppLocalizations
   List<String> get _supportedLanguages {
@@ -111,6 +116,14 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
     if (percentage <= 0.7) return Colors.green;
     if (percentage <= 0.9) return Colors.orange;
     return Colors.red;
+  }
+
+  bool _isContentValid() {
+    if (_selectedService != null) {
+      return _selectedService!.isContentWithinLimits(_textController.text);
+    }
+    // Fallback validation
+    return _currentWordCount <= _maxWords && _currentWordCount >= 10;
   }
 
   String _getQuestionTypeLabel(AiQuestionType type) {
@@ -237,6 +250,8 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                                       if (newService != null) {
                                         setState(() {
                                           _selectedService = newService;
+                                          // Revalidate content when service changes
+                                          _updateWordCount();
                                         });
                                       }
                                     },
@@ -246,6 +261,46 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                           ],
                         ),
                       ),
+
+                      // Service limits information
+                      if (_selectedService != null) ...[
+                        const SizedBox(height: 8),
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .surfaceContainerHighest
+                                .withValues(alpha: 0.3),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.info_outline,
+                                size: 16,
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onSurfaceVariant,
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  _selectedService!.getLimitsDescription(
+                                    localizations,
+                                  ),
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onSurfaceVariant,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                       const SizedBox(height: 20),
 
                       // Number of questions (optional)
@@ -383,9 +438,25 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                           if (value == null || value.trim().isEmpty) {
                             return localizations.aiContentRequiredError;
                           }
-                          if (_currentWordCount > _maxWords) {
-                            return localizations.aiContentLimitError(_maxWords);
+
+                          // Use the selected service's validation if available
+                          if (_selectedService != null) {
+                            if (!_selectedService!.isContentWithinLimits(
+                              value,
+                            )) {
+                              return localizations.aiContentLimitError(
+                                _maxWords,
+                              );
+                            }
+                          } else {
+                            // Fallback validation
+                            if (_currentWordCount > _maxWords) {
+                              return localizations.aiContentLimitError(
+                                _maxWords,
+                              );
+                            }
                           }
+
                           if (_currentWordCount < 10) {
                             return localizations.aiMinWordsError;
                           }
@@ -454,12 +525,8 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                   ),
                   const SizedBox(width: 16),
                   ElevatedButton.icon(
-                    onPressed:
-                        _currentWordCount > _maxWords ||
-                            (_availableServices.isNotEmpty &&
-                                _selectedService == null)
-                        ? null
-                        : () {
+                    onPressed: _isContentValid() && _selectedService != null
+                        ? () {
                             if (_formKey.currentState!.validate()) {
                               final config = AiQuestionGenerationConfig(
                                 questionCount:
@@ -473,7 +540,8 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                               );
                               Navigator.of(context).pop(config);
                             }
-                          },
+                          }
+                        : null,
                     icon: const Icon(Icons.auto_awesome),
                     label: Text(localizations.aiGenerateButton),
                   ),
