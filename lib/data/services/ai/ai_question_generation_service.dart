@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../../../data/services/configuration_service.dart';
-import '../../../data/services/ai/ai_service.dart';
-import '../../../core/l10n/app_localizations.dart';
-import '../../../domain/models/quiz/question.dart';
-import '../../../domain/models/quiz/question_type.dart';
+import '../../../../data/services/configuration_service.dart';
+import '../../../../data/services/ai/ai_service.dart';
+import '../../../../core/l10n/app_localizations.dart';
+import '../../../../domain/models/quiz/question.dart';
+import '../../../../domain/models/quiz/question_type.dart';
 
 // Extended enum to include the "random" option
 enum AiQuestionType {

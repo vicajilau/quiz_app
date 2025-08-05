@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../core/l10n/app_localizations.dart';
-import '../../../data/services/ai_question_generation_service.dart';
+import '../../../data/services/ai/ai_question_generation_service.dart';
 import '../../../data/services/ai/ai_service_selector.dart';
 import '../../../data/services/ai/ai_service.dart';
 

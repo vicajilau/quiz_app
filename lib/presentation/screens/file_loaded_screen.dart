@@ -25,7 +25,7 @@ import 'dialogs/import_questions_dialog.dart';
 import 'dialogs/ai_generate_questions_dialog.dart';
 import 'widgets/request_file_name_dialog.dart';
 import 'dialogs/settings_dialog.dart';
-import '../../data/services/ai_question_generation_service.dart';
+import '../../data/services/ai/ai_question_generation_service.dart';
 
 class FileLoadedScreen extends StatefulWidget {
   final FileBloc fileBloc;
