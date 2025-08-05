@@ -1017,6 +1017,10 @@
   "@languageArabic": {
     "description": "Arabic language name."
   },
+  "languageJapanese": "日本語",
+  "@languageJapanese": {
+    "description": "اسم اللغة اليابانية."
+  },
   "aiServicesLoading": "جاري تحميل خدمات الذكاء الاصطناعي...",
   "@aiServicesLoading": {
     "description": "Message shown while loading available AI services."

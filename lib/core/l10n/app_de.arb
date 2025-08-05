@@ -1005,6 +1005,22 @@
   "@languageGalician": {
     "description": "Galizischer Sprachname."
   },
+  "languageHindi": "हिन्दी",
+  "@languageHindi": {
+    "description": "Hindi-Sprachname."
+  },
+  "languageChinese": "中文",
+  "@languageChinese": {
+    "description": "Chinesischer Sprachname."
+  },
+  "languageArabic": "العربية",
+  "@languageArabic": {
+    "description": "Arabischer Sprachname."
+  },
+  "languageJapanese": "日本語",
+  "@languageJapanese": {
+    "description": "Japanischer Sprachname."
+  },
   "aiServicesLoading": "KI-Services werden geladen...",
   "@aiServicesLoading": {
     "description": "Nachricht, die während des Ladens verfügbarer KI-Services angezeigt wird."

@@ -1005,6 +1005,22 @@
   "@languageGalician": {
     "description": "Nom de la llengua gallega."
   },
+  "languageHindi": "हिन्दी",
+  "@languageHindi": {
+    "description": "Nom de la llengua hindi."
+  },
+  "languageChinese": "中文",
+  "@languageChinese": {
+    "description": "Nom de la llengua xinesa."
+  },
+  "languageArabic": "العربية",
+  "@languageArabic": {
+    "description": "Nom de la llengua àrab."
+  },
+  "languageJapanese": "日本語",
+  "@languageJapanese": {
+    "description": "Nom de la llengua japonesa."
+  },
   "aiServicesLoading": "Carregant serveis IA...",
   "@aiServicesLoading": {
     "description": "Missatge mostrat durant la càrrega de serveis IA disponibles."

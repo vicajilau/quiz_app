@@ -1009,6 +1009,18 @@
   "@languageHindi": {
     "description": "Hindi language name."
   },
+  "languageChinese": "中文",
+  "@languageChinese": {
+    "description": "चीनी भाषा का नाम।"
+  },
+  "languageArabic": "العربية",
+  "@languageArabic": {
+    "description": "अरबी भाषा का नाम।"
+  },
+  "languageJapanese": "日本語",
+  "@languageJapanese": {
+    "description": "जापानी भाषा का नाम।"
+  },
   "aiServicesLoading": "AI सेवाएं लोड हो रही हैं...",
   "@aiServicesLoading": {
     "description": "Message shown while loading available AI services."

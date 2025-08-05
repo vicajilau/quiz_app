@@ -1013,6 +1013,14 @@
   "@languageChinese": {
     "description": "Chinese language name."
   },
+  "languageArabic": "العربية",
+  "@languageArabic": {
+    "description": "阿拉伯语语言名称。"
+  },
+  "languageJapanese": "日本語",
+  "@languageJapanese": {
+    "description": "日语语言名称。"
+  },
   "aiServicesLoading": "正在加载AI服务...",
   "@aiServicesLoading": {
     "description": "Message shown while loading available AI services."
