@@ -12,6 +12,7 @@ import 'package:quiz_app/routes/app_router.dart';
 import 'package:platform_detail/platform_detail.dart';
 
 import '../../core/l10n/app_localizations.dart';
+import '../../core/extensions/string_extensions.dart';
 import '../../core/service_locator.dart';
 import '../../data/services/configuration_service.dart';
 import '../../domain/use_cases/check_file_changes_use_case.dart';
@@ -269,8 +270,11 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
         // Close loading dialog if still open
         if (mounted) {
           Navigator.of(context).pop();
+
           context.presentSnackBar(
-            AppLocalizations.of(context)!.aiGenerationError(e.toString()),
+            AppLocalizations.of(
+              context,
+            )!.aiGenerationError(e.toString().cleanExceptionPrefix()),
           );
         }
       }

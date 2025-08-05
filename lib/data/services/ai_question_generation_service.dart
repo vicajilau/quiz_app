@@ -77,7 +77,7 @@ class AiQuestionGenerationService {
 
       throw Exception('Could not generate questions with any AI service');
     } catch (e) {
-      throw Exception('Error generating questions: ${e.toString()}');
+      rethrow;
     }
   }
 
@@ -93,7 +93,7 @@ class AiQuestionGenerationService {
       final response = await aiService.getChatResponse(prompt, localizations);
       return _parseAiResponse(response);
     } catch (e) {
-      throw Exception('Error with ${aiService.serviceName}: ${e.toString()}');
+      rethrow; // Let the service handle its own errors
     }
   }
 
