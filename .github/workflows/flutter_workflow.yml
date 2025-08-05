@@ -16,11 +16,38 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
-          distribution: 'zulu'
-          java-version: '12'
+          distribution: "zulu"
+          java-version: "12"
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
+      - name: Configure l10n to generate untranslated messages file
+        run: |
+          echo "synthetic-package: false" > l10n.yaml
+          echo "arb-dir: lib/core/l10n" >> l10n.yaml
+          echo "template-arb-file: app_en.arb" >> l10n.yaml
+          echo "output-localization-file: app_localizations.dart" >> l10n.yaml
+          echo "untranslated-messages-file: untranslated_messages.json" >> l10n.yaml
+      - name: Generate localizations
+        run: flutter gen-l10n
+      - name: Check for untranslated messages
+        run: |
+          if [ ! -f "untranslated_messages.json" ]; then
+            echo "✅ No untranslated messages file found - all translations complete!"
+            exit 0
+          fi
+
+          content=$(cat untranslated_messages.json)
+          if [ "$content" = "{}" ]; then
+            echo "✅ All translations are complete!"
+            exit 0
+          else
+            echo "❌ Found untranslated messages:"
+            cat untranslated_messages.json
+            echo ""
+            echo "Please add the missing translations to the corresponding .arb files"
+            exit 1
+          fi
