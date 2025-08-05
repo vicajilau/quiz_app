@@ -775,4 +775,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String aiServiceLimitsWordsOnly(int words) {
     return 'Limit: $words words';
   }
+
+  @override
+  String get aiAssistantDisabled => 'AI Assistant Disabled';
+
+  @override
+  String get enableAiAssistant =>
+      'The AI assistant is disabled. Please enable it in settings to use AI features.';
 }

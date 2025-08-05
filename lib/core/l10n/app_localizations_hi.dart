@@ -775,4 +775,11 @@ class AppLocalizationsHi extends AppLocalizations {
   String aiServiceLimitsWordsOnly(int words) {
     return 'सीमा: $words शब्द';
   }
+
+  @override
+  String get aiAssistantDisabled => 'AI सहायक अक्षम';
+
+  @override
+  String get enableAiAssistant =>
+      'AI सहायक अक्षम है। AI सुविधाओं का उपयोग करने के लिए कृपया इसे सेटिंग्स में सक्षम करें।';
 }

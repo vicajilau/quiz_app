@@ -742,4 +742,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String aiServiceLimitsWordsOnly(int words) {
     return '限制：$words词';
   }
+
+  @override
+  String get aiAssistantDisabled => 'AI助手已禁用';
+
+  @override
+  String get enableAiAssistant => 'AI助手已禁用。请在设置中启用它以使用AI功能。';
 }

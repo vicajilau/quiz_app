@@ -770,4 +770,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String aiServiceLimitsWordsOnly(int words) {
     return 'الحد: $words كلمة';
   }
+
+  @override
+  String get aiAssistantDisabled => 'مساعد الذكاء الاصطناعي معطل';
+
+  @override
+  String get enableAiAssistant =>
+      'مساعد الذكاء الاصطناعي معطل. يرجى تفعيله في الإعدادات لاستخدام ميزات الذكاء الاصطناعي.';
 }

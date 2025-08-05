@@ -1086,5 +1086,13 @@
         "example": "3000"
       }
     }
+  },
+  "aiAssistantDisabled": "KI-Assistent Deaktiviert",
+  "@aiAssistantDisabled": {
+    "description": "Titel für Dialog wenn KI-Assistent deaktiviert ist"
+  },
+  "enableAiAssistant": "Der KI-Assistent ist deaktiviert. Bitte aktivieren Sie ihn in den Einstellungen, um KI-Funktionen zu nutzen.",
+  "@enableAiAssistant": {
+    "description": "Nachricht wenn KI-Assistent deaktiviert ist"
   }
 }

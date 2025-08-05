@@ -27,12 +27,6 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   AIService? _selectedService;
   bool _isLoadingServices = true;
 
-  // Dynamic AI word limit based on selected service
-  int get _maxWords {
-    return _selectedService?.maxInputWords ??
-        3000; // Fallback to 3000 if no service selected
-  }
-
   // Get supported languages from AppLocalizations
   List<String> get _supportedLanguages {
     return AppLocalizations.supportedLocales
@@ -141,21 +135,6 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
     setState(() {
       _currentWordCount = words;
     });
-  }
-
-  Color _getWordCountColor() {
-    final percentage = _currentWordCount / _maxWords;
-    if (percentage <= 0.7) return Colors.green;
-    if (percentage <= 0.9) return Colors.orange;
-    return Colors.red;
-  }
-
-  bool _isContentValid() {
-    if (_selectedService != null) {
-      return _selectedService!.isContentWithinLimits(_textController.text);
-    }
-    // Fallback validation
-    return _currentWordCount <= _maxWords && _currentWordCount >= 10;
   }
 
   String _getQuestionTypeLabel(AiQuestionType type) {
@@ -293,46 +272,6 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                           ],
                         ),
                       ),
-
-                      // Service limits information
-                      if (_selectedService != null) ...[
-                        const SizedBox(height: 8),
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .surfaceContainerHighest
-                                .withValues(alpha: 0.3),
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.info_outline,
-                                size: 16,
-                                color: Theme.of(
-                                  context,
-                                ).colorScheme.onSurfaceVariant,
-                              ),
-                              const SizedBox(width: 8),
-                              Expanded(
-                                child: Text(
-                                  _selectedService!.getLimitsDescription(
-                                    localizations,
-                                  ),
-                                  style: Theme.of(context).textTheme.bodySmall
-                                      ?.copyWith(
-                                        color: Theme.of(
-                                          context,
-                                        ).colorScheme.onSurfaceVariant,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
                       const SizedBox(height: 20),
 
                       // Number of questions (optional)
@@ -418,42 +357,6 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                       ),
                       const SizedBox(height: 20),
 
-                      // Word counter
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            localizations.aiContentLabel,
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: _getWordCountColor().withValues(
-                                alpha: 0.1,
-                              ),
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: _getWordCountColor()),
-                            ),
-                            child: Text(
-                              localizations.aiWordCount(
-                                _currentWordCount,
-                                _maxWords,
-                              ),
-                              style: TextStyle(
-                                color: _getWordCountColor(),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-
                       // Text field
                       TextFormField(
                         controller: _textController,
@@ -461,32 +364,11 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                           hintText: localizations.aiContentHint,
                           border: const OutlineInputBorder(),
                           helperText: localizations.aiContentHelperText,
-                          errorText: _currentWordCount > _maxWords
-                              ? localizations.aiWordLimitError(_maxWords)
-                              : null,
                         ),
                         maxLines: 8,
                         validator: (value) {
                           if (value == null || value.trim().isEmpty) {
                             return localizations.aiContentRequiredError;
-                          }
-
-                          // Use the selected service's validation if available
-                          if (_selectedService != null) {
-                            if (!_selectedService!.isContentWithinLimits(
-                              value,
-                            )) {
-                              return localizations.aiContentLimitError(
-                                _maxWords,
-                              );
-                            }
-                          } else {
-                            // Fallback validation
-                            if (_currentWordCount > _maxWords) {
-                              return localizations.aiContentLimitError(
-                                _maxWords,
-                              );
-                            }
                           }
 
                           if (_currentWordCount < 10) {
@@ -557,7 +439,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                   ),
                   const SizedBox(width: 16),
                   ElevatedButton.icon(
-                    onPressed: _isContentValid() && _selectedService != null
+                    onPressed: _selectedService != null
                         ? () {
                             if (_formKey.currentState!.validate()) {
                               final config = AiQuestionGenerationConfig(

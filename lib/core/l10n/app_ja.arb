@@ -1086,5 +1086,13 @@
         "example": "3000"
       }
     }
+  },
+  "aiAssistantDisabled": "AI学習アシスタントが無効",
+  "@aiAssistantDisabled": {
+    "description": "AI学習アシスタントが無効な場合のダイアログのタイトル"
+  },
+  "enableAiAssistant": "AI学習アシスタントが無効になっています。AI機能を使用するには設定で有効にしてください。",
+  "@enableAiAssistant": {
+    "description": "AI学習アシスタントが無効な場合に表示されるメッセージ"
   }
 }

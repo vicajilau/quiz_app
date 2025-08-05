@@ -1086,5 +1086,13 @@
         "example": "3000"
       }
     }
+  },
+  "aiAssistantDisabled": "Assistente IA Desabilitado",
+  "@aiAssistantDisabled": {
+    "description": "Título para diálogo quando assistente IA está desabilitado"
+  },
+  "enableAiAssistant": "O assistente IA está desabilitado. Ative-o nas configurações para usar as funcionalidades de IA.",
+  "@enableAiAssistant": {
+    "description": "Mensagem quando assistente IA está desabilitado"
   }
 }

@@ -789,4 +789,11 @@ class AppLocalizationsDe extends AppLocalizations {
   String aiServiceLimitsWordsOnly(int words) {
     return 'Limit: $words Wörter';
   }
+
+  @override
+  String get aiAssistantDisabled => 'KI-Assistent Deaktiviert';
+
+  @override
+  String get enableAiAssistant =>
+      'Der KI-Assistent ist deaktiviert. Bitte aktivieren Sie ihn in den Einstellungen, um KI-Funktionen zu nutzen.';
 }

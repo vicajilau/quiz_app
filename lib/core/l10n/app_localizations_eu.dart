@@ -784,4 +784,11 @@ class AppLocalizationsEu extends AppLocalizations {
   String aiServiceLimitsWordsOnly(int words) {
     return 'Muga: $words hitz';
   }
+
+  @override
+  String get aiAssistantDisabled => 'AI Laguntzailea Desgaituta';
+
+  @override
+  String get enableAiAssistant =>
+      'AI laguntzailea desgaituta dago. Mesedez, gaitu ezazu konfigurazioan AI funtzioak erabiltzeko.';
 }

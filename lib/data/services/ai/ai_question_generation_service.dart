@@ -36,7 +36,7 @@ class AiQuestionGenerationService {
   static const String _openaiApiUrl =
       'https://api.openai.com/v1/chat/completions';
   static const String _geminiApiUrl =
-      'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+      'https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent';
 
   /// Generates questions using AI based on the provided configuration
   Future<List<Question>> generateQuestions(

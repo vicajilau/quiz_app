@@ -744,4 +744,11 @@ class AppLocalizationsJa extends AppLocalizations {
   String aiServiceLimitsWordsOnly(int words) {
     return '制限：$words語';
   }
+
+  @override
+  String get aiAssistantDisabled => 'AI学習アシスタントが無効';
+
+  @override
+  String get enableAiAssistant =>
+      'AI学習アシスタントが無効になっています。AI機能を使用するには設定で有効にしてください。';
 }

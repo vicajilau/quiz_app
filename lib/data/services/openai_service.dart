@@ -19,13 +19,6 @@ class OpenAIService extends AIService {
   @override
   String get defaultModel => 'gpt-3.5-turbo';
 
-  // These will be overridden by AILimitsConfig if configured
-  @override
-  int get maxInputWords => 2000; // Fallback if not in config
-
-  @override
-  int? get maxInputCharacters => 8000; // Fallback if not in config
-
   @override
   Future<bool> isAvailable() async {
     final apiKey = await ConfigurationService.instance.getOpenAIApiKey();

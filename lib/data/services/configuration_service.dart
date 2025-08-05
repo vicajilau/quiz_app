@@ -18,13 +18,13 @@ class ConfigurationService {
 
   ConfigurationService._();
 
-  /// Guarda el orden de preguntas seleccionado en SharedPreferences
+  /// Saves the selected question order to SharedPreferences
   Future<void> saveQuestionOrder(QuestionOrder order) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_questionOrderKey, order.value);
   }
 
-  /// Obtiene el orden de preguntas guardado, por defecto es aleatorio
+  /// Gets the saved question order, defaults to random
   Future<QuestionOrder> getQuestionOrder() async {
     final prefs = await SharedPreferences.getInstance();
     final orderValue = prefs.getString(_questionOrderKey);
@@ -36,50 +36,50 @@ class ConfigurationService {
     return QuestionOrder.random; // Valor por defecto
   }
 
-  /// Guarda si el tiempo límite del examen está habilitado
+  /// Saves whether exam time limit is enabled
   Future<void> saveExamTimeEnabled(bool enabled) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_examTimeEnabledKey, enabled);
   }
 
-  /// Obtiene si el tiempo límite del examen está habilitado, por defecto es false
+  /// Gets whether exam time limit is enabled, defaults to false
   Future<bool> getExamTimeEnabled() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(_examTimeEnabledKey) ?? false;
   }
 
-  /// Guarda el tiempo límite del examen en minutos
+  /// Saves the exam time limit in minutes
   Future<void> saveExamTimeMinutes(int minutes) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt(_examTimeMinutesKey, minutes);
   }
 
-  /// Obtiene el tiempo límite del examen en minutos, por defecto es 60
+  /// Gets the exam time limit in minutes, defaults to 60
   Future<int> getExamTimeMinutes() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getInt(_examTimeMinutesKey) ?? 60;
   }
 
-  /// Guarda si el asistente de IA está habilitado
+  /// Saves whether AI assistant is enabled
   Future<void> saveAIAssistantEnabled(bool enabled) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_aiAssistantEnabledKey, enabled);
   }
 
-  /// Obtiene si el asistente de IA está habilitado, por defecto es true
+  /// Gets whether AI assistant is enabled, defaults to true
   Future<bool> getAIAssistantEnabled() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(_aiAssistantEnabledKey) ?? true;
   }
 
-  /// Guarda la API Key de OpenAI de forma segura (encriptada)
+  /// Saves OpenAI API Key securely (encrypted)
   Future<void> saveOpenAIApiKey(String apiKey) async {
     final prefs = await SharedPreferences.getInstance();
     final encryptedApiKey = EncryptionService.encrypt(apiKey);
     await prefs.setString(_openaiApiKeyKey, encryptedApiKey);
   }
 
-  /// Obtiene la API Key de OpenAI (desencriptada)
+  /// Gets OpenAI API Key (decrypted)
   Future<String?> getOpenAIApiKey() async {
     final prefs = await SharedPreferences.getInstance();
     final encryptedApiKey = prefs.getString(_openaiApiKeyKey);
@@ -91,20 +91,20 @@ class ConfigurationService {
     return EncryptionService.decrypt(encryptedApiKey);
   }
 
-  /// Elimina la API Key de OpenAI
+  /// Deletes OpenAI API Key
   Future<void> deleteOpenAIApiKey() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_openaiApiKeyKey);
   }
 
-  /// Guarda la API Key de Gemini de forma segura (encriptada)
+  /// Saves Gemini API Key securely (encrypted)
   Future<void> saveGeminiApiKey(String apiKey) async {
     final prefs = await SharedPreferences.getInstance();
     final encryptedApiKey = EncryptionService.encrypt(apiKey);
     await prefs.setString(_geminiApiKeyKey, encryptedApiKey);
   }
 
-  /// Obtiene la API Key de Gemini (desencriptada)
+  /// Gets Gemini API Key (decrypted)
   Future<String?> getGeminiApiKey() async {
     final prefs = await SharedPreferences.getInstance();
     final encryptedApiKey = prefs.getString(_geminiApiKeyKey);
@@ -116,31 +116,31 @@ class ConfigurationService {
     return EncryptionService.decrypt(encryptedApiKey);
   }
 
-  /// Elimina la API Key de Gemini
+  /// Deletes Gemini API Key
   Future<void> deleteGeminiApiKey() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_geminiApiKeyKey);
   }
 
-  /// Guarda si las respuestas deben ser aleatorizadas
+  /// Saves whether answers should be randomized
   Future<void> saveRandomizeAnswers(bool randomize) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_randomizeAnswersKey, randomize);
   }
 
-  /// Obtiene si las respuestas deben ser aleatorizadas, por defecto es false
+  /// Gets whether answers should be randomized, defaults to false
   Future<bool> getRandomizeAnswers() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(_randomizeAnswersKey) ?? false;
   }
 
-  /// Guarda si se debe mostrar el número de respuestas correctas
+  /// Saves whether to show correct answer count
   Future<void> saveShowCorrectAnswerCount(bool show) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_showCorrectAnswerCountKey, show);
   }
 
-  /// Obtiene si se debe mostrar el número de respuestas correctas, por defecto es false
+  /// Gets whether to show correct answer count, defaults to false
   Future<bool> getShowCorrectAnswerCount() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(_showCorrectAnswerCountKey) ?? false;

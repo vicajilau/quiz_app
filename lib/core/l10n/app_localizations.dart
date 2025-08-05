@@ -1457,6 +1457,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Limit: {words} words'**
   String aiServiceLimitsWordsOnly(int words);
+
+  /// Title for dialog when AI assistant is disabled
+  ///
+  /// In en, this message translates to:
+  /// **'AI Assistant Disabled'**
+  String get aiAssistantDisabled;
+
+  /// Message to show when AI assistant is disabled
+  ///
+  /// In en, this message translates to:
+  /// **'The AI assistant is disabled. Please enable it in settings to use AI features.'**
+  String get enableAiAssistant;
 }
 
 class _AppLocalizationsDelegate

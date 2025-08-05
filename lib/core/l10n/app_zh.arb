@@ -1086,5 +1086,13 @@
         "example": "3000"
       }
     }
+  },
+  "aiAssistantDisabled": "AI助手已禁用",
+  "@aiAssistantDisabled": {
+    "description": "AI助手禁用时对话框的标题"
+  },
+  "enableAiAssistant": "AI助手已禁用。请在设置中启用它以使用AI功能。",
+  "@enableAiAssistant": {
+    "description": "AI助手禁用时显示的消息"
   }
 }

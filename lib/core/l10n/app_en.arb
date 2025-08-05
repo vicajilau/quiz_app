@@ -1112,5 +1112,13 @@
         "example": "3000"
       }
     }
+  },
+  "aiAssistantDisabled": "AI Assistant Disabled",
+  "@aiAssistantDisabled": {
+    "description": "Title for dialog when AI assistant is disabled"
+  },
+  "enableAiAssistant": "The AI assistant is disabled. Please enable it in settings to use AI features.",
+  "@enableAiAssistant": {
+    "description": "Message to show when AI assistant is disabled"
   }
 }

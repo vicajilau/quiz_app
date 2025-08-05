@@ -1086,5 +1086,13 @@
         "example": "3000"
       }
     }
+  },
+  "aiAssistantDisabled": "AI Laguntzailea Desgaituta",
+  "@aiAssistantDisabled": {
+    "description": "AI laguntzailea desgaituta dagoeneko elkarrizketa-koadroaren izenburua"
+  },
+  "enableAiAssistant": "AI laguntzailea desgaituta dago. Mesedez, gaitu ezazu konfigurazioan AI funtzioak erabiltzeko.",
+  "@enableAiAssistant": {
+    "description": "AI laguntzailea desgaituta dagoenean erakutsi beharreko mezua"
   }
 }
