@@ -1,0 +1,1074 @@
+{
+  "titleAppBar": "Quiz - Simulateur d'Examens",
+  "@titleAppBar": {
+    "description": "Titre de l'application affiché dans l'AppBar."
+  },
+  "create": "Créer",
+  "@create": {
+    "description": "Libellé du bouton Créer fichier Quiz dans l'AppBar."
+  },
+  "load": "Charger",
+  "@load": {
+    "description": "Libellé du bouton Charger fichier Quiz dans l'AppBar."
+  },
+  "fileLoaded": "Fichier chargé : {filePath}",
+  "@fileLoaded": {
+    "description": "Message affiché lorsqu'un fichier est chargé avec succès.",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/chemin/vers/fichier.quiz"
+      }
+    }
+  },
+  "fileSaved": "Fichier sauvegardé : {filePath}",
+  "@fileSaved": {
+    "description": "Message affiché lorsqu'un fichier est sauvegardé avec succès.",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/chemin/vers/fichier.quiz"
+      }
+    }
+  },
+  "dropFileHere": "Cliquez ici ou faites glisser un fichier .quiz vers l'écran",
+  "@dropFileHere": {
+    "description": "Texte affiché dans la zone de dépôt pour faire glisser des fichiers."
+  },
+  "errorInvalidFile": "Erreur : Fichier invalide. Doit être un fichier .quiz.",
+  "@errorInvalidFile": {
+    "description": "Message affiché lorsque le fichier déposé n'est pas un fichier .quiz."
+  },
+  "errorLoadingFile": "Erreur lors du chargement du fichier Quiz : {error}",
+  "@errorLoadingFile": {
+    "description": "Message affiché lorsqu'il y a une erreur pendant le chargement d'un fichier Quiz.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Fichier non trouvé"
+      }
+    }
+  },
+  "errorExportingFile": "Erreur lors de l'exportation du fichier : {error}",
+  "@errorExportingFile": {
+    "description": "Message affiché lorsqu'il y a une erreur pendant l'exportation d'un fichier.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Fichier non trouvé"
+      }
+    }
+  },
+  "cancelButton": "Annuler",
+  "@cancelButton": {
+    "description": "Bouton Annuler."
+  },
+  "saveButton": "Sauvegarder",
+  "@saveButton": {
+    "description": "Bouton Sauvegarder."
+  },
+  "confirmDeleteTitle": "Confirmer la suppression",
+  "@confirmDeleteTitle": {
+    "description": "Titre de la boîte de dialogue de confirmation lors de la suppression d'un processus."
+  },
+  "confirmDeleteMessage": "Êtes-vous sûr de vouloir supprimer le processus `{processName}` ?",
+  "@confirmDeleteMessage": {
+    "description": "Message dans la boîte de dialogue de confirmation pour la suppression.",
+    "placeholders": {
+      "processName": {
+        "type": "String",
+        "example": "Question 1"
+      }
+    }
+  },
+  "deleteButton": "Supprimer",
+  "@deleteButton": {
+    "description": "Texte du bouton pour confirmer la suppression."
+  },
+  "confirmExitTitle": "Confirmer la sortie",
+  "@confirmExitTitle": {
+    "description": "Titre de la boîte de dialogue de confirmation lors de la sortie."
+  },
+  "confirmExitMessage": "Êtes-vous sûr de vouloir quitter sans sauvegarder ?",
+  "@confirmExitMessage": {
+    "description": "Message dans la boîte de dialogue de confirmation pour la sortie."
+  },
+  "exitButton": "Quitter",
+  "@exitButton": {
+    "description": "Texte du bouton Quitter."
+  },
+  "saveDialogTitle": "Veuillez sélectionner un fichier de sortie :",
+  "@saveDialogTitle": {
+    "description": "Titre de la boîte de dialogue de sauvegarde."
+  },
+  "createQuizFileTitle": "Créer un fichier Quiz",
+  "@createQuizFileTitle": {
+    "description": "Titre de la boîte de dialogue de création de fichier quiz."
+  },
+  "fileNameLabel": "Nom du fichier",
+  "@fileNameLabel": {
+    "description": "Libellé pour la saisie du nom de fichier."
+  },
+  "fileDescriptionLabel": "Description du fichier",
+  "@fileDescriptionLabel": {
+    "description": "Libellé pour la saisie de la description du fichier."
+  },
+  "createButton": "Créer",
+  "@createButton": {
+    "description": "Texte du bouton Créer."
+  },
+  "fileNameRequiredError": "Le nom du fichier est requis.",
+  "@fileNameRequiredError": {
+    "description": "Message d'erreur lorsque le nom du fichier est vide."
+  },
+  "fileDescriptionRequiredError": "La description du fichier est requise.",
+  "@fileDescriptionRequiredError": {
+    "description": "Message d'erreur lorsque la description du fichier est vide."
+  },
+  "versionLabel": "Version",
+  "@versionLabel": {
+    "description": "Libellé pour le champ version du quiz"
+  },
+  "authorLabel": "Auteur",
+  "@authorLabel": {
+    "description": "Libellé pour le champ auteur du quiz"
+  },
+  "authorRequiredError": "L'auteur est requis.",
+  "@authorRequiredError": {
+    "description": "Message d'erreur lorsque le champ auteur est vide"
+  },
+  "requiredFieldsError": "Tous les champs requis doivent être complétés.",
+  "@requiredFieldsError": {
+    "description": "Message d'erreur lorsque des champs requis sont manquants"
+  },
+  "requestFileNameTitle": "Entrez le nom du fichier Quiz",
+  "@requestFileNameTitle": {
+    "description": "Titre de la boîte de dialogue de demande de nom de fichier."
+  },
+  "fileNameHint": "Nom du fichier",
+  "@fileNameHint": {
+    "description": "Texte d'indication pour la saisie du nom de fichier."
+  },
+  "emptyFileNameMessage": "Le nom du fichier ne peut pas être vide.",
+  "@emptyFileNameMessage": {
+    "description": "Message d'erreur lorsque le nom du fichier est vide."
+  },
+  "acceptButton": "Accepter",
+  "@acceptButton": {
+    "description": "Texte du bouton Accepter."
+  },
+  "saveTooltip": "Sauvegarder le fichier",
+  "@saveTooltip": {
+    "description": "Info-bulle pour le bouton sauvegarder."
+  },
+  "saveDisabledTooltip": "Aucun changement à sauvegarder",
+  "@saveDisabledTooltip": {
+    "description": "Info-bulle pour le bouton sauvegarder désactivé."
+  },
+  "executeTooltip": "Exécuter l'examen",
+  "@executeTooltip": {
+    "description": "Info-bulle pour le bouton exécuter."
+  },
+  "addTooltip": "Ajouter une nouvelle question",
+  "@addTooltip": {
+    "description": "Info-bulle pour le bouton ajouter."
+  },
+  "backSemanticLabel": "Bouton retour",
+  "@backSemanticLabel": {
+    "description": "Libellé sémantique pour le bouton retour."
+  },
+  "createFileTooltip": "Créer un nouveau fichier Quiz",
+  "@createFileTooltip": {
+    "description": "Info-bulle pour le bouton créer fichier."
+  },
+  "loadFileTooltip": "Charger un fichier Quiz existant",
+  "@loadFileTooltip": {
+    "description": "Info-bulle pour le bouton charger fichier."
+  },
+  "questionNumber": "Question {number}",
+  "@questionNumber": {
+    "description": "Libellé du numéro de question dans l'exécution du quiz",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "previous": "Précédent",
+  "@previous": {
+    "description": "Texte du bouton précédent dans la navigation du quiz"
+  },
+  "next": "Suivant",
+  "@next": {
+    "description": "Texte du bouton suivant dans la navigation du quiz"
+  },
+  "finish": "Terminer",
+  "@finish": {
+    "description": "Texte du bouton terminer dans la navigation du quiz"
+  },
+  "finishQuiz": "Terminer le Quiz",
+  "@finishQuiz": {
+    "description": "Titre de la boîte de dialogue terminer quiz"
+  },
+  "finishQuizConfirmation": "Êtes-vous sûr de vouloir terminer le quiz ? Vous ne pourrez plus modifier vos réponses après.",
+  "@finishQuizConfirmation": {
+    "description": "Message de confirmation pour terminer le quiz"
+  },
+  "cancel": "Annuler",
+  "@cancel": {
+    "description": "Texte du bouton annuler"
+  },
+  "abandonQuiz": "Abandonner le Quiz",
+  "@abandonQuiz": {
+    "description": "Titre de la boîte de dialogue abandonner quiz"
+  },
+  "abandonQuizConfirmation": "Êtes-vous sûr de vouloir abandonner le quiz ? Tous les progrès seront perdus.",
+  "@abandonQuizConfirmation": {
+    "description": "Message de confirmation pour abandonner le quiz"
+  },
+  "abandon": "Abandonner",
+  "@abandon": {
+    "description": "Texte du bouton abandonner"
+  },
+  "quizCompleted": "Quiz Terminé !",
+  "@quizCompleted": {
+    "description": "Message de quiz terminé"
+  },
+  "score": "Score : {score}%",
+  "@score": {
+    "description": "Affichage du score",
+    "placeholders": {
+      "score": {
+        "type": "String",
+        "example": "85.5"
+      }
+    }
+  },
+  "correctAnswers": "{correct} de {total} réponses correctes",
+  "@correctAnswers": {
+    "description": "Compteur de réponses correctes",
+    "placeholders": {
+      "correct": {
+        "type": "int",
+        "example": "8"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "retry": "Répéter",
+  "@retry": {
+    "description": "Texte du bouton répéter"
+  },
+  "goBack": "Terminer",
+  "@goBack": {
+    "description": "Texte du bouton retour"
+  },
+  "retryFailedQuestions": "Reprendre Échecs",
+  "@retryFailedQuestions": {
+    "description": "Texte du bouton pour reprendre seulement les questions avec des réponses incorrectes"
+  },
+  "question": "Question : {question}",
+  "@question": {
+    "description": "Texte de la question dans les résultats",
+    "placeholders": {
+      "question": {
+        "type": "String",
+        "example": "Quelle est la capitale de la France ?"
+      }
+    }
+  },
+  "selectQuestionCountTitle": "Sélectionner le nombre de questions",
+  "@selectQuestionCountTitle": {
+    "description": "Titre de la boîte de dialogue pour sélectionner le nombre de questions pour le quiz"
+  },
+  "selectQuestionCountMessage": "Combien de questions aimeriez-vous répondre dans ce quiz ?",
+  "@selectQuestionCountMessage": {
+    "description": "Message expliquant la sélection du nombre de questions"
+  },
+  "allQuestions": "Toutes les questions ({count})",
+  "@allQuestions": {
+    "description": "Option pour sélectionner toutes les questions disponibles",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "startQuiz": "Commencer le Quiz",
+  "@startQuiz": {
+    "description": "Texte du bouton pour commencer le quiz"
+  },
+  "customNumberLabel": "Ou entrez un nombre personnalisé :",
+  "@customNumberLabel": {
+    "description": "Libellé pour la section de saisie de nombre personnalisé"
+  },
+  "numberInputLabel": "Nombre de questions",
+  "@numberInputLabel": {
+    "description": "Libellé pour le champ de saisie de nombre"
+  },
+  "customNumberHelper": "Entrez n'importe quel nombre (max {total}). Si supérieur, les questions se répéteront.",
+  "@customNumberHelper": {
+    "description": "Texte d'aide expliquant la saisie de nombre personnalisé",
+    "placeholders": {
+      "total": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "errorInvalidNumber": "Veuillez entrer un nombre valide",
+  "@errorInvalidNumber": {
+    "description": "Message d'erreur pour une saisie de nombre invalide"
+  },
+  "errorNumberMustBePositive": "Le nombre doit être supérieur à 0",
+  "@errorNumberMustBePositive": {
+    "description": "Message d'erreur lorsque le nombre est zéro ou négatif"
+  },
+  "questionOrderConfigTitle": "Configuration de l'ordre des questions",
+  "@questionOrderConfigTitle": {
+    "description": "Titre de la boîte de dialogue de configuration de l'ordre des questions"
+  },
+  "questionOrderConfigDescription": "Sélectionnez l'ordre dans lequel vous voulez que les questions apparaissent pendant l'examen :",
+  "@questionOrderConfigDescription": {
+    "description": "Texte de description de la boîte de dialogue de configuration de l'ordre des questions"
+  },
+  "questionOrderAscending": "Ordre Croissant",
+  "@questionOrderAscending": {
+    "description": "Libellé pour l'option d'ordre croissant des questions"
+  },
+  "questionOrderAscendingDesc": "Les questions apparaîtront dans l'ordre de 1 à la fin",
+  "@questionOrderAscendingDesc": {
+    "description": "Description pour l'option d'ordre croissant des questions"
+  },
+  "questionOrderDescending": "Ordre Décroissant",
+  "@questionOrderDescending": {
+    "description": "Libellé pour l'option d'ordre décroissant des questions"
+  },
+  "questionOrderDescendingDesc": "Les questions apparaîtront de la fin à 1",
+  "@questionOrderDescendingDesc": {
+    "description": "Description pour l'option d'ordre décroissant des questions"
+  },
+  "questionOrderRandom": "Aléatoire",
+  "@questionOrderRandom": {
+    "description": "Libellé pour l'option d'ordre aléatoire des questions"
+  },
+  "questionOrderRandomDesc": "Les questions apparaîtront dans un ordre aléatoire",
+  "@questionOrderRandomDesc": {
+    "description": "Description pour l'option d'ordre aléatoire des questions"
+  },
+  "questionOrderConfigTooltip": "Configuration de l'ordre des questions",
+  "@questionOrderConfigTooltip": {
+    "description": "Info-bulle pour le bouton de configuration de l'ordre des questions"
+  },
+  "save": "Sauvegarder",
+  "@save": {
+    "description": "Libellé pour le bouton sauvegarder"
+  },
+  "examTimeLimitTitle": "Limite de temps d'examen",
+  "@examTimeLimitTitle": {
+    "description": "Titre pour la section limite de temps d'examen"
+  },
+  "examTimeLimitDescription": "Définir une limite de temps pour l'examen. Lorsqu'elle est activée, un minuteur de compte à rebours sera affiché pendant le quiz.",
+  "@examTimeLimitDescription": {
+    "description": "Description pour la fonctionnalité de limite de temps d'examen"
+  },
+  "enableTimeLimit": "Activer la limite de temps",
+  "@enableTimeLimit": {
+    "description": "Libellé pour l'interrupteur d'activation de la limite de temps d'examen"
+  },
+  "timeLimitMinutes": "Limite de temps (minutes)",
+  "@timeLimitMinutes": {
+    "description": "Libellé pour la saisie des minutes de limite de temps d'examen"
+  },
+  "examTimeExpiredTitle": "Temps écoulé !",
+  "@examTimeExpiredTitle": {
+    "description": "Titre de la boîte de dialogue temps d'examen écoulé"
+  },
+  "examTimeExpiredMessage": "Le temps d'examen a expiré. Vos réponses ont été automatiquement soumises.",
+  "@examTimeExpiredMessage": {
+    "description": "Message de la boîte de dialogue temps d'examen écoulé"
+  },
+  "remainingTime": "{hours}:{minutes}:{seconds}",
+  "@remainingTime": {
+    "description": "Format d'affichage du temps restant (heures:minutes:secondes)",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "01"
+      },
+      "minutes": {
+        "type": "String",
+        "example": "30"
+      },
+      "seconds": {
+        "type": "String",
+        "example": "45"
+      }
+    }
+  },
+  "questionTypeMultipleChoice": "Choix Multiple",
+  "@questionTypeMultipleChoice": {
+    "description": "Libellé pour le type de question à choix multiple"
+  },
+  "questionTypeSingleChoice": "Choix Unique",
+  "@questionTypeSingleChoice": {
+    "description": "Libellé pour le type de question à choix unique"
+  },
+  "questionTypeTrueFalse": "Vrai/Faux",
+  "@questionTypeTrueFalse": {
+    "description": "Libellé pour le type de question vrai/faux"
+  },
+  "questionTypeEssay": "Essai",
+  "@questionTypeEssay": {
+    "description": "Libellé pour le type de question essai"
+  },
+  "questionTypeUnknown": "Inconnu",
+  "@questionTypeUnknown": {
+    "description": "Libellé pour le type de question inconnu"
+  },
+  "optionsCount": "{count, plural, =1{1 option} other{{count} options}}",
+  "@optionsCount": {
+    "description": "Texte montrant le nombre d'options dans une question",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "optionsTooltip": "Nombre d'options de réponse pour cette question",
+  "@optionsTooltip": {
+    "description": "Texte d'info-bulle pour le badge de nombre d'options"
+  },
+  "imageTooltip": "Cette question a une image associée",
+  "@imageTooltip": {
+    "description": "Texte d'info-bulle pour le badge d'indicateur d'image"
+  },
+  "explanationTooltip": "Cette question a une explication",
+  "@explanationTooltip": {
+    "description": "Texte d'info-bulle pour le badge d'indicateur d'explication"
+  },
+  "aiPrompt": "Vous êtes un tuteur expert et amical spécialisé dans l'aide aux étudiants pour mieux comprendre les questions d'examen et les sujets connexes. Votre objectif est de faciliter l'apprentissage profond et la compréhension conceptuelle.\n\nVous pouvez aider avec :\n- Expliquer les concepts liés à la question\n- Clarifier les doutes sur les options de réponse\n- Fournir un contexte supplémentaire sur le sujet\n- Suggérer des ressources d'étude complémentaires\n- Expliquer pourquoi certaines réponses sont correctes ou incorrectes\n- Relier le sujet à d'autres concepts importants\n- Répondre aux questions de suivi sur le matériel\n\nRépondez toujours dans la même langue dans laquelle on vous pose la question. Soyez pédagogique, clair et motivant dans vos explications.",
+  "@aiPrompt": {
+    "description": "Prompt de base pour l'assistant IA"
+  },
+  "questionLabel": "Question",
+  "@questionLabel": {
+    "description": "Libellé pour la question dans la boîte de dialogue IA"
+  },
+  "optionsLabel": "Options",
+  "@optionsLabel": {
+    "description": "Libellé pour les options dans la boîte de dialogue IA"
+  },
+  "explanationLabel": "Explication",
+  "@explanationLabel": {
+    "description": "Libellé pour l'explication dans la boîte de dialogue IA"
+  },
+  "studentComment": "Commentaire de l'étudiant",
+  "@studentComment": {
+    "description": "Libellé pour le commentaire de l'étudiant dans la boîte de dialogue IA"
+  },
+  "aiAssistantTitle": "Assistant d'Étude IA",
+  "@aiAssistantTitle": {
+    "description": "Titre de la boîte de dialogue assistant IA"
+  },
+  "questionContext": "Contexte de la Question",
+  "@questionContext": {
+    "description": "Libellé pour la section contexte de la question"
+  },
+  "aiAssistant": "Assistant IA",
+  "@aiAssistant": {
+    "description": "Libellé de l'assistant IA dans le chat"
+  },
+  "aiThinking": "L'IA réfléchit...",
+  "@aiThinking": {
+    "description": "Message de chargement pendant que l'IA traite"
+  },
+  "askAIHint": "Posez votre question sur ce sujet...",
+  "@askAIHint": {
+    "description": "Texte d'indication pour la saisie de question IA"
+  },
+  "aiPlaceholderResponse": "Ceci est une réponse d'espace réservé. Dans une implémentation réelle, cela se connecterait à un service IA pour fournir des explications utiles sur la question.",
+  "@aiPlaceholderResponse": {
+    "description": "Réponse IA d'espace réservé pour la démo"
+  },
+  "aiErrorResponse": "Désolé, il y a eu une erreur lors du traitement de votre question. Veuillez réessayer.",
+  "@aiErrorResponse": {
+    "description": "Message d'erreur lorsque la demande IA échoue"
+  },
+  "configureApiKeyMessage": "Veuillez configurer votre clé API IA dans les Paramètres.",
+  "@configureApiKeyMessage": {
+    "description": "Message pour configurer la clé API lorsqu'elle n'est pas définie"
+  },
+  "errorLabel": "Erreur :",
+  "@errorLabel": {
+    "description": "Préfixe du libellé d'erreur pour les messages d'erreur"
+  },
+  "noResponseReceived": "Aucune réponse reçue",
+  "@noResponseReceived": {
+    "description": "Message lorsqu'aucune réponse n'est reçue de l'IA"
+  },
+  "invalidApiKeyError": "Clé API invalide. Veuillez vérifier votre clé API OpenAI dans les paramètres.",
+  "@invalidApiKeyError": {
+    "description": "Message d'erreur pour une clé API invalide"
+  },
+  "rateLimitError": "Limite de taux dépassée. Veuillez réessayer plus tard.",
+  "@rateLimitError": {
+    "description": "Message d'erreur pour limite de taux dépassée"
+  },
+  "modelNotFoundError": "Modèle non trouvé. Veuillez vérifier votre accès API.",
+  "@modelNotFoundError": {
+    "description": "Message d'erreur pour modèle non trouvé"
+  },
+  "unknownError": "Erreur inconnue",
+  "@unknownError": {
+    "description": "Message d'erreur générique inconnue"
+  },
+  "networkError": "Erreur réseau : Impossible de se connecter à OpenAI. Veuillez vérifier votre connexion internet.",
+  "@networkError": {
+    "description": "Message d'erreur de connectivité réseau"
+  },
+  "openaiApiKeyNotConfigured": "Clé API OpenAI non configurée",
+  "@openaiApiKeyNotConfigured": {
+    "description": "Message d'erreur lorsque la clé API n'est pas configurée"
+  },
+  "geminiApiKeyNotConfigured": "Clé API Gemini non configurée",
+  "@geminiApiKeyNotConfigured": {
+    "description": "Message d'erreur lorsque la clé API Gemini n'est pas configurée"
+  },
+  "geminiApiKeyLabel": "Clé API Google Gemini",
+  "@geminiApiKeyLabel": {
+    "description": "Libellé pour le champ Clé API Gemini"
+  },
+  "geminiApiKeyHint": "Entrez votre clé API Gemini",
+  "@geminiApiKeyHint": {
+    "description": "Texte d'indication pour le champ Clé API Gemini"
+  },
+  "geminiApiKeyDescription": "Requis pour la fonctionnalité IA Gemini. Votre clé est stockée en sécurité.",
+  "@geminiApiKeyDescription": {
+    "description": "Description pour le champ Clé API Gemini"
+  },
+  "getGeminiApiKeyTooltip": "Obtenir la clé API depuis Google AI Studio",
+  "@getGeminiApiKeyTooltip": {
+    "description": "Info-bulle pour le bouton d'obtention de clé API Gemini"
+  },
+  "aiRequiresAtLeastOneApiKeyError": "L'Assistant d'Étude IA nécessite au moins une clé API (OpenAI ou Gemini). Veuillez entrer une clé API ou désactiver l'Assistant IA.",
+  "@aiRequiresAtLeastOneApiKeyError": {
+    "description": "Message d'erreur lorsque l'Assistant IA est activé mais qu'aucune clé API n'est fournie"
+  },
+  "minutesAbbreviation": "min",
+  "@minutesAbbreviation": {
+    "description": "Abréviation pour minutes"
+  },
+  "aiButtonTooltip": "Assistant d'Étude IA",
+  "@aiButtonTooltip": {
+    "description": "Info-bulle pour le bouton assistant IA"
+  },
+  "aiButtonText": "IA",
+  "@aiButtonText": {
+    "description": "Texte pour le bouton assistant IA"
+  },
+  "aiAssistantSettingsTitle": "Assistant d'Étude IA (Aperçu)",
+  "@aiAssistantSettingsTitle": {
+    "description": "Titre pour la section paramètres assistant IA"
+  },
+  "aiAssistantSettingsDescription": "Activer ou désactiver l'assistant d'étude IA pour les questions",
+  "@aiAssistantSettingsDescription": {
+    "description": "Description pour les paramètres assistant IA"
+  },
+  "openaiApiKeyLabel": "Clé API OpenAI",
+  "@openaiApiKeyLabel": {
+    "description": "Libellé pour le champ Clé API OpenAI"
+  },
+  "openaiApiKeyHint": "Entrez votre clé API OpenAI (sk-...)",
+  "@openaiApiKeyHint": {
+    "description": "Texte d'indication pour le champ Clé API OpenAI"
+  },
+  "openaiApiKeyDescription": "Requis pour la fonctionnalité IA. Votre clé est stockée en sécurité.",
+  "@openaiApiKeyDescription": {
+    "description": "Description pour le champ Clé API OpenAI"
+  },
+  "aiAssistantRequiresApiKeyError": "L'Assistant d'Étude IA nécessite une clé API OpenAI. Veuillez entrer votre clé API ou désactiver l'Assistant IA.",
+  "@aiAssistantRequiresApiKeyError": {
+    "description": "Message d'erreur lorsque l'Assistant IA est activé mais qu'aucune clé API n'est fournie"
+  },
+  "getApiKeyTooltip": "Obtenir la clé API depuis OpenAI",
+  "@getApiKeyTooltip": {
+    "description": "Info-bulle pour le bouton d'obtention de clé API depuis OpenAI"
+  },
+  "deleteAction": "Supprimer",
+  "@deleteAction": {
+    "description": "Texte d'action de suppression affiché lors du glissement pour supprimer"
+  },
+  "explanationLabel": "Explication (optionnelle)",
+  "@explanationLabel": {
+    "description": "Libellé pour le champ de saisie d'explication"
+  },
+  "explanationHint": "Entrez une explication pour la ou les réponses correctes",
+  "@explanationHint": {
+    "description": "Texte d'indication pour le champ de saisie d'explication"
+  },
+  "explanationTitle": "Explication",
+  "@explanationTitle": {
+    "description": "Titre pour la section explication dans les résultats du quiz"
+  },
+  "imageLabel": "Image",
+  "@imageLabel": {
+    "description": "Libellé pour la section image dans l'éditeur de question"
+  },
+  "changeImage": "Changer l'image",
+  "@changeImage": {
+    "description": "Texte pour le bouton de changement d'image actuelle"
+  },
+  "removeImage": "Supprimer l'image",
+  "@removeImage": {
+    "description": "Texte pour le bouton de suppression d'image actuelle"
+  },
+  "addImageTap": "Appuyez pour ajouter une image",
+  "@addImageTap": {
+    "description": "Texte d'instruction pour ajouter une image"
+  },
+  "imageFormats": "Formats : JPG, PNG, GIF",
+  "@imageFormats": {
+    "description": "Texte indiquant les formats d'image supportés"
+  },
+  "imageLoadError": "Erreur de chargement de l'image",
+  "@imageLoadError": {
+    "description": "Message d'erreur lorsque l'image ne peut pas être chargée"
+  },
+  "imagePickError": "Erreur de chargement de l'image : {error}",
+  "@imagePickError": {
+    "description": "Message d'erreur lorsque la sélection d'image échoue",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Fichier invalide"
+      }
+    }
+  },
+  "tapToZoom": "Appuyez pour zoomer",
+  "@tapToZoom": {
+    "description": "Texte d'instruction pour indiquer que l'image peut être zoomée"
+  },
+  "trueLabel": "Vrai",
+  "@trueLabel": {
+    "description": "Libellé pour l'option vrai dans les questions vrai/faux"
+  },
+  "falseLabel": "Faux",
+  "@falseLabel": {
+    "description": "Libellé pour l'option faux dans les questions vrai/faux"
+  },
+  "addQuestion": "Ajouter une Question",
+  "@addQuestion": {
+    "description": "Titre pour la boîte de dialogue d'ajout d'une nouvelle question"
+  },
+  "editQuestion": "Modifier la Question",
+  "@editQuestion": {
+    "description": "Titre pour la boîte de dialogue de modification d'une question existante"
+  },
+  "questionText": "Texte de la Question",
+  "@questionText": {
+    "description": "Libellé pour le champ de saisie du texte de la question"
+  },
+  "questionType": "Type de Question",
+  "@questionType": {
+    "description": "Libellé pour la liste déroulante du type de question"
+  },
+  "addOption": "Ajouter une Option",
+  "@addOption": {
+    "description": "Libellé pour le bouton d'ajout d'option"
+  },
+  "optionLabel": "Option",
+  "@optionLabel": {
+    "description": "Libellé pour le champ de saisie d'option individuelle"
+  },
+  "questionTextRequired": "Le texte de la question est requis",
+  "@questionTextRequired": {
+    "description": "Message d'erreur lorsque le texte de la question est vide"
+  },
+  "atLeastOneOptionRequired": "Au moins une option doit avoir du texte",
+  "@atLeastOneOptionRequired": {
+    "description": "Message d'erreur lorsque toutes les options sont vides"
+  },
+  "atLeastOneCorrectAnswerRequired": "Au moins une réponse correcte doit être sélectionnée",
+  "@atLeastOneCorrectAnswerRequired": {
+    "description": "Message d'erreur lorsqu'aucune réponse correcte n'est sélectionnée"
+  },
+  "onlyOneCorrectAnswerAllowed": "Une seule réponse correcte est autorisée pour ce type de question",
+  "@onlyOneCorrectAnswerAllowed": {
+    "description": "Message d'erreur lorsque plusieurs réponses correctes sont sélectionnées pour les questions à choix unique"
+  },
+  "removeOption": "Supprimer l'option",
+  "@removeOption": {
+    "description": "Info-bulle pour le bouton de suppression d'option"
+  },
+  "selectCorrectAnswer": "Sélectionner la réponse correcte",
+  "@selectCorrectAnswer": {
+    "description": "Info-bulle pour le bouton radio de sélection de réponse correcte"
+  },
+  "selectCorrectAnswers": "Sélectionner les réponses correctes",
+  "@selectCorrectAnswers": {
+    "description": "Info-bulle pour la case à cocher de sélection de réponses correctes"
+  },
+  "emptyOptionsError": "Les options {optionNumbers} sont vides. Veuillez leur ajouter du texte ou les supprimer.",
+  "@emptyOptionsError": {
+    "description": "Message d'erreur lorsque certaines options sont vides",
+    "placeholders": {
+      "optionNumbers": {
+        "type": "String",
+        "example": "1, 3, 4"
+      }
+    }
+  },
+  "emptyOptionError": "L'option {optionNumber} est vide. Veuillez lui ajouter du texte ou la supprimer.",
+  "@emptyOptionError": {
+    "description": "Message d'erreur lorsqu'une option est vide",
+    "placeholders": {
+      "optionNumber": {
+        "type": "String",
+        "example": "3"
+      }
+    }
+  },
+  "optionEmptyError": "Cette option ne peut pas être vide",
+  "@optionEmptyError": {
+    "description": "Message d'erreur pour un champ d'option individuel vide"
+  },
+  "hasImage": "Image",
+  "@hasImage": {
+    "description": "Libellé indiquant qu'une question a une image"
+  },
+  "hasExplanation": "Explication",
+  "@hasExplanation": {
+    "description": "Libellé indiquant qu'une question a une explication"
+  },
+  "errorLoadingSettings": "Erreur de chargement des paramètres : {error}",
+  "@errorLoadingSettings": {
+    "description": "Message affiché lorsqu'il y a une erreur pendant le chargement des paramètres de l'application.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "Le message d'erreur"
+      }
+    }
+  },
+  "couldNotOpenUrl": "Impossible d'ouvrir {url}",
+  "@couldNotOpenUrl": {
+    "description": "Message affiché lorsqu'une URL ne peut pas être ouverte.",
+    "placeholders": {
+      "url": {
+        "type": "String",
+        "description": "L'URL qui n'a pas pu être ouverte"
+      }
+    }
+  },
+  "loadingAiServices": "Chargement des services IA...",
+  "@loadingAiServices": {
+    "description": "Message affiché pendant le chargement des services IA disponibles."
+  },
+  "usingAiService": "Utilisation : {serviceName}",
+  "@usingAiService": {
+    "description": "Message affiché montrant quel service IA est utilisé.",
+    "placeholders": {
+      "serviceName": {
+        "type": "String",
+        "description": "Le nom du service IA"
+      }
+    }
+  },
+  "aiServiceLabel": "Service IA :",
+  "@aiServiceLabel": {
+    "description": "Libellé pour le sélecteur de service IA."
+  },
+  "importQuestionsTitle": "Importer des Questions",
+  "@importQuestionsTitle": {
+    "description": "Titre de la boîte de dialogue d'importation de questions."
+  },
+  "importQuestionsMessage": "Trouvé {count} questions dans \"{fileName}\". Où souhaitez-vous les importer ?",
+  "@importQuestionsMessage": {
+    "description": "Message demandant où importer les questions d'un autre fichier.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      },
+      "fileName": {
+        "type": "String",
+        "example": "questions.quiz"
+      }
+    }
+  },
+  "importQuestionsPositionQuestion": "Où souhaitez-vous ajouter ces questions ?",
+  "@importQuestionsPositionQuestion": {
+    "description": "Question sur la position d'importation."
+  },
+  "importAtBeginning": "Au Début",
+  "@importAtBeginning": {
+    "description": "Bouton pour importer les questions au début de la liste."
+  },
+  "importAtEnd": "À la Fin",
+  "@importAtEnd": {
+    "description": "Bouton pour importer les questions à la fin de la liste."
+  },
+  "questionsImportedSuccess": "Importation réussie de {count} questions",
+  "@questionsImportedSuccess": {
+    "description": "Message de succès lorsque les questions sont importées.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "importQuestionsTooltip": "Importer des questions depuis un autre fichier quiz",
+  "@importQuestionsTooltip": {
+    "description": "Info-bulle pour le bouton d'importation de questions."
+  },
+  "dragDropHintText": "Vous pouvez aussi faire glisser et déposer des fichiers .quiz ici pour importer des questions",
+  "@dragDropHintText": {
+    "description": "Texte d'indication affiché lorsque la liste de questions est vide, indiquant la fonctionnalité glisser-déposer."
+  },
+  "randomizeAnswersTitle": "Randomiser les Options de Réponse",
+  "@randomizeAnswersTitle": {
+    "description": "Titre pour le paramètre de randomisation des options de réponse."
+  },
+  "randomizeAnswersDescription": "Mélanger l'ordre des options de réponse pendant l'exécution du quiz",
+  "@randomizeAnswersDescription": {
+    "description": "Description pour le paramètre de randomisation des réponses."
+  },
+  "showCorrectAnswerCountTitle": "Afficher le Nombre de Réponses Correctes",
+  "@showCorrectAnswerCountTitle": {
+    "description": "Titre pour le paramètre d'affichage du nombre de réponses correctes."
+  },
+  "showCorrectAnswerCountDescription": "Afficher le nombre de réponses correctes dans les questions à choix multiple",
+  "@showCorrectAnswerCountDescription": {
+    "description": "Description pour le paramètre d'affichage du nombre de réponses correctes."
+  },
+  "correctAnswersCount": "Sélectionnez {count} réponses correctes",
+  "@correctAnswersCount": {
+    "description": "Texte montrant combien de réponses correctes sélectionner dans une question à choix multiple.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "correctSelectedLabel": "Correct",
+  "@correctSelectedLabel": {
+    "description": "Libellé pour les réponses correctement sélectionnées dans les résultats du quiz."
+  },
+  "correctMissedLabel": "Correct",
+  "@correctMissedLabel": {
+    "description": "Libellé pour les réponses correctes qui n'ont pas été sélectionnées dans les résultats du quiz."
+  },
+  "incorrectSelectedLabel": "Incorrect",
+  "@incorrectSelectedLabel": {
+    "description": "Libellé pour les réponses incorrectement sélectionnées dans les résultats du quiz."
+  },
+  "generateQuestionsWithAI": "Générer des questions avec l'IA",
+  "@generateQuestionsWithAI": {
+    "description": "Info-bulle pour le bouton de génération de questions avec l'IA."
+  },
+  "aiGenerateDialogTitle": "Générer des Questions avec l'IA",
+  "@aiGenerateDialogTitle": {
+    "description": "Titre de la boîte de dialogue de génération de questions IA."
+  },
+  "aiQuestionCountLabel": "Nombre de Questions (Optionnel)",
+  "@aiQuestionCountLabel": {
+    "description": "Libellé pour le champ nombre de questions."
+  },
+  "aiQuestionCountHint": "Laisser vide pour laisser l'IA décider",
+  "@aiQuestionCountHint": {
+    "description": "Texte d'indication pour le champ nombre de questions."
+  },
+  "aiQuestionCountValidation": "Doit être un nombre entre 1 et 50",
+  "@aiQuestionCountValidation": {
+    "description": "Message de validation pour le nombre de questions."
+  },
+  "aiQuestionTypeLabel": "Type de Question",
+  "@aiQuestionTypeLabel": {
+    "description": "Libellé pour le sélecteur de type de question."
+  },
+  "aiQuestionTypeRandom": "Aléatoire (Mixte)",
+  "@aiQuestionTypeRandom": {
+    "description": "Option de type aléatoire pour les questions."
+  },
+  "aiLanguageLabel": "Langue des Questions",
+  "@aiLanguageLabel": {
+    "description": "Libellé pour le sélecteur de langue."
+  },
+  "aiContentLabel": "Contenu pour générer des questions",
+  "@aiContentLabel": {
+    "description": "Libellé pour le champ de contenu."
+  },
+  "aiWordCount": "{current} / {max} mots",
+  "@aiWordCount": {
+    "description": "Compteur de mots pour le contenu.",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "150"
+      },
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiContentHint": "Entrez le texte, sujet, ou contenu à partir duquel vous voulez générer des questions...",
+  "@aiContentHint": {
+    "description": "Texte d'indication pour le champ de contenu."
+  },
+  "aiContentHelperText": "L'IA créera des questions basées sur ce contenu",
+  "@aiContentHelperText": {
+    "description": "Texte d'aide supplémentaire pour le champ de contenu."
+  },
+  "aiWordLimitError": "Vous avez dépassé la limite de {max} mots",
+  "@aiWordLimitError": {
+    "description": "Erreur lorsque la limite de mots est dépassée.",
+    "placeholders": {
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiContentRequiredError": "Vous devez fournir du contenu pour générer des questions",
+  "@aiContentRequiredError": {
+    "description": "Erreur lorsqu'aucun contenu n'est fourni."
+  },
+  "aiContentLimitError": "Le contenu dépasse la limite de {max} mots",
+  "@aiContentLimitError": {
+    "description": "Erreur de validation pour la limite de mots.",
+    "placeholders": {
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiMinWordsError": "Fournissez au moins 10 mots pour générer des questions de qualité",
+  "@aiMinWordsError": {
+    "description": "Erreur lorsque le contenu est trop court."
+  },
+  "aiInfoTitle": "Information",
+  "@aiInfoTitle": {
+    "description": "Titre de la section d'information."
+  },
+  "aiInfoDescription": "• L'IA analysera le contenu et générera des questions pertinentes\n• Vous pouvez inclure du texte, des définitions, des explications, ou tout matériel éducatif\n• Les questions incluront des options de réponse et des explications\n• Le processus peut prendre quelques secondes",
+  "@aiInfoDescription": {
+    "description": "Description informative du processus de génération IA."
+  },
+  "aiGenerateButton": "Générer des Questions",
+  "@aiGenerateButton": {
+    "description": "Texte pour le bouton de génération de questions."
+  },
+  "languageSpanish": "Español",
+  "@languageSpanish": {
+    "description": "Nom de la langue espagnole."
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "Nom de la langue anglaise."
+  },
+  "languageFrench": "Français",
+  "@languageFrench": {
+    "description": "Nom de la langue française."
+  },
+  "languageGerman": "Deutsch",
+  "@languageGerman": {
+    "description": "Nom de la langue allemande."
+  },
+  "languageItalian": "Italiano",
+  "@languageItalian": {
+    "description": "Nom de la langue italienne."
+  },
+  "languagePortuguese": "Português",
+  "@languagePortuguese": {
+    "description": "Nom de la langue portugaise."
+  },
+  "languageCatalan": "Català",
+  "@languageCatalan": {
+    "description": "Nom de la langue catalane."
+  },
+  "languageBasque": "Euskera",
+  "@languageBasque": {
+    "description": "Nom de la langue basque."
+  },
+  "languageGalician": "Galego",
+  "@languageGalician": {
+    "description": "Nom de la langue galicienne."
+  },
+  "aiServicesLoading": "Chargement des services IA...",
+  "@aiServicesLoading": {
+    "description": "Message affiché pendant le chargement des services IA disponibles."
+  },
+  "aiServicesNotConfigured": "Aucun service IA configuré",
+  "@aiServicesNotConfigured": {
+    "description": "Message affiché lorsqu'aucun service IA n'est configuré."
+  },
+  "aiGeneratedQuestions": "Généré par IA",
+  "@aiGeneratedQuestions": {
+    "description": "Nom pour les questions générées par IA dans la boîte de dialogue d'importation."
+  },
+  "aiApiKeyRequired": "Veuillez configurer au moins une clé API IA dans les Paramètres pour utiliser la génération IA.",
+  "@aiApiKeyRequired": {
+    "description": "Message affiché lorsqu'aucune clé API n'est configurée pour l'IA."
+  },
+  "aiGenerationFailed": "Impossible de générer des questions. Essayez avec un contenu différent.",
+  "@aiGenerationFailed": {
+    "description": "Message affiché lorsque la génération de questions IA échoue."
+  },
+  "aiGenerationError": "Erreur de génération de questions : {error}",
+  "@aiGenerationError": {
+    "description": "Message d'erreur lors de la génération de questions avec l'IA.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Clé API invalide"
+      }
+    }
+  },
+  "noQuestionsInFile": "Aucune question trouvée dans le fichier importé",
+  "@noQuestionsInFile": {
+    "description": "Message affiché lorsqu'un fichier importé ne contient aucune question."
+  },
+  "couldNotAccessFile": "Impossible d'accéder au fichier sélectionné",
+  "@couldNotAccessFile": {
+    "description": "Message affiché lorsqu'un fichier sélectionné ne peut pas être accédé."
+  },
+  "defaultOutputFileName": "fichier-sortie.quiz",
+  "@defaultOutputFileName": {
+    "description": "Nom par défaut pour les fichiers de sortie."
+  },
+  "aiServiceLimitsWithChars": "Limite : {words} mots ou {chars} caractères",
+  "@aiServiceLimitsWithChars": {
+    "description": "Description des limites de service IA avec limites de mots et de caractères.",
+    "placeholders": {
+      "words": {
+        "type": "int",
+        "example": "3000"
+      },
+      "chars": {
+        "type": "int",
+        "example": "12000"
+      }
+    }
+  },
+  "aiServiceLimitsWordsOnly": "Limite : {words} mots",
+  "@aiServiceLimitsWordsOnly": {
+    "description": "Description des limites de service IA avec seulement la limite de mots.",
+    "placeholders": {
+      "words": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  }
+}

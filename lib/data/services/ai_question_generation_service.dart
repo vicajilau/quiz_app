@@ -6,22 +6,22 @@ import '../../../core/l10n/app_localizations.dart';
 import '../../../domain/models/quiz/question.dart';
 import '../../../domain/models/quiz/question_type.dart';
 
-// Enum extendido para incluir la opción "random"
+// Extended enum to include the "random" option
 enum AiQuestionType {
   multipleChoice,
   singleChoice,
   trueFalse,
   essay,
-  random, // Mezcla de todos los tipos
+  random, // Mix of all types
 }
 
-// Clase para la configuración de generación
+// Class for generation configuration
 class AiQuestionGenerationConfig {
   final int? questionCount;
   final AiQuestionType questionType;
   final String language;
   final String content;
-  final AIService? preferredService; // Servicio preferido de IA
+  final AIService? preferredService; // Preferred AI service
 
   const AiQuestionGenerationConfig({
     this.questionCount,
@@ -38,13 +38,13 @@ class AiQuestionGenerationService {
   static const String _geminiApiUrl =
       'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
 
-  /// Genera preguntas usando IA basado en la configuración proporcionada
+  /// Generates questions using AI based on the provided configuration
   Future<List<Question>> generateQuestions(
     AiQuestionGenerationConfig config, {
     AppLocalizations? localizations,
   }) async {
     try {
-      // Si se especifica un servicio preferido, usarlo directamente
+      // If a preferred service is specified, use it directly
       if (config.preferredService != null && localizations != null) {
         return await _generateWithService(
           config,
@@ -53,17 +53,15 @@ class AiQuestionGenerationService {
         );
       }
 
-      // Verificar que hay al menos una API key configurada
+      // Verify that at least one API key is configured
       final openaiKey = await ConfigurationService.instance.getOpenAIApiKey();
       final geminiKey = await ConfigurationService.instance.getGeminiApiKey();
 
       if ((openaiKey?.isEmpty ?? true) && (geminiKey?.isEmpty ?? true)) {
-        throw Exception(
-          'No hay ninguna clave API configurada para servicios de IA',
-        );
+        throw Exception('No API key configured for AI services');
       }
 
-      // Intentar con OpenAI primero, luego con Gemini si falla
+      // Try OpenAI first, then Gemini if it fails
       if (openaiKey?.isNotEmpty == true) {
         try {
           return await _generateWithOpenAI(config, openaiKey!);
@@ -77,13 +75,13 @@ class AiQuestionGenerationService {
         return await _generateWithGemini(config, geminiKey!);
       }
 
-      throw Exception('No se pudo generar preguntas con ningún servicio de IA');
+      throw Exception('Could not generate questions with any AI service');
     } catch (e) {
-      throw Exception('Error al generar preguntas: ${e.toString()}');
+      throw Exception('Error generating questions: ${e.toString()}');
     }
   }
 
-  /// Genera preguntas usando el servicio de IA especificado
+  /// Generates questions using the specified AI service
   Future<List<Question>> _generateWithService(
     AiQuestionGenerationConfig config,
     AIService aiService,
@@ -95,11 +93,11 @@ class AiQuestionGenerationService {
       final response = await aiService.getChatResponse(prompt, localizations);
       return _parseAiResponse(response);
     } catch (e) {
-      throw Exception('Error con ${aiService.serviceName}: ${e.toString()}');
+      throw Exception('Error with ${aiService.serviceName}: ${e.toString()}');
     }
   }
 
-  /// Genera preguntas usando OpenAI
+  /// Generates questions using OpenAI
   Future<List<Question>> _generateWithOpenAI(
     AiQuestionGenerationConfig config,
     String apiKey,
@@ -118,7 +116,7 @@ class AiQuestionGenerationService {
           {
             'role': 'system',
             'content':
-                'Eres un experto en educación que crea preguntas de quiz de alta calidad. Responde ÚNICAMENTE con el JSON solicitado, sin texto adicional.',
+                'You are an expert in education who creates high-quality quiz questions. Respond ONLY with the requested JSON, without additional text.',
           },
           {'role': 'user', 'content': prompt},
         ],
@@ -129,7 +127,7 @@ class AiQuestionGenerationService {
 
     if (response.statusCode != 200) {
       throw Exception(
-        'Error en la API de OpenAI: ${response.statusCode} - ${response.body}',
+        'OpenAI API error: ${response.statusCode} - ${response.body}',
       );
     }
 
@@ -139,7 +137,7 @@ class AiQuestionGenerationService {
     return _parseAiResponse(content);
   }
 
-  /// Genera preguntas usando Gemini
+  /// Generates questions using Gemini
   Future<List<Question>> _generateWithGemini(
     AiQuestionGenerationConfig config,
     String apiKey,
@@ -155,7 +153,7 @@ class AiQuestionGenerationService {
             'parts': [
               {
                 'text':
-                    'Eres un experto en educación que crea preguntas de quiz de alta calidad. Responde ÚNICAMENTE con el JSON solicitado, sin texto adicional.\n\n$prompt',
+                    'You are an expert in education who creates high-quality quiz questions. Respond ONLY with the requested JSON, without additional text.\n\n$prompt',
               },
             ],
           },
@@ -166,7 +164,7 @@ class AiQuestionGenerationService {
 
     if (response.statusCode != 200) {
       throw Exception(
-        'Error en la API de Gemini: ${response.statusCode} - ${response.body}',
+        'Gemini API error: ${response.statusCode} - ${response.body}',
       );
     }
 
@@ -177,102 +175,108 @@ class AiQuestionGenerationService {
     return _parseAiResponse(content);
   }
 
-  /// Construye el prompt para la IA
+  /// Builds the prompt for the AI
   String _buildPrompt(AiQuestionGenerationConfig config) {
     final questionCountText = config.questionCount != null
-        ? 'exactamente ${config.questionCount}'
-        : 'entre 3 y 8';
+        ? 'exactly ${config.questionCount}'
+        : 'between 3 and 8';
 
     final questionTypeText = _getQuestionTypePrompt(config.questionType);
     final languageText = _getLanguageName(config.language);
 
     return '''
-Basándote en el siguiente contenido, genera $questionCountText preguntas de quiz $questionTypeText en $languageText.
+Based on the following content, generate $questionCountText quiz questions $questionTypeText in $languageText.
 
-CONTENIDO:
+CONTENT:
 ${config.content}
 
-INSTRUCCIONES:
-1. Las preguntas deben estar basadas específicamente en el contenido proporcionado
-2. Cada pregunta debe tener exactamente 4 opciones de respuesta
-3. Incluye una explicación clara para cada pregunta
-4. Asegúrate de que las respuestas incorrectas sean plausibles pero claramente erróneas
-5. Las explicaciones deben ser educativas y ayudar a entender por qué la respuesta es correcta
+INSTRUCTIONS:
+1. Questions must be based specifically on the provided content
+2. Each question must have exactly 4 answer options
+3. Include a clear explanation for each question
+4. Make sure incorrect answers are plausible but clearly wrong
+5. Explanations should be educational and help understand why the answer is correct
 
-FORMATO DE RESPUESTA (JSON):
-Responde ÚNICAMENTE con un array JSON válido en este formato exacto:
+RESPONSE FORMAT (JSON):
+Respond ONLY with a valid JSON array in this exact format:
 [
   {
-    "text": "¿Pregunta aquí?",
+    "text": "Question here?",
     "type": "multiple_choice",
-    "options": ["Opción A", "Opción B", "Opción C", "Opción D"],
+    "options": ["Option A", "Option B", "Option C", "Option D"],
     "correctAnswers": [0],
-    "explanation": "Explicación detallada de por qué la respuesta A es correcta..."
+    "explanation": "Detailed explanation of why answer A is correct..."
   }
 ]
 
-TIPOS DE PREGUNTA:
-- "multiple_choice": Permite múltiples respuestas correctas
-- "single_choice": Solo una respuesta correcta
-- "true_false": Pregunta de verdadero/falso (opciones: ["Verdadero", "Falso"])
-- "essay": Pregunta de ensayo (sin opciones)
+QUESTION TYPES:
+- "multiple_choice": Allows multiple correct answers
+- "single_choice": Only one correct answer
+- "true_false": True/false question (options: ["True", "False"])
+- "essay": Essay question (no options)
 
 $questionTypeText
 
-¡IMPORTANTE!: Responde SOLO con el JSON, sin texto adicional antes o después.
+IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
 ''';
   }
 
-  /// Obtiene el texto del prompt según el tipo de pregunta
+  /// Gets the prompt text according to the question type
   String _getQuestionTypePrompt(AiQuestionType type) {
     switch (type) {
       case AiQuestionType.multipleChoice:
-        return 'Usa SOLO el tipo "multiple_choice" para todas las preguntas.';
+        return 'Use ONLY the "multiple_choice" type for all questions.';
       case AiQuestionType.singleChoice:
-        return 'Usa SOLO el tipo "single_choice" para todas las preguntas.';
+        return 'Use ONLY the "single_choice" type for all questions.';
       case AiQuestionType.trueFalse:
-        return 'Usa SOLO el tipo "true_false" para todas las preguntas. Las opciones deben ser ["Verdadero", "Falso"].';
+        return 'Use ONLY the "true_false" type for all questions. Options must be ["True", "False"].';
       case AiQuestionType.essay:
-        return 'Usa SOLO el tipo "essay" para todas las preguntas. No incluyas opciones.';
+        return 'Use ONLY the "essay" type for all questions. Do not include options.';
       case AiQuestionType.random:
-        return 'Mezcla diferentes tipos de preguntas: "multiple_choice", "single_choice", "true_false", y "essay".';
+        return 'Mix different question types: "multiple_choice", "single_choice", "true_false", and "essay".';
     }
   }
 
-  /// Obtiene el nombre del idioma
+  /// Gets the language name
   String _getLanguageName(String langCode) {
     switch (langCode) {
       case 'es':
-        return 'español';
+        return 'Spanish';
       case 'en':
-        return 'inglés';
+        return 'English';
       case 'fr':
-        return 'francés';
+        return 'French';
       case 'de':
-        return 'alemán';
+        return 'German';
       case 'it':
-        return 'italiano';
+        return 'Italian';
       case 'pt':
-        return 'portugués';
+        return 'Portuguese';
+      case 'ca':
+        return 'Catalan';
+      case 'eu':
+        return 'Basque';
+      case 'gl':
+        return 'Galician';
+      case 'hi':
+        return 'Hindi';
       default:
-        return 'español';
+        return 'English';
     }
   }
 
-  /// Parsea la respuesta de la IA y convierte a objetos Question
+  /// Parses the AI response and converts to Question objects
   List<Question> _parseAiResponse(String content) {
     try {
-      // Limpiar la respuesta en caso de que tenga texto adicional
+      // Clean the response in case it has additional text
       String cleanContent = content.trim();
 
-      // Buscar el JSON en la respuesta
+      // Search for JSON in the response
       final startIndex = cleanContent.indexOf('[');
       final endIndex = cleanContent.lastIndexOf(']');
 
       if (startIndex == -1 || endIndex == -1) {
-        throw Exception(
-          'No se encontró un JSON válido en la respuesta de la IA',
-        );
+        throw Exception('No valid JSON found in AI response');
       }
 
       cleanContent = cleanContent.substring(startIndex, endIndex + 1);
@@ -286,28 +290,24 @@ $questionTypeText
             final question = _createQuestionFromJson(item);
             questions.add(question);
           } catch (e) {
-            // Si una pregunta falla, continuar con las demás
-            // En producción, usar un logger apropiado
+            // If one question fails, continue with the others
+            // In production, use appropriate logging
             continue;
           }
         }
       }
 
       if (questions.isEmpty) {
-        throw Exception(
-          'No se pudieron crear preguntas válidas a partir de la respuesta de la IA',
-        );
+        throw Exception('Could not create valid questions from AI response');
       }
 
       return questions;
     } catch (e) {
-      throw Exception(
-        'Error al parsear la respuesta de la IA: ${e.toString()}',
-      );
+      throw Exception('Error parsing AI response: ${e.toString()}');
     }
   }
 
-  /// Crea un objeto Question a partir de JSON
+  /// Creates a Question object from JSON
   Question _createQuestionFromJson(Map<String, dynamic> json) {
     final questionType = QuestionType.fromString(
       json['type'] ?? 'multiple_choice',
@@ -317,14 +317,14 @@ $questionTypeText
     if (json['options'] != null) {
       options = List<String>.from(json['options']);
     } else if (questionType == QuestionType.trueFalse) {
-      options = ['Verdadero', 'Falso'];
+      options = ['True', 'False'];
     }
 
     List<int> correctAnswers = [];
     if (json['correctAnswers'] != null) {
       correctAnswers = List<int>.from(json['correctAnswers']);
     } else if (questionType == QuestionType.trueFalse) {
-      // Para true/false, asumir que la primera opción es correcta si no se especifica
+      // For true/false, assume the first option is correct if not specified
       correctAnswers = [0];
     }
 
@@ -334,7 +334,7 @@ $questionTypeText
       options: options,
       correctAnswers: correctAnswers,
       explanation: json['explanation'] ?? '',
-      image: null, // La IA no genera imágenes por ahora
+      image: null, // AI doesn't generate images for now
     );
   }
 }

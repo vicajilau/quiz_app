@@ -1,0 +1,1074 @@
+{
+  "titleAppBar": "Quiz - Simulador d'Exàmens",
+  "@titleAppBar": {
+    "description": "Títol de l'aplicació mostrat a l'AppBar."
+  },
+  "create": "Crear",
+  "@create": {
+    "description": "Etiqueta pel botó Crear fitxer Quiz a l'AppBar."
+  },
+  "load": "Carregar",
+  "@load": {
+    "description": "Etiqueta pel botó Carregar fitxer Quiz a l'AppBar."
+  },
+  "fileLoaded": "Fitxer carregat: {filePath}",
+  "@fileLoaded": {
+    "description": "Missatge mostrat quan un fitxer es carrega amb èxit.",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/camí/al/fitxer.quiz"
+      }
+    }
+  },
+  "fileSaved": "Fitxer desat: {filePath}",
+  "@fileSaved": {
+    "description": "Missatge mostrat quan un fitxer es desa amb èxit.",
+    "placeholders": {
+      "filePath": {
+        "type": "String",
+        "example": "/camí/al/fitxer.quiz"
+      }
+    }
+  },
+  "dropFileHere": "Feu clic aquí o arrossegueu un fitxer .quiz a la pantalla",
+  "@dropFileHere": {
+    "description": "Text mostrat a l'àrea de deixar anar per arrossegar fitxers."
+  },
+  "errorInvalidFile": "Error: Fitxer no vàlid. Ha de ser un fitxer .quiz.",
+  "@errorInvalidFile": {
+    "description": "Missatge mostrat quan el fitxer deixat no és un fitxer .quiz."
+  },
+  "errorLoadingFile": "Error en carregar el fitxer Quiz: {error}",
+  "@errorLoadingFile": {
+    "description": "Missatge mostrat quan hi ha un error durant la càrrega d'un fitxer Quiz.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Fitxer no trobat"
+      }
+    }
+  },
+  "errorExportingFile": "Error en exportar el fitxer: {error}",
+  "@errorExportingFile": {
+    "description": "Missatge mostrat quan hi ha un error durant l'exportació d'un fitxer.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Fitxer no trobat"
+      }
+    }
+  },
+  "cancelButton": "Cancel·lar",
+  "@cancelButton": {
+    "description": "Botó Cancel·lar."
+  },
+  "saveButton": "Desar",
+  "@saveButton": {
+    "description": "Botó Desar."
+  },
+  "confirmDeleteTitle": "Confirmar Eliminació",
+  "@confirmDeleteTitle": {
+    "description": "Títol per al diàleg de confirmació en eliminar un procés."
+  },
+  "confirmDeleteMessage": "Esteu segur que voleu eliminar el procés `{processName}`?",
+  "@confirmDeleteMessage": {
+    "description": "Missatge al diàleg de confirmació per l'eliminació.",
+    "placeholders": {
+      "processName": {
+        "type": "String",
+        "example": "Pregunta 1"
+      }
+    }
+  },
+  "deleteButton": "Eliminar",
+  "@deleteButton": {
+    "description": "Text del botó per confirmar l'eliminació."
+  },
+  "confirmExitTitle": "Confirmar Sortida",
+  "@confirmExitTitle": {
+    "description": "Títol per al diàleg de confirmació en sortir."
+  },
+  "confirmExitMessage": "Esteu segur que voleu sortir sense desar?",
+  "@confirmExitMessage": {
+    "description": "Missatge al diàleg de confirmació per sortir."
+  },
+  "exitButton": "Sortir",
+  "@exitButton": {
+    "description": "Text del botó Sortir."
+  },
+  "saveDialogTitle": "Seleccioneu un fitxer de sortida:",
+  "@saveDialogTitle": {
+    "description": "Títol per al diàleg de desament."
+  },
+  "createQuizFileTitle": "Crear Fitxer Quiz",
+  "@createQuizFileTitle": {
+    "description": "Títol per al diàleg de creació de fitxer quiz."
+  },
+  "fileNameLabel": "Nom del Fitxer",
+  "@fileNameLabel": {
+    "description": "Etiqueta per l'entrada del nom del fitxer."
+  },
+  "fileDescriptionLabel": "Descripció del Fitxer",
+  "@fileDescriptionLabel": {
+    "description": "Etiqueta per l'entrada de la descripció del fitxer."
+  },
+  "createButton": "Crear",
+  "@createButton": {
+    "description": "Text del botó Crear."
+  },
+  "fileNameRequiredError": "El nom del fitxer és obligatori.",
+  "@fileNameRequiredError": {
+    "description": "Missatge d'error quan el nom del fitxer està buit."
+  },
+  "fileDescriptionRequiredError": "La descripció del fitxer és obligatòria.",
+  "@fileDescriptionRequiredError": {
+    "description": "Missatge d'error quan la descripció del fitxer està buida."
+  },
+  "versionLabel": "Versió",
+  "@versionLabel": {
+    "description": "Etiqueta pel camp versió del quiz"
+  },
+  "authorLabel": "Autor",
+  "@authorLabel": {
+    "description": "Etiqueta pel camp autor del quiz"
+  },
+  "authorRequiredError": "L'autor és obligatori.",
+  "@authorRequiredError": {
+    "description": "Missatge d'error quan el camp autor està buit"
+  },
+  "requiredFieldsError": "Tots els camps obligatoris han de ser completats.",
+  "@requiredFieldsError": {
+    "description": "Missatge d'error quan falten camps obligatoris"
+  },
+  "requestFileNameTitle": "Introduïu el nom del fitxer Quiz",
+  "@requestFileNameTitle": {
+    "description": "Títol per al diàleg de sol·licitud del nom del fitxer."
+  },
+  "fileNameHint": "Nom del fitxer",
+  "@fileNameHint": {
+    "description": "Text de pista per l'entrada del nom del fitxer."
+  },
+  "emptyFileNameMessage": "El nom del fitxer no pot estar buit.",
+  "@emptyFileNameMessage": {
+    "description": "Missatge d'error quan el nom del fitxer està buit."
+  },
+  "acceptButton": "Acceptar",
+  "@acceptButton": {
+    "description": "Text del botó Acceptar."
+  },
+  "saveTooltip": "Desar el fitxer",
+  "@saveTooltip": {
+    "description": "Tooltip pel botó desar."
+  },
+  "saveDisabledTooltip": "Cap canvi per desar",
+  "@saveDisabledTooltip": {
+    "description": "Tooltip pel botó desar desactivat."
+  },
+  "executeTooltip": "Executar l'examen",
+  "@executeTooltip": {
+    "description": "Tooltip pel botó executar."
+  },
+  "addTooltip": "Afegir una nova pregunta",
+  "@addTooltip": {
+    "description": "Tooltip pel botó afegir."
+  },
+  "backSemanticLabel": "Botó tornar",
+  "@backSemanticLabel": {
+    "description": "Etiqueta semàntica pel botó tornar."
+  },
+  "createFileTooltip": "Crear un nou fitxer Quiz",
+  "@createFileTooltip": {
+    "description": "Tooltip pel botó crear fitxer."
+  },
+  "loadFileTooltip": "Carregar un fitxer Quiz existent",
+  "@loadFileTooltip": {
+    "description": "Tooltip pel botó carregar fitxer."
+  },
+  "questionNumber": "Pregunta {number}",
+  "@questionNumber": {
+    "description": "Etiqueta del número de pregunta en l'execució del quiz",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "previous": "Anterior",
+  "@previous": {
+    "description": "Text del botó anterior en la navegació del quiz"
+  },
+  "next": "Següent",
+  "@next": {
+    "description": "Text del botó següent en la navegació del quiz"
+  },
+  "finish": "Acabar",
+  "@finish": {
+    "description": "Text del botó acabar en la navegació del quiz"
+  },
+  "finishQuiz": "Acabar Quiz",
+  "@finishQuiz": {
+    "description": "Títol del diàleg acabar quiz"
+  },
+  "finishQuizConfirmation": "Esteu segur que voleu acabar el quiz? No podreu canviar les vostres respostes després.",
+  "@finishQuizConfirmation": {
+    "description": "Missatge de confirmació per acabar el quiz"
+  },
+  "cancel": "Cancel·lar",
+  "@cancel": {
+    "description": "Text del botó cancel·lar"
+  },
+  "abandonQuiz": "Abandonar Quiz",
+  "@abandonQuiz": {
+    "description": "Títol del diàleg abandonar quiz"
+  },
+  "abandonQuizConfirmation": "Esteu segur que voleu abandonar el quiz? Tot el progrés es perdrà.",
+  "@abandonQuizConfirmation": {
+    "description": "Missatge de confirmació per abandonar el quiz"
+  },
+  "abandon": "Abandonar",
+  "@abandon": {
+    "description": "Text del botó abandonar"
+  },
+  "quizCompleted": "Quiz Completat!",
+  "@quizCompleted": {
+    "description": "Missatge quiz completat"
+  },
+  "score": "Puntuació: {score}%",
+  "@score": {
+    "description": "Visualització de la puntuació",
+    "placeholders": {
+      "score": {
+        "type": "String",
+        "example": "85.5"
+      }
+    }
+  },
+  "correctAnswers": "{correct} de {total} respostes correctes",
+  "@correctAnswers": {
+    "description": "Recompte de respostes correctes",
+    "placeholders": {
+      "correct": {
+        "type": "int",
+        "example": "8"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "retry": "Repetir",
+  "@retry": {
+    "description": "Text del botó repetir"
+  },
+  "goBack": "Acabar",
+  "@goBack": {
+    "description": "Text del botó tornar enrere"
+  },
+  "retryFailedQuestions": "Repetir Fallades",
+  "@retryFailedQuestions": {
+    "description": "Text del botó per repetir només les preguntes amb respostes incorrectes"
+  },
+  "question": "Pregunta: {question}",
+  "@question": {
+    "description": "Text de la pregunta als resultats",
+    "placeholders": {
+      "question": {
+        "type": "String",
+        "example": "Quina és la capital de Catalunya?"
+      }
+    }
+  },
+  "selectQuestionCountTitle": "Seleccionar Nombre de Preguntes",
+  "@selectQuestionCountTitle": {
+    "description": "Títol per al diàleg per seleccionar el nombre de preguntes pel quiz"
+  },
+  "selectQuestionCountMessage": "A quantes preguntes us agradaria respondre en aquest quiz?",
+  "@selectQuestionCountMessage": {
+    "description": "Missatge explicant la selecció del nombre de preguntes"
+  },
+  "allQuestions": "Totes les preguntes ({count})",
+  "@allQuestions": {
+    "description": "Opció per seleccionar totes les preguntes disponibles",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "startQuiz": "Començar Quiz",
+  "@startQuiz": {
+    "description": "Text del botó per començar el quiz"
+  },
+  "customNumberLabel": "O introduïu un número personalitzat:",
+  "@customNumberLabel": {
+    "description": "Etiqueta per la secció d'entrada de número personalitzat"
+  },
+  "numberInputLabel": "Nombre de preguntes",
+  "@numberInputLabel": {
+    "description": "Etiqueta pel camp d'entrada de número"
+  },
+  "customNumberHelper": "Introduïu qualsevol número (màx {total}). Si és més gran, les preguntes es repetiran.",
+  "@customNumberHelper": {
+    "description": "Text d'ajuda explicant l'entrada de número personalitzat",
+    "placeholders": {
+      "total": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "errorInvalidNumber": "Si us plau, introduïu un número vàlid",
+  "@errorInvalidNumber": {
+    "description": "Missatge d'error per entrada de número no vàlid"
+  },
+  "errorNumberMustBePositive": "El número ha de ser més gran que 0",
+  "@errorNumberMustBePositive": {
+    "description": "Missatge d'error quan el número és zero o negatiu"
+  },
+  "questionOrderConfigTitle": "Configuració de l'Ordre de les Preguntes",
+  "@questionOrderConfigTitle": {
+    "description": "Títol per al diàleg de configuració de l'ordre de les preguntes"
+  },
+  "questionOrderConfigDescription": "Seleccioneu l'ordre en què voleu que apareguin les preguntes durant l'examen:",
+  "@questionOrderConfigDescription": {
+    "description": "Text descriptiu per al diàleg de configuració de l'ordre de les preguntes"
+  },
+  "questionOrderAscending": "Ordre Ascendent",
+  "@questionOrderAscending": {
+    "description": "Etiqueta per l'opció ordre ascendent de les preguntes"
+  },
+  "questionOrderAscendingDesc": "Les preguntes apareixeran en ordre de 1 al final",
+  "@questionOrderAscendingDesc": {
+    "description": "Descripció per l'opció ordre ascendent de les preguntes"
+  },
+  "questionOrderDescending": "Ordre Descendent",
+  "@questionOrderDescending": {
+    "description": "Etiqueta per l'opció ordre descendent de les preguntes"
+  },
+  "questionOrderDescendingDesc": "Les preguntes apareixeran del final a 1",
+  "@questionOrderDescendingDesc": {
+    "description": "Descripció per l'opció ordre descendent de les preguntes"
+  },
+  "questionOrderRandom": "Aleatori",
+  "@questionOrderRandom": {
+    "description": "Etiqueta per l'opció ordre aleatori de les preguntes"
+  },
+  "questionOrderRandomDesc": "Les preguntes apareixeran en ordre aleatori",
+  "@questionOrderRandomDesc": {
+    "description": "Descripció per l'opció ordre aleatori de les preguntes"
+  },
+  "questionOrderConfigTooltip": "Configuració de l'ordre de les preguntes",
+  "@questionOrderConfigTooltip": {
+    "description": "Tooltip pel botó de configuració de l'ordre de les preguntes"
+  },
+  "save": "Desar",
+  "@save": {
+    "description": "Etiqueta pel botó desar"
+  },
+  "examTimeLimitTitle": "Límit de Temps de l'Examen",
+  "@examTimeLimitTitle": {
+    "description": "Títol per la secció límit de temps de l'examen"
+  },
+  "examTimeLimitDescription": "Establiu un límit de temps per l'examen. Quan s'activi, es mostrarà un temporitzador de compte enrere durant el quiz.",
+  "@examTimeLimitDescription": {
+    "description": "Descripció per la funcionalitat límit de temps de l'examen"
+  },
+  "enableTimeLimit": "Activar límit de temps",
+  "@enableTimeLimit": {
+    "description": "Etiqueta pel commutador d'activació del límit de temps de l'examen"
+  },
+  "timeLimitMinutes": "Límit de temps (minuts)",
+  "@timeLimitMinutes": {
+    "description": "Etiqueta per l'entrada de minuts del límit de temps de l'examen"
+  },
+  "examTimeExpiredTitle": "Temps Esgotat!",
+  "@examTimeExpiredTitle": {
+    "description": "Títol pel diàleg temps de l'examen esgotat"
+  },
+  "examTimeExpiredMessage": "El temps de l'examen ha expirat. Les vostres respostes s'han enviat automàticament.",
+  "@examTimeExpiredMessage": {
+    "description": "Missatge pel diàleg temps de l'examen esgotat"
+  },
+  "remainingTime": "{hours}:{minutes}:{seconds}",
+  "@remainingTime": {
+    "description": "Format per la visualització del temps restant (hores:minuts:segons)",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "01"
+      },
+      "minutes": {
+        "type": "String",
+        "example": "30"
+      },
+      "seconds": {
+        "type": "String",
+        "example": "45"
+      }
+    }
+  },
+  "questionTypeMultipleChoice": "Elecció Múltiple",
+  "@questionTypeMultipleChoice": {
+    "description": "Etiqueta pel tipus de pregunta elecció múltiple"
+  },
+  "questionTypeSingleChoice": "Elecció Única",
+  "@questionTypeSingleChoice": {
+    "description": "Etiqueta pel tipus de pregunta elecció única"
+  },
+  "questionTypeTrueFalse": "Cert/Fals",
+  "@questionTypeTrueFalse": {
+    "description": "Etiqueta pel tipus de pregunta cert/fals"
+  },
+  "questionTypeEssay": "Assaig",
+  "@questionTypeEssay": {
+    "description": "Etiqueta pel tipus de pregunta assaig"
+  },
+  "questionTypeUnknown": "Desconegut",
+  "@questionTypeUnknown": {
+    "description": "Etiqueta per tipus de pregunta desconegut"
+  },
+  "optionsCount": "{count, plural, =1{1 opció} other{{count} opcions}}",
+  "@optionsCount": {
+    "description": "Text mostrant el nombre d'opcions en una pregunta",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "optionsTooltip": "Nombre d'opcions de resposta per aquesta pregunta",
+  "@optionsTooltip": {
+    "description": "Text del tooltip per l'insígnia de recompte d'opcions"
+  },
+  "imageTooltip": "Aquesta pregunta té una imatge associada",
+  "@imageTooltip": {
+    "description": "Text del tooltip per l'insígnia indicadora d'imatge"
+  },
+  "explanationTooltip": "Aquesta pregunta té una explicació",
+  "@explanationTooltip": {
+    "description": "Text del tooltip per l'insígnia indicadora d'explicació"
+  },
+  "aiPrompt": "Sou un tutor expert i amigable especialitzat en ajudar els estudiants a comprendre millor les preguntes d'examen i els temes relacionats. El vostre objectiu és facilitar l'aprenentatge profund i la comprensió conceptual.\n\nPodeu ajudar amb:\n- Explicar conceptes relacionats amb la pregunta\n- Aclarir dubtes sobre les opcions de resposta\n- Proporcionar context addicional sobre el tema\n- Suggerir recursos d'estudi complementaris\n- Explicar per què certes respostes són correctes o incorrectes\n- Relacionar el tema amb altres conceptes importants\n- Respondre preguntes de seguiment sobre el material\n\nSempre responeu en la mateixa llengua en què se us pregunta. Sigueu pedagògic, clar i motivador en les vostres explicacions.",
+  "@aiPrompt": {
+    "description": "Prompt base per assistent IA"
+  },
+  "questionLabel": "Pregunta",
+  "@questionLabel": {
+    "description": "Etiqueta per pregunta al diàleg IA"
+  },
+  "optionsLabel": "Opcions",
+  "@optionsLabel": {
+    "description": "Etiqueta per opcions al diàleg IA"
+  },
+  "explanationLabel": "Explicació",
+  "@explanationLabel": {
+    "description": "Etiqueta per explicació al diàleg IA"
+  },
+  "studentComment": "Comentari de l'estudiant",
+  "@studentComment": {
+    "description": "Etiqueta per comentari de l'estudiant al diàleg IA"
+  },
+  "aiAssistantTitle": "Assistent d'Estudi IA",
+  "@aiAssistantTitle": {
+    "description": "Títol pel diàleg assistent IA"
+  },
+  "questionContext": "Context de la Pregunta",
+  "@questionContext": {
+    "description": "Etiqueta per la secció context de la pregunta"
+  },
+  "aiAssistant": "Assistent IA",
+  "@aiAssistant": {
+    "description": "Etiqueta assistent IA al xat"
+  },
+  "aiThinking": "La IA està pensant...",
+  "@aiThinking": {
+    "description": "Missatge de càrrega mentre la IA processa"
+  },
+  "askAIHint": "Feu la vostra pregunta sobre aquest tema...",
+  "@askAIHint": {
+    "description": "Text de pista per l'entrada de pregunta IA"
+  },
+  "aiPlaceholderResponse": "Aquesta és una resposta de marcador de posició. En una implementació real, això es connectaria a un servei IA per proporcionar explicacions útils sobre la pregunta.",
+  "@aiPlaceholderResponse": {
+    "description": "Resposta IA de marcador de posició per demo"
+  },
+  "aiErrorResponse": "Ho sento, hi ha hagut un error en processar la vostra pregunta. Torneu-ho a provar.",
+  "@aiErrorResponse": {
+    "description": "Missatge d'error quan la sol·licitud IA falla"
+  },
+  "configureApiKeyMessage": "Si us plau, configureu la vostra Clau API IA a la Configuració.",
+  "@configureApiKeyMessage": {
+    "description": "Missatge per configurar clau API quan no està definida"
+  },
+  "errorLabel": "Error:",
+  "@errorLabel": {
+    "description": "Prefix etiqueta error per missatges d'error"
+  },
+  "noResponseReceived": "Cap resposta rebuda",
+  "@noResponseReceived": {
+    "description": "Missatge quan no es rep resposta de la IA"
+  },
+  "invalidApiKeyError": "Clau API no vàlida. Comproveu la vostra Clau API OpenAI a la configuració.",
+  "@invalidApiKeyError": {
+    "description": "Missatge d'error per clau API no vàlida"
+  },
+  "rateLimitError": "Límit de velocitat excedit. Torneu-ho a provar més tard.",
+  "@rateLimitError": {
+    "description": "Missatge d'error per límit de velocitat excedit"
+  },
+  "modelNotFoundError": "Model no trobat. Comproveu el vostre accés a l'API.",
+  "@modelNotFoundError": {
+    "description": "Missatge d'error per model no trobat"
+  },
+  "unknownError": "Error desconegut",
+  "@unknownError": {
+    "description": "Missatge d'error genèric desconegut"
+  },
+  "networkError": "Error de xarxa: No es pot connectar a OpenAI. Comproveu la vostra connexió a internet.",
+  "@networkError": {
+    "description": "Missatge d'error de connectivitat de xarxa"
+  },
+  "openaiApiKeyNotConfigured": "Clau API OpenAI no configurada",
+  "@openaiApiKeyNotConfigured": {
+    "description": "Missatge d'error quan la clau API no està configurada"
+  },
+  "geminiApiKeyNotConfigured": "Clau API Gemini no configurada",
+  "@geminiApiKeyNotConfigured": {
+    "description": "Missatge d'error quan la clau API Gemini no està configurada"
+  },
+  "geminiApiKeyLabel": "Clau API Google Gemini",
+  "@geminiApiKeyLabel": {
+    "description": "Etiqueta pel camp Clau API Gemini"
+  },
+  "geminiApiKeyHint": "Introduïu la vostra Clau API Gemini",
+  "@geminiApiKeyHint": {
+    "description": "Text de pista pel camp Clau API Gemini"
+  },
+  "geminiApiKeyDescription": "Requerit per la funcionalitat IA Gemini. La vostra clau s'emmagatzema de forma segura.",
+  "@geminiApiKeyDescription": {
+    "description": "Descripció pel camp Clau API Gemini"
+  },
+  "getGeminiApiKeyTooltip": "Obtenir Clau API de Google AI Studio",
+  "@getGeminiApiKeyTooltip": {
+    "description": "Tooltip pel botó per obtenir clau API Gemini"
+  },
+  "aiRequiresAtLeastOneApiKeyError": "L'Assistent d'Estudi IA requereix almenys una Clau API (OpenAI o Gemini). Introduïu una clau API o desactiveu l'Assistent IA.",
+  "@aiRequiresAtLeastOneApiKeyError": {
+    "description": "Missatge d'error quan l'Assistent IA està activat però no es proporcionen claus API"
+  },
+  "minutesAbbreviation": "min",
+  "@minutesAbbreviation": {
+    "description": "Abreviació per minuts"
+  },
+  "aiButtonTooltip": "Assistent d'Estudi IA",
+  "@aiButtonTooltip": {
+    "description": "Tooltip pel botó assistent IA"
+  },
+  "aiButtonText": "IA",
+  "@aiButtonText": {
+    "description": "Text pel botó assistent IA"
+  },
+  "aiAssistantSettingsTitle": "Assistent d'Estudi IA (Vista prèvia)",
+  "@aiAssistantSettingsTitle": {
+    "description": "Títol per la secció configuració assistent IA"
+  },
+  "aiAssistantSettingsDescription": "Activar o desactivar l'assistent d'estudi IA per les preguntes",
+  "@aiAssistantSettingsDescription": {
+    "description": "Descripció per configuració assistent IA"
+  },
+  "openaiApiKeyLabel": "Clau API OpenAI",
+  "@openaiApiKeyLabel": {
+    "description": "Etiqueta pel camp Clau API OpenAI"
+  },
+  "openaiApiKeyHint": "Introduïu la vostra Clau API OpenAI (sk-...)",
+  "@openaiApiKeyHint": {
+    "description": "Text de pista pel camp Clau API OpenAI"
+  },
+  "openaiApiKeyDescription": "Requerit per la funcionalitat IA. La vostra clau s'emmagatzema de forma segura.",
+  "@openaiApiKeyDescription": {
+    "description": "Descripció pel camp Clau API OpenAI"
+  },
+  "aiAssistantRequiresApiKeyError": "L'Assistent d'Estudi IA requereix una Clau API OpenAI. Introduïu la vostra clau API o desactiveu l'Assistent IA.",
+  "@aiAssistantRequiresApiKeyError": {
+    "description": "Missatge d'error quan l'Assistent IA està activat però no es proporciona una clau API"
+  },
+  "getApiKeyTooltip": "Obtenir Clau API d'OpenAI",
+  "@getApiKeyTooltip": {
+    "description": "Tooltip pel botó per obtenir clau API d'OpenAI"
+  },
+  "deleteAction": "Eliminar",
+  "@deleteAction": {
+    "description": "Text d'acció eliminar mostrat en fer lliscar per eliminar"
+  },
+  "explanationLabel": "Explicació (opcional)",
+  "@explanationLabel": {
+    "description": "Etiqueta pel camp d'entrada explicació"
+  },
+  "explanationHint": "Introduïu una explicació per la/les resposta/es correcta/es",
+  "@explanationHint": {
+    "description": "Text de pista pel camp d'entrada explicació"
+  },
+  "explanationTitle": "Explicació",
+  "@explanationTitle": {
+    "description": "Títol per la secció explicació als resultats del quiz"
+  },
+  "imageLabel": "Imatge",
+  "@imageLabel": {
+    "description": "Etiqueta per la secció imatge a l'editor de preguntes"
+  },
+  "changeImage": "Canviar imatge",
+  "@changeImage": {
+    "description": "Text pel botó per canviar la imatge actual"
+  },
+  "removeImage": "Eliminar imatge",
+  "@removeImage": {
+    "description": "Text pel botó per eliminar la imatge actual"
+  },
+  "addImageTap": "Toqueu per afegir imatge",
+  "@addImageTap": {
+    "description": "Text instruccional per afegir una imatge"
+  },
+  "imageFormats": "Formats: JPG, PNG, GIF",
+  "@imageFormats": {
+    "description": "Text indicant formats d'imatge suportats"
+  },
+  "imageLoadError": "Error en carregar la imatge",
+  "@imageLoadError": {
+    "description": "Missatge d'error quan la imatge no es pot carregar"
+  },
+  "imagePickError": "Error en carregar la imatge: {error}",
+  "@imagePickError": {
+    "description": "Missatge d'error quan la selecció d'imatge falla",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Fitxer no vàlid"
+      }
+    }
+  },
+  "tapToZoom": "Toqueu per ampliar",
+  "@tapToZoom": {
+    "description": "Text instruccional per indicar que la imatge es pot ampliar"
+  },
+  "trueLabel": "Cert",
+  "@trueLabel": {
+    "description": "Etiqueta per l'opció cert en preguntes cert/fals"
+  },
+  "falseLabel": "Fals",
+  "@falseLabel": {
+    "description": "Etiqueta per l'opció fals en preguntes cert/fals"
+  },
+  "addQuestion": "Afegir Pregunta",
+  "@addQuestion": {
+    "description": "Títol pel diàleg afegir nova pregunta"
+  },
+  "editQuestion": "Editar Pregunta",
+  "@editQuestion": {
+    "description": "Títol pel diàleg editar pregunta existent"
+  },
+  "questionText": "Text de la Pregunta",
+  "@questionText": {
+    "description": "Etiqueta pel camp d'entrada text de la pregunta"
+  },
+  "questionType": "Tipus de Pregunta",
+  "@questionType": {
+    "description": "Etiqueta pel desplegable tipus de pregunta"
+  },
+  "addOption": "Afegir Opció",
+  "@addOption": {
+    "description": "Etiqueta pel botó afegir opció"
+  },
+  "optionLabel": "Opció",
+  "@optionLabel": {
+    "description": "Etiqueta pel camp d'entrada opció individual"
+  },
+  "questionTextRequired": "El text de la pregunta és obligatori",
+  "@questionTextRequired": {
+    "description": "Missatge d'error quan el text de la pregunta està buit"
+  },
+  "atLeastOneOptionRequired": "Almenys una opció ha de tenir text",
+  "@atLeastOneOptionRequired": {
+    "description": "Missatge d'error quan totes les opcions estan buides"
+  },
+  "atLeastOneCorrectAnswerRequired": "Almenys una resposta correcta ha de ser seleccionada",
+  "@atLeastOneCorrectAnswerRequired": {
+    "description": "Missatge d'error quan cap resposta correcta està seleccionada"
+  },
+  "onlyOneCorrectAnswerAllowed": "Només es permet una resposta correcta per aquest tipus de pregunta",
+  "@onlyOneCorrectAnswerAllowed": {
+    "description": "Missatge d'error quan múltiples respostes correctes són seleccionades per preguntes d'elecció única"
+  },
+  "removeOption": "Eliminar opció",
+  "@removeOption": {
+    "description": "Tooltip pel botó eliminar opció"
+  },
+  "selectCorrectAnswer": "Seleccionar resposta correcta",
+  "@selectCorrectAnswer": {
+    "description": "Tooltip pel botó de ràdio per seleccionar resposta correcta"
+  },
+  "selectCorrectAnswers": "Seleccionar respostes correctes",
+  "@selectCorrectAnswers": {
+    "description": "Tooltip per la casella de verificació per seleccionar respostes correctes"
+  },
+  "emptyOptionsError": "Les opcions {optionNumbers} estan buides. Afegiu-hi text o elimineu-les.",
+  "@emptyOptionsError": {
+    "description": "Missatge d'error quan algunes opcions estan buides",
+    "placeholders": {
+      "optionNumbers": {
+        "type": "String",
+        "example": "1, 3, 4"
+      }
+    }
+  },
+  "emptyOptionError": "L'opció {optionNumber} està buida. Afegiu-hi text o elimineu-la.",
+  "@emptyOptionError": {
+    "description": "Missatge d'error quan una opció està buida",
+    "placeholders": {
+      "optionNumber": {
+        "type": "String",
+        "example": "3"
+      }
+    }
+  },
+  "optionEmptyError": "Aquesta opció no pot estar buida",
+  "@optionEmptyError": {
+    "description": "Missatge d'error per camp opció individual buit"
+  },
+  "hasImage": "Imatge",
+  "@hasImage": {
+    "description": "Etiqueta indicant que una pregunta té una imatge"
+  },
+  "hasExplanation": "Explicació",
+  "@hasExplanation": {
+    "description": "Etiqueta indicant que una pregunta té una explicació"
+  },
+  "errorLoadingSettings": "Error en carregar la configuració: {error}",
+  "@errorLoadingSettings": {
+    "description": "Missatge mostrat quan hi ha un error durant la càrrega de la configuració de l'aplicació.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "El missatge d'error"
+      }
+    }
+  },
+  "couldNotOpenUrl": "No s'ha pogut obrir {url}",
+  "@couldNotOpenUrl": {
+    "description": "Missatge mostrat quan una URL no es pot obrir.",
+    "placeholders": {
+      "url": {
+        "type": "String",
+        "description": "La URL que no s'ha pogut obrir"
+      }
+    }
+  },
+  "loadingAiServices": "Carregant serveis IA...",
+  "@loadingAiServices": {
+    "description": "Missatge mostrat durant la càrrega de serveis IA disponibles."
+  },
+  "usingAiService": "Usant: {serviceName}",
+  "@usingAiService": {
+    "description": "Missatge mostrat que mostra quin servei IA s'està utilitzant.",
+    "placeholders": {
+      "serviceName": {
+        "type": "String",
+        "description": "El nom del servei IA"
+      }
+    }
+  },
+  "aiServiceLabel": "Servei IA:",
+  "@aiServiceLabel": {
+    "description": "Etiqueta pel selector de servei IA."
+  },
+  "importQuestionsTitle": "Importar Preguntes",
+  "@importQuestionsTitle": {
+    "description": "Títol pel diàleg importar preguntes."
+  },
+  "importQuestionsMessage": "Trobades {count} preguntes a \"{fileName}\". On voleu importar-les?",
+  "@importQuestionsMessage": {
+    "description": "Missatge preguntant on importar preguntes d'un altre fitxer.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      },
+      "fileName": {
+        "type": "String",
+        "example": "preguntes.quiz"
+      }
+    }
+  },
+  "importQuestionsPositionQuestion": "On voleu afegir aquestes preguntes?",
+  "@importQuestionsPositionQuestion": {
+    "description": "Pregunta sobre posició d'importació."
+  },
+  "importAtBeginning": "Al Principi",
+  "@importAtBeginning": {
+    "description": "Botó per importar preguntes al principi de la llista."
+  },
+  "importAtEnd": "Al Final",
+  "@importAtEnd": {
+    "description": "Botó per importar preguntes al final de la llista."
+  },
+  "questionsImportedSuccess": "Importades amb èxit {count} preguntes",
+  "@questionsImportedSuccess": {
+    "description": "Missatge d'èxit quan les preguntes són importades.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "importQuestionsTooltip": "Importar preguntes d'un altre fitxer quiz",
+  "@importQuestionsTooltip": {
+    "description": "Tooltip pel botó importar preguntes."
+  },
+  "dragDropHintText": "També podeu arrossegar i deixar anar fitxers .quiz aquí per importar preguntes",
+  "@dragDropHintText": {
+    "description": "Text de pista mostrat quan la llista de preguntes està buida, indicant funcionalitat d'arrossegar i deixar anar."
+  },
+  "randomizeAnswersTitle": "Aleatoritzar Opcions de Resposta",
+  "@randomizeAnswersTitle": {
+    "description": "Títol per la configuració d'aleatorització d'opcions de resposta."
+  },
+  "randomizeAnswersDescription": "Barrejar l'ordre de les opcions de resposta durant l'execució del quiz",
+  "@randomizeAnswersDescription": {
+    "description": "Descripció per la configuració aleatoritzar respostes."
+  },
+  "showCorrectAnswerCountTitle": "Mostrar Nombre de Respostes Correctes",
+  "@showCorrectAnswerCountTitle": {
+    "description": "Títol per la configuració mostrar nombre de respostes correctes."
+  },
+  "showCorrectAnswerCountDescription": "Mostrar el nombre de respostes correctes en preguntes d'elecció múltiple",
+  "@showCorrectAnswerCountDescription": {
+    "description": "Descripció per la configuració mostrar nombre de respostes correctes."
+  },
+  "correctAnswersCount": "Seleccioneu {count} respostes correctes",
+  "@correctAnswersCount": {
+    "description": "Text mostrant quantes respostes correctes seleccionar en una pregunta d'elecció múltiple.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+  "correctSelectedLabel": "Correcte",
+  "@correctSelectedLabel": {
+    "description": "Etiqueta per respostes seleccionades correctament als resultats del quiz."
+  },
+  "correctMissedLabel": "Correcte",
+  "@correctMissedLabel": {
+    "description": "Etiqueta per respostes correctes que no van ser seleccionades als resultats del quiz."
+  },
+  "incorrectSelectedLabel": "Incorrecte",
+  "@incorrectSelectedLabel": {
+    "description": "Etiqueta per respostes seleccionades incorrectament als resultats del quiz."
+  },
+  "generateQuestionsWithAI": "Generar preguntes amb IA",
+  "@generateQuestionsWithAI": {
+    "description": "Tooltip pel botó generar preguntes amb IA."
+  },
+  "aiGenerateDialogTitle": "Generar Preguntes amb IA",
+  "@aiGenerateDialogTitle": {
+    "description": "Títol del diàleg generació de preguntes IA."
+  },
+  "aiQuestionCountLabel": "Nombre de Preguntes (Opcional)",
+  "@aiQuestionCountLabel": {
+    "description": "Etiqueta pel camp nombre de preguntes."
+  },
+  "aiQuestionCountHint": "Deixeu buit perquè la IA decideixi",
+  "@aiQuestionCountHint": {
+    "description": "Text de pista pel camp nombre de preguntes."
+  },
+  "aiQuestionCountValidation": "Ha de ser un número entre 1 i 50",
+  "@aiQuestionCountValidation": {
+    "description": "Missatge de validació per nombre de preguntes."
+  },
+  "aiQuestionTypeLabel": "Tipus de Pregunta",
+  "@aiQuestionTypeLabel": {
+    "description": "Etiqueta pel selector tipus de pregunta."
+  },
+  "aiQuestionTypeRandom": "Aleatori (Mixt)",
+  "@aiQuestionTypeRandom": {
+    "description": "Opció tipus aleatori per preguntes."
+  },
+  "aiLanguageLabel": "Idioma de les Preguntes",
+  "@aiLanguageLabel": {
+    "description": "Etiqueta pel selector d'idioma."
+  },
+  "aiContentLabel": "Contingut per generar preguntes",
+  "@aiContentLabel": {
+    "description": "Etiqueta pel camp contingut."
+  },
+  "aiWordCount": "{current} / {max} paraules",
+  "@aiWordCount": {
+    "description": "Comptador de paraules per contingut.",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "150"
+      },
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiContentHint": "Introduïu el text, tema, o contingut a partir del qual voleu generar preguntes...",
+  "@aiContentHint": {
+    "description": "Text de pista pel camp contingut."
+  },
+  "aiContentHelperText": "La IA crearà preguntes basades en aquest contingut",
+  "@aiContentHelperText": {
+    "description": "Text d'ajuda addicional pel camp contingut."
+  },
+  "aiWordLimitError": "Heu excedit el límit de {max} paraules",
+  "@aiWordLimitError": {
+    "description": "Error quan es supera el límit de paraules.",
+    "placeholders": {
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiContentRequiredError": "Heu de proporcionar contingut per generar preguntes",
+  "@aiContentRequiredError": {
+    "description": "Error quan no es proporciona contingut."
+  },
+  "aiContentLimitError": "El contingut supera el límit de {max} paraules",
+  "@aiContentLimitError": {
+    "description": "Error de validació per límit de paraules.",
+    "placeholders": {
+      "max": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  },
+  "aiMinWordsError": "Proporcioneu almenys 10 paraules per generar preguntes de qualitat",
+  "@aiMinWordsError": {
+    "description": "Error quan el contingut és massa curt."
+  },
+  "aiInfoTitle": "Informació",
+  "@aiInfoTitle": {
+    "description": "Títol de la secció informació."
+  },
+  "aiInfoDescription": "• La IA analitzarà el contingut i generarà preguntes rellevants\n• Podeu incloure text, definicions, explicacions, o qualsevol material educatiu\n• Les preguntes inclouran opcions de resposta i explicacions\n• El procés pot trigar uns segons",
+  "@aiInfoDescription": {
+    "description": "Descripció informativa del procés de generació IA."
+  },
+  "aiGenerateButton": "Generar Preguntes",
+  "@aiGenerateButton": {
+    "description": "Text pel botó generar preguntes."
+  },
+  "languageSpanish": "Español",
+  "@languageSpanish": {
+    "description": "Nom de la llengua espanyola."
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "Nom de la llengua anglesa."
+  },
+  "languageFrench": "Français",
+  "@languageFrench": {
+    "description": "Nom de la llengua francesa."
+  },
+  "languageGerman": "Deutsch",
+  "@languageGerman": {
+    "description": "Nom de la llengua alemanya."
+  },
+  "languageItalian": "Italiano",
+  "@languageItalian": {
+    "description": "Nom de la llengua italiana."
+  },
+  "languagePortuguese": "Português",
+  "@languagePortuguese": {
+    "description": "Nom de la llengua portuguesa."
+  },
+  "languageCatalan": "Català",
+  "@languageCatalan": {
+    "description": "Nom de la llengua catalana."
+  },
+  "languageBasque": "Euskera",
+  "@languageBasque": {
+    "description": "Nom de la llengua basca."
+  },
+  "languageGalician": "Galego",
+  "@languageGalician": {
+    "description": "Nom de la llengua gallega."
+  },
+  "aiServicesLoading": "Carregant serveis IA...",
+  "@aiServicesLoading": {
+    "description": "Missatge mostrat durant la càrrega de serveis IA disponibles."
+  },
+  "aiServicesNotConfigured": "Cap servei IA configurat",
+  "@aiServicesNotConfigured": {
+    "description": "Missatge mostrat quan cap servei IA està configurat."
+  },
+  "aiGeneratedQuestions": "Generat per IA",
+  "@aiGeneratedQuestions": {
+    "description": "Nom per preguntes generades per IA al diàleg importació."
+  },
+  "aiApiKeyRequired": "Configureu almenys una clau API IA a la Configuració per usar generació IA.",
+  "@aiApiKeyRequired": {
+    "description": "Missatge mostrat quan cap clau API està configurada per IA."
+  },
+  "aiGenerationFailed": "No s'han pogut generar preguntes. Proveu amb contingut diferent.",
+  "@aiGenerationFailed": {
+    "description": "Missatge mostrat quan la generació de preguntes IA falla."
+  },
+  "aiGenerationError": "Error en generar preguntes: {error}",
+  "@aiGenerationError": {
+    "description": "Missatge d'error en generar preguntes amb IA.",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Clau API no vàlida"
+      }
+    }
+  },
+  "noQuestionsInFile": "Cap pregunta trobada al fitxer importat",
+  "@noQuestionsInFile": {
+    "description": "Missatge mostrat quan el fitxer importat no conté preguntes."
+  },
+  "couldNotAccessFile": "No s'ha pogut accedir al fitxer seleccionat",
+  "@couldNotAccessFile": {
+    "description": "Missatge mostrat quan no es pot accedir a un fitxer seleccionat."
+  },
+  "defaultOutputFileName": "fitxer-sortida.quiz",
+  "@defaultOutputFileName": {
+    "description": "Nom per defecte per fitxers de sortida."
+  },
+  "aiServiceLimitsWithChars": "Límit: {words} paraules o {chars} caràcters",
+  "@aiServiceLimitsWithChars": {
+    "description": "Descripció dels límits de servei IA amb límits de paraules i caràcters.",
+    "placeholders": {
+      "words": {
+        "type": "int",
+        "example": "3000"
+      },
+      "chars": {
+        "type": "int",
+        "example": "12000"
+      }
+    }
+  },
+  "aiServiceLimitsWordsOnly": "Límit: {words} paraules",
+  "@aiServiceLimitsWordsOnly": {
+    "description": "Descripció dels límits de servei IA només amb límit de paraules.",
+    "placeholders": {
+      "words": {
+        "type": "int",
+        "example": "3000"
+      }
+    }
+  }
+}
