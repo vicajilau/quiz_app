@@ -19,7 +19,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   final _questionCountController = TextEditingController();
 
   AiQuestionType _selectedQuestionType = AiQuestionType.random;
-  String _selectedLanguage = 'es';
+  String _selectedLanguage = 'en'; // Will be updated in initState
   int _currentWordCount = 0;
 
   // Variables for AI selector
@@ -64,6 +64,14 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
         return localizations.languageBasque;
       case 'gl':
         return localizations.languageGalician;
+      case 'hi':
+        return localizations.languageHindi;
+      case 'zh':
+        return localizations.languageChinese;
+      case 'ar':
+        return localizations.languageArabic;
+      case 'ja':
+        return localizations.languageJapanese;
       default:
         return languageCode.toUpperCase(); // Fallback to uppercase code
     }
@@ -74,6 +82,30 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
     super.initState();
     _textController.addListener(_updateWordCount);
     _loadAvailableServices();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _setDefaultLanguage();
+  }
+
+  void _setDefaultLanguage() {
+    // Get the system locale
+    final systemLocale = Localizations.localeOf(context);
+    final systemLanguageCode = systemLocale.languageCode;
+
+    // Check if the system language is supported
+    if (_supportedLanguages.contains(systemLanguageCode)) {
+      setState(() {
+        _selectedLanguage = systemLanguageCode;
+      });
+    } else {
+      // Fallback to English if system language is not supported
+      setState(() {
+        _selectedLanguage = 'en';
+      });
+    }
   }
 
   Future<void> _loadAvailableServices() async {

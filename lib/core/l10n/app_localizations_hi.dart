@@ -724,6 +724,18 @@ class AppLocalizationsHi extends AppLocalizations {
   String get languageGalician => 'Galego';
 
   @override
+  String get languageHindi => 'हिन्दी';
+
+  @override
+  String get languageChinese => '中文';
+
+  @override
+  String get languageArabic => 'العربية';
+
+  @override
+  String get languageJapanese => '日本語';
+
+  @override
   String get aiServicesLoading => 'AI सेवाएं लोड हो रही हैं...';
 
   @override

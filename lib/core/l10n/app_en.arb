@@ -1027,6 +1027,22 @@
   "@languageGalician": {
     "description": "Galician language name."
   },
+  "languageHindi": "हिन्दी",
+  "@languageHindi": {
+    "description": "Hindi language name."
+  },
+  "languageChinese": "中文",
+  "@languageChinese": {
+    "description": "Chinese language name."
+  },
+  "languageArabic": "العربية",
+  "@languageArabic": {
+    "description": "Arabic language name."
+  },
+  "languageJapanese": "日本語",
+  "@languageJapanese": {
+    "description": "Japanese language name."
+  },
   "aiServicesLoading": "Loading AI services...",
   "@aiServicesLoading": {
     "description": "Message shown while loading available AI services."

@@ -693,6 +693,18 @@ class AppLocalizationsZh extends AppLocalizations {
   String get languageGalician => 'Galego';
 
   @override
+  String get languageHindi => 'हिन्दी';
+
+  @override
+  String get languageChinese => '中文';
+
+  @override
+  String get languageArabic => 'العربية';
+
+  @override
+  String get languageJapanese => '日本語';
+
+  @override
   String get aiServicesLoading => '正在加载AI服务...';
 
   @override

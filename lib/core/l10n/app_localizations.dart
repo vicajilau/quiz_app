@@ -1368,6 +1368,30 @@ abstract class AppLocalizations {
   /// **'Galego'**
   String get languageGalician;
 
+  /// Hindi language name.
+  ///
+  /// In en, this message translates to:
+  /// **'हिन्दी'**
+  String get languageHindi;
+
+  /// Chinese language name.
+  ///
+  /// In en, this message translates to:
+  /// **'中文'**
+  String get languageChinese;
+
+  /// Arabic language name.
+  ///
+  /// In en, this message translates to:
+  /// **'العربية'**
+  String get languageArabic;
+
+  /// Japanese language name.
+  ///
+  /// In en, this message translates to:
+  /// **'日本語'**
+  String get languageJapanese;
+
   /// Message shown while loading available AI services.
   ///
   /// In en, this message translates to:
