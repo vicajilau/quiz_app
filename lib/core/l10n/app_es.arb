@@ -1060,5 +1060,57 @@
   "enableAiAssistant": "El asistente de IA está deshabilitado. Por favor, actívalo en la configuración para usar las funciones de IA.",
   "@enableAiAssistant": {
     "description": "Mensaje que se muestra cuando el asistente de IA está deshabilitado"
+  },
+  "aiMinWordsRequired": "Mínimo {minWords} palabras requeridas",
+  "@aiMinWordsRequired": {
+    "description": "Mensaje que muestra las palabras mínimas requeridas para la generación con IA",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      }
+    }
+  },
+  "aiWordsReadyToGenerate": "{wordCount} palabras ✓ Listo para generar",
+  "@aiWordsReadyToGenerate": {
+    "description": "Mensaje cuando se proporcionan suficientes palabras para la generación con IA",
+    "placeholders": {
+      "wordCount": {
+        "type": "int",
+        "example": "75"
+      }
+    }
+  },
+  "aiWordsProgress": "{currentWords}/{minWords} palabras ({moreNeeded} más necesarias)",
+  "@aiWordsProgress": {
+    "description": "Mensaje que muestra el progreso del conteo de palabras",
+    "placeholders": {
+      "currentWords": {
+        "type": "int",
+        "example": "30"
+      },
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
+  },
+  "aiValidationMinWords": "Mínimo {minWords} palabras requeridas ({moreNeeded} más necesarias)",
+  "@aiValidationMinWords": {
+    "description": "Mensaje de validación cuando no se proporcionan suficientes palabras",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
   }
 }

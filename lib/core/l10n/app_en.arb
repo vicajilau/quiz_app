@@ -1120,5 +1120,57 @@
   "enableAiAssistant": "The AI assistant is disabled. Please enable it in settings to use AI features.",
   "@enableAiAssistant": {
     "description": "Message to show when AI assistant is disabled"
+  },
+  "aiMinWordsRequired": "Minimum {minWords} words required",
+  "@aiMinWordsRequired": {
+    "description": "Message showing minimum words required for AI generation",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      }
+    }
+  },
+  "aiWordsReadyToGenerate": "{wordCount} words ✓ Ready to generate",
+  "@aiWordsReadyToGenerate": {
+    "description": "Message when enough words are provided for AI generation",
+    "placeholders": {
+      "wordCount": {
+        "type": "int",
+        "example": "75"
+      }
+    }
+  },
+  "aiWordsProgress": "{currentWords}/{minWords} words ({moreNeeded} more needed)",
+  "@aiWordsProgress": {
+    "description": "Message showing word count progress",
+    "placeholders": {
+      "currentWords": {
+        "type": "int",
+        "example": "30"
+      },
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
+  },
+  "aiValidationMinWords": "Minimum {minWords} words required ({moreNeeded} more needed)",
+  "@aiValidationMinWords": {
+    "description": "Validation message when not enough words are provided",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
   }
 }

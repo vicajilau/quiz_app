@@ -750,5 +750,25 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get enableAiAssistant =>
-      'AI学習アシスタントが無効になっています。AI機能を使用するには設定で有効にしてください。';
+      'AIアシスタントが無効になっています。AI機能を使用するために設定で有効にしてください。';
+
+  @override
+  String aiMinWordsRequired(int minWords) {
+    return '最低$minWords語が必要です';
+  }
+
+  @override
+  String aiWordsReadyToGenerate(int wordCount) {
+    return '$wordCount語 ✓ 生成準備完了';
+  }
+
+  @override
+  String aiWordsProgress(int currentWords, int minWords, int moreNeeded) {
+    return '$currentWords/$minWords語 (あと$moreNeeded語必要)';
+  }
+
+  @override
+  String aiValidationMinWords(int minWords, int moreNeeded) {
+    return '最低$minWords語が必要です（あと$moreNeeded語必要）';
+  }
 }

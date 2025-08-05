@@ -1091,8 +1091,60 @@
   "@aiAssistantDisabled": {
     "description": "Titel für Dialog wenn KI-Assistent deaktiviert ist"
   },
-  "enableAiAssistant": "Der KI-Assistent ist deaktiviert. Bitte aktivieren Sie ihn in den Einstellungen, um KI-Funktionen zu nutzen.",
+  "enableAiAssistant": "KI-Assistent ist deaktiviert. Bitte aktivieren Sie ihn in den Einstellungen, um KI-Funktionen zu nutzen.",
   "@enableAiAssistant": {
-    "description": "Nachricht wenn KI-Assistent deaktiviert ist"
+    "description": "Nachricht, die angezeigt wird, wenn der KI-Assistent deaktiviert ist"
+  },
+  "aiMinWordsRequired": "Mindestens {minWords} Wörter erforderlich",
+  "@aiMinWordsRequired": {
+    "description": "Nachricht, die die Mindestanzahl von Wörtern für KI-Generierung anzeigt",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      }
+    }
+  },
+  "aiWordsReadyToGenerate": "{wordCount} Wörter ✓ Bereit zu generieren",
+  "@aiWordsReadyToGenerate": {
+    "description": "Nachricht, wenn genügend Wörter für KI-Generierung bereitgestellt wurden",
+    "placeholders": {
+      "wordCount": {
+        "type": "int",
+        "example": "75"
+      }
+    }
+  },
+  "aiWordsProgress": "{currentWords}/{minWords} Wörter ({moreNeeded} weitere benötigt)",
+  "@aiWordsProgress": {
+    "description": "Nachricht, die den Fortschritt der Wortzählung anzeigt",
+    "placeholders": {
+      "currentWords": {
+        "type": "int",
+        "example": "30"
+      },
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
+  },
+  "aiValidationMinWords": "Mindestens {minWords} Wörter erforderlich ({moreNeeded} weitere benötigt)",
+  "@aiValidationMinWords": {
+    "description": "Validierungsnachricht, wenn nicht genügend Wörter bereitgestellt wurden",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
   }
 }

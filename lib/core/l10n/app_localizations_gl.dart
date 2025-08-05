@@ -795,4 +795,24 @@ class AppLocalizationsGl extends AppLocalizations {
   @override
   String get enableAiAssistant =>
       'O asistente de IA está deshabilitado. Actívao na configuración para usar as funcionalidades de IA.';
+
+  @override
+  String aiMinWordsRequired(int minWords) {
+    return 'Mínimo $minWords palabras necesarias';
+  }
+
+  @override
+  String aiWordsReadyToGenerate(int wordCount) {
+    return '$wordCount palabras ✓ Listo para xerar';
+  }
+
+  @override
+  String aiWordsProgress(int currentWords, int minWords, int moreNeeded) {
+    return '$currentWords/$minWords palabras ($moreNeeded máis necesarias)';
+  }
+
+  @override
+  String aiValidationMinWords(int minWords, int moreNeeded) {
+    return 'Mínimo $minWords palabras necesarias ($moreNeeded máis necesarias)';
+  }
 }

@@ -1091,8 +1091,60 @@
   "@aiAssistantDisabled": {
     "description": "Títol per al diàleg quan l'assistent d'IA està deshabilitat"
   },
-  "enableAiAssistant": "L'assistent d'IA està deshabilitat. Activa'l a la configuració per utilitzar les funcionalitats d'IA.",
+    "enableAiAssistant": "L'assistent d'IA està desactivat. Si us plau, activa'l a la configuració per utilitzar les funcions d'IA.",
   "@enableAiAssistant": {
-    "description": "Missatge quan l'assistent d'IA està deshabilitat"
+    "description": "Missatge a mostrar quan l'assistent d'IA està desactivat"
+  },
+  "aiMinWordsRequired": "Mínim {minWords} paraules necessàries",
+  "@aiMinWordsRequired": {
+    "description": "Missatge que mostra el mínim de paraules necessàries per a la generació d'IA",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      }
+    }
+  },
+  "aiWordsReadyToGenerate": "{wordCount} paraules ✓ Llest per generar",
+  "@aiWordsReadyToGenerate": {
+    "description": "Missatge quan es proporcionen prou paraules per a la generació d'IA",
+    "placeholders": {
+      "wordCount": {
+        "type": "int",
+        "example": "75"
+      }
+    }
+  },
+  "aiWordsProgress": "{currentWords}/{minWords} paraules ({moreNeeded} més necessàries)",
+  "@aiWordsProgress": {
+    "description": "Missatge que mostra el progrés del recompte de paraules",
+    "placeholders": {
+      "currentWords": {
+        "type": "int",
+        "example": "30"
+      },
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
+  },
+  "aiValidationMinWords": "Mínim {minWords} paraules necessàries ({moreNeeded} més necessàries)",
+  "@aiValidationMinWords": {
+    "description": "Missatge de validació quan no es proporcionen prou paraules",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
   }
 }

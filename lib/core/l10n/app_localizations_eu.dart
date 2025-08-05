@@ -791,4 +791,24 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get enableAiAssistant =>
       'AI laguntzailea desgaituta dago. Mesedez, gaitu ezazu konfigurazioan AI funtzioak erabiltzeko.';
+
+  @override
+  String aiMinWordsRequired(int minWords) {
+    return 'Gutxienez $minWords hitz behar dira';
+  }
+
+  @override
+  String aiWordsReadyToGenerate(int wordCount) {
+    return '$wordCount hitz ✓ Sortzeko prest';
+  }
+
+  @override
+  String aiWordsProgress(int currentWords, int minWords, int moreNeeded) {
+    return '$currentWords/$minWords hitz ($moreNeeded gehiago behar dira)';
+  }
+
+  @override
+  String aiValidationMinWords(int minWords, int moreNeeded) {
+    return 'Gutxienez $minWords hitz behar dira ($moreNeeded gehiago behar dira)';
+  }
 }

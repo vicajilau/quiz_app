@@ -790,5 +790,25 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get enableAiAssistant =>
-      'O assistente IA está desabilitado. Ative-o nas configurações para usar as funcionalidades de IA.';
+      'O assistente de IA está desabilitado. Por favor, habilite-o nas configurações para usar recursos de IA.';
+
+  @override
+  String aiMinWordsRequired(int minWords) {
+    return 'Mínimo de $minWords palavras necessárias';
+  }
+
+  @override
+  String aiWordsReadyToGenerate(int wordCount) {
+    return '$wordCount palavras ✓ Pronto para gerar';
+  }
+
+  @override
+  String aiWordsProgress(int currentWords, int minWords, int moreNeeded) {
+    return '$currentWords/$minWords palavras ($moreNeeded mais necessárias)';
+  }
+
+  @override
+  String aiValidationMinWords(int minWords, int moreNeeded) {
+    return 'Mínimo de $minWords palavras necessárias ($moreNeeded mais necessárias)';
+  }
 }

@@ -795,5 +795,25 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get enableAiAssistant =>
-      'Der KI-Assistent ist deaktiviert. Bitte aktivieren Sie ihn in den Einstellungen, um KI-Funktionen zu nutzen.';
+      'KI-Assistent ist deaktiviert. Bitte aktivieren Sie ihn in den Einstellungen, um KI-Funktionen zu nutzen.';
+
+  @override
+  String aiMinWordsRequired(int minWords) {
+    return 'Mindestens $minWords Wörter erforderlich';
+  }
+
+  @override
+  String aiWordsReadyToGenerate(int wordCount) {
+    return '$wordCount Wörter ✓ Bereit zu generieren';
+  }
+
+  @override
+  String aiWordsProgress(int currentWords, int minWords, int moreNeeded) {
+    return '$currentWords/$minWords Wörter ($moreNeeded weitere benötigt)';
+  }
+
+  @override
+  String aiValidationMinWords(int minWords, int moreNeeded) {
+    return 'Mindestens $minWords Wörter erforderlich ($moreNeeded weitere benötigt)';
+  }
 }

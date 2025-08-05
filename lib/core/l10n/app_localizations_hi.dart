@@ -782,4 +782,24 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get enableAiAssistant =>
       'AI सहायक अक्षम है। AI सुविधाओं का उपयोग करने के लिए कृपया इसे सेटिंग्स में सक्षम करें।';
+
+  @override
+  String aiMinWordsRequired(int minWords) {
+    return 'न्यूनतम $minWords शब्द आवश्यक';
+  }
+
+  @override
+  String aiWordsReadyToGenerate(int wordCount) {
+    return '$wordCount शब्द ✓ उत्पन्न करने के लिए तैयार';
+  }
+
+  @override
+  String aiWordsProgress(int currentWords, int minWords, int moreNeeded) {
+    return '$currentWords/$minWords शब्द ($moreNeeded और चाहिए)';
+  }
+
+  @override
+  String aiValidationMinWords(int minWords, int moreNeeded) {
+    return 'न्यूनतम $minWords शब्द आवश्यक ($moreNeeded और चाहिए)';
+  }
 }

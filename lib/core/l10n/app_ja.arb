@@ -1091,8 +1091,60 @@
   "@aiAssistantDisabled": {
     "description": "AI学習アシスタントが無効な場合のダイアログのタイトル"
   },
-  "enableAiAssistant": "AI学習アシスタントが無効になっています。AI機能を使用するには設定で有効にしてください。",
+  "enableAiAssistant": "AIアシスタントが無効になっています。AI機能を使用するために設定で有効にしてください。",
   "@enableAiAssistant": {
-    "description": "AI学習アシスタントが無効な場合に表示されるメッセージ"
+    "description": "AIアシスタントが無効になっている時に表示するメッセージ"
+  },
+  "aiMinWordsRequired": "最低{minWords}語が必要です",
+  "@aiMinWordsRequired": {
+    "description": "AI生成に必要な最小単語数を示すメッセージ",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      }
+    }
+  },
+  "aiWordsReadyToGenerate": "{wordCount}語 ✓ 生成準備完了",
+  "@aiWordsReadyToGenerate": {
+    "description": "AI生成に十分な単語が提供された時のメッセージ",
+    "placeholders": {
+      "wordCount": {
+        "type": "int",
+        "example": "75"
+      }
+    }
+  },
+  "aiWordsProgress": "{currentWords}/{minWords}語 (あと{moreNeeded}語必要)",
+  "@aiWordsProgress": {
+    "description": "単語数の進捗を示すメッセージ",
+    "placeholders": {
+      "currentWords": {
+        "type": "int",
+        "example": "30"
+      },
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
+  },
+  "aiValidationMinWords": "最低{minWords}語が必要です（あと{moreNeeded}語必要）",
+  "@aiValidationMinWords": {
+    "description": "十分な単語が提供されていない時の検証メッセージ",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
   }
 }

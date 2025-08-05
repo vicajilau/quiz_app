@@ -1093,6 +1093,58 @@
   },
   "enableAiAssistant": "AI助手已禁用。请在设置中启用它以使用AI功能。",
   "@enableAiAssistant": {
-    "description": "AI助手禁用时显示的消息"
+    "description": "AI助手被禁用时显示的消息"
+  },
+  "aiMinWordsRequired": "需要至少{minWords}个单词",
+  "@aiMinWordsRequired": {
+    "description": "显示AI生成所需最少单词数的消息",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      }
+    }
+  },
+  "aiWordsReadyToGenerate": "{wordCount}个单词 ✓ 准备生成",
+  "@aiWordsReadyToGenerate": {
+    "description": "当提供足够单词进行AI生成时的消息",
+    "placeholders": {
+      "wordCount": {
+        "type": "int",
+        "example": "75"
+      }
+    }
+  },
+  "aiWordsProgress": "{currentWords}/{minWords}个单词（还需要{moreNeeded}个）",
+  "@aiWordsProgress": {
+    "description": "显示单词计数进度的消息",
+    "placeholders": {
+      "currentWords": {
+        "type": "int",
+        "example": "30"
+      },
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
+  },
+  "aiValidationMinWords": "需要至少{minWords}个单词（还需要{moreNeeded}个）",
+  "@aiValidationMinWords": {
+    "description": "当提供的单词不足时的验证消息",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
   }
 }

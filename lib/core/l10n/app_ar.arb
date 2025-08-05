@@ -1094,5 +1094,57 @@
   "enableAiAssistant": "مساعد الذكاء الاصطناعي معطل. يرجى تفعيله في الإعدادات لاستخدام ميزات الذكاء الاصطناعي.",
   "@enableAiAssistant": {
     "description": "رسالة تظهر عندما يكون مساعد الذكاء الاصطناعي معطلاً"
+  },
+  "aiMinWordsRequired": "مطلوب الحد الأدنى {minWords} كلمة",
+  "@aiMinWordsRequired": {
+    "description": "رسالة تظهر الحد الأدنى من الكلمات المطلوبة لتوليد الذكاء الاصطناعي",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      }
+    }
+  },
+  "aiWordsReadyToGenerate": "{wordCount} كلمة ✓ جاهز للتوليد",
+  "@aiWordsReadyToGenerate": {
+    "description": "رسالة عند توفير كلمات كافية لتوليد الذكاء الاصطناعي",
+    "placeholders": {
+      "wordCount": {
+        "type": "int",
+        "example": "75"
+      }
+    }
+  },
+  "aiWordsProgress": "{currentWords}/{minWords} كلمة (نحتاج {moreNeeded} أكثر)",
+  "@aiWordsProgress": {
+    "description": "رسالة تظهر تقدم عدد الكلمات",
+    "placeholders": {
+      "currentWords": {
+        "type": "int",
+        "example": "30"
+      },
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
+  },
+  "aiValidationMinWords": "مطلوب الحد الأدنى {minWords} كلمة (نحتاج {moreNeeded} أكثر)",
+  "@aiValidationMinWords": {
+    "description": "رسالة التحقق عند عدم توفير كلمات كافية",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
   }
 }

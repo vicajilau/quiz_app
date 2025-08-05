@@ -1094,5 +1094,57 @@
   "enableAiAssistant": "AI laguntzailea desgaituta dago. Mesedez, gaitu ezazu konfigurazioan AI funtzioak erabiltzeko.",
   "@enableAiAssistant": {
     "description": "AI laguntzailea desgaituta dagoenean erakutsi beharreko mezua"
+  },
+  "aiMinWordsRequired": "Gutxienez {minWords} hitz behar dira",
+  "@aiMinWordsRequired": {
+    "description": "AI sortzerakoan behar diren gutxieneko hitzak erakusten dituen mezua",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      }
+    }
+  },
+  "aiWordsReadyToGenerate": "{wordCount} hitz ✓ Sortzeko prest",
+  "@aiWordsReadyToGenerate": {
+    "description": "AI sortzerakoan nahikoa hitz ematen direnean mezua",
+    "placeholders": {
+      "wordCount": {
+        "type": "int",
+        "example": "75"
+      }
+    }
+  },
+  "aiWordsProgress": "{currentWords}/{minWords} hitz ({moreNeeded} gehiago behar dira)",
+  "@aiWordsProgress": {
+    "description": "Hitz kontuaren aurrerapena erakusten duen mezua",
+    "placeholders": {
+      "currentWords": {
+        "type": "int",
+        "example": "30"
+      },
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
+  },
+  "aiValidationMinWords": "Gutxienez {minWords} hitz behar dira ({moreNeeded} gehiago behar dira)",
+  "@aiValidationMinWords": {
+    "description": "Nahikoa hitz ematen ez direnean balioztapen mezua",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
   }
 }

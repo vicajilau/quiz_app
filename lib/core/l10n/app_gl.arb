@@ -1094,5 +1094,57 @@
   "enableAiAssistant": "O asistente de IA está deshabilitado. Actívao na configuración para usar as funcionalidades de IA.",
   "@enableAiAssistant": {
     "description": "Mensaxe cando o asistente de IA está deshabilitado"
+  },
+  "aiMinWordsRequired": "Mínimo {minWords} palabras necesarias",
+  "@aiMinWordsRequired": {
+    "description": "Mensaxe que mostra o mínimo de palabras necesarias para a xeración de IA",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      }
+    }
+  },
+  "aiWordsReadyToGenerate": "{wordCount} palabras ✓ Listo para xerar",
+  "@aiWordsReadyToGenerate": {
+    "description": "Mensaxe cando se proporcionan suficientes palabras para a xeración de IA",
+    "placeholders": {
+      "wordCount": {
+        "type": "int",
+        "example": "75"
+      }
+    }
+  },
+  "aiWordsProgress": "{currentWords}/{minWords} palabras ({moreNeeded} máis necesarias)",
+  "@aiWordsProgress": {
+    "description": "Mensaxe que mostra o progreso da conta de palabras",
+    "placeholders": {
+      "currentWords": {
+        "type": "int",
+        "example": "30"
+      },
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
+  },
+  "aiValidationMinWords": "Mínimo {minWords} palabras necesarias ({moreNeeded} máis necesarias)",
+  "@aiValidationMinWords": {
+    "description": "Mensaxe de validación cando non se proporcionan suficientes palabras",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
   }
 }

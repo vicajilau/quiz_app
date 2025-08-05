@@ -1091,8 +1091,60 @@
   "@aiAssistantDisabled": {
     "description": "Título para diálogo quando assistente IA está desabilitado"
   },
-  "enableAiAssistant": "O assistente IA está desabilitado. Ative-o nas configurações para usar as funcionalidades de IA.",
+    "enableAiAssistant": "O assistente de IA está desabilitado. Por favor, habilite-o nas configurações para usar recursos de IA.",
   "@enableAiAssistant": {
-    "description": "Mensagem quando assistente IA está desabilitado"
+    "description": "Mensagem a ser exibida quando o assistente de IA está desabilitado"
+  },
+  "aiMinWordsRequired": "Mínimo de {minWords} palavras necessárias",
+  "@aiMinWordsRequired": {
+    "description": "Mensagem mostrando o mínimo de palavras necessárias para geração de IA",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      }
+    }
+  },
+  "aiWordsReadyToGenerate": "{wordCount} palavras ✓ Pronto para gerar",
+  "@aiWordsReadyToGenerate": {
+    "description": "Mensagem quando palavras suficientes são fornecidas para geração de IA",
+    "placeholders": {
+      "wordCount": {
+        "type": "int",
+        "example": "75"
+      }
+    }
+  },
+  "aiWordsProgress": "{currentWords}/{minWords} palavras ({moreNeeded} mais necessárias)",
+  "@aiWordsProgress": {
+    "description": "Mensagem mostrando o progresso da contagem de palavras",
+    "placeholders": {
+      "currentWords": {
+        "type": "int",
+        "example": "30"
+      },
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
+  },
+  "aiValidationMinWords": "Mínimo de {minWords} palavras necessárias ({moreNeeded} mais necessárias)",
+  "@aiValidationMinWords": {
+    "description": "Mensagem de validação quando palavras insuficientes são fornecidas",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
   }
 }

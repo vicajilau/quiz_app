@@ -1091,8 +1091,60 @@
   "@aiAssistantDisabled": {
     "description": "Titolo per dialogo quando assistente IA è disabilitato"
   },
-  "enableAiAssistant": "L'assistente IA è disabilitato. Attivalo nelle impostazioni per utilizzare le funzionalità IA.",
+    "enableAiAssistant": "L'assistente IA è disabilitato. Si prega di abilitarlo nelle impostazioni per utilizzare le funzionalità IA.",
   "@enableAiAssistant": {
-    "description": "Messaggio quando assistente IA è disabilitato"
+    "description": "Messaggio da mostrare quando l'assistente IA è disabilitato"
+  },
+  "aiMinWordsRequired": "Minimo {minWords} parole richieste",
+  "@aiMinWordsRequired": {
+    "description": "Messaggio che mostra il minimo di parole richieste per la generazione IA",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      }
+    }
+  },
+  "aiWordsReadyToGenerate": "{wordCount} parole ✓ Pronto a generare",
+  "@aiWordsReadyToGenerate": {
+    "description": "Messaggio quando sono fornite abbastanza parole per la generazione IA",
+    "placeholders": {
+      "wordCount": {
+        "type": "int",
+        "example": "75"
+      }
+    }
+  },
+  "aiWordsProgress": "{currentWords}/{minWords} parole ({moreNeeded} altre necessarie)",
+  "@aiWordsProgress": {
+    "description": "Messaggio che mostra il progresso del conteggio parole",
+    "placeholders": {
+      "currentWords": {
+        "type": "int",
+        "example": "30"
+      },
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
+  },
+  "aiValidationMinWords": "Minimo {minWords} parole richieste ({moreNeeded} altre necessarie)",
+  "@aiValidationMinWords": {
+    "description": "Messaggio di validazione quando non sono fornite abbastanza parole",
+    "placeholders": {
+      "minWords": {
+        "type": "int",
+        "example": "50"
+      },
+      "moreNeeded": {
+        "type": "int",
+        "example": "20"
+      }
+    }
   }
 }

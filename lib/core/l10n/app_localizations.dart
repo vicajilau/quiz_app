@@ -1469,6 +1469,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The AI assistant is disabled. Please enable it in settings to use AI features.'**
   String get enableAiAssistant;
+
+  /// Message showing minimum words required for AI generation
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum {minWords} words required'**
+  String aiMinWordsRequired(int minWords);
+
+  /// Message when enough words are provided for AI generation
+  ///
+  /// In en, this message translates to:
+  /// **'{wordCount} words ✓ Ready to generate'**
+  String aiWordsReadyToGenerate(int wordCount);
+
+  /// Message showing word count progress
+  ///
+  /// In en, this message translates to:
+  /// **'{currentWords}/{minWords} words ({moreNeeded} more needed)'**
+  String aiWordsProgress(int currentWords, int minWords, int moreNeeded);
+
+  /// Validation message when not enough words are provided
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum {minWords} words required ({moreNeeded} more needed)'**
+  String aiValidationMinWords(int minWords, int moreNeeded);
 }
 
 class _AppLocalizationsDelegate

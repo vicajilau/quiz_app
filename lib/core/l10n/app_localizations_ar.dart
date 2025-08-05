@@ -777,4 +777,24 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get enableAiAssistant =>
       'مساعد الذكاء الاصطناعي معطل. يرجى تفعيله في الإعدادات لاستخدام ميزات الذكاء الاصطناعي.';
+
+  @override
+  String aiMinWordsRequired(int minWords) {
+    return 'مطلوب الحد الأدنى $minWords كلمة';
+  }
+
+  @override
+  String aiWordsReadyToGenerate(int wordCount) {
+    return '$wordCount كلمة ✓ جاهز للتوليد';
+  }
+
+  @override
+  String aiWordsProgress(int currentWords, int minWords, int moreNeeded) {
+    return '$currentWords/$minWords كلمة (نحتاج $moreNeeded أكثر)';
+  }
+
+  @override
+  String aiValidationMinWords(int minWords, int moreNeeded) {
+    return 'مطلوب الحد الأدنى $minWords كلمة (نحتاج $moreNeeded أكثر)';
+  }
 }

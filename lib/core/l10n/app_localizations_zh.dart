@@ -748,4 +748,24 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get enableAiAssistant => 'AI助手已禁用。请在设置中启用它以使用AI功能。';
+
+  @override
+  String aiMinWordsRequired(int minWords) {
+    return '需要至少$minWords个单词';
+  }
+
+  @override
+  String aiWordsReadyToGenerate(int wordCount) {
+    return '$wordCount个单词 ✓ 准备生成';
+  }
+
+  @override
+  String aiWordsProgress(int currentWords, int minWords, int moreNeeded) {
+    return '$currentWords/$minWords个单词（还需要$moreNeeded个）';
+  }
+
+  @override
+  String aiValidationMinWords(int minWords, int moreNeeded) {
+    return '需要至少$minWords个单词（还需要$moreNeeded个）';
+  }
 }
