@@ -177,19 +177,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Question Text Field
-              TextField(
-                controller: _questionTextController,
-                maxLines: null,
-                onChanged: (_) => clearQuestionTextError(),
-                decoration: InputDecoration(
-                  labelText: localizations.questionText,
-                  border: const OutlineInputBorder(),
-                  errorText: questionTextError,
-                ),
-              ),
               const SizedBox(height: 16),
-
               // Question Type Dropdown
               DropdownButtonFormField<QuestionType>(
                 value: _selectedType,
@@ -204,6 +192,19 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                     child: Text(_getQuestionTypeDisplay(type, localizations)),
                   );
                 }).toList(),
+              ),
+              const SizedBox(height: 16),
+
+              // Question Text Field
+              TextField(
+                controller: _questionTextController,
+                maxLines: null,
+                onChanged: (_) => clearQuestionTextError(),
+                decoration: InputDecoration(
+                  labelText: localizations.questionText,
+                  border: const OutlineInputBorder(),
+                  errorText: questionTextError,
+                ),
               ),
               const SizedBox(height: 16),
 
