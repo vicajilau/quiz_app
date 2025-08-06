@@ -45,6 +45,7 @@ class _QuizApplicationState extends State<QuizApplication> {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       showSemanticsDebugger: false,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

@@ -153,7 +153,7 @@ abstract class AppLocalizations {
   /// Text displayed inside the drop area for dragging files.
   ///
   /// In en, this message translates to:
-  /// **'Click here or drag a .quiz file to the screen'**
+  /// **'Click logo or drag a .quiz file to the screen'**
   String get dropFileHere;
 
   /// Message displayed when the dropped file is not a .quiz file.

@@ -31,7 +31,7 @@
       }
     }
   },
-  "dropFileHere": "Click here or drag a .quiz file to the screen",
+  "dropFileHere": "Click logo or drag a .quiz file to the screen",
   "@dropFileHere": {
     "description": "Text displayed inside the drop area for dragging files."
   },
