@@ -1119,5 +1119,23 @@
   "noEnabledQuestionsError": "No hay preguntas habilitadas para ejecutar el examen",
   "@noEnabledQuestionsError": {
     "description": "Mensaje de error al intentar iniciar un examen sin preguntas habilitadas"
+  },
+  "evaluateWithAI": "Evaluar con IA",
+  "@evaluateWithAI": {
+    "description": "Texto del botón para evaluar respuestas de ensayo con IA"
+  },
+  "aiEvaluation": "Evaluación IA",
+  "@aiEvaluation": {
+    "description": "Título para la sección de evaluación de IA"
+  },
+  "aiEvaluationError": "Error al evaluar la respuesta: {error}",
+  "@aiEvaluationError": {
+    "description": "Mensaje de error cuando falla la evaluación con IA",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
   }
 }

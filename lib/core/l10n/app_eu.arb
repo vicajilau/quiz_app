@@ -1162,5 +1162,23 @@
   "noEnabledQuestionsError": "Ez dago gaitutako galderarik eskuragarri galdetegia exekutatzeko",
   "@noEnabledQuestionsError": {
     "description": "Errore mezua gaitutako galderarik gabe galdetegia hasi saiatzerakoan"
+  },
+  "evaluateWithAI": "AIaz ebaluatu",
+  "@evaluateWithAI": {
+    "description": "Saiakera erantzunak AIaz ebaluatzeko botoiaren testua"
+  },
+  "aiEvaluation": "AI Ebaluazioa",
+  "@aiEvaluation": {
+    "description": "AI ebaluazio atalaren izenburua"
+  },
+  "aiEvaluationError": "Errorea erantzuna ebaluatzean: {error}",
+  "@aiEvaluationError": {
+    "description": "Errore mezua AI ebaluazioak huts egiten duenean",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Sareko errorea"
+      }
+    }
   }
 }

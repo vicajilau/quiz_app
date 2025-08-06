@@ -1179,5 +1179,23 @@
   "noEnabledQuestionsError": "No enabled questions available to run the quiz",
   "@noEnabledQuestionsError": {
     "description": "Error message when trying to start quiz with no enabled questions"
+  },
+  "evaluateWithAI": "Evaluate with AI",
+  "@evaluateWithAI": {
+    "description": "Button text to evaluate essay answers with AI"
+  },
+  "aiEvaluation": "AI Evaluation",
+  "@aiEvaluation": {
+    "description": "Title for AI evaluation section"
+  },
+  "aiEvaluationError": "Error evaluating response: {error}",
+  "@aiEvaluationError": {
+    "description": "Error message when AI evaluation fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
   }
 }

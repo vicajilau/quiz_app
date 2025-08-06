@@ -1162,5 +1162,23 @@
   "noEnabledQuestionsError": "Non hai preguntas activadas dispoñibles para executar o cuestionario",
   "@noEnabledQuestionsError": {
     "description": "Mensaxe de erro ao tentar iniciar un cuestionario sen preguntas activadas"
+  },
+  "evaluateWithAI": "Avaliar con IA",
+  "@evaluateWithAI": {
+    "description": "Texto do botón para avaliar respostas de ensaio con IA"
+  },
+  "aiEvaluation": "Avaliación IA",
+  "@aiEvaluation": {
+    "description": "Título para a sección de avaliación IA"
+  },
+  "aiEvaluationError": "Erro ao avaliar a resposta: {error}",
+  "@aiEvaluationError": {
+    "description": "Mensaxe de erro cando a avaliación IA falla",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Erro de rede"
+      }
+    }
   }
 }

@@ -783,4 +783,15 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get noEnabledQuestionsError => 'クイズを実行するための有効な質問がありません';
+
+  @override
+  String get evaluateWithAI => 'AIで評価';
+
+  @override
+  String get aiEvaluation => 'AI評価';
+
+  @override
+  String aiEvaluationError(String error) {
+    return '回答の評価中にエラーが発生しました：$error';
+  }
 }

@@ -1162,5 +1162,23 @@
   "noEnabledQuestionsError": "क्विज़ चलाने के लिए कोई सक्रिय प्रश्न उपलब्ध नहीं है",
   "@noEnabledQuestionsError": {
     "description": "सक्रिय प्रश्नों के बिना क्विज़ शुरू करने का प्रयास करते समय त्रुटि संदेश"
+  },
+  "evaluateWithAI": "AI के साथ मूल्यांकन करें",
+  "@evaluateWithAI": {
+    "description": "निबंध उत्तरों को AI के साथ मूल्यांकन करने के लिए बटन टेक्स्ट"
+  },
+  "aiEvaluation": "AI मूल्यांकन",
+  "@aiEvaluation": {
+    "description": "AI मूल्यांकन अनुभाग के लिए शीर्षक"
+  },
+  "aiEvaluationError": "उत्तर का मूल्यांकन करने में त्रुटि: {error}",
+  "@aiEvaluationError": {
+    "description": "AI मूल्यांकन असफल होने पर त्रुटि संदेश",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "नेटवर्क त्रुटि"
+      }
+    }
   }
 }

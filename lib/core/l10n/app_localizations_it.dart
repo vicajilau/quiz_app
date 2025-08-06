@@ -821,4 +821,15 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get noEnabledQuestionsError =>
       'Nessuna domanda abilitata disponibile per avviare il quiz';
+
+  @override
+  String get evaluateWithAI => 'Valuta con IA';
+
+  @override
+  String get aiEvaluation => 'Valutazione IA';
+
+  @override
+  String aiEvaluationError(String error) {
+    return 'Errore nella valutazione della risposta: $error';
+  }
 }

@@ -343,4 +343,61 @@ IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
       image: null, // AI doesn't generate images for now
     );
   }
+
+  static String buildEvaluationPrompt(
+    String questionText,
+    String studentAnswer,
+    String explanation,
+  ) {
+    final hasExplanation = explanation.isNotEmpty;
+
+    String prompt =
+        '''
+Eres un profesor experto evaluando la respuesta de un estudiante a una pregunta de ensayo. Tu tarea es proporcionar una evaluación detallada y constructiva. Responde en el mismo idioma que la pregunta y la respuesta del estudiante.
+
+PREGUNTA:
+$questionText
+
+RESPUESTA DEL ESTUDIANTE:
+$studentAnswer
+''';
+
+    if (hasExplanation) {
+      prompt +=
+          '''
+
+CRITERIOS DE EVALUACIÓN (basados en la explicación del profesor):
+$explanation
+
+INSTRUCCIONES ESPECÍFICAS:
+- Evalúa qué tan bien la respuesta del estudiante se alinea con los criterios establecidos
+- Analiza el grado de síntesis y estructura de la respuesta
+- Identifica si se ha dejado algo importante por mencionar según los criterios
+- Considera la profundidad y precisión del análisis
+''';
+    } else {
+      prompt += '''
+
+INSTRUCCIONES GENERALES:
+- Como no hay criterios específicos establecidos, evalúa la respuesta basándote en estándares académicos generales
+- Considera la claridad, coherencia y estructura de la respuesta
+- Evalúa si la respuesta demuestra comprensión del tema
+- Analiza la profundidad del análisis y la calidad de los argumentos
+''';
+    }
+
+    prompt += '''
+
+FORMATO DE RESPUESTA:
+1. CALIFICACIÓN: [X/10] - Justifica brevemente la nota
+2. FORTALEZAS: Menciona los aspectos positivos de la respuesta
+3. ÁREAS DE MEJORA: Señala qué aspectos podrían mejorarse
+4. COMENTARIOS ESPECÍFICOS: Proporciona feedback detallado y constructivo
+5. SUGERENCIAS: Ofrece recomendaciones específicas para mejorar
+
+Sé constructivo, específico y educativo en tu evaluación. El objetivo es ayudar al estudiante a aprender y mejorar. Dirígite a él en segunda persona y utiliza un tono profesional y amigable.
+''';
+
+    return prompt;
+  }
 }

@@ -1162,5 +1162,23 @@
   "noEnabledQuestionsError": "没有启用的问题可以运行测验",
   "@noEnabledQuestionsError": {
     "description": "尝试在没有启用问题的情况下开始测验时的错误消息"
+  },
+  "evaluateWithAI": "用AI评估",
+  "@evaluateWithAI": {
+    "description": "用AI评估论文答案的按钮文本"
+  },
+  "aiEvaluation": "AI评估",
+  "@aiEvaluation": {
+    "description": "AI评估部分的标题"
+  },
+  "aiEvaluationError": "评估回答时出错：{error}",
+  "@aiEvaluationError": {
+    "description": "AI评估失败时的错误消息",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "网络错误"
+      }
+    }
   }
 }

@@ -302,7 +302,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
-                                  'Minimum $_minWords words required',
+                                  localizations.aiMinWordsRequired(_minWords),
                                   style: Theme.of(context).textTheme.bodySmall
                                       ?.copyWith(
                                         color: Theme.of(
@@ -454,7 +454,10 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                           }
 
                           if (_currentWordCount < _minWords) {
-                            return 'Minimum $_minWords words required (${_minWords - _currentWordCount} more needed)';
+                            return localizations.aiValidationMinWords(
+                              _minWords,
+                              _minWords - _currentWordCount,
+                            );
                           }
                           return null;
                         },

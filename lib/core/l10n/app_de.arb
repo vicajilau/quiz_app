@@ -1162,5 +1162,23 @@
   "noEnabledQuestionsError": "Keine aktivierten Fragen verfügbar, um das Quiz zu starten",
   "@noEnabledQuestionsError": {
     "description": "Fehlermeldung beim Versuch, ein Quiz ohne aktivierte Fragen zu starten"
+  },
+  "evaluateWithAI": "Mit KI bewerten",
+  "@evaluateWithAI": {
+    "description": "Button-Text zur Bewertung von Essay-Antworten mit KI"
+  },
+  "aiEvaluation": "KI-Bewertung",
+  "@aiEvaluation": {
+    "description": "Titel für den KI-Bewertungsbereich"
+  },
+  "aiEvaluationError": "Fehler beim Bewerten der Antwort: {error}",
+  "@aiEvaluationError": {
+    "description": "Fehlermeldung wenn KI-Bewertung fehlschlägt",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Netzwerkfehler"
+      }
+    }
   }
 }

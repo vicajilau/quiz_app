@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/core/extensions/string_extensions.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/data/services/ai/ai_service_selector.dart';
@@ -82,23 +83,6 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
     return prompt;
   }
 
-  /// Extrae el mensaje de error limpio sin prefijos "Exception:"
-  String _extractErrorMessage(Object error) {
-    String errorMessage = error.toString();
-
-    // Remover prefijo "Exception: " si existe
-    if (errorMessage.startsWith('Exception: ')) {
-      errorMessage = errorMessage.substring('Exception: '.length);
-    }
-
-    // Remover prefijo "OpenAI API Error: " si existe (por si acaso)
-    if (errorMessage.startsWith('OpenAI API Error: ')) {
-      errorMessage = errorMessage.substring('OpenAI API Error: '.length);
-    }
-
-    return errorMessage.trim();
-  }
-
   Future<void> _askAI() async {
     if (_questionController.text.trim().isEmpty) {
       return;
@@ -159,7 +143,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
       if (mounted) {
         setState(() {
           _aiResponse =
-              '${localizations.aiErrorResponse}\n\n${localizations.errorLabel} ${_extractErrorMessage(e)}';
+              '${localizations.aiErrorResponse}\n\n${localizations.errorLabel} ${e.toString().cleanErrorMessage()}';
           _isLoading = false;
         });
       }

@@ -828,4 +828,15 @@ class AppLocalizationsGl extends AppLocalizations {
   @override
   String get noEnabledQuestionsError =>
       'Non hai preguntas activadas dispoñibles para executar o cuestionario';
+
+  @override
+  String get evaluateWithAI => 'Avaliar con IA';
+
+  @override
+  String get aiEvaluation => 'Avaliación IA';
+
+  @override
+  String aiEvaluationError(String error) {
+    return 'Erro ao avaliar a resposta: $error';
+  }
 }

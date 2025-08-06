@@ -1,6 +1,6 @@
 import 'dart:math';
-import '../models/quiz/question.dart';
-import '../models/quiz/question_order.dart';
+import '../../domain/models/quiz/question.dart';
+import '../../domain/models/quiz/question_order.dart';
 
 /// Service to handle quiz question selection and randomization
 class QuizService {

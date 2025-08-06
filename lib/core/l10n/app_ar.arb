@@ -1162,5 +1162,23 @@
   "noEnabledQuestionsError": "لا توجد أسئلة مفعلة لتشغيل الاختبار",
   "@noEnabledQuestionsError": {
     "description": "رسالة خطأ عند عدم وجود أسئلة مفعلة"
+  },
+  "evaluateWithAI": "تقييم بالذكاء الاصطناعي",
+  "@evaluateWithAI": {
+    "description": "نص زر تقييم إجابات المقال بالذكاء الاصطناعي"
+  },
+  "aiEvaluation": "تقييم الذكاء الاصطناعي",
+  "@aiEvaluation": {
+    "description": "عنوان قسم تقييم الذكاء الاصطناعي"
+  },
+  "aiEvaluationError": "خطأ في تقييم الإجابة: {error}",
+  "@aiEvaluationError": {
+    "description": "رسالة خطأ عند فشل تقييم الذكاء الاصطناعي",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "خطأ في الشبكة"
+      }
+    }
   }
 }

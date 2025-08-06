@@ -1162,5 +1162,23 @@
   "noEnabledQuestionsError": "Aucune question activée disponible pour lancer le quiz",
   "@noEnabledQuestionsError": {
     "description": "Message d'erreur lors de la tentative de démarrage d'un quiz sans questions activées"
+  },
+  "evaluateWithAI": "Évaluer avec l'IA",
+  "@evaluateWithAI": {
+    "description": "Texte du bouton pour évaluer les réponses d'essai avec l'IA"
+  },
+  "aiEvaluation": "Évaluation IA",
+  "@aiEvaluation": {
+    "description": "Titre pour la section d'évaluation IA"
+  },
+  "aiEvaluationError": "Erreur lors de l'évaluation de la réponse : {error}",
+  "@aiEvaluationError": {
+    "description": "Message d'erreur lorsque l'évaluation IA échoue",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Erreur réseau"
+      }
+    }
   }
 }

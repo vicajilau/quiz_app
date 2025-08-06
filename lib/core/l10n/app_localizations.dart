@@ -1517,6 +1517,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No enabled questions available to run the quiz'**
   String get noEnabledQuestionsError;
+
+  /// Button text to evaluate essay answers with AI
+  ///
+  /// In en, this message translates to:
+  /// **'Evaluate with AI'**
+  String get evaluateWithAI;
+
+  /// Title for AI evaluation section
+  ///
+  /// In en, this message translates to:
+  /// **'AI Evaluation'**
+  String get aiEvaluation;
+
+  /// Error message when AI evaluation fails
+  ///
+  /// In en, this message translates to:
+  /// **'Error evaluating response: {error}'**
+  String aiEvaluationError(String error);
 }
 
 class _AppLocalizationsDelegate

@@ -1162,5 +1162,23 @@
   "noEnabledQuestionsError": "Nenhuma pergunta ativada disponível para executar o quiz",
   "@noEnabledQuestionsError": {
     "description": "Mensagem de erro ao tentar iniciar um quiz sem perguntas ativadas"
+  },
+  "evaluateWithAI": "Avaliar com IA",
+  "@evaluateWithAI": {
+    "description": "Texto do botão para avaliar respostas de ensaio com IA"
+  },
+  "aiEvaluation": "Avaliação IA",
+  "@aiEvaluation": {
+    "description": "Título para a seção de avaliação IA"
+  },
+  "aiEvaluationError": "Erro ao avaliar a resposta: {error}",
+  "@aiEvaluationError": {
+    "description": "Mensagem de erro quando a avaliação IA falha",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Erro de rede"
+      }
+    }
   }
 }

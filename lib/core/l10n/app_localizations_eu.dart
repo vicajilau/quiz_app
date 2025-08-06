@@ -824,4 +824,15 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get noEnabledQuestionsError =>
       'Ez dago gaitutako galderarik eskuragarri galdetegia exekutatzeko';
+
+  @override
+  String get evaluateWithAI => 'AIaz ebaluatu';
+
+  @override
+  String get aiEvaluation => 'AI Ebaluazioa';
+
+  @override
+  String aiEvaluationError(String error) {
+    return 'Errorea erantzuna ebaluatzean: $error';
+  }
 }

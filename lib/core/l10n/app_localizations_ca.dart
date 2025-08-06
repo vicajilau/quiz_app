@@ -825,4 +825,15 @@ class AppLocalizationsCa extends AppLocalizations {
   @override
   String get noEnabledQuestionsError =>
       'No hi ha preguntes activades disponibles per executar el qüestionari';
+
+  @override
+  String get evaluateWithAI => 'Avaluar amb IA';
+
+  @override
+  String get aiEvaluation => 'Avaluació IA';
+
+  @override
+  String aiEvaluationError(String error) {
+    return 'Error en avaluar la resposta: $error';
+  }
 }

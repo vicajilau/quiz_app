@@ -809,4 +809,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noEnabledQuestionsError => 'لا توجد أسئلة مفعلة لتشغيل الاختبار';
+
+  @override
+  String get evaluateWithAI => 'تقييم بالذكاء الاصطناعي';
+
+  @override
+  String get aiEvaluation => 'تقييم الذكاء الاصطناعي';
+
+  @override
+  String aiEvaluationError(String error) {
+    return 'خطأ في تقييم الإجابة: $error';
+  }
 }

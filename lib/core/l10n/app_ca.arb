@@ -1162,5 +1162,23 @@
   "noEnabledQuestionsError": "No hi ha preguntes activades disponibles per executar el qüestionari",
   "@noEnabledQuestionsError": {
     "description": "Missatge d'error en intentar iniciar un qüestionari sense preguntes activades"
+  },
+  "evaluateWithAI": "Avaluar amb IA",
+  "@evaluateWithAI": {
+    "description": "Text del botó per avaluar respostes d'assaig amb IA"
+  },
+  "aiEvaluation": "Avaluació IA",
+  "@aiEvaluation": {
+    "description": "Títol per a la secció d'avaluació IA"
+  },
+  "aiEvaluationError": "Error en avaluar la resposta: {error}",
+  "@aiEvaluationError": {
+    "description": "Missatge d'error quan l'avaluació IA falla",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Error de xarxa"
+      }
+    }
   }
 }

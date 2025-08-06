@@ -780,4 +780,15 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get noEnabledQuestionsError => '没有启用的问题可以运行测验';
+
+  @override
+  String get evaluateWithAI => '用AI评估';
+
+  @override
+  String get aiEvaluation => 'AI评估';
+
+  @override
+  String aiEvaluationError(String error) {
+    return '评估回答时出错：$error';
+  }
 }

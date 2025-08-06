@@ -1162,5 +1162,23 @@
   "noEnabledQuestionsError": "Nessuna domanda abilitata disponibile per avviare il quiz",
   "@noEnabledQuestionsError": {
     "description": "Messaggio di errore quando si tenta di avviare un quiz senza domande abilitate"
+  },
+  "evaluateWithAI": "Valuta con IA",
+  "@evaluateWithAI": {
+    "description": "Testo del pulsante per valutare le risposte del saggio con IA"
+  },
+  "aiEvaluation": "Valutazione IA",
+  "@aiEvaluation": {
+    "description": "Titolo per la sezione di valutazione IA"
+  },
+  "aiEvaluationError": "Errore nella valutazione della risposta: {error}",
+  "@aiEvaluationError": {
+    "description": "Messaggio di errore quando la valutazione IA fallisce",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Errore di rete"
+      }
+    }
   }
 }

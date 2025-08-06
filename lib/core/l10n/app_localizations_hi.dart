@@ -815,4 +815,15 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get noEnabledQuestionsError =>
       'क्विज़ चलाने के लिए कोई सक्रिय प्रश्न उपलब्ध नहीं है';
+
+  @override
+  String get evaluateWithAI => 'AI के साथ मूल्यांकन करें';
+
+  @override
+  String get aiEvaluation => 'AI मूल्यांकन';
+
+  @override
+  String aiEvaluationError(String error) {
+    return 'उत्तर का मूल्यांकन करने में त्रुटि: $error';
+  }
 }

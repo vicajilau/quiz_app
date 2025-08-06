@@ -6,7 +6,7 @@ import '../../core/l10n/app_localizations.dart';
 import '../../data/services/configuration_service.dart';
 import '../../domain/models/quiz/question.dart';
 import '../../domain/models/quiz/quiz_file.dart';
-import '../../domain/services/quiz_service.dart';
+import '../../data/services/quiz_service.dart';
 import '../blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import '../blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import '../blocs/quiz_execution_bloc/quiz_execution_state.dart';
