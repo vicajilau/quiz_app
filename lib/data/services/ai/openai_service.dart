@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'configuration_service.dart';
+import '../configuration_service.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
-import 'ai/ai_service.dart';
+import 'ai_service.dart';
 
 class OpenAIService extends AIService {
   static const String _baseUrl = 'https://api.openai.com/v1';

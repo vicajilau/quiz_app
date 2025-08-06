@@ -1,5 +1,5 @@
 import 'package:quiz_app/data/services/ai/ai_service.dart';
-import 'package:quiz_app/data/services/openai_service.dart';
+import 'package:quiz_app/data/services/ai/openai_service.dart';
 import 'package:quiz_app/data/services/ai/gemini_service.dart';
 
 /// Service to automatically select the available AI service
