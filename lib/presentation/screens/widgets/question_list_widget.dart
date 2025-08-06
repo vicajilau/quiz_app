@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
-import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:quiz_app/presentation/screens/dialogs/add_edit_question_dialog.dart';
 import 'package:quiz_app/presentation/screens/dialogs/ai_question_dialog.dart';
@@ -192,9 +191,11 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                             Row(
                               children: [
                                 Tooltip(
-                                  message: _getQuestionTypeLabel(question.type),
+                                  message: question.type.getQuestionTypeLabel(
+                                    context,
+                                  ),
                                   child: Icon(
-                                    _getQuestionTypeIcon(question.type),
+                                    question.type.getQuestionTypeIcon(),
                                     size: 16,
                                     color: isDisabled
                                         ? Colors.grey
@@ -376,33 +377,6 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
         ),
       ),
     );
-  }
-
-  IconData _getQuestionTypeIcon(QuestionType type) {
-    switch (type) {
-      case QuestionType.multipleChoice:
-        return Icons.checklist;
-      case QuestionType.singleChoice:
-        return Icons.radio_button_checked;
-      case QuestionType.trueFalse:
-        return Icons.toggle_on;
-      case QuestionType.essay:
-        return Icons.article;
-    }
-  }
-
-  String _getQuestionTypeLabel(QuestionType type) {
-    final localizations = AppLocalizations.of(context)!;
-    switch (type) {
-      case QuestionType.multipleChoice:
-        return localizations.questionTypeMultipleChoice;
-      case QuestionType.singleChoice:
-        return localizations.questionTypeSingleChoice;
-      case QuestionType.trueFalse:
-        return localizations.questionTypeTrueFalse;
-      case QuestionType.essay:
-        return localizations.questionTypeEssay;
-    }
   }
 
   void _toggleQuestionEnabled(int index) {

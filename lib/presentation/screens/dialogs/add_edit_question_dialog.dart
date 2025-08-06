@@ -178,20 +178,41 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 16),
-              // Question Type Dropdown
-              DropdownButtonFormField<QuestionType>(
-                value: _selectedType,
-                onChanged: _onQuestionTypeChanged,
-                decoration: InputDecoration(
-                  labelText: localizations.questionType,
-                  border: const OutlineInputBorder(),
-                ),
-                items: QuestionType.values.map((type) {
-                  return DropdownMenuItem(
-                    value: type,
-                    child: Text(_getQuestionTypeDisplay(type, localizations)),
-                  );
-                }).toList(),
+              // Question Type Dropdown with Icon
+              Row(
+                children: [
+                  // Question type icon
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Icon(
+                      _selectedType.getQuestionTypeIcon(),
+                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      size: 24,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  // Question type dropdown
+                  Expanded(
+                    child: DropdownButtonFormField<QuestionType>(
+                      value: _selectedType,
+                      onChanged: _onQuestionTypeChanged,
+                      decoration: InputDecoration(
+                        labelText: localizations.questionType,
+                        border: const OutlineInputBorder(),
+                      ),
+                      items: QuestionType.values.map((type) {
+                        return DropdownMenuItem(
+                          value: type,
+                          child: Text(type.getQuestionTypeLabel(context)),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 16),
 
@@ -258,22 +279,5 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
         ),
       ],
     );
-  }
-
-  /// Get display text for question type
-  String _getQuestionTypeDisplay(
-    QuestionType type,
-    AppLocalizations localizations,
-  ) {
-    switch (type) {
-      case QuestionType.singleChoice:
-        return localizations.questionTypeSingleChoice;
-      case QuestionType.multipleChoice:
-        return localizations.questionTypeMultipleChoice;
-      case QuestionType.trueFalse:
-        return localizations.questionTypeTrueFalse;
-      case QuestionType.essay:
-        return localizations.questionTypeEssay;
-    }
   }
 }
