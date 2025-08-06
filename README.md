@@ -3,7 +3,7 @@
 
 <p align="center">
   <img src="https://github.com/vicajilau/quiz_app/actions/workflows/flutter_workflow.yml/badge.svg" alt="CI Status">
-  <img src="https://github.com/vicajilau/quiz_app/actions/workflows/deploy-web.yml/badge.svg" alt="CD Status">
+  <img src="https://github.com/vicajilau/quiz_app/actions/workflows/deploy_web.yml/badge.svg" alt="CD Status">
 </p>
 
 A cross-platform Flutter application that provides an interactive and engaging quiz experience with customizable questions, real-time scoring, and beautiful animations.
