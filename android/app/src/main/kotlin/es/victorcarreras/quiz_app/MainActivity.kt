@@ -1,4 +1,4 @@
-package com.example.quiz_app
+package es.victorcarreras.quiz_app
 
 import android.content.Intent
 import android.net.Uri

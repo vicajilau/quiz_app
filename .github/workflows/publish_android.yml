@@ -1,0 +1,49 @@
+name: Publish Android Release
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
+
+jobs:
+  publish_android_release:
+    name: Generate Android Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download Android keystore
+        id: android_keystore
+        uses: timheuer/base64-to-file@v1
+        with:
+          fileName: upload-keystore.jks
+          encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+      - name: Create key.properties file
+        run: |
+          echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
+          echo "storePassword=${{ secrets.ANDROID_STORE_PASSWORD }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
+      - name: Create local.properties file
+        run: |
+          echo '${{ secrets.ANDROID_LOCAL_PROPERTIES_FILE }}' > android/local.properties
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - name: Start Android Release Build
+        run: flutter build appbundle
+      - name: Upload Release Build to Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-release-artifacts
+          path: build/app/outputs/bundle/release/app-release.aab
+      - name: Release Build to internal track
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.ANDROID_PLAYSTORE_ACCOUNT_KEY }}
+          packageName: es.victorcarreras.quiz_app
+          releaseFiles: build/app/outputs/bundle/release/app-release.aab
+          track: production
+          status: completed
