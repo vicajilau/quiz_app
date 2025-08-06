@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import '../../../core/l10n/app_localizations.dart';
+import '../../../domain/models/quiz/question_type.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import '../../utils/question_translation_helper.dart';
 
@@ -102,152 +103,220 @@ class QuizQuestionResultCard extends StatelessWidget {
                   const SizedBox(height: 12),
                 ],
 
-                // Show all options with indicators
-                ...result.question.options.asMap().entries.map((entry) {
-                  final optionIndex = entry.key;
-                  final optionText = entry.value;
-                  final isCorrect = result.correctAnswers.contains(optionIndex);
-                  final wasSelected = result.userAnswers.contains(optionIndex);
-
-                  Color? backgroundColor;
-                  Color? borderColor;
-                  IconData? icon;
-                  Color? iconColor;
-                  Color? textColor;
-                  FontWeight fontWeight = FontWeight.normal;
-
-                  if (isCorrect && wasSelected) {
-                    // Respuesta correcta seleccionada - Verde brillante
-                    backgroundColor = Colors.green.withValues(alpha: 0.15);
-                    borderColor = Colors.green;
-                    icon = Icons.check_circle;
-                    iconColor = Colors.green;
-                    textColor = Colors.green.shade800;
-                    fontWeight = FontWeight.w600;
-                  } else if (isCorrect && !wasSelected) {
-                    // Respuesta correcta NO seleccionada - Naranja/Amarillo (perdida)
-                    backgroundColor = Colors.orange.withValues(alpha: 0.1);
-                    borderColor = Colors.orange;
-                    icon = Icons.radio_button_unchecked;
-                    iconColor = Colors.orange;
-                    textColor = Colors.orange.shade800;
-                    fontWeight = FontWeight.w500;
-                  } else if (!isCorrect && wasSelected) {
-                    // Respuesta incorrecta seleccionada - Rojo
-                    backgroundColor = Colors.red.withValues(alpha: 0.1);
-                    borderColor = Colors.red;
-                    icon = Icons.cancel;
-                    iconColor = Colors.red;
-                    textColor = Colors.red.shade800;
-                    fontWeight = FontWeight.w500;
-                  } else {
-                    // Respuesta no seleccionada e incorrecta - Gris neutro
-                    backgroundColor = null;
-                    borderColor = null;
-                    icon = null;
-                    iconColor = null;
-                    textColor = Theme.of(context).colorScheme.onSurface;
-                  }
-
-                  return Container(
-                    margin: const EdgeInsets.only(bottom: 4.0),
-                    padding: const EdgeInsets.all(12.0),
+                // Handle essay questions differently
+                if (result.question.type == QuestionType.essay) ...[
+                  // Show essay answer
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
-                      color: backgroundColor,
-                      borderRadius: BorderRadius.circular(8.0),
-                      border: borderColor != null
-                          ? Border.all(color: borderColor, width: 1.5)
-                          : Border.all(
-                              color: Theme.of(
-                                context,
-                              ).dividerColor.withValues(alpha: 0.3),
-                            ),
+                      color: result.essayAnswer.trim().isNotEmpty
+                          ? Colors.blue.withValues(alpha: 0.05)
+                          : Colors.grey.withValues(alpha: 0.05),
+                      border: Border.all(
+                        color: result.essayAnswer.trim().isNotEmpty
+                            ? Colors.blue.withValues(alpha: 0.3)
+                            : Colors.grey.withValues(alpha: 0.3),
+                      ),
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Row(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (icon != null)
-                          Icon(icon, size: 22, color: iconColor),
-                        if (icon != null) const SizedBox(width: 12),
-                        Expanded(
-                          child: Text(
-                            QuestionTranslationHelper.translateOption(
-                              optionText,
-                              AppLocalizations.of(context)!,
+                        Row(
+                          children: [
+                            Icon(
+                              result.essayAnswer.trim().isNotEmpty
+                                  ? Icons.edit_note
+                                  : Icons.edit_off,
+                              color: result.essayAnswer.trim().isNotEmpty
+                                  ? Colors.blue
+                                  : Colors.grey,
+                              size: 20,
                             ),
-                            style: TextStyle(
-                              color: textColor,
-                              fontWeight: fontWeight,
-                              fontSize: 15,
+                            const SizedBox(width: 8),
+                            Text(
+                              AppLocalizations.of(context)!.questionTypeEssay,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: result.essayAnswer.trim().isNotEmpty
+                                    ? Colors.blue.shade800
+                                    : Colors.grey.shade600,
+                              ),
                             ),
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          result.essayAnswer.trim().isNotEmpty
+                              ? result.essayAnswer
+                              : 'Sin respuesta proporcionada',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: result.essayAnswer.trim().isNotEmpty
+                                ? Theme.of(context).colorScheme.onSurface
+                                : Colors.grey.shade600,
+                            fontStyle: result.essayAnswer.trim().isNotEmpty
+                                ? FontStyle.normal
+                                : FontStyle.italic,
                           ),
                         ),
-                        // Agregar texto explicativo para claridad
-                        if (isCorrect && wasSelected)
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 2,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Text(
-                              AppLocalizations.of(
-                                context,
-                              )!.correctSelectedLabel,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        if (isCorrect && !wasSelected)
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 2,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.orange,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Text(
-                              AppLocalizations.of(context)!.correctMissedLabel,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        if (!isCorrect && wasSelected)
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 2,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Text(
-                              AppLocalizations.of(
-                                context,
-                              )!.incorrectSelectedLabel,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
                       ],
                     ),
-                  );
-                }),
+                  ),
+                ] else ...[
+                  // Show all options with indicators for non-essay questions
+                  ...result.question.options.asMap().entries.map((entry) {
+                    final optionIndex = entry.key;
+                    final optionText = entry.value;
+                    final isCorrect = result.correctAnswers.contains(
+                      optionIndex,
+                    );
+                    final wasSelected = result.userAnswers.contains(
+                      optionIndex,
+                    );
 
+                    Color? backgroundColor;
+                    Color? borderColor;
+                    IconData? icon;
+                    Color? iconColor;
+                    Color? textColor;
+                    FontWeight fontWeight = FontWeight.normal;
+
+                    if (isCorrect && wasSelected) {
+                      // Respuesta correcta seleccionada - Verde brillante
+                      backgroundColor = Colors.green.withValues(alpha: 0.15);
+                      borderColor = Colors.green;
+                      icon = Icons.check_circle;
+                      iconColor = Colors.green;
+                      textColor = Colors.green.shade800;
+                      fontWeight = FontWeight.w600;
+                    } else if (isCorrect && !wasSelected) {
+                      // Respuesta correcta NO seleccionada - Naranja/Amarillo (perdida)
+                      backgroundColor = Colors.orange.withValues(alpha: 0.1);
+                      borderColor = Colors.orange;
+                      icon = Icons.radio_button_unchecked;
+                      iconColor = Colors.orange;
+                      textColor = Colors.orange.shade800;
+                      fontWeight = FontWeight.w500;
+                    } else if (!isCorrect && wasSelected) {
+                      // Respuesta incorrecta seleccionada - Rojo
+                      backgroundColor = Colors.red.withValues(alpha: 0.1);
+                      borderColor = Colors.red;
+                      icon = Icons.cancel;
+                      iconColor = Colors.red;
+                      textColor = Colors.red.shade800;
+                      fontWeight = FontWeight.w500;
+                    } else {
+                      // Respuesta no seleccionada e incorrecta - Gris neutro
+                      backgroundColor = null;
+                      borderColor = null;
+                      icon = null;
+                      iconColor = null;
+                      textColor = Theme.of(context).colorScheme.onSurface;
+                    }
+
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: 4.0),
+                      padding: const EdgeInsets.all(12.0),
+                      decoration: BoxDecoration(
+                        color: backgroundColor,
+                        borderRadius: BorderRadius.circular(8.0),
+                        border: borderColor != null
+                            ? Border.all(color: borderColor, width: 1.5)
+                            : Border.all(
+                                color: Theme.of(
+                                  context,
+                                ).dividerColor.withValues(alpha: 0.3),
+                              ),
+                      ),
+                      child: Row(
+                        children: [
+                          if (icon != null)
+                            Icon(icon, size: 22, color: iconColor),
+                          if (icon != null) const SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              QuestionTranslationHelper.translateOption(
+                                optionText,
+                                AppLocalizations.of(context)!,
+                              ),
+                              style: TextStyle(
+                                color: textColor,
+                                fontWeight: fontWeight,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
+                          // Agregar texto explicativo para claridad
+                          if (isCorrect && wasSelected)
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Text(
+                                AppLocalizations.of(
+                                  context,
+                                )!.correctSelectedLabel,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          if (isCorrect && !wasSelected)
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.orange,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Text(
+                                AppLocalizations.of(
+                                  context,
+                                )!.correctMissedLabel,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          if (!isCorrect && wasSelected)
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Text(
+                                AppLocalizations.of(
+                                  context,
+                                )!.incorrectSelectedLabel,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+                    );
+                  }),
+                ], // Cierre de la sección de opciones para preguntas no-essay
                 // Show explanation if available
                 if (result.question.explanation.isNotEmpty) ...[
                   const SizedBox(height: 16),

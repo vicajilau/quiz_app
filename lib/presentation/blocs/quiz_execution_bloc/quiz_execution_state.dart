@@ -1,4 +1,5 @@
 import '../../../domain/models/quiz/question.dart';
+import '../../../domain/models/quiz/question_type.dart';
 
 /// Abstract class representing the base state for quiz execution.
 abstract class QuizExecutionState {}
@@ -12,13 +13,16 @@ class QuizExecutionInProgress extends QuizExecutionState {
   final int currentQuestionIndex;
   final Map<int, List<int>>
   userAnswers; // questionIndex -> selected option indices
+  final Map<int, String> essayAnswers; // questionIndex -> essay text
   final int totalQuestions;
 
   QuizExecutionInProgress({
     required this.questions,
     required this.currentQuestionIndex,
     required this.userAnswers,
-  }) : totalQuestions = questions.length;
+    Map<int, String>? essayAnswers,
+  }) : totalQuestions = questions.length,
+       essayAnswers = essayAnswers ?? {};
 
   /// Get the current question
   Question get currentQuestion => questions[currentQuestionIndex];
@@ -40,6 +44,12 @@ class QuizExecutionInProgress extends QuizExecutionState {
 
   /// Check if current question has been answered
   bool get hasCurrentQuestionAnswered {
+    // For essay questions, check if there's text
+    if (currentQuestion.type == QuestionType.essay) {
+      final essayText = essayAnswers[currentQuestionIndex];
+      return essayText != null && essayText.trim().isNotEmpty;
+    }
+    // For other questions, check if there are selected options
     return currentQuestionAnswers.isNotEmpty;
   }
 
@@ -51,11 +61,13 @@ class QuizExecutionInProgress extends QuizExecutionState {
     List<Question>? questions,
     int? currentQuestionIndex,
     Map<int, List<int>>? userAnswers,
+    Map<int, String>? essayAnswers,
   }) {
     return QuizExecutionInProgress(
       questions: questions ?? this.questions,
       currentQuestionIndex: currentQuestionIndex ?? this.currentQuestionIndex,
       userAnswers: userAnswers ?? this.userAnswers,
+      essayAnswers: essayAnswers ?? this.essayAnswers,
     );
   }
 }
@@ -64,6 +76,7 @@ class QuizExecutionInProgress extends QuizExecutionState {
 class QuizExecutionCompleted extends QuizExecutionState {
   final List<Question> questions;
   final Map<int, List<int>> userAnswers;
+  final Map<int, String> essayAnswers;
   final int correctAnswers;
   final int totalQuestions;
   final double score; // percentage
@@ -71,6 +84,7 @@ class QuizExecutionCompleted extends QuizExecutionState {
   QuizExecutionCompleted({
     required this.questions,
     required this.userAnswers,
+    required this.essayAnswers,
     required this.correctAnswers,
     required this.totalQuestions,
   }) : score = (correctAnswers / totalQuestions) * 100;
@@ -81,18 +95,30 @@ class QuizExecutionCompleted extends QuizExecutionState {
       final index = entry.key;
       final question = entry.value;
       final userAnswer = userAnswers[index] ?? [];
-      final isCorrect = _isAnswerCorrect(question.correctAnswers, userAnswer);
+      final essayAnswer = essayAnswers[index] ?? '';
+      final isCorrect = _isAnswerCorrect(question, userAnswer, essayAnswer);
 
       return QuestionResult(
         question: question,
         userAnswers: userAnswer,
+        essayAnswer: essayAnswer,
         correctAnswers: question.correctAnswers,
         isCorrect: isCorrect,
       );
     }).toList();
   }
 
-  bool _isAnswerCorrect(List<int> correctAnswers, List<int> userAnswers) {
+  bool _isAnswerCorrect(
+    Question question,
+    List<int> userAnswers,
+    String essayAnswer,
+  ) {
+    // Essay questions are always considered "correct" since they require manual grading
+    if (question.type == QuestionType.essay) {
+      return essayAnswer.trim().isNotEmpty;
+    }
+
+    final correctAnswers = question.correctAnswers;
     if (correctAnswers.length != userAnswers.length) return false;
     final sortedCorrect = List<int>.from(correctAnswers)..sort();
     final sortedUser = List<int>.from(userAnswers)..sort();
@@ -104,12 +130,14 @@ class QuizExecutionCompleted extends QuizExecutionState {
 class QuestionResult {
   final Question question;
   final List<int> userAnswers;
+  final String essayAnswer;
   final List<int> correctAnswers;
   final bool isCorrect;
 
   QuestionResult({
     required this.question,
     required this.userAnswers,
+    required this.essayAnswer,
     required this.correctAnswers,
     required this.isCorrect,
   });

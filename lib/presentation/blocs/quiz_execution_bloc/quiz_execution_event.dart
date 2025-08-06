@@ -18,6 +18,13 @@ class AnswerSelected extends QuizExecutionEvent {
   AnswerSelected(this.optionIndex, this.isSelected);
 }
 
+/// Event triggered when a user changes essay answer text.
+class EssayAnswerChanged extends QuizExecutionEvent {
+  final String text;
+
+  EssayAnswerChanged(this.text);
+}
+
 /// Event triggered when the user wants to go to the next question.
 class NextQuestionRequested extends QuizExecutionEvent {}
 

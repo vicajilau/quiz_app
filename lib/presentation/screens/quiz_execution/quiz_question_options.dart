@@ -7,7 +7,7 @@ import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../utils/question_translation_helper.dart';
 
-class QuizQuestionOptions extends StatelessWidget {
+class QuizQuestionOptions extends StatefulWidget {
   final QuizExecutionInProgress state;
   final bool showCorrectAnswerCount;
 
@@ -18,15 +18,59 @@ class QuizQuestionOptions extends StatelessWidget {
   });
 
   @override
+  State<QuizQuestionOptions> createState() => _QuizQuestionOptionsState();
+}
+
+class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
+  late TextEditingController _essayController;
+
+  @override
+  void initState() {
+    super.initState();
+    _essayController = TextEditingController();
+    _updateEssayController();
+  }
+
+  @override
+  void didUpdateWidget(QuizQuestionOptions oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.state.currentQuestionIndex !=
+            widget.state.currentQuestionIndex ||
+        oldWidget.state.essayAnswers != widget.state.essayAnswers) {
+      _updateEssayController();
+    }
+  }
+
+  void _updateEssayController() {
+    final currentText =
+        widget.state.essayAnswers[widget.state.currentQuestionIndex] ?? '';
+    if (_essayController.text != currentText) {
+      _essayController.text = currentText;
+    }
+  }
+
+  @override
+  void dispose() {
+    _essayController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final questionType = state.currentQuestion.type;
-    final correctAnswersCount = state.currentQuestion.correctAnswers.length;
+    final questionType = widget.state.currentQuestion.type;
+    final correctAnswersCount =
+        widget.state.currentQuestion.correctAnswers.length;
+
+    // Handle essay questions separately
+    if (questionType == QuestionType.essay) {
+      return _buildEssayInput(context);
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Show correct answer count hint for multiple choice questions
-        if (showCorrectAnswerCount &&
+        if (widget.showCorrectAnswerCount &&
             questionType == QuestionType.multipleChoice &&
             correctAnswersCount > 1)
           Padding(
@@ -66,10 +110,10 @@ class QuizQuestionOptions extends StatelessWidget {
         // Options list
         Expanded(
           child: ListView.builder(
-            itemCount: state.currentQuestion.options.length,
+            itemCount: widget.state.currentQuestion.options.length,
             itemBuilder: (context, index) {
-              final option = state.currentQuestion.options[index];
-              final isSelected = state.isOptionSelected(index);
+              final option = widget.state.currentQuestion.options[index];
+              final isSelected = widget.state.isOptionSelected(index);
 
               return Padding(
                 padding: const EdgeInsets.only(bottom: 12.0),
@@ -122,7 +166,7 @@ class QuizQuestionOptions extends StatelessWidget {
     // For single choice, true/false, and essay questions, use RadioListTile
     else {
       // Get the currently selected option (if any)
-      final currentAnswers = state.currentQuestionAnswers;
+      final currentAnswers = widget.state.currentQuestionAnswers;
       final selectedIndex = currentAnswers.isNotEmpty
           ? currentAnswers.first
           : -1;
@@ -148,5 +192,54 @@ class QuizQuestionOptions extends StatelessWidget {
         controlAffinity: ListTileControlAffinity.leading,
       );
     }
+  }
+
+  Widget _buildEssayInput(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            AppLocalizations.of(context)!.questionTypeEssay,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+          const SizedBox(height: 12),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.outline.withValues(alpha: 0.5),
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: TextField(
+                controller: _essayController,
+                maxLines: null,
+                expands: true,
+                textAlignVertical: TextAlignVertical.top,
+                decoration: InputDecoration(
+                  hintText: AppLocalizations.of(context)!.explanationHint,
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.all(16),
+                ),
+                onChanged: (text) {
+                  context.read<QuizExecutionBloc>().add(
+                    EssayAnswerChanged(text),
+                  );
+                },
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
