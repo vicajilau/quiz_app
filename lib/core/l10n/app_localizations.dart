@@ -1535,6 +1535,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Error evaluating response: {error}'**
   String aiEvaluationError(String error);
+
+  /// System role for AI evaluation prompt
+  ///
+  /// In en, this message translates to:
+  /// **'You are an expert teacher evaluating a student\'s response to an essay question. Your task is to provide detailed and constructive evaluation. Please respond in English.'**
+  String get aiEvaluationPromptSystemRole;
+
+  /// Question label in evaluation prompt
+  ///
+  /// In en, this message translates to:
+  /// **'QUESTION:'**
+  String get aiEvaluationPromptQuestion;
+
+  /// Student answer label in evaluation prompt
+  ///
+  /// In en, this message translates to:
+  /// **'STUDENT\'S ANSWER:'**
+  String get aiEvaluationPromptStudentAnswer;
+
+  /// Evaluation criteria label in prompt
+  ///
+  /// In en, this message translates to:
+  /// **'EVALUATION CRITERIA (based on teacher\'s explanation):'**
+  String get aiEvaluationPromptCriteria;
+
+  /// Specific instructions for evaluation with criteria
+  ///
+  /// In en, this message translates to:
+  /// **'SPECIFIC INSTRUCTIONS:\n- Evaluate how well the student\'s response aligns with the established criteria\n- Analyze the degree of synthesis and structure in the response\n- Identify if anything important has been left out according to the criteria\n- Consider the depth and accuracy of the analysis'**
+  String get aiEvaluationPromptSpecificInstructions;
+
+  /// General instructions for evaluation without criteria
+  ///
+  /// In en, this message translates to:
+  /// **'GENERAL INSTRUCTIONS:\n- Since there are no specific criteria established, evaluate the response based on general academic standards\n- Consider clarity, coherence, and structure of the response\n- Evaluate if the response demonstrates understanding of the topic\n- Analyze the depth of analysis and quality of arguments'**
+  String get aiEvaluationPromptGeneralInstructions;
+
+  /// Response format instructions for evaluation
+  ///
+  /// In en, this message translates to:
+  /// **'RESPONSE FORMAT:\n1. GRADE: [X/10] - Briefly justify the grade\n2. STRENGTHS: Mention positive aspects of the response\n3. AREAS FOR IMPROVEMENT: Point out aspects that could be improved\n4. SPECIFIC COMMENTS: Provide detailed and constructive feedback\n5. SUGGESTIONS: Offer specific recommendations for improvement\n\nBe constructive, specific, and educational in your evaluation. The goal is to help the student learn and improve. Address them in second person and use a professional and friendly tone.'**
+  String get aiEvaluationPromptResponseFormat;
 }
 
 class _AppLocalizationsDelegate

@@ -1137,5 +1137,33 @@
         "example": "Network error"
       }
     }
+  },
+  "aiEvaluationPromptSystemRole": "Eres un profesor experto evaluando la respuesta de un estudiante a una pregunta de ensayo. Tu tarea es proporcionar una evaluación detallada y constructiva. Responde en español.",
+  "@aiEvaluationPromptSystemRole": {
+    "description": "Rol del sistema para el prompt de evaluación de IA"
+  },
+  "aiEvaluationPromptQuestion": "PREGUNTA:",
+  "@aiEvaluationPromptQuestion": {
+    "description": "Etiqueta de pregunta en el prompt de evaluación"
+  },
+  "aiEvaluationPromptStudentAnswer": "RESPUESTA DEL ESTUDIANTE:",
+  "@aiEvaluationPromptStudentAnswer": {
+    "description": "Etiqueta de respuesta del estudiante en el prompt de evaluación"
+  },
+  "aiEvaluationPromptCriteria": "CRITERIOS DE EVALUACIÓN (basados en la explicación del profesor):",
+  "@aiEvaluationPromptCriteria": {
+    "description": "Etiqueta de criterios de evaluación en el prompt"
+  },
+  "aiEvaluationPromptSpecificInstructions": "INSTRUCCIONES ESPECÍFICAS:\n- Evalúa qué tan bien la respuesta del estudiante se alinea con los criterios establecidos\n- Analiza el grado de síntesis y estructura de la respuesta\n- Identifica si se ha dejado algo importante por mencionar según los criterios\n- Considera la profundidad y precisión del análisis",
+  "@aiEvaluationPromptSpecificInstructions": {
+    "description": "Instrucciones específicas para evaluación con criterios"
+  },
+  "aiEvaluationPromptGeneralInstructions": "INSTRUCCIONES GENERALES:\n- Como no hay criterios específicos establecidos, evalúa la respuesta basándote en estándares académicos generales\n- Considera la claridad, coherencia y estructura de la respuesta\n- Evalúa si la respuesta demuestra comprensión del tema\n- Analiza la profundidad del análisis y la calidad de los argumentos",
+  "@aiEvaluationPromptGeneralInstructions": {
+    "description": "Instrucciones generales para evaluación sin criterios"
+  },
+  "aiEvaluationPromptResponseFormat": "FORMATO DE RESPUESTA:\n1. CALIFICACIÓN: [X/10] - Justifica brevemente la nota\n2. FORTALEZAS: Menciona los aspectos positivos de la respuesta\n3. ÁREAS DE MEJORA: Señala qué aspectos podrían mejorarse\n4. COMENTARIOS ESPECÍFICOS: Proporciona feedback detallado y constructivo\n5. SUGERENCIAS: Ofrece recomendaciones específicas para mejorar\n\nSé constructivo, específico y educativo en tu evaluación. El objetivo es ayudar al estudiante a aprender y mejorar. Dirígite a él en segunda persona y utiliza un tono profesional y amigable.",
+  "@aiEvaluationPromptResponseFormat": {
+    "description": "Instrucciones de formato de respuesta para evaluación"
   }
 }

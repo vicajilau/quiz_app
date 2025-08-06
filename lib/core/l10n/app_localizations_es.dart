@@ -835,4 +835,30 @@ class AppLocalizationsEs extends AppLocalizations {
   String aiEvaluationError(String error) {
     return 'Error al evaluar la respuesta: $error';
   }
+
+  @override
+  String get aiEvaluationPromptSystemRole =>
+      'Eres un profesor experto evaluando la respuesta de un estudiante a una pregunta de ensayo. Tu tarea es proporcionar una evaluación detallada y constructiva. Responde en español.';
+
+  @override
+  String get aiEvaluationPromptQuestion => 'PREGUNTA:';
+
+  @override
+  String get aiEvaluationPromptStudentAnswer => 'RESPUESTA DEL ESTUDIANTE:';
+
+  @override
+  String get aiEvaluationPromptCriteria =>
+      'CRITERIOS DE EVALUACIÓN (basados en la explicación del profesor):';
+
+  @override
+  String get aiEvaluationPromptSpecificInstructions =>
+      'INSTRUCCIONES ESPECÍFICAS:\n- Evalúa qué tan bien la respuesta del estudiante se alinea con los criterios establecidos\n- Analiza el grado de síntesis y estructura de la respuesta\n- Identifica si se ha dejado algo importante por mencionar según los criterios\n- Considera la profundidad y precisión del análisis';
+
+  @override
+  String get aiEvaluationPromptGeneralInstructions =>
+      'INSTRUCCIONES GENERALES:\n- Como no hay criterios específicos establecidos, evalúa la respuesta basándote en estándares académicos generales\n- Considera la claridad, coherencia y estructura de la respuesta\n- Evalúa si la respuesta demuestra comprensión del tema\n- Analiza la profundidad del análisis y la calidad de los argumentos';
+
+  @override
+  String get aiEvaluationPromptResponseFormat =>
+      'FORMATO DE RESPUESTA:\n1. CALIFICACIÓN: [X/10] - Justifica brevemente la nota\n2. FORTALEZAS: Menciona los aspectos positivos de la respuesta\n3. ÁREAS DE MEJORA: Señala qué aspectos podrían mejorarse\n4. COMENTARIOS ESPECÍFICOS: Proporciona feedback detallado y constructivo\n5. SUGERENCIAS: Ofrece recomendaciones específicas para mejorar\n\nSé constructivo, específico y educativo en tu evaluación. El objetivo es ayudar al estudiante a aprender y mejorar. Dirígite a él en segunda persona y utiliza un tono profesional y amigable.';
 }

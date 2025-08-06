@@ -651,6 +651,7 @@ class _QuizQuestionResultCardState extends State<QuizQuestionResultCard> {
         widget.result.question.text,
         widget.result.essayAnswer,
         widget.result.question.explanation,
+        localizations,
       );
 
       final evaluation = await _selectedService!.getChatResponse(
