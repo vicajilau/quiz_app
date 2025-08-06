@@ -353,7 +353,6 @@ IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
     final hasExplanation = explanation.isNotEmpty;
 
     String prompt =
-       
         '''
 ${localizations.aiEvaluationPromptSystemRole}
 
@@ -364,8 +363,7 @@ ${localizations.aiEvaluationPromptStudentAnswer}
 $studentAnswer
 ''';
 
-    if (hasExpl
-         anation) {
+    if (hasExplanation) {
       prompt +=
           '''
 
@@ -374,14 +372,12 @@ $explanation
 
 ${localizations.aiEvaluationPromptSpecificInstructions}
 ''';
-         
     } else {
       prompt +=
           '''
 
 ${localizations.aiEvaluationPromptGeneralInstructions}
 ''';
-       
     }
 
     prompt +=
