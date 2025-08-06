@@ -200,10 +200,13 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                 children: [
                   const Icon(Icons.auto_awesome, color: Colors.purple),
                   const SizedBox(width: 8),
-                  Text(
-                    localizations.aiGenerateDialogTitle,
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Text(
+                      localizations.aiGenerateDialogTitle,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.headlineSmall
+                          ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],
@@ -326,6 +329,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                       TextFormField(
                         controller: _questionCountController,
                         decoration: InputDecoration(
+                          hintMaxLines: 2,
                           hintText: localizations.aiQuestionCountHint,
                           border: const OutlineInputBorder(),
                         ),
@@ -404,28 +408,36 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            localizations.aiContentLabel,
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: _getWordCountColor().withValues(
-                                alpha: 0.1,
-                              ),
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: _getWordCountColor()),
-                            ),
+                          Expanded(
                             child: Text(
-                              _getWordCountText(localizations),
-                              style: TextStyle(
-                                color: _getWordCountColor(),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
+                              localizations.aiContentLabel,
+                              maxLines: 2,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: _getWordCountColor().withValues(
+                                  alpha: 0.1,
+                                ),
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(color: _getWordCountColor()),
+                              ),
+                              child: Text(
+                                _getWordCountText(localizations),
+                                style: TextStyle(
+                                  color: _getWordCountColor(),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 11,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 5,
                               ),
                             ),
                           ),
@@ -440,6 +452,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                             _selectedService != null && !_isLoadingServices,
                         decoration: InputDecoration(
                           hintText: localizations.aiContentHint,
+                          helperMaxLines: 2,
                           border: const OutlineInputBorder(),
                           helperText: localizations.aiContentHelperText,
                         ),
@@ -522,30 +535,38 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                     onPressed: () => Navigator.of(context).pop(),
                     child: Text(localizations.cancel),
                   ),
-                  const SizedBox(width: 16),
-                  ElevatedButton.icon(
-                    onPressed:
-                        (_selectedService != null &&
-                            !_isLoadingServices &&
-                            _hasMinimumWords)
-                        ? () {
-                            if (_formKey.currentState!.validate()) {
-                              final config = AiQuestionGenerationConfig(
-                                questionCount:
-                                    _questionCountController.text.isEmpty
-                                    ? null
-                                    : int.parse(_questionCountController.text),
-                                questionType: _selectedQuestionType,
-                                language: _selectedLanguage,
-                                content: _textController.text.trim(),
-                                preferredService: _selectedService,
-                              );
-                              Navigator.of(context).pop(config);
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed:
+                          (_selectedService != null &&
+                              !_isLoadingServices &&
+                              _hasMinimumWords)
+                          ? () {
+                              if (_formKey.currentState!.validate()) {
+                                final config = AiQuestionGenerationConfig(
+                                  questionCount:
+                                      _questionCountController.text.isEmpty
+                                      ? null
+                                      : int.parse(
+                                          _questionCountController.text,
+                                        ),
+                                  questionType: _selectedQuestionType,
+                                  language: _selectedLanguage,
+                                  content: _textController.text.trim(),
+                                  preferredService: _selectedService,
+                                );
+                                Navigator.of(context).pop(config);
+                              }
                             }
-                          }
-                        : null,
-                    icon: const Icon(Icons.auto_awesome),
-                    label: Text(localizations.aiGenerateButton),
+                          : null,
+                      icon: const Icon(Icons.auto_awesome),
+                      label: Text(
+                        localizations.aiGenerateButton,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
+                    ),
                   ),
                 ],
               ),
