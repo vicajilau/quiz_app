@@ -1180,5 +1180,33 @@
         "example": "ネットワークエラー"
       }
     }
+  },
+  "aiEvaluationPromptSystemRole": "あなたはエッセイ問題に対する学生の回答を評価する専門の教師です。あなたの任務は、詳細で建設的な評価を提供することです。日本語で回答してください。",
+  "@aiEvaluationPromptSystemRole": {
+    "description": "AI評価プロンプトのシステム役割"
+  },
+  "aiEvaluationPromptQuestion": "問題：",
+  "@aiEvaluationPromptQuestion": {
+    "description": "評価プロンプトの質問ラベル"
+  },
+  "aiEvaluationPromptStudentAnswer": "学生の回答：",
+  "@aiEvaluationPromptStudentAnswer": {
+    "description": "評価プロンプトの学生回答ラベル"
+  },
+  "aiEvaluationPromptCriteria": "評価基準（教師の説明に基づく）：",
+  "@aiEvaluationPromptCriteria": {
+    "description": "プロンプトの評価基準ラベル"
+  },
+  "aiEvaluationPromptSpecificInstructions": "具体的な指示：\n- 学生の回答が確立された基準とどの程度一致しているかを評価する\n- 回答における統合と構造の程度を分析する\n- 基準に従って重要なことが見落とされていないかを特定する\n- 分析の深さと正確性を考慮する",
+  "@aiEvaluationPromptSpecificInstructions": {
+    "description": "基準ありの評価のための具体的指示"
+  },
+  "aiEvaluationPromptGeneralInstructions": "一般的な指示：\n- 特定の基準が確立されていないため、一般的な学術基準に基づいて回答を評価する\n- 回答の明確さ、一貫性、構造を考慮する\n- 回答がトピックの理解を示しているかを評価する\n- 分析の深さと議論の質を分析する",
+  "@aiEvaluationPromptGeneralInstructions": {
+    "description": "基準なしの評価のための一般的指示"
+  },
+  "aiEvaluationPromptResponseFormat": "回答形式：\n1. 評点：[X/10] - 評点を簡潔に正当化する\n2. 長所：回答の肯定的な側面を述べる\n3. 改善領域：改善できる側面を指摘する\n4. 具体的なコメント：詳細で建設的なフィードバックを提供する\n5. 提案：改善のための具体的な推奨事項を提供する\n\n評価において建設的、具体的、教育的であること。目標は学生の学習と改善を助けることです。二人称で話しかけ、専門的で親しみやすい口調を使用してください。",
+  "@aiEvaluationPromptResponseFormat": {
+    "description": "評価の回答形式指示"
   }
 }

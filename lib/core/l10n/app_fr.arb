@@ -1180,5 +1180,33 @@
         "example": "Erreur réseau"
       }
     }
+  },
+  "aiEvaluationPromptSystemRole": "Vous êtes un professeur expert évaluant la réponse d'un étudiant à une question de dissertation. Votre tâche est de fournir une évaluation détaillée et constructive. Veuillez répondre en français.",
+  "@aiEvaluationPromptSystemRole": {
+    "description": "Rôle système pour l'invite d'évaluation IA"
+  },
+  "aiEvaluationPromptQuestion": "QUESTION:",
+  "@aiEvaluationPromptQuestion": {
+    "description": "Étiquette de question dans l'invite d'évaluation"
+  },
+  "aiEvaluationPromptStudentAnswer": "RÉPONSE DE L'ÉTUDIANT:",
+  "@aiEvaluationPromptStudentAnswer": {
+    "description": "Étiquette de réponse étudiant dans l'invite d'évaluation"
+  },
+  "aiEvaluationPromptCriteria": "CRITÈRES D'ÉVALUATION (basés sur l'explication du professeur):",
+  "@aiEvaluationPromptCriteria": {
+    "description": "Étiquette des critères d'évaluation dans l'invite"
+  },
+  "aiEvaluationPromptSpecificInstructions": "INSTRUCTIONS SPÉCIFIQUES:\n- Évaluez dans quelle mesure la réponse de l'étudiant s'aligne sur les critères établis\n- Analysez le degré de synthèse et la structure de la réponse\n- Identifiez si quelque chose d'important a été omis selon les critères\n- Considérez la profondeur et la précision de l'analyse",
+  "@aiEvaluationPromptSpecificInstructions": {
+    "description": "Instructions spécifiques pour l'évaluation avec critères"
+  },
+  "aiEvaluationPromptGeneralInstructions": "INSTRUCTIONS GÉNÉRALES:\n- Comme il n'y a pas de critères spécifiques établis, évaluez la réponse selon les standards académiques généraux\n- Considérez la clarté, la cohérence et la structure de la réponse\n- Évaluez si la réponse démontre une compréhension du sujet\n- Analysez la profondeur de l'analyse et la qualité des arguments",
+  "@aiEvaluationPromptGeneralInstructions": {
+    "description": "Instructions générales pour l'évaluation sans critères"
+  },
+  "aiEvaluationPromptResponseFormat": "FORMAT DE RÉPONSE:\n1. NOTE: [X/10] - Justifiez brièvement la note\n2. POINTS FORTS: Mentionnez les aspects positifs de la réponse\n3. DOMAINES D'AMÉLIORATION: Signalez les aspects qui pourraient être améliorés\n4. COMMENTAIRES SPÉCIFIQUES: Fournissez des commentaires détaillés et constructifs\n5. SUGGESTIONS: Offrez des recommandations spécifiques pour l'amélioration\n\nSoyez constructif, spécifique et éducatif dans votre évaluation. L'objectif est d'aider l'étudiant à apprendre et à s'améliorer. Adressez-vous à lui à la deuxième personne et utilisez un ton professionnel et amical.",
+  "@aiEvaluationPromptResponseFormat": {
+    "description": "Instructions de format de réponse pour l'évaluation"
   }
 }

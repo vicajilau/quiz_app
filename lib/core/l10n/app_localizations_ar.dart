@@ -823,27 +823,27 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get aiEvaluationPromptSystemRole =>
-      'You are an expert teacher evaluating a student\'s response to an essay question. Your task is to provide detailed and constructive evaluation. Please respond in English.';
+      'أنت مدرس خبير تقيم إجابة طالب على سؤال مقال. مهمتك هي تقديم تقييم مفصل وبناء. يرجى الإجابة باللغة العربية.';
 
   @override
-  String get aiEvaluationPromptQuestion => 'QUESTION:';
+  String get aiEvaluationPromptQuestion => 'السؤال:';
 
   @override
-  String get aiEvaluationPromptStudentAnswer => 'STUDENT\'S ANSWER:';
+  String get aiEvaluationPromptStudentAnswer => 'إجابة الطالب:';
 
   @override
   String get aiEvaluationPromptCriteria =>
-      'EVALUATION CRITERIA (based on teacher\'s explanation):';
+      'معايير التقييم (بناءً على شرح المعلم):';
 
   @override
   String get aiEvaluationPromptSpecificInstructions =>
-      'SPECIFIC INSTRUCTIONS:\n- Evaluate how well the student\'s response aligns with the established criteria\n- Analyze the degree of synthesis and structure in the response\n- Identify if anything important has been left out according to the criteria\n- Consider the depth and accuracy of the analysis';
+      'تعليمات محددة:\n- قيم مدى توافق إجابة الطالب مع المعايير المحددة\n- حلل درجة التركيب والهيكل في الإجابة\n- حدد إذا كان هناك شيء مهم مفقود وفقاً للمعايير\n- اعتبر عمق ودقة التحليل';
 
   @override
   String get aiEvaluationPromptGeneralInstructions =>
-      'GENERAL INSTRUCTIONS:\n- Since there are no specific criteria established, evaluate the response based on general academic standards\n- Consider clarity, coherence, and structure of the response\n- Evaluate if the response demonstrates understanding of the topic\n- Analyze the depth of analysis and quality of arguments';
+      'تعليمات عامة:\n- بما أنه لا توجد معايير محددة، قيم الإجابة بناءً على المعايير الأكاديمية العامة\n- اعتبر الوضوح والتماسك وهيكل الإجابة\n- قيم إذا كانت الإجابة تظهر فهماً للموضوع\n- حلل عمق التحليل وجودة الحجج';
 
   @override
   String get aiEvaluationPromptResponseFormat =>
-      'RESPONSE FORMAT:\n1. GRADE: [X/10] - Briefly justify the grade\n2. STRENGTHS: Mention positive aspects of the response\n3. AREAS FOR IMPROVEMENT: Point out aspects that could be improved\n4. SPECIFIC COMMENTS: Provide detailed and constructive feedback\n5. SUGGESTIONS: Offer specific recommendations for improvement\n\nBe constructive, specific, and educational in your evaluation. The goal is to help the student learn and improve. Address them in second person and use a professional and friendly tone.';
+      'تنسيق الإجابة:\n1. الدرجة: [X/10] - اذكر مبرراً مختصراً للدرجة\n2. نقاط القوة: اذكر الجوانب الإيجابية في الإجابة\n3. مجالات التحسين: أشر إلى الجوانب التي يمكن تحسينها\n4. تعليقات محددة: قدم ملاحظات مفصلة وبناءة\n5. اقتراحات: قدم توصيات محددة للتحسين\n\nكن بناءً ومحدداً وتعليمياً في تقييمك. الهدف هو مساعدة الطالب على التعلم والتحسن. اخاطبه بصيغة المخاطب واستخدم نبرة مهنية وودية.';
 }

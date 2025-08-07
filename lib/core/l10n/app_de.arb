@@ -1180,5 +1180,33 @@
         "example": "Netzwerkfehler"
       }
     }
+  },
+  "aiEvaluationPromptSystemRole": "Sie sind ein Experte-Lehrer, der die Antwort eines Studenten auf eine Essay-Frage bewertet. Ihre Aufgabe ist es, eine detaillierte und konstruktive Bewertung zu geben. Bitte antworten Sie auf Deutsch.",
+  "@aiEvaluationPromptSystemRole": {
+    "description": "Systemrolle für KI-Bewertungsaufforderung"
+  },
+  "aiEvaluationPromptQuestion": "FRAGE:",
+  "@aiEvaluationPromptQuestion": {
+    "description": "Fragenbezeichnung in der Bewertungsaufforderung"
+  },
+  "aiEvaluationPromptStudentAnswer": "ANTWORT DES STUDENTEN:",
+  "@aiEvaluationPromptStudentAnswer": {
+    "description": "Studentenantwort-Bezeichnung in der Bewertungsaufforderung"
+  },
+  "aiEvaluationPromptCriteria": "BEWERTUNGSKRITERIEN (basierend auf der Erklärung des Lehrers):",
+  "@aiEvaluationPromptCriteria": {
+    "description": "Bewertungskriterien-Bezeichnung in der Aufforderung"
+  },
+  "aiEvaluationPromptSpecificInstructions": "SPEZIFISCHE ANWEISUNGEN:\n- Bewerten Sie, wie gut die Antwort des Studenten mit den etablierten Kriterien übereinstimmt\n- Analysieren Sie den Grad der Synthese und Struktur in der Antwort\n- Identifizieren Sie, ob etwas Wichtiges gemäß den Kriterien ausgelassen wurde\n- Berücksichtigen Sie die Tiefe und Genauigkeit der Analyse",
+  "@aiEvaluationPromptSpecificInstructions": {
+    "description": "Spezifische Anweisungen für Bewertung mit Kriterien"
+  },
+  "aiEvaluationPromptGeneralInstructions": "ALLGEMEINE ANWEISUNGEN:\n- Da keine spezifischen Kriterien festgelegt sind, bewerten Sie die Antwort basierend auf allgemeinen akademischen Standards\n- Berücksichtigen Sie Klarheit, Kohärenz und Struktur der Antwort\n- Bewerten Sie, ob die Antwort Verständnis des Themas zeigt\n- Analysieren Sie die Tiefe der Analyse und Qualität der Argumente",
+  "@aiEvaluationPromptGeneralInstructions": {
+    "description": "Allgemeine Anweisungen für Bewertung ohne Kriterien"
+  },
+  "aiEvaluationPromptResponseFormat": "ANTWORTFORMAT:\n1. BEWERTUNG: [X/10] - Begründen Sie kurz die Note\n2. STÄRKEN: Erwähnen Sie positive Aspekte der Antwort\n3. VERBESSERUNGSBEREICHE: Weisen Sie auf Aspekte hin, die verbessert werden könnten\n4. SPEZIFISCHE KOMMENTARE: Geben Sie detailliertes und konstruktives Feedback\n5. VORSCHLÄGE: Bieten Sie spezifische Empfehlungen zur Verbesserung\n\nSeien Sie konstruktiv, spezifisch und lehrreich in Ihrer Bewertung. Das Ziel ist es, dem Studenten beim Lernen und Verbessern zu helfen. Sprechen Sie ihn in der zweiten Person an und verwenden Sie einen professionellen und freundlichen Ton.",
+  "@aiEvaluationPromptResponseFormat": {
+    "description": "Antwortformat-Anweisungen für Bewertung"
   }
 }

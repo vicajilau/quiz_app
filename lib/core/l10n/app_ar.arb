@@ -1180,5 +1180,33 @@
         "example": "خطأ في الشبكة"
       }
     }
+  },
+  "aiEvaluationPromptSystemRole": "أنت مدرس خبير تقيم إجابة طالب على سؤال مقال. مهمتك هي تقديم تقييم مفصل وبناء. يرجى الإجابة باللغة العربية.",
+  "@aiEvaluationPromptSystemRole": {
+    "description": "دور النظام لطلب تقييم الذكاء الاصطناعي"
+  },
+  "aiEvaluationPromptQuestion": "السؤال:",
+  "@aiEvaluationPromptQuestion": {
+    "description": "تسمية السؤال في طلب التقييم"
+  },
+  "aiEvaluationPromptStudentAnswer": "إجابة الطالب:",
+  "@aiEvaluationPromptStudentAnswer": {
+    "description": "تسمية إجابة الطالب في طلب التقييم"
+  },
+  "aiEvaluationPromptCriteria": "معايير التقييم (بناءً على شرح المعلم):",
+  "@aiEvaluationPromptCriteria": {
+    "description": "تسمية معايير التقييم في الطلب"
+  },
+  "aiEvaluationPromptSpecificInstructions": "تعليمات محددة:\n- قيم مدى توافق إجابة الطالب مع المعايير المحددة\n- حلل درجة التركيب والهيكل في الإجابة\n- حدد إذا كان هناك شيء مهم مفقود وفقاً للمعايير\n- اعتبر عمق ودقة التحليل",
+  "@aiEvaluationPromptSpecificInstructions": {
+    "description": "تعليمات محددة للتقييم مع المعايير"
+  },
+  "aiEvaluationPromptGeneralInstructions": "تعليمات عامة:\n- بما أنه لا توجد معايير محددة، قيم الإجابة بناءً على المعايير الأكاديمية العامة\n- اعتبر الوضوح والتماسك وهيكل الإجابة\n- قيم إذا كانت الإجابة تظهر فهماً للموضوع\n- حلل عمق التحليل وجودة الحجج",
+  "@aiEvaluationPromptGeneralInstructions": {
+    "description": "تعليمات عامة للتقييم بدون معايير"
+  },
+  "aiEvaluationPromptResponseFormat": "تنسيق الإجابة:\n1. الدرجة: [X/10] - اذكر مبرراً مختصراً للدرجة\n2. نقاط القوة: اذكر الجوانب الإيجابية في الإجابة\n3. مجالات التحسين: أشر إلى الجوانب التي يمكن تحسينها\n4. تعليقات محددة: قدم ملاحظات مفصلة وبناءة\n5. اقتراحات: قدم توصيات محددة للتحسين\n\nكن بناءً ومحدداً وتعليمياً في تقييمك. الهدف هو مساعدة الطالب على التعلم والتحسن. اخاطبه بصيغة المخاطب واستخدم نبرة مهنية وودية.",
+  "@aiEvaluationPromptResponseFormat": {
+    "description": "تعليمات تنسيق الإجابة للتقييم"
   }
 }

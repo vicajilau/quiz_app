@@ -1180,5 +1180,33 @@
         "example": "Erro de rede"
       }
     }
+  },
+  "aiEvaluationPromptSystemRole": "Você é um professor especialista avaliando a resposta de um estudante a uma questão dissertativa. Sua tarefa é fornecer uma avaliação detalhada e construtiva. Responda em português.",
+  "@aiEvaluationPromptSystemRole": {
+    "description": "Papel do sistema para prompt de avaliação IA"
+  },
+  "aiEvaluationPromptQuestion": "PERGUNTA:",
+  "@aiEvaluationPromptQuestion": {
+    "description": "Rótulo da pergunta no prompt de avaliação"
+  },
+  "aiEvaluationPromptStudentAnswer": "RESPOSTA DO ESTUDANTE:",
+  "@aiEvaluationPromptStudentAnswer": {
+    "description": "Rótulo resposta do estudante no prompt de avaliação"
+  },
+  "aiEvaluationPromptCriteria": "CRITÉRIOS DE AVALIAÇÃO (baseados na explicação do professor):",
+  "@aiEvaluationPromptCriteria": {
+    "description": "Rótulo critérios de avaliação no prompt"
+  },
+  "aiEvaluationPromptSpecificInstructions": "INSTRUÇÕES ESPECÍFICAS:\n- Avalie quão bem a resposta do estudante se alinha com os critérios estabelecidos\n- Analise o grau de síntese e estrutura na resposta\n- Identifique se algo importante foi deixado de fora segundo os critérios\n- Considere a profundidade e precisão da análise",
+  "@aiEvaluationPromptSpecificInstructions": {
+    "description": "Instruções específicas para avaliação com critérios"
+  },
+  "aiEvaluationPromptGeneralInstructions": "INSTRUÇÕES GERAIS:\n- Como não há critérios específicos estabelecidos, avalie a resposta baseando-se em padrões acadêmicos gerais\n- Considere clareza, coerência e estrutura da resposta\n- Avalie se a resposta demonstra compreensão do tópico\n- Analise a profundidade da análise e qualidade dos argumentos",
+  "@aiEvaluationPromptGeneralInstructions": {
+    "description": "Instruções gerais para avaliação sem critérios"
+  },
+  "aiEvaluationPromptResponseFormat": "FORMATO DA RESPOSTA:\n1. NOTA: [X/10] - Justifique brevemente a nota\n2. PONTOS FORTES: Mencione os aspectos positivos da resposta\n3. ÁREAS DE MELHORIA: Aponte aspectos que poderiam ser melhorados\n4. COMENTÁRIOS ESPECÍFICOS: Forneça feedback detalhado e construtivo\n5. SUGERÊNCIAS: Ofereça recomendações específicas para melhoria\n\nSeja construtivo, específico e educativo em sua avaliação. O objetivo é ajudar o estudante a aprender e melhorar. Dirija-se a ele em segunda pessoa e use um tom profissional e amigável.",
+  "@aiEvaluationPromptResponseFormat": {
+    "description": "Instruções de formato de resposta para avaliação"
   }
 }

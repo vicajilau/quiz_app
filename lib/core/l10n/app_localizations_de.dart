@@ -843,27 +843,27 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get aiEvaluationPromptSystemRole =>
-      'You are an expert teacher evaluating a student\'s response to an essay question. Your task is to provide detailed and constructive evaluation. Please respond in English.';
+      'Sie sind ein Experte-Lehrer, der die Antwort eines Studenten auf eine Essay-Frage bewertet. Ihre Aufgabe ist es, eine detaillierte und konstruktive Bewertung zu geben. Bitte antworten Sie auf Deutsch.';
 
   @override
-  String get aiEvaluationPromptQuestion => 'QUESTION:';
+  String get aiEvaluationPromptQuestion => 'FRAGE:';
 
   @override
-  String get aiEvaluationPromptStudentAnswer => 'STUDENT\'S ANSWER:';
+  String get aiEvaluationPromptStudentAnswer => 'ANTWORT DES STUDENTEN:';
 
   @override
   String get aiEvaluationPromptCriteria =>
-      'EVALUATION CRITERIA (based on teacher\'s explanation):';
+      'BEWERTUNGSKRITERIEN (basierend auf der Erklärung des Lehrers):';
 
   @override
   String get aiEvaluationPromptSpecificInstructions =>
-      'SPECIFIC INSTRUCTIONS:\n- Evaluate how well the student\'s response aligns with the established criteria\n- Analyze the degree of synthesis and structure in the response\n- Identify if anything important has been left out according to the criteria\n- Consider the depth and accuracy of the analysis';
+      'SPEZIFISCHE ANWEISUNGEN:\n- Bewerten Sie, wie gut die Antwort des Studenten mit den etablierten Kriterien übereinstimmt\n- Analysieren Sie den Grad der Synthese und Struktur in der Antwort\n- Identifizieren Sie, ob etwas Wichtiges gemäß den Kriterien ausgelassen wurde\n- Berücksichtigen Sie die Tiefe und Genauigkeit der Analyse';
 
   @override
   String get aiEvaluationPromptGeneralInstructions =>
-      'GENERAL INSTRUCTIONS:\n- Since there are no specific criteria established, evaluate the response based on general academic standards\n- Consider clarity, coherence, and structure of the response\n- Evaluate if the response demonstrates understanding of the topic\n- Analyze the depth of analysis and quality of arguments';
+      'ALLGEMEINE ANWEISUNGEN:\n- Da keine spezifischen Kriterien festgelegt sind, bewerten Sie die Antwort basierend auf allgemeinen akademischen Standards\n- Berücksichtigen Sie Klarheit, Kohärenz und Struktur der Antwort\n- Bewerten Sie, ob die Antwort Verständnis des Themas zeigt\n- Analysieren Sie die Tiefe der Analyse und Qualität der Argumente';
 
   @override
   String get aiEvaluationPromptResponseFormat =>
-      'RESPONSE FORMAT:\n1. GRADE: [X/10] - Briefly justify the grade\n2. STRENGTHS: Mention positive aspects of the response\n3. AREAS FOR IMPROVEMENT: Point out aspects that could be improved\n4. SPECIFIC COMMENTS: Provide detailed and constructive feedback\n5. SUGGESTIONS: Offer specific recommendations for improvement\n\nBe constructive, specific, and educational in your evaluation. The goal is to help the student learn and improve. Address them in second person and use a professional and friendly tone.';
+      'ANTWORTFORMAT:\n1. BEWERTUNG: [X/10] - Begründen Sie kurz die Note\n2. STÄRKEN: Erwähnen Sie positive Aspekte der Antwort\n3. VERBESSERUNGSBEREICHE: Weisen Sie auf Aspekte hin, die verbessert werden könnten\n4. SPEZIFISCHE KOMMENTARE: Geben Sie detailliertes und konstruktives Feedback\n5. VORSCHLÄGE: Bieten Sie spezifische Empfehlungen zur Verbesserung\n\nSeien Sie konstruktiv, spezifisch und lehrreich in Ihrer Bewertung. Das Ziel ist es, dem Studenten beim Lernen und Verbessern zu helfen. Sprechen Sie ihn in der zweiten Person an und verwenden Sie einen professionellen und freundlichen Ton.';
 }

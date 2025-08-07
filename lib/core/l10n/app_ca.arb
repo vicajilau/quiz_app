@@ -1180,5 +1180,33 @@
         "example": "Error de xarxa"
       }
     }
+  },
+  "aiEvaluationPromptSystemRole": "Ets un professor especialitzat en avaluar respostes d'estudiants a preguntes d'assaig. La teva tasca és proporcionar avaluacions detallades i constructives. Respon en català.",
+  "@aiEvaluationPromptSystemRole": {
+    "description": "Rol del sistema per al prompt d'avaluació IA"
+  },
+  "aiEvaluationPromptQuestion": "Pregunta:",
+  "@aiEvaluationPromptQuestion": {
+    "description": "Etiqueta de pregunta per al prompt d'avaluació"
+  },
+  "aiEvaluationPromptStudentAnswer": "Resposta de l'estudiant:",
+  "@aiEvaluationPromptStudentAnswer": {
+    "description": "Etiqueta de resposta de l'estudiant per al prompt d'avaluació"
+  },
+  "aiEvaluationPromptCriteria": "Criteris d'avaluació (basats en l'explicació del professor):",
+  "@aiEvaluationPromptCriteria": {
+    "description": "Etiqueta de criteris d'avaluació per al prompt"
+  },
+  "aiEvaluationPromptSpecificInstructions": "Instruccions específiques:\n- Avalua fins a quin punt la resposta de l'estudiant s'ajusta als criteris establerts\n- Analitza el grau d'integració i estructura en la resposta\n- Identifica si no s'ha tingut en compte alguna cosa important segons els criteris\n- Considera la profunditat i precisió de l'anàlisi",
+  "@aiEvaluationPromptSpecificInstructions": {
+    "description": "Instruccions específiques per a l'avaluació amb criteris"
+  },
+  "aiEvaluationPromptGeneralInstructions": "Instruccions generals:\n- Com que no s'han establert criteris específics, avalua la resposta basant-te en estàndards acadèmics generals\n- Considera la claredat, coherència i estructura de la resposta\n- Avalua si la resposta demostra comprensió del tema\n- Analitza la profunditat de l'anàlisi i la qualitat de l'argumentació",
+  "@aiEvaluationPromptGeneralInstructions": {
+    "description": "Instruccions generals per a l'avaluació sense criteris"
+  },
+  "aiEvaluationPromptResponseFormat": "Format de resposta:\n1. Puntuació: [X/10] - Justifica breument la puntuació\n2. Punts forts: Indica els aspectes positius de la resposta\n3. Àrees de millora: Assenyala els aspectes que es poden millorar\n4. Comentaris específics: Proporciona retroalimentació detallada i constructiva\n5. Suggeriments: Ofereix recomanacions específiques per millorar\n\nSigues constructiu, específic i educatiu en la teva avaluació. L'objectiu és ajudar l'estudiant a aprendre i millorar. Dirigeix-te a ell en segona persona i utilitza un to professional però accessible.",
+  "@aiEvaluationPromptResponseFormat": {
+    "description": "Instruccions de format de resposta per a l'avaluació"
   }
 }

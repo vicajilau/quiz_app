@@ -838,27 +838,27 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get aiEvaluationPromptSystemRole =>
-      'You are an expert teacher evaluating a student\'s response to an essay question. Your task is to provide detailed and constructive evaluation. Please respond in English.';
+      'Ikasleen saiakera galderen erantzunak ebaluatzen espezializatutako irakaslea zara. Zure zeregina ebaluazio zehatz eta eraikitzaileak ematea da. Erantzun euskeraz.';
 
   @override
-  String get aiEvaluationPromptQuestion => 'QUESTION:';
+  String get aiEvaluationPromptQuestion => 'Galdera:';
 
   @override
-  String get aiEvaluationPromptStudentAnswer => 'STUDENT\'S ANSWER:';
+  String get aiEvaluationPromptStudentAnswer => 'Ikaslearen erantzuna:';
 
   @override
   String get aiEvaluationPromptCriteria =>
-      'EVALUATION CRITERIA (based on teacher\'s explanation):';
+      'Ebaluazio irizpideak (irakaslearen azalpenean oinarrituta):';
 
   @override
   String get aiEvaluationPromptSpecificInstructions =>
-      'SPECIFIC INSTRUCTIONS:\n- Evaluate how well the student\'s response aligns with the established criteria\n- Analyze the degree of synthesis and structure in the response\n- Identify if anything important has been left out according to the criteria\n- Consider the depth and accuracy of the analysis';
+      'Jarraibide zehatzak:\n- Ebaluatu ikaslearen erantzuna ezarritako irizpideetara zenbateraino egokitzen den\n- Aztertu erantzunean integrazioaren eta egituraren maila\n- Identifikatu irizpideen arabera zerbait garrantzitsua kontuan hartu ez den\n- Kontuan hartu analisiari sakontasuna eta zehaztasuna';
 
   @override
   String get aiEvaluationPromptGeneralInstructions =>
-      'GENERAL INSTRUCTIONS:\n- Since there are no specific criteria established, evaluate the response based on general academic standards\n- Consider clarity, coherence, and structure of the response\n- Evaluate if the response demonstrates understanding of the topic\n- Analyze the depth of analysis and quality of arguments';
+      'Jarraibide orokorrak:\n- Irizpide zehatzik ezarri ez denez, ebaluatu erantzuna oinarrizko estandar akademikoen arabera\n- Kontuan hartu erantzunaren argitasuna, koherentzia eta egitura\n- Ebaluatu erantzunak gaiaren ulermena erakusten duen\n- Aztertu analisiaren sakontasuna eta argumentazioaren kalitatea';
 
   @override
   String get aiEvaluationPromptResponseFormat =>
-      'RESPONSE FORMAT:\n1. GRADE: [X/10] - Briefly justify the grade\n2. STRENGTHS: Mention positive aspects of the response\n3. AREAS FOR IMPROVEMENT: Point out aspects that could be improved\n4. SPECIFIC COMMENTS: Provide detailed and constructive feedback\n5. SUGGESTIONS: Offer specific recommendations for improvement\n\nBe constructive, specific, and educational in your evaluation. The goal is to help the student learn and improve. Address them in second person and use a professional and friendly tone.';
+      'Erantzun formatua:\n1. Puntuazioa: [X/10] - Justifikatu labur puntuazioa\n2. Indar puntuak: Adierazi erantzunaren alderdi positiboak\n3. Hobekuntza arloak: Seinalatu hobetu daitezkeen alderdiak\n4. Iruzkin zehatzak: Eman feedback zehatza eta eraikitzailea\n5. Iradokizunak: Eskaini hobetzeko gomendio zehatzak\n\nIzan eraikitzailea, zehatza eta hezigarria zure ebaluazioan. Helburua ikaslea ikastera eta hobetzen laguntzea da. Zuzendu pertsona bigarrenean eta erabili tonu profesionala baina hurbilgarria.';
 }

@@ -839,27 +839,27 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get aiEvaluationPromptSystemRole =>
-      'You are an expert teacher evaluating a student\'s response to an essay question. Your task is to provide detailed and constructive evaluation. Please respond in English.';
+      'Ets un professor especialitzat en avaluar respostes d\'estudiants a preguntes d\'assaig. La teva tasca és proporcionar avaluacions detallades i constructives. Respon en català.';
 
   @override
-  String get aiEvaluationPromptQuestion => 'QUESTION:';
+  String get aiEvaluationPromptQuestion => 'Pregunta:';
 
   @override
-  String get aiEvaluationPromptStudentAnswer => 'STUDENT\'S ANSWER:';
+  String get aiEvaluationPromptStudentAnswer => 'Resposta de l\'estudiant:';
 
   @override
   String get aiEvaluationPromptCriteria =>
-      'EVALUATION CRITERIA (based on teacher\'s explanation):';
+      'Criteris d\'avaluació (basats en l\'explicació del professor):';
 
   @override
   String get aiEvaluationPromptSpecificInstructions =>
-      'SPECIFIC INSTRUCTIONS:\n- Evaluate how well the student\'s response aligns with the established criteria\n- Analyze the degree of synthesis and structure in the response\n- Identify if anything important has been left out according to the criteria\n- Consider the depth and accuracy of the analysis';
+      'Instruccions específiques:\n- Avalua fins a quin punt la resposta de l\'estudiant s\'ajusta als criteris establerts\n- Analitza el grau d\'integració i estructura en la resposta\n- Identifica si no s\'ha tingut en compte alguna cosa important segons els criteris\n- Considera la profunditat i precisió de l\'anàlisi';
 
   @override
   String get aiEvaluationPromptGeneralInstructions =>
-      'GENERAL INSTRUCTIONS:\n- Since there are no specific criteria established, evaluate the response based on general academic standards\n- Consider clarity, coherence, and structure of the response\n- Evaluate if the response demonstrates understanding of the topic\n- Analyze the depth of analysis and quality of arguments';
+      'Instruccions generals:\n- Com que no s\'han establert criteris específics, avalua la resposta basant-te en estàndards acadèmics generals\n- Considera la claredat, coherència i estructura de la resposta\n- Avalua si la resposta demostra comprensió del tema\n- Analitza la profunditat de l\'anàlisi i la qualitat de l\'argumentació';
 
   @override
   String get aiEvaluationPromptResponseFormat =>
-      'RESPONSE FORMAT:\n1. GRADE: [X/10] - Briefly justify the grade\n2. STRENGTHS: Mention positive aspects of the response\n3. AREAS FOR IMPROVEMENT: Point out aspects that could be improved\n4. SPECIFIC COMMENTS: Provide detailed and constructive feedback\n5. SUGGESTIONS: Offer specific recommendations for improvement\n\nBe constructive, specific, and educational in your evaluation. The goal is to help the student learn and improve. Address them in second person and use a professional and friendly tone.';
+      'Format de resposta:\n1. Puntuació: [X/10] - Justifica breument la puntuació\n2. Punts forts: Indica els aspectes positius de la resposta\n3. Àrees de millora: Assenyala els aspectes que es poden millorar\n4. Comentaris específics: Proporciona retroalimentació detallada i constructiva\n5. Suggeriments: Ofereix recomanacions específiques per millorar\n\nSigues constructiu, específic i educatiu en la teva avaluació. L\'objectiu és ajudar l\'estudiant a aprendre i millorar. Dirigeix-te a ell en segona persona i utilitza un to professional però accessible.';
 }

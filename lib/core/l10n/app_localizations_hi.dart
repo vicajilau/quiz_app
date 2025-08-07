@@ -829,27 +829,27 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get aiEvaluationPromptSystemRole =>
-      'You are an expert teacher evaluating a student\'s response to an essay question. Your task is to provide detailed and constructive evaluation. Please respond in English.';
+      'आप एक विशेषज्ञ शिक्षक हैं जो एक निबंध प्रश्न के लिए छात्र के उत्तर का मूल्यांकन कर रहे हैं। आपका कार्य विस्तृत और रचनात्मक मूल्यांकन प्रदान करना है। कृपया हिंदी में उत्तर दें।';
 
   @override
-  String get aiEvaluationPromptQuestion => 'QUESTION:';
+  String get aiEvaluationPromptQuestion => 'प्रश्न:';
 
   @override
-  String get aiEvaluationPromptStudentAnswer => 'STUDENT\'S ANSWER:';
+  String get aiEvaluationPromptStudentAnswer => 'छात्र का उत्तर:';
 
   @override
   String get aiEvaluationPromptCriteria =>
-      'EVALUATION CRITERIA (based on teacher\'s explanation):';
+      'मूल्यांकन मानदंड (शिक्षक की व्याख्या के आधार पर):';
 
   @override
   String get aiEvaluationPromptSpecificInstructions =>
-      'SPECIFIC INSTRUCTIONS:\n- Evaluate how well the student\'s response aligns with the established criteria\n- Analyze the degree of synthesis and structure in the response\n- Identify if anything important has been left out according to the criteria\n- Consider the depth and accuracy of the analysis';
+      'विशिष्ट निर्देश:\n- मूल्यांकन करें कि छात्र का उत्तर स्थापित मानदंडों के साथ कितनी अच्छी तरह मेल खाता है\n- उत्तर में संश्लेषण और संरचना की डिग्री का विश्लेषण करें\n- पहचानें कि क्या मानदंडों के अनुसार कुछ महत्वपूर्ण छूट गया है\n- विश्लेषण की गहराई और सटीकता पर विचार करें';
 
   @override
   String get aiEvaluationPromptGeneralInstructions =>
-      'GENERAL INSTRUCTIONS:\n- Since there are no specific criteria established, evaluate the response based on general academic standards\n- Consider clarity, coherence, and structure of the response\n- Evaluate if the response demonstrates understanding of the topic\n- Analyze the depth of analysis and quality of arguments';
+      'सामान्य निर्देश:\n- चूंकि कोई विशिष्ट मानदंड स्थापित नहीं हैं, सामान्य शैक्षणिक मानकों के आधार पर उत्तर का मूल्यांकन करें\n- उत्तर की स्पष्टता, सुसंगति और संरचना पर विचार करें\n- मूल्यांकन करें कि क्या उत्तर विषय की समझ प्रदर्शित करता है\n- विश्लेषण की गहराई और तर्कों की गुणवत्ता का विश्लेषण करें';
 
   @override
   String get aiEvaluationPromptResponseFormat =>
-      'RESPONSE FORMAT:\n1. GRADE: [X/10] - Briefly justify the grade\n2. STRENGTHS: Mention positive aspects of the response\n3. AREAS FOR IMPROVEMENT: Point out aspects that could be improved\n4. SPECIFIC COMMENTS: Provide detailed and constructive feedback\n5. SUGGESTIONS: Offer specific recommendations for improvement\n\nBe constructive, specific, and educational in your evaluation. The goal is to help the student learn and improve. Address them in second person and use a professional and friendly tone.';
+      'उत्तर प्रारूप:\n1. ग्रेड: [X/10] - ग्रेड के लिए संक्षेप में औचित्य दें\n2. शक्तियां: उत्तर के सकारात्मक पहलुओं का उल्लेख करें\n3. सुधार के क्षेत्र: उन पहलुओं को इंगित करें जिन्हें सुधारा जा सकता है\n4. विशिष्ट टिप्पणियां: विस्तृत और रचनात्मक प्रतिक्रिया प्रदान करें\n5. सुझाव: सुधार के लिए विशिष्ट सिफारिशें प्रदान करें\n\nअपने मूल्यांकन में रचनात्मक, विशिष्ट और शैक्षिक बनें। लक्ष्य छात्र को सीखने और सुधारने में मदद करना है। उन्हें द्वितीय व्यक्ति में संबोधित करें और एक पेशेवर और मित्रवत स्वर का उपयोग करें।';
 }

@@ -1180,5 +1180,33 @@
         "example": "Erro de rede"
       }
     }
+  },
+  "aiEvaluationPromptSystemRole": "Es un profesor especializado en avaliar respostas de estudantes a preguntas de ensaio. A túa tarefa é proporcionar avaliacións detalladas e construtivas. Responde en galego.",
+  "@aiEvaluationPromptSystemRole": {
+    "description": "Rol do sistema para o prompt de avaliación IA"
+  },
+  "aiEvaluationPromptQuestion": "Pregunta:",
+  "@aiEvaluationPromptQuestion": {
+    "description": "Etiqueta de pregunta para o prompt de avaliación"
+  },
+  "aiEvaluationPromptStudentAnswer": "Resposta do estudante:",
+  "@aiEvaluationPromptStudentAnswer": {
+    "description": "Etiqueta de resposta do estudante para o prompt de avaliación"
+  },
+  "aiEvaluationPromptCriteria": "Criterios de avaliación (baseados na explicación do profesor):",
+  "@aiEvaluationPromptCriteria": {
+    "description": "Etiqueta de criterios de avaliación para o prompt"
+  },
+  "aiEvaluationPromptSpecificInstructions": "Instrucións específicas:\n- Avalía ata que punto a resposta do estudante se axusta aos criterios establecidos\n- Analiza o grao de integración e estrutura na resposta\n- Identifica se non se tivo en conta algo importante segundo os criterios\n- Considera a profundidade e precisión da análise",
+  "@aiEvaluationPromptSpecificInstructions": {
+    "description": "Instrucións específicas para a avaliación con criterios"
+  },
+  "aiEvaluationPromptGeneralInstructions": "Instrucións xerais:\n- Como non se estableceron criterios específicos, avalía a resposta baseándote en estándares académicos xerais\n- Considera a claridade, coherencia e estrutura da resposta\n- Avalía se a resposta demostra comprensión do tema\n- Analiza a profundidade da análise e a calidade da argumentación",
+  "@aiEvaluationPromptGeneralInstructions": {
+    "description": "Instrucións xerais para a avaliación sen criterios"
+  },
+  "aiEvaluationPromptResponseFormat": "Formato de resposta:\n1. Puntuación: [X/10] - Xustifica brevemente a puntuación\n2. Puntos fortes: Indica os aspectos positivos da resposta\n3. Áreas de mellora: Sinala os aspectos que se poden mellorar\n4. Comentarios específicos: Proporciona retroalimentación detallada e construtiva\n5. Suxestións: Ofrece recomendacións específicas para mellorar\n\nSé construtivo, específico e educativo na túa avaliación. O obxectivo é axudar ao estudante a aprender e mellorar. Diríxete a el en segunda persoa e utiliza un ton profesional pero accesible.",
+  "@aiEvaluationPromptResponseFormat": {
+    "description": "Instrucións de formato de resposta para a avaliación"
   }
 }

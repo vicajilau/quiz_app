@@ -1180,5 +1180,33 @@
         "example": "Errore di rete"
       }
     }
+  },
+  "aiEvaluationPromptSystemRole": "Sei un insegnante esperto che valuta la risposta di uno studente a una domanda di saggio. Il tuo compito è fornire una valutazione dettagliata e costruttiva. Rispondi in italiano.",
+  "@aiEvaluationPromptSystemRole": {
+    "description": "Ruolo del sistema per il prompt di valutazione IA"
+  },
+  "aiEvaluationPromptQuestion": "DOMANDA:",
+  "@aiEvaluationPromptQuestion": {
+    "description": "Etichetta della domanda nel prompt di valutazione"
+  },
+  "aiEvaluationPromptStudentAnswer": "RISPOSTA DELLO STUDENTE:",
+  "@aiEvaluationPromptStudentAnswer": {
+    "description": "Etichetta risposta studente nel prompt di valutazione"
+  },
+  "aiEvaluationPromptCriteria": "CRITERI DI VALUTAZIONE (basati sulla spiegazione dell'insegnante):",
+  "@aiEvaluationPromptCriteria": {
+    "description": "Etichetta criteri di valutazione nel prompt"
+  },
+  "aiEvaluationPromptSpecificInstructions": "ISTRUZIONI SPECIFICHE:\n- Valuta quanto bene la risposta dello studente si allinea con i criteri stabiliti\n- Analizza il grado di sintesi e struttura nella risposta\n- Identifica se qualcosa di importante è stato tralasciato secondo i criteri\n- Considera la profondità e l'accuratezza dell'analisi",
+  "@aiEvaluationPromptSpecificInstructions": {
+    "description": "Istruzioni specifiche per valutazione con criteri"
+  },
+  "aiEvaluationPromptGeneralInstructions": "ISTRUZIONI GENERALI:\n- Poiché non ci sono criteri specifici stabiliti, valuta la risposta basandoti su standard accademici generali\n- Considera chiarezza, coerenza e struttura della risposta\n- Valuta se la risposta dimostra comprensione dell'argomento\n- Analizza la profondità dell'analisi e la qualità degli argomenti",
+  "@aiEvaluationPromptGeneralInstructions": {
+    "description": "Istruzioni generali per valutazione senza criteri"
+  },
+  "aiEvaluationPromptResponseFormat": "FORMATO DELLA RISPOSTA:\n1. VOTO: [X/10] - Giustifica brevemente il voto\n2. PUNTI DI FORZA: Menziona gli aspetti positivi della risposta\n3. AREE DI MIGLIORAMENTO: Indica gli aspetti che potrebbero essere migliorati\n4. COMMENTI SPECIFICI: Fornisci feedback dettagliato e costruttivo\n5. SUGGERIMENTI: Offri raccomandazioni specifiche per il miglioramento\n\nSii costruttivo, specifico ed educativo nella tua valutazione. L'obiettivo è aiutare lo studente a imparare e migliorare. Rivolgiti a lui in seconda persona e usa un tono professionale e amichevole.",
+  "@aiEvaluationPromptResponseFormat": {
+    "description": "Istruzioni formato risposta per valutazione"
   }
 }
