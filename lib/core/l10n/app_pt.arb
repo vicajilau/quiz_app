@@ -589,7 +589,7 @@
   "@openaiApiKeyHint": {
     "description": "Texto de dica para o campo Chave API OpenAI"
   },
-  "openaiApiKeyDescription": "Necessário para funcionalidade IA. Sua chave é armazenada com segurança.",
+  "openaiApiKeyDescription": "Necessário para integração com OpenAI. Sua chave OpenAI é armazenada com segurança.",
   "@openaiApiKeyDescription": {
     "description": "Descrição para o campo Chave API OpenAI"
   },

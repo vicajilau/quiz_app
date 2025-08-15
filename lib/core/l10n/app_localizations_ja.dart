@@ -383,7 +383,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get geminiApiKeyNotConfigured => 'Gemini APIキーが設定されていません';
 
   @override
-  String get geminiApiKeyLabel => 'Google Gemini APIキー';
+  String get geminiApiKeyLabel => 'Gemini APIキー';
 
   @override
   String get geminiApiKeyHint => 'Gemini APIキーを入力してください';
@@ -420,7 +420,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get openaiApiKeyHint => 'OpenAI APIキーを入力してください（sk-...）';
 
   @override
-  String get openaiApiKeyDescription => 'AI機能に必要です。キーは安全に保存されます。';
+  String get openaiApiKeyDescription => 'OpenAI連携に必要です。OpenAIキーは安全に保存されます。';
 
   @override
   String get aiAssistantRequiresApiKeyError =>

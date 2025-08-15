@@ -541,7 +541,7 @@
   "@geminiApiKeyNotConfigured": {
     "description": "Fehlermeldung, wenn Gemini-API-Schlüssel nicht konfiguriert ist"
   },
-  "geminiApiKeyLabel": "Google Gemini API-Schlüssel",
+  "geminiApiKeyLabel": "Gemini API-Schlüssel",
   "@geminiApiKeyLabel": {
     "description": "Beschriftung für Gemini-API-Schlüssel-Feld"
   },
@@ -589,7 +589,7 @@
   "@openaiApiKeyHint": {
     "description": "Hinweistext für OpenAI-API-Schlüssel-Feld"
   },
-  "openaiApiKeyDescription": "Erforderlich für KI-Funktionalität. Ihr Schlüssel wird sicher gespeichert.",
+  "openaiApiKeyDescription": "Erforderlich für die Integration mit OpenAI. Ihr OpenAI-Schlüssel wird sicher gespeichert.",
   "@openaiApiKeyDescription": {
     "description": "Beschreibung für OpenAI-API-Schlüssel-Feld"
   },

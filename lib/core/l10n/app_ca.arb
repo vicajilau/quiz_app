@@ -541,7 +541,7 @@
   "@geminiApiKeyNotConfigured": {
     "description": "Missatge d'error quan la clau API Gemini no està configurada"
   },
-  "geminiApiKeyLabel": "Clau API Google Gemini",
+  "geminiApiKeyLabel": "Clau API Gemini",
   "@geminiApiKeyLabel": {
     "description": "Etiqueta pel camp Clau API Gemini"
   },
@@ -589,7 +589,7 @@
   "@openaiApiKeyHint": {
     "description": "Text de pista pel camp Clau API OpenAI"
   },
-  "openaiApiKeyDescription": "Requerit per la funcionalitat IA. La vostra clau s'emmagatzema de forma segura.",
+  "openaiApiKeyDescription": "Requerit per a la integració amb OpenAI. La vostra clau OpenAI s'emmagatzema de forma segura.",
   "@openaiApiKeyDescription": {
     "description": "Descripció pel camp Clau API OpenAI"
   },

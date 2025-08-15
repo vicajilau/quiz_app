@@ -402,7 +402,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get geminiApiKeyNotConfigured => 'Chiave API Gemini non configurata';
 
   @override
-  String get geminiApiKeyLabel => 'Chiave API Google Gemini';
+  String get geminiApiKeyLabel => 'Chiave API Gemini';
 
   @override
   String get geminiApiKeyHint => 'Inserisci la tua chiave API Gemini';
@@ -443,7 +443,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get openaiApiKeyDescription =>
-      'Richiesta per la funzionalità IA. La tua chiave è memorizzata in sicurezza.';
+      'Richiesta per l\'integrazione con OpenAI. La tua chiave OpenAI è memorizzata in sicurezza.';
 
   @override
   String get aiAssistantRequiresApiKeyError =>

@@ -541,7 +541,7 @@
   "@geminiApiKeyNotConfigured": {
     "description": "Error message when Gemini API key is not configured"
   },
-  "geminiApiKeyLabel": "Google Gemini APIキー",
+  "geminiApiKeyLabel": "Gemini APIキー",
   "@geminiApiKeyLabel": {
     "description": "Label for Gemini API Key field"
   },
@@ -589,7 +589,7 @@
   "@openaiApiKeyHint": {
     "description": "Hint text for OpenAI API Key field"
   },
-  "openaiApiKeyDescription": "AI機能に必要です。キーは安全に保存されます。",
+  "openaiApiKeyDescription": "OpenAI連携に必要です。OpenAIキーは安全に保存されます。",
   "@openaiApiKeyDescription": {
     "description": "Description for OpenAI API Key field"
   },

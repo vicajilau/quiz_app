@@ -541,7 +541,7 @@
   "@geminiApiKeyNotConfigured": {
     "description": "Gemini API gakoa konfiguratu gabe dagoenean errore mezua"
   },
-  "geminiApiKeyLabel": "Google Gemini API Gakoa",
+  "geminiApiKeyLabel": "Gemini API Gakoa",
   "@geminiApiKeyLabel": {
     "description": "Gemini API Gako eremuaren etiketa"
   },
@@ -589,7 +589,7 @@
   "@openaiApiKeyHint": {
     "description": "OpenAI API Gako eremuaren aholku testua"
   },
-  "openaiApiKeyDescription": "AI funtzionalitaterako beharrezkoa. Zure gakoa modu seguruan gordetzen da.",
+  "openaiApiKeyDescription": "Beharrezkoa da OpenAI integratzeko. Zure OpenAI gakoa modu seguruan gordetzen da.",
   "@openaiApiKeyDescription": {
     "description": "OpenAI API Gako eremuaren deskribapena"
   },

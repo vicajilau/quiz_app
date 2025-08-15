@@ -395,7 +395,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get geminiApiKeyNotConfigured => 'مفتاح Gemini API غير مُكوَّن';
 
   @override
-  String get geminiApiKeyLabel => 'مفتاح Google Gemini API';
+  String get geminiApiKeyLabel => 'مفتاح Gemini API';
 
   @override
   String get geminiApiKeyHint => 'أدخل مفتاح Gemini API الخاص بك';
@@ -435,7 +435,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get openaiApiKeyDescription =>
-      'مطلوب لوظائف الذكاء الاصطناعي. يتم تخزين مفتاحك بأمان.';
+      'مطلوب للتكامل مع OpenAI. يتم تخزين مفتاح OpenAI الخاص بك بأمان.';
 
   @override
   String get aiAssistantRequiresApiKeyError =>

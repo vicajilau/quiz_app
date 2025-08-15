@@ -443,7 +443,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get openaiApiKeyDescription =>
-      'Necessário para funcionalidade IA. Sua chave é armazenada com segurança.';
+      'Necessário para integração com OpenAI. Sua chave OpenAI é armazenada com segurança.';
 
   @override
   String get aiAssistantRequiresApiKeyError =>

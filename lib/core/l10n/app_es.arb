@@ -499,7 +499,7 @@
   "@geminiApiKeyNotConfigured": {
     "description": "Mensaje de error cuando la clave API de Gemini no está configurada"
   },
-  "geminiApiKeyLabel": "Clave API de Google Gemini",
+  "geminiApiKeyLabel": "Clave API de Gemini",
   "@geminiApiKeyLabel": {
     "description": "Etiqueta para el campo de clave API de Gemini"
   },
@@ -547,7 +547,7 @@
   "@openaiApiKeyHint": {
     "description": "Texto de ayuda para campo de clave API de OpenAI"
   },
-    "openaiApiKeyDescription": "Requerido para la funcionalidad de IA. Tu clave se almacena de forma segura.",
+  "openaiApiKeyDescription": "Requerido para la integración con OpenAI. Tu clave de OpenAI se almacena de forma segura.",
   "@openaiApiKeyDescription": {
     "description": "Descripción para el campo de clave API de OpenAI"
   },

@@ -404,7 +404,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Gemini-API-Schlüssel nicht konfiguriert';
 
   @override
-  String get geminiApiKeyLabel => 'Google Gemini API-Schlüssel';
+  String get geminiApiKeyLabel => 'Gemini API-Schlüssel';
 
   @override
   String get geminiApiKeyHint => 'Geben Sie Ihren Gemini-API-Schlüssel ein';
@@ -446,7 +446,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get openaiApiKeyDescription =>
-      'Erforderlich für KI-Funktionalität. Ihr Schlüssel wird sicher gespeichert.';
+      'Erforderlich für die Integration mit OpenAI. Ihr OpenAI-Schlüssel wird sicher gespeichert.';
 
   @override
   String get aiAssistantRequiresApiKeyError =>

@@ -589,7 +589,7 @@
   "@openaiApiKeyHint": {
     "description": "Hint text for OpenAI API Key field"
   },
-  "openaiApiKeyDescription": "AI功能所需。您的密钥会安全存储。",
+  "openaiApiKeyDescription": "用于与OpenAI集成。您的OpenAI密钥会安全存储。",
   "@openaiApiKeyDescription": {
     "description": "Description for OpenAI API Key field"
   },

@@ -404,7 +404,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get geminiApiKeyNotConfigured => 'Clave API de Gemini no configurada';
 
   @override
-  String get geminiApiKeyLabel => 'Clave API de Google Gemini';
+  String get geminiApiKeyLabel => 'Clave API de Gemini';
 
   @override
   String get geminiApiKeyHint => 'Ingresa tu clave API de Gemini';
@@ -444,7 +444,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get openaiApiKeyDescription =>
-      'Requerido para la funcionalidad de IA. Tu clave se almacena de forma segura.';
+      'Requerido para la integración con OpenAI. Tu clave de OpenAI se almacena de forma segura.';
 
   @override
   String get aiAssistantRequiresApiKeyError =>

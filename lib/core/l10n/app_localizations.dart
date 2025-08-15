@@ -801,7 +801,7 @@ abstract class AppLocalizations {
   /// Label for Gemini API Key field
   ///
   /// In en, this message translates to:
-  /// **'Google Gemini API Key'**
+  /// **'Gemini API Key'**
   String get geminiApiKeyLabel;
 
   /// Hint text for Gemini API Key field
@@ -873,7 +873,7 @@ abstract class AppLocalizations {
   /// Description for OpenAI API Key field
   ///
   /// In en, this message translates to:
-  /// **'Required for AI functionality. Your key is stored securely.'**
+  /// **'Required for integration with OpenAI. Your OpenAI key is stored securely.'**
   String get openaiApiKeyDescription;
 
   /// Error message when AI Assistant is enabled but no API key is provided

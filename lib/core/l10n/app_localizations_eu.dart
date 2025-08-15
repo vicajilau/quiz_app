@@ -403,7 +403,7 @@ class AppLocalizationsEu extends AppLocalizations {
       'Gemini API Gakoa ez dago konfiguratuta';
 
   @override
-  String get geminiApiKeyLabel => 'Google Gemini API Gakoa';
+  String get geminiApiKeyLabel => 'Gemini API Gakoa';
 
   @override
   String get geminiApiKeyHint => 'Sartu zure Gemini API Gakoa';
@@ -444,7 +444,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get openaiApiKeyDescription =>
-      'AI funtzionalitaterako beharrezkoa. Zure gakoa modu seguruan gordetzen da.';
+      'Beharrezkoa da OpenAI integratzeko. Zure OpenAI gakoa modu seguruan gordetzen da.';
 
   @override
   String get aiAssistantRequiresApiKeyError =>

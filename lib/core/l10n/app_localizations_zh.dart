@@ -418,7 +418,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get openaiApiKeyHint => '输入您的OpenAI API密钥（sk-...）';
 
   @override
-  String get openaiApiKeyDescription => 'AI功能所需。您的密钥会安全存储。';
+  String get openaiApiKeyDescription => '用于与OpenAI集成。您的OpenAI密钥会安全存储。';
 
   @override
   String get aiAssistantRequiresApiKeyError =>

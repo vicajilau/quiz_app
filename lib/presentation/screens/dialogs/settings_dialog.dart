@@ -339,61 +339,56 @@ class _SettingsDialogState extends State<SettingsDialog> {
 
                   if (_aiAssistantEnabled) ...[
                     const SizedBox(height: 16),
+                    TextFormField(
+                      controller: _geminiApiKeyController,
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(
+                          context,
+                        )!.geminiApiKeyLabel,
+                        hintText: AppLocalizations.of(
+                          context,
+                        )!.geminiApiKeyHint,
+                        hintMaxLines: 3,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: _geminiApiKeyController.text.trim().isEmpty
+                                ? Theme.of(context).colorScheme.error
+                                : Theme.of(context).colorScheme.outline,
+                          ),
+                        ),
+                        prefixIcon: Icon(
+                          Icons.key,
+                          color: _geminiApiKeyController.text.trim().isEmpty
+                              ? Theme.of(context).colorScheme.error
+                              : null,
+                        ),
+                        suffixIcon: _geminiApiKeyController.text.trim().isEmpty
+                            ? null
+                            : Icon(
+                                Icons.check_circle,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                      ),
+                      obscureText: true,
+                      onChanged: (value) {
+                        _clearApiKeyError();
+                        setState(() {
+                          // Trigger rebuild to update visual indicators
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 4),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
-                          child: TextFormField(
-                            controller: _geminiApiKeyController,
-                            decoration: InputDecoration(
-                              labelText: AppLocalizations.of(
-                                context,
-                              )!.geminiApiKeyLabel,
-                              hintText: AppLocalizations.of(
-                                context,
-                              )!.geminiApiKeyHint,
-                              helperText: AppLocalizations.of(
-                                context,
-                              )!.geminiApiKeyDescription,
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color:
-                                      _geminiApiKeyController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? Theme.of(context).colorScheme.error
-                                      : Theme.of(context).colorScheme.outline,
-                                ),
-                              ),
-                              prefixIcon: Icon(
-                                Icons.key,
-                                color:
-                                    _geminiApiKeyController.text.trim().isEmpty
-                                    ? Theme.of(context).colorScheme.error
-                                    : null,
-                              ),
-                              suffixIcon:
-                                  _geminiApiKeyController.text.trim().isEmpty
-                                  ? Icon(
-                                      Icons.warning,
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.error,
-                                    )
-                                  : Icon(
-                                      Icons.check_circle,
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.primary,
-                                    ),
-                            ),
-                            obscureText: true,
-                            maxLines: 1,
-                            onChanged: (value) {
-                              _clearApiKeyError();
-                              setState(() {
-                                // Trigger rebuild to update visual indicators
-                              });
-                            },
+                          child: Text(
+                            AppLocalizations.of(
+                              context,
+                            )!.geminiApiKeyDescription,
+                            style: Theme.of(context).textTheme.bodySmall,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         const SizedBox(width: 8),
@@ -412,61 +407,56 @@ class _SettingsDialogState extends State<SettingsDialog> {
                       ],
                     ),
                     const SizedBox(height: 16),
+                    TextFormField(
+                      controller: _openAiApiKeyController,
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(
+                          context,
+                        )!.openaiApiKeyLabel,
+                        hintText: AppLocalizations.of(
+                          context,
+                        )!.openaiApiKeyHint,
+                        hintMaxLines: 3,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: _openAiApiKeyController.text.trim().isEmpty
+                                ? Theme.of(context).colorScheme.error
+                                : Theme.of(context).colorScheme.outline,
+                          ),
+                        ),
+                        prefixIcon: Icon(
+                          Icons.key,
+                          color: _openAiApiKeyController.text.trim().isEmpty
+                              ? Theme.of(context).colorScheme.error
+                              : null,
+                        ),
+                        suffixIcon: _openAiApiKeyController.text.trim().isEmpty
+                            ? null
+                            : Icon(
+                                Icons.check_circle,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                      ),
+                      obscureText: true,
+                      onChanged: (value) {
+                        _clearApiKeyError();
+                        setState(() {
+                          // Trigger rebuild to update visual indicators
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 4),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
-                          child: TextFormField(
-                            controller: _openAiApiKeyController,
-                            decoration: InputDecoration(
-                              labelText: AppLocalizations.of(
-                                context,
-                              )!.openaiApiKeyLabel,
-                              hintText: AppLocalizations.of(
-                                context,
-                              )!.openaiApiKeyHint,
-                              helperText: AppLocalizations.of(
-                                context,
-                              )!.openaiApiKeyDescription,
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color:
-                                      _openAiApiKeyController.text
-                                          .trim()
-                                          .isEmpty
-                                      ? Theme.of(context).colorScheme.error
-                                      : Theme.of(context).colorScheme.outline,
-                                ),
-                              ),
-                              prefixIcon: Icon(
-                                Icons.key,
-                                color:
-                                    _openAiApiKeyController.text.trim().isEmpty
-                                    ? Theme.of(context).colorScheme.error
-                                    : null,
-                              ),
-                              suffixIcon:
-                                  _openAiApiKeyController.text.trim().isEmpty
-                                  ? Icon(
-                                      Icons.warning,
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.error,
-                                    )
-                                  : Icon(
-                                      Icons.check_circle,
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.primary,
-                                    ),
-                            ),
-                            obscureText: true,
-                            maxLines: 1,
-                            onChanged: (value) {
-                              _clearApiKeyError();
-                              setState(() {
-                                // Trigger rebuild to update visual indicators
-                              });
-                            },
+                          child: Text(
+                            AppLocalizations.of(
+                              context,
+                            )!.openaiApiKeyDescription,
+                            style: Theme.of(context).textTheme.bodySmall,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         const SizedBox(width: 8),
