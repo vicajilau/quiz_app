@@ -381,7 +381,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get geminiApiKeyNotConfigured => 'Gemini API密钥未配置';
 
   @override
-  String get geminiApiKeyLabel => 'Google Gemini API密钥';
+  String get geminiApiKeyLabel => 'Gemini API密钥';
 
   @override
   String get geminiApiKeyHint => '输入您的Gemini API密钥';

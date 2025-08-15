@@ -403,7 +403,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get geminiApiKeyNotConfigured => 'Chave API Gemini não configurada';
 
   @override
-  String get geminiApiKeyLabel => 'Chave API Google Gemini';
+  String get geminiApiKeyLabel => 'Chave API Gemini';
 
   @override
   String get geminiApiKeyHint => 'Digite sua Chave API Gemini';

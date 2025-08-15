@@ -541,7 +541,7 @@
   "@geminiApiKeyNotConfigured": {
     "description": "Mensagem de erro quando chave API Gemini não está configurada"
   },
-  "geminiApiKeyLabel": "Chave API Google Gemini",
+  "geminiApiKeyLabel": "Chave API Gemini",
   "@geminiApiKeyLabel": {
     "description": "Rótulo para o campo Chave API Gemini"
   },
