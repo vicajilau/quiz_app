@@ -37,11 +37,7 @@ class _QuestionCountSelectionDialogState
           const SizedBox(height: 16),
 
           // Only show "All Questions" option
-          RadioListTile<int>(
-            title: Text(
-              AppLocalizations.of(context)!.allQuestions(widget.totalQuestions),
-            ),
-            value: widget.totalQuestions,
+          RadioGroup(
             groupValue: selectedCount,
             onChanged: (value) {
               if (value != null) {
@@ -50,6 +46,14 @@ class _QuestionCountSelectionDialogState
                 });
               }
             },
+            child: RadioListTile<int>(
+              title: Text(
+                AppLocalizations.of(
+                  context,
+                )!.allQuestions(widget.totalQuestions),
+              ),
+              value: widget.totalQuestions,
+            ),
           ),
 
           // Custom count option (always available)

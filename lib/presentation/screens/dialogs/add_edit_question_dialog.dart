@@ -198,7 +198,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                   // Question type dropdown
                   Expanded(
                     child: DropdownButtonFormField<QuestionType>(
-                      value: _selectedType,
+                      initialValue: _selectedType,
                       onChanged: _onQuestionTypeChanged,
                       decoration: InputDecoration(
                         labelText: localizations.questionType,

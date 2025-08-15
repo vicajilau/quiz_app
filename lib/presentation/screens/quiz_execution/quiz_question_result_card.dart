@@ -226,7 +226,7 @@ class _QuizQuestionResultCardState extends State<QuizQuestionResultCard> {
                                 const SizedBox(width: 12),
                                 Expanded(
                                   child: DropdownButtonFormField<AIService>(
-                                    value: _selectedService,
+                                    initialValue: _selectedService,
                                     decoration: InputDecoration(
                                       contentPadding:
                                           const EdgeInsets.symmetric(

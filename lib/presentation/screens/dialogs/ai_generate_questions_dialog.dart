@@ -357,7 +357,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                       ),
                       const SizedBox(height: 8),
                       DropdownButtonFormField<AiQuestionType>(
-                        value: _selectedQuestionType,
+                        initialValue: _selectedQuestionType,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                         ),
@@ -384,7 +384,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                       ),
                       const SizedBox(height: 8),
                       DropdownButtonFormField<String>(
-                        value: _selectedLanguage,
+                        initialValue: _selectedLanguage,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                         ),

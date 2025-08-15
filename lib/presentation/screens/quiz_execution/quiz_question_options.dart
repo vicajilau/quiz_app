@@ -172,15 +172,7 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
           : -1;
 
       final localizations = AppLocalizations.of(context)!;
-      return RadioListTile<int>(
-        title: Text(
-          QuestionTranslationHelper.translateOption(option, localizations),
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-          ),
-        ),
-        value: index,
+      return RadioGroup(
         groupValue: selectedIndex >= 0 ? selectedIndex : null,
         onChanged: (int? value) {
           if (value != null) {
@@ -188,8 +180,18 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
             context.read<QuizExecutionBloc>().add(AnswerSelected(value, true));
           }
         },
-        activeColor: Theme.of(context).primaryColor,
-        controlAffinity: ListTileControlAffinity.leading,
+        child: RadioListTile<int>(
+          title: Text(
+            QuestionTranslationHelper.translateOption(option, localizations),
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+            ),
+          ),
+          value: index,
+          activeColor: Theme.of(context).primaryColor,
+          controlAffinity: ListTileControlAffinity.leading,
+        ),
       );
     }
   }

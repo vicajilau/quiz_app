@@ -200,12 +200,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
                   ),
                   const SizedBox(height: 16),
                   ...QuestionOrder.values.map((order) {
-                    return RadioListTile<QuestionOrder>(
-                      title: Text(_getLocalizedOrderName(context, order)),
-                      subtitle: Text(
-                        _getLocalizedOrderDescription(context, order),
-                      ),
-                      value: order,
+                    return RadioGroup(
                       groupValue: _selectedOrder,
                       onChanged: (QuestionOrder? value) {
                         if (value != null) {
@@ -214,6 +209,13 @@ class _SettingsDialogState extends State<SettingsDialog> {
                           });
                         }
                       },
+                      child: RadioListTile<QuestionOrder>(
+                        title: Text(_getLocalizedOrderName(context, order)),
+                        subtitle: Text(
+                          _getLocalizedOrderDescription(context, order),
+                        ),
+                        value: order,
+                      ),
                     );
                   }),
 

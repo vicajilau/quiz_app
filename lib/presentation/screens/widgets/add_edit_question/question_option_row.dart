@@ -59,12 +59,11 @@ class _QuestionOptionRowState extends State<QuestionOptionRow>
               widget.questionType == QuestionType.trueFalse)
             Tooltip(
               message: localizations.selectCorrectAnswer,
-              child: Radio<int>(
-                value: widget.index,
-                activeColor: Colors.green,
+              child: RadioGroup(
                 groupValue: widget.isCorrect ? widget.index : -1,
                 onChanged: (value) =>
                     widget.onCorrectChanged(value == widget.index),
+                child: Radio<int>(value: widget.index),
               ),
             ),
           Expanded(
