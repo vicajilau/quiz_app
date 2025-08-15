@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1+1] - 2025-08-15
+
+### Changed
+
+- Localization: Removed "Google" prefix from Gemini references in all languages.
+- Localization: Clarified OpenAI descriptions to explicitly mention OpenAI instead of general AI.
+- Settings screen: Improved mobile readability by moving helper texts outside fields and allowing more lines for better display.
+- Settings screen: Removed visual truncation; helper texts now display fully.
+- File loading: Fixed issue with .quiz file filtering by removing the filter for correct file loading.
+- Upgraded to Flutter 3.35.
+- Fixed deprecation warnings related to Radio widget usage and other Flutter API changes.
+
 ## [1.0.0+1] - 2025-08-05
 
 ### Added
