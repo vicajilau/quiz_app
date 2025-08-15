@@ -4,9 +4,9 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:platform_detail/platform_detail.dart';
 import 'package:quiz_app/data/services/file_service/i_file_service.dart';
 import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
-import 'package:platform_detail/platform_detail.dart';
 
 import '../../../domain/models/custom_exceptions/bad_quiz_file_error_type.dart';
 import '../../../domain/models/quiz/quiz_file.dart';
@@ -97,8 +97,6 @@ class QuizFileService implements IFileService {
   @override
   Future<QuizFile?> pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['quiz'],
       allowMultiple: false,
     );
 
