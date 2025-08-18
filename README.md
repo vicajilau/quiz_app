@@ -7,6 +7,18 @@
   <img src="https://github.com/vicajilau/quiz_app/actions/workflows/publish_android.yml/badge.svg" alt="Android CD Status">
 </p>
 
+**🌟 Official Versions**
+
+Access Quiz App on your favorite platform:
+
+- 🌐 **Web**: [vicajilau.github.io/quiz_app](https://vicajilau.github.io/quiz_app/)
+  Enjoy the full experience from any browser.
+
+- 📱 **Android**: [Google Play Store](https://play.google.com/store/apps/details?id=es.victorcarreras.quiz_app)
+  Install the app on your Android device and learn anywhere.
+
+> **Note:** Windows, Linux, MacOS, and iOS versions are under development and will be added in the future.
+
 A cross-platform Flutter application that provides an interactive and engaging quiz experience with customizable questions, real-time scoring, and beautiful animations.
 
 ![Quiz App Demo](.github/assets/demo.png)
