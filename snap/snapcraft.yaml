@@ -10,6 +10,7 @@ grade: stable
 apps:
   quiz-app:
     command: quiz_app
+    extensions: [gnome]
     plugs:
       - network
       - home
@@ -19,9 +20,6 @@ parts:
   quiz-app:
     plugin: dump
     source: build/linux/x64/release/bundle
-    stage-packages:
-      - libgtk-3-0
-      - libx11-6
 
   desktop-file:
     plugin: dump
