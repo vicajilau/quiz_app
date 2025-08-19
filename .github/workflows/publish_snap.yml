@@ -27,17 +27,21 @@ jobs:
       - name: Install core22 snap
         run: sudo snap install core22 --channel=latest/stable
 
-      - name: Build Flutter Linux app
-        run: flutter build linux
-
       - name: Extract Flutter version
         id: flutter_version
         run: |
           VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //;s/+.*//')
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
+      - name: Update snapcraft.yaml version
+        run: |
+          sed -i "s/^version: .*/version: \"$VERSION\"/" snap/snapcraft.yaml
+
+      - name: Build Flutter Linux app
+        run: flutter build linux
+
       - name: Build snap
-        run: snapcraft pack --debug --destructive-mode --version=$VERSION
+        run: snapcraft pack --debug --destructive-mode
 
       - name: Publish to Snap Store
         run: snapcraft upload quiz-app*.snap --release=stable
