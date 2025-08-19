@@ -21,7 +21,7 @@ jobs:
         with:
           path: snap
       - name: Authenticate to Snapcraft
-        run: sudo snapcraft login --with ${{ secrets.SNAPCRAFT_LOGIN }}
+        run: snapcraft login --with ${{ secrets.SNAPCRAFT_LOGIN }}
       - name: Publish to Snap Store
-        run: sudo snapcraft upload quiz-app.snap --release=stable
+        run: snapcraft upload quiz-app.snap --release=stable
         working-directory: snap
