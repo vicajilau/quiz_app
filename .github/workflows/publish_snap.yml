@@ -23,14 +23,13 @@ jobs:
           sudo snap install lxd
           sudo lxd waitready
           sudo usermod -aG lxd $USER
-          newgrp lxd
       - name: Build snap
         run: |
           flutter build linux
           cd snap
-          snapcraft pack
+          sudo snapcraft pack
       - name: Authenticate to Snapcraft
-        run: snapcraft login --with ${{ secrets.SNAPCRAFT_LOGIN }}
+        run: sudo snapcraft login --with ${{ secrets.SNAPCRAFT_LOGIN }}
       - name: Publish to Snap Store
-        run: snapcraft upload quiz-app.snap --release=stable
+        run: sudo snapcraft upload quiz-app.snap --release=stable
         working-directory: snap
