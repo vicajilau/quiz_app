@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -20,9 +20,9 @@ jobs:
         run: |
           flutter build linux
           cd snap
-          snapcraft
+          snapcraft pack
       - name: Authenticate to Snapcraft
         run: snapcraft login --with ${{ secrets.SNAPCRAFT_LOGIN }}
       - name: Publish to Snap Store
-        run: snapcraft upload *.snap --release=stable
+        run: snapcraft upload quiz-app.snap --release=stable
         working-directory: snap

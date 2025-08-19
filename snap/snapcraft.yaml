@@ -10,6 +10,12 @@ confinement: strict
 
 apps:
   quiz-app:
-    source: .
+    command: quiz_app
+    plugs:
+      - network
+
+parts:
+  quiz-app:
     plugin: flutter
+    source: .
     flutter-target: lib/main.dart
