@@ -5,6 +5,7 @@
   <img src="https://github.com/vicajilau/quiz_app/actions/workflows/flutter_workflow.yml/badge.svg" alt="CI Status">
   <img src="https://github.com/vicajilau/quiz_app/actions/workflows/deploy_web.yml/badge.svg" alt="Web CD Status">
   <img src="https://github.com/vicajilau/quiz_app/actions/workflows/publish_android.yml/badge.svg" alt="Android CD Status">
+  <img src="https://snapcraft.io/quiz-app/badge.svg" alt="Linux Snapcraft Status">
 </p>
 
 **🌟 Official Versions**
