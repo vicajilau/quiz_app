@@ -17,7 +17,10 @@ Access Quiz App on your favorite platform:
 - 📱 **Android**: [Google Play Store](https://play.google.com/store/apps/details?id=es.victorcarreras.quiz_app)
   Install the app on your Android device and learn anywhere.
 
-> **Note:** Windows, Linux, MacOS, and iOS versions are under development and will be added in the future.
+> **🐧 Linux**: Now available on Snapcraft! [snapcraft.io/quiz-app](https://snapcraft.io/quiz-app)
+> Download and install easily on any Linux distribution compatible with Snap.
+
+> **Note:** Windows, MacOS, and iOS versions are under development and will be added soon.
 
 A cross-platform Flutter application that provides an interactive and engaging quiz experience with customizable questions, real-time scoring, and beautiful animations.
 
