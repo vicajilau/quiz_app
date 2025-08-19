@@ -1,0 +1,15 @@
+name: quiz-app
+version: "1.0.0"
+summary: Quiz App
+description: |
+  A cross-platform Flutter application that provides an interactive and engaging quiz experience with customizable questions, real-time scoring, and beautiful animations.
+  The app provides an intuitive interface for taking quizzes with smooth animations, real-time feedback, and comprehensive score tracking.
+
+base: core22
+confinement: strict
+
+apps:
+  quiz-app:
+    source: .
+    plugin: flutter
+    flutter-target: lib/main.dart

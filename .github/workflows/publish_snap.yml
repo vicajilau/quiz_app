@@ -1,0 +1,28 @@
+name: Publish Snap to Snapcraft
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  publish_linux_release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Install Snapcraft
+        run: sudo snap install snapcraft --classic
+      - name: Build snap
+        run: |
+          flutter build linux
+          cd snap
+          snapcraft
+      - name: Authenticate to Snapcraft
+        run: snapcraft login --with ${{ secrets.SNAPCRAFT_LOGIN }}
+      - name: Publish to Snap Store
+        run: snapcraft upload *.snap --release=stable
+        working-directory: snap
