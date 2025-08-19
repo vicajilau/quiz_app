@@ -24,10 +24,7 @@ jobs:
         run: flutter build linux
       - name: Build snap
         run: snapcraft pack --debug --destructive-mode
-      - name: Authenticate with Snapcraft
-        run: snapcraft login
-        env:
-          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_LOGIN }}
       - name: Publish to Snap Store
         run: snapcraft upload quiz-app*.snap --release=stable
-        working-directory: snap
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_LOGIN }}
