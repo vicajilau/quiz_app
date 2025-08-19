@@ -23,6 +23,8 @@ parts:
       - libgtk-3-0
       - libx11-6
       - libglib2.0-0
+      - libc6
+      - libstdc++6
 
   desktop-file:
     plugin: dump
