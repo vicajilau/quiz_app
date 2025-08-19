@@ -22,6 +22,7 @@ parts:
     stage-packages:
       - libgtk-3-0
       - libx11-6
+      - libglib2.0-0
 
   desktop-file:
     plugin: dump
@@ -34,3 +35,9 @@ parts:
     source: snap/gui
     organize:
       quiz-app.png: usr/share/icons/hicolor/256x256/apps/quiz-app.png
+
+  mime-info:
+    plugin: dump
+    source: snap/local
+    organize:
+      x-quiz.xml: usr/share/mime/packages/x-quiz.xml
