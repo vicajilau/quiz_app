@@ -37,8 +37,14 @@ jobs:
         run: |
           sed -i "s/^version: .*/version: \"$VERSION\"/" snap/snapcraft.yaml
 
+      - name: Install LXD
+        run: sudo snap install lxd
+
+      - name: Initialize LXD
+        run: sudo lxd init --auto
+
       - name: Build snap
-        run: snapcraft pack --debug
+        run: snapcraft pack --debug --destructive-mode --use-lxd
 
       - name: Publish to Snap Store
         run: snapcraft upload quiz-app*.snap --release=stable
