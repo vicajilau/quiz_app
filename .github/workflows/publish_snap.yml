@@ -24,8 +24,8 @@ jobs:
       - name: Install Snapcraft
         run: sudo snap install snapcraft --classic
 
-      - name: Install core22 snap
-        run: sudo snap install core22 --channel=latest/stable
+      - name: Install core24 snap
+        run: sudo snap install core24 --channel=latest/stable
 
       - name: Extract Flutter version
         id: flutter_version
