@@ -37,9 +37,6 @@ jobs:
         run: |
           sed -i "s/^version: .*/version: \"$VERSION\"/" snap/snapcraft.yaml
 
-      - name: Build Flutter Linux app
-        run: flutter build linux
-
       - name: Build snap
         run: snapcraft pack --debug --destructive-mode
 
