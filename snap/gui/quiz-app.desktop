@@ -2,8 +2,9 @@
 Version=1.0
 Name=Quiz App
 Comment=An interactive and engaging quiz experience
-Exec=quiz-app
+Exec=quiz-app %f
 Icon=quiz-app.png
 Terminal=false
 Type=Application
 Categories=Education;
+MimeType=application/x-quiz;
