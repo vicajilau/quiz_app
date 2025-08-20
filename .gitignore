@@ -46,3 +46,6 @@ app.*.map.json
 
 # Generated localization files
 untranslated_messages.json
+
+# Generated Snap package
+*.snap

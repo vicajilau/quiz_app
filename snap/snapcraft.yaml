@@ -3,13 +3,14 @@ version: "1.0.0"
 summary: Quiz App
 description: |
   A Quiz application that provides an interactive and engaging quiz experience.
-base: core22
+base: core24
 confinement: strict
 grade: stable
 
 apps:
   quiz-app:
     command: quiz_app
+    extensions: [gnome]
     plugs:
       - network
       - home
@@ -17,14 +18,11 @@ apps:
 
 parts:
   quiz-app:
-    plugin: dump
-    source: build/linux/x64/release/bundle
-    stage-packages:
-      - libgtk-3-0
-      - libx11-6
-      - libglib2.0-0
-      - libc6
-      - libstdc++6
+    plugin: flutter
+    source: .
+    flutter-target: lib/main.dart
+    build-environment:
+      - PUB_CACHE: "$SNAPCRAFT_PART_BUILD/.pub-cache"
 
   desktop-file:
     plugin: dump
