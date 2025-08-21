@@ -3,8 +3,6 @@ on:
   push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+*'
-    branches:
-      - main
   workflow_dispatch:
 jobs:
   publish_linux_release:
@@ -29,7 +27,6 @@ jobs:
 
       - name: Setup LXD (for managed builds)
         uses: canonical/setup-lxd@main
-        # Note: this action initializes LXD and configures the runner so snapcraft can use managed builds
 
       - name: Extract Flutter version
         id: flutter_version
