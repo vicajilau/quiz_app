@@ -38,7 +38,7 @@ jobs:
           sed -i "s/^version: .*/version: \"$VERSION\"/" snap/snapcraft.yaml
 
       - name: Build snap
-        run: snapcraft pack --debug
+        run: snapcraft pack --debug --y
 
       - name: Publish to Snap Store
         run: snapcraft upload quiz-app*.snap --release=stable
