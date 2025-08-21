@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 jobs:
   publish_linux_release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -38,13 +38,7 @@ jobs:
           sed -i "s/^version: .*/version: \"$VERSION\"/" snap/snapcraft.yaml
 
       - name: Build snap
-        run: |
-          # add the runner user to the lxd group (created by snap when lxd was installed)
-          sudo usermod -aG lxd $USER || sudo usermod -aG lxd runner || true
-          # run snapcraft in a new group session so the group membership takes effect
-          newgrp lxd <<'EOF'
-          snapcraft pack --debug
-          EOF
+        run: snapcraft pack --debug --destructive-mode
 
       - name: Publish to Snap Store
         run: snapcraft upload quiz-app*.snap --release=stable
