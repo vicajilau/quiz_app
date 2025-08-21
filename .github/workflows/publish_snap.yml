@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 jobs:
   publish_linux_release:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -27,6 +27,10 @@ jobs:
       - name: Install core24 snap
         run: sudo snap install core24 --channel=latest/stable
 
+      - name: Setup LXD (for managed builds)
+        uses: canonical/setup-lxd@main
+        # Note: this action initializes LXD and configures the runner so snapcraft can use managed builds
+
       - name: Extract Flutter version
         id: flutter_version
         run: |
@@ -38,7 +42,7 @@ jobs:
           sed -i "s/^version: .*/version: \"$VERSION\"/" snap/snapcraft.yaml
 
       - name: Build snap
-        run: snapcraft pack --debug --destructive-mode
+        run: snapcraft pack --debug --use-lxd
 
       - name: Publish to Snap Store
         run: snapcraft upload quiz-app*.snap --release=stable
