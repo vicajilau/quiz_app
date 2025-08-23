@@ -2,5 +2,6 @@
 <mime-type xmlns="http://www.freedesktop.org/standards/shared-mime-info" type="application/x-quiz">
   <comment>Quiz application file</comment>
   <glob pattern="*.quiz"/>
-  <icon name="application-x-quiz"/>
+  <!-- Use the application icon so file managers show the same icon for .quiz files -->
+  <icon name="quiz-app"/>
 </mime-type>

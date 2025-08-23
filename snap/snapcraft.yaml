@@ -36,6 +36,12 @@ parts:
     organize:
       quiz-app.png: usr/share/icons/hicolor/256x256/apps/quiz-app.png
 
+  mimetype-icon:
+    plugin: dump
+    source: snap/gui
+    organize:
+      quiz-app.png: usr/share/icons/hicolor/256x256/mimetypes/quiz-app.png
+
   mime-info:
     plugin: dump
     source: snap/local
