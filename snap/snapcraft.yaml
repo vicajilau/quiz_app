@@ -14,6 +14,7 @@ apps:
     plugs:
       - network
       - home
+    desktop: usr/share/applications/quiz-app.desktop
 
 parts:
   quiz-app:
@@ -23,20 +24,26 @@ parts:
     build-environment:
       - PUB_CACHE: "$SNAPCRAFT_PART_BUILD/.pub-cache"
 
-  desktop-assets:
+  desktop-file:
     plugin: dump
-    source: snap
+    source: snap/gui
     organize:
-      gui/quiz-app.desktop: meta/gui/quiz-app.desktop
-      # Place main app icon where desktop file validator expects it
-      gui/quiz-app.png: meta/gui/quiz-app.png
-      # MIME type icon
-      gui/application-x-quiz.png: meta/gui/icons/hicolor/256x256/mimetypes/application-x-quiz.png
-      local/x-quiz.xml: meta/gui/mime/packages/x-quiz.xml
+      quiz-app.desktop: usr/share/applications/quiz-app.desktop
 
-  desktop-icons:
+  icon:
     plugin: dump
-    source: snap
+    source: snap/gui
     organize:
-      # Also place app icon in hicolor theme for proper desktop integration
-      gui/quiz-app.png: meta/gui/icons/hicolor/256x256/apps/quiz-app.png
+      quiz-app.png: usr/share/icons/hicolor/256x256/apps/quiz-app.png
+
+  mimetype-icon:
+    plugin: dump
+    source: snap/gui
+    organize:
+      application-x-quiz.png: usr/share/icons/hicolor/256x256/mimetypes/application-x-quiz.png
+
+  mime-info:
+    plugin: dump
+    source: snap/local
+    organize:
+      x-quiz.xml: usr/share/mime/packages/x-quiz.xml
