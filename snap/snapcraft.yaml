@@ -14,8 +14,6 @@ apps:
     plugs:
       - network
       - home
-    # desktop file is provided under meta/gui so snapd can publish it
-    desktop: meta/gui/quiz-app.desktop
 
 parts:
   quiz-app:
@@ -30,6 +28,15 @@ parts:
     source: snap
     organize:
       gui/quiz-app.desktop: meta/gui/quiz-app.desktop
-      gui/quiz-app.png: meta/gui/icons/hicolor/256x256/apps/quiz-app.png
+      # Place main app icon where desktop file validator expects it
+      gui/quiz-app.png: meta/gui/quiz-app.png
+      # MIME type icon
       gui/application-x-quiz.png: meta/gui/icons/hicolor/256x256/mimetypes/application-x-quiz.png
       local/x-quiz.xml: meta/gui/mime/packages/x-quiz.xml
+
+  desktop-icons:
+    plugin: dump
+    source: snap
+    organize:
+      # Also place app icon in hicolor theme for proper desktop integration
+      gui/quiz-app.png: meta/gui/icons/hicolor/256x256/apps/quiz-app.png
