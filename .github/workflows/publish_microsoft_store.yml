@@ -2,7 +2,7 @@ name: Publish Microsoft Store
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+*'
+      - "v[0-9]+.[0-9]+.[0-9]+*"
   pull_request:
     branches:
       - main
@@ -21,9 +21,12 @@ jobs:
 
       - uses: microsoft/setup-msstore-cli@v1.1
       - run: msstore reconfigure --tenantId ${{ secrets.PARTNER_CENTER_TENANT_ID }} --sellerId ${{ secrets.PARTNER_CENTER_SELLER_ID }} --clientId ${{ secrets.PARTNER_CENTER_CLIENT_ID }} --clientSecret ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
-      
+
       - name: Install Dart dependencies
         run: flutter pub get
+
+      - name: Initialize Microsoft Store project
+        run: msstore init --appId ${{ secrets.MS_STORE_APP_ID }}
 
       - name: Create MSIX package
         run: msstore package .
