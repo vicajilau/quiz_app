@@ -22,7 +22,7 @@ Access Quiz App on your favorite platform:
 - 🪟 **Windows**: [Microsoft Store](https://apps.microsoft.com/store/detail/9P77H0WRJSM2?cid=DevShareMCLPCS)
   Download and install on Windows 10/11 with automatic updates.
 
-- 🐧 **Linux**: Now available on Snapcraft! [snapcraft.io/quiz-app](https://snapcraft.io/quiz-app)
+- 🐧 **Linux**: [Snapcraft](https://snapcraft.io/quiz-app)
   Download and install easily on any Linux distribution compatible with Snap.
 
 > **Note:** MacOS and iOS versions are under development and will be added soon.
