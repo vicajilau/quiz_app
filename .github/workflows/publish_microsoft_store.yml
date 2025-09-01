@@ -25,11 +25,8 @@ jobs:
       - name: Install Dart dependencies
         run: flutter pub get
 
-      - name: Initialize Microsoft Store project
-        run: msstore init --appId ${{ secrets.MS_STORE_APP_ID }}
-
       - name: Create MSIX package
         run: msstore package .
 
       - name: Publish MSIX to the Microsoft Store
-        run: msstore publish -v
+        run: msstore publish --appId ${{ secrets.MS_STORE_APP_ID }} -v
