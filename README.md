@@ -5,6 +5,7 @@
   <img src="https://github.com/vicajilau/quiz_app/actions/workflows/flutter_workflow.yml/badge.svg" alt="CI Status">
   <img src="https://github.com/vicajilau/quiz_app/actions/workflows/deploy_web.yml/badge.svg" alt="Web CD Status">
   <img src="https://github.com/vicajilau/quiz_app/actions/workflows/publish_android.yml/badge.svg" alt="Android CD Status">
+  <img src="https://github.com/vicajilau/quiz_app/actions/workflows/publish_microsoft_store.yml/badge.svg" alt="Windows Store CD Status">
   <img src="https://snapcraft.io/quiz-app/badge.svg" alt="Linux Snapcraft Status">
 </p>
 
@@ -18,10 +19,13 @@ Access Quiz App on your favorite platform:
 - 📱 **Android**: [Google Play Store](https://play.google.com/store/apps/details?id=es.victorcarreras.quiz_app)
   Install the app on your Android device and learn anywhere.
 
+- 🪟 **Windows**: [Microsoft Store](https://apps.microsoft.com/store/detail/9P77H0WRJSM2?cid=DevShareMCLPCS)
+  Download and install on Windows 10/11 with automatic updates.
+
 - 🐧 **Linux**: Now available on Snapcraft! [snapcraft.io/quiz-app](https://snapcraft.io/quiz-app)
   Download and install easily on any Linux distribution compatible with Snap.
 
-> **Note:** Windows, MacOS, and iOS versions are under development and will be added soon.
+> **Note:** MacOS and iOS versions are under development and will be added soon.
 
 A cross-platform Flutter application that provides an interactive and engaging quiz experience with customizable questions, real-time scoring, and beautiful animations.
 

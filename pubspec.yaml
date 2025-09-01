@@ -60,6 +60,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
+  msix: ^3.16.12
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -142,3 +143,14 @@ flutter_launcher_icons:
   # Imagen base
   image_path: "images/QUIZ.png"
   min_sdk_android: 21
+
+msix_config:
+  display_name: Quizz App
+  identity_name: vicajilau.QuizzApp
+  publisher: CN=B0585DC6-ACE7-4F2B-956B-CDC4AFBAFCCF
+  publisher_display_name: vicajilau
+  logo_path: .\images\QUIZ.png
+  languages: ar-sa, ca-es, de-de, en-GB, es-ES, eu-ES, fr-fr, gl-es, hi-in, it-it, ja-jp, pt-br, zh-cn
+  capabilities: internetClient
+  file_extension: .quiz
+  store: true
