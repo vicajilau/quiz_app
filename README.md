@@ -1,5 +1,6 @@
 <p align="center">
   <img src=".github/assets/quiz.png" alt="Quiz App logo" width="128" height="128">
+</p>
 
 <p align="center">
   <img src="https://github.com/vicajilau/quiz_app/actions/workflows/flutter_workflow.yml/badge.svg" alt="CI Status">
