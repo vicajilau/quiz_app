@@ -48,7 +48,7 @@ dependencies:
   http: ^1.4.0
   crypto: ^3.0.6
   url_launcher: ^6.3.2
-  gpt_markdown: ^1.1.2
+  gpt_markdown: ^1.1.4
 
 dev_dependencies:
   flutter_test:
