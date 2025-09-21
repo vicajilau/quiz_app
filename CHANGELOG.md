@@ -5,6 +5,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0+5] - 2025-09-21
+
+### Added
+
+- **Raffle System**: Complete raffle/lottery functionality for participant selection
+
+  - Interactive participant management with add, edit, and delete capabilities
+  - Animated winner selection with smooth transitions and visual effects
+  - Multiple winner selection support with position tracking (1st, 2nd, 3rd place)
+  - Winners history screen with elegant display and sharing functionality
+  - Participant text input with real-time validation and duplicate detection
+
+- **Custom Logo Support**: Brand personalization for raffle events
+
+  - Logo URL input with real-time preview and validation
+  - Dynamic AppBar integration showing logo or text based on configuration
+  - Logo display across raffle and winners screens for consistent branding
+  - Error handling with graceful fallback to text display
+
+- **Comprehensive Localization**: Full internationalization for raffle features
+
+  - Complete translations across 13 languages for all raffle functionality
+  - Localized winner position labels (1st, 2nd, 3rd place)
+  - Multilingual support for sharing and results export
+  - Consistent terminology across all raffle-related features
+
+- **Results Sharing**: Export and share raffle results
+  - Clipboard integration for easy result copying
+  - Formatted text output with winner positions and timestamps
+  - Share dialog with preview of results before copying
+  - Success feedback for user actions
+
 ## [1.0.1+4] - 2025-08-15
 
 ### Changed

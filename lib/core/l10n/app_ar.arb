@@ -1411,9 +1411,9 @@
   "@close": {
     "description": "تسمية زر الإغلاق"
   },
-  "share": "مشاركة",
+  "share": "نسخ",
   "@share": {
-    "description": "تسمية زر المشاركة"
+    "description": "تسمية زر النسخ"
   },
   "shareNotImplemented": "المشاركة غير مطبقة بعد",
   "@shareNotImplemented": {
@@ -1469,8 +1469,32 @@
   "@noWinnersToShare": {
     "description": "رسالة تظهر عندما لا يوجد فائزون للمشاركة"
   },
-  "shareSuccess": "تم مشاركة النتائج بنجاح",
+  "shareSuccess": "تم نسخ النتائج بنجاح",
   "@shareSuccess": {
-    "description": "رسالة نجاح تظهر بعد مشاركة النتائج"
+    "description": "رسالة نجاح تظهر بعد نسخ النتائج"
+  },
+  "selectLogo": "اختيار الشعار",
+  "@selectLogo": {
+    "description": "عنوان مربع الحوار لاختيار الشعار المخصص"
+  },
+  "logoUrl": "رابط الشعار",
+  "@logoUrl": {
+    "description": "تسمية حقل إدخال رابط الشعار"
+  },
+  "logoUrlHint": "أدخل رابط صورة لاستخدامها كشعار مخصص للسحب",
+  "@logoUrlHint": {
+    "description": "نص المساعدة الذي يشرح حقل رابط الشعار"
+  },
+  "invalidLogoUrl": "رابط صورة غير صالح. يجب أن يكون رابطاً صالحاً ينتهي بـ .jpg أو .png أو .gif إلخ.",
+  "@invalidLogoUrl": {
+    "description": "رسالة خطأ لرابط شعار غير صالح"
+  },
+  "logoPreview": "معاينة",
+  "@logoPreview": {
+    "description": "عنوان قسم معاينة الشعار"
+  },
+  "removeLogo": "إزالة الشعار",
+  "@removeLogo": {
+    "description": "نص الزر لإزالة الشعار المخصص"
   }
 }

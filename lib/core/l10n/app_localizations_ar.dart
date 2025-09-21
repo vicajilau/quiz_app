@@ -989,7 +989,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get close => 'إغلاق';
 
   @override
-  String get share => 'مشاركة';
+  String get share => 'نسخ';
 
   @override
   String get shareNotImplemented => 'المشاركة غير مطبقة بعد';
@@ -1025,5 +1025,24 @@ class AppLocalizationsAr extends AppLocalizations {
   String get noWinnersToShare => 'لا يوجد فائزون للمشاركة';
 
   @override
-  String get shareSuccess => 'تم مشاركة النتائج بنجاح';
+  String get shareSuccess => 'تم نسخ النتائج بنجاح';
+
+  @override
+  String get selectLogo => 'اختيار الشعار';
+
+  @override
+  String get logoUrl => 'رابط الشعار';
+
+  @override
+  String get logoUrlHint => 'أدخل رابط صورة لاستخدامها كشعار مخصص للسحب';
+
+  @override
+  String get invalidLogoUrl =>
+      'رابط صورة غير صالح. يجب أن يكون رابطاً صالحاً ينتهي بـ .jpg أو .png أو .gif إلخ.';
+
+  @override
+  String get logoPreview => 'معاينة';
+
+  @override
+  String get removeLogo => 'إزالة الشعار';
 }

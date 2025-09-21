@@ -1007,7 +1007,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get close => 'Fechar';
 
   @override
-  String get share => 'Compartilhar';
+  String get share => 'Copiar';
 
   @override
   String get shareNotImplemented =>
@@ -1044,5 +1044,25 @@ class AppLocalizationsPt extends AppLocalizations {
   String get noWinnersToShare => 'Nenhum vencedor.';
 
   @override
-  String get shareSuccess => 'Resultados compartilhados com sucesso';
+  String get shareSuccess => 'Resultados copiados com sucesso';
+
+  @override
+  String get selectLogo => 'Selecionar Logo';
+
+  @override
+  String get logoUrl => 'URL do Logo';
+
+  @override
+  String get logoUrlHint =>
+      'Digite a URL de uma imagem para usar como logo personalizado para o sorteio';
+
+  @override
+  String get invalidLogoUrl =>
+      'URL de imagem inválida. Deve ser uma URL válida terminando em .jpg, .png, .gif, etc.';
+
+  @override
+  String get logoPreview => 'Pré-visualização';
+
+  @override
+  String get removeLogo => 'Remover Logo';
 }

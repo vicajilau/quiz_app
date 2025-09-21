@@ -1010,7 +1010,7 @@ class AppLocalizationsCa extends AppLocalizations {
   String get close => 'Tancar';
 
   @override
-  String get share => 'Compartir';
+  String get share => 'Copiar';
 
   @override
   String get shareNotImplemented => 'Compartir encara no està implementat';
@@ -1046,5 +1046,25 @@ class AppLocalizationsCa extends AppLocalizations {
   String get noWinnersToShare => 'No hi ha guanyadors per compartir';
 
   @override
-  String get shareSuccess => 'Resultats compartits amb èxit';
+  String get shareSuccess => 'Resultats copiats amb èxit';
+
+  @override
+  String get selectLogo => 'Seleccionar Logo';
+
+  @override
+  String get logoUrl => 'URL del Logo';
+
+  @override
+  String get logoUrlHint =>
+      'Introdueix la URL d\'una imatge per utilitzar com a logo personalitzat per al sorteig';
+
+  @override
+  String get invalidLogoUrl =>
+      'URL d\'imatge no vàlida. Ha de ser una URL vàlida que acabi en .jpg, .png, .gif, etc.';
+
+  @override
+  String get logoPreview => 'Vista Prèvia';
+
+  @override
+  String get removeLogo => 'Eliminar Logo';
 }

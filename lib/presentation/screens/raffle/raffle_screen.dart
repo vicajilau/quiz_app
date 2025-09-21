@@ -5,6 +5,7 @@ import '../../../core/l10n/app_localizations.dart';
 import '../../blocs/raffle_bloc/raffle_bloc.dart';
 import '../../blocs/raffle_bloc/raffle_event.dart';
 import '../../blocs/raffle_bloc/raffle_state.dart';
+import '../../widgets/raffle/logo_selector_widget.dart';
 import 'widgets/participant_input_widget.dart';
 import 'widgets/participant_list_widget.dart';
 import 'widgets/raffle_controls_widget.dart';
@@ -24,70 +25,95 @@ class _RaffleScreenContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.raffleTitle),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.go('/'),
-        ),
-        actions: [
-          // Winners history button
-          BlocBuilder<RaffleBloc, RaffleState>(
-            builder: (context, state) {
-              bool hasWinners = false;
-              if (state is RaffleLoaded) {
-                hasWinners = state.session.hasWinners;
-              } else if (state is RaffleWinnerSelected) {
-                hasWinners = state.session.hasWinners;
-              }
+    return BlocBuilder<RaffleBloc, RaffleState>(
+      builder: (context, state) {
+        String? logoUrl;
+        if (state is RaffleLoaded) {
+          logoUrl = state.session.logoUrl;
+        } else if (state is RaffleWinnerSelected) {
+          logoUrl = state.session.logoUrl;
+        }
 
-              return IconButton(
-                onPressed: hasWinners
-                    ? () => context.go('/raffle/winners')
-                    : null,
-                icon: Icon(
-                  Icons.emoji_events,
-                  color: hasWinners ? Colors.amber : Colors.grey,
-                ),
-                tooltip: AppLocalizations.of(context)!.viewWinners,
-              );
-            },
-          ),
-          // Reset raffle button
-          IconButton(
-            onPressed: () => _showResetDialog(context),
-            icon: const Icon(Icons.refresh),
-            tooltip: AppLocalizations.of(context)!.resetRaffleTitle,
-          ),
-        ],
-      ),
-      body: BlocListener<RaffleBloc, RaffleState>(
-        listener: (context, state) {
-          if (state is RaffleWinnerSelected) {
-            _showWinnerDialog(context, state.selectedWinner, state.session);
-          } else if (state is RaffleError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.message),
-                backgroundColor: Colors.red,
+        return Scaffold(
+          appBar: AppBar(
+            title: logoUrl != null && logoUrl.isNotEmpty
+                ? Image.network(
+                    logoUrl,
+                    height: 40,
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) =>
+                        Text(AppLocalizations.of(context)!.raffleTitle),
+                  )
+                : Text(AppLocalizations.of(context)!.raffleTitle),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => context.go('/'),
+            ),
+            actions: [
+              // Logo configuration button
+              IconButton(
+                onPressed: () => _showLogoSelector(context),
+                icon: const Icon(Icons.image),
+                tooltip: AppLocalizations.of(context)!.selectLogo,
               ),
-            );
-          }
-        },
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            // Responsive layout: single column on mobile, two columns on larger screens
-            final isWideScreen = constraints.maxWidth > 800;
+              // Winners history button
+              BlocBuilder<RaffleBloc, RaffleState>(
+                builder: (context, state) {
+                  bool hasWinners = false;
+                  if (state is RaffleLoaded) {
+                    hasWinners = state.session.hasWinners;
+                  } else if (state is RaffleWinnerSelected) {
+                    hasWinners = state.session.hasWinners;
+                  }
 
-            if (isWideScreen) {
-              return _buildWideLayout(context);
-            } else {
-              return _buildNarrowLayout(context);
-            }
-          },
-        ),
-      ),
+                  return IconButton(
+                    onPressed: hasWinners
+                        ? () => context.go('/raffle/winners')
+                        : null,
+                    icon: Icon(
+                      Icons.emoji_events,
+                      color: hasWinners ? Colors.amber : Colors.grey,
+                    ),
+                    tooltip: AppLocalizations.of(context)!.viewWinners,
+                  );
+                },
+              ),
+              // Reset raffle button
+              IconButton(
+                onPressed: () => _showResetDialog(context),
+                icon: const Icon(Icons.refresh),
+                tooltip: AppLocalizations.of(context)!.resetRaffleTitle,
+              ),
+            ],
+          ),
+          body: BlocListener<RaffleBloc, RaffleState>(
+            listener: (context, state) {
+              if (state is RaffleWinnerSelected) {
+                _showWinnerDialog(context, state.selectedWinner, state.session);
+              } else if (state is RaffleError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.message),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+              }
+            },
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                // Responsive layout: single column on mobile, two columns on larger screens
+                final isWideScreen = constraints.maxWidth > 800;
+
+                if (isWideScreen) {
+                  return _buildWideLayout(context);
+                } else {
+                  return _buildNarrowLayout(context);
+                }
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -202,6 +228,25 @@ class _RaffleScreenContent extends StatelessWidget {
             child: Text(AppLocalizations.of(context)!.reset),
           ),
         ],
+      ),
+    );
+  }
+
+  void _showLogoSelector(BuildContext context) {
+    final currentState = context.read<RaffleBloc>().state;
+    String? currentLogoUrl;
+
+    if (currentState is RaffleLoaded) {
+      currentLogoUrl = currentState.session.logoUrl;
+    } else if (currentState is RaffleWinnerSelected) {
+      currentLogoUrl = currentState.session.logoUrl;
+    }
+
+    showDialog(
+      context: context,
+      builder: (dialogContext) => BlocProvider.value(
+        value: context.read<RaffleBloc>(),
+        child: LogoSelectorWidget(currentLogoUrl: currentLogoUrl),
       ),
     );
   }

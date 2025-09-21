@@ -1421,9 +1421,9 @@
   "@close": {
     "description": "Texte du bouton fermer"
   },
-  "share": "Partager",
+  "share": "Copier",
   "@share": {
-    "description": "Texte du bouton partager"
+    "description": "Texte du bouton copier"
   },
   "shareNotImplemented": "Fonctionnalité de partage non implémentée",
   "@shareNotImplemented": {
@@ -1479,8 +1479,32 @@
   "@noWinnersToShare": {
     "description": "Message quand il n'y a pas de gagnants à partager"
   },
-  "shareSuccess": "Résultats partagés avec succès",
+  "shareSuccess": "Résultats copiés avec succès",
   "@shareSuccess": {
-    "description": "Message de succès lors du partage des résultats du tirage"
+    "description": "Message de succès lors de la copie des résultats du tirage"
+  },
+  "selectLogo": "Sélectionner le Logo",
+  "@selectLogo": {
+    "description": "Titre de la boîte de dialogue pour sélectionner le logo personnalisé"
+  },
+  "logoUrl": "URL du Logo",
+  "@logoUrl": {
+    "description": "Étiquette pour le champ de saisie de l'URL du logo"
+  },
+  "logoUrlHint": "Entrez l'URL d'une image à utiliser comme logo personnalisé pour le tirage",
+  "@logoUrlHint": {
+    "description": "Texte d'aide expliquant le champ URL du logo"
+  },
+  "invalidLogoUrl": "URL d'image invalide. Doit être une URL valide se terminant par .jpg, .png, .gif, etc.",
+  "@invalidLogoUrl": {
+    "description": "Message d'erreur pour une URL de logo invalide"
+  },
+  "logoPreview": "Aperçu",
+  "@logoPreview": {
+    "description": "Titre de la section d'aperçu du logo"
+  },
+  "removeLogo": "Supprimer le Logo",
+  "@removeLogo": {
+    "description": "Texte du bouton pour supprimer le logo personnalisé"
   }
 }

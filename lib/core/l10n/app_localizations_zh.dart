@@ -956,7 +956,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get close => '关闭';
 
   @override
-  String get share => '分享';
+  String get share => '复制';
 
   @override
   String get shareNotImplemented => '分享功能尚未实现';
@@ -992,5 +992,23 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noWinnersToShare => '没有获奖者可分享';
 
   @override
-  String get shareSuccess => '结果分享成功';
+  String get shareSuccess => '结果复制成功';
+
+  @override
+  String get selectLogo => '选择标志';
+
+  @override
+  String get logoUrl => '标志网址';
+
+  @override
+  String get logoUrlHint => '输入图片的网址，作为抽奖的自定义标志使用';
+
+  @override
+  String get invalidLogoUrl => '无效的图片网址。必须是以.jpg、.png、.gif等结尾的有效网址。';
+
+  @override
+  String get logoPreview => '预览';
+
+  @override
+  String get removeLogo => '移除标志';
 }

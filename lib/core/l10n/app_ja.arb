@@ -1411,9 +1411,9 @@
   "@close": {
     "description": "閉じるボタンのラベル"
   },
-  "share": "共有",
+  "share": "コピー",
   "@share": {
-    "description": "共有ボタンのラベル"
+    "description": "コピーボタンのラベル"
   },
   "shareNotImplemented": "共有機能はまだ実装されていません",
   "@shareNotImplemented": {
@@ -1469,8 +1469,32 @@
   "@noWinnersToShare": {
     "description": "共有する当選者がいない時に表示されるメッセージ"
   },
-  "shareSuccess": "結果が正常に共有されました",
+  "shareSuccess": "結果が正常にコピーされました",
   "@shareSuccess": {
-    "description": "結果を共有した後に表示される成功メッセージ"
+    "description": "結果をコピーした後に表示される成功メッセージ"
+  },
+  "selectLogo": "ロゴを選択",
+  "@selectLogo": {
+    "description": "カスタムロゴを選択するダイアログのタイトル"
+  },
+  "logoUrl": "ロゴURL",
+  "@logoUrl": {
+    "description": "ロゴURL入力フィールドのラベル"
+  },
+  "logoUrlHint": "抽選用のカスタムロゴとして使用する画像のURLを入力してください",
+  "@logoUrlHint": {
+    "description": "ロゴURLフィールドを説明するヘルプテキスト"
+  },
+  "invalidLogoUrl": "無効な画像URLです。.jpg、.png、.gifなどで終わる有効なURLである必要があります。",
+  "@invalidLogoUrl": {
+    "description": "無効なロゴURLのエラーメッセージ"
+  },
+  "logoPreview": "プレビュー",
+  "@logoPreview": {
+    "description": "ロゴプレビューセクションのタイトル"
+  },
+  "removeLogo": "ロゴを削除",
+  "@removeLogo": {
+    "description": "カスタムロゴを削除するボタンのテキスト"
   }
 }

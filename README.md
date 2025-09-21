@@ -48,6 +48,17 @@ _The app provides an intuitive interface for taking quizzes with smooth animatio
 - **⏱️ Exam Timer**: Configurable time limits with countdown display and automatic submission when time expires
 - **🎲 Question Randomization**: Randomize question order and answer options for varied quiz experiences
 
+### 🎯 Raffle Mode
+
+- **Interactive Participant Management**: Add, edit, and remove participants with real-time validation and duplicate detection
+- **Animated Winner Selection**: Smooth animations and visual effects during the selection process
+- **Multiple Winner Support**: Select multiple winners with automatic position tracking (1st, 2nd, 3rd place, etc.)
+- **Custom Logo Integration**: Personalize raffle events with company or event logos displayed in the app header
+- **Winners History**: Elegant display of all selected winners with timestamps and position rankings
+- **Results Sharing**: Export and share raffle results via clipboard with formatted text output
+- **Comprehensive Localization**: Full multi-language support for all raffle features across 13 languages
+- **Clean Architecture**: BLoC state management with reactive UI updates and efficient participant handling
+
 ### 🤖 AI-Powered Question Generation
 
 - **Multi-AI Service Support**: Integrated support for Google Gemini and OpenAI GPT
@@ -152,6 +163,40 @@ For detailed information about AI service limits and configuration, see: **[AI L
 | **Generation Style** | Consistent format, reliable  | Large context, creative      |
 | **Study Assistant**  | Structured explanations      | Conversational help          |
 | **Best For**         | Quick questions & generation | Long content & deep learning |
+
+## 🎯 Getting Started with Raffle Mode
+
+### Accessing Raffle Mode
+
+1. **Launch the app** and navigate to the main menu
+2. **Select "Raffle"** from the navigation options
+3. **Start creating your raffle** by adding participants
+
+### Setting Up a Raffle
+
+1. **Add Participants**:
+
+   - Enter participant names one by one
+   - Paste a list of names (one per line) for bulk import
+   - Edit or remove participants as needed
+   - Real-time validation prevents duplicates
+
+2. **Customize Your Event** (Optional):
+
+   - Add a custom logo URL for your company or event
+   - The logo will appear in the app header for brand consistency
+   - Logo preview shows before applying changes
+
+3. **Run the Raffle**:
+   - Click "Select Winner" to start the animated selection
+   - Watch the exciting animation as a winner is chosen
+   - Select multiple winners for 1st, 2nd, 3rd place and beyond
+
+### Managing Results
+
+- **View Winners**: Navigate to the Winners screen to see all selected participants
+- **Share Results**: Export results to clipboard with formatted text including positions and timestamps
+- **Start New Raffle**: Reset and begin a fresh raffle session anytime
 
 ## ⏱️ Getting Started with Timer & AI Assistant
 

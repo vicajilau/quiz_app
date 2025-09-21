@@ -1012,7 +1012,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get close => 'Schließen';
 
   @override
-  String get share => 'Teilen';
+  String get share => 'Kopieren';
 
   @override
   String get shareNotImplemented => 'Teilen-Funktion nicht implementiert';
@@ -1048,5 +1048,25 @@ class AppLocalizationsDe extends AppLocalizations {
   String get noWinnersToShare => 'Keine Gewinner.';
 
   @override
-  String get shareSuccess => 'Ergebnisse erfolgreich geteilt';
+  String get shareSuccess => 'Ergebnisse erfolgreich kopiert';
+
+  @override
+  String get selectLogo => 'Logo auswählen';
+
+  @override
+  String get logoUrl => 'Logo-URL';
+
+  @override
+  String get logoUrlHint =>
+      'Geben Sie die URL eines Bildes ein, das als benutzerdefiniertes Logo für die Verlosung verwendet werden soll';
+
+  @override
+  String get invalidLogoUrl =>
+      'Ungültige Bild-URL. Muss eine gültige URL sein, die mit .jpg, .png, .gif usw. endet.';
+
+  @override
+  String get logoPreview => 'Vorschau';
+
+  @override
+  String get removeLogo => 'Logo entfernen';
 }

@@ -996,7 +996,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get close => 'बंद करें';
 
   @override
-  String get share => 'साझा करें';
+  String get share => 'कॉपी करें';
 
   @override
   String get shareNotImplemented => 'साझा करना अभी तक लागू नहीं है';
@@ -1032,5 +1032,25 @@ class AppLocalizationsHi extends AppLocalizations {
   String get noWinnersToShare => 'साझा करने के लिए कोई विजेता नहीं';
 
   @override
-  String get shareSuccess => 'परिणाम सफलतापूर्वक साझा किए गए';
+  String get shareSuccess => 'परिणाम सफलतापूर्वक कॉपी किए गए';
+
+  @override
+  String get selectLogo => 'लोगो चुनें';
+
+  @override
+  String get logoUrl => 'लोगो URL';
+
+  @override
+  String get logoUrlHint =>
+      'लॉटरी के लिए कस्टम लोगो के रूप में उपयोग करने के लिए एक छवि का URL दर्ज करें';
+
+  @override
+  String get invalidLogoUrl =>
+      'अमान्य छवि URL। यह .jpg, .png, .gif, आदि में समाप्त होने वाला एक वैध URL होना चाहिए।';
+
+  @override
+  String get logoPreview => 'पूर्वावलोकन';
+
+  @override
+  String get removeLogo => 'लोगो हटाएं';
 }

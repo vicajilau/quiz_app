@@ -1005,7 +1005,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get close => 'Itxi';
 
   @override
-  String get share => 'Partekatu';
+  String get share => 'Kopiatu';
 
   @override
   String get shareNotImplemented =>
@@ -1042,5 +1042,25 @@ class AppLocalizationsEu extends AppLocalizations {
   String get noWinnersToShare => 'Ez dago irabazlerik partekatzeko';
 
   @override
-  String get shareSuccess => 'Emaitzak arrakastaz partekatu dira';
+  String get shareSuccess => 'Emaitzak arrakastaz kopiatu dira';
+
+  @override
+  String get selectLogo => 'Logotipoa Aukeratu';
+
+  @override
+  String get logoUrl => 'Logoaren URLa';
+
+  @override
+  String get logoUrlHint =>
+      'Sartu zozketarako logo pertsonalizatu gisa erabiltzeko irudiaren URLa';
+
+  @override
+  String get invalidLogoUrl =>
+      'Irudi URL baliogabea. .jpg, .png, .gif, etab.rekin amaitzen den URL baliozkoa izan behar da.';
+
+  @override
+  String get logoPreview => 'Aurrebista';
+
+  @override
+  String get removeLogo => 'Logotipoa Kendu';
 }

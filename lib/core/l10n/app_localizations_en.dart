@@ -997,7 +997,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get close => 'Close';
 
   @override
-  String get share => 'Share';
+  String get share => 'Copy';
 
   @override
   String get shareNotImplemented => 'Share functionality not implemented';
@@ -1033,5 +1033,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noWinnersToShare => 'No winners.';
 
   @override
-  String get shareSuccess => 'Results shared successfully';
+  String get shareSuccess => 'Results copied successfully';
+
+  @override
+  String get selectLogo => 'Select Logo';
+
+  @override
+  String get logoUrl => 'Logo URL';
+
+  @override
+  String get logoUrlHint =>
+      'Enter the URL of an image to use as a custom logo for the raffle';
+
+  @override
+  String get invalidLogoUrl =>
+      'Invalid image URL. Must be a valid URL ending in .jpg, .png, .gif, etc.';
+
+  @override
+  String get logoPreview => 'Preview';
+
+  @override
+  String get removeLogo => 'Remove Logo';
 }

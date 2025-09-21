@@ -1411,9 +1411,9 @@
   "@close": {
     "description": "बंद करने के लिए बटन लेबल"
   },
-  "share": "साझा करें",
+  "share": "कॉपी करें",
   "@share": {
-    "description": "साझा करने के लिए बटन लेबल"
+    "description": "कॉपी करने के लिए बटन लेबल"
   },
   "shareNotImplemented": "साझा करना अभी तक लागू नहीं है",
   "@shareNotImplemented": {
@@ -1469,8 +1469,32 @@
   "@noWinnersToShare": {
     "description": "साझा करने के लिए कोई विजेता न होने पर दिखाया गया संदेश"
   },
-  "shareSuccess": "परिणाम सफलतापूर्वक साझा किए गए",
+  "shareSuccess": "परिणाम सफलतापूर्वक कॉपी किए गए",
   "@shareSuccess": {
-    "description": "परिणाम साझा करने के बाद दिखाया गया सफलता संदेश"
+    "description": "परिणाम कॉपी करने के बाद दिखाया गया सफलता संदेश"
+  },
+  "selectLogo": "लोगो चुनें",
+  "@selectLogo": {
+    "description": "कस्टम लोगो चुनने के लिए डायलॉग का शीर्षक"
+  },
+  "logoUrl": "लोगो URL",
+  "@logoUrl": {
+    "description": "लोगो URL इनपुट फील्ड के लिए लेबल"
+  },
+  "logoUrlHint": "लॉटरी के लिए कस्टम लोगो के रूप में उपयोग करने के लिए एक छवि का URL दर्ज करें",
+  "@logoUrlHint": {
+    "description": "लोगो URL फील्ड को समझाने वाला सहायता पाठ"
+  },
+  "invalidLogoUrl": "अमान्य छवि URL। यह .jpg, .png, .gif, आदि में समाप्त होने वाला एक वैध URL होना चाहिए।",
+  "@invalidLogoUrl": {
+    "description": "अमान्य लोगो URL के लिए त्रुटि संदेश"
+  },
+  "logoPreview": "पूर्वावलोकन",
+  "@logoPreview": {
+    "description": "लोगो पूर्वावलोकन अनुभाग का शीर्षक"
+  },
+  "removeLogo": "लोगो हटाएं",
+  "@removeLogo": {
+    "description": "कस्टम लोगो हटाने के लिए बटन का टेक्स्ट"
   }
 }

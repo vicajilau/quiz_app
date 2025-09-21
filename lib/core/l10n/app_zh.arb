@@ -1411,9 +1411,9 @@
   "@close": {
     "description": "关闭按钮标签"
   },
-  "share": "分享",
+  "share": "复制",
   "@share": {
-    "description": "分享按钮标签"
+    "description": "复制按钮标签"
   },
   "shareNotImplemented": "分享功能尚未实现",
   "@shareNotImplemented": {
@@ -1469,8 +1469,32 @@
   "@noWinnersToShare": {
     "description": "没有获奖者可分享时显示的消息"
   },
-  "shareSuccess": "结果分享成功",
+  "shareSuccess": "结果复制成功",
   "@shareSuccess": {
-    "description": "分享结果后显示的成功消息"
+    "description": "复制结果后显示的成功消息"
+  },
+  "selectLogo": "选择标志",
+  "@selectLogo": {
+    "description": "选择自定义标志的对话框标题"
+  },
+  "logoUrl": "标志网址",
+  "@logoUrl": {
+    "description": "标志URL输入字段的标签"
+  },
+  "logoUrlHint": "输入图片的网址，作为抽奖的自定义标志使用",
+  "@logoUrlHint": {
+    "description": "解释标志URL字段的帮助文本"
+  },
+  "invalidLogoUrl": "无效的图片网址。必须是以.jpg、.png、.gif等结尾的有效网址。",
+  "@invalidLogoUrl": {
+    "description": "无效标志URL的错误消息"
+  },
+  "logoPreview": "预览",
+  "@logoPreview": {
+    "description": "标志预览部分的标题"
+  },
+  "removeLogo": "移除标志",
+  "@removeLogo": {
+    "description": "移除自定义标志按钮的文本"
   }
 }

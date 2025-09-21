@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:share_plus/share_plus.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../../../domain/models/raffle/raffle_winner.dart';
 import '../../blocs/raffle_bloc/raffle_bloc.dart';
@@ -12,36 +12,55 @@ class WinnersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.winnersTitle),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.go('/raffle'),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () => _showShareDialog(context),
-            icon: const Icon(Icons.share),
-            tooltip: AppLocalizations.of(context)!.shareResults,
+    return BlocBuilder<RaffleBloc, RaffleState>(
+      builder: (context, state) {
+        String? logoUrl;
+        if (state is RaffleLoaded) {
+          logoUrl = state.session.logoUrl;
+        } else if (state is RaffleWinnerSelected) {
+          logoUrl = state.session.logoUrl;
+        }
+
+        return Scaffold(
+          appBar: AppBar(
+            title: logoUrl != null && logoUrl.isNotEmpty
+                ? Image.network(
+                    logoUrl,
+                    height: 40,
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) =>
+                        Text(AppLocalizations.of(context)!.winnersTitle),
+                  )
+                : Text(AppLocalizations.of(context)!.winnersTitle),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => context.go('/raffle'),
+            ),
+            actions: [
+              IconButton(
+                onPressed: () => _showShareDialog(context),
+                icon: const Icon(Icons.share),
+                tooltip: AppLocalizations.of(context)!.shareResults,
+              ),
+            ],
           ),
-        ],
-      ),
-      body: BlocBuilder<RaffleBloc, RaffleState>(
-        builder: (context, state) {
-          List<RaffleWinner> winners = [];
+          body: BlocBuilder<RaffleBloc, RaffleState>(
+            builder: (context, state) {
+              List<RaffleWinner> winners = [];
 
-          if (state is RaffleLoaded) {
-            winners = state.session.winners;
-          } else if (state is RaffleWinnerSelected) {
-            winners = state.session.winners;
-          }
+              if (state is RaffleLoaded) {
+                winners = state.session.winners;
+              } else if (state is RaffleWinnerSelected) {
+                winners = state.session.winners;
+              }
 
-          return winners.isEmpty
-              ? _buildEmptyState()
-              : _buildWinnersList(winners, context);
-        },
-      ),
+              return winners.isEmpty
+                  ? _buildEmptyState()
+                  : _buildWinnersList(winners, context);
+            },
+          ),
+        );
+      },
     );
   }
 
@@ -88,53 +107,68 @@ class WinnersScreen extends StatelessWidget {
       children: [
         // Header with summary
         Container(
-          margin: const EdgeInsets.all(16),
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Colors.amber[50]!, Colors.orange[50]!],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: Colors.amber[200]!),
-          ),
-          child: Row(
+          margin: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+          child: Column(
             children: [
+              // Crown icon at the top
               Container(
-                padding: const EdgeInsets.all(12),
+                width: 80,
+                height: 80,
                 decoration: BoxDecoration(
-                  color: Colors.amber,
                   shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Colors.amber[300]!, Colors.orange[400]!],
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.amber.withValues(alpha: 0.3),
+                      blurRadius: 16,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
                 ),
                 child: const Icon(
                   Icons.emoji_events,
                   color: Colors.white,
-                  size: 28,
+                  size: 40,
                 ),
               ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.raffleCompleted,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
+              const SizedBox(height: 16),
+              // Title
+              Text(
+                AppLocalizations.of(context)!.raffleCompleted,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8),
+              // Subtitle with divider
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(height: 1, color: Colors.grey[300]),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
                       AppLocalizations.of(
                         context,
                       )!.winnersSelectedCount(winners.length),
-                      style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey[600],
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    child: Container(height: 1, color: Colors.grey[300]),
+                  ),
+                ],
               ),
             ],
           ),
@@ -304,13 +338,9 @@ class WinnersScreen extends StatelessWidget {
               // Close the dialog first
               Navigator.of(dialogContext).pop();
 
-              // Share the results text
-              final params = ShareParams(text: resultsText);
-              await SharePlus.instance.share(params);
-              final result = await SharePlus.instance.share(params);
-
-              if (context.mounted &&
-                  result.status == ShareResultStatus.success) {
+              // Copy to clipboard
+              await Clipboard.setData(ClipboardData(text: resultsText));
+              if (context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(AppLocalizations.of(context)!.shareSuccess),

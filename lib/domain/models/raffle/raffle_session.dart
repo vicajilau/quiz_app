@@ -15,12 +15,16 @@ class RaffleSession {
   /// The raw text input from the user (for editing purposes).
   final String participantText;
 
+  /// Optional logo URL or asset path for customizing the raffle experience.
+  final String? logoUrl;
+
   /// Constructor for creating a `RaffleSession` instance.
   const RaffleSession({
     required this.participants,
     required this.winners,
     this.isSelecting = false,
     this.participantText = '',
+    this.logoUrl,
   });
 
   /// Creates an empty raffle session.
@@ -39,12 +43,25 @@ class RaffleSession {
     List<RaffleWinner>? winners,
     bool? isSelecting,
     String? participantText,
+    String? logoUrl,
   }) {
     return RaffleSession(
       participants: participants ?? this.participants,
       winners: winners ?? this.winners,
       isSelecting: isSelecting ?? this.isSelecting,
       participantText: participantText ?? this.participantText,
+      logoUrl: logoUrl ?? this.logoUrl,
+    );
+  }
+
+  /// Creates a copy of this session with the logo removed.
+  RaffleSession copyWithoutLogo() {
+    return RaffleSession(
+      participants: participants,
+      winners: winners,
+      isSelecting: isSelecting,
+      participantText: participantText,
+      logoUrl: null,
     );
   }
 
@@ -70,7 +87,10 @@ class RaffleSession {
   /// Whether the raffle has any winners.
   bool get hasWinners => winners.isNotEmpty;
 
+  /// Whether the raffle has a custom logo configured.
+  bool get hasLogo => logoUrl != null && logoUrl!.isNotEmpty;
+
   @override
   String toString() =>
-      'RaffleSession(participants: ${participants.length}, winners: ${winners.length}, isSelecting: $isSelecting)';
+      'RaffleSession(participants: ${participants.length}, winners: ${winners.length}, isSelecting: $isSelecting, logoUrl: $logoUrl)';
 }

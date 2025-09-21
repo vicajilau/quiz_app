@@ -1421,9 +1421,9 @@
   "@close": {
     "description": "Texto do botão fechar"
   },
-  "share": "Compartilhar",
+  "share": "Copiar",
   "@share": {
-    "description": "Texto do botão compartilhar"
+    "description": "Texto do botão copiar"
   },
   "shareNotImplemented": "Funcionalidade de compartilhamento não implementada",
   "@shareNotImplemented": {
@@ -1479,8 +1479,32 @@
   "@noWinnersToShare": {
     "description": "Mensagem quando não há vencedores para compartilhar"
   },
-  "shareSuccess": "Resultados compartilhados com sucesso",
+  "shareSuccess": "Resultados copiados com sucesso",
   "@shareSuccess": {
-    "description": "Mensagem de sucesso ao compartilhar os resultados do sorteio"
+    "description": "Mensagem de sucesso ao copiar os resultados do sorteio"
+  },
+  "selectLogo": "Selecionar Logo",
+  "@selectLogo": {
+    "description": "Título do diálogo para selecionar logo personalizado"
+  },
+  "logoUrl": "URL do Logo",
+  "@logoUrl": {
+    "description": "Rótulo para o campo de entrada da URL do logo"
+  },
+  "logoUrlHint": "Digite a URL de uma imagem para usar como logo personalizado para o sorteio",
+  "@logoUrlHint": {
+    "description": "Texto de ajuda explicando o campo URL do logo"
+  },
+  "invalidLogoUrl": "URL de imagem inválida. Deve ser uma URL válida terminando em .jpg, .png, .gif, etc.",
+  "@invalidLogoUrl": {
+    "description": "Mensagem de erro para URL de logo inválida"
+  },
+  "logoPreview": "Pré-visualização",
+  "@logoPreview": {
+    "description": "Título da seção de pré-visualização do logo"
+  },
+  "removeLogo": "Remover Logo",
+  "@removeLogo": {
+    "description": "Texto do botão para remover o logo personalizado"
   }
 }

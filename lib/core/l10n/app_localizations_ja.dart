@@ -959,7 +959,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get close => '閉じる';
 
   @override
-  String get share => '共有';
+  String get share => 'コピー';
 
   @override
   String get shareNotImplemented => '共有機能はまだ実装されていません';
@@ -995,5 +995,24 @@ class AppLocalizationsJa extends AppLocalizations {
   String get noWinnersToShare => '共有する当選者はいません';
 
   @override
-  String get shareSuccess => '結果が正常に共有されました';
+  String get shareSuccess => '結果が正常にコピーされました';
+
+  @override
+  String get selectLogo => 'ロゴを選択';
+
+  @override
+  String get logoUrl => 'ロゴURL';
+
+  @override
+  String get logoUrlHint => '抽選用のカスタムロゴとして使用する画像のURLを入力してください';
+
+  @override
+  String get invalidLogoUrl =>
+      '無効な画像URLです。.jpg、.png、.gifなどで終わる有効なURLである必要があります。';
+
+  @override
+  String get logoPreview => 'プレビュー';
+
+  @override
+  String get removeLogo => 'ロゴを削除';
 }
