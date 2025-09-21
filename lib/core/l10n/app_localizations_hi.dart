@@ -1035,22 +1035,22 @@ class AppLocalizationsHi extends AppLocalizations {
   String get shareSuccess => 'परिणाम सफलतापूर्वक कॉपी किए गए';
 
   @override
-  String get selectLogo => 'Select Logo';
+  String get selectLogo => 'लोगो चुनें';
 
   @override
-  String get logoUrl => 'Logo URL';
+  String get logoUrl => 'लोगो URL';
 
   @override
   String get logoUrlHint =>
-      'Enter the URL of an image to use as a custom logo for the raffle';
+      'लॉटरी के लिए कस्टम लोगो के रूप में उपयोग करने के लिए एक छवि का URL दर्ज करें';
 
   @override
   String get invalidLogoUrl =>
-      'Invalid image URL. Must be a valid URL ending in .jpg, .png, .gif, etc.';
+      'अमान्य छवि URL। यह .jpg, .png, .gif, आदि में समाप्त होने वाला एक वैध URL होना चाहिए।';
 
   @override
-  String get logoPreview => 'Preview';
+  String get logoPreview => 'पूर्वावलोकन';
 
   @override
-  String get removeLogo => 'Remove Logo';
+  String get removeLogo => 'लोगो हटाएं';
 }

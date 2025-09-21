@@ -1051,22 +1051,22 @@ class AppLocalizationsDe extends AppLocalizations {
   String get shareSuccess => 'Ergebnisse erfolgreich kopiert';
 
   @override
-  String get selectLogo => 'Select Logo';
+  String get selectLogo => 'Logo auswählen';
 
   @override
-  String get logoUrl => 'Logo URL';
+  String get logoUrl => 'Logo-URL';
 
   @override
   String get logoUrlHint =>
-      'Enter the URL of an image to use as a custom logo for the raffle';
+      'Geben Sie die URL eines Bildes ein, das als benutzerdefiniertes Logo für die Verlosung verwendet werden soll';
 
   @override
   String get invalidLogoUrl =>
-      'Invalid image URL. Must be a valid URL ending in .jpg, .png, .gif, etc.';
+      'Ungültige Bild-URL. Muss eine gültige URL sein, die mit .jpg, .png, .gif usw. endet.';
 
   @override
-  String get logoPreview => 'Preview';
+  String get logoPreview => 'Vorschau';
 
   @override
-  String get removeLogo => 'Remove Logo';
+  String get removeLogo => 'Logo entfernen';
 }

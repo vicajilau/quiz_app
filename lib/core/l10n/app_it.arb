@@ -1482,5 +1482,29 @@
   "shareSuccess": "Risultati copiati con successo",
   "@shareSuccess": {
     "description": "Messaggio di successo quando i risultati dell'estrazione vengono copiati"
+  },
+  "selectLogo": "Seleziona Logo",
+  "@selectLogo": {
+    "description": "Titolo del dialogo per selezionare il logo personalizzato"
+  },
+  "logoUrl": "URL del Logo",
+  "@logoUrl": {
+    "description": "Etichetta per il campo di inserimento dell'URL del logo"
+  },
+  "logoUrlHint": "Inserisci l'URL di un'immagine da utilizzare come logo personalizzato per l'estrazione",
+  "@logoUrlHint": {
+    "description": "Testo di aiuto che spiega il campo URL del logo"
+  },
+  "invalidLogoUrl": "URL immagine non valido. Deve essere un URL valido che termina con .jpg, .png, .gif, ecc.",
+  "@invalidLogoUrl": {
+    "description": "Messaggio di errore per URL del logo non valido"
+  },
+  "logoPreview": "Anteprima",
+  "@logoPreview": {
+    "description": "Titolo della sezione di anteprima del logo"
+  },
+  "removeLogo": "Rimuovi Logo",
+  "@removeLogo": {
+    "description": "Testo del pulsante per rimuovere il logo personalizzato"
   }
 }

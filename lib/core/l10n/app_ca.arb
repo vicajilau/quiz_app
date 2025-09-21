@@ -1472,5 +1472,29 @@
   "shareSuccess": "Resultats copiats amb èxit",
   "@shareSuccess": {
     "description": "Missatge d'èxit mostrat després de copiar els resultats"
+  },
+  "selectLogo": "Seleccionar Logo",
+  "@selectLogo": {
+    "description": "Títol del diàleg per seleccionar el logo personalitzat"
+  },
+  "logoUrl": "URL del Logo",
+  "@logoUrl": {
+    "description": "Etiqueta per al camp d'entrada de la URL del logo"
+  },
+  "logoUrlHint": "Introdueix la URL d'una imatge per utilitzar com a logo personalitzat per al sorteig",
+  "@logoUrlHint": {
+    "description": "Text d'ajuda que explica el camp URL del logo"
+  },
+  "invalidLogoUrl": "URL d'imatge no vàlida. Ha de ser una URL vàlida que acabi en .jpg, .png, .gif, etc.",
+  "@invalidLogoUrl": {
+    "description": "Missatge d'error per a URL de logo no vàlida"
+  },
+  "logoPreview": "Vista Prèvia",
+  "@logoPreview": {
+    "description": "Títol de la secció de vista prèvia del logo"
+  },
+  "removeLogo": "Eliminar Logo",
+  "@removeLogo": {
+    "description": "Text del botó per eliminar el logo personalitzat"
   }
 }

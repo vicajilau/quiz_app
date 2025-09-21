@@ -1472,5 +1472,29 @@
   "shareSuccess": "Emaitzak arrakastaz kopiatu dira",
   "@shareSuccess": {
     "description": "Emaitzak kopiatu ondoren erakusten den arrakasta mezua"
+  },
+  "selectLogo": "Logotipoa Aukeratu",
+  "@selectLogo": {
+    "description": "Logo pertsonalizatua aukeratzeko elkarrizketa-koadroaren izenburua"
+  },
+  "logoUrl": "Logoaren URLa",
+  "@logoUrl": {
+    "description": "Logo URLaren sarrera-eremurako etiketa"
+  },
+  "logoUrlHint": "Sartu zozketarako logo pertsonalizatu gisa erabiltzeko irudiaren URLa",
+  "@logoUrlHint": {
+    "description": "Logo URL eremua azaltzen duen laguntza testua"
+  },
+  "invalidLogoUrl": "Irudi URL baliogabea. .jpg, .png, .gif, etab.rekin amaitzen den URL baliozkoa izan behar da.",
+  "@invalidLogoUrl": {
+    "description": "Logo URL baliogaberako errore mezua"
+  },
+  "logoPreview": "Aurrebista",
+  "@logoPreview": {
+    "description": "Logo aurrebista atalaren izenburua"
+  },
+  "removeLogo": "Logotipoa Kendu",
+  "@removeLogo": {
+    "description": "Logo pertsonalizatua kentzeko botoiaren testua"
   }
 }

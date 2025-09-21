@@ -1044,22 +1044,22 @@ class AppLocalizationsIt extends AppLocalizations {
   String get shareSuccess => 'Risultati copiati con successo';
 
   @override
-  String get selectLogo => 'Select Logo';
+  String get selectLogo => 'Seleziona Logo';
 
   @override
-  String get logoUrl => 'Logo URL';
+  String get logoUrl => 'URL del Logo';
 
   @override
   String get logoUrlHint =>
-      'Enter the URL of an image to use as a custom logo for the raffle';
+      'Inserisci l\'URL di un\'immagine da utilizzare come logo personalizzato per l\'estrazione';
 
   @override
   String get invalidLogoUrl =>
-      'Invalid image URL. Must be a valid URL ending in .jpg, .png, .gif, etc.';
+      'URL immagine non valido. Deve essere un URL valido che termina con .jpg, .png, .gif, ecc.';
 
   @override
-  String get logoPreview => 'Preview';
+  String get logoPreview => 'Anteprima';
 
   @override
-  String get removeLogo => 'Remove Logo';
+  String get removeLogo => 'Rimuovi Logo';
 }

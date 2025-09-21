@@ -1045,22 +1045,22 @@ class AppLocalizationsEu extends AppLocalizations {
   String get shareSuccess => 'Emaitzak arrakastaz kopiatu dira';
 
   @override
-  String get selectLogo => 'Select Logo';
+  String get selectLogo => 'Logotipoa Aukeratu';
 
   @override
-  String get logoUrl => 'Logo URL';
+  String get logoUrl => 'Logoaren URLa';
 
   @override
   String get logoUrlHint =>
-      'Enter the URL of an image to use as a custom logo for the raffle';
+      'Sartu zozketarako logo pertsonalizatu gisa erabiltzeko irudiaren URLa';
 
   @override
   String get invalidLogoUrl =>
-      'Invalid image URL. Must be a valid URL ending in .jpg, .png, .gif, etc.';
+      'Irudi URL baliogabea. .jpg, .png, .gif, etab.rekin amaitzen den URL baliozkoa izan behar da.';
 
   @override
-  String get logoPreview => 'Preview';
+  String get logoPreview => 'Aurrebista';
 
   @override
-  String get removeLogo => 'Remove Logo';
+  String get removeLogo => 'Logotipoa Kendu';
 }

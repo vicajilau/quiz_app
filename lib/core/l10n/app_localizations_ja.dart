@@ -998,22 +998,21 @@ class AppLocalizationsJa extends AppLocalizations {
   String get shareSuccess => '結果が正常にコピーされました';
 
   @override
-  String get selectLogo => 'Select Logo';
+  String get selectLogo => 'ロゴを選択';
 
   @override
-  String get logoUrl => 'Logo URL';
+  String get logoUrl => 'ロゴURL';
 
   @override
-  String get logoUrlHint =>
-      'Enter the URL of an image to use as a custom logo for the raffle';
+  String get logoUrlHint => '抽選用のカスタムロゴとして使用する画像のURLを入力してください';
 
   @override
   String get invalidLogoUrl =>
-      'Invalid image URL. Must be a valid URL ending in .jpg, .png, .gif, etc.';
+      '無効な画像URLです。.jpg、.png、.gifなどで終わる有効なURLである必要があります。';
 
   @override
-  String get logoPreview => 'Preview';
+  String get logoPreview => 'プレビュー';
 
   @override
-  String get removeLogo => 'Remove Logo';
+  String get removeLogo => 'ロゴを削除';
 }

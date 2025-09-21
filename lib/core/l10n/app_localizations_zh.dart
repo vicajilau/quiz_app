@@ -995,22 +995,20 @@ class AppLocalizationsZh extends AppLocalizations {
   String get shareSuccess => '结果复制成功';
 
   @override
-  String get selectLogo => 'Select Logo';
+  String get selectLogo => '选择标志';
 
   @override
-  String get logoUrl => 'Logo URL';
+  String get logoUrl => '标志网址';
 
   @override
-  String get logoUrlHint =>
-      'Enter the URL of an image to use as a custom logo for the raffle';
+  String get logoUrlHint => '输入图片的网址，作为抽奖的自定义标志使用';
 
   @override
-  String get invalidLogoUrl =>
-      'Invalid image URL. Must be a valid URL ending in .jpg, .png, .gif, etc.';
+  String get invalidLogoUrl => '无效的图片网址。必须是以.jpg、.png、.gif等结尾的有效网址。';
 
   @override
-  String get logoPreview => 'Preview';
+  String get logoPreview => '预览';
 
   @override
-  String get removeLogo => 'Remove Logo';
+  String get removeLogo => '移除标志';
 }

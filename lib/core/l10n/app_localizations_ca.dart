@@ -1049,22 +1049,22 @@ class AppLocalizationsCa extends AppLocalizations {
   String get shareSuccess => 'Resultats copiats amb èxit';
 
   @override
-  String get selectLogo => 'Select Logo';
+  String get selectLogo => 'Seleccionar Logo';
 
   @override
-  String get logoUrl => 'Logo URL';
+  String get logoUrl => 'URL del Logo';
 
   @override
   String get logoUrlHint =>
-      'Enter the URL of an image to use as a custom logo for the raffle';
+      'Introdueix la URL d\'una imatge per utilitzar com a logo personalitzat per al sorteig';
 
   @override
   String get invalidLogoUrl =>
-      'Invalid image URL. Must be a valid URL ending in .jpg, .png, .gif, etc.';
+      'URL d\'imatge no vàlida. Ha de ser una URL vàlida que acabi en .jpg, .png, .gif, etc.';
 
   @override
-  String get logoPreview => 'Preview';
+  String get logoPreview => 'Vista Prèvia';
 
   @override
-  String get removeLogo => 'Remove Logo';
+  String get removeLogo => 'Eliminar Logo';
 }

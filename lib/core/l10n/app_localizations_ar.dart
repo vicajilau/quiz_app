@@ -1028,22 +1028,21 @@ class AppLocalizationsAr extends AppLocalizations {
   String get shareSuccess => 'تم نسخ النتائج بنجاح';
 
   @override
-  String get selectLogo => 'Select Logo';
+  String get selectLogo => 'اختيار الشعار';
 
   @override
-  String get logoUrl => 'Logo URL';
+  String get logoUrl => 'رابط الشعار';
 
   @override
-  String get logoUrlHint =>
-      'Enter the URL of an image to use as a custom logo for the raffle';
+  String get logoUrlHint => 'أدخل رابط صورة لاستخدامها كشعار مخصص للسحب';
 
   @override
   String get invalidLogoUrl =>
-      'Invalid image URL. Must be a valid URL ending in .jpg, .png, .gif, etc.';
+      'رابط صورة غير صالح. يجب أن يكون رابطاً صالحاً ينتهي بـ .jpg أو .png أو .gif إلخ.';
 
   @override
-  String get logoPreview => 'Preview';
+  String get logoPreview => 'معاينة';
 
   @override
-  String get removeLogo => 'Remove Logo';
+  String get removeLogo => 'إزالة الشعار';
 }
