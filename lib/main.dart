@@ -27,7 +27,7 @@ class _QuizApplicationState extends State<QuizApplication> {
 
     FileHandler.initialize((filePath) {
       if (mounted) {
-        // Cargar el archivo cuando se abre desde un intent
+        // Load the file when opened from an intent
         final fileBloc = ServiceLocator.instance.getIt<FileBloc>();
         fileBloc.add(FileDropped(filePath));
         appRouter.go(AppRoutes.home);
