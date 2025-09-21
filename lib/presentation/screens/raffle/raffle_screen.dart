@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import '../../../core/l10n/app_localizations.dart';
 import '../../blocs/raffle_bloc/raffle_bloc.dart';
 import '../../blocs/raffle_bloc/raffle_event.dart';
 import '../../blocs/raffle_bloc/raffle_state.dart';
@@ -25,7 +26,7 @@ class _RaffleScreenContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sorteo'),
+        title: Text(AppLocalizations.of(context)!.raffleTitle),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => context.go('/'),
@@ -49,7 +50,7 @@ class _RaffleScreenContent extends StatelessWidget {
                   Icons.emoji_events,
                   color: hasWinners ? Colors.amber : Colors.grey,
                 ),
-                tooltip: 'Ver ganadores',
+                tooltip: AppLocalizations.of(context)!.viewWinners,
               );
             },
           ),
@@ -57,7 +58,7 @@ class _RaffleScreenContent extends StatelessWidget {
           IconButton(
             onPressed: () => _showResetDialog(context),
             icon: const Icon(Icons.refresh),
-            tooltip: 'Reiniciar sorteo',
+            tooltip: AppLocalizations.of(context)!.resetRaffleTitle,
           ),
         ],
       ),
@@ -101,8 +102,8 @@ class _RaffleScreenContent extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Text(
-                  'Lista de Participantes',
+                Text(
+                  AppLocalizations.of(context)!.participantListTitle,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 16),
@@ -122,8 +123,8 @@ class _RaffleScreenContent extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Text(
-                  'Participantes',
+                Text(
+                  AppLocalizations.of(context)!.participants,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 16),
@@ -142,8 +143,8 @@ class _RaffleScreenContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Text(
-            'Lista de Participantes',
+          Text(
+            AppLocalizations.of(context)!.participantListTitle,
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),
@@ -151,8 +152,8 @@ class _RaffleScreenContent extends StatelessWidget {
           const SizedBox(height: 24),
           const RaffleControlsWidget(),
           const SizedBox(height: 24),
-          const Text(
-            'Participantes Activos',
+          Text(
+            AppLocalizations.of(context)!.activeParticipants,
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),
@@ -186,21 +187,19 @@ class _RaffleScreenContent extends StatelessWidget {
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: const Text('Reiniciar Sorteo'),
-        content: const Text(
-          '¿Estás seguro de que quieres reiniciar el sorteo? Se perderán todos los participantes y ganadores.',
-        ),
+        title: Text(AppLocalizations.of(context)!.resetRaffleTitle),
+        content: Text(AppLocalizations.of(context)!.resetRaffleConfirmMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(),
-            child: const Text('Cancelar'),
+            child: Text(AppLocalizations.of(context)!.cancel),
           ),
           TextButton(
             onPressed: () {
               Navigator.of(dialogContext).pop();
               context.read<RaffleBloc>().add(ResetRaffle());
             },
-            child: const Text('Reiniciar'),
+            child: Text(AppLocalizations.of(context)!.reset),
           ),
         ],
       ),

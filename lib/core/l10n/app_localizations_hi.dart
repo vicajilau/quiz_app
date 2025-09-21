@@ -852,4 +852,182 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get aiEvaluationPromptResponseFormat =>
       'उत्तर प्रारूप:\n1. ग्रेड: [X/10] - ग्रेड के लिए संक्षेप में औचित्य दें\n2. शक्तियां: उत्तर के सकारात्मक पहलुओं का उल्लेख करें\n3. सुधार के क्षेत्र: उन पहलुओं को इंगित करें जिन्हें सुधारा जा सकता है\n4. विशिष्ट टिप्पणियां: विस्तृत और रचनात्मक प्रतिक्रिया प्रदान करें\n5. सुझाव: सुधार के लिए विशिष्ट सिफारिशें प्रदान करें\n\nअपने मूल्यांकन में रचनात्मक, विशिष्ट और शैक्षिक बनें। लक्ष्य छात्र को सीखने और सुधारने में मदद करना है। उन्हें द्वितीय व्यक्ति में संबोधित करें और एक पेशेवर और मित्रवत स्वर का उपयोग करें।';
+
+  @override
+  String get raffleTitle => 'लॉटरी';
+
+  @override
+  String get raffleTooltip => 'लॉटरी स्क्रीन खोलें';
+
+  @override
+  String get participantListTitle => 'प्रतिभागियों की सूची';
+
+  @override
+  String get participantListHint => 'नई लाइन से अलग किए गए नाम दर्ज करें';
+
+  @override
+  String get participantListPlaceholder =>
+      'प्रतिभागियों के नाम यहाँ दर्ज करें...\nएक लाइन में एक नाम';
+
+  @override
+  String get clearList => 'सूची साफ़ करें';
+
+  @override
+  String get participants => 'प्रतिभागी';
+
+  @override
+  String get noParticipants => 'कोई प्रतिभागी नहीं';
+
+  @override
+  String get addParticipantsHint => 'लॉटरी शुरू करने के लिए प्रतिभागी जोड़ें';
+
+  @override
+  String get activeParticipants => 'सक्रिय प्रतिभागी';
+
+  @override
+  String get alreadySelected => 'पहले से चुने गए';
+
+  @override
+  String totalParticipants(int count) {
+    return 'कुल प्रतिभागी';
+  }
+
+  @override
+  String activeVsWinners(int active, int winners) {
+    return '$active सक्रिय, $winners विजेता';
+  }
+
+  @override
+  String get startRaffle => 'लॉटरी शुरू करें';
+
+  @override
+  String get raffling => 'लॉटरी हो रही है...';
+
+  @override
+  String get selectingWinner => 'विजेता चुना जा रहा है...';
+
+  @override
+  String get allParticipantsSelected => 'सभी प्रतिभागी चुने गए हैं';
+
+  @override
+  String get addParticipantsToStart =>
+      'लॉटरी शुरू करने के लिए प्रतिभागी जोड़ें';
+
+  @override
+  String participantsReadyCount(int count) {
+    return '$count प्रतिभागी लॉटरी के लिए तैयार';
+  }
+
+  @override
+  String get resetWinners => 'विजेताओं को रीसेट करें';
+
+  @override
+  String get resetWinnersConfirmTitle => 'विजेताओं को रीसेट करें?';
+
+  @override
+  String get resetWinnersConfirmMessage =>
+      'यह सभी विजेताओं को सक्रिय प्रतिभागी सूची में वापस कर देगा।';
+
+  @override
+  String get resetRaffleTitle => 'लॉटरी रीसेट करें?';
+
+  @override
+  String get resetRaffleConfirmMessage =>
+      'यह सभी विजेताओं और सक्रिय प्रतिभागियों को रीसेट कर देगा।';
+
+  @override
+  String get reset => 'रीसेट करें';
+
+  @override
+  String get viewWinners => 'विजेता देखें';
+
+  @override
+  String get congratulations => 'बधाई हो!';
+
+  @override
+  String positionLabel(int position) {
+    return 'स्थिति $position';
+  }
+
+  @override
+  String remainingParticipants(int count) {
+    return 'शेष प्रतिभागी: $count';
+  }
+
+  @override
+  String get continueRaffle => 'लॉटरी जारी रखें';
+
+  @override
+  String get finishRaffle => 'लॉटरी समाप्त करें';
+
+  @override
+  String get winnersTitle => 'विजेता';
+
+  @override
+  String get shareResults => 'परिणाम साझा करें';
+
+  @override
+  String get noWinnersYet => 'अभी तक कोई विजेता नहीं';
+
+  @override
+  String get performRaffleToSeeWinners => 'विजेता देखने के लिए लॉटरी करें';
+
+  @override
+  String get goToRaffle => 'लॉटरी पर जाएं';
+
+  @override
+  String get raffleCompleted => 'लॉटरी पूर्ण!';
+
+  @override
+  String winnersSelectedCount(int count) {
+    return '$count विजेता चुने गए';
+  }
+
+  @override
+  String get newRaffle => 'नई लॉटरी';
+
+  @override
+  String get shareResultsTitle => 'लॉटरी के परिणाम';
+
+  @override
+  String get raffleResultsLabel => 'लॉटरी के परिणाम:';
+
+  @override
+  String get close => 'बंद करें';
+
+  @override
+  String get share => 'साझा करें';
+
+  @override
+  String get shareNotImplemented => 'साझा करना अभी तक लागू नहीं है';
+
+  @override
+  String get firstPlace => 'पहला स्थान';
+
+  @override
+  String get secondPlace => 'दूसरा स्थान';
+
+  @override
+  String get thirdPlace => 'तीसरा स्थान';
+
+  @override
+  String nthPlace(int position) {
+    return '$positionवां स्थान';
+  }
+
+  @override
+  String placeLabel(String position) {
+    return 'स्थान';
+  }
+
+  @override
+  String get raffleResultsHeader => 'लॉटरी परिणाम - null विजेता';
+
+  @override
+  String totalWinners(int count) {
+    return 'कुल विजेता: $count';
+  }
+
+  @override
+  String get noWinnersToShare => 'साझा करने के लिए कोई विजेता नहीं';
 }

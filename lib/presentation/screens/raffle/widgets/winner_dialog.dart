@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/app_localizations.dart';
 import '../../../../domain/models/raffle/raffle_session.dart';
 
 class WinnerDialog extends StatelessWidget {
@@ -40,9 +41,9 @@ class WinnerDialog extends StatelessWidget {
           const SizedBox(height: 24),
 
           // Winner announcement
-          const Text(
-            '🎉 ¡Felicidades! 🎉',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          Text(
+            AppLocalizations.of(context)!.congratulations,
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
 
@@ -79,7 +80,9 @@ class WinnerDialog extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'Posición: ${session.winnersCount + 1}°',
+                  AppLocalizations.of(
+                    context,
+                  )!.positionLabel(session.winnersCount + 1),
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -87,7 +90,9 @@ class WinnerDialog extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Participantes restantes: ${session.activeParticipantsCount - 1}',
+                  AppLocalizations.of(
+                    context,
+                  )!.remainingParticipants(session.activeParticipantsCount - 1),
                   style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                 ),
               ],
@@ -105,7 +110,7 @@ class WinnerDialog extends StatelessWidget {
                 ElevatedButton.icon(
                   onPressed: onRepeatRaffle,
                   icon: const Icon(Icons.casino),
-                  label: const Text('Continuar Sorteo'),
+                  label: Text(AppLocalizations.of(context)!.continueRaffle),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                     foregroundColor: Colors.white,
@@ -121,8 +126,8 @@ class WinnerDialog extends StatelessWidget {
                 icon: const Icon(Icons.emoji_events),
                 label: Text(
                   session.activeParticipantsCount > 1
-                      ? 'Ver Ganadores'
-                      : 'Finalizar Sorteo',
+                      ? AppLocalizations.of(context)!.winnersTitle
+                      : AppLocalizations.of(context)!.finishRaffle,
                 ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.amber,

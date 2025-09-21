@@ -1208,5 +1208,265 @@
   "aiEvaluationPromptResponseFormat": "回答格式：\n1. 评分：[X/10] - 简要说明评分理由\n2. 优点：提及回答的积极方面\n3. 改进领域：指出可以改进的方面\n4. 具体评论：提供详细和建设性的反馈\n5. 建议：提供具体的改进建议\n\n在评估中要有建设性、具体性和教育性。目标是帮助学生学习和改进。用第二人称称呼他们，使用专业友好的语调。",
   "@aiEvaluationPromptResponseFormat": {
     "description": "评估的回答格式指示"
+  },
+  "raffleTitle": "抽奖",
+  "@raffleTitle": {
+    "description": "抽奖屏幕标题"
+  },
+  "raffleTooltip": "打开抽奖屏幕",
+  "@raffleTooltip": {
+    "description": "应用栏抽奖图标提示"
+  },
+  "participantListTitle": "参与者列表",
+  "@participantListTitle": {
+    "description": "参与者列表部分标题"
+  },
+  "participantListHint": "输入用换行分隔的姓名",
+  "@participantListHint": {
+    "description": "参与者输入字段提示文本"
+  },
+  "participantListPlaceholder": "在此输入参与者姓名...\n每行一个姓名",
+  "@participantListPlaceholder": {
+    "description": "参与者输入字段占位符文本"
+  },
+  "clearList": "清空列表",
+  "@clearList": {
+    "description": "清空参与者列表按钮标签"
+  },
+  "participants": "参与者",
+  "@participants": {
+    "description": "参与者通用标签"
+  },
+  "noParticipants": "没有参与者",
+  "@noParticipants": {
+    "description": "没有参与者时显示的消息"
+  },
+  "addParticipantsHint": "添加参与者以开始抽奖",
+  "@addParticipantsHint": {
+    "description": "添加参与者的提示"
+  },
+  "activeParticipants": "活跃参与者",
+  "@activeParticipants": {
+    "description": "活跃参与者计数器"
+  },
+  "alreadySelected": "已选中",
+  "@alreadySelected": {
+    "description": "已被选中参与者的描述"
+  },
+  "totalParticipants": "总参与者",
+  "@totalParticipants": {
+    "description": "总参与者计数器"
+  },
+  "activeVsWinners": "{active}名活跃，{winners}名获奖者",
+  "@activeVsWinners": {
+    "description": "显示活跃参与者对获奖者数量",
+    "placeholders": {
+      "active": {
+        "type": "int",
+        "example": "5"
+      },
+      "winners": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "startRaffle": "开始抽奖",
+  "@startRaffle": {
+    "description": "开始抽奖按钮标签"
+  },
+  "raffling": "抽奖中...",
+  "@raffling": {
+    "description": "抽奖过程中显示的文本"
+  },
+  "selectingWinner": "选择获奖者...",
+  "@selectingWinner": {
+    "description": "选择获奖者时显示的文本"
+  },
+  "allParticipantsSelected": "所有参与者已被选中",
+  "@allParticipantsSelected": {
+    "description": "所有参与者被选中时显示的消息"
+  },
+  "addParticipantsToStart": "添加参与者以开始抽奖",
+  "@addParticipantsToStart": {
+    "description": "抽奖没有参与者时显示的消息"
+  },
+  "participantsReadyCount": "{count}名参与者准备抽奖",
+  "@participantsReadyCount": {
+    "description": "准备抽奖的参与者计数器",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "resetWinners": "重置获奖者",
+  "@resetWinners": {
+    "description": "重置获奖者按钮标签"
+  },
+  "resetWinnersConfirmTitle": "重置获奖者？",
+  "@resetWinnersConfirmTitle": {
+    "description": "重置获奖者确认对话框标题"
+  },
+  "resetWinnersConfirmMessage": "这将把所有获奖者重新放回活跃参与者列表。",
+  "@resetWinnersConfirmMessage": {
+    "description": "重置获奖者确认消息"
+  },
+  "resetRaffleTitle": "重置抽奖？",
+  "@resetRaffleTitle": {
+    "description": "重置抽奖确认对话框标题"
+  },
+  "resetRaffleConfirmMessage": "这将重置所有获奖者和活跃参与者。",
+  "@resetRaffleConfirmMessage": {
+    "description": "重置抽奖确认消息"
+  },
+  "reset": "重置",
+  "@reset": {
+    "description": "重置按钮标签"
+  },
+  "viewWinners": "查看获奖者",
+  "@viewWinners": {
+    "description": "查看获奖者按钮标签"
+  },
+  "congratulations": "恭喜！",
+  "@congratulations": {
+    "description": "获奖者祝贺消息"
+  },
+  "positionLabel": "第{position}名",
+  "@positionLabel": {
+    "description": "获奖者位置标签",
+    "placeholders": {
+      "position": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "remainingParticipants": "剩余参与者：{count}名",
+  "@remainingParticipants": {
+    "description": "剩余参与者计数器",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "continueRaffle": "继续抽奖",
+  "@continueRaffle": {
+    "description": "继续抽奖按钮标签"
+  },
+  "finishRaffle": "结束抽奖",
+  "@finishRaffle": {
+    "description": "结束抽奖按钮标签"
+  },
+  "winnersTitle": "获奖者",
+  "@winnersTitle": {
+    "description": "获奖者屏幕标题"
+  },
+  "shareResults": "分享结果",
+  "@shareResults": {
+    "description": "分享结果按钮标签"
+  },
+  "noWinnersYet": "暂无获奖者",
+  "@noWinnersYet": {
+    "description": "没有获奖者时显示的消息"
+  },
+  "performRaffleToSeeWinners": "进行抽奖以查看获奖者",
+  "@performRaffleToSeeWinners": {
+    "description": "鼓励进行抽奖的消息"
+  },
+  "goToRaffle": "前往抽奖",
+  "@goToRaffle": {
+    "description": "前往抽奖按钮标签"
+  },
+  "raffleCompleted": "抽奖完成！",
+  "@raffleCompleted": {
+    "description": "抽奖完成时显示的消息"
+  },
+  "winnersSelectedCount": "已选出{count}名获奖者",
+  "@winnersSelectedCount": {
+    "description": "已选获奖者计数器",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "newRaffle": "新抽奖",
+  "@newRaffle": {
+    "description": "开始新抽奖按钮标签"
+  },
+  "shareResultsTitle": "抽奖结果",
+  "@shareResultsTitle": {
+    "description": "分享结果对话框标题"
+  },
+  "raffleResultsLabel": "抽奖结果：",
+  "@raffleResultsLabel": {
+    "description": "抽奖结果标签"
+  },
+  "close": "关闭",
+  "@close": {
+    "description": "关闭按钮标签"
+  },
+  "share": "分享",
+  "@share": {
+    "description": "分享按钮标签"
+  },
+  "shareNotImplemented": "分享功能尚未实现",
+  "@shareNotImplemented": {
+    "description": "分享功能未实现时的消息"
+  },
+  "firstPlace": "第一名",
+  "@firstPlace": {
+    "description": "第一名标签"
+  },
+  "secondPlace": "第二名",
+  "@secondPlace": {
+    "description": "第二名标签"
+  },
+  "thirdPlace": "第三名",
+  "@thirdPlace": {
+    "description": "第三名标签"
+  },
+  "nthPlace": "第{position}名",
+  "@nthPlace": {
+    "description": "任意数字的名次标签",
+    "placeholders": {
+      "position": {
+        "type": "int",
+        "example": "4"
+      }
+    }
+  },
+  "placeLabel": "名次",
+  "@placeLabel": {
+    "description": "名次通用标签"
+  },
+  "raffleResultsHeader": "抽奖结果 - {count}名获奖者",
+  "@raffleResultsHeader": {
+    "description": "带获奖者数量的抽奖结果标题",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "totalWinners": "总获奖者：{count}名",
+  "@totalWinners": {
+    "description": "总获奖者计数器",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noWinnersToShare": "没有获奖者可分享",
+  "@noWinnersToShare": {
+    "description": "没有获奖者可分享时显示的消息"
   }
 }

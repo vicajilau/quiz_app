@@ -1208,5 +1208,265 @@
   "aiEvaluationPromptResponseFormat": "Formato de resposta:\n1. Puntuación: [X/10] - Xustifica brevemente a puntuación\n2. Puntos fortes: Indica os aspectos positivos da resposta\n3. Áreas de mellora: Sinala os aspectos que se poden mellorar\n4. Comentarios específicos: Proporciona retroalimentación detallada e construtiva\n5. Suxestións: Ofrece recomendacións específicas para mellorar\n\nSé construtivo, específico e educativo na túa avaliación. O obxectivo é axudar ao estudante a aprender e mellorar. Diríxete a el en segunda persoa e utiliza un ton profesional pero accesible.",
   "@aiEvaluationPromptResponseFormat": {
     "description": "Instrucións de formato de resposta para a avaliación"
+  },
+  "raffleTitle": "Sorteo",
+  "@raffleTitle": {
+    "description": "Título da pantalla de sorteo"
+  },
+  "raffleTooltip": "Abrir pantalla de sorteo",
+  "@raffleTooltip": {
+    "description": "Consello da icona de sorteo na barra de aplicacións"
+  },
+  "participantListTitle": "Lista de Participantes",
+  "@participantListTitle": {
+    "description": "Título da sección de lista de participantes"
+  },
+  "participantListHint": "Introduce nomes separados por salto de liña",
+  "@participantListHint": {
+    "description": "Texto de consello para o campo de entrada de participantes"
+  },
+  "participantListPlaceholder": "Introduce os nomes dos participantes aquí...\nUn nome por liña",
+  "@participantListPlaceholder": {
+    "description": "Texto de marcador de posición para o campo de entrada de participantes"
+  },
+  "clearList": "Limpar Lista",
+  "@clearList": {
+    "description": "Etiqueta do botón para limpar a lista de participantes"
+  },
+  "participants": "Participantes",
+  "@participants": {
+    "description": "Etiqueta xeral para os participantes"
+  },
+  "noParticipants": "Non hai participantes",
+  "@noParticipants": {
+    "description": "Mensaxe mostrada cando non hai participantes"
+  },
+  "addParticipantsHint": "Engade participantes para comezar o sorteo",
+  "@addParticipantsHint": {
+    "description": "Consello para engadir participantes"
+  },
+  "activeParticipants": "Participantes Activos",
+  "@activeParticipants": {
+    "description": "Contador de participantes activos"
+  },
+  "alreadySelected": "Xa Seleccionados",
+  "@alreadySelected": {
+    "description": "Descrición para os participantes xa seleccionados"
+  },
+  "totalParticipants": "Total de Participantes",
+  "@totalParticipants": {
+    "description": "Contador total de participantes"
+  },
+  "activeVsWinners": "{active} activos, {winners} gañadores",
+  "@activeVsWinners": {
+    "description": "Mostra o número de participantes activos vs gañadores",
+    "placeholders": {
+      "active": {
+        "type": "int",
+        "example": "5"
+      },
+      "winners": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "startRaffle": "Comezar Sorteo",
+  "@startRaffle": {
+    "description": "Etiqueta do botón para comezar o sorteo"
+  },
+  "raffling": "Sorteando...",
+  "@raffling": {
+    "description": "Texto mostrado durante o proceso de sorteo"
+  },
+  "selectingWinner": "Seleccionando gañador...",
+  "@selectingWinner": {
+    "description": "Texto mostrado durante a selección do gañador"
+  },
+  "allParticipantsSelected": "Todos os participantes foron seleccionados",
+  "@allParticipantsSelected": {
+    "description": "Mensaxe mostrada cando todos os participantes foron seleccionados"
+  },
+  "addParticipantsToStart": "Engade participantes para comezar o sorteo",
+  "@addParticipantsToStart": {
+    "description": "Mensaxe mostrada cando non hai participantes para o sorteo"
+  },
+  "participantsReadyCount": "{count} participantes listos para o sorteo",
+  "@participantsReadyCount": {
+    "description": "Contador de participantes listos para o sorteo",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "resetWinners": "Reiniciar Gañadores",
+  "@resetWinners": {
+    "description": "Etiqueta do botón para reiniciar os gañadores"
+  },
+  "resetWinnersConfirmTitle": "Reiniciar gañadores?",
+  "@resetWinnersConfirmTitle": {
+    "description": "Título do diálogo de confirmación para reiniciar os gañadores"
+  },
+  "resetWinnersConfirmMessage": "Isto devolverá todos os gañadores á lista de participantes activos.",
+  "@resetWinnersConfirmMessage": {
+    "description": "Mensaxe de confirmación para reiniciar os gañadores"
+  },
+  "resetRaffleTitle": "Reiniciar sorteo?",
+  "@resetRaffleTitle": {
+    "description": "Título do diálogo de confirmación para reiniciar o sorteo"
+  },
+  "resetRaffleConfirmMessage": "Isto reiniciará todos os gañadores e participantes activos.",
+  "@resetRaffleConfirmMessage": {
+    "description": "Mensaxe de confirmación para reiniciar o sorteo"
+  },
+  "reset": "Reiniciar",
+  "@reset": {
+    "description": "Etiqueta do botón de reinicio"
+  },
+  "viewWinners": "Ver Gañadores",
+  "@viewWinners": {
+    "description": "Etiqueta do botón para ver os gañadores"
+  },
+  "congratulations": "Parabéns!",
+  "@congratulations": {
+    "description": "Mensaxe de felicitación para o gañador"
+  },
+  "positionLabel": "Posición {position}",
+  "@positionLabel": {
+    "description": "Etiqueta da posición do gañador",
+    "placeholders": {
+      "position": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "remainingParticipants": "Participantes restantes: {count}",
+  "@remainingParticipants": {
+    "description": "Contador de participantes restantes",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "continueRaffle": "Continuar Sorteo",
+  "@continueRaffle": {
+    "description": "Etiqueta do botón para continuar o sorteo"
+  },
+  "finishRaffle": "Finalizar Sorteo",
+  "@finishRaffle": {
+    "description": "Etiqueta do botón para finalizar o sorteo"
+  },
+  "winnersTitle": "Gañadores",
+  "@winnersTitle": {
+    "description": "Título da pantalla de gañadores"
+  },
+  "shareResults": "Compartir Resultados",
+  "@shareResults": {
+    "description": "Etiqueta do botón para compartir os resultados"
+  },
+  "noWinnersYet": "Aínda non hai gañadores",
+  "@noWinnersYet": {
+    "description": "Mensaxe mostrada cando non hai gañadores"
+  },
+  "performRaffleToSeeWinners": "Realiza un sorteo para ver os gañadores",
+  "@performRaffleToSeeWinners": {
+    "description": "Mensaxe que anima a realizar un sorteo"
+  },
+  "goToRaffle": "Ir ao Sorteo",
+  "@goToRaffle": {
+    "description": "Etiqueta do botón para ir ao sorteo"
+  },
+  "raffleCompleted": "Sorteo completado!",
+  "@raffleCompleted": {
+    "description": "Mensaxe mostrada cando o sorteo está completado"
+  },
+  "winnersSelectedCount": "{count} gañadores seleccionados",
+  "@winnersSelectedCount": {
+    "description": "Contador de gañadores seleccionados",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "newRaffle": "Novo Sorteo",
+  "@newRaffle": {
+    "description": "Etiqueta do botón para comezar un novo sorteo"
+  },
+  "shareResultsTitle": "Resultados do Sorteo",
+  "@shareResultsTitle": {
+    "description": "Título do diálogo para compartir os resultados"
+  },
+  "raffleResultsLabel": "Resultados do sorteo:",
+  "@raffleResultsLabel": {
+    "description": "Etiqueta dos resultados do sorteo"
+  },
+  "close": "Pechar",
+  "@close": {
+    "description": "Etiqueta do botón de pechar"
+  },
+  "share": "Compartir",
+  "@share": {
+    "description": "Etiqueta do botón de compartir"
+  },
+  "shareNotImplemented": "Compartir aínda non está implementado",
+  "@shareNotImplemented": {
+    "description": "Mensaxe cando compartir non está implementado"
+  },
+  "firstPlace": "Primeiro Lugar",
+  "@firstPlace": {
+    "description": "Etiqueta do primeiro lugar"
+  },
+  "secondPlace": "Segundo Lugar",
+  "@secondPlace": {
+    "description": "Etiqueta do segundo lugar"
+  },
+  "thirdPlace": "Terceiro Lugar",
+  "@thirdPlace": {
+    "description": "Etiqueta do terceiro lugar"
+  },
+  "nthPlace": "Lugar {position}",
+  "@nthPlace": {
+    "description": "Etiqueta do lugar para calquera número",
+    "placeholders": {
+      "position": {
+        "type": "int",
+        "example": "4"
+      }
+    }
+  },
+  "placeLabel": "Lugar",
+  "@placeLabel": {
+    "description": "Etiqueta xeral para o lugar"
+  },
+  "raffleResultsHeader": "Resultados do Sorteo - {count} gañadores",
+  "@raffleResultsHeader": {
+    "description": "Cabeceira dos resultados do sorteo co número de gañadores",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "totalWinners": "Total de gañadores: {count}",
+  "@totalWinners": {
+    "description": "Contador total de gañadores",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noWinnersToShare": "Non hai gañadores para compartir",
+  "@noWinnersToShare": {
+    "description": "Mensaxe mostrada cando non hai gañadores para compartir"
   }
 }

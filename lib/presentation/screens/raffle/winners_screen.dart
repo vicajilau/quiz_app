@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import '../../../core/l10n/app_localizations.dart';
 import '../../../../domain/models/raffle/raffle_winner.dart';
 import '../../blocs/raffle_bloc/raffle_bloc.dart';
 import '../../blocs/raffle_bloc/raffle_state.dart';
@@ -12,7 +13,7 @@ class WinnersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ganadores del Sorteo'),
+        title: Text(AppLocalizations.of(context)!.winnersTitle),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => context.go('/raffle'),
@@ -21,7 +22,7 @@ class WinnersScreen extends StatelessWidget {
           IconButton(
             onPressed: () => _showShareDialog(context),
             icon: const Icon(Icons.share),
-            tooltip: 'Compartir resultados',
+            tooltip: AppLocalizations.of(context)!.shareResults,
           ),
         ],
       ),
@@ -56,7 +57,7 @@ class WinnersScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             Text(
-              'No hay ganadores aún',
+              AppLocalizations.of(context)!.noWinnersYet,
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -65,7 +66,7 @@ class WinnersScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              'Realiza un sorteo para ver los ganadores aquí',
+              AppLocalizations.of(context)!.performRaffleToSeeWinners,
               style: TextStyle(fontSize: 16, color: Colors.grey[500]),
               textAlign: TextAlign.center,
             ),
@@ -73,7 +74,7 @@ class WinnersScreen extends StatelessWidget {
             ElevatedButton.icon(
               onPressed: () => context.go('/raffle'),
               icon: const Icon(Icons.casino),
-              label: const Text('Ir al Sorteo'),
+              label: Text(AppLocalizations.of(context)!.goToRaffle),
             ),
           ],
         ),
@@ -116,16 +117,18 @@ class WinnersScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Sorteo Completado',
-                      style: TextStyle(
+                    Text(
+                      AppLocalizations.of(context)!.raffleCompleted,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '${winners.length} ganador(es) seleccionado(s)',
+                      AppLocalizations.of(
+                        context,
+                      )!.winnersSelectedCount(winners.length),
                       style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                     ),
                   ],
@@ -142,7 +145,7 @@ class WinnersScreen extends StatelessWidget {
             itemCount: winners.length,
             itemBuilder: (context, index) {
               final winner = winners[index];
-              return _buildWinnerCard(winner, index);
+              return _buildWinnerCard(winner, index, context);
             },
           ),
         ),
@@ -157,7 +160,7 @@ class WinnersScreen extends StatelessWidget {
                 ElevatedButton.icon(
                   onPressed: () => context.go('/raffle'),
                   icon: const Icon(Icons.casino),
-                  label: const Text('Nuevo Sorteo'),
+                  label: Text(AppLocalizations.of(context)!.newRaffle),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                     foregroundColor: Colors.white,
@@ -172,7 +175,11 @@ class WinnersScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildWinnerCard(RaffleWinner winner, int index) {
+  Widget _buildWinnerCard(
+    RaffleWinner winner,
+    int index,
+    BuildContext context,
+  ) {
     final position = winner.position;
     Color cardColor;
     IconData icon;
@@ -215,7 +222,7 @@ class WinnersScreen extends StatelessWidget {
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         subtitle: Text(
-          '${_getPositionText(position)} lugar • ${_formatTime(winner.selectedAt)}',
+          '${AppLocalizations.of(context)!.placeLabel(_getPositionText(context, position))} • ${_formatTime(winner.selectedAt)}',
           style: TextStyle(color: Colors.grey[600], fontSize: 14),
         ),
         trailing: position <= 3
@@ -225,16 +232,16 @@ class WinnersScreen extends StatelessWidget {
     );
   }
 
-  String _getPositionText(int position) {
+  String _getPositionText(BuildContext context, int position) {
     switch (position) {
       case 1:
-        return '1er';
+        return AppLocalizations.of(context)!.firstPlace;
       case 2:
-        return '2do';
+        return AppLocalizations.of(context)!.secondPlace;
       case 3:
-        return '3er';
+        return AppLocalizations.of(context)!.thirdPlace;
       default:
-        return '$position°';
+        return AppLocalizations.of(context)!.nthPlace(position);
     }
   }
 
@@ -253,17 +260,17 @@ class WinnersScreen extends StatelessWidget {
       winners = state.session.winners;
     }
 
-    final resultsText = _generateResultsText(winners);
+    final resultsText = _generateResultsText(winners, context);
 
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: const Text('Compartir Resultados'),
+        title: Text(AppLocalizations.of(context)!.shareResultsTitle),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text('Resultados del sorteo:'),
+            Text(AppLocalizations.of(context)!.raffleResultsLabel),
             const SizedBox(height: 16),
             Container(
               padding: const EdgeInsets.all(12),
@@ -281,7 +288,7 @@ class WinnersScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(),
-            child: const Text('Cerrar'),
+            child: Text(AppLocalizations.of(context)!.close),
           ),
           TextButton(
             onPressed: () {
@@ -289,33 +296,38 @@ class WinnersScreen extends StatelessWidget {
               // For now, we'll just copy to clipboard or show a message
               Navigator.of(dialogContext).pop();
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Funcionalidad de compartir no implementada'),
+                SnackBar(
+                  content: Text(
+                    AppLocalizations.of(context)!.shareNotImplemented,
+                  ),
                 ),
               );
             },
-            child: const Text('Compartir'),
+            child: Text(AppLocalizations.of(context)!.share),
           ),
         ],
       ),
     );
   }
 
-  String _generateResultsText(List<RaffleWinner> winners) {
-    if (winners.isEmpty) return 'No hay ganadores.';
+  String _generateResultsText(
+    List<RaffleWinner> winners,
+    BuildContext context,
+  ) {
+    if (winners.isEmpty) return AppLocalizations.of(context)!.noWinnersToShare;
 
     final buffer = StringBuffer();
-    buffer.writeln('🏆 RESULTADOS DEL SORTEO 🏆');
+    buffer.writeln(AppLocalizations.of(context)!.raffleResultsHeader);
     buffer.writeln();
 
     for (final winner in winners) {
       buffer.writeln(
-        '${_getPositionText(winner.position)} lugar: ${winner.name}',
+        '${AppLocalizations.of(context)!.placeLabel(_getPositionText(context, winner.position))}: ${winner.name}',
       );
     }
 
     buffer.writeln();
-    buffer.writeln('Total de ganadores: ${winners.length}');
+    buffer.writeln(AppLocalizations.of(context)!.totalWinners(winners.length));
 
     return buffer.toString();
   }

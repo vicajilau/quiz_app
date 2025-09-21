@@ -1208,5 +1208,265 @@
   "aiEvaluationPromptResponseFormat": "उत्तर प्रारूप:\n1. ग्रेड: [X/10] - ग्रेड के लिए संक्षेप में औचित्य दें\n2. शक्तियां: उत्तर के सकारात्मक पहलुओं का उल्लेख करें\n3. सुधार के क्षेत्र: उन पहलुओं को इंगित करें जिन्हें सुधारा जा सकता है\n4. विशिष्ट टिप्पणियां: विस्तृत और रचनात्मक प्रतिक्रिया प्रदान करें\n5. सुझाव: सुधार के लिए विशिष्ट सिफारिशें प्रदान करें\n\nअपने मूल्यांकन में रचनात्मक, विशिष्ट और शैक्षिक बनें। लक्ष्य छात्र को सीखने और सुधारने में मदद करना है। उन्हें द्वितीय व्यक्ति में संबोधित करें और एक पेशेवर और मित्रवत स्वर का उपयोग करें।",
   "@aiEvaluationPromptResponseFormat": {
     "description": "मूल्यांकन के लिए उत्तर प्रारूप निर्देश"
+  },
+  "raffleTitle": "लॉटरी",
+  "@raffleTitle": {
+    "description": "लॉटरी स्क्रीन का शीर्षक"
+  },
+  "raffleTooltip": "लॉटरी स्क्रीन खोलें",
+  "@raffleTooltip": {
+    "description": "ऐप बार में लॉटरी आइकन का टूलटिप"
+  },
+  "participantListTitle": "प्रतिभागियों की सूची",
+  "@participantListTitle": {
+    "description": "प्रतिभागी सूची अनुभाग का शीर्षक"
+  },
+  "participantListHint": "नई लाइन से अलग किए गए नाम दर्ज करें",
+  "@participantListHint": {
+    "description": "प्रतिभागी इनपुट फील्ड के लिए संकेत टेक्स्ट"
+  },
+  "participantListPlaceholder": "प्रतिभागियों के नाम यहाँ दर्ज करें...\nएक लाइन में एक नाम",
+  "@participantListPlaceholder": {
+    "description": "प्रतिभागी इनपुट फील्ड के लिए प्लेसहोल्डर टेक्स्ट"
+  },
+  "clearList": "सूची साफ़ करें",
+  "@clearList": {
+    "description": "प्रतिभागी सूची साफ़ करने के लिए बटन लेबल"
+  },
+  "participants": "प्रतिभागी",
+  "@participants": {
+    "description": "प्रतिभागियों के लिए सामान्य लेबल"
+  },
+  "noParticipants": "कोई प्रतिभागी नहीं",
+  "@noParticipants": {
+    "description": "कोई प्रतिभागी न होने पर दिखाया गया संदेश"
+  },
+  "addParticipantsHint": "लॉटरी शुरू करने के लिए प्रतिभागी जोड़ें",
+  "@addParticipantsHint": {
+    "description": "प्रतिभागी जोड़ने के लिए संकेत"
+  },
+  "activeParticipants": "सक्रिय प्रतिभागी",
+  "@activeParticipants": {
+    "description": "सक्रिय प्रतिभागियों का काउंटर"
+  },
+  "alreadySelected": "पहले से चुने गए",
+  "@alreadySelected": {
+    "description": "पहले से चुने गए प्रतिभागियों का विवरण"
+  },
+  "totalParticipants": "कुल प्रतिभागी",
+  "@totalParticipants": {
+    "description": "कुल प्रतिभागियों का काउंटर"
+  },
+  "activeVsWinners": "{active} सक्रिय, {winners} विजेता",
+  "@activeVsWinners": {
+    "description": "सक्रिय प्रतिभागियों बनाम विजेताओं की संख्या दिखाता है",
+    "placeholders": {
+      "active": {
+        "type": "int",
+        "example": "5"
+      },
+      "winners": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "startRaffle": "लॉटरी शुरू करें",
+  "@startRaffle": {
+    "description": "लॉटरी शुरू करने के लिए बटन लेबल"
+  },
+  "raffling": "लॉटरी हो रही है...",
+  "@raffling": {
+    "description": "लॉटरी प्रक्रिया के दौरान दिखाया गया टेक्स्ट"
+  },
+  "selectingWinner": "विजेता चुना जा रहा है...",
+  "@selectingWinner": {
+    "description": "विजेता चुनने के दौरान दिखाया गया टेक्स्ट"
+  },
+  "allParticipantsSelected": "सभी प्रतिभागी चुने गए हैं",
+  "@allParticipantsSelected": {
+    "description": "सभी प्रतिभागी चुने जाने पर दिखाया गया संदेश"
+  },
+  "addParticipantsToStart": "लॉटरी शुरू करने के लिए प्रतिभागी जोड़ें",
+  "@addParticipantsToStart": {
+    "description": "लॉटरी के लिए कोई प्रतिभागी न होने पर दिखाया गया संदेश"
+  },
+  "participantsReadyCount": "{count} प्रतिभागी लॉटरी के लिए तैयार",
+  "@participantsReadyCount": {
+    "description": "लॉटरी के लिए तैयार प्रतिभागियों का काउंटर",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "resetWinners": "विजेताओं को रीसेट करें",
+  "@resetWinners": {
+    "description": "विजेताओं को रीसेट करने के लिए बटन लेबल"
+  },
+  "resetWinnersConfirmTitle": "विजेताओं को रीसेट करें?",
+  "@resetWinnersConfirmTitle": {
+    "description": "विजेताओं को रीसेट करने के लिए पुष्टि संवाद शीर्षक"
+  },
+  "resetWinnersConfirmMessage": "यह सभी विजेताओं को सक्रिय प्रतिभागी सूची में वापस कर देगा।",
+  "@resetWinnersConfirmMessage": {
+    "description": "विजेताओं को रीसेट करने के लिए पुष्टि संदेश"
+  },
+  "resetRaffleTitle": "लॉटरी रीसेट करें?",
+  "@resetRaffleTitle": {
+    "description": "लॉटरी रीसेट करने के लिए पुष्टि संवाद शीर्षक"
+  },
+  "resetRaffleConfirmMessage": "यह सभी विजेताओं और सक्रिय प्रतिभागियों को रीसेट कर देगा।",
+  "@resetRaffleConfirmMessage": {
+    "description": "लॉटरी रीसेट करने के लिए पुष्टि संदेश"
+  },
+  "reset": "रीसेट करें",
+  "@reset": {
+    "description": "रीसेट बटन लेबल"
+  },
+  "viewWinners": "विजेता देखें",
+  "@viewWinners": {
+    "description": "विजेता देखने के लिए बटन लेबल"
+  },
+  "congratulations": "बधाई हो!",
+  "@congratulations": {
+    "description": "विजेता के लिए बधाई संदेश"
+  },
+  "positionLabel": "स्थिति {position}",
+  "@positionLabel": {
+    "description": "विजेता की स्थिति लेबल",
+    "placeholders": {
+      "position": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "remainingParticipants": "शेष प्रतिभागी: {count}",
+  "@remainingParticipants": {
+    "description": "शेष प्रतिभागियों का काउंटर",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "continueRaffle": "लॉटरी जारी रखें",
+  "@continueRaffle": {
+    "description": "लॉटरी जारी रखने के लिए बटन लेबल"
+  },
+  "finishRaffle": "लॉटरी समाप्त करें",
+  "@finishRaffle": {
+    "description": "लॉटरी समाप्त करने के लिए बटन लेबल"
+  },
+  "winnersTitle": "विजेता",
+  "@winnersTitle": {
+    "description": "विजेता स्क्रीन का शीर्षक"
+  },
+  "shareResults": "परिणाम साझा करें",
+  "@shareResults": {
+    "description": "परिणाम साझा करने के लिए बटन लेबल"
+  },
+  "noWinnersYet": "अभी तक कोई विजेता नहीं",
+  "@noWinnersYet": {
+    "description": "कोई विजेता न होने पर दिखाया गया संदेश"
+  },
+  "performRaffleToSeeWinners": "विजेता देखने के लिए लॉटरी करें",
+  "@performRaffleToSeeWinners": {
+    "description": "लॉटरी करने को प्रोत्साहित करने वाला संदेश"
+  },
+  "goToRaffle": "लॉटरी पर जाएं",
+  "@goToRaffle": {
+    "description": "लॉटरी पर जाने के लिए बटन लेबल"
+  },
+  "raffleCompleted": "लॉटरी पूर्ण!",
+  "@raffleCompleted": {
+    "description": "लॉटरी पूर्ण होने पर दिखाया गया संदेश"
+  },
+  "winnersSelectedCount": "{count} विजेता चुने गए",
+  "@winnersSelectedCount": {
+    "description": "चुने गए विजेताओं का काउंटर",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "newRaffle": "नई लॉटरी",
+  "@newRaffle": {
+    "description": "नई लॉटरी शुरू करने के लिए बटन लेबल"
+  },
+  "shareResultsTitle": "लॉटरी के परिणाम",
+  "@shareResultsTitle": {
+    "description": "परिणाम साझा करने के लिए संवाद शीर्षक"
+  },
+  "raffleResultsLabel": "लॉटरी के परिणाम:",
+  "@raffleResultsLabel": {
+    "description": "लॉटरी परिणामों का लेबल"
+  },
+  "close": "बंद करें",
+  "@close": {
+    "description": "बंद करने के लिए बटन लेबल"
+  },
+  "share": "साझा करें",
+  "@share": {
+    "description": "साझा करने के लिए बटन लेबल"
+  },
+  "shareNotImplemented": "साझा करना अभी तक लागू नहीं है",
+  "@shareNotImplemented": {
+    "description": "साझा करना लागू न होने पर संदेश"
+  },
+  "firstPlace": "पहला स्थान",
+  "@firstPlace": {
+    "description": "पहले स्थान का लेबल"
+  },
+  "secondPlace": "दूसरा स्थान",
+  "@secondPlace": {
+    "description": "दूसरे स्थान का लेबल"
+  },
+  "thirdPlace": "तीसरा स्थान",
+  "@thirdPlace": {
+    "description": "तीसरे स्थान का लेबल"
+  },
+  "nthPlace": "{position}वां स्थान",
+  "@nthPlace": {
+    "description": "किसी भी संख्या के लिए स्थान लेबल",
+    "placeholders": {
+      "position": {
+        "type": "int",
+        "example": "4"
+      }
+    }
+  },
+  "placeLabel": "स्थान",
+  "@placeLabel": {
+    "description": "स्थान के लिए सामान्य लेबल"
+  },
+  "raffleResultsHeader": "लॉटरी परिणाम - {count} विजेता",
+  "@raffleResultsHeader": {
+    "description": "विजेताओं की संख्या के साथ लॉटरी परिणामों का हेडर",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "totalWinners": "कुल विजेता: {count}",
+  "@totalWinners": {
+    "description": "कुल विजेताओं का काउंटर",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noWinnersToShare": "साझा करने के लिए कोई विजेता नहीं",
+  "@noWinnersToShare": {
+    "description": "साझा करने के लिए कोई विजेता न होने पर दिखाया गया संदेश"
   }
 }

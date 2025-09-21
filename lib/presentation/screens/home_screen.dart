@@ -133,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   // Raffle button
                   Tooltip(
-                    message: 'Sorteo', // TODO: Add to localizations
+                    message: AppLocalizations.of(context)!.raffleTooltip,
                     child: IconButton(
                       onPressed: _isLoading
                           ? null

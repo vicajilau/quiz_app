@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/l10n/app_localizations.dart';
 import '../../../blocs/raffle_bloc/raffle_bloc.dart';
 import '../../../blocs/raffle_bloc/raffle_state.dart';
 import '../../../../domain/models/raffle/raffle_session.dart';
@@ -29,12 +30,12 @@ class ParticipantListWidget extends StatelessWidget {
                 Icon(Icons.people_outline, size: 64, color: Colors.grey[400]),
                 const SizedBox(height: 16),
                 Text(
-                  'No hay participantes',
+                  AppLocalizations.of(context)!.noParticipants,
                   style: TextStyle(fontSize: 16, color: Colors.grey[600]),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Agrega nombres en el área de texto',
+                  AppLocalizations.of(context)!.addParticipantsHint,
                   style: TextStyle(fontSize: 14, color: Colors.grey[500]),
                 ),
               ],
@@ -61,12 +62,17 @@ class ParticipantListWidget extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'Total: ${session.totalParticipants}',
+                    AppLocalizations.of(
+                      context,
+                    )!.totalParticipants(session.totalParticipants),
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Activos: ${activeParticipants.length} | Ganadores: ${session.winnersCount}',
+                    AppLocalizations.of(context)!.activeVsWinners(
+                      activeParticipants.length,
+                      session.winnersCount,
+                    ),
                     style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                   ),
                 ],
@@ -79,9 +85,9 @@ class ParticipantListWidget extends StatelessWidget {
               child: ListView(
                 children: [
                   if (activeParticipants.isNotEmpty) ...[
-                    const Text(
-                      'Participantes Activos',
-                      style: TextStyle(
+                    Text(
+                      AppLocalizations.of(context)!.activeParticipants,
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.green,
                       ),
@@ -108,9 +114,9 @@ class ParticipantListWidget extends StatelessWidget {
 
                   if (inactiveParticipants.isNotEmpty) ...[
                     const SizedBox(height: 16),
-                    const Text(
-                      'Ya Seleccionados',
-                      style: TextStyle(
+                    Text(
+                      AppLocalizations.of(context)!.alreadySelected,
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.orange,
                       ),

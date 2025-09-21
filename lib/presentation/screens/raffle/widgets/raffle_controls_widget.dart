@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/l10n/app_localizations.dart';
 import '../../../blocs/raffle_bloc/raffle_bloc.dart';
 import '../../../blocs/raffle_bloc/raffle_event.dart';
 import '../../../blocs/raffle_bloc/raffle_state.dart';
@@ -52,7 +53,9 @@ class RaffleControlsWidget extends StatelessWidget {
                       )
                     : const Icon(Icons.casino),
                 label: Text(
-                  isSelecting ? 'Sorteando...' : 'Iniciar Sorteo',
+                  isSelecting
+                      ? AppLocalizations.of(context)!.raffling
+                      : AppLocalizations.of(context)!.startRaffle,
                   style: const TextStyle(fontSize: 18),
                 ),
                 style: ElevatedButton.styleFrom(
@@ -67,7 +70,7 @@ class RaffleControlsWidget extends StatelessWidget {
             // Status text
             if (session != null) ...[
               Text(
-                _getStatusText(session, isSelecting),
+                _getStatusText(session, isSelecting, context),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 14, color: Colors.grey[600]),
               ),
@@ -82,7 +85,7 @@ class RaffleControlsWidget extends StatelessWidget {
                     child: OutlinedButton.icon(
                       onPressed: () => _showClearWinnersDialog(context),
                       icon: const Icon(Icons.restart_alt),
-                      label: const Text('Reiniciar Ganadores'),
+                      label: Text(AppLocalizations.of(context)!.resetWinners),
                     ),
                   ),
                 ],
@@ -107,42 +110,45 @@ class RaffleControlsWidget extends StatelessWidget {
     });
   }
 
-  String _getStatusText(RaffleSession session, bool isSelecting) {
+  String _getStatusText(
+    RaffleSession session,
+    bool isSelecting,
+    BuildContext context,
+  ) {
     if (isSelecting) {
-      return 'Seleccionando ganador...';
+      return AppLocalizations.of(context)!.selectingWinner;
     }
 
     if (session.activeParticipants.isEmpty) {
       if (session.hasParticipants) {
-        return 'Todos los participantes ya fueron seleccionados';
+        return AppLocalizations.of(context)!.allParticipantsSelected;
       } else {
-        return 'Agrega participantes para comenzar el sorteo';
+        return AppLocalizations.of(context)!.addParticipantsToStart;
       }
     }
 
-    return '${session.activeParticipantsCount} participante(s) listo(s) para el sorteo';
+    return AppLocalizations.of(
+      context,
+    )!.participantsReadyCount(session.activeParticipantsCount);
   }
 
   void _showClearWinnersDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: const Text('Reiniciar Ganadores'),
-        content: const Text(
-          '¿Estás seguro de que quieres reiniciar la lista de ganadores? '
-          'Todos los participantes volverán a estar disponibles para el sorteo.',
-        ),
+        title: Text(AppLocalizations.of(context)!.resetWinnersConfirmTitle),
+        content: Text(AppLocalizations.of(context)!.resetWinnersConfirmMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(),
-            child: const Text('Cancelar'),
+            child: Text(AppLocalizations.of(context)!.cancel),
           ),
           TextButton(
             onPressed: () {
               Navigator.of(dialogContext).pop();
               context.read<RaffleBloc>().add(ClearWinners());
             },
-            child: const Text('Reiniciar'),
+            child: Text(AppLocalizations.of(context)!.reset),
           ),
         ],
       ),

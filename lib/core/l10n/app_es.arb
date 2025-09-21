@@ -1165,5 +1165,275 @@
   "aiEvaluationPromptResponseFormat": "FORMATO DE RESPUESTA:\n1. CALIFICACIÓN: [X/10] - Justifica brevemente la nota\n2. FORTALEZAS: Menciona los aspectos positivos de la respuesta\n3. ÁREAS DE MEJORA: Señala qué aspectos podrían mejorarse\n4. COMENTARIOS ESPECÍFICOS: Proporciona feedback detallado y constructivo\n5. SUGERENCIAS: Ofrece recomendaciones específicas para mejorar\n\nSé constructivo, específico y educativo en tu evaluación. El objetivo es ayudar al estudiante a aprender y mejorar. Dirígite a él en segunda persona y utiliza un tono profesional y amigable.",
   "@aiEvaluationPromptResponseFormat": {
     "description": "Instrucciones de formato de respuesta para evaluación"
+  },
+  "raffleTitle": "Sorteo",
+  "@raffleTitle": {
+    "description": "Título de la funcionalidad de sorteo"
+  },
+  "raffleTooltip": "Sorteo",
+  "@raffleTooltip": {
+    "description": "Tooltip del botón de sorteo en el app bar"
+  },
+  "participantListTitle": "Lista de Participantes",
+  "@participantListTitle": {
+    "description": "Título de la sección de lista de participantes"
+  },
+  "participantListHint": "Ingresa un nombre por línea:",
+  "@participantListHint": {
+    "description": "Instrucción para el campo de entrada de participantes"
+  },
+  "participantListPlaceholder": "Juan Pérez\nMaría García\nPedro López\n...",
+  "@participantListPlaceholder": {
+    "description": "Texto de ejemplo en el campo de participantes"
+  },
+  "clearList": "Limpiar Lista",
+  "@clearList": {
+    "description": "Texto del botón para limpiar la lista de participantes"
+  },
+  "participants": "Participantes",
+  "@participants": {
+    "description": "Título de la sección de participantes"
+  },
+  "noParticipants": "No hay participantes",
+  "@noParticipants": {
+    "description": "Mensaje cuando no hay participantes"
+  },
+  "addParticipantsHint": "Agrega nombres en el área de texto",
+  "@addParticipantsHint": {
+    "description": "Sugerencia para agregar participantes"
+  },
+  "activeParticipants": "Participantes Activos",
+  "@activeParticipants": {
+    "description": "Título para participantes activos"
+  },
+  "alreadySelected": "Ya Seleccionados",
+  "@alreadySelected": {
+    "description": "Título para participantes ya seleccionados"
+  },
+  "totalParticipants": "Total: {count}",
+  "@totalParticipants": {
+    "description": "Total de participantes",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "activeVsWinners": "Activos: {active} | Ganadores: {winners}",
+  "@activeVsWinners": {
+    "description": "Resumen de participantes activos vs ganadores",
+    "placeholders": {
+      "active": {
+        "type": "int",
+        "example": "5"
+      },
+      "winners": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "startRaffle": "Iniciar Sorteo",
+  "@startRaffle": {
+    "description": "Texto del botón para iniciar sorteo"
+  },
+  "raffling": "Sorteando...",
+  "@raffling": {
+    "description": "Texto mostrado durante la animación de sorteo"
+  },
+  "selectingWinner": "Seleccionando ganador...",
+  "@selectingWinner": {
+    "description": "Texto mostrado durante la selección de ganador"
+  },
+  "allParticipantsSelected": "Todos los participantes ya fueron seleccionados",
+  "@allParticipantsSelected": {
+    "description": "Mensaje cuando todos los participantes ya fueron seleccionados"
+  },
+  "addParticipantsToStart": "Agrega participantes para comenzar el sorteo",
+  "@addParticipantsToStart": {
+    "description": "Mensaje para agregar participantes antes de sortear"
+  },
+  "participantsReadyCount": "{count} participante(s) listo(s) para el sorteo",
+  "@participantsReadyCount": {
+    "description": "Número de participantes listos para sorteo",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "resetWinners": "Reiniciar Ganadores",
+  "@resetWinners": {
+    "description": "Texto del botón para reiniciar ganadores"
+  },
+  "resetWinnersConfirmTitle": "Reiniciar Ganadores",
+  "@resetWinnersConfirmTitle": {
+    "description": "Título del diálogo de confirmación para reiniciar ganadores"
+  },
+  "resetWinnersConfirmMessage": "¿Estás seguro de que quieres reiniciar la lista de ganadores? Todos los participantes volverán a estar disponibles para el sorteo.",
+  "@resetWinnersConfirmMessage": {
+    "description": "Mensaje de confirmación para reiniciar ganadores"
+  },
+  "resetRaffleTitle": "Reiniciar Sorteo",
+  "@resetRaffleTitle": {
+    "description": "Título del botón y diálogo para reiniciar sorteo"
+  },
+  "resetRaffleConfirmMessage": "¿Estás seguro de que quieres reiniciar el sorteo? Se perderán todos los participantes y ganadores.",
+  "@resetRaffleConfirmMessage": {
+    "description": "Mensaje de confirmación para reiniciar sorteo completo"
+  },
+  "cancel": "Cancelar",
+  "@cancel": {
+    "description": "Texto del botón cancelar"
+  },
+  "reset": "Reiniciar",
+  "@reset": {
+    "description": "Texto del botón reiniciar"
+  },
+  "viewWinners": "Ver ganadores",
+  "@viewWinners": {
+    "description": "Tooltip del botón para ver ganadores"
+  },
+  "congratulations": "🎉 ¡Felicidades! 🎉",
+  "@congratulations": {
+    "description": "Mensaje de felicitaciones en el diálogo de ganador"
+  },
+  "positionLabel": "Posición: {position}°",
+  "@positionLabel": {
+    "description": "Etiqueta de posición del ganador",
+    "placeholders": {
+      "position": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "remainingParticipants": "Participantes restantes: {count}",
+  "@remainingParticipants": {
+    "description": "Número de participantes restantes",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "continueRaffle": "Continuar Sorteo",
+  "@continueRaffle": {
+    "description": "Texto del botón para continuar sorteo"
+  },
+  "finishRaffle": "Finalizar Sorteo",
+  "@finishRaffle": {
+    "description": "Texto del botón para finalizar sorteo"
+  },
+  "winnersTitle": "Ganadores del Sorteo",
+  "@winnersTitle": {
+    "description": "Título de la pantalla de ganadores"
+  },
+  "shareResults": "Compartir resultados",
+  "@shareResults": {
+    "description": "Tooltip del botón compartir resultados"
+  },
+  "noWinnersYet": "No hay ganadores aún",
+  "@noWinnersYet": {
+    "description": "Mensaje cuando no hay ganadores"
+  },
+  "performRaffleToSeeWinners": "Realiza un sorteo para ver los ganadores aquí",
+  "@performRaffleToSeeWinners": {
+    "description": "Sugerencia para realizar un sorteo"
+  },
+  "goToRaffle": "Ir al Sorteo",
+  "@goToRaffle": {
+    "description": "Texto del botón para ir al sorteo"
+  },
+  "raffleCompleted": "Sorteo Completado",
+  "@raffleCompleted": {
+    "description": "Mensaje de sorteo completado"
+  },
+  "winnersSelectedCount": "{count} ganador(es) seleccionado(s)",
+  "@winnersSelectedCount": {
+    "description": "Número de ganadores seleccionados",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "newRaffle": "Nuevo Sorteo",
+  "@newRaffle": {
+    "description": "Texto del botón para nuevo sorteo"
+  },
+  "shareResultsTitle": "Compartir Resultados",
+  "@shareResultsTitle": {
+    "description": "Título del diálogo de compartir resultados"
+  },
+  "raffleResultsLabel": "Resultados del sorteo:",
+  "@raffleResultsLabel": {
+    "description": "Etiqueta para los resultados del sorteo"
+  },
+  "close": "Cerrar",
+  "@close": {
+    "description": "Texto del botón cerrar"
+  },
+  "share": "Compartir",
+  "@share": {
+    "description": "Texto del botón compartir"
+  },
+  "shareNotImplemented": "Funcionalidad de compartir no implementada",
+  "@shareNotImplemented": {
+    "description": "Mensaje cuando la funcionalidad de compartir no está implementada"
+  },
+  "firstPlace": "1er",
+  "@firstPlace": {
+    "description": "Abreviatura para primer lugar"
+  },
+  "secondPlace": "2do",
+  "@secondPlace": {
+    "description": "Abreviatura para segundo lugar"
+  },
+  "thirdPlace": "3er",
+  "@thirdPlace": {
+    "description": "Abreviatura para tercer lugar"
+  },
+  "nthPlace": "{position}°",
+  "@nthPlace": {
+    "description": "Formato para posiciones superiores al tercer lugar",
+    "placeholders": {
+      "position": {
+        "type": "int",
+        "example": "4"
+      }
+    }
+  },
+  "placeLabel": "{position} lugar",
+  "@placeLabel": {
+    "description": "Etiqueta de lugar en lista de ganadores",
+    "placeholders": {
+      "position": {
+        "type": "String",
+        "example": "1er"
+      }
+    }
+  },
+  "raffleResultsHeader": "🏆 RESULTADOS DEL SORTEO 🏆",
+  "@raffleResultsHeader": {
+    "description": "Encabezado para resultados de sorteo compartidos"
+  },
+  "totalWinners": "Total de ganadores: {count}",
+  "@totalWinners": {
+    "description": "Total de ganadores en resultados compartidos",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "noWinnersToShare": "No hay ganadores.",
+  "@noWinnersToShare": {
+    "description": "Mensaje cuando no hay ganadores para compartir"
   }
 }

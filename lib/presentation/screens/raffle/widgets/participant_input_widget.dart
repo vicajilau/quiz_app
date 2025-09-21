@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/l10n/app_localizations.dart';
 import '../../../blocs/raffle_bloc/raffle_bloc.dart';
 import '../../../blocs/raffle_bloc/raffle_event.dart';
 import '../../../blocs/raffle_bloc/raffle_state.dart';
@@ -46,7 +47,7 @@ class _ParticipantInputWidgetState extends State<ParticipantInputWidget> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            'Ingresa un nombre por línea:',
+            AppLocalizations.of(context)!.participantListHint,
             style: TextStyle(fontSize: 14, color: Colors.grey[600]),
           ),
           const SizedBox(height: 8),
@@ -61,10 +62,12 @@ class _ParticipantInputWidgetState extends State<ParticipantInputWidget> {
                 maxLines: null,
                 expands: true,
                 textAlignVertical: TextAlignVertical.top,
-                decoration: const InputDecoration(
-                  hintText: 'Juan Pérez\nMaría García\nPedro López\n...',
+                decoration: InputDecoration(
+                  hintText: AppLocalizations.of(
+                    context,
+                  )!.participantListPlaceholder,
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.all(16),
+                  contentPadding: const EdgeInsets.all(16),
                 ),
                 style: const TextStyle(fontSize: 16),
               ),
@@ -77,7 +80,7 @@ class _ParticipantInputWidgetState extends State<ParticipantInputWidget> {
               context.read<RaffleBloc>().add(ClearParticipants());
             },
             icon: const Icon(Icons.clear),
-            label: const Text('Limpiar Lista'),
+            label: Text(AppLocalizations.of(context)!.clearList),
           ),
         ],
       ),

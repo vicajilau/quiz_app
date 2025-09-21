@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+import '../../../../core/l10n/app_localizations.dart';
 
 class RaffleAnimationWidget extends StatefulWidget {
   const RaffleAnimationWidget({super.key});
@@ -106,7 +107,7 @@ class _RaffleAnimationWidgetState extends State<RaffleAnimationWidget>
                 return FadeTransition(
                   opacity: _fadeController,
                   child: Text(
-                    'Sorteando...',
+                    AppLocalizations.of(context)!.raffling,
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
