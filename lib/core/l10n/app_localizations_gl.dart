@@ -1013,7 +1013,7 @@ class AppLocalizationsGl extends AppLocalizations {
   String get close => 'Pechar';
 
   @override
-  String get share => 'Compartir';
+  String get share => 'Copiar';
 
   @override
   String get shareNotImplemented => 'Compartir aínda non está implementado';

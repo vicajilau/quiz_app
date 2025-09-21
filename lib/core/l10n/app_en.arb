@@ -1438,9 +1438,9 @@
   "@close": {
     "description": "Text of the close button"
   },
-  "share": "Share",
+  "share": "Copy",
   "@share": {
-    "description": "Text of the share button"
+    "description": "Text of the copy button"
   },
   "shareNotImplemented": "Share functionality not implemented",
   "@shareNotImplemented": {

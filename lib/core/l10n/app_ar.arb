@@ -1411,9 +1411,9 @@
   "@close": {
     "description": "تسمية زر الإغلاق"
   },
-  "share": "مشاركة",
+  "share": "نسخ",
   "@share": {
-    "description": "تسمية زر المشاركة"
+    "description": "تسمية زر النسخ"
   },
   "shareNotImplemented": "المشاركة غير مطبقة بعد",
   "@shareNotImplemented": {

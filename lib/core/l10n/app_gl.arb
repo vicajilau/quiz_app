@@ -1411,9 +1411,9 @@
   "@close": {
     "description": "Etiqueta do botón de pechar"
   },
-  "share": "Compartir",
+  "share": "Copiar",
   "@share": {
-    "description": "Etiqueta do botón de compartir"
+    "description": "Etiqueta do botón de copiar"
   },
   "shareNotImplemented": "Compartir aínda non está implementado",
   "@shareNotImplemented": {

@@ -1004,7 +1004,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get close => 'Chiudi';
 
   @override
-  String get share => 'Condividi';
+  String get share => 'Copia';
 
   @override
   String get shareNotImplemented =>

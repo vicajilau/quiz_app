@@ -959,7 +959,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get close => '閉じる';
 
   @override
-  String get share => '共有';
+  String get share => 'コピー';
 
   @override
   String get shareNotImplemented => '共有機能はまだ実装されていません';

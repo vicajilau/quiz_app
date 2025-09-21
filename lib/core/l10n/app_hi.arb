@@ -1411,9 +1411,9 @@
   "@close": {
     "description": "बंद करने के लिए बटन लेबल"
   },
-  "share": "साझा करें",
+  "share": "कॉपी करें",
   "@share": {
-    "description": "साझा करने के लिए बटन लेबल"
+    "description": "कॉपी करने के लिए बटन लेबल"
   },
   "shareNotImplemented": "साझा करना अभी तक लागू नहीं है",
   "@shareNotImplemented": {

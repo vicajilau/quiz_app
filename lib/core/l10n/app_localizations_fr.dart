@@ -1011,7 +1011,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get close => 'Fermer';
 
   @override
-  String get share => 'Partager';
+  String get share => 'Copier';
 
   @override
   String get shareNotImplemented => 'Fonctionnalité de partage non implémentée';

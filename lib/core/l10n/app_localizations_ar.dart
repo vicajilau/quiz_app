@@ -989,7 +989,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get close => 'إغلاق';
 
   @override
-  String get share => 'مشاركة';
+  String get share => 'نسخ';
 
   @override
   String get shareNotImplemented => 'المشاركة غير مطبقة بعد';

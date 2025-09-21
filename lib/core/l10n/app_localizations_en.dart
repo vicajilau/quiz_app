@@ -997,7 +997,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get close => 'Close';
 
   @override
-  String get share => 'Share';
+  String get share => 'Copy';
 
   @override
   String get shareNotImplemented => 'Share functionality not implemented';

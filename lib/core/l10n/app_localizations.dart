@@ -1830,10 +1830,10 @@ abstract class AppLocalizations {
   /// **'Close'**
   String get close;
 
-  /// Text of the share button
+  /// Text of the copy button
   ///
   /// In en, this message translates to:
-  /// **'Share'**
+  /// **'Copy'**
   String get share;
 
   /// Message when share functionality is not implemented

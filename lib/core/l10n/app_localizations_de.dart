@@ -1012,7 +1012,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get close => 'Schließen';
 
   @override
-  String get share => 'Teilen';
+  String get share => 'Kopieren';
 
   @override
   String get shareNotImplemented => 'Teilen-Funktion nicht implementiert';

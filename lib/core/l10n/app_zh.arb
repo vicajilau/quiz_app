@@ -1411,9 +1411,9 @@
   "@close": {
     "description": "关闭按钮标签"
   },
-  "share": "分享",
+  "share": "复制",
   "@share": {
-    "description": "分享按钮标签"
+    "description": "复制按钮标签"
   },
   "shareNotImplemented": "分享功能尚未实现",
   "@shareNotImplemented": {

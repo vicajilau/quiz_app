@@ -1411,9 +1411,9 @@
   "@close": {
     "description": "閉じるボタンのラベル"
   },
-  "share": "共有",
+  "share": "コピー",
   "@share": {
-    "description": "共有ボタンのラベル"
+    "description": "コピーボタンのラベル"
   },
   "shareNotImplemented": "共有機能はまだ実装されていません",
   "@shareNotImplemented": {

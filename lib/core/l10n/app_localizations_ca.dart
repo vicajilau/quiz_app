@@ -1010,7 +1010,7 @@ class AppLocalizationsCa extends AppLocalizations {
   String get close => 'Tancar';
 
   @override
-  String get share => 'Compartir';
+  String get share => 'Copiar';
 
   @override
   String get shareNotImplemented => 'Compartir encara no està implementat';

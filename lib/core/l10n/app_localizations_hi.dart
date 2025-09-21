@@ -996,7 +996,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get close => 'बंद करें';
 
   @override
-  String get share => 'साझा करें';
+  String get share => 'कॉपी करें';
 
   @override
   String get shareNotImplemented => 'साझा करना अभी तक लागू नहीं है';

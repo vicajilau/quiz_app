@@ -1005,7 +1005,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get close => 'Itxi';
 
   @override
-  String get share => 'Partekatu';
+  String get share => 'Kopiatu';
 
   @override
   String get shareNotImplemented =>

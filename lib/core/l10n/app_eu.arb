@@ -1411,9 +1411,9 @@
   "@close": {
     "description": "Itxi botoiaren etiketa"
   },
-  "share": "Partekatu",
+  "share": "Kopiatu",
   "@share": {
-    "description": "Partekatu botoiaren etiketa"
+    "description": "Kopiatu botoiaren etiketa"
   },
   "shareNotImplemented": "Partekatzea ez dago oraindik inplementatuta",
   "@shareNotImplemented": {

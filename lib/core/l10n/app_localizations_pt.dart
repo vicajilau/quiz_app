@@ -1007,7 +1007,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get close => 'Fechar';
 
   @override
-  String get share => 'Compartilhar';
+  String get share => 'Copiar';
 
   @override
   String get shareNotImplemented =>

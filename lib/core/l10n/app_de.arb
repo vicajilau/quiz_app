@@ -1421,9 +1421,9 @@
   "@close": {
     "description": "Text des Schließen-Buttons"
   },
-  "share": "Teilen",
+  "share": "Kopieren",
   "@share": {
-    "description": "Text des Teilen-Buttons"
+    "description": "Text des Kopieren-Buttons"
   },
   "shareNotImplemented": "Teilen-Funktion nicht implementiert",
   "@shareNotImplemented": {

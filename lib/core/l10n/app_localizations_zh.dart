@@ -956,7 +956,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get close => '关闭';
 
   @override
-  String get share => '分享';
+  String get share => '复制';
 
   @override
   String get shareNotImplemented => '分享功能尚未实现';
