@@ -107,53 +107,68 @@ class WinnersScreen extends StatelessWidget {
       children: [
         // Header with summary
         Container(
-          margin: const EdgeInsets.all(16),
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Colors.amber[50]!, Colors.orange[50]!],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: Colors.amber[200]!),
-          ),
-          child: Row(
+          margin: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+          child: Column(
             children: [
+              // Crown icon at the top
               Container(
-                padding: const EdgeInsets.all(12),
+                width: 80,
+                height: 80,
                 decoration: BoxDecoration(
-                  color: Colors.amber,
                   shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Colors.amber[300]!, Colors.orange[400]!],
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.amber.withValues(alpha: 0.3),
+                      blurRadius: 16,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
                 ),
                 child: const Icon(
                   Icons.emoji_events,
                   color: Colors.white,
-                  size: 28,
+                  size: 40,
                 ),
               ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.raffleCompleted,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
+              const SizedBox(height: 16),
+              // Title
+              Text(
+                AppLocalizations.of(context)!.raffleCompleted,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8),
+              // Subtitle with divider
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(height: 1, color: Colors.grey[300]),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
                       AppLocalizations.of(
                         context,
                       )!.winnersSelectedCount(winners.length),
-                      style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey[600],
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    child: Container(height: 1, color: Colors.grey[300]),
+                  ),
+                ],
               ),
             ],
           ),
