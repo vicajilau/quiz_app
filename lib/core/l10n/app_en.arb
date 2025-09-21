@@ -1496,8 +1496,8 @@
   "@noWinnersToShare": {
     "description": "Message when there are no winners to share"
   },
-  "shareSuccess": "Results shared successfully",
+  "shareSuccess": "Results copied successfully",
   "@shareSuccess": {
-    "description": "Success message when raffle results are shared"
+    "description": "Success message when raffle results are copied"
   }
 }

@@ -1479,8 +1479,8 @@
   "@noWinnersToShare": {
     "description": "Messaggio quando non ci sono vincitori da condividere"
   },
-  "shareSuccess": "Risultati condivisi con successo",
+  "shareSuccess": "Risultati copiati con successo",
   "@shareSuccess": {
-    "description": "Messaggio di successo quando i risultati dell'estrazione vengono condivisi"
+    "description": "Messaggio di successo quando i risultati dell'estrazione vengono copiati"
   }
 }

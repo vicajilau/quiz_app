@@ -1046,5 +1046,5 @@ class AppLocalizationsCa extends AppLocalizations {
   String get noWinnersToShare => 'No hi ha guanyadors per compartir';
 
   @override
-  String get shareSuccess => 'Resultats compartits amb èxit';
+  String get shareSuccess => 'Resultats copiats amb èxit';
 }

@@ -1890,10 +1890,10 @@ abstract class AppLocalizations {
   /// **'No winners.'**
   String get noWinnersToShare;
 
-  /// Success message when raffle results are shared
+  /// Success message when raffle results are copied
   ///
   /// In en, this message translates to:
-  /// **'Results shared successfully'**
+  /// **'Results copied successfully'**
   String get shareSuccess;
 }
 

@@ -1469,8 +1469,8 @@
   "@noWinnersToShare": {
     "description": "Missatge mostrat quan no hi ha guanyadors per compartir"
   },
-  "shareSuccess": "Resultats compartits amb èxit",
+  "shareSuccess": "Resultats copiats amb èxit",
   "@shareSuccess": {
-    "description": "Missatge d'èxit mostrat després de compartir els resultats"
+    "description": "Missatge d'èxit mostrat després de copiar els resultats"
   }
 }

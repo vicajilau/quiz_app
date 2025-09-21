@@ -1042,5 +1042,5 @@ class AppLocalizationsEu extends AppLocalizations {
   String get noWinnersToShare => 'Ez dago irabazlerik partekatzeko';
 
   @override
-  String get shareSuccess => 'Emaitzak arrakastaz partekatu dira';
+  String get shareSuccess => 'Emaitzak arrakastaz kopiatu dira';
 }

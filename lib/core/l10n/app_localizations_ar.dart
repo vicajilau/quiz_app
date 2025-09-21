@@ -1025,5 +1025,5 @@ class AppLocalizationsAr extends AppLocalizations {
   String get noWinnersToShare => 'لا يوجد فائزون للمشاركة';
 
   @override
-  String get shareSuccess => 'تم مشاركة النتائج بنجاح';
+  String get shareSuccess => 'تم نسخ النتائج بنجاح';
 }

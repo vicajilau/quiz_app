@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:share_plus/share_plus.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../../../domain/models/raffle/raffle_winner.dart';
 import '../../blocs/raffle_bloc/raffle_bloc.dart';
@@ -304,13 +304,9 @@ class WinnersScreen extends StatelessWidget {
               // Close the dialog first
               Navigator.of(dialogContext).pop();
 
-              // Share the results text
-              final params = ShareParams(text: resultsText);
-              await SharePlus.instance.share(params);
-              final result = await SharePlus.instance.share(params);
-
-              if (context.mounted &&
-                  result.status == ShareResultStatus.success) {
+              // Copy to clipboard
+              await Clipboard.setData(ClipboardData(text: resultsText));
+              if (context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(AppLocalizations.of(context)!.shareSuccess),

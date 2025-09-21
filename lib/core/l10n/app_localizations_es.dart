@@ -1044,5 +1044,5 @@ class AppLocalizationsEs extends AppLocalizations {
   String get noWinnersToShare => 'No hay ganadores.';
 
   @override
-  String get shareSuccess => 'Resultados compartidos exitosamente';
+  String get shareSuccess => 'Resultados copiados con éxito';
 }

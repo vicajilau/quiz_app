@@ -1469,8 +1469,8 @@
   "@noWinnersToShare": {
     "description": "没有获奖者可分享时显示的消息"
   },
-  "shareSuccess": "结果分享成功",
+  "shareSuccess": "结果复制成功",
   "@shareSuccess": {
-    "description": "分享结果后显示的成功消息"
+    "description": "复制结果后显示的成功消息"
   }
 }

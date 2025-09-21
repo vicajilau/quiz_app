@@ -1469,8 +1469,8 @@
   "@noWinnersToShare": {
     "description": "共有する当選者がいない時に表示されるメッセージ"
   },
-  "shareSuccess": "結果が正常に共有されました",
+  "shareSuccess": "結果が正常にコピーされました",
   "@shareSuccess": {
-    "description": "結果を共有した後に表示される成功メッセージ"
+    "description": "結果をコピーした後に表示される成功メッセージ"
   }
 }

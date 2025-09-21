@@ -995,5 +995,5 @@ class AppLocalizationsJa extends AppLocalizations {
   String get noWinnersToShare => '共有する当選者はいません';
 
   @override
-  String get shareSuccess => '結果が正常に共有されました';
+  String get shareSuccess => '結果が正常にコピーされました';
 }
