@@ -131,6 +131,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
+                  // Raffle button
+                  Tooltip(
+                    message: 'Sorteo', // TODO: Add to localizations
+                    child: IconButton(
+                      onPressed: _isLoading
+                          ? null
+                          : () => context.go('/raffle'),
+                      icon: const Icon(Icons.casino, color: Colors.white),
+                    ),
+                  ),
                   // Configuration button
                   Tooltip(
                     message: AppLocalizations.of(

@@ -1,0 +1,139 @@
+import 'package:flutter/material.dart';
+import '../../../../domain/models/raffle/raffle_session.dart';
+
+class WinnerDialog extends StatelessWidget {
+  final String winnerName;
+  final RaffleSession session;
+  final VoidCallback onRepeatRaffle;
+  final VoidCallback onFinishRaffle;
+
+  const WinnerDialog({
+    super.key,
+    required this.winnerName,
+    required this.session,
+    required this.onRepeatRaffle,
+    required this.onFinishRaffle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      contentPadding: const EdgeInsets.all(24),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Trophy icon
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.amber[100],
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(
+              Icons.emoji_events,
+              size: 48,
+              color: Colors.amber,
+            ),
+          ),
+
+          const SizedBox(height: 24),
+
+          // Winner announcement
+          const Text(
+            '🎉 ¡Felicidades! 🎉',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+
+          const SizedBox(height: 16),
+
+          // Winner name
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            decoration: BoxDecoration(
+              color: Colors.blue[50],
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.blue[200]!),
+            ),
+            child: Text(
+              winnerName,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue[800],
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+
+          const SizedBox(height: 24),
+
+          // Statistics
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.grey[50],
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  'Posición: ${session.winnersCount + 1}°',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'Participantes restantes: ${session.activeParticipantsCount - 1}',
+                  style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 32),
+
+          // Action buttons
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Continue raffle button
+              if (session.activeParticipantsCount > 1) ...[
+                ElevatedButton.icon(
+                  onPressed: onRepeatRaffle,
+                  icon: const Icon(Icons.casino),
+                  label: const Text('Continuar Sorteo'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                  ),
+                ),
+                const SizedBox(height: 12),
+              ],
+
+              // Finish raffle button
+              ElevatedButton.icon(
+                onPressed: onFinishRaffle,
+                icon: const Icon(Icons.emoji_events),
+                label: Text(
+                  session.activeParticipantsCount > 1
+                      ? 'Ver Ganadores'
+                      : 'Finalizar Sorteo',
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.amber,
+                  foregroundColor: Colors.black87,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
