@@ -1040,4 +1040,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get noWinnersToShare => 'Ez dago irabazlerik partekatzeko';
+
+  @override
+  String get shareSuccess => 'Emaitzak arrakastaz partekatu dira';
 }

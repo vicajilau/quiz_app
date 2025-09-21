@@ -990,4 +990,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get noWinnersToShare => '没有获奖者可分享';
+
+  @override
+  String get shareSuccess => '结果分享成功';
 }

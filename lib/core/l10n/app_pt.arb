@@ -1478,5 +1478,9 @@
   "noWinnersToShare": "Nenhum vencedor.",
   "@noWinnersToShare": {
     "description": "Mensagem quando não há vencedores para compartilhar"
+  },
+  "shareSuccess": "Resultados compartilhados com sucesso",
+  "@shareSuccess": {
+    "description": "Mensagem de sucesso ao compartilhar os resultados do sorteio"
   }
 }

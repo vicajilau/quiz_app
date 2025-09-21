@@ -1031,4 +1031,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noWinnersToShare => 'No winners.';
+
+  @override
+  String get shareSuccess => 'Results shared successfully';
 }

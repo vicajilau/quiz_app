@@ -1468,5 +1468,9 @@
   "noWinnersToShare": "لا يوجد فائزون للمشاركة",
   "@noWinnersToShare": {
     "description": "رسالة تظهر عندما لا يوجد فائزون للمشاركة"
+  },
+  "shareSuccess": "تم مشاركة النتائج بنجاح",
+  "@shareSuccess": {
+    "description": "رسالة نجاح تظهر بعد مشاركة النتائج"
   }
 }

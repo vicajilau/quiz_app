@@ -1889,6 +1889,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No winners.'**
   String get noWinnersToShare;
+
+  /// Success message when raffle results are shared
+  ///
+  /// In en, this message translates to:
+  /// **'Results shared successfully'**
+  String get shareSuccess;
 }
 
 class _AppLocalizationsDelegate

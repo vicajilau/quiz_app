@@ -1478,5 +1478,9 @@
   "noWinnersToShare": "Keine Gewinner.",
   "@noWinnersToShare": {
     "description": "Nachricht wenn keine Gewinner zum Teilen vorhanden sind"
+  },
+  "shareSuccess": "Ergebnisse erfolgreich geteilt",
+  "@shareSuccess": {
+    "description": "Erfolgsmeldung beim Teilen der Verlosungsergebnisse"
   }
 }

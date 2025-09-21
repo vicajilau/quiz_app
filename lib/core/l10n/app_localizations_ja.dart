@@ -993,4 +993,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get noWinnersToShare => '共有する当選者はいません';
+
+  @override
+  String get shareSuccess => '結果が正常に共有されました';
 }

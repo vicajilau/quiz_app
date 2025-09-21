@@ -1468,5 +1468,9 @@
   "noWinnersToShare": "Ez dago irabazlerik partekatzeko",
   "@noWinnersToShare": {
     "description": "Partekatzeko irabazlerik ez dagoenean erakusten den mezua"
+  },
+  "shareSuccess": "Emaitzak arrakastaz partekatu dira",
+  "@shareSuccess": {
+    "description": "Emaitzak partekatu ondoren erakusten den arrakasta mezua"
   }
 }
