@@ -5,6 +5,7 @@ import '../../../core/l10n/app_localizations.dart';
 import '../../blocs/raffle_bloc/raffle_bloc.dart';
 import '../../blocs/raffle_bloc/raffle_event.dart';
 import '../../blocs/raffle_bloc/raffle_state.dart';
+import '../../widgets/common/network_image_widget.dart';
 import '../../widgets/raffle/logo_selector_widget.dart';
 import 'widgets/participant_input_widget.dart';
 import 'widgets/participant_list_widget.dart';
@@ -37,12 +38,29 @@ class _RaffleScreenContent extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: logoUrl != null && logoUrl.isNotEmpty
-                ? Image.network(
-                    logoUrl,
+                ? Container(
                     height: 40,
-                    fit: BoxFit.contain,
-                    errorBuilder: (context, error, stackTrace) =>
-                        Text(AppLocalizations.of(context)!.raffleTitle),
+                    constraints: const BoxConstraints(maxWidth: 200),
+                    child: NetworkImageWidget(
+                      imageUrl: logoUrl,
+                      height: 40,
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) {
+                        debugPrint('AppBar logo failed to load: $error');
+                        return Text(AppLocalizations.of(context)!.raffleTitle);
+                      },
+                      loadingBuilder: (context) => const SizedBox(
+                        height: 40,
+                        width: 40,
+                        child: Center(
+                          child: SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          ),
+                        ),
+                      ),
+                    ),
                   )
                 : Text(AppLocalizations.of(context)!.raffleTitle),
             leading: IconButton(

@@ -6,6 +6,7 @@ import '../../../core/l10n/app_localizations.dart';
 import '../../../../domain/models/raffle/raffle_winner.dart';
 import '../../blocs/raffle_bloc/raffle_bloc.dart';
 import '../../blocs/raffle_bloc/raffle_state.dart';
+import '../../widgets/common/network_image_widget.dart';
 
 class WinnersScreen extends StatelessWidget {
   const WinnersScreen({super.key});
@@ -24,8 +25,8 @@ class WinnersScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: logoUrl != null && logoUrl.isNotEmpty
-                ? Image.network(
-                    logoUrl,
+                ? NetworkImageWidget(
+                    imageUrl: logoUrl,
                     height: 40,
                     fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) =>

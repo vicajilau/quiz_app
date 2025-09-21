@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../blocs/raffle_bloc/raffle_bloc.dart';
 import '../../blocs/raffle_bloc/raffle_event.dart';
+import '../common/network_image_widget.dart';
 
 /// Widget for selecting and configuring a custom logo for the raffle.
 class LogoSelectorWidget extends StatefulWidget {
@@ -108,8 +109,8 @@ class _LogoSelectorWidgetState extends State<LogoSelectorWidget> {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.network(
-                  _urlController.text,
+                child: NetworkImageWidget(
+                  imageUrl: _urlController.text,
                   fit: BoxFit.contain,
                   errorBuilder: (context, error, stackTrace) => Container(
                     color: Colors.grey[100],
@@ -119,20 +120,10 @@ class _LogoSelectorWidgetState extends State<LogoSelectorWidget> {
                       size: 32,
                     ),
                   ),
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return Container(
-                      color: Colors.grey[100],
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                    loadingProgress.expectedTotalBytes!
-                              : null,
-                        ),
-                      ),
-                    );
-                  },
+                  loadingBuilder: (context) => Container(
+                    color: Colors.grey[100],
+                    child: const Center(child: CircularProgressIndicator()),
+                  ),
                 ),
               ),
             ),
