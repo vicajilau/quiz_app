@@ -65,7 +65,10 @@ class ParticipantListWidget extends StatelessWidget {
                     AppLocalizations.of(
                       context,
                     )!.totalParticipants(session.totalParticipants),
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(

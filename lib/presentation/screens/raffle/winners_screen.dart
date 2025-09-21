@@ -122,6 +122,7 @@ class WinnersScreen extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
+                        color: Colors.black87,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -219,7 +220,11 @@ class WinnersScreen extends StatelessWidget {
         ),
         title: Text(
           winner.name,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.black87,
+          ),
         ),
         subtitle: Text(
           '${AppLocalizations.of(context)!.placeLabel(_getPositionText(context, position))} • ${_formatTime(winner.selectedAt)}',
@@ -280,7 +285,10 @@ class WinnersScreen extends StatelessWidget {
               ),
               child: Text(
                 resultsText,
-                style: const TextStyle(fontFamily: 'monospace'),
+                style: const TextStyle(
+                  fontFamily: 'monospace',
+                  color: Colors.black87,
+                ),
               ),
             ),
           ],
