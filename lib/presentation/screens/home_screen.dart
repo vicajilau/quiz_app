@@ -103,6 +103,13 @@ class _HomeScreenState extends State<HomeScreen> {
             return Scaffold(
               appBar: AppBar(
                 title: Text(AppLocalizations.of(context)!.titleAppBar),
+                leading: Tooltip(
+                  message: AppLocalizations.of(context)!.raffleTooltip,
+                  child: IconButton(
+                    onPressed: _isLoading ? null : () => context.go('/raffle'),
+                    icon: const Icon(Icons.casino, color: Colors.white),
+                  ),
+                ),
                 actions: [
                   // Disable the create and load button if a file is loading
                   Tooltip(

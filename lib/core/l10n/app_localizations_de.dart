@@ -866,4 +866,187 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get aiEvaluationPromptResponseFormat =>
       'ANTWORTFORMAT:\n1. BEWERTUNG: [X/10] - Begründen Sie kurz die Note\n2. STÄRKEN: Erwähnen Sie positive Aspekte der Antwort\n3. VERBESSERUNGSBEREICHE: Weisen Sie auf Aspekte hin, die verbessert werden könnten\n4. SPEZIFISCHE KOMMENTARE: Geben Sie detailliertes und konstruktives Feedback\n5. VORSCHLÄGE: Bieten Sie spezifische Empfehlungen zur Verbesserung\n\nSeien Sie konstruktiv, spezifisch und lehrreich in Ihrer Bewertung. Das Ziel ist es, dem Studenten beim Lernen und Verbessern zu helfen. Sprechen Sie ihn in der zweiten Person an und verwenden Sie einen professionellen und freundlichen Ton.';
+
+  @override
+  String get raffleTitle => 'Verlosung';
+
+  @override
+  String get raffleTooltip => 'Verlosung';
+
+  @override
+  String get participantListTitle => 'Teilnehmerliste';
+
+  @override
+  String get participantListHint => 'Geben Sie einen Namen pro Zeile ein:';
+
+  @override
+  String get participantListPlaceholder =>
+      'Max Mustermann\nErika Musterfrau\nHans Schmidt\n...';
+
+  @override
+  String get clearList => 'Liste löschen';
+
+  @override
+  String get participants => 'Teilnehmer';
+
+  @override
+  String get noParticipants => 'Keine Teilnehmer';
+
+  @override
+  String get addParticipantsHint => 'Fügen Sie Namen im Textbereich hinzu';
+
+  @override
+  String get activeParticipants => 'Aktive Teilnehmer';
+
+  @override
+  String get alreadySelected => 'Bereits ausgewählt';
+
+  @override
+  String totalParticipants(int count) {
+    return 'Gesamt: $count';
+  }
+
+  @override
+  String activeVsWinners(int active, int winners) {
+    return 'Aktiv: $active | Gewinner: $winners';
+  }
+
+  @override
+  String get startRaffle => 'Verlosung starten';
+
+  @override
+  String get raffling => 'Verlosung läuft...';
+
+  @override
+  String get selectingWinner => 'Gewinner wird ausgewählt...';
+
+  @override
+  String get allParticipantsSelected =>
+      'Alle Teilnehmer wurden bereits ausgewählt';
+
+  @override
+  String get addParticipantsToStart =>
+      'Fügen Sie Teilnehmer hinzu, um die Verlosung zu starten';
+
+  @override
+  String participantsReadyCount(int count) {
+    return '$count Teilnehmer bereit für Verlosung';
+  }
+
+  @override
+  String get resetWinners => 'Gewinner zurücksetzen';
+
+  @override
+  String get resetWinnersConfirmTitle => 'Gewinner zurücksetzen';
+
+  @override
+  String get resetWinnersConfirmMessage =>
+      'Sind Sie sicher, dass Sie die Gewinnerliste zurücksetzen möchten? Alle Teilnehmer werden wieder für die Verlosung verfügbar sein.';
+
+  @override
+  String get resetRaffleTitle => 'Verlosung zurücksetzen';
+
+  @override
+  String get resetRaffleConfirmMessage =>
+      'Sind Sie sicher, dass Sie die Verlosung zurücksetzen möchten? Alle Teilnehmer und Gewinner gehen verloren.';
+
+  @override
+  String get reset => 'Zurücksetzen';
+
+  @override
+  String get viewWinners => 'Gewinner anzeigen';
+
+  @override
+  String get congratulations => '🎉 Herzlichen Glückwunsch! 🎉';
+
+  @override
+  String positionLabel(int position) {
+    return 'Position: $position°';
+  }
+
+  @override
+  String remainingParticipants(int count) {
+    return 'Verbleibende Teilnehmer: $count';
+  }
+
+  @override
+  String get continueRaffle => 'Verlosung fortsetzen';
+
+  @override
+  String get finishRaffle => 'Verlosung beenden';
+
+  @override
+  String get winnersTitle => 'Verlosungsgewinner';
+
+  @override
+  String get shareResults => 'Ergebnisse teilen';
+
+  @override
+  String get noWinnersYet => 'Noch keine Gewinner';
+
+  @override
+  String get performRaffleToSeeWinners =>
+      'Führen Sie eine Verlosung durch, um die Gewinner hier zu sehen';
+
+  @override
+  String get goToRaffle => 'Zur Verlosung';
+
+  @override
+  String get raffleCompleted => 'Verlosung abgeschlossen';
+
+  @override
+  String winnersSelectedCount(int count) {
+    return '$count Gewinner ausgewählt';
+  }
+
+  @override
+  String get newRaffle => 'Neue Verlosung';
+
+  @override
+  String get shareResultsTitle => 'Ergebnisse teilen';
+
+  @override
+  String get raffleResultsLabel => 'Verlosungsergebnisse:';
+
+  @override
+  String get close => 'Schließen';
+
+  @override
+  String get share => 'Teilen';
+
+  @override
+  String get shareNotImplemented => 'Teilen-Funktion nicht implementiert';
+
+  @override
+  String get firstPlace => '1.';
+
+  @override
+  String get secondPlace => '2.';
+
+  @override
+  String get thirdPlace => '3.';
+
+  @override
+  String nthPlace(int position) {
+    return '$position.';
+  }
+
+  @override
+  String placeLabel(String position) {
+    return '$position Platz';
+  }
+
+  @override
+  String get raffleResultsHeader => '🏆 VERLOSUNGSERGEBNISSE 🏆';
+
+  @override
+  String totalWinners(int count) {
+    return 'Gewinner gesamt: $count';
+  }
+
+  @override
+  String get noWinnersToShare => 'Keine Gewinner.';
+
+  @override
+  String get shareSuccess => 'Ergebnisse erfolgreich geteilt';
 }

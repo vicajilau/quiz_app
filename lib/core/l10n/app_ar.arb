@@ -1208,5 +1208,269 @@
   "aiEvaluationPromptResponseFormat": "تنسيق الإجابة:\n1. الدرجة: [X/10] - اذكر مبرراً مختصراً للدرجة\n2. نقاط القوة: اذكر الجوانب الإيجابية في الإجابة\n3. مجالات التحسين: أشر إلى الجوانب التي يمكن تحسينها\n4. تعليقات محددة: قدم ملاحظات مفصلة وبناءة\n5. اقتراحات: قدم توصيات محددة للتحسين\n\nكن بناءً ومحدداً وتعليمياً في تقييمك. الهدف هو مساعدة الطالب على التعلم والتحسن. اخاطبه بصيغة المخاطب واستخدم نبرة مهنية وودية.",
   "@aiEvaluationPromptResponseFormat": {
     "description": "تعليمات تنسيق الإجابة للتقييم"
+  },
+  "raffleTitle": "سحب القرعة",
+  "@raffleTitle": {
+    "description": "عنوان شاشة السحب"
+  },
+  "raffleTooltip": "فتح شاشة السحب",
+  "@raffleTooltip": {
+    "description": "تلميح أيقونة السحب في شريط التطبيق"
+  },
+  "participantListTitle": "قائمة المشاركين",
+  "@participantListTitle": {
+    "description": "عنوان قسم قائمة المشاركين"
+  },
+  "participantListHint": "أدخل الأسماء مفصولة بسطر جديد",
+  "@participantListHint": {
+    "description": "نص التلميح لحقل إدخال المشاركين"
+  },
+  "participantListPlaceholder": "أدخل أسماء المشاركين هنا...\nاسم واحد في كل سطر",
+  "@participantListPlaceholder": {
+    "description": "نص العنصر النائب لحقل إدخال المشاركين"
+  },
+  "clearList": "محو القائمة",
+  "@clearList": {
+    "description": "تسمية زر محو قائمة المشاركين"
+  },
+  "participants": "مشاركون",
+  "@participants": {
+    "description": "تسمية عامة للمشاركين"
+  },
+  "noParticipants": "لا يوجد مشاركون",
+  "@noParticipants": {
+    "description": "رسالة تظهر عندما لا يوجد مشاركون"
+  },
+  "addParticipantsHint": "أضف مشاركين لبدء السحب",
+  "@addParticipantsHint": {
+    "description": "تلميح لإضافة مشاركين"
+  },
+  "activeParticipants": "المشاركون النشطون",
+  "@activeParticipants": {
+    "description": "عداد المشاركين النشطين"
+  },
+  "alreadySelected": "تم اختيارهم مسبقاً",
+  "@alreadySelected": {
+    "description": "وصف للمشاركين الذين تم اختيارهم بالفعل"
+  },
+  "totalParticipants": "إجمالي المشاركين",
+  "@totalParticipants": {
+    "description": "عداد إجمالي المشاركين"
+  },
+  "activeVsWinners": "{active} نشطون، {winners} فائزون",
+  "@activeVsWinners": {
+    "description": "عرض عدد المشاركين النشطين مقابل الفائزين",
+    "placeholders": {
+      "active": {
+        "type": "int",
+        "example": "5"
+      },
+      "winners": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "startRaffle": "بدء السحب",
+  "@startRaffle": {
+    "description": "تسمية زر بدء السحب"
+  },
+  "raffling": "جاري السحب...",
+  "@raffling": {
+    "description": "نص يظهر أثناء عملية السحب"
+  },
+  "selectingWinner": "اختيار الفائز...",
+  "@selectingWinner": {
+    "description": "نص يظهر أثناء اختيار الفائز"
+  },
+  "allParticipantsSelected": "تم اختيار جميع المشاركين",
+  "@allParticipantsSelected": {
+    "description": "رسالة تظهر عندما يتم اختيار جميع المشاركين"
+  },
+  "addParticipantsToStart": "أضف مشاركين لبدء السحب",
+  "@addParticipantsToStart": {
+    "description": "رسالة تظهر عندما لا يوجد مشاركون للسحب"
+  },
+  "participantsReadyCount": "{count} مشاركون جاهزون للسحب",
+  "@participantsReadyCount": {
+    "description": "عداد المشاركين الجاهزين للسحب",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "resetWinners": "إعادة تعيين الفائزين",
+  "@resetWinners": {
+    "description": "تسمية زر إعادة تعيين الفائزين"
+  },
+  "resetWinnersConfirmTitle": "إعادة تعيين الفائزين؟",
+  "@resetWinnersConfirmTitle": {
+    "description": "عنوان حوار تأكيد إعادة تعيين الفائزين"
+  },
+  "resetWinnersConfirmMessage": "هذا سيعيد جميع الفائزين إلى قائمة المشاركين النشطين.",
+  "@resetWinnersConfirmMessage": {
+    "description": "رسالة تأكيد إعادة تعيين الفائزين"
+  },
+  "resetRaffleTitle": "إعادة تعيين السحب؟",
+  "@resetRaffleTitle": {
+    "description": "عنوان حوار تأكيد إعادة تعيين السحب"
+  },
+  "resetRaffleConfirmMessage": "هذا سيعيد تعيين جميع الفائزين والمشاركين النشطين.",
+  "@resetRaffleConfirmMessage": {
+    "description": "رسالة تأكيد إعادة تعيين السحب"
+  },
+  "reset": "إعادة تعيين",
+  "@reset": {
+    "description": "تسمية زر إعادة التعيين"
+  },
+  "viewWinners": "عرض الفائزين",
+  "@viewWinners": {
+    "description": "تسمية زر عرض الفائزين"
+  },
+  "congratulations": "تهانينا!",
+  "@congratulations": {
+    "description": "رسالة تهنئة للفائز"
+  },
+  "positionLabel": "المركز {position}",
+  "@positionLabel": {
+    "description": "تسمية مركز الفائز",
+    "placeholders": {
+      "position": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "remainingParticipants": "مشاركون متبقون: {count}",
+  "@remainingParticipants": {
+    "description": "عداد المشاركين المتبقين",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "continueRaffle": "متابعة السحب",
+  "@continueRaffle": {
+    "description": "تسمية زر متابعة السحب"
+  },
+  "finishRaffle": "إنهاء السحب",
+  "@finishRaffle": {
+    "description": "تسمية زر إنهاء السحب"
+  },
+  "winnersTitle": "الفائزون",
+  "@winnersTitle": {
+    "description": "عنوان شاشة الفائزين"
+  },
+  "shareResults": "مشاركة النتائج",
+  "@shareResults": {
+    "description": "تسمية زر مشاركة النتائج"
+  },
+  "noWinnersYet": "لا يوجد فائزون بعد",
+  "@noWinnersYet": {
+    "description": "رسالة تظهر عندما لا يوجد فائزون"
+  },
+  "performRaffleToSeeWinners": "قم بإجراء سحب لرؤية الفائزين",
+  "@performRaffleToSeeWinners": {
+    "description": "رسالة تشجع على إجراء سحب"
+  },
+  "goToRaffle": "الذهاب إلى السحب",
+  "@goToRaffle": {
+    "description": "تسمية زر الذهاب إلى السحب"
+  },
+  "raffleCompleted": "اكتمل السحب!",
+  "@raffleCompleted": {
+    "description": "رسالة تظهر عند اكتمال السحب"
+  },
+  "winnersSelectedCount": "تم اختيار {count} فائزين",
+  "@winnersSelectedCount": {
+    "description": "عداد الفائزين المختارين",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "newRaffle": "سحب جديد",
+  "@newRaffle": {
+    "description": "تسمية زر بدء سحب جديد"
+  },
+  "shareResultsTitle": "نتائج السحب",
+  "@shareResultsTitle": {
+    "description": "عنوان حوار مشاركة النتائج"
+  },
+  "raffleResultsLabel": "نتائج السحب:",
+  "@raffleResultsLabel": {
+    "description": "تسمية نتائج السحب"
+  },
+  "close": "إغلاق",
+  "@close": {
+    "description": "تسمية زر الإغلاق"
+  },
+  "share": "مشاركة",
+  "@share": {
+    "description": "تسمية زر المشاركة"
+  },
+  "shareNotImplemented": "المشاركة غير مطبقة بعد",
+  "@shareNotImplemented": {
+    "description": "رسالة عندما تكون المشاركة غير مطبقة"
+  },
+  "firstPlace": "المركز الأول",
+  "@firstPlace": {
+    "description": "تسمية المركز الأول"
+  },
+  "secondPlace": "المركز الثاني",
+  "@secondPlace": {
+    "description": "تسمية المركز الثاني"
+  },
+  "thirdPlace": "المركز الثالث",
+  "@thirdPlace": {
+    "description": "تسمية المركز الثالث"
+  },
+  "nthPlace": "المركز {position}",
+  "@nthPlace": {
+    "description": "تسمية المركز لأي رقم",
+    "placeholders": {
+      "position": {
+        "type": "int",
+        "example": "4"
+      }
+    }
+  },
+  "placeLabel": "المركز",
+  "@placeLabel": {
+    "description": "تسمية عامة للمركز"
+  },
+  "raffleResultsHeader": "نتائج السحب - {count} فائزين",
+  "@raffleResultsHeader": {
+    "description": "رأس نتائج السحب مع عدد الفائزين",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "totalWinners": "إجمالي الفائزين: {count}",
+  "@totalWinners": {
+    "description": "عداد إجمالي الفائزين",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "noWinnersToShare": "لا يوجد فائزون للمشاركة",
+  "@noWinnersToShare": {
+    "description": "رسالة تظهر عندما لا يوجد فائزون للمشاركة"
+  },
+  "shareSuccess": "تم مشاركة النتائج بنجاح",
+  "@shareSuccess": {
+    "description": "رسالة نجاح تظهر بعد مشاركة النتائج"
   }
 }

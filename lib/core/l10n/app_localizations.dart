@@ -390,7 +390,7 @@ abstract class AppLocalizations {
   /// **'Are you sure you want to finish the quiz? You won\'t be able to change your answers afterwards.'**
   String get finishQuizConfirmation;
 
-  /// Cancel button text
+  /// Text of the cancel button
   ///
   /// In en, this message translates to:
   /// **'Cancel'**
@@ -1577,6 +1577,324 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'RESPONSE FORMAT:\n1. GRADE: [X/10] - Briefly justify the grade\n2. STRENGTHS: Mention positive aspects of the response\n3. AREAS FOR IMPROVEMENT: Point out aspects that could be improved\n4. SPECIFIC COMMENTS: Provide detailed and constructive feedback\n5. SUGGESTIONS: Offer specific recommendations for improvement\n\nBe constructive, specific, and educational in your evaluation. The goal is to help the student learn and improve. Address them in second person and use a professional and friendly tone.'**
   String get aiEvaluationPromptResponseFormat;
+
+  /// Title of the raffle functionality
+  ///
+  /// In en, this message translates to:
+  /// **'Raffle'**
+  String get raffleTitle;
+
+  /// Tooltip of the raffle button in the app bar
+  ///
+  /// In en, this message translates to:
+  /// **'Raffle'**
+  String get raffleTooltip;
+
+  /// Title of the participant list section
+  ///
+  /// In en, this message translates to:
+  /// **'Participant List'**
+  String get participantListTitle;
+
+  /// Instruction for the participant input field
+  ///
+  /// In en, this message translates to:
+  /// **'Enter one name per line:'**
+  String get participantListHint;
+
+  /// Example text in the participant field
+  ///
+  /// In en, this message translates to:
+  /// **'John Doe\nJane Smith\nBob Johnson\n...'**
+  String get participantListPlaceholder;
+
+  /// Text of the button to clear the participant list
+  ///
+  /// In en, this message translates to:
+  /// **'Clear List'**
+  String get clearList;
+
+  /// Title of the participants section
+  ///
+  /// In en, this message translates to:
+  /// **'Participants'**
+  String get participants;
+
+  /// Message when there are no participants
+  ///
+  /// In en, this message translates to:
+  /// **'No participants'**
+  String get noParticipants;
+
+  /// Suggestion to add participants
+  ///
+  /// In en, this message translates to:
+  /// **'Add names in the text area'**
+  String get addParticipantsHint;
+
+  /// Title for active participants
+  ///
+  /// In en, this message translates to:
+  /// **'Active Participants'**
+  String get activeParticipants;
+
+  /// Title for already selected participants
+  ///
+  /// In en, this message translates to:
+  /// **'Already Selected'**
+  String get alreadySelected;
+
+  /// Total participants
+  ///
+  /// In en, this message translates to:
+  /// **'Total: {count}'**
+  String totalParticipants(int count);
+
+  /// Summary of active participants vs winners
+  ///
+  /// In en, this message translates to:
+  /// **'Active: {active} | Winners: {winners}'**
+  String activeVsWinners(int active, int winners);
+
+  /// Text of the button to start raffle
+  ///
+  /// In en, this message translates to:
+  /// **'Start Raffle'**
+  String get startRaffle;
+
+  /// Text shown during raffle animation
+  ///
+  /// In en, this message translates to:
+  /// **'Raffling...'**
+  String get raffling;
+
+  /// Text shown during winner selection
+  ///
+  /// In en, this message translates to:
+  /// **'Selecting winner...'**
+  String get selectingWinner;
+
+  /// Message when all participants have been selected
+  ///
+  /// In en, this message translates to:
+  /// **'All participants have already been selected'**
+  String get allParticipantsSelected;
+
+  /// Message to add participants before raffling
+  ///
+  /// In en, this message translates to:
+  /// **'Add participants to start the raffle'**
+  String get addParticipantsToStart;
+
+  /// Number of participants ready for raffle
+  ///
+  /// In en, this message translates to:
+  /// **'{count} participant(s) ready for raffle'**
+  String participantsReadyCount(int count);
+
+  /// Text of the button to reset winners
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Winners'**
+  String get resetWinners;
+
+  /// Title of the confirmation dialog to reset winners
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Winners'**
+  String get resetWinnersConfirmTitle;
+
+  /// Confirmation message to reset winners
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to reset the winners list? All participants will be available for the raffle again.'**
+  String get resetWinnersConfirmMessage;
+
+  /// Title of the button and dialog to reset raffle
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Raffle'**
+  String get resetRaffleTitle;
+
+  /// Confirmation message to reset entire raffle
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to reset the raffle? All participants and winners will be lost.'**
+  String get resetRaffleConfirmMessage;
+
+  /// Text of the reset button
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get reset;
+
+  /// Tooltip of the button to view winners
+  ///
+  /// In en, this message translates to:
+  /// **'View winners'**
+  String get viewWinners;
+
+  /// Congratulations message in winner dialog
+  ///
+  /// In en, this message translates to:
+  /// **'🎉 Congratulations! 🎉'**
+  String get congratulations;
+
+  /// Position label of the winner
+  ///
+  /// In en, this message translates to:
+  /// **'Position: {position}°'**
+  String positionLabel(int position);
+
+  /// Number of remaining participants
+  ///
+  /// In en, this message translates to:
+  /// **'Remaining participants: {count}'**
+  String remainingParticipants(int count);
+
+  /// Text of the button to continue raffle
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Raffle'**
+  String get continueRaffle;
+
+  /// Text of the button to finish raffle
+  ///
+  /// In en, this message translates to:
+  /// **'Finish Raffle'**
+  String get finishRaffle;
+
+  /// Title of the winners screen
+  ///
+  /// In en, this message translates to:
+  /// **'Raffle Winners'**
+  String get winnersTitle;
+
+  /// Tooltip of the share results button
+  ///
+  /// In en, this message translates to:
+  /// **'Share results'**
+  String get shareResults;
+
+  /// Message when there are no winners
+  ///
+  /// In en, this message translates to:
+  /// **'No winners yet'**
+  String get noWinnersYet;
+
+  /// Suggestion to perform a raffle
+  ///
+  /// In en, this message translates to:
+  /// **'Perform a raffle to see the winners here'**
+  String get performRaffleToSeeWinners;
+
+  /// Text of the button to go to raffle
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Raffle'**
+  String get goToRaffle;
+
+  /// Raffle completed message
+  ///
+  /// In en, this message translates to:
+  /// **'Raffle Completed'**
+  String get raffleCompleted;
+
+  /// Number of winners selected
+  ///
+  /// In en, this message translates to:
+  /// **'{count} winner(s) selected'**
+  String winnersSelectedCount(int count);
+
+  /// Text of the button for new raffle
+  ///
+  /// In en, this message translates to:
+  /// **'New Raffle'**
+  String get newRaffle;
+
+  /// Title of the share results dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Share Results'**
+  String get shareResultsTitle;
+
+  /// Label for raffle results
+  ///
+  /// In en, this message translates to:
+  /// **'Raffle results:'**
+  String get raffleResultsLabel;
+
+  /// Text of the close button
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// Text of the share button
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get share;
+
+  /// Message when share functionality is not implemented
+  ///
+  /// In en, this message translates to:
+  /// **'Share functionality not implemented'**
+  String get shareNotImplemented;
+
+  /// Abbreviation for first place
+  ///
+  /// In en, this message translates to:
+  /// **'1st'**
+  String get firstPlace;
+
+  /// Abbreviation for second place
+  ///
+  /// In en, this message translates to:
+  /// **'2nd'**
+  String get secondPlace;
+
+  /// Abbreviation for third place
+  ///
+  /// In en, this message translates to:
+  /// **'3rd'**
+  String get thirdPlace;
+
+  /// Format for positions higher than third place
+  ///
+  /// In en, this message translates to:
+  /// **'{position}°'**
+  String nthPlace(int position);
+
+  /// Place label in winners list
+  ///
+  /// In en, this message translates to:
+  /// **'{position} place'**
+  String placeLabel(String position);
+
+  /// Header for shared raffle results
+  ///
+  /// In en, this message translates to:
+  /// **'🏆 RAFFLE RESULTS 🏆'**
+  String get raffleResultsHeader;
+
+  /// Total winners in shared results
+  ///
+  /// In en, this message translates to:
+  /// **'Total winners: {count}'**
+  String totalWinners(int count);
+
+  /// Message when there are no winners to share
+  ///
+  /// In en, this message translates to:
+  /// **'No winners.'**
+  String get noWinnersToShare;
+
+  /// Success message when raffle results are shared
+  ///
+  /// In en, this message translates to:
+  /// **'Results shared successfully'**
+  String get shareSuccess;
 }
 
 class _AppLocalizationsDelegate
