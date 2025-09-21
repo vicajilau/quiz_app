@@ -1439,5 +1439,29 @@
   "shareSuccess": "Resultados copiados con éxito",
   "@shareSuccess": {
     "description": "Mensaje de éxito cuando se copian los resultados del sorteo"
+  },
+  "selectLogo": "Seleccionar Logo",
+  "@selectLogo": {
+    "description": "Título del diálogo para seleccionar logo personalizado"
+  },
+  "logoUrl": "URL del Logo",
+  "@logoUrl": {
+    "description": "Etiqueta para el campo de entrada de URL del logo"
+  },
+  "logoUrlHint": "Introduce la URL de una imagen que se usará como logo personalizado para el sorteo",
+  "@logoUrlHint": {
+    "description": "Texto de ayuda para explicar el campo de URL del logo"
+  },
+  "invalidLogoUrl": "URL de imagen inválida. Debe ser una URL válida que termine en .jpg, .png, .gif, etc.",
+  "@invalidLogoUrl": {
+    "description": "Mensaje de error para URL de logo inválida"
+  },
+  "logoPreview": "Vista Previa",
+  "@logoPreview": {
+    "description": "Título de la sección de vista previa del logo"
+  },
+  "removeLogo": "Quitar Logo",
+  "@removeLogo": {
+    "description": "Texto del botón para quitar el logo personalizado"
   }
 }

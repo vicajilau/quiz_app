@@ -1045,4 +1045,24 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get shareSuccess => 'Resultados copiados con éxito';
+
+  @override
+  String get selectLogo => 'Seleccionar Logo';
+
+  @override
+  String get logoUrl => 'URL del Logo';
+
+  @override
+  String get logoUrlHint =>
+      'Introduce la URL de una imagen que se usará como logo personalizado para el sorteo';
+
+  @override
+  String get invalidLogoUrl =>
+      'URL de imagen inválida. Debe ser una URL válida que termine en .jpg, .png, .gif, etc.';
+
+  @override
+  String get logoPreview => 'Vista Previa';
+
+  @override
+  String get removeLogo => 'Quitar Logo';
 }

@@ -1048,4 +1048,24 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get shareSuccess => 'Résultats copiés avec succès';
+
+  @override
+  String get selectLogo => 'Sélectionner le Logo';
+
+  @override
+  String get logoUrl => 'URL du Logo';
+
+  @override
+  String get logoUrlHint =>
+      'Entrez l\'URL d\'une image à utiliser comme logo personnalisé pour le tirage';
+
+  @override
+  String get invalidLogoUrl =>
+      'URL d\'image invalide. Doit être une URL valide se terminant par .jpg, .png, .gif, etc.';
+
+  @override
+  String get logoPreview => 'Aperçu';
+
+  @override
+  String get removeLogo => 'Supprimer le Logo';
 }

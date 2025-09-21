@@ -18,6 +18,8 @@ class RaffleBloc extends Bloc<RaffleEvent, RaffleState> {
     on<ResetRaffle>(_onResetRaffle);
     on<ClearParticipants>(_onClearParticipants);
     on<ClearWinners>(_onClearWinners);
+    on<SetRaffleLogo>(_onSetRaffleLogo);
+    on<RemoveRaffleLogo>(_onRemoveRaffleLogo);
 
     // Initialize with empty session
     add(UpdateParticipantText(''));
@@ -182,5 +184,23 @@ class RaffleBloc extends Bloc<RaffleEvent, RaffleState> {
 
     final randomIndex = _random.nextInt(activeParticipants.length);
     return activeParticipants[randomIndex].name;
+  }
+
+  void _onSetRaffleLogo(SetRaffleLogo event, Emitter<RaffleState> emit) {
+    final currentState = state;
+    if (currentState is RaffleLoaded) {
+      final updatedSession = currentState.session.copyWith(
+        logoUrl: event.logoUrl,
+      );
+      emit(RaffleLoaded(updatedSession));
+    }
+  }
+
+  void _onRemoveRaffleLogo(RemoveRaffleLogo event, Emitter<RaffleState> emit) {
+    final currentState = state;
+    if (currentState is RaffleLoaded) {
+      final updatedSession = currentState.session.copyWithoutLogo();
+      emit(RaffleLoaded(updatedSession));
+    }
   }
 }

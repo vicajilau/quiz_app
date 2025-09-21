@@ -30,3 +30,12 @@ class ClearParticipants extends RaffleEvent {}
 
 /// Event to clear all winners.
 class ClearWinners extends RaffleEvent {}
+
+/// Event to set a custom logo for the raffle.
+class SetRaffleLogo extends RaffleEvent {
+  final String logoUrl;
+  SetRaffleLogo(this.logoUrl);
+}
+
+/// Event to remove the custom logo from the raffle.
+class RemoveRaffleLogo extends RaffleEvent {}

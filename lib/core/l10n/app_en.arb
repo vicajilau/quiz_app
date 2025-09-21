@@ -1499,5 +1499,29 @@
   "shareSuccess": "Results copied successfully",
   "@shareSuccess": {
     "description": "Success message when raffle results are copied"
+  },
+  "selectLogo": "Select Logo",
+  "@selectLogo": {
+    "description": "Title of the dialog for selecting custom logo"
+  },
+  "logoUrl": "Logo URL",
+  "@logoUrl": {
+    "description": "Label for the logo URL input field"
+  },
+  "logoUrlHint": "Enter the URL of an image to use as a custom logo for the raffle",
+  "@logoUrlHint": {
+    "description": "Help text explaining the logo URL field"
+  },
+  "invalidLogoUrl": "Invalid image URL. Must be a valid URL ending in .jpg, .png, .gif, etc.",
+  "@invalidLogoUrl": {
+    "description": "Error message for invalid logo URL"
+  },
+  "logoPreview": "Preview",
+  "@logoPreview": {
+    "description": "Title of the logo preview section"
+  },
+  "removeLogo": "Remove Logo",
+  "@removeLogo": {
+    "description": "Text of the button to remove custom logo"
   }
 }

@@ -12,36 +12,55 @@ class WinnersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.winnersTitle),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.go('/raffle'),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () => _showShareDialog(context),
-            icon: const Icon(Icons.share),
-            tooltip: AppLocalizations.of(context)!.shareResults,
+    return BlocBuilder<RaffleBloc, RaffleState>(
+      builder: (context, state) {
+        String? logoUrl;
+        if (state is RaffleLoaded) {
+          logoUrl = state.session.logoUrl;
+        } else if (state is RaffleWinnerSelected) {
+          logoUrl = state.session.logoUrl;
+        }
+
+        return Scaffold(
+          appBar: AppBar(
+            title: logoUrl != null && logoUrl.isNotEmpty
+                ? Image.network(
+                    logoUrl,
+                    height: 40,
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) =>
+                        Text(AppLocalizations.of(context)!.winnersTitle),
+                  )
+                : Text(AppLocalizations.of(context)!.winnersTitle),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => context.go('/raffle'),
+            ),
+            actions: [
+              IconButton(
+                onPressed: () => _showShareDialog(context),
+                icon: const Icon(Icons.share),
+                tooltip: AppLocalizations.of(context)!.shareResults,
+              ),
+            ],
           ),
-        ],
-      ),
-      body: BlocBuilder<RaffleBloc, RaffleState>(
-        builder: (context, state) {
-          List<RaffleWinner> winners = [];
+          body: BlocBuilder<RaffleBloc, RaffleState>(
+            builder: (context, state) {
+              List<RaffleWinner> winners = [];
 
-          if (state is RaffleLoaded) {
-            winners = state.session.winners;
-          } else if (state is RaffleWinnerSelected) {
-            winners = state.session.winners;
-          }
+              if (state is RaffleLoaded) {
+                winners = state.session.winners;
+              } else if (state is RaffleWinnerSelected) {
+                winners = state.session.winners;
+              }
 
-          return winners.isEmpty
-              ? _buildEmptyState()
-              : _buildWinnersList(winners, context);
-        },
-      ),
+              return winners.isEmpty
+                  ? _buildEmptyState()
+                  : _buildWinnersList(winners, context);
+            },
+          ),
+        );
+      },
     );
   }
 

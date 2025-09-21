@@ -1895,6 +1895,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Results copied successfully'**
   String get shareSuccess;
+
+  /// Title of the dialog for selecting custom logo
+  ///
+  /// In en, this message translates to:
+  /// **'Select Logo'**
+  String get selectLogo;
+
+  /// Label for the logo URL input field
+  ///
+  /// In en, this message translates to:
+  /// **'Logo URL'**
+  String get logoUrl;
+
+  /// Help text explaining the logo URL field
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the URL of an image to use as a custom logo for the raffle'**
+  String get logoUrlHint;
+
+  /// Error message for invalid logo URL
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid image URL. Must be a valid URL ending in .jpg, .png, .gif, etc.'**
+  String get invalidLogoUrl;
+
+  /// Title of the logo preview section
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get logoPreview;
+
+  /// Text of the button to remove custom logo
+  ///
+  /// In en, this message translates to:
+  /// **'Remove Logo'**
+  String get removeLogo;
 }
 
 class _AppLocalizationsDelegate

@@ -1047,4 +1047,24 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get shareSuccess => 'Resultats copiats amb èxit';
+
+  @override
+  String get selectLogo => 'Select Logo';
+
+  @override
+  String get logoUrl => 'Logo URL';
+
+  @override
+  String get logoUrlHint =>
+      'Enter the URL of an image to use as a custom logo for the raffle';
+
+  @override
+  String get invalidLogoUrl =>
+      'Invalid image URL. Must be a valid URL ending in .jpg, .png, .gif, etc.';
+
+  @override
+  String get logoPreview => 'Preview';
+
+  @override
+  String get removeLogo => 'Remove Logo';
 }
