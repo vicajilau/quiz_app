@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 /// A widget that handles network image loading with better web compatibility
 class NetworkImageWidget extends StatefulWidget {
@@ -27,6 +28,48 @@ class NetworkImageWidget extends StatefulWidget {
 class _NetworkImageWidgetState extends State<NetworkImageWidget> {
   int _attemptCount = 0;
   static const int _maxAttempts = 2;
+
+  /// Check if the URL points to an SVG file
+  bool _isSvgUrl(String url) {
+    final uri = Uri.tryParse(url);
+    if (uri == null) return false;
+
+    // Check file extension
+    final path = uri.path.toLowerCase();
+    if (path.endsWith('.svg')) return true;
+
+    // Check if URL contains svg in query parameters or path
+    return url.toLowerCase().contains('.svg');
+  }
+
+  /// Build SVG widget with error handling
+  Widget _buildSvgWidget(String url) {
+    return SvgPicture.network(
+      url,
+      height: widget.height,
+      width: widget.width,
+      fit: widget.fit,
+      headers: kIsWeb
+          ? const {
+              'User-Agent': 'Quiz App Flutter Web',
+              'Accept': 'image/svg+xml,image/*,*/*;q=0.8',
+            }
+          : null,
+      placeholderBuilder: widget.loadingBuilder != null
+          ? (context) => widget.loadingBuilder!(context)
+          : (context) => SizedBox(
+              height: widget.height ?? 40,
+              width: widget.width,
+              child: const Center(
+                child: SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+              ),
+            ),
+    );
+  }
 
   /// For web, we can try using a CORS proxy as fallback
   String _getWebFriendlyUrl(String url, int attempt) {
@@ -93,11 +136,17 @@ class _NetworkImageWidgetState extends State<NetworkImageWidget> {
   @override
   Widget build(BuildContext context) {
     final finalUrl = _getWebFriendlyUrl(widget.imageUrl, _attemptCount);
+    final isSvg = _isSvgUrl(finalUrl);
 
     // Debug log for understanding the context
     debugPrint(
-      'NetworkImageWidget build: url=$finalUrl, height=${widget.height}, width=${widget.width}, attempt=$_attemptCount',
+      'NetworkImageWidget build: url=$finalUrl, height=${widget.height}, width=${widget.width}, attempt=$_attemptCount, isSvg=$isSvg',
     );
+
+    // Handle SVG files
+    if (isSvg) {
+      return _buildSvgWidget(finalUrl);
+    }
 
     // For web, we need to handle CORS issues differently
     if (kIsWeb) {

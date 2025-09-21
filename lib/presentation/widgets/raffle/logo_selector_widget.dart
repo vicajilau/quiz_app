@@ -42,7 +42,7 @@ class _LogoSelectorWidgetState extends State<LogoSelectorWidget> {
 
     // Basic URL validation
     final urlPattern = RegExp(
-      r'^https?://.*\.(jpg|jpeg|png|gif|bmp|webp)(\?.*)?$',
+      r'^https?://.*\.(jpg|jpeg|png|gif|bmp|webp|svg)(\?.*)?$',
       caseSensitive: false,
     );
 
