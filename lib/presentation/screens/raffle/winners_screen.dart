@@ -6,7 +6,7 @@ import '../../../core/l10n/app_localizations.dart';
 import '../../../../domain/models/raffle/raffle_winner.dart';
 import '../../blocs/raffle_bloc/raffle_bloc.dart';
 import '../../blocs/raffle_bloc/raffle_state.dart';
-import '../../widgets/common/network_image_widget.dart';
+import '../../widgets/network_image_widget.dart';
 
 class WinnersScreen extends StatelessWidget {
   const WinnersScreen({super.key});
@@ -15,7 +15,7 @@ class WinnersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<RaffleBloc, RaffleState>(
       builder: (context, state) {
-        String? logoUrl;
+        Uint8List? logoUrl;
         if (state is RaffleLoaded) {
           logoUrl = state.session.logoUrl;
         } else if (state is RaffleWinnerSelected) {

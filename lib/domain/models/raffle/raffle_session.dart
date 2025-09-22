@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'raffle_participant.dart';
 import 'raffle_winner.dart';
 
@@ -16,7 +18,7 @@ class RaffleSession {
   final String participantText;
 
   /// Optional logo URL or asset path for customizing the raffle experience.
-  final String? logoUrl;
+  final Uint8List? logoUrl;
 
   /// Constructor for creating a `RaffleSession` instance.
   const RaffleSession({
@@ -43,7 +45,7 @@ class RaffleSession {
     List<RaffleWinner>? winners,
     bool? isSelecting,
     String? participantText,
-    String? logoUrl,
+    Uint8List? logoUrl,
   }) {
     return RaffleSession(
       participants: participants ?? this.participants,

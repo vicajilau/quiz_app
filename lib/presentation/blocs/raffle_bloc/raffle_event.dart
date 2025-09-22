@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 /// Abstract class representing the base event for raffle operations.
 abstract class RaffleEvent {}
 
@@ -33,7 +35,7 @@ class ClearWinners extends RaffleEvent {}
 
 /// Event to set a custom logo for the raffle.
 class SetRaffleLogo extends RaffleEvent {
-  final String logoUrl;
+  final Uint8List logoUrl;
   SetRaffleLogo(this.logoUrl);
 }
 

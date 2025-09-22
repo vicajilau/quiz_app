@@ -1,12 +1,14 @@
+import 'dart:typed_data';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quiz_app/presentation/widgets/network_image_widget.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../blocs/raffle_bloc/raffle_bloc.dart';
 import '../../blocs/raffle_bloc/raffle_event.dart';
 import '../../blocs/raffle_bloc/raffle_state.dart';
-import '../../widgets/common/network_image_widget.dart';
-import '../../widgets/raffle/logo_selector_widget.dart';
 import 'widgets/participant_input_widget.dart';
 import 'widgets/participant_list_widget.dart';
 import 'widgets/raffle_controls_widget.dart';
@@ -28,7 +30,7 @@ class _RaffleScreenContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<RaffleBloc, RaffleState>(
       builder: (context, state) {
-        String? logoUrl;
+        Uint8List? logoUrl;
         if (state is RaffleLoaded) {
           logoUrl = state.session.logoUrl;
         } else if (state is RaffleWinnerSelected) {
@@ -250,22 +252,17 @@ class _RaffleScreenContent extends StatelessWidget {
     );
   }
 
-  void _showLogoSelector(BuildContext context) {
-    final currentState = context.read<RaffleBloc>().state;
-    String? currentLogoUrl;
-
-    if (currentState is RaffleLoaded) {
-      currentLogoUrl = currentState.session.logoUrl;
-    } else if (currentState is RaffleWinnerSelected) {
-      currentLogoUrl = currentState.session.logoUrl;
-    }
-
-    showDialog(
-      context: context,
-      builder: (dialogContext) => BlocProvider.value(
-        value: context.read<RaffleBloc>(),
-        child: LogoSelectorWidget(currentLogoUrl: currentLogoUrl),
-      ),
+  void _showLogoSelector(BuildContext context) async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      allowMultiple: false,
+      withData: true,
     );
+
+    final logoContent = result?.files.first.bytes;
+
+    if (logoContent != null && context.mounted) {
+      context.read<RaffleBloc>().add(SetRaffleLogo(logoContent));
+    }
   }
 }
