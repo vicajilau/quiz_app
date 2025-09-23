@@ -253,16 +253,98 @@ class _RaffleScreenContent extends StatelessWidget {
   }
 
   void _showLogoSelector(BuildContext context) async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      allowMultiple: false,
-      withData: true,
-    );
-
-    final logoContent = result?.files.first.bytes;
-
-    if (logoContent != null && context.mounted) {
-      context.read<RaffleBloc>().add(SetRaffleLogo(logoContent));
+    // Get current logo state
+    Uint8List? currentLogo;
+    final currentState = context.read<RaffleBloc>().state;
+    if (currentState is RaffleLoaded) {
+      currentLogo = currentState.session.logoUrl;
+    } else if (currentState is RaffleWinnerSelected) {
+      currentLogo = currentState.session.logoUrl;
     }
+
+    final hasLogo = currentLogo != null && currentLogo.isNotEmpty;
+
+    // Show dialog with options
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(AppLocalizations.of(context)!.selectLogo),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (hasLogo) ...[
+              // Show current logo preview
+              Container(
+                height: 80,
+                width: 120,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey[300]!),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: NetworkImageWidget(
+                    imageUrl: currentLogo!,
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) =>
+                        Icon(Icons.broken_image, color: Colors.grey),
+                    loadingBuilder: (context) =>
+                        Center(child: CircularProgressIndicator()),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                AppLocalizations.of(context)!.logoPreview,
+                style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+              ),
+              const SizedBox(height: 16),
+            ],
+            Text(
+              AppLocalizations.of(context)!.logoUrlHint,
+              style: TextStyle(fontSize: 14),
+            ),
+          ],
+        ),
+        actions: [
+          // Cancel button
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: Text(AppLocalizations.of(context)!.cancel),
+          ),
+          // Remove logo button (only if there's a current logo)
+          if (hasLogo)
+            TextButton(
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+                context.read<RaffleBloc>().add(RemoveRaffleLogo());
+              },
+              child: Text(
+                AppLocalizations.of(context)!.removeLogo,
+                style: TextStyle(color: Colors.red),
+              ),
+            ),
+          // Select new logo button
+          ElevatedButton(
+            onPressed: () async {
+              Navigator.of(dialogContext).pop();
+
+              final result = await FilePicker.platform.pickFiles(
+                type: FileType.image,
+                allowMultiple: false,
+                withData: true,
+              );
+
+              final logoContent = result?.files.first.bytes;
+
+              if (logoContent != null && context.mounted) {
+                context.read<RaffleBloc>().add(SetRaffleLogo(logoContent));
+              }
+            },
+            child: Text(AppLocalizations.of(context)!.selectLogo),
+          ),
+        ],
+      ),
+    );
   }
 }
