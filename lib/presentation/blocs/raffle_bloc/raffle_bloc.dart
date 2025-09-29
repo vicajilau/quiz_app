@@ -1,5 +1,7 @@
 import 'dart:math';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../data/services/raffle_storage_service.dart';
+import '../../../domain/models/raffle/raffle_logo.dart';
 import '../../../domain/models/raffle/raffle_participant.dart';
 import '../../../domain/models/raffle/raffle_session.dart';
 import '../../../domain/models/raffle/raffle_winner.dart';
@@ -9,6 +11,7 @@ import 'raffle_state.dart';
 /// BLoC for managing raffle functionality.
 class RaffleBloc extends Bloc<RaffleEvent, RaffleState> {
   final Random _random = Random();
+  final RaffleStorageService _storageService = RaffleStorageService.instance;
 
   RaffleBloc() : super(RaffleInitial()) {
     on<UpdateParticipantText>(_onUpdateParticipantText);
@@ -20,9 +23,12 @@ class RaffleBloc extends Bloc<RaffleEvent, RaffleState> {
     on<ClearWinners>(_onClearWinners);
     on<SetRaffleLogo>(_onSetRaffleLogo);
     on<RemoveRaffleLogo>(_onRemoveRaffleLogo);
+    on<LoadPersistedLogo>(_onLoadPersistedLogo);
+    on<ShowWarning>(_onShowWarning);
+    on<DismissWarning>(_onDismissWarning);
 
-    // Initialize with empty session
-    add(UpdateParticipantText(''));
+    // Initialize with loading persisted logo first
+    add(LoadPersistedLogo());
   }
 
   void _onUpdateParticipantText(
@@ -142,7 +148,14 @@ class RaffleBloc extends Bloc<RaffleEvent, RaffleState> {
   }
 
   void _onResetRaffle(ResetRaffle event, Emitter<RaffleState> emit) {
-    emit(RaffleLoaded(RaffleSession.empty()));
+    final currentState = state;
+    if (currentState is RaffleLoaded) {
+      // Preserve the logo when resetting
+      final logo = currentState.session.logo;
+      emit(RaffleLoaded(RaffleSession.empty().copyWith(logo: logo)));
+    } else {
+      emit(RaffleLoaded(RaffleSession.empty()));
+    }
   }
 
   void _onClearParticipants(
@@ -186,21 +199,93 @@ class RaffleBloc extends Bloc<RaffleEvent, RaffleState> {
     return activeParticipants[randomIndex].name;
   }
 
-  void _onSetRaffleLogo(SetRaffleLogo event, Emitter<RaffleState> emit) {
+  void _onSetRaffleLogo(SetRaffleLogo event, Emitter<RaffleState> emit) async {
     final currentState = state;
     if (currentState is RaffleLoaded) {
-      final updatedSession = currentState.session.copyWith(
-        logoUrl: event.logoUrl,
-      );
+      // Create RaffleLogo from the provided bytes
+      final logo = RaffleLogo.fromFile(event.logoBytes, event.filename);
+
+      // Always update the UI first, regardless of persistence success
+      final updatedSession = currentState.session.copyWith(logo: logo);
+      emit(RaffleLoaded(updatedSession));
+
+      // Try to save logo to persistent storage
+      final saved = await _storageService.saveLogo(logo);
+      if (!saved) {
+        // If saving fails (e.g., image too large), show a warning
+        // but keep the logo in memory for the current session
+        emit(
+          RaffleWarning(
+            updatedSession,
+            'La imagen es demasiado grande para guardarse. Se usará solo durante esta sesión.',
+          ),
+        );
+      }
+    }
+  }
+
+  void _onRemoveRaffleLogo(
+    RemoveRaffleLogo event,
+    Emitter<RaffleState> emit,
+  ) async {
+    final currentState = state;
+    if (currentState is RaffleLoaded) {
+      // Remove logo from persistent storage
+      await _storageService.removeLogo();
+
+      final updatedSession = currentState.session.copyWithoutLogo();
       emit(RaffleLoaded(updatedSession));
     }
   }
 
-  void _onRemoveRaffleLogo(RemoveRaffleLogo event, Emitter<RaffleState> emit) {
+  void _onLoadPersistedLogo(
+    LoadPersistedLogo event,
+    Emitter<RaffleState> emit,
+  ) async {
+    try {
+      final persistedLogo = await _storageService.getLogo();
+
+      if (persistedLogo != null) {
+        final currentState = state;
+        if (currentState is RaffleLoaded) {
+          final updatedSession = currentState.session.copyWith(
+            logo: persistedLogo,
+          );
+          emit(RaffleLoaded(updatedSession));
+        } else {
+          // If no current session exists, create one with the persisted logo
+          final session = RaffleSession.empty().copyWith(logo: persistedLogo);
+          emit(RaffleLoaded(session));
+        }
+      } else {
+        // If no persisted logo, just create empty session if not exists
+        if (state is! RaffleLoaded && state is! RaffleWinnerSelected) {
+          emit(RaffleLoaded(RaffleSession.empty()));
+        }
+      }
+
+      // Initialize with empty participant text after loading logo
+      add(UpdateParticipantText(''));
+    } catch (e) {
+      // If loading fails, just continue with empty session
+      if (state is! RaffleLoaded && state is! RaffleWinnerSelected) {
+        emit(RaffleLoaded(RaffleSession.empty()));
+      }
+      add(UpdateParticipantText(''));
+    }
+  }
+
+  void _onShowWarning(ShowWarning event, Emitter<RaffleState> emit) {
     final currentState = state;
     if (currentState is RaffleLoaded) {
-      final updatedSession = currentState.session.copyWithoutLogo();
-      emit(RaffleLoaded(updatedSession));
+      emit(RaffleWarning(currentState.session, event.message));
+    }
+  }
+
+  void _onDismissWarning(DismissWarning event, Emitter<RaffleState> emit) {
+    final currentState = state;
+    if (currentState is RaffleWarning) {
+      emit(RaffleLoaded(currentState.session));
     }
   }
 }

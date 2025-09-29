@@ -1,12 +1,13 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quiz_app/presentation/screens/raffle/widgets/logo_widget.dart';
 import '../../../core/l10n/app_localizations.dart';
+import '../../../domain/models/raffle/raffle_logo.dart';
 import '../../blocs/raffle_bloc/raffle_bloc.dart';
 import '../../blocs/raffle_bloc/raffle_event.dart';
 import '../../blocs/raffle_bloc/raffle_state.dart';
-import '../../widgets/common/network_image_widget.dart';
-import '../../widgets/raffle/logo_selector_widget.dart';
 import 'widgets/participant_input_widget.dart';
 import 'widgets/participant_list_widget.dart';
 import 'widgets/raffle_controls_widget.dart';
@@ -28,52 +29,65 @@ class _RaffleScreenContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<RaffleBloc, RaffleState>(
       builder: (context, state) {
-        String? logoUrl;
+        RaffleLogo? logo;
         if (state is RaffleLoaded) {
-          logoUrl = state.session.logoUrl;
+          logo = state.session.logo;
         } else if (state is RaffleWinnerSelected) {
-          logoUrl = state.session.logoUrl;
+          logo = state.session.logo;
+        } else if (state is RaffleWarning) {
+          logo = state.session.logo;
         }
 
         return Scaffold(
           appBar: AppBar(
-            title: logoUrl != null && logoUrl.isNotEmpty
-                ? Container(
-                    height: 40,
-                    constraints: const BoxConstraints(maxWidth: 200),
-                    child: NetworkImageWidget(
-                      imageUrl: logoUrl,
-                      height: 40,
-                      fit: BoxFit.contain,
-                      errorBuilder: (context, error, stackTrace) {
-                        debugPrint('AppBar logo failed to load: $error');
-                        return Text(AppLocalizations.of(context)!.raffleTitle);
-                      },
-                      loadingBuilder: (context) => const SizedBox(
-                        height: 40,
-                        width: 40,
-                        child: Center(
-                          child: SizedBox(
-                            width: 20,
-                            height: 20,
-                            child: CircularProgressIndicator(strokeWidth: 2),
+            title: Tooltip(
+              message: AppLocalizations.of(context)!.selectLogo,
+              child: InkWell(
+                onTap: () => _showLogoSelector(context),
+                borderRadius: BorderRadius.circular(8),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
+                  child: logo != null
+                      ? Container(
+                          height: 40,
+                          constraints: const BoxConstraints(maxWidth: 200),
+                          child: LogoWidget(
+                            logo: logo,
+                            height: 40,
+                            fit: BoxFit.contain,
+                            errorBuilder: (context, error, stackTrace) {
+                              debugPrint('AppBar logo failed to load: $error');
+                              return Text(
+                                AppLocalizations.of(context)!.raffleTitle,
+                              );
+                            },
+                            loadingBuilder: (context) => const SizedBox(
+                              height: 40,
+                              width: 40,
+                              child: Center(
+                                child: SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                  )
-                : Text(AppLocalizations.of(context)!.raffleTitle),
+                        )
+                      : Text(AppLocalizations.of(context)!.raffleTitle),
+                ),
+              ),
+            ),
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () => context.go('/'),
             ),
             actions: [
-              // Logo configuration button
-              IconButton(
-                onPressed: () => _showLogoSelector(context),
-                icon: const Icon(Icons.image),
-                tooltip: AppLocalizations.of(context)!.selectLogo,
-              ),
               // Winners history button
               BlocBuilder<RaffleBloc, RaffleState>(
                 builder: (context, state) {
@@ -81,6 +95,8 @@ class _RaffleScreenContent extends StatelessWidget {
                   if (state is RaffleLoaded) {
                     hasWinners = state.session.hasWinners;
                   } else if (state is RaffleWinnerSelected) {
+                    hasWinners = state.session.hasWinners;
+                  } else if (state is RaffleWarning) {
                     hasWinners = state.session.hasWinners;
                   }
 
@@ -115,6 +131,23 @@ class _RaffleScreenContent extends StatelessWidget {
                     backgroundColor: Colors.red,
                   ),
                 );
+              } else if (state is RaffleWarning) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.message),
+                    backgroundColor: Colors.orange,
+                    duration: const Duration(seconds: 5),
+                    action: SnackBarAction(
+                      label: 'OK',
+                      textColor: Colors.white,
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      },
+                    ),
+                  ),
+                );
+                // Return to loaded state after showing warning
+                context.read<RaffleBloc>().add(DismissWarning());
               }
             },
             child: LayoutBuilder(
@@ -250,21 +283,105 @@ class _RaffleScreenContent extends StatelessWidget {
     );
   }
 
-  void _showLogoSelector(BuildContext context) {
+  void _showLogoSelector(BuildContext context) async {
+    // Get current logo state
+    RaffleLogo? currentLogo;
     final currentState = context.read<RaffleBloc>().state;
-    String? currentLogoUrl;
-
     if (currentState is RaffleLoaded) {
-      currentLogoUrl = currentState.session.logoUrl;
+      currentLogo = currentState.session.logo;
     } else if (currentState is RaffleWinnerSelected) {
-      currentLogoUrl = currentState.session.logoUrl;
+      currentLogo = currentState.session.logo;
+    } else if (currentState is RaffleWarning) {
+      currentLogo = currentState.session.logo;
     }
 
+    final hasLogo = currentLogo != null;
+
+    // Show dialog with options
     showDialog(
       context: context,
-      builder: (dialogContext) => BlocProvider.value(
-        value: context.read<RaffleBloc>(),
-        child: LogoSelectorWidget(currentLogoUrl: currentLogoUrl),
+      builder: (dialogContext) => AlertDialog(
+        title: Text(AppLocalizations.of(context)!.selectLogo),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (hasLogo) ...[
+              // Show current logo preview
+              Container(
+                height: 80,
+                width: 120,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey[300]!),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: LogoWidget(
+                    logo: currentLogo!,
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) =>
+                        Icon(Icons.broken_image, color: Colors.grey),
+                    loadingBuilder: (context) =>
+                        Center(child: CircularProgressIndicator()),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                AppLocalizations.of(context)!.logoPreview,
+                style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+              ),
+              const SizedBox(height: 16),
+            ],
+            Text(
+              AppLocalizations.of(context)!.logoUrlHint,
+              style: TextStyle(fontSize: 14),
+            ),
+          ],
+        ),
+        actions: [
+          // Cancel button
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: Text(AppLocalizations.of(context)!.cancel),
+          ),
+          // Remove logo button (only if there's a current logo)
+          if (hasLogo)
+            TextButton(
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+                context.read<RaffleBloc>().add(RemoveRaffleLogo());
+              },
+              child: Text(
+                AppLocalizations.of(context)!.removeLogo,
+                style: TextStyle(color: Colors.red),
+              ),
+            ),
+          // Select new logo button
+          ElevatedButton(
+            onPressed: () async {
+              Navigator.of(dialogContext).pop();
+
+              final result = await FilePicker.platform.pickFiles(
+                type: FileType.custom,
+                allowedExtensions: ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'],
+                allowMultiple: false,
+                withData: true,
+              );
+
+              final file = result?.files.first;
+              final logoContent = file?.bytes;
+              final filename = file?.name;
+
+              if (logoContent != null && context.mounted) {
+                context.read<RaffleBloc>().add(
+                  SetRaffleLogo(logoContent, filename: filename),
+                );
+              }
+            },
+            child: Text(AppLocalizations.of(context)!.selectLogo),
+          ),
+        ],
       ),
     );
   }

@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2025-09-29
+
+- Added local image support with file picker for JPG, PNG, GIF, WebP, and SVG formats
+- Implemented persistent logo storage using SharedPreferences with base64 encoding
+- Enhanced AppBar with clickable title for intuitive logo selection (replaced separate button)
+- Added automatic file size validation with user warnings for oversized images
+- Integrated flutter_svg for dedicated SVG rendering support
+- Improved logo management with unified LogoWidget for consistent rendering
+- Added tooltip guidance for logo selection functionality
+- Simplified RaffleStorageService API with cleaner method naming
+- Enhanced RaffleLogo model with automatic format detection
+- Removed deprecated NetworkImageWidget in favor of unified approach
+
 ## [1.1.0+5] - 2025-09-21
 
 ### Added

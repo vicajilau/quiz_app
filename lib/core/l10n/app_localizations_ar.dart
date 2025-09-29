@@ -157,9 +157,6 @@ class AppLocalizationsAr extends AppLocalizations {
       'هل أنت متأكد من أنك تريد إنهاء الاختبار؟ لن تتمكن من تغيير إجاباتك بعد ذلك.';
 
   @override
-  String get cancel => 'إلغاء';
-
-  @override
   String get abandonQuiz => 'التخلي عن الاختبار';
 
   @override
@@ -212,10 +209,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get startQuiz => 'بدء الاختبار';
 
   @override
-  String get customNumberLabel => 'أو أدخل رقماً مخصصاً:';
+  String get errorInvalidNumber => 'يرجى إدخال رقم صالح';
 
   @override
-  String get numberInputLabel => 'عدد الأسئلة';
+  String get errorNumberMustBePositive => 'يجب أن يكون الرقم أكبر من 0';
+
+  @override
+  String get customNumberLabel => 'أو أدخل رقماً مخصصاً:';
 
   @override
   String customNumberHelper(int total) {
@@ -223,10 +223,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get errorInvalidNumber => 'يرجى إدخال رقم صالح';
-
-  @override
-  String get errorNumberMustBePositive => 'يجب أن يكون الرقم أكبر من 0';
+  String get numberInputLabel => 'عدد الأسئلة';
 
   @override
   String get questionOrderConfigTitle => 'إعداد ترتيب الأسئلة';
@@ -326,12 +323,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get questionLabel => 'السؤال';
-
-  @override
-  String get optionsLabel => 'الخيارات';
-
-  @override
-  String get explanationLabel => 'الشرح (اختياري)';
 
   @override
   String get studentComment => 'تعليق الطالب';
@@ -448,6 +439,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get deleteAction => 'حذف';
 
   @override
+  String get explanationLabel => 'الشرح (اختياري)';
+
+  @override
   String get explanationHint => 'أدخل شرحاً للإجابة/الإجابات الصحيحة';
 
   @override
@@ -499,6 +493,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get addOption => 'إضافة خيار';
+
+  @override
+  String get optionsLabel => 'الخيارات';
 
   @override
   String get optionLabel => 'الخيار';
@@ -623,9 +620,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get incorrectSelectedLabel => 'خطأ';
-
-  @override
-  String get generateQuestionsWithAI => 'إنتاج أسئلة بالذكاء الاصطناعي';
 
   @override
   String get aiGenerateDialogTitle => 'إنتاج أسئلة بالذكاء الاصطناعي';
@@ -760,6 +754,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get defaultOutputFileName => 'output-file.quiz';
+
+  @override
+  String get generateQuestionsWithAI => 'إنتاج أسئلة بالذكاء الاصطناعي';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {
@@ -929,6 +926,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'هذا سيعيد تعيين جميع الفائزين والمشاركين النشطين.';
 
   @override
+  String get cancel => 'إلغاء';
+
+  @override
   String get reset => 'إعادة تعيين';
 
   @override
@@ -1045,4 +1045,8 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get removeLogo => 'إزالة الشعار';
+
+  @override
+  String get logoTooLargeWarning =>
+      'الصورة كبيرة جداً ولا يمكن حفظها. سيتم استخدامها فقط خلال هذه الجلسة.';
 }

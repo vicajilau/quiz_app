@@ -156,9 +156,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get finishQuizConfirmation => '您确定要完成测验吗？之后您将无法更改答案。';
 
   @override
-  String get cancel => '取消';
-
-  @override
   String get abandonQuiz => '放弃测验';
 
   @override
@@ -209,10 +206,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get startQuiz => '开始测验';
 
   @override
-  String get customNumberLabel => '或输入自定义数量：';
+  String get errorInvalidNumber => '请输入有效数字';
 
   @override
-  String get numberInputLabel => '问题数量';
+  String get errorNumberMustBePositive => '数字必须大于0';
+
+  @override
+  String get customNumberLabel => '或输入自定义数量：';
 
   @override
   String customNumberHelper(int total) {
@@ -220,10 +220,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get errorInvalidNumber => '请输入有效数字';
-
-  @override
-  String get errorNumberMustBePositive => '数字必须大于0';
+  String get numberInputLabel => '问题数量';
 
   @override
   String get questionOrderConfigTitle => '问题顺序配置';
@@ -319,12 +316,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get questionLabel => '问题';
-
-  @override
-  String get optionsLabel => '选项';
-
-  @override
-  String get explanationLabel => '解释（可选）';
 
   @override
   String get studentComment => '学生评论';
@@ -431,6 +422,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get deleteAction => '删除';
 
   @override
+  String get explanationLabel => '解释（可选）';
+
+  @override
   String get explanationHint => '输入正确答案的解释';
 
   @override
@@ -482,6 +476,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get addOption => '添加选项';
+
+  @override
+  String get optionsLabel => '选项';
 
   @override
   String get optionLabel => '选项';
@@ -600,9 +597,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get incorrectSelectedLabel => '错误';
-
-  @override
-  String get generateQuestionsWithAI => '使用AI生成问题';
 
   @override
   String get aiGenerateDialogTitle => '使用AI生成问题';
@@ -732,6 +726,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get defaultOutputFileName => 'output-file.quiz';
+
+  @override
+  String get generateQuestionsWithAI => '使用AI生成问题';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {
@@ -896,6 +893,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get resetRaffleConfirmMessage => '这将重置所有获奖者和活跃参与者。';
 
   @override
+  String get cancel => '取消';
+
+  @override
   String get reset => '重置';
 
   @override
@@ -1011,4 +1011,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get removeLogo => '移除标志';
+
+  @override
+  String get logoTooLargeWarning => '图像太大无法保存。仅在此会话期间使用。';
 }
