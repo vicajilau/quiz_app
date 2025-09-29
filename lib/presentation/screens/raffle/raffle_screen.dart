@@ -1,11 +1,10 @@
-import 'dart:typed_data';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quiz_app/presentation/widgets/network_image_widget.dart';
+import 'package:quiz_app/presentation/screens/raffle/widgets/logo_widget.dart';
 import '../../../core/l10n/app_localizations.dart';
+import '../../../domain/models/raffle/raffle_logo.dart';
 import '../../blocs/raffle_bloc/raffle_bloc.dart';
 import '../../blocs/raffle_bloc/raffle_event.dart';
 import '../../blocs/raffle_bloc/raffle_state.dart';
@@ -30,21 +29,23 @@ class _RaffleScreenContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<RaffleBloc, RaffleState>(
       builder: (context, state) {
-        Uint8List? logoUrl;
+        RaffleLogo? logo;
         if (state is RaffleLoaded) {
-          logoUrl = state.session.logoUrl;
+          logo = state.session.logo;
         } else if (state is RaffleWinnerSelected) {
-          logoUrl = state.session.logoUrl;
+          logo = state.session.logo;
+        } else if (state is RaffleWarning) {
+          logo = state.session.logo;
         }
 
         return Scaffold(
           appBar: AppBar(
-            title: logoUrl != null && logoUrl.isNotEmpty
+            title: logo != null
                 ? Container(
                     height: 40,
                     constraints: const BoxConstraints(maxWidth: 200),
-                    child: NetworkImageWidget(
-                      imageUrl: logoUrl,
+                    child: LogoWidget(
+                      logo: logo,
                       height: 40,
                       fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) {
@@ -84,6 +85,8 @@ class _RaffleScreenContent extends StatelessWidget {
                     hasWinners = state.session.hasWinners;
                   } else if (state is RaffleWinnerSelected) {
                     hasWinners = state.session.hasWinners;
+                  } else if (state is RaffleWarning) {
+                    hasWinners = state.session.hasWinners;
                   }
 
                   return IconButton(
@@ -117,6 +120,23 @@ class _RaffleScreenContent extends StatelessWidget {
                     backgroundColor: Colors.red,
                   ),
                 );
+              } else if (state is RaffleWarning) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.message),
+                    backgroundColor: Colors.orange,
+                    duration: const Duration(seconds: 5),
+                    action: SnackBarAction(
+                      label: 'OK',
+                      textColor: Colors.white,
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      },
+                    ),
+                  ),
+                );
+                // Return to loaded state after showing warning
+                context.read<RaffleBloc>().add(DismissWarning());
               }
             },
             child: LayoutBuilder(
@@ -254,15 +274,17 @@ class _RaffleScreenContent extends StatelessWidget {
 
   void _showLogoSelector(BuildContext context) async {
     // Get current logo state
-    Uint8List? currentLogo;
+    RaffleLogo? currentLogo;
     final currentState = context.read<RaffleBloc>().state;
     if (currentState is RaffleLoaded) {
-      currentLogo = currentState.session.logoUrl;
+      currentLogo = currentState.session.logo;
     } else if (currentState is RaffleWinnerSelected) {
-      currentLogo = currentState.session.logoUrl;
+      currentLogo = currentState.session.logo;
+    } else if (currentState is RaffleWarning) {
+      currentLogo = currentState.session.logo;
     }
 
-    final hasLogo = currentLogo != null && currentLogo.isNotEmpty;
+    final hasLogo = currentLogo != null;
 
     // Show dialog with options
     showDialog(
@@ -283,8 +305,8 @@ class _RaffleScreenContent extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: NetworkImageWidget(
-                    imageUrl: currentLogo!,
+                  child: LogoWidget(
+                    logo: currentLogo!,
                     fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) =>
                         Icon(Icons.broken_image, color: Colors.grey),
@@ -330,15 +352,20 @@ class _RaffleScreenContent extends StatelessWidget {
               Navigator.of(dialogContext).pop();
 
               final result = await FilePicker.platform.pickFiles(
-                type: FileType.image,
+                type: FileType.custom,
+                allowedExtensions: ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'],
                 allowMultiple: false,
                 withData: true,
               );
 
-              final logoContent = result?.files.first.bytes;
+              final file = result?.files.first;
+              final logoContent = file?.bytes;
+              final filename = file?.name;
 
               if (logoContent != null && context.mounted) {
-                context.read<RaffleBloc>().add(SetRaffleLogo(logoContent));
+                context.read<RaffleBloc>().add(
+                  SetRaffleLogo(logoContent, filename: filename),
+                );
               }
             },
             child: Text(AppLocalizations.of(context)!.selectLogo),

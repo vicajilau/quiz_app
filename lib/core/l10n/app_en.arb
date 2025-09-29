@@ -215,10 +215,6 @@
   "@finishQuizConfirmation": {
     "description": "Confirmation message for finishing quiz"
   },
-  "cancel": "Cancel",
-  "@cancel": {
-    "description": "Cancel button text"
-  },
   "abandonQuiz": "Abandon Quiz",
   "@abandonQuiz": {
     "description": "Title of abandon quiz dialog"
@@ -302,24 +298,6 @@
   "startQuiz": "Start Quiz",
   "@startQuiz": {
     "description": "Button text to start the quiz"
-  },
-  "customNumberLabel": "Or enter a custom number:",
-  "@customNumberLabel": {
-    "description": "Label for custom number input section"
-  },
-  "numberInputLabel": "Number of questions",
-  "@numberInputLabel": {
-    "description": "Label for the number input field"
-  },
-  "customNumberHelper": "Enter any number (max {total}). If higher, questions will repeat.",
-  "@customNumberHelper": {
-    "description": "Helper text explaining custom number input",
-    "placeholders": {
-      "total": {
-        "type": "int",
-        "example": "25"
-      }
-    }
   },
   "errorInvalidNumber": "Please enter a valid number",
   "@errorInvalidNumber": {
@@ -478,14 +456,6 @@
   "questionLabel": "Question",
   "@questionLabel": {
     "description": "Label for question in AI dialog"
-  },
-  "optionsLabel": "Options",
-  "@optionsLabel": {
-    "description": "Label for options in AI dialog"
-  },
-  "explanationLabel": "Explanation",
-  "@explanationLabel": {
-    "description": "Label for explanation in AI dialog"
   },
   "studentComment": "Student comment",
   "@studentComment": {
@@ -892,10 +862,6 @@
   "incorrectSelectedLabel": "Incorrect",
   "@incorrectSelectedLabel": {
     "description": "Label for incorrectly selected answers in quiz results."
-  },
-    "generateQuestionsWithAI": "Generate questions with AI",
-  "@generateQuestionsWithAI": {
-    "description": "Tooltip for the generate questions with AI button."
   },
   "aiGenerateDialogTitle": "Generate Questions with AI",
   "@aiGenerateDialogTitle": {
@@ -1523,5 +1489,9 @@
   "removeLogo": "Remove Logo",
   "@removeLogo": {
     "description": "Text of the button to remove custom logo"
+  },
+  "logoTooLargeWarning": "Image is too large to be saved. It will only be used during this session.",
+  "@logoTooLargeWarning": {
+    "description": "Warning message when logo is too large for persistent storage"
   }
 }

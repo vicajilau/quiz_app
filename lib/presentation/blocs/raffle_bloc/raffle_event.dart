@@ -35,9 +35,23 @@ class ClearWinners extends RaffleEvent {}
 
 /// Event to set a custom logo for the raffle.
 class SetRaffleLogo extends RaffleEvent {
-  final Uint8List logoUrl;
-  SetRaffleLogo(this.logoUrl);
+  final Uint8List logoBytes;
+  final String? filename;
+
+  SetRaffleLogo(this.logoBytes, {this.filename});
 }
 
 /// Event to remove the custom logo from the raffle.
 class RemoveRaffleLogo extends RaffleEvent {}
+
+/// Event to load the persisted logo from storage.
+class LoadPersistedLogo extends RaffleEvent {}
+
+/// Event to show a warning message to the user.
+class ShowWarning extends RaffleEvent {
+  final String message;
+  ShowWarning(this.message);
+}
+
+/// Event to dismiss a warning and return to normal loaded state.
+class DismissWarning extends RaffleEvent {}

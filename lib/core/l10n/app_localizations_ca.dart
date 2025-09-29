@@ -161,9 +161,6 @@ class AppLocalizationsCa extends AppLocalizations {
       'Esteu segur que voleu acabar el quiz? No podreu canviar les vostres respostes després.';
 
   @override
-  String get cancel => 'Cancel·lar';
-
-  @override
   String get abandonQuiz => 'Abandonar Quiz';
 
   @override
@@ -216,10 +213,13 @@ class AppLocalizationsCa extends AppLocalizations {
   String get startQuiz => 'Començar Quiz';
 
   @override
-  String get customNumberLabel => 'O introduïu un número personalitzat:';
+  String get errorInvalidNumber => 'Si us plau, introduïu un número vàlid';
 
   @override
-  String get numberInputLabel => 'Nombre de preguntes';
+  String get errorNumberMustBePositive => 'El número ha de ser més gran que 0';
+
+  @override
+  String get customNumberLabel => 'O introduïu un número personalitzat:';
 
   @override
   String customNumberHelper(int total) {
@@ -227,10 +227,7 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get errorInvalidNumber => 'Si us plau, introduïu un número vàlid';
-
-  @override
-  String get errorNumberMustBePositive => 'El número ha de ser més gran que 0';
+  String get numberInputLabel => 'Nombre de preguntes';
 
   @override
   String get questionOrderConfigTitle =>
@@ -335,12 +332,6 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get questionLabel => 'Pregunta';
-
-  @override
-  String get optionsLabel => 'Opcions';
-
-  @override
-  String get explanationLabel => 'Explicació (opcional)';
 
   @override
   String get studentComment => 'Comentari de l\'estudiant';
@@ -458,6 +449,9 @@ class AppLocalizationsCa extends AppLocalizations {
   String get deleteAction => 'Eliminar';
 
   @override
+  String get explanationLabel => 'Explicació (opcional)';
+
+  @override
   String get explanationHint =>
       'Introduïu una explicació per la/les resposta/es correcta/es';
 
@@ -510,6 +504,9 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get addOption => 'Afegir Opció';
+
+  @override
+  String get optionsLabel => 'Opcions';
 
   @override
   String get optionLabel => 'Opció';
@@ -636,9 +633,6 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get incorrectSelectedLabel => 'Incorrecte';
-
-  @override
-  String get generateQuestionsWithAI => 'Generar preguntes amb IA';
 
   @override
   String get aiGenerateDialogTitle => 'Generar Preguntes amb IA';
@@ -775,6 +769,9 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get defaultOutputFileName => 'fitxer-sortida.quiz';
+
+  @override
+  String get generateQuestionsWithAI => 'Generar preguntes amb IA';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {
@@ -949,6 +946,9 @@ class AppLocalizationsCa extends AppLocalizations {
       'Això reiniciarà tots els guanyadors i participants actius.';
 
   @override
+  String get cancel => 'Cancel·lar';
+
+  @override
   String get reset => 'Reiniciar';
 
   @override
@@ -1067,4 +1067,8 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get removeLogo => 'Eliminar Logo';
+
+  @override
+  String get logoTooLargeWarning =>
+      'Image is too large to be saved. It will only be used during this session.';
 }

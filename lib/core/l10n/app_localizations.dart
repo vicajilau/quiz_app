@@ -390,12 +390,6 @@ abstract class AppLocalizations {
   /// **'Are you sure you want to finish the quiz? You won\'t be able to change your answers afterwards.'**
   String get finishQuizConfirmation;
 
-  /// Text of the cancel button
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get cancel;
-
   /// Title of abandon quiz dialog
   ///
   /// In en, this message translates to:
@@ -480,24 +474,6 @@ abstract class AppLocalizations {
   /// **'Start Quiz'**
   String get startQuiz;
 
-  /// Label for custom number input field
-  ///
-  /// In en, this message translates to:
-  /// **'Or enter a custom number:'**
-  String get customNumberLabel;
-
-  /// Label for the number input field
-  ///
-  /// In en, this message translates to:
-  /// **'Number of questions'**
-  String get numberInputLabel;
-
-  /// Helper text for custom number input
-  ///
-  /// In en, this message translates to:
-  /// **'If greater than {total}, questions will repeat'**
-  String customNumberHelper(int total);
-
   /// Error message for invalid number input
   ///
   /// In en, this message translates to:
@@ -509,6 +485,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Number must be greater than 0'**
   String get errorNumberMustBePositive;
+
+  /// Label for custom number input field
+  ///
+  /// In en, this message translates to:
+  /// **'Or enter a custom number:'**
+  String get customNumberLabel;
+
+  /// Helper text for custom number input
+  ///
+  /// In en, this message translates to:
+  /// **'If greater than {total}, questions will repeat'**
+  String customNumberHelper(int total);
+
+  /// Label for the number input field
+  ///
+  /// In en, this message translates to:
+  /// **'Number of questions'**
+  String get numberInputLabel;
 
   /// Title for the question order configuration dialog
   ///
@@ -677,18 +671,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Question'**
   String get questionLabel;
-
-  /// Label for options section
-  ///
-  /// In en, this message translates to:
-  /// **'Options'**
-  String get optionsLabel;
-
-  /// Label for the explanation input field
-  ///
-  /// In en, this message translates to:
-  /// **'Explanation (optional)'**
-  String get explanationLabel;
 
   /// Label for student comment in AI dialog
   ///
@@ -894,6 +876,12 @@ abstract class AppLocalizations {
   /// **'Delete'**
   String get deleteAction;
 
+  /// Label for the explanation input field
+  ///
+  /// In en, this message translates to:
+  /// **'Explanation (optional)'**
+  String get explanationLabel;
+
   /// Hint text for the explanation input field
   ///
   /// In en, this message translates to:
@@ -995,6 +983,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add Option'**
   String get addOption;
+
+  /// Label for options section
+  ///
+  /// In en, this message translates to:
+  /// **'Options'**
+  String get optionsLabel;
 
   /// Label for individual option input field
   ///
@@ -1199,12 +1193,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Incorrect'**
   String get incorrectSelectedLabel;
-
-  /// Tooltip for the generate questions with AI button.
-  ///
-  /// In en, this message translates to:
-  /// **'Generate questions with AI'**
-  String get generateQuestionsWithAI;
 
   /// Title of the AI question generation dialog.
   ///
@@ -1445,6 +1433,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'output-file.quiz'**
   String get defaultOutputFileName;
+
+  /// Tooltip for the generate questions with AI button.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate questions with AI'**
+  String get generateQuestionsWithAI;
 
   /// Description of AI service limits with both word and character limits.
   ///
@@ -1722,6 +1716,12 @@ abstract class AppLocalizations {
   /// **'Are you sure you want to reset the raffle? All participants and winners will be lost.'**
   String get resetRaffleConfirmMessage;
 
+  /// Text of the cancel button
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
   /// Text of the reset button
   ///
   /// In en, this message translates to:
@@ -1931,6 +1931,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Remove Logo'**
   String get removeLogo;
+
+  /// Warning message when logo is too large for persistent storage
+  ///
+  /// In en, this message translates to:
+  /// **'Image is too large to be saved. It will only be used during this session.'**
+  String get logoTooLargeWarning;
 }
 
 class _AppLocalizationsDelegate

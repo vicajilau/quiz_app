@@ -160,9 +160,6 @@ class AppLocalizationsEu extends AppLocalizations {
       'Ziur zaude quiz-a amaitu nahi duzula? Ezingo dituzu zure erantzunak aldatu gero.';
 
   @override
-  String get cancel => 'Utzi';
-
-  @override
   String get abandonQuiz => 'Quiz Utzi';
 
   @override
@@ -215,10 +212,14 @@ class AppLocalizationsEu extends AppLocalizations {
   String get startQuiz => 'Quiz Hasi';
 
   @override
-  String get customNumberLabel => 'Edo sartu zenbaki pertsonalizatua:';
+  String get errorInvalidNumber => 'Mesedez, sartu zenbaki baliozkoa';
 
   @override
-  String get numberInputLabel => 'Galdera kopurua';
+  String get errorNumberMustBePositive =>
+      'Zenbakia 0 baino handiagoa izan behar da';
+
+  @override
+  String get customNumberLabel => 'Edo sartu zenbaki pertsonalizatua:';
 
   @override
   String customNumberHelper(int total) {
@@ -226,11 +227,7 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
-  String get errorInvalidNumber => 'Mesedez, sartu zenbaki baliozkoa';
-
-  @override
-  String get errorNumberMustBePositive =>
-      'Zenbakia 0 baino handiagoa izan behar da';
+  String get numberInputLabel => 'Galdera kopurua';
 
   @override
   String get questionOrderConfigTitle => 'Galdera Ordenaren Konfigurazioa';
@@ -332,12 +329,6 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get questionLabel => 'Galdera';
-
-  @override
-  String get optionsLabel => 'Aukerak';
-
-  @override
-  String get explanationLabel => 'Azalpena (aukerakoa)';
 
   @override
   String get studentComment => 'Ikaslearen iruzkinak';
@@ -457,6 +448,9 @@ class AppLocalizationsEu extends AppLocalizations {
   String get deleteAction => 'Ezabatu';
 
   @override
+  String get explanationLabel => 'Azalpena (aukerakoa)';
+
+  @override
   String get explanationHint => 'Sartu erantzun zuzen(ar)entzako azalpena';
 
   @override
@@ -508,6 +502,9 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get addOption => 'Aukera Gehitu';
+
+  @override
+  String get optionsLabel => 'Aukerak';
 
   @override
   String get optionLabel => 'Aukera';
@@ -634,9 +631,6 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get incorrectSelectedLabel => 'Okerra';
-
-  @override
-  String get generateQuestionsWithAI => 'AI-rekin galderak sortu';
 
   @override
   String get aiGenerateDialogTitle => 'AI-rekin Galderak Sortu';
@@ -774,6 +768,9 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get defaultOutputFileName => 'irteera-fitxategia.quiz';
+
+  @override
+  String get generateQuestionsWithAI => 'AI-rekin galderak sortu';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {
@@ -945,6 +942,9 @@ class AppLocalizationsEu extends AppLocalizations {
       'Honek irabazle eta parte-hartzaile aktibo guztiak berrezarriko ditu.';
 
   @override
+  String get cancel => 'Utzi';
+
+  @override
   String get reset => 'Berrezarri';
 
   @override
@@ -1063,4 +1063,8 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get removeLogo => 'Logotipoa Kendu';
+
+  @override
+  String get logoTooLargeWarning =>
+      'Image is too large to be saved. It will only be used during this session.';
 }

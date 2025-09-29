@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'raffle_participant.dart';
 import 'raffle_winner.dart';
+import 'raffle_logo.dart';
 
 /// Represents the current state of a raffle session.
 class RaffleSession {
@@ -17,8 +18,8 @@ class RaffleSession {
   /// The raw text input from the user (for editing purposes).
   final String participantText;
 
-  /// Optional logo URL or asset path for customizing the raffle experience.
-  final Uint8List? logoUrl;
+  /// Optional logo for customizing the raffle experience.
+  final RaffleLogo? logo;
 
   /// Constructor for creating a `RaffleSession` instance.
   const RaffleSession({
@@ -26,7 +27,7 @@ class RaffleSession {
     required this.winners,
     this.isSelecting = false,
     this.participantText = '',
-    this.logoUrl,
+    this.logo,
   });
 
   /// Creates an empty raffle session.
@@ -45,15 +46,25 @@ class RaffleSession {
     List<RaffleWinner>? winners,
     bool? isSelecting,
     String? participantText,
-    Uint8List? logoUrl,
+    RaffleLogo? logo,
   }) {
     return RaffleSession(
       participants: participants ?? this.participants,
       winners: winners ?? this.winners,
       isSelecting: isSelecting ?? this.isSelecting,
       participantText: participantText ?? this.participantText,
-      logoUrl: logoUrl ?? this.logoUrl,
+      logo: logo ?? this.logo,
     );
+  }
+
+  /// Creates a copy of this session with a new logo from bytes.
+  /// This method detects the file type and creates the appropriate RaffleLogo.
+  RaffleSession copyWithLogoFromBytes({
+    required Uint8List logoBytes,
+    String? filename,
+  }) {
+    final logo = RaffleLogo.fromFile(logoBytes, filename);
+    return copyWith(logo: logo);
   }
 
   /// Creates a copy of this session with the logo removed.
@@ -63,7 +74,7 @@ class RaffleSession {
       winners: winners,
       isSelecting: isSelecting,
       participantText: participantText,
-      logoUrl: null,
+      logo: null,
     );
   }
 
@@ -90,9 +101,9 @@ class RaffleSession {
   bool get hasWinners => winners.isNotEmpty;
 
   /// Whether the raffle has a custom logo configured.
-  bool get hasLogo => logoUrl != null && logoUrl!.isNotEmpty;
+  bool get hasLogo => logo != null && logo!.data.isNotEmpty;
 
   @override
   String toString() =>
-      'RaffleSession(participants: ${participants.length}, winners: ${winners.length}, isSelecting: $isSelecting, logoUrl: $logoUrl)';
+      'RaffleSession(participants: ${participants.length}, winners: ${winners.length}, isSelecting: $isSelecting, logo: $logo)';
 }

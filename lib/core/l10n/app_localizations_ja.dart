@@ -156,9 +156,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get finishQuizConfirmation => '本当にクイズを完了しますか？その後、回答を変更することはできません。';
 
   @override
-  String get cancel => 'キャンセル';
-
-  @override
   String get abandonQuiz => 'クイズを放棄';
 
   @override
@@ -209,10 +206,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get startQuiz => 'クイズ開始';
 
   @override
-  String get customNumberLabel => 'またはカスタム数を入力：';
+  String get errorInvalidNumber => '有効な数字を入力してください';
 
   @override
-  String get numberInputLabel => '問題数';
+  String get errorNumberMustBePositive => '数字は0より大きい必要があります';
+
+  @override
+  String get customNumberLabel => 'またはカスタム数を入力：';
 
   @override
   String customNumberHelper(int total) {
@@ -220,10 +220,7 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get errorInvalidNumber => '有効な数字を入力してください';
-
-  @override
-  String get errorNumberMustBePositive => '数字は0より大きい必要があります';
+  String get numberInputLabel => '問題数';
 
   @override
   String get questionOrderConfigTitle => '問題順序の設定';
@@ -320,12 +317,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get questionLabel => '問題';
-
-  @override
-  String get optionsLabel => '選択肢';
-
-  @override
-  String get explanationLabel => '解説（任意）';
 
   @override
   String get studentComment => '学生のコメント';
@@ -433,6 +424,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get deleteAction => '削除';
 
   @override
+  String get explanationLabel => '解説（任意）';
+
+  @override
   String get explanationHint => '正解の解説を入力してください';
 
   @override
@@ -484,6 +478,9 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get addOption => '選択肢を追加';
+
+  @override
+  String get optionsLabel => '選択肢';
 
   @override
   String get optionLabel => '選択肢';
@@ -602,9 +599,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get incorrectSelectedLabel => '不正解';
-
-  @override
-  String get generateQuestionsWithAI => 'AIで問題を生成';
 
   @override
   String get aiGenerateDialogTitle => 'AIで問題を生成';
@@ -734,6 +728,9 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get defaultOutputFileName => 'output-file.quiz';
+
+  @override
+  String get generateQuestionsWithAI => 'AIで問題を生成';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {
@@ -899,6 +896,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get resetRaffleConfirmMessage => 'これによりすべての当選者とアクティブ参加者がリセットされます。';
 
   @override
+  String get cancel => 'キャンセル';
+
+  @override
   String get reset => 'リセット';
 
   @override
@@ -1015,4 +1015,8 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get removeLogo => 'ロゴを削除';
+
+  @override
+  String get logoTooLargeWarning =>
+      'Image is too large to be saved. It will only be used during this session.';
 }
