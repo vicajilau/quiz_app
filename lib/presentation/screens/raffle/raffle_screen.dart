@@ -40,43 +40,54 @@ class _RaffleScreenContent extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
-            title: logo != null
-                ? Container(
-                    height: 40,
-                    constraints: const BoxConstraints(maxWidth: 200),
-                    child: LogoWidget(
-                      logo: logo,
-                      height: 40,
-                      fit: BoxFit.contain,
-                      errorBuilder: (context, error, stackTrace) {
-                        debugPrint('AppBar logo failed to load: $error');
-                        return Text(AppLocalizations.of(context)!.raffleTitle);
-                      },
-                      loadingBuilder: (context) => const SizedBox(
-                        height: 40,
-                        width: 40,
-                        child: Center(
-                          child: SizedBox(
-                            width: 20,
-                            height: 20,
-                            child: CircularProgressIndicator(strokeWidth: 2),
+            title: Tooltip(
+              message: AppLocalizations.of(context)!.selectLogo,
+              child: InkWell(
+                onTap: () => _showLogoSelector(context),
+                borderRadius: BorderRadius.circular(8),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
+                  child: logo != null
+                      ? Container(
+                          height: 40,
+                          constraints: const BoxConstraints(maxWidth: 200),
+                          child: LogoWidget(
+                            logo: logo,
+                            height: 40,
+                            fit: BoxFit.contain,
+                            errorBuilder: (context, error, stackTrace) {
+                              debugPrint('AppBar logo failed to load: $error');
+                              return Text(
+                                AppLocalizations.of(context)!.raffleTitle,
+                              );
+                            },
+                            loadingBuilder: (context) => const SizedBox(
+                              height: 40,
+                              width: 40,
+                              child: Center(
+                                child: SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                  )
-                : Text(AppLocalizations.of(context)!.raffleTitle),
+                        )
+                      : Text(AppLocalizations.of(context)!.raffleTitle),
+                ),
+              ),
+            ),
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () => context.go('/'),
             ),
             actions: [
-              // Logo configuration button
-              IconButton(
-                onPressed: () => _showLogoSelector(context),
-                icon: const Icon(Icons.image),
-                tooltip: AppLocalizations.of(context)!.selectLogo,
-              ),
               // Winners history button
               BlocBuilder<RaffleBloc, RaffleState>(
                 builder: (context, state) {
