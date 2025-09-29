@@ -160,9 +160,6 @@ class AppLocalizationsHi extends AppLocalizations {
       'क्या आप वाकई क्विज़ समाप्त करना चाहते हैं? इसके बाद आप अपने उत्तर नहीं बदल सकेंगे।';
 
   @override
-  String get cancel => 'रद्द करें';
-
-  @override
   String get abandonQuiz => 'क्विज़ छोड़ें';
 
   @override
@@ -215,10 +212,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get startQuiz => 'क्विज़ शुरू करें';
 
   @override
-  String get customNumberLabel => 'या कस्टम संख्या दर्ज करें:';
+  String get errorInvalidNumber => 'कृपया वैध संख्या दर्ज करें';
 
   @override
-  String get numberInputLabel => 'प्रश्नों की संख्या';
+  String get errorNumberMustBePositive => 'संख्या 0 से अधिक होनी चाहिए';
+
+  @override
+  String get customNumberLabel => 'या कस्टम संख्या दर्ज करें:';
 
   @override
   String customNumberHelper(int total) {
@@ -226,10 +226,7 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get errorInvalidNumber => 'कृपया वैध संख्या दर्ज करें';
-
-  @override
-  String get errorNumberMustBePositive => 'संख्या 0 से अधिक होनी चाहिए';
+  String get numberInputLabel => 'प्रश्नों की संख्या';
 
   @override
   String get questionOrderConfigTitle => 'प्रश्न क्रम कॉन्फ़िगरेशन';
@@ -329,12 +326,6 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get questionLabel => 'प्रश्न';
-
-  @override
-  String get optionsLabel => 'विकल्प';
-
-  @override
-  String get explanationLabel => 'स्पष्टीकरण (वैकल्पिक)';
 
   @override
   String get studentComment => 'छात्र की टिप्पणी';
@@ -452,6 +443,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get deleteAction => 'हटाएं';
 
   @override
+  String get explanationLabel => 'स्पष्टीकरण (वैकल्पिक)';
+
+  @override
   String get explanationHint => 'सही उत्तर(रों) के लिए स्पष्टीकरण दर्ज करें';
 
   @override
@@ -503,6 +497,9 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get addOption => 'विकल्प जोड़ें';
+
+  @override
+  String get optionsLabel => 'विकल्प';
 
   @override
   String get optionLabel => 'विकल्प';
@@ -628,9 +625,6 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get incorrectSelectedLabel => 'गलत';
-
-  @override
-  String get generateQuestionsWithAI => 'AI के साथ प्रश्न बनाएं';
 
   @override
   String get aiGenerateDialogTitle => 'AI के साथ प्रश्न बनाएं';
@@ -765,6 +759,9 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get defaultOutputFileName => 'output-file.quiz';
+
+  @override
+  String get generateQuestionsWithAI => 'AI के साथ प्रश्न बनाएं';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {
@@ -936,6 +933,9 @@ class AppLocalizationsHi extends AppLocalizations {
       'यह सभी विजेताओं और सक्रिय प्रतिभागियों को रीसेट कर देगा।';
 
   @override
+  String get cancel => 'रद्द करें';
+
+  @override
   String get reset => 'रीसेट करें';
 
   @override
@@ -1053,4 +1053,8 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get removeLogo => 'लोगो हटाएं';
+
+  @override
+  String get logoTooLargeWarning =>
+      'छवि बहुत बड़ी है और सहेजी नहीं जा सकती। इसका उपयोग केवल इस सत्र के दौरान किया जाएगा।';
 }

@@ -1496,5 +1496,9 @@
   "removeLogo": "Eliminar Logo",
   "@removeLogo": {
     "description": "Text del botó per eliminar el logo personalitzat"
+  },
+  "logoTooLargeWarning": "La imatge és massa gran per guardar-se. Només s'utilitzarà durant aquesta sessió.",
+  "@logoTooLargeWarning": {
+    "description": "Missatge d'advertència quan el logo és massa gran per a l'emmagatzematge persistent"
   }
 }

@@ -4,9 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../../../domain/models/raffle/raffle_winner.dart';
+import '../../../../domain/models/raffle/raffle_logo.dart';
 import '../../blocs/raffle_bloc/raffle_bloc.dart';
 import '../../blocs/raffle_bloc/raffle_state.dart';
-import '../../widgets/common/network_image_widget.dart';
+import 'widgets/logo_widget.dart';
 
 class WinnersScreen extends StatelessWidget {
   const WinnersScreen({super.key});
@@ -15,18 +16,19 @@ class WinnersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<RaffleBloc, RaffleState>(
       builder: (context, state) {
-        String? logoUrl;
+        // Extract logo from different state types
+        RaffleLogo? logo;
         if (state is RaffleLoaded) {
-          logoUrl = state.session.logoUrl;
+          logo = state.session.logo;
         } else if (state is RaffleWinnerSelected) {
-          logoUrl = state.session.logoUrl;
+          logo = state.session.logo;
         }
 
         return Scaffold(
           appBar: AppBar(
-            title: logoUrl != null && logoUrl.isNotEmpty
-                ? NetworkImageWidget(
-                    imageUrl: logoUrl,
+            title: logo != null
+                ? LogoWidget(
+                    logo: logo,
                     height: 40,
                     fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) =>

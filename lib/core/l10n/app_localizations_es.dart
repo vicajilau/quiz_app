@@ -162,9 +162,6 @@ class AppLocalizationsEs extends AppLocalizations {
       '¿Estás seguro de que quieres finalizar el quiz? No podrás cambiar tus respuestas después.';
 
   @override
-  String get cancel => 'Cancelar';
-
-  @override
   String get abandonQuiz => 'Abandonar Quiz';
 
   @override
@@ -217,10 +214,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get startQuiz => 'Iniciar Quiz';
 
   @override
-  String get customNumberLabel => 'O introduce un número personalizado:';
+  String get errorInvalidNumber => 'Por favor ingresa un número válido';
 
   @override
-  String get numberInputLabel => 'Número de preguntas';
+  String get errorNumberMustBePositive => 'El número debe ser mayor que 0';
+
+  @override
+  String get customNumberLabel => 'O introduce un número personalizado:';
 
   @override
   String customNumberHelper(int total) {
@@ -228,10 +228,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get errorInvalidNumber => 'Por favor ingresa un número válido';
-
-  @override
-  String get errorNumberMustBePositive => 'El número debe ser mayor que 0';
+  String get numberInputLabel => 'Número de preguntas';
 
   @override
   String get questionOrderConfigTitle => 'Configuración del Orden de Preguntas';
@@ -335,12 +332,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get questionLabel => 'Pregunta';
-
-  @override
-  String get optionsLabel => 'Opciones';
-
-  @override
-  String get explanationLabel => 'Explicación (opcional)';
 
   @override
   String get studentComment => 'Comentario del estudiante';
@@ -457,6 +448,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get deleteAction => 'Eliminar';
 
   @override
+  String get explanationLabel => 'Explicación (opcional)';
+
+  @override
   String get explanationHint =>
       'Ingresa una explicación para la(s) respuesta(s) correcta(s)';
 
@@ -509,6 +503,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get addOption => 'Agregar Opción';
+
+  @override
+  String get optionsLabel => 'Opciones';
 
   @override
   String get optionLabel => 'Opción';
@@ -635,9 +632,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get incorrectSelectedLabel => 'Incorrecta';
-
-  @override
-  String get generateQuestionsWithAI => 'Generar preguntas con IA';
 
   @override
   String get aiGenerateDialogTitle => 'Generar Preguntas con IA';
@@ -774,6 +768,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get defaultOutputFileName => 'archivo-salida.quiz';
+
+  @override
+  String get generateQuestionsWithAI => 'Generar preguntas con IA';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {
@@ -946,6 +943,9 @@ class AppLocalizationsEs extends AppLocalizations {
       '¿Estás seguro de que quieres reiniciar el sorteo? Se perderán todos los participantes y ganadores.';
 
   @override
+  String get cancel => 'Cancelar';
+
+  @override
   String get reset => 'Reiniciar';
 
   @override
@@ -1065,4 +1065,8 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get removeLogo => 'Quitar Logo';
+
+  @override
+  String get logoTooLargeWarning =>
+      'La imagen es demasiado grande para guardarse. Solo se usará durante esta sesión.';
 }

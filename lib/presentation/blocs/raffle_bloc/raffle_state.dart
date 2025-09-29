@@ -34,3 +34,11 @@ class RaffleError extends RaffleState {
 
   RaffleError(this.message);
 }
+
+/// State representing a warning message that should be shown to the user.
+class RaffleWarning extends RaffleState {
+  final RaffleSession session;
+  final String message;
+
+  RaffleWarning(this.session, this.message);
+}
