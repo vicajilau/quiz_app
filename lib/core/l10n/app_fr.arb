@@ -1506,5 +1506,9 @@
   "removeLogo": "Supprimer le Logo",
   "@removeLogo": {
     "description": "Texte du bouton pour supprimer le logo personnalisé"
+  },
+  "logoTooLargeWarning": "L'image est trop grande pour être sauvegardée. Elle ne sera utilisée que pendant cette session.",
+  "@logoTooLargeWarning": {
+    "description": "Message d'avertissement lorsque le logo est trop grand pour le stockage persistant"
   }
 }

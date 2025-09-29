@@ -1496,5 +1496,9 @@
   "removeLogo": "ロゴを削除",
   "@removeLogo": {
     "description": "カスタムロゴを削除するボタンのテキスト"
+  },
+  "logoTooLargeWarning": "画像が大きすぎて保存できません。このセッション中のみ使用されます。",
+  "@logoTooLargeWarning": {
+    "description": "ロゴが永続的な保存には大きすぎる場合の警告メッセージ"
   }
 }

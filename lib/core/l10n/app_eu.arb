@@ -1496,5 +1496,9 @@
   "removeLogo": "Logotipoa Kendu",
   "@removeLogo": {
     "description": "Logo pertsonalizatua kentzeko botoiaren testua"
+  },
+  "logoTooLargeWarning": "Irudia handiegia da gorde ahal izateko. Saio honetan bakarrik erabiliko da.",
+  "@logoTooLargeWarning": {
+    "description": "Abisu mezua logoa handiegia denean iraunkorki gorde ahal izateko"
   }
 }

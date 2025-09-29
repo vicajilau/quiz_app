@@ -1073,5 +1073,5 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get logoTooLargeWarning =>
-      'Image is too large to be saved. It will only be used during this session.';
+      'A imaxe é demasiado grande para gardarse. Só se usará durante esta sesión.';
 }

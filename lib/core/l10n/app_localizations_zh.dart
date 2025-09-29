@@ -1013,6 +1013,5 @@ class AppLocalizationsZh extends AppLocalizations {
   String get removeLogo => '移除标志';
 
   @override
-  String get logoTooLargeWarning =>
-      'Image is too large to be saved. It will only be used during this session.';
+  String get logoTooLargeWarning => '图像太大无法保存。仅在此会话期间使用。';
 }

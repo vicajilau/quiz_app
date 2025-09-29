@@ -1017,6 +1017,5 @@ class AppLocalizationsJa extends AppLocalizations {
   String get removeLogo => 'ロゴを削除';
 
   @override
-  String get logoTooLargeWarning =>
-      'Image is too large to be saved. It will only be used during this session.';
+  String get logoTooLargeWarning => '画像が大きすぎて保存できません。このセッション中のみ使用されます。';
 }
