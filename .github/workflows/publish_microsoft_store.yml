@@ -28,4 +28,4 @@ jobs:
         run: msstore package .
 
       - name: Publish MSIX to the Microsoft Store
-        run: msstore publish --appId ${{ secrets.MS_STORE_APP_ID }} --skipPolling -v
+        run: msstore publish --appId ${{ secrets.MS_STORE_APP_ID }} -v
