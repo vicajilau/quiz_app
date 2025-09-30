@@ -18,7 +18,7 @@ jobs:
         with:
           channel: stable
 
-      - uses: microsoft/setup-msstore-cli@v1.2
+      - uses: microsoft/setup-msstore-cli@v1.3
       - run: msstore reconfigure --tenantId ${{ secrets.PARTNER_CENTER_TENANT_ID }} --sellerId ${{ secrets.PARTNER_CENTER_SELLER_ID }} --clientId ${{ secrets.PARTNER_CENTER_CLIENT_ID }} --clientSecret ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
 
       - name: Install Dart dependencies
