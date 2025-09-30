@@ -7,12 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.1.2] - 2025-09-30
 
-### Changed
-
-- **Version Alignment**: Updated all platform versions to maintain consistency across stores
-  - Aligned Windows Store version with Android and Web versions
-  - Synchronized release versions for unified cross-platform experience
-  - Ensured consistent feature parity across all deployment targets
+- Updated all platform versions to maintain consistency across stores
 
 ## [1.1.1] - 2025-09-29
 
