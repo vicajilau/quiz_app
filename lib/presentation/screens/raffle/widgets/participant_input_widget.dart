@@ -14,6 +14,7 @@ class ParticipantInputWidget extends StatefulWidget {
 
 class _ParticipantInputWidgetState extends State<ParticipantInputWidget> {
   final TextEditingController _controller = TextEditingController();
+  bool _isInitialized = false;
 
   @override
   void initState() {
@@ -34,56 +35,77 @@ class _ParticipantInputWidgetState extends State<ParticipantInputWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RaffleBloc, RaffleState>(
+    return BlocConsumer<RaffleBloc, RaffleState>(
       listener: (context, state) {
+        String participantText = '';
+
         if (state is RaffleLoaded) {
-          // Update the text field if the text was updated programmatically
-          if (_controller.text != state.session.participantText) {
-            _controller.text = state.session.participantText;
-          }
+          participantText = state.session.participantText;
+        } else if (state is RaffleWinnerSelected) {
+          participantText = state.session.participantText;
+        } else if (state is RaffleSelecting) {
+          participantText = state.session.participantText;
+        }
+
+        // Update the text field if the text was updated programmatically
+        if (_controller.text != participantText) {
+          _controller.text = participantText;
         }
       },
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            AppLocalizations.of(context)!.participantListHint,
-            style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-          ),
-          const SizedBox(height: 8),
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey[300]!),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: TextField(
-                controller: _controller,
-                maxLines: null,
-                expands: true,
-                textAlignVertical: TextAlignVertical.top,
-                decoration: InputDecoration(
-                  hintText: AppLocalizations.of(
-                    context,
-                  )!.participantListPlaceholder,
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.all(16),
+      builder: (context, state) {
+        // Initialize controller with current state on first build
+        if (!_isInitialized) {
+          String participantText = '';
+
+          if (state is RaffleLoaded) {
+            participantText = state.session.participantText;
+          } else if (state is RaffleWinnerSelected) {
+            participantText = state.session.participantText;
+          } else if (state is RaffleSelecting) {
+            participantText = state.session.participantText;
+          }
+
+          if (participantText.isNotEmpty ||
+              state is RaffleLoaded ||
+              state is RaffleWinnerSelected) {
+            _controller.text = participantText;
+            _isInitialized = true;
+          }
+        }
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              AppLocalizations.of(context)!.participantListHint,
+              style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+            ),
+            const SizedBox(height: 8),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey[300]!),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                style: const TextStyle(fontSize: 16),
+                child: TextField(
+                  controller: _controller,
+                  maxLines: null,
+                  expands: true,
+                  textAlignVertical: TextAlignVertical.top,
+                  decoration: InputDecoration(
+                    hintText: AppLocalizations.of(
+                      context,
+                    )!.participantListPlaceholder,
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.all(16),
+                  ),
+                  style: const TextStyle(fontSize: 16),
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 16),
-          ElevatedButton.icon(
-            onPressed: () {
-              _controller.clear();
-              context.read<RaffleBloc>().add(ClearParticipants());
-            },
-            icon: const Icon(Icons.clear),
-            label: Text(AppLocalizations.of(context)!.clearList),
-          ),
-        ],
-      ),
+          ],
+        );
+      },
     );
   }
 }

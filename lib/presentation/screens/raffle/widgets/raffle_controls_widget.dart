@@ -6,6 +6,7 @@ import '../../../blocs/raffle_bloc/raffle_event.dart';
 import '../../../blocs/raffle_bloc/raffle_state.dart';
 import '../../../../domain/models/raffle/raffle_session.dart';
 import 'raffle_animation_widget.dart';
+import 'clear_winners_dialog.dart';
 
 class RaffleControlsWidget extends StatelessWidget {
   const RaffleControlsWidget({super.key});
@@ -83,7 +84,7 @@ class RaffleControlsWidget extends StatelessWidget {
                 children: [
                   Expanded(
                     child: OutlinedButton.icon(
-                      onPressed: () => _showClearWinnersDialog(context),
+                      onPressed: () => showClearWinnersDialog(context),
                       icon: const Icon(Icons.restart_alt),
                       label: Text(AppLocalizations.of(context)!.resetWinners),
                     ),
@@ -130,28 +131,5 @@ class RaffleControlsWidget extends StatelessWidget {
     return AppLocalizations.of(
       context,
     )!.participantsReadyCount(session.activeParticipantsCount);
-  }
-
-  void _showClearWinnersDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(AppLocalizations.of(context)!.resetWinnersConfirmTitle),
-        content: Text(AppLocalizations.of(context)!.resetWinnersConfirmMessage),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(),
-            child: Text(AppLocalizations.of(context)!.cancel),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(dialogContext).pop();
-              context.read<RaffleBloc>().add(ClearWinners());
-            },
-            child: Text(AppLocalizations.of(context)!.reset),
-          ),
-        ],
-      ),
-    );
   }
 }

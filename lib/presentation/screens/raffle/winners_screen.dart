@@ -8,6 +8,8 @@ import '../../../../domain/models/raffle/raffle_logo.dart';
 import '../../blocs/raffle_bloc/raffle_bloc.dart';
 import '../../blocs/raffle_bloc/raffle_state.dart';
 import 'widgets/logo_widget.dart';
+import 'widgets/clear_winners_dialog.dart';
+import 'widgets/reset_raffle_dialog.dart';
 
 class WinnersScreen extends StatelessWidget {
   const WinnersScreen({super.key});
@@ -197,12 +199,31 @@ class WinnersScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 ElevatedButton.icon(
-                  onPressed: () => context.go('/raffle'),
-                  icon: const Icon(Icons.casino),
+                  onPressed: () async {
+                    final confirmed = await showResetRaffleDialog(context);
+                    if (confirmed && context.mounted) {
+                      context.go('/raffle');
+                    }
+                  },
+                  icon: const Icon(Icons.refresh),
                   label: Text(AppLocalizations.of(context)!.newRaffle),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                     foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                OutlinedButton.icon(
+                  onPressed: () async {
+                    final confirmed = await showClearWinnersDialog(context);
+                    if (confirmed && context.mounted) {
+                      context.go('/raffle');
+                    }
+                  },
+                  icon: const Icon(Icons.restart_alt),
+                  label: Text(AppLocalizations.of(context)!.resetWinners),
+                  style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 12),
                   ),
                 ),

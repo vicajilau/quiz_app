@@ -150,7 +150,7 @@ class RaffleBloc extends Bloc<RaffleEvent, RaffleState> {
   void _onResetRaffle(ResetRaffle event, Emitter<RaffleState> emit) {
     final currentState = state;
     if (currentState is RaffleLoaded) {
-      // Preserve the logo when resetting
+      // Preserve only the logo when resetting (clear everything else including participantText)
       final logo = currentState.session.logo;
       emit(RaffleLoaded(RaffleSession.empty().copyWith(logo: logo)));
     } else {
@@ -184,6 +184,7 @@ class RaffleBloc extends Bloc<RaffleEvent, RaffleState> {
       final updatedSession = currentSession.copyWith(
         participants: reactivatedParticipants,
         winners: [],
+        participantText: currentSession.participantText, // Preserve the text
       );
       emit(RaffleLoaded(updatedSession));
     }
