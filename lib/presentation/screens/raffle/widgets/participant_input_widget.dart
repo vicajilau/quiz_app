@@ -73,15 +73,6 @@ class _ParticipantInputWidgetState extends State<ParticipantInputWidget> {
               ),
             ),
           ),
-          const SizedBox(height: 16),
-          ElevatedButton.icon(
-            onPressed: () {
-              _controller.clear();
-              context.read<RaffleBloc>().add(ClearParticipants());
-            },
-            icon: const Icon(Icons.clear),
-            label: Text(AppLocalizations.of(context)!.clearList),
-          ),
         ],
       ),
     );

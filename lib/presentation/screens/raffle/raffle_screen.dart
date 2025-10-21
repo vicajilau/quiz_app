@@ -12,6 +12,7 @@ import 'widgets/participant_input_widget.dart';
 import 'widgets/participant_list_widget.dart';
 import 'widgets/raffle_controls_widget.dart';
 import 'widgets/winner_dialog.dart';
+import 'widgets/reset_raffle_dialog.dart';
 
 class RaffleScreen extends StatelessWidget {
   const RaffleScreen({super.key});
@@ -114,7 +115,7 @@ class _RaffleScreenContent extends StatelessWidget {
               ),
               // Reset raffle button
               IconButton(
-                onPressed: () => _showResetDialog(context),
+                onPressed: () => showResetRaffleDialog(context),
                 icon: const Icon(Icons.refresh),
                 tooltip: AppLocalizations.of(context)!.resetRaffleTitle,
               ),
@@ -256,29 +257,6 @@ class _RaffleScreenContent extends StatelessWidget {
           context.read<RaffleBloc>().add(ConfirmWinner(winner));
           context.go('/raffle/winners');
         },
-      ),
-    );
-  }
-
-  void _showResetDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(AppLocalizations.of(context)!.resetRaffleTitle),
-        content: Text(AppLocalizations.of(context)!.resetRaffleConfirmMessage),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(),
-            child: Text(AppLocalizations.of(context)!.cancel),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(dialogContext).pop();
-              context.read<RaffleBloc>().add(ResetRaffle());
-            },
-            child: Text(AppLocalizations.of(context)!.reset),
-          ),
-        ],
       ),
     );
   }
