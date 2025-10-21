@@ -41,7 +41,7 @@ dependencies:
   flutter_bloc: ^9.1.1
   flutter_svg: ^2.2.1
   get_it: ^8.1.0
-  go_router: ^16.2.4
+  go_router: ^16.2.5
   platform_detail: ^5.1.0
   flutter_launcher_icons: ^0.14.4
   shared_preferences: ^2.5.3
