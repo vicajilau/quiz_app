@@ -33,7 +33,7 @@ A cross-platform Flutter application that provides two powerful modes:
 1. **Raffle Mode**: Professional raffle and prize drawing system with participant management, animated winner selection, and custom branding
 2. **Quiz Mode**: Interactive quiz experience with AI-powered question generation, customizable questions, real-time scoring, and beautiful animations
 
-> **📺 Video Tutorial**: Learn how to organize a raffle from registration to winner selection: [How I Organize a Raffle with My Quiz App – From Registration to Winner Selection](https://youtu.be/VS8ZIEfMntI)
+> **📺 Video Tutorial**: Learn how to organize a raffle from registration to winner selection: [How I Organize a Raffle with Quiz App – From Registration to Winner Selection](https://youtu.be/VS8ZIEfMntI)
 
 ![Quiz App Demo](.github/assets/demo.png)
 
@@ -586,3 +586,4 @@ We welcome suggestions for:
 ## License
 
 This project is under the MIT license.
+
