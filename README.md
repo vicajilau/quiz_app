@@ -28,7 +28,12 @@ Access Quiz App on your favorite platform:
 
 > **Note:** MacOS and iOS versions are under development and will be added soon.
 
-A cross-platform Flutter application that provides an interactive and engaging quiz experience with customizable questions, real-time scoring, and beautiful animations.
+A cross-platform Flutter application that provides two powerful modes:
+
+1. **Raffle Mode**: Professional raffle and prize drawing system with participant management, animated winner selection, and custom branding
+2. **Quiz Mode**: Interactive quiz experience with AI-powered question generation, customizable questions, real-time scoring, and beautiful animations
+
+> **📺 Video Tutorial**: Learn how to organize a raffle from registration to winner selection: [How I Organize a Raffle with My Quiz App – From Registration to Winner Selection](https://youtu.be/VS8ZIEfMntI)
 
 ![Quiz App Demo](.github/assets/demo.png)
 
@@ -36,7 +41,18 @@ _The app provides an intuitive interface for taking quizzes with smooth animatio
 
 ## Features
 
-### Core Quiz Functionality
+### Raffle Mode Features
+
+- **Interactive Participant Management**: Add, edit, and remove participants with real-time validation and duplicate detection
+- **Animated Winner Selection**: Smooth animations and visual effects during the selection process
+- **Multiple Winner Support**: Select multiple winners with automatic position tracking (1st, 2nd, 3rd place, etc.)
+- **Custom Logo Integration**: Personalize raffle events with company or event logos displayed in the app header
+- **Winners History**: Elegant display of all selected winners with timestamps and position rankings
+- **Results Sharing**: Export and share raffle results via clipboard with formatted text output
+- **Comprehensive Localization**: Full multi-language support for all raffle features across 13 languages
+- **Clean Architecture**: BLoC state management with reactive UI updates and efficient participant handling
+
+### Quiz Mode Features
 
 - **Cross-platform compatibility**: Built with Flutter to run seamlessly on iOS, Android, web, and desktop
 - **Multiple question types**: Support for multiple choice, single choice, true/false, and essay questions
@@ -47,17 +63,6 @@ _The app provides an intuitive interface for taking quizzes with smooth animatio
 - **Offline support**: Take quizzes without internet connection
 - **⏱️ Exam Timer**: Configurable time limits with countdown display and automatic submission when time expires
 - **🎲 Question Randomization**: Randomize question order and answer options for varied quiz experiences
-
-### 🎯 Raffle Mode
-
-- **Interactive Participant Management**: Add, edit, and remove participants with real-time validation and duplicate detection
-- **Animated Winner Selection**: Smooth animations and visual effects during the selection process
-- **Multiple Winner Support**: Select multiple winners with automatic position tracking (1st, 2nd, 3rd place, etc.)
-- **Custom Logo Integration**: Personalize raffle events with company or event logos displayed in the app header
-- **Winners History**: Elegant display of all selected winners with timestamps and position rankings
-- **Results Sharing**: Export and share raffle results via clipboard with formatted text output
-- **Comprehensive Localization**: Full multi-language support for all raffle features across 13 languages
-- **Clean Architecture**: BLoC state management with reactive UI updates and efficient participant handling
 
 ### 🤖 AI-Powered Question Generation
 
