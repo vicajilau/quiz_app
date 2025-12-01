@@ -47,7 +47,7 @@ dependencies:
   shared_preferences: ^2.5.3
   web: ^1.1.1
   http: ^1.4.0
-  crypto: ^3.0.6
+  crypto: ^3.0.7
   url_launcher: ^6.3.2
   gpt_markdown: ^1.1.4
 
