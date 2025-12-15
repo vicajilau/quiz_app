@@ -44,7 +44,7 @@ dependencies:
   go_router: ^17.0.0
   platform_detail: ^5.1.0
   flutter_launcher_icons: ^0.14.4
-  shared_preferences: ^2.5.3
+  shared_preferences: ^2.5.4
   web: ^1.1.1
   http: ^1.4.0
   crypto: ^3.0.7
