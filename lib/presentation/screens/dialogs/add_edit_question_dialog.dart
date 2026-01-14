@@ -229,10 +229,6 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
-                              // const Text(
-                              //   r'Supports LaTeX: $x^2$',
-                              //   style: TextStyle(fontSize: 12, color: Colors.grey),
-                              // ),
                               if (_questionTextController.text.contains('\$')) ...[
                                 const SizedBox(width: 12),
                                 Text(
@@ -321,10 +317,6 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
-                              // const Text(
-                              //   r'Supports LaTeX: $x^2$',
-                              //   style: TextStyle(fontSize: 12, color: Colors.grey),
-                              // ),
                               if (_explanationController.text.contains('\$')) ...[
                                 const SizedBox(width: 12),
                                 Text(
