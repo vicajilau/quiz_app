@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import '../../../../../core/l10n/app_localizations.dart';
+import '../../../widgets/latex_text.dart';
 
 /// Separate widget for each option row to optimize rendering
 class QuestionOptionRow extends StatefulWidget {
@@ -67,20 +68,72 @@ class _QuestionOptionRowState extends State<QuestionOptionRow>
               ),
             ),
           Expanded(
-            child: TextFormField(
-              controller: widget.controller,
-              decoration: InputDecoration(
-                labelText: "${localizations.optionLabel} ${widget.index + 1}",
-                border: const OutlineInputBorder(),
-                errorText:
-                    widget.optionsError != null &&
-                        widget.controller.text.trim().isEmpty &&
-                        widget.questionType != QuestionType.trueFalse
-                    ? localizations.optionEmptyError
-                    : null,
-              ),
-              onChanged: (value) => widget.onTextChanged(),
-              readOnly: widget.questionType == QuestionType.trueFalse,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Label with LaTeX support hint and live preview
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      Text(
+                        "${localizations.optionLabel} ${widget.index + 1}",
+                        style: const TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                      const SizedBox(width: 8),
+                      const Text(
+                        r'Supports LaTeX: $x^2$',
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                      if (widget.controller.text.contains('\$')) ...[
+                        const SizedBox(width: 12),
+                        const Text(
+                          'Preview: ',
+                          style: TextStyle(fontSize: 12, color: Colors.grey),
+                        ),
+                        const SizedBox(width: 4),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: Colors.blue.withValues(alpha: 0.05),
+                            border: Border.all(
+                              color: Colors.blue.withValues(alpha: 0.3),
+                            ),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Center(
+                            heightFactor: 1.0,
+                            child: LaTeXText(
+                              widget.controller.text,
+                              style: const TextStyle(fontSize: 12, color: Colors.grey),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 6),
+                TextFormField(
+                  controller: widget.controller,
+                  decoration: InputDecoration(
+                    labelText: "${localizations.optionLabel} ${widget.index + 1}",
+                    border: const OutlineInputBorder(),
+                    errorText:
+                        widget.optionsError != null &&
+                            widget.controller.text.trim().isEmpty &&
+                            widget.questionType != QuestionType.trueFalse
+                        ? localizations.optionEmptyError
+                        : null,
+                  ),
+                  onChanged: (value) {
+                    widget.onTextChanged();
+                    (context as Element).markNeedsBuild(); // Trigger rebuild for live preview
+                  },
+                  readOnly: widget.questionType == QuestionType.trueFalse,
+                ),
+              ],
             ),
           ),
           if (widget.questionType != QuestionType.trueFalse)

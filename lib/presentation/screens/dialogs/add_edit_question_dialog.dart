@@ -10,6 +10,7 @@ import '../widgets/add_edit_question/question_image_section.dart';
 import '../widgets/add_edit_question/question_options_section.dart';
 import 'mixins/option_management_mixin.dart';
 import 'mixins/validation_mixin.dart';
+import '../../widgets/latex_text.dart';
 
 /// Dialog widget for creating or editing a Question.
 class AddEditQuestionDialog extends StatefulWidget {
@@ -216,16 +217,74 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
               ),
               const SizedBox(height: 16),
 
-              // Question Text Field
-              TextField(
-                controller: _questionTextController,
-                maxLines: null,
-                onChanged: (_) => clearQuestionTextError(),
-                decoration: InputDecoration(
-                  labelText: localizations.questionText,
-                  border: const OutlineInputBorder(),
-                  errorText: questionTextError,
-                ),
+              // Question Text Field with Live Preview
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        localizations.questionText,
+                        style: const TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              const Text(
+                                r'Supports LaTeX: $x^2$',
+                                style: TextStyle(fontSize: 12, color: Colors.grey),
+                              ),
+                              if (_questionTextController.text.contains('\$')) ...[
+                                const SizedBox(width: 12),
+                                const Text(
+                                  'Preview: ',
+                                  style: TextStyle(fontSize: 12, color: Colors.grey),
+                                ),
+                                const SizedBox(width: 4),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue.withValues(alpha: 0.05),
+                                    border: Border.all(
+                                      color: Colors.blue.withValues(alpha: 0.3),
+                                    ),
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: Center(
+                                    heightFactor: 1.0,
+                                    child: LaTeXText(
+                                      _questionTextController.text,
+                                      style: const TextStyle(fontSize: 12, color: Colors.grey),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: _questionTextController,
+                    maxLines: null,
+                    textAlignVertical: TextAlignVertical.top,
+                    onChanged: (_) {
+                      clearQuestionTextError();
+                      setState(() {}); // Trigger rebuild for live preview
+                    },
+                    decoration: InputDecoration(
+                      labelText: localizations.questionText,
+                      border: const OutlineInputBorder(),
+                      errorText: questionTextError,
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 16),
 
@@ -255,14 +314,72 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
 
               const SizedBox(height: 16),
 
-              // Explanation Field
-              TextField(
-                controller: _explanationController,
-                maxLines: null,
-                decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.explanationLabel,
-                  border: const OutlineInputBorder(),
-                ),
+              // Explanation Field with Live Preview
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.explanationLabel,
+                        style: const TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              const Text(
+                                r'Supports LaTeX: $x^2$',
+                                style: TextStyle(fontSize: 12, color: Colors.grey),
+                              ),
+                              if (_explanationController.text.contains('\$')) ...[
+                                const SizedBox(width: 12),
+                                const Text(
+                                  'Preview: ',
+                                  style: TextStyle(fontSize: 12, color: Colors.grey),
+                                ),
+                                const SizedBox(width: 4),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue.withValues(alpha: 0.05),
+                                    border: Border.all(
+                                      color: Colors.blue.withValues(alpha: 0.3),
+                                    ),
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: Center(
+                                    heightFactor: 1.0,
+                                    child: LaTeXText(
+                                      _explanationController.text,
+                                      style: const TextStyle(fontSize: 12, color: Colors.grey),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: _explanationController,
+                    maxLines: null,
+                    textAlignVertical: TextAlignVertical.top,
+                    onChanged: (_) {
+                      setState(() {}); // Trigger rebuild for live preview
+                    },
+                    decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context)!.explanationLabel,
+                      border: const OutlineInputBorder(),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

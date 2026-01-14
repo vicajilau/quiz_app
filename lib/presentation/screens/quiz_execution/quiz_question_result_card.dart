@@ -11,6 +11,7 @@ import '../../../data/services/ai/ai_service_selector.dart';
 import '../../../data/services/ai/ai_service.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import '../../utils/question_translation_helper.dart';
+import '../../widgets/latex_text.dart';
 
 class QuizQuestionResultCard extends StatefulWidget {
   final QuestionResult result;
@@ -82,10 +83,13 @@ class _QuizQuestionResultCardState extends State<QuizQuestionResultCard> {
           AppLocalizations.of(context)!.questionNumber(widget.questionNumber),
           style: const TextStyle(fontWeight: FontWeight.w600),
         ),
-        subtitle: Text(
-          widget.result.question.text,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
+        subtitle: Align(
+          alignment: Alignment.centerLeft,
+          child: LaTeXText(
+            widget.result.question.text,
+            maxLines: 2,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
         ),
         children: [
           Padding(
@@ -93,11 +97,15 @@ class _QuizQuestionResultCardState extends State<QuizQuestionResultCard> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  AppLocalizations.of(
-                    context,
-                  )!.question(widget.result.question.text),
-                  style: const TextStyle(fontWeight: FontWeight.w600),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: LaTeXText(
+                    widget.result.question.text,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 12),
 
@@ -497,7 +505,7 @@ class _QuizQuestionResultCardState extends State<QuizQuestionResultCard> {
                             Icon(icon, size: 22, color: iconColor),
                           if (icon != null) const SizedBox(width: 12),
                           Expanded(
-                            child: Text(
+                            child: LaTeXText(
                               QuestionTranslationHelper.translateOption(
                                 optionText,
                                 AppLocalizations.of(context)!,
@@ -616,7 +624,7 @@ class _QuizQuestionResultCardState extends State<QuizQuestionResultCard> {
                           ],
                         ),
                         const SizedBox(height: 8),
-                        Text(
+                        LaTeXText(
                           widget.result.question.explanation,
                           style: TextStyle(
                             color: Theme.of(

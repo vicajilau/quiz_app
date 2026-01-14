@@ -47,5 +47,8 @@ app.*.map.json
 # Generated localization files
 untranslated_messages.json
 
+# Copilot instructions (local configuration)
+.github/copilot-instructions.md
+
 # Generated Snap package
 *.snap

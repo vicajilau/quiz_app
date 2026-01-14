@@ -5,6 +5,7 @@ import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:quiz_app/presentation/screens/dialogs/add_edit_question_dialog.dart';
 import 'package:quiz_app/presentation/screens/dialogs/ai_question_dialog.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
+import '../../widgets/latex_text.dart';
 
 import '../../../../../core/l10n/app_localizations.dart';
 
@@ -174,7 +175,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            LaTeXText(
                               question.text,
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
@@ -185,7 +186,6 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                                 color: isDisabled ? Colors.grey : null,
                               ),
                               maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
                             ),
                             const SizedBox(height: 4),
                             Row(
