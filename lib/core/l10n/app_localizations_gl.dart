@@ -15,6 +15,9 @@ class AppLocalizationsGl extends AppLocalizations {
   String get create => 'Crear';
 
   @override
+  String get preview => 'Previsualizacion';
+
+  @override
   String get load => 'Cargar';
 
   @override

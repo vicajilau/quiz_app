@@ -235,9 +235,9 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                               // ),
                               if (_questionTextController.text.contains('\$')) ...[
                                 const SizedBox(width: 12),
-                                const Text(
-                                  'Preview: ',
-                                  style: TextStyle(fontSize: 12, color: Colors.grey),
+                                Text(
+                                  '${localizations.preview}: ',
+                                  style: const TextStyle(fontSize: 12, color: Colors.grey),
                                 ),
                                 const SizedBox(width: 4),
                                 Container(
@@ -327,9 +327,9 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                               // ),
                               if (_explanationController.text.contains('\$')) ...[
                                 const SizedBox(width: 12),
-                                const Text(
-                                  'Preview: ',
-                                  style: TextStyle(fontSize: 12, color: Colors.grey),
+                                Text(
+                                  '${localizations.preview}: ',
+                                  style: const TextStyle(fontSize: 12, color: Colors.grey),
                                 ),
                                 const SizedBox(width: 4),
                                 Container(

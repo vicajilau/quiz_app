@@ -7,6 +7,10 @@
   "@create": {
     "description": "Beschriftung für die Schaltfläche Quiz-Datei erstellen in der AppBar."
   },
+  "preview": "Vorschau",
+  "@preview": {
+    "description": "Beschriftung für den LaTeX-Vorschaubereich in Fragen-Dialogen."
+  },
   "load": "Laden",
   "@load": {
     "description": "Beschriftung für die Schaltfläche Quiz-Datei laden in der AppBar."

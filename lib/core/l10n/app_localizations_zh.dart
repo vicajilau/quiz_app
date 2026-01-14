@@ -15,6 +15,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get create => '创建';
 
   @override
+  String get preview => '预览';
+
+  @override
   String get load => '加载';
 
   @override

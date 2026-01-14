@@ -15,6 +15,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get create => 'Erstellen';
 
   @override
+  String get preview => 'Vorschau';
+
+  @override
   String get load => 'Laden';
 
   @override

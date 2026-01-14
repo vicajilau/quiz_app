@@ -132,6 +132,12 @@ abstract class AppLocalizations {
   /// **'Create'**
   String get create;
 
+  /// Label for the LaTeX preview section in question dialogs.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get preview;
+
   /// Label for the Load Quiz file button in the AppBar.
   ///
   /// In en, this message translates to:
