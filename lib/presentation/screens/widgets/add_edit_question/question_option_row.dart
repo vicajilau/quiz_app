@@ -78,15 +78,11 @@ class _QuestionOptionRowState extends State<QuestionOptionRow>
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        const Text(
-                          r'Supports LaTeX: $x^2$',
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                        const SizedBox(width: 8),
-                        // Text(
-                        //   "- ${localizations.optionLabel} ${widget.index + 1}",
-                        //   style: const TextStyle(fontSize: 12, color: Colors.grey),
+                        // const Text(
+                        //   r'Supports LaTeX: $x^2$',
+                        //   style: TextStyle(fontSize: 12, color: Colors.grey),
                         // ),
+                        const SizedBox(width: 8),
                         if (widget.controller.text.contains('\$')) ...[
                           const SizedBox(width: 12),
                           const Text(
