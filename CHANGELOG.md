@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-01-20
+
+- feat: Added support for Latex rendering in questions (thanks to @emnik)
+- feat: Added Greek language support
+- fix: Fixed default language fallback issue (preventing Arabic from being the default on unsupported locales)
+
 ## [1.1.3] - 2025-10-21
 
 - fix: Preserve participant text during raffle reset and improve text field initialization
