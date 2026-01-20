@@ -6,6 +6,7 @@ import '../../blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../utils/question_translation_helper.dart';
+import '../../widgets/latex_text.dart';
 
 class QuizQuestionOptions extends StatefulWidget {
   final QuizExecutionInProgress state;
@@ -142,15 +143,22 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
     int index,
     bool isSelected,
   ) {
+    final localizations = AppLocalizations.of(context)!;
+    final translatedOption = QuestionTranslationHelper.translateOption(option, localizations);
+    
+    final optionTextStyle = TextStyle(
+      fontSize: 16,
+      fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+    );
+
     // For multiple choice questions, use CheckboxListTile
     if (questionType == QuestionType.multipleChoice) {
-      final localizations = AppLocalizations.of(context)!;
       return CheckboxListTile(
-        title: Text(
-          QuestionTranslationHelper.translateOption(option, localizations),
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+        title: Center(
+          heightFactor: 1.0,
+          child: LaTeXText(
+            translatedOption,
+            style: optionTextStyle,
           ),
         ),
         value: isSelected,
@@ -171,7 +179,6 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
           ? currentAnswers.first
           : -1;
 
-      final localizations = AppLocalizations.of(context)!;
       return RadioGroup(
         groupValue: selectedIndex >= 0 ? selectedIndex : null,
         onChanged: (int? value) {
@@ -181,11 +188,11 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
           }
         },
         child: RadioListTile<int>(
-          title: Text(
-            QuestionTranslationHelper.translateOption(option, localizations),
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+          title: Center(
+            heightFactor: 1.0,
+            child: LaTeXText(
+              translatedOption,
+              style: optionTextStyle,
             ),
           ),
           value: index,

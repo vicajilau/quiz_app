@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
+import '../../widgets/latex_text.dart';
 
 class QuizQuestionHeader extends StatelessWidget {
   final QuizExecutionInProgress state;
@@ -37,11 +38,14 @@ class QuizQuestionHeader extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        Text(
-          state.currentQuestion.text,
-          style: Theme.of(
-            context,
-          ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w600),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: LaTeXText(
+            state.currentQuestion.text,
+            style: Theme.of(
+              context,
+            ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w600),
+          ),
         ),
 
         // Show image if available

@@ -15,6 +15,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get create => 'Créer';
 
   @override
+  String get preview => 'Aperçu';
+
+  @override
   String get load => 'Charger';
 
   @override

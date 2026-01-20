@@ -7,6 +7,10 @@
   "@create": {
     "description": "Label for the Create Quiz file button in the AppBar."
   },
+  "preview": "Preview",
+  "@preview": {
+    "description": "Label for the LaTeX preview section in question dialogs."
+  },
   "load": "Load",
   "@load": {
     "description": "Label for the Load Quiz file button in the AppBar."

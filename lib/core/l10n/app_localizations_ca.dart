@@ -15,6 +15,9 @@ class AppLocalizationsCa extends AppLocalizations {
   String get create => 'Crear';
 
   @override
+  String get preview => 'Previsualització';
+
+  @override
   String get load => 'Carregar';
 
   @override

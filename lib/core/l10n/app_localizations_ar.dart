@@ -15,6 +15,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get create => 'إنشاء';
 
   @override
+  String get preview => 'معاينة';
+
+  @override
   String get load => 'تحميل';
 
   @override

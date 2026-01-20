@@ -15,6 +15,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get create => 'Crea';
 
   @override
+  String get preview => 'Anteprima';
+
+  @override
   String get load => 'Carica';
 
   @override

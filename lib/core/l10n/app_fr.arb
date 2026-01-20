@@ -7,6 +7,10 @@
   "@create": {
     "description": "Libellé du bouton Créer fichier Quiz dans l'AppBar."
   },
+  "preview": "Aperçu",
+  "@preview": {
+    "description": "Libellé de la section d'aperçu LaTeX dans les boîtes de dialogue des questions."
+  },
   "load": "Charger",
   "@load": {
     "description": "Libellé du bouton Charger fichier Quiz dans l'AppBar."

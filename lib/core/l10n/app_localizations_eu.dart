@@ -15,6 +15,9 @@ class AppLocalizationsEu extends AppLocalizations {
   String get create => 'Sortu';
 
   @override
+  String get preview => 'Aurrebista';
+
+  @override
   String get load => 'Kargatu';
 
   @override

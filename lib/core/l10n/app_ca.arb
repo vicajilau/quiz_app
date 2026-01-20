@@ -7,6 +7,10 @@
   "@create": {
     "description": "Etiqueta pel botó Crear fitxer Quiz a l'AppBar."
   },
+  "preview": "Previsualització",
+  "@preview": {
+    "description": "Etiqueta per a la secció de previsualització LaTeX en diàlegs de preguntes."
+  },
   "load": "Carregar",
   "@load": {
     "description": "Etiqueta pel botó Carregar fitxer Quiz a l'AppBar."

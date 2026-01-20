@@ -7,6 +7,10 @@
   "@create": {
     "description": "Rótulo para o botão Criar arquivo Quiz na AppBar."
   },
+  "preview": "Visualização",
+  "@preview": {
+    "description": "Rótulo para a seção de visualização LaTeX em diálogos de questões."
+  },
   "load": "Carregar",
   "@load": {
     "description": "Rótulo para o botão Carregar arquivo Quiz na AppBar."

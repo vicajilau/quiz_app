@@ -7,6 +7,10 @@
   "@create": {
     "description": "Etiqueta do botón Crear ficheiro Quiz na AppBar."
   },
+  "preview": "Previsualizacion",
+  "@preview": {
+    "description": "Etiqueta para a sección de previsualizacion LaTeX en diálogos de preguntas."
+  },
   "load": "Cargar",
   "@load": {
     "description": "Etiqueta do botón Cargar ficheiro Quiz na AppBar."

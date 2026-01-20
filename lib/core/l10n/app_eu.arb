@@ -7,6 +7,10 @@
   "@create": {
     "description": "Quiz fitxategia sortzeko botoiaren etiketa AppBar-ean."
   },
+  "preview": "Aurrebista",
+  "@preview": {
+    "description": "Galdera elkarrizketuetan LaTeX aurrebista sekzioaren etiketa."
+  },
   "load": "Kargatu",
   "@load": {
     "description": "Quiz fitxategia kargatzeko botoiaren etiketa AppBar-ean."

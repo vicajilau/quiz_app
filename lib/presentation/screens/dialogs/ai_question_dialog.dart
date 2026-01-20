@@ -6,6 +6,7 @@ import 'package:quiz_app/data/services/ai/ai_service_selector.dart';
 import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
 import 'package:gpt_markdown/gpt_markdown.dart';
+import '../../widgets/latex_text.dart';
 
 class AIQuestionDialog extends StatefulWidget {
   final Question question;
@@ -396,7 +397,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Text(
+                  LaTeXText(
                     widget.question.text,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
@@ -408,7 +409,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                       final letter = String.fromCharCode(65 + index);
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 4),
-                        child: Text(
+                        child: LaTeXText(
                           "$letter) $option",
                           style: Theme.of(context).textTheme.bodySmall,
                         ),

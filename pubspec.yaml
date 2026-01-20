@@ -50,6 +50,7 @@ dependencies:
   crypto: ^3.0.7
   url_launcher: ^6.3.2
   gpt_markdown: ^1.1.5
+  flutter_math_fork: ^0.7.2  # Use the latest version
 
 dev_dependencies:
   flutter_test:

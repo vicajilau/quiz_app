@@ -15,6 +15,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get create => 'बनाएं';
 
   @override
+  String get preview => 'पूर्वावलोकन';
+
+  @override
   String get load => 'लोड करें';
 
   @override

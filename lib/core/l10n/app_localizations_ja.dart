@@ -15,6 +15,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get create => '作成';
 
   @override
+  String get preview => 'プレビュー';
+
+  @override
   String get load => '読み込み';
 
   @override

@@ -15,6 +15,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get create => 'Criar';
 
   @override
+  String get preview => 'Visualização';
+
+  @override
   String get load => 'Carregar';
 
   @override
