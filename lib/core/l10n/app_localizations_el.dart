@@ -628,447 +628,451 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String correctAnswersCount(int count) {
-    return 'Select $count correct answers';
+    return 'Επιλέξτε $count σωστές απαντήσεις';
   }
 
   @override
-  String get correctSelectedLabel => 'Correct';
+  String get correctSelectedLabel => 'Σωστό';
 
   @override
-  String get correctMissedLabel => 'Correct';
+  String get correctMissedLabel => 'Σωστό';
 
   @override
-  String get incorrectSelectedLabel => 'Incorrect';
+  String get incorrectSelectedLabel => 'Λάθος';
 
   @override
-  String get aiGenerateDialogTitle => 'Generate Questions with AI';
+  String get aiGenerateDialogTitle => 'Δημιουργία Ερωτήσεων με AI';
 
   @override
-  String get aiQuestionCountLabel => 'Number of Questions (Optional)';
+  String get aiQuestionCountLabel => 'Αριθμός Ερωτήσεων (Προαιρετικό)';
 
   @override
-  String get aiQuestionCountHint => 'Leave empty for AI to decide';
+  String get aiQuestionCountHint => 'Αφήστε κενό για να αποφασίσει το AI';
 
   @override
-  String get aiQuestionCountValidation => 'Must be a number between 1 and 50';
+  String get aiQuestionCountValidation =>
+      'Πρέπει να είναι αριθμός μεταξύ 1 και 50';
 
   @override
-  String get aiQuestionTypeLabel => 'Question Type';
+  String get aiQuestionTypeLabel => 'Τύπος Ερώτησης';
 
   @override
-  String get aiQuestionTypeRandom => 'Random (Mixed)';
+  String get aiQuestionTypeRandom => 'Τυχαίο (Μικτό)';
 
   @override
-  String get aiLanguageLabel => 'Question Language';
+  String get aiLanguageLabel => 'Γλώσσα Ερώτησης';
 
   @override
-  String get aiContentLabel => 'Content to generate questions from';
+  String get aiContentLabel => 'Περιεχόμενο για δημιουργία ερωτήσεων';
 
   @override
   String aiWordCount(int current, int max) {
-    return '$current / $max words';
+    return '$current / $max λέξεις';
   }
 
   @override
   String get aiContentHint =>
-      'Enter the text, topic, or content from which you want to generate questions...';
+      'Εισάγετε το κείμενο, θέμα ή περιεχόμενο από το οποίο θέλετε να δημιουργήσετε ερωτήσεις...';
 
   @override
   String get aiContentHelperText =>
-      'AI will create questions based on this content';
+      'Το AI θα δημιουργήσει ερωτήσεις με βάση αυτό το περιεχόμενο';
 
   @override
   String aiWordLimitError(int max) {
-    return 'You have exceeded the limit of $max words';
+    return 'Έχετε υπερβεί το όριο των $max λέξεων';
   }
 
   @override
   String get aiContentRequiredError =>
-      'You must provide content to generate questions';
+      'Πρέπει να παρέχετε περιεχόμενο για τη δημιουργία ερωτήσεων';
 
   @override
   String aiContentLimitError(int max) {
-    return 'Content exceeds the limit of $max words';
+    return 'Το περιεχόμενο υπερβαίνει το όριο των $max λέξεων';
   }
 
   @override
   String get aiMinWordsError =>
-      'Provide at least 10 words to generate quality questions';
+      'Παρέχετε τουλάχιστον 10 λέξεις για τη δημιουργία ποιοτικών ερωτήσεων';
 
   @override
-  String get aiInfoTitle => 'Information';
+  String get aiInfoTitle => 'Πληροφορίες';
 
   @override
   String get aiInfoDescription =>
-      '• AI will analyze the content and generate relevant questions\n• You can include text, definitions, explanations, or any educational material\\n• Questions will include answer options and explanations\\n• The process may take a few seconds';
+      '• Το AI θα αναλύσει το περιεχόμενο και θα δημιουργήσει σχετικές ερωτήσεις\n• Μπορείτε να συμπεριλάβετε κείμενο, ορισμούς, εξηγήσεις ή οποιοδήποτε εκπαιδευτικό υλικό\n• Οι ερωτήσεις θα περιλαμβάνουν επιλογές απάντησης και εξηγήσεις\n• Η διαδικασία μπορεί να διαρκέσει μερικά δευτερόλεπτα';
 
   @override
-  String get aiGenerateButton => 'Generate Questions';
+  String get aiGenerateButton => 'Δημιουργία Ερωτήσεων';
 
   @override
-  String get languageSpanish => 'Español';
+  String get languageSpanish => 'Ισπανικά';
 
   @override
-  String get languageEnglish => 'English';
+  String get languageEnglish => 'Αγγλικά';
 
   @override
-  String get languageFrench => 'Français';
+  String get languageFrench => 'Γαλλικά';
 
   @override
-  String get languageGerman => 'Deutsch';
+  String get languageGerman => 'Γερμανικά';
 
   @override
-  String get languageItalian => 'Italiano';
+  String get languageItalian => 'Ιταλικά';
 
   @override
-  String get languagePortuguese => 'Português';
+  String get languagePortuguese => 'Πορτογαλικά';
 
   @override
-  String get languageCatalan => 'Català';
+  String get languageCatalan => 'Καταλανικά';
 
   @override
-  String get languageBasque => 'Euskera';
+  String get languageBasque => 'Βασκικά';
 
   @override
-  String get languageGalician => 'Galego';
+  String get languageGalician => 'Γαλικιανά';
 
   @override
-  String get languageHindi => 'हिन्दी';
+  String get languageHindi => 'Χίντι';
 
   @override
-  String get languageChinese => '中文';
+  String get languageChinese => 'Κινεζικά';
 
   @override
-  String get languageArabic => 'العربية';
+  String get languageArabic => 'Αραβικά';
 
   @override
-  String get languageJapanese => '日本語';
+  String get languageJapanese => 'Ιαπωνικά';
 
   @override
-  String get aiServicesLoading => 'Loading AI services...';
+  String get aiServicesLoading => 'Φόρτωση υπηρεσιών AI...';
 
   @override
-  String get aiServicesNotConfigured => 'No AI services configured';
+  String get aiServicesNotConfigured => 'Δεν έχουν ρυθμιστεί υπηρεσίες AI';
 
   @override
-  String get aiGeneratedQuestions => 'AI Generated';
+  String get aiGeneratedQuestions => 'Δημιουργήθηκε από AI';
 
   @override
   String get aiApiKeyRequired =>
-      'Please configure at least one AI API key in Settings to use AI generation.';
+      'Παρακαλώ ρυθμίστε τουλάχιστον ένα κλειδί API AI στις Ρυθμίσεις για να χρησιμοποιήσετε τη δημιουργία AI.';
 
   @override
   String get aiGenerationFailed =>
-      'Could not generate questions. Try with different content.';
+      'Αδυναμία δημιουργίας ερωτήσεων. Δοκιμάστε με διαφορετικό περιεχόμενο.';
 
   @override
   String aiGenerationError(String error) {
-    return 'Error generating questions: $error';
+    return 'Σφάλμα δημιουργίας ερωτήσεων: $error';
   }
 
   @override
-  String get noQuestionsInFile => 'No questions found in the imported file';
+  String get noQuestionsInFile =>
+      'Δεν βρέθηκαν ερωτήσεις στο εισαγόμενο αρχείο';
 
   @override
-  String get couldNotAccessFile => 'Could not access the selected file';
+  String get couldNotAccessFile => 'Αδυναμία πρόσβασης στο επιλεγμένο αρχείο';
 
   @override
   String get defaultOutputFileName => 'output-file.quiz';
 
   @override
-  String get generateQuestionsWithAI => 'Generate questions with AI';
+  String get generateQuestionsWithAI => 'Δημιουργία ερωτήσεων με AI';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {
-    return 'Limit: $words words or $chars characters';
+    return 'Όριο: $words λέξεις ή $chars χαρακτήρες';
   }
 
   @override
   String aiServiceLimitsWordsOnly(int words) {
-    return 'Limit: $words words';
+    return 'Όριο: $words λέξεις';
   }
 
   @override
-  String get aiAssistantDisabled => 'AI Assistant Disabled';
+  String get aiAssistantDisabled => 'Βοηθός AI Απενεργοποιημένος';
 
   @override
   String get enableAiAssistant =>
-      'The AI assistant is disabled. Please enable it in settings to use AI features.';
+      'Ο βοηθός AI είναι απενεργοποιημένος. Παρακαλώ ενεργοποιήστε τον στις ρυθμίσεις για να χρησιμοποιήσετε τις λειτουργίες AI.';
 
   @override
   String aiMinWordsRequired(int minWords) {
-    return 'Minimum $minWords words required';
+    return 'Απαιτούνται τουλάχιστον $minWords λέξεις';
   }
 
   @override
   String aiWordsReadyToGenerate(int wordCount) {
-    return '$wordCount words ✓ Ready to generate';
+    return '$wordCount λέξεις ✓ Έτοιμο για δημιουργία';
   }
 
   @override
   String aiWordsProgress(int currentWords, int minWords, int moreNeeded) {
-    return '$currentWords/$minWords words ($moreNeeded more needed)';
+    return '$currentWords/$minWords λέξεις ($moreNeeded ακόμη χρειάζονται)';
   }
 
   @override
   String aiValidationMinWords(int minWords, int moreNeeded) {
-    return 'Minimum $minWords words required ($moreNeeded more needed)';
+    return 'Απαιτούνται τουλάχιστον $minWords λέξεις ($moreNeeded ακόμη χρειάζονται)';
   }
 
   @override
-  String get enableQuestion => 'Enable question';
+  String get enableQuestion => 'Ενεργοποίηση ερώτησης';
 
   @override
-  String get disableQuestion => 'Disable question';
+  String get disableQuestion => 'Απενεργοποίηση ερώτησης';
 
   @override
-  String get questionDisabled => 'Disabled';
+  String get questionDisabled => 'Απενεργοποιημένο';
 
   @override
   String get noEnabledQuestionsError =>
-      'No enabled questions available to run the quiz';
+      'Δεν υπάρχουν ενεργοποιημένες ερωτήσεις για την εκτέλεση του κουίζ';
 
   @override
-  String get evaluateWithAI => 'Evaluate with AI';
+  String get evaluateWithAI => 'Αξιολόγηση με AI';
 
   @override
-  String get aiEvaluation => 'AI Evaluation';
+  String get aiEvaluation => 'Αξιολόγηση AI';
 
   @override
   String aiEvaluationError(String error) {
-    return 'Error evaluating response: $error';
+    return 'Σφάλμα αξιολόγησης απάντησης: $error';
   }
 
   @override
   String get aiEvaluationPromptSystemRole =>
-      'You are an expert teacher evaluating a student\'s response to an essay question. Your task is to provide detailed and constructive evaluation. Please respond in English.';
+      'Είστε ένας ειδικός καθηγητής που αξιολογεί την απάντηση ενός μαθητή σε μια ερώτηση ανάπτυξης. Το έργο σας είναι να παρέχετε λεπτομερή και εποικοδομητική αξιολόγηση. Παρακαλώ απαντήστε στα Ελληνικά.';
 
   @override
-  String get aiEvaluationPromptQuestion => 'QUESTION:';
+  String get aiEvaluationPromptQuestion => 'ΕΡΩΤΗΣΗ:';
 
   @override
-  String get aiEvaluationPromptStudentAnswer => 'STUDENT\'S ANSWER:';
+  String get aiEvaluationPromptStudentAnswer => 'ΑΠΑΝΤΗΣΗ ΜΑΘΗΤΗ:';
 
   @override
   String get aiEvaluationPromptCriteria =>
-      'EVALUATION CRITERIA (based on teacher\'s explanation):';
+      'ΚΡΙΤΗΡΙΑ ΑΞΙΟΛΟΓΗΣΗΣ (με βάση την εξήγηση του καθηγητή):';
 
   @override
   String get aiEvaluationPromptSpecificInstructions =>
-      'SPECIFIC INSTRUCTIONS:\n- Evaluate how well the student\'s response aligns with the established criteria\n- Analyze the degree of synthesis and structure in the response\n- Identify if anything important has been left out according to the criteria\n- Consider the depth and accuracy of the analysis';
+      'ΕΙΔΙΚΕΣ ΟΔΗΓΙΕΣ:\n- Αξιολογήστε πόσο καλά ευθυγραμμίζεται η απάντηση του μαθητή με τα καθιερωμένα κριτήρια\n- Αναλύστε τον βαθμό σύνθεσης και δομής στην απάντηση\n- Προσδιορίστε αν έχει παραλειφθεί κάτι σημαντικό σύμφωνα με τα κριτήρια\n- Εξετάστε το βάθος και την ακρίβεια της ανάλυσης';
 
   @override
   String get aiEvaluationPromptGeneralInstructions =>
-      'GENERAL INSTRUCTIONS:\n- Since there are no specific criteria established, evaluate the response based on general academic standards\n- Consider clarity, coherence, and structure of the response\n- Evaluate if the response demonstrates understanding of the topic\n- Analyze the depth of analysis and quality of arguments';
+      'ΓΕΝΙΚΕΣ ΟΔΗΓΙΕΣ:\n- Δεδομένου ότι δεν υπάρχουν καθιερωμένα ειδικά κριτήρια, αξιολογήστε την απάντηση με βάση τα γενικά ακαδημαϊκά πρότυπα\n- Εξετάστε τη σαφήνεια, τη συνοχή και τη δομή της απάντησης\n- Αξιολογήστε αν η απάντηση δείχνει κατανόηση του θέματος\n- Αναλύστε το βάθος της ανάλυσης και την ποιότητα των επιχειρημάτων';
 
   @override
   String get aiEvaluationPromptResponseFormat =>
-      'RESPONSE FORMAT:\n1. GRADE: [X/10] - Briefly justify the grade\n2. STRENGTHS: Mention positive aspects of the response\n3. AREAS FOR IMPROVEMENT: Point out aspects that could be improved\n4. SPECIFIC COMMENTS: Provide detailed and constructive feedback\n5. SUGGESTIONS: Offer specific recommendations for improvement\n\nBe constructive, specific, and educational in your evaluation. The goal is to help the student learn and improve. Address them in second person and use a professional and friendly tone.';
+      'ΜΟΡΦΗ ΑΠΑΝΤΗΣΗΣ:\n1. ΒΑΘΜΟΣ: [X/10] - Δικαιολογήστε σύντομα τον βαθμό\n2. ΔΥΝΑΤΑ ΣΗΜΕΙΑ: Αναφέρετε θετικές πτυχές της απάντησης\n3. ΠΕΡΙΟΧΕΣ ΓΙΑ ΒΕΛΤΙΩΣΗ: Επισημάνετε πτυχές που θα μπορούσαν να βελτιωθούν\n4. ΕΙΔΙΚΑ ΣΧΟΛΙΑ: Παρέχετε λεπτομερή και εποικοδομητικά σχόλια\n5. ΠΡΟΤΑΣΕΙΣ: Προσφέρετε συγκεκριμένες συστάσεις για βελτίωση\n\nΝα είστε εποικοδομητικοί, συγκεκριμένοι και εκπαιδευτικοί στην αξιολόγησή σας. Στόχος είναι να βοηθήσετε τον μαθητή να μάθει και να βελτιωθεί. Απευθυνθείτε σε αυτόν στον δεύτερο ενικό και χρησιμοποιήστε επαγγελματικό και φιλικό ύφος.';
 
   @override
-  String get raffleTitle => 'Raffle';
+  String get raffleTitle => 'Κλήρωση';
 
   @override
-  String get raffleTooltip => 'Raffle';
+  String get raffleTooltip => 'Κλήρωση';
 
   @override
-  String get participantListTitle => 'Participant List';
+  String get participantListTitle => 'Λίστα Συμμετεχόντων';
 
   @override
-  String get participantListHint => 'Enter one name per line:';
+  String get participantListHint => 'Εισάγετε ένα όνομα ανά γραμμή:';
 
   @override
   String get participantListPlaceholder =>
-      'John Doe\nJane Smith\nBob Johnson\n...';
+      'Γιάννης Παπαδόπουλος\nΜαρία Ιωαννίδου\nΝίκος Γεωργίου\n...';
 
   @override
-  String get clearList => 'Clear List';
+  String get clearList => 'Καθαρισμός Λίστας';
 
   @override
-  String get participants => 'Participants';
+  String get participants => 'Συμμετέχοντες';
 
   @override
-  String get noParticipants => 'No participants';
+  String get noParticipants => 'Κανένας συμμετέχων';
 
   @override
-  String get addParticipantsHint => 'Add names in the text area';
+  String get addParticipantsHint => 'Προσθέστε ονόματα στην περιοχή κειμένου';
 
   @override
-  String get activeParticipants => 'Active Participants';
+  String get activeParticipants => 'Ενεργοί Συμμετέχοντες';
 
   @override
-  String get alreadySelected => 'Already Selected';
+  String get alreadySelected => 'Ήδη Επιλεγμένοι';
 
   @override
   String totalParticipants(int count) {
-    return 'Total: $count';
+    return 'Σύνολο: $count';
   }
 
   @override
   String activeVsWinners(int active, int winners) {
-    return 'Active: $active | Winners: $winners';
+    return 'Ενεργοί: $active | Νικητές: $winners';
   }
 
   @override
-  String get startRaffle => 'Start Raffle';
+  String get startRaffle => 'Έναρξη Κλήρωσης';
 
   @override
-  String get raffling => 'Raffling...';
+  String get raffling => 'Κλήρωση...';
 
   @override
-  String get selectingWinner => 'Selecting winner...';
+  String get selectingWinner => 'Επιλογή νικητή...';
 
   @override
   String get allParticipantsSelected =>
-      'All participants have already been selected';
+      'Όλοι οι συμμετέχοντες έχουν ήδη επιλεγεί';
 
   @override
-  String get addParticipantsToStart => 'Add participants to start the raffle';
+  String get addParticipantsToStart =>
+      'Προσθέστε συμμετέχοντες για να ξεκινήσετε την κλήρωση';
 
   @override
   String participantsReadyCount(int count) {
-    return '$count participant(s) ready for raffle';
+    return '$count συμμετέχων/οντες έτοιμος/οι για κλήρωση';
   }
 
   @override
-  String get resetWinners => 'Reset Winners';
+  String get resetWinners => 'Επαναφορά Νικητών';
 
   @override
-  String get resetWinnersConfirmTitle => 'Reset Winners';
+  String get resetWinnersConfirmTitle => 'Επαναφορά Νικητών';
 
   @override
   String get resetWinnersConfirmMessage =>
-      'Are you sure you want to reset the winners list? All participants will be available for the raffle again.';
+      'Είστε σίγουροι ότι θέλετε να επαναφέρετε τη λίστα νικητών; Όλοι οι συμμετέχοντες θα είναι διαθέσιμοι για την κλήρωση ξανά.';
 
   @override
-  String get resetRaffleTitle => 'Reset Raffle';
+  String get resetRaffleTitle => 'Επαναφορά Κλήρωσης';
 
   @override
   String get resetRaffleConfirmMessage =>
-      'Are you sure you want to reset the raffle? All participants and winners will be lost.';
+      'Είστε σίγουροι ότι θέλετε να επαναφέρετε την κλήρωση; Όλοι οι συμμετέχοντες και οι νικητές θα χαθούν.';
 
   @override
-  String get cancel => 'Cancel';
+  String get cancel => 'Ακύρωση';
 
   @override
-  String get reset => 'Reset';
+  String get reset => 'Επαναφορά';
 
   @override
-  String get viewWinners => 'View winners';
+  String get viewWinners => 'Προβολή νικητών';
 
   @override
-  String get congratulations => '🎉 Congratulations! 🎉';
+  String get congratulations => '🎉 Συγχαρητήρια! 🎉';
 
   @override
   String positionLabel(int position) {
-    return 'Position: $position°';
+    return 'Θέση: $positionη';
   }
 
   @override
   String remainingParticipants(int count) {
-    return 'Remaining participants: $count';
+    return 'Υπόλοιποι συμμετέχοντες: $count';
   }
 
   @override
-  String get continueRaffle => 'Continue Raffle';
+  String get continueRaffle => 'Συνέχεια Κλήρωσης';
 
   @override
-  String get finishRaffle => 'Finish Raffle';
+  String get finishRaffle => 'Ολοκλήρωση Κλήρωσης';
 
   @override
-  String get winnersTitle => 'Raffle Winners';
+  String get winnersTitle => 'Νικητές Κλήρωσης';
 
   @override
-  String get shareResults => 'Share results';
+  String get shareResults => 'Κοινοποίηση αποτελεσμάτων';
 
   @override
-  String get noWinnersYet => 'No winners yet';
+  String get noWinnersYet => 'Δεν υπάρχουν νικητές ακόμα';
 
   @override
   String get performRaffleToSeeWinners =>
-      'Perform a raffle to see the winners here';
+      'Πραγματοποιήστε μια κλήρωση για να δείτε τους νικητές εδώ';
 
   @override
-  String get goToRaffle => 'Go to Raffle';
+  String get goToRaffle => 'Μετάβαση στην Κλήρωση';
 
   @override
-  String get raffleCompleted => 'Raffle Completed';
+  String get raffleCompleted => 'Κλήρωση Ολοκληρώθηκε';
 
   @override
   String winnersSelectedCount(int count) {
-    return '$count winner(s) selected';
+    return '$count νικητής/ές επιλέχθηκε/αν';
   }
 
   @override
-  String get newRaffle => 'New Raffle';
+  String get newRaffle => 'Νέα Κλήρωση';
 
   @override
-  String get shareResultsTitle => 'Share Results';
+  String get shareResultsTitle => 'Κοινοποίηση Αποτελεσμάτων';
 
   @override
-  String get raffleResultsLabel => 'Raffle results:';
+  String get raffleResultsLabel => 'Αποτελέσματα κλήρωσης:';
 
   @override
-  String get close => 'Close';
+  String get close => 'Κλείσιμο';
 
   @override
-  String get share => 'Copy';
+  String get share => 'Αντιγραφή';
 
   @override
-  String get shareNotImplemented => 'Share functionality not implemented';
+  String get shareNotImplemented =>
+      'Η λειτουργία κοινοποίησης δεν έχει υλοποιηθεί';
 
   @override
-  String get firstPlace => '1st';
+  String get firstPlace => '1ος';
 
   @override
-  String get secondPlace => '2nd';
+  String get secondPlace => '2ος';
 
   @override
-  String get thirdPlace => '3rd';
+  String get thirdPlace => '3ος';
 
   @override
   String nthPlace(int position) {
-    return '$position°';
+    return '$positionος';
   }
 
   @override
   String placeLabel(String position) {
-    return '$position place';
+    return '$position θέση';
   }
 
   @override
-  String get raffleResultsHeader => '🏆 RAFFLE RESULTS 🏆';
+  String get raffleResultsHeader => '🏆 ΑΠΟΤΕΛΕΣΜΑΤΑ ΚΛΗΡΩΣΗΣ 🏆';
 
   @override
   String totalWinners(int count) {
-    return 'Total winners: $count';
+    return 'Σύνολο νικητών: $count';
   }
 
   @override
-  String get noWinnersToShare => 'No winners.';
+  String get noWinnersToShare => 'Κανένας νικητής.';
 
   @override
-  String get shareSuccess => 'Results copied successfully';
+  String get shareSuccess => 'Τα αποτελέσματα αντιγράφηκαν επιτυχώς';
 
   @override
-  String get selectLogo => 'Select Logo';
+  String get selectLogo => 'Επιλογή Λογότυπου';
 
   @override
-  String get logoUrl => 'Logo URL';
+  String get logoUrl => 'URL Λογότυπου';
 
   @override
   String get logoUrlHint =>
-      'Enter the URL of an image to use as a custom logo for the raffle';
+      'Εισάγετε το URL μιας εικόνας για χρήση ως προσαρμοσμένο λογότυπο για την κλήρωση';
 
   @override
   String get invalidLogoUrl =>
-      'Invalid image URL. Must be a valid URL ending in .jpg, .png, .gif, etc.';
+      'Μη έγκυρο URL εικόνας. Πρέπει να είναι έγκυρο URL που τελειώνει σε .jpg, .png, .gif, κλπ.';
 
   @override
-  String get logoPreview => 'Preview';
+  String get logoPreview => 'Προεπισκόπηση';
 
   @override
-  String get removeLogo => 'Remove Logo';
+  String get removeLogo => 'Αφαίρεση Λογότυπου';
 
   @override
   String get logoTooLargeWarning =>
