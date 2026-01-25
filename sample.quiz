@@ -8,6 +8,17 @@
   "questions": [
     {
       "type": "multiple_choice",
+      "text": "Taking into account the biopsychosocial implications of neuroplasticity within contemporary neuroscientific frameworks, how does the phenomenon of long-term potentiation contribute to the overall architectural reconfiguration of synaptic pathways when an individual is subjected to multifaceted, multidimensional stimuli in highly demanding cognitive environments over an extended chronological period? (Note: This excessively verbose interrogation is specifically engineered to evaluate the text-wrapping capabilities and vertical expansion of your UI components on constrained viewport dimensions).",
+      "options": [
+        "The metropolitan area of London provides an extraordinary manifestation of multicultural integration, characterized by its labyrinthine subterranean transportation networks and globally recognized financial districts.",
+        "San Francisco's topographical characteristics, notably its exceptionally precipitous inclines and recurring maritime fog, necessitate specialized civil engineering approaches for sustainable infrastructural development.",
+        "The architectural landscape of Tokyo represents a quintessential synthesis of hyper-modern technological advancement juxtaposed with deeply ingrained traditional Shintoist aesthetic principles and spatial philosophies.",
+        "Singapore's urban planning model serves as a paradigmatic example of the 'City in a Garden' concept, successfully integrating high-density residential skyscrapers with lush, biodiverse tropical ecosystems."
+      ],
+      "correct_answers": [0, 1, 2, 3]
+    },
+    {
+      "type": "multiple_choice",
       "text": "What is the capital of France?",
       "options": ["Madrid", "Paris", "Rome", "Berlin"],
       "correct_answers": [1]
