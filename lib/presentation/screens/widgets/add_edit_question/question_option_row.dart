@@ -83,11 +83,17 @@ class _QuestionOptionRowState extends State<QuestionOptionRow>
                           const SizedBox(width: 12),
                           Text(
                             '${localizations.preview}: ',
-                            style: const TextStyle(fontSize: 12, color: Colors.grey),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey,
+                            ),
                           ),
                           const SizedBox(width: 4),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 2,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.blue.withValues(alpha: 0.05),
                               border: Border.all(
@@ -99,7 +105,10 @@ class _QuestionOptionRowState extends State<QuestionOptionRow>
                               heightFactor: 1.0,
                               child: LaTeXText(
                                 widget.controller.text,
-                                style: const TextStyle(fontSize: 12, color: Colors.grey),
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey,
+                                ),
                               ),
                             ),
                           ),
@@ -112,7 +121,8 @@ class _QuestionOptionRowState extends State<QuestionOptionRow>
                 TextFormField(
                   controller: widget.controller,
                   decoration: InputDecoration(
-                    labelText: "${localizations.optionLabel} ${widget.index + 1}",
+                    labelText:
+                        "${localizations.optionLabel} ${widget.index + 1}",
                     border: const OutlineInputBorder(),
                     errorText:
                         widget.optionsError != null &&
@@ -123,7 +133,8 @@ class _QuestionOptionRowState extends State<QuestionOptionRow>
                   ),
                   onChanged: (value) {
                     widget.onTextChanged();
-                    (context as Element).markNeedsBuild(); // Trigger rebuild for live preview
+                    (context as Element)
+                        .markNeedsBuild(); // Trigger rebuild for live preview
                   },
                   readOnly: widget.questionType == QuestionType.trueFalse,
                 ),

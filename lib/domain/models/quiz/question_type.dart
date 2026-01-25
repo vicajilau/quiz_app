@@ -46,7 +46,7 @@ enum QuestionType {
 
   /// Returns an icon representing the question type.
   /// Uses the [Icons] class to provide a visual representation.
-  /// 
+  ///
   /// Returns an [IconData] corresponding to the question type.
   IconData getQuestionTypeIcon() {
     switch (this) {
@@ -63,7 +63,7 @@ enum QuestionType {
 
   /// Returns a localized label for the question type.
   /// Uses the provided [BuildContext] to access localization resources.
-  /// 
+  ///
   /// Returns a string that describes the question type.
   String getQuestionTypeLabel(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;

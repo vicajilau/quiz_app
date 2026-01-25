@@ -109,8 +109,10 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
           ),
 
         // Options list
-        Expanded(
-          child: ListView.builder(
+        if (questionType == QuestionType.multipleChoice)
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: widget.state.currentQuestion.options.length,
             itemBuilder: (context, index) {
               final option = widget.state.currentQuestion.options[index];
@@ -130,8 +132,43 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
                 ),
               );
             },
+          )
+        else
+          RadioGroup<int>(
+            groupValue: widget.state.currentQuestionAnswers.isNotEmpty
+                ? widget.state.currentQuestionAnswers.first
+                : null,
+            onChanged: (int? value) {
+              if (value != null) {
+                context.read<QuizExecutionBloc>().add(
+                  AnswerSelected(value, true),
+                );
+              }
+            },
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: widget.state.currentQuestion.options.length,
+              itemBuilder: (context, index) {
+                final option = widget.state.currentQuestion.options[index];
+                final isSelected = widget.state.isOptionSelected(index);
+
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 12.0),
+                  child: Card(
+                    elevation: isSelected ? 4 : 1,
+                    child: _buildOptionTile(
+                      context,
+                      questionType,
+                      option,
+                      index,
+                      isSelected,
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
-        ),
       ],
     );
   }
@@ -144,8 +181,11 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
     bool isSelected,
   ) {
     final localizations = AppLocalizations.of(context)!;
-    final translatedOption = QuestionTranslationHelper.translateOption(option, localizations);
-    
+    final translatedOption = QuestionTranslationHelper.translateOption(
+      option,
+      localizations,
+    );
+
     final optionTextStyle = TextStyle(
       fontSize: 16,
       fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
@@ -154,12 +194,8 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
     // For multiple choice questions, use CheckboxListTile
     if (questionType == QuestionType.multipleChoice) {
       return CheckboxListTile(
-        title: Center(
-          heightFactor: 1.0,
-          child: LaTeXText(
-            translatedOption,
-            style: optionTextStyle,
-          ),
+        title: IgnorePointer(
+          child: LaTeXText(translatedOption, style: optionTextStyle),
         ),
         value: isSelected,
         onChanged: (bool? value) {
@@ -173,32 +209,13 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
     }
     // For single choice, true/false, and essay questions, use RadioListTile
     else {
-      // Get the currently selected option (if any)
-      final currentAnswers = widget.state.currentQuestionAnswers;
-      final selectedIndex = currentAnswers.isNotEmpty
-          ? currentAnswers.first
-          : -1;
-
-      return RadioGroup(
-        groupValue: selectedIndex >= 0 ? selectedIndex : null,
-        onChanged: (int? value) {
-          if (value != null) {
-            // For single selection, first deselect all, then select the chosen one
-            context.read<QuizExecutionBloc>().add(AnswerSelected(value, true));
-          }
-        },
-        child: RadioListTile<int>(
-          title: Center(
-            heightFactor: 1.0,
-            child: LaTeXText(
-              translatedOption,
-              style: optionTextStyle,
-            ),
-          ),
-          value: index,
-          activeColor: Theme.of(context).primaryColor,
-          controlAffinity: ListTileControlAffinity.leading,
+      return RadioListTile<int>(
+        title: IgnorePointer(
+          child: LaTeXText(translatedOption, style: optionTextStyle),
         ),
+        value: index,
+        activeColor: Theme.of(context).primaryColor,
+        controlAffinity: ListTileControlAffinity.leading,
       );
     }
   }
@@ -218,7 +235,8 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
             ),
           ),
           const SizedBox(height: 12),
-          Expanded(
+          SizedBox(
+            height: 300,
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(

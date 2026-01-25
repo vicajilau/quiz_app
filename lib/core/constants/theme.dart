@@ -53,10 +53,7 @@ class AppTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
-        textStyle: TextStyle(
-          fontSize: 16.0,
-          fontWeight: FontWeight.bold,
-        ),
+        textStyle: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
       ),
     ),
   );

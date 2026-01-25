@@ -38,10 +38,7 @@ class LaTeXPreviewDialog extends StatelessWidget {
                     )
                   : LaTeXText(
                       optionText,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                      ),
+                      style: const TextStyle(fontSize: 16, color: Colors.white),
                     ),
             ),
             const SizedBox(height: 16),
@@ -89,10 +86,8 @@ class LaTeXPreviewButton extends StatelessWidget {
       onPressed: () {
         showDialog(
           context: context,
-          builder: (context) => LaTeXPreviewDialog(
-            optionText: text,
-            title: title,
-          ),
+          builder: (context) =>
+              LaTeXPreviewDialog(optionText: text, title: title),
         );
       },
     );

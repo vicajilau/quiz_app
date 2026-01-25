@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../domain/models/quiz/question_type.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'quiz_progress_indicator.dart';
 import 'quiz_question_header.dart';
@@ -29,14 +28,8 @@ class QuizInProgressView extends StatelessWidget {
 
                 const SizedBox(height: 16),
 
-                // Options section - usar el widget wrapper para cargar configuración
-                SizedBox(
-                  height: state.currentQuestion.type == QuestionType.essay
-                      ? 300.0 // altura para preguntas de ensayo
-                      : (state.currentQuestion.options.length * 80.0) +
-                            60.0, // altura estimada por opción + espacio para el indicador
-                  child: QuizOptionsWrapper(state: state),
-                ),
+                // Options section
+                QuizOptionsWrapper(state: state),
 
                 const SizedBox(height: 16),
               ],

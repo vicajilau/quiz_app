@@ -229,15 +229,23 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
-                              if (_questionTextController.text.contains('\$')) ...[
+                              if (_questionTextController.text.contains(
+                                '\$',
+                              )) ...[
                                 const SizedBox(width: 12),
                                 Text(
                                   '${localizations.preview}: ',
-                                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey,
+                                  ),
                                 ),
                                 const SizedBox(width: 4),
                                 Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 2,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.blue.withValues(alpha: 0.05),
                                     border: Border.all(
@@ -249,7 +257,10 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                                     heightFactor: 1.0,
                                     child: LaTeXText(
                                       _questionTextController.text,
-                                      style: const TextStyle(fontSize: 12, color: Colors.grey),
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -317,15 +328,23 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
-                              if (_explanationController.text.contains('\$')) ...[
+                              if (_explanationController.text.contains(
+                                '\$',
+                              )) ...[
                                 const SizedBox(width: 12),
                                 Text(
                                   '${localizations.preview}: ',
-                                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey,
+                                  ),
                                 ),
                                 const SizedBox(width: 4),
                                 Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 2,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.blue.withValues(alpha: 0.05),
                                     border: Border.all(
@@ -337,7 +356,10 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                                     heightFactor: 1.0,
                                     child: LaTeXText(
                                       _explanationController.text,
-                                      style: const TextStyle(fontSize: 12, color: Colors.grey),
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey,
+                                      ),
                                     ),
                                   ),
                                 ),
