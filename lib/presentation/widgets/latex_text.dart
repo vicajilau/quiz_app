@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 
 /// A widget that renders text with LaTeX support.
-/// 
+///
 /// Uses [Math.tex] to render LaTeX expressions wrapped in `$...$` (inline)
 /// or `$$...$$` (display mode). Plain text is rendered normally.
 class LaTeXText extends StatelessWidget {
   /// The text content that may contain LaTeX expressions
   final String text;
-  
+
   /// Text style for non-LaTeX content
   final TextStyle? style;
-  
+
   /// Max lines for the text
   final int? maxLines;
-  
+
   /// Text overflow behavior
   final TextOverflow overflow;
 
@@ -23,19 +23,14 @@ class LaTeXText extends StatelessWidget {
     super.key,
     this.style,
     this.maxLines,
-    this.overflow = TextOverflow.ellipsis,
+    this.overflow = TextOverflow.clip,
   });
 
   @override
   Widget build(BuildContext context) {
     // Check if text contains LaTeX expressions
     if (!text.contains('\$')) {
-      return Text(
-        text,
-        style: style,
-        maxLines: maxLines,
-        overflow: overflow,
-      );
+      return Text(text, style: style, maxLines: maxLines, overflow: overflow);
     }
 
     // Parse and render mixed LaTeX and plain text
@@ -65,23 +60,15 @@ class _LaTeXRichText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final spans = _parseLatexExpression(text);
-    
+
     if (spans.isEmpty) {
-      return Text(
-        text,
-        style: style,
-        maxLines: maxLines,
-        overflow: overflow,
-      );
+      return Text(text, style: style, maxLines: maxLines, overflow: overflow);
     }
 
     return RichText(
       maxLines: maxLines,
       overflow: overflow,
-      text: TextSpan(
-        children: spans,
-        style: style,
-      ),
+      text: TextSpan(children: spans, style: style),
     );
   }
 
@@ -95,16 +82,18 @@ class _LaTeXRichText extends StatelessWidget {
     while (currentIndex < input.length) {
       // Look for inline math ($...$)
       final inlineStart = input.indexOf('\$', currentIndex);
-      
+
       if (inlineStart != -1) {
         // Add plain text before the LaTeX
         if (inlineStart > currentIndex) {
-          spans.add(TextSpan(
-            text: input.substring(currentIndex, inlineStart),
-            style: style,
-          ));
+          spans.add(
+            TextSpan(
+              text: input.substring(currentIndex, inlineStart),
+              style: style,
+            ),
+          );
         }
-        
+
         final inlineEnd = input.indexOf('\$', inlineStart + 1);
         if (inlineEnd != -1 && inlineEnd > inlineStart + 1) {
           // Extract and render inline math
@@ -127,18 +116,12 @@ class _LaTeXRichText extends StatelessWidget {
           currentIndex = inlineEnd + 1;
         } else {
           // No closing $, treat as plain text
-          spans.add(TextSpan(
-            text: input.substring(inlineStart),
-            style: style,
-          ));
+          spans.add(TextSpan(text: input.substring(inlineStart), style: style));
           break;
         }
       } else {
         // No more LaTeX expressions, add remaining text
-        spans.add(TextSpan(
-          text: input.substring(currentIndex),
-          style: style,
-        ));
+        spans.add(TextSpan(text: input.substring(currentIndex), style: style));
         break;
       }
     }

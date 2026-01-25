@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart' as material;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/models/quiz/question_type.dart';
@@ -109,28 +110,28 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
           ),
 
         // Options list
-        Expanded(
-          child: ListView.builder(
-            itemCount: widget.state.currentQuestion.options.length,
-            itemBuilder: (context, index) {
-              final option = widget.state.currentQuestion.options[index];
-              final isSelected = widget.state.isOptionSelected(index);
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: widget.state.currentQuestion.options.length,
+          itemBuilder: (context, index) {
+            final option = widget.state.currentQuestion.options[index];
+            final isSelected = widget.state.isOptionSelected(index);
 
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 12.0),
-                child: Card(
-                  elevation: isSelected ? 4 : 1,
-                  child: _buildOptionTile(
-                    context,
-                    questionType,
-                    option,
-                    index,
-                    isSelected,
-                  ),
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 12.0),
+              child: Card(
+                elevation: isSelected ? 4 : 1,
+                child: _buildOptionTile(
+                  context,
+                  questionType,
+                  option,
+                  index,
+                  isSelected,
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ],
     );
@@ -144,8 +145,11 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
     bool isSelected,
   ) {
     final localizations = AppLocalizations.of(context)!;
-    final translatedOption = QuestionTranslationHelper.translateOption(option, localizations);
-    
+    final translatedOption = QuestionTranslationHelper.translateOption(
+      option,
+      localizations,
+    );
+
     final optionTextStyle = TextStyle(
       fontSize: 16,
       fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
@@ -154,12 +158,8 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
     // For multiple choice questions, use CheckboxListTile
     if (questionType == QuestionType.multipleChoice) {
       return CheckboxListTile(
-        title: Center(
-          heightFactor: 1.0,
-          child: LaTeXText(
-            translatedOption,
-            style: optionTextStyle,
-          ),
+        title: IgnorePointer(
+          child: LaTeXText(translatedOption, style: optionTextStyle),
         ),
         value: isSelected,
         onChanged: (bool? value) {
@@ -179,7 +179,7 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
           ? currentAnswers.first
           : -1;
 
-      return RadioGroup(
+      return material.RadioListTile<int>(
         groupValue: selectedIndex >= 0 ? selectedIndex : null,
         onChanged: (int? value) {
           if (value != null) {
@@ -187,18 +187,12 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
             context.read<QuizExecutionBloc>().add(AnswerSelected(value, true));
           }
         },
-        child: RadioListTile<int>(
-          title: Center(
-            heightFactor: 1.0,
-            child: LaTeXText(
-              translatedOption,
-              style: optionTextStyle,
-            ),
-          ),
-          value: index,
-          activeColor: Theme.of(context).primaryColor,
-          controlAffinity: ListTileControlAffinity.leading,
+        title: IgnorePointer(
+          child: LaTeXText(translatedOption, style: optionTextStyle),
         ),
+        value: index,
+        activeColor: Theme.of(context).primaryColor,
+        controlAffinity: ListTileControlAffinity.leading,
       );
     }
   }
@@ -218,7 +212,8 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
             ),
           ),
           const SizedBox(height: 12),
-          Expanded(
+          SizedBox(
+            height: 300,
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(

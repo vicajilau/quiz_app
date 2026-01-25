@@ -1,39 +1,79 @@
 {
   "metadata": {
-    "title": "Sample Quiz",
-    "description": "A multiple-choice quiz with multiple correct answers possible",
+    "title": "Comprehensive Quiz (Long & Short)",
+    "description": "A quiz demonstrating UI responsiveness with long and short questions for every supported type.",
     "version": "1.0.0",
-    "author": "Author Name"
+    "author": "System"
   },
   "questions": [
     {
       "type": "multiple_choice",
-      "text": "Taking into account the biopsychosocial implications of neuroplasticity within contemporary neuroscientific frameworks, how does the phenomenon of long-term potentiation contribute to the overall architectural reconfiguration of synaptic pathways when an individual is subjected to multifaceted, multidimensional stimuli in highly demanding cognitive environments over an extended chronological period? (Note: This excessively verbose interrogation is specifically engineered to evaluate the text-wrapping capabilities and vertical expansion of your UI components on constrained viewport dimensions).",
+      "text": "[Short] Which numbers are prime?",
+      "options": ["1", "2", "4", "5"],
+      "correct_answers": [1, 3]
+    },
+    {
+      "type": "multiple_choice",
+      "text": "[Long] Taking into account the complex biopsychosocial implications of neuroplasticity within contemporary neuroscientific frameworks, which of the following statements accurately reflect the mechanisms by which long-term potentiation contributes to the architectural reconfiguration of synaptic pathways when an individual is subjected to multifaceted, multidimensional stimuli in highly demanding cognitive environments? (Select all that apply options)",
       "options": [
-        "The metropolitan area of London provides an extraordinary manifestation of multicultural integration, characterized by its labyrinthine subterranean transportation networks and globally recognized financial districts.",
-        "San Francisco's topographical characteristics, notably its exceptionally precipitous inclines and recurring maritime fog, necessitate specialized civil engineering approaches for sustainable infrastructural development.",
-        "The architectural landscape of Tokyo represents a quintessential synthesis of hyper-modern technological advancement juxtaposed with deeply ingrained traditional Shintoist aesthetic principles and spatial philosophies.",
-        "Singapore's urban planning model serves as a paradigmatic example of the 'City in a Garden' concept, successfully integrating high-density residential skyscrapers with lush, biodiverse tropical ecosystems."
+        "It facilitates the physical growth of new dendritic spines, thereby increasing the surface area available for synaptic transmission and enhancing signal efficacy across neuronal networks.",
+        "It exclusively relies on the degradation of existing neurotransmitters to prevent synaptic overload, a process known as synaptic pruning, which is unrelated to learning.",
+        "It strengthens the connection between neurons through high-frequency stimulation, leading to a persistent increase in signal transmission known as Hebbian learning.",
+        "It causes a temporary reduction in cognitive function to allow the brain to 'reboot', effectively clearing short-term memory buffers to make space for new information."
       ],
-      "correct_answers": [0, 1, 2, 3]
-    },
-    {
-      "type": "multiple_choice",
-      "text": "What is the capital of France?",
-      "options": ["Madrid", "Paris", "Rome", "Berlin"],
-      "correct_answers": [1]
-    },
-    {
-      "type": "multiple_choice",
-      "text": "Which of the following are programming languages?",
-      "options": ["Python", "HTML", "C++", "CSS"],
       "correct_answers": [0, 2]
     },
     {
-      "type": "multiple_choice",
-      "text": "Which of these are planets in the solar system?",
-      "options": ["Mars", "Jupiter", "Pluto", "Venus"],
-      "correct_answers": [0, 1, 3]
+      "type": "single_choice",
+      "text": "[Short] What is the capital of France?",
+      "options": ["London", "Berlin", "Paris", "Madrid"],
+      "correct_answers": [2]
+    },
+    {
+      "type": "single_choice",
+      "text": "[Long] In the context of global climate change mitigation strategies, which of the following international agreements, adopted in 2015, specifically aims to limit global warming to well below 2 degrees Celsius above pre-industrial levels, while pursuing efforts to limit the temperature increase to 1.5 degrees Celsius, recognizing that this would significantly reduce the risks and impacts of climate change?",
+      "options": [
+        "The Kyoto Protocol, which primarily focused on reducing greenhouse gas emissions in developed countries through a binding commitment period.",
+        "The Paris Agreement, a legally binding international treaty on climate change adopted by 196 Parties at COP 21 in Paris.",
+        "The Montreal Protocol, which is designed to protect the ozone layer by phasing out the production of numerous substances that are responsible for ozone depletion.",
+        "The Copenhagen Accord, which took note of the collective commitment by developed countries to provide new and additional resources."
+      ],
+      "correct_answers": [1]
+    },
+    {
+      "type": "true_false",
+      "text": "[Short] Water boils at 100°C at sea level.",
+      "options": ["True", "False"],
+      "correct_answers": [0]
+    },
+    {
+      "type": "true_false",
+      "text": "[Long] Although often attributed solely to Thomas Edison, the invention of the lightbulb was actually a cumulative process involving contributions from numerous inventors over several decades, including Humphry Davy, Warren de la Rue, and Joseph Swan, meaning the statement 'Thomas Edison single-handedly invented the lightbulb from scratch' is historically inaccurate.",
+      "options": ["True", "False"],
+      "correct_answers": [0]
+    },
+    {
+      "type": "essay",
+      "text": "[Short] Define 'photosynthesis'.",
+      "options": [],
+      "correct_answers": []
+    },
+    {
+      "type": "essay",
+      "text": "[Long] Please provide a comprehensive analysis of the socio-economic impacts of the Industrial Revolution in 19th-century Europe, focusing specifically on the shift from agrarian societies to industrial urban centers, the emergence of a new working class, and the subsequent changes in family structure and living conditions. Your response should also touch upon the long-term environmental consequences of this transition.",
+      "options": [],
+      "correct_answers": []
+    },
+    {
+      "type": "single_choice",
+      "text": "[LaTeX] Solve the quadratic equation $ax^2 + bx + c = 0$ for x.",
+      "options": [
+        "$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$",
+        "$x = \\frac{-b \\pm \\sqrt{b^2 + 4ac}}{2a}$",
+        "$x = \\frac{b \\pm \\sqrt{b^2 - 4ac}}{2a}$",
+        "$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2c}$"
+      ],
+      "correct_answers": [0]
     }
   ]
 }
