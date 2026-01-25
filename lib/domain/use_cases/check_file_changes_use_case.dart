@@ -7,7 +7,7 @@ class CheckFileChangesUseCase {
 
   /// Constructor that receives the repository as a dependency.
   CheckFileChangesUseCase({required QuizFileRepository fileRepository})
-      : _fileRepository = fileRepository;
+    : _fileRepository = fileRepository;
 
   /// Executes the business logic to check if the file has changed.
   ///
