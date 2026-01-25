@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart' as material;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/models/quiz/question_type.dart';
@@ -110,29 +109,66 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
           ),
 
         // Options list
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: widget.state.currentQuestion.options.length,
-          itemBuilder: (context, index) {
-            final option = widget.state.currentQuestion.options[index];
-            final isSelected = widget.state.isOptionSelected(index);
+        if (questionType == QuestionType.multipleChoice)
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: widget.state.currentQuestion.options.length,
+            itemBuilder: (context, index) {
+              final option = widget.state.currentQuestion.options[index];
+              final isSelected = widget.state.isOptionSelected(index);
 
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 12.0),
-              child: Card(
-                elevation: isSelected ? 4 : 1,
-                child: _buildOptionTile(
-                  context,
-                  questionType,
-                  option,
-                  index,
-                  isSelected,
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 12.0),
+                child: Card(
+                  elevation: isSelected ? 4 : 1,
+                  child: _buildOptionTile(
+                    context,
+                    questionType,
+                    option,
+                    index,
+                    isSelected,
+                  ),
                 ),
-              ),
-            );
-          },
-        ),
+              );
+            },
+          )
+        else
+          RadioGroup<int>(
+            groupValue: widget.state.currentQuestionAnswers.isNotEmpty
+                ? widget.state.currentQuestionAnswers.first
+                : null,
+            onChanged: (int? value) {
+              if (value != null) {
+                context.read<QuizExecutionBloc>().add(
+                  AnswerSelected(value, true),
+                );
+              }
+            },
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: widget.state.currentQuestion.options.length,
+              itemBuilder: (context, index) {
+                final option = widget.state.currentQuestion.options[index];
+                final isSelected = widget.state.isOptionSelected(index);
+
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 12.0),
+                  child: Card(
+                    elevation: isSelected ? 4 : 1,
+                    child: _buildOptionTile(
+                      context,
+                      questionType,
+                      option,
+                      index,
+                      isSelected,
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
       ],
     );
   }
@@ -173,20 +209,7 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
     }
     // For single choice, true/false, and essay questions, use RadioListTile
     else {
-      // Get the currently selected option (if any)
-      final currentAnswers = widget.state.currentQuestionAnswers;
-      final selectedIndex = currentAnswers.isNotEmpty
-          ? currentAnswers.first
-          : -1;
-
-      return material.RadioListTile<int>(
-        groupValue: selectedIndex >= 0 ? selectedIndex : null,
-        onChanged: (int? value) {
-          if (value != null) {
-            // For single selection, first deselect all, then select the chosen one
-            context.read<QuizExecutionBloc>().add(AnswerSelected(value, true));
-          }
-        },
+      return RadioListTile<int>(
         title: IgnorePointer(
           child: LaTeXText(translatedOption, style: optionTextStyle),
         ),
