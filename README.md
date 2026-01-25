@@ -162,7 +162,7 @@ For detailed information about AI service limits and configuration, see: **[AI L
 ### AI Service Comparison
 
 | Feature              | OpenAI GPT                   | Google Gemini                |
-| -------------------- | ---------------------------- | ---------------------------- |
+|----------------------|------------------------------|------------------------------|
 | **Word Limit**       | 2,000 words                  | 8,000 words                  |
 | **Character Limit**  | 8,000 chars                  | 30,000 chars                 |
 | **Generation Style** | Consistent format, reliable  | Large context, creative      |
@@ -235,7 +235,7 @@ For detailed information about AI service limits and configuration, see: **[AI L
 ### AI Service Comparison for Study Assistant
 
 | Feature               | OpenAI GPT                  | Google Gemini               |
-| --------------------- | --------------------------- | --------------------------- |
+|-----------------------|-----------------------------|-----------------------------|
 | **Response Style**    | Structured, concise         | Conversational, detailed    |
 | **Explanation Depth** | Focused and precise         | Comprehensive with examples |
 | **Best For**          | Quick clarifications        | In-depth learning           |
