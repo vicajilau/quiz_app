@@ -27,18 +27,6 @@ void main() {
       ),
     );
 
-    // Find the RichText widget inside LaTeXText
-    final richTextFinder = find.descendant(
-      of: find.byType(LaTeXText),
-      matching: find.byType(RichText),
-    );
-
-    // If not found, it might be using simple Text widget (optimization for no latex)
-    final textFinder = find.descendant(
-      of: find.byType(LaTeXText),
-      matching: find.byType(Text),
-    );
-
     // Check if we found either
     expect(find.byType(LaTeXText), findsOneWidget);
 
