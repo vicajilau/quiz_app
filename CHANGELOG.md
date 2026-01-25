@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat: Added LatexText widget for rendering LaTeX equations in questions.
 - fix: Resolved responsive layout issues when rendering LaTeX equations.
 - test: Added reproduction test for LatexText.
+- feat: Upgraded Android Gradle Plugin to 8.13.2.
 
 ## [1.2.0] - 2026-01-20
 
