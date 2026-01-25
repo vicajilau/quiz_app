@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.1] - 2026-01-25
 
 - feat: Added LatexText widget for rendering LaTeX equations in questions.
+- fix: Resolved responsive layout issues when rendering LaTeX equations.
 - test: Added reproduction test for LatexText.
 
 ## [1.2.0] - 2026-01-20
