@@ -7,7 +7,7 @@ import 'ai_service.dart';
 class GeminiService extends AIService {
   static const String _baseUrl =
       'https://generativelanguage.googleapis.com/v1beta';
-  static const String _model = 'gemini-1.5-flash';
+  static const String _model = 'gemini-flash-latest';
 
   static GeminiService? _instance;
   static GeminiService get instance => _instance ??= GeminiService._();
@@ -53,10 +53,10 @@ class GeminiService extends AIService {
             },
           ],
           'generationConfig': {
-            'temperature': 0.7,
-            'topK': 40,
+            'temperature': 0.2,
+            'topK': 5,
             'topP': 0.95,
-            'maxOutputTokens': 1024,
+            'maxOutputTokens': 8192,
           },
           'safetySettings': [
             {

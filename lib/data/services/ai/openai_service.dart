@@ -49,8 +49,8 @@ class OpenAIService extends AIService {
           'messages': [
             {'role': 'user', 'content': prompt},
           ],
-          'max_tokens': 500,
-          'temperature': 0.7,
+          'max_tokens': 8192,
+          'temperature': 0.2,
         }),
       );
 
