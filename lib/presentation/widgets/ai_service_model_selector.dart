@@ -10,6 +10,7 @@ class AiServiceModelSelector extends StatefulWidget {
   final ValueChanged<String?>? onModelChanged;
   final ValueChanged<bool>? onLoadingChanged;
   final bool enabled;
+  final bool saveToPreferences;
 
   final String? geminiApiKey;
   final String? openaiApiKey;
@@ -21,6 +22,7 @@ class AiServiceModelSelector extends StatefulWidget {
     this.onModelChanged,
     this.onLoadingChanged,
     this.enabled = true,
+    this.saveToPreferences = false,
     this.geminiApiKey,
     this.openaiApiKey,
   });
@@ -173,12 +175,14 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                                     });
                                     widget.onServiceChanged?.call(newService);
                                     widget.onModelChanged?.call(newModel);
-                                    await ConfigurationService.instance
-                                        .saveDefaultAIService(
-                                          newService.serviceName,
-                                        );
-                                    await ConfigurationService.instance
-                                        .saveDefaultAIModel(newModel);
+                                    if (widget.saveToPreferences) {
+                                      await ConfigurationService.instance
+                                          .saveDefaultAIService(
+                                            newService.serviceName,
+                                          );
+                                      await ConfigurationService.instance
+                                          .saveDefaultAIModel(newModel);
+                                    }
                                   }
                                 }
                               : null,
@@ -231,8 +235,10 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                                   _selectedModel = newModel;
                                 });
                                 widget.onModelChanged?.call(newModel);
-                                await ConfigurationService.instance
-                                    .saveDefaultAIModel(newModel);
+                                if (widget.saveToPreferences) {
+                                  await ConfigurationService.instance
+                                      .saveDefaultAIModel(newModel);
+                                }
                               }
                             }
                           : null,

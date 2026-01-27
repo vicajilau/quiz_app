@@ -556,6 +556,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
                       const SizedBox(height: 12),
                       AiServiceModelSelector(
                         initialModel: _defaultAIModel,
+                        saveToPreferences: true,
                         geminiApiKey: _geminiApiKeyController.text.isValidGeminiApiKey
                             ? _geminiApiKeyController.text.trim()
                             : null,
