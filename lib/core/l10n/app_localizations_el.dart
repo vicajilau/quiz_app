@@ -434,6 +434,13 @@ class AppLocalizationsEl extends AppLocalizations {
       'Ενεργοποίηση ή απενεργοποίηση του βοηθού μελέτης AI για ερωτήσεις';
 
   @override
+  String get aiDefaultModelTitle => 'Προεπιλεγμένο Μοντέλο AI';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'Επιλέξτε την προεπιλεγμένη υπηρεσία και μοντέλο AI για δημιουργία ερωτήσεων';
+
+  @override
   String get openaiApiKeyLabel => 'Κλειδί API OpenAI';
 
   @override
@@ -579,6 +586,9 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get aiServiceLabel => 'Υπηρεσία AI:';
+
+  @override
+  String get aiModelLabel => 'Μοντέλο:';
 
   @override
   String get importQuestionsTitle => 'Εισαγωγή Ερωτήσεων';

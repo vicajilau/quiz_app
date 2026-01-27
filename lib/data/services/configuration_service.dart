@@ -11,6 +11,8 @@ class ConfigurationService {
   static const String _geminiApiKeyKey = 'gemini_api_key';
   static const String _randomizeAnswersKey = 'randomize_answers';
   static const String _showCorrectAnswerCountKey = 'show_correct_answer_count';
+  static const String _defaultAIServiceKey = 'default_ai_service';
+  static const String _defaultAIModelKey = 'default_ai_model';
 
   static ConfigurationService? _instance;
   static ConfigurationService get instance =>
@@ -144,5 +146,36 @@ class ConfigurationService {
   Future<bool> getShowCorrectAnswerCount() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(_showCorrectAnswerCountKey) ?? false;
+  }
+
+  /// Saves the default AI service name
+  Future<void> saveDefaultAIService(String serviceName) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_defaultAIServiceKey, serviceName);
+  }
+
+  /// Gets the default AI service name, returns null if not set
+  Future<String?> getDefaultAIService() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_defaultAIServiceKey);
+  }
+
+  /// Saves the default AI model
+  Future<void> saveDefaultAIModel(String model) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_defaultAIModelKey, model);
+  }
+
+  /// Gets the default AI model, returns null if not set
+  Future<String?> getDefaultAIModel() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_defaultAIModelKey);
+  }
+
+  /// Deletes the default AI service and model
+  Future<void> deleteDefaultAISettings() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_defaultAIServiceKey);
+    await prefs.remove(_defaultAIModelKey);
   }
 }

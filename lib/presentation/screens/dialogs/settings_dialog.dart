@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../core/extensions/string_extensions.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../../data/services/configuration_service.dart';
 import '../../../domain/models/quiz/question_order.dart';
+import '../../widgets/ai_service_model_selector.dart';
 
 class SettingsDialog extends StatefulWidget {
   const SettingsDialog({super.key});
@@ -23,6 +25,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
   final TextEditingController _openAiApiKeyController = TextEditingController();
   final TextEditingController _geminiApiKeyController = TextEditingController();
   String? _apiKeyErrorMessage;
+  String? _defaultAIModel;
 
   @override
   void initState() {
@@ -43,6 +46,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
       final geminiApiKey = await service.getGeminiApiKey();
       _randomizeAnswers = await service.getRandomizeAnswers();
       _showCorrectAnswerCount = await service.getShowCorrectAnswerCount();
+      _defaultAIModel = await service.getDefaultAIModel();
 
       // Only enable AI Assistant if there's at least one API key configured
       final hasAnyApiKey =
@@ -80,11 +84,13 @@ class _SettingsDialogState extends State<SettingsDialog> {
       _apiKeyErrorMessage = null;
     });
 
-    // Validate that if AI Assistant is enabled, at least one API Key must be provided
+    // Validate that if AI Assistant is enabled, at least one valid API Key must be provided
     final apiKey = _openAiApiKeyController.text.trim();
     final geminiApiKey = _geminiApiKeyController.text.trim();
+    final hasValidOpenAI = apiKey.isValidOpenAIApiKey;
+    final hasValidGemini = geminiApiKey.isValidGeminiApiKey;
 
-    if (_aiAssistantEnabled && apiKey.isEmpty && geminiApiKey.isEmpty) {
+    if (_aiAssistantEnabled && !hasValidOpenAI && !hasValidGemini) {
       setState(() {
         _apiKeyErrorMessage = AppLocalizations.of(
           context,
@@ -104,15 +110,15 @@ class _SettingsDialogState extends State<SettingsDialog> {
       _showCorrectAnswerCount,
     );
 
-    // Save OpenAI API Key securely
-    if (apiKey.isNotEmpty) {
+    // Save OpenAI API Key securely (only if valid format)
+    if (hasValidOpenAI) {
       await ConfigurationService.instance.saveOpenAIApiKey(apiKey);
     } else {
       await ConfigurationService.instance.deleteOpenAIApiKey();
     }
 
-    // Save Gemini API Key securely
-    if (geminiApiKey.isNotEmpty) {
+    // Save Gemini API Key securely (only if valid format)
+    if (hasValidGemini) {
       await ConfigurationService.instance.saveGeminiApiKey(geminiApiKey);
     } else {
       await ConfigurationService.instance.deleteGeminiApiKey();
@@ -171,6 +177,25 @@ class _SettingsDialogState extends State<SettingsDialog> {
       setState(() {
         _apiKeyErrorMessage = null;
       });
+    }
+  }
+
+  /// Called when API keys change - saves them and refreshes the selector
+  Future<void> _onApiKeyChanged() async {
+    // Save API keys immediately so the selector can detect them
+    final openaiKey = _openAiApiKeyController.text.trim();
+    final geminiKey = _geminiApiKeyController.text.trim();
+
+    if (openaiKey.isValidOpenAIApiKey) {
+      await ConfigurationService.instance.saveOpenAIApiKey(openaiKey);
+    } else {
+      await ConfigurationService.instance.deleteOpenAIApiKey();
+    }
+
+    if (geminiKey.isValidGeminiApiKey) {
+      await ConfigurationService.instance.saveGeminiApiKey(geminiKey);
+    } else {
+      await ConfigurationService.instance.deleteGeminiApiKey();
     }
   }
 
@@ -351,27 +376,28 @@ class _SettingsDialogState extends State<SettingsDialog> {
                         hintMaxLines: 3,
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: _geminiApiKeyController.text.trim().isEmpty
-                                ? Theme.of(context).colorScheme.error
-                                : Theme.of(context).colorScheme.outline,
+                            color: _geminiApiKeyController.text.isValidGeminiApiKey
+                                ? Theme.of(context).colorScheme.outline
+                                : Theme.of(context).colorScheme.error,
                           ),
                         ),
                         prefixIcon: Icon(
                           Icons.key,
-                          color: _geminiApiKeyController.text.trim().isEmpty
-                              ? Theme.of(context).colorScheme.error
-                              : null,
+                          color: _geminiApiKeyController.text.isValidGeminiApiKey
+                              ? null
+                              : Theme.of(context).colorScheme.error,
                         ),
-                        suffixIcon: _geminiApiKeyController.text.trim().isEmpty
-                            ? null
-                            : Icon(
+                        suffixIcon: _geminiApiKeyController.text.isValidGeminiApiKey
+                            ? Icon(
                                 Icons.check_circle,
                                 color: Theme.of(context).colorScheme.primary,
-                              ),
+                              )
+                            : null,
                       ),
                       obscureText: true,
-                      onChanged: (value) {
+                      onChanged: (value) async {
                         _clearApiKeyError();
+                        await _onApiKeyChanged();
                         setState(() {
                           // Trigger rebuild to update visual indicators
                         });
@@ -419,27 +445,28 @@ class _SettingsDialogState extends State<SettingsDialog> {
                         hintMaxLines: 3,
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: _openAiApiKeyController.text.trim().isEmpty
-                                ? Theme.of(context).colorScheme.error
-                                : Theme.of(context).colorScheme.outline,
+                            color: _openAiApiKeyController.text.isValidOpenAIApiKey
+                                ? Theme.of(context).colorScheme.outline
+                                : Theme.of(context).colorScheme.error,
                           ),
                         ),
                         prefixIcon: Icon(
                           Icons.key,
-                          color: _openAiApiKeyController.text.trim().isEmpty
-                              ? Theme.of(context).colorScheme.error
-                              : null,
+                          color: _openAiApiKeyController.text.isValidOpenAIApiKey
+                              ? null
+                              : Theme.of(context).colorScheme.error,
                         ),
-                        suffixIcon: _openAiApiKeyController.text.trim().isEmpty
-                            ? null
-                            : Icon(
+                        suffixIcon: _openAiApiKeyController.text.isValidOpenAIApiKey
+                            ? Icon(
                                 Icons.check_circle,
                                 color: Theme.of(context).colorScheme.primary,
-                              ),
+                              )
+                            : null,
                       ),
                       obscureText: true,
-                      onChanged: (value) {
+                      onChanged: (value) async {
                         _clearApiKeyError();
+                        await _onApiKeyChanged();
                         setState(() {
                           // Trigger rebuild to update visual indicators
                         });
@@ -509,6 +536,32 @@ class _SettingsDialogState extends State<SettingsDialog> {
                             ),
                           ],
                         ),
+                      ),
+                    ],
+
+                    // Default AI Model Section (only show if at least one valid API key is configured)
+                    if (_geminiApiKeyController.text.isValidGeminiApiKey ||
+                        _openAiApiKeyController.text.isValidOpenAIApiKey) ...[
+                      const SizedBox(height: 24),
+                      Text(
+                        AppLocalizations.of(context)!.aiDefaultModelTitle,
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        AppLocalizations.of(context)!.aiDefaultModelDescription,
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                      const SizedBox(height: 12),
+                      AiServiceModelSelector(
+                        initialModel: _defaultAIModel,
+                        geminiApiKey: _geminiApiKeyController.text.isValidGeminiApiKey
+                            ? _geminiApiKeyController.text.trim()
+                            : null,
+                        openaiApiKey: _openAiApiKeyController.text.isValidOpenAIApiKey
+                            ? _openAiApiKeyController.text.trim()
+                            : null,
                       ),
                     ],
                   ],

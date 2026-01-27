@@ -22,6 +22,7 @@ class AiQuestionGenerationConfig {
   final String language;
   final String content;
   final AIService? preferredService; // Preferred AI service
+  final String? preferredModel; // Preferred model for the service
 
   const AiQuestionGenerationConfig({
     this.questionCount,
@@ -29,6 +30,7 @@ class AiQuestionGenerationConfig {
     required this.language,
     required this.content,
     this.preferredService,
+    this.preferredModel,
   });
 }
 
@@ -90,7 +92,11 @@ class AiQuestionGenerationService {
     final prompt = _buildPrompt(config);
 
     try {
-      final response = await aiService.getChatResponse(prompt, localizations);
+      final response = await aiService.getChatResponse(
+        prompt,
+        localizations,
+        model: config.preferredModel,
+      );
       return _parseAiResponse(response);
     } catch (e) {
       rethrow; // Let the service handle its own errors

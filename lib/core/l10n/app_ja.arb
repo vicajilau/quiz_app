@@ -585,6 +585,14 @@
   "@aiAssistantSettingsDescription": {
     "description": "Description for AI assistant settings"
   },
+  "aiDefaultModelTitle": "デフォルトAIモデル",
+  "@aiDefaultModelTitle": {
+    "description": "Title for default AI model settings section"
+  },
+  "aiDefaultModelDescription": "質問生成のデフォルトAIサービスとモデルを選択",
+  "@aiDefaultModelDescription": {
+    "description": "Description for default AI model settings"
+  },
   "openaiApiKeyLabel": "OpenAI APIキー",
   "@openaiApiKeyLabel": {
     "description": "Label for OpenAI API Key field"
@@ -788,6 +796,10 @@
   "aiServiceLabel": "AIサービス：",
   "@aiServiceLabel": {
     "description": "Label for the AI service selector."
+  },
+  "aiModelLabel": "モデル：",
+  "@aiModelLabel": {
+    "description": "Label for the AI model selector."
   },
   "importQuestionsTitle": "問題をインポート",
   "@importQuestionsTitle": {

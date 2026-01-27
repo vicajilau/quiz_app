@@ -585,6 +585,14 @@
   "@aiAssistantSettingsDescription": {
     "description": "Description for AI assistant settings"
   },
+  "aiDefaultModelTitle": "نموذج الذكاء الاصطناعي الافتراضي",
+  "@aiDefaultModelTitle": {
+    "description": "Title for default AI model settings section"
+  },
+  "aiDefaultModelDescription": "حدد خدمة ونموذج الذكاء الاصطناعي الافتراضي لتوليد الأسئلة",
+  "@aiDefaultModelDescription": {
+    "description": "Description for default AI model settings"
+  },
   "openaiApiKeyLabel": "مفتاح OpenAI API",
   "@openaiApiKeyLabel": {
     "description": "Label for OpenAI API Key field"
@@ -788,6 +796,10 @@
   "aiServiceLabel": "خدمة الذكاء الاصطناعي:",
   "@aiServiceLabel": {
     "description": "Label for the AI service selector."
+  },
+  "aiModelLabel": "النموذج:",
+  "@aiModelLabel": {
+    "description": "Label for the AI model selector."
   },
   "importQuestionsTitle": "استيراد الأسئلة",
   "@importQuestionsTitle": {

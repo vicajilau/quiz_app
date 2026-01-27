@@ -585,6 +585,14 @@
   "@aiAssistantSettingsDescription": {
     "description": "Beschreibung für KI-Assistent-Einstellungen"
   },
+  "aiDefaultModelTitle": "Standard-KI-Modell",
+  "@aiDefaultModelTitle": {
+    "description": "Titel für Standard-KI-Modell-Einstellungsbereich"
+  },
+  "aiDefaultModelDescription": "Wählen Sie den Standard-KI-Service und das Modell für die Fragengenerierung",
+  "@aiDefaultModelDescription": {
+    "description": "Beschreibung für Standard-KI-Modell-Einstellungen"
+  },
   "openaiApiKeyLabel": "OpenAI-API-Schlüssel",
   "@openaiApiKeyLabel": {
     "description": "Beschriftung für OpenAI-API-Schlüssel-Feld"
@@ -788,6 +796,10 @@
   "aiServiceLabel": "KI-Service:",
   "@aiServiceLabel": {
     "description": "Beschriftung für den KI-Service-Selektor."
+  },
+  "aiModelLabel": "Modell:",
+  "@aiModelLabel": {
+    "description": "Beschriftung für den KI-Modell-Selektor."
   },
   "importQuestionsTitle": "Fragen importieren",
   "@importQuestionsTitle": {

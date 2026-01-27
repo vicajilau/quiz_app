@@ -585,6 +585,14 @@
   "@aiAssistantSettingsDescription": {
     "description": "Descrição para configurações assistente IA"
   },
+  "aiDefaultModelTitle": "Modelo IA padrão",
+  "@aiDefaultModelTitle": {
+    "description": "Título para a seção modelo IA padrão"
+  },
+  "aiDefaultModelDescription": "Selecione o serviço e modelo IA padrão para a geração de perguntas",
+  "@aiDefaultModelDescription": {
+    "description": "Descrição para configurações modelo IA padrão"
+  },
   "openaiApiKeyLabel": "Chave API OpenAI",
   "@openaiApiKeyLabel": {
     "description": "Rótulo para o campo Chave API OpenAI"
@@ -788,6 +796,10 @@
   "aiServiceLabel": "Serviço IA:",
   "@aiServiceLabel": {
     "description": "Rótulo para o seletor de serviço IA."
+  },
+  "aiModelLabel": "Modelo:",
+  "@aiModelLabel": {
+    "description": "Rótulo para o seletor de modelo IA."
   },
   "importQuestionsTitle": "Importar Perguntas",
   "@importQuestionsTitle": {

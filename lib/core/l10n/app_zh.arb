@@ -585,6 +585,14 @@
   "@aiAssistantSettingsDescription": {
     "description": "Description for AI assistant settings"
   },
+  "aiDefaultModelTitle": "默认AI模型",
+  "@aiDefaultModelTitle": {
+    "description": "Title for default AI model settings section"
+  },
+  "aiDefaultModelDescription": "选择用于生成问题的默认AI服务和模型",
+  "@aiDefaultModelDescription": {
+    "description": "Description for default AI model settings"
+  },
   "openaiApiKeyLabel": "OpenAI API密钥",
   "@openaiApiKeyLabel": {
     "description": "Label for OpenAI API Key field"
@@ -788,6 +796,10 @@
   "aiServiceLabel": "AI服务：",
   "@aiServiceLabel": {
     "description": "Label for the AI service selector."
+  },
+  "aiModelLabel": "模型：",
+  "@aiModelLabel": {
+    "description": "Label for the AI model selector."
   },
   "importQuestionsTitle": "导入问题",
   "@importQuestionsTitle": {

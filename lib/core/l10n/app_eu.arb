@@ -585,6 +585,14 @@
   "@aiAssistantSettingsDescription": {
     "description": "AI laguntzaile konfigurazioaren deskribapena"
   },
+  "aiDefaultModelTitle": "AI Modelo Lehenetsia",
+  "@aiDefaultModelTitle": {
+    "description": "AI modelo lehenetsi atalaren izenburua"
+  },
+  "aiDefaultModelDescription": "Hautatu AI zerbitzu eta modelo lehenetsia galderen sorrerarako",
+  "@aiDefaultModelDescription": {
+    "description": "AI modelo lehenetsi konfigurazioaren deskribapena"
+  },
   "openaiApiKeyLabel": "OpenAI API Gakoa",
   "@openaiApiKeyLabel": {
     "description": "OpenAI API Gako eremuaren etiketa"
@@ -788,6 +796,10 @@
   "aiServiceLabel": "AI Zerbitzua:",
   "@aiServiceLabel": {
     "description": "AI zerbitzu hautatzailearen etiketa."
+  },
+  "aiModelLabel": "Modeloa:",
+  "@aiModelLabel": {
+    "description": "AI modelo hautatzailearen etiketa."
   },
   "importQuestionsTitle": "Galderak Inportatu",
   "@importQuestionsTitle": {

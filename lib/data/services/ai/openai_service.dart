@@ -7,6 +7,15 @@ import 'ai_service.dart';
 class OpenAIService extends AIService {
   static const String _baseUrl = 'https://api.openai.com/v1';
   static const String _chatEndpoint = '/chat/completions';
+  static const String _defaultModel = 'gpt-4o-mini';
+
+  static const List<String> _models = [
+    'gpt-4o-mini',
+    'gpt-4o',
+    'gpt-4-turbo',
+    'gpt-4',
+    'gpt-3.5-turbo',
+  ];
 
   static OpenAIService? _instance;
   static OpenAIService get instance => _instance ??= OpenAIService._();
@@ -17,7 +26,10 @@ class OpenAIService extends AIService {
   String get serviceName => 'OpenAI GPT';
 
   @override
-  String get defaultModel => 'gpt-3.5-turbo';
+  String get defaultModel => _defaultModel;
+
+  @override
+  List<String> get availableModels => _models;
 
   @override
   Future<bool> isAvailable() async {
@@ -29,13 +41,16 @@ class OpenAIService extends AIService {
   @override
   Future<String> getChatResponse(
     String prompt,
-    AppLocalizations localizations,
-  ) async {
+    AppLocalizations localizations, {
+    String? model,
+  }) async {
     final apiKey = await ConfigurationService.instance.getOpenAIApiKey();
 
     if (apiKey == null || apiKey.isEmpty) {
       throw Exception(localizations.openaiApiKeyNotConfigured);
     }
+
+    final selectedModel = model ?? _defaultModel;
 
     try {
       final response = await http.post(
@@ -45,7 +60,7 @@ class OpenAIService extends AIService {
           'Authorization': 'Bearer $apiKey',
         },
         body: jsonEncode({
-          'model': 'gpt-3.5-turbo',
+          'model': selectedModel,
           'messages': [
             {'role': 'user', 'content': prompt},
           ],

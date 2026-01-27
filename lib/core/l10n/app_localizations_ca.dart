@@ -432,6 +432,13 @@ class AppLocalizationsCa extends AppLocalizations {
       'Activar o desactivar l\'assistent d\'estudi IA per les preguntes';
 
   @override
+  String get aiDefaultModelTitle => 'Model IA per defecte';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'Selecciona el servei i model IA per defecte per la generació de preguntes';
+
+  @override
   String get openaiApiKeyLabel => 'Clau API OpenAI';
 
   @override
@@ -576,6 +583,9 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get aiServiceLabel => 'Servei IA:';
+
+  @override
+  String get aiModelLabel => 'Model:';
 
   @override
   String get importQuestionsTitle => 'Importar Preguntes';

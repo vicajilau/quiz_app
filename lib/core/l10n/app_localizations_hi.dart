@@ -426,6 +426,13 @@ class AppLocalizationsHi extends AppLocalizations {
       'प्रश्नों के लिए AI अध्ययन सहायक को सक्षम या अक्षम करें';
 
   @override
+  String get aiDefaultModelTitle => 'डिफ़ॉल्ट AI मॉडल';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'प्रश्न निर्माण के लिए डिफ़ॉल्ट AI सेवा और मॉडल चुनें';
+
+  @override
   String get openaiApiKeyLabel => 'OpenAI API Key';
 
   @override
@@ -570,6 +577,9 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get aiServiceLabel => 'AI सेवा:';
+
+  @override
+  String get aiModelLabel => 'मॉडल:';
 
   @override
   String get importQuestionsTitle => 'प्रश्न आयात करें';

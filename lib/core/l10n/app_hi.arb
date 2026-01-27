@@ -585,6 +585,14 @@
   "@aiAssistantSettingsDescription": {
     "description": "Description for AI assistant settings"
   },
+  "aiDefaultModelTitle": "डिफ़ॉल्ट AI मॉडल",
+  "@aiDefaultModelTitle": {
+    "description": "Title for default AI model settings section"
+  },
+  "aiDefaultModelDescription": "प्रश्न निर्माण के लिए डिफ़ॉल्ट AI सेवा और मॉडल चुनें",
+  "@aiDefaultModelDescription": {
+    "description": "Description for default AI model settings"
+  },
   "openaiApiKeyLabel": "OpenAI API Key",
   "@openaiApiKeyLabel": {
     "description": "Label for OpenAI API Key field"
@@ -788,6 +796,10 @@
   "aiServiceLabel": "AI सेवा:",
   "@aiServiceLabel": {
     "description": "Label for the AI service selector."
+  },
+  "aiModelLabel": "मॉडल:",
+  "@aiModelLabel": {
+    "description": "Label for the AI model selector."
   },
   "importQuestionsTitle": "प्रश्न आयात करें",
   "@importQuestionsTitle": {

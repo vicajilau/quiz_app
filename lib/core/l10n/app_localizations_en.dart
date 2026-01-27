@@ -424,6 +424,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'Enable or disable the AI study assistant for questions';
 
   @override
+  String get aiDefaultModelTitle => 'Default AI Model';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'Select the default AI service and model for question generation';
+
+  @override
   String get openaiApiKeyLabel => 'OpenAI API Key';
 
   @override
@@ -568,6 +575,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aiServiceLabel => 'AI Service:';
+
+  @override
+  String get aiModelLabel => 'Model:';
 
   @override
   String get importQuestionsTitle => 'Import Questions';

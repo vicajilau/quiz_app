@@ -433,6 +433,13 @@ class AppLocalizationsGl extends AppLocalizations {
       'Activar ou desactivar o asistente de estudo IA para as preguntas';
 
   @override
+  String get aiDefaultModelTitle => 'Modelo IA por defecto';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'Selecciona o servizo e modelo IA por defecto para a xeración de preguntas';
+
+  @override
   String get openaiApiKeyLabel => 'Clave API OpenAI';
 
   @override
@@ -578,6 +585,9 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get aiServiceLabel => 'Servizo IA:';
+
+  @override
+  String get aiModelLabel => 'Modelo:';
 
   @override
   String get importQuestionsTitle => 'Importar Preguntas';

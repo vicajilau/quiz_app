@@ -422,6 +422,13 @@ class AppLocalizationsAr extends AppLocalizations {
       'تفعيل أو تعطيل مساعد الدراسة الذكي للأسئلة';
 
   @override
+  String get aiDefaultModelTitle => 'نموذج الذكاء الاصطناعي الافتراضي';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'حدد خدمة ونموذج الذكاء الاصطناعي الافتراضي لتوليد الأسئلة';
+
+  @override
   String get openaiApiKeyLabel => 'مفتاح OpenAI API';
 
   @override
@@ -566,6 +573,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get aiServiceLabel => 'خدمة الذكاء الاصطناعي:';
+
+  @override
+  String get aiModelLabel => 'النموذج:';
 
   @override
   String get importQuestionsTitle => 'استيراد الأسئلة';

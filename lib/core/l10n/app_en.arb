@@ -573,6 +573,14 @@
   "@aiAssistantSettingsDescription": {
     "description": "Description for AI assistant settings"
   },
+  "aiDefaultModelTitle": "Default AI Model",
+  "@aiDefaultModelTitle": {
+    "description": "Title for default AI model settings section"
+  },
+  "aiDefaultModelDescription": "Select the default AI service and model for question generation",
+  "@aiDefaultModelDescription": {
+    "description": "Description for default AI model settings"
+  },
   "openaiApiKeyLabel": "OpenAI API Key",
   "@openaiApiKeyLabel": {
     "description": "Label for OpenAI API Key field"
@@ -780,6 +788,10 @@
   "aiServiceLabel": "AI Service:",
   "@aiServiceLabel": {
     "description": "Label for the AI service selector."
+  },
+  "aiModelLabel": "Model:",
+  "@aiModelLabel": {
+    "description": "Label for the AI model selector."
   },
   "importQuestionsTitle": "Import Questions",
   "@importQuestionsTitle": {

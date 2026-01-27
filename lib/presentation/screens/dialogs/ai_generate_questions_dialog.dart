@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../../data/services/ai/ai_question_generation_service.dart';
-import '../../../data/services/ai/ai_service_selector.dart';
 import '../../../data/services/ai/ai_service.dart';
+import '../../widgets/ai_service_model_selector.dart';
 
 class AiGenerateQuestionsDialog extends StatefulWidget {
   const AiGenerateQuestionsDialog({super.key});
@@ -25,10 +25,9 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   // Minimum words required for AI generation
   static const int _minWords = 50;
 
-  // Variables for AI selector
-  List<AIService> _availableServices = [];
+  // AI service and model from selector
   AIService? _selectedService;
-  bool _isLoadingServices = true;
+  String? _selectedModel;
 
   // Check if content meets minimum requirements
   bool get _hasMinimumWords {
@@ -83,7 +82,6 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   void initState() {
     super.initState();
     _textController.addListener(_updateWordCount);
-    _loadAvailableServices();
   }
 
   @override
@@ -107,25 +105,6 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
       setState(() {
         _selectedLanguage = 'en';
       });
-    }
-  }
-
-  Future<void> _loadAvailableServices() async {
-    try {
-      final services = await AIServiceSelector.instance.getAvailableServices();
-      if (mounted) {
-        setState(() {
-          _availableServices = services;
-          _selectedService = services.isNotEmpty ? services.first : null;
-          _isLoadingServices = false;
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _isLoadingServices = false;
-        });
-      }
     }
   }
 
@@ -219,66 +198,18 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // AI service selector
-                      Text(
-                        localizations.aiServiceLabel,
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      const SizedBox(height: 8),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 8,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Theme.of(context).colorScheme.outline,
-                          ),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Row(
-                          children: [
-                            if (_isLoadingServices)
-                              Expanded(
-                                child: Text(localizations.aiServicesLoading),
-                              )
-                            else if (_availableServices.isEmpty)
-                              Expanded(
-                                child: Text(
-                                  localizations.aiServicesNotConfigured,
-                                ),
-                              )
-                            else
-                              Expanded(
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton<AIService>(
-                                    value: _selectedService,
-                                    isExpanded: true,
-                                    items: _availableServices.map((service) {
-                                      return DropdownMenuItem<AIService>(
-                                        value: service,
-                                        child: Text(
-                                          service.serviceName,
-                                          style: Theme.of(
-                                            context,
-                                          ).textTheme.bodyMedium,
-                                        ),
-                                      );
-                                    }).toList(),
-                                    onChanged: (AIService? newService) {
-                                      if (newService != null) {
-                                        setState(() {
-                                          _selectedService = newService;
-                                          // Revalidate content when service changes
-                                          _updateWordCount();
-                                        });
-                                      }
-                                    },
-                                  ),
-                                ),
-                              ),
-                          ],
-                        ),
+                      // AI service and model selectors
+                      AiServiceModelSelector(
+                        onServiceChanged: (service) {
+                          setState(() {
+                            _selectedService = service;
+                          });
+                        },
+                        onModelChanged: (model) {
+                          setState(() {
+                            _selectedModel = model;
+                          });
+                        },
                       ),
 
                       // Service limits information
@@ -448,8 +379,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                       // Text field
                       TextFormField(
                         controller: _textController,
-                        enabled:
-                            _selectedService != null && !_isLoadingServices,
+                        enabled: _selectedService != null,
                         decoration: InputDecoration(
                           hintText: localizations.aiContentHint,
                           helperMaxLines: 2,
@@ -458,7 +388,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                         ),
                         maxLines: 8,
                         validator: (value) {
-                          if (_selectedService == null || _isLoadingServices) {
+                          if (_selectedService == null) {
                             return null; // Skip validation if no service available
                           }
 
@@ -539,9 +469,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                   Expanded(
                     child: ElevatedButton.icon(
                       onPressed:
-                          (_selectedService != null &&
-                              !_isLoadingServices &&
-                              _hasMinimumWords)
+                          (_selectedService != null && _hasMinimumWords)
                           ? () {
                               if (_formKey.currentState!.validate()) {
                                 final config = AiQuestionGenerationConfig(
@@ -555,6 +483,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                                   language: _selectedLanguage,
                                   content: _textController.text.trim(),
                                   preferredService: _selectedService,
+                                  preferredModel: _selectedModel,
                                 );
                                 Navigator.of(context).pop(config);
                               }

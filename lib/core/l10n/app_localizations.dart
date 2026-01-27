@@ -848,6 +848,18 @@ abstract class AppLocalizations {
   /// **'Enable or disable the AI study assistant for questions'**
   String get aiAssistantSettingsDescription;
 
+  /// Title for default AI model settings section
+  ///
+  /// In en, this message translates to:
+  /// **'Default AI Model'**
+  String get aiDefaultModelTitle;
+
+  /// Description for default AI model settings
+  ///
+  /// In en, this message translates to:
+  /// **'Select the default AI service and model for question generation'**
+  String get aiDefaultModelDescription;
+
   /// Label for OpenAI API Key field
   ///
   /// In en, this message translates to:
@@ -1105,6 +1117,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'AI Service:'**
   String get aiServiceLabel;
+
+  /// Label for the AI model selector.
+  ///
+  /// In en, this message translates to:
+  /// **'Model:'**
+  String get aiModelLabel;
 
   /// Title for the import questions dialog.
   ///

@@ -432,6 +432,13 @@ class AppLocalizationsDe extends AppLocalizations {
       'KI-Lernassistenten für Fragen aktivieren oder deaktivieren';
 
   @override
+  String get aiDefaultModelTitle => 'Standard-KI-Modell';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'Wählen Sie den Standard-KI-Service und das Modell für die Fragengenerierung';
+
+  @override
   String get openaiApiKeyLabel => 'OpenAI-API-Schlüssel';
 
   @override
@@ -578,6 +585,9 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get aiServiceLabel => 'KI-Service:';
+
+  @override
+  String get aiModelLabel => 'Modell:';
 
   @override
   String get importQuestionsTitle => 'Fragen importieren';

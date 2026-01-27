@@ -408,6 +408,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get aiAssistantSettingsDescription => '問題のAI学習アシスタントを有効または無効にする';
 
   @override
+  String get aiDefaultModelTitle => 'デフォルトAIモデル';
+
+  @override
+  String get aiDefaultModelDescription => '質問生成のデフォルトAIサービスとモデルを選択';
+
+  @override
   String get openaiApiKeyLabel => 'OpenAI APIキー';
 
   @override
@@ -548,6 +554,9 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get aiServiceLabel => 'AIサービス：';
+
+  @override
+  String get aiModelLabel => 'モデル：';
 
   @override
   String get importQuestionsTitle => '問題をインポート';

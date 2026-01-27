@@ -431,6 +431,13 @@ class AppLocalizationsEu extends AppLocalizations {
       'Gaitu edo desaktibatu galderetarako ikasketa ai laguntzailea';
 
   @override
+  String get aiDefaultModelTitle => 'AI Modelo Lehenetsia';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'Hautatu AI zerbitzu eta modelo lehenetsia galderen sorrerarako';
+
+  @override
   String get openaiApiKeyLabel => 'OpenAI API Gakoa';
 
   @override
@@ -575,6 +582,9 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get aiServiceLabel => 'AI Zerbitzua:';
+
+  @override
+  String get aiModelLabel => 'Modeloa:';
 
   @override
   String get importQuestionsTitle => 'Galderak Inportatu';

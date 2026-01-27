@@ -406,6 +406,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get aiAssistantSettingsDescription => '启用或禁用问题的AI学习助手';
 
   @override
+  String get aiDefaultModelTitle => '默认AI模型';
+
+  @override
+  String get aiDefaultModelDescription => '选择用于生成问题的默认AI服务和模型';
+
+  @override
   String get openaiApiKeyLabel => 'OpenAI API密钥';
 
   @override
@@ -546,6 +552,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get aiServiceLabel => 'AI服务：';
+
+  @override
+  String get aiModelLabel => '模型：';
 
   @override
   String get importQuestionsTitle => '导入问题';
