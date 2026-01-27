@@ -23,7 +23,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   int _currentWordCount = 0;
 
   // Minimum words required for AI generation
-  static const int _minWords = 50;
+  static const int _minWords = 10;
 
   // AI service and model from selector
   AIService? _selectedService;
@@ -468,8 +468,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: ElevatedButton.icon(
-                      onPressed:
-                          (_selectedService != null && _hasMinimumWords)
+                      onPressed: (_selectedService != null && _hasMinimumWords)
                           ? () {
                               if (_formKey.currentState!.validate()) {
                                 final config = AiQuestionGenerationConfig(
