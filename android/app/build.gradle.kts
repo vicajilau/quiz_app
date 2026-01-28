@@ -39,15 +39,17 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             // signingConfig = signingConfigs.getByName("debug")
             val keystorePropertiesFile = rootProject.file("key.properties")
-            val keystoreProperties = Properties().apply {
-                load(FileInputStream(keystorePropertiesFile))
-            }
+            if (keystorePropertiesFile.exists()) {
+                val keystoreProperties = Properties().apply {
+                    load(FileInputStream(keystorePropertiesFile))
+                }
 
-            signingConfig = signingConfigs.create("release").apply {
-                storeFile = keystoreProperties["storeFile"]?.toString()?.let { file(it) }
-                storePassword = keystoreProperties["storePassword"]?.toString()
-                keyAlias = keystoreProperties["keyAlias"]?.toString()
-                keyPassword = keystoreProperties["keyPassword"]?.toString()
+                signingConfig = signingConfigs.create("release").apply {
+                    storeFile = keystoreProperties["storeFile"]?.toString()?.let { file(it) }
+                    storePassword = keystoreProperties["storePassword"]?.toString()
+                    keyAlias = keystoreProperties["keyAlias"]?.toString()
+                    keyPassword = keystoreProperties["keyPassword"]?.toString()
+                }
             }
         }
     }

@@ -153,86 +153,101 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
     final contentColor = _isTopicMode ? secondaryColor : _getPrecisionColor();
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
         color: contentColor.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: contentColor.withValues(alpha: 0.3)),
       ),
-      child: Row(
+      child: Column(
         children: [
-          Icon(
-            _isTopicMode ? Icons.lightbulb_outline : Icons.article_outlined,
-            size: 18,
-            color: contentColor,
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+          Row(
+            children: [
+              Icon(
+                _isTopicMode ? Icons.lightbulb_outline : Icons.article_outlined,
+                size: 18,
+                color: contentColor,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            _isTopicMode
+                                ? localizations.aiModeTopicTitle
+                                : localizations.aiModeContentTitle,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.labelMedium
+                                ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: contentColor,
+                                ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          localizations.aiWordCountIndicator(_currentWordCount),
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.labelSmall
+                              ?.copyWith(
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onSurface.withValues(alpha: 0.6),
+                              ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 2),
                     Text(
                       _isTopicMode
-                          ? localizations.aiModeTopicTitle
-                          : localizations.aiModeContentTitle,
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: contentColor,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      localizations.aiWordCountIndicator(_currentWordCount),
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          ? localizations.aiModeTopicDescription
+                          : localizations.aiModeContentDescription,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: Theme.of(
                           context,
-                        ).colorScheme.onSurface.withValues(alpha: 0.6),
+                        ).colorScheme.onSurface.withValues(alpha: 0.7),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 2),
-                Text(
-                  _isTopicMode
-                      ? localizations.aiModeTopicDescription
-                      : localizations.aiModeContentDescription,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.onSurface.withValues(alpha: 0.7),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
           if (!_isTopicMode) ...[
             const SizedBox(width: 8),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  localizations.aiPrecisionIndicator(
-                    _getPrecisionLevel(localizations),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    localizations.aiPrecisionIndicator(
+                      _getPrecisionLevel(localizations),
+                    ),
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: contentColor,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: contentColor,
-                    fontWeight: FontWeight.w500,
+                  const SizedBox(height: 4),
+                  SizedBox(
+                    width: 60,
+                    child: LinearProgressIndicator(
+                      value: _getPrecisionProgress(),
+                      backgroundColor: contentColor.withValues(alpha: 0.2),
+                      valueColor: AlwaysStoppedAnimation<Color>(contentColor),
+                      minHeight: 4,
+                      borderRadius: BorderRadius.circular(2),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 4),
-                SizedBox(
-                  width: 60,
-                  child: LinearProgressIndicator(
-                    value: _getPrecisionProgress(),
-                    backgroundColor: contentColor.withValues(alpha: 0.2),
-                    valueColor: AlwaysStoppedAnimation<Color>(contentColor),
-                    minHeight: 4,
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ],
