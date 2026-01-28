@@ -284,6 +284,8 @@ IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
         return 'French';
       case 'de':
         return 'German';
+      case 'el':
+        return 'Greek';
       case 'it':
         return 'Italian';
       case 'pt':
