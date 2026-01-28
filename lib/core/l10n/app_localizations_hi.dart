@@ -426,6 +426,13 @@ class AppLocalizationsHi extends AppLocalizations {
       'प्रश्नों के लिए AI अध्ययन सहायक को सक्षम या अक्षम करें';
 
   @override
+  String get aiDefaultModelTitle => 'डिफ़ॉल्ट AI मॉडल';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'प्रश्न निर्माण के लिए डिफ़ॉल्ट AI सेवा और मॉडल चुनें';
+
+  @override
   String get openaiApiKeyLabel => 'OpenAI API Key';
 
   @override
@@ -572,6 +579,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get aiServiceLabel => 'AI सेवा:';
 
   @override
+  String get aiModelLabel => 'मॉडल:';
+
+  @override
   String get importQuestionsTitle => 'प्रश्न आयात करें';
 
   @override
@@ -688,7 +698,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• AI सामग्री का विश्लेषण करके प्रासंगिक प्रश्न बनाएगा\n• आप पाठ, परिभाषाएं, स्पष्टीकरण या कोई भी शैक्षिक सामग्री शामिल कर सकते हैं\n• प्रश्नों में उत्तर विकल्प और स्पष्टीकरण शामिल होंगे\n• इस प्रक्रिया में कुछ सेकंड लग सकते हैं';
+      '• AI सामग्री का विश्लेषण करके प्रासंगिक प्रश्न बनाएगा\n• यदि तुम 10 से कम शब्द लिखते हो, तो यह \'विषय\' (Topic) मोड में चला जाएगा जहाँ उन विशिष्ट विषयों के बारे में प्रश्न पूछे जाएंगे\n• 10 से अधिक शब्दों के साथ, यह \'सामग्री\' (Content) मोड में चला जाएगा जो उसी पाठ के बारे में प्रश्न पूछेगा (अधिक शब्द = अधिक सटीकता)\n• तुम पाठ, परिभाषाएं, स्पष्टीकरण या कोई भी शैक्षिक सामग्री शामिल कर सकते हो\n• प्रश्नों में उत्तर विकल्प और स्पष्टीकरण शामिल होंगे\n• इस प्रक्रिया में कुछ सेकंड लग सकते हैं';
 
   @override
   String get aiGenerateButton => 'प्रश्न बनाएं';
@@ -704,6 +714,9 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get languageGerman => 'Deutsch';
+
+  @override
+  String get languageGreek => 'Ελληνικά';
 
   @override
   String get languageItalian => 'Italiano';
@@ -1060,4 +1073,38 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get logoTooLargeWarning =>
       'छवि बहुत बड़ी है और सहेजी नहीं जा सकती। इसका उपयोग केवल इस सत्र के दौरान किया जाएगा।';
+
+  @override
+  String get aiModeTopicTitle => 'विषय मोड';
+
+  @override
+  String get aiModeTopicDescription => 'विषय का रचनात्मक अन्वेषण';
+
+  @override
+  String get aiModeContentTitle => 'सामग्री मोड';
+
+  @override
+  String get aiModeContentDescription => 'आपके इनपुट पर आधारित सटीक प्रश्न';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count शब्द';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return 'सटीकता: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => 'कम';
+
+  @override
+  String get aiPrecisionMedium => 'मध्यम';
+
+  @override
+  String get aiPrecisionHigh => 'उच्च';
+
+  @override
+  String get aiMoreWordsMorePrecision => 'अधिक शब्द = अधिक सटीकता';
 }

@@ -573,6 +573,14 @@
   "@aiAssistantSettingsDescription": {
     "description": "Description for AI assistant settings"
   },
+  "aiDefaultModelTitle": "Default AI Model",
+  "@aiDefaultModelTitle": {
+    "description": "Title for default AI model settings section"
+  },
+  "aiDefaultModelDescription": "Select the default AI service and model for question generation",
+  "@aiDefaultModelDescription": {
+    "description": "Description for default AI model settings"
+  },
   "openaiApiKeyLabel": "OpenAI API Key",
   "@openaiApiKeyLabel": {
     "description": "Label for OpenAI API Key field"
@@ -781,6 +789,10 @@
   "@aiServiceLabel": {
     "description": "Label for the AI service selector."
   },
+  "aiModelLabel": "Model:",
+  "@aiModelLabel": {
+    "description": "Label for the AI model selector."
+  },
   "importQuestionsTitle": "Import Questions",
   "@importQuestionsTitle": {
     "description": "Title for the import questions dialog."
@@ -953,7 +965,7 @@
   "@aiInfoTitle": {
     "description": "Title of the information section."
   },
-  "aiInfoDescription": "• AI will analyze the content and generate relevant questions\n• You can include text, definitions, explanations, or any educational material\\n• Questions will include answer options and explanations\\n• The process may take a few seconds",
+  "aiInfoDescription": "• AI will analyze the content and generate relevant questions\n• If you write fewer than 10 words, you'll enter Topic mode where questions will be asked about those specific topics\n• With more than 10 words, you'll enter Content mode which will ask questions about that same text (more words = more precision)\n• You can include text, definitions, explanations, or any educational material\\n• Questions will include answer options and explanations\\n• The process may take a few seconds",
   "@aiInfoDescription": {
     "description": "Informative description about the AI generation process."
   },
@@ -976,6 +988,10 @@
   "languageGerman": "Deutsch",
   "@languageGerman": {
     "description": "German language name."
+  },
+  "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Greek language name."
   },
   "languageItalian": "Italiano",
   "@languageItalian": {
@@ -1497,5 +1513,57 @@
   "logoTooLargeWarning": "Image is too large to be saved. It will only be used during this session.",
   "@logoTooLargeWarning": {
     "description": "Warning message when logo is too large for persistent storage"
+  },
+  "aiModeTopicTitle": "Topic Mode",
+  "@aiModeTopicTitle": {
+    "description": "Title for topic mode in AI assistant"
+  },
+  "aiModeTopicDescription": "Creative exploration of the topic",
+  "@aiModeTopicDescription": {
+    "description": "Description for topic mode"
+  },
+  "aiModeContentTitle": "Content Mode",
+  "@aiModeContentTitle": {
+    "description": "Title for content mode in AI assistant"
+  },
+  "aiModeContentDescription": "Precise questions based on your input",
+  "@aiModeContentDescription": {
+    "description": "Description for content mode"
+  },
+  "aiWordCountIndicator": "{count} words",
+  "@aiWordCountIndicator": {
+    "description": "Word count indicator",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiPrecisionIndicator": "Precision: {level}",
+  "@aiPrecisionIndicator": {
+    "description": "Precision level indicator for content mode",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "High"
+      }
+    }
+  },
+  "aiPrecisionLow": "Low",
+  "@aiPrecisionLow": {
+    "description": "Low precision level"
+  },
+  "aiPrecisionMedium": "Medium",
+  "@aiPrecisionMedium": {
+    "description": "Medium precision level"
+  },
+  "aiPrecisionHigh": "High",
+  "@aiPrecisionHigh": {
+    "description": "High precision level"
+  },
+  "aiMoreWordsMorePrecision": "More words = more precision",
+  "@aiMoreWordsMorePrecision": {
+    "description": "Hint text explaining that more words lead to more precise answers"
   }
 }

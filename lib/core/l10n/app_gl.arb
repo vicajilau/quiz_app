@@ -585,6 +585,14 @@
   "@aiAssistantSettingsDescription": {
     "description": "Descrición para configuración asistente IA"
   },
+  "aiDefaultModelTitle": "Modelo IA por defecto",
+  "@aiDefaultModelTitle": {
+    "description": "Título para a sección modelo IA por defecto"
+  },
+  "aiDefaultModelDescription": "Selecciona o servizo e modelo IA por defecto para a xeración de preguntas",
+  "@aiDefaultModelDescription": {
+    "description": "Descrición para configuración modelo IA por defecto"
+  },
   "openaiApiKeyLabel": "Clave API OpenAI",
   "@openaiApiKeyLabel": {
     "description": "Etiqueta para o campo Clave API OpenAI"
@@ -789,6 +797,10 @@
   "@aiServiceLabel": {
     "description": "Etiqueta para o selector de servizo IA."
   },
+  "aiModelLabel": "Modelo:",
+  "@aiModelLabel": {
+    "description": "Etiqueta para o selector de modelo IA."
+  },
   "importQuestionsTitle": "Importar Preguntas",
   "@importQuestionsTitle": {
     "description": "Título para o diálogo importar preguntas."
@@ -965,7 +977,7 @@
   "@aiInfoTitle": {
     "description": "Título da sección información."
   },
-  "aiInfoDescription": "• A IA analizará o contido e xerará preguntas relevantes\n• Podes incluír texto, definicións, explicacións, ou calquera material educativo\n• As preguntas incluirán opcións de resposta e explicacións\n• O proceso pode tardar uns segundos",
+  "aiInfoDescription": "• A IA analizará o contido e xerará preguntas relevantes\n• Se escribes menos de 10 palabras entrarás no modo Tema onde se farán preguntas sobre eses temas específicos\n• Con máis de 10 palabras entrarás no modo Contido que fará preguntas sobre ese mesmo texto (máis palabras = máis precisión)\n• Podes incluír testo, definicións, explicacións, o calquera material educativo\n• As preguntas incluirán opcións de resposta e explicacións\n• O proceso pode tardar uns segundos",
   "@aiInfoDescription": {
     "description": "Descrición informativa do proceso de xeración IA."
   },
@@ -988,6 +1000,10 @@
   "languageGerman": "Deutsch",
   "@languageGerman": {
     "description": "Nome da lingua alemá."
+  },
+  "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Nome da lingua grega."
   },
   "languageItalian": "Italiano",
   "@languageItalian": {
@@ -1504,5 +1520,57 @@
   "logoTooLargeWarning": "A imaxe é demasiado grande para gardarse. Só se usará durante esta sesión.",
   "@logoTooLargeWarning": {
     "description": "Mensaxe de aviso cando o logo é demasiado grande para o almacenamento persistente"
+  },
+  "aiModeTopicTitle": "Modo Tema",
+  "@aiModeTopicTitle": {
+    "description": "Título para o modo tema no asistente AI"
+  },
+  "aiModeTopicDescription": "Exploración creativa do tema",
+  "@aiModeTopicDescription": {
+    "description": "Descrición para o modo tema"
+  },
+  "aiModeContentTitle": "Modo Contido",
+  "@aiModeContentTitle": {
+    "description": "Título para o modo contido no asistente AI"
+  },
+  "aiModeContentDescription": "Preguntas precisas baseadas na túa entrada",
+  "@aiModeContentDescription": {
+    "description": "Descrición para o modo contido"
+  },
+  "aiWordCountIndicator": "{count} palabras",
+  "@aiWordCountIndicator": {
+    "description": "Indicador de conta de palabras",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiPrecisionIndicator": "Precisión: {level}",
+  "@aiPrecisionIndicator": {
+    "description": "Indicador de nivel de precisión para o modo contido",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "Alta"
+      }
+    }
+  },
+  "aiPrecisionLow": "Baixa",
+  "@aiPrecisionLow": {
+    "description": "Nivel de precisión baixa"
+  },
+  "aiPrecisionMedium": "Media",
+  "@aiPrecisionMedium": {
+    "description": "Nivel de precisión media"
+  },
+  "aiPrecisionHigh": "Alta",
+  "@aiPrecisionHigh": {
+    "description": "Nivel de precisión alta"
+  },
+  "aiMoreWordsMorePrecision": "Máis palabras = máis precisión",
+  "@aiMoreWordsMorePrecision": {
+    "description": "Texto de axuda explicando que máis palabras levan a respostas máis precisas"
   }
 }

@@ -585,6 +585,14 @@
   "@aiAssistantSettingsDescription": {
     "description": "Description for AI assistant settings"
   },
+  "aiDefaultModelTitle": "默认AI模型",
+  "@aiDefaultModelTitle": {
+    "description": "Title for default AI model settings section"
+  },
+  "aiDefaultModelDescription": "选择用于生成问题的默认AI服务和模型",
+  "@aiDefaultModelDescription": {
+    "description": "Description for default AI model settings"
+  },
   "openaiApiKeyLabel": "OpenAI API密钥",
   "@openaiApiKeyLabel": {
     "description": "Label for OpenAI API Key field"
@@ -789,6 +797,10 @@
   "@aiServiceLabel": {
     "description": "Label for the AI service selector."
   },
+  "aiModelLabel": "模型：",
+  "@aiModelLabel": {
+    "description": "Label for the AI model selector."
+  },
   "importQuestionsTitle": "导入问题",
   "@importQuestionsTitle": {
     "description": "Title for the import questions dialog."
@@ -965,7 +977,7 @@
   "@aiInfoTitle": {
     "description": "Title of the information section."
   },
-  "aiInfoDescription": "• AI将分析内容并生成相关问题\n• 您可以包含文本、定义、解释或任何教育材料\n• 问题将包括答案选项和解释\n• 该过程可能需要几秒钟",
+  "aiInfoDescription": "• AI将分析内容并生成相关问题\n• 如果你输入的字数少于10个词，将进入“主题模式”，针对特定话题进行提问\n• 字数超过10个词，将进入“内容模式”，针对你提供的文本进行提问（字数越多 = 精确度越高）\n• 你可以包含文本、定义、解释或任何教育材料\n• 问题将包括答案选项和解释\n• 该过程可能需要几秒钟",
   "@aiInfoDescription": {
     "description": "Informative description about the AI generation process."
   },
@@ -988,6 +1000,10 @@
   "languageGerman": "Deutsch",
   "@languageGerman": {
     "description": "German language name."
+  },
+  "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Greek language name."
   },
   "languageItalian": "Italiano",
   "@languageItalian": {
@@ -1504,5 +1520,57 @@
   "logoTooLargeWarning": "图像太大无法保存。仅在此会话期间使用。",
   "@logoTooLargeWarning": {
     "description": "当徽标对于持久存储来说太大时的警告消息"
+  },
+  "aiModeTopicTitle": "主题模式",
+  "@aiModeTopicTitle": {
+    "description": "AI助手中主题模式的标题"
+  },
+  "aiModeTopicDescription": "主题的创意探索",
+  "@aiModeTopicDescription": {
+    "description": "主题模式的描述"
+  },
+  "aiModeContentTitle": "内容模式",
+  "@aiModeContentTitle": {
+    "description": "AI助手中内容模式的标题"
+  },
+  "aiModeContentDescription": "基于您输入的精确问题",
+  "@aiModeContentDescription": {
+    "description": "内容模式的描述"
+  },
+  "aiWordCountIndicator": "{count} 个词",
+  "@aiWordCountIndicator": {
+    "description": "词数指示器",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiPrecisionIndicator": "精确度: {level}",
+  "@aiPrecisionIndicator": {
+    "description": "内容模式的精确度级别指示器",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "高"
+      }
+    }
+  },
+  "aiPrecisionLow": "低",
+  "@aiPrecisionLow": {
+    "description": "低精确度级别"
+  },
+  "aiPrecisionMedium": "中",
+  "@aiPrecisionMedium": {
+    "description": "中精确度级别"
+  },
+  "aiPrecisionHigh": "高",
+  "@aiPrecisionHigh": {
+    "description": "高精确度级别"
+  },
+  "aiMoreWordsMorePrecision": "更多词汇 = 更高精度",
+  "@aiMoreWordsMorePrecision": {
+    "description": "提示文字说明更多词汇会带来更精确的答案"
   }
 }

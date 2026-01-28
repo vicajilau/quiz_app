@@ -422,6 +422,13 @@ class AppLocalizationsAr extends AppLocalizations {
       'تفعيل أو تعطيل مساعد الدراسة الذكي للأسئلة';
 
   @override
+  String get aiDefaultModelTitle => 'نموذج الذكاء الاصطناعي الافتراضي';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'حدد خدمة ونموذج الذكاء الاصطناعي الافتراضي لتوليد الأسئلة';
+
+  @override
   String get openaiApiKeyLabel => 'مفتاح OpenAI API';
 
   @override
@@ -568,6 +575,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get aiServiceLabel => 'خدمة الذكاء الاصطناعي:';
 
   @override
+  String get aiModelLabel => 'النموذج:';
+
+  @override
   String get importQuestionsTitle => 'استيراد الأسئلة';
 
   @override
@@ -683,7 +693,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• سيحلل الذكاء الاصطناعي المحتوى وينتج أسئلة ذات صلة\n• يمكنك تضمين نصوص وتعريفات وشروحات أو أي مادة تعليمية\n• ستتضمن الأسئلة خيارات إجابة وشروحات\n• قد تستغرق العملية بضع ثوانٍ';
+      '• سيحلل الذكاء الاصطناعي المحتوى وينتج أسئلة ذات صلة\n• إذا كتبت أقل من 10 كلمات، فستدخل في وضع الموضوع حيث سيطرح أسئلة حول تلك المواضيع المحددة\n• مع أكثر من 10 كلمات ستدخل في وضع المحتوى الذي سيطرح أسئلة حول النص نفسه (مزيد من الكلمات = مزيد من الدقة)\n• يمكنك تضمين نصوص وتعريفات وشروحات أو أي مادة تعليمية\n• ستتضمن الأسئلة خيارات إجابة وشروحات\n• قد تستغرق العملية بضع ثوانٍ';
 
   @override
   String get aiGenerateButton => 'إنتاج الأسئلة';
@@ -699,6 +709,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get languageGerman => 'Deutsch';
+
+  @override
+  String get languageGreek => 'Ελληνικά';
 
   @override
   String get languageItalian => 'Italiano';
@@ -1052,4 +1065,38 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get logoTooLargeWarning =>
       'الصورة كبيرة جداً ولا يمكن حفظها. سيتم استخدامها فقط خلال هذه الجلسة.';
+
+  @override
+  String get aiModeTopicTitle => 'وضع الموضوع';
+
+  @override
+  String get aiModeTopicDescription => 'استكشاف إبداعي للموضوع';
+
+  @override
+  String get aiModeContentTitle => 'وضع المحتوى';
+
+  @override
+  String get aiModeContentDescription => 'أسئلة دقيقة بناءً على مدخلاتك';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count كلمة';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return 'الدقة: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => 'منخفضة';
+
+  @override
+  String get aiPrecisionMedium => 'متوسطة';
+
+  @override
+  String get aiPrecisionHigh => 'عالية';
+
+  @override
+  String get aiMoreWordsMorePrecision => 'كلمات أكثر = دقة أعلى';
 }

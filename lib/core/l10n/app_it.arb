@@ -585,6 +585,14 @@
   "@aiAssistantSettingsDescription": {
     "description": "Descrizione per le impostazioni assistente IA"
   },
+  "aiDefaultModelTitle": "Modello IA predefinito",
+  "@aiDefaultModelTitle": {
+    "description": "Titolo per la sezione modello IA predefinito"
+  },
+  "aiDefaultModelDescription": "Seleziona il servizio e modello IA predefinito per la generazione di domande",
+  "@aiDefaultModelDescription": {
+    "description": "Descrizione per le impostazioni modello IA predefinito"
+  },
   "openaiApiKeyLabel": "Chiave API OpenAI",
   "@openaiApiKeyLabel": {
     "description": "Etichetta per il campo Chiave API OpenAI"
@@ -789,6 +797,10 @@
   "@aiServiceLabel": {
     "description": "Etichetta per il selettore servizio IA."
   },
+  "aiModelLabel": "Modello:",
+  "@aiModelLabel": {
+    "description": "Etichetta per il selettore modello IA."
+  },
   "importQuestionsTitle": "Importa Domande",
   "@importQuestionsTitle": {
     "description": "Titolo per la finestra di dialogo importa domande."
@@ -965,7 +977,7 @@
   "@aiInfoTitle": {
     "description": "Titolo della sezione informazioni."
   },
-  "aiInfoDescription": "• L'IA analizzerà il contenuto e genererà domande pertinenti\n• Puoi includere testo, definizioni, spiegazioni, o qualsiasi materiale educativo\n• Le domande includeranno opzioni di risposta e spiegazioni\n• Il processo può richiedere alcuni secondi",
+  "aiInfoDescription": "• L'IA analizzerà il contenuto e genererà domande pertinenti\n• Se scrivi meno di 10 parole entrerai in modalità Argomento dove verranno fatte domande su quei temi specifici\n• Con più di 10 parole entrerai in modalità Contenuto che farà domande sullo stesso testo (più parole = più precisione)\n• Puoi includere testo, definizioni, spiegazioni, o qualsiasi materiale educativo\n• Le domande includeranno opzioni di risposta e spiegazioni\n• Il processo può richiedere alcuni secondi",
   "@aiInfoDescription": {
     "description": "Descrizione informativa del processo di generazione IA."
   },
@@ -988,6 +1000,10 @@
   "languageGerman": "Deutsch",
   "@languageGerman": {
     "description": "Nome lingua tedesca."
+  },
+  "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Nome lingua greca."
   },
   "languageItalian": "Italiano",
   "@languageItalian": {
@@ -1514,5 +1530,57 @@
   "logoTooLargeWarning": "L'immagine è troppo grande per essere salvata. Verrà utilizzata solo durante questa sessione.",
   "@logoTooLargeWarning": {
     "description": "Messaggio di avviso quando il logo è troppo grande per l'archiviazione persistente"
+  },
+  "aiModeTopicTitle": "Modalità Argomento",
+  "@aiModeTopicTitle": {
+    "description": "Titolo per la modalità argomento nell'assistente AI"
+  },
+  "aiModeTopicDescription": "Esplorazione creativa dell'argomento",
+  "@aiModeTopicDescription": {
+    "description": "Descrizione per la modalità argomento"
+  },
+  "aiModeContentTitle": "Modalità Contenuto",
+  "@aiModeContentTitle": {
+    "description": "Titolo per la modalità contenuto nell'assistente AI"
+  },
+  "aiModeContentDescription": "Domande precise basate sul tuo input",
+  "@aiModeContentDescription": {
+    "description": "Descrizione per la modalità contenuto"
+  },
+  "aiWordCountIndicator": "{count} parole",
+  "@aiWordCountIndicator": {
+    "description": "Indicatore del conteggio parole",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiPrecisionIndicator": "Precisione: {level}",
+  "@aiPrecisionIndicator": {
+    "description": "Indicatore del livello di precisione per la modalità contenuto",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "Alta"
+      }
+    }
+  },
+  "aiPrecisionLow": "Bassa",
+  "@aiPrecisionLow": {
+    "description": "Livello di precisione bassa"
+  },
+  "aiPrecisionMedium": "Media",
+  "@aiPrecisionMedium": {
+    "description": "Livello di precisione media"
+  },
+  "aiPrecisionHigh": "Alta",
+  "@aiPrecisionHigh": {
+    "description": "Livello di precisione alta"
+  },
+  "aiMoreWordsMorePrecision": "Più parole = più precisione",
+  "@aiMoreWordsMorePrecision": {
+    "description": "Testo di aiuto che spiega che più parole portano a risposte più precise"
   }
 }

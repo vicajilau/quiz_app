@@ -424,6 +424,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'Enable or disable the AI study assistant for questions';
 
   @override
+  String get aiDefaultModelTitle => 'Default AI Model';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'Select the default AI service and model for question generation';
+
+  @override
   String get openaiApiKeyLabel => 'OpenAI API Key';
 
   @override
@@ -570,6 +577,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aiServiceLabel => 'AI Service:';
 
   @override
+  String get aiModelLabel => 'Model:';
+
+  @override
   String get importQuestionsTitle => 'Import Questions';
 
   @override
@@ -688,7 +698,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• AI will analyze the content and generate relevant questions\n• You can include text, definitions, explanations, or any educational material\\n• Questions will include answer options and explanations\\n• The process may take a few seconds';
+      '• AI will analyze the content and generate relevant questions\n• If you write fewer than 10 words, you\'ll enter Topic mode where questions will be asked about those specific topics\n• With more than 10 words, you\'ll enter Content mode which will ask questions about that same text (more words = more precision)\n• You can include text, definitions, explanations, or any educational material\\n• Questions will include answer options and explanations\\n• The process may take a few seconds';
 
   @override
   String get aiGenerateButton => 'Generate Questions';
@@ -704,6 +714,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get languageGerman => 'Deutsch';
+
+  @override
+  String get languageGreek => 'Ελληνικά';
 
   @override
   String get languageItalian => 'Italiano';
@@ -1061,4 +1074,39 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get logoTooLargeWarning =>
       'Image is too large to be saved. It will only be used during this session.';
+
+  @override
+  String get aiModeTopicTitle => 'Topic Mode';
+
+  @override
+  String get aiModeTopicDescription => 'Creative exploration of the topic';
+
+  @override
+  String get aiModeContentTitle => 'Content Mode';
+
+  @override
+  String get aiModeContentDescription =>
+      'Precise questions based on your input';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count words';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return 'Precision: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => 'Low';
+
+  @override
+  String get aiPrecisionMedium => 'Medium';
+
+  @override
+  String get aiPrecisionHigh => 'High';
+
+  @override
+  String get aiMoreWordsMorePrecision => 'More words = more precision';
 }

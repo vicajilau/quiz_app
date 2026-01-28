@@ -430,6 +430,13 @@ class AppLocalizationsPt extends AppLocalizations {
       'Habilitar ou desabilitar o assistente de estudo IA para perguntas';
 
   @override
+  String get aiDefaultModelTitle => 'Modelo IA padrão';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'Selecione o serviço e modelo IA padrão para a geração de perguntas';
+
+  @override
   String get openaiApiKeyLabel => 'Chave API OpenAI';
 
   @override
@@ -576,6 +583,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get aiServiceLabel => 'Serviço IA:';
 
   @override
+  String get aiModelLabel => 'Modelo:';
+
+  @override
   String get importQuestionsTitle => 'Importar Perguntas';
 
   @override
@@ -695,7 +705,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• IA analisará o conteúdo e gerará perguntas relevantes\n• Você pode incluir texto, definições, explicações, ou qualquer material educativo\n• Perguntas incluirão opções de resposta e explicações\n• O processo pode levar alguns segundos';
+      '• IA analisará o conteúdo e gerará perguntas relevantes\n• Se escreveres menos de 10 palavras entrarás no modo Tema, onde serão feitas perguntas sobre esses temas específicos\n• Com mais de 10 palavras entrarás no modo Conteúdo, que fará perguntas sobre o mesmo texto (mais palavras = mais precisão)\n• Você pode incluir texto, definições, explicações, o qualquer material educativo\n• Perguntas incluirão opções de resposta e explicações\n• O processo pode levar alguns segundos';
 
   @override
   String get aiGenerateButton => 'Gerar Perguntas';
@@ -711,6 +721,9 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get languageGerman => 'Deutsch';
+
+  @override
+  String get languageGreek => 'Ελληνικά';
 
   @override
   String get languageItalian => 'Italiano';
@@ -1072,4 +1085,39 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get logoTooLargeWarning =>
       'A imagem é muito grande para ser salva. Será usada apenas durante esta sessão.';
+
+  @override
+  String get aiModeTopicTitle => 'Modo Tópico';
+
+  @override
+  String get aiModeTopicDescription => 'Exploração criativa do tema';
+
+  @override
+  String get aiModeContentTitle => 'Modo Conteúdo';
+
+  @override
+  String get aiModeContentDescription =>
+      'Perguntas precisas baseadas na sua entrada';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count palavras';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return 'Precisão: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => 'Baixa';
+
+  @override
+  String get aiPrecisionMedium => 'Média';
+
+  @override
+  String get aiPrecisionHigh => 'Alta';
+
+  @override
+  String get aiMoreWordsMorePrecision => 'Mais palavras = mais precisão';
 }

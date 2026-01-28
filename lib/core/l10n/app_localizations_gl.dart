@@ -433,6 +433,13 @@ class AppLocalizationsGl extends AppLocalizations {
       'Activar ou desactivar o asistente de estudo IA para as preguntas';
 
   @override
+  String get aiDefaultModelTitle => 'Modelo IA por defecto';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'Selecciona o servizo e modelo IA por defecto para a xeración de preguntas';
+
+  @override
   String get openaiApiKeyLabel => 'Clave API OpenAI';
 
   @override
@@ -580,6 +587,9 @@ class AppLocalizationsGl extends AppLocalizations {
   String get aiServiceLabel => 'Servizo IA:';
 
   @override
+  String get aiModelLabel => 'Modelo:';
+
+  @override
   String get importQuestionsTitle => 'Importar Preguntas';
 
   @override
@@ -699,7 +709,7 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• A IA analizará o contido e xerará preguntas relevantes\n• Podes incluír texto, definicións, explicacións, ou calquera material educativo\n• As preguntas incluirán opcións de resposta e explicacións\n• O proceso pode tardar uns segundos';
+      '• A IA analizará o contido e xerará preguntas relevantes\n• Se escribes menos de 10 palabras entrarás no modo Tema onde se farán preguntas sobre eses temas específicos\n• Con máis de 10 palabras entrarás no modo Contido que fará preguntas sobre ese mesmo texto (máis palabras = máis precisión)\n• Podes incluír testo, definicións, explicacións, o calquera material educativo\n• As preguntas incluirán opcións de resposta e explicacións\n• O proceso pode tardar uns segundos';
 
   @override
   String get aiGenerateButton => 'Xerar Preguntas';
@@ -715,6 +725,9 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get languageGerman => 'Deutsch';
+
+  @override
+  String get languageGreek => 'Ελληνικά';
 
   @override
   String get languageItalian => 'Italiano';
@@ -1077,4 +1090,39 @@ class AppLocalizationsGl extends AppLocalizations {
   @override
   String get logoTooLargeWarning =>
       'A imaxe é demasiado grande para gardarse. Só se usará durante esta sesión.';
+
+  @override
+  String get aiModeTopicTitle => 'Modo Tema';
+
+  @override
+  String get aiModeTopicDescription => 'Exploración creativa do tema';
+
+  @override
+  String get aiModeContentTitle => 'Modo Contido';
+
+  @override
+  String get aiModeContentDescription =>
+      'Preguntas precisas baseadas na túa entrada';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count palabras';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return 'Precisión: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => 'Baixa';
+
+  @override
+  String get aiPrecisionMedium => 'Media';
+
+  @override
+  String get aiPrecisionHigh => 'Alta';
+
+  @override
+  String get aiMoreWordsMorePrecision => 'Máis palabras = máis precisión';
 }

@@ -432,6 +432,13 @@ class AppLocalizationsDe extends AppLocalizations {
       'KI-Lernassistenten für Fragen aktivieren oder deaktivieren';
 
   @override
+  String get aiDefaultModelTitle => 'Standard-KI-Modell';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'Wählen Sie den Standard-KI-Service und das Modell für die Fragengenerierung';
+
+  @override
   String get openaiApiKeyLabel => 'OpenAI-API-Schlüssel';
 
   @override
@@ -580,6 +587,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get aiServiceLabel => 'KI-Service:';
 
   @override
+  String get aiModelLabel => 'Modell:';
+
+  @override
   String get importQuestionsTitle => 'Fragen importieren';
 
   @override
@@ -700,7 +710,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• KI wird den Inhalt analysieren und relevante Fragen generieren\n• Sie können Text, Definitionen, Erklärungen oder beliebiges Lernmaterial einschließen\n• Fragen werden Antwortoptionen und Erklärungen beinhalten\n• Der Vorgang kann einige Sekunden dauern';
+      '• KI wird den Inhalt analysieren und relevante Fragen generieren\n• Wenn du weniger als 10 Wörter schreibst, gelangst du in den Themenmodus, in dem Fragen zu diesen spezifischen Themen gestellt werden\n• Mit mehr als 10 Wörtern gelangst du in den Inhaltsmodus, in dem Fragen zu demselben Text gestellt werden (mehr Wörter = mehr Präzision)\n• Du kannst Text, Definitionen, Erklärungen oder beliebiges Lernmaterial einschließen\n• Fragen werden Antwortoptionen und Erklärungen beinhalten\n• Der Vorgang kann einige Sekunden dauern';
 
   @override
   String get aiGenerateButton => 'Fragen generieren';
@@ -716,6 +726,9 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get languageGerman => 'Deutsch';
+
+  @override
+  String get languageGreek => 'Ελληνικά';
 
   @override
   String get languageItalian => 'Italiano';
@@ -1076,4 +1089,39 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get logoTooLargeWarning =>
       'Das Bild ist zu groß zum Speichern. Es wird nur während dieser Sitzung verwendet.';
+
+  @override
+  String get aiModeTopicTitle => 'Themenmodus';
+
+  @override
+  String get aiModeTopicDescription => 'Kreative Erkundung des Themas';
+
+  @override
+  String get aiModeContentTitle => 'Inhaltsmodus';
+
+  @override
+  String get aiModeContentDescription =>
+      'Präzise Fragen basierend auf Ihrer Eingabe';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count Wörter';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return 'Präzision: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => 'Niedrig';
+
+  @override
+  String get aiPrecisionMedium => 'Mittel';
+
+  @override
+  String get aiPrecisionHigh => 'Hoch';
+
+  @override
+  String get aiMoreWordsMorePrecision => 'Mehr Wörter = mehr Präzision';
 }

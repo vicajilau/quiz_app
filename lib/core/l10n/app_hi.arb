@@ -585,6 +585,14 @@
   "@aiAssistantSettingsDescription": {
     "description": "Description for AI assistant settings"
   },
+  "aiDefaultModelTitle": "डिफ़ॉल्ट AI मॉडल",
+  "@aiDefaultModelTitle": {
+    "description": "Title for default AI model settings section"
+  },
+  "aiDefaultModelDescription": "प्रश्न निर्माण के लिए डिफ़ॉल्ट AI सेवा और मॉडल चुनें",
+  "@aiDefaultModelDescription": {
+    "description": "Description for default AI model settings"
+  },
   "openaiApiKeyLabel": "OpenAI API Key",
   "@openaiApiKeyLabel": {
     "description": "Label for OpenAI API Key field"
@@ -789,6 +797,10 @@
   "@aiServiceLabel": {
     "description": "Label for the AI service selector."
   },
+  "aiModelLabel": "मॉडल:",
+  "@aiModelLabel": {
+    "description": "Label for the AI model selector."
+  },
   "importQuestionsTitle": "प्रश्न आयात करें",
   "@importQuestionsTitle": {
     "description": "Title for the import questions dialog."
@@ -965,7 +977,7 @@
   "@aiInfoTitle": {
     "description": "Title of the information section."
   },
-  "aiInfoDescription": "• AI सामग्री का विश्लेषण करके प्रासंगिक प्रश्न बनाएगा\n• आप पाठ, परिभाषाएं, स्पष्टीकरण या कोई भी शैक्षिक सामग्री शामिल कर सकते हैं\n• प्रश्नों में उत्तर विकल्प और स्पष्टीकरण शामिल होंगे\n• इस प्रक्रिया में कुछ सेकंड लग सकते हैं",
+  "aiInfoDescription": "• AI सामग्री का विश्लेषण करके प्रासंगिक प्रश्न बनाएगा\n• यदि तुम 10 से कम शब्द लिखते हो, तो यह 'विषय' (Topic) मोड में चला जाएगा जहाँ उन विशिष्ट विषयों के बारे में प्रश्न पूछे जाएंगे\n• 10 से अधिक शब्दों के साथ, यह 'सामग्री' (Content) मोड में चला जाएगा जो उसी पाठ के बारे में प्रश्न पूछेगा (अधिक शब्द = अधिक सटीकता)\n• तुम पाठ, परिभाषाएं, स्पष्टीकरण या कोई भी शैक्षिक सामग्री शामिल कर सकते हो\n• प्रश्नों में उत्तर विकल्प और स्पष्टीकरण शामिल होंगे\n• इस प्रक्रिया में कुछ सेकंड लग सकते हैं",
   "@aiInfoDescription": {
     "description": "Informative description about the AI generation process."
   },
@@ -988,6 +1000,10 @@
   "languageGerman": "Deutsch",
   "@languageGerman": {
     "description": "German language name."
+  },
+  "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Greek language name."
   },
   "languageItalian": "Italiano",
   "@languageItalian": {
@@ -1504,5 +1520,57 @@
   "logoTooLargeWarning": "छवि बहुत बड़ी है और सहेजी नहीं जा सकती। इसका उपयोग केवल इस सत्र के दौरान किया जाएगा।",
   "@logoTooLargeWarning": {
     "description": "चेतावनी संदेश जब लोगो स्थायी भंडारण के लिए बहुत बड़ा है"
+  },
+  "aiModeTopicTitle": "विषय मोड",
+  "@aiModeTopicTitle": {
+    "description": "AI सहायक में विषय मोड के लिए शीर्षक"
+  },
+  "aiModeTopicDescription": "विषय का रचनात्मक अन्वेषण",
+  "@aiModeTopicDescription": {
+    "description": "विषय मोड के लिए विवरण"
+  },
+  "aiModeContentTitle": "सामग्री मोड",
+  "@aiModeContentTitle": {
+    "description": "AI सहायक में सामग्री मोड के लिए शीर्षक"
+  },
+  "aiModeContentDescription": "आपके इनपुट पर आधारित सटीक प्रश्न",
+  "@aiModeContentDescription": {
+    "description": "सामग्री मोड के लिए विवरण"
+  },
+  "aiWordCountIndicator": "{count} शब्द",
+  "@aiWordCountIndicator": {
+    "description": "शब्द गणना संकेतक",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiPrecisionIndicator": "सटीकता: {level}",
+  "@aiPrecisionIndicator": {
+    "description": "सामग्री मोड के लिए सटीकता स्तर संकेतक",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "उच्च"
+      }
+    }
+  },
+  "aiPrecisionLow": "कम",
+  "@aiPrecisionLow": {
+    "description": "कम सटीकता स्तर"
+  },
+  "aiPrecisionMedium": "मध्यम",
+  "@aiPrecisionMedium": {
+    "description": "मध्यम सटीकता स्तर"
+  },
+  "aiPrecisionHigh": "उच्च",
+  "@aiPrecisionHigh": {
+    "description": "उच्च सटीकता स्तर"
+  },
+  "aiMoreWordsMorePrecision": "अधिक शब्द = अधिक सटीकता",
+  "@aiMoreWordsMorePrecision": {
+    "description": "संकेत टेक्स्ट समझाता है कि अधिक शब्द अधिक सटीक उत्तर देते हैं"
   }
 }

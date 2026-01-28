@@ -406,6 +406,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get aiAssistantSettingsDescription => '启用或禁用问题的AI学习助手';
 
   @override
+  String get aiDefaultModelTitle => '默认AI模型';
+
+  @override
+  String get aiDefaultModelDescription => '选择用于生成问题的默认AI服务和模型';
+
+  @override
   String get openaiApiKeyLabel => 'OpenAI API密钥';
 
   @override
@@ -548,6 +554,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get aiServiceLabel => 'AI服务：';
 
   @override
+  String get aiModelLabel => '模型：';
+
+  @override
   String get importQuestionsTitle => '导入问题';
 
   @override
@@ -657,7 +666,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• AI将分析内容并生成相关问题\n• 您可以包含文本、定义、解释或任何教育材料\n• 问题将包括答案选项和解释\n• 该过程可能需要几秒钟';
+      '• AI将分析内容并生成相关问题\n• 如果你输入的字数少于10个词，将进入“主题模式”，针对特定话题进行提问\n• 字数超过10个词，将进入“内容模式”，针对你提供的文本进行提问（字数越多 = 精确度越高）\n• 你可以包含文本、定义、解释或任何教育材料\n• 问题将包括答案选项和解释\n• 该过程可能需要几秒钟';
 
   @override
   String get aiGenerateButton => '生成问题';
@@ -673,6 +682,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get languageGerman => 'Deutsch';
+
+  @override
+  String get languageGreek => 'Ελληνικά';
 
   @override
   String get languageItalian => 'Italiano';
@@ -1017,4 +1029,38 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get logoTooLargeWarning => '图像太大无法保存。仅在此会话期间使用。';
+
+  @override
+  String get aiModeTopicTitle => '主题模式';
+
+  @override
+  String get aiModeTopicDescription => '主题的创意探索';
+
+  @override
+  String get aiModeContentTitle => '内容模式';
+
+  @override
+  String get aiModeContentDescription => '基于您输入的精确问题';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count 个词';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return '精确度: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => '低';
+
+  @override
+  String get aiPrecisionMedium => '中';
+
+  @override
+  String get aiPrecisionHigh => '高';
+
+  @override
+  String get aiMoreWordsMorePrecision => '更多词汇 = 更高精度';
 }

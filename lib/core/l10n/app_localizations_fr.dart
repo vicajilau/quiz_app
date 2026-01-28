@@ -433,6 +433,13 @@ class AppLocalizationsFr extends AppLocalizations {
       'Activer ou désactiver l\'assistant d\'étude IA pour les questions';
 
   @override
+  String get aiDefaultModelTitle => 'Modèle IA par défaut';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'Sélectionnez le service et modèle IA par défaut pour la génération de questions';
+
+  @override
   String get openaiApiKeyLabel => 'Clé API OpenAI';
 
   @override
@@ -580,6 +587,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get aiServiceLabel => 'Service IA :';
 
   @override
+  String get aiModelLabel => 'Modèle :';
+
+  @override
   String get importQuestionsTitle => 'Importer des Questions';
 
   @override
@@ -699,7 +709,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• L\'IA analysera le contenu et générera des questions pertinentes\n• Vous pouvez inclure du texte, des définitions, des explications, ou tout matériel éducatif\n• Les questions incluront des options de réponse et des explications\n• Le processus peut prendre quelques secondes';
+      '• L\'IA analysera le contenu et générera des questions pertinentes\n• Si tu écris moins de 10 mots, tu entreras en mode Thème où des questions sur ces sujets spécifiques seront posées\n• Avec plus de 10 mots, tu entreras en mode Contenu qui posera des questions sur ce même texte (plus de mots = plus de précision)\n• Tu peux inclure du texte, des définitions, des explications, ou tout matériel éducatif\n• Les questions incluront des options de réponse et des explications\n• Le processus peut prendre quelques secondes';
 
   @override
   String get aiGenerateButton => 'Générer des Questions';
@@ -715,6 +725,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get languageGerman => 'Deutsch';
+
+  @override
+  String get languageGreek => 'Ελληνικά';
 
   @override
   String get languageItalian => 'Italiano';
@@ -1075,4 +1088,39 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get logoTooLargeWarning =>
       'L\'image est trop grande pour être sauvegardée. Elle ne sera utilisée que pendant cette session.';
+
+  @override
+  String get aiModeTopicTitle => 'Mode Sujet';
+
+  @override
+  String get aiModeTopicDescription => 'Exploration créative du sujet';
+
+  @override
+  String get aiModeContentTitle => 'Mode Contenu';
+
+  @override
+  String get aiModeContentDescription =>
+      'Questions précises basées sur votre saisie';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count mots';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return 'Précision: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => 'Faible';
+
+  @override
+  String get aiPrecisionMedium => 'Moyenne';
+
+  @override
+  String get aiPrecisionHigh => 'Élevée';
+
+  @override
+  String get aiMoreWordsMorePrecision => 'Plus de mots = plus de précision';
 }

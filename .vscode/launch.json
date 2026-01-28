@@ -7,6 +7,12 @@
             "type": "dart",
         },
         {
+            "name": "Quiz App (debug mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug"
+        },
+        {
             "name": "Quiz App (profile mode)",
             "request": "launch",
             "type": "dart",

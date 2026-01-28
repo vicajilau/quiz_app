@@ -434,6 +434,13 @@ class AppLocalizationsEl extends AppLocalizations {
       'Ενεργοποίηση ή απενεργοποίηση του βοηθού μελέτης AI για ερωτήσεις';
 
   @override
+  String get aiDefaultModelTitle => 'Προεπιλεγμένο Μοντέλο AI';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'Επιλέξτε την προεπιλεγμένη υπηρεσία και μοντέλο AI για δημιουργία ερωτήσεων';
+
+  @override
   String get openaiApiKeyLabel => 'Κλειδί API OpenAI';
 
   @override
@@ -581,6 +588,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get aiServiceLabel => 'Υπηρεσία AI:';
 
   @override
+  String get aiModelLabel => 'Μοντέλο:';
+
+  @override
   String get importQuestionsTitle => 'Εισαγωγή Ερωτήσεων';
 
   @override
@@ -701,7 +711,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• Το AI θα αναλύσει το περιεχόμενο και θα δημιουργήσει σχετικές ερωτήσεις\n• Μπορείτε να συμπεριλάβετε κείμενο, ορισμούς, εξηγήσεις ή οποιοδήποτε εκπαιδευτικό υλικό\n• Οι ερωτήσεις θα περιλαμβάνουν επιλογές απάντησης και εξηγήσεις\n• Η διαδικασία μπορεί να διαρκέσει μερικά δευτερόλεπτα';
+      '• Το AI θα αναλύσει το περιεχόμενο και θα δημιουργήσει σχετικές ερωτήσεις\n• Εάν γράψεις λιγότερες από 10 λέξεις, θα μπεις στη λειτουργία Θέμα όπου θα γίνουν ερωτήσεις για αυτά τα συγκεκριμένα θέματα\n• Με περισσότερες από 10 λέξεις, θα μπεις στη λειτουργία Περιεχόμενο που θα κάνει ερωτήσεις για το ίδιο κείμενο (περισσότερες λέξεις = μεγαλύτερη ακρίβεια)\n• Μπορείτε να συμπεριλάβετε κείμενο, ορισμούς, εξηγήσεις ή οποιοδήποτε εκπαιδευτικό υλικό\n• Οι ερωτήσεις θα περιλαμβάνουν επιλογές απάντησης και εξηγήσεις\n• Η διαδικασία μπορεί να διαρκέσει μερικά δευτερόλεπτα';
 
   @override
   String get aiGenerateButton => 'Δημιουργία Ερωτήσεων';
@@ -717,6 +727,9 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get languageGerman => 'Γερμανικά';
+
+  @override
+  String get languageGreek => 'Ελληνικά';
 
   @override
   String get languageItalian => 'Ιταλικά';
@@ -1077,4 +1090,40 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get logoTooLargeWarning =>
       'Η εικόνα είναι πολύ μεγάλη για να αποθηκευτεί. Θα χρησιμοποιηθεί μόνο κατά τη διάρκεια αυτής της συνεδρίας.';
+
+  @override
+  String get aiModeTopicTitle => 'Λειτουργία Θέματος';
+
+  @override
+  String get aiModeTopicDescription => 'Δημιουργική εξερεύνηση του θέματος';
+
+  @override
+  String get aiModeContentTitle => 'Λειτουργία Περιεχομένου';
+
+  @override
+  String get aiModeContentDescription =>
+      'Ακριβείς ερωτήσεις βάσει της εισόδου σας';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count λέξεις';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return 'Ακρίβεια: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => 'Χαμηλή';
+
+  @override
+  String get aiPrecisionMedium => 'Μεσαία';
+
+  @override
+  String get aiPrecisionHigh => 'Υψηλή';
+
+  @override
+  String get aiMoreWordsMorePrecision =>
+      'Περισσότερες λέξεις = περισσότερη ακρίβεια';
 }

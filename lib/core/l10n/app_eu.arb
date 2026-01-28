@@ -585,6 +585,14 @@
   "@aiAssistantSettingsDescription": {
     "description": "AI laguntzaile konfigurazioaren deskribapena"
   },
+  "aiDefaultModelTitle": "AI Modelo Lehenetsia",
+  "@aiDefaultModelTitle": {
+    "description": "AI modelo lehenetsi atalaren izenburua"
+  },
+  "aiDefaultModelDescription": "Hautatu AI zerbitzu eta modelo lehenetsia galderen sorrerarako",
+  "@aiDefaultModelDescription": {
+    "description": "AI modelo lehenetsi konfigurazioaren deskribapena"
+  },
   "openaiApiKeyLabel": "OpenAI API Gakoa",
   "@openaiApiKeyLabel": {
     "description": "OpenAI API Gako eremuaren etiketa"
@@ -789,6 +797,10 @@
   "@aiServiceLabel": {
     "description": "AI zerbitzu hautatzailearen etiketa."
   },
+  "aiModelLabel": "Modeloa:",
+  "@aiModelLabel": {
+    "description": "AI modelo hautatzailearen etiketa."
+  },
   "importQuestionsTitle": "Galderak Inportatu",
   "@importQuestionsTitle": {
     "description": "Galderak inportatzeko elkarrizketaren izenburua."
@@ -965,7 +977,7 @@
   "@aiInfoTitle": {
     "description": "Informazio atalaren izenburua."
   },
-  "aiInfoDescription": "• AI-ak edukia aztertuko du eta galdera garrantzitsuak sortuko ditu\n• Testua, definizioak, azalpenak, edo edozein hezkuntza material sar dezakezu\n• Galderek erantzun aukerak eta azalpenak izango dituzte\n• Prozesuak segundo batzuk har ditzake",
+  "aiInfoDescription": "• AI-ak edukia aztertuko du eta galdera garrantzitsuak sortuko ditu\n• 10 hitz baino gutxiago idazten badituzu, Gai moduan sartuko zara eta gai zehatz horiei buruzko galderak egingo ditu\n• 10 hitz baino gehiagorekin, Eduki moduan sartuko zara eta testu berari buruzko galderak egingo ditu (hitz gehiago = doitasun handiagoa)\n• Testua, definizioak, azalpenak, edo edozein hezkuntza material sar dezakezu\n• Galderek erantzun aukerak eta azalpenak izango dituzte\n• Prozesuak segundo batzuk har ditzake",
   "@aiInfoDescription": {
     "description": "AI sorkuntza prozesuaren informazio deskribapena."
   },
@@ -988,6 +1000,10 @@
   "languageGerman": "Deutsch",
   "@languageGerman": {
     "description": "Alemana hizkuntzaren izena."
+  },
+  "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Greziera hizkuntzaren izena."
   },
   "languageItalian": "Italiano",
   "@languageItalian": {
@@ -1504,5 +1520,57 @@
   "logoTooLargeWarning": "Irudia handiegia da gorde ahal izateko. Saio honetan bakarrik erabiliko da.",
   "@logoTooLargeWarning": {
     "description": "Abisu mezua logoa handiegia denean iraunkorki gorde ahal izateko"
+  },
+  "aiModeTopicTitle": "Gai Modua",
+  "@aiModeTopicTitle": {
+    "description": "Gai moduaren izenburua AI laguntzailean"
+  },
+  "aiModeTopicDescription": "Gaiaren esploraketa sormentsua",
+  "@aiModeTopicDescription": {
+    "description": "Gai moduaren deskribapena"
+  },
+  "aiModeContentTitle": "Eduki Modua",
+  "@aiModeContentTitle": {
+    "description": "Eduki moduaren izenburua AI laguntzailean"
+  },
+  "aiModeContentDescription": "Galdera zehatzak zure sarreran oinarrituta",
+  "@aiModeContentDescription": {
+    "description": "Eduki moduaren deskribapena"
+  },
+  "aiWordCountIndicator": "{count} hitz",
+  "@aiWordCountIndicator": {
+    "description": "Hitz-kontaketaren adierazlea",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiPrecisionIndicator": "Zehaztasuna: {level}",
+  "@aiPrecisionIndicator": {
+    "description": "Zehaztasun mailaren adierazlea eduki modurako",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "Altua"
+      }
+    }
+  },
+  "aiPrecisionLow": "Baxua",
+  "@aiPrecisionLow": {
+    "description": "Zehaztasun maila baxua"
+  },
+  "aiPrecisionMedium": "Ertaina",
+  "@aiPrecisionMedium": {
+    "description": "Zehaztasun maila ertaina"
+  },
+  "aiPrecisionHigh": "Altua",
+  "@aiPrecisionHigh": {
+    "description": "Zehaztasun maila altua"
+  },
+  "aiMoreWordsMorePrecision": "Hitz gehiago = zehaztasun handiagoa",
+  "@aiMoreWordsMorePrecision": {
+    "description": "Laguntza testua azaltzen duena hitz gehiago erantzun zehatzagoak ekartzea"
   }
 }

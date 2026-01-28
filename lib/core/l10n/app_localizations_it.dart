@@ -430,6 +430,13 @@ class AppLocalizationsIt extends AppLocalizations {
       'Abilita o disabilita l\'assistente di studio IA per le domande';
 
   @override
+  String get aiDefaultModelTitle => 'Modello IA predefinito';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'Seleziona il servizio e modello IA predefinito per la generazione di domande';
+
+  @override
   String get openaiApiKeyLabel => 'Chiave API OpenAI';
 
   @override
@@ -577,6 +584,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get aiServiceLabel => 'Servizio IA:';
 
   @override
+  String get aiModelLabel => 'Modello:';
+
+  @override
   String get importQuestionsTitle => 'Importa Domande';
 
   @override
@@ -694,7 +704,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• L\'IA analizzerà il contenuto e genererà domande pertinenti\n• Puoi includere testo, definizioni, spiegazioni, o qualsiasi materiale educativo\n• Le domande includeranno opzioni di risposta e spiegazioni\n• Il processo può richiedere alcuni secondi';
+      '• L\'IA analizzerà il contenuto e genererà domande pertinenti\n• Se scrivi meno di 10 parole entrerai in modalità Argomento dove verranno fatte domande su quei temi specifici\n• Con più di 10 parole entrerai in modalità Contenuto che farà domande sullo stesso testo (più parole = più precisione)\n• Puoi includere testo, definizioni, spiegazioni, o qualsiasi materiale educativo\n• Le domande includeranno opzioni di risposta e spiegazioni\n• Il processo può richiedere alcuni secondi';
 
   @override
   String get aiGenerateButton => 'Genera Domande';
@@ -710,6 +720,9 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get languageGerman => 'Deutsch';
+
+  @override
+  String get languageGreek => 'Ελληνικά';
 
   @override
   String get languageItalian => 'Italiano';
@@ -1069,4 +1082,38 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get logoTooLargeWarning =>
       'L\'immagine è troppo grande per essere salvata. Verrà utilizzata solo durante questa sessione.';
+
+  @override
+  String get aiModeTopicTitle => 'Modalità Argomento';
+
+  @override
+  String get aiModeTopicDescription => 'Esplorazione creativa dell\'argomento';
+
+  @override
+  String get aiModeContentTitle => 'Modalità Contenuto';
+
+  @override
+  String get aiModeContentDescription => 'Domande precise basate sul tuo input';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count parole';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return 'Precisione: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => 'Bassa';
+
+  @override
+  String get aiPrecisionMedium => 'Media';
+
+  @override
+  String get aiPrecisionHigh => 'Alta';
+
+  @override
+  String get aiMoreWordsMorePrecision => 'Più parole = più precisione';
 }

@@ -585,6 +585,14 @@
   "@aiAssistantSettingsDescription": {
     "description": "Descripció per configuració assistent IA"
   },
+  "aiDefaultModelTitle": "Model IA per defecte",
+  "@aiDefaultModelTitle": {
+    "description": "Títol per la secció model IA per defecte"
+  },
+  "aiDefaultModelDescription": "Selecciona el servei i model IA per defecte per la generació de preguntes",
+  "@aiDefaultModelDescription": {
+    "description": "Descripció per configuració model IA per defecte"
+  },
   "openaiApiKeyLabel": "Clau API OpenAI",
   "@openaiApiKeyLabel": {
     "description": "Etiqueta pel camp Clau API OpenAI"
@@ -789,6 +797,10 @@
   "@aiServiceLabel": {
     "description": "Etiqueta pel selector de servei IA."
   },
+  "aiModelLabel": "Model:",
+  "@aiModelLabel": {
+    "description": "Etiqueta pel selector de model IA."
+  },
   "importQuestionsTitle": "Importar Preguntes",
   "@importQuestionsTitle": {
     "description": "Títol pel diàleg importar preguntes."
@@ -965,7 +977,7 @@
   "@aiInfoTitle": {
     "description": "Títol de la secció informació."
   },
-  "aiInfoDescription": "• La IA analitzarà el contingut i generarà preguntes rellevants\n• Podeu incloure text, definicions, explicacions, o qualsevol material educatiu\n• Les preguntes inclouran opcions de resposta i explicacions\n• El procés pot trigar uns segons",
+  "aiInfoDescription": "• La IA analitzarà el contingut i generarà preguntes rellevants\n• Si escrius menys de 10 paraules entraràs en modo Tema on es realitzaran preguntes sobre aquests temes específics\n• Amb més de 10 paraules entraràs en modo Contingut que farà preguntes sobre el mateix text (més paraules = més precisió)\n• Podeu incloure text, definicions, explicacions, o qualseval material educatiu\n• Les preguntes inclouran opcions de resposta i explicacions\n• El procés pot trigar uns segons",
   "@aiInfoDescription": {
     "description": "Descripció informativa del procés de generació IA."
   },
@@ -988,6 +1000,10 @@
   "languageGerman": "Deutsch",
   "@languageGerman": {
     "description": "Nom de la llengua alemanya."
+  },
+  "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Nom de la llengua grega."
   },
   "languageItalian": "Italiano",
   "@languageItalian": {
@@ -1504,5 +1520,57 @@
   "logoTooLargeWarning": "La imatge és massa gran per guardar-se. Només s'utilitzarà durant aquesta sessió.",
   "@logoTooLargeWarning": {
     "description": "Missatge d'advertència quan el logo és massa gran per a l'emmagatzematge persistent"
+  },
+  "aiModeTopicTitle": "Mode Tema",
+  "@aiModeTopicTitle": {
+    "description": "Títol per al mode tema a l'assistent AI"
+  },
+  "aiModeTopicDescription": "Exploració creativa del tema",
+  "@aiModeTopicDescription": {
+    "description": "Descripció per al mode tema"
+  },
+  "aiModeContentTitle": "Mode Contingut",
+  "@aiModeContentTitle": {
+    "description": "Títol per al mode contingut a l'assistent AI"
+  },
+  "aiModeContentDescription": "Preguntes precises basades en la teva entrada",
+  "@aiModeContentDescription": {
+    "description": "Descripció per al mode contingut"
+  },
+  "aiWordCountIndicator": "{count} paraules",
+  "@aiWordCountIndicator": {
+    "description": "Indicador de recompte de paraules",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiPrecisionIndicator": "Precisió: {level}",
+  "@aiPrecisionIndicator": {
+    "description": "Indicador de nivell de precisió per al mode contingut",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "Alta"
+      }
+    }
+  },
+  "aiPrecisionLow": "Baixa",
+  "@aiPrecisionLow": {
+    "description": "Nivell de precisió baixa"
+  },
+  "aiPrecisionMedium": "Mitjana",
+  "@aiPrecisionMedium": {
+    "description": "Nivell de precisió mitjana"
+  },
+  "aiPrecisionHigh": "Alta",
+  "@aiPrecisionHigh": {
+    "description": "Nivell de precisió alta"
+  },
+  "aiMoreWordsMorePrecision": "Més paraules = més precisió",
+  "@aiMoreWordsMorePrecision": {
+    "description": "Text d'ajuda que explica que més paraules porten a respostes més precises"
   }
 }

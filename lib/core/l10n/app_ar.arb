@@ -585,6 +585,14 @@
   "@aiAssistantSettingsDescription": {
     "description": "Description for AI assistant settings"
   },
+  "aiDefaultModelTitle": "نموذج الذكاء الاصطناعي الافتراضي",
+  "@aiDefaultModelTitle": {
+    "description": "Title for default AI model settings section"
+  },
+  "aiDefaultModelDescription": "حدد خدمة ونموذج الذكاء الاصطناعي الافتراضي لتوليد الأسئلة",
+  "@aiDefaultModelDescription": {
+    "description": "Description for default AI model settings"
+  },
   "openaiApiKeyLabel": "مفتاح OpenAI API",
   "@openaiApiKeyLabel": {
     "description": "Label for OpenAI API Key field"
@@ -789,6 +797,10 @@
   "@aiServiceLabel": {
     "description": "Label for the AI service selector."
   },
+  "aiModelLabel": "النموذج:",
+  "@aiModelLabel": {
+    "description": "Label for the AI model selector."
+  },
   "importQuestionsTitle": "استيراد الأسئلة",
   "@importQuestionsTitle": {
     "description": "Title for the import questions dialog."
@@ -965,7 +977,7 @@
   "@aiInfoTitle": {
     "description": "Title of the information section."
   },
-  "aiInfoDescription": "• سيحلل الذكاء الاصطناعي المحتوى وينتج أسئلة ذات صلة\n• يمكنك تضمين نصوص وتعريفات وشروحات أو أي مادة تعليمية\n• ستتضمن الأسئلة خيارات إجابة وشروحات\n• قد تستغرق العملية بضع ثوانٍ",
+  "aiInfoDescription": "• سيحلل الذكاء الاصطناعي المحتوى وينتج أسئلة ذات صلة\n• إذا كتبت أقل من 10 كلمات، فستدخل في وضع الموضوع حيث سيطرح أسئلة حول تلك المواضيع المحددة\n• مع أكثر من 10 كلمات ستدخل في وضع المحتوى الذي سيطرح أسئلة حول النص نفسه (مزيد من الكلمات = مزيد من الدقة)\n• يمكنك تضمين نصوص وتعريفات وشروحات أو أي مادة تعليمية\n• ستتضمن الأسئلة خيارات إجابة وشروحات\n• قد تستغرق العملية بضع ثوانٍ",
   "@aiInfoDescription": {
     "description": "Informative description about the AI generation process."
   },
@@ -988,6 +1000,10 @@
   "languageGerman": "Deutsch",
   "@languageGerman": {
     "description": "German language name."
+  },
+  "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Greek language name."
   },
   "languageItalian": "Italiano",
   "@languageItalian": {
@@ -1504,5 +1520,57 @@
   "logoTooLargeWarning": "الصورة كبيرة جداً ولا يمكن حفظها. سيتم استخدامها فقط خلال هذه الجلسة.",
   "@logoTooLargeWarning": {
     "description": "رسالة تحذير عندما يكون الشعار كبيراً جداً للتخزين المستمر"
+  },
+  "aiModeTopicTitle": "وضع الموضوع",
+  "@aiModeTopicTitle": {
+    "description": "عنوان وضع الموضوع في مساعد الذكاء الاصطناعي"
+  },
+  "aiModeTopicDescription": "استكشاف إبداعي للموضوع",
+  "@aiModeTopicDescription": {
+    "description": "وصف وضع الموضوع"
+  },
+  "aiModeContentTitle": "وضع المحتوى",
+  "@aiModeContentTitle": {
+    "description": "عنوان وضع المحتوى في مساعد الذكاء الاصطناعي"
+  },
+  "aiModeContentDescription": "أسئلة دقيقة بناءً على مدخلاتك",
+  "@aiModeContentDescription": {
+    "description": "وصف وضع المحتوى"
+  },
+  "aiWordCountIndicator": "{count} كلمة",
+  "@aiWordCountIndicator": {
+    "description": "مؤشر عدد الكلمات",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiPrecisionIndicator": "الدقة: {level}",
+  "@aiPrecisionIndicator": {
+    "description": "مؤشر مستوى الدقة لوضع المحتوى",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "عالية"
+      }
+    }
+  },
+  "aiPrecisionLow": "منخفضة",
+  "@aiPrecisionLow": {
+    "description": "مستوى دقة منخفض"
+  },
+  "aiPrecisionMedium": "متوسطة",
+  "@aiPrecisionMedium": {
+    "description": "مستوى دقة متوسط"
+  },
+  "aiPrecisionHigh": "عالية",
+  "@aiPrecisionHigh": {
+    "description": "مستوى دقة عالٍ"
+  },
+  "aiMoreWordsMorePrecision": "كلمات أكثر = دقة أعلى",
+  "@aiMoreWordsMorePrecision": {
+    "description": "نص تلميح يشرح أن المزيد من الكلمات يؤدي إلى إجابات أكثر دقة"
   }
 }

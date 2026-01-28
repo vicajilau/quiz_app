@@ -431,6 +431,13 @@ class AppLocalizationsEu extends AppLocalizations {
       'Gaitu edo desaktibatu galderetarako ikasketa ai laguntzailea';
 
   @override
+  String get aiDefaultModelTitle => 'AI Modelo Lehenetsia';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'Hautatu AI zerbitzu eta modelo lehenetsia galderen sorrerarako';
+
+  @override
   String get openaiApiKeyLabel => 'OpenAI API Gakoa';
 
   @override
@@ -577,6 +584,9 @@ class AppLocalizationsEu extends AppLocalizations {
   String get aiServiceLabel => 'AI Zerbitzua:';
 
   @override
+  String get aiModelLabel => 'Modeloa:';
+
+  @override
   String get importQuestionsTitle => 'Galderak Inportatu';
 
   @override
@@ -696,7 +706,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• AI-ak edukia aztertuko du eta galdera garrantzitsuak sortuko ditu\n• Testua, definizioak, azalpenak, edo edozein hezkuntza material sar dezakezu\n• Galderek erantzun aukerak eta azalpenak izango dituzte\n• Prozesuak segundo batzuk har ditzake';
+      '• AI-ak edukia aztertuko du eta galdera garrantzitsuak sortuko ditu\n• 10 hitz baino gutxiago idazten badituzu, Gai moduan sartuko zara eta gai zehatz horiei buruzko galderak egingo ditu\n• 10 hitz baino gehiagorekin, Eduki moduan sartuko zara eta testu berari buruzko galderak egingo ditu (hitz gehiago = doitasun handiagoa)\n• Testua, definizioak, azalpenak, edo edozein hezkuntza material sar dezakezu\n• Galderek erantzun aukerak eta azalpenak izango dituzte\n• Prozesuak segundo batzuk har ditzake';
 
   @override
   String get aiGenerateButton => 'Galderak Sortu';
@@ -712,6 +722,9 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get languageGerman => 'Deutsch';
+
+  @override
+  String get languageGreek => 'Ελληνικά';
 
   @override
   String get languageItalian => 'Italiano';
@@ -1070,4 +1083,39 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get logoTooLargeWarning =>
       'Irudia handiegia da gorde ahal izateko. Saio honetan bakarrik erabiliko da.';
+
+  @override
+  String get aiModeTopicTitle => 'Gai Modua';
+
+  @override
+  String get aiModeTopicDescription => 'Gaiaren esploraketa sormentsua';
+
+  @override
+  String get aiModeContentTitle => 'Eduki Modua';
+
+  @override
+  String get aiModeContentDescription =>
+      'Galdera zehatzak zure sarreran oinarrituta';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count hitz';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return 'Zehaztasuna: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => 'Baxua';
+
+  @override
+  String get aiPrecisionMedium => 'Ertaina';
+
+  @override
+  String get aiPrecisionHigh => 'Altua';
+
+  @override
+  String get aiMoreWordsMorePrecision => 'Hitz gehiago = zehaztasun handiagoa';
 }

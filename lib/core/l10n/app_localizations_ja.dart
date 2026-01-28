@@ -408,6 +408,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get aiAssistantSettingsDescription => '問題のAI学習アシスタントを有効または無効にする';
 
   @override
+  String get aiDefaultModelTitle => 'デフォルトAIモデル';
+
+  @override
+  String get aiDefaultModelDescription => '質問生成のデフォルトAIサービスとモデルを選択';
+
+  @override
   String get openaiApiKeyLabel => 'OpenAI APIキー';
 
   @override
@@ -550,6 +556,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get aiServiceLabel => 'AIサービス：';
 
   @override
+  String get aiModelLabel => 'モデル：';
+
+  @override
   String get importQuestionsTitle => '問題をインポート';
 
   @override
@@ -659,7 +668,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• AIがコンテンツを分析して関連する問題を生成します\n• テキスト、定義、説明、または任意の教育材料を含めることができます\n• 問題には回答選択肢と解説が含まれます\n• 処理には数秒かかる場合があります';
+      '• AIがコンテンツを分析して関連する問題を生成します\n• 10語未満であれば「トピックモード」になり、特定のテーマについて質問します\n• 10語以上であれば「コンテンツモード」になり、入力されたテキストに基づいて質問します（単語数が多いほど、精度が高まります）\n• テキスト、定義、説明、または任意の教育材料を含めることができます\n• 問題には回答選択肢と解説が含まれます\n• 処理には数秒かかる場合があります';
 
   @override
   String get aiGenerateButton => '問題を生成';
@@ -675,6 +684,9 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get languageGerman => 'Deutsch';
+
+  @override
+  String get languageGreek => 'Ελληνικά';
 
   @override
   String get languageItalian => 'Italiano';
@@ -1021,4 +1033,38 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get logoTooLargeWarning => '画像が大きすぎて保存できません。このセッション中のみ使用されます。';
+
+  @override
+  String get aiModeTopicTitle => 'トピックモード';
+
+  @override
+  String get aiModeTopicDescription => 'トピックの創造的な探求';
+
+  @override
+  String get aiModeContentTitle => 'コンテンツモード';
+
+  @override
+  String get aiModeContentDescription => '入力に基づいた正確な質問';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count 単語';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return '精度: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => '低';
+
+  @override
+  String get aiPrecisionMedium => '中';
+
+  @override
+  String get aiPrecisionHigh => '高';
+
+  @override
+  String get aiMoreWordsMorePrecision => '単語が多いほど精度が高い';
 }

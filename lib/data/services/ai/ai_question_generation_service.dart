@@ -18,17 +18,19 @@ enum AiQuestionType {
 // Class for generation configuration
 class AiQuestionGenerationConfig {
   final int? questionCount;
-  final AiQuestionType questionType;
+  final List<AiQuestionType> questionTypes;
   final String language;
   final String content;
   final AIService? preferredService; // Preferred AI service
+  final String? preferredModel; // Preferred model for the service
 
   const AiQuestionGenerationConfig({
     this.questionCount,
-    required this.questionType,
+    required this.questionTypes,
     required this.language,
     required this.content,
     this.preferredService,
+    this.preferredModel,
   });
 }
 
@@ -64,15 +66,19 @@ class AiQuestionGenerationService {
       // Try OpenAI first, then Gemini if it fails
       if (openaiKey?.isNotEmpty == true) {
         try {
-          return await _generateWithOpenAI(config, openaiKey!);
+          return await _generateWithOpenAI(config, openaiKey!, localizations!);
         } catch (e) {
           if (geminiKey?.isNotEmpty == true) {
-            return await _generateWithGemini(config, geminiKey!);
+            return await _generateWithGemini(
+              config,
+              geminiKey!,
+              localizations!,
+            );
           }
           rethrow;
         }
       } else if (geminiKey?.isNotEmpty == true) {
-        return await _generateWithGemini(config, geminiKey!);
+        return await _generateWithGemini(config, geminiKey!, localizations!);
       }
 
       throw Exception('Could not generate questions with any AI service');
@@ -90,7 +96,11 @@ class AiQuestionGenerationService {
     final prompt = _buildPrompt(config);
 
     try {
-      final response = await aiService.getChatResponse(prompt, localizations);
+      final response = await aiService.getChatResponse(
+        prompt,
+        localizations,
+        model: config.preferredModel,
+      );
       return _parseAiResponse(response);
     } catch (e) {
       rethrow; // Let the service handle its own errors
@@ -101,6 +111,7 @@ class AiQuestionGenerationService {
   Future<List<Question>> _generateWithOpenAI(
     AiQuestionGenerationConfig config,
     String apiKey,
+    AppLocalizations localizations,
   ) async {
     final prompt = _buildPrompt(config);
 
@@ -126,9 +137,7 @@ class AiQuestionGenerationService {
     );
 
     if (response.statusCode != 200) {
-      throw Exception(
-        'OpenAI API error: ${response.statusCode} - ${response.body}',
-      );
+      throw Exception(localizations.aiErrorResponse);
     }
 
     final jsonResponse = jsonDecode(response.body);
@@ -141,6 +150,7 @@ class AiQuestionGenerationService {
   Future<List<Question>> _generateWithGemini(
     AiQuestionGenerationConfig config,
     String apiKey,
+    AppLocalizations localizations,
   ) async {
     final prompt = _buildPrompt(config);
 
@@ -163,9 +173,7 @@ class AiQuestionGenerationService {
     );
 
     if (response.statusCode != 200) {
-      throw Exception(
-        'Gemini API error: ${response.statusCode} - ${response.body}',
-      );
+      throw Exception(localizations.aiErrorResponse);
     }
 
     final jsonResponse = jsonDecode(response.body);
@@ -181,11 +189,11 @@ class AiQuestionGenerationService {
         ? 'exactly ${config.questionCount}'
         : 'between 3 and 8';
 
-    final questionTypeText = _getQuestionTypePrompt(config.questionType);
+    final questionTypesText = _getQuestionTypesPrompt(config.questionTypes);
     final languageText = _getLanguageName(config.language);
 
     return '''
-Based on the following content, generate $questionCountText quiz questions $questionTypeText in $languageText.
+Based on the following content, generate $questionCountText quiz questions $questionTypesText in $languageText.
 
 CONTENT:
 ${config.content}
@@ -215,26 +223,54 @@ QUESTION TYPES:
 - "true_false": True/false question (options: ["True", "False"])
 - "essay": Essay question (no options)
 
-$questionTypeText
+$questionTypesText
 
 IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
 ''';
   }
 
-  /// Gets the prompt text according to the question type
-  String _getQuestionTypePrompt(AiQuestionType type) {
-    switch (type) {
-      case AiQuestionType.multipleChoice:
-        return 'Use ONLY the "multiple_choice" type for all questions.';
-      case AiQuestionType.singleChoice:
-        return 'Use ONLY the "single_choice" type for all questions.';
-      case AiQuestionType.trueFalse:
-        return 'Use ONLY the "true_false" type for all questions. Options must be ["True", "False"].';
-      case AiQuestionType.essay:
-        return 'Use ONLY the "essay" type for all questions. Do not include options.';
-      case AiQuestionType.random:
-        return 'Mix different question types: "multiple_choice", "single_choice", "true_false", and "essay".';
+  /// Gets the prompt text according to the selected question types
+  String _getQuestionTypesPrompt(List<AiQuestionType> types) {
+    const typePrompts = {
+      AiQuestionType.multipleChoice:
+          'Use ONLY the "multiple_choice" type for all questions.',
+      AiQuestionType.singleChoice:
+          'Use ONLY the "single_choice" type for all questions.',
+      AiQuestionType.trueFalse:
+          'Use ONLY the "true_false" type for all questions. Options must be ["True", "False"].',
+      AiQuestionType.essay:
+          'Use ONLY the "essay" type for all questions. Do not include options.',
+      AiQuestionType.random:
+          'Mix different question types: "multiple_choice", "single_choice", "true_false", and "essay".',
+    };
+
+    if (types.contains(AiQuestionType.random) || types.isEmpty) {
+      return typePrompts[AiQuestionType.random]!;
     }
+
+    if (types.length == 1) {
+      return typePrompts[types.first]!;
+    }
+
+    final typeNames = types
+        .map((t) {
+          switch (t) {
+            case AiQuestionType.multipleChoice:
+              return '"multiple_choice"';
+            case AiQuestionType.singleChoice:
+              return '"single_choice"';
+            case AiQuestionType.trueFalse:
+              return '"true_false"';
+            case AiQuestionType.essay:
+              return '"essay"';
+            case AiQuestionType.random:
+              return '';
+          }
+        })
+        .where((name) => name.isNotEmpty)
+        .join(', ');
+
+    return 'Mix these question types: $typeNames.';
   }
 
   /// Gets the language name
@@ -309,7 +345,7 @@ IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
 
       return questions;
     } catch (e) {
-      throw Exception('Error parsing AI response: ${e.toString()}');
+      throw Exception('Could not create valid questions from AI response');
     }
   }
 

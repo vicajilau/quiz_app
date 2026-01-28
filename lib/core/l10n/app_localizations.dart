@@ -848,6 +848,18 @@ abstract class AppLocalizations {
   /// **'Enable or disable the AI study assistant for questions'**
   String get aiAssistantSettingsDescription;
 
+  /// Title for default AI model settings section
+  ///
+  /// In en, this message translates to:
+  /// **'Default AI Model'**
+  String get aiDefaultModelTitle;
+
+  /// Description for default AI model settings
+  ///
+  /// In en, this message translates to:
+  /// **'Select the default AI service and model for question generation'**
+  String get aiDefaultModelDescription;
+
   /// Label for OpenAI API Key field
   ///
   /// In en, this message translates to:
@@ -1106,6 +1118,12 @@ abstract class AppLocalizations {
   /// **'AI Service:'**
   String get aiServiceLabel;
 
+  /// Label for the AI model selector.
+  ///
+  /// In en, this message translates to:
+  /// **'Model:'**
+  String get aiModelLabel;
+
   /// Title for the import questions dialog.
   ///
   /// In en, this message translates to:
@@ -1301,7 +1319,7 @@ abstract class AppLocalizations {
   /// Informative description about the AI generation process.
   ///
   /// In en, this message translates to:
-  /// **'• AI will analyze the content and generate relevant questions\n• You can include text, definitions, explanations, or any educational material\\n• Questions will include answer options and explanations\\n• The process may take a few seconds'**
+  /// **'• AI will analyze the content and generate relevant questions\n• If you write fewer than 10 words, you\'ll enter Topic mode where questions will be asked about those specific topics\n• With more than 10 words, you\'ll enter Content mode which will ask questions about that same text (more words = more precision)\n• You can include text, definitions, explanations, or any educational material\\n• Questions will include answer options and explanations\\n• The process may take a few seconds'**
   String get aiInfoDescription;
 
   /// Text for the generate questions button.
@@ -1333,6 +1351,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Deutsch'**
   String get languageGerman;
+
+  /// Greek language name.
+  ///
+  /// In en, this message translates to:
+  /// **'Ελληνικά'**
+  String get languageGreek;
 
   /// Italian language name.
   ///
@@ -1945,6 +1969,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Image is too large to be saved. It will only be used during this session.'**
   String get logoTooLargeWarning;
+
+  /// Title for topic mode in AI assistant
+  ///
+  /// In en, this message translates to:
+  /// **'Topic Mode'**
+  String get aiModeTopicTitle;
+
+  /// Description for topic mode
+  ///
+  /// In en, this message translates to:
+  /// **'Creative exploration of the topic'**
+  String get aiModeTopicDescription;
+
+  /// Title for content mode in AI assistant
+  ///
+  /// In en, this message translates to:
+  /// **'Content Mode'**
+  String get aiModeContentTitle;
+
+  /// Description for content mode
+  ///
+  /// In en, this message translates to:
+  /// **'Precise questions based on your input'**
+  String get aiModeContentDescription;
+
+  /// Word count indicator
+  ///
+  /// In en, this message translates to:
+  /// **'{count} words'**
+  String aiWordCountIndicator(int count);
+
+  /// Precision level indicator for content mode
+  ///
+  /// In en, this message translates to:
+  /// **'Precision: {level}'**
+  String aiPrecisionIndicator(String level);
+
+  /// Low precision level
+  ///
+  /// In en, this message translates to:
+  /// **'Low'**
+  String get aiPrecisionLow;
+
+  /// Medium precision level
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get aiPrecisionMedium;
+
+  /// High precision level
+  ///
+  /// In en, this message translates to:
+  /// **'High'**
+  String get aiPrecisionHigh;
+
+  /// Hint text explaining that more words lead to more precise answers
+  ///
+  /// In en, this message translates to:
+  /// **'More words = more precision'**
+  String get aiMoreWordsMorePrecision;
 }
 
 class _AppLocalizationsDelegate

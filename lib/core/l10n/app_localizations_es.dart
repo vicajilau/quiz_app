@@ -431,6 +431,13 @@ class AppLocalizationsEs extends AppLocalizations {
       'Habilitar o deshabilitar el asistente de IA para las preguntas';
 
   @override
+  String get aiDefaultModelTitle => 'Modelo de IA por defecto';
+
+  @override
+  String get aiDefaultModelDescription =>
+      'Selecciona el servicio y modelo de IA por defecto para la generación de preguntas';
+
+  @override
   String get openaiApiKeyLabel => 'Clave API de OpenAI';
 
   @override
@@ -577,6 +584,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get aiServiceLabel => 'Servicio de IA:';
 
   @override
+  String get aiModelLabel => 'Modelo:';
+
+  @override
   String get importQuestionsTitle => 'Importar Preguntas';
 
   @override
@@ -696,7 +706,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• La IA analizará el contenido y generará preguntas relevantes\n• Puedes incluir texto, definiciones, explicaciones o cualquier material educativo\n• Las preguntas incluirán opciones de respuesta y explicaciones\n• El proceso puede tardar unos segundos';
+      '• La IA analizará el contenido y generará preguntas relevantes\n• Si escribes menos de 10 palabras entrarás en modo Tema donde se realizarán preguntas sobre esos temas específicos\n• Con más de 10 palabras entrarás en modo Contenido que hará preguntas sobre ese mismo texto (más palabras = más precisión)\n• Puedes incluir texto, definiciones, explicaciones o cualquier material educativo\n• Las preguntas incluirán opciones de respuesta y explicaciones\n• El proceso puede tardar unos segundos';
 
   @override
   String get aiGenerateButton => 'Generar Preguntas';
@@ -712,6 +722,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get languageGerman => 'Deutsch';
+
+  @override
+  String get languageGreek => 'Ελληνικά';
 
   @override
   String get languageItalian => 'Italiano';
@@ -1072,4 +1085,39 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get logoTooLargeWarning =>
       'La imagen es demasiado grande para guardarse. Solo se usará durante esta sesión.';
+
+  @override
+  String get aiModeTopicTitle => 'Modo Tema';
+
+  @override
+  String get aiModeTopicDescription => 'Exploración creativa del tema';
+
+  @override
+  String get aiModeContentTitle => 'Modo Contenido';
+
+  @override
+  String get aiModeContentDescription =>
+      'Preguntas precisas basadas en tu entrada';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count palabras';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return 'Precisión: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => 'Baja';
+
+  @override
+  String get aiPrecisionMedium => 'Media';
+
+  @override
+  String get aiPrecisionHigh => 'Alta';
+
+  @override
+  String get aiMoreWordsMorePrecision => 'Más palabras = más precisión';
 }

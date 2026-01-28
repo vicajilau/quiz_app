@@ -7,7 +7,14 @@ import 'ai_service.dart';
 class GeminiService extends AIService {
   static const String _baseUrl =
       'https://generativelanguage.googleapis.com/v1beta';
-  static const String _model = 'gemini-1.5-flash';
+  static const String _defaultModel = 'gemini-flash-latest';
+
+  static const List<String> _models = [
+    'gemini-flash-latest',
+    'gemini-2.5-flash',
+    'gemini-2.0-flash-lite',
+    'gemini-2.5-pro',
+  ];
 
   static GeminiService? _instance;
   static GeminiService get instance => _instance ??= GeminiService._();
@@ -18,7 +25,10 @@ class GeminiService extends AIService {
   String get serviceName => 'Google Gemini';
 
   @override
-  String get defaultModel => _model;
+  String get defaultModel => _defaultModel;
+
+  @override
+  List<String> get availableModels => _models;
 
   @override
   Future<bool> isAvailable() async {
@@ -30,16 +40,19 @@ class GeminiService extends AIService {
   @override
   Future<String> getChatResponse(
     String prompt,
-    AppLocalizations localizations,
-  ) async {
+    AppLocalizations localizations, {
+    String? model,
+  }) async {
     final apiKey = await ConfigurationService.instance.getGeminiApiKey();
 
     if (apiKey == null || apiKey.isEmpty) {
       throw Exception(localizations.geminiApiKeyNotConfigured);
     }
 
+    final selectedModel = model ?? _defaultModel;
+
     try {
-      final url = '$_baseUrl/models/$_model:generateContent?key=$apiKey';
+      final url = '$_baseUrl/models/$selectedModel:generateContent?key=$apiKey';
 
       final response = await http.post(
         Uri.parse(url),
@@ -53,10 +66,10 @@ class GeminiService extends AIService {
             },
           ],
           'generationConfig': {
-            'temperature': 0.7,
-            'topK': 40,
+            'temperature': 0.2,
+            'topK': 5,
             'topP': 0.95,
-            'maxOutputTokens': 1024,
+            'maxOutputTokens': 8192,
           },
           'safetySettings': [
             {
@@ -90,25 +103,16 @@ class GeminiService extends AIService {
           return localizations.noResponseReceived;
         }
       } else if (response.statusCode == 400) {
-        final errorBody = jsonDecode(response.body);
-        final errorMessage =
-            errorBody['error']?['message'] ?? localizations.invalidApiKeyError;
-        throw Exception(errorMessage);
+        throw Exception(localizations.aiErrorResponse);
       } else if (response.statusCode == 403) {
         throw Exception(localizations.invalidApiKeyError);
       } else if (response.statusCode == 429) {
         throw Exception(localizations.rateLimitError);
       } else {
-        final errorBody = jsonDecode(response.body);
-        final errorMessage =
-            errorBody['error']?['message'] ?? localizations.unknownError;
-        throw Exception(errorMessage);
+        throw Exception(localizations.aiErrorResponse);
       }
     } catch (e) {
-      if (e.toString().contains('Exception:')) {
-        rethrow;
-      }
-      throw Exception(localizations.networkError);
+      throw Exception(localizations.aiErrorResponse);
     }
   }
 }

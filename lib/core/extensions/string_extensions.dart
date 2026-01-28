@@ -62,4 +62,27 @@ extension StringExtensions on String {
   String cleanErrorMessage() {
     return cleanAllExceptionPrefixes().trim();
   }
+
+  /// Validates if the string is a valid OpenAI API key format
+  ///
+  /// OpenAI keys start with "sk-" and contain alphanumeric characters,
+  /// dashes, and underscores. Minimum length is 20 characters.
+  ///
+  bool get isValidOpenAIApiKey {
+    if (trim().isEmpty) return false;
+    // OpenAI keys start with "sk-" and are at least 20 chars
+    final regex = RegExp(r'^sk-[a-zA-Z0-9_-]{17,}$');
+    return regex.hasMatch(trim());
+  }
+
+  /// Validates if the string is a valid Gemini API key format
+  ///
+  /// Gemini keys are alphanumeric strings, typically 39 characters.
+  ///
+  bool get isValidGeminiApiKey {
+    if (trim().isEmpty) return false;
+    // Gemini keys start with "AIza" and are typically 39 chars
+    final regex = RegExp(r'^AIza[a-zA-Z0-9_-]{31,}$');
+    return regex.hasMatch(trim());
+  }
 }

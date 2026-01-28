@@ -585,6 +585,14 @@
   "@aiAssistantSettingsDescription": {
     "description": "Descrição para configurações assistente IA"
   },
+  "aiDefaultModelTitle": "Modelo IA padrão",
+  "@aiDefaultModelTitle": {
+    "description": "Título para a seção modelo IA padrão"
+  },
+  "aiDefaultModelDescription": "Selecione o serviço e modelo IA padrão para a geração de perguntas",
+  "@aiDefaultModelDescription": {
+    "description": "Descrição para configurações modelo IA padrão"
+  },
   "openaiApiKeyLabel": "Chave API OpenAI",
   "@openaiApiKeyLabel": {
     "description": "Rótulo para o campo Chave API OpenAI"
@@ -789,6 +797,10 @@
   "@aiServiceLabel": {
     "description": "Rótulo para o seletor de serviço IA."
   },
+  "aiModelLabel": "Modelo:",
+  "@aiModelLabel": {
+    "description": "Rótulo para o seletor de modelo IA."
+  },
   "importQuestionsTitle": "Importar Perguntas",
   "@importQuestionsTitle": {
     "description": "Título para a caixa de diálogo importar perguntas."
@@ -965,7 +977,7 @@
   "@aiInfoTitle": {
     "description": "Título da seção informação."
   },
-  "aiInfoDescription": "• IA analisará o conteúdo e gerará perguntas relevantes\n• Você pode incluir texto, definições, explicações, ou qualquer material educativo\n• Perguntas incluirão opções de resposta e explicações\n• O processo pode levar alguns segundos",
+  "aiInfoDescription": "• IA analisará o conteúdo e gerará perguntas relevantes\n• Se escreveres menos de 10 palavras entrarás no modo Tema, onde serão feitas perguntas sobre esses temas específicos\n• Com mais de 10 palavras entrarás no modo Conteúdo, que fará perguntas sobre o mesmo texto (mais palavras = mais precisão)\n• Você pode incluir texto, definições, explicações, o qualquer material educativo\n• Perguntas incluirão opções de resposta e explicações\n• O processo pode levar alguns segundos",
   "@aiInfoDescription": {
     "description": "Descrição informativa do processo de geração IA."
   },
@@ -988,6 +1000,10 @@
   "languageGerman": "Deutsch",
   "@languageGerman": {
     "description": "Nome da língua alemã."
+  },
+  "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Nome da língua grega."
   },
   "languageItalian": "Italiano",
   "@languageItalian": {
@@ -1514,5 +1530,57 @@
   "logoTooLargeWarning": "A imagem é muito grande para ser salva. Será usada apenas durante esta sessão.",
   "@logoTooLargeWarning": {
     "description": "Mensagem de aviso quando o logo é muito grande para armazenamento persistente"
+  },
+  "aiModeTopicTitle": "Modo Tópico",
+  "@aiModeTopicTitle": {
+    "description": "Título para o modo tópico no assistente AI"
+  },
+  "aiModeTopicDescription": "Exploração criativa do tema",
+  "@aiModeTopicDescription": {
+    "description": "Descrição para o modo tópico"
+  },
+  "aiModeContentTitle": "Modo Conteúdo",
+  "@aiModeContentTitle": {
+    "description": "Título para o modo conteúdo no assistente AI"
+  },
+  "aiModeContentDescription": "Perguntas precisas baseadas na sua entrada",
+  "@aiModeContentDescription": {
+    "description": "Descrição para o modo conteúdo"
+  },
+  "aiWordCountIndicator": "{count} palavras",
+  "@aiWordCountIndicator": {
+    "description": "Indicador de contagem de palavras",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiPrecisionIndicator": "Precisão: {level}",
+  "@aiPrecisionIndicator": {
+    "description": "Indicador de nível de precisão para o modo conteúdo",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "Alta"
+      }
+    }
+  },
+  "aiPrecisionLow": "Baixa",
+  "@aiPrecisionLow": {
+    "description": "Nível de precisão baixa"
+  },
+  "aiPrecisionMedium": "Média",
+  "@aiPrecisionMedium": {
+    "description": "Nível de precisão média"
+  },
+  "aiPrecisionHigh": "Alta",
+  "@aiPrecisionHigh": {
+    "description": "Nível de precisão alta"
+  },
+  "aiMoreWordsMorePrecision": "Mais palavras = mais precisão",
+  "@aiMoreWordsMorePrecision": {
+    "description": "Texto de ajuda explicando que mais palavras levam a respostas mais precisas"
   }
 }
