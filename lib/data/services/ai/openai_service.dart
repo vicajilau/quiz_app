@@ -80,10 +80,7 @@ class OpenAIService extends AIService {
       } else if (response.statusCode == 404) {
         throw Exception(localizations.modelNotFoundError);
       } else {
-        final errorBody = jsonDecode(response.body);
-        final errorMessage =
-            errorBody['error']?['message'] ?? localizations.unknownError;
-        throw Exception(errorMessage);
+        throw Exception(localizations.aiErrorResponse);
       }
     } catch (e) {
       if (e.toString().contains('Exception:')) {

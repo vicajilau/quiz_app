@@ -724,6 +724,9 @@ class AppLocalizationsEu extends AppLocalizations {
   String get languageGerman => 'Deutsch';
 
   @override
+  String get languageGreek => 'Ελληνικά';
+
+  @override
   String get languageItalian => 'Italiano';
 
   @override
@@ -1080,4 +1083,39 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get logoTooLargeWarning =>
       'Irudia handiegia da gorde ahal izateko. Saio honetan bakarrik erabiliko da.';
+
+  @override
+  String get aiModeTopicTitle => 'Gai Modua';
+
+  @override
+  String get aiModeTopicDescription => 'Gaiaren esploraketa sormentsua';
+
+  @override
+  String get aiModeContentTitle => 'Eduki Modua';
+
+  @override
+  String get aiModeContentDescription =>
+      'Galdera zehatzak zure sarreran oinarrituta';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count hitz';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return 'Zehaztasuna: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => 'Baxua';
+
+  @override
+  String get aiPrecisionMedium => 'Ertaina';
+
+  @override
+  String get aiPrecisionHigh => 'Altua';
+
+  @override
+  String get aiMoreWordsMorePrecision => 'Hitz gehiago = zehaztasun handiagoa';
 }

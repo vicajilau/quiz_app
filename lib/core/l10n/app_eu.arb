@@ -1001,6 +1001,10 @@
   "@languageGerman": {
     "description": "Alemana hizkuntzaren izena."
   },
+  "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Greziera hizkuntzaren izena."
+  },
   "languageItalian": "Italiano",
   "@languageItalian": {
     "description": "Italiera hizkuntzaren izena."
@@ -1516,5 +1520,57 @@
   "logoTooLargeWarning": "Irudia handiegia da gorde ahal izateko. Saio honetan bakarrik erabiliko da.",
   "@logoTooLargeWarning": {
     "description": "Abisu mezua logoa handiegia denean iraunkorki gorde ahal izateko"
+  },
+  "aiModeTopicTitle": "Gai Modua",
+  "@aiModeTopicTitle": {
+    "description": "Gai moduaren izenburua AI laguntzailean"
+  },
+  "aiModeTopicDescription": "Gaiaren esploraketa sormentsua",
+  "@aiModeTopicDescription": {
+    "description": "Gai moduaren deskribapena"
+  },
+  "aiModeContentTitle": "Eduki Modua",
+  "@aiModeContentTitle": {
+    "description": "Eduki moduaren izenburua AI laguntzailean"
+  },
+  "aiModeContentDescription": "Galdera zehatzak zure sarreran oinarrituta",
+  "@aiModeContentDescription": {
+    "description": "Eduki moduaren deskribapena"
+  },
+  "aiWordCountIndicator": "{count} hitz",
+  "@aiWordCountIndicator": {
+    "description": "Hitz-kontaketaren adierazlea",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiPrecisionIndicator": "Zehaztasuna: {level}",
+  "@aiPrecisionIndicator": {
+    "description": "Zehaztasun mailaren adierazlea eduki modurako",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "Altua"
+      }
+    }
+  },
+  "aiPrecisionLow": "Baxua",
+  "@aiPrecisionLow": {
+    "description": "Zehaztasun maila baxua"
+  },
+  "aiPrecisionMedium": "Ertaina",
+  "@aiPrecisionMedium": {
+    "description": "Zehaztasun maila ertaina"
+  },
+  "aiPrecisionHigh": "Altua",
+  "@aiPrecisionHigh": {
+    "description": "Zehaztasun maila altua"
+  },
+  "aiMoreWordsMorePrecision": "Hitz gehiago = zehaztasun handiagoa",
+  "@aiMoreWordsMorePrecision": {
+    "description": "Laguntza testua azaltzen duena hitz gehiago erantzun zehatzagoak ekartzea"
   }
 }

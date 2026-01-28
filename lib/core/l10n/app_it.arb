@@ -1001,6 +1001,10 @@
   "@languageGerman": {
     "description": "Nome lingua tedesca."
   },
+  "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Nome lingua greca."
+  },
   "languageItalian": "Italiano",
   "@languageItalian": {
     "description": "Nome lingua italiana."
@@ -1526,5 +1530,57 @@
   "logoTooLargeWarning": "L'immagine è troppo grande per essere salvata. Verrà utilizzata solo durante questa sessione.",
   "@logoTooLargeWarning": {
     "description": "Messaggio di avviso quando il logo è troppo grande per l'archiviazione persistente"
+  },
+  "aiModeTopicTitle": "Modalità Argomento",
+  "@aiModeTopicTitle": {
+    "description": "Titolo per la modalità argomento nell'assistente AI"
+  },
+  "aiModeTopicDescription": "Esplorazione creativa dell'argomento",
+  "@aiModeTopicDescription": {
+    "description": "Descrizione per la modalità argomento"
+  },
+  "aiModeContentTitle": "Modalità Contenuto",
+  "@aiModeContentTitle": {
+    "description": "Titolo per la modalità contenuto nell'assistente AI"
+  },
+  "aiModeContentDescription": "Domande precise basate sul tuo input",
+  "@aiModeContentDescription": {
+    "description": "Descrizione per la modalità contenuto"
+  },
+  "aiWordCountIndicator": "{count} parole",
+  "@aiWordCountIndicator": {
+    "description": "Indicatore del conteggio parole",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiPrecisionIndicator": "Precisione: {level}",
+  "@aiPrecisionIndicator": {
+    "description": "Indicatore del livello di precisione per la modalità contenuto",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "Alta"
+      }
+    }
+  },
+  "aiPrecisionLow": "Bassa",
+  "@aiPrecisionLow": {
+    "description": "Livello di precisione bassa"
+  },
+  "aiPrecisionMedium": "Media",
+  "@aiPrecisionMedium": {
+    "description": "Livello di precisione media"
+  },
+  "aiPrecisionHigh": "Alta",
+  "@aiPrecisionHigh": {
+    "description": "Livello di precisione alta"
+  },
+  "aiMoreWordsMorePrecision": "Più parole = più precisione",
+  "@aiMoreWordsMorePrecision": {
+    "description": "Testo di aiuto che spiega che più parole portano a risposte più precise"
   }
 }

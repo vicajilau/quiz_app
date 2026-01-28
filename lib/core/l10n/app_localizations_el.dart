@@ -729,6 +729,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get languageGerman => 'Γερμανικά';
 
   @override
+  String get languageGreek => 'Ελληνικά';
+
+  @override
   String get languageItalian => 'Ιταλικά';
 
   @override
@@ -1087,4 +1090,40 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get logoTooLargeWarning =>
       'Η εικόνα είναι πολύ μεγάλη για να αποθηκευτεί. Θα χρησιμοποιηθεί μόνο κατά τη διάρκεια αυτής της συνεδρίας.';
+
+  @override
+  String get aiModeTopicTitle => 'Λειτουργία Θέματος';
+
+  @override
+  String get aiModeTopicDescription => 'Δημιουργική εξερεύνηση του θέματος';
+
+  @override
+  String get aiModeContentTitle => 'Λειτουργία Περιεχομένου';
+
+  @override
+  String get aiModeContentDescription =>
+      'Ακριβείς ερωτήσεις βάσει της εισόδου σας';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count λέξεις';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return 'Ακρίβεια: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => 'Χαμηλή';
+
+  @override
+  String get aiPrecisionMedium => 'Μεσαία';
+
+  @override
+  String get aiPrecisionHigh => 'Υψηλή';
+
+  @override
+  String get aiMoreWordsMorePrecision =>
+      'Περισσότερες λέξεις = περισσότερη ακρίβεια';
 }

@@ -66,15 +66,19 @@ class AiQuestionGenerationService {
       // Try OpenAI first, then Gemini if it fails
       if (openaiKey?.isNotEmpty == true) {
         try {
-          return await _generateWithOpenAI(config, openaiKey!);
+          return await _generateWithOpenAI(config, openaiKey!, localizations!);
         } catch (e) {
           if (geminiKey?.isNotEmpty == true) {
-            return await _generateWithGemini(config, geminiKey!);
+            return await _generateWithGemini(
+              config,
+              geminiKey!,
+              localizations!,
+            );
           }
           rethrow;
         }
       } else if (geminiKey?.isNotEmpty == true) {
-        return await _generateWithGemini(config, geminiKey!);
+        return await _generateWithGemini(config, geminiKey!, localizations!);
       }
 
       throw Exception('Could not generate questions with any AI service');
@@ -107,6 +111,7 @@ class AiQuestionGenerationService {
   Future<List<Question>> _generateWithOpenAI(
     AiQuestionGenerationConfig config,
     String apiKey,
+    AppLocalizations localizations,
   ) async {
     final prompt = _buildPrompt(config);
 
@@ -132,9 +137,7 @@ class AiQuestionGenerationService {
     );
 
     if (response.statusCode != 200) {
-      throw Exception(
-        'OpenAI API error: ${response.statusCode} - ${response.body}',
-      );
+      throw Exception(localizations.aiErrorResponse);
     }
 
     final jsonResponse = jsonDecode(response.body);
@@ -147,6 +150,7 @@ class AiQuestionGenerationService {
   Future<List<Question>> _generateWithGemini(
     AiQuestionGenerationConfig config,
     String apiKey,
+    AppLocalizations localizations,
   ) async {
     final prompt = _buildPrompt(config);
 
@@ -169,9 +173,7 @@ class AiQuestionGenerationService {
     );
 
     if (response.statusCode != 200) {
-      throw Exception(
-        'Gemini API error: ${response.statusCode} - ${response.body}',
-      );
+      throw Exception(localizations.aiErrorResponse);
     }
 
     final jsonResponse = jsonDecode(response.body);
@@ -315,7 +317,7 @@ IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
 
       return questions;
     } catch (e) {
-      throw Exception('Error parsing AI response: ${e.toString()}');
+      throw Exception('Could not create valid questions from AI response');
     }
   }
 

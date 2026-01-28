@@ -716,6 +716,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get languageGerman => 'Deutsch';
 
   @override
+  String get languageGreek => 'Ελληνικά';
+
+  @override
   String get languageItalian => 'Italiano';
 
   @override
@@ -1070,4 +1073,38 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get logoTooLargeWarning =>
       'छवि बहुत बड़ी है और सहेजी नहीं जा सकती। इसका उपयोग केवल इस सत्र के दौरान किया जाएगा।';
+
+  @override
+  String get aiModeTopicTitle => 'विषय मोड';
+
+  @override
+  String get aiModeTopicDescription => 'विषय का रचनात्मक अन्वेषण';
+
+  @override
+  String get aiModeContentTitle => 'सामग्री मोड';
+
+  @override
+  String get aiModeContentDescription => 'आपके इनपुट पर आधारित सटीक प्रश्न';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count शब्द';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return 'सटीकता: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => 'कम';
+
+  @override
+  String get aiPrecisionMedium => 'मध्यम';
+
+  @override
+  String get aiPrecisionHigh => 'उच्च';
+
+  @override
+  String get aiMoreWordsMorePrecision => 'अधिक शब्द = अधिक सटीकता';
 }

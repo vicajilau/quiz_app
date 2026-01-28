@@ -1001,6 +1001,10 @@
   "@languageGerman": {
     "description": "Nom de la langue allemande."
   },
+  "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Nom de la langue grecque."
+  },
   "languageItalian": "Italiano",
   "@languageItalian": {
     "description": "Nom de la langue italienne."
@@ -1526,5 +1530,57 @@
   "logoTooLargeWarning": "L'image est trop grande pour être sauvegardée. Elle ne sera utilisée que pendant cette session.",
   "@logoTooLargeWarning": {
     "description": "Message d'avertissement lorsque le logo est trop grand pour le stockage persistant"
+  },
+  "aiModeTopicTitle": "Mode Sujet",
+  "@aiModeTopicTitle": {
+    "description": "Titre du mode sujet dans l'assistant AI"
+  },
+  "aiModeTopicDescription": "Exploration créative du sujet",
+  "@aiModeTopicDescription": {
+    "description": "Description du mode sujet"
+  },
+  "aiModeContentTitle": "Mode Contenu",
+  "@aiModeContentTitle": {
+    "description": "Titre du mode contenu dans l'assistant AI"
+  },
+  "aiModeContentDescription": "Questions précises basées sur votre saisie",
+  "@aiModeContentDescription": {
+    "description": "Description du mode contenu"
+  },
+  "aiWordCountIndicator": "{count} mots",
+  "@aiWordCountIndicator": {
+    "description": "Indicateur du nombre de mots",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiPrecisionIndicator": "Précision: {level}",
+  "@aiPrecisionIndicator": {
+    "description": "Indicateur du niveau de précision pour le mode contenu",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "Élevée"
+      }
+    }
+  },
+  "aiPrecisionLow": "Faible",
+  "@aiPrecisionLow": {
+    "description": "Niveau de précision faible"
+  },
+  "aiPrecisionMedium": "Moyenne",
+  "@aiPrecisionMedium": {
+    "description": "Niveau de précision moyenne"
+  },
+  "aiPrecisionHigh": "Élevée",
+  "@aiPrecisionHigh": {
+    "description": "Niveau de précision élevée"
+  },
+  "aiMoreWordsMorePrecision": "Plus de mots = plus de précision",
+  "@aiMoreWordsMorePrecision": {
+    "description": "Texte d'aide expliquant que plus de mots conduisent à des réponses plus précises"
   }
 }

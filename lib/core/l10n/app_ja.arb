@@ -1001,6 +1001,10 @@
   "@languageGerman": {
     "description": "German language name."
   },
+  "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Greek language name."
+  },
   "languageItalian": "Italiano",
   "@languageItalian": {
     "description": "Italian language name."
@@ -1516,5 +1520,57 @@
   "logoTooLargeWarning": "画像が大きすぎて保存できません。このセッション中のみ使用されます。",
   "@logoTooLargeWarning": {
     "description": "ロゴが永続的な保存には大きすぎる場合の警告メッセージ"
+  },
+  "aiModeTopicTitle": "トピックモード",
+  "@aiModeTopicTitle": {
+    "description": "AIアシスタントのトピックモードのタイトル"
+  },
+  "aiModeTopicDescription": "トピックの創造的な探求",
+  "@aiModeTopicDescription": {
+    "description": "トピックモードの説明"
+  },
+  "aiModeContentTitle": "コンテンツモード",
+  "@aiModeContentTitle": {
+    "description": "AIアシスタントのコンテンツモードのタイトル"
+  },
+  "aiModeContentDescription": "入力に基づいた正確な質問",
+  "@aiModeContentDescription": {
+    "description": "コンテンツモードの説明"
+  },
+  "aiWordCountIndicator": "{count} 単語",
+  "@aiWordCountIndicator": {
+    "description": "単語数インジケーター",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiPrecisionIndicator": "精度: {level}",
+  "@aiPrecisionIndicator": {
+    "description": "コンテンツモードの精度レベルインジケーター",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "高"
+      }
+    }
+  },
+  "aiPrecisionLow": "低",
+  "@aiPrecisionLow": {
+    "description": "低い精度レベル"
+  },
+  "aiPrecisionMedium": "中",
+  "@aiPrecisionMedium": {
+    "description": "中程度の精度レベル"
+  },
+  "aiPrecisionHigh": "高",
+  "@aiPrecisionHigh": {
+    "description": "高い精度レベル"
+  },
+  "aiMoreWordsMorePrecision": "単語が多いほど精度が高い",
+  "@aiMoreWordsMorePrecision": {
+    "description": "より多くの単語がより正確な回答につながることを説明するヒントテキスト"
   }
 }

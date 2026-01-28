@@ -1001,6 +1001,10 @@
   "@languageGerman": {
     "description": "Nome da língua alemã."
   },
+  "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Nome da língua grega."
+  },
   "languageItalian": "Italiano",
   "@languageItalian": {
     "description": "Nome da língua italiana."
@@ -1526,5 +1530,57 @@
   "logoTooLargeWarning": "A imagem é muito grande para ser salva. Será usada apenas durante esta sessão.",
   "@logoTooLargeWarning": {
     "description": "Mensagem de aviso quando o logo é muito grande para armazenamento persistente"
+  },
+  "aiModeTopicTitle": "Modo Tópico",
+  "@aiModeTopicTitle": {
+    "description": "Título para o modo tópico no assistente AI"
+  },
+  "aiModeTopicDescription": "Exploração criativa do tema",
+  "@aiModeTopicDescription": {
+    "description": "Descrição para o modo tópico"
+  },
+  "aiModeContentTitle": "Modo Conteúdo",
+  "@aiModeContentTitle": {
+    "description": "Título para o modo conteúdo no assistente AI"
+  },
+  "aiModeContentDescription": "Perguntas precisas baseadas na sua entrada",
+  "@aiModeContentDescription": {
+    "description": "Descrição para o modo conteúdo"
+  },
+  "aiWordCountIndicator": "{count} palavras",
+  "@aiWordCountIndicator": {
+    "description": "Indicador de contagem de palavras",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiPrecisionIndicator": "Precisão: {level}",
+  "@aiPrecisionIndicator": {
+    "description": "Indicador de nível de precisão para o modo conteúdo",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "Alta"
+      }
+    }
+  },
+  "aiPrecisionLow": "Baixa",
+  "@aiPrecisionLow": {
+    "description": "Nível de precisão baixa"
+  },
+  "aiPrecisionMedium": "Média",
+  "@aiPrecisionMedium": {
+    "description": "Nível de precisão média"
+  },
+  "aiPrecisionHigh": "Alta",
+  "@aiPrecisionHigh": {
+    "description": "Nível de precisão alta"
+  },
+  "aiMoreWordsMorePrecision": "Mais palavras = mais precisão",
+  "@aiMoreWordsMorePrecision": {
+    "description": "Texto de ajuda explicando que mais palavras levam a respostas mais precisas"
   }
 }

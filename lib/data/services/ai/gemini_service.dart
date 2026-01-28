@@ -103,19 +103,13 @@ class GeminiService extends AIService {
           return localizations.noResponseReceived;
         }
       } else if (response.statusCode == 400) {
-        final errorBody = jsonDecode(response.body);
-        final errorMessage =
-            errorBody['error']?['message'] ?? localizations.invalidApiKeyError;
-        throw Exception(errorMessage);
+        throw Exception(localizations.aiErrorResponse);
       } else if (response.statusCode == 403) {
         throw Exception(localizations.invalidApiKeyError);
       } else if (response.statusCode == 429) {
         throw Exception(localizations.rateLimitError);
       } else {
-        final errorBody = jsonDecode(response.body);
-        final errorMessage =
-            errorBody['error']?['message'] ?? localizations.unknownError;
-        throw Exception(errorMessage);
+        throw Exception(localizations.aiErrorResponse);
       }
     } catch (e) {
       if (e.toString().contains('Exception:')) {

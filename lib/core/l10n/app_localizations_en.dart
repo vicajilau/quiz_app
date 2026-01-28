@@ -716,6 +716,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get languageGerman => 'Deutsch';
 
   @override
+  String get languageGreek => 'Ελληνικά';
+
+  @override
   String get languageItalian => 'Italiano';
 
   @override
@@ -1071,4 +1074,39 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get logoTooLargeWarning =>
       'Image is too large to be saved. It will only be used during this session.';
+
+  @override
+  String get aiModeTopicTitle => 'Topic Mode';
+
+  @override
+  String get aiModeTopicDescription => 'Creative exploration of the topic';
+
+  @override
+  String get aiModeContentTitle => 'Content Mode';
+
+  @override
+  String get aiModeContentDescription =>
+      'Precise questions based on your input';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count words';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return 'Precision: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => 'Low';
+
+  @override
+  String get aiPrecisionMedium => 'Medium';
+
+  @override
+  String get aiPrecisionHigh => 'High';
+
+  @override
+  String get aiMoreWordsMorePrecision => 'More words = more precision';
 }

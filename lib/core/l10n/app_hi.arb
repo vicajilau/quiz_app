@@ -1001,6 +1001,10 @@
   "@languageGerman": {
     "description": "German language name."
   },
+  "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Greek language name."
+  },
   "languageItalian": "Italiano",
   "@languageItalian": {
     "description": "Italian language name."
@@ -1516,5 +1520,57 @@
   "logoTooLargeWarning": "छवि बहुत बड़ी है और सहेजी नहीं जा सकती। इसका उपयोग केवल इस सत्र के दौरान किया जाएगा।",
   "@logoTooLargeWarning": {
     "description": "चेतावनी संदेश जब लोगो स्थायी भंडारण के लिए बहुत बड़ा है"
+  },
+  "aiModeTopicTitle": "विषय मोड",
+  "@aiModeTopicTitle": {
+    "description": "AI सहायक में विषय मोड के लिए शीर्षक"
+  },
+  "aiModeTopicDescription": "विषय का रचनात्मक अन्वेषण",
+  "@aiModeTopicDescription": {
+    "description": "विषय मोड के लिए विवरण"
+  },
+  "aiModeContentTitle": "सामग्री मोड",
+  "@aiModeContentTitle": {
+    "description": "AI सहायक में सामग्री मोड के लिए शीर्षक"
+  },
+  "aiModeContentDescription": "आपके इनपुट पर आधारित सटीक प्रश्न",
+  "@aiModeContentDescription": {
+    "description": "सामग्री मोड के लिए विवरण"
+  },
+  "aiWordCountIndicator": "{count} शब्द",
+  "@aiWordCountIndicator": {
+    "description": "शब्द गणना संकेतक",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiPrecisionIndicator": "सटीकता: {level}",
+  "@aiPrecisionIndicator": {
+    "description": "सामग्री मोड के लिए सटीकता स्तर संकेतक",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "उच्च"
+      }
+    }
+  },
+  "aiPrecisionLow": "कम",
+  "@aiPrecisionLow": {
+    "description": "कम सटीकता स्तर"
+  },
+  "aiPrecisionMedium": "मध्यम",
+  "@aiPrecisionMedium": {
+    "description": "मध्यम सटीकता स्तर"
+  },
+  "aiPrecisionHigh": "उच्च",
+  "@aiPrecisionHigh": {
+    "description": "उच्च सटीकता स्तर"
+  },
+  "aiMoreWordsMorePrecision": "अधिक शब्द = अधिक सटीकता",
+  "@aiMoreWordsMorePrecision": {
+    "description": "संकेत टेक्स्ट समझाता है कि अधिक शब्द अधिक सटीक उत्तर देते हैं"
   }
 }

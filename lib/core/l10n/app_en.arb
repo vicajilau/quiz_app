@@ -989,6 +989,10 @@
   "@languageGerman": {
     "description": "German language name."
   },
+  "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Greek language name."
+  },
   "languageItalian": "Italiano",
   "@languageItalian": {
     "description": "Italian language name."
@@ -1509,5 +1513,57 @@
   "logoTooLargeWarning": "Image is too large to be saved. It will only be used during this session.",
   "@logoTooLargeWarning": {
     "description": "Warning message when logo is too large for persistent storage"
+  },
+  "aiModeTopicTitle": "Topic Mode",
+  "@aiModeTopicTitle": {
+    "description": "Title for topic mode in AI assistant"
+  },
+  "aiModeTopicDescription": "Creative exploration of the topic",
+  "@aiModeTopicDescription": {
+    "description": "Description for topic mode"
+  },
+  "aiModeContentTitle": "Content Mode",
+  "@aiModeContentTitle": {
+    "description": "Title for content mode in AI assistant"
+  },
+  "aiModeContentDescription": "Precise questions based on your input",
+  "@aiModeContentDescription": {
+    "description": "Description for content mode"
+  },
+  "aiWordCountIndicator": "{count} words",
+  "@aiWordCountIndicator": {
+    "description": "Word count indicator",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiPrecisionIndicator": "Precision: {level}",
+  "@aiPrecisionIndicator": {
+    "description": "Precision level indicator for content mode",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "High"
+      }
+    }
+  },
+  "aiPrecisionLow": "Low",
+  "@aiPrecisionLow": {
+    "description": "Low precision level"
+  },
+  "aiPrecisionMedium": "Medium",
+  "@aiPrecisionMedium": {
+    "description": "Medium precision level"
+  },
+  "aiPrecisionHigh": "High",
+  "@aiPrecisionHigh": {
+    "description": "High precision level"
+  },
+  "aiMoreWordsMorePrecision": "More words = more precision",
+  "@aiMoreWordsMorePrecision": {
+    "description": "Hint text explaining that more words lead to more precise answers"
   }
 }

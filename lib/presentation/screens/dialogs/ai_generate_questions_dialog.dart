@@ -22,16 +22,31 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   String _selectedLanguage = 'en'; // Will be updated in initState
   int _currentWordCount = 0;
 
-  // Minimum words required for AI generation
-  static const int _minWords = 10;
+  // Threshold for topic mode (creative exploration)
+  static const int _topicModeThreshold = 10;
 
   // AI service and model from selector
   AIService? _selectedService;
   String? _selectedModel;
 
-  // Check if content meets minimum requirements
-  bool get _hasMinimumWords {
-    return _currentWordCount >= _minWords;
+  // Check if we're in topic mode (less than 10 words)
+  bool get _isTopicMode {
+    return _currentWordCount < _topicModeThreshold;
+  }
+
+  // Get precision level based on word count
+  String _getPrecisionLevel(AppLocalizations localizations) {
+    if (_currentWordCount < 20) return localizations.aiPrecisionLow;
+    if (_currentWordCount < 40) return localizations.aiPrecisionMedium;
+    return localizations.aiPrecisionHigh;
+  }
+
+  // Get precision progress (0.0 to 1.0)
+  double _getPrecisionProgress() {
+    if (_currentWordCount < 10) return 0.0;
+    if (_currentWordCount < 20) return 0.33;
+    if (_currentWordCount < 40) return 0.66;
+    return 1.0;
   }
 
   // Get supported languages from AppLocalizations
@@ -55,6 +70,8 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
         return localizations.languageFrench;
       case 'de':
         return localizations.languageGerman;
+      case 'el':
+        return localizations.languageGreek;
       case 'it':
         return localizations.languageItalian;
       case 'pt':
@@ -124,23 +141,103 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
     });
   }
 
-  Color _getWordCountColor() {
-    if (_currentWordCount >= _minWords) return Colors.green;
-    if (_currentWordCount >= _minWords * 0.8) return Colors.orange;
-    return Colors.red;
+  // Get color based on precision level
+  Color _getPrecisionColor() {
+    if (_currentWordCount < 20) return Colors.red;
+    if (_currentWordCount < 40) return Colors.amber.shade700;
+    return Colors.green;
   }
 
-  String _getWordCountText(AppLocalizations localizations) {
-    if (_currentWordCount >= _minWords) {
-      return localizations.aiWordsReadyToGenerate(_currentWordCount);
-    } else {
-      final needed = _minWords - _currentWordCount;
-      return localizations.aiWordsProgress(
-        _currentWordCount,
-        _minWords,
-        needed,
-      );
-    }
+  Widget _buildModeIndicator(AppLocalizations localizations) {
+    final secondaryColor = Theme.of(context).colorScheme.secondary;
+    final contentColor = _isTopicMode ? secondaryColor : _getPrecisionColor();
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: contentColor.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: contentColor.withValues(alpha: 0.3)),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            _isTopicMode ? Icons.lightbulb_outline : Icons.article_outlined,
+            size: 18,
+            color: contentColor,
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      _isTopicMode
+                          ? localizations.aiModeTopicTitle
+                          : localizations.aiModeContentTitle,
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: contentColor,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      localizations.aiWordCountIndicator(_currentWordCount),
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withValues(alpha: 0.6),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  _isTopicMode
+                      ? localizations.aiModeTopicDescription
+                      : localizations.aiModeContentDescription,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.onSurface.withValues(alpha: 0.7),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          if (!_isTopicMode) ...[
+            const SizedBox(width: 8),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  localizations.aiPrecisionIndicator(
+                    _getPrecisionLevel(localizations),
+                  ),
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: contentColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                SizedBox(
+                  width: 60,
+                  child: LinearProgressIndicator(
+                    value: _getPrecisionProgress(),
+                    backgroundColor: contentColor.withValues(alpha: 0.2),
+                    valueColor: AlwaysStoppedAnimation<Color>(contentColor),
+                    minHeight: 4,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ],
+      ),
+    );
   }
 
   String _getQuestionTypeLabel(AiQuestionType type) {
@@ -212,43 +309,6 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                         },
                       ),
 
-                      // Service limits information
-                      if (_selectedService != null) ...[
-                        const SizedBox(height: 8),
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .surfaceContainerHighest
-                                .withValues(alpha: 0.3),
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.info_outline,
-                                size: 16,
-                                color: Theme.of(
-                                  context,
-                                ).colorScheme.onSurfaceVariant,
-                              ),
-                              const SizedBox(width: 8),
-                              Expanded(
-                                child: Text(
-                                  localizations.aiMinWordsRequired(_minWords),
-                                  style: Theme.of(context).textTheme.bodySmall
-                                      ?.copyWith(
-                                        color: Theme.of(
-                                          context,
-                                        ).colorScheme.onSurfaceVariant,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
                       const SizedBox(height: 20),
 
                       // Number of questions (optional)
@@ -335,46 +395,19 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                       ),
                       const SizedBox(height: 20),
 
-                      // Word counter
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              localizations.aiContentLabel,
-                              maxLines: 2,
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Flexible(
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                                vertical: 4,
-                              ),
-                              decoration: BoxDecoration(
-                                color: _getWordCountColor().withValues(
-                                  alpha: 0.1,
-                                ),
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(color: _getWordCountColor()),
-                              ),
-                              child: Text(
-                                _getWordCountText(localizations),
-                                style: TextStyle(
-                                  color: _getWordCountColor(),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 11,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 5,
-                              ),
-                            ),
-                          ),
-                        ],
+                      // Content label
+                      Text(
+                        localizations.aiContentLabel,
+                        maxLines: 2,
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const SizedBox(height: 8),
+
+                      // Mode indicator (Topic or Content)
+                      if (_currentWordCount > 0) ...[
+                        _buildModeIndicator(localizations),
+                        const SizedBox(height: 12),
+                      ],
 
                       // Text field
                       TextFormField(
@@ -394,13 +427,6 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
 
                           if (value == null || value.trim().isEmpty) {
                             return localizations.aiContentRequiredError;
-                          }
-
-                          if (_currentWordCount < _minWords) {
-                            return localizations.aiValidationMinWords(
-                              _minWords,
-                              _minWords - _currentWordCount,
-                            );
                           }
                           return null;
                         },
@@ -468,7 +494,8 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: ElevatedButton.icon(
-                      onPressed: (_selectedService != null && _hasMinimumWords)
+                      onPressed:
+                          (_selectedService != null && _currentWordCount > 0)
                           ? () {
                               if (_formKey.currentState!.validate()) {
                                 final config = AiQuestionGenerationConfig(

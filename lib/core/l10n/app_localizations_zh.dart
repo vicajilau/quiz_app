@@ -684,6 +684,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get languageGerman => 'Deutsch';
 
   @override
+  String get languageGreek => 'Ελληνικά';
+
+  @override
   String get languageItalian => 'Italiano';
 
   @override
@@ -1026,4 +1029,38 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get logoTooLargeWarning => '图像太大无法保存。仅在此会话期间使用。';
+
+  @override
+  String get aiModeTopicTitle => '主题模式';
+
+  @override
+  String get aiModeTopicDescription => '主题的创意探索';
+
+  @override
+  String get aiModeContentTitle => '内容模式';
+
+  @override
+  String get aiModeContentDescription => '基于您输入的精确问题';
+
+  @override
+  String aiWordCountIndicator(int count) {
+    return '$count 个词';
+  }
+
+  @override
+  String aiPrecisionIndicator(String level) {
+    return '精确度: $level';
+  }
+
+  @override
+  String get aiPrecisionLow => '低';
+
+  @override
+  String get aiPrecisionMedium => '中';
+
+  @override
+  String get aiPrecisionHigh => '高';
+
+  @override
+  String get aiMoreWordsMorePrecision => '更多词汇 = 更高精度';
 }

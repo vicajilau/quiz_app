@@ -1001,6 +1001,10 @@
   "@languageGerman": {
     "description": "Deutscher Sprachname."
   },
+  "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Griechischer Sprachname."
+  },
   "languageItalian": "Italiano",
   "@languageItalian": {
     "description": "Italienischer Sprachname."
@@ -1526,5 +1530,57 @@
   "logoTooLargeWarning": "Das Bild ist zu groß zum Speichern. Es wird nur während dieser Sitzung verwendet.",
   "@logoTooLargeWarning": {
     "description": "Warnmeldung, wenn das Logo zu groß für die dauerhafte Speicherung ist"
+  },
+  "aiModeTopicTitle": "Themenmodus",
+  "@aiModeTopicTitle": {
+    "description": "Titel für den Themenmodus im AI-Assistenten"
+  },
+  "aiModeTopicDescription": "Kreative Erkundung des Themas",
+  "@aiModeTopicDescription": {
+    "description": "Beschreibung für den Themenmodus"
+  },
+  "aiModeContentTitle": "Inhaltsmodus",
+  "@aiModeContentTitle": {
+    "description": "Titel für den Inhaltsmodus im AI-Assistenten"
+  },
+  "aiModeContentDescription": "Präzise Fragen basierend auf Ihrer Eingabe",
+  "@aiModeContentDescription": {
+    "description": "Beschreibung für den Inhaltsmodus"
+  },
+  "aiWordCountIndicator": "{count} Wörter",
+  "@aiWordCountIndicator": {
+    "description": "Wortanzahl-Anzeige",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiPrecisionIndicator": "Präzision: {level}",
+  "@aiPrecisionIndicator": {
+    "description": "Präzisionslevel-Anzeige für den Inhaltsmodus",
+    "placeholders": {
+      "level": {
+        "type": "String",
+        "example": "Hoch"
+      }
+    }
+  },
+  "aiPrecisionLow": "Niedrig",
+  "@aiPrecisionLow": {
+    "description": "Niedriges Präzisionslevel"
+  },
+  "aiPrecisionMedium": "Mittel",
+  "@aiPrecisionMedium": {
+    "description": "Mittleres Präzisionslevel"
+  },
+  "aiPrecisionHigh": "Hoch",
+  "@aiPrecisionHigh": {
+    "description": "Hohes Präzisionslevel"
+  },
+  "aiMoreWordsMorePrecision": "Mehr Wörter = mehr Präzision",
+  "@aiMoreWordsMorePrecision": {
+    "description": "Hilfetext, der erklärt, dass mehr Wörter zu präziseren Antworten führen"
   }
 }

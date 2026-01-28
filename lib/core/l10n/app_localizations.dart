@@ -1352,6 +1352,12 @@ abstract class AppLocalizations {
   /// **'Deutsch'**
   String get languageGerman;
 
+  /// Greek language name.
+  ///
+  /// In en, this message translates to:
+  /// **'Ελληνικά'**
+  String get languageGreek;
+
   /// Italian language name.
   ///
   /// In en, this message translates to:
@@ -1963,6 +1969,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Image is too large to be saved. It will only be used during this session.'**
   String get logoTooLargeWarning;
+
+  /// Title for topic mode in AI assistant
+  ///
+  /// In en, this message translates to:
+  /// **'Topic Mode'**
+  String get aiModeTopicTitle;
+
+  /// Description for topic mode
+  ///
+  /// In en, this message translates to:
+  /// **'Creative exploration of the topic'**
+  String get aiModeTopicDescription;
+
+  /// Title for content mode in AI assistant
+  ///
+  /// In en, this message translates to:
+  /// **'Content Mode'**
+  String get aiModeContentTitle;
+
+  /// Description for content mode
+  ///
+  /// In en, this message translates to:
+  /// **'Precise questions based on your input'**
+  String get aiModeContentDescription;
+
+  /// Word count indicator
+  ///
+  /// In en, this message translates to:
+  /// **'{count} words'**
+  String aiWordCountIndicator(int count);
+
+  /// Precision level indicator for content mode
+  ///
+  /// In en, this message translates to:
+  /// **'Precision: {level}'**
+  String aiPrecisionIndicator(String level);
+
+  /// Low precision level
+  ///
+  /// In en, this message translates to:
+  /// **'Low'**
+  String get aiPrecisionLow;
+
+  /// Medium precision level
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get aiPrecisionMedium;
+
+  /// High precision level
+  ///
+  /// In en, this message translates to:
+  /// **'High'**
+  String get aiPrecisionHigh;
+
+  /// Hint text explaining that more words lead to more precise answers
+  ///
+  /// In en, this message translates to:
+  /// **'More words = more precision'**
+  String get aiMoreWordsMorePrecision;
 }
 
 class _AppLocalizationsDelegate
