@@ -4,6 +4,7 @@ import '../../../core/l10n/app_localizations.dart';
 import '../../../data/services/ai/ai_question_generation_service.dart';
 import '../../../data/services/ai/ai_service.dart';
 import '../../widgets/ai_service_model_selector.dart';
+import '../../widgets/ai_question_type_selector.dart';
 
 class AiGenerateQuestionsDialog extends StatefulWidget {
   const AiGenerateQuestionsDialog({super.key});
@@ -18,7 +19,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   final _textController = TextEditingController();
   final _questionCountController = TextEditingController();
 
-  AiQuestionType _selectedQuestionType = AiQuestionType.random;
+  Set<AiQuestionType> _selectedQuestionTypes = {AiQuestionType.random};
   String _selectedLanguage = 'en'; // Will be updated in initState
   int _currentWordCount = 0;
 
@@ -255,22 +256,6 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
     );
   }
 
-  String _getQuestionTypeLabel(AiQuestionType type) {
-    final localizations = AppLocalizations.of(context)!;
-    switch (type) {
-      case AiQuestionType.multipleChoice:
-        return localizations.questionTypeMultipleChoice;
-      case AiQuestionType.singleChoice:
-        return localizations.questionTypeSingleChoice;
-      case AiQuestionType.trueFalse:
-        return localizations.questionTypeTrueFalse;
-      case AiQuestionType.essay:
-        return localizations.questionTypeEssay;
-      case AiQuestionType.random:
-        return localizations.aiQuestionTypeRandom;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
@@ -362,23 +347,12 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const SizedBox(height: 8),
-                      DropdownButtonFormField<AiQuestionType>(
-                        initialValue: _selectedQuestionType,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                        ),
-                        items: AiQuestionType.values.map((type) {
-                          return DropdownMenuItem(
-                            value: type,
-                            child: Text(_getQuestionTypeLabel(type)),
-                          );
-                        }).toList(),
-                        onChanged: (value) {
-                          if (value != null) {
-                            setState(() {
-                              _selectedQuestionType = value;
-                            });
-                          }
+                      AiQuestionTypeSelector(
+                        selectedTypes: _selectedQuestionTypes,
+                        onSelectedTypesChanged: (newTypes) {
+                          setState(() {
+                            _selectedQuestionTypes = newTypes;
+                          });
                         },
                       ),
                       const SizedBox(height: 20),
@@ -520,7 +494,8 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                                       : int.parse(
                                           _questionCountController.text,
                                         ),
-                                  questionType: _selectedQuestionType,
+                                  questionTypes: _selectedQuestionTypes
+                                      .toList(),
                                   language: _selectedLanguage,
                                   content: _textController.text.trim(),
                                   preferredService: _selectedService,
