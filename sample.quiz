@@ -74,6 +74,17 @@
         "$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2c}$"
       ],
       "correct_answers": [0]
+    },
+    {
+      "type": "single_choice",
+      "text": "[Mixed] Calculate the area of a circle with radius $r = 5$. Use the formula $A = \\pi r^2$.",
+      "options": [
+        "The area is exactly $25\\pi$",
+        "The area is approximately $78.54$",
+        "If $r=5$, then $A = 10\\pi$ (Incorrect)",
+        "None of the above options contains $\\pi$"
+      ],
+      "correct_answers": [0]
     }
   ]
 }
