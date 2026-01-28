@@ -706,7 +706,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• AI-ak edukia aztertuko du eta galdera garrantzitsuak sortuko ditu\n• 10 hitz baino gutxiago idazten badituzu, Gai moduan sartuko zara eta gai zehatz horiei buruzko galderak egingo ditu; 10 hitz baino gehiagorekin, Eduki moduan sartuko zara eta testu berari buruzko galderak egingo ditu (hitz gehiago = doitasun handiagoa)\n• Testua, definizioak, azalpenak, edo edozein hezkuntza material sar dezakezu\n• Galderek erantzun aukerak eta azalpenak izango dituzte\n• Prozesuak segundo batzuk har ditzake';
+      '• AI-ak edukia aztertuko du eta galdera garrantzitsuak sortuko ditu\n• 10 hitz baino gutxiago idazten badituzu, Gai moduan sartuko zara eta gai zehatz horiei buruzko galderak egingo ditu\n• 10 hitz baino gehiagorekin, Eduki moduan sartuko zara eta testu berari buruzko galderak egingo ditu (hitz gehiago = doitasun handiagoa)\n• Testua, definizioak, azalpenak, edo edozein hezkuntza material sar dezakezu\n• Galderek erantzun aukerak eta azalpenak izango dituzte\n• Prozesuak segundo batzuk har ditzake';
 
   @override
   String get aiGenerateButton => 'Galderak Sortu';

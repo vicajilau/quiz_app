@@ -977,7 +977,7 @@
   "@aiInfoTitle": {
     "description": "Título da seção informação."
   },
-  "aiInfoDescription": "• IA analisará o conteúdo e gerará perguntas relevantes\n• Se escreveres menos de 10 palavras entrarás no modo Tema, onde serão feitas perguntas sobre esses temas específicos, e com mais de 10 palavras entrarás no modo Conteúdo, que fará perguntas sobre o mesmo texto (mais palavras = mais precisão)\n• Você pode incluir texto, definições, explicações, o qualquer material educativo\n• Perguntas incluirão opções de resposta e explicações\n• O processo pode levar alguns segundos",
+  "aiInfoDescription": "• IA analisará o conteúdo e gerará perguntas relevantes\n• Se escreveres menos de 10 palavras entrarás no modo Tema, onde serão feitas perguntas sobre esses temas específicos\n• Com mais de 10 palavras entrarás no modo Conteúdo, que fará perguntas sobre o mesmo texto (mais palavras = mais precisão)\n• Você pode incluir texto, definições, explicações, o qualquer material educativo\n• Perguntas incluirão opções de resposta e explicações\n• O processo pode levar alguns segundos",
   "@aiInfoDescription": {
     "description": "Descrição informativa do processo de geração IA."
   },

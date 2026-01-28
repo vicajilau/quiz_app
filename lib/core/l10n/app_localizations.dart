@@ -1319,7 +1319,7 @@ abstract class AppLocalizations {
   /// Informative description about the AI generation process.
   ///
   /// In en, this message translates to:
-  /// **'• AI will analyze the content and generate relevant questions\n• If you write fewer than 10 words, you\'ll enter Topic mode where questions will be asked about those specific topics, and with more than 10 words, you\'ll enter Content mode which will ask questions about that same text (more words = more precision)\n• You can include text, definitions, explanations, or any educational material\\n• Questions will include answer options and explanations\\n• The process may take a few seconds'**
+  /// **'• AI will analyze the content and generate relevant questions\n• If you write fewer than 10 words, you\'ll enter Topic mode where questions will be asked about those specific topics\n• With more than 10 words, you\'ll enter Content mode which will ask questions about that same text (more words = more precision)\n• You can include text, definitions, explanations, or any educational material\\n• Questions will include answer options and explanations\\n• The process may take a few seconds'**
   String get aiInfoDescription;
 
   /// Text for the generate questions button.
