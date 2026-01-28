@@ -698,7 +698,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• AI will analyze the content and generate relevant questions\n• You can include text, definitions, explanations, or any educational material\\n• Questions will include answer options and explanations\\n• The process may take a few seconds';
+      '• AI will analyze the content and generate relevant questions\n• If you write fewer than 10 words, you\'ll enter Topic mode where questions will be asked about those specific topics, and with more than 10 words, you\'ll enter Content mode which will ask questions about that same text (more words = more precision)\n• You can include text, definitions, explanations, or any educational material\\n• Questions will include answer options and explanations\\n• The process may take a few seconds';
 
   @override
   String get aiGenerateButton => 'Generate Questions';

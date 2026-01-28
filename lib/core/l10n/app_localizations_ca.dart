@@ -707,7 +707,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• La IA analitzarà el contingut i generarà preguntes rellevants\n• Podeu incloure text, definicions, explicacions, o qualsevol material educatiu\n• Les preguntes inclouran opcions de resposta i explicacions\n• El procés pot trigar uns segons';
+      '• La IA analitzarà el contingut i generarà preguntes rellevants\n• Si escrius menys de 10 paraules entraràs en modo Tema on es realitzaran preguntes sobre aquests temes específics i amb més de 10 paraules entraràs en modo Contingut que farà preguntes sobre el mateix text (més paraules = més precisió)\n• Podeu incloure text, definicions, explicacions, o qualseval material educatiu\n• Les preguntes inclouran opcions de resposta i explicacions\n• El procés pot trigar uns segons';
 
   @override
   String get aiGenerateButton => 'Generar Preguntes';

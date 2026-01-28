@@ -706,7 +706,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• La IA analizará el contenido y generará preguntas relevantes\n• Puedes incluir texto, definiciones, explicaciones o cualquier material educativo\n• Las preguntas incluirán opciones de respuesta y explicaciones\n• El proceso puede tardar unos segundos';
+      '• La IA analizará el contenido y generará preguntas relevantes\n• Si escribes menos de 10 palabras entrarás en modo Tema donde se realizarán preguntas sobre esos temas específicos y con más de 10 palabras entrarás en modo Contenido que hará preguntas sobre ese mismo texto (más palabras = más precisión)\n• Puedes incluir texto, definiciones, explicaciones o cualquier material educativo\n• Las preguntas incluirán opciones de respuesta y explicaciones\n• El proceso puede tardar unos segundos';
 
   @override
   String get aiGenerateButton => 'Generar Preguntas';

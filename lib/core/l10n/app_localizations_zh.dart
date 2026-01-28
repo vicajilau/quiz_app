@@ -666,7 +666,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get aiInfoDescription =>
-      '• AI将分析内容并生成相关问题\n• 您可以包含文本、定义、解释或任何教育材料\n• 问题将包括答案选项和解释\n• 该过程可能需要几秒钟';
+      '• AI将分析内容并生成相关问题\n• 如果你输入的字数少于10个词，将进入“主题模式”，针对特定话题进行提问；如果字数超过10个词，将进入“内容模式”，针对你提供的文本进行提问（字数越多 = 精确度越高）\n• 你可以包含文本、定义、解释或任何教育材料\n• 问题将包括答案选项和解释\n• 该过程可能需要几秒钟';
 
   @override
   String get aiGenerateButton => '生成问题';

@@ -977,7 +977,7 @@
   "@aiInfoTitle": {
     "description": "Título da sección información."
   },
-  "aiInfoDescription": "• A IA analizará o contido e xerará preguntas relevantes\n• Podes incluír texto, definicións, explicacións, ou calquera material educativo\n• As preguntas incluirán opcións de resposta e explicacións\n• O proceso pode tardar uns segundos",
+  "aiInfoDescription": "• A IA analizará o contido e xerará preguntas relevantes\n• Se escribes menos de 10 palabras entrarás no modo Tema onde se farán preguntas sobre eses temas específicos, e con máis de 10 palabras entrarás no modo Contido que fará preguntas sobre ese mesmo texto (máis palabras = máis precisión)\n• Podes incluír texto, definicións, explicacións, o calquera material educativo\n• As preguntas incluirán opcións de resposta e explicacións\n• O proceso pode tardar uns segundos",
   "@aiInfoDescription": {
     "description": "Descrición informativa do proceso de xeración IA."
   },

@@ -977,7 +977,7 @@
   "@aiInfoTitle": {
     "description": "Titel des Informationsbereichs."
   },
-  "aiInfoDescription": "• KI wird den Inhalt analysieren und relevante Fragen generieren\n• Sie können Text, Definitionen, Erklärungen oder beliebiges Lernmaterial einschließen\n• Fragen werden Antwortoptionen und Erklärungen beinhalten\n• Der Vorgang kann einige Sekunden dauern",
+  "aiInfoDescription": "• KI wird den Inhalt analysieren und relevante Fragen generieren\n• Wenn du weniger als 10 Wörter schreibst, gelangst du in den Themenmodus, in dem Fragen zu diesen spezifischen Themen gestellt werden, und mit mehr als 10 Wörtern gelangst du in den Inhaltsmodus, in dem Fragen zu demselben Text gestellt werden (mehr Wörter = mehr Präzision)\n• Du kannst Text, Definitionen, Erklärungen oder beliebiges Lernmaterial einschließen\n• Fragen werden Antwortoptionen und Erklärungen beinhalten\n• Der Vorgang kann einige Sekunden dauern",
   "@aiInfoDescription": {
     "description": "Informative Beschreibung des KI-Generierungsprozesses."
   },

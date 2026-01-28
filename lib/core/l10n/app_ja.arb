@@ -977,7 +977,7 @@
   "@aiInfoTitle": {
     "description": "Title of the information section."
   },
-  "aiInfoDescription": "• AIがコンテンツを分析して関連する問題を生成します\n• テキスト、定義、説明、または任意の教育材料を含めることができます\n• 問題には回答選択肢と解説が含まれます\n• 処理には数秒かかる場合があります",
+  "aiInfoDescription": "• AIがコンテンツを分析して関連する問題を生成します\n• 10語未満であれば「トピックモード」になり、特定のテーマについて質問します。10語以上であれば「コンテンツモード」になり、入力されたテキストに基づいて質問します（単語数が多いほど、精度が高まります）\n• テキスト、定義、説明、または任意の教育材料を含めることができます\n• 問題には回答選択肢と解説が含まれます\n• 処理には数秒かかる場合があります",
   "@aiInfoDescription": {
     "description": "Informative description about the AI generation process."
   },
