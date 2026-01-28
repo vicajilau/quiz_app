@@ -37,7 +37,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   // Get precision level based on word count
   String _getPrecisionLevel(AppLocalizations localizations) {
     if (_currentWordCount < 20) return localizations.aiPrecisionLow;
-    if (_currentWordCount < 40) return localizations.aiPrecisionMedium;
+    if (_currentWordCount < 50) return localizations.aiPrecisionMedium;
     return localizations.aiPrecisionHigh;
   }
 
@@ -45,7 +45,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   double _getPrecisionProgress() {
     if (_currentWordCount < 10) return 0.0;
     if (_currentWordCount < 20) return 0.33;
-    if (_currentWordCount < 40) return 0.66;
+    if (_currentWordCount < 50) return 0.66;
     return 1.0;
   }
 
@@ -144,7 +144,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   // Get color based on precision level
   Color _getPrecisionColor() {
     if (_currentWordCount < 20) return Colors.red;
-    if (_currentWordCount < 40) return Colors.amber.shade700;
+    if (_currentWordCount < 50) return Colors.amber.shade700;
     return Colors.green;
   }
 

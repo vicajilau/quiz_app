@@ -83,9 +83,6 @@ class OpenAIService extends AIService {
         throw Exception(localizations.aiErrorResponse);
       }
     } catch (e) {
-      if (e.toString().contains('Exception:')) {
-        rethrow;
-      }
       throw Exception(localizations.networkError);
     }
   }
