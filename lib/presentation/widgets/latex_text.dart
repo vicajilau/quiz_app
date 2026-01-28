@@ -59,23 +59,33 @@ class _LaTeXRichText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final spans = _parseLatexExpression(text);
+    // Resolve the effective text style by merging the provided style with the default text style
+    final effectiveStyle = DefaultTextStyle.of(context).style.merge(style);
+    final spans = _parseLatexExpression(text, effectiveStyle);
 
     if (spans.isEmpty) {
-      return Text(text, style: style, maxLines: maxLines, overflow: overflow);
+      return Text(
+        text,
+        style: effectiveStyle,
+        maxLines: maxLines,
+        overflow: overflow,
+      );
     }
 
     return RichText(
       maxLines: maxLines,
       overflow: overflow,
-      text: TextSpan(children: spans, style: style),
+      text: TextSpan(children: spans, style: effectiveStyle),
     );
   }
 
   /// Parses text to extract LaTeX expressions and plain text
   /// Returns a list of InlineSpans that can be rendered as RichText
   /// Supports only inline math mode: $...$
-  List<InlineSpan> _parseLatexExpression(String input) {
+  List<InlineSpan> _parseLatexExpression(
+    String input,
+    TextStyle effectiveStyle,
+  ) {
     final spans = <InlineSpan>[];
     int currentIndex = 0;
 
@@ -89,7 +99,7 @@ class _LaTeXRichText extends StatelessWidget {
           spans.add(
             TextSpan(
               text: input.substring(currentIndex, inlineStart),
-              style: style,
+              style: effectiveStyle,
             ),
           );
         }
@@ -103,11 +113,11 @@ class _LaTeXRichText extends StatelessWidget {
               alignment: PlaceholderAlignment.middle,
               child: Math.tex(
                 mathExpression,
-                textStyle: style,
+                textStyle: effectiveStyle,
                 onErrorFallback: (error) {
                   return Text(
                     '\$$mathExpression\$',
-                    style: style?.copyWith(color: Colors.red),
+                    style: effectiveStyle.copyWith(color: Colors.red),
                   );
                 },
               ),
@@ -116,12 +126,16 @@ class _LaTeXRichText extends StatelessWidget {
           currentIndex = inlineEnd + 1;
         } else {
           // No closing $, treat as plain text
-          spans.add(TextSpan(text: input.substring(inlineStart), style: style));
+          spans.add(
+            TextSpan(text: input.substring(inlineStart), style: effectiveStyle),
+          );
           break;
         }
       } else {
         // No more LaTeX expressions, add remaining text
-        spans.add(TextSpan(text: input.substring(currentIndex), style: style));
+        spans.add(
+          TextSpan(text: input.substring(currentIndex), style: effectiveStyle),
+        );
         break;
       }
     }
