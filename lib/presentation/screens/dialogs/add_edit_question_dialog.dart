@@ -441,7 +441,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
 
     if (confirmed && mounted) {
       widget.onDelete!();
-      context.pop();
+      Navigator.of(context).pop(null);
     }
   }
 }
