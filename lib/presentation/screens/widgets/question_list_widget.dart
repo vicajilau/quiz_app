@@ -320,6 +320,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                                     onTap: () {
                                       showDialog(
                                         context: context,
+                                        barrierDismissible: false,
                                         builder: (context) => AIQuestionDialog(
                                           question: question,
                                         ),

@@ -67,7 +67,11 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
   }
 
   Future<void> _showSettingsDialog(BuildContext context) async {
-    await showDialog(context: context, builder: (_) => const SettingsDialog());
+    await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => const SettingsDialog(),
+    );
   }
 
   /// Handle importing questions from a dropped file
@@ -193,6 +197,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
       if (!isAIactivated) {
         if (mounted) {
           showDialog(
+            barrierDismissible: false,
             context: context,
             builder: (context) {
               return AlertDialog(
@@ -226,6 +231,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
       if (!mounted) return;
       final config = await showDialog<AiQuestionGenerationConfig>(
         context: context,
+        barrierDismissible: false, // Prevent dismissing by tapping outside
         builder: (context) => const AiGenerateQuestionsDialog(),
       );
 
@@ -372,6 +378,8 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                       onPressed: () async {
                         final createdQuestion = await showDialog<Question>(
                           context: context,
+                          barrierDismissible:
+                              false, // Prevent dismissing by tapping outside
                           builder: (context) =>
                               AddEditQuestionDialog(quizFile: cachedQuizFile),
                         );
