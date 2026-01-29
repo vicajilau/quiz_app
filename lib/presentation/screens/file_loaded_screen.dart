@@ -430,9 +430,11 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                       onPressed: () async {
                         await _generateQuestionsWithAI();
                       },
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.auto_awesome,
-                        color: Colors.purple,
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? Colors.amberAccent
+                            : Colors.purpleAccent,
                       ),
                       tooltip: AppLocalizations.of(
                         context,
