@@ -231,11 +231,7 @@ class ConfigurationService {
     }
 
     if (settings.draftText != null) {
-      if (settings.draftText!.isEmpty) {
-        await prefs.remove(_aiDraftTextKey);
-      } else {
-        await prefs.setString(_aiDraftTextKey, settings.draftText!);
-      }
+      await prefs.setString(_aiDraftTextKey, settings.draftText!);
     }
   }
 
