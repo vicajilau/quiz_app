@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/l10n/app_localizations.dart';
 
+enum QuestionsPosition { beginning, end }
+
 /// Dialog to confirm importing questions from another quiz file
 class ImportQuestionsDialog extends StatelessWidget {
   final int questionCount;
@@ -41,11 +43,11 @@ class ImportQuestionsDialog extends StatelessWidget {
           child: Text(localizations.cancelButton),
         ),
         ElevatedButton(
-          onPressed: () => context.pop('beginning'),
+          onPressed: () => context.pop(QuestionsPosition.beginning),
           child: Text(localizations.importAtBeginning),
         ),
         ElevatedButton(
-          onPressed: () => context.pop('end'),
+          onPressed: () => context.pop(QuestionsPosition.end),
           child: Text(localizations.importAtEnd),
         ),
       ],
