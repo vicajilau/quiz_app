@@ -11,6 +11,7 @@ class BackPressHandler {
     if (state is QuizExecutionInProgress) {
       showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text(AppLocalizations.of(context)!.abandonQuiz),
@@ -19,12 +20,12 @@ class BackPressHandler {
             ),
             actions: [
               TextButton(
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: () => context.pop(),
                 child: Text(AppLocalizations.of(context)!.cancel),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  context.pop();
                   context.pop();
                 },
                 child: Text(AppLocalizations.of(context)!.abandon),

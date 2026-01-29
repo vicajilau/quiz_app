@@ -5,6 +5,7 @@ import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:quiz_app/presentation/screens/dialogs/add_edit_question_dialog.dart';
 import 'package:quiz_app/presentation/screens/dialogs/ai_question_dialog.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
+import 'package:platform_detail/platform_detail.dart';
 import '../../widgets/latex_text.dart';
 
 import '../../../../../core/l10n/app_localizations.dart';
@@ -81,6 +82,12 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                 question: question,
                 quizFile: widget.quizFile,
                 questionPosition: index,
+                onDelete: () {
+                  setState(() {
+                    widget.quizFile.questions.remove(question);
+                    widget.onFileChange();
+                  });
+                },
               ),
             );
             if (updatedQuestion != null) {
@@ -313,6 +320,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                                     onTap: () {
                                       showDialog(
                                         context: context,
+                                        barrierDismissible: false,
                                         builder: (context) => AIQuestionDialog(
                                           question: question,
                                         ),
@@ -368,6 +376,13 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                           ],
                         ),
                       ),
+                      if (!PlatformDetail.isMobile)
+                        IconButton(
+                          onPressed: () => _deleteQuestion(index),
+                          icon: const Icon(Icons.delete, color: Colors.red),
+                          tooltip: AppLocalizations.of(context)!.deleteAction,
+                        ),
+                      const SizedBox(width: 10),
                     ],
                   ),
                 ],
@@ -379,6 +394,26 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
     );
   }
 
+  /// Deletes a question after user confirmation.
+  ///
+  /// This method is called when the delete button in the question card is pressed.
+  /// It reuses [_confirmDismiss] to ask for confirmation before removing the
+  /// question from the list.
+  Future<void> _deleteQuestion(int index) async {
+    final question = widget.quizFile.questions[index];
+    final confirmed = await _confirmDismiss(context, question);
+    if (confirmed && mounted) {
+      setState(() {
+        widget.quizFile.questions.removeAt(index);
+        widget.onFileChange();
+      });
+    }
+  }
+
+  /// Toggles the enabled state of a question at the given [index].
+  ///
+  /// This updates the question in the list and notifies the parent widget
+  /// about the file change.
   void _toggleQuestionEnabled(int index) {
     setState(() {
       final question = widget.quizFile.questions[index];
@@ -389,6 +424,9 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
     });
   }
 
+  /// Shows a confirmation dialog before deleting a [question].
+  ///
+  /// Returns `true` if the user confirms the deletion, `false` otherwise.
   Future<bool> _confirmDismiss(BuildContext context, Question question) async {
     return await showDialog<bool>(
           context: context,

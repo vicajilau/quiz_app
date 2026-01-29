@@ -58,7 +58,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _showSettingsDialog(BuildContext context) async {
-    await showDialog(context: context, builder: (_) => const SettingsDialog());
+    await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => const SettingsDialog(),
+    );
   }
 
   @override

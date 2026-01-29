@@ -376,18 +376,21 @@ class _SettingsDialogState extends State<SettingsDialog> {
                         hintMaxLines: 3,
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: _geminiApiKeyController.text.isValidGeminiApiKey
+                            color:
+                                _geminiApiKeyController.text.isValidGeminiApiKey
                                 ? Theme.of(context).colorScheme.outline
                                 : Theme.of(context).colorScheme.error,
                           ),
                         ),
                         prefixIcon: Icon(
                           Icons.key,
-                          color: _geminiApiKeyController.text.isValidGeminiApiKey
+                          color:
+                              _geminiApiKeyController.text.isValidGeminiApiKey
                               ? null
                               : Theme.of(context).colorScheme.error,
                         ),
-                        suffixIcon: _geminiApiKeyController.text.isValidGeminiApiKey
+                        suffixIcon:
+                            _geminiApiKeyController.text.isValidGeminiApiKey
                             ? Icon(
                                 Icons.check_circle,
                                 color: Theme.of(context).colorScheme.primary,
@@ -445,18 +448,21 @@ class _SettingsDialogState extends State<SettingsDialog> {
                         hintMaxLines: 3,
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: _openAiApiKeyController.text.isValidOpenAIApiKey
+                            color:
+                                _openAiApiKeyController.text.isValidOpenAIApiKey
                                 ? Theme.of(context).colorScheme.outline
                                 : Theme.of(context).colorScheme.error,
                           ),
                         ),
                         prefixIcon: Icon(
                           Icons.key,
-                          color: _openAiApiKeyController.text.isValidOpenAIApiKey
+                          color:
+                              _openAiApiKeyController.text.isValidOpenAIApiKey
                               ? null
                               : Theme.of(context).colorScheme.error,
                         ),
-                        suffixIcon: _openAiApiKeyController.text.isValidOpenAIApiKey
+                        suffixIcon:
+                            _openAiApiKeyController.text.isValidOpenAIApiKey
                             ? Icon(
                                 Icons.check_circle,
                                 color: Theme.of(context).colorScheme.primary,
@@ -557,10 +563,12 @@ class _SettingsDialogState extends State<SettingsDialog> {
                       AiServiceModelSelector(
                         initialModel: _defaultAIModel,
                         saveToPreferences: true,
-                        geminiApiKey: _geminiApiKeyController.text.isValidGeminiApiKey
+                        geminiApiKey:
+                            _geminiApiKeyController.text.isValidGeminiApiKey
                             ? _geminiApiKeyController.text.trim()
                             : null,
-                        openaiApiKey: _openAiApiKeyController.text.isValidOpenAIApiKey
+                        openaiApiKey:
+                            _openAiApiKeyController.text.isValidOpenAIApiKey
                             ? _openAiApiKeyController.text.trim()
                             : null,
                       ),

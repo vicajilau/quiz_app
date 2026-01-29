@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'dart:async';
 import '../../core/service_locator.dart';
 import '../../core/l10n/app_localizations.dart';
@@ -285,7 +286,7 @@ class _ExamTimerWidgetState extends State<ExamTimerWidget>
         actions: [
           ElevatedButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              context.pop();
               widget.onTimeExpired();
             },
             child: Text(AppLocalizations.of(context)!.finish),
