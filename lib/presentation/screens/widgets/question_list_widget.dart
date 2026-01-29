@@ -5,6 +5,7 @@ import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:quiz_app/presentation/screens/dialogs/add_edit_question_dialog.dart';
 import 'package:quiz_app/presentation/screens/dialogs/ai_question_dialog.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
+import 'package:platform_detail/platform_detail.dart';
 import '../../widgets/latex_text.dart';
 
 import '../../../../../core/l10n/app_localizations.dart';
@@ -374,11 +375,12 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                           ],
                         ),
                       ),
-                      IconButton(
-                        onPressed: () => _deleteQuestion(index),
-                        icon: const Icon(Icons.delete, color: Colors.red),
-                        tooltip: AppLocalizations.of(context)!.deleteAction,
-                      ),
+                      if (!PlatformDetail.isMobile)
+                        IconButton(
+                          onPressed: () => _deleteQuestion(index),
+                          icon: const Icon(Icons.delete, color: Colors.red),
+                          tooltip: AppLocalizations.of(context)!.deleteAction,
+                        ),
                       const SizedBox(width: 10),
                     ],
                   ),
