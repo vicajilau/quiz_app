@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/extensions/string_extensions.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
+import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/data/services/ai/ai_service_selector.dart';
 import 'package:quiz_app/data/services/ai/ai_service.dart';
@@ -66,7 +67,8 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
     prompt += "\n\n";
     prompt += "${localizations.questionLabel}: ${widget.question.text}\n";
 
-    if (widget.question.options.isNotEmpty) {
+    if (widget.question.options.isNotEmpty &&
+        widget.question.type != QuestionType.essay) {
       prompt += "${localizations.optionsLabel}:\n";
       for (int i = 0; i < widget.question.options.length; i++) {
         final letter = String.fromCharCode(65 + i); // A, B, C, etc.
@@ -402,7 +404,8 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                     widget.question.text,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
-                  if (widget.question.options.isNotEmpty) ...[
+                  if (widget.question.options.isNotEmpty &&
+                      widget.question.type != QuestionType.essay) ...[
                     const SizedBox(height: 12),
                     ...widget.question.options.asMap().entries.map((entry) {
                       final index = entry.key;
