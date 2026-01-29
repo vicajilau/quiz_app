@@ -5,6 +5,7 @@ import '../../../core/l10n/app_localizations.dart';
 import '../../../data/services/configuration_service.dart';
 import '../../../data/services/ai/ai_question_generation_service.dart';
 import '../../../data/services/ai/ai_service.dart';
+import '../../../domain/models/ai/ai_generation_stored_settings.dart';
 import '../../widgets/ai_service_model_selector.dart';
 import '../../widgets/ai_question_type_selector.dart';
 
@@ -114,55 +115,49 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   Future<void> _loadDraft() async {
     final keepDraft = await ConfigurationService.instance.getAiKeepDraft();
     if (keepDraft) {
-      // Load drafted text
-      final draft = await ConfigurationService.instance.getAiDraftText();
-      if (draft != null && draft.isNotEmpty && mounted) {
-        setState(() {
-          _textController.text = draft;
-        });
-      }
-
       // Load saved settings
-      final savedService = await ConfigurationService.instance
-          .getAiGenerationService();
-      final savedModel = await ConfigurationService.instance
-          .getAiGenerationModel();
+      final settings = await ConfigurationService.instance
+          .getAiGenerationSettings();
 
-      if (savedService != null && mounted) {
+      if (settings.draftText != null &&
+          settings.draftText!.isNotEmpty &&
+          mounted) {
         setState(() {
-          _savedServiceName = savedService;
+          _textController.text = settings.draftText!;
         });
       }
 
-      if (savedModel != null && mounted) {
+      if (settings.serviceName != null && mounted) {
         setState(() {
-          _savedModelName = savedModel;
+          _savedServiceName = settings.serviceName;
+        });
+      }
+
+      if (settings.modelName != null && mounted) {
+        setState(() {
+          _savedModelName = settings.modelName;
         });
       }
 
       // Load saved language
-      final savedLanguage = await ConfigurationService.instance
-          .getAiGenerationLanguage();
-      if (savedLanguage != null &&
-          _supportedLanguages.contains(savedLanguage) &&
+      if (settings.language != null &&
+          _supportedLanguages.contains(settings.language) &&
           mounted) {
         setState(() {
-          _selectedLanguage = savedLanguage;
+          _selectedLanguage = settings.language!;
         });
       }
 
       // Load saved question count
-      final savedCount = await ConfigurationService.instance
-          .getAiGenerationQuestionCount();
-      if (savedCount != null && mounted) {
-        _questionCountController.text = savedCount.toString();
+      if (settings.questionCount != null && mounted) {
+        _questionCountController.text = settings.questionCount.toString();
       }
 
       // Load saved question types
-      final savedTypes = await ConfigurationService.instance
-          .getAiGenerationQuestionTypes();
-      if (savedTypes != null && savedTypes.isNotEmpty && mounted) {
-        final types = savedTypes
+      if (settings.questionTypes != null &&
+          settings.questionTypes!.isNotEmpty &&
+          mounted) {
+        final types = settings.questionTypes!
             .map((t) => _getAiQuestionTypeFromString(t))
             .where((t) => t != null)
             .cast<AiQuestionType>()
@@ -222,46 +217,21 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   Future<void> _saveDraft() async {
     final keepDraft = await ConfigurationService.instance.getAiKeepDraft();
     if (keepDraft) {
-      // Save text draft
-      await ConfigurationService.instance.saveAiDraftText(
-        _textController.text.trim(),
-      );
-
-      // Save valid settings even if text is empty? The requirements say "in case of failure",
-      // which implies we should save when closing or generating. _saveDraft is called on dispose.
-
-      // Save service
-      if (_selectedService != null) {
-        await ConfigurationService.instance.saveAiGenerationService(
-          _selectedService!.serviceName,
-        );
-      }
-
-      // Save model
-      if (_selectedModel != null) {
-        await ConfigurationService.instance.saveAiGenerationModel(
-          _selectedModel!,
-        );
-      }
-
-      // Save language
-      await ConfigurationService.instance.saveAiGenerationLanguage(
-        _selectedLanguage,
-      );
-
-      // Save question count
+      int? count;
       if (_questionCountController.text.isNotEmpty) {
-        final count = int.tryParse(_questionCountController.text);
-        if (count != null) {
-          await ConfigurationService.instance.saveAiGenerationQuestionCount(
-            count,
-          );
-        }
+        count = int.tryParse(_questionCountController.text);
       }
 
-      // Save question types
-      final types = _selectedQuestionTypes.map((t) => t.toString()).toList();
-      await ConfigurationService.instance.saveAiGenerationQuestionTypes(types);
+      final settings = AiGenerationStoredSettings(
+        serviceName: _selectedService?.serviceName,
+        modelName: _selectedModel,
+        language: _selectedLanguage,
+        questionCount: count,
+        questionTypes: _selectedQuestionTypes.map((t) => t.toString()).toList(),
+        draftText: _textController.text.trim(),
+      );
+
+      await ConfigurationService.instance.saveAiGenerationSettings(settings);
     }
   }
 
@@ -452,6 +422,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                       const SizedBox(height: 8),
                       TextFormField(
                         controller: _questionCountController,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         decoration: InputDecoration(
                           hintMaxLines: 2,
                           hintText: localizations.aiQuestionCountHint,
@@ -547,7 +518,11 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                                     _textController.clear();
                                     // Also clear the draft
                                     ConfigurationService.instance
-                                        .saveAiDraftText('');
+                                        .saveAiGenerationSettings(
+                                          const AiGenerationStoredSettings(
+                                            draftText: '',
+                                          ),
+                                        );
                                   },
                                 )
                               : null,

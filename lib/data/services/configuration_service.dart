@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../domain/models/quiz/question_order.dart';
+import '../../domain/models/ai/ai_generation_stored_settings.dart';
 import '../../core/security/encryption_service.dart';
 
 class ConfigurationService {
@@ -201,79 +202,54 @@ class ConfigurationService {
     return prefs.getBool(_aiKeepDraftKey) ?? true;
   }
 
-  /// Saves the AI text draft
-  Future<void> saveAiDraftText(String text) async {
+  /// Saves the AI generation settings
+  Future<void> saveAiGenerationSettings(
+    AiGenerationStoredSettings settings,
+  ) async {
     final prefs = await SharedPreferences.getInstance();
-    if (text.isEmpty) {
-      await prefs.remove(_aiDraftTextKey);
-    } else {
-      await prefs.setString(_aiDraftTextKey, text);
+
+    if (settings.serviceName != null) {
+      await prefs.setString(_aiGenerationServiceKey, settings.serviceName!);
+    }
+    if (settings.modelName != null) {
+      await prefs.setString(_aiGenerationModelKey, settings.modelName!);
+    }
+    if (settings.language != null) {
+      await prefs.setString(_aiGenerationLanguageKey, settings.language!);
+    }
+    if (settings.questionCount != null) {
+      await prefs.setInt(
+        _aiGenerationQuestionCountKey,
+        settings.questionCount!,
+      );
+    }
+    if (settings.questionTypes != null) {
+      await prefs.setStringList(
+        _aiGenerationQuestionTypesKey,
+        settings.questionTypes!,
+      );
+    }
+
+    if (settings.draftText != null) {
+      if (settings.draftText!.isEmpty) {
+        await prefs.remove(_aiDraftTextKey);
+      } else {
+        await prefs.setString(_aiDraftTextKey, settings.draftText!);
+      }
     }
   }
 
-  /// Gets the AI text draft
-  Future<String?> getAiDraftText() async {
+  /// Gets the AI generation settings
+  Future<AiGenerationStoredSettings> getAiGenerationSettings() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_aiDraftTextKey);
-  }
 
-  /// Saves the AI generation service name
-  Future<void> saveAiGenerationService(String serviceName) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_aiGenerationServiceKey, serviceName);
-  }
-
-  /// Gets the AI generation service name
-  Future<String?> getAiGenerationService() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_aiGenerationServiceKey);
-  }
-
-  /// Saves the AI generation model name
-  Future<void> saveAiGenerationModel(String modelName) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_aiGenerationModelKey, modelName);
-  }
-
-  /// Gets the AI generation model name
-  Future<String?> getAiGenerationModel() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_aiGenerationModelKey);
-  }
-
-  /// Saves the AI generation language code
-  Future<void> saveAiGenerationLanguage(String languageCode) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_aiGenerationLanguageKey, languageCode);
-  }
-
-  /// Gets the AI generation language code
-  Future<String?> getAiGenerationLanguage() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_aiGenerationLanguageKey);
-  }
-
-  /// Saves the AI generation question count
-  Future<void> saveAiGenerationQuestionCount(int count) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_aiGenerationQuestionCountKey, count);
-  }
-
-  /// Gets the AI generation question count
-  Future<int?> getAiGenerationQuestionCount() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getInt(_aiGenerationQuestionCountKey);
-  }
-
-  /// Saves the AI generation question types (as list of strings)
-  Future<void> saveAiGenerationQuestionTypes(List<String> types) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList(_aiGenerationQuestionTypesKey, types);
-  }
-
-  /// Gets the AI generation question types
-  Future<List<String>?> getAiGenerationQuestionTypes() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getStringList(_aiGenerationQuestionTypesKey);
+    return AiGenerationStoredSettings(
+      serviceName: prefs.getString(_aiGenerationServiceKey),
+      modelName: prefs.getString(_aiGenerationModelKey),
+      language: prefs.getString(_aiGenerationLanguageKey),
+      questionCount: prefs.getInt(_aiGenerationQuestionCountKey),
+      questionTypes: prefs.getStringList(_aiGenerationQuestionTypesKey),
+      draftText: prefs.getString(_aiDraftTextKey),
+    );
   }
 }
