@@ -368,6 +368,11 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                           ],
                         ),
                       ),
+                      IconButton(
+                        onPressed: () => _deleteQuestion(index),
+                        icon: const Icon(Icons.delete, color: Colors.red),
+                        tooltip: AppLocalizations.of(context)!.deleteAction,
+                      ),
                     ],
                   ),
                 ],
@@ -379,6 +384,26 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
     );
   }
 
+  /// Deletes a question after user confirmation.
+  ///
+  /// This method is called when the delete button in the question card is pressed.
+  /// It reuses [_confirmDismiss] to ask for confirmation before removing the
+  /// question from the list.
+  Future<void> _deleteQuestion(int index) async {
+    final question = widget.quizFile.questions[index];
+    final confirmed = await _confirmDismiss(context, question);
+    if (confirmed && mounted) {
+      setState(() {
+        widget.quizFile.questions.removeAt(index);
+        widget.onFileChange();
+      });
+    }
+  }
+
+  /// Toggles the enabled state of a question at the given [index].
+  ///
+  /// This updates the question in the list and notifies the parent widget
+  /// about the file change.
   void _toggleQuestionEnabled(int index) {
     setState(() {
       final question = widget.quizFile.questions[index];
@@ -389,6 +414,9 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
     });
   }
 
+  /// Shows a confirmation dialog before deleting a [question].
+  ///
+  /// Returns `true` if the user confirms the deletion, `false` otherwise.
   Future<bool> _confirmDismiss(BuildContext context, Question question) async {
     return await showDialog<bool>(
           context: context,
