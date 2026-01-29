@@ -201,7 +201,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                 actions: [
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      context.pop();
                     },
                     child: Text(AppLocalizations.of(context)!.acceptButton),
                   ),
@@ -250,7 +250,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
 
         // Close loading dialog
         if (mounted) {
-          Navigator.of(context).pop();
+          context.pop();
         }
 
         if (generatedQuestions.isEmpty) {
@@ -295,7 +295,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
       } catch (e) {
         // Close loading dialog if still open
         if (mounted) {
-          Navigator.of(context).pop();
+          context.pop();
 
           context.presentSnackBar(
             AppLocalizations.of(

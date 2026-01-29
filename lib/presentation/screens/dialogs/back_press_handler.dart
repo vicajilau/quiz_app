@@ -19,12 +19,12 @@ class BackPressHandler {
             ),
             actions: [
               TextButton(
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: () => context.pop(),
                 child: Text(AppLocalizations.of(context)!.cancel),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  context.pop();
                   context.pop();
                 },
                 child: Text(AppLocalizations.of(context)!.abandon),

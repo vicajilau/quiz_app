@@ -14,10 +14,12 @@ import '../../widgets/latex_text.dart';
 
 /// Dialog widget for creating or editing a Question.
 class AddEditQuestionDialog extends StatefulWidget {
-  final Question? question; // Optional question for editing.
-  final QuizFile quizFile; // The file containing all questions.
-  final int?
-  questionPosition; // Optional index for editing a specific question.
+  // Optional question for editing.
+  final Question? question;
+  // The file containing all questions.
+  final QuizFile quizFile;
+  // Optional index for editing a specific question.
+  final int? questionPosition;
   final VoidCallback? onDelete;
 
   /// Constructor for the dialog.
@@ -442,7 +444,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
 
     if (confirmed && mounted) {
       widget.onDelete!();
-      Navigator.of(context).pop(null);
+      context.pop(null);
     }
   }
 }
