@@ -1582,5 +1582,13 @@
   "aiMoreWordsMorePrecision": "Più parole = più precisione",
   "@aiMoreWordsMorePrecision": {
     "description": "Testo di aiuto che spiega che più parole portano a risposte più precise"
+  },
+  "aiKeepDraftTitle": "Mantieni bozza IA",
+  "@aiKeepDraftTitle": {
+    "description": "Titolo per l'impostazione per mantenere la bozza di testo generata dall'IA"
+  },
+  "aiKeepDraftDescription": "Salva automaticamente il testo inserito nella finestra di dialogo di generazione IA in modo che non vada perso se la finestra viene chiusa.",
+  "@aiKeepDraftDescription": {
+    "description": "Descrizione per l'impostazione per mantenere la bozza di testo generata dall'IA"
   }
 }

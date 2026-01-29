@@ -1572,5 +1572,13 @@
   "aiMoreWordsMorePrecision": "Hitz gehiago = zehaztasun handiagoa",
   "@aiMoreWordsMorePrecision": {
     "description": "Laguntza testua azaltzen duena hitz gehiago erantzun zehatzagoak ekartzea"
+  },
+  "aiKeepDraftTitle": "AI zirriborroa mantendu",
+  "@aiKeepDraftTitle": {
+    "description": "AI sortutako testu zirriborroa mantentzeko ezarpenaren izenburua"
+  },
+  "aiKeepDraftDescription": "Gorde automatikoki AI sortzeko elkarrizketan sartutako testua, elkarrizketa ixten bada galdu ez dadin.",
+  "@aiKeepDraftDescription": {
+    "description": "AI sortutako testu zirriborroa mantentzeko ezarpenaren deskribapena"
   }
 }

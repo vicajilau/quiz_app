@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../core/l10n/app_localizations.dart';
+import '../../../data/services/configuration_service.dart';
 import '../../../data/services/ai/ai_question_generation_service.dart';
 import '../../../data/services/ai/ai_service.dart';
 import '../../widgets/ai_service_model_selector.dart';
@@ -100,6 +101,19 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   void initState() {
     super.initState();
     _textController.addListener(_updateWordCount);
+    _loadDraft();
+  }
+
+  Future<void> _loadDraft() async {
+    final keepDraft = await ConfigurationService.instance.getAiKeepDraft();
+    if (keepDraft) {
+      final draft = await ConfigurationService.instance.getAiDraftText();
+      if (draft != null && draft.isNotEmpty && mounted) {
+        setState(() {
+          _textController.text = draft;
+        });
+      }
+    }
   }
 
   @override
@@ -128,10 +142,20 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
 
   @override
   void dispose() {
+    _saveDraft();
     _textController.removeListener(_updateWordCount);
     _textController.dispose();
     _questionCountController.dispose();
     super.dispose();
+  }
+
+  Future<void> _saveDraft() async {
+    final keepDraft = await ConfigurationService.instance.getAiKeepDraft();
+    if (keepDraft) {
+      await ConfigurationService.instance.saveAiDraftText(
+        _textController.text.trim(),
+      );
+    }
   }
 
   void _updateWordCount() {
@@ -407,6 +431,17 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                           helperMaxLines: 2,
                           border: const OutlineInputBorder(),
                           helperText: localizations.aiContentHelperText,
+                          suffixIcon: _textController.text.isNotEmpty
+                              ? IconButton(
+                                  icon: const Icon(Icons.clear),
+                                  onPressed: () {
+                                    _textController.clear();
+                                    // Also clear the draft
+                                    ConfigurationService.instance
+                                        .saveAiDraftText('');
+                                  },
+                                )
+                              : null,
                         ),
                         maxLines: 8,
                         validator: (value) {

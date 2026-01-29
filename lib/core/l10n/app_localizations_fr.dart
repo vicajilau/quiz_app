@@ -1123,4 +1123,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get aiMoreWordsMorePrecision => 'Plus de mots = plus de précision';
+
+  @override
+  String get aiKeepDraftTitle => 'Conserver le brouillon IA';
+
+  @override
+  String get aiKeepDraftDescription =>
+      'Enregistrer automatiquement le texte saisi dans la boîte de dialogue de génération IA pour qu\'il ne soit pas perdu si la boîte de dialogue est fermée.';
 }

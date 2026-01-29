@@ -1572,5 +1572,13 @@
   "aiMoreWordsMorePrecision": "Més paraules = més precisió",
   "@aiMoreWordsMorePrecision": {
     "description": "Text d'ajuda que explica que més paraules porten a respostes més precises"
+  },
+  "aiKeepDraftTitle": "Mantenir esborrany d'IA",
+  "@aiKeepDraftTitle": {
+    "description": "Títol per a la configuració de mantenir l'esborrany de text generat per IA"
+  },
+  "aiKeepDraftDescription": "Desar automàticament el text introduït al diàleg de generació d'IA perquè no es perdi si es tanca el diàleg.",
+  "@aiKeepDraftDescription": {
+    "description": "Descripció per a la configuració de mantenir l'esborrany de text generat per IA"
   }
 }

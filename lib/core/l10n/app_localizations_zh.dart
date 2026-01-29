@@ -1063,4 +1063,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get aiMoreWordsMorePrecision => '更多词汇 = 更高精度';
+
+  @override
+  String get aiKeepDraftTitle => '保留 AI 草稿';
+
+  @override
+  String get aiKeepDraftDescription => '自动保存 AI 生成对话框中输入的文本，以防对话框关闭时丢失。';
 }

@@ -22,6 +22,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
   bool _aiAssistantEnabled = true;
   bool _randomizeAnswers = false;
   bool _showCorrectAnswerCount = false;
+  bool _keepAiDraft = true;
   final TextEditingController _openAiApiKeyController = TextEditingController();
   final TextEditingController _geminiApiKeyController = TextEditingController();
   String? _apiKeyErrorMessage;
@@ -46,6 +47,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
       final geminiApiKey = await service.getGeminiApiKey();
       _randomizeAnswers = await service.getRandomizeAnswers();
       _showCorrectAnswerCount = await service.getShowCorrectAnswerCount();
+      _keepAiDraft = await service.getAiKeepDraft();
       _defaultAIModel = await service.getDefaultAIModel();
 
       // Only enable AI Assistant if there's at least one API key configured
@@ -109,6 +111,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
     await ConfigurationService.instance.saveShowCorrectAnswerCount(
       _showCorrectAnswerCount,
     );
+    await ConfigurationService.instance.saveAiKeepDraft(_keepAiDraft);
 
     // Save OpenAI API Key securely (only if valid format)
     if (hasValidOpenAI) {
@@ -364,6 +367,21 @@ class _SettingsDialogState extends State<SettingsDialog> {
 
                   if (_aiAssistantEnabled) ...[
                     const SizedBox(height: 16),
+                    SwitchListTile(
+                      title: Text(
+                        AppLocalizations.of(context)!.aiKeepDraftTitle,
+                      ),
+                      subtitle: Text(
+                        AppLocalizations.of(context)!.aiKeepDraftDescription,
+                      ),
+                      value: _keepAiDraft,
+                      onChanged: (bool value) {
+                        setState(() {
+                          _keepAiDraft = value;
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 16),
                     TextFormField(
                       controller: _geminiApiKeyController,
                       decoration: InputDecoration(
@@ -376,18 +394,21 @@ class _SettingsDialogState extends State<SettingsDialog> {
                         hintMaxLines: 3,
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: _geminiApiKeyController.text.isValidGeminiApiKey
+                            color:
+                                _geminiApiKeyController.text.isValidGeminiApiKey
                                 ? Theme.of(context).colorScheme.outline
                                 : Theme.of(context).colorScheme.error,
                           ),
                         ),
                         prefixIcon: Icon(
                           Icons.key,
-                          color: _geminiApiKeyController.text.isValidGeminiApiKey
+                          color:
+                              _geminiApiKeyController.text.isValidGeminiApiKey
                               ? null
                               : Theme.of(context).colorScheme.error,
                         ),
-                        suffixIcon: _geminiApiKeyController.text.isValidGeminiApiKey
+                        suffixIcon:
+                            _geminiApiKeyController.text.isValidGeminiApiKey
                             ? Icon(
                                 Icons.check_circle,
                                 color: Theme.of(context).colorScheme.primary,
@@ -445,18 +466,21 @@ class _SettingsDialogState extends State<SettingsDialog> {
                         hintMaxLines: 3,
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: _openAiApiKeyController.text.isValidOpenAIApiKey
+                            color:
+                                _openAiApiKeyController.text.isValidOpenAIApiKey
                                 ? Theme.of(context).colorScheme.outline
                                 : Theme.of(context).colorScheme.error,
                           ),
                         ),
                         prefixIcon: Icon(
                           Icons.key,
-                          color: _openAiApiKeyController.text.isValidOpenAIApiKey
+                          color:
+                              _openAiApiKeyController.text.isValidOpenAIApiKey
                               ? null
                               : Theme.of(context).colorScheme.error,
                         ),
-                        suffixIcon: _openAiApiKeyController.text.isValidOpenAIApiKey
+                        suffixIcon:
+                            _openAiApiKeyController.text.isValidOpenAIApiKey
                             ? Icon(
                                 Icons.check_circle,
                                 color: Theme.of(context).colorScheme.primary,
@@ -557,10 +581,12 @@ class _SettingsDialogState extends State<SettingsDialog> {
                       AiServiceModelSelector(
                         initialModel: _defaultAIModel,
                         saveToPreferences: true,
-                        geminiApiKey: _geminiApiKeyController.text.isValidGeminiApiKey
+                        geminiApiKey:
+                            _geminiApiKeyController.text.isValidGeminiApiKey
                             ? _geminiApiKeyController.text.trim()
                             : null,
-                        openaiApiKey: _openAiApiKeyController.text.isValidOpenAIApiKey
+                        openaiApiKey:
+                            _openAiApiKeyController.text.isValidOpenAIApiKey
                             ? _openAiApiKeyController.text.trim()
                             : null,
                       ),

@@ -1120,4 +1120,11 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get aiMoreWordsMorePrecision => 'Mais palavras = mais precisão';
+
+  @override
+  String get aiKeepDraftTitle => 'Manter rascunho de IA';
+
+  @override
+  String get aiKeepDraftDescription =>
+      'Salvar automaticamente o texto inserido na caixa de diálogo de geração de IA para que não seja perdido se a caixa de diálogo for fechada.';
 }

@@ -32,6 +32,7 @@ class AiQuestionTypeSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       spacing: 4,
+      runSpacing: 4,
       children: AiQuestionType.values.map((type) {
         final isSelected = selectedTypes.contains(type);
         final primaryColor = Theme.of(context).colorScheme.primary;

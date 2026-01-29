@@ -1124,4 +1124,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get aiMoreWordsMorePrecision => 'Mehr Wörter = mehr Präzision';
+
+  @override
+  String get aiKeepDraftTitle => 'KI-Entwurf behalten';
+
+  @override
+  String get aiKeepDraftDescription =>
+      'Speichern Sie den im KI-Generierungsdialog eingegebenen Text automatisch, damit er nicht verloren geht, wenn der Dialog geschlossen wird.';
 }

@@ -1582,5 +1582,13 @@
   "aiMoreWordsMorePrecision": "Plus de mots = plus de précision",
   "@aiMoreWordsMorePrecision": {
     "description": "Texte d'aide expliquant que plus de mots conduisent à des réponses plus précises"
+  },
+  "aiKeepDraftTitle": "Conserver le brouillon IA",
+  "@aiKeepDraftTitle": {
+    "description": "Titre du paramètre pour conserver le brouillon de texte généré par l'IA"
+  },
+  "aiKeepDraftDescription": "Enregistrer automatiquement le texte saisi dans la boîte de dialogue de génération IA pour qu'il ne soit pas perdu si la boîte de dialogue est fermée.",
+  "@aiKeepDraftDescription": {
+    "description": "Description du paramètre pour conserver le brouillon de texte généré par l'IA"
   }
 }
