@@ -16,6 +16,13 @@ class ConfigurationService {
 
   static const String _aiKeepDraftKey = 'ai_keep_draft';
   static const String _aiDraftTextKey = 'ai_draft_text';
+  static const String _aiGenerationServiceKey = 'ai_generation_service';
+  static const String _aiGenerationModelKey = 'ai_generation_model';
+  static const String _aiGenerationLanguageKey = 'ai_generation_language';
+  static const String _aiGenerationQuestionCountKey =
+      'ai_generation_question_count';
+  static const String _aiGenerationQuestionTypesKey =
+      'ai_generation_question_types';
 
   static ConfigurationService? _instance;
   static ConfigurationService get instance =>
@@ -208,5 +215,65 @@ class ConfigurationService {
   Future<String?> getAiDraftText() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(_aiDraftTextKey);
+  }
+
+  /// Saves the AI generation service name
+  Future<void> saveAiGenerationService(String serviceName) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_aiGenerationServiceKey, serviceName);
+  }
+
+  /// Gets the AI generation service name
+  Future<String?> getAiGenerationService() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_aiGenerationServiceKey);
+  }
+
+  /// Saves the AI generation model name
+  Future<void> saveAiGenerationModel(String modelName) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_aiGenerationModelKey, modelName);
+  }
+
+  /// Gets the AI generation model name
+  Future<String?> getAiGenerationModel() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_aiGenerationModelKey);
+  }
+
+  /// Saves the AI generation language code
+  Future<void> saveAiGenerationLanguage(String languageCode) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_aiGenerationLanguageKey, languageCode);
+  }
+
+  /// Gets the AI generation language code
+  Future<String?> getAiGenerationLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_aiGenerationLanguageKey);
+  }
+
+  /// Saves the AI generation question count
+  Future<void> saveAiGenerationQuestionCount(int count) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(_aiGenerationQuestionCountKey, count);
+  }
+
+  /// Gets the AI generation question count
+  Future<int?> getAiGenerationQuestionCount() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getInt(_aiGenerationQuestionCountKey);
+  }
+
+  /// Saves the AI generation question types (as list of strings)
+  Future<void> saveAiGenerationQuestionTypes(List<String> types) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList(_aiGenerationQuestionTypesKey, types);
+  }
+
+  /// Gets the AI generation question types
+  Future<List<String>?> getAiGenerationQuestionTypes() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getStringList(_aiGenerationQuestionTypesKey);
   }
 }

@@ -28,9 +28,15 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   // Threshold for topic mode (creative exploration)
   static const int _topicModeThreshold = 10;
 
-  // AI service and model from selector
+  // AI service from selector
   AIService? _selectedService;
+  // AI model name from selector
   String? _selectedModel;
+
+  // Saved service name to restore
+  String? _savedServiceName;
+  // Saved model name to restore
+  String? _savedModelName;
 
   // Check if we're in topic mode (less than 10 words)
   bool get _isTopicMode {
@@ -108,13 +114,76 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   Future<void> _loadDraft() async {
     final keepDraft = await ConfigurationService.instance.getAiKeepDraft();
     if (keepDraft) {
+      // Load drafted text
       final draft = await ConfigurationService.instance.getAiDraftText();
       if (draft != null && draft.isNotEmpty && mounted) {
         setState(() {
           _textController.text = draft;
         });
       }
+
+      // Load saved settings
+      final savedService = await ConfigurationService.instance
+          .getAiGenerationService();
+      final savedModel = await ConfigurationService.instance
+          .getAiGenerationModel();
+
+      if (savedService != null && mounted) {
+        setState(() {
+          _savedServiceName = savedService;
+        });
+      }
+
+      if (savedModel != null && mounted) {
+        setState(() {
+          _savedModelName = savedModel;
+        });
+      }
+
+      // Load saved language
+      final savedLanguage = await ConfigurationService.instance
+          .getAiGenerationLanguage();
+      if (savedLanguage != null &&
+          _supportedLanguages.contains(savedLanguage) &&
+          mounted) {
+        setState(() {
+          _selectedLanguage = savedLanguage;
+        });
+      }
+
+      // Load saved question count
+      final savedCount = await ConfigurationService.instance
+          .getAiGenerationQuestionCount();
+      if (savedCount != null && mounted) {
+        _questionCountController.text = savedCount.toString();
+      }
+
+      // Load saved question types
+      final savedTypes = await ConfigurationService.instance
+          .getAiGenerationQuestionTypes();
+      if (savedTypes != null && savedTypes.isNotEmpty && mounted) {
+        final types = savedTypes
+            .map((t) => _getAiQuestionTypeFromString(t))
+            .where((t) => t != null)
+            .cast<AiQuestionType>()
+            .toSet();
+
+        if (types.isNotEmpty) {
+          setState(() {
+            _selectedQuestionTypes = types;
+          });
+        }
+      }
     }
+  }
+
+  AiQuestionType? _getAiQuestionTypeFromString(String type) {
+    for (final value in AiQuestionType.values) {
+      if (value.toString() == type) {
+        return value;
+      }
+    }
+    return null;
   }
 
   @override
@@ -153,9 +222,46 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   Future<void> _saveDraft() async {
     final keepDraft = await ConfigurationService.instance.getAiKeepDraft();
     if (keepDraft) {
+      // Save text draft
       await ConfigurationService.instance.saveAiDraftText(
         _textController.text.trim(),
       );
+
+      // Save valid settings even if text is empty? The requirements say "in case of failure",
+      // which implies we should save when closing or generating. _saveDraft is called on dispose.
+
+      // Save service
+      if (_selectedService != null) {
+        await ConfigurationService.instance.saveAiGenerationService(
+          _selectedService!.serviceName,
+        );
+      }
+
+      // Save model
+      if (_selectedModel != null) {
+        await ConfigurationService.instance.saveAiGenerationModel(
+          _selectedModel!,
+        );
+      }
+
+      // Save language
+      await ConfigurationService.instance.saveAiGenerationLanguage(
+        _selectedLanguage,
+      );
+
+      // Save question count
+      if (_questionCountController.text.isNotEmpty) {
+        final count = int.tryParse(_questionCountController.text);
+        if (count != null) {
+          await ConfigurationService.instance.saveAiGenerationQuestionCount(
+            count,
+          );
+        }
+      }
+
+      // Save question types
+      final types = _selectedQuestionTypes.map((t) => t.toString()).toList();
+      await ConfigurationService.instance.saveAiGenerationQuestionTypes(types);
     }
   }
 
@@ -322,6 +428,8 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                     children: [
                       // AI service and model selectors
                       AiServiceModelSelector(
+                        initialService: _savedServiceName,
+                        initialModel: _savedModelName,
                         onServiceChanged: (service) {
                           setState(() {
                             _selectedService = service;
