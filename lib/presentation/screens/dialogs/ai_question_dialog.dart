@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/extensions/string_extensions.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
@@ -194,7 +195,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                   ),
                 ),
                 IconButton(
-                  onPressed: () => Navigator.of(context).pop(),
+                  onPressed: () => context.pop(),
                   icon: const Icon(Icons.close),
                 ),
               ],

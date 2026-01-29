@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_event.dart';
@@ -13,12 +14,12 @@ class SubmitQuizDialog {
           content: Text(AppLocalizations.of(context)!.finishQuizConfirmation),
           actions: [
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => context.pop(),
               child: Text(AppLocalizations.of(context)!.cancel),
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                context.pop();
                 bloc.add(QuizSubmitted());
               },
               child: Text(AppLocalizations.of(context)!.finish),

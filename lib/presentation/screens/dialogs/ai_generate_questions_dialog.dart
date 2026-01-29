@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../../data/services/ai/ai_question_generation_service.dart';
 import '../../../data/services/ai/ai_service.dart';
@@ -477,7 +478,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                    onPressed: () => Navigator.of(context).pop(),
+                    onPressed: () => context.pop(),
                     child: Text(localizations.cancel),
                   ),
                   const SizedBox(width: 8),
@@ -501,7 +502,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                                   preferredService: _selectedService,
                                   preferredModel: _selectedModel,
                                 );
-                                Navigator.of(context).pop(config);
+                                context.pop(config);
                               }
                             }
                           : null,
