@@ -100,18 +100,34 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
             break;
           }
 
+          if (cachedQuizFile.questions.isEmpty) {
+            setState(() {
+              cachedQuizFile.questions.insertAll(0, importedQuizFile.questions);
+            });
+            _checkFileChange();
+            if (mounted) {
+              context.presentSnackBar(
+                AppLocalizations.of(
+                  context,
+                )!.questionsImportedSuccess(importedQuizFile.questions.length),
+              );
+            }
+            return;
+          }
+
           // Show import dialog
-          final position = await showDialog<String>(
+          final questionsPosition = await showDialog<QuestionsPosition>(
             context: context,
+            barrierDismissible: false,
             builder: (context) => ImportQuestionsDialog(
               questionCount: importedQuizFile.questions.length,
               fileName: filePath.split('/').last,
             ),
           );
 
-          if (position != null && mounted) {
+          if (questionsPosition != null && mounted) {
             setState(() {
-              if (position == 'beginning') {
+              if (questionsPosition == QuestionsPosition.beginning) {
                 // Insert at the beginning
                 cachedQuizFile.questions.insertAll(
                   0,
@@ -268,19 +284,35 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
           return;
         }
 
+        if (cachedQuizFile.questions.isEmpty) {
+          setState(() {
+            cachedQuizFile.questions.insertAll(0, generatedQuestions);
+          });
+          _checkFileChange();
+          if (mounted) {
+            context.presentSnackBar(
+              AppLocalizations.of(
+                context,
+              )!.questionsImportedSuccess(generatedQuestions.length),
+            );
+          }
+          return;
+        }
+
         // Show import dialog to choose position
         if (!mounted) return;
-        final position = await showDialog<String>(
+        final questionsPosition = await showDialog<QuestionsPosition>(
           context: context,
+          barrierDismissible: false,
           builder: (context) => ImportQuestionsDialog(
             questionCount: generatedQuestions.length,
             fileName: AppLocalizations.of(context)!.aiGeneratedQuestions,
           ),
         );
 
-        if (position != null && mounted) {
+        if (questionsPosition != null && mounted) {
           setState(() {
-            if (position == 'beginning') {
+            if (questionsPosition == QuestionsPosition.beginning) {
               // Insert at the beginning
               cachedQuizFile.questions.insertAll(0, generatedQuestions);
             } else {
