@@ -11,6 +11,7 @@ class BackPressHandler {
     if (state is QuizExecutionInProgress) {
       showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text(AppLocalizations.of(context)!.abandonQuiz),

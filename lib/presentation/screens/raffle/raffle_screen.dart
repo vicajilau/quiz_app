@@ -278,6 +278,7 @@ class _RaffleScreenContent extends StatelessWidget {
     // Show dialog with options
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (dialogContext) => AlertDialog(
         title: Text(AppLocalizations.of(context)!.selectLogo),
         content: Column(

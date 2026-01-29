@@ -328,6 +328,7 @@ class WinnersScreen extends StatelessWidget {
 
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (dialogContext) => AlertDialog(
         title: Text(AppLocalizations.of(context)!.shareResultsTitle),
         content: Column(

@@ -86,6 +86,7 @@ class LaTeXPreviewButton extends StatelessWidget {
       onPressed: () {
         showDialog(
           context: context,
+          barrierDismissible: false,
           builder: (context) =>
               LaTeXPreviewDialog(optionText: text, title: title),
         );

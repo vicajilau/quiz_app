@@ -8,6 +8,7 @@ class SubmitQuizDialog {
   static void show(BuildContext context, QuizExecutionBloc bloc) {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(AppLocalizations.of(context)!.finishQuiz),
