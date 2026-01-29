@@ -420,6 +420,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
     final confirmed =
         await showDialog<bool>(
           context: context,
+          barrierDismissible: false,
           builder: (context) => AlertDialog(
             title: Text(localizations.confirmDeleteTitle),
             content: Text(
