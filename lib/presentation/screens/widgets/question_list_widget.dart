@@ -81,6 +81,12 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                 question: question,
                 quizFile: widget.quizFile,
                 questionPosition: index,
+                onDelete: () {
+                  setState(() {
+                    widget.quizFile.questions.removeAt(index);
+                    widget.onFileChange();
+                  });
+                },
               ),
             );
             if (updatedQuestion != null) {

@@ -18,6 +18,7 @@ class AddEditQuestionDialog extends StatefulWidget {
   final QuizFile quizFile; // The file containing all questions.
   final int?
   questionPosition; // Optional index for editing a specific question.
+  final VoidCallback? onDelete;
 
   /// Constructor for the dialog.
   const AddEditQuestionDialog({
@@ -25,6 +26,7 @@ class AddEditQuestionDialog extends StatefulWidget {
     this.question,
     required this.quizFile,
     this.questionPosition,
+    this.onDelete,
   });
 
   @override
@@ -166,10 +168,21 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
     final localizations = AppLocalizations.of(context)!;
 
     return AlertDialog(
-      title: Text(
-        widget.question == null
-            ? localizations.addQuestion
-            : localizations.editQuestion,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            widget.question == null
+                ? localizations.addQuestion
+                : localizations.editQuestion,
+          ),
+          if (widget.question != null && widget.onDelete != null)
+            IconButton(
+              onPressed: _confirmAndDelete,
+              icon: const Icon(Icons.delete, color: Colors.red),
+              tooltip: localizations.deleteAction,
+            ),
+        ],
       ),
       content: SizedBox(
         width: MediaQuery.of(context).size.width * 0.8,
@@ -400,5 +413,35 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
         ),
       ],
     );
+  }
+
+  Future<void> _confirmAndDelete() async {
+    final localizations = AppLocalizations.of(context)!;
+    final confirmed =
+        await showDialog<bool>(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(localizations.confirmDeleteTitle),
+            content: Text(
+              localizations.confirmDeleteMessage(widget.question!.text),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => context.pop(false),
+                child: Text(localizations.cancelButton),
+              ),
+              ElevatedButton(
+                onPressed: () => context.pop(true),
+                child: Text(localizations.deleteButton),
+              ),
+            ],
+          ),
+        ) ??
+        false;
+
+    if (confirmed && mounted) {
+      widget.onDelete!();
+      context.pop();
+    }
   }
 }
