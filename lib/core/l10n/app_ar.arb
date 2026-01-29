@@ -1572,5 +1572,13 @@
   "aiMoreWordsMorePrecision": "كلمات أكثر = دقة أعلى",
   "@aiMoreWordsMorePrecision": {
     "description": "نص تلميح يشرح أن المزيد من الكلمات يؤدي إلى إجابات أكثر دقة"
+  },
+  "aiKeepDraftTitle": "حفظ مسودة الذكاء الاصطناعي",
+  "@aiKeepDraftTitle": {
+    "description": "عنوان لإعداد حفظ مسودة النص التي تم إنشاؤها بواسطة الذكاء الاصطناعي"
+  },
+  "aiKeepDraftDescription": "حفظ النص المدخل في مربع حوار توليد الذكاء الاصطناعي تلقائيًا حتى لا يضيع إذا تم إغلاق مربع الحوار.",
+  "@aiKeepDraftDescription": {
+    "description": "وصف لإعداد حفظ مسودة النص التي تم إنشاؤها بواسطة الذكاء الاصطناعي"
   }
 }

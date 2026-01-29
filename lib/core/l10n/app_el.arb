@@ -319,5 +319,7 @@
   "aiPrecisionLow": "Χαμηλή",
   "aiPrecisionMedium": "Μεσαία",
   "aiPrecisionHigh": "Υψηλή",
-  "aiMoreWordsMorePrecision": "Περισσότερες λέξεις = περισσότερη ακρίβεια"
+  "aiMoreWordsMorePrecision": "Περισσότερες λέξεις = περισσότερη ακρίβεια",
+  "aiKeepDraftTitle": "Διατήρηση πρόχειρου AI",
+  "aiKeepDraftDescription": "Αυτόματη αποθήκευση του κειμένου που εισάγεται στο διάλογο δημιουργίας AI."
 }

@@ -1572,5 +1572,13 @@
   "aiMoreWordsMorePrecision": "更多词汇 = 更高精度",
   "@aiMoreWordsMorePrecision": {
     "description": "提示文字说明更多词汇会带来更精确的答案"
+  },
+  "aiKeepDraftTitle": "保留 AI 草稿",
+  "@aiKeepDraftTitle": {
+    "description": "保留 AI 生成文本草稿的设置标题"
+  },
+  "aiKeepDraftDescription": "自动保存 AI 生成对话框中输入的文本，以防对话框关闭时丢失。",
+  "@aiKeepDraftDescription": {
+    "description": "保留 AI 生成文本草稿的设置说明"
   }
 }

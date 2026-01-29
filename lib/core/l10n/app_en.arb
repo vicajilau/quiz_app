@@ -1565,5 +1565,13 @@
   "aiMoreWordsMorePrecision": "More words = more precision",
   "@aiMoreWordsMorePrecision": {
     "description": "Hint text explaining that more words lead to more precise answers"
+  },
+  "aiKeepDraftTitle": "Keep AI Draft",
+  "@aiKeepDraftTitle": {
+    "description": "Title for the setting to keep AI generated text draft"
+  },
+  "aiKeepDraftDescription": "Automatically save the text entered in the AI generation dialog so it is not lost if the dialog is closed.",
+  "@aiKeepDraftDescription": {
+    "description": "Description for the setting to keep AI generated text draft"
   }
 }

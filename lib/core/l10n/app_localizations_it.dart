@@ -1116,4 +1116,11 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get aiMoreWordsMorePrecision => 'Più parole = più precisione';
+
+  @override
+  String get aiKeepDraftTitle => 'Mantieni bozza IA';
+
+  @override
+  String get aiKeepDraftDescription =>
+      'Salva automaticamente il testo inserito nella finestra di dialogo di generazione IA in modo che non vada perso se la finestra viene chiusa.';
 }

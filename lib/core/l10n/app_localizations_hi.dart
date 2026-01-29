@@ -1107,4 +1107,11 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get aiMoreWordsMorePrecision => 'अधिक शब्द = अधिक सटीकता';
+
+  @override
+  String get aiKeepDraftTitle => 'AI ड्राफ्ट सुरक्षित रखें';
+
+  @override
+  String get aiKeepDraftDescription =>
+      'AI जनरेशन डायलॉग में दर्ज टेक्स्ट को अपने आप सेव करें ताकि डायलॉग बंद होने पर वह खो न जाए।';
 }

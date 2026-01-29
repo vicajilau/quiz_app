@@ -1118,4 +1118,11 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get aiMoreWordsMorePrecision => 'Hitz gehiago = zehaztasun handiagoa';
+
+  @override
+  String get aiKeepDraftTitle => 'AI zirriborroa mantendu';
+
+  @override
+  String get aiKeepDraftDescription =>
+      'Gorde automatikoki AI sortzeko elkarrizketan sartutako testua, elkarrizketa ixten bada galdu ez dadin.';
 }

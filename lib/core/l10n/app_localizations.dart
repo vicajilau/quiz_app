@@ -2029,6 +2029,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'More words = more precision'**
   String get aiMoreWordsMorePrecision;
+
+  /// Title for the setting to keep AI generated text draft
+  ///
+  /// In en, this message translates to:
+  /// **'Keep AI Draft'**
+  String get aiKeepDraftTitle;
+
+  /// Description for the setting to keep AI generated text draft
+  ///
+  /// In en, this message translates to:
+  /// **'Automatically save the text entered in the AI generation dialog so it is not lost if the dialog is closed.'**
+  String get aiKeepDraftDescription;
 }
 
 class _AppLocalizationsDelegate

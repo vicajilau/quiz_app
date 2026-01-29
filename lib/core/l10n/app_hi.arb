@@ -1572,5 +1572,13 @@
   "aiMoreWordsMorePrecision": "अधिक शब्द = अधिक सटीकता",
   "@aiMoreWordsMorePrecision": {
     "description": "संकेत टेक्स्ट समझाता है कि अधिक शब्द अधिक सटीक उत्तर देते हैं"
+  },
+  "aiKeepDraftTitle": "AI ड्राफ्ट सुरक्षित रखें",
+  "@aiKeepDraftTitle": {
+    "description": "AI जनरेशन डायलॉग में दर्ज टेक्स्ट को अपने आप सेव करें।"
+  },
+  "aiKeepDraftDescription": "AI जनरेशन डायलॉग में दर्ज टेक्स्ट को अपने आप सेव करें ताकि डायलॉग बंद होने पर वह खो न जाए।",
+  "@aiKeepDraftDescription": {
+    "description": "AI जनरेशन डायलॉग में दर्ज टेक्स्ट को अपने आप सेव करें।"
   }
 }

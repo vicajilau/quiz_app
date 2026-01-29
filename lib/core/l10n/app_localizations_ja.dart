@@ -1067,4 +1067,11 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get aiMoreWordsMorePrecision => '単語が多いほど精度が高い';
+
+  @override
+  String get aiKeepDraftTitle => 'AIドラフトを保持';
+
+  @override
+  String get aiKeepDraftDescription =>
+      'AI生成ダイアログに入力されたテキストを自動的に保存し、ダイアログが閉じられても失われないようにします。';
 }

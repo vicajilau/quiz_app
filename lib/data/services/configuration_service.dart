@@ -14,6 +14,9 @@ class ConfigurationService {
   static const String _defaultAIServiceKey = 'default_ai_service';
   static const String _defaultAIModelKey = 'default_ai_model';
 
+  static const String _aiKeepDraftKey = 'ai_keep_draft';
+  static const String _aiDraftTextKey = 'ai_draft_text';
+
   static ConfigurationService? _instance;
   static ConfigurationService get instance =>
       _instance ??= ConfigurationService._();
@@ -177,5 +180,33 @@ class ConfigurationService {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_defaultAIServiceKey);
     await prefs.remove(_defaultAIModelKey);
+  }
+
+  /// Saves whether to keep AI text draft
+  Future<void> saveAiKeepDraft(bool keep) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_aiKeepDraftKey, keep);
+  }
+
+  /// Gets whether to keep AI text draft, defaults to true
+  Future<bool> getAiKeepDraft() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_aiKeepDraftKey) ?? true;
+  }
+
+  /// Saves the AI text draft
+  Future<void> saveAiDraftText(String text) async {
+    final prefs = await SharedPreferences.getInstance();
+    if (text.isEmpty) {
+      await prefs.remove(_aiDraftTextKey);
+    } else {
+      await prefs.setString(_aiDraftTextKey, text);
+    }
+  }
+
+  /// Gets the AI text draft
+  Future<String?> getAiDraftText() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_aiDraftTextKey);
   }
 }

@@ -1122,4 +1122,11 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get aiMoreWordsMorePrecision => 'Més paraules = més precisió';
+
+  @override
+  String get aiKeepDraftTitle => 'Mantenir esborrany d\'IA';
+
+  @override
+  String get aiKeepDraftDescription =>
+      'Desar automàticament el text introduït al diàleg de generació d\'IA perquè no es perdi si es tanca el diàleg.';
 }

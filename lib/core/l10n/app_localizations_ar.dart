@@ -1099,4 +1099,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get aiMoreWordsMorePrecision => 'كلمات أكثر = دقة أعلى';
+
+  @override
+  String get aiKeepDraftTitle => 'حفظ مسودة الذكاء الاصطناعي';
+
+  @override
+  String get aiKeepDraftDescription =>
+      'حفظ النص المدخل في مربع حوار توليد الذكاء الاصطناعي تلقائيًا حتى لا يضيع إذا تم إغلاق مربع الحوار.';
 }

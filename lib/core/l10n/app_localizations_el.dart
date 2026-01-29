@@ -1126,4 +1126,11 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get aiMoreWordsMorePrecision =>
       'Περισσότερες λέξεις = περισσότερη ακρίβεια';
+
+  @override
+  String get aiKeepDraftTitle => 'Διατήρηση πρόχειρου AI';
+
+  @override
+  String get aiKeepDraftDescription =>
+      'Αυτόματη αποθήκευση του κειμένου που εισάγεται στο διάλογο δημιουργίας AI.';
 }

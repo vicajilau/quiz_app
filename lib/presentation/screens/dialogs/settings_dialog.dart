@@ -22,6 +22,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
   bool _aiAssistantEnabled = true;
   bool _randomizeAnswers = false;
   bool _showCorrectAnswerCount = false;
+  bool _keepAiDraft = true;
   final TextEditingController _openAiApiKeyController = TextEditingController();
   final TextEditingController _geminiApiKeyController = TextEditingController();
   String? _apiKeyErrorMessage;
@@ -46,6 +47,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
       final geminiApiKey = await service.getGeminiApiKey();
       _randomizeAnswers = await service.getRandomizeAnswers();
       _showCorrectAnswerCount = await service.getShowCorrectAnswerCount();
+      _keepAiDraft = await service.getAiKeepDraft();
       _defaultAIModel = await service.getDefaultAIModel();
 
       // Only enable AI Assistant if there's at least one API key configured
@@ -109,6 +111,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
     await ConfigurationService.instance.saveShowCorrectAnswerCount(
       _showCorrectAnswerCount,
     );
+    await ConfigurationService.instance.saveAiKeepDraft(_keepAiDraft);
 
     // Save OpenAI API Key securely (only if valid format)
     if (hasValidOpenAI) {
@@ -363,6 +366,21 @@ class _SettingsDialogState extends State<SettingsDialog> {
                   ),
 
                   if (_aiAssistantEnabled) ...[
+                    const SizedBox(height: 16),
+                    SwitchListTile(
+                      title: Text(
+                        AppLocalizations.of(context)!.aiKeepDraftTitle,
+                      ),
+                      subtitle: Text(
+                        AppLocalizations.of(context)!.aiKeepDraftDescription,
+                      ),
+                      value: _keepAiDraft,
+                      onChanged: (bool value) {
+                        setState(() {
+                          _keepAiDraft = value;
+                        });
+                      },
+                    ),
                     const SizedBox(height: 16),
                     TextFormField(
                       controller: _geminiApiKeyController,

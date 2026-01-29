@@ -1572,5 +1572,13 @@
   "aiMoreWordsMorePrecision": "単語が多いほど精度が高い",
   "@aiMoreWordsMorePrecision": {
     "description": "より多くの単語がより正確な回答につながることを説明するヒントテキスト"
+  },
+  "aiKeepDraftTitle": "AIドラフトを保持",
+  "@aiKeepDraftTitle": {
+    "description": "AI生成テキストのドラフトを保持する設定のタイトル"
+  },
+  "aiKeepDraftDescription": "AI生成ダイアログに入力されたテキストを自動的に保存し、ダイアログが閉じられても失われないようにします。",
+  "@aiKeepDraftDescription": {
+    "description": "AI生成テキストのドラフトを保持する設定の説明"
   }
 }

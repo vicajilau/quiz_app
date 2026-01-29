@@ -1582,5 +1582,13 @@
   "aiMoreWordsMorePrecision": "Mehr Wörter = mehr Präzision",
   "@aiMoreWordsMorePrecision": {
     "description": "Hilfetext, der erklärt, dass mehr Wörter zu präziseren Antworten führen"
+  },
+  "aiKeepDraftTitle": "KI-Entwurf behalten",
+  "@aiKeepDraftTitle": {
+    "description": "Titel für die Einstellung zum Behalten des KI-generierten Textentwurfs"
+  },
+  "aiKeepDraftDescription": "Speichern Sie den im KI-Generierungsdialog eingegebenen Text automatisch, damit er nicht verloren geht, wenn der Dialog geschlossen wird.",
+  "@aiKeepDraftDescription": {
+    "description": "Beschreibung für die Einstellung zum Behalten des KI-generierten Textentwurfs"
   }
 }

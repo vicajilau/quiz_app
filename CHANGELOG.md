@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix: Visual improvements and corrections.
 - fix: Corrected AI behavior for Greek language.
 - feat: Added more granularity for AI model selection.
+- feat: Added "Keep AI Draft" feature to automatically save text in the AI generation dialog.
+- feat: Added configuration option to enable/disable draft persistence in Settings.
+- ui: Added "Clear" button to the AI generation text field.
+- i18n: Added translations for new feature in all supported languages.
 
 ## [1.2.1] - 2026-01-25
 

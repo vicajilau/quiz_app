@@ -1520,5 +1520,13 @@
   "aiMoreWordsMorePrecision": "Más palabras = más precisión",
   "@aiMoreWordsMorePrecision": {
     "description": "Texto de ayuda explicando que más palabras dan respuestas más precisas"
+  },
+  "aiKeepDraftTitle": "Mantener borrador de IA",
+  "@aiKeepDraftTitle": {
+    "description": "Título para la configuración de mantener el borrador de texto generado por IA"
+  },
+  "aiKeepDraftDescription": "Guardar automáticamente el texto ingresado en el diálogo de generación de IA para que no se pierda si se cierra el diálogo.",
+  "@aiKeepDraftDescription": {
+    "description": "Descripción para la configuración de mantener el borrador de texto generado por IA"
   }
 }

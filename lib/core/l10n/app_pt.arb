@@ -1582,5 +1582,13 @@
   "aiMoreWordsMorePrecision": "Mais palavras = mais precisão",
   "@aiMoreWordsMorePrecision": {
     "description": "Texto de ajuda explicando que mais palavras levam a respostas mais precisas"
+  },
+  "aiKeepDraftTitle": "Manter rascunho de IA",
+  "@aiKeepDraftTitle": {
+    "description": "Título para a configuração de manter o rascunho de texto gerado por IA"
+  },
+  "aiKeepDraftDescription": "Salvar automaticamente o texto inserido na caixa de diálogo de geração de IA para que não seja perdido se a caixa de diálogo for fechada.",
+  "@aiKeepDraftDescription": {
+    "description": "Descrição para a configuração de manter o rascunho de texto gerado por IA"
   }
 }
