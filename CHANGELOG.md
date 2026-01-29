@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-01-29
+
+- ui: Updated dark theme primary color and button styles for better visibility.
+- ui: Improved light theme button color to be consistent with design.
+- fix: AI icon distinct coloring in light/dark modes (Amber for Light, Purple for Dark) to ensure visibility and emphasis.
+- refactor: Optimized theme configuration with `const` modifiers.
+
 ## [1.3.0] - 2026-01-29
 
 - feat: Added delete button to questions (in list and edit dialog).
