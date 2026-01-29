@@ -373,6 +373,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                         icon: const Icon(Icons.delete, color: Colors.red),
                         tooltip: AppLocalizations.of(context)!.deleteAction,
                       ),
+                      const SizedBox(width: 10),
                     ],
                   ),
                 ],
