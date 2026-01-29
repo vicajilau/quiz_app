@@ -5,6 +5,7 @@ import '../../data/services/ai/ai_service.dart';
 import '../../data/services/ai/ai_service_selector.dart';
 
 class AiServiceModelSelector extends StatefulWidget {
+  final String? initialService;
   final String? initialModel;
   final ValueChanged<AIService?>? onServiceChanged;
   final ValueChanged<String?>? onModelChanged;
@@ -17,6 +18,7 @@ class AiServiceModelSelector extends StatefulWidget {
 
   const AiServiceModelSelector({
     super.key,
+    this.initialService,
     this.initialModel,
     this.onServiceChanged,
     this.onModelChanged,
@@ -48,9 +50,11 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
   @override
   void didUpdateWidget(AiServiceModelSelector oldWidget) {
     super.didUpdateWidget(oldWidget);
-    // Reload services when API keys change
+    // Reload services when API keys change or initial values change
     if (oldWidget.geminiApiKey != widget.geminiApiKey ||
-        oldWidget.openaiApiKey != widget.openaiApiKey) {
+        oldWidget.openaiApiKey != widget.openaiApiKey ||
+        oldWidget.initialService != widget.initialService ||
+        oldWidget.initialModel != widget.initialModel) {
       _loadAvailableServices();
     }
   }
@@ -71,7 +75,12 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
         String? newModel;
 
         // Try to find saved service, or use first available
-        if (savedServiceName != null &&
+        if (widget.initialService != null &&
+            services.any((s) => s.serviceName == widget.initialService)) {
+          newService = services.firstWhere(
+            (s) => s.serviceName == widget.initialService,
+          );
+        } else if (savedServiceName != null &&
             services.any((s) => s.serviceName == savedServiceName)) {
           newService = services.firstWhere(
             (s) => s.serviceName == savedServiceName,

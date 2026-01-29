@@ -5,6 +5,7 @@ import '../../../core/l10n/app_localizations.dart';
 import '../../../data/services/configuration_service.dart';
 import '../../../data/services/ai/ai_question_generation_service.dart';
 import '../../../data/services/ai/ai_service.dart';
+import '../../../domain/models/ai/ai_generation_stored_settings.dart';
 import '../../widgets/ai_service_model_selector.dart';
 import '../../widgets/ai_question_type_selector.dart';
 
@@ -28,9 +29,15 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   // Threshold for topic mode (creative exploration)
   static const int _topicModeThreshold = 10;
 
-  // AI service and model from selector
+  // AI service from selector
   AIService? _selectedService;
+  // AI model name from selector
   String? _selectedModel;
+
+  // Saved service name to restore
+  String? _savedServiceName;
+  // Saved model name to restore
+  String? _savedModelName;
 
   // Check if we're in topic mode (less than 10 words)
   bool get _isTopicMode {
@@ -108,13 +115,70 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   Future<void> _loadDraft() async {
     final keepDraft = await ConfigurationService.instance.getAiKeepDraft();
     if (keepDraft) {
-      final draft = await ConfigurationService.instance.getAiDraftText();
-      if (draft != null && draft.isNotEmpty && mounted) {
+      // Load saved settings
+      final settings = await ConfigurationService.instance
+          .getAiGenerationSettings();
+
+      if (settings.draftText != null &&
+          settings.draftText!.isNotEmpty &&
+          mounted) {
         setState(() {
-          _textController.text = draft;
+          _textController.text = settings.draftText!;
         });
       }
+
+      if (settings.serviceName != null && mounted) {
+        setState(() {
+          _savedServiceName = settings.serviceName;
+        });
+      }
+
+      if (settings.modelName != null && mounted) {
+        setState(() {
+          _savedModelName = settings.modelName;
+        });
+      }
+
+      // Load saved language
+      if (settings.language != null &&
+          _supportedLanguages.contains(settings.language) &&
+          mounted) {
+        setState(() {
+          _selectedLanguage = settings.language!;
+        });
+      }
+
+      // Load saved question count
+      if (settings.questionCount != null && mounted) {
+        _questionCountController.text = settings.questionCount.toString();
+      }
+
+      // Load saved question types
+      if (settings.questionTypes != null &&
+          settings.questionTypes!.isNotEmpty &&
+          mounted) {
+        final types = settings.questionTypes!
+            .map((t) => _getAiQuestionTypeFromString(t))
+            .where((t) => t != null)
+            .cast<AiQuestionType>()
+            .toSet();
+
+        if (types.isNotEmpty) {
+          setState(() {
+            _selectedQuestionTypes = types;
+          });
+        }
+      }
     }
+  }
+
+  AiQuestionType? _getAiQuestionTypeFromString(String type) {
+    for (final value in AiQuestionType.values) {
+      if (value.toString() == type) {
+        return value;
+      }
+    }
+    return null;
   }
 
   @override
@@ -153,9 +217,21 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   Future<void> _saveDraft() async {
     final keepDraft = await ConfigurationService.instance.getAiKeepDraft();
     if (keepDraft) {
-      await ConfigurationService.instance.saveAiDraftText(
-        _textController.text.trim(),
+      int? count;
+      if (_questionCountController.text.isNotEmpty) {
+        count = int.tryParse(_questionCountController.text);
+      }
+
+      final settings = AiGenerationStoredSettings(
+        serviceName: _selectedService?.serviceName,
+        modelName: _selectedModel,
+        language: _selectedLanguage,
+        questionCount: count,
+        questionTypes: _selectedQuestionTypes.map((t) => t.toString()).toList(),
+        draftText: _textController.text.trim(),
       );
+
+      await ConfigurationService.instance.saveAiGenerationSettings(settings);
     }
   }
 
@@ -322,6 +398,8 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                     children: [
                       // AI service and model selectors
                       AiServiceModelSelector(
+                        initialService: _savedServiceName,
+                        initialModel: _savedModelName,
                         onServiceChanged: (service) {
                           setState(() {
                             _selectedService = service;
@@ -344,6 +422,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                       const SizedBox(height: 8),
                       TextFormField(
                         controller: _questionCountController,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         decoration: InputDecoration(
                           hintMaxLines: 2,
                           hintText: localizations.aiQuestionCountHint,
@@ -439,7 +518,11 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                                     _textController.clear();
                                     // Also clear the draft
                                     ConfigurationService.instance
-                                        .saveAiDraftText('');
+                                        .saveAiGenerationSettings(
+                                          const AiGenerationStoredSettings(
+                                            draftText: '',
+                                          ),
+                                        );
                                   },
                                 )
                               : null,

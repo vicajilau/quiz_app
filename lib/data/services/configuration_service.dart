@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../domain/models/quiz/question_order.dart';
+import '../../domain/models/ai/ai_generation_stored_settings.dart';
 import '../../core/security/encryption_service.dart';
 
 class ConfigurationService {
@@ -16,6 +17,13 @@ class ConfigurationService {
 
   static const String _aiKeepDraftKey = 'ai_keep_draft';
   static const String _aiDraftTextKey = 'ai_draft_text';
+  static const String _aiGenerationServiceKey = 'ai_generation_service';
+  static const String _aiGenerationModelKey = 'ai_generation_model';
+  static const String _aiGenerationLanguageKey = 'ai_generation_language';
+  static const String _aiGenerationQuestionCountKey =
+      'ai_generation_question_count';
+  static const String _aiGenerationQuestionTypesKey =
+      'ai_generation_question_types';
 
   static ConfigurationService? _instance;
   static ConfigurationService get instance =>
@@ -194,19 +202,50 @@ class ConfigurationService {
     return prefs.getBool(_aiKeepDraftKey) ?? true;
   }
 
-  /// Saves the AI text draft
-  Future<void> saveAiDraftText(String text) async {
+  /// Saves the AI generation settings
+  Future<void> saveAiGenerationSettings(
+    AiGenerationStoredSettings settings,
+  ) async {
     final prefs = await SharedPreferences.getInstance();
-    if (text.isEmpty) {
-      await prefs.remove(_aiDraftTextKey);
-    } else {
-      await prefs.setString(_aiDraftTextKey, text);
+
+    if (settings.serviceName != null) {
+      await prefs.setString(_aiGenerationServiceKey, settings.serviceName!);
+    }
+    if (settings.modelName != null) {
+      await prefs.setString(_aiGenerationModelKey, settings.modelName!);
+    }
+    if (settings.language != null) {
+      await prefs.setString(_aiGenerationLanguageKey, settings.language!);
+    }
+    if (settings.questionCount != null) {
+      await prefs.setInt(
+        _aiGenerationQuestionCountKey,
+        settings.questionCount!,
+      );
+    }
+    if (settings.questionTypes != null) {
+      await prefs.setStringList(
+        _aiGenerationQuestionTypesKey,
+        settings.questionTypes!,
+      );
+    }
+
+    if (settings.draftText != null) {
+      await prefs.setString(_aiDraftTextKey, settings.draftText!);
     }
   }
 
-  /// Gets the AI text draft
-  Future<String?> getAiDraftText() async {
+  /// Gets the AI generation settings
+  Future<AiGenerationStoredSettings> getAiGenerationSettings() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_aiDraftTextKey);
+
+    return AiGenerationStoredSettings(
+      serviceName: prefs.getString(_aiGenerationServiceKey),
+      modelName: prefs.getString(_aiGenerationModelKey),
+      language: prefs.getString(_aiGenerationLanguageKey),
+      questionCount: prefs.getInt(_aiGenerationQuestionCountKey),
+      questionTypes: prefs.getStringList(_aiGenerationQuestionTypesKey),
+      draftText: prefs.getString(_aiDraftTextKey),
+    );
   }
 }
