@@ -44,12 +44,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
   Widget build(BuildContext context) {
     return ReorderableListView(
       onReorder: _onReorder,
-      padding: const EdgeInsets.only(
-        top: 8.0,
-        left: 8.0,
-        right: 8.0,
-        bottom: 80.0,
-      ),
+      padding: const EdgeInsets.all(8.0).copyWith(bottom: 80),
       children: List.generate(widget.quizFile.questions.length, (index) {
         final question = widget.quizFile.questions[index];
         return _buildDismissible(
