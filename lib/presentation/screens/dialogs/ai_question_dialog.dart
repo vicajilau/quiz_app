@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gpt_markdown/gpt_markdown.dart';
 import 'package:quiz_app/core/extensions/string_extensions.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
@@ -7,7 +8,6 @@ import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/data/services/ai/ai_service_selector.dart';
 import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
-import 'package:gpt_markdown/gpt_markdown.dart';
 import '../../widgets/latex_text.dart';
 
 class AIQuestionDialog extends StatefulWidget {
@@ -58,6 +58,27 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
     _questionController.dispose();
     _scrollController.dispose();
     super.dispose();
+  }
+
+  /// Preprocesses the AI response to normalize LaTeX delimiters.
+  ///
+  /// Converts standard LaTeX math delimiters (like `$$` and `$`) into the format
+  /// supported by [GptMarkdown] (`\[...\]` and `\(...\)`).
+  String _preprocessResponse(String response) {
+    // Replace $$ ... $$ with \[ ... \] for display math
+    response = response.replaceAllMapped(
+      RegExp(r'\$\$(.*?)\$\$', dotAll: true),
+      (match) => '\\[${match.group(1)}\\]',
+    );
+
+    // Replace $ ... $ with \( ... \) for inline math
+    // Negative lookbehind/ahead to ensure we don't match double $$
+    response = response.replaceAllMapped(
+      RegExp(r'(?<!\$)\$([^$]+)\$(?!\$)'),
+      (match) => '\\(${match.group(1)}\\)',
+    );
+
+    return response;
   }
 
   String _buildPrompt() {
@@ -130,8 +151,11 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
         localizations,
       );
 
+      // Preprocess response to fix LaTeX delimiters (standardize to what GptMarkdown expects)
+      final processedResponse = _preprocessResponse(response);
+
       setState(() {
-        _aiResponse = response;
+        _aiResponse = processedResponse;
         _isLoading = false;
       });
 
