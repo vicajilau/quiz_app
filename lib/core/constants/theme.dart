@@ -60,9 +60,9 @@ class AppTheme {
 
   // Define el tema oscuro (opcional)
   static final ThemeData darkTheme = ThemeData(
-    primaryColor: primaryColor,
+    primaryColor: const Color(0xFFBB86FC),
     colorScheme: const ColorScheme.dark(
-      primary: primaryColor,
+      primary: Color(0xFFBB86FC),
       secondary: secondaryColor,
       surface: Color(0xFF1E1E1E),
       error: errorColor,
@@ -94,9 +94,9 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: primaryColor,
-        foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
+        backgroundColor: const Color(0xFFBB86FC),
+        foregroundColor: Colors.black,
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
       ),
