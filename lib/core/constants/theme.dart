@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/core/constants/theme_extensions.dart';
 
 class AppTheme {
-  // Define los colores principales de la aplicación
+  // Define main application colors
   static const Color primaryColor = Color(0xFF6200EE);
   static const Color secondaryColor = Color(0xFF03DAC6);
   static const Color backgroundColor = Color(0xFFF5F5F5);
   static const Color surfaceColor = Colors.white;
   static const Color errorColor = Color(0xFFB00020);
 
-  // Define el tema claro
+  // Define the light theme
   static final ThemeData lightTheme = ThemeData(
     primaryColor: primaryColor,
+    extensions: const [CustomColors(aiIconColor: Colors.amberAccent)],
     colorScheme: const ColorScheme.light(
       primary: primaryColor,
       secondary: secondaryColor,
@@ -58,9 +60,10 @@ class AppTheme {
     ),
   );
 
-  // Define el tema oscuro (opcional)
+  // Define the dark theme (optional)
   static final ThemeData darkTheme = ThemeData(
     primaryColor: const Color(0xFFBB86FC),
+    extensions: const [CustomColors(aiIconColor: Colors.purpleAccent)],
     colorScheme: const ColorScheme.dark(
       primary: Color(0xFFBB86FC),
       secondary: secondaryColor,
