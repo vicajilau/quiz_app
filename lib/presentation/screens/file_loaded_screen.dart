@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/core/constants/theme_extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:desktop_drop/desktop_drop.dart';
@@ -430,9 +431,11 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                       onPressed: () async {
                         await _generateQuestionsWithAI();
                       },
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.auto_awesome,
-                        color: Colors.purple,
+                        color: Theme.of(
+                          context,
+                        ).extension<CustomColors>()!.aiIconColor,
                       ),
                       tooltip: AppLocalizations.of(
                         context,

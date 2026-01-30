@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/core/constants/theme_extensions.dart';
 
 class AppTheme {
-  // Define los colores principales de la aplicación
+  // Define main application colors
   static const Color primaryColor = Color(0xFF6200EE);
   static const Color secondaryColor = Color(0xFF03DAC6);
   static const Color backgroundColor = Color(0xFFF5F5F5);
   static const Color surfaceColor = Colors.white;
   static const Color errorColor = Color(0xFFB00020);
+  static const Color primaryDarkColor = Color(0xFFBB86FC);
 
-  // Define el tema claro
-  static final ThemeData lightTheme = ThemeData(
+  // Define the light theme
+  static ThemeData get lightTheme => ThemeData(
     primaryColor: primaryColor,
+    extensions: const [CustomColors(aiIconColor: Colors.amberAccent)],
     colorScheme: const ColorScheme.light(
       primary: primaryColor,
       secondary: secondaryColor,
       surface: surfaceColor,
       error: errorColor,
+      onError: Colors.white,
+      errorContainer: errorColor,
+      onErrorContainer: Colors.white,
     ),
     scaffoldBackgroundColor: backgroundColor,
     appBarTheme: const AppBarTheme(
@@ -50,22 +56,26 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
-        textStyle: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+        textStyle: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
       ),
     ),
   );
 
-  // Define el tema oscuro (opcional)
-  static final ThemeData darkTheme = ThemeData(
-    primaryColor: primaryColor,
+  // Define the dark theme (optional)
+  static ThemeData get darkTheme => ThemeData(
+    primaryColor: primaryDarkColor,
+    extensions: const [CustomColors(aiIconColor: Colors.purpleAccent)],
     colorScheme: const ColorScheme.dark(
-      primary: primaryColor,
+      primary: primaryDarkColor,
       secondary: secondaryColor,
       surface: Color(0xFF1E1E1E),
       error: errorColor,
+      onError: Colors.white,
+      errorContainer: errorColor,
+      onErrorContainer: Colors.white,
     ),
     scaffoldBackgroundColor: const Color(0xFF121212),
     appBarTheme: const AppBarTheme(
@@ -94,9 +104,9 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: primaryColor,
-        foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
+        backgroundColor: primaryDarkColor,
+        foregroundColor: Colors.black,
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
       ),
