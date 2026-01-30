@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:platform_detail/platform_detail.dart';
 import 'package:quiz_app/data/services/file_service/i_file_service.dart';
 import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
@@ -27,7 +28,7 @@ class QuizFileService implements IFileService {
   /// - Throws: [BadQuizFileException] if the file extension is invalid.
   @override
   Future<QuizFile> readQuizFile(String filePath) async {
-    print('DEBUG: El path del archivo es: $filePath');
+    debugPrint('DEBUG: El path del archivo es: $filePath');
     if (!filePath.endsWith('.quiz')) {
       throw BadQuizFileException(type: BadQuizFileErrorType.invalidExtension);
     }
