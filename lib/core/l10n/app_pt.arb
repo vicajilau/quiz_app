@@ -1590,5 +1590,37 @@
   "aiKeepDraftDescription": "Salvar automaticamente o texto inserido na caixa de diálogo de geração de IA para que não seja perdido se a caixa de diálogo for fechada.",
   "@aiKeepDraftDescription": {
     "description": "Descrição para a configuração de manter o rascunho de texto gerado por IA"
+  },
+  "aiAttachFile": "Anexar arquivo",
+  "@aiAttachFile": {
+    "description": "Label for the attach file button in AI generation dialog"
+  },
+  "aiRemoveFile": "Remover arquivo",
+  "@aiRemoveFile": {
+    "description": "Tooltip for the remove file button"
+  },
+  "aiFileMode": "Modo de arquivo",
+  "@aiFileMode": {
+    "description": "Title for the file mode indicator"
+  },
+  "aiFileModeDescription": "As perguntas serão geradas a partir do arquivo anexo",
+  "@aiFileModeDescription": {
+    "description": "Description for the file mode indicator"
+  },
+  "aiCommentsLabel": "Comentários (Opcional)",
+  "@aiCommentsLabel": {
+    "description": "Label for the comments field when a file is attached"
+  },
+  "aiCommentsHint": "Adicionar instruções ou comentários sobre o arquivo anexo...",
+  "@aiCommentsHint": {
+    "description": "Hint text for the comments field when a file is attached"
+  },
+  "aiCommentsHelperText": "Opcionalmente, adicione instruções sobre como gerar perguntas a partir do arquivo",
+  "@aiCommentsHelperText": {
+    "description": "Helper text for the comments field when a file is attached"
+  },
+  "aiFilePickerError": "Não foi possível carregar o arquivo selecionato",
+  "@aiFilePickerError": {
+    "description": "Error message when file picker fails"
   }
 }

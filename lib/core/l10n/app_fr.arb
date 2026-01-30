@@ -1590,5 +1590,37 @@
   "aiKeepDraftDescription": "Enregistrer automatiquement le texte saisi dans la boîte de dialogue de génération IA pour qu'il ne soit pas perdu si la boîte de dialogue est fermée.",
   "@aiKeepDraftDescription": {
     "description": "Description du paramètre pour conserver le brouillon de texte généré par l'IA"
+  },
+  "aiAttachFile": "Joindre un fichier",
+  "@aiAttachFile": {
+    "description": "Label for the attach file button in AI generation dialog"
+  },
+  "aiRemoveFile": "Supprimer le fichier",
+  "@aiRemoveFile": {
+    "description": "Tooltip for the remove file button"
+  },
+  "aiFileMode": "Mode fichier",
+  "@aiFileMode": {
+    "description": "Title for the file mode indicator"
+  },
+  "aiFileModeDescription": "Les questions seront générées à partir du fichier joint",
+  "@aiFileModeDescription": {
+    "description": "Description for the file mode indicator"
+  },
+  "aiCommentsLabel": "Commentaires (Optionnel)",
+  "@aiCommentsLabel": {
+    "description": "Label for the comments field when a file is attached"
+  },
+  "aiCommentsHint": "Ajouter des instructions ou des commentaires sur le fichier joint...",
+  "@aiCommentsHint": {
+    "description": "Hint text for the comments field when a file is attached"
+  },
+  "aiCommentsHelperText": "Ajouter éventuellement des instructions sur la façon de générer des questions à partir du fichier",
+  "@aiCommentsHelperText": {
+    "description": "Helper text for the comments field when a file is attached"
+  },
+  "aiFilePickerError": "Impossible de charger le fichier sélectionné",
+  "@aiFilePickerError": {
+    "description": "Error message when file picker fails"
   }
 }

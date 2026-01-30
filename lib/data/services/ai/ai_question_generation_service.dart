@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import '../../../../data/services/configuration_service.dart';
 import '../../../../data/services/ai/ai_service.dart';
 import '../../../../core/l10n/app_localizations.dart';
+import '../../../../domain/models/ai/ai_file_attachment.dart';
+import '../../../../domain/models/ai/openai_content_block.dart';
 import '../../../../domain/models/quiz/question.dart';
 import '../../../../domain/models/quiz/question_type.dart';
 
@@ -23,6 +25,9 @@ class AiQuestionGenerationConfig {
   final String content;
   final AIService? preferredService; // Preferred AI service
   final String? preferredModel; // Preferred model for the service
+  final AiFileAttachment? file;
+
+  bool get hasFile => file != null;
 
   const AiQuestionGenerationConfig({
     this.questionCount,
@@ -31,6 +36,7 @@ class AiQuestionGenerationConfig {
     required this.content,
     this.preferredService,
     this.preferredModel,
+    this.file,
   });
 }
 
@@ -96,11 +102,21 @@ class AiQuestionGenerationService {
     final prompt = _buildPrompt(config);
 
     try {
-      final response = await aiService.getChatResponse(
-        prompt,
-        localizations,
-        model: config.preferredModel,
-      );
+      final String response;
+      if (config.hasFile) {
+        response = await aiService.getChatResponseWithFile(
+          prompt,
+          localizations,
+          model: config.preferredModel,
+          file: config.file!,
+        );
+      } else {
+        response = await aiService.getChatResponse(
+          prompt,
+          localizations,
+          model: config.preferredModel,
+        );
+      }
       return _parseAiResponse(response);
     } catch (e) {
       rethrow; // Let the service handle its own errors
@@ -114,6 +130,20 @@ class AiQuestionGenerationService {
     AppLocalizations localizations,
   ) async {
     final prompt = _buildPrompt(config);
+
+    final Map<String, Object> userMessage;
+    if (config.hasFile) {
+      final contentBlocks = OpenAIContentBlock.fromPromptAndFile(
+        prompt,
+        config.file!,
+      );
+      userMessage = {
+        'role': 'user',
+        'content': contentBlocks.map((b) => b.toJson()).toList(),
+      };
+    } else {
+      userMessage = {'role': 'user', 'content': prompt};
+    }
 
     final response = await http.post(
       Uri.parse(_openaiApiUrl),
@@ -129,7 +159,7 @@ class AiQuestionGenerationService {
             'content':
                 'You are an expert in education who creates high-quality quiz questions. Respond ONLY with the requested JSON, without additional text.',
           },
-          {'role': 'user', 'content': prompt},
+          userMessage,
         ],
         'max_tokens': 3000,
         'temperature': 0.7,
@@ -153,20 +183,27 @@ class AiQuestionGenerationService {
     AppLocalizations localizations,
   ) async {
     final prompt = _buildPrompt(config);
+    final fullPrompt =
+        'You are an expert in education who creates high-quality quiz questions. Respond ONLY with the requested JSON, without additional text.\n\n$prompt';
+
+    final List<Map<String, dynamic>> parts = [
+      {'text': fullPrompt},
+    ];
+
+    if (config.hasFile) {
+      final file = config.file!;
+      final base64Data = base64Encode(file.bytes);
+      parts.add({
+        'inline_data': {'mime_type': file.mimeType, 'data': base64Data},
+      });
+    }
 
     final response = await http.post(
       Uri.parse('$_geminiApiUrl?key=$apiKey'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'contents': [
-          {
-            'parts': [
-              {
-                'text':
-                    'You are an expert in education who creates high-quality quiz questions. Respond ONLY with the requested JSON, without additional text.\n\n$prompt',
-              },
-            ],
-          },
+          {'parts': parts},
         ],
         'generationConfig': {'temperature': 0.7, 'maxOutputTokens': 3000},
       }),
@@ -192,14 +229,34 @@ class AiQuestionGenerationService {
     final questionTypesText = _getQuestionTypesPrompt(config.questionTypes);
     final languageText = _getLanguageName(config.language);
 
+    String header;
+    if (config.hasFile) {
+      final userComments = config.content.trim();
+      final commentsSection = userComments.isNotEmpty
+          ? '\nADDITIONAL INSTRUCTIONS FROM THE USER:\n$userComments\n'
+          : '';
+      header =
+          '''
+          Based on the attached file, generate $questionCountText quiz questions $questionTypesText in $languageText.
+          $commentsSection''';
+    } else {
+      header =
+          '''
+          Based on the following content, generate $questionCountText quiz questions $questionTypesText in $languageText.
+
+          CONTENT:
+          ${config.content}
+          ''';
+    }
+
+    final sourceReference = config.hasFile
+        ? 'the content of the attached file'
+        : 'the provided content';
+
     return '''
-Based on the following content, generate $questionCountText quiz questions $questionTypesText in $languageText.
-
-CONTENT:
-${config.content}
-
+$header
 INSTRUCTIONS:
-1. Questions must be based specifically on the provided content
+1. Questions must be based specifically on $sourceReference
 2. Each question must have exactly 4 answer options
 3. Include a clear explanation for each question
 4. Make sure incorrect answers are plausible but clearly wrong

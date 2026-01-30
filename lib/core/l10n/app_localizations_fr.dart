@@ -1130,4 +1130,32 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get aiKeepDraftDescription =>
       'Enregistrer automatiquement le texte saisi dans la boîte de dialogue de génération IA pour qu\'il ne soit pas perdu si la boîte de dialogue est fermée.';
+
+  @override
+  String get aiAttachFile => 'Joindre un fichier';
+
+  @override
+  String get aiRemoveFile => 'Supprimer le fichier';
+
+  @override
+  String get aiFileMode => 'Mode fichier';
+
+  @override
+  String get aiFileModeDescription =>
+      'Les questions seront générées à partir du fichier joint';
+
+  @override
+  String get aiCommentsLabel => 'Commentaires (Optionnel)';
+
+  @override
+  String get aiCommentsHint =>
+      'Ajouter des instructions ou des commentaires sur le fichier joint...';
+
+  @override
+  String get aiCommentsHelperText =>
+      'Ajouter éventuellement des instructions sur la façon de générer des questions à partir du fichier';
+
+  @override
+  String get aiFilePickerError =>
+      'Impossible de charger le fichier sélectionné';
 }

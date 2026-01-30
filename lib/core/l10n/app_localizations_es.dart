@@ -1127,4 +1127,31 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get aiKeepDraftDescription =>
       'Guardar automáticamente el texto ingresado en el diálogo de generación de IA para que no se pierda si se cierra el diálogo.';
+
+  @override
+  String get aiAttachFile => 'Adjuntar archivo';
+
+  @override
+  String get aiRemoveFile => 'Eliminar archivo';
+
+  @override
+  String get aiFileMode => 'Modo archivo';
+
+  @override
+  String get aiFileModeDescription =>
+      'Las preguntas se generarán a partir del archivo adjunto';
+
+  @override
+  String get aiCommentsLabel => 'Comentarios (Opcional)';
+
+  @override
+  String get aiCommentsHint =>
+      'Añade instrucciones o comentarios sobre el archivo adjunto...';
+
+  @override
+  String get aiCommentsHelperText =>
+      'Opcionalmente, añade instrucciones sobre cómo generar preguntas a partir del archivo';
+
+  @override
+  String get aiFilePickerError => 'No se pudo cargar el archivo seleccionado';
 }

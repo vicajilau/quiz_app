@@ -1133,4 +1133,32 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get aiKeepDraftDescription =>
       'Αυτόματη αποθήκευση του κειμένου που εισάγεται στο διάλογο δημιουργίας AI.';
+
+  @override
+  String get aiAttachFile => 'Επισύναψη αρχείου';
+
+  @override
+  String get aiRemoveFile => 'Αφαίρεση αρχείου';
+
+  @override
+  String get aiFileMode => 'Λειτουργία αρχείου';
+
+  @override
+  String get aiFileModeDescription =>
+      'Οι ερωτήσεις θα δημιουργηθούν από το επισυναπτόμενο αρχείο';
+
+  @override
+  String get aiCommentsLabel => 'Σχόλια (Προαιρετικό)';
+
+  @override
+  String get aiCommentsHint =>
+      'Προσθέστε οδηγίες ή σχόλια σχετικά με το επισυναπτόμενο αρχείο...';
+
+  @override
+  String get aiCommentsHelperText =>
+      'Προαιρετικά προσθέστε οδηγίες σχετικά με τον τρόπο δημιουργίας ερωτήσεων από το αρχείο';
+
+  @override
+  String get aiFilePickerError =>
+      'Δεν ήταν δυνατή η φόρτωση του επιλεγμένου αρχείου';
 }
