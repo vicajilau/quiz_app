@@ -25,7 +25,7 @@ class QuizFileService implements IFileService {
   /// - Throws: An exception if there is an error reading or decoding the file.
   @override
   Future<QuizFile> readQuizFile(String filePath, {Uint8List? bytes}) async {
-    final Uint8List codeUnits = bytes ?? await readBlobFile(filePath);;
+    final Uint8List codeUnits = bytes ?? await readBlobFile(filePath);
     final quizFile = decodeAndCreateQuizFile(filePath, codeUnits);
     originalFile = quizFile.deepCopy();
     return quizFile;
