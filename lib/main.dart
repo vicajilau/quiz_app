@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/routes/app_router.dart';
 
+import 'dart:html' as html;
+import 'package:flutter/material.dart';
+
 import 'core/constants/theme.dart';
 import 'core/file_handler.dart';
 import 'core/l10n/app_localizations.dart';
@@ -9,6 +12,17 @@ import 'presentation/blocs/file_bloc/file_bloc.dart';
 import 'presentation/blocs/file_bloc/file_event.dart';
 
 void main() {
+
+  html.document.body!.addEventListener('dragover', (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  });
+
+  html.document.body!.addEventListener('drop', (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  });
+
   ServiceLocator.instance.setup();
   runApp(const QuizApplication());
 }
