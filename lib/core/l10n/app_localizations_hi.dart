@@ -1116,29 +1116,29 @@ class AppLocalizationsHi extends AppLocalizations {
       'AI जनरेशन डायलॉग में दर्ज टेक्स्ट को अपने आप सेव करें ताकि डायलॉग बंद होने पर वह खो न जाए।';
 
   @override
-  String get aiAttachFile => 'Attach File';
+  String get aiAttachFile => 'फ़ाइल संलग्न करें';
 
   @override
-  String get aiRemoveFile => 'Remove file';
+  String get aiRemoveFile => 'फ़ाइल निकालें';
 
   @override
-  String get aiFileMode => 'File Mode';
+  String get aiFileMode => 'फ़ाइल मोड';
 
   @override
   String get aiFileModeDescription =>
-      'Questions will be generated from the attached file';
+      'संलग्न फ़ाइल से प्रश्न उत्पन्न किए जाएंगे';
 
   @override
-  String get aiCommentsLabel => 'Comments (Optional)';
+  String get aiCommentsLabel => 'टिप्पणियाँ (वैकल्पिक)';
 
   @override
   String get aiCommentsHint =>
-      'Add instructions or comments about the attached file...';
+      'संलग्न फ़ाइल के बारे में निर्देश या टिप्पणियाँ जोड़ें...';
 
   @override
   String get aiCommentsHelperText =>
-      'Optionally add instructions on how to generate questions from the file';
+      'वैकल्पिक रूप से फ़ाइल से प्रश्न कैसे उत्पन्न करें, इस पर निर्देश जोड़ें';
 
   @override
-  String get aiFilePickerError => 'Could not load the selected file';
+  String get aiFilePickerError => 'चयनित फ़ाइल लोड नहीं की जा सकी';
 }

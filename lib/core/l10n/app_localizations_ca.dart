@@ -1131,29 +1131,30 @@ class AppLocalizationsCa extends AppLocalizations {
       'Desar automàticament el text introduït al diàleg de generació d\'IA perquè no es perdi si es tanca el diàleg.';
 
   @override
-  String get aiAttachFile => 'Attach File';
+  String get aiAttachFile => 'Adjuntar fitxer';
 
   @override
-  String get aiRemoveFile => 'Remove file';
+  String get aiRemoveFile => 'Eliminar fitxer';
 
   @override
-  String get aiFileMode => 'File Mode';
+  String get aiFileMode => 'Mode fitxer';
 
   @override
   String get aiFileModeDescription =>
-      'Questions will be generated from the attached file';
+      'Les preguntes es generaran a partir del fitxer adjunt';
 
   @override
-  String get aiCommentsLabel => 'Comments (Optional)';
+  String get aiCommentsLabel => 'Comentaris (Opcional)';
 
   @override
   String get aiCommentsHint =>
-      'Add instructions or comments about the attached file...';
+      'Afegiu instruccions o comentaris sobre el fitxer adjunt...';
 
   @override
   String get aiCommentsHelperText =>
-      'Optionally add instructions on how to generate questions from the file';
+      'Opcionalment, afegiu instruccions sobre com generar preguntes a partir del fitxer';
 
   @override
-  String get aiFilePickerError => 'Could not load the selected file';
+  String get aiFilePickerError =>
+      'No s\'ha pogut carregar el fitxer seleccionat';
 }

@@ -1580,5 +1580,37 @@
   "aiKeepDraftDescription": "حفظ النص المدخل في مربع حوار توليد الذكاء الاصطناعي تلقائيًا حتى لا يضيع إذا تم إغلاق مربع الحوار.",
   "@aiKeepDraftDescription": {
     "description": "وصف لإعداد حفظ مسودة النص التي تم إنشاؤها بواسطة الذكاء الاصطناعي"
+  },
+  "aiAttachFile": "إرفاق ملف",
+  "@aiAttachFile": {
+    "description": "Label for the attach file button in AI generation dialog"
+  },
+  "aiRemoveFile": "إزالة ملف",
+  "@aiRemoveFile": {
+    "description": "Tooltip for the remove file button"
+  },
+  "aiFileMode": "وضع الملف",
+  "@aiFileMode": {
+    "description": "Title for the file mode indicator"
+  },
+  "aiFileModeDescription": "سيتم توليد الأسئلة من الملف المرفق",
+  "@aiFileModeDescription": {
+    "description": "Description for the file mode indicator"
+  },
+  "aiCommentsLabel": "تعليقات (اختياري)",
+  "@aiCommentsLabel": {
+    "description": "Label for the comments field when a file is attached"
+  },
+  "aiCommentsHint": "أضف تعليمات أو تعليقات بخصوص الملف المرفق...",
+  "@aiCommentsHint": {
+    "description": "Hint text for the comments field when a file is attached"
+  },
+  "aiCommentsHelperText": "يمكنك إضافة تعليمات اختيارية حول كيفية توليد الأسئلة من الملف",
+  "@aiCommentsHelperText": {
+    "description": "Helper text for the comments field when a file is attached"
+  },
+  "aiFilePickerError": "تعذر تحميل الملف المحدد",
+  "@aiFilePickerError": {
+    "description": "Error message when file picker fails"
   }
 }

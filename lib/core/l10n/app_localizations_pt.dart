@@ -1129,29 +1129,30 @@ class AppLocalizationsPt extends AppLocalizations {
       'Salvar automaticamente o texto inserido na caixa de diálogo de geração de IA para que não seja perdido se a caixa de diálogo for fechada.';
 
   @override
-  String get aiAttachFile => 'Attach File';
+  String get aiAttachFile => 'Anexar arquivo';
 
   @override
-  String get aiRemoveFile => 'Remove file';
+  String get aiRemoveFile => 'Remover arquivo';
 
   @override
-  String get aiFileMode => 'File Mode';
+  String get aiFileMode => 'Modo de arquivo';
 
   @override
   String get aiFileModeDescription =>
-      'Questions will be generated from the attached file';
+      'As perguntas serão geradas a partir do arquivo anexo';
 
   @override
-  String get aiCommentsLabel => 'Comments (Optional)';
+  String get aiCommentsLabel => 'Comentários (Opcional)';
 
   @override
   String get aiCommentsHint =>
-      'Add instructions or comments about the attached file...';
+      'Adicionar instruções ou comentários sobre o arquivo anexo...';
 
   @override
   String get aiCommentsHelperText =>
-      'Optionally add instructions on how to generate questions from the file';
+      'Opcionalmente, adicione instruções sobre como gerar perguntas a partir do arquivo';
 
   @override
-  String get aiFilePickerError => 'Could not load the selected file';
+  String get aiFilePickerError =>
+      'Não foi possível carregar o arquivo selecionato';
 }

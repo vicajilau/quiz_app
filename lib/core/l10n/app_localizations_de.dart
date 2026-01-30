@@ -1133,29 +1133,30 @@ class AppLocalizationsDe extends AppLocalizations {
       'Speichern Sie den im KI-Generierungsdialog eingegebenen Text automatisch, damit er nicht verloren geht, wenn der Dialog geschlossen wird.';
 
   @override
-  String get aiAttachFile => 'Attach File';
+  String get aiAttachFile => 'Datei anhängen';
 
   @override
-  String get aiRemoveFile => 'Remove file';
+  String get aiRemoveFile => 'Datei entfernen';
 
   @override
-  String get aiFileMode => 'File Mode';
+  String get aiFileMode => 'Dateimodus';
 
   @override
   String get aiFileModeDescription =>
-      'Questions will be generated from the attached file';
+      'Fragen werden aus der angehängten Datei generiert';
 
   @override
-  String get aiCommentsLabel => 'Comments (Optional)';
+  String get aiCommentsLabel => 'Kommentare (Optional)';
 
   @override
   String get aiCommentsHint =>
-      'Add instructions or comments about the attached file...';
+      'Anweisungen oder Kommentare zur angehängten Datei hinzufügen...';
 
   @override
   String get aiCommentsHelperText =>
-      'Optionally add instructions on how to generate questions from the file';
+      'Optional Anweisungen hinzufügen, wie Fragen aus der Datei generiert werden sollen';
 
   @override
-  String get aiFilePickerError => 'Could not load the selected file';
+  String get aiFilePickerError =>
+      'Die ausgewählte Datei konnte nicht geladen werden';
 }

@@ -1076,29 +1076,26 @@ class AppLocalizationsJa extends AppLocalizations {
       'AI生成ダイアログに入力されたテキストを自動的に保存し、ダイアログが閉じられても失われないようにします。';
 
   @override
-  String get aiAttachFile => 'Attach File';
+  String get aiAttachFile => 'ファイルを添付';
 
   @override
-  String get aiRemoveFile => 'Remove file';
+  String get aiRemoveFile => 'ファイルを削除';
 
   @override
-  String get aiFileMode => 'File Mode';
+  String get aiFileMode => 'ファイルモード';
 
   @override
-  String get aiFileModeDescription =>
-      'Questions will be generated from the attached file';
+  String get aiFileModeDescription => '添付されたファイルから質問が生成されます';
 
   @override
-  String get aiCommentsLabel => 'Comments (Optional)';
+  String get aiCommentsLabel => 'コメント（任意）';
 
   @override
-  String get aiCommentsHint =>
-      'Add instructions or comments about the attached file...';
+  String get aiCommentsHint => '添付ファイルに関する指示やコメントを追加...';
 
   @override
-  String get aiCommentsHelperText =>
-      'Optionally add instructions on how to generate questions from the file';
+  String get aiCommentsHelperText => '必要に応じて、ファイルから質問を生成する方法に関する指示を追加してください';
 
   @override
-  String get aiFilePickerError => 'Could not load the selected file';
+  String get aiFilePickerError => '選択したファイルを読み込めませんでした';
 }

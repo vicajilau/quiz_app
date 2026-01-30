@@ -1108,29 +1108,27 @@ class AppLocalizationsAr extends AppLocalizations {
       'حفظ النص المدخل في مربع حوار توليد الذكاء الاصطناعي تلقائيًا حتى لا يضيع إذا تم إغلاق مربع الحوار.';
 
   @override
-  String get aiAttachFile => 'Attach File';
+  String get aiAttachFile => 'إرفاق ملف';
 
   @override
-  String get aiRemoveFile => 'Remove file';
+  String get aiRemoveFile => 'إزالة ملف';
 
   @override
-  String get aiFileMode => 'File Mode';
+  String get aiFileMode => 'وضع الملف';
 
   @override
-  String get aiFileModeDescription =>
-      'Questions will be generated from the attached file';
+  String get aiFileModeDescription => 'سيتم توليد الأسئلة من الملف المرفق';
 
   @override
-  String get aiCommentsLabel => 'Comments (Optional)';
+  String get aiCommentsLabel => 'تعليقات (اختياري)';
 
   @override
-  String get aiCommentsHint =>
-      'Add instructions or comments about the attached file...';
+  String get aiCommentsHint => 'أضف تعليمات أو تعليقات بخصوص الملف المرفق...';
 
   @override
   String get aiCommentsHelperText =>
-      'Optionally add instructions on how to generate questions from the file';
+      'يمكنك إضافة تعليمات اختيارية حول كيفية توليد الأسئلة من الملف';
 
   @override
-  String get aiFilePickerError => 'Could not load the selected file';
+  String get aiFilePickerError => 'تعذر تحميل الملف المحدد';
 }

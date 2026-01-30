@@ -1127,29 +1127,29 @@ class AppLocalizationsEu extends AppLocalizations {
       'Gorde automatikoki AI sortzeko elkarrizketan sartutako testua, elkarrizketa ixten bada galdu ez dadin.';
 
   @override
-  String get aiAttachFile => 'Attach File';
+  String get aiAttachFile => 'Erantsi fitxategia';
 
   @override
-  String get aiRemoveFile => 'Remove file';
+  String get aiRemoveFile => 'Kendu fitxategia';
 
   @override
-  String get aiFileMode => 'File Mode';
+  String get aiFileMode => 'Fitxategi modua';
 
   @override
   String get aiFileModeDescription =>
-      'Questions will be generated from the attached file';
+      'Galderak erantsitako fitxategitik sortuko dira';
 
   @override
-  String get aiCommentsLabel => 'Comments (Optional)';
+  String get aiCommentsLabel => 'Iruzkinak (Aukerakoa)';
 
   @override
   String get aiCommentsHint =>
-      'Add instructions or comments about the attached file...';
+      'Gehitu erantsitako fitxategiari buruzko argibideak edo iruzkinak...';
 
   @override
   String get aiCommentsHelperText =>
-      'Optionally add instructions on how to generate questions from the file';
+      'Aukeran, gehitu fitxategitik galderak nola sortu jakiteko argibideak';
 
   @override
-  String get aiFilePickerError => 'Could not load the selected file';
+  String get aiFilePickerError => 'Ezin izan da hautatutako fitxategia kargatu';
 }

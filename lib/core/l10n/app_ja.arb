@@ -1580,5 +1580,37 @@
   "aiKeepDraftDescription": "AI生成ダイアログに入力されたテキストを自動的に保存し、ダイアログが閉じられても失われないようにします。",
   "@aiKeepDraftDescription": {
     "description": "AI生成テキストのドラフトを保持する設定の説明"
+  },
+  "aiAttachFile": "ファイルを添付",
+  "@aiAttachFile": {
+    "description": "Label for the attach file button in AI generation dialog"
+  },
+  "aiRemoveFile": "ファイルを削除",
+  "@aiRemoveFile": {
+    "description": "Tooltip for the remove file button"
+  },
+  "aiFileMode": "ファイルモード",
+  "@aiFileMode": {
+    "description": "Title for the file mode indicator"
+  },
+  "aiFileModeDescription": "添付されたファイルから質問が生成されます",
+  "@aiFileModeDescription": {
+    "description": "Description for the file mode indicator"
+  },
+  "aiCommentsLabel": "コメント（任意）",
+  "@aiCommentsLabel": {
+    "description": "Label for the comments field when a file is attached"
+  },
+  "aiCommentsHint": "添付ファイルに関する指示やコメントを追加...",
+  "@aiCommentsHint": {
+    "description": "Hint text for the comments field when a file is attached"
+  },
+  "aiCommentsHelperText": "必要に応じて、ファイルから質問を生成する方法に関する指示を追加してください",
+  "@aiCommentsHelperText": {
+    "description": "Helper text for the comments field when a file is attached"
+  },
+  "aiFilePickerError": "選択したファイルを読み込めませんでした",
+  "@aiFilePickerError": {
+    "description": "Error message when file picker fails"
   }
 }

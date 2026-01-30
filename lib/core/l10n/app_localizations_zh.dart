@@ -1071,29 +1071,26 @@ class AppLocalizationsZh extends AppLocalizations {
   String get aiKeepDraftDescription => '自动保存 AI 生成对话框中输入的文本，以防对话框关闭时丢失。';
 
   @override
-  String get aiAttachFile => 'Attach File';
+  String get aiAttachFile => '附加文件';
 
   @override
-  String get aiRemoveFile => 'Remove file';
+  String get aiRemoveFile => '删除文件';
 
   @override
-  String get aiFileMode => 'File Mode';
+  String get aiFileMode => '文件模式';
 
   @override
-  String get aiFileModeDescription =>
-      'Questions will be generated from the attached file';
+  String get aiFileModeDescription => '将从附件文件中生成问题';
 
   @override
-  String get aiCommentsLabel => 'Comments (Optional)';
+  String get aiCommentsLabel => '评论（可选）';
 
   @override
-  String get aiCommentsHint =>
-      'Add instructions or comments about the attached file...';
+  String get aiCommentsHint => '添加关于附件文件的说明或评论...';
 
   @override
-  String get aiCommentsHelperText =>
-      'Optionally add instructions on how to generate questions from the file';
+  String get aiCommentsHelperText => '可选地添加关于如何从文件生成问题的说明';
 
   @override
-  String get aiFilePickerError => 'Could not load the selected file';
+  String get aiFilePickerError => '无法加载所选文件';
 }

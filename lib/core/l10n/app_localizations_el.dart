@@ -1135,29 +1135,30 @@ class AppLocalizationsEl extends AppLocalizations {
       'Αυτόματη αποθήκευση του κειμένου που εισάγεται στο διάλογο δημιουργίας AI.';
 
   @override
-  String get aiAttachFile => 'Attach File';
+  String get aiAttachFile => 'Επισύναψη αρχείου';
 
   @override
-  String get aiRemoveFile => 'Remove file';
+  String get aiRemoveFile => 'Αφαίρεση αρχείου';
 
   @override
-  String get aiFileMode => 'File Mode';
+  String get aiFileMode => 'Λειτουργία αρχείου';
 
   @override
   String get aiFileModeDescription =>
-      'Questions will be generated from the attached file';
+      'Οι ερωτήσεις θα δημιουργηθούν από το επισυναπτόμενο αρχείο';
 
   @override
-  String get aiCommentsLabel => 'Comments (Optional)';
+  String get aiCommentsLabel => 'Σχόλια (Προαιρετικό)';
 
   @override
   String get aiCommentsHint =>
-      'Add instructions or comments about the attached file...';
+      'Προσθέστε οδηγίες ή σχόλια σχετικά με το επισυναπτόμενο αρχείο...';
 
   @override
   String get aiCommentsHelperText =>
-      'Optionally add instructions on how to generate questions from the file';
+      'Προαιρετικά προσθέστε οδηγίες σχετικά με τον τρόπο δημιουργίας ερωτήσεων από το αρχείο';
 
   @override
-  String get aiFilePickerError => 'Could not load the selected file';
+  String get aiFilePickerError =>
+      'Δεν ήταν δυνατή η φόρτωση του επιλεγμένου αρχείου';
 }
