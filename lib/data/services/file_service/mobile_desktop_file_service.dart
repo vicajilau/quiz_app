@@ -109,21 +109,8 @@ class QuizFileService implements IFileService {
 
     if (result != null) {
       final platformFile = result.files.first;
-
-      if (PlatformDetail.isWeb) {
-        // Handle web platform
-        if (platformFile.bytes != null) {
-          final content = utf8.decode(platformFile.bytes!);
-          final json = jsonDecode(content) as Map<String, dynamic>;
-          final quizFile = QuizFile.fromJson(json, filePath: platformFile.name);
-          originalFile = quizFile.deepCopy();
-          return quizFile;
-        }
-      } else {
-        // Handle desktop/mobile platforms
-        if (platformFile.path != null) {
-          return await readQuizFile(platformFile.path!);
-        }
+      if (platformFile.path != null) {
+        return await readQuizFile(platformFile.path!);
       }
     }
     return null;
