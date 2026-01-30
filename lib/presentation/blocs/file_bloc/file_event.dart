@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 
 /// Abstract class representing the base event for file operations.
@@ -6,7 +7,9 @@ abstract class FileEvent {}
 /// Event triggered when a file is dropped into the application.
 class FileDropped extends FileEvent {
   final String filePath; // Path of the dropped file
-  FileDropped(this.filePath);
+  final Uint8List? bytes; // Optional bytes content (useful for Web)
+
+  FileDropped(this.filePath, {this.bytes});
 }
 
 /// Event triggered when a file save is requested, with the file path and data.

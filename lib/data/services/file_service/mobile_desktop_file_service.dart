@@ -23,17 +23,24 @@ class QuizFileService implements IFileService {
   /// Throws a [BadQuizFileException] if the file does not have a `.quiz` extension.
   ///
   /// - [filePath]: The path to the `.quiz` file.
+  /// - [bytes]: Optional binary content of the file.
   /// - Returns: A `QuizFile` object containing the parsed data from the file.
   /// - Throws: [BadQuizFileException] if the file extension is invalid.
   @override
-  Future<QuizFile> readQuizFile(String filePath) async {
+  Future<QuizFile> readQuizFile(String filePath, {Uint8List? bytes}) async {
     if (!filePath.endsWith('.quiz')) {
       throw BadQuizFileException(type: BadQuizFileErrorType.invalidExtension);
     }
-    // Create a File object for the provided file path
-    final file = File(filePath);
-    // Read the file content as a string
-    final content = await file.readAsString();
+
+    String content;
+    if (bytes != null) {
+      content = utf8.decode(bytes);
+    } else {
+      // Create a File object for the provided file path
+      final file = File(filePath);
+      // Read the file content as a string
+      content = await file.readAsString();
+    }
 
     // Decode the string content into a Map and convert it to a QuizFile object
     final json = jsonDecode(content) as Map<String, dynamic>;
@@ -106,7 +113,7 @@ class QuizFileService implements IFileService {
       if (PlatformDetail.isWeb) {
         // Handle web platform
         if (platformFile.bytes != null) {
-          final content = String.fromCharCodes(platformFile.bytes!);
+          final content = utf8.decode(platformFile.bytes!);
           final json = jsonDecode(content) as Map<String, dynamic>;
           final quizFile = QuizFile.fromJson(json, filePath: platformFile.name);
           originalFile = quizFile.deepCopy();
