@@ -392,7 +392,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
                   ),
 
                   if (_aiAssistantEnabled) ...[
-                    SizedBox(key: _aiSettingsKey, height: 16),
+                    const SizedBox(height: 16),
                     SwitchListTile(
                       title: Text(
                         AppLocalizations.of(context)!.aiKeepDraftTitle,
@@ -555,7 +555,6 @@ class _SettingsDialogState extends State<SettingsDialog> {
                     if (_apiKeyErrorMessage != null) ...[
                       const SizedBox(height: 8),
                       Container(
-                        key: _errorKey,
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
