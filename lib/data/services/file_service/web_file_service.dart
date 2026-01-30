@@ -27,7 +27,6 @@ class QuizFileService implements IFileService {
   Future<QuizFile> readQuizFile(String filePath, {Uint8List? bytes}) async {
     final Uint8List codeUnits = bytes ?? await readBlobFile(filePath);;
     final quizFile = decodeAndCreateQuizFile(filePath, codeUnits);
-
     originalFile = quizFile.deepCopy();
     return quizFile;
   }
