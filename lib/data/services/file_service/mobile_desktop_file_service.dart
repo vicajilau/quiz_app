@@ -35,7 +35,7 @@ class QuizFileService implements IFileService {
     // Create a File object for the provided file path
     final file = File(filePath);
     // Read the file content as a string
-    String content = await file.readAsString();
+    final content = await file.readAsString();
 
 
     // Decode the string content into a Map and convert it to a QuizFile object
