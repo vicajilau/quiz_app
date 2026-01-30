@@ -10,7 +10,7 @@ class AppTheme {
   static const Color errorColor = Color(0xFFB00020);
 
   // Define the light theme
-  static final ThemeData lightTheme = ThemeData(
+  static ThemeData get lightTheme => ThemeData(
     primaryColor: primaryColor,
     extensions: const [CustomColors(aiIconColor: Colors.amberAccent)],
     colorScheme: const ColorScheme.light(
@@ -18,6 +18,9 @@ class AppTheme {
       secondary: secondaryColor,
       surface: surfaceColor,
       error: errorColor,
+      onError: Colors.white,
+      errorContainer: errorColor,
+      onErrorContainer: Colors.white,
     ),
     scaffoldBackgroundColor: backgroundColor,
     appBarTheme: const AppBarTheme(
@@ -61,7 +64,7 @@ class AppTheme {
   );
 
   // Define the dark theme (optional)
-  static final ThemeData darkTheme = ThemeData(
+  static ThemeData get darkTheme => ThemeData(
     primaryColor: const Color(0xFFBB86FC),
     extensions: const [CustomColors(aiIconColor: Colors.purpleAccent)],
     colorScheme: const ColorScheme.dark(
@@ -69,6 +72,9 @@ class AppTheme {
       secondary: secondaryColor,
       surface: Color(0xFF1E1E1E),
       error: errorColor,
+      onError: Colors.white,
+      errorContainer: errorColor,
+      onErrorContainer: Colors.white,
     ),
     scaffoldBackgroundColor: const Color(0xFF121212),
     appBarTheme: const AppBarTheme(
