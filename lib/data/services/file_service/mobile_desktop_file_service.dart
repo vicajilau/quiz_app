@@ -27,6 +27,7 @@ class QuizFileService implements IFileService {
   /// - Throws: [BadQuizFileException] if the file extension is invalid.
   @override
   Future<QuizFile> readQuizFile(String filePath) async {
+    print('DEBUG: El path del archivo es: $filePath');
     if (!filePath.endsWith('.quiz')) {
       throw BadQuizFileException(type: BadQuizFileErrorType.invalidExtension);
     }
