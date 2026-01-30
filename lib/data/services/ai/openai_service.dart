@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:quiz_app/domain/models/ai/ai_file_attachment.dart';
+import 'package:quiz_app/domain/models/ai/openai_content_block.dart';
 import '../configuration_service.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'ai_service.dart';
@@ -63,6 +65,60 @@ class OpenAIService extends AIService {
           'model': selectedModel,
           'messages': [
             {'role': 'user', 'content': prompt},
+          ],
+          'max_tokens': 8192,
+          'temperature': 0.2,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final jsonResponse = jsonDecode(response.body);
+        final content = jsonResponse['choices'][0]['message']['content'];
+        return content?.toString().trim() ?? localizations.noResponseReceived;
+      } else if (response.statusCode == 401) {
+        throw Exception(localizations.invalidApiKeyError);
+      } else if (response.statusCode == 429) {
+        throw Exception(localizations.rateLimitError);
+      } else if (response.statusCode == 404) {
+        throw Exception(localizations.modelNotFoundError);
+      } else {
+        throw Exception(localizations.aiErrorResponse);
+      }
+    } catch (e) {
+      throw Exception(localizations.networkError);
+    }
+  }
+
+  @override
+  Future<String> getChatResponseWithFile(
+    String prompt,
+    AppLocalizations localizations, {
+    String? model,
+    required AiFileAttachment file,
+  }) async {
+    final apiKey = await ConfigurationService.instance.getOpenAIApiKey();
+
+    if (apiKey == null || apiKey.isEmpty) {
+      throw Exception(localizations.openaiApiKeyNotConfigured);
+    }
+
+    final selectedModel = model ?? _defaultModel;
+    final contentBlocks = OpenAIContentBlock.fromPromptAndFile(prompt, file);
+
+    try {
+      final response = await http.post(
+        Uri.parse('$_baseUrl$_chatEndpoint'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $apiKey',
+        },
+        body: jsonEncode({
+          'model': selectedModel,
+          'messages': [
+            {
+              'role': 'user',
+              'content': contentBlocks.map((b) => b.toJson()).toList(),
+            },
           ],
           'max_tokens': 8192,
           'temperature': 0.2,

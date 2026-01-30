@@ -2041,6 +2041,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Automatically save the text entered in the AI generation dialog so it is not lost if the dialog is closed.'**
   String get aiKeepDraftDescription;
+
+  /// Label for the attach file button in AI generation dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Attach File'**
+  String get aiAttachFile;
+
+  /// Tooltip for the remove file button
+  ///
+  /// In en, this message translates to:
+  /// **'Remove file'**
+  String get aiRemoveFile;
+
+  /// Title for the file mode indicator
+  ///
+  /// In en, this message translates to:
+  /// **'File Mode'**
+  String get aiFileMode;
+
+  /// Description for the file mode indicator
+  ///
+  /// In en, this message translates to:
+  /// **'Questions will be generated from the attached file'**
+  String get aiFileModeDescription;
+
+  /// Label for the comments field when a file is attached
+  ///
+  /// In en, this message translates to:
+  /// **'Comments (Optional)'**
+  String get aiCommentsLabel;
+
+  /// Hint text for the comments field when a file is attached
+  ///
+  /// In en, this message translates to:
+  /// **'Add instructions or comments about the attached file...'**
+  String get aiCommentsHint;
+
+  /// Helper text for the comments field when a file is attached
+  ///
+  /// In en, this message translates to:
+  /// **'Optionally add instructions on how to generate questions from the file'**
+  String get aiCommentsHelperText;
+
+  /// Error message when file picker fails
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load the selected file'**
+  String get aiFilePickerError;
 }
 
 class _AppLocalizationsDelegate
