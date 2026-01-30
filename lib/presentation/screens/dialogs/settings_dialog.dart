@@ -27,6 +27,9 @@ class _SettingsDialogState extends State<SettingsDialog> {
   final TextEditingController _geminiApiKeyController = TextEditingController();
   String? _apiKeyErrorMessage;
   String? _defaultAIModel;
+  final ScrollController _scrollController = ScrollController();
+  final GlobalKey _errorKey = GlobalKey();
+  final GlobalKey _aiSettingsKey = GlobalKey();
 
   @override
   void initState() {
@@ -97,6 +100,16 @@ class _SettingsDialogState extends State<SettingsDialog> {
         _apiKeyErrorMessage = AppLocalizations.of(
           context,
         )!.aiRequiresAtLeastOneApiKeyError;
+      });
+      // Scroll to error message after frame renders
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (_errorKey.currentContext != null) {
+          Scrollable.ensureVisible(
+            _errorKey.currentContext!,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeOut,
+          );
+        }
       });
       return; // Don't save if validation fails
     }
@@ -172,6 +185,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
   void dispose() {
     _openAiApiKeyController.dispose();
     _geminiApiKeyController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -215,6 +229,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
               ),
             )
           : SingleChildScrollView(
+              controller: _scrollController,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -362,11 +377,22 @@ class _SettingsDialogState extends State<SettingsDialog> {
                       setState(() {
                         _aiAssistantEnabled = value;
                       });
+                      if (value) {
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          if (_aiSettingsKey.currentContext != null) {
+                            Scrollable.ensureVisible(
+                              _aiSettingsKey.currentContext!,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeOut,
+                            );
+                          }
+                        });
+                      }
                     },
                   ),
 
                   if (_aiAssistantEnabled) ...[
-                    const SizedBox(height: 16),
+                    SizedBox(key: _aiSettingsKey, height: 16),
                     SwitchListTile(
                       title: Text(
                         AppLocalizations.of(context)!.aiKeepDraftTitle,
@@ -529,6 +555,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
                     if (_apiKeyErrorMessage != null) ...[
                       const SizedBox(height: 8),
                       Container(
+                        key: _errorKey,
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
