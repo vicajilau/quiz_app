@@ -23,11 +23,10 @@ class QuizFileService implements IFileService {
   /// Throws a [BadQuizFileException] if the file does not have a `.quiz` extension.
   ///
   /// - [filePath]: The path to the `.quiz` file.
-  /// - [bytes]: Optional binary content of the file (Only for web).
   /// - Returns: A `QuizFile` object containing the parsed data from the file.
   /// - Throws: [BadQuizFileException] if the file extension is invalid.
   @override
-  Future<QuizFile> readQuizFile(String filePath, {Uint8List? bytes}) async {
+  Future<QuizFile> readQuizFile(String filePath) async {
     if (!filePath.endsWith('.quiz')) {
       throw BadQuizFileException(type: BadQuizFileErrorType.invalidExtension);
     }

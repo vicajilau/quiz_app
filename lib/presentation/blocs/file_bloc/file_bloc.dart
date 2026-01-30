@@ -22,10 +22,7 @@ class FileBloc extends Bloc<FileEvent, FileState> {
         FileLoading(),
       ); // Emit loading state while the file is being processed
       try {
-        final quizFile = await _fileRepository.loadQuizFile(
-          event.filePath,
-          bytes: event.bytes,
-        );
+        final quizFile = await _fileRepository.loadQuizFile(event.filePath);
         emit(FileLoaded(quizFile)); // Emit the loaded file state
       } on Exception catch (e) {
         emit(
