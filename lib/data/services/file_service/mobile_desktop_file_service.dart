@@ -103,6 +103,7 @@ class QuizFileService implements IFileService {
 
     if (result != null) {
       final platformFile = result.files.first;
+
       if (platformFile.path != null) {
         return await readQuizFile(platformFile.path!);
       }
