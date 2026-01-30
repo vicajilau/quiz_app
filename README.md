@@ -10,7 +10,6 @@
   <img src="https://snapcraft.io/quiz-app/badge.svg" alt="Linux Snapcraft Status">
 </p>
 
-
 **🌟 Official Versions**
 
 Access Quiz App on your favorite platform:

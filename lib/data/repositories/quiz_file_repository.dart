@@ -24,7 +24,7 @@ class QuizFileRepository {
   /// and then registers the loaded file in the service locator.
   ///
   /// - [filePath]: The path to the file to load.
-  /// - [bytes]: Optional binary content of the file.
+  /// - [bytes]: Optional binary content of the file (Only for web).
   /// - Returns: A `Future<QuizFile>` containing the loaded `QuizFile`.
   /// - Throws: An exception if there is an error loading the file.
   Future<QuizFile> loadQuizFile(String filePath, {Uint8List? bytes}) async {

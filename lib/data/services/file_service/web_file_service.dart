@@ -126,7 +126,7 @@ class QuizFileService implements IFileService {
           completer.completeError('Error reading the blob: ${reader.error}');
         } else {
           ByteBuffer? byteBuffer = (reader.result as JSArrayBuffer?)?.toDart;
-          completer.complete(byteBuffer?.asUint8List() ?? Uint8List(0));
+          completer.complete(byteBuffer?.asUint8List());
         }
       });
 
