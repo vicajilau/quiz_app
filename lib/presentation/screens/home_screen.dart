@@ -166,8 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     // Additional validation: check if the file has a valid path
                     if (firstFile.path.isNotEmpty) {
                       if (kIsWeb) {
-                        // On Web, we read the bytes directly to avoid issues with Blob URLs
-                        // and base href configurations on hosting like GitHub Pages.
+                        // On Web, we read the bytes directly to avoid issues with Blob URLs and base href configurations on hosting like GitHub Pages.
                         final bytes = await firstFile.readAsBytes();
                         if (context.mounted) {
                           context.read<FileBloc>().add(
