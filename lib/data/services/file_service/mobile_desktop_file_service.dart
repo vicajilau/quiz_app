@@ -32,15 +32,11 @@ class QuizFileService implements IFileService {
       throw BadQuizFileException(type: BadQuizFileErrorType.invalidExtension);
     }
 
-    String content;
-    if (bytes != null) {
-      content = utf8.decode(bytes);
-    } else {
-      // Create a File object for the provided file path
-      final file = File(filePath);
-      // Read the file content as a string
-      content = await file.readAsString();
-    }
+    // Create a File object for the provided file path
+    final file = File(filePath);
+    // Read the file content as a string
+    String content = await file.readAsString();
+
 
     // Decode the string content into a Map and convert it to a QuizFile object
     final json = jsonDecode(content) as Map<String, dynamic>;
