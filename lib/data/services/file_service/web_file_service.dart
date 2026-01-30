@@ -20,11 +20,12 @@ class QuizFileService implements IFileService {
   /// and decodes it into a `QuizFile` object.
   ///
   /// - [filePath]: The path or URL of the `.quiz` file.
+  /// - [bytes]: Optional binary content of the file.
   /// - Returns: A `QuizFile` object containing the parsed data from the file.
   /// - Throws: An exception if there is an error reading or decoding the file.
   @override
-  Future<QuizFile> readQuizFile(String filePath) async {
-    final codeUnits = await readBlobFile(filePath);
+  Future<QuizFile> readQuizFile(String filePath, {Uint8List? bytes}) async {
+    final Uint8List codeUnits = bytes ?? await readBlobFile(filePath);
     final quizFile = decodeAndCreateQuizFile(filePath, codeUnits);
     originalFile = quizFile.deepCopy();
     return quizFile;
@@ -48,6 +49,7 @@ class QuizFileService implements IFileService {
   ///
   /// - [quizFile]: The `QuizFile` object to save.
   /// - [dialogTitle]: The title of the save dialog window.
+  /// - [fileName]: The name of the file.
   /// - Returns: The `QuizFile` object with an updated file path if the user selects a path.
   /// - Throws: An exception if there is an error saving the file.
   @override

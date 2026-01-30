@@ -1,4 +1,5 @@
 import 'package:desktop_drop/desktop_drop.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -157,14 +158,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               body: DropTarget(
-                onDragDone: (details) {
+                onDragDone: (details) async {
                   // Validate that we have files and the file bloc is not already loaded
                   if (context.read<FileBloc>().state is! FileLoaded &&
                       details.files.isNotEmpty) {
                     final firstFile = details.files.first;
                     // Additional validation: check if the file has a valid path
                     if (firstFile.path.isNotEmpty) {
-                      context.read<FileBloc>().add(FileDropped(firstFile.path));
+                      if (kIsWeb) {
+                        // On Web, we read the bytes directly to avoid issues with Blob URLs and base href configurations on hosting like GitHub Pages.
+                        final bytes = await firstFile.readAsBytes();
+                        if (context.mounted) {
+                          context.read<FileBloc>().add(
+                            FileDropped(firstFile.name, bytes: bytes),
+                          );
+                        }
+                      } else {
+                        context.read<FileBloc>().add(FileDropped(firstFile.path));
+                      }
                     }
                   }
                 },

@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 
 /// Interface for file handling services, defining methods for reading,
@@ -10,8 +11,9 @@ abstract class IFileService {
   ///
   /// - Throws a [FileInvalidException] if the file does not have a `.quiz` extension.
   /// - [filePath]: The path to the `.quiz` file.
+  /// - [bytes]: Optional binary content of the file (Only for web).
   /// - Returns: A `QuizFile` object containing the parsed data from the file.
-  Future<QuizFile> readQuizFile(String filePath);
+  Future<QuizFile> readQuizFile(String filePath, {Uint8List? bytes});
 
   /// Saves a `QuizFile` object to the file system.
   ///

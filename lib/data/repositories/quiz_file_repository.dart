@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 import 'package:quiz_app/core/debug_print.dart';
 import 'package:quiz_app/core/service_locator.dart';
 import 'package:quiz_app/data/services/file_service/i_file_service.dart';
@@ -23,10 +24,11 @@ class QuizFileRepository {
   /// and then registers the loaded file in the service locator.
   ///
   /// - [filePath]: The path to the file to load.
+  /// - [bytes]: Optional binary content of the file (Only for web).
   /// - Returns: A `Future<QuizFile>` containing the loaded `QuizFile`.
   /// - Throws: An exception if there is an error loading the file.
-  Future<QuizFile> loadQuizFile(String filePath) async {
-    final quizFile = await _fileService.readQuizFile(filePath);
+  Future<QuizFile> loadQuizFile(String filePath, {Uint8List? bytes}) async {
+    final quizFile = await _fileService.readQuizFile(filePath, bytes: bytes);
     ServiceLocator.instance.registerQuizFile(quizFile);
     return quizFile;
   }
