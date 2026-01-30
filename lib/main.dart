@@ -26,7 +26,6 @@ class _QuizApplicationState extends State<QuizApplication> {
     super.initState();
 
     FileHandler.initialize((filePath) {
-      debugPrint('DEBUG: El path del archivo es: $filePath');
       if (mounted) {
         // Load the file when opened from an intent
         final fileBloc = ServiceLocator.instance.getIt<FileBloc>();
