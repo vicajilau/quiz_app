@@ -8,6 +8,7 @@ class AppTheme {
   static const Color backgroundColor = Color(0xFFF5F5F5);
   static const Color surfaceColor = Colors.white;
   static const Color errorColor = Color(0xFFB00020);
+  static const Color primaryDarkColor = Color(0xFFBB86FC);
 
   // Define the light theme
   static ThemeData get lightTheme => ThemeData(
@@ -65,10 +66,10 @@ class AppTheme {
 
   // Define the dark theme (optional)
   static ThemeData get darkTheme => ThemeData(
-    primaryColor: const Color(0xFFBB86FC),
+    primaryColor: primaryDarkColor,
     extensions: const [CustomColors(aiIconColor: Colors.purpleAccent)],
     colorScheme: const ColorScheme.dark(
-      primary: Color(0xFFBB86FC),
+      primary: primaryDarkColor,
       secondary: secondaryColor,
       surface: Color(0xFF1E1E1E),
       error: errorColor,
@@ -103,7 +104,7 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFFBB86FC),
+        backgroundColor: primaryDarkColor,
         foregroundColor: Colors.black,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
