@@ -479,6 +479,8 @@ ${localizations.aiEvaluationPromptGeneralInstructions}
         '''
 
 ${localizations.aiEvaluationPromptResponseFormat}
+
+IMPORTANT: Respond strictly in the same language as the student's answer.
 ''';
 
     return prompt;

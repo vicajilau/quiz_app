@@ -1565,7 +1565,7 @@ abstract class AppLocalizations {
   /// System role for AI evaluation prompt
   ///
   /// In en, this message translates to:
-  /// **'You are an expert teacher evaluating a student\'s response to an essay question. Your task is to provide detailed and constructive evaluation. Please respond in English.'**
+  /// **'You are an expert teacher evaluating a student\'s response to an essay question. Your task is to provide detailed and constructive evaluation. Respond in the same language as the student\'s answer.'**
   String get aiEvaluationPromptSystemRole;
 
   /// Question label in evaluation prompt
