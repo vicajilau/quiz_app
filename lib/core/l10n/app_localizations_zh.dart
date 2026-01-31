@@ -806,7 +806,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get aiEvaluationPromptSystemRole =>
-      '您是一位专家教师，正在评估学生对论述题的回答。您的任务是提供详细和建设性的评估。请用中文回答。';
+      '您是一位专家教师，正在评估学生对论述题的回答。您的任务是提供详细和建设性的评估。请用与学生回答相同的语言回答。';
 
   @override
   String get aiEvaluationPromptQuestion => '题目：';

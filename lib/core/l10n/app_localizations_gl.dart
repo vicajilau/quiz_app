@@ -855,7 +855,7 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get aiEvaluationPromptSystemRole =>
-      'Es un profesor especializado en avaliar respostas de estudantes a preguntas de ensaio. A túa tarefa é proporcionar avaliacións detalladas e construtivas. Responde en galego.';
+      'Es un profesor especializado en avaliar respostas de estudantes a preguntas de ensaio. A túa tarefa é proporcionar avaliacións detalladas e construtivas. Responde no mesmo idioma que a resposta do estudante.';
 
   @override
   String get aiEvaluationPromptQuestion => 'Pregunta:';

@@ -836,7 +836,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get aiEvaluationPromptSystemRole =>
-      'أنت مدرس خبير تقيم إجابة طالب على سؤال مقال. مهمتك هي تقديم تقييم مفصل وبناء. يرجى الإجابة باللغة العربية.';
+      'أنت مدرس خبير تقيم إجابة طالب على سؤال مقال. مهمتك هي تقديم تقييم مفصل وبناء. أجب بنفس لغة إجابة الطالب.';
 
   @override
   String get aiEvaluationPromptQuestion => 'السؤال:';

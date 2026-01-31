@@ -851,7 +851,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get aiEvaluationPromptSystemRole =>
-      'Ikasleen saiakera galderen erantzunak ebaluatzen espezializatutako irakaslea zara. Zure zeregina ebaluazio zehatz eta eraikitzaileak ematea da. Erantzun euskeraz.';
+      'Ikasleen saiakera galderen erantzunak ebaluatzen espezializatutako irakaslea zara. Zure zeregina ebaluazio zehatz eta eraikitzaileak ematea da. Erantzun ikaslearen erantzunaren hizkuntza berean.';
 
   @override
   String get aiEvaluationPromptQuestion => 'Galdera:';
