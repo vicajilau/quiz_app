@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gpt_markdown/gpt_markdown.dart';
 import 'package:quiz_app/core/extensions/string_extensions.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
-import 'package:quiz_app/data/services/ai/ai_service_selector.dart';
-import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
-import '../../widgets/latex_text.dart';
+import 'package:quiz_app/data/services/ai/ai_service.dart';
+import 'package:quiz_app/presentation/widgets/ai_service_model_selector.dart';
+
+import '../../../../domain/models/ai/chat_message.dart';
+import 'widgets/ai_chat_bubble.dart';
+import 'widgets/question_context_widget.dart';
 
 class AIQuestionDialog extends StatefulWidget {
   final Question question;
@@ -23,34 +25,17 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
   final TextEditingController _questionController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   bool _isLoading = false;
-  String? _aiResponse;
-  List<AIService> _availableServices = [];
+
+  // Chat state
+  final List<ChatMessage> _messages = [];
+
+  // Service Selection
   AIService? _selectedService;
-  bool _isLoadingServices = true;
+  String? _selectedModel;
 
   @override
   void initState() {
     super.initState();
-    _loadAvailableServices();
-  }
-
-  Future<void> _loadAvailableServices() async {
-    try {
-      final services = await AIServiceSelector.instance.getAvailableServices();
-      if (mounted) {
-        setState(() {
-          _availableServices = services;
-          _selectedService = services.isNotEmpty ? services.first : null;
-          _isLoadingServices = false;
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _isLoadingServices = false;
-        });
-      }
-    }
   }
 
   @override
@@ -61,9 +46,6 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
   }
 
   /// Preprocesses the AI response to normalize LaTeX delimiters.
-  ///
-  /// Converts standard LaTeX math delimiters (like `$$` and `$`) into the format
-  /// supported by [GptMarkdown] (`\[...\]` and `\(...\)`).
   String _preprocessResponse(String response) {
     // Replace $$ ... $$ with \[ ... \] for display math
     response = response.replaceAllMapped(
@@ -72,7 +54,6 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
     );
 
     // Replace $ ... $ with \( ... \) for inline math
-    // Negative lookbehind/ahead to ensure we don't match double $$
     response = response.replaceAllMapped(
       RegExp(r'(?<!\$)\$([^$]+)\$(?!\$)'),
       (match) => '\\(${match.group(1)}\\)',
@@ -81,7 +62,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
     return response;
   }
 
-  String _buildPrompt() {
+  String _buildPrompt(String userQuestion) {
     final localizations = AppLocalizations.of(context)!;
 
     String prompt = localizations.aiPrompt;
@@ -102,23 +83,28 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
           "\n${localizations.explanationLabel}: ${widget.question.explanation}\n";
     }
 
-    prompt +=
-        "\n${localizations.studentComment}: \"${_questionController.text}\"";
+    // Add chat history context if needed, for now just the new question
+    prompt += "\n${localizations.studentComment}: \"$userQuestion\"";
 
     return prompt;
   }
 
   Future<void> _askAI() async {
-    if (_questionController.text.trim().isEmpty) {
+    final userText = _questionController.text.trim();
+    if (userText.isEmpty) {
       return;
     }
 
+    final localizations = AppLocalizations.of(context)!;
+
     setState(() {
+      // Add user message to chat
+      _messages.add(ChatMessage(content: userText, isUser: true));
       _isLoading = true;
-      _aiResponse = null;
     });
 
-    final localizations = AppLocalizations.of(context)!;
+    _questionController.clear();
+    _scrollToBottom();
 
     try {
       // Check if AI assistant is enabled
@@ -126,7 +112,13 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
           .getAIAssistantEnabled();
       if (!isAiEnabled) {
         setState(() {
-          _aiResponse = localizations.aiAssistantSettingsDescription;
+          _messages.add(
+            ChatMessage(
+              content: localizations.aiAssistantSettingsDescription,
+              isUser: false,
+              isError: true,
+            ),
+          );
           _isLoading = false;
         });
         return;
@@ -135,47 +127,68 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
       // Check if we have a selected AI service
       if (_selectedService == null) {
         setState(() {
-          _aiResponse =
-              '${localizations.aiErrorResponse}\n\n${localizations.configureApiKeyMessage}';
+          _messages.add(
+            ChatMessage(
+              content:
+                  '${localizations.aiErrorResponse}\n\n${localizations.configureApiKeyMessage}',
+              isUser: false,
+              isError: true,
+            ),
+          );
           _isLoading = false;
         });
         return;
       }
 
       // Build the prompt with question context
-      final prompt = _buildPrompt();
+      final prompt = _buildPrompt(userText);
 
       // Make API call to the selected AI service
+      // Note: Passing _selectedModel if the service supports it would be better,
+      // but getChatResponse might not accept it yet.
+      // Assuming getChatResponse uses default or configured model.
       final response = await _selectedService!.getChatResponse(
         prompt,
         localizations,
       );
 
-      // Preprocess response to fix LaTeX delimiters (standardize to what GptMarkdown expects)
+      // Preprocess response to fix LaTeX delimiters
       final processedResponse = _preprocessResponse(response);
 
       setState(() {
-        _aiResponse = processedResponse;
+        _messages.add(ChatMessage(content: processedResponse, isUser: false));
         _isLoading = false;
       });
 
-      // Scroll to response
-      WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollToBottom();
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _messages.add(
+            ChatMessage(
+              content:
+                  '${localizations.aiErrorResponse}\n\n${localizations.errorLabel} ${e.toString().cleanErrorMessage()}',
+              isUser: false,
+              isError: true,
+            ),
+          );
+          _isLoading = false;
+        });
+        _scrollToBottom();
+      }
+    }
+  }
+
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeOut,
         );
-      });
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _aiResponse =
-              '${localizations.aiErrorResponse}\n\n${localizations.errorLabel} ${e.toString().cleanErrorMessage()}';
-          _isLoading = false;
-        });
       }
-    }
+    });
   }
 
   @override
@@ -190,6 +203,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Header
             Row(
               children: [
                 Row(
@@ -228,354 +242,89 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
             ),
             const SizedBox(height: 16),
 
-            // Scrollable content area
+            // Main Content Area (Chat + Context)
             Expanded(
-              child: SingleChildScrollView(
+              child: ListView.builder(
                 controller: _scrollController,
-                padding: const EdgeInsets.only(
-                  right: 8,
-                ), // Padding for scrollbar
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // AI Service Selector
-                    if (_isLoadingServices) ...[
-                      Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.surfaceContainerHighest,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.outline.withValues(alpha: 0.2),
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 16,
-                              height: 16,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  Theme.of(context).colorScheme.primary,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              localizations.loadingAiServices,
-                              style: Theme.of(context).textTheme.labelMedium,
-                            ),
-                          ],
-                        ),
+                itemCount:
+                    2 +
+                    _messages.length +
+                    (_isLoading
+                        ? 1
+                        : 0), // Selector + Context + Messages + Loading
+                itemBuilder: (context, index) {
+                  // 1. Service Selector
+                  if (index == 0) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: AiServiceModelSelector(
+                        onServiceChanged: (service) {
+                          setState(() {
+                            _selectedService = service;
+                          });
+                        },
+                        onModelChanged: (model) {
+                          setState(() {
+                            _selectedModel = model;
+                          });
+                        },
+                        saveToPreferences: true,
                       ),
-                      const SizedBox(height: 16),
-                    ] else if (_availableServices.length > 1) ...[
-                      Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.surfaceContainerHighest,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.outline.withValues(alpha: 0.2),
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.psychology,
-                              size: 20,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              localizations.aiServiceLabel,
-                              style: Theme.of(context).textTheme.labelMedium
-                                  ?.copyWith(fontWeight: FontWeight.w500),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton<AIService>(
-                                  value: _selectedService,
-                                  isExpanded: true,
-                                  items: _availableServices.map((service) {
-                                    return DropdownMenuItem<AIService>(
-                                      value: service,
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            service.serviceName.contains(
-                                                  'OpenAI',
-                                                )
-                                                ? Icons.auto_awesome
-                                                : Icons.auto_fix_high,
-                                            size: 16,
-                                            color: Theme.of(
-                                              context,
-                                            ).colorScheme.primary,
-                                          ),
-                                          const SizedBox(width: 8),
-                                          Text(
-                                            service.serviceName,
-                                            style: Theme.of(
-                                              context,
-                                            ).textTheme.bodyMedium,
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  }).toList(),
-                                  onChanged: (AIService? newService) {
-                                    if (newService != null) {
-                                      setState(() {
-                                        _selectedService = newService;
-                                        _aiResponse =
-                                            null; // Clear previous response when switching
-                                      });
-                                    }
-                                  },
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                    ] else if (_availableServices.isEmpty &&
-                        !_isLoadingServices) ...[
-                      Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.errorContainer,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.error.withValues(alpha: 0.2),
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.warning_outlined,
-                              size: 20,
-                              color: Theme.of(context).colorScheme.error,
-                            ),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: Text(
-                                localizations.configureApiKeyMessage,
-                                style: Theme.of(context).textTheme.labelMedium
-                                    ?.copyWith(
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.onErrorContainer,
-                                    ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                    ] else if (_availableServices.length == 1) ...[
-                      Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.surfaceContainerHighest,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.outline.withValues(alpha: 0.2),
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              _selectedService?.serviceName.contains(
-                                        'OpenAI',
-                                      ) ==
-                                      true
-                                  ? Icons.auto_awesome
-                                  : Icons.auto_fix_high,
-                              size: 20,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              localizations.usingAiService(
-                                _selectedService?.serviceName ?? 'AI',
-                              ),
-                              style: Theme.of(context).textTheme.labelMedium
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.w500,
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.primary,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                    ],
+                    );
+                  }
 
-                    // Question context
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Theme.of(
-                          context,
-                        ).colorScheme.surfaceContainerHighest,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                  // 2. Question Context
+                  if (index == 1) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 24),
+                      child: QuestionContextWidget(question: widget.question),
+                    );
+                  }
+
+                  // 3. Chat Messages
+                  final messageIndex = index - 2;
+                  if (messageIndex < _messages.length) {
+                    final message = _messages[messageIndex];
+                    return AiChatBubble(
+                      content: message.content,
+                      isUser: message.isUser,
+                      isError: message.isError,
+                      aiServiceName: message.isUser
+                          ? null
+                          : _selectedService?.serviceName,
+                    );
+                  }
+
+                  // 4. Loading Indicator
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    child: Center(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
+                          SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
                           Text(
-                            localizations.questionContext,
-                            style: Theme.of(context).textTheme.titleSmall
-                                ?.copyWith(fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(height: 8),
-                          LaTeXText(
-                            widget.question.text,
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                          if (widget.question.options.isNotEmpty &&
-                              widget.question.type != QuestionType.essay) ...[
-                            const SizedBox(height: 12),
-                            ...widget.question.options.asMap().entries.map((
-                              entry,
-                            ) {
-                              final index = entry.key;
-                              final option = entry.value;
-                              final letter = String.fromCharCode(65 + index);
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 4),
-                                child: LaTeXText(
-                                  "$letter) $option",
-                                  style: Theme.of(context).textTheme.bodySmall,
+                            localizations.aiThinking,
+                            style: Theme.of(context).textTheme.bodyMedium
+                                ?.copyWith(
+                                  color: Theme.of(context).colorScheme.primary,
                                 ),
-                              );
-                            }),
-                          ],
+                          ),
                         ],
                       ),
                     ),
-
-                    const SizedBox(height: 16),
-
-                    // Chat response area
-                    if (_aiResponse != null) ...[
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.primaryContainer.withValues(alpha: 0.3),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  _selectedService?.serviceName.contains(
-                                            'OpenAI',
-                                          ) ==
-                                          true
-                                      ? Icons.auto_awesome
-                                      : Icons.auto_fix_high,
-                                  size: 16,
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  _selectedService?.serviceName ?? 'AI',
-                                  style: TextStyle(
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.primary,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  localizations.aiAssistant,
-                                  style: Theme.of(context).textTheme.titleSmall
-                                      ?.copyWith(
-                                        fontWeight: FontWeight.bold,
-                                        color: Theme.of(
-                                          context,
-                                        ).colorScheme.primary,
-                                      ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 8),
-                            GptMarkdown(
-                              _aiResponse!,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                    ],
-                    if (_isLoading) ...[
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.primaryContainer.withValues(alpha: 0.3),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  Theme.of(context).colorScheme.primary,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Text(
-                              localizations.aiThinking,
-                              style: Theme.of(context).textTheme.bodyMedium
-                                  ?.copyWith(
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.primary,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 16), // Spacing after loading
-                    ],
-                  ],
-                ),
+                  );
+                },
               ),
             ),
 
