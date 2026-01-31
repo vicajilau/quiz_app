@@ -1139,7 +1139,7 @@
       }
     }
   },
-  "aiEvaluationPromptSystemRole": "Eres un profesor experto evaluando la respuesta de un estudiante a una pregunta de ensayo. Tu tarea es proporcionar una evaluación detallada y constructiva. Responde en español.",
+  "aiEvaluationPromptSystemRole": "Eres un profesor experto evaluando la respuesta de un estudiante a una pregunta de ensayo. Tu tarea es proporcionar una evaluación detallada y constructiva. Responde en el mismo idioma que la respuesta del estudiante.",
   "@aiEvaluationPromptSystemRole": {
     "description": "Rol del sistema para el prompt de evaluación de IA"
   },

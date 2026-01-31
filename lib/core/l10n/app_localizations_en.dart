@@ -842,7 +842,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aiEvaluationPromptSystemRole =>
-      'You are an expert teacher evaluating a student\'s response to an essay question. Your task is to provide detailed and constructive evaluation. Please respond in English.';
+      'You are an expert teacher evaluating a student\'s response to an essay question. Your task is to provide detailed and constructive evaluation. Respond in the same language as the student\'s answer.';
 
   @override
   String get aiEvaluationPromptQuestion => 'QUESTION:';
