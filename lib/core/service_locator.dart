@@ -3,7 +3,7 @@ import 'package:quiz_app/domain/use_cases/check_file_changes_use_case.dart';
 
 import '../data/repositories/quiz_file_repository.dart';
 import '../data/services/file_service/mobile_desktop_file_service.dart'
-    if (dart.library.html) '../../data/services/file_service/web_file_service.dart';
+    if (dart.library.js_interop) '../../data/services/file_service/web_file_service.dart';
 import '../domain/models/quiz/quiz_file.dart';
 
 import '../presentation/blocs/file_bloc/file_bloc.dart';
