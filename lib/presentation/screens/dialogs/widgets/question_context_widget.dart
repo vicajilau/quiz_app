@@ -4,9 +4,15 @@ import '../../../../domain/models/quiz/question.dart';
 import '../../../../domain/models/quiz/question_type.dart';
 import '../../../widgets/latex_text.dart';
 
+/// A widget that displays the context of the question being discussed.
+///
+/// This includes the [question] text and its options (if applicable),
+/// formatted with LaTeX support.
 class QuestionContextWidget extends StatelessWidget {
+  /// The question object containing the text and options to display.
   final Question question;
 
+  /// Creates a [QuestionContextWidget].
   const QuestionContextWidget({super.key, required this.question});
 
   @override

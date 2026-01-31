@@ -2,12 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:gpt_markdown/gpt_markdown.dart';
 import '../../../../core/l10n/app_localizations.dart';
 
+/// A widget that displays a single chat message bubble.
+///
+/// Renders messages differently based on whether they are from the [isUser]
+/// or the AI. AI messages support Markdown rendering via [GptMarkdown].
 class AiChatBubble extends StatelessWidget {
+  /// The text content to display.
   final String content;
+
+  /// Whether the message is from the user (right-aligned) or AI (left-aligned).
   final bool isUser;
+
+  /// If `true`, styles the bubble to indicate an error state.
   final bool isError;
+
+  /// The name of the AI service (e.g., "OpenAI", "Gemini") to display
+  /// above the message for AI responses.
   final String? aiServiceName;
 
+  /// Creates a [AiChatBubble].
   const AiChatBubble({
     super.key,
     required this.content,
