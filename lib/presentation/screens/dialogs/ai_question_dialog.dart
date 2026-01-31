@@ -150,6 +150,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
       final response = await _selectedService!.getChatResponse(
         prompt,
         localizations,
+        model: _selectedModel,
       );
 
       // Preprocess response to fix LaTeX delimiters
