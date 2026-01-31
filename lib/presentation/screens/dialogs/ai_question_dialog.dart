@@ -228,235 +228,256 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
             ),
             const SizedBox(height: 16),
 
-            // AI Service Selector
-            if (_isLoadingServices) ...[
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.outline.withValues(alpha: 0.2),
-                  ),
-                ),
-                child: Row(
+            // Scrollable content area
+            Expanded(
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                padding: const EdgeInsets.only(
+                  right: 8,
+                ), // Padding for scrollbar
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          Theme.of(context).colorScheme.primary,
+                    // AI Service Selector
+                    if (_isLoadingServices) ...[
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.surfaceContainerHighest,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.outline.withValues(alpha: 0.2),
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 16,
+                              height: 16,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Theme.of(context).colorScheme.primary,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              localizations.loadingAiServices,
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      localizations.loadingAiServices,
-                      style: Theme.of(context).textTheme.labelMedium,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16),
-            ] else if (_availableServices.length > 1) ...[
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.outline.withValues(alpha: 0.2),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.psychology,
-                      size: 20,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      localizations.aiServiceLabel,
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        fontWeight: FontWeight.w500,
+                      const SizedBox(height: 16),
+                    ] else if (_availableServices.length > 1) ...[
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.surfaceContainerHighest,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.outline.withValues(alpha: 0.2),
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.psychology,
+                              size: 20,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              localizations.aiServiceLabel,
+                              style: Theme.of(context).textTheme.labelMedium
+                                  ?.copyWith(fontWeight: FontWeight.w500),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton<AIService>(
+                                  value: _selectedService,
+                                  isExpanded: true,
+                                  items: _availableServices.map((service) {
+                                    return DropdownMenuItem<AIService>(
+                                      value: service,
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            service.serviceName.contains(
+                                                  'OpenAI',
+                                                )
+                                                ? Icons.auto_awesome
+                                                : Icons.auto_fix_high,
+                                            size: 16,
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.primary,
+                                          ),
+                                          const SizedBox(width: 8),
+                                          Text(
+                                            service.serviceName,
+                                            style: Theme.of(
+                                              context,
+                                            ).textTheme.bodyMedium,
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  }).toList(),
+                                  onChanged: (AIService? newService) {
+                                    if (newService != null) {
+                                      setState(() {
+                                        _selectedService = newService;
+                                        _aiResponse =
+                                            null; // Clear previous response when switching
+                                      });
+                                    }
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton<AIService>(
-                          value: _selectedService,
-                          isExpanded: true,
-                          items: _availableServices.map((service) {
-                            return DropdownMenuItem<AIService>(
-                              value: service,
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    service.serviceName.contains('OpenAI')
-                                        ? Icons.auto_awesome
-                                        : Icons.auto_fix_high,
-                                    size: 16,
+                      const SizedBox(height: 16),
+                    ] else if (_availableServices.isEmpty &&
+                        !_isLoadingServices) ...[
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.errorContainer,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.error.withValues(alpha: 0.2),
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.warning_outlined,
+                              size: 20,
+                              color: Theme.of(context).colorScheme.error,
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                localizations.configureApiKeyMessage,
+                                style: Theme.of(context).textTheme.labelMedium
+                                    ?.copyWith(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onErrorContainer,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                    ] else if (_availableServices.length == 1) ...[
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.surfaceContainerHighest,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.outline.withValues(alpha: 0.2),
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              _selectedService?.serviceName.contains(
+                                        'OpenAI',
+                                      ) ==
+                                      true
+                                  ? Icons.auto_awesome
+                                  : Icons.auto_fix_high,
+                              size: 20,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              localizations.usingAiService(
+                                _selectedService?.serviceName ?? 'AI',
+                              ),
+                              style: Theme.of(context).textTheme.labelMedium
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.w500,
                                     color: Theme.of(
                                       context,
                                     ).colorScheme.primary,
                                   ),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    service.serviceName,
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.bodyMedium,
-                                  ),
-                                ],
-                              ),
-                            );
-                          }).toList(),
-                          onChanged: (AIService? newService) {
-                            if (newService != null) {
-                              setState(() {
-                                _selectedService = newService;
-                                _aiResponse =
-                                    null; // Clear previous response when switching
-                              });
-                            }
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16),
-            ] else if (_availableServices.isEmpty && !_isLoadingServices) ...[
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.errorContainer,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.error.withValues(alpha: 0.2),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.warning_outlined,
-                      size: 20,
-                      color: Theme.of(context).colorScheme.error,
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        localizations.configureApiKeyMessage,
-                        style: Theme.of(context).textTheme.labelMedium
-                            ?.copyWith(
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.onErrorContainer,
                             ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16),
-            ] else if (_availableServices.length == 1) ...[
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.outline.withValues(alpha: 0.2),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      _selectedService?.serviceName.contains('OpenAI') == true
-                          ? Icons.auto_awesome
-                          : Icons.auto_fix_high,
-                      size: 20,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      localizations.usingAiService(
-                        _selectedService?.serviceName ?? 'AI',
-                      ),
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16),
-            ],
-
-            // Question context
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.surfaceContainerHighest,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    localizations.questionContext,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  LaTeXText(
-                    widget.question.text,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  if (widget.question.options.isNotEmpty &&
-                      widget.question.type != QuestionType.essay) ...[
-                    const SizedBox(height: 12),
-                    ...widget.question.options.asMap().entries.map((entry) {
-                      final index = entry.key;
-                      final option = entry.value;
-                      final letter = String.fromCharCode(65 + index);
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 4),
-                        child: LaTeXText(
-                          "$letter) $option",
-                          style: Theme.of(context).textTheme.bodySmall,
+                          ],
                         ),
-                      );
-                    }),
-                  ],
-                ],
-              ),
-            ),
+                      ),
+                      const SizedBox(height: 16),
+                    ],
 
-            const SizedBox(height: 16),
+                    // Question context
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainerHighest,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            localizations.questionContext,
+                            style: Theme.of(context).textTheme.titleSmall
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 8),
+                          LaTeXText(
+                            widget.question.text,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                          if (widget.question.options.isNotEmpty &&
+                              widget.question.type != QuestionType.essay) ...[
+                            const SizedBox(height: 12),
+                            ...widget.question.options.asMap().entries.map((
+                              entry,
+                            ) {
+                              final index = entry.key;
+                              final option = entry.value;
+                              final letter = String.fromCharCode(65 + index);
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 4),
+                                child: LaTeXText(
+                                  "$letter) $option",
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                ),
+                              );
+                            }),
+                          ],
+                        ],
+                      ),
+                    ),
 
-            // Chat area
-            Expanded(
-              child: SingleChildScrollView(
-                controller: _scrollController,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                    const SizedBox(height: 16),
+
+                    // Chat response area
                     if (_aiResponse != null) ...[
                       Container(
                         width: double.infinity,
@@ -551,6 +572,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                           ],
                         ),
                       ),
+                      const SizedBox(height: 16), // Spacing after loading
                     ],
                   ],
                 ),
