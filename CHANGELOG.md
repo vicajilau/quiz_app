@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.4.0] - 2026-01-29
 
 - ui: Refined light/dark theme styles for consistency, enhanced AI icon visibility, and optimized theme configuration.
+- ui: Improved "AI Study Assistant" window scrolling to allow scrolling the entire dialog content.
 
 ## [1.3.0] - 2026-01-29
 
