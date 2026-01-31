@@ -9,8 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - fix: AI Essay Evaluation now respects the student's answer language instead of defaulting to the system language.
 - fix: Updated all 14 supported languages to include dynamic language instructions for AI evaluation.
-- ui: Refined light/dark theme styles for consistency, enhanced AI icon visibility, and optimized theme configuration.
-- ui: Improved "AI Study Assistant" window scrolling to allow scrolling the entire dialog content.
+- feat: Refined light/dark theme styles for consistency, enhanced AI icon visibility, and optimized theme configuration.
 - feat: Refactored "AI Study Assistant" into a conversational chat interface with history.
 
 ## [1.3.0] - 2026-01-29
