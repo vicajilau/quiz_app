@@ -855,7 +855,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get aiEvaluationPromptSystemRole =>
-      'Vous êtes un professeur expert évaluant la réponse d\'un étudiant à une question de dissertation. Votre tâche est de fournir une évaluation détaillée et constructive. Veuillez répondre en français.';
+      'Vous êtes un professeur expert évaluant la réponse d\'un étudiant à une question de dissertation. Votre tâche est de fournir une évaluation détaillée et constructive. Répondez dans la même langue que la réponse de l\'étudiant.';
 
   @override
   String get aiEvaluationPromptQuestion => 'QUESTION:';

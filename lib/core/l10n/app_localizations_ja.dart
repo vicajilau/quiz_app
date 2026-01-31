@@ -809,7 +809,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get aiEvaluationPromptSystemRole =>
-      'あなたはエッセイ問題に対する学生の回答を評価する専門の教師です。あなたの任務は、詳細で建設的な評価を提供することです。日本語で回答してください。';
+      'あなたはエッセイ問題に対する学生の回答を評価する専門の教師です。あなたの任務は、詳細で建設的な評価を提供することです。学生の回答と同じ言語で回答してください。';
 
   @override
   String get aiEvaluationPromptQuestion => '問題：';
