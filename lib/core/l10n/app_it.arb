@@ -1201,7 +1201,7 @@
       }
     }
   },
-  "aiEvaluationPromptSystemRole": "Sei un insegnante esperto che valuta la risposta di uno studente a una domanda di saggio. Il tuo compito è fornire una valutazione dettagliata e costruttiva. Rispondi in italiano.",
+  "aiEvaluationPromptSystemRole": "Sei un insegnante esperto che valuta la risposta di uno studente a una domanda di saggio. Il tuo compito è fornire una valutazione dettagliata e costruttiva. Rispondi nella stessa lingua della risposta dello studente.",
   "@aiEvaluationPromptSystemRole": {
     "description": "Ruolo del sistema per il prompt di valutazione IA"
   },

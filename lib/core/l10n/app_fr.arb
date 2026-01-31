@@ -1201,7 +1201,7 @@
       }
     }
   },
-  "aiEvaluationPromptSystemRole": "Vous êtes un professeur expert évaluant la réponse d'un étudiant à une question de dissertation. Votre tâche est de fournir une évaluation détaillée et constructive. Veuillez répondre en français.",
+  "aiEvaluationPromptSystemRole": "Vous êtes un professeur expert évaluant la réponse d'un étudiant à une question de dissertation. Votre tâche est de fournir une évaluation détaillée et constructive. Répondez dans la même langue que la réponse de l'étudiant.",
   "@aiEvaluationPromptSystemRole": {
     "description": "Rôle système pour l'invite d'évaluation IA"
   },

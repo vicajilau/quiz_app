@@ -1201,7 +1201,7 @@
       }
     }
   },
-  "aiEvaluationPromptSystemRole": "Ikasleen saiakera galderen erantzunak ebaluatzen espezializatutako irakaslea zara. Zure zeregina ebaluazio zehatz eta eraikitzaileak ematea da. Erantzun euskeraz.",
+  "aiEvaluationPromptSystemRole": "Ikasleen saiakera galderen erantzunak ebaluatzen espezializatutako irakaslea zara. Zure zeregina ebaluazio zehatz eta eraikitzaileak ematea da. Erantzun ikaslearen erantzunaren hizkuntza berean.",
   "@aiEvaluationPromptSystemRole": {
     "description": "AI ebaluazio galdetegiaren sistemaren rola"
   },

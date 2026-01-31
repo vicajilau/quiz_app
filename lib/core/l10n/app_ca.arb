@@ -1201,7 +1201,7 @@
       }
     }
   },
-  "aiEvaluationPromptSystemRole": "Ets un professor especialitzat en avaluar respostes d'estudiants a preguntes d'assaig. La teva tasca és proporcionar avaluacions detallades i constructives. Respon en català.",
+  "aiEvaluationPromptSystemRole": "Ets un professor especialitzat en avaluar respostes d'estudiants a preguntes d'assaig. La teva tasca és proporcionar avaluacions detallades i constructives. Respon en el mateix idioma que la resposta de l'estudiant.",
   "@aiEvaluationPromptSystemRole": {
     "description": "Rol del sistema per al prompt d'avaluació IA"
   },

@@ -1201,7 +1201,7 @@
       }
     }
   },
-  "aiEvaluationPromptSystemRole": "Você é um professor especialista avaliando a resposta de um estudante a uma questão dissertativa. Sua tarefa é fornecer uma avaliação detalhada e construtiva. Responda em português.",
+  "aiEvaluationPromptSystemRole": "Você é um professor especialista avaliando a resposta de um estudante a uma questão dissertativa. Sua tarefa é fornecer uma avaliação detalhada e construtiva. Responda no mesmo idioma da resposta do estudante.",
   "@aiEvaluationPromptSystemRole": {
     "description": "Papel do sistema para prompt de avaliação IA"
   },
