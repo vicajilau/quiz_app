@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/l10n/app_localizations.dart';
 
+import '../../../domain/models/quiz/quiz_config.dart';
+
 class QuestionCountSelectionDialog extends StatefulWidget {
   final int totalQuestions;
 
@@ -16,6 +18,7 @@ class QuestionCountSelectionDialog extends StatefulWidget {
 class _QuestionCountSelectionDialogState
     extends State<QuestionCountSelectionDialog> {
   int selectedCount = 10; // Default value
+  bool _isStudyMode = false; // Default to Exam Mode
   String? _inputError; // Track input validation errors
 
   @override
@@ -92,6 +95,58 @@ class _QuestionCountSelectionDialogState
               }
             },
           ),
+          const SizedBox(height: 24),
+          const Divider(),
+          const SizedBox(height: 8),
+          // Quiz Mode Selection
+          Text(
+            AppLocalizations.of(context)!.quizModeTitle,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          const SizedBox(height: 8),
+
+          RadioGroup<bool>(
+            groupValue: _isStudyMode,
+            onChanged: (value) {
+              if (value != null) {
+                setState(() {
+                  _isStudyMode = value;
+                });
+              }
+            },
+            child: Column(
+              children: [
+                RadioListTile<bool>(
+                  title: Text(AppLocalizations.of(context)!.examModeLabel),
+                  subtitle: Text(
+                    AppLocalizations.of(context)!.examModeDescription,
+                  ),
+                  value: false,
+                  activeColor: Theme.of(context).colorScheme.primary,
+                  secondary: Icon(
+                    Icons.timer,
+                    color: !_isStudyMode
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
+                  ),
+                ),
+                RadioListTile<bool>(
+                  title: Text(AppLocalizations.of(context)!.studyModeLabel),
+                  subtitle: Text(
+                    AppLocalizations.of(context)!.studyModeDescription,
+                  ),
+                  value: true,
+                  activeColor: Theme.of(context).colorScheme.primary,
+                  secondary: Icon(
+                    Icons.school,
+                    color: _isStudyMode
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
       actions: [
@@ -100,7 +155,16 @@ class _QuestionCountSelectionDialogState
           child: Text(AppLocalizations.of(context)!.cancelButton),
         ),
         ElevatedButton(
-          onPressed: () => context.pop(selectedCount),
+          onPressed: () {
+            if (_inputError == null) {
+              context.pop(
+                QuizConfig(
+                  questionCount: selectedCount,
+                  isStudyMode: _isStudyMode,
+                ),
+              );
+            }
+          },
           child: Text(AppLocalizations.of(context)!.startQuiz),
         ),
       ],

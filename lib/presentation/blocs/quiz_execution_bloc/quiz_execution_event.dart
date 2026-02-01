@@ -6,8 +6,9 @@ abstract class QuizExecutionEvent {}
 /// Event triggered when the quiz execution starts.
 class QuizExecutionStarted extends QuizExecutionEvent {
   final List<Question> questions;
+  final bool isStudyMode;
 
-  QuizExecutionStarted(this.questions);
+  QuizExecutionStarted(this.questions, {this.isStudyMode = false});
 }
 
 /// Event triggered when a user selects an answer.
@@ -24,6 +25,9 @@ class EssayAnswerChanged extends QuizExecutionEvent {
 
   EssayAnswerChanged(this.text);
 }
+
+/// Event triggered when the user wants to check the answer (Study Mode).
+class CheckAnswerRequested extends QuizExecutionEvent {}
 
 /// Event triggered when the user wants to go to the next question.
 class NextQuestionRequested extends QuizExecutionEvent {}

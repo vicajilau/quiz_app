@@ -1158,4 +1158,25 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get aiFilePickerError =>
       'Impossible de charger le fichier sélectionné';
+
+  @override
+  String get studyModeLabel => 'Mode Étude';
+
+  @override
+  String get studyModeDescription => 'Feedback instantané et pas de minuterie';
+
+  @override
+  String get examModeLabel => 'Mode Examen';
+
+  @override
+  String get examModeDescription => 'Minuterie standard et résultats à la fin';
+
+  @override
+  String get checkAnswer => 'Vérifier';
+
+  @override
+  String get quizModeTitle => 'Mode Quiz';
+
+  @override
+  String get skip => 'Passer';
 }

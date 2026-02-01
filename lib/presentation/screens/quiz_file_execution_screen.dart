@@ -43,9 +43,14 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
     final examTimeMinutes = await ConfigurationService.instance
         .getExamTimeMinutes();
 
+    // Get Study Mode setting from ServiceLocator
+    final quizConfig = ServiceLocator.instance.getQuizConfig();
+    final isStudyMode = quizConfig?.isStudyMode ?? false;
+
     if (mounted) {
       setState(() {
-        _examTimeEnabled = examTimeEnabled;
+        // In Study Mode, force disable the timer
+        _examTimeEnabled = isStudyMode ? false : examTimeEnabled;
         _examTimeMinutes = examTimeMinutes;
       });
     }
@@ -89,8 +94,15 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
         final questionsToUse = snapshot.data as List<Question>;
 
         return BlocProvider(
-          create: (context) =>
-              QuizExecutionBloc()..add(QuizExecutionStarted(questionsToUse)),
+          create: (context) {
+            // Get Study Mode setting
+            final quizConfig = ServiceLocator.instance.getQuizConfig();
+            final isStudyMode = quizConfig?.isStudyMode ?? false;
+
+            return QuizExecutionBloc()..add(
+              QuizExecutionStarted(questionsToUse, isStudyMode: isStudyMode),
+            );
+          },
           child: Builder(
             builder: (context) => SafeArea(
               child: Scaffold(
@@ -156,9 +168,9 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
 
   Future<List<Question>> _prepareQuizQuestions() async {
     // Get the configured question count from service locator
+    final quizConfig = ServiceLocator.instance.getQuizConfig();
     final questionCount =
-        ServiceLocator.instance.getQuestionCount() ??
-        widget.quizFile.questions.length;
+        quizConfig?.questionCount ?? widget.quizFile.questions.length;
 
     // Get the configured question order
     final questionOrder = await ConfigurationService.instance

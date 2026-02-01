@@ -2089,6 +2089,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not load the selected file'**
   String get aiFilePickerError;
+
+  /// Label for study mode option
+  ///
+  /// In en, this message translates to:
+  /// **'Study Mode'**
+  String get studyModeLabel;
+
+  /// Description for study mode
+  ///
+  /// In en, this message translates to:
+  /// **'Instant feedback and no timer'**
+  String get studyModeDescription;
+
+  /// Label for exam mode option
+  ///
+  /// In en, this message translates to:
+  /// **'Exam Mode'**
+  String get examModeLabel;
+
+  /// Description for exam mode
+  ///
+  /// In en, this message translates to:
+  /// **'Standard timer and results at the end'**
+  String get examModeDescription;
+
+  /// Button label to check the answer in study mode
+  ///
+  /// In en, this message translates to:
+  /// **'Check Answer'**
+  String get checkAnswer;
+
+  /// Title for the quiz mode selection section
+  ///
+  /// In en, this message translates to:
+  /// **'Quiz Mode'**
+  String get quizModeTitle;
+
+  /// Label for skip button
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
 }
 
 class _AppLocalizationsDelegate

@@ -8,8 +8,13 @@ import '../dialogs/submit_quiz_dialog.dart';
 
 class QuizNavigationButtons extends StatelessWidget {
   final QuizExecutionInProgress state;
+  final bool isStudyMode;
 
-  const QuizNavigationButtons({super.key, required this.state});
+  const QuizNavigationButtons({
+    super.key,
+    required this.state,
+    this.isStudyMode = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +36,30 @@ class QuizNavigationButtons extends StatelessWidget {
               ),
             ),
 
-          if (!state.isFirstQuestion) const SizedBox(width: 16),
+          if (!state.isFirstQuestion) const SizedBox(width: 8),
+
+          // Check Answer button (Only in Study Mode and not validated)
+          if (isStudyMode && !state.isCurrentQuestionValidated) ...[
+            Expanded(
+              child: OutlinedButton.icon(
+                onPressed: () {
+                  context.read<QuizExecutionBloc>().add(CheckAnswerRequested());
+                },
+                icon: const Icon(Icons.check_circle_outline),
+                label: Text(AppLocalizations.of(context)!.checkAnswer),
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: Theme.of(context).primaryColor,
+                  side: BorderSide(color: Theme.of(context).primaryColor),
+                ),
+              ),
+            ),
+            const SizedBox(width: 8),
+          ],
 
           // Next/Submit button
           Expanded(
             child: ElevatedButton.icon(
-              onPressed: state.hasCurrentQuestionAnswered
+              onPressed: (isStudyMode || state.hasCurrentQuestionAnswered)
                   ? () {
                       if (state.isLastQuestion) {
                         SubmitQuizDialog.show(
@@ -49,19 +72,27 @@ class QuizNavigationButtons extends StatelessWidget {
                         );
                       }
                     }
-                  : null, // Disable button if no answer selected
+                  : null, // Disable button if no answer selected (only in Exam Mode)
               icon: Icon(
                 state.isLastQuestion ? Icons.check : Icons.arrow_forward,
               ),
-              label: Text(
-                state.isLastQuestion
-                    ? AppLocalizations.of(context)!.finish
-                    : AppLocalizations.of(context)!.next,
-              ),
+              label: Text(_getLabel(context)),
             ),
           ),
         ],
       ),
     );
+  }
+
+  String _getLabel(BuildContext context) {
+    if (state.isLastQuestion) {
+      return AppLocalizations.of(context)!.finish;
+    }
+    if (isStudyMode &&
+        !state.hasCurrentQuestionAnswered &&
+        !state.isCurrentQuestionValidated) {
+      return AppLocalizations.of(context)!.skip;
+    }
+    return AppLocalizations.of(context)!.next;
   }
 }

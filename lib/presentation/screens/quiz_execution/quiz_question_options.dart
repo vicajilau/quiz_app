@@ -11,11 +11,13 @@ import '../../widgets/latex_text.dart';
 class QuizQuestionOptions extends StatefulWidget {
   final QuizExecutionInProgress state;
   final bool showCorrectAnswerCount;
+  final bool isStudyMode;
 
   const QuizQuestionOptions({
     super.key,
     required this.state,
     this.showCorrectAnswerCount = false,
+    this.isStudyMode = false,
   });
 
   @override
@@ -139,6 +141,12 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
                 ? widget.state.currentQuestionAnswers.first
                 : null,
             onChanged: (int? value) {
+              // In Study Mode, check if question is validated before locking
+              if (widget.isStudyMode &&
+                  widget.state.isCurrentQuestionValidated) {
+                return; // Prevent changing answer if already validated
+              }
+
               if (value != null) {
                 context.read<QuizExecutionBloc>().add(
                   AnswerSelected(value, true),
@@ -169,6 +177,61 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
               },
             ),
           ),
+
+        // Show explanation in Study Mode after answering and validation
+        if (widget.isStudyMode &&
+            widget.state.isCurrentQuestionValidated &&
+            widget.state.currentQuestion.explanation.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(top: 24.0),
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Theme.of(
+                  context,
+                ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.outline.withValues(alpha: 0.2),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.lightbulb_outline,
+                        color: Theme.of(context).colorScheme.secondary,
+                        size: 20,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        AppLocalizations.of(context)!.explanationTitle,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  LaTeXText(
+                    widget.state.currentQuestion.explanation,
+                    style: TextStyle(
+                      fontSize: 15,
+                      height: 1.5,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
       ],
     );
   }
@@ -193,6 +256,24 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
 
     // For multiple choice questions, use CheckboxListTile
     if (questionType == QuestionType.multipleChoice) {
+      Color? tileColor;
+      Color? activeColor;
+
+      if (widget.isStudyMode &&
+          isSelected &&
+          widget.state.isCurrentQuestionValidated) {
+        final isCorrect = widget.state.currentQuestion.correctAnswers.contains(
+          index,
+        );
+        tileColor = isCorrect
+            ? Colors.green.withValues(alpha: 0.2)
+            : Colors.red.withValues(alpha: 0.2);
+        activeColor = isCorrect ? Colors.green : Colors.red;
+      }
+      // Also highlight correct answers if we missed them?
+      // For Multiple Choice it's tricky because you select multiple.
+      // Let's keep it simple: Show Green for correct selected, Red for incorrect selected.
+
       return CheckboxListTile(
         title: IgnorePointer(
           child: LaTeXText(translatedOption, style: optionTextStyle),
@@ -203,18 +284,43 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
             AnswerSelected(index, value ?? false),
           );
         },
-        activeColor: Theme.of(context).primaryColor,
+        activeColor: activeColor ?? Theme.of(context).primaryColor,
+        tileColor: tileColor,
         controlAffinity: ListTileControlAffinity.leading,
       );
     }
     // For single choice, true/false, and essay questions, use RadioListTile
     else {
+      Color? tileColor;
+      Color? activeColor;
+
+      if (widget.isStudyMode) {
+        final isCorrect = widget.state.currentQuestion.correctAnswers.contains(
+          index,
+        );
+        final isValidated = widget.state.isCurrentQuestionValidated;
+
+        if (isValidated) {
+          if (isSelected) {
+            tileColor = isCorrect
+                ? Colors.green.withValues(alpha: 0.2)
+                : Colors.red.withValues(alpha: 0.2);
+            activeColor = isCorrect ? Colors.green : Colors.red;
+          } else if (isCorrect) {
+            // Show correct answer even if not selected
+            tileColor = Colors.green.withValues(alpha: 0.2);
+            activeColor = Colors.green;
+          }
+        }
+      }
+
       return RadioListTile<int>(
         title: IgnorePointer(
           child: LaTeXText(translatedOption, style: optionTextStyle),
         ),
         value: index,
-        activeColor: Theme.of(context).primaryColor,
+        activeColor: activeColor ?? Theme.of(context).primaryColor,
+        tileColor: tileColor,
         controlAffinity: ListTileControlAffinity.leading,
       );
     }
@@ -265,6 +371,61 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
               ),
             ),
           ),
+
+          // Show explanation in Study Mode after validation
+          if (widget.isStudyMode &&
+              widget.state.isCurrentQuestionValidated &&
+              widget.state.currentQuestion.explanation.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 24.0),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.outline.withValues(alpha: 0.2),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.lightbulb_outline,
+                          color: Theme.of(context).colorScheme.secondary,
+                          size: 20,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          AppLocalizations.of(context)!.explanationTitle,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    LaTeXText(
+                      widget.state.currentQuestion.explanation,
+                      style: TextStyle(
+                        fontSize: 15,
+                        height: 1.5,
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
         ],
       ),
     );

@@ -1605,5 +1605,33 @@
   "aiFilePickerError": "Could not load the selected file",
   "@aiFilePickerError": {
     "description": "Error message when file picker fails"
+  },
+  "studyModeLabel": "Study Mode",
+  "@studyModeLabel": {
+    "description": "Label for study mode option"
+  },
+  "studyModeDescription": "Instant feedback and no timer",
+  "@studyModeDescription": {
+    "description": "Description for study mode"
+  },
+  "examModeLabel": "Exam Mode",
+  "@examModeLabel": {
+    "description": "Label for exam mode option"
+  },
+  "examModeDescription": "Standard timer and results at the end",
+  "@examModeDescription": {
+    "description": "Description for exam mode"
+  },
+  "checkAnswer": "Check Answer",
+  "@checkAnswer": {
+    "description": "Button label to check the answer in study mode"
+  },
+  "quizModeTitle": "Quiz Mode",
+  "@quizModeTitle": {
+    "description": "Title for the quiz mode selection section"
+  },
+  "skip": "Skip",
+  "@skip": {
+    "description": "Label for skip button"
   }
 }

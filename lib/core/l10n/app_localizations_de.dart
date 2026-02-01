@@ -1159,4 +1159,25 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get aiFilePickerError =>
       'Die ausgewählte Datei konnte nicht geladen werden';
+
+  @override
+  String get studyModeLabel => 'Lernmodus';
+
+  @override
+  String get studyModeDescription => 'Sofortiges Feedback und kein Timer';
+
+  @override
+  String get examModeLabel => 'Prüfungsmodus';
+
+  @override
+  String get examModeDescription => 'Standard-Timer und Ergebnisse am Ende';
+
+  @override
+  String get checkAnswer => 'Überprüfen';
+
+  @override
+  String get quizModeTitle => 'Quizmodus';
+
+  @override
+  String get skip => 'Überspringen';
 }

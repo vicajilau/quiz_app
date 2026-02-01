@@ -1157,4 +1157,27 @@ class AppLocalizationsCa extends AppLocalizations {
   @override
   String get aiFilePickerError =>
       'No s\'ha pogut carregar el fitxer seleccionat';
+
+  @override
+  String get studyModeLabel => 'Mode Estudi';
+
+  @override
+  String get studyModeDescription =>
+      'Feedback instantani i sense temporitzador';
+
+  @override
+  String get examModeLabel => 'Mode Examen';
+
+  @override
+  String get examModeDescription =>
+      'Temporitzador estàndard i resultats al final';
+
+  @override
+  String get checkAnswer => 'Comprovar';
+
+  @override
+  String get quizModeTitle => 'Mode Qüestionari';
+
+  @override
+  String get skip => 'Saltar';
 }

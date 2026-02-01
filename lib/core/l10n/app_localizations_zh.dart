@@ -1093,4 +1093,25 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get aiFilePickerError => '无法加载所选文件';
+
+  @override
+  String get studyModeLabel => 'Study Mode';
+
+  @override
+  String get studyModeDescription => 'Instant feedback and no timer';
+
+  @override
+  String get examModeLabel => 'Exam Mode';
+
+  @override
+  String get examModeDescription => 'Standard timer and results at the end';
+
+  @override
+  String get checkAnswer => 'Check Answer';
+
+  @override
+  String get quizModeTitle => 'Quiz Mode';
+
+  @override
+  String get skip => 'Skip';
 }

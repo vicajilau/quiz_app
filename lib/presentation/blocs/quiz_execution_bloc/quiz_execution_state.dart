@@ -15,14 +15,20 @@ class QuizExecutionInProgress extends QuizExecutionState {
   userAnswers; // questionIndex -> selected option indices
   final Map<int, String> essayAnswers; // questionIndex -> essay text
   final int totalQuestions;
+  final Set<int>
+  validatedQuestions; // Indices of questions that have been checked in Study Mode
+  final bool isStudyMode;
 
   QuizExecutionInProgress({
     required this.questions,
     required this.currentQuestionIndex,
     required this.userAnswers,
     Map<int, String>? essayAnswers,
+    Set<int>? validatedQuestions,
+    this.isStudyMode = false,
   }) : totalQuestions = questions.length,
-       essayAnswers = essayAnswers ?? {};
+       essayAnswers = essayAnswers ?? {},
+       validatedQuestions = validatedQuestions ?? {};
 
   /// Get the current question
   Question get currentQuestion => questions[currentQuestionIndex];
@@ -36,6 +42,10 @@ class QuizExecutionInProgress extends QuizExecutionState {
   /// Get selected answers for current question
   List<int> get currentQuestionAnswers =>
       userAnswers[currentQuestionIndex] ?? [];
+
+  /// Check if current question has been validated (checked)
+  bool get isCurrentQuestionValidated =>
+      validatedQuestions.contains(currentQuestionIndex);
 
   /// Check if an option is selected for current question
   bool isOptionSelected(int optionIndex) {
@@ -62,12 +72,16 @@ class QuizExecutionInProgress extends QuizExecutionState {
     int? currentQuestionIndex,
     Map<int, List<int>>? userAnswers,
     Map<int, String>? essayAnswers,
+    Set<int>? validatedQuestions,
+    bool? isStudyMode,
   }) {
     return QuizExecutionInProgress(
       questions: questions ?? this.questions,
       currentQuestionIndex: currentQuestionIndex ?? this.currentQuestionIndex,
       userAnswers: userAnswers ?? this.userAnswers,
       essayAnswers: essayAnswers ?? this.essayAnswers,
+      validatedQuestions: validatedQuestions ?? this.validatedQuestions,
+      isStudyMode: isStudyMode ?? this.isStudyMode,
     );
   }
 }

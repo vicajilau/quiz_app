@@ -1612,5 +1612,33 @@
   "aiFilePickerError": "No s'ha pogut carregar el fitxer seleccionat",
   "@aiFilePickerError": {
     "description": "Error message when file picker fails"
+  },
+  "studyModeLabel": "Mode Estudi",
+  "@studyModeLabel": {
+    "description": "Label for study mode option"
+  },
+  "studyModeDescription": "Feedback instantani i sense temporitzador",
+  "@studyModeDescription": {
+    "description": "Description for study mode"
+  },
+  "examModeLabel": "Mode Examen",
+  "@examModeLabel": {
+    "description": "Label for exam mode option"
+  },
+  "examModeDescription": "Temporitzador estàndard i resultats al final",
+  "@examModeDescription": {
+    "description": "Description for exam mode"
+  },
+  "checkAnswer": "Comprovar",
+  "@checkAnswer": {
+    "description": "Button label to check the answer in study mode"
+  },
+  "quizModeTitle": "Mode Qüestionari",
+  "@quizModeTitle": {
+    "description": "Title for the quiz mode selection section"
+  },
+  "skip": "Saltar",
+  "@skip": {
+    "description": "Label for skip button"
   }
 }

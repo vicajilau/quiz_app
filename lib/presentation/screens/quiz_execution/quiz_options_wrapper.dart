@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../core/service_locator.dart';
 import '../../../data/services/configuration_service.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'quiz_question_options.dart';
@@ -16,6 +17,7 @@ class QuizOptionsWrapper extends StatefulWidget {
 class _QuizOptionsWrapperState extends State<QuizOptionsWrapper> {
   bool _showCorrectAnswerCount = false;
   bool _isLoading = true;
+  bool _isStudyMode = false;
 
   @override
   void initState() {
@@ -27,9 +29,14 @@ class _QuizOptionsWrapperState extends State<QuizOptionsWrapper> {
     final showCorrectAnswerCount = await ConfigurationService.instance
         .getShowCorrectAnswerCount();
 
+    // Get Study Mode setting from ServiceLocator
+    final quizConfig = ServiceLocator.instance.getQuizConfig();
+    final isStudyMode = quizConfig?.isStudyMode ?? false;
+
     if (mounted) {
       setState(() {
         _showCorrectAnswerCount = showCorrectAnswerCount;
+        _isStudyMode = isStudyMode;
         _isLoading = false;
       });
     }
@@ -44,6 +51,7 @@ class _QuizOptionsWrapperState extends State<QuizOptionsWrapper> {
     return QuizQuestionOptions(
       state: widget.state,
       showCorrectAnswerCount: _showCorrectAnswerCount,
+      isStudyMode: _isStudyMode,
     );
   }
 }

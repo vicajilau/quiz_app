@@ -1155,4 +1155,25 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get aiFilePickerError =>
       'Não foi possível carregar o arquivo selecionato';
+
+  @override
+  String get studyModeLabel => 'Modo Estudo';
+
+  @override
+  String get studyModeDescription => 'Feedback instantâneo e sem cronômetro';
+
+  @override
+  String get examModeLabel => 'Modo Exame';
+
+  @override
+  String get examModeDescription => 'Cronômetro padrão e resultados no final';
+
+  @override
+  String get checkAnswer => 'Verificar';
+
+  @override
+  String get quizModeTitle => 'Modo Quiz';
+
+  @override
+  String get skip => 'Pular';
 }

@@ -1159,4 +1159,25 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get aiFilePickerError => 'Non se puido cargar o ficheiro seleccionado';
+
+  @override
+  String get studyModeLabel => 'Study Mode';
+
+  @override
+  String get studyModeDescription => 'Instant feedback and no timer';
+
+  @override
+  String get examModeLabel => 'Exam Mode';
+
+  @override
+  String get examModeDescription => 'Standard timer and results at the end';
+
+  @override
+  String get checkAnswer => 'Check Answer';
+
+  @override
+  String get quizModeTitle => 'Quiz Mode';
+
+  @override
+  String get skip => 'Skip';
 }
