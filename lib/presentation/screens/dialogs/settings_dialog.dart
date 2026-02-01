@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../../core/extensions/string_extensions.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../../data/services/configuration_service.dart';
 import '../../../domain/models/quiz/question_order.dart';
-import '../../widgets/ai_service_model_selector.dart';
+import 'settings_widgets/ai_settings_section.dart';
+import 'settings_widgets/exam_settings_section.dart';
+import 'settings_widgets/question_settings_section.dart';
 
 class SettingsDialog extends StatefulWidget {
   const SettingsDialog({super.key});
@@ -148,42 +149,6 @@ class _SettingsDialogState extends State<SettingsDialog> {
     }
   }
 
-  Future<void> _openAiApiKeysUrl() async {
-    final url = Uri.parse('https://platform.openai.com/api-keys');
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
-    } else {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              AppLocalizations.of(context)!.couldNotOpenUrl(url.toString()),
-            ),
-            backgroundColor: Theme.of(context).colorScheme.error,
-          ),
-        );
-      }
-    }
-  }
-
-  Future<void> _openGeminiApiKeysUrl() async {
-    final url = Uri.parse('https://aistudio.google.com/app/apikey');
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
-    } else {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              AppLocalizations.of(context)!.couldNotOpenUrl(url.toString()),
-            ),
-            backgroundColor: Theme.of(context).colorScheme.error,
-          ),
-        );
-      }
-    }
-  }
-
   @override
   void dispose() {
     _openAiApiKeyController.dispose();
@@ -237,149 +202,38 @@ class _SettingsDialogState extends State<SettingsDialog> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Question Order Section
-                  Text(
-                    AppLocalizations.of(
-                      context,
-                    )!.questionOrderConfigDescription,
-                    style: const TextStyle(fontSize: 14),
+                  QuestionSettingsSection(
+                    selectedOrder: _selectedOrder,
+                    randomizeAnswers: _randomizeAnswers,
+                    showCorrectAnswerCount: _showCorrectAnswerCount,
+                    onOrderChanged: (value) =>
+                        setState(() => _selectedOrder = value),
+                    onRandomizeAnswersChanged: (value) =>
+                        setState(() => _randomizeAnswers = value),
+                    onShowCorrectAnswerCountChanged: (value) =>
+                        setState(() => _showCorrectAnswerCount = value),
                   ),
-                  const SizedBox(height: 16),
-                  ...QuestionOrder.values.map((order) {
-                    return RadioGroup(
-                      groupValue: _selectedOrder,
-                      onChanged: (QuestionOrder? value) {
-                        if (value != null) {
-                          setState(() {
-                            _selectedOrder = value;
-                          });
-                        }
-                      },
-                      child: RadioListTile<QuestionOrder>(
-                        title: Text(_getLocalizedOrderName(context, order)),
-                        subtitle: Text(
-                          _getLocalizedOrderDescription(context, order),
-                        ),
-                        value: order,
-                      ),
-                    );
-                  }),
-
-                  // Answer Randomization Section
-                  const SizedBox(height: 24),
-                  const Divider(),
-                  const SizedBox(height: 16),
-
-                  SwitchListTile(
-                    title: Text(
-                      AppLocalizations.of(context)!.randomizeAnswersTitle,
-                    ),
-                    subtitle: Text(
-                      AppLocalizations.of(context)!.randomizeAnswersDescription,
-                    ),
-                    value: _randomizeAnswers,
-                    onChanged: (bool value) {
-                      setState(() {
-                        _randomizeAnswers = value;
-                      });
-                    },
+                  ExamSettingsSection(
+                    enabled: _examTimeEnabled,
+                    minutes: _examTimeMinutes,
+                    onEnabledChanged: (value) =>
+                        setState(() => _examTimeEnabled = value),
+                    onMinutesChanged: (value) =>
+                        setState(() => _examTimeMinutes = value),
                   ),
-
-                  const SizedBox(height: 16),
-
-                  SwitchListTile(
-                    title: Text(
-                      AppLocalizations.of(context)!.showCorrectAnswerCountTitle,
-                    ),
-                    subtitle: Text(
-                      AppLocalizations.of(
-                        context,
-                      )!.showCorrectAnswerCountDescription,
-                    ),
-                    value: _showCorrectAnswerCount,
-                    onChanged: (bool value) {
-                      setState(() {
-                        _showCorrectAnswerCount = value;
-                      });
-                    },
-                  ),
-
-                  // Exam Time Limit Section
-                  const SizedBox(height: 24),
-                  const Divider(),
-                  const SizedBox(height: 16),
-
-                  SwitchListTile(
-                    title: Text(
-                      AppLocalizations.of(context)!.examTimeLimitTitle,
-                    ),
-                    subtitle: Text(
-                      AppLocalizations.of(context)!.examTimeLimitDescription,
-                    ),
-                    value: _examTimeEnabled,
-                    onChanged: (bool value) {
-                      setState(() {
-                        _examTimeEnabled = value;
-                      });
-                    },
-                  ),
-
-                  if (_examTimeEnabled) ...[
-                    const SizedBox(height: 16),
-                    TextFormField(
-                      initialValue: _examTimeMinutes.toString(),
-                      decoration: InputDecoration(
-                        labelText: AppLocalizations.of(
-                          context,
-                        )!.timeLimitMinutes,
-                        border: const OutlineInputBorder(),
-                        suffixText: AppLocalizations.of(
-                          context,
-                        )!.minutesAbbreviation,
-                      ),
-                      keyboardType: TextInputType.number,
-                      onChanged: (value) {
-                        final minutes = int.tryParse(value);
-                        if (minutes != null && minutes > 0) {
-                          _examTimeMinutes = minutes;
-                        }
-                      },
-                    ),
-                  ],
-
-                  // AI Assistant Section
-                  const SizedBox(height: 24),
-                  const Divider(),
-                  const SizedBox(height: 16),
-
-                  SwitchListTile(
-                    title: Row(
-                      children: [
-                        Icon(
-                          Icons.auto_awesome,
-                          size: 20,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Text(
-                            AppLocalizations.of(
-                              context,
-                            )!.aiAssistantSettingsTitle,
-                          ),
-                        ),
-                      ],
-                    ),
-                    subtitle: Text(
-                      AppLocalizations.of(
-                        context,
-                      )!.aiAssistantSettingsDescription,
-                    ),
-                    value: _aiAssistantEnabled,
-                    onChanged: (bool value) {
-                      setState(() {
-                        _aiAssistantEnabled = value;
-                      });
+                  AiSettingsSection(
+                    key: _aiSettingsKey,
+                    enabled: _aiAssistantEnabled,
+                    keepDraft: _keepAiDraft,
+                    geminiController: _geminiApiKeyController,
+                    openAiController: _openAiApiKeyController,
+                    defaultModel: _defaultAIModel,
+                    errorMessage: _apiKeyErrorMessage,
+                    isGeminiVisible: _isGeminiKeyVisible,
+                    isOpenAiVisible: _isOpenAiKeyVisible,
+                    errorKey: _errorKey,
+                    onEnabledChanged: (value) {
+                      setState(() => _aiAssistantEnabled = value);
                       if (value) {
                         WidgetsBinding.instance.addPostFrameCallback((_) {
                           if (_aiSettingsKey.currentContext != null) {
@@ -392,278 +246,22 @@ class _SettingsDialogState extends State<SettingsDialog> {
                         });
                       }
                     },
+                    onKeepDraftChanged: (value) =>
+                        setState(() => _keepAiDraft = value),
+                    onToggleGeminiVisibility: () => setState(
+                      () => _isGeminiKeyVisible = !_isGeminiKeyVisible,
+                    ),
+                    onToggleOpenAiVisibility: () => setState(
+                      () => _isOpenAiKeyVisible = !_isOpenAiKeyVisible,
+                    ),
+                    onApiKeyChanged: () async {
+                      _clearApiKeyError();
+                      await _onApiKeyChanged();
+                      setState(() {
+                        // Rebuild
+                      });
+                    },
                   ),
-
-                  if (_aiAssistantEnabled) ...[
-                    const SizedBox(height: 16),
-                    SwitchListTile(
-                      title: Text(
-                        AppLocalizations.of(context)!.aiKeepDraftTitle,
-                      ),
-                      subtitle: Text(
-                        AppLocalizations.of(context)!.aiKeepDraftDescription,
-                      ),
-                      value: _keepAiDraft,
-                      onChanged: (bool value) {
-                        setState(() {
-                          _keepAiDraft = value;
-                        });
-                      },
-                    ),
-                    const SizedBox(height: 16),
-                    TextFormField(
-                      controller: _geminiApiKeyController,
-                      decoration: InputDecoration(
-                        labelText: AppLocalizations.of(
-                          context,
-                        )!.geminiApiKeyLabel,
-                        hintText: AppLocalizations.of(
-                          context,
-                        )!.geminiApiKeyHint,
-                        hintMaxLines: 3,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color:
-                                _geminiApiKeyController.text.isValidGeminiApiKey
-                                ? Theme.of(context).colorScheme.outline
-                                : Theme.of(context).colorScheme.error,
-                          ),
-                        ),
-                        prefixIcon: Icon(
-                          Icons.key,
-                          color:
-                              _geminiApiKeyController.text.isValidGeminiApiKey
-                              ? null
-                              : Theme.of(context).colorScheme.error,
-                        ),
-                        suffixIcon: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            if (_geminiApiKeyController
-                                .text
-                                .isValidGeminiApiKey)
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8.0),
-                                child: Icon(
-                                  Icons.check_circle,
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                              ),
-                            IconButton(
-                              icon: Icon(
-                                _isGeminiKeyVisible
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _isGeminiKeyVisible = !_isGeminiKeyVisible;
-                                });
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                      obscureText: !_isGeminiKeyVisible,
-                      onChanged: (value) async {
-                        _clearApiKeyError();
-                        await _onApiKeyChanged();
-                        setState(() {
-                          // Trigger rebuild to update visual indicators
-                        });
-                      },
-                    ),
-                    const SizedBox(height: 4),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            AppLocalizations.of(
-                              context,
-                            )!.geminiApiKeyDescription,
-                            style: Theme.of(context).textTheme.bodySmall,
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        IconButton(
-                          onPressed: _openGeminiApiKeysUrl,
-                          icon: const Icon(Icons.info_outline),
-                          tooltip: AppLocalizations.of(
-                            context,
-                          )!.getGeminiApiKeyTooltip,
-                          style: IconButton.styleFrom(
-                            backgroundColor: Theme.of(
-                              context,
-                            ).colorScheme.surfaceContainerHighest,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    TextFormField(
-                      controller: _openAiApiKeyController,
-                      decoration: InputDecoration(
-                        labelText: AppLocalizations.of(
-                          context,
-                        )!.openaiApiKeyLabel,
-                        hintText: AppLocalizations.of(
-                          context,
-                        )!.openaiApiKeyHint,
-                        hintMaxLines: 3,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color:
-                                _openAiApiKeyController.text.isValidOpenAIApiKey
-                                ? Theme.of(context).colorScheme.outline
-                                : Theme.of(context).colorScheme.error,
-                          ),
-                        ),
-                        prefixIcon: Icon(
-                          Icons.key,
-                          color:
-                              _openAiApiKeyController.text.isValidOpenAIApiKey
-                              ? null
-                              : Theme.of(context).colorScheme.error,
-                        ),
-                        suffixIcon: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            if (_openAiApiKeyController
-                                .text
-                                .isValidOpenAIApiKey)
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8.0),
-                                child: Icon(
-                                  Icons.check_circle,
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                              ),
-                            IconButton(
-                              icon: Icon(
-                                _isOpenAiKeyVisible
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _isOpenAiKeyVisible = !_isOpenAiKeyVisible;
-                                });
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                      obscureText: !_isOpenAiKeyVisible,
-                      onChanged: (value) async {
-                        _clearApiKeyError();
-                        await _onApiKeyChanged();
-                        setState(() {
-                          // Trigger rebuild to update visual indicators
-                        });
-                      },
-                    ),
-                    const SizedBox(height: 4),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            AppLocalizations.of(
-                              context,
-                            )!.openaiApiKeyDescription,
-                            style: Theme.of(context).textTheme.bodySmall,
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        IconButton(
-                          onPressed: _openAiApiKeysUrl,
-                          icon: const Icon(Icons.info_outline),
-                          tooltip: AppLocalizations.of(
-                            context,
-                          )!.getApiKeyTooltip,
-                          style: IconButton.styleFrom(
-                            backgroundColor: Theme.of(
-                              context,
-                            ).colorScheme.surfaceContainerHighest,
-                          ),
-                        ),
-                      ],
-                    ),
-                    // Error message for API keys
-                    if (_apiKeyErrorMessage != null) ...[
-                      const SizedBox(height: 8),
-                      Container(
-                        key: _errorKey,
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.errorContainer,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: Theme.of(context).colorScheme.error,
-                            width: 1,
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.error_outline,
-                              color: Theme.of(context).colorScheme.error,
-                              size: 20,
-                            ),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: Text(
-                                _apiKeyErrorMessage!,
-                                style: Theme.of(context).textTheme.bodySmall
-                                    ?.copyWith(
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.onErrorContainer,
-                                    ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-
-                    // Default AI Model Section (only show if at least one valid API key is configured)
-                    if (_geminiApiKeyController.text.isValidGeminiApiKey ||
-                        _openAiApiKeyController.text.isValidOpenAIApiKey) ...[
-                      const SizedBox(height: 24),
-                      Text(
-                        AppLocalizations.of(context)!.aiDefaultModelTitle,
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        AppLocalizations.of(context)!.aiDefaultModelDescription,
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                      const SizedBox(height: 12),
-                      AiServiceModelSelector(
-                        initialModel: _defaultAIModel,
-                        saveToPreferences: true,
-                        geminiApiKey:
-                            _geminiApiKeyController.text.isValidGeminiApiKey
-                            ? _geminiApiKeyController.text.trim()
-                            : null,
-                        openaiApiKey:
-                            _openAiApiKeyController.text.isValidOpenAIApiKey
-                            ? _openAiApiKeyController.text.trim()
-                            : null,
-                      ),
-                    ],
-                  ],
-
-                  // Future settings sections can be added here
                 ],
               ),
             ),
@@ -678,30 +276,5 @@ class _SettingsDialogState extends State<SettingsDialog> {
         ),
       ],
     );
-  }
-
-  String _getLocalizedOrderName(BuildContext context, QuestionOrder order) {
-    switch (order) {
-      case QuestionOrder.ascending:
-        return AppLocalizations.of(context)!.questionOrderAscending;
-      case QuestionOrder.descending:
-        return AppLocalizations.of(context)!.questionOrderDescending;
-      case QuestionOrder.random:
-        return AppLocalizations.of(context)!.questionOrderRandom;
-    }
-  }
-
-  String _getLocalizedOrderDescription(
-    BuildContext context,
-    QuestionOrder order,
-  ) {
-    switch (order) {
-      case QuestionOrder.ascending:
-        return AppLocalizations.of(context)!.questionOrderAscendingDesc;
-      case QuestionOrder.descending:
-        return AppLocalizations.of(context)!.questionOrderDescendingDesc;
-      case QuestionOrder.random:
-        return AppLocalizations.of(context)!.questionOrderRandomDesc;
-    }
   }
 }
