@@ -31,6 +31,9 @@ class _SettingsDialogState extends State<SettingsDialog> {
   final GlobalKey _errorKey = GlobalKey();
   final GlobalKey _aiSettingsKey = GlobalKey();
 
+  bool _isGeminiKeyVisible = false;
+  bool _isOpenAiKeyVisible = false;
+
   @override
   void initState() {
     super.initState();
@@ -433,15 +436,35 @@ class _SettingsDialogState extends State<SettingsDialog> {
                               ? null
                               : Theme.of(context).colorScheme.error,
                         ),
-                        suffixIcon:
-                            _geminiApiKeyController.text.isValidGeminiApiKey
-                            ? Icon(
-                                Icons.check_circle,
-                                color: Theme.of(context).colorScheme.primary,
-                              )
-                            : null,
+                        suffixIcon: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (_geminiApiKeyController
+                                .text
+                                .isValidGeminiApiKey)
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: Icon(
+                                  Icons.check_circle,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                              ),
+                            IconButton(
+                              icon: Icon(
+                                _isGeminiKeyVisible
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _isGeminiKeyVisible = !_isGeminiKeyVisible;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
                       ),
-                      obscureText: true,
+                      obscureText: !_isGeminiKeyVisible,
                       onChanged: (value) async {
                         _clearApiKeyError();
                         await _onApiKeyChanged();
@@ -505,15 +528,35 @@ class _SettingsDialogState extends State<SettingsDialog> {
                               ? null
                               : Theme.of(context).colorScheme.error,
                         ),
-                        suffixIcon:
-                            _openAiApiKeyController.text.isValidOpenAIApiKey
-                            ? Icon(
-                                Icons.check_circle,
-                                color: Theme.of(context).colorScheme.primary,
-                              )
-                            : null,
+                        suffixIcon: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (_openAiApiKeyController
+                                .text
+                                .isValidOpenAIApiKey)
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: Icon(
+                                  Icons.check_circle,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                              ),
+                            IconButton(
+                              icon: Icon(
+                                _isOpenAiKeyVisible
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _isOpenAiKeyVisible = !_isOpenAiKeyVisible;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
                       ),
-                      obscureText: true,
+                      obscureText: !_isOpenAiKeyVisible,
                       onChanged: (value) async {
                         _clearApiKeyError();
                         await _onApiKeyChanged();
@@ -555,6 +598,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
                     if (_apiKeyErrorMessage != null) ...[
                       const SizedBox(height: 8),
                       Container(
+                        key: _errorKey,
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
