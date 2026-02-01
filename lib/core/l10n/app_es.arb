@@ -1592,5 +1592,13 @@
   "askAiAssistant": "Preguntar a la IA",
   "@askAiAssistant": {
     "description": "Button label to open AI assistant for current question"
+  },
+  "evaluateWithAI": "Evaluar con IA",
+  "@evaluateWithAI": {
+    "description": "Button label to evaluate essay answer with AI"
+  },
+  "aiEvaluation": "Evaluación de IA",
+  "@aiEvaluation": {
+    "description": "Label for AI evaluation section"
   }
 }

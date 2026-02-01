@@ -842,7 +842,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get evaluateWithAI => 'Avaliar com IA';
 
   @override
-  String get aiEvaluation => 'Avaliação IA';
+  String get aiEvaluation => 'Avaliação da IA';
 
   @override
   String aiEvaluationError(String error) {
@@ -1178,5 +1178,5 @@ class AppLocalizationsPt extends AppLocalizations {
   String get skip => 'Pular';
 
   @override
-  String get askAiAssistant => 'Ask AI Assistant';
+  String get askAiAssistant => 'Perguntar ao Assistente de IA';
 }

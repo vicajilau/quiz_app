@@ -1143,26 +1143,26 @@ class AppLocalizationsHi extends AppLocalizations {
   String get aiFilePickerError => 'चयनित फ़ाइल लोड नहीं की जा सकी';
 
   @override
-  String get studyModeLabel => 'Study Mode';
+  String get studyModeLabel => 'अध्ययन मोड';
 
   @override
-  String get studyModeDescription => 'Instant feedback and no timer';
+  String get studyModeDescription => 'तत्काल प्रतिक्रिया और कोई टाइमर नहीं';
 
   @override
-  String get examModeLabel => 'Exam Mode';
+  String get examModeLabel => 'परीक्षा मोड';
 
   @override
-  String get examModeDescription => 'Standard timer and results at the end';
+  String get examModeDescription => 'मानक समय और अंत में परिणाम';
 
   @override
-  String get checkAnswer => 'Check Answer';
+  String get checkAnswer => 'जांचें';
 
   @override
-  String get quizModeTitle => 'Quiz Mode';
+  String get quizModeTitle => 'क्विज़ मोड';
 
   @override
-  String get skip => 'Skip';
+  String get skip => 'छोड़ें';
 
   @override
-  String get askAiAssistant => 'Ask AI Assistant';
+  String get askAiAssistant => 'AI सहायक से पूछें';
 }

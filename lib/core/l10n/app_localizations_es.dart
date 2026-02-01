@@ -842,7 +842,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get evaluateWithAI => 'Evaluar con IA';
 
   @override
-  String get aiEvaluation => 'Evaluación IA';
+  String get aiEvaluation => 'Evaluación de IA';
 
   @override
   String aiEvaluationError(String error) {

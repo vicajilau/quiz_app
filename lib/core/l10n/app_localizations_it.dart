@@ -836,10 +836,10 @@ class AppLocalizationsIt extends AppLocalizations {
       'Nessuna domanda abilitata disponibile per avviare il quiz';
 
   @override
-  String get evaluateWithAI => 'Valuta con IA';
+  String get evaluateWithAI => 'Valuta con AI';
 
   @override
-  String get aiEvaluation => 'Valutazione IA';
+  String get aiEvaluation => 'Valutazione AI';
 
   @override
   String aiEvaluationError(String error) {
@@ -1173,5 +1173,5 @@ class AppLocalizationsIt extends AppLocalizations {
   String get skip => 'Salta';
 
   @override
-  String get askAiAssistant => 'Ask AI Assistant';
+  String get askAiAssistant => 'Chiedi all\'assistente AI';
 }

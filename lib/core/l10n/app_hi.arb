@@ -1612,5 +1612,15 @@
   "aiFilePickerError": "चयनित फ़ाइल लोड नहीं की जा सकी",
   "@aiFilePickerError": {
     "description": "Error message when file picker fails"
-  }
+  },
+  "studyModeLabel": "अध्ययन मोड",
+  "studyModeDescription": "तत्काल प्रतिक्रिया और कोई टाइमर नहीं",
+  "examModeLabel": "परीक्षा मोड",
+  "examModeDescription": "मानक समय और अंत में परिणाम",
+  "checkAnswer": "जांचें",
+  "quizModeTitle": "क्विज़ मोड",
+  "skip": "छोड़ें",
+  "askAiAssistant": "AI सहायक से पूछें",
+  "evaluateWithAI": "AI के साथ मूल्यांकन करें",
+  "aiEvaluation": "AI मूल्यांकन"
 }

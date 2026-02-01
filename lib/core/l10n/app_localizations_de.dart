@@ -1182,5 +1182,5 @@ class AppLocalizationsDe extends AppLocalizations {
   String get skip => 'Überspringen';
 
   @override
-  String get askAiAssistant => 'Ask AI Assistant';
+  String get askAiAssistant => 'KI-Assistenten fragen';
 }

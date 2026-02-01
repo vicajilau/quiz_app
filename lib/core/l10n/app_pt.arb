@@ -1650,5 +1650,17 @@
   "skip": "Pular",
   "@skip": {
     "description": "Label for skip button"
+  },
+  "askAiAssistant": "Perguntar ao Assistente de IA",
+  "@askAiAssistant": {
+    "description": "Button label to open AI assistant for current question"
+  },
+  "evaluateWithAI": "Avaliar com IA",
+  "@evaluateWithAI": {
+    "description": "Button label to evaluate essay answer with AI"
+  },
+  "aiEvaluation": "Avaliação da IA",
+  "@aiEvaluation": {
+    "description": "Label for AI evaluation section"
   }
 }

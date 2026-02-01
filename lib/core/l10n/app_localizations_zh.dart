@@ -794,10 +794,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noEnabledQuestionsError => '没有启用的问题可以运行测验';
 
   @override
-  String get evaluateWithAI => '用AI评估';
+  String get evaluateWithAI => '用 AI 评估';
 
   @override
-  String get aiEvaluation => 'AI评估';
+  String get aiEvaluation => 'AI 评估';
 
   @override
   String aiEvaluationError(String error) {
@@ -1095,26 +1095,26 @@ class AppLocalizationsZh extends AppLocalizations {
   String get aiFilePickerError => '无法加载所选文件';
 
   @override
-  String get studyModeLabel => 'Study Mode';
+  String get studyModeLabel => '学习模式';
 
   @override
-  String get studyModeDescription => 'Instant feedback and no timer';
+  String get studyModeDescription => '即时反馈，无计时';
 
   @override
-  String get examModeLabel => 'Exam Mode';
+  String get examModeLabel => '考试模式';
 
   @override
-  String get examModeDescription => 'Standard timer and results at the end';
+  String get examModeDescription => '标准计时，最后显示结果';
 
   @override
-  String get checkAnswer => 'Check Answer';
+  String get checkAnswer => '检查';
 
   @override
-  String get quizModeTitle => 'Quiz Mode';
+  String get quizModeTitle => '测验模式';
 
   @override
-  String get skip => 'Skip';
+  String get skip => '跳过';
 
   @override
-  String get askAiAssistant => 'Ask AI Assistant';
+  String get askAiAssistant => '询问 AI 助手';
 }

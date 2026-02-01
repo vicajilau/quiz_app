@@ -1640,5 +1640,17 @@
   "skip": "Saltar",
   "@skip": {
     "description": "Label for skip button"
+  },
+  "askAiAssistant": "Pregunta a l'assistent d'IA",
+  "@askAiAssistant": {
+    "description": "Button label to open AI assistant for current question"
+  },
+  "evaluateWithAI": "Avaluar amb IA",
+  "@evaluateWithAI": {
+    "description": "Button label to evaluate essay answer with AI"
+  },
+  "aiEvaluation": "Avaluació IA",
+  "@aiEvaluation": {
+    "description": "Label for AI evaluation section"
   }
 }

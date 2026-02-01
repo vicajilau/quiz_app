@@ -1182,5 +1182,5 @@ class AppLocalizationsCa extends AppLocalizations {
   String get skip => 'Saltar';
 
   @override
-  String get askAiAssistant => 'Ask AI Assistant';
+  String get askAiAssistant => 'Pregunta a l\'assistent d\'IA';
 }

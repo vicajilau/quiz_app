@@ -846,7 +846,7 @@ class AppLocalizationsGl extends AppLocalizations {
   String get evaluateWithAI => 'Avaliar con IA';
 
   @override
-  String get aiEvaluation => 'Avaliación IA';
+  String get aiEvaluation => 'Avaliación de IA';
 
   @override
   String aiEvaluationError(String error) {
@@ -1161,26 +1161,27 @@ class AppLocalizationsGl extends AppLocalizations {
   String get aiFilePickerError => 'Non se puido cargar o ficheiro seleccionado';
 
   @override
-  String get studyModeLabel => 'Study Mode';
+  String get studyModeLabel => 'Modo Estudo';
 
   @override
-  String get studyModeDescription => 'Instant feedback and no timer';
+  String get studyModeDescription =>
+      'Retroalimentación instantánea e sen tempo';
 
   @override
-  String get examModeLabel => 'Exam Mode';
+  String get examModeLabel => 'Modo Exame';
 
   @override
-  String get examModeDescription => 'Standard timer and results at the end';
+  String get examModeDescription => 'Tempo estándar e resultados ao final';
 
   @override
-  String get checkAnswer => 'Check Answer';
+  String get checkAnswer => 'Comprobar';
 
   @override
-  String get quizModeTitle => 'Quiz Mode';
+  String get quizModeTitle => 'Modo Cuestionario';
 
   @override
-  String get skip => 'Skip';
+  String get skip => 'Saltar';
 
   @override
-  String get askAiAssistant => 'Ask AI Assistant';
+  String get askAiAssistant => 'Preguntar ao Asistente de IA';
 }
