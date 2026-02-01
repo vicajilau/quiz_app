@@ -1114,4 +1114,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get skip => 'Skip';
+
+  @override
+  String get askAiAssistant => 'Ask AI Assistant';
 }

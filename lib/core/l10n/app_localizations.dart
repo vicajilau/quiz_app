@@ -2131,6 +2131,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Skip'**
   String get skip;
+
+  /// Button label to open AI assistant for current question
+  ///
+  /// In en, this message translates to:
+  /// **'Ask AI Assistant'**
+  String get askAiAssistant;
 }
 
 class _AppLocalizationsDelegate

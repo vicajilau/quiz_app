@@ -1171,4 +1171,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get skip => 'Salta';
+
+  @override
+  String get askAiAssistant => 'Ask AI Assistant';
 }

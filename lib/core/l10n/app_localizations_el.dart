@@ -1182,4 +1182,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get skip => 'Skip';
+
+  @override
+  String get askAiAssistant => 'Ask AI Assistant';
 }

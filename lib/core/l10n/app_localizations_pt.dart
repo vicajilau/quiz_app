@@ -1176,4 +1176,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get skip => 'Pular';
+
+  @override
+  String get askAiAssistant => 'Ask AI Assistant';
 }

@@ -20,27 +20,13 @@ class QuizNavigationButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
-      child: Row(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          // Previous button
-          if (!state.isFirstQuestion)
-            Expanded(
-              child: OutlinedButton.icon(
-                onPressed: () {
-                  context.read<QuizExecutionBloc>().add(
-                    PreviousQuestionRequested(),
-                  );
-                },
-                icon: const Icon(Icons.arrow_back),
-                label: Text(AppLocalizations.of(context)!.previous),
-              ),
-            ),
-
-          if (!state.isFirstQuestion) const SizedBox(width: 8),
-
-          // Check Answer button (Only in Study Mode and not validated)
+          // Check Answer button (Only in Study Mode and not validated, full width)
           if (isStudyMode && !state.isCurrentQuestionValidated) ...[
-            Expanded(
+            SizedBox(
+              width: double.infinity,
               child: OutlinedButton.icon(
                 onPressed: () {
                   context.read<QuizExecutionBloc>().add(CheckAnswerRequested());
@@ -50,34 +36,55 @@ class QuizNavigationButtons extends StatelessWidget {
                 style: OutlinedButton.styleFrom(
                   foregroundColor: Theme.of(context).primaryColor,
                   side: BorderSide(color: Theme.of(context).primaryColor),
+                  padding: const EdgeInsets.symmetric(vertical: 12),
                 ),
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(height: 12),
           ],
 
-          // Next/Submit button
-          Expanded(
-            child: ElevatedButton.icon(
-              onPressed: (isStudyMode || state.hasCurrentQuestionAnswered)
-                  ? () {
-                      if (state.isLastQuestion) {
-                        SubmitQuizDialog.show(
-                          context,
-                          context.read<QuizExecutionBloc>(),
-                        );
-                      } else {
-                        context.read<QuizExecutionBloc>().add(
-                          NextQuestionRequested(),
-                        );
-                      }
-                    }
-                  : null, // Disable button if no answer selected (only in Exam Mode)
-              icon: Icon(
-                state.isLastQuestion ? Icons.check : Icons.arrow_forward,
+          Row(
+            children: [
+              // Previous button
+              if (!state.isFirstQuestion) ...[
+                Expanded(
+                  child: OutlinedButton.icon(
+                    onPressed: () {
+                      context.read<QuizExecutionBloc>().add(
+                        PreviousQuestionRequested(),
+                      );
+                    },
+                    icon: const Icon(Icons.arrow_back),
+                    label: Text(AppLocalizations.of(context)!.previous),
+                  ),
+                ),
+                const SizedBox(width: 8),
+              ],
+
+              // Next/Submit button
+              Expanded(
+                child: ElevatedButton.icon(
+                  onPressed: (isStudyMode || state.hasCurrentQuestionAnswered)
+                      ? () {
+                          if (state.isLastQuestion) {
+                            SubmitQuizDialog.show(
+                              context,
+                              context.read<QuizExecutionBloc>(),
+                            );
+                          } else {
+                            context.read<QuizExecutionBloc>().add(
+                              NextQuestionRequested(),
+                            );
+                          }
+                        }
+                      : null, // Disable button if no answer selected (only in Exam Mode)
+                  icon: Icon(
+                    state.isLastQuestion ? Icons.check : Icons.arrow_forward,
+                  ),
+                  label: Text(_getLabel(context)),
+                ),
               ),
-              label: Text(_getLabel(context)),
-            ),
+            ],
           ),
         ],
       ),

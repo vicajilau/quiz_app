@@ -7,6 +7,13 @@ import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../utils/question_translation_helper.dart';
 import '../../widgets/latex_text.dart';
+import '../dialogs/ai_question_dialog.dart';
+import '../../../data/services/configuration_service.dart';
+import '../../../data/services/ai/ai_service.dart';
+import '../../../data/services/ai/ai_service_selector.dart';
+import '../../../data/services/ai/ai_question_generation_service.dart';
+import 'package:gpt_markdown/gpt_markdown.dart';
+import '../../../core/extensions/string_extensions.dart';
 
 class QuizQuestionOptions extends StatefulWidget {
   final QuizExecutionInProgress state;
@@ -26,12 +33,41 @@ class QuizQuestionOptions extends StatefulWidget {
 
 class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
   late TextEditingController _essayController;
+  bool _isAiAvailable = false;
+
+  // AI Evaluation State
+  bool _isEvaluating = false;
+  String? _aiEvaluation;
+  List<AIService> _availableServices = [];
+  AIService? _selectedService;
 
   @override
   void initState() {
     super.initState();
     _essayController = TextEditingController();
     _updateEssayController();
+    _checkAiAvailability();
+  }
+
+  Future<void> _checkAiAvailability() async {
+    final configService = ConfigurationService.instance;
+    final isEnabled = await configService.getAIAssistantEnabled();
+    final openAiKey = await configService.getOpenAIApiKey();
+    final geminiKey = await configService.getGeminiApiKey();
+
+    // Fetch available services for evaluation
+    final availableServices = await AIServiceSelector.instance
+        .getAvailableServices();
+
+    if (mounted) {
+      setState(() {
+        _isAiAvailable = isEnabled && (openAiKey != null || geminiKey != null);
+        _availableServices = availableServices;
+        _selectedService = availableServices.isNotEmpty
+            ? availableServices.first
+            : null;
+      });
+    }
   }
 
   @override
@@ -42,6 +78,8 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
         oldWidget.state.essayAnswers != widget.state.essayAnswers) {
       _updateEssayController();
     }
+    // Re-check availability in case settings changed (less likely but good practice)
+    _checkAiAvailability();
   }
 
   void _updateEssayController() {
@@ -49,6 +87,59 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
         widget.state.essayAnswers[widget.state.currentQuestionIndex] ?? '';
     if (_essayController.text != currentText) {
       _essayController.text = currentText;
+    }
+    // Clear previous evaluation when question changes
+    if (_aiEvaluation != null) {
+      setState(() {
+        _aiEvaluation = null;
+      });
+    }
+  }
+
+  Future<void> _evaluateEssayWithAI() async {
+    if (_isEvaluating || _selectedService == null) return;
+
+    setState(() {
+      _isEvaluating = true;
+    });
+
+    try {
+      final localizations = AppLocalizations.of(context)!;
+      final studentAnswer =
+          widget.state.essayAnswers[widget.state.currentQuestionIndex] ?? '';
+
+      // Build the evaluation prompt
+      String prompt = AiQuestionGenerationService.buildEvaluationPrompt(
+        widget.state.currentQuestion.text,
+        studentAnswer,
+        widget.state.currentQuestion.explanation,
+        localizations,
+      );
+
+      final evaluation = await _selectedService!.getChatResponse(
+        prompt,
+        localizations,
+      );
+
+      if (mounted) {
+        setState(() {
+          _aiEvaluation = evaluation;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _aiEvaluation = AppLocalizations.of(
+            context,
+          )!.aiEvaluationError(e.toString().cleanErrorMessage());
+        });
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isEvaluating = false;
+        });
+      }
     }
   }
 
@@ -72,6 +163,10 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // AI Assistant Button (Only in Study Mode and if AI is available)
+        if (widget.isStudyMode && _isAiAvailable)
+          _buildAiAssistantButton(context),
+
         // Show correct answer count hint for multiple choice questions
         if (widget.showCorrectAnswerCount &&
             questionType == QuestionType.multipleChoice &&
@@ -332,6 +427,10 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // AI Assistant Button (Only in Study Mode and if AI is available)
+          if (widget.isStudyMode && _isAiAvailable)
+            _buildAiAssistantButton(context),
+
           Text(
             AppLocalizations.of(context)!.questionTypeEssay,
             style: TextStyle(
@@ -378,55 +477,231 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
               widget.state.currentQuestion.explanation.isNotEmpty)
             Padding(
               padding: const EdgeInsets.only(top: 24.0),
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Theme.of(
-                    context,
-                  ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.outline.withValues(alpha: 0.2),
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.lightbulb_outline,
-                          color: Theme.of(context).colorScheme.secondary,
-                          size: 20,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          AppLocalizations.of(context)!.explanationTitle,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).colorScheme.secondary,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    LaTeXText(
-                      widget.state.currentQuestion.explanation,
-                      style: TextStyle(
-                        fontSize: 15,
-                        height: 1.5,
-                        color: Theme.of(context).colorScheme.onSurface,
+              child: Column(
+                children: [
+                  // Standard Explanation
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .surfaceContainerHighest
+                          .withValues(alpha: 0.3),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.outline.withValues(alpha: 0.2),
                       ),
                     ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.lightbulb_outline,
+                              color: Theme.of(context).colorScheme.secondary,
+                              size: 20,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              AppLocalizations.of(context)!.explanationTitle,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.secondary,
+                              ),
+                            ),
+                          ],
+                        ),
+                        if (widget
+                            .state
+                            .currentQuestion
+                            .explanation
+                            .isNotEmpty) ...[
+                          const SizedBox(height: 12),
+                          LaTeXText(
+                            widget.state.currentQuestion.explanation,
+                            style: TextStyle(
+                              fontSize: 15,
+                              height: 1.5,
+                              color: Theme.of(context).colorScheme.onSurface,
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+
+                  // AI Evaluation Section
+                  if (_isAiAvailable) ...[
+                    const SizedBox(height: 16),
+                    // AI Service Selector (if multiple services available)
+                    if (_availableServices.length > 1) ...[
+                      Row(
+                        children: [
+                          const SizedBox(width: 8),
+                          Text(
+                            AppLocalizations.of(context)!.aiServiceLabel,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: DropdownButtonFormField<AIService>(
+                              initialValue: _selectedService,
+                              decoration: InputDecoration(
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 8,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.outline,
+                                  ),
+                                ),
+                              ),
+                              items: _availableServices.map((service) {
+                                return DropdownMenuItem<AIService>(
+                                  value: service,
+                                  child: Text(
+                                    service.serviceName,
+                                    style: const TextStyle(fontSize: 14),
+                                  ),
+                                );
+                              }).toList(),
+                              onChanged: (AIService? newService) {
+                                setState(() {
+                                  _selectedService = newService;
+                                  // Reset evaluation when changing service
+                                  _aiEvaluation = null;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                    ],
+
+                    // Evaluate Button
+                    Center(
+                      child: ElevatedButton.icon(
+                        onPressed: _isEvaluating || _selectedService == null
+                            ? null
+                            : _evaluateEssayWithAI,
+                        icon: _isEvaluating
+                            ? const SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
+                              )
+                            : const Icon(Icons.psychology, size: 18),
+                        label: Text(
+                          _isEvaluating
+                              ? AppLocalizations.of(context)!.aiThinking
+                              : AppLocalizations.of(context)!.evaluateWithAI,
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(
+                            context,
+                          ).colorScheme.primaryContainer,
+                          foregroundColor: Theme.of(
+                            context,
+                          ).colorScheme.onPrimaryContainer,
+                        ),
+                      ),
+                    ),
+
+                    // Evaluation Result
+                    if (_aiEvaluation != null) ...[
+                      const SizedBox(height: 16),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(16.0),
+                        decoration: BoxDecoration(
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.surfaceContainerHighest,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.outline.withValues(alpha: 0.2),
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.auto_awesome,
+                                  size: 20,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  AppLocalizations.of(context)!.aiEvaluation,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.primary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 12),
+                            GptMarkdown(
+                              _aiEvaluation!,
+                              style: TextStyle(
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onSurfaceVariant,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ],
-                ),
+                ],
               ),
             ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildAiAssistantButton(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Center(
+        child: TextButton.icon(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) =>
+                  AIQuestionDialog(question: widget.state.currentQuestion),
+            );
+          },
+          icon: const Icon(Icons.auto_awesome),
+          label: Text(AppLocalizations.of(context)!.askAiAssistant),
+          style: TextButton.styleFrom(
+            foregroundColor: Theme.of(context).colorScheme.primary,
+          ),
+        ),
       ),
     );
   }
