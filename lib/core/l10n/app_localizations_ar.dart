@@ -79,6 +79,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get createQuizFileTitle => 'إنشاء ملف اختبار';
 
   @override
+  String get editQuizFileTitle => 'تعديل ملف الاختبار';
+
+  @override
   String get fileNameLabel => 'اسم الملف';
 
   @override

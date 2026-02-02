@@ -80,6 +80,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createQuizFileTitle => 'Create Quiz File';
 
   @override
+  String get editQuizFileTitle => 'Edit Quiz File';
+
+  @override
   String get fileNameLabel => 'File Name';
 
   @override

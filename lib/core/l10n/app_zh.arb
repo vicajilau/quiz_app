@@ -109,6 +109,10 @@
   "@createQuizFileTitle": {
     "description": "Title for create quiz file dialog."
   },
+  "editQuizFileTitle": "编辑测验文件",
+  "@editQuizFileTitle": {
+    "description": "编辑测验文件对话框的标题。"
+  },
   "fileNameLabel": "文件名",
   "@fileNameLabel": {
     "description": "Label for file name input."
