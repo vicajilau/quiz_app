@@ -1,6 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../domain/models/quiz/question_order.dart';
 import '../../domain/models/ai/ai_generation_stored_settings.dart';
+import '../../domain/models/quiz/quiz_config_stored_settings.dart';
 import '../../core/security/encryption_service.dart';
 
 class ConfigurationService {
@@ -24,6 +25,9 @@ class ConfigurationService {
       'ai_generation_question_count';
   static const String _aiGenerationQuestionTypesKey =
       'ai_generation_question_types';
+
+  static const String _lastQuestionCountKey = 'last_question_count';
+  static const String _lastQuizModeKey = 'last_quiz_mode';
 
   static ConfigurationService? _instance;
   static ConfigurationService get instance =>
@@ -246,6 +250,28 @@ class ConfigurationService {
       questionCount: prefs.getInt(_aiGenerationQuestionCountKey),
       questionTypes: prefs.getStringList(_aiGenerationQuestionTypesKey),
       draftText: prefs.getString(_aiDraftTextKey),
+    );
+  }
+
+  /// Saves the Quiz Config settings
+  Future<void> saveQuizConfigSettings(QuizConfigStoredSettings settings) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    if (settings.questionCount != null) {
+      await prefs.setInt(_lastQuestionCountKey, settings.questionCount!);
+    }
+    if (settings.isStudyMode != null) {
+      await prefs.setBool(_lastQuizModeKey, settings.isStudyMode!);
+    }
+  }
+
+  /// Gets the Quiz Config settings
+  Future<QuizConfigStoredSettings> getQuizConfigSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    return QuizConfigStoredSettings(
+      questionCount: prefs.getInt(_lastQuestionCountKey),
+      isStudyMode: prefs.getBool(_lastQuizModeKey),
     );
   }
 }

@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import '../../../core/l10n/app_localizations.dart';
 
 import '../../../domain/models/quiz/quiz_config.dart';
+import '../../../data/services/configuration_service.dart';
+import '../../../domain/models/quiz/quiz_config_stored_settings.dart';
 
 class QuestionCountSelectionDialog extends StatefulWidget {
   final int totalQuestions;
@@ -20,12 +22,46 @@ class _QuestionCountSelectionDialogState
   int selectedCount = 10; // Default value
   bool _isStudyMode = false; // Default to Exam Mode
   String? _inputError; // Track input validation errors
+  late TextEditingController _customCountController;
 
   @override
   void initState() {
     super.initState();
-    // Set default to all questions
+    _customCountController = TextEditingController();
+    // Set default to all questions initially
     selectedCount = widget.totalQuestions;
+    _loadSavedSettings();
+  }
+
+  @override
+  void dispose() {
+    _customCountController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _loadSavedSettings() async {
+    final settings = await ConfigurationService.instance
+        .getQuizConfigSettings();
+    if (mounted) {
+      setState(() {
+        if (settings.questionCount != null) {
+          if (settings.questionCount == -1) {
+            // "All Questions" mode (dynamic)
+            selectedCount = widget.totalQuestions;
+            _customCountController.clear();
+          } else {
+            // Specific count saved
+            // We allow counts larger than total (for repeating questions)
+            selectedCount = settings.questionCount!;
+            // Populate text field as it's a custom count
+            _customCountController.text = selectedCount.toString();
+          }
+        }
+        if (settings.isStudyMode != null) {
+          _isStudyMode = settings.isStudyMode!;
+        }
+      });
+    }
   }
 
   @override
@@ -47,6 +83,8 @@ class _QuestionCountSelectionDialogState
                 if (value != null) {
                   setState(() {
                     selectedCount = value;
+                    _customCountController.clear();
+                    _inputError = null;
                   });
                 }
               },
@@ -68,6 +106,7 @@ class _QuestionCountSelectionDialogState
             ),
             const SizedBox(height: 8),
             TextField(
+              controller: _customCountController,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: AppLocalizations.of(context)!.numberInputLabel,
@@ -159,6 +198,22 @@ class _QuestionCountSelectionDialogState
         ElevatedButton(
           onPressed: () {
             if (_inputError == null) {
+              // Determine value to save
+              // If text field is empty, it means we selected "All Questions" cleanly
+              // (or cleared custom input). We save -1 to represent "All".
+              // If text field has content, we save the specific number.
+              final int countToSave = _customCountController.text.isEmpty
+                  ? -1
+                  : selectedCount;
+
+              // Save settings
+              ConfigurationService.instance.saveQuizConfigSettings(
+                QuizConfigStoredSettings(
+                  questionCount: countToSave,
+                  isStudyMode: _isStudyMode,
+                ),
+              );
+
               context.pop(
                 QuizConfig(
                   questionCount: selectedCount,
