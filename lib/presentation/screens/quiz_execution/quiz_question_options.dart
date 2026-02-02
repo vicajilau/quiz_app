@@ -218,6 +218,7 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 12.0),
                 child: Card(
+                  clipBehavior: Clip.hardEdge,
                   elevation: isSelected ? 4 : 1,
                   child: _buildOptionTile(
                     context,
@@ -259,6 +260,7 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 12.0),
                   child: Card(
+                    clipBehavior: Clip.hardEdge,
                     elevation: isSelected ? 4 : 1,
                     child: _buildOptionTile(
                       context,
@@ -354,16 +356,20 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
       Color? tileColor;
       Color? activeColor;
 
-      if (widget.isStudyMode &&
-          isSelected &&
-          widget.state.isCurrentQuestionValidated) {
+      if (widget.isStudyMode && widget.state.isCurrentQuestionValidated) {
         final isCorrect = widget.state.currentQuestion.correctAnswers.contains(
           index,
         );
-        tileColor = isCorrect
-            ? Colors.green.withValues(alpha: 0.2)
-            : Colors.red.withValues(alpha: 0.2);
-        activeColor = isCorrect ? Colors.green : Colors.red;
+        if (isSelected) {
+          tileColor = isCorrect
+              ? Colors.green.withValues(alpha: 0.2)
+              : Colors.red.withValues(alpha: 0.2);
+          activeColor = isCorrect ? Colors.green : Colors.red;
+        } else if (isCorrect) {
+          // Show correct answer even if not selected
+          tileColor = Colors.green.withValues(alpha: 0.2);
+          activeColor = Colors.green;
+        }
       }
       // Also highlight correct answers if we missed them?
       // For Multiple Choice it's tricky because you select multiple.
