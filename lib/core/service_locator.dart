@@ -8,6 +8,7 @@ import '../domain/models/quiz/quiz_file.dart';
 import '../domain/models/quiz/quiz_config.dart';
 
 import '../presentation/blocs/file_bloc/file_bloc.dart';
+import '../presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 
 // Singleton class for managing service registrations
 class ServiceLocator {
@@ -36,6 +37,9 @@ class ServiceLocator {
     getIt.registerFactory<FileBloc>(
       () => FileBloc(fileRepository: getIt<QuizFileRepository>()),
     );
+    getIt.registerFactory<QuizExecutionBloc>(
+      () => QuizExecutionBloc(),
+    );
   }
 
   // Function to register or update QuizFile in GetIt
@@ -61,4 +65,5 @@ class ServiceLocator {
     }
     return null;
   }
+
 }

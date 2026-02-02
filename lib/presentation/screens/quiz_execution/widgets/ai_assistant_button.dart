@@ -12,27 +12,57 @@ class AiAssistantButton extends StatelessWidget {
   /// The question for which the AI assistance is requested.
   final Question question;
 
+  /// Whether the AI assistant is available (enabled and has API keys configured).
+  final bool isAiAvailable;
+
   /// Creates an [AiAssistantButton].
-  const AiAssistantButton({super.key, required this.question});
+  const AiAssistantButton({
+    super.key,
+    required this.question,
+    this.isAiAvailable = true,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Center(
-        child: TextButton.icon(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (context) => AIQuestionDialog(question: question),
-            );
-          },
-          icon: const Icon(Icons.auto_awesome),
-          label: Text(AppLocalizations.of(context)!.askAiAssistant),
-          style: TextButton.styleFrom(
-            foregroundColor: Theme.of(context).colorScheme.primary,
+      child: Column(
+        children: [
+          Center(
+            child: TextButton.icon(
+              onPressed: isAiAvailable
+                  ? () {
+                      showDialog(
+                        context: context,
+                        builder: (context) =>
+                            AIQuestionDialog(question: question),
+                      );
+                    }
+                  : null,
+              icon: const Icon(Icons.auto_awesome),
+              label: Text(l10n.askAiAssistant),
+              style: TextButton.styleFrom(
+                foregroundColor: Theme.of(context).colorScheme.primary,
+                disabledForegroundColor:
+                    Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.38),
+              ),
+            ),
           ),
-        ),
+          if (!isAiAvailable)
+            Padding(
+              padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+              child: Text(
+                l10n.enableAiAssistant,
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+        ],
       ),
     );
   }

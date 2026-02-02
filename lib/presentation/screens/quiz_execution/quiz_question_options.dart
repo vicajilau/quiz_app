@@ -92,9 +92,12 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // AI Assistant Button (Only in Study Mode and if AI is available)
-        if (widget.isStudyMode && _isAiAvailable)
-          AiAssistantButton(question: widget.state.currentQuestion),
+        // AI Assistant Button (Always visible in Study Mode, disabled if AI unavailable)
+        if (widget.isStudyMode)
+          AiAssistantButton(
+            question: widget.state.currentQuestion,
+            isAiAvailable: _isAiAvailable,
+          ),
 
         // Show correct answer count hint for multiple choice questions
         if (widget.showCorrectAnswerCount &&

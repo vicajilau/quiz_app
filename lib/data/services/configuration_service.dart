@@ -259,6 +259,8 @@ class ConfigurationService {
 
     if (settings.questionCount != null) {
       await prefs.setInt(_lastQuestionCountKey, settings.questionCount!);
+    } else {
+      await prefs.remove(_lastQuestionCountKey);
     }
     if (settings.isStudyMode != null) {
       await prefs.setBool(_lastQuizModeKey, settings.isStudyMode!);

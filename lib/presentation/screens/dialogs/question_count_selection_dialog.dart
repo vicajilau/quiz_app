@@ -45,17 +45,13 @@ class _QuestionCountSelectionDialogState
     if (mounted) {
       setState(() {
         if (settings.questionCount != null) {
-          if (settings.questionCount == -1) {
-            // "All Questions" mode (dynamic)
-            selectedCount = widget.totalQuestions;
-            _customCountController.clear();
-          } else {
-            // Specific count saved
-            // We allow counts larger than total (for repeating questions)
-            selectedCount = settings.questionCount!;
-            // Populate text field as it's a custom count
-            _customCountController.text = selectedCount.toString();
-          }
+          // Specific count saved
+          selectedCount = settings.questionCount!;
+          _customCountController.text = selectedCount.toString();
+        } else {
+          // "All Questions" mode (default)
+          selectedCount = widget.totalQuestions;
+          _customCountController.clear();
         }
         if (settings.isStudyMode != null) {
           _isStudyMode = settings.isStudyMode!;
@@ -202,8 +198,8 @@ class _QuestionCountSelectionDialogState
               // If text field is empty, it means we selected "All Questions" cleanly
               // (or cleared custom input). We save -1 to represent "All".
               // If text field has content, we save the specific number.
-              final int countToSave = _customCountController.text.isEmpty
-                  ? -1
+              final int? countToSave = _customCountController.text.isEmpty
+                  ? null
                   : selectedCount;
 
               // Save settings

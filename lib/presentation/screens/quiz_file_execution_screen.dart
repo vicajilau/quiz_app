@@ -93,13 +93,12 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
 
         final questionsToUse = snapshot.data as List<Question>;
 
-        return BlocProvider(
-          create: (context) {
-            // Get Study Mode setting
+        return BlocProvider<QuizExecutionBloc>(
+          create: (_) {
             final quizConfig = ServiceLocator.instance.getQuizConfig();
             final isStudyMode = quizConfig?.isStudyMode ?? false;
 
-            return QuizExecutionBloc()..add(
+            return ServiceLocator.instance.getIt<QuizExecutionBloc>()..add(
               QuizExecutionStarted(questionsToUse, isStudyMode: isStudyMode),
             );
           },
