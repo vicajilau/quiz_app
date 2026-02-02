@@ -120,17 +120,12 @@ class _QuestionCountSelectionDialogState
                     selectedCount = customCount;
                     _inputError = null;
                   });
-                } else if (value.isNotEmpty) {
-                  setState(() {
-                    _inputError = value;
-                    selectedCount = widget.totalQuestions;
-                  });
-                } else {
-                  setState(() {
-                    _inputError = null;
-                    selectedCount = widget.totalQuestions;
-                  });
+                  return;
                 }
+                setState(() {
+                  _inputError = value;
+                  selectedCount = widget.totalQuestions;
+                });
               },
             ),
             const SizedBox(height: 24),
