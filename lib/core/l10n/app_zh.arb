@@ -1616,5 +1616,15 @@
   "aiFilePickerError": "无法加载所选文件",
   "@aiFilePickerError": {
     "description": "Error message when file picker fails"
-  }
+  },
+  "studyModeLabel": "学习模式",
+  "studyModeDescription": "即时反馈，无计时",
+  "examModeLabel": "考试模式",
+  "examModeDescription": "标准计时，最后显示结果",
+  "checkAnswer": "检查",
+  "quizModeTitle": "测验模式",
+  "skip": "跳过",
+  "askAiAssistant": "询问 AI 助手",
+  "evaluateWithAI": "用 AI 评估",
+  "aiEvaluation": "AI 评估"
 }

@@ -1101,4 +1101,28 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get aiFilePickerError => '選択したファイルを読み込めませんでした';
+
+  @override
+  String get studyModeLabel => '学習モード';
+
+  @override
+  String get studyModeDescription => '即時フィードバック、タイマーなし';
+
+  @override
+  String get examModeLabel => '試験モード';
+
+  @override
+  String get examModeDescription => '標準時間、最後に結果表示';
+
+  @override
+  String get checkAnswer => '確認';
+
+  @override
+  String get quizModeTitle => 'クイズモード';
+
+  @override
+  String get skip => 'スキップ';
+
+  @override
+  String get askAiAssistant => 'AIアシスタントに聞く';
 }

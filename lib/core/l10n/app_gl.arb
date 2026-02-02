@@ -1616,5 +1616,15 @@
   "aiFilePickerError": "Non se puido cargar o ficheiro seleccionado",
   "@aiFilePickerError": {
     "description": "Error message when file picker fails"
-  }
+  },
+  "studyModeLabel": "Modo Estudo",
+  "studyModeDescription": "Retroalimentación instantánea e sen tempo",
+  "examModeLabel": "Modo Exame",
+  "examModeDescription": "Tempo estándar e resultados ao final",
+  "checkAnswer": "Comprobar",
+  "quizModeTitle": "Modo Cuestionario",
+  "skip": "Saltar",
+  "askAiAssistant": "Preguntar ao Asistente de IA",
+  "evaluateWithAI": "Avaliar con IA",
+  "aiEvaluation": "Avaliación de IA"
 }

@@ -842,7 +842,7 @@ class AppLocalizationsEu extends AppLocalizations {
       'Ez dago gaitutako galderarik eskuragarri galdetegia exekutatzeko';
 
   @override
-  String get evaluateWithAI => 'AIaz ebaluatu';
+  String get evaluateWithAI => 'Ebaluatu AIrekin';
 
   @override
   String get aiEvaluation => 'AI Ebaluazioa';
@@ -1155,4 +1155,28 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get aiFilePickerError => 'Ezin izan da hautatutako fitxategia kargatu';
+
+  @override
+  String get studyModeLabel => 'Ikasteko Modua';
+
+  @override
+  String get studyModeDescription => 'Berehalako feedbacka eta denborarik gabe';
+
+  @override
+  String get examModeLabel => 'Azterketa Modua';
+
+  @override
+  String get examModeDescription => 'Denbora estandarra eta emaitzak amaieran';
+
+  @override
+  String get checkAnswer => 'Egiaztatu';
+
+  @override
+  String get quizModeTitle => 'Galdetegi Modua';
+
+  @override
+  String get skip => 'Saltatu';
+
+  @override
+  String get askAiAssistant => 'Galdetu AI Laguntzaileari';
 }

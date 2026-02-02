@@ -5,8 +5,10 @@ import '../data/repositories/quiz_file_repository.dart';
 import '../data/services/file_service/mobile_desktop_file_service.dart'
     if (dart.library.js_interop) '../../data/services/file_service/web_file_service.dart';
 import '../domain/models/quiz/quiz_file.dart';
+import '../domain/models/quiz/quiz_config.dart';
 
 import '../presentation/blocs/file_bloc/file_bloc.dart';
+import '../presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 
 // Singleton class for managing service registrations
 class ServiceLocator {
@@ -35,6 +37,9 @@ class ServiceLocator {
     getIt.registerFactory<FileBloc>(
       () => FileBloc(fileRepository: getIt<QuizFileRepository>()),
     );
+    getIt.registerFactory<QuizExecutionBloc>(
+      () => QuizExecutionBloc(),
+    );
   }
 
   // Function to register or update QuizFile in GetIt
@@ -45,22 +50,20 @@ class ServiceLocator {
     getIt.registerLazySingleton<QuizFile>(() => quizFile);
   }
 
-  // Function to register quiz configuration (number of questions)
-  void registerQuizConfig({required int questionCount}) {
-    if (getIt.isRegistered<int>(instanceName: 'questionCount')) {
-      getIt.unregister<int>(instanceName: 'questionCount');
+  // Function to register quiz configuration
+  void registerQuizConfig(QuizConfig config) {
+    if (getIt.isRegistered<QuizConfig>()) {
+      getIt.unregister<QuizConfig>();
     }
-    getIt.registerLazySingleton<int>(
-      () => questionCount,
-      instanceName: 'questionCount',
-    );
+    getIt.registerLazySingleton<QuizConfig>(() => config);
   }
 
-  // Function to get the registered question count
-  int? getQuestionCount() {
-    if (getIt.isRegistered<int>(instanceName: 'questionCount')) {
-      return getIt<int>(instanceName: 'questionCount');
+  // Function to get the registered quiz configuration
+  QuizConfig? getQuizConfig() {
+    if (getIt.isRegistered<QuizConfig>()) {
+      return getIt<QuizConfig>();
     }
     return null;
   }
+
 }

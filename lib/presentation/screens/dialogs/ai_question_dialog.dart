@@ -353,20 +353,27 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                   ),
                 ),
                 const SizedBox(width: 12),
-                FilledButton(
-                  onPressed: _isLoading ? null : _askAI,
-                  child: _isLoading
-                      ? const SizedBox(
-                          width: 20,
-                          height: 20,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              Colors.white,
-                            ),
-                          ),
-                        )
-                      : Icon(Icons.send),
+                ValueListenableBuilder<TextEditingValue>(
+                  valueListenable: _questionController,
+                  builder: (_, value, _) {
+                    return FilledButton(
+                      onPressed: (_isLoading || value.text.trim().isEmpty)
+                          ? null
+                          : _askAI,
+                      child: _isLoading
+                          ? const SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.white,
+                                ),
+                              ),
+                            )
+                          : Icon(Icons.send),
+                    );
+                  },
                 ),
               ],
             ),

@@ -7,6 +7,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:quiz_app/core/context_extension.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_config.dart';
 import 'package:quiz_app/presentation/screens/dialogs/add_edit_question_dialog.dart';
 import 'package:quiz_app/presentation/screens/widgets/question_list_widget.dart';
 import 'package:quiz_app/routes/app_router.dart';
@@ -519,21 +520,20 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                             return;
                           }
 
-                          final selectedQuestionCount = await showDialog<int>(
+                          final quizConfig = await showDialog<QuizConfig>(
                             context: context,
                             builder: (context) => QuestionCountSelectionDialog(
                               totalQuestions: enabledQuestions.length,
                             ),
                           );
 
-                          if (selectedQuestionCount != null &&
-                              context.mounted) {
+                          if (quizConfig != null && context.mounted) {
                             // Register the updated quiz file and question count in the service locator
                             ServiceLocator.instance.registerQuizFile(
                               cachedQuizFile,
                             );
                             ServiceLocator.instance.registerQuizConfig(
-                              questionCount: selectedQuestionCount,
+                              quizConfig,
                             );
 
                             // Navigate to the quiz execution screen

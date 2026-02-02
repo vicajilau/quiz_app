@@ -1564,5 +1564,45 @@
   "aiFilePickerError": "No se pudo cargar el archivo seleccionado",
   "@aiFilePickerError": {
     "description": "Error message when file picker fails"
+  },
+  "studyModeLabel": "Modo Estudio",
+  "@studyModeLabel": {
+    "description": "Label for study mode option"
+  },
+  "studyModeDescription": "Feedback instantáneo y sin temporizador",
+  "@studyModeDescription": {
+    "description": "Description for study mode"
+  },
+  "examModeLabel": "Modo Examen",
+  "@examModeLabel": {
+    "description": "Label for exam mode option"
+  },
+  "examModeDescription": "Temporizador estándar y resultados al final",
+  "@examModeDescription": {
+    "description": "Description for exam mode"
+  },
+  "checkAnswer": "Comprobar",
+  "@checkAnswer": {
+    "description": "Button label to check the answer in study mode"
+  },
+  "quizModeTitle": "Modo Cuestionario",
+  "@quizModeTitle": {
+    "description": "Title for the quiz mode selection section"
+  },
+  "skip": "Saltar",
+  "@skip": {
+    "description": "Label for skip button"
+  },
+  "askAiAssistant": "Preguntar a la IA",
+  "@askAiAssistant": {
+    "description": "Button label to open AI assistant for current question"
+  },
+  "evaluateWithAI": "Evaluar con IA",
+  "@evaluateWithAI": {
+    "description": "Button label to evaluate essay answer with AI"
+  },
+  "aiEvaluation": "Evaluación de IA",
+  "@aiEvaluation": {
+    "description": "Label for AI evaluation section"
   }
 }

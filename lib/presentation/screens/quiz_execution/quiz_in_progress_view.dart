@@ -4,6 +4,7 @@ import 'quiz_progress_indicator.dart';
 import 'quiz_question_header.dart';
 import 'quiz_options_wrapper.dart';
 import 'quiz_navigation_buttons.dart';
+import '../../../core/service_locator.dart';
 
 class QuizInProgressView extends StatelessWidget {
   final QuizExecutionInProgress state;
@@ -12,6 +13,10 @@ class QuizInProgressView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get Study Mode setting
+    final quizConfig = ServiceLocator.instance.getQuizConfig();
+    final isStudyMode = quizConfig?.isStudyMode ?? false;
+
     return Column(
       children: [
         // Progress indicator (fixed)
@@ -40,7 +45,7 @@ class QuizInProgressView extends StatelessWidget {
         // Navigation buttons (fixed at bottom)
         Padding(
           padding: const EdgeInsets.all(16.0),
-          child: QuizNavigationButtons(state: state),
+          child: QuizNavigationButtons(state: state, isStudyMode: isStudyMode),
         ),
       ],
     );

@@ -1134,4 +1134,28 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get aiFilePickerError => 'تعذر تحميل الملف المحدد';
+
+  @override
+  String get studyModeLabel => 'وضع الدراسة';
+
+  @override
+  String get studyModeDescription => 'ردود فعل فورية وبلا توقيت';
+
+  @override
+  String get examModeLabel => 'وضع الاختبار';
+
+  @override
+  String get examModeDescription => 'توقيت قياسي ونتائج في النهاية';
+
+  @override
+  String get checkAnswer => 'تحقق';
+
+  @override
+  String get quizModeTitle => 'وضع الاختبار';
+
+  @override
+  String get skip => 'تخطي';
+
+  @override
+  String get askAiAssistant => 'اسأل مساعد الذكاء الاصطناعي';
 }

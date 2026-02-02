@@ -1616,5 +1616,15 @@
   "aiFilePickerError": "تعذر تحميل الملف المحدد",
   "@aiFilePickerError": {
     "description": "Error message when file picker fails"
-  }
+  },
+  "studyModeLabel": "وضع الدراسة",
+  "studyModeDescription": "ردود فعل فورية وبلا توقيت",
+  "examModeLabel": "وضع الاختبار",
+  "examModeDescription": "توقيت قياسي ونتائج في النهاية",
+  "checkAnswer": "تحقق",
+  "quizModeTitle": "وضع الاختبار",
+  "skip": "تخطي",
+  "askAiAssistant": "اسأل مساعد الذكاء الاصطناعي",
+  "evaluateWithAI": "تقييم بالذكاء الاصطناعي",
+  "aiEvaluation": "تقييم الذكاء الاصطناعي"
 }

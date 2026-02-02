@@ -5,17 +5,36 @@ import '../../blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import '../../../core/l10n/app_localizations.dart';
-import '../../utils/question_translation_helper.dart';
-import '../../widgets/latex_text.dart';
+import '../../../data/services/configuration_service.dart';
+import 'widgets/ai_assistant_button.dart';
+import 'widgets/essay_answer_input.dart';
+import 'widgets/question_option_tile.dart';
+import 'widgets/quiz_question_explanation.dart';
 
+/// A widget that displays the list of answer options for a quiz question.
+///
+/// It delegates to specific widgets based on the question type:
+/// - [EssayAnswerInput] for essay questions.
+/// - [QuestionOptionTile] for multiple choice and single choice questions.
+///
+/// It also handles displaying the "Ask AI Assistant" button and the
+/// explanation section in Study Mode.
 class QuizQuestionOptions extends StatefulWidget {
+  /// The current state of the quiz execution.
   final QuizExecutionInProgress state;
+
+  /// Whether to show a hint about the number of correct answers (for multiple choice).
   final bool showCorrectAnswerCount;
 
+  /// Whether the quiz is in Study Mode (immediate feedback enabled).
+  final bool isStudyMode;
+
+  /// Creates a [QuizQuestionOptions] widget.
   const QuizQuestionOptions({
     super.key,
     required this.state,
     this.showCorrectAnswerCount = false,
+    this.isStudyMode = false,
   });
 
   @override
@@ -23,37 +42,32 @@ class QuizQuestionOptions extends StatefulWidget {
 }
 
 class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
-  late TextEditingController _essayController;
+  bool _isAiAvailable = false;
 
   @override
   void initState() {
     super.initState();
-    _essayController = TextEditingController();
-    _updateEssayController();
+    _checkAiAvailability();
+  }
+
+  Future<void> _checkAiAvailability() async {
+    final configService = ConfigurationService.instance;
+    final isEnabled = await configService.getAIAssistantEnabled();
+    final openAiKey = await configService.getOpenAIApiKey();
+    final geminiKey = await configService.getGeminiApiKey();
+
+    if (mounted) {
+      setState(() {
+        _isAiAvailable = isEnabled && (openAiKey != null || geminiKey != null);
+      });
+    }
   }
 
   @override
   void didUpdateWidget(QuizQuestionOptions oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.state.currentQuestionIndex !=
-            widget.state.currentQuestionIndex ||
-        oldWidget.state.essayAnswers != widget.state.essayAnswers) {
-      _updateEssayController();
-    }
-  }
-
-  void _updateEssayController() {
-    final currentText =
-        widget.state.essayAnswers[widget.state.currentQuestionIndex] ?? '';
-    if (_essayController.text != currentText) {
-      _essayController.text = currentText;
-    }
-  }
-
-  @override
-  void dispose() {
-    _essayController.dispose();
-    super.dispose();
+    // Re-check availability in case settings changed (less likely but good practice)
+    _checkAiAvailability();
   }
 
   @override
@@ -64,12 +78,27 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
 
     // Handle essay questions separately
     if (questionType == QuestionType.essay) {
-      return _buildEssayInput(context);
+      return EssayAnswerInput(
+        question: widget.state.currentQuestion,
+        questionIndex: widget.state.currentQuestionIndex,
+        currentAnswer:
+            widget.state.essayAnswers[widget.state.currentQuestionIndex] ?? '',
+        isStudyMode: widget.isStudyMode,
+        isAiAvailable: _isAiAvailable,
+        state: widget.state,
+      );
     }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // AI Assistant Button (Always visible in Study Mode, disabled if AI unavailable)
+        if (widget.isStudyMode)
+          AiAssistantButton(
+            question: widget.state.currentQuestion,
+            isAiAvailable: _isAiAvailable,
+          ),
+
         // Show correct answer count hint for multiple choice questions
         if (widget.showCorrectAnswerCount &&
             questionType == QuestionType.multipleChoice &&
@@ -121,13 +150,15 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 12.0),
                 child: Card(
+                  clipBehavior: Clip.hardEdge,
                   elevation: isSelected ? 4 : 1,
-                  child: _buildOptionTile(
-                    context,
-                    questionType,
-                    option,
-                    index,
-                    isSelected,
+                  child: QuestionOptionTile(
+                    questionType: questionType,
+                    option: option,
+                    index: index,
+                    isSelected: isSelected,
+                    isStudyMode: widget.isStudyMode,
+                    state: widget.state,
                   ),
                 ),
               );
@@ -139,6 +170,12 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
                 ? widget.state.currentQuestionAnswers.first
                 : null,
             onChanged: (int? value) {
+              // In Study Mode, check if question is validated before locking
+              if (widget.isStudyMode &&
+                  widget.state.isCurrentQuestionValidated) {
+                return; // Prevent changing answer if already validated
+              }
+
               if (value != null) {
                 context.read<QuizExecutionBloc>().add(
                   AnswerSelected(value, true),
@@ -156,117 +193,33 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 12.0),
                   child: Card(
+                    clipBehavior: Clip.hardEdge,
                     elevation: isSelected ? 4 : 1,
-                    child: _buildOptionTile(
-                      context,
-                      questionType,
-                      option,
-                      index,
-                      isSelected,
+                    child: QuestionOptionTile(
+                      questionType: questionType,
+                      option: option,
+                      index: index,
+                      isSelected: isSelected,
+                      isStudyMode: widget.isStudyMode,
+                      state: widget.state,
                     ),
                   ),
                 );
               },
             ),
           ),
+
+        // Show explanation in Study Mode after answering and validation
+        if (widget.isStudyMode &&
+            widget.state.isCurrentQuestionValidated &&
+            widget.state.currentQuestion.explanation.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(top: 24.0),
+            child: QuizQuestionExplanation(
+              explanation: widget.state.currentQuestion.explanation,
+            ),
+          ),
       ],
-    );
-  }
-
-  Widget _buildOptionTile(
-    BuildContext context,
-    QuestionType questionType,
-    String option,
-    int index,
-    bool isSelected,
-  ) {
-    final localizations = AppLocalizations.of(context)!;
-    final translatedOption = QuestionTranslationHelper.translateOption(
-      option,
-      localizations,
-    );
-
-    final optionTextStyle = TextStyle(
-      fontSize: 16,
-      fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-    );
-
-    // For multiple choice questions, use CheckboxListTile
-    if (questionType == QuestionType.multipleChoice) {
-      return CheckboxListTile(
-        title: IgnorePointer(
-          child: LaTeXText(translatedOption, style: optionTextStyle),
-        ),
-        value: isSelected,
-        onChanged: (bool? value) {
-          context.read<QuizExecutionBloc>().add(
-            AnswerSelected(index, value ?? false),
-          );
-        },
-        activeColor: Theme.of(context).primaryColor,
-        controlAffinity: ListTileControlAffinity.leading,
-      );
-    }
-    // For single choice, true/false, and essay questions, use RadioListTile
-    else {
-      return RadioListTile<int>(
-        title: IgnorePointer(
-          child: LaTeXText(translatedOption, style: optionTextStyle),
-        ),
-        value: index,
-        activeColor: Theme.of(context).primaryColor,
-        controlAffinity: ListTileControlAffinity.leading,
-      );
-    }
-  }
-
-  Widget _buildEssayInput(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            AppLocalizations.of(context)!.questionTypeEssay,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: Theme.of(context).primaryColor,
-            ),
-          ),
-          const SizedBox(height: 12),
-          SizedBox(
-            height: 300,
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Theme.of(
-                    context,
-                  ).colorScheme.outline.withValues(alpha: 0.5),
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: TextField(
-                controller: _essayController,
-                maxLines: null,
-                expands: true,
-                textAlignVertical: TextAlignVertical.top,
-                decoration: InputDecoration(
-                  hintText: AppLocalizations.of(context)!.explanationHint,
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.all(16),
-                ),
-                onChanged: (text) {
-                  context.read<QuizExecutionBloc>().add(
-                    EssayAnswerChanged(text),
-                  );
-                },
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

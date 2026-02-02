@@ -1164,4 +1164,29 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get aiFilePickerError =>
       'Δεν ήταν δυνατή η φόρτωση του επιλεγμένου αρχείου';
+
+  @override
+  String get studyModeLabel => 'Λειτουργία Μελέτης';
+
+  @override
+  String get studyModeDescription =>
+      'Άμεση ανατροφοδότηση και χωρίς χρονόμετρο';
+
+  @override
+  String get examModeLabel => 'Λειτουργία Εξέτασης';
+
+  @override
+  String get examModeDescription => 'Τυπικός χρόνος και αποτελέσματα στο τέλος';
+
+  @override
+  String get checkAnswer => 'Έλεγχος';
+
+  @override
+  String get quizModeTitle => 'Λειτουργία Κουίζ';
+
+  @override
+  String get skip => 'Παράλειψη';
+
+  @override
+  String get askAiAssistant => 'Ρωτήστε τον Βοηθό AI';
 }

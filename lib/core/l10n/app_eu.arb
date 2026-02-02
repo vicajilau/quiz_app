@@ -1616,5 +1616,15 @@
   "aiFilePickerError": "Ezin izan da hautatutako fitxategia kargatu",
   "@aiFilePickerError": {
     "description": "Error message when file picker fails"
-  }
+  },
+  "studyModeLabel": "Ikasteko Modua",
+  "studyModeDescription": "Berehalako feedbacka eta denborarik gabe",
+  "examModeLabel": "Azterketa Modua",
+  "examModeDescription": "Denbora estandarra eta emaitzak amaieran",
+  "checkAnswer": "Egiaztatu",
+  "quizModeTitle": "Galdetegi Modua",
+  "skip": "Saltatu",
+  "askAiAssistant": "Galdetu AI Laguntzaileari",
+  "evaluateWithAI": "Ebaluatu AIrekin",
+  "aiEvaluation": "AI Ebaluazioa"
 }

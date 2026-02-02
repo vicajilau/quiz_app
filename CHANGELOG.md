@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.4.0] - 2026-01-31
 
+- feat: Implemented "Study Mode" with instant feedback and no timer.
 - feat: Added visibility toggle for API keys in Settings.
 - refactor: Decoupled `SettingsDialog` into smaller components for better maintainability.
 - fix: AI Essay Evaluation now respects the student's answer language instead of defaulting to the system language.

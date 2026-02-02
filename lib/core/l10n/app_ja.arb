@@ -1616,5 +1616,15 @@
   "aiFilePickerError": "選択したファイルを読み込めませんでした",
   "@aiFilePickerError": {
     "description": "Error message when file picker fails"
-  }
+  },
+  "studyModeLabel": "学習モード",
+  "studyModeDescription": "即時フィードバック、タイマーなし",
+  "examModeLabel": "試験モード",
+  "examModeDescription": "標準時間、最後に結果表示",
+  "checkAnswer": "確認",
+  "quizModeTitle": "クイズモード",
+  "skip": "スキップ",
+  "askAiAssistant": "AIアシスタントに聞く",
+  "evaluateWithAI": "AIで評価",
+  "aiEvaluation": "AI評価"
 }
