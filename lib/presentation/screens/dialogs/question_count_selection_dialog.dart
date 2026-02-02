@@ -123,7 +123,7 @@ class _QuestionCountSelectionDialogState
                   return;
                 }
                 setState(() {
-                  _inputError = value;
+                  _inputError = value.isEmpty ? null : value;
                   selectedCount = widget.totalQuestions;
                 });
               },
