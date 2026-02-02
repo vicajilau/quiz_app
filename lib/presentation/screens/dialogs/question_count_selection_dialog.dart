@@ -32,122 +32,124 @@ class _QuestionCountSelectionDialogState
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(AppLocalizations.of(context)!.selectQuestionCountTitle),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(AppLocalizations.of(context)!.selectQuestionCountMessage),
-          const SizedBox(height: 16),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(AppLocalizations.of(context)!.selectQuestionCountMessage),
+            const SizedBox(height: 16),
 
-          // Only show "All Questions" option
-          RadioGroup(
-            groupValue: selectedCount,
-            onChanged: (value) {
-              if (value != null) {
-                setState(() {
-                  selectedCount = value;
-                });
-              }
-            },
-            child: RadioListTile<int>(
-              title: Text(
-                AppLocalizations.of(
-                  context,
-                )!.allQuestions(widget.totalQuestions),
+            // Only show "All Questions" option
+            RadioGroup(
+              groupValue: selectedCount,
+              onChanged: (value) {
+                if (value != null) {
+                  setState(() {
+                    selectedCount = value;
+                  });
+                }
+              },
+              child: RadioListTile<int>(
+                title: Text(
+                  AppLocalizations.of(
+                    context,
+                  )!.allQuestions(widget.totalQuestions),
+                ),
+                value: widget.totalQuestions,
               ),
-              value: widget.totalQuestions,
             ),
-          ),
 
-          // Custom count option (always available)
-          const SizedBox(height: 8),
-          Text(
-            AppLocalizations.of(context)!.customNumberLabel,
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-          const SizedBox(height: 8),
-          TextField(
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              labelText: AppLocalizations.of(context)!.numberInputLabel,
-              border: const OutlineInputBorder(),
-              helperText: AppLocalizations.of(
-                context,
-              )!.customNumberHelper(widget.totalQuestions),
-              helperMaxLines: 2,
-              errorText: _getErrorText(),
+            // Custom count option (always available)
+            const SizedBox(height: 8),
+            Text(
+              AppLocalizations.of(context)!.customNumberLabel,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
-            onChanged: (value) {
-              final customCount = int.tryParse(value);
-              if (customCount != null && customCount > 0) {
-                setState(() {
-                  selectedCount = customCount;
-                  _inputError = null;
-                });
-              } else if (value.isNotEmpty) {
-                setState(() {
-                  _inputError = value;
-                });
-              } else {
-                setState(() {
-                  _inputError = null;
-                });
-              }
-            },
-          ),
-          const SizedBox(height: 24),
-          const Divider(),
-          const SizedBox(height: 8),
-          // Quiz Mode Selection
-          Text(
-            AppLocalizations.of(context)!.quizModeTitle,
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          const SizedBox(height: 8),
+            const SizedBox(height: 8),
+            TextField(
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.numberInputLabel,
+                border: const OutlineInputBorder(),
+                helperText: AppLocalizations.of(
+                  context,
+                )!.customNumberHelper(widget.totalQuestions),
+                helperMaxLines: 2,
+                errorText: _getErrorText(),
+              ),
+              onChanged: (value) {
+                final customCount = int.tryParse(value);
+                if (customCount != null && customCount > 0) {
+                  setState(() {
+                    selectedCount = customCount;
+                    _inputError = null;
+                  });
+                } else if (value.isNotEmpty) {
+                  setState(() {
+                    _inputError = value;
+                  });
+                } else {
+                  setState(() {
+                    _inputError = null;
+                  });
+                }
+              },
+            ),
+            const SizedBox(height: 24),
+            const Divider(),
+            const SizedBox(height: 8),
+            // Quiz Mode Selection
+            Text(
+              AppLocalizations.of(context)!.quizModeTitle,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 8),
 
-          RadioGroup<bool>(
-            groupValue: _isStudyMode,
-            onChanged: (value) {
-              if (value != null) {
-                setState(() {
-                  _isStudyMode = value;
-                });
-              }
-            },
-            child: Column(
-              children: [
-                RadioListTile<bool>(
-                  title: Text(AppLocalizations.of(context)!.examModeLabel),
-                  subtitle: Text(
-                    AppLocalizations.of(context)!.examModeDescription,
+            RadioGroup<bool>(
+              groupValue: _isStudyMode,
+              onChanged: (value) {
+                if (value != null) {
+                  setState(() {
+                    _isStudyMode = value;
+                  });
+                }
+              },
+              child: Column(
+                children: [
+                  RadioListTile<bool>(
+                    title: Text(AppLocalizations.of(context)!.examModeLabel),
+                    subtitle: Text(
+                      AppLocalizations.of(context)!.examModeDescription,
+                    ),
+                    value: false,
+                    activeColor: Theme.of(context).colorScheme.primary,
+                    secondary: Icon(
+                      Icons.timer,
+                      color: !_isStudyMode
+                          ? Theme.of(context).colorScheme.primary
+                          : null,
+                    ),
                   ),
-                  value: false,
-                  activeColor: Theme.of(context).colorScheme.primary,
-                  secondary: Icon(
-                    Icons.timer,
-                    color: !_isStudyMode
-                        ? Theme.of(context).colorScheme.primary
-                        : null,
+                  RadioListTile<bool>(
+                    title: Text(AppLocalizations.of(context)!.studyModeLabel),
+                    subtitle: Text(
+                      AppLocalizations.of(context)!.studyModeDescription,
+                    ),
+                    value: true,
+                    activeColor: Theme.of(context).colorScheme.primary,
+                    secondary: Icon(
+                      Icons.school,
+                      color: _isStudyMode
+                          ? Theme.of(context).colorScheme.primary
+                          : null,
+                    ),
                   ),
-                ),
-                RadioListTile<bool>(
-                  title: Text(AppLocalizations.of(context)!.studyModeLabel),
-                  subtitle: Text(
-                    AppLocalizations.of(context)!.studyModeDescription,
-                  ),
-                  value: true,
-                  activeColor: Theme.of(context).colorScheme.primary,
-                  secondary: Icon(
-                    Icons.school,
-                    color: _isStudyMode
-                        ? Theme.of(context).colorScheme.primary
-                        : null,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       actions: [
         TextButton(
