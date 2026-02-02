@@ -109,6 +109,10 @@
   "@createQuizFileTitle": {
     "description": "Títol per al diàleg de creació de fitxer quiz."
   },
+  "editQuizFileTitle": "Editar Fitxer Quiz",
+  "@editQuizFileTitle": {
+    "description": "Títol per al diàleg d'edició de fitxer quiz."
+  },
   "fileNameLabel": "Nom del Fitxer",
   "@fileNameLabel": {
     "description": "Etiqueta per l'entrada del nom del fitxer."

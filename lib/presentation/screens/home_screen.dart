@@ -9,10 +9,11 @@ import '../../core/file_handler.dart';
 import '../../core/l10n/app_localizations.dart';
 import '../../core/service_locator.dart';
 import '../../routes/app_router.dart';
+import '../../core/constants/quiz_metadata.dart';
 import '../blocs/file_bloc/file_bloc.dart';
 import '../blocs/file_bloc/file_event.dart';
 import '../blocs/file_bloc/file_state.dart';
-import 'dialogs/create_quiz_dialog.dart';
+import 'dialogs/quiz_metadata_dialog.dart';
 import 'dialogs/settings_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -29,14 +30,14 @@ class _HomeScreenState extends State<HomeScreen> {
     final result = await showDialog<Map<String, String>>(
       context: context,
       barrierDismissible: false, // Prevent dismissing by tapping outside
-      builder: (_) => const CreateQuizFileDialog(),
+      builder: (_) => const QuizMetadataDialog(),
     );
 
     if (result != null && result.isNotEmpty && context.mounted) {
       // Validate required fields before proceeding
       final name = result['name']?.trim() ?? '';
       final description = result['description']?.trim() ?? '';
-      final version = result['version']?.trim() ?? '1.0';
+      const version = QuizMetadataConstants.version;
       final author = result['author']?.trim() ?? '';
 
       if (name.isNotEmpty && description.isNotEmpty && author.isNotEmpty) {

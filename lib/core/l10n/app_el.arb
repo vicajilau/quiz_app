@@ -19,6 +19,7 @@
   "exitButton": "Έξοδος",
   "saveDialogTitle": "Παρακαλώ επιλέξτε αρχείο εξόδου:",
   "createQuizFileTitle": "Δημιουργία Αρχείου Quiz",
+  "editQuizFileTitle": "Επεξεργασία Αρχείου Κουίζ",
   "fileNameLabel": "Όνομα Αρχείου",
   "fileDescriptionLabel": "Περιγραφή Αρχείου",
   "createButton": "Δημιουργία",

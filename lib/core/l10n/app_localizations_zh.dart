@@ -79,6 +79,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get createQuizFileTitle => '创建测验文件';
 
   @override
+  String get editQuizFileTitle => '编辑测验文件';
+
+  @override
   String get fileNameLabel => '文件名';
 
   @override
