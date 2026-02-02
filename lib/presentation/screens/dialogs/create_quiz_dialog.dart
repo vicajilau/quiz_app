@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 import '../../../core/l10n/app_localizations.dart';
 
 class CreateQuizFileDialog extends StatefulWidget {
-  const CreateQuizFileDialog({super.key});
+  final Map<String, String>? initialMetadata;
+
+  const CreateQuizFileDialog({super.key, this.initialMetadata});
 
   @override
   State<CreateQuizFileDialog> createState() => _CreateQuizFileDialogState();
@@ -12,17 +14,31 @@ class CreateQuizFileDialog extends StatefulWidget {
 
 class _CreateQuizFileDialogState extends State<CreateQuizFileDialog> {
   // Controllers to manage text input for the file metadata.
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _descriptionController = TextEditingController();
-  final TextEditingController _versionController = TextEditingController(
-    text: '1.0',
-  );
-  final TextEditingController _authorController = TextEditingController();
+  late final TextEditingController _nameController;
+  late final TextEditingController _descriptionController;
+  late final TextEditingController _versionController;
+  late final TextEditingController _authorController;
 
   // Error messages for input validation.
   String? _nameError;
   String? _descriptionError;
-  String? _authorError;
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController = TextEditingController(
+      text: widget.initialMetadata?['name'] ?? '',
+    );
+    _descriptionController = TextEditingController(
+      text: widget.initialMetadata?['description'] ?? '',
+    );
+    _versionController = TextEditingController(
+      text: widget.initialMetadata?['version'] ?? '1.0',
+    );
+    _authorController = TextEditingController(
+      text: widget.initialMetadata?['author'] ?? '',
+    );
+  }
 
   @override
   void dispose() {
@@ -52,15 +68,6 @@ class _CreateQuizFileDialogState extends State<CreateQuizFileDialog> {
     }
   }
 
-  /// Clears the author error message when the user types into the author field.
-  void _onAuthorChanged(String value) {
-    if (_authorError != null && value.isNotEmpty) {
-      setState(() {
-        _authorError = null;
-      });
-    }
-  }
-
   /// Validates inputs and handles form submission.
   void _submit() {
     final name = _nameController.text.trim();
@@ -76,15 +83,10 @@ class _CreateQuizFileDialogState extends State<CreateQuizFileDialog> {
       _descriptionError = description.isEmpty
           ? AppLocalizations.of(context)!.fileDescriptionRequiredError
           : null;
-      _authorError = author.isEmpty
-          ? AppLocalizations.of(context)!.authorRequiredError
-          : null;
     });
 
     // If all inputs are valid, process the submission.
-    if (_nameError == null &&
-        _descriptionError == null &&
-        _authorError == null) {
+    if (_nameError == null && _descriptionError == null) {
       // Return all metadata to the previous screen.
       context.pop({
         'name': name,
@@ -143,41 +145,15 @@ class _CreateQuizFileDialogState extends State<CreateQuizFileDialog> {
               ),
               const SizedBox(height: 16),
 
-              // Row for version and author fields
-              Row(
-                children: [
-                  // Text field for entering the version.
-                  Expanded(
-                    flex: 1,
-                    child: TextField(
-                      controller: _versionController,
-                      decoration: InputDecoration(
-                        labelText: AppLocalizations.of(context)!.versionLabel,
-                        border: const OutlineInputBorder(),
-                        hintText: '1.0',
-                        prefixIcon: const Icon(Icons.numbers),
-                      ),
-                      keyboardType: TextInputType.text,
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-
-                  // Text field for entering the author.
-                  Expanded(
-                    flex: 2,
-                    child: TextField(
-                      controller: _authorController,
-                      decoration: InputDecoration(
-                        labelText: AppLocalizations.of(context)!.authorLabel,
-                        errorText: _authorError,
-                        border: const OutlineInputBorder(),
-                        prefixIcon: const Icon(Icons.person),
-                      ),
-                      onChanged: _onAuthorChanged,
-                      textCapitalization: TextCapitalization.words,
-                    ),
-                  ),
-                ],
+              // Text field for entering the author.
+              TextField(
+                controller: _authorController,
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.authorLabel,
+                  border: const OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.person),
+                ),
+                textCapitalization: TextCapitalization.words,
               ),
             ],
           ),
@@ -193,8 +169,19 @@ class _CreateQuizFileDialogState extends State<CreateQuizFileDialog> {
         // Create button to validate and submit the form.
         FilledButton.icon(
           onPressed: _submit,
-          icon: const Icon(Icons.create),
-          label: Text(AppLocalizations.of(context)!.createButton),
+          icon: const Icon(
+            Icons.check,
+          ), // Changed icon to check as it acts more like a confirm now
+          label: Text(
+            AppLocalizations.of(context)!.acceptButton,
+          ), // Changed to Accept/Confirm? Or keep Create? Context says "Create Button" logic uses createButton string.
+          // Sticking to "Create" or "Accept"? In save flow, we are "Saving".
+          // But the dialog title is "Create Quiz File".
+          // If I use this dialog for "Edit Metadata" later, I might want to change title too.
+          // For now, I'll keep "Create" logic but maybe change label if I can.
+          // The issue description says: "The 'Create Quiz File' dialog (or a Metadata prompt) should only appear when the user clicks the 'Save' button."
+          // So "Accept" or "Save" might be better.
+          // Existing code used `createButton`. I will check if `acceptButton` exists. Yes it does.
         ),
       ],
     );

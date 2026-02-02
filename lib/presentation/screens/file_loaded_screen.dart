@@ -26,6 +26,7 @@ import 'dialogs/import_questions_dialog.dart';
 import 'dialogs/ai_generate_questions_dialog.dart';
 import 'widgets/request_file_name_dialog.dart';
 import 'dialogs/settings_dialog.dart';
+import 'dialogs/create_quiz_dialog.dart';
 import '../../data/services/ai/ai_question_generation_service.dart';
 
 class FileLoadedScreen extends StatefulWidget {
@@ -544,6 +545,42 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
   }
 
   Future<void> _onSavePressed(BuildContext context) async {
+    // Check if metadata is incomplete (title is "Untitled Quiz" or description is empty)
+    // Note: "Untitled Quiz" is the default title we set in home_screen.dart
+    final isMetadataIncomplete =
+        cachedQuizFile.metadata.title == 'Untitled Quiz' ||
+        cachedQuizFile.metadata.description == 'Description' ||
+        cachedQuizFile.metadata.description.isEmpty;
+
+    if (isMetadataIncomplete) {
+      final result = await showDialog<Map<String, String>>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => CreateQuizFileDialog(
+          initialMetadata: {
+            'name': cachedQuizFile.metadata.title,
+            'description': cachedQuizFile.metadata.description,
+            'version': cachedQuizFile.metadata.version,
+            'author': cachedQuizFile.metadata.author,
+          },
+        ),
+      );
+
+      if (result == null) return; // User cancelled
+
+      // Update cached metadata
+      setState(() {
+        cachedQuizFile = cachedQuizFile.copyWith(
+          metadata: cachedQuizFile.metadata.copyWith(
+            title: result['name'],
+            description: result['description'],
+            version: result['version'],
+            author: result['author'],
+          ),
+        );
+      });
+    }
+
     final String? fileName;
     if (PlatformDetail.isWeb) {
       final result = await showDialog<String>(

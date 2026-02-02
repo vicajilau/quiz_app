@@ -12,7 +12,6 @@ import '../../routes/app_router.dart';
 import '../blocs/file_bloc/file_bloc.dart';
 import '../blocs/file_bloc/file_event.dart';
 import '../blocs/file_bloc/file_state.dart';
-import 'dialogs/create_quiz_dialog.dart';
 import 'dialogs/settings_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,38 +23,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool _isLoading = false; // Variable to track loading state
-
-  Future<void> _showCreateQuizFileDialog(BuildContext context) async {
-    final result = await showDialog<Map<String, String>>(
-      context: context,
-      barrierDismissible: false, // Prevent dismissing by tapping outside
-      builder: (_) => const CreateQuizFileDialog(),
-    );
-
-    if (result != null && result.isNotEmpty && context.mounted) {
-      // Validate required fields before proceeding
-      final name = result['name']?.trim() ?? '';
-      final description = result['description']?.trim() ?? '';
-      final version = result['version']?.trim() ?? '1.0';
-      final author = result['author']?.trim() ?? '';
-
-      if (name.isNotEmpty && description.isNotEmpty && author.isNotEmpty) {
-        context.read<FileBloc>().add(
-          CreateQuizMetadata(
-            name: name,
-            version: version,
-            description: description,
-            author: author,
-          ),
-        );
-      } else {
-        // Show error if required fields are missing
-        context.presentSnackBar(
-          AppLocalizations.of(context)!.requiredFieldsError,
-        );
-      }
-    }
-  }
 
   Future<void> _showSettingsDialog(BuildContext context) async {
     await showDialog(
@@ -121,7 +88,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: TextButton(
                       onPressed: _isLoading
                           ? null
-                          : () => _showCreateQuizFileDialog(context),
+                          : () => context.read<FileBloc>().add(
+                              CreateQuizMetadata(
+                                name: 'Untitled Quiz',
+                                version: '1.0',
+                                description: 'Description',
+                                author: '',
+                              ),
+                            ),
                       child: Text(
                         AppLocalizations.of(context)!.create,
                         style: const TextStyle(color: Colors.white),
