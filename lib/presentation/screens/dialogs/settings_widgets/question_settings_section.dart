@@ -35,7 +35,7 @@ class QuestionSettingsSection extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         ...QuestionOrder.values.map((order) {
-          return _RadioGroup(
+          return RadioGroup<QuestionOrder>(
             groupValue: selectedOrder,
             onChanged: (QuestionOrder? value) {
               if (value != null) {
@@ -98,24 +98,5 @@ class QuestionSettingsSection extends StatelessWidget {
       case QuestionOrder.random:
         return AppLocalizations.of(context)!.questionOrderRandomDesc;
     }
-  }
-}
-
-/// A helper widget to ensure proper layout and touch targets for radio buttons
-/// within the settings list.
-class _RadioGroup extends StatelessWidget {
-  final QuestionOrder groupValue;
-  final ValueChanged<QuestionOrder?> onChanged;
-  final Widget child;
-
-  const _RadioGroup({
-    required this.groupValue,
-    required this.onChanged,
-    required this.child,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return child;
   }
 }
