@@ -121,6 +121,10 @@
   "@createQuizFileTitle": {
     "description": "Título para el diálogo de crear archivo quiz."
   },
+  "editQuizFileTitle": "Editar archivo de cuestionario",
+  "@editQuizFileTitle": {
+    "description": "Título para el diálogo de editar archivo de cuestionario."
+  },
   "fileNameLabel": "Nombre del Archivo",
   "@fileNameLabel": {
     "description": "Etiqueta para la entrada del nombre del archivo."

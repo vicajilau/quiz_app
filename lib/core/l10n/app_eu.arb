@@ -109,6 +109,10 @@
   "@createQuizFileTitle": {
     "description": "Quiz fitxategia sortzeko elkarrizketaren izenburua."
   },
+  "editQuizFileTitle": "Quiz Fitxategia Editatu",
+  "@editQuizFileTitle": {
+    "description": "Quiz fitxategia editatzeko elkarrizketaren izenburua."
+  },
   "fileNameLabel": "Fitxategiaren Izena",
   "@fileNameLabel": {
     "description": "Fitxategiaren izena sartzeko etiketak."

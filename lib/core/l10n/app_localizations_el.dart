@@ -82,6 +82,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get createQuizFileTitle => 'Δημιουργία Αρχείου Quiz';
 
   @override
+  String get editQuizFileTitle => 'Επεξεργασία Αρχείου Κουίζ';
+
+  @override
   String get fileNameLabel => 'Όνομα Αρχείου';
 
   @override

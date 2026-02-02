@@ -27,6 +27,7 @@ import 'dialogs/import_questions_dialog.dart';
 import 'dialogs/ai_generate_questions_dialog.dart';
 import 'widgets/request_file_name_dialog.dart';
 import 'dialogs/settings_dialog.dart';
+import 'dialogs/quiz_metadata_dialog.dart';
 import '../../data/services/ai/ai_question_generation_service.dart';
 
 class FileLoadedScreen extends StatefulWidget {
@@ -390,8 +391,15 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
             builder: (context) {
               return Scaffold(
                 appBar: AppBar(
-                  title: Text(
-                    "${cachedQuizFile.metadata.title} - ${cachedQuizFile.metadata.description}",
+                  title: Tooltip(
+                    message: cachedQuizFile.metadata.description,
+                    child: InkWell(
+                      onTap: () => _editQuizMetadata(context),
+                      child: Text(
+                        cachedQuizFile.metadata.title,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ),
                   leading: IconButton(
                     icon: Icon(
@@ -562,6 +570,32 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
           fileName,
         ),
       );
+    }
+  }
+
+  Future<void> _editQuizMetadata(BuildContext context) async {
+    final result = await showDialog<Map<String, String>>(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => QuizMetadataDialog(
+        initialName: cachedQuizFile.metadata.title,
+        initialDescription: cachedQuizFile.metadata.description,
+        initialAuthor: cachedQuizFile.metadata.author,
+        isEditing: true,
+      ),
+    );
+
+    if (result != null && mounted) {
+      setState(() {
+        cachedQuizFile = cachedQuizFile.copyWith(
+          metadata: cachedQuizFile.metadata.copyWith(
+            title: result['name'],
+            description: result['description'],
+            author: result['author'],
+          ),
+        );
+      });
+      _checkFileChange();
     }
   }
 }

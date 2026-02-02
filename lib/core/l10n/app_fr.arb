@@ -109,6 +109,10 @@
   "@createQuizFileTitle": {
     "description": "Titre de la boîte de dialogue de création de fichier quiz."
   },
+  "editQuizFileTitle": "Modifier le fichier quiz",
+  "@editQuizFileTitle": {
+    "description": "Titre de la boîte de dialogue pour modifier le fichier de quiz."
+  },
   "fileNameLabel": "Nom du fichier",
   "@fileNameLabel": {
     "description": "Libellé pour la saisie du nom de fichier."

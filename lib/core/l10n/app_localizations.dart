@@ -242,6 +242,12 @@ abstract class AppLocalizations {
   /// **'Create Quiz File'**
   String get createQuizFileTitle;
 
+  /// Title for edit quiz file dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Quiz File'**
+  String get editQuizFileTitle;
+
   /// Label for file name input.
   ///
   /// In en, this message translates to:

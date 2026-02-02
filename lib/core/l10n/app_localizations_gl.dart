@@ -82,6 +82,9 @@ class AppLocalizationsGl extends AppLocalizations {
   String get createQuizFileTitle => 'Crear Ficheiro Quiz';
 
   @override
+  String get editQuizFileTitle => 'Editar Ficheiro Quiz';
+
+  @override
   String get fileNameLabel => 'Nome do Ficheiro';
 
   @override

@@ -79,6 +79,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get createQuizFileTitle => 'クイズファイルを作成';
 
   @override
+  String get editQuizFileTitle => 'クイズファイルを編集';
+
+  @override
   String get fileNameLabel => 'ファイル名';
 
   @override

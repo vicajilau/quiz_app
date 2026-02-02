@@ -109,6 +109,10 @@
   "@createQuizFileTitle": {
     "description": "Titel für den Dialog zum Erstellen einer Quiz-Datei."
   },
+  "editQuizFileTitle": "Quizdatei bearbeiten",
+  "@editQuizFileTitle": {
+    "description": "Titel für den Dialog zum Bearbeiten der Quizdatei."
+  },
   "fileNameLabel": "Dateiname",
   "@fileNameLabel": {
     "description": "Beschriftung für die Dateiname-Eingabe."

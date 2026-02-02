@@ -82,6 +82,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get createQuizFileTitle => 'क्विज़ फ़ाइल बनाएं';
 
   @override
+  String get editQuizFileTitle => 'क्विज़ फ़ाइल संपादित करें';
+
+  @override
   String get fileNameLabel => 'फ़ाइल का नाम';
 
   @override

@@ -109,6 +109,10 @@
   "@createQuizFileTitle": {
     "description": "Title for create quiz file dialog."
   },
+  "editQuizFileTitle": "क्विज़ फ़ाइल संपादित करें",
+  "@editQuizFileTitle": {
+    "description": "Title for edit quiz file dialog."
+  },
   "fileNameLabel": "फ़ाइल का नाम",
   "@fileNameLabel": {
     "description": "Label for file name input."

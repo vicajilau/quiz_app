@@ -81,6 +81,9 @@ class AppLocalizationsEu extends AppLocalizations {
   String get createQuizFileTitle => 'Quiz Fitxategia Sortu';
 
   @override
+  String get editQuizFileTitle => 'Quiz Fitxategia Editatu';
+
+  @override
   String get fileNameLabel => 'Fitxategiaren Izena';
 
   @override

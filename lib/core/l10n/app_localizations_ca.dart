@@ -81,6 +81,9 @@ class AppLocalizationsCa extends AppLocalizations {
   String get createQuizFileTitle => 'Crear Fitxer Quiz';
 
   @override
+  String get editQuizFileTitle => 'Editar Fitxer Quiz';
+
+  @override
   String get fileNameLabel => 'Nom del Fitxer';
 
   @override
