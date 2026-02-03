@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quiz_app/core/context_extension.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:quiz_app/presentation/screens/dialogs/add_edit_question_dialog.dart';
@@ -325,36 +326,21 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                                       if (!mounted) return;
 
                                       if (!isAiAvailable) {
-                                        ScaffoldMessenger.of(
-                                          context,
-                                        ).showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              AppLocalizations.of(
-                                                context,
-                                              )!.aiRequiresAtLeastOneApiKeyError,
-                                              style: TextStyle(
-                                                color: Theme.of(
-                                                  context,
-                                                ).colorScheme.onError,
-                                              ),
-                                            ),
-                                            behavior: SnackBarBehavior.floating,
-                                            backgroundColor: Theme.of(
-                                              context,
-                                            ).colorScheme.error,
-                                          ),
+                                        context.presentSnackBar(
+                                          AppLocalizations.of(
+                                            context,
+                                          )!.aiRequiresAtLeastOneApiKeyError,
                                         );
-                                        return;
+                                      } else {
+                                        showDialog(
+                                          context: context,
+                                          barrierDismissible: false,
+                                          builder: (context) =>
+                                              AIQuestionDialog(
+                                                question: question,
+                                              ),
+                                        );
                                       }
-
-                                      showDialog(
-                                        context: context,
-                                        barrierDismissible: false,
-                                        builder: (context) => AIQuestionDialog(
-                                          question: question,
-                                        ),
-                                      );
                                     },
                                     child: Tooltip(
                                       message: AppLocalizations.of(
