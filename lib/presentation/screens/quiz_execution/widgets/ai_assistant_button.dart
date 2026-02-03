@@ -28,41 +28,36 @@ class AiAssistantButton extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Column(
-        children: [
-          Center(
-            child: TextButton.icon(
-              onPressed: isAiAvailable
-                  ? () {
-                      showDialog(
-                        context: context,
-                        builder: (context) =>
-                            AIQuestionDialog(question: question),
-                      );
-                    }
-                  : null,
-              icon: const Icon(Icons.auto_awesome),
-              label: Text(l10n.askAiAssistant),
-              style: TextButton.styleFrom(
-                foregroundColor: Theme.of(context).colorScheme.primary,
-                disabledForegroundColor:
-                    Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.38),
-              ),
-            ),
-          ),
-          if (!isAiAvailable)
-            Padding(
-              padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
-              child: Text(
-                l10n.enableAiAssistant,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+      child: Center(
+        child: TextButton.icon(
+          onPressed: () {
+            if (!isAiAvailable) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    l10n.aiRequiresAtLeastOneApiKeyError,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onError,
+                    ),
+                  ),
+                  behavior: SnackBarBehavior.floating,
+                  backgroundColor: Theme.of(context).colorScheme.error,
                 ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-        ],
+              );
+              return;
+            }
+
+            showDialog(
+              context: context,
+              builder: (context) => AIQuestionDialog(question: question),
+            );
+          },
+          icon: const Icon(Icons.auto_awesome),
+          label: Text(l10n.askAiAssistant),
+          style: TextButton.styleFrom(
+            foregroundColor: Theme.of(context).colorScheme.primary,
+          ),
+        ),
       ),
     );
   }

@@ -418,7 +418,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get aiRequiresAtLeastOneApiKeyError =>
-      'Ο Βοηθός Μελέτης AI απαιτεί τουλάχιστον ένα κλειδί API (OpenAI ή Gemini). Παρακαλώ εισάγετε ένα κλειδί API ή απενεργοποιήστε τον Βοηθό AI.';
+      'Ο Βοηθός Μελέτης AI απαιτεί τουλάχιστον ένα κλειδί API (Gemini ή OpenAI). Παρακαλώ ρυθμίστε το στις Ρυθμίσεις.';
 
   @override
   String get minutesAbbreviation => 'λεπ';

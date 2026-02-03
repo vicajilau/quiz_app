@@ -416,7 +416,7 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get aiRequiresAtLeastOneApiKeyError =>
-      'O Asistente de Estudo IA require polo menos unha Clave API (OpenAI ou Gemini). Introduce unha clave API ou desactiva o Asistente IA.';
+      'O Asistente de Estudo IA require polo menos unha Clave API (Gemini ou OpenAI). Por favor, configúraa na Configuración.';
 
   @override
   String get minutesAbbreviation => 'min';

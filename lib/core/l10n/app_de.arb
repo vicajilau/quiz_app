@@ -565,7 +565,7 @@
   "@getGeminiApiKeyTooltip": {
     "description": "Tooltip für die Schaltfläche zum Erhalten des Gemini-API-Schlüssels"
   },
-  "aiRequiresAtLeastOneApiKeyError": "KI-Lernassistent benötigt mindestens einen API-Schlüssel (OpenAI oder Gemini). Bitte geben Sie einen API-Schlüssel ein oder deaktivieren Sie den KI-Assistenten.",
+  "aiRequiresAtLeastOneApiKeyError": "Der KI-Lernassistent benötigt mindestens einen API-Schlüssel (Gemini oder OpenAI). Bitte konfigurieren Sie ihn in den Einstellungen.",
   "@aiRequiresAtLeastOneApiKeyError": {
     "description": "Fehlermeldung, wenn KI-Assistent aktiviert ist, aber keine API-Schlüssel bereitgestellt sind"
   },

@@ -565,7 +565,7 @@
   "@getGeminiApiKeyTooltip": {
     "description": "Gemini API gakoa lortzeko botoiarentzako tooltip-a"
   },
-  "aiRequiresAtLeastOneApiKeyError": "Ikasketa AI Laguntzaileak gutxienez API Gako bat behar du (OpenAI edo Gemini). Sartu API gakoa edo desaktibatu AI Laguntzailea.",
+  "aiRequiresAtLeastOneApiKeyError": "Ikasketa AI Laguntzaileak gutxienez API Gako bat behar du (Gemini edo OpenAI). Mesedez, konfigura ezazu Ezarpenetan.",
   "@aiRequiresAtLeastOneApiKeyError": {
     "description": "AI Laguntzailea aktibatuta baina API gakorik ematen ez denean errore mezua"
   },

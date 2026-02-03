@@ -565,7 +565,7 @@
   "@getGeminiApiKeyTooltip": {
     "description": "Tooltip for the button to get Gemini API key"
   },
-  "aiRequiresAtLeastOneApiKeyError": "AI अध्ययन सहायक के लिए कम से कम एक API Key (OpenAI या Gemini) की आवश्यकता है। कृपया API key दर्ज करें या AI सहायक को अक्षम करें।",
+  "aiRequiresAtLeastOneApiKeyError": "AI अध्ययन सहायक के लिए कम से कम एक API Key (Gemini या OpenAI) की आवश्यकता है। कृपया इसे सेटिंग्स में कॉन्फ़िगर करें।",
   "@aiRequiresAtLeastOneApiKeyError": {
     "description": "Error message when AI Assistant is enabled but no API keys are provided"
   },

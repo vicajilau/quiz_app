@@ -416,7 +416,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get aiRequiresAtLeastOneApiKeyError =>
-      'KI-Lernassistent benötigt mindestens einen API-Schlüssel (OpenAI oder Gemini). Bitte geben Sie einen API-Schlüssel ein oder deaktivieren Sie den KI-Assistenten.';
+      'Der KI-Lernassistent benötigt mindestens einen API-Schlüssel (Gemini oder OpenAI). Bitte konfigurieren Sie ihn in den Einstellungen.';
 
   @override
   String get minutesAbbreviation => 'min';

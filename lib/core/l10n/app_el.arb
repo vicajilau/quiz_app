@@ -115,7 +115,7 @@
   "geminiApiKeyHint": "Εισάγετε το κλειδί API Gemini",
   "geminiApiKeyDescription": "Απαιτείται για τη λειτουργικότητα Gemini AI. Το κλειδί σας αποθηκεύεται με ασφάλεια.",
   "getGeminiApiKeyTooltip": "Λήψη κλειδιού API από Google AI Studio",
-  "aiRequiresAtLeastOneApiKeyError": "Ο Βοηθός Μελέτης AI απαιτεί τουλάχιστον ένα κλειδί API (OpenAI ή Gemini). Παρακαλώ εισάγετε ένα κλειδί API ή απενεργοποιήστε τον Βοηθό AI.",
+  "aiRequiresAtLeastOneApiKeyError": "Ο Βοηθός Μελέτης AI απαιτεί τουλάχιστον ένα κλειδί API (Gemini ή OpenAI). Παρακαλώ ρυθμίστε το στις Ρυθμίσεις.",
   "minutesAbbreviation": "λεπ",
   "aiButtonTooltip": "Βοηθός Μελέτης AI",
   "aiButtonText": "AI",

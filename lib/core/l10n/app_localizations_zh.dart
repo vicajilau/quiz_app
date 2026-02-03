@@ -391,7 +391,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get aiRequiresAtLeastOneApiKeyError =>
-      'AI学习助手至少需要一个API密钥（OpenAI或Gemini）。请输入API密钥或禁用AI助手。';
+      'AI学习助手至少需要一个API密钥（Gemini或OpenAI）。请在设置中配置它。';
 
   @override
   String get minutesAbbreviation => '分钟';

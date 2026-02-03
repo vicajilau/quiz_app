@@ -821,7 +821,7 @@ abstract class AppLocalizations {
   /// Error message when AI Assistant is enabled but no API keys are provided
   ///
   /// In en, this message translates to:
-  /// **'AI Study Assistant requires at least one API Key (OpenAI or Gemini). Please enter an API key or disable the AI Assistant.'**
+  /// **'AI Study Assistant requires at least one API Key (Gemini or OpenAI). Please configure it in Settings.'**
   String get aiRequiresAtLeastOneApiKeyError;
 
   /// Abbreviation for minutes

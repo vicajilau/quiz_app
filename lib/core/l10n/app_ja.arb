@@ -565,7 +565,7 @@
   "@getGeminiApiKeyTooltip": {
     "description": "Tooltip for the button to get Gemini API key"
   },
-  "aiRequiresAtLeastOneApiKeyError": "AI学習アシスタントには少なくとも1つのAPIキー（OpenAIまたはGemini）が必要です。APIキーを入力するか、AIアシスタントを無効にしてください。",
+  "aiRequiresAtLeastOneApiKeyError": "AI学習アシスタントには少なくとも1つのAPIキー（GeminiまたはOpenAI）が必要です。設定でAPIキーを設定してください。",
   "@aiRequiresAtLeastOneApiKeyError": {
     "description": "Error message when AI Assistant is enabled but no API keys are provided"
   },

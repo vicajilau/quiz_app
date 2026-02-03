@@ -565,7 +565,7 @@
   "@getGeminiApiKeyTooltip": {
     "description": "Tooltip for the button to get Gemini API key"
   },
-  "aiRequiresAtLeastOneApiKeyError": "AI学习助手至少需要一个API密钥（OpenAI或Gemini）。请输入API密钥或禁用AI助手。",
+  "aiRequiresAtLeastOneApiKeyError": "AI学习助手至少需要一个API密钥（Gemini或OpenAI）。请在设置中配置它。",
   "@aiRequiresAtLeastOneApiKeyError": {
     "description": "Error message when AI Assistant is enabled but no API keys are provided"
   },
