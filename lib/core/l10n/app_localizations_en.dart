@@ -408,7 +408,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aiRequiresAtLeastOneApiKeyError =>
-      'AI Study Assistant requires at least one API Key (Gemini or OpenAI). Please configure it in Settings.';
+      'AI Study Assistant requires at least one API Key (Gemini or OpenAI). Please enter an API key or disable the AI Assistant.';
 
   @override
   String get minutesAbbreviation => 'min';

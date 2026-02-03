@@ -393,7 +393,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get aiRequiresAtLeastOneApiKeyError =>
-      'AI学習アシスタントには少なくとも1つのAPIキー（GeminiまたはOpenAI）が必要です。設定でAPIキーを設定してください。';
+      'AI学習アシスタントには、少なくとも1つのAPIキー（GeminiまたはOpenAI）が必要です。APIキーを入力するか、AIアシスタントを無効にしてください。';
 
   @override
   String get minutesAbbreviation => '分';

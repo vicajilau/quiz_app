@@ -414,7 +414,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get aiRequiresAtLeastOneApiKeyError =>
-      'Ikasketa AI Laguntzaileak gutxienez API Gako bat behar du (Gemini edo OpenAI). Mesedez, konfigura ezazu Ezarpenetan.';
+      'AI Ikasketa Laguntzaileak gutxienez API gako bat behar du (Gemini edo OpenAI). Mesedez, sartu API gako bat edo desgaitu AI Laguntzailea.';
 
   @override
   String get minutesAbbreviation => 'min';

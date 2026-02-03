@@ -553,7 +553,7 @@
   "@getGeminiApiKeyTooltip": {
     "description": "Tooltip for the button to get Gemini API key"
   },
-  "aiRequiresAtLeastOneApiKeyError": "AI Study Assistant requires at least one API Key (Gemini or OpenAI). Please configure it in Settings.",
+  "aiRequiresAtLeastOneApiKeyError": "AI Study Assistant requires at least one API Key (Gemini or OpenAI). Please enter an API key or disable the AI Assistant.",
   "@aiRequiresAtLeastOneApiKeyError": {
     "description": "Error message when AI Assistant is enabled but no API keys are provided"
   },

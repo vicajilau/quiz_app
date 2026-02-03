@@ -565,9 +565,9 @@
   "@getGeminiApiKeyTooltip": {
     "description": "Tooltip for the button to get Gemini API key"
   },
-  "aiRequiresAtLeastOneApiKeyError": "مساعد الدراسة الذكي يتطلب مفتاح API واحد على الأقل (Gemini أو OpenAI). يرجى تكوين مفتاح API في الإعدادات.",
+  "aiRequiresAtLeastOneApiKeyError": "يتطلب مساعد الدراسة الذكي مفتاح API واحدًا على الأقل (Gemini أو OpenAI). يرجى إدخال مفتاح API أو تعطيل المساعد الذكي.",
   "@aiRequiresAtLeastOneApiKeyError": {
-    "description": "Error message when AI Assistant is enabled but no API keys are provided"
+    "description": "رسالة خطأ عند تمكين مساعد الذكاء الاصطناعي ولكن لم يتم توفير مفاتيح API"
   },
   "minutesAbbreviation": "د",
   "@minutesAbbreviation": {

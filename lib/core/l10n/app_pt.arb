@@ -565,7 +565,7 @@
   "@getGeminiApiKeyTooltip": {
     "description": "Tooltip para o botão para obter chave API Gemini"
   },
-  "aiRequiresAtLeastOneApiKeyError": "O Assistente de Estudo IA requer pelo menos uma Chave API (Gemini ou OpenAI). Por favor, configure-a nas Definições.",
+  "aiRequiresAtLeastOneApiKeyError": "O Assistente de Estudo IA requer pelo menos uma Chave API (Gemini ou OpenAI). Por favor, insira uma chave API ou desative o Assistente de IA.",
   "@aiRequiresAtLeastOneApiKeyError": {
     "description": "Mensagem de erro quando Assistente IA está habilitado mas nenhuma chave API é fornecida"
   },
