@@ -417,7 +417,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get aiRequiresAtLeastOneApiKeyError =>
-      'L\'Assistant d\'Étude IA nécessite au moins une clé API (OpenAI ou Gemini). Veuillez entrer une clé API ou désactiver l\'Assistant IA.';
+      'L\'Assistant d\'Étude IA nécessite au moins une clé API (Gemini ou OpenAI). Veuillez saisir une clé API ou désactiver l\'Assistant IA.';
 
   @override
   String get minutesAbbreviation => 'min';

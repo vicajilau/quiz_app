@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quiz_app/core/context_extension.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:quiz_app/presentation/screens/dialogs/add_edit_question_dialog.dart';
@@ -317,14 +318,29 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                                 const SizedBox(width: 8),
                                 if (_aiAssistantEnabled && !isDisabled)
                                   GestureDetector(
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        barrierDismissible: false,
-                                        builder: (context) => AIQuestionDialog(
-                                          question: question,
-                                        ),
-                                      );
+                                    onTap: () async {
+                                      final isAiAvailable =
+                                          await ConfigurationService.instance
+                                              .getIsAiAvailable();
+
+                                      if (!mounted) return;
+
+                                      if (!isAiAvailable) {
+                                        context.presentSnackBar(
+                                          AppLocalizations.of(
+                                            context,
+                                          )!.aiApiKeyRequired,
+                                        );
+                                      } else {
+                                        showDialog(
+                                          context: context,
+                                          barrierDismissible: false,
+                                          builder: (context) =>
+                                              AIQuestionDialog(
+                                                question: question,
+                                              ),
+                                        );
+                                      }
                                     },
                                     child: Tooltip(
                                       message: AppLocalizations.of(

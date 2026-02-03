@@ -406,7 +406,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get aiRequiresAtLeastOneApiKeyError =>
-      'مساعد الدراسة الذكي يتطلب مفتاح API واحد على الأقل (OpenAI أو Gemini). يرجى إدخال مفتاح API أو تعطيل المساعد الذكي.';
+      'يتطلب مساعد الدراسة الذكي مفتاح API واحدًا على الأقل (Gemini أو OpenAI). يرجى إدخال مفتاح API أو تعطيل المساعد الذكي.';
 
   @override
   String get minutesAbbreviation => 'د';

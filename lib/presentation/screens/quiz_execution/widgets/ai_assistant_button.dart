@@ -45,8 +45,9 @@ class AiAssistantButton extends StatelessWidget {
               label: Text(l10n.askAiAssistant),
               style: TextButton.styleFrom(
                 foregroundColor: Theme.of(context).colorScheme.primary,
-                disabledForegroundColor:
-                    Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.38),
+                disabledForegroundColor: Theme.of(
+                  context,
+                ).colorScheme.onSurface.withValues(alpha: 0.38),
               ),
             ),
           ),
@@ -57,7 +58,9 @@ class AiAssistantButton extends StatelessWidget {
                 l10n.enableAiAssistant,
                 style: TextStyle(
                   fontSize: 12,
-                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
                 textAlign: TextAlign.center,
               ),
