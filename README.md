@@ -232,15 +232,6 @@ For detailed information about AI service limits and configuration, see: **[AI L
 - **Study Tips**: "What should I focus on to understand this better?"
 - **Related Topics**: "How does this relate to [other concept]?"
 
-### AI Service Comparison for Study Assistant
-
-| Feature               | OpenAI GPT                  | Google Gemini               |
-|-----------------------|-----------------------------|-----------------------------|
-| **Response Style**    | Structured, concise         | Conversational, detailed    |
-| **Explanation Depth** | Focused and precise         | Comprehensive with examples |
-| **Best For**          | Quick clarifications        | In-depth learning           |
-| **Language Quality**  | Consistent across languages | Natural, context-aware      |
-
 ## ⏱️ Advanced Quiz Features
 
 ### Exam Timer Configuration
@@ -305,8 +296,8 @@ For detailed information about AI service limits and configuration, see: **[AI L
 
    To enable AI question generation, you need to configure API keys:
 
+   - **Gemini**: Get your API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
    - **OpenAI**: Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
-   - **Google AI**: Get your API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
 
    The app will guide you through the configuration process when you first try to use AI features.
 
@@ -586,4 +577,5 @@ We welcome suggestions for:
 ## License
 
 This project is under the MIT license.
+
 
