@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:mime/mime.dart';
 import '../../core/l10n/app_localizations.dart';
 import '../../domain/models/ai/ai_file_attachment.dart';
 
@@ -13,17 +14,6 @@ class AiFilePickerSection extends StatelessWidget {
     required this.onFileChanged,
   });
 
-  static const Map<String, String> _extensionMimeTypes = {
-    'pdf': 'application/pdf',
-    'jpg': 'image/jpeg',
-    'jpeg': 'image/jpeg',
-    'png': 'image/png',
-    'webp': 'image/webp',
-    'txt': 'text/plain',
-    'md': 'text/markdown',
-    'csv': 'text/csv',
-  };
-
   Future<void> _pickFile(BuildContext context) async {
     try {
       final result = await FilePicker.platform.pickFiles(
@@ -34,11 +24,12 @@ class AiFilePickerSection extends StatelessWidget {
       if (result != null && result.files.isNotEmpty) {
         final pickedFile = result.files.first;
         if (pickedFile.bytes != null) {
-          final ext = pickedFile.extension?.toLowerCase() ?? '';
           onFileChanged(
             AiFileAttachment(
               bytes: pickedFile.bytes!,
-              mimeType: _extensionMimeTypes[ext] ?? 'application/octet-stream',
+              mimeType:
+                  lookupMimeType(pickedFile.path!) ??
+                  'application/octet-stream',
               name: pickedFile.name,
             ),
           );
