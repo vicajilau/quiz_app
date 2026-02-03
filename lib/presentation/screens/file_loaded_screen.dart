@@ -206,38 +206,10 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
   /// Handle generating questions with AI
   Future<void> _generateQuestionsWithAI() async {
     try {
-      final isAIactivated = await ConfigurationService.instance
-          .getAIAssistantEnabled();
+      final isAiAvailable = await ConfigurationService.instance
+          .getIsAiAvailable();
 
-      // Check if AI is enabled and has API keys
-      final openaiKey = await ConfigurationService.instance.getOpenAIApiKey();
-      final geminiKey = await ConfigurationService.instance.getGeminiApiKey();
-
-      if (!isAIactivated) {
-        if (mounted) {
-          showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: Text(AppLocalizations.of(context)!.aiAssistantDisabled),
-                content: Text(AppLocalizations.of(context)!.enableAiAssistant),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      context.pop();
-                    },
-                    child: Text(AppLocalizations.of(context)!.acceptButton),
-                  ),
-                ],
-              );
-            },
-          );
-        }
-        return;
-      }
-
-      if ((openaiKey?.isEmpty ?? true) && (geminiKey?.isEmpty ?? true)) {
+      if (!isAiAvailable) {
         if (mounted) {
           context.presentSnackBar(
             AppLocalizations.of(context)!.aiApiKeyRequired,
