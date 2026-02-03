@@ -317,7 +317,37 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                                 const SizedBox(width: 8),
                                 if (_aiAssistantEnabled && !isDisabled)
                                   GestureDetector(
-                                    onTap: () {
+                                    onTap: () async {
+                                      final isAiAvailable =
+                                          await ConfigurationService.instance
+                                              .getIsAiAvailable();
+
+                                      if (!mounted) return;
+
+                                      if (!isAiAvailable) {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              AppLocalizations.of(
+                                                context,
+                                              )!.aiRequiresAtLeastOneApiKeyError,
+                                              style: TextStyle(
+                                                color: Theme.of(
+                                                  context,
+                                                ).colorScheme.onError,
+                                              ),
+                                            ),
+                                            behavior: SnackBarBehavior.floating,
+                                            backgroundColor: Theme.of(
+                                              context,
+                                            ).colorScheme.error,
+                                          ),
+                                        );
+                                        return;
+                                      }
+
                                       showDialog(
                                         context: context,
                                         barrierDismissible: false,

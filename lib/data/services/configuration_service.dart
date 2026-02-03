@@ -276,4 +276,15 @@ class ConfigurationService {
       isStudyMode: prefs.getBool(_lastQuizModeKey),
     );
   }
+
+  /// Checks if AI Assistant is available (enabled and has at least one API key)
+  Future<bool> getIsAiAvailable() async {
+    final isEnabled = await getAIAssistantEnabled();
+    final openAiKey = await getOpenAIApiKey();
+    final geminiKey = await getGeminiApiKey();
+
+    return isEnabled &&
+        ((openAiKey != null && openAiKey.isNotEmpty) ||
+            (geminiKey != null && geminiKey.isNotEmpty));
+  }
 }

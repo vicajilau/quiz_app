@@ -51,14 +51,12 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
   }
 
   Future<void> _checkAiAvailability() async {
-    final configService = ConfigurationService.instance;
-    final isEnabled = await configService.getAIAssistantEnabled();
-    final openAiKey = await configService.getOpenAIApiKey();
-    final geminiKey = await configService.getGeminiApiKey();
+    final isAiAvailable = await ConfigurationService.instance
+        .getIsAiAvailable();
 
     if (mounted) {
       setState(() {
-        _isAiAvailable = isEnabled && (openAiKey != null || geminiKey != null);
+        _isAiAvailable = isAiAvailable;
       });
     }
   }
