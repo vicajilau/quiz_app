@@ -296,7 +296,7 @@ For detailed information about AI service limits and configuration, see: **[AI L
 
    To enable AI question generation, you need to configure API keys:
 
-   - **Google AI**: Get your API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
+   - **Gemini**: Get your API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
    - **OpenAI**: Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
 
    The app will guide you through the configuration process when you first try to use AI features.
