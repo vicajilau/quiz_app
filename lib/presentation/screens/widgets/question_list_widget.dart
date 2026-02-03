@@ -329,7 +329,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                                         context.presentSnackBar(
                                           AppLocalizations.of(
                                             context,
-                                          )!.aiRequiresAtLeastOneApiKeyError,
+                                          )!.aiApiKeyRequired,
                                         );
                                       } else {
                                         showDialog(
