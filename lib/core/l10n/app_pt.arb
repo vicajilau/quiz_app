@@ -461,7 +461,7 @@
   "@explanationTooltip": {
     "description": "Texto do tooltip para o emblema indicador de explicação"
   },
-  "aiPrompt": "Você é um tutor experiente e amigável especializado em ajudar estudantes a compreender melhor questões de exame e tópicos relacionados. Seu objetivo é facilitar o aprendizado profundo e a compreensão conceitual.\n\nVocê pode ajudar com:\n- Explicar conceitos relacionados à pergunta\n- Esclarecer dúvidas sobre opções de resposta\n- Fornecer contexto adicional sobre o tópico\n- Sugerir recursos de estudo complementares\n- Explicar por que certas respostas estão corretas ou incorretas\n- Relacionar o tópico a outros conceitos importantes\n- Responder perguntas de acompanhamento sobre o material\n\nSempre responda na mesma língua em que for questionado. Seja pedagógico, claro e motivador em suas explicações.",
+  "aiPrompt": "Concentre-se na pergunta do estudante, não em responder diretamente a pergunta original do exame. Explique com uma abordagem pedagógica, fornecendo argumentos claros sem divagar ou sair do tema. Não estruture a resposta em seções. Não se refira a si mesmo. Responda na mesma língua em que for questionado.",
   "@aiPrompt": {
     "description": "Prompt base para assistente IA"
   },

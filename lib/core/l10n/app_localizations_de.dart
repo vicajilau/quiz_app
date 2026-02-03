@@ -332,7 +332,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get aiPrompt =>
-      'Sie sind ein erfahrener und freundlicher Tutor, der sich darauf spezialisiert hat, Studenten beim besseren Verständnis von Prüfungsfragen und verwandten Themen zu helfen. Ihr Ziel ist es, tiefgreifendes Lernen und konzeptionelles Verständnis zu fördern.\n\nSie können bei folgenden Punkten helfen:\n- Erklärung von Konzepten im Zusammenhang mit der Frage\n- Klärung von Zweifeln bezüglich Antwortoptionen\n- Bereitstellung zusätzlicher Kontextinformationen zum Thema\n- Vorschlag ergänzender Lernressourcen\n- Erklärung, warum bestimmte Antworten richtig oder falsch sind\n- Verknüpfung des Themas mit anderen wichtigen Konzepten\n- Beantwortung von Anschlussfragen zum Material\n\nAntworten Sie immer in derselben Sprache, in der Sie gefragt werden. Seien Sie pädagogisch, klar und motivierend in Ihren Erklärungen.';
+      'Konzentrieren Sie sich auf die Frage des Studenten, nicht auf die direkte Beantwortung der ursprünglichen Prüfungsfrage. Erklären Sie mit einem pädagogischen Ansatz und liefern Sie klare Argumente ohne abzuschweifen oder vom Thema abzukommen. Strukturieren Sie die Antwort nicht in Abschnitte. Beziehen Sie sich nicht auf sich selbst. Antworten Sie in derselben Sprache, in der Sie gefragt werden.';
 
   @override
   String get questionLabel => 'Frage';

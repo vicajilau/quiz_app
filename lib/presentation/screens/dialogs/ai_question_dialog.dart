@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/extensions/string_extensions.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
-import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
 import 'package:quiz_app/data/services/ai/ai_service.dart';
+import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
 import 'package:quiz_app/presentation/widgets/ai_service_model_selector.dart';
 
 import '../../../../domain/models/ai/chat_message.dart';
@@ -64,29 +64,11 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
 
   String _buildPrompt(String userQuestion) {
     final localizations = AppLocalizations.of(context)!;
-
-    String prompt = localizations.aiPrompt;
-    prompt += "\n\n";
-    prompt += "${localizations.questionLabel}: ${widget.question.text}\n";
-
-    if (widget.question.options.isNotEmpty &&
-        widget.question.type != QuestionType.essay) {
-      prompt += "${localizations.optionsLabel}:\n";
-      for (int i = 0; i < widget.question.options.length; i++) {
-        final letter = String.fromCharCode(65 + i); // A, B, C, etc.
-        prompt += "$letter) ${widget.question.options[i]}\n";
-      }
-    }
-
-    if (widget.question.explanation.isNotEmpty) {
-      prompt +=
-          "\n${localizations.explanationLabel}: ${widget.question.explanation}\n";
-    }
-
-    // Add chat history context if needed, for now just the new question
-    prompt += "\n${localizations.studentComment}: \"$userQuestion\"";
-
-    return prompt;
+    return AiQuestionGenerationService.buildChatPrompt(
+      question: widget.question,
+      userQuestion: userQuestion,
+      localizations: localizations,
+    );
   }
 
   Future<void> _askAI() async {

@@ -334,7 +334,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get aiPrompt =>
-      'Sou un tutor expert i amigable especialitzat en ajudar els estudiants a comprendre millor les preguntes d\'examen i els temes relacionats. El vostre objectiu és facilitar l\'aprenentatge profund i la comprensió conceptual.\n\nPodeu ajudar amb:\n- Explicar conceptes relacionats amb la pregunta\n- Aclarir dubtes sobre les opcions de resposta\n- Proporcionar context addicional sobre el tema\n- Suggerir recursos d\'estudi complementaris\n- Explicar per què certes respostes són correctes o incorrectes\n- Relacionar el tema amb altres conceptes importants\n- Respondre preguntes de seguiment sobre el material\n\nSempre responeu en la mateixa llengua en què se us pregunta. Sigueu pedagògic, clar i motivador en les vostres explicacions.';
+      'Centreu-vos en la pregunta de l\'estudiant, no en respondre directament la pregunta original de l\'examen. Expliqueu amb un enfocament pedagògic, proporcionant arguments clars sense divagar ni sortir del tema. No estructureu la resposta en seccions. No us referiu a vosaltres mateixos. Responeu en la mateixa llengua en què se us pregunta.';
 
   @override
   String get questionLabel => 'Pregunta';
