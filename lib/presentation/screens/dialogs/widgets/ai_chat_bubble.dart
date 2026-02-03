@@ -20,6 +20,9 @@ class AiChatBubble extends StatelessWidget {
   /// above the message for AI responses.
   final String? aiServiceName;
 
+  /// Callback invoked when the retry button is pressed (only shown on error).
+  final VoidCallback? onRetry;
+
   /// Creates a [AiChatBubble].
   const AiChatBubble({
     super.key,
@@ -27,6 +30,7 @@ class AiChatBubble extends StatelessWidget {
     required this.isUser,
     this.isError = false,
     this.aiServiceName,
+    this.onRetry,
   });
 
   @override
@@ -83,50 +87,74 @@ class AiChatBubble extends StatelessWidget {
                 )
               : null,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              children: [
-                Icon(
-                  aiServiceName?.contains('OpenAI') == true
-                      ? Icons.auto_awesome
-                      : Icons.auto_fix_high,
-                  size: 14,
-                  color: isError
-                      ? theme.colorScheme.error
-                      : theme.colorScheme.primary,
-                ),
-                const SizedBox(width: 4),
-                Text(
-                  aiServiceName ?? 'AI',
-                  style: TextStyle(
-                    color: isError
-                        ? theme.colorScheme.error
-                        : theme.colorScheme.primary,
-                    fontSize: 11,
-                    fontWeight: FontWeight.bold,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        aiServiceName?.contains('OpenAI') == true
+                            ? Icons.auto_awesome
+                            : Icons.auto_fix_high,
+                        size: 14,
+                        color: isError
+                            ? theme.colorScheme.error
+                            : theme.colorScheme.primary,
+                      ),
+                      const SizedBox(width: 4),
+                      Flexible(
+                        child: Text(
+                          aiServiceName ?? 'AI',
+                          style: TextStyle(
+                            color: isError
+                                ? theme.colorScheme.error
+                                : theme.colorScheme.primary,
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        localizations.aiAssistant,
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: isError
+                              ? theme.colorScheme.error
+                              : theme.colorScheme.primary,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  localizations.aiAssistant,
-                  style: theme.textTheme.labelSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: isError
-                        ? theme.colorScheme.error
-                        : theme.colorScheme.primary,
+                  const SizedBox(height: 8),
+                  GptMarkdown(
+                    content,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: isError
+                          ? theme.colorScheme.onErrorContainer
+                          : null,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            GptMarkdown(
-              content,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: isError ? theme.colorScheme.onErrorContainer : null,
+                ],
               ),
             ),
+            if (isError && onRetry != null) ...[
+              const SizedBox(width: 8),
+              IconButton(
+                onPressed: onRetry,
+                icon: Icon(
+                  Icons.refresh,
+                  color: Theme.of(context).colorScheme.onError,
+                ),
+                tooltip: localizations.retry,
+                color: theme.colorScheme.error,
+              ),
+            ],
           ],
         ),
       ),
