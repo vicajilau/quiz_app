@@ -133,8 +133,7 @@ class GeminiService extends AIService {
     final selectedModel = model ?? _defaultModel;
 
     try {
-      final url =
-          '$_baseUrl/models/$selectedModel:generateContent?key=$apiKey';
+      final url = '$_baseUrl/models/$selectedModel:generateContent?key=$apiKey';
       final base64Data = base64Encode(file.bytes);
 
       final response = await http.post(

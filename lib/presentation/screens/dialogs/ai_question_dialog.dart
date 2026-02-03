@@ -33,6 +33,9 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
   AIService? _selectedService;
   String? _selectedModel;
 
+  // Last user question for retry functionality
+  String? _lastUserQuestion;
+
   @override
   void initState() {
     super.initState();
@@ -71,17 +74,29 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
     );
   }
 
-  Future<void> _askAI() async {
-    final userText = _questionController.text.trim();
+  Future<void> _askAI({String? retryQuestion}) async {
+    final userText = retryQuestion ?? _questionController.text.trim();
     if (userText.isEmpty) {
       return;
     }
 
     final localizations = AppLocalizations.of(context)!;
 
+    // Store the question for potential retry
+    _lastUserQuestion = userText;
+
     setState(() {
-      // Add user message to chat
-      _messages.add(ChatMessage(content: userText, isUser: true));
+      if (retryQuestion == null) {
+        // If last message is an error, remove both the error and the previous user question
+        if (_messages.isNotEmpty && _messages.last.isError) {
+          _messages.removeLast(); // Remove error message
+          if (_messages.isNotEmpty && _messages.last.isUser) {
+            _messages
+                .removeLast(); // Remove previous user question that caused the error
+          }
+        }
+        _messages.add(ChatMessage(content: userText, isUser: true));
+      }
       _isLoading = true;
     });
 
@@ -172,6 +187,18 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
         );
       }
     });
+  }
+
+  void _retryLastQuestion(int errorMessageIndex) {
+    if (_lastUserQuestion == null) return;
+
+    setState(() {
+      // Remove the error message
+      _messages.removeAt(errorMessageIndex);
+    });
+
+    // Retry with the last question
+    _askAI(retryQuestion: _lastUserQuestion);
   }
 
   @override
@@ -275,6 +302,9 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                       aiServiceName: message.isUser
                           ? null
                           : _selectedService?.serviceName,
+                      onRetry: message.isError
+                          ? () => _retryLastQuestion(messageIndex)
+                          : null,
                     );
                   }
 
