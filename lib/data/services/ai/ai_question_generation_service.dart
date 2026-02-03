@@ -439,6 +439,35 @@ IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
     );
   }
 
+  /// Builds a prompt for the AI chat assistant when a student asks about a question.
+  static String buildChatPrompt({
+    required Question question,
+    required String userQuestion,
+    required AppLocalizations localizations,
+  }) {
+    String prompt = localizations.aiPrompt;
+    prompt += "\n\n";
+    prompt += "${localizations.questionLabel}: ${question.text}\n";
+
+    if (question.options.isNotEmpty && question.type != QuestionType.essay) {
+      prompt += "${localizations.optionsLabel}:\n";
+      for (int i = 0; i < question.options.length; i++) {
+        final letter = String.fromCharCode(65 + i); // A, B, C, etc.
+        prompt += "$letter) ${question.options[i]}\n";
+      }
+    }
+
+    if (question.explanation.isNotEmpty) {
+      prompt +=
+          "\n${localizations.explanationLabel}: ${question.explanation}\n";
+    }
+
+    // Add chat history context if needed, for now just the new question
+    prompt += "\n${localizations.studentComment}: \"$userQuestion\"";
+
+    return prompt;
+  }
+
   static String buildEvaluationPrompt(
     String questionText,
     String studentAnswer,
