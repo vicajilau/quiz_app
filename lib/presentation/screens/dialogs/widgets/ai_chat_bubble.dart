@@ -147,7 +147,10 @@ class AiChatBubble extends StatelessWidget {
               const SizedBox(width: 8),
               IconButton(
                 onPressed: onRetry,
-                icon: const Icon(Icons.refresh, color: Colors.white),
+                icon: Icon(
+                  Icons.refresh,
+                  color: Theme.of(context).colorScheme.onError,
+                ),
                 tooltip: localizations.retry,
                 color: theme.colorScheme.error,
               ),
