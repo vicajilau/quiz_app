@@ -82,6 +82,11 @@ jobs:
           # Extract UUID and copy with UUID name to ensure detection
           UUID=`/usr/libexec/PlistBuddy -c 'Print :UUID' /dev/stdin <<< $(security cms -D -i $PP_PATH)`
           cp $PP_PATH ~/Library/ProvisioningProfiles/$UUID.provisionprofile
+          
+          echo "Installed Profile Info:"
+          /usr/libexec/PlistBuddy -c 'Print :Name' /dev/stdin <<< $(security cms -D -i $PP_PATH)
+          /usr/libexec/PlistBuddy -c 'Print :UUID' /dev/stdin <<< $(security cms -D -i $PP_PATH)
+          ls -l ~/Library/ProvisioningProfiles/
 
       - name: Debug Keychain Identities
         run: security find-identity -v -p codesigning
