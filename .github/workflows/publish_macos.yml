@@ -71,6 +71,9 @@ jobs:
           UUID=`/usr/libexec/PlistBuddy -c 'Print :UUID' /dev/stdin <<< $(security cms -D -i $PP_PATH)`
           cp $PP_PATH ~/Library/ProvisioningProfiles/$UUID.provisionprofile
 
+      - name: Debug Keychain Identities
+        run: security find-identity -v -p codesigning
+      
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
