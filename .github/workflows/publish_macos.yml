@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+*'
+    branches:
+      - 'main'
   workflow_dispatch:
 
 jobs:
@@ -116,6 +118,9 @@ jobs:
              APP_IDENTITY="Apple Distribution: Victor Carreras (N2G3952MP8)"
            fi
            echo "Using App Identity for signing: $APP_IDENTITY"
+           
+           echo "Embedding Provisioning Profile..."
+           cp "$PP_PATH" "build/macos/Build/Products/Release/quiz_app.app/Contents/embedded.provisionprofile"
            
            codesign --force --deep --options runtime --verbose --sign "$APP_IDENTITY" --entitlements macos/Runner/Release.entitlements "build/macos/Build/Products/Release/quiz_app.app"
 
