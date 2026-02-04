@@ -83,18 +83,7 @@ jobs:
           UUID=`/usr/libexec/PlistBuddy -c 'Print :UUID' /dev/stdin <<< $(security cms -D -i $PP_PATH)`
           cp $PP_PATH ~/Library/ProvisioningProfiles/$UUID.provisionprofile
           
-          
-          echo "Installed Profile Info:"
-          /usr/libexec/PlistBuddy -c 'Print :Name' /dev/stdin <<< $(security cms -D -i $PP_PATH)
-          /usr/libexec/PlistBuddy -c 'Print :UUID' /dev/stdin <<< $(security cms -D -i $PP_PATH)
-          echo "Profile Type Debug:"
-          /usr/libexec/PlistBuddy -c 'Print :Entitlements:get-task-allow' /dev/stdin <<< $(security cms -D -i $PP_PATH) || echo "get-task-allow not found (Good for AppStore)"
-          /usr/libexec/PlistBuddy -c 'Print :ProvisionedDevices' /dev/stdin <<< $(security cms -D -i $PP_PATH) || echo "No ProvisionedDevices (Good for AppStore)"
-          
           echo "PROFILE_UUID=$UUID" >> $GITHUB_ENV
-
-      - name: Debug Keychain Identities
-        run: security find-identity -v -p codesigning
       
       - uses: subosito/flutter-action@v2
         with:
@@ -104,27 +93,28 @@ jobs:
         run: flutter pub get
 
       - name: Build macOS Archive
-        run: |
-           flutter build macos --release
-           xcodebuild -workspace macos/Runner.xcworkspace \
-                      -scheme Runner \
-                      -configuration Release \
-                      -archivePath $RUNNER_TEMP/Runner.xcarchive \
-                      archive
+        run: flutter build macos --release
 
-      - name: Update ExportOptions with UUID
+      - name: Create Package with productbuild
         run: |
-           # Replace profile name with UUID to ensure xcodebuild finds it
-           sed -i '' "s/Quiz App MacStore/$PROFILE_UUID/g" macos/Runner/ExportOptions.plist
-           # Print to verify
-           cat macos/Runner/ExportOptions.plist
+           # Find the Installer Identity Name dynamically
+           # Valid identities for packaging should contain "Installer"
+           INSTALLER_IDENTITY=$(security find-identity -v | grep "Installer" | head -1 | awk -F '"' '{print $2}')
+           
+           if [ -z "$INSTALLER_IDENTITY" ]; then
+             echo "No Installer identity found via find-identity, falling back to heuristic or manual name..."
+             # Fallback: try to find generic name in keychain dump if find-identity failed
+             INSTALLER_IDENTITY="3rd Party Mac Developer Installer: Victor Carreras (N2G3952MP8)"
+           fi
+           
+           echo "Using Installer Identity: $INSTALLER_IDENTITY"
+           
+           mkdir -p build/macos/pkg
+           
+           productbuild --component "build/macos/Build/Products/Release/quiz_app.app" /Applications \
+                        --sign "$INSTALLER_IDENTITY" \
+                        "build/macos/pkg/quiz_app.pkg"
 
-      - name: Export macOS App
-        run: |
-           xcodebuild -exportArchive \
-                      -archivePath $RUNNER_TEMP/Runner.xcarchive \
-                      -exportOptionsPlist macos/Runner/ExportOptions.plist \
-                      -exportPath build/macos/pkg
 
       - name: Upload pkg to Artifacts
         uses: actions/upload-artifact@v4
