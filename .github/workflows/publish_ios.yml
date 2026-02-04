@@ -58,8 +58,13 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Update Styling to Manual
+        run: |
+          sed -i '' 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' ios/Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/DEVELOPMENT_TEAM = [A-Z0-9]*;/DEVELOPMENT_TEAM = N2G3952MP8;/g' ios/Runner.xcodeproj/project.pbxproj
+
       - name: Build IPA
-        run: flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist -- --build-args CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER="App Store Distribution" DEVELOPMENT_TEAM="N2G3952MP8"
+        run: flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
 
       - name: Upload ipa to Artifacts
         uses: actions/upload-artifact@v6
