@@ -54,7 +54,16 @@ jobs:
           ls -l $CERTIFICATE_PATH
 
           # import certificate to keychain
-          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          # Using -T /usr/bin/codesign to explicitly allow usage
+          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -T /usr/bin/codesign -t cert -f pkcs12 -k $KEYCHAIN_PATH
+
+      - name: Debug Keychain Identities (Full)
+        run: |
+           echo "--- Identities (codesigning) ---"
+           security find-identity -v -p codesigning
+           echo "--- All Keychain Items ---"
+           # dump-keychain might be verbose but necessary here
+           security dump-keychain $RUNNER_TEMP/app-signing.keychain-db || true
 
       - name: Install Provisioning Profile
         env:
