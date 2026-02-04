@@ -87,7 +87,9 @@ jobs:
           echo "Installed Profile Info:"
           /usr/libexec/PlistBuddy -c 'Print :Name' /dev/stdin <<< $(security cms -D -i $PP_PATH)
           /usr/libexec/PlistBuddy -c 'Print :UUID' /dev/stdin <<< $(security cms -D -i $PP_PATH)
-          ls -l ~/Library/ProvisioningProfiles/
+          echo "Profile Type Debug:"
+          /usr/libexec/PlistBuddy -c 'Print :Entitlements:get-task-allow' /dev/stdin <<< $(security cms -D -i $PP_PATH) || echo "get-task-allow not found (Good for AppStore)"
+          /usr/libexec/PlistBuddy -c 'Print :ProvisionedDevices' /dev/stdin <<< $(security cms -D -i $PP_PATH) || echo "No ProvisionedDevices (Good for AppStore)"
           
           echo "PROFILE_UUID=$UUID" >> $GITHUB_ENV
 
