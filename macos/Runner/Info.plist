@@ -21,10 +21,10 @@
 			<array>
 				<string>com.vicajilau.quizapp.quiz</string>
 			</array>
-			<key>LSApplicationCategoryType</key>
-			<string>public.app-category.education</string>
 		</dict>
 	</array>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.education</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIconFile</key>
