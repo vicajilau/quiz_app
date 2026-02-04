@@ -83,10 +83,13 @@ jobs:
           UUID=`/usr/libexec/PlistBuddy -c 'Print :UUID' /dev/stdin <<< $(security cms -D -i $PP_PATH)`
           cp $PP_PATH ~/Library/ProvisioningProfiles/$UUID.provisionprofile
           
+          
           echo "Installed Profile Info:"
           /usr/libexec/PlistBuddy -c 'Print :Name' /dev/stdin <<< $(security cms -D -i $PP_PATH)
           /usr/libexec/PlistBuddy -c 'Print :UUID' /dev/stdin <<< $(security cms -D -i $PP_PATH)
           ls -l ~/Library/ProvisioningProfiles/
+          
+          echo "PROFILE_UUID=$UUID" >> $GITHUB_ENV
 
       - name: Debug Keychain Identities
         run: security find-identity -v -p codesigning
@@ -106,6 +109,13 @@ jobs:
                       -configuration Release \
                       -archivePath $RUNNER_TEMP/Runner.xcarchive \
                       archive
+
+      - name: Update ExportOptions with UUID
+        run: |
+           # Replace profile name with UUID to ensure xcodebuild finds it
+           sed -i '' "s/Quiz App MacStore/$PROFILE_UUID/g" macos/Runner/ExportOptions.plist
+           # Print to verify
+           cat macos/Runner/ExportOptions.plist
 
       - name: Export macOS App
         run: |
