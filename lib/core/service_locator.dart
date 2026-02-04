@@ -37,9 +37,7 @@ class ServiceLocator {
     getIt.registerFactory<FileBloc>(
       () => FileBloc(fileRepository: getIt<QuizFileRepository>()),
     );
-    getIt.registerFactory<QuizExecutionBloc>(
-      () => QuizExecutionBloc(),
-    );
+    getIt.registerFactory<QuizExecutionBloc>(() => QuizExecutionBloc());
   }
 
   // Function to register or update QuizFile in GetIt
@@ -66,4 +64,18 @@ class ServiceLocator {
     return null;
   }
 
+  // Cached quiz file for change detection
+  QuizFile? _cachedQuizFile;
+
+  void setCachedQuizFile(QuizFile file) {
+    _cachedQuizFile = file;
+  }
+
+  QuizFile? getCachedQuizFile() {
+    return _cachedQuizFile;
+  }
+
+  void clearCachedQuizFile() {
+    _cachedQuizFile = null;
+  }
 }

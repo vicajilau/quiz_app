@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/debug_print.dart';
@@ -7,6 +8,7 @@ import 'package:quiz_app/presentation/screens/quiz_file_execution_screen.dart';
 import 'package:quiz_app/presentation/screens/raffle/raffle_screen.dart';
 import 'package:quiz_app/presentation/screens/raffle/winners_screen.dart';
 import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_bloc.dart';
+import 'package:quiz_app/presentation/screens/dialogs/exit_confirmation_dialog.dart';
 
 import '../core/service_locator.dart';
 import '../domain/use_cases/check_file_changes_use_case.dart';
@@ -20,6 +22,9 @@ class AppRoutes {
   static const String raffle = '/raffle';
   static const String raffleWinners = '/raffle/winners';
 }
+
+// Flag to prevent multiple exit dialogs
+bool _isExitDialogShowing = false;
 
 final GoRouter appRouter = GoRouter(
   routes: [
@@ -35,6 +40,38 @@ final GoRouter appRouter = GoRouter(
             .getIt<CheckFileChangesUseCase>(),
         quizFile: ServiceLocator.instance.getIt<QuizFile>(),
       ),
+      onExit: (context, state) async {
+        // Note: Workaround until PopScope issue is resolved: https://github.com/flutter/flutter/issues/138737
+        // Prevent multiple dialogs
+        if (_isExitDialogShowing) {
+          return false;
+        }
+
+        final checkFileChangesUseCase = ServiceLocator.instance
+            .getIt<CheckFileChangesUseCase>();
+        final cachedQuizFile = ServiceLocator.instance.getCachedQuizFile();
+
+        if (cachedQuizFile == null ||
+            !checkFileChangesUseCase.execute(cachedQuizFile)) {
+          return true;
+        }
+
+        _isExitDialogShowing = true;
+        final shouldExit = await showDialog<bool>(
+          context: context,
+          barrierDismissible: false,
+          builder: (dialogContext) => const ExitConfirmationDialog(),
+        );
+        _isExitDialogShowing = false;
+
+        if (shouldExit == true) {
+          ServiceLocator.instance.clearCachedQuizFile();
+          appRouter.go(AppRoutes.home);
+          return true;
+        }
+
+        return false;
+      },
     ),
     GoRoute(
       path: AppRoutes.quizFileExecutionScreen,
