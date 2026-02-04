@@ -4,6 +4,25 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>quiz</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Quiz File</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.vicajilau.quizapp.quiz</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIconFile</key>
@@ -28,47 +47,27 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	    <key>CFBundleDocumentTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleTypeExtensions</key>
-            <array>
-                <string>quiz</string>
-            </array>
-            <key>CFBundleTypeName</key>
-            <string>Quiz File</string>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>LSHandlerRank</key>
-            <string>Owner</string>
-            <key>LSItemContentTypes</key>
-            <array>
-                <string>com.vicajilau.quizapp.quiz</string>
-            </array>
-        </dict>
-    </array>
-
-    <key>UTExportedTypeDeclarations</key>
-    <array>
-        <dict>
-            <key>UTTypeDescription</key>
-            <string>Quiz File</string>
-            <key>UTTypeIdentifier</key>
-            <string>com.vicajilau.quizapp.quiz</string>
-            <key>UTTypeTagSpecification</key>
-            <dict>
-                <key>public.filename-extension</key>
-                <array>
-                    <string>quiz</string>
-                </array>
-                <key>public.mime-type</key>
-                <string>application/quiz</string>
-            </dict>
-            <key>UTTypeConformsTo</key>
-            <array>
-                <string>public.data</string>
-            </array>
-        </dict>
-    </array>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Quiz File</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.vicajilau.quizapp.quiz</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>quiz</string>
+				</array>
+				<key>public.mime-type</key>
+				<string>application/quiz</string>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>
