@@ -1,0 +1,100 @@
+name: Publish macOS Release
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
+    branches:
+      - feature/92-implement-cd-workflows-macos
+  workflow_dispatch:
+
+jobs:
+  publish_macos_release:
+    name: Generate macOS Release
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install Apple Certificate
+        env:
+          BUILD_CERTIFICATE_BASE64: ${{ secrets.MACOS_DIST_CERTIFICATE_BASE64 }}
+          P12_PASSWORD: ${{ secrets.MACOS_DIST_CERTIFICATE_PASSWORD }}
+          KEYCHAIN_PASSWORD: "dist_password"
+        run: |
+          # create variables
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+
+          # import certificate and provisioning profile from secrets
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
+
+          # create temporary keychain
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          # import certificate to keychain
+          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
+      - name: Install Provisioning Profile
+        env:
+          PROVISIONING_PROFILE_BASE64: ${{ secrets.MACOS_PROVISIONING_PROFILE_BASE64 }}
+        run: |
+          # create variables
+          PP_PATH=$RUNNER_TEMP/build_pp.provisionprofile
+
+          # import provisioning profile from secrets
+          echo -n "$PROVISIONING_PROFILE_BASE64" | base64 --decode -o $PP_PATH
+
+          # apply provisioning profile
+          mkdir -p ~/Library/ProvisioningProfiles
+          cp $PP_PATH ~/Library/ProvisioningProfiles
+          
+          # Extract UUID and copy with UUID name to ensure detection
+          UUID=`/usr/libexec/PlistBuddy -c 'Print :UUID' /dev/stdin <<< $(security cms -D -i $PP_PATH)`
+          cp $PP_PATH ~/Library/ProvisioningProfiles/$UUID.provisionprofile
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build macOS Archive
+        run: |
+           flutter build macos --release
+           xcodebuild -workspace macos/Runner.xcworkspace \
+                      -scheme Runner \
+                      -configuration Release \
+                      -archivePath $RUNNER_TEMP/Runner.xcarchive \
+                      archive
+
+      - name: Export macOS App
+        run: |
+           xcodebuild -exportArchive \
+                      -archivePath $RUNNER_TEMP/Runner.xcarchive \
+                      -exportOptionsPlist macos/Runner/ExportOptions.plist \
+                      -exportPath build/macos/pkg
+
+      - name: Upload pkg to Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-release-artifacts
+          if-no-files-found: error
+          path: build/macos/pkg/*.pkg
+
+      - name: Upload app to App Store Connect
+        env:
+          API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          API_ISSUER_ID: ${{ secrets.APPLE_API_KEY_ISSUER }}
+          API_KEY_CONTENT: ${{ secrets.APPLE_API_KEY_CONTENT }}
+        run: |
+          # Create private key file
+          mkdir -p ~/.appstoreconnect/private_keys
+          echo "$API_KEY_CONTENT" > ~/.appstoreconnect/private_keys/AuthKey_$API_KEY_ID.p8
+          
+          # Upload
+          # Note: altool uses --type osx for macOS apps
+          xcrun altool --upload-app --type osx --file build/macos/pkg/*.pkg --apiKey "$API_KEY_ID" --apiIssuer "$API_ISSUER_ID"
