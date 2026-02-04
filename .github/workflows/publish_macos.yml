@@ -111,6 +111,16 @@ jobs:
            
            mkdir -p build/macos/pkg
            
+           echo "Re-signing with Entitlements..."
+           # Find App Identity (Distribution)
+           APP_IDENTITY=$(security find-identity -v -p codesigning | grep "Apple Distribution" | head -1 | awk -F '"' '{print $2}')
+           if [ -z "$APP_IDENTITY" ]; then
+             APP_IDENTITY="Apple Distribution: Victor Carreras (N2G3952MP8)"
+           fi
+           echo "Using App Identity for signing: $APP_IDENTITY"
+           
+           codesign --force --deep --options runtime --verbose --sign "$APP_IDENTITY" --entitlements macos/Runner/Release.entitlements "build/macos/Build/Products/Release/quiz_app.app"
+
            productbuild --component "build/macos/Build/Products/Release/quiz_app.app" /Applications \
                         --sign "$INSTALLER_IDENTITY" \
                         "build/macos/pkg/quiz_app.pkg"
