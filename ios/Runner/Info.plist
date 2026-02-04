@@ -105,5 +105,9 @@
 			</dict>
 		</dict>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs access to the photo library to select quiz files or images.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs access to the camera to take photos for quiz questions.</string>
 </dict>
 </plist>
