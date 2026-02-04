@@ -3,7 +3,6 @@ name: Publish iOS Release
 on:
   push:
     branches:
-      - main
       - feature/93-implement-cd-workflows-ios
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+*'
@@ -14,7 +13,7 @@ jobs:
     name: Generate iOS Release
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       
       - name: Install Apple Certificate
         env:
@@ -60,10 +59,10 @@ jobs:
         run: flutter pub get
 
       - name: Build IPA
-        run: flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
+        run: flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist -- --build-args CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER="App Store Distribution" DEVELOPMENT_TEAM="N2G3952MP8"
 
       - name: Upload ipa to Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: ios-release-artifacts
           path: build/ios/ipa/*.ipa

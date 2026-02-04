@@ -18,7 +18,7 @@
     <string>Apple Distribution</string>
     <key>provisioningProfiles</key>
     <dict>
-        <key>es.victorcarreras.quizApp</key>
+        <key>es.victorcarreras.quiz-app</key>
         <string>App Store Distribution</string>
     </dict>
 </dict>
