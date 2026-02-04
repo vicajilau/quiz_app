@@ -2,7 +2,9 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:platform_detail/platform_detail.dart';
 import 'package:quiz_app/presentation/screens/raffle/widgets/logo_widget.dart';
+import 'package:quiz_app/routes/app_router.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../../domain/models/raffle/raffle_logo.dart';
 import '../../blocs/raffle_bloc/raffle_bloc.dart';
@@ -84,10 +86,13 @@ class _RaffleScreenContent extends StatelessWidget {
                 ),
               ),
             ),
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () => context.go('/'),
-            ),
+            automaticallyImplyLeading: !PlatformDetail.isWeb,
+            leading: PlatformDetail.isWeb
+                ? null
+                : IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () => context.go(AppRoutes.home),
+                  ),
             actions: [
               // Winners history button
               BlocBuilder<RaffleBloc, RaffleState>(
@@ -103,7 +108,7 @@ class _RaffleScreenContent extends StatelessWidget {
 
                   return IconButton(
                     onPressed: hasWinners
-                        ? () => context.go('/raffle/winners')
+                        ? () => context.go(AppRoutes.raffleWinners)
                         : null,
                     icon: Icon(
                       Icons.emoji_events,
@@ -255,7 +260,7 @@ class _RaffleScreenContent extends StatelessWidget {
         onFinishRaffle: () {
           Navigator.of(dialogContext).pop();
           context.read<RaffleBloc>().add(ConfirmWinner(winner));
-          context.go('/raffle/winners');
+          context.go(AppRoutes.raffleWinners);
         },
       ),
     );
