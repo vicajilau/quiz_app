@@ -758,10 +758,10 @@ abstract class AppLocalizations {
   /// **'Invalid API Key. Please check your OpenAI API Key in settings.'**
   String get invalidApiKeyError;
 
-  /// Error message for rate limit exceeded
+  /// Error message for rate limit exceeded or quota issues
   ///
   /// In en, this message translates to:
-  /// **'Rate limit exceeded. Please try again later.'**
+  /// **'Quota exceeded or model not available in your tier. Check your plan.'**
   String get rateLimitError;
 
   /// Error message for model not found

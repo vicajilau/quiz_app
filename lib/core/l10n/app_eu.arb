@@ -525,9 +525,9 @@
   "@invalidApiKeyError": {
     "description": "API gako baliogabearen errore mezua"
   },
-  "rateLimitError": "Abiadura muga gainditua. Saiatu berriro geroago.",
+  "rateLimitError": "Kuota gainditua edo eredua ez dago erabilgarri zure mailan. Egiaztatu zure plana.",
   "@rateLimitError": {
-    "description": "Abiadura muga gainditzearen errore mezua"
+    "description": "Abiadura muga gainditu edo kuota arazoentzako errore mezua"
   },
   "modelNotFoundError": "Modeloa ez da aurkitu. Egiaztatu zure API sarbidea.",
   "@modelNotFoundError": {

@@ -381,7 +381,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get rateLimitError =>
-      'Se ha superado el límite de uso. Por favor, inténtalo de nuevo más tarde.';
+      'Cuota excedida o modelo no disponible en tu plan.';
 
   @override
   String get modelNotFoundError =>

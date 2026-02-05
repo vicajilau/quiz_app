@@ -374,7 +374,8 @@ class AppLocalizationsEn extends AppLocalizations {
       'Invalid API Key. Please check your OpenAI API Key in settings.';
 
   @override
-  String get rateLimitError => 'Rate limit exceeded. Please try again later.';
+  String get rateLimitError =>
+      'Quota exceeded or model not available in your tier. Check your plan.';
 
   @override
   String get modelNotFoundError =>

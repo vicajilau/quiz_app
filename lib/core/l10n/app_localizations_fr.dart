@@ -382,7 +382,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get rateLimitError =>
-      'Limite de taux dépassée. Veuillez réessayer plus tard.';
+      'Quota dépassé ou modèle non disponible dans votre niveau. Vérifiez votre forfait.';
 
   @override
   String get modelNotFoundError =>

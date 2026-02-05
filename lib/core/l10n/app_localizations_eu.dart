@@ -378,7 +378,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get rateLimitError =>
-      'Abiadura muga gainditua. Saiatu berriro geroago.';
+      'Kuota gainditua edo eredua ez dago erabilgarri zure mailan. Egiaztatu zure plana.';
 
   @override
   String get modelNotFoundError =>

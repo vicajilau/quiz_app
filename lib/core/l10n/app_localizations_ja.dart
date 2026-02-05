@@ -362,7 +362,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get invalidApiKeyError => '無効なAPIキーです。設定でOpenAI APIキーを確認してください。';
 
   @override
-  String get rateLimitError => 'レート制限を超過しました。しばらくしてからもう一度お試しください。';
+  String get rateLimitError => 'クォータを超過したか、プランでモデルが利用できません。プランを確認してください。';
 
   @override
   String get modelNotFoundError => 'モデルが見つかりません。APIアクセスを確認してください。';

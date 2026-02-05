@@ -372,7 +372,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get rateLimitError =>
-      'تم تجاوز حد المعدل. يرجى المحاولة مرة أخرى لاحقاً.';
+      'تم تجاوز الحصة أو أن النموذج غير متوفر في خطتك. تحقق من خطتك.';
 
   @override
   String get modelNotFoundError =>

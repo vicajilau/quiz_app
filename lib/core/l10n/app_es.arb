@@ -468,7 +468,7 @@
   "@invalidApiKeyError": {
     "description": "Mensaje de error para clave API inválida"
   },
-  "rateLimitError": "Se ha superado el límite de uso. Por favor, inténtalo de nuevo más tarde.",
+  "rateLimitError": "Cuota excedida o modelo no disponible en tu plan.",
   "@rateLimitError": {
     "description": "Mensaje de error para límite de uso excedido"
   },

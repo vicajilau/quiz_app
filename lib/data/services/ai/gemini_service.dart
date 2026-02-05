@@ -6,16 +6,19 @@ import '../configuration_service.dart';
 import 'ai_service.dart';
 
 class GeminiService extends AIService {
-  static const String _baseUrl =
+  static const String _baseUrlBeta =
       'https://generativelanguage.googleapis.com/v1beta';
+  static const String _baseUrlAlpha =
+      'https://generativelanguage.googleapis.com/v1alpha';
   static const String _defaultModel = 'gemini-flash-latest';
 
   static const List<String> _models = [
     'gemini-flash-latest',
-    'gemini-2.5-flash',
-    'gemini-2.0-flash-lite',
-    'gemini-2.5-pro',
+    'gemini-3-pro-preview',
     'gemini-3-flash-preview',
+    'gemini-2.5-pro',
+    'gemini-2.5-flash',
+    'gemini-2.5-flash-lite',
   ];
 
   static GeminiService? _instance;
@@ -53,10 +56,14 @@ class GeminiService extends AIService {
 
     final selectedModel = model ?? _defaultModel;
 
-    try {
-      final url = '$_baseUrl/models/$selectedModel:generateContent?key=$apiKey';
+    final baseUrl = selectedModel == 'gemini-3-pro-preview'
+        ? _baseUrlAlpha
+        : _baseUrlBeta;
+    final url = '$baseUrl/models/$selectedModel:generateContent?key=$apiKey';
 
-      final response = await http.post(
+    final http.Response response;
+    try {
+      response = await http.post(
         Uri.parse(url),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
@@ -93,27 +100,27 @@ class GeminiService extends AIService {
           ],
         }),
       );
-
-      if (response.statusCode == 200) {
-        final jsonResponse = jsonDecode(response.body);
-        final candidates = jsonResponse['candidates'] as List?;
-
-        if (candidates != null && candidates.isNotEmpty) {
-          final content = candidates[0]['content']['parts'][0]['text'];
-          return content?.toString().trim() ?? localizations.noResponseReceived;
-        } else {
-          return localizations.noResponseReceived;
-        }
-      } else if (response.statusCode == 400) {
-        throw Exception(localizations.aiErrorResponse);
-      } else if (response.statusCode == 403) {
-        throw Exception(localizations.invalidApiKeyError);
-      } else if (response.statusCode == 429) {
-        throw Exception(localizations.rateLimitError);
-      } else {
-        throw Exception(localizations.aiErrorResponse);
-      }
     } catch (e) {
+      throw Exception(localizations.networkError);
+    }
+
+    if (response.statusCode == 200) {
+      final jsonResponse = jsonDecode(response.body);
+      final candidates = jsonResponse['candidates'] as List?;
+
+      if (candidates != null && candidates.isNotEmpty) {
+        final content = candidates[0]['content']['parts'][0]['text'];
+        return content?.toString().trim() ?? localizations.noResponseReceived;
+      } else {
+        return localizations.noResponseReceived;
+      }
+    } else if (response.statusCode == 400) {
+      throw Exception(localizations.aiErrorResponse);
+    } else if (response.statusCode == 403) {
+      throw Exception(localizations.invalidApiKeyError);
+    } else if (response.statusCode == 429) {
+      throw Exception(localizations.rateLimitError);
+    } else {
       throw Exception(localizations.aiErrorResponse);
     }
   }
@@ -133,11 +140,16 @@ class GeminiService extends AIService {
 
     final selectedModel = model ?? _defaultModel;
 
-    try {
-      final url = '$_baseUrl/models/$selectedModel:generateContent?key=$apiKey';
-      final base64Data = base64Encode(file.bytes);
+    final baseUrl = selectedModel == 'gemini-3-pro-preview'
+        ? _baseUrlAlpha
+        : _baseUrlBeta;
+    final url = '$baseUrl/models/$selectedModel:generateContent?key=$apiKey';
 
-      final response = await http.post(
+    final base64Data = base64Encode(file.bytes);
+
+    final http.Response response;
+    try {
+      response = await http.post(
         Uri.parse(url),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
@@ -180,27 +192,27 @@ class GeminiService extends AIService {
           ],
         }),
       );
-
-      if (response.statusCode == 200) {
-        final jsonResponse = jsonDecode(response.body);
-        final candidates = jsonResponse['candidates'] as List?;
-
-        if (candidates != null && candidates.isNotEmpty) {
-          final content = candidates[0]['content']['parts'][0]['text'];
-          return content?.toString().trim() ?? localizations.noResponseReceived;
-        } else {
-          return localizations.noResponseReceived;
-        }
-      } else if (response.statusCode == 400) {
-        throw Exception(localizations.aiErrorResponse);
-      } else if (response.statusCode == 403) {
-        throw Exception(localizations.invalidApiKeyError);
-      } else if (response.statusCode == 429) {
-        throw Exception(localizations.rateLimitError);
-      } else {
-        throw Exception(localizations.aiErrorResponse);
-      }
     } catch (e) {
+      throw Exception(localizations.networkError);
+    }
+
+    if (response.statusCode == 200) {
+      final jsonResponse = jsonDecode(response.body);
+      final candidates = jsonResponse['candidates'] as List?;
+
+      if (candidates != null && candidates.isNotEmpty) {
+        final content = candidates[0]['content']['parts'][0]['text'];
+        return content?.toString().trim() ?? localizations.noResponseReceived;
+      } else {
+        return localizations.noResponseReceived;
+      }
+    } else if (response.statusCode == 400) {
+      throw Exception(localizations.aiErrorResponse);
+    } else if (response.statusCode == 403) {
+      throw Exception(localizations.invalidApiKeyError);
+    } else if (response.statusCode == 429) {
+      throw Exception(localizations.rateLimitError);
+    } else {
       throw Exception(localizations.aiErrorResponse);
     }
   }

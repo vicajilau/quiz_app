@@ -379,7 +379,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get rateLimitError =>
-      'Limite di velocità superato. Riprova più tardi.';
+      'Quota superata o modello non disponibile nel tuo piano. Controlla il tuo piano.';
 
   @override
   String get modelNotFoundError =>

@@ -382,7 +382,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get rateLimitError =>
-      'Υπέρβαση ορίου χρήσης. Παρακαλώ δοκιμάστε ξανά αργότερα.';
+      'Το όριο χρήσης ξεπεράστηκε ή το μοντέλο δεν είναι διαθέσιμο στο πρόγραμμά σας. Ελέγξτε το πρόγραμμά σας.';
 
   @override
   String get modelNotFoundError =>

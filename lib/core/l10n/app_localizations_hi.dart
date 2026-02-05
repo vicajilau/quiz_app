@@ -375,7 +375,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get rateLimitError =>
-      'दर सीमा पार हो गई। कृपया बाद में पुनः प्रयास करें।';
+      'कोटा पार हो गया है या मॉडल आपकी योजना में उपलब्ध नहीं है। अपनी योजना की जाँच करें।';
 
   @override
   String get modelNotFoundError =>

@@ -525,9 +525,9 @@
   "@invalidApiKeyError": {
     "description": "Message d'erreur pour une clé API invalide"
   },
-  "rateLimitError": "Limite de taux dépassée. Veuillez réessayer plus tard.",
+  "rateLimitError": "Quota dépassé ou modèle non disponible dans votre niveau. Vérifiez votre forfait.",
   "@rateLimitError": {
-    "description": "Message d'erreur pour limite de taux dépassée"
+    "description": "Message d'erreur pour limite de taux dépassée ou problèmes de quota"
   },
   "modelNotFoundError": "Modèle non trouvé. Veuillez vérifier votre accès API.",
   "@modelNotFoundError": {
