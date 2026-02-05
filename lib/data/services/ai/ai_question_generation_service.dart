@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../../../../data/services/configuration_service.dart';
-import '../../../../data/services/ai/ai_service.dart';
-import '../../../../data/services/ai/gemini_service.dart';
-import '../../../../core/l10n/app_localizations.dart';
-import '../../../../domain/models/ai/ai_file_attachment.dart';
-import '../../../../domain/models/ai/openai_content_block.dart';
-import '../../../../domain/models/quiz/question.dart';
-import '../../../../domain/models/quiz/question_type.dart';
+import 'package:quiz_app/data/services/configuration_service.dart';
+import 'package:quiz_app/data/services/ai/ai_service.dart';
+import 'package:quiz_app/data/services/ai/gemini_service.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/domain/models/ai/ai_file_attachment.dart';
+import 'package:quiz_app/domain/models/ai/openai_content_block.dart';
+import 'package:quiz_app/domain/models/quiz/question.dart';
+import 'package:quiz_app/domain/models/quiz/question_type.dart';
 
 // Extended enum to include the "random" option
 enum AiQuestionType {
@@ -436,24 +436,24 @@ IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
     required AppLocalizations localizations,
   }) {
     String prompt = localizations.aiPrompt;
-    prompt += "\n\n";
-    prompt += "${localizations.questionLabel}: ${question.text}\n";
+    prompt += '\n\n';
+    prompt += '${localizations.questionLabel}: ${question.text}\n';
 
     if (question.options.isNotEmpty && question.type != QuestionType.essay) {
-      prompt += "${localizations.optionsLabel}:\n";
+      prompt += '${localizations.optionsLabel}:\n';
       for (int i = 0; i < question.options.length; i++) {
         final letter = String.fromCharCode(65 + i); // A, B, C, etc.
-        prompt += "$letter) ${question.options[i]}\n";
+        prompt += '$letter) ${question.options[i]}\n';
       }
     }
 
     if (question.explanation.isNotEmpty) {
       prompt +=
-          "\n${localizations.explanationLabel}: ${question.explanation}\n";
+          '\n${localizations.explanationLabel}: ${question.explanation}\n';
     }
 
     // Add chat history context if needed, for now just the new question
-    prompt += "\n${localizations.studentComment}: \"$userQuestion\"";
+    prompt += '\n${localizations.studentComment}: "$userQuestion"';
 
     return prompt;
   }

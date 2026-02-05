@@ -12,10 +12,10 @@ import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_bloc.dart';
 import 'package:quiz_app/presentation/screens/dialogs/exit_confirmation_dialog.dart';
 import 'package:quiz_app/presentation/screens/dialogs/abandon_quiz_dialog.dart';
 
-import '../core/service_locator.dart';
-import '../domain/use_cases/check_file_changes_use_case.dart';
-import '../presentation/blocs/file_bloc/file_bloc.dart';
-import '../presentation/screens/home_screen.dart';
+import 'package:quiz_app/core/service_locator.dart';
+import 'package:quiz_app/domain/use_cases/check_file_changes_use_case.dart';
+import 'package:quiz_app/presentation/blocs/file_bloc/file_bloc.dart';
+import 'package:quiz_app/presentation/screens/home_screen.dart';
 
 class AppRoutes {
   static const String home = '/';
@@ -144,10 +144,10 @@ final GoRouter appRouter = GoRouter(
   ],
   redirect: (context, state) {
     final uri = state.uri.toString();
-    printInDebug("Detected redirection: $uri");
+    printInDebug('Detected redirection: $uri');
 
     // If the path is a `content://` scheme, ignore it and return to Home
-    if (uri.startsWith("content://")) {
+    if (uri.startsWith('content://')) {
       return AppRoutes.home;
     }
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../../core/l10n/app_localizations.dart';
-import '../../../../domain/models/quiz/question_type.dart';
-import '../../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
-import '../../../utils/question_translation_helper.dart';
-import '../../../widgets/latex_text.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/domain/models/quiz/question_type.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
+import 'package:quiz_app/presentation/utils/question_translation_helper.dart';
+import 'package:quiz_app/presentation/widgets/latex_text.dart';
 
 /// A widget that displays the options for multiple choice or true/false questions.
 ///

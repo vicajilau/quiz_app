@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 
-import 'raffle_participant.dart';
-import 'raffle_winner.dart';
-import 'raffle_logo.dart';
+import 'package:quiz_app/domain/models/raffle/raffle_participant.dart';
+import 'package:quiz_app/domain/models/raffle/raffle_winner.dart';
+import 'package:quiz_app/domain/models/raffle/raffle_logo.dart';
 
 /// Represents the current state of a raffle session.
 class RaffleSession {

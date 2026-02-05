@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../core/l10n/app_localizations.dart';
-import '../../blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
-import '../../blocs/quiz_execution_bloc/quiz_execution_event.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
 
 class SubmitQuizDialog {
   static void show(BuildContext context, QuizExecutionBloc bloc) {

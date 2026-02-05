@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
 
-import '../../../domain/models/quiz/quiz_config.dart';
-import '../../../data/services/configuration_service.dart';
-import '../../../domain/models/quiz/quiz_config_stored_settings.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_config.dart';
+import 'package:quiz_app/data/services/configuration_service.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_config_stored_settings.dart';
 
 class QuestionCountSelectionDialog extends StatefulWidget {
   final int totalQuestions;

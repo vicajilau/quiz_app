@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../widgets/latex_text.dart';
+import 'package:quiz_app/presentation/widgets/latex_text.dart';
 
 /// A dialog to preview how an option will appear with LaTeX rendering
 class LaTeXPreviewDialog extends StatelessWidget {

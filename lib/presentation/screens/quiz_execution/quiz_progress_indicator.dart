@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 
 class QuizProgressIndicator extends StatelessWidget {
   final QuizExecutionInProgress state;
@@ -15,7 +15,7 @@ class QuizProgressIndicator extends StatelessWidget {
           LinearProgressIndicator(
             value: state.progress,
             backgroundColor: Colors.grey[300],
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+            valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
           ),
           const SizedBox(height: 8),
           Text(

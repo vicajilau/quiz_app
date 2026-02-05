@@ -1,12 +1,12 @@
 import 'dart:math';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../data/services/raffle_storage_service.dart';
-import '../../../domain/models/raffle/raffle_logo.dart';
-import '../../../domain/models/raffle/raffle_participant.dart';
-import '../../../domain/models/raffle/raffle_session.dart';
-import '../../../domain/models/raffle/raffle_winner.dart';
-import 'raffle_event.dart';
-import 'raffle_state.dart';
+import 'package:quiz_app/data/services/raffle_storage_service.dart';
+import 'package:quiz_app/domain/models/raffle/raffle_logo.dart';
+import 'package:quiz_app/domain/models/raffle/raffle_participant.dart';
+import 'package:quiz_app/domain/models/raffle/raffle_session.dart';
+import 'package:quiz_app/domain/models/raffle/raffle_winner.dart';
+import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_event.dart';
+import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_state.dart';
 
 /// BLoC for managing raffle functionality.
 class RaffleBloc extends Bloc<RaffleEvent, RaffleState> {

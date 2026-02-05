@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gpt_markdown/gpt_markdown.dart';
-import '../../../../core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
 
 /// A widget that displays a single chat message bubble.
 ///

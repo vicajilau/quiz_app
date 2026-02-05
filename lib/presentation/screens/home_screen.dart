@@ -5,16 +5,16 @@ import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/context_extension.dart';
 import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 
-import '../../core/file_handler.dart';
-import '../../core/l10n/app_localizations.dart';
-import '../../core/service_locator.dart';
-import '../../routes/app_router.dart';
-import '../../core/constants/quiz_metadata.dart';
-import '../blocs/file_bloc/file_bloc.dart';
-import '../blocs/file_bloc/file_event.dart';
-import '../blocs/file_bloc/file_state.dart';
-import 'dialogs/quiz_metadata_dialog.dart';
-import 'dialogs/settings_dialog.dart';
+import 'package:quiz_app/core/file_handler.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/service_locator.dart';
+import 'package:quiz_app/routes/app_router.dart';
+import 'package:quiz_app/core/constants/quiz_metadata.dart';
+import 'package:quiz_app/presentation/blocs/file_bloc/file_bloc.dart';
+import 'package:quiz_app/presentation/blocs/file_bloc/file_event.dart';
+import 'package:quiz_app/presentation/blocs/file_bloc/file_state.dart';
+import 'package:quiz_app/presentation/screens/dialogs/quiz_metadata_dialog.dart';
+import 'package:quiz_app/presentation/screens/dialogs/settings_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -87,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
             context.presentSnackBar(
               AppLocalizations.of(context)!.fileLoaded(
                 state.quizFile.filePath ??
-                    "${state.quizFile.metadata.title}.quiz",
+                    '${state.quizFile.metadata.title}.quiz',
               ),
             );
             context.push(AppRoutes.fileLoadedScreen);

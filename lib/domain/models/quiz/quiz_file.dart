@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_error_type.dart';
-import 'quiz_metadata.dart';
-import 'question.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_metadata.dart';
+import 'package:quiz_app/domain/models/quiz/question.dart';
 
 /// The `QuizFile` class represents a Quiz file, which consists of metadata
 /// and a list of questions. This class provides methods for deserialization,

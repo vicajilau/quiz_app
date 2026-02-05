@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../../core/extensions/string_extensions.dart';
-import '../../../../core/l10n/app_localizations.dart';
-import '../../../widgets/ai_service_model_selector.dart';
+import 'package:quiz_app/core/extensions/string_extensions.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/presentation/widgets/ai_service_model_selector.dart';
 
 /// A widget that handles the AI Assistant settings section.
 ///

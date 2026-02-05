@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
-import '../../../../../core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
 
 class QuestionImageSection extends StatelessWidget {
   final String? imageData;

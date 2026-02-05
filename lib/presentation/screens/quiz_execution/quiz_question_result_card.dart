@@ -3,10 +3,10 @@ import 'package:quiz_app/presentation/screens/quiz_execution/widgets/quiz_questi
 import 'package:quiz_app/presentation/screens/quiz_execution/widgets/quiz_question_explanation.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/widgets/quiz_question_image.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/widgets/quiz_question_options_result.dart';
-import '../../../core/l10n/app_localizations.dart';
-import '../../../domain/models/quiz/question_type.dart';
-import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
-import '../../widgets/latex_text.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/domain/models/quiz/question_type.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
+import 'package:quiz_app/presentation/widgets/latex_text.dart';
 
 /// A card widget that displays the result of a quiz question.
 ///

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/l10n/app_localizations.dart';
-import '../../../blocs/raffle_bloc/raffle_bloc.dart';
-import '../../../blocs/raffle_bloc/raffle_event.dart';
-import '../../../blocs/raffle_bloc/raffle_state.dart';
-import '../../../../domain/models/raffle/raffle_session.dart';
-import 'raffle_animation_widget.dart';
-import 'clear_winners_dialog.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_bloc.dart';
+import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_event.dart';
+import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_state.dart';
+import 'package:quiz_app/domain/models/raffle/raffle_session.dart';
+import 'package:quiz_app/presentation/screens/raffle/widgets/raffle_animation_widget.dart';
+import 'package:quiz_app/presentation/screens/raffle/widgets/clear_winners_dialog.dart';
 
 class RaffleControlsWidget extends StatelessWidget {
   const RaffleControlsWidget({super.key});

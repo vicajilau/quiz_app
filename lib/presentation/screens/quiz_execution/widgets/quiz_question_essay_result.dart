@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gpt_markdown/gpt_markdown.dart';
 import 'package:quiz_app/core/extensions/string_extensions.dart';
-import '../../../../core/l10n/app_localizations.dart';
-import '../../../../data/services/ai/ai_question_generation_service.dart';
-import '../../../../data/services/ai/ai_service.dart';
-import '../../../../data/services/ai/ai_service_selector.dart';
-import '../../../../data/services/configuration_service.dart';
-import '../../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
+import 'package:quiz_app/data/services/ai/ai_service.dart';
+import 'package:quiz_app/data/services/ai/ai_service_selector.dart';
+import 'package:quiz_app/data/services/configuration_service.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 
 /// A widget that displays the result of an essay question.
 ///

@@ -1,8 +1,8 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:mime/mime.dart';
-import '../../core/l10n/app_localizations.dart';
-import '../../domain/models/ai/ai_file_attachment.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/domain/models/ai/ai_file_attachment.dart';
 
 class AiFilePickerSection extends StatelessWidget {
   final AiFileAttachment? fileAttachment;

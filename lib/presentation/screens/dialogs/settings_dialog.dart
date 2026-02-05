@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../core/extensions/string_extensions.dart';
-import '../../../core/l10n/app_localizations.dart';
-import '../../../data/services/configuration_service.dart';
-import '../../../domain/models/quiz/question_order.dart';
-import 'settings_widgets/ai_settings_section.dart';
-import 'settings_widgets/exam_settings_section.dart';
-import 'settings_widgets/question_settings_section.dart';
+import 'package:quiz_app/core/extensions/string_extensions.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/data/services/configuration_service.dart';
+import 'package:quiz_app/domain/models/quiz/question_order.dart';
+import 'package:quiz_app/presentation/screens/dialogs/settings_widgets/ai_settings_section.dart';
+import 'package:quiz_app/presentation/screens/dialogs/settings_widgets/exam_settings_section.dart';
+import 'package:quiz_app/presentation/screens/dialogs/settings_widgets/question_settings_section.dart';
 
 class SettingsDialog extends StatefulWidget {
   const SettingsDialog({super.key});

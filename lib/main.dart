@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/routes/app_router.dart';
 
-import 'core/constants/theme.dart';
-import 'core/file_handler.dart';
-import 'core/l10n/app_localizations.dart';
-import 'core/service_locator.dart';
-import 'presentation/blocs/file_bloc/file_bloc.dart';
-import 'presentation/blocs/file_bloc/file_event.dart';
+import 'package:quiz_app/core/constants/theme.dart';
+import 'package:quiz_app/core/file_handler.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/service_locator.dart';
+import 'package:quiz_app/presentation/blocs/file_bloc/file_bloc.dart';
+import 'package:quiz_app/presentation/blocs/file_bloc/file_event.dart';
 
 void main() {
   ServiceLocator.instance.setup();

@@ -1,4 +1,4 @@
-import '../../../domain/models/quiz/question.dart';
+import 'package:quiz_app/domain/models/quiz/question.dart';
 
 /// Abstract class representing the base event for quiz execution operations.
 abstract class QuizExecutionEvent {}

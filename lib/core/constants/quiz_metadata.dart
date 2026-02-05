@@ -1,13 +1,13 @@
 /// Provides metadata constants and version management for Quiz files.
 class QuizMetadataConstants {
   /// The current supported Quiz file version.
-  static const String version = "1.0.0";
+  static const String version = '1.0.0';
 
   /// The default name format for exported Quiz files.
-  static const String quizFileName = "quiz-file$format";
+  static const String quizFileName = 'quiz-file$format';
 
   /// The file extension for Quiz files.
-  static const String format = ".quiz";
+  static const String format = '.quiz';
 
   /// Determines whether the given version `v1` is supported based on the current Quiz version.
   ///

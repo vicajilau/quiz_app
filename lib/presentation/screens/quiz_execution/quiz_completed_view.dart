@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../../../core/l10n/app_localizations.dart';
-import '../../blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
-import '../../blocs/quiz_execution_bloc/quiz_execution_event.dart';
-import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
-import 'quiz_question_result_card.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
+import 'package:quiz_app/presentation/screens/quiz_execution/quiz_question_result_card.dart';
 
 class QuizCompletedView extends StatelessWidget {
   final QuizExecutionCompleted state;

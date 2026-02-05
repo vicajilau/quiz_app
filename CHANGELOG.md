@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat: Implemented retry button for unexpected error AI Study Mode questions.
 - feat: Retrieved exact MIME type from attached file.
 - fix: Fixed navigation on web platform.
+- fix: Added project analysis rules.
 
 ## [1.4.0] - 2026-02-02
 

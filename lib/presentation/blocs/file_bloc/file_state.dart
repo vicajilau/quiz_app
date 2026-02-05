@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 
-import '../../../core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
 
 /// Abstract class representing the base state for file operations.
 abstract class FileState {}

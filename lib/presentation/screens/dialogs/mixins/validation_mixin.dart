@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
-import '../../../../../core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
 
 mixin ValidationMixin<T extends StatefulWidget> on State<T> {
   String? questionTextError;

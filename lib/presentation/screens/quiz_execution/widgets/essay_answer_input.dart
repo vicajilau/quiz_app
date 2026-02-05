@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gpt_markdown/gpt_markdown.dart';
-import '../../../../core/l10n/app_localizations.dart';
-import '../../../blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
-import '../../../blocs/quiz_execution_bloc/quiz_execution_event.dart';
-import '../../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
-import '../../../../domain/models/quiz/question.dart';
-import '../../../../data/services/ai/ai_service.dart';
-import '../../../../data/services/ai/ai_service_selector.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
+import 'package:quiz_app/domain/models/quiz/question.dart';
+import 'package:quiz_app/data/services/ai/ai_service.dart';
+import 'package:quiz_app/data/services/ai/ai_service_selector.dart';
 
-import '../../../../data/services/ai/ai_question_generation_service.dart';
-import '../../../../core/extensions/string_extensions.dart';
-import 'ai_assistant_button.dart';
-import 'quiz_question_explanation.dart';
+import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
+import 'package:quiz_app/core/extensions/string_extensions.dart';
+import 'package:quiz_app/presentation/screens/quiz_execution/widgets/ai_assistant_button.dart';
+import 'package:quiz_app/presentation/screens/quiz_execution/widgets/quiz_question_explanation.dart';
 
 /// A widget that handles essay-type questions.
 ///

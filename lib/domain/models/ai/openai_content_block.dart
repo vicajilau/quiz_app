@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../../../domain/models/ai/ai_file_attachment.dart';
+import 'package:quiz_app/domain/models/ai/ai_file_attachment.dart';
 
 sealed class OpenAIContentBlock {
   Map<String, dynamic> toJson();

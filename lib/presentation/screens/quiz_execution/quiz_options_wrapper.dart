@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../core/service_locator.dart';
-import '../../../data/services/configuration_service.dart';
-import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
-import 'quiz_question_options.dart';
+import 'package:quiz_app/core/service_locator.dart';
+import 'package:quiz_app/data/services/configuration_service.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
+import 'package:quiz_app/presentation/screens/quiz_execution/quiz_question_options.dart';
 
 /// Wrapper widget that loads quiz configuration and passes it to QuizQuestionOptions
 class QuizOptionsWrapper extends StatefulWidget {

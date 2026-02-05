@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
-import '../../../../../core/l10n/app_localizations.dart';
-import '../../../../../core/constants/question_constants.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/constants/question_constants.dart';
 
 mixin OptionManagementMixin<T extends StatefulWidget> on State<T> {
   late List<TextEditingController> optionControllers;

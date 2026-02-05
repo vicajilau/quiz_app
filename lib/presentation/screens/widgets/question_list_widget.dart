@@ -7,9 +7,9 @@ import 'package:quiz_app/presentation/screens/dialogs/add_edit_question_dialog.d
 import 'package:quiz_app/presentation/screens/dialogs/ai_question_dialog.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
 import 'package:platform_detail/platform_detail.dart';
-import '../../widgets/latex_text.dart';
+import 'package:quiz_app/presentation/widgets/latex_text.dart';
 
-import '../../../../../core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
 
 class QuestionListWidget extends StatefulWidget {
   final QuizFile quizFile;
@@ -144,7 +144,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                                 ),
                                 child: Center(
                                   child: isDisabled
-                                      ? Icon(
+                                      ? const Icon(
                                           Icons.pause_circle_outline,
                                           color: Colors.orange,
                                           size: 16,
@@ -513,7 +513,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.delete_forever, color: Colors.white, size: 28),
+          const Icon(Icons.delete_forever, color: Colors.white, size: 28),
           const SizedBox(height: 4),
           Text(
             AppLocalizations.of(context)!.deleteAction,

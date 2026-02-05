@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../../../domain/models/raffle/raffle_logo.dart';
+import 'package:quiz_app/domain/models/raffle/raffle_logo.dart';
 
 /// A widget that can display both raster images and SVG files
 class LogoWidget extends StatefulWidget {
