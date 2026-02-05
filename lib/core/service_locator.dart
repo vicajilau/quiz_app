@@ -63,19 +63,4 @@ class ServiceLocator {
     }
     return null;
   }
-
-  // Cached quiz file for change detection
-  QuizFile? _cachedQuizFile;
-
-  void setCachedQuizFile(QuizFile file) {
-    _cachedQuizFile = file;
-  }
-
-  QuizFile? getCachedQuizFile() {
-    return _cachedQuizFile;
-  }
-
-  void clearCachedQuizFile() {
-    _cachedQuizFile = null;
-  }
 }

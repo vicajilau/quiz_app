@@ -55,7 +55,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
     setState(() {
       _hasFileChanged = hasChanged;
     });
-    ServiceLocator.instance.setCachedQuizFile(cachedQuizFile);
+    ServiceLocator.instance.registerQuizFile(cachedQuizFile);
   }
 
   Future<void> _showSettingsDialog(BuildContext context) async {
@@ -322,7 +322,6 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
 
   @override
   void dispose() {
-    ServiceLocator.instance.clearCachedQuizFile();
     super.dispose();
   }
 

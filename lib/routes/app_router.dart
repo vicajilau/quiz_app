@@ -25,6 +25,8 @@ class AppRoutes {
 
 // Flag to prevent multiple exit dialogs
 bool _isExitDialogShowing = false;
+// Flag to track if exit was already confirmed
+bool _exitConfirmed = false;
 
 final GoRouter appRouter = GoRouter(
   routes: [
@@ -42,17 +44,26 @@ final GoRouter appRouter = GoRouter(
       ),
       onExit: (context, state) async {
         // Note: Workaround until PopScope issue is resolved: https://github.com/flutter/flutter/issues/138737
+        // If exit was already confirmed, allow it
+        if (_exitConfirmed) {
+          _exitConfirmed = false;
+          return true;
+        }
+
         // Prevent multiple dialogs
         if (_isExitDialogShowing) {
           return false;
         }
 
+        if (!ServiceLocator.instance.getIt.isRegistered<QuizFile>()) {
+          return true;
+        }
+
         final checkFileChangesUseCase = ServiceLocator.instance
             .getIt<CheckFileChangesUseCase>();
-        final cachedQuizFile = ServiceLocator.instance.getCachedQuizFile();
+        final quizFile = ServiceLocator.instance.getIt<QuizFile>();
 
-        if (cachedQuizFile == null ||
-            !checkFileChangesUseCase.execute(cachedQuizFile)) {
+        if (!checkFileChangesUseCase.execute(quizFile)) {
           return true;
         }
 
@@ -65,7 +76,7 @@ final GoRouter appRouter = GoRouter(
         _isExitDialogShowing = false;
 
         if (shouldExit == true) {
-          ServiceLocator.instance.clearCachedQuizFile();
+          _exitConfirmed = true;
           appRouter.go(AppRoutes.home);
           return true;
         }
