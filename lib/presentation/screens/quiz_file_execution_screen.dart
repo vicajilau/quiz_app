@@ -103,46 +103,43 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
             );
           },
           child: Builder(
-            builder: (context) => SafeArea(
-              child: Scaffold(
-                appBar: AppBar(
-                  title: Text(widget.quizFile.metadata.title),
-                  leading: IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () => BackPressHandler.handle(
-                      context,
-                      context.read<QuizExecutionBloc>(),
-                    ),
+            builder: (context) => Scaffold(
+              appBar: AppBar(
+                title: Text(widget.quizFile.metadata.title),
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => BackPressHandler.handle(
+                    context,
+                    context.read<QuizExecutionBloc>(),
                   ),
-                  actions: [
-                    if (_examTimeEnabled)
-                      Padding(
-                        padding: const EdgeInsets.only(right: 16.0),
-                        child: Center(
-                          child:
-                              BlocBuilder<
-                                QuizExecutionBloc,
-                                QuizExecutionState
-                              >(
-                                builder: (context, state) {
-                                  return ExamTimerWidget(
-                                    initialDurationMinutes: _examTimeMinutes,
-                                    isQuizCompleted:
-                                        state is QuizExecutionCompleted,
-                                    onTimeExpired: () {
-                                      // Force complete the quiz
-                                      final bloc = context
-                                          .read<QuizExecutionBloc>();
-                                      bloc.add(QuizSubmitted());
-                                    },
-                                  );
-                                },
-                              ),
-                        ),
-                      ),
-                  ],
                 ),
-                body: BlocConsumer<QuizExecutionBloc, QuizExecutionState>(
+                actions: [
+                  if (_examTimeEnabled)
+                    Padding(
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: Center(
+                        child:
+                            BlocBuilder<QuizExecutionBloc, QuizExecutionState>(
+                              builder: (context, state) {
+                                return ExamTimerWidget(
+                                  initialDurationMinutes: _examTimeMinutes,
+                                  isQuizCompleted:
+                                      state is QuizExecutionCompleted,
+                                  onTimeExpired: () {
+                                    // Force complete the quiz
+                                    final bloc = context
+                                        .read<QuizExecutionBloc>();
+                                    bloc.add(QuizSubmitted());
+                                  },
+                                );
+                              },
+                            ),
+                      ),
+                    ),
+                ],
+              ),
+              body: SafeArea(
+                child: BlocConsumer<QuizExecutionBloc, QuizExecutionState>(
                   listener: (context, state) {
                     // Handle any side effects if needed
                   },
