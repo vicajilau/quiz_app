@@ -432,6 +432,17 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
             onDragDone: (details) {
               // Handle file drop for importing questions
               if (details.files.isNotEmpty) {
+                final currentRoute = GoRouter.of(context)
+                    .routerDelegate
+                    .currentConfiguration
+                    .matches
+                    .last
+                    .matchedLocation;
+
+                // If we are not on the file loaded screen, ignore the drop
+                if (currentRoute != AppRoutes.fileLoadedScreen) {
+                  return;
+                }
                 final firstFile = details.files.first;
                 if (firstFile.path.isNotEmpty) {
                   _handleFileImport(firstFile.path);
