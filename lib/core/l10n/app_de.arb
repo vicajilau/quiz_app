@@ -1222,7 +1222,7 @@
   "@raffleTitle": {
     "description": "Titel der Verlosungsfunktion"
   },
-  "raffleTooltip": "Verlosung",
+  "raffleTooltip": "Verlosung starten",
   "@raffleTooltip": {
     "description": "Tooltip des Verlosungsbuttons in der App-Leiste"
   },

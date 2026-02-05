@@ -1222,7 +1222,7 @@
   "@raffleTitle": {
     "description": "Título da funcionalidade de sorteio"
   },
-  "raffleTooltip": "Sorteio",
+  "raffleTooltip": "Iniciar sorteio",
   "@raffleTooltip": {
     "description": "Tooltip do botão de sorteio na barra do aplicativo"
   },

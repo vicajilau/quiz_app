@@ -1222,7 +1222,7 @@
   "@raffleTitle": {
     "description": "Titolo della funzionalità di estrazione"
   },
-  "raffleTooltip": "Estrazione",
+  "raffleTooltip": "Inizia sorteggio",
   "@raffleTooltip": {
     "description": "Tooltip del pulsante di estrazione nella barra dell'app"
   },

@@ -106,56 +106,136 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context) {
             checkDeepLink(context);
             return Scaffold(
-              appBar: AppBar(
-                title: Text(AppLocalizations.of(context)!.titleAppBar),
-                actions: [
-                  // Configuration button
-                  Tooltip(
-                    message: AppLocalizations.of(
-                      context,
-                    )!.questionOrderConfigTooltip,
-                    child: IconButton(
-                      onPressed: _isLoading
-                          ? null
-                          : () => _showSettingsDialog(context),
-                      icon: const Icon(Icons.settings, color: Colors.white),
-                    ),
-                  ),
-                ],
-                centerTitle: false,
-              ),
-              body: Column(
-                children: [
-                  Expanded(
-                    child: DropTarget(
-                      onDragDone: (details) {
-                        // Validate that we have files
-                        if (details.files.isNotEmpty && !_isLoading) {
-                          // If we are not on the home screen, ignore the drop in HomeScreen
-                          if (context.currentRoute != AppRoutes.home) {
-                            return;
-                          }
+              body: SafeArea(
+                child: Stack(
+                  children: [
+                    Column(
+                      children: [
+                        Expanded(
+                          child: DropTarget(
+                            onDragDone: (details) {
+                              // Validate that we have files
+                              if (details.files.isNotEmpty && !_isLoading) {
+                                // If we are not on the home screen, ignore the drop in HomeScreen
+                                if (context.currentRoute != AppRoutes.home) {
+                                  return;
+                                }
 
-                          final firstFile = details.files.first;
-                          // Additional validation: check if the file has a valid path
-                          if (firstFile.path.isNotEmpty) {
-                            // Reset state before loading to ensure clean state on web
-                            context.read<FileBloc>().add(QuizFileReset());
-                            context.read<FileBloc>().add(
-                              FileDropped(firstFile.path),
-                            );
-                          }
-                        }
-                      },
-                      child: Center(
-                        child: SingleChildScrollView(
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                GestureDetector(
-                                  onTap: _isLoading
+                                final firstFile = details.files.first;
+                                // Additional validation: check if the file has a valid path
+                                if (firstFile.path.isNotEmpty) {
+                                  // Reset state before loading to ensure clean state on web
+                                  context.read<FileBloc>().add(QuizFileReset());
+                                  context.read<FileBloc>().add(
+                                    FileDropped(firstFile.path),
+                                  );
+                                }
+                              }
+                            },
+                            child: Center(
+                              child: SingleChildScrollView(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: _isLoading
+                                            ? null
+                                            : () {
+                                                context.read<FileBloc>().add(
+                                                  QuizFileReset(),
+                                                );
+                                                context.read<FileBloc>().add(
+                                                  QuizFilePickRequested(),
+                                                );
+                                              },
+                                        child: ConstrainedBox(
+                                          constraints: BoxConstraints(
+                                            maxWidth:
+                                                MediaQuery.of(
+                                                  context,
+                                                ).size.width *
+                                                0.7,
+                                            maxHeight:
+                                                MediaQuery.of(
+                                                  context,
+                                                ).size.height *
+                                                0.4,
+                                          ),
+                                          child: Image.asset(
+                                            'images/QUIZ.png',
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 24),
+                                      Text(
+                                        AppLocalizations.of(
+                                          context,
+                                        )!.dropFileHere,
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: _isLoading
+                                              ? Colors.grey
+                                              : Colors.grey[600],
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            spacing: 12,
+                            children: [
+                              // Primary Action: Create Quiz
+                              Tooltip(
+                                message: AppLocalizations.of(
+                                  context,
+                                )!.createFileTooltip,
+                                child: ElevatedButton.icon(
+                                  onPressed: _isLoading
+                                      ? null
+                                      : () =>
+                                            _showCreateQuizFileDialog(context),
+                                  icon: const Icon(Icons.add),
+                                  label: Text(
+                                    AppLocalizations.of(context)!.create,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Theme.of(
+                                      context,
+                                    ).primaryColor,
+                                    foregroundColor: Colors.white,
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 16,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    elevation: 2,
+                                  ),
+                                ),
+                              ),
+
+                              // Secondary Action: Load Quiz
+                              Tooltip(
+                                message: AppLocalizations.of(
+                                  context,
+                                )!.loadFileTooltip,
+                                child: OutlinedButton.icon(
+                                  onPressed: _isLoading
                                       ? null
                                       : () {
                                           context.read<FileBloc>().add(
@@ -165,89 +245,82 @@ class _HomeScreenState extends State<HomeScreen> {
                                             QuizFilePickRequested(),
                                           );
                                         },
-                                  child: ConstrainedBox(
-                                    constraints: BoxConstraints(
-                                      maxWidth:
-                                          MediaQuery.of(context).size.width *
-                                          0.7,
-                                      maxHeight:
-                                          MediaQuery.of(context).size.height *
-                                          0.4,
+                                  icon: const Icon(Icons.file_upload),
+                                  label: Text(
+                                    AppLocalizations.of(context)!.load,
+                                  ),
+                                  style: OutlinedButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 16,
                                     ),
-                                    child: Image.asset(
-                                      'images/QUIZ.png',
-                                      fit: BoxFit.contain,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    side: BorderSide(
+                                      color: Theme.of(context).primaryColor,
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 24),
-                                Text(
-                                  AppLocalizations.of(context)!.dropFileHere,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: _isLoading
-                                        ? Colors.grey
-                                        : Colors.grey[600],
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      spacing: 8,
-                      children: [
-                        SizedBox(
-                          width: double.infinity,
-                          child: OutlinedButton.icon(
-                            onPressed: _isLoading
-                                ? null
-                                : () => _showCreateQuizFileDialog(context),
-                            icon: const Icon(Icons.add),
-                            label: Text(AppLocalizations.of(context)!.create),
-                          ),
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: OutlinedButton.icon(
-                            onPressed: _isLoading
-                                ? null
-                                : () {
-                                    context.read<FileBloc>().add(
-                                      QuizFileReset(),
-                                    );
-                                    context.read<FileBloc>().add(
-                                      QuizFilePickRequested(),
-                                    );
-                                  },
-                            icon: const Icon(Icons.file_upload),
-                            label: Text(AppLocalizations.of(context)!.load),
-                          ),
-                        ),
+                              ),
 
-                        SizedBox(
-                          width: double.infinity,
-                          child: OutlinedButton.icon(
-                            onPressed: _isLoading
-                                ? null
-                                : () => context.go('/raffle'),
-                            icon: const Icon(Icons.casino),
-                            label: Text(
-                              AppLocalizations.of(context)!.sorteosLabel,
-                            ),
+                              // Tertiary Action: Raffle / Tools
+                              Tooltip(
+                                message: AppLocalizations.of(
+                                  context,
+                                )!.raffleTooltip,
+                                child: TextButton.icon(
+                                  onPressed: _isLoading
+                                      ? null
+                                      : () => context.go(AppRoutes.raffle),
+                                  icon: Icon(
+                                    Icons.casino_outlined,
+                                    size: 20,
+                                    color: Theme.of(
+                                      context,
+                                    ).textTheme.bodyMedium?.color,
+                                  ),
+                                  label: Text(
+                                    AppLocalizations.of(context)!.sorteosLabel,
+                                    style: TextStyle(
+                                      color: Theme.of(
+                                        context,
+                                      ).textTheme.bodyMedium?.color,
+                                    ),
+                                  ),
+                                  style: TextButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 12,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
-                  ),
-                ],
+                    Positioned(
+                      top: 16,
+                      right: 16,
+                      child: Tooltip(
+                        message: AppLocalizations.of(
+                          context,
+                        )!.questionOrderConfigTooltip,
+                        child: IconButton(
+                          onPressed: _isLoading
+                              ? null
+                              : () => _showSettingsDialog(context),
+                          icon: Icon(
+                            Icons.settings,
+                            color: Theme.of(
+                              context,
+                            ).textTheme.bodyMedium?.color,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           },
@@ -256,6 +329,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  /// Check if there is a deep link and handle it
   /// Check if there is a deep link and handle it
   void checkDeepLink(BuildContext c) {
     FileHandler.initialize((filePath) {
