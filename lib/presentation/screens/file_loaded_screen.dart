@@ -9,6 +9,7 @@ import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_config.dart';
 import 'package:quiz_app/presentation/screens/dialogs/add_edit_question_dialog.dart';
+import 'package:quiz_app/presentation/screens/dialogs/exit_confirmation_dialog.dart';
 import 'package:quiz_app/presentation/screens/widgets/question_list_widget.dart';
 import 'package:quiz_app/routes/app_router.dart';
 import 'package:platform_detail/platform_detail.dart';
@@ -55,7 +56,17 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
     setState(() {
       _hasFileChanged = hasChanged;
     });
-    ServiceLocator.instance.registerQuizFile(cachedQuizFile);
+  }
+
+  Future<bool> _confirmExit() async {
+    if (widget.checkFileChangesUseCase.execute(cachedQuizFile)) {
+      return await showDialog<bool>(
+            context: context,
+            builder: (context) => const ExitConfirmationDialog(),
+          ) ??
+          false;
+    }
+    return true;
   }
 
   Future<void> _showSettingsDialog(BuildContext context) async {
@@ -322,173 +333,191 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Exit confirmation is now handled by GoRouter's onExit
-    return BlocProvider<FileBloc>(
-      create: (_) => widget.fileBloc,
-      child: BlocListener<FileBloc, FileState>(
-        listener: (context, state) {
-          if (state is FileLoaded) {
-            // Update the cached file reference when a file is saved successfully
-            // This ensures that change detection works correctly with the new file path
-            cachedQuizFile = state.quizFile.deepCopy();
+    // ignore: deprecated_member_use
+    return WillPopScope(
+      onWillPop: () async {
+        final shouldExit = await _confirmExit();
+        return shouldExit;
+      },
+      child: BlocProvider<FileBloc>(
+        create: (_) => widget.fileBloc,
+        child: BlocListener<FileBloc, FileState>(
+          listener: (context, state) {
+            if (state is FileLoaded) {
+              // Update the cached file reference when a file is saved successfully
+              // This ensures that change detection works correctly with the new file path
+              cachedQuizFile = state.quizFile.deepCopy();
 
-            context.presentSnackBar(
-              AppLocalizations.of(context)!.fileSaved(state.quizFile.filePath!),
-            );
-            _checkFileChange();
-          }
-          if (state is FileError) {
-            context.presentSnackBar(state.getDescription(context));
-          }
-        },
-        child: Scaffold(
-          appBar: AppBar(
-            title: Tooltip(
-              message: cachedQuizFile.metadata.description,
-              child: InkWell(
-                onTap: () => _editQuizMetadata(context),
-                child: Text(
-                  cachedQuizFile.metadata.title,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            automaticallyImplyLeading: !PlatformDetail.isWeb,
-            leading: PlatformDetail.isWeb
-                ? null
-                : IconButton(
+              context.presentSnackBar(
+                AppLocalizations.of(
+                  context,
+                )!.fileSaved(state.quizFile.filePath!),
+              );
+              _checkFileChange();
+            }
+            if (state is FileError) {
+              context.presentSnackBar(state.getDescription(context));
+            }
+          },
+          child: Builder(
+            builder: (context) {
+              return Scaffold(
+                appBar: AppBar(
+                  title: Tooltip(
+                    message: cachedQuizFile.metadata.description,
+                    child: InkWell(
+                      onTap: () => _editQuizMetadata(context),
+                      child: Text(
+                        cachedQuizFile.metadata.title,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  leading: IconButton(
                     icon: Icon(
                       Icons.arrow_back,
                       semanticLabel: AppLocalizations.of(
                         context,
                       )!.backSemanticLabel,
                     ),
-                    onPressed: () => context.pop(),
-                  ),
-            actions: [
-              IconButton(
-                onPressed: () async {
-                  final createdQuestion = await showDialog<Question>(
-                    context: context,
-                    barrierDismissible:
-                        false, // Prevent dismissing by tapping outside
-                    builder: (context) =>
-                        AddEditQuestionDialog(quizFile: cachedQuizFile),
-                  );
-                  if (createdQuestion != null) {
-                    setState(() {
-                      cachedQuizFile.questions.add(createdQuestion);
-                    });
-                    _checkFileChange();
-                  }
-                },
-                icon: const Icon(Icons.add),
-                tooltip: AppLocalizations.of(context)!.addTooltip,
-              ),
-              // Generate with AI Action
-              IconButton(
-                onPressed: () async {
-                  await _generateQuestionsWithAI();
-                },
-                icon: Icon(
-                  Icons.auto_awesome,
-                  color: Theme.of(
-                    context,
-                  ).extension<CustomColors>()!.aiIconColor,
-                ),
-                tooltip: AppLocalizations.of(context)!.generateQuestionsWithAI,
-              ),
-              // Import Action
-              IconButton(
-                onPressed: () async {
-                  await _pickAndImportFile();
-                },
-                icon: const Icon(Icons.file_upload),
-                tooltip: AppLocalizations.of(context)!.importQuestionsTooltip,
-              ),
-              // Save Action
-              IconButton(
-                icon: const Icon(Icons.save),
-                tooltip: _hasFileChanged
-                    ? AppLocalizations.of(context)!.saveTooltip
-                    : AppLocalizations.of(context)!.saveDisabledTooltip,
-                onPressed: _hasFileChanged
-                    ? () async {
-                        await _onSavePressed(context);
+                    onPressed: () async {
+                      final shouldExit = await _confirmExit();
+                      if (shouldExit && context.mounted) {
+                        context.pop();
                       }
-                    : null, // Disable button if file hasn't changed
-              ),
-              // Configuration button
-              IconButton(
-                onPressed: () => _showSettingsDialog(context),
-                icon: const Icon(Icons.settings),
-                tooltip: AppLocalizations.of(
-                  context,
-                )!.questionOrderConfigTooltip,
-              ),
-            ],
-          ),
-          body: DropTarget(
-            onDragDone: (details) {
-              // Handle file drop for importing questions
-              if (details.files.isNotEmpty) {
-                // If we are not on the file loaded screen, ignore the drop
-                if (context.currentRoute != AppRoutes.fileLoadedScreen) {
-                  return;
-                }
-                final firstFile = details.files.first;
-                if (firstFile.path.isNotEmpty) {
-                  _handleFileImport(firstFile.path);
-                }
-              }
-            },
-            child: QuestionListWidget(
-              quizFile: cachedQuizFile,
-              onFileChange: _checkFileChange,
-            ),
-          ),
-          floatingActionButton: cachedQuizFile.questions.isNotEmpty
-              ? FloatingActionButton(
-                  tooltip: AppLocalizations.of(context)!.executeTooltip,
-                  onPressed: () async {
-                    // Filter enabled questions first
-                    final enabledQuestions = cachedQuizFile.questions
-                        .where((question) => question.isEnabled)
-                        .toList();
-
-                    if (enabledQuestions.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            AppLocalizations.of(
-                              context,
-                            )!.noEnabledQuestionsError,
-                          ),
-                          backgroundColor: Colors.orange,
-                        ),
-                      );
-                      return;
-                    }
-
-                    final quizConfig = await showDialog<QuizConfig>(
-                      context: context,
-                      builder: (context) => QuestionCountSelectionDialog(
-                        totalQuestions: enabledQuestions.length,
+                    },
+                  ),
+                  actions: [
+                    IconButton(
+                      onPressed: () async {
+                        final createdQuestion = await showDialog<Question>(
+                          context: context,
+                          barrierDismissible:
+                              false, // Prevent dismissing by tapping outside
+                          builder: (context) =>
+                              AddEditQuestionDialog(quizFile: cachedQuizFile),
+                        );
+                        if (createdQuestion != null) {
+                          setState(() {
+                            cachedQuizFile.questions.add(createdQuestion);
+                          });
+                          _checkFileChange();
+                        }
+                      },
+                      icon: const Icon(Icons.add),
+                      tooltip: AppLocalizations.of(context)!.addTooltip,
+                    ),
+                    // Generate with AI Action
+                    IconButton(
+                      onPressed: () async {
+                        await _generateQuestionsWithAI();
+                      },
+                      icon: Icon(
+                        Icons.auto_awesome,
+                        color: Theme.of(
+                          context,
+                        ).extension<CustomColors>()!.aiIconColor,
                       ),
-                    );
-
-                    if (quizConfig != null && context.mounted) {
-                      // Register the updated quiz file and question count in the service locator
-                      ServiceLocator.instance.registerQuizFile(cachedQuizFile);
-                      ServiceLocator.instance.registerQuizConfig(quizConfig);
-
-                      // Navigate to the quiz execution screen
-                      context.push(AppRoutes.quizFileExecutionScreen);
+                      tooltip: AppLocalizations.of(
+                        context,
+                      )!.generateQuestionsWithAI,
+                    ),
+                    // Import Action
+                    IconButton(
+                      onPressed: () async {
+                        await _pickAndImportFile();
+                      },
+                      icon: const Icon(Icons.file_upload),
+                      tooltip: AppLocalizations.of(
+                        context,
+                      )!.importQuestionsTooltip,
+                    ),
+                    // Save Action
+                    IconButton(
+                      icon: const Icon(Icons.save),
+                      tooltip: _hasFileChanged
+                          ? AppLocalizations.of(context)!.saveTooltip
+                          : AppLocalizations.of(context)!.saveDisabledTooltip,
+                      onPressed: _hasFileChanged
+                          ? () async {
+                              await _onSavePressed(context);
+                            }
+                          : null, // Disable button if file hasn't changed
+                    ),
+                    // Configuration button
+                    IconButton(
+                      onPressed: () => _showSettingsDialog(context),
+                      icon: const Icon(Icons.settings),
+                      tooltip: AppLocalizations.of(
+                        context,
+                      )!.questionOrderConfigTooltip,
+                    ),
+                  ],
+                ),
+                body: DropTarget(
+                  onDragDone: (details) {
+                    // Handle file drop for importing questions
+                    if (details.files.isNotEmpty) {
+                      final firstFile = details.files.first;
+                      if (firstFile.path.isNotEmpty) {
+                        _handleFileImport(firstFile.path);
+                      }
                     }
                   },
-                  child: const Icon(Icons.play_arrow),
-                )
-              : null,
+                  child: QuestionListWidget(
+                    quizFile: cachedQuizFile,
+                    onFileChange: _checkFileChange,
+                  ),
+                ),
+                floatingActionButton: cachedQuizFile.questions.isNotEmpty
+                    ? FloatingActionButton(
+                        tooltip: AppLocalizations.of(context)!.executeTooltip,
+                        onPressed: () async {
+                          // Filter enabled questions first
+                          final enabledQuestions = cachedQuizFile.questions
+                              .where((question) => question.isEnabled)
+                              .toList();
+
+                          if (enabledQuestions.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  AppLocalizations.of(
+                                    context,
+                                  )!.noEnabledQuestionsError,
+                                ),
+                                backgroundColor: Colors.orange,
+                              ),
+                            );
+                            return;
+                          }
+
+                          final quizConfig = await showDialog<QuizConfig>(
+                            context: context,
+                            builder: (context) => QuestionCountSelectionDialog(
+                              totalQuestions: enabledQuestions.length,
+                            ),
+                          );
+
+                          if (quizConfig != null && context.mounted) {
+                            // Register the updated quiz file and question count in the service locator
+                            ServiceLocator.instance.registerQuizFile(
+                              cachedQuizFile,
+                            );
+                            ServiceLocator.instance.registerQuizConfig(
+                              quizConfig,
+                            );
+
+                            // Navigate to the quiz execution screen
+                            context.push(AppRoutes.quizFileExecutionScreen);
+                          }
+                        },
+                        child: const Icon(Icons.play_arrow),
+                      )
+                    : null,
+              );
+            },
+          ),
         ),
       ),
     );

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:platform_detail/platform_detail.dart';
 import 'dart:async';
 import 'package:quiz_app/core/service_locator.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
@@ -104,77 +103,56 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
             );
           },
           child: Builder(
-            builder: (context) => PopScope(
-              // On web, PopScope is not handled properly, due this pending issue: https://github.com/flutter/flutter/issues/138737#issuecomment-2200864601
-              canPop: PlatformDetail.isWeb,
-              onPopInvokedWithResult: (didPop, result) {
-                if (didPop) return;
-                BackPressHandler.handle(
-                  context,
-                  context.read<QuizExecutionBloc>(),
-                );
-              },
-              child: SafeArea(
-                child: Scaffold(
-                  appBar: AppBar(
-                    title: Text(widget.quizFile.metadata.title),
-                    automaticallyImplyLeading: !PlatformDetail.isWeb,
-                    leading: PlatformDetail.isWeb
-                        ? null
-                        : IconButton(
-                            icon: const Icon(Icons.arrow_back),
-                            onPressed: () => BackPressHandler.handle(
-                              context,
-                              context.read<QuizExecutionBloc>(),
-                            ),
-                          ),
-                    actions: [
-                      if (_examTimeEnabled)
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
-                          child: Center(
-                            child:
-                                BlocBuilder<
-                                  QuizExecutionBloc,
-                                  QuizExecutionState
-                                >(
-                                  builder: (context, state) {
-                                    return ExamTimerWidget(
-                                      initialDurationMinutes: _examTimeMinutes,
-                                      isQuizCompleted:
-                                          state is QuizExecutionCompleted,
-                                      onTimeExpired: () {
-                                        // Force complete the quiz
-                                        final bloc = context
-                                            .read<QuizExecutionBloc>();
-                                        bloc.add(QuizSubmitted());
-                                      },
-                                    );
+            builder: (context) => Scaffold(
+              appBar: AppBar(
+                title: Text(widget.quizFile.metadata.title),
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => BackPressHandler.handle(
+                    context,
+                    context.read<QuizExecutionBloc>(),
+                  ),
+                ),
+                actions: [
+                  if (_examTimeEnabled)
+                    Padding(
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: Center(
+                        child:
+                            BlocBuilder<QuizExecutionBloc, QuizExecutionState>(
+                              builder: (context, state) {
+                                return ExamTimerWidget(
+                                  initialDurationMinutes: _examTimeMinutes,
+                                  isQuizCompleted:
+                                      state is QuizExecutionCompleted,
+                                  onTimeExpired: () {
+                                    // Force complete the quiz
+                                    final bloc = context
+                                        .read<QuizExecutionBloc>();
+                                    bloc.add(QuizSubmitted());
                                   },
-                                ),
-                          ),
-                        ),
-                    ],
-                  ),
-                  body: SafeArea(
-                    child: BlocConsumer<QuizExecutionBloc, QuizExecutionState>(
-                      listener: (context, state) {
-                        // Handle any side effects if needed
-                      },
-                      builder: (context, state) {
-                        if (state is QuizExecutionInitial) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else if (state is QuizExecutionInProgress) {
-                          return QuizInProgressView(state: state);
-                        } else if (state is QuizExecutionCompleted) {
-                          return QuizCompletedView(state: state);
-                        }
-                        return const SizedBox.shrink();
-                      },
+                                );
+                              },
+                            ),
+                      ),
                     ),
-                  ),
+                ],
+              ),
+              body: SafeArea(
+                child: BlocConsumer<QuizExecutionBloc, QuizExecutionState>(
+                  listener: (context, state) {
+                    // Handle any side effects if needed
+                  },
+                  builder: (context, state) {
+                    if (state is QuizExecutionInitial) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is QuizExecutionInProgress) {
+                      return QuizInProgressView(state: state);
+                    } else if (state is QuizExecutionCompleted) {
+                      return QuizCompletedView(state: state);
+                    }
+                    return const SizedBox.shrink();
+                  },
                 ),
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/routes/app_router.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 import 'package:quiz_app/core/constants/theme.dart';
 import 'package:quiz_app/core/file_handler.dart';
@@ -9,6 +10,7 @@ import 'package:quiz_app/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quiz_app/presentation/blocs/file_bloc/file_event.dart';
 
 void main() {
+  setUrlStrategy(null);
   ServiceLocator.instance.setup();
   runApp(const QuizApplication());
 }

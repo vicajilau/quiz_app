@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:platform_detail/platform_detail.dart';
-import 'package:quiz_app/routes/app_router.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/domain/models/raffle/raffle_winner.dart';
 import 'package:quiz_app/domain/models/raffle/raffle_logo.dart';
@@ -12,6 +10,7 @@ import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_state.dart';
 import 'package:quiz_app/presentation/screens/raffle/widgets/logo_widget.dart';
 import 'package:quiz_app/presentation/screens/raffle/widgets/clear_winners_dialog.dart';
 import 'package:quiz_app/presentation/screens/raffle/widgets/reset_raffle_dialog.dart';
+import 'package:quiz_app/routes/app_router.dart';
 
 class WinnersScreen extends StatelessWidget {
   const WinnersScreen({super.key});
@@ -39,13 +38,10 @@ class WinnersScreen extends StatelessWidget {
                         Text(AppLocalizations.of(context)!.winnersTitle),
                   )
                 : Text(AppLocalizations.of(context)!.winnersTitle),
-            automaticallyImplyLeading: !PlatformDetail.isWeb,
-            leading: PlatformDetail.isWeb
-                ? null
-                : IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () => context.go(AppRoutes.raffle),
-                  ),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => context.go(AppRoutes.raffle),
+            ),
             actions: [
               IconButton(
                 onPressed: () => _showShareDialog(context),
@@ -207,7 +203,7 @@ class WinnersScreen extends StatelessWidget {
                   onPressed: () async {
                     final confirmed = await showResetRaffleDialog(context);
                     if (confirmed && context.mounted) {
-                      context.go('/raffle');
+                      context.go(AppRoutes.raffle);
                     }
                   },
                   icon: const Icon(Icons.refresh),
@@ -223,7 +219,7 @@ class WinnersScreen extends StatelessWidget {
                   onPressed: () async {
                     final confirmed = await showClearWinnersDialog(context);
                     if (confirmed && context.mounted) {
-                      context.go('/raffle');
+                      context.go(AppRoutes.raffle);
                     }
                   },
                   icon: const Icon(Icons.restart_alt),
