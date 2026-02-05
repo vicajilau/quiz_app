@@ -13,6 +13,7 @@ import 'package:quiz_app/presentation/screens/raffle/widgets/participant_list_wi
 import 'package:quiz_app/presentation/screens/raffle/widgets/raffle_controls_widget.dart';
 import 'package:quiz_app/presentation/screens/raffle/widgets/winner_dialog.dart';
 import 'package:quiz_app/presentation/screens/raffle/widgets/reset_raffle_dialog.dart';
+import 'package:quiz_app/routes/app_router.dart';
 
 class RaffleScreen extends StatelessWidget {
   const RaffleScreen({super.key});
@@ -86,7 +87,7 @@ class _RaffleScreenContent extends StatelessWidget {
             ),
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
-              onPressed: () => context.go('/'),
+              onPressed: () => context.go(AppRoutes.home),
             ),
             actions: [
               // Winners history button
@@ -103,7 +104,7 @@ class _RaffleScreenContent extends StatelessWidget {
 
                   return IconButton(
                     onPressed: hasWinners
-                        ? () => context.go('/raffle/winners')
+                        ? () => context.go(AppRoutes.raffleWinners)
                         : null,
                     icon: Icon(
                       Icons.emoji_events,
@@ -261,7 +262,7 @@ class _RaffleScreenContent extends StatelessWidget {
         onFinishRaffle: () {
           Navigator.of(dialogContext).pop();
           context.read<RaffleBloc>().add(ConfirmWinner(winner));
-          context.go('/raffle/winners');
+          context.go(AppRoutes.raffleWinners);
         },
       ),
     );

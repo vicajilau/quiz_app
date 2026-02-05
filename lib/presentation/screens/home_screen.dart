@@ -111,7 +111,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 leading: Tooltip(
                   message: AppLocalizations.of(context)!.raffleTooltip,
                   child: IconButton(
-                    onPressed: _isLoading ? null : () => context.go('/raffle'),
+                    onPressed: _isLoading
+                        ? null
+                        : () => context.go(AppRoutes.raffle),
                     icon: const Icon(Icons.casino, color: Colors.white),
                   ),
                 ),

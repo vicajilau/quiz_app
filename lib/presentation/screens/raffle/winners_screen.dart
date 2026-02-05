@@ -10,6 +10,7 @@ import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_state.dart';
 import 'package:quiz_app/presentation/screens/raffle/widgets/logo_widget.dart';
 import 'package:quiz_app/presentation/screens/raffle/widgets/clear_winners_dialog.dart';
 import 'package:quiz_app/presentation/screens/raffle/widgets/reset_raffle_dialog.dart';
+import 'package:quiz_app/routes/app_router.dart';
 
 class WinnersScreen extends StatelessWidget {
   const WinnersScreen({super.key});
@@ -39,7 +40,7 @@ class WinnersScreen extends StatelessWidget {
                 : Text(AppLocalizations.of(context)!.winnersTitle),
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
-              onPressed: () => context.go('/raffle'),
+              onPressed: () => context.go(AppRoutes.raffle),
             ),
             actions: [
               IconButton(
@@ -97,7 +98,7 @@ class WinnersScreen extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             ElevatedButton.icon(
-              onPressed: () => context.go('/raffle'),
+              onPressed: () => context.go(AppRoutes.raffle),
               icon: const Icon(Icons.casino),
               label: Text(AppLocalizations.of(context)!.goToRaffle),
             ),
@@ -202,7 +203,7 @@ class WinnersScreen extends StatelessWidget {
                   onPressed: () async {
                     final confirmed = await showResetRaffleDialog(context);
                     if (confirmed && context.mounted) {
-                      context.go('/raffle');
+                      context.go(AppRoutes.raffle);
                     }
                   },
                   icon: const Icon(Icons.refresh),
@@ -218,7 +219,7 @@ class WinnersScreen extends StatelessWidget {
                   onPressed: () async {
                     final confirmed = await showClearWinnersDialog(context);
                     if (confirmed && context.mounted) {
-                      context.go('/raffle');
+                      context.go(AppRoutes.raffle);
                     }
                   },
                   icon: const Icon(Icons.restart_alt),
