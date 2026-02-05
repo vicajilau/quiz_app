@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../../../data/services/configuration_service.dart';
 import '../../../../data/services/ai/ai_service.dart';
+import '../../../../data/services/ai/gemini_service.dart';
 import '../../../../core/l10n/app_localizations.dart';
 import '../../../../domain/models/ai/ai_file_attachment.dart';
 import '../../../../domain/models/ai/openai_content_block.dart';
@@ -43,8 +44,6 @@ class AiQuestionGenerationConfig {
 class AiQuestionGenerationService {
   static const String _openaiApiUrl =
       'https://api.openai.com/v1/chat/completions';
-  static const String _geminiApiUrl =
-      'https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent';
 
   /// Generates questions using AI based on the provided configuration
   Future<List<Question>> generateQuestions(
@@ -183,41 +182,32 @@ class AiQuestionGenerationService {
     AppLocalizations localizations,
   ) async {
     final prompt = _buildPrompt(config);
-    final fullPrompt =
-        'You are an expert in education who creates high-quality quiz questions. Respond ONLY with the requested JSON, without additional text.\n\n$prompt';
+    final systemInstruction =
+        'You are an expert in education who creates high-quality quiz questions. Respond ONLY with the requested JSON, without additional text.';
+    final fullPrompt = '$systemInstruction\n\n$prompt';
 
-    final List<Map<String, dynamic>> parts = [
-      {'text': fullPrompt},
-    ];
-
-    if (config.hasFile) {
-      final file = config.file!;
-      final base64Data = base64Encode(file.bytes);
-      parts.add({
-        'inline_data': {'mime_type': file.mimeType, 'data': base64Data},
-      });
+    try {
+      final String response;
+      if (config.hasFile) {
+        response = await GeminiService.instance.getChatResponseWithFile(
+          fullPrompt,
+          localizations,
+          model: config.preferredModel,
+          file: config.file!,
+        );
+      } else {
+        response = await GeminiService.instance.getChatResponse(
+          fullPrompt,
+          localizations,
+          model: config.preferredModel,
+        );
+      }
+      return _parseAiResponse(response);
+    } catch (e) {
+      // GeminiService handles its own errors, we just rethrow to the caller
+      // or handle specific cases if needed.
+      rethrow;
     }
-
-    final response = await http.post(
-      Uri.parse('$_geminiApiUrl?key=$apiKey'),
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({
-        'contents': [
-          {'parts': parts},
-        ],
-        'generationConfig': {'temperature': 0.7, 'maxOutputTokens': 3000},
-      }),
-    );
-
-    if (response.statusCode != 200) {
-      throw Exception(localizations.aiErrorResponse);
-    }
-
-    final jsonResponse = jsonDecode(response.body);
-    final content =
-        jsonResponse['candidates'][0]['content']['parts'][0]['text'];
-
-    return _parseAiResponse(content);
   }
 
   /// Builds the prompt for the AI
