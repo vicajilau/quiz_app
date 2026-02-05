@@ -30,60 +30,63 @@ class QuizQuestionResultCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.only(bottom: 8.0),
-      child: ExpansionTile(
-        leading: Icon(
-          result.isCorrect ? Icons.check_circle : Icons.cancel,
-          color: result.isCorrect ? Colors.green : Colors.red,
-        ),
-        title: Text(
-          AppLocalizations.of(context)!.questionNumber(questionNumber),
-          style: const TextStyle(fontWeight: FontWeight.w600),
-        ),
-        subtitle: Align(
-          alignment: Alignment.centerLeft,
-          child: LaTeXText(
-            result.question.text,
-            maxLines: 2,
-            style: Theme.of(context).textTheme.bodySmall,
+      // TODO: Small "padding" is added on top and bottom on ExpansionTile widget, should be removed but there is no way right now. This Theme was added to "remove" dividers.
+      child: Theme(
+        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+        child: ExpansionTile(
+          leading: Icon(
+            result.isCorrect ? Icons.check_circle : Icons.cancel,
+            color: result.isCorrect ? Colors.green : Colors.red,
           ),
-        ),
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: LaTeXText(
-                    result.question.text,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 12),
-
-                // Show image if available
-                if (result.question.image != null)
-                  QuizQuestionImage(imageData: result.question.image),
-
-                // Handle essay questions differently
-                if (result.question.type == QuestionType.essay)
-                  QuizQuestionEssayResult(result: result)
-                else
-                  QuizQuestionOptionsResult(result: result),
-
-                // Show explanation if available
-                QuizQuestionExplanation(
-                  explanation: result.question.explanation,
-                ),
-              ],
+          title: Text(
+            AppLocalizations.of(context)!.questionNumber(questionNumber),
+            style: const TextStyle(fontWeight: FontWeight.w600),
+          ),
+          subtitle: Align(
+            alignment: Alignment.centerLeft,
+            child: LaTeXText(
+              result.question.text,
+              maxLines: 2,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
-        ],
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: LaTeXText(
+                      result.question.text,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+
+                  // Show image if available
+                  if (result.question.image != null)
+                    QuizQuestionImage(imageData: result.question.image),
+
+                  // Handle essay questions differently
+                  if (result.question.type == QuestionType.essay)
+                    QuizQuestionEssayResult(result: result)
+                  else
+                    QuizQuestionOptionsResult(result: result),
+
+                  // Show explanation if available
+                  QuizQuestionExplanation(
+                    explanation: result.question.explanation,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
