@@ -321,11 +321,6 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     // Exit confirmation is now handled by GoRouter's onExit
     return BlocProvider<FileBloc>(

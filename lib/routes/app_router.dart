@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:platform_detail/platform_detail.dart';
 import 'package:quiz_app/core/debug_print.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:quiz_app/presentation/screens/file_loaded_screen.dart';
@@ -9,6 +10,7 @@ import 'package:quiz_app/presentation/screens/raffle/raffle_screen.dart';
 import 'package:quiz_app/presentation/screens/raffle/winners_screen.dart';
 import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_bloc.dart';
 import 'package:quiz_app/presentation/screens/dialogs/exit_confirmation_dialog.dart';
+import 'package:quiz_app/presentation/screens/dialogs/abandon_quiz_dialog.dart';
 
 import '../core/service_locator.dart';
 import '../domain/use_cases/check_file_changes_use_case.dart';
@@ -89,6 +91,41 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => QuizFileExecutionScreen(
         quizFile: ServiceLocator.instance.getIt<QuizFile>(),
       ),
+      onExit: (context, state) async {
+        // Note: Workaround only needed for web until PopScope issue is resolved:
+        // https://github.com/flutter/flutter/issues/138737
+
+        if (!PlatformDetail.isWeb) {
+          return true;
+        }
+
+        // If exit was already confirmed, allow it
+        if (_exitConfirmed) {
+          _exitConfirmed = false;
+          return true;
+        }
+
+        // Prevent multiple dialogs
+        if (_isExitDialogShowing) {
+          return false;
+        }
+
+        _isExitDialogShowing = true;
+        final shouldExit = await showDialog<bool>(
+          context: context,
+          barrierDismissible: false,
+          builder: (dialogContext) => const AbandonQuizDialog(),
+        );
+        _isExitDialogShowing = false;
+
+        if (shouldExit == true) {
+          _exitConfirmed = true;
+          appRouter.go(AppRoutes.fileLoadedScreen);
+          return true;
+        }
+
+        return false;
+      },
     ),
     ShellRoute(
       builder: (context, state, child) =>
