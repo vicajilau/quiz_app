@@ -1,4 +1,5 @@
 {
+  "@@locale": "de",
   "titleAppBar": "Quiz - Prüfungssimulator",
   "@titleAppBar": {
     "description": "Titel der Anwendung in der AppBar angezeigt."
@@ -222,10 +223,6 @@
   "finishQuizConfirmation": "Sind Sie sicher, dass Sie das Quiz beenden möchten? Sie können Ihre Antworten danach nicht mehr ändern.",
   "@finishQuizConfirmation": {
     "description": "Bestätigungsnachricht für das Beenden des Quiz"
-  },
-  "cancel": "Abbrechen",
-  "@cancel": {
-    "description": "Abbrechen-Schaltflächentext"
   },
   "abandonQuiz": "Quiz aufgeben",
   "@abandonQuiz": {
@@ -472,10 +469,6 @@
   "optionsLabel": "Optionen",
   "@optionsLabel": {
     "description": "Beschriftung für Optionen im KI-Dialog"
-  },
-  "explanationLabel": "Erklärung",
-  "@explanationLabel": {
-    "description": "Beschriftung für Erklärung im KI-Dialog"
   },
   "studentComment": "Kommentar des Studenten",
   "@studentComment": {
@@ -1187,14 +1180,6 @@
   "@noEnabledQuestionsError": {
     "description": "Fehlermeldung beim Versuch, ein Quiz ohne aktivierte Fragen zu starten"
   },
-  "evaluateWithAI": "Mit KI bewerten",
-  "@evaluateWithAI": {
-    "description": "Button-Text zur Bewertung von Essay-Antworten mit KI"
-  },
-  "aiEvaluation": "KI-Bewertung",
-  "@aiEvaluation": {
-    "description": "Titel für den KI-Bewertungsbereich"
-  },
   "aiEvaluationError": "Fehler beim Bewerten der Antwort: {error}",
   "@aiEvaluationError": {
     "description": "Fehlermeldung wenn KI-Bewertung fehlschlägt",
@@ -1666,5 +1651,9 @@
   "aiEvaluation": "KI-Bewertung",
   "@aiEvaluation": {
     "description": "Label for AI evaluation section"
+  },
+  "sorteosLabel": "Raffles",
+  "@sorteosLabel": {
+    "description": "Label for the raffles button"
   }
 }

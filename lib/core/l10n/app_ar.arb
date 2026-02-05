@@ -1,4 +1,5 @@
 {
+  "@@locale": "ar",
   "titleAppBar": "اختبار - محاكي الامتحان",
   "@titleAppBar": {
     "description": "Title of the application displayed in the AppBar."
@@ -472,10 +473,6 @@
   "optionsLabel": "الخيارات",
   "@optionsLabel": {
     "description": "Label for options in AI dialog"
-  },
-  "explanationLabel": "الشرح",
-  "@explanationLabel": {
-    "description": "Label for explanation in AI dialog"
   },
   "studentComment": "تعليق الطالب",
   "@studentComment": {
@@ -1187,14 +1184,6 @@
   "@noEnabledQuestionsError": {
     "description": "رسالة خطأ عند عدم وجود أسئلة مفعلة"
   },
-  "evaluateWithAI": "تقييم بالذكاء الاصطناعي",
-  "@evaluateWithAI": {
-    "description": "نص زر تقييم إجابات المقال بالذكاء الاصطناعي"
-  },
-  "aiEvaluation": "تقييم الذكاء الاصطناعي",
-  "@aiEvaluation": {
-    "description": "عنوان قسم تقييم الذكاء الاصطناعي"
-  },
   "aiEvaluationError": "خطأ في تقييم الإجابة: {error}",
   "@aiEvaluationError": {
     "description": "رسالة خطأ عند فشل تقييم الذكاء الاصطناعي",
@@ -1626,5 +1615,6 @@
   "skip": "تخطي",
   "askAiAssistant": "اسأل مساعد الذكاء الاصطناعي",
   "evaluateWithAI": "تقييم بالذكاء الاصطناعي",
-  "aiEvaluation": "تقييم الذكاء الاصطناعي"
+  "aiEvaluation": "تقييم الذكاء الاصطناعي",
+  "sorteosLabel": "Raffles"
 }

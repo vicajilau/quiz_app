@@ -1,4 +1,5 @@
 {
+  "@@locale": "es",
   "titleAppBar": "Quiz - Simulador de Exámenes",
   "@titleAppBar": {
     "description": "Título de la aplicación mostrado en la AppBar."
@@ -390,7 +391,7 @@
   "@questionTypeUnknown": {
     "description": "Etiqueta para el tipo de pregunta desconocido"
   },
-    "optionsCount": "{count, plural, =1{1 opción} other{{count} opciones}}",
+  "optionsCount": "{count, plural, =1{1 opción} other{{count} opciones}}",
   "@optionsCount": {
     "description": "Texto que muestra el número de opciones en una pregunta",
     "placeholders": {
@@ -1104,7 +1105,7 @@
       }
     }
   },
-    "aiValidationMinWords": "Mínimo {minWords} palabras necesarias ({moreNeeded} más necesarias)",
+  "aiValidationMinWords": "Mínimo {minWords} palabras necesarias ({moreNeeded} más necesarias)",
   "@aiValidationMinWords": {
     "description": "Mensaje de validación cuando no se proporcionan suficientes palabras",
     "placeholders": {
@@ -1119,8 +1120,17 @@
     }
   },
   "enableQuestion": "Activar la pregunta",
+  "@enableQuestion": {
+    "description": "Texto del botón para activar la pregunta"
+  },
   "disableQuestion": "Desactivar la pregunta",
+  "@disableQuestion": {
+    "description": "Texto del botón para desactivar la pregunta"
+  },
   "questionDisabled": "Desactivada",
+  "@questionDisabled": {
+    "description": "Texto que indica que la pregunta está desactivada"
+  },
   "noEnabledQuestionsError": "No hay preguntas habilitadas para ejecutar el examen",
   "@noEnabledQuestionsError": {
     "description": "Mensaje de error al intentar iniciar un examen sin preguntas habilitadas"
@@ -1597,12 +1607,8 @@
   "@askAiAssistant": {
     "description": "Button label to open AI assistant for current question"
   },
-  "evaluateWithAI": "Evaluar con IA",
-  "@evaluateWithAI": {
-    "description": "Button label to evaluate essay answer with AI"
-  },
-  "aiEvaluation": "Evaluación de IA",
-  "@aiEvaluation": {
-    "description": "Label for AI evaluation section"
+  "sorteosLabel": "Sorteos",
+  "@sorteosLabel": {
+    "description": "Label for the raffles button"
   }
 }

@@ -1626,5 +1626,6 @@
   "skip": "छोड़ें",
   "askAiAssistant": "AI सहायक से पूछें",
   "evaluateWithAI": "AI के साथ मूल्यांकन करें",
-  "aiEvaluation": "AI मूल्यांकन"
+  "aiEvaluation": "AI मूल्यांकन",
+  "sorteosLabel": "Raffles"
 }

@@ -1666,5 +1666,9 @@
   "aiEvaluation": "Évaluation IA",
   "@aiEvaluation": {
     "description": "Label for AI evaluation section"
+  },
+  "sorteosLabel": "Raffles",
+  "@sorteosLabel": {
+    "description": "Label for the raffles button"
   }
 }

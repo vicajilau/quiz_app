@@ -340,5 +340,6 @@
   "skip": "Παράλειψη",
   "askAiAssistant": "Ρωτήστε τον Βοηθό AI",
   "evaluateWithAI": "Αξιολόγηση με AI",
-  "aiEvaluation": "Αξιολόγηση AI"
+  "aiEvaluation": "Αξιολόγηση AI",
+  "sorteosLabel": "Raffles"
 }

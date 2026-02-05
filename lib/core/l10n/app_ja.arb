@@ -1626,5 +1626,6 @@
   "skip": "スキップ",
   "askAiAssistant": "AIアシスタントに聞く",
   "evaluateWithAI": "AIで評価",
-  "aiEvaluation": "AI評価"
+  "aiEvaluation": "AI評価",
+  "sorteosLabel": "Raffles"
 }

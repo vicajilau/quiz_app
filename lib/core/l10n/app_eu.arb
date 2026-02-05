@@ -1626,5 +1626,6 @@
   "skip": "Saltatu",
   "askAiAssistant": "Galdetu AI Laguntzaileari",
   "evaluateWithAI": "Ebaluatu AIrekin",
-  "aiEvaluation": "AI Ebaluazioa"
+  "aiEvaluation": "AI Ebaluazioa",
+  "sorteosLabel": "Raffles"
 }

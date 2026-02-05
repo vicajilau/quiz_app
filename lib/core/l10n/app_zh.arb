@@ -1,4 +1,5 @@
 {
+  "@@locale": "zh",
   "titleAppBar": "测验 - 考试模拟器",
   "@titleAppBar": {
     "description": "Title of the application displayed in the AppBar."
@@ -472,10 +473,6 @@
   "optionsLabel": "选项",
   "@optionsLabel": {
     "description": "Label for options in AI dialog"
-  },
-  "explanationLabel": "解释",
-  "@explanationLabel": {
-    "description": "Label for explanation in AI dialog"
   },
   "studentComment": "学生评论",
   "@studentComment": {
@@ -1187,14 +1184,6 @@
   "@noEnabledQuestionsError": {
     "description": "尝试在没有启用问题的情况下开始测验时的错误消息"
   },
-  "evaluateWithAI": "用AI评估",
-  "@evaluateWithAI": {
-    "description": "用AI评估论文答案的按钮文本"
-  },
-  "aiEvaluation": "AI评估",
-  "@aiEvaluation": {
-    "description": "AI评估部分的标题"
-  },
   "aiEvaluationError": "评估回答时出错：{error}",
   "@aiEvaluationError": {
     "description": "AI评估失败时的错误消息",
@@ -1626,5 +1615,6 @@
   "skip": "跳过",
   "askAiAssistant": "询问 AI 助手",
   "evaluateWithAI": "用 AI 评估",
-  "aiEvaluation": "AI 评估"
+  "aiEvaluation": "AI 评估",
+  "sorteosLabel": "Raffles"
 }

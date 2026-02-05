@@ -1115,7 +1115,7 @@
   "@aiAssistantDisabled": {
     "description": "Títol per al diàleg quan l'assistent d'IA està deshabilitat"
   },
-    "enableAiAssistant": "L'assistent d'IA està desactivat. Si us plau, activa'l a la configuració per utilitzar les funcions d'IA.",
+  "enableAiAssistant": "L'assistent d'IA està desactivat. Si us plau, activa'l a la configuració per utilitzar les funcions d'IA.",
   "@enableAiAssistant": {
     "description": "Missatge a mostrar quan l'assistent d'IA està desactivat"
   },
@@ -1656,5 +1656,9 @@
   "aiEvaluation": "Avaluació IA",
   "@aiEvaluation": {
     "description": "Label for AI evaluation section"
+  },
+  "sorteosLabel": "Raffles",
+  "@sorteosLabel": {
+    "description": "Label for the raffles button"
   }
 }

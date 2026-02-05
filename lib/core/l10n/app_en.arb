@@ -1,4 +1,5 @@
 {
+  "@@locale": "en",
   "titleAppBar": "Quiz - Exam Simulator",
   "@titleAppBar": {
     "description": "Title of the application displayed in the AppBar."
@@ -435,7 +436,7 @@
   "@questionTypeUnknown": {
     "description": "Label for unknown question type"
   },
-    "optionsCount": "{count, plural, =1{1 option} other{{count} options}}",
+  "optionsCount": "{count, plural, =1{1 option} other{{count} options}}",
   "@optionsCount": {
     "description": "Text showing the number of options in a question",
     "placeholders": {
@@ -1164,8 +1165,17 @@
     }
   },
   "enableQuestion": "Enable question",
+  "@enableQuestion": {
+    "description": "Button text to enable a question"
+  },
   "disableQuestion": "Disable question",
+  "@disableQuestion": {
+    "description": "Button text to disable a question"
+  },
   "questionDisabled": "Disabled",
+  "@questionDisabled": {
+    "description": "Text indicating that a question is disabled"
+  },
   "noEnabledQuestionsError": "No enabled questions available to run the quiz",
   "@noEnabledQuestionsError": {
     "description": "Error message when trying to start quiz with no enabled questions"
@@ -1641,5 +1651,9 @@
   "askAiAssistant": "Ask AI Assistant",
   "@askAiAssistant": {
     "description": "Button label to open AI assistant for current question"
+  },
+  "sorteosLabel": "Raffles",
+  "@sorteosLabel": {
+    "description": "Label for the raffles button"
   }
 }
