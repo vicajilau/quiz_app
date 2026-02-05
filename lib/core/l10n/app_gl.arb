@@ -1226,7 +1226,7 @@
   "@raffleTitle": {
     "description": "Título da pantalla de sorteo"
   },
-  "raffleTooltip": "Abrir pantalla de sorteo",
+  "raffleTooltip": "Comezar sorteo",
   "@raffleTooltip": {
     "description": "Consello da icona de sorteo na barra de aplicacións"
   },

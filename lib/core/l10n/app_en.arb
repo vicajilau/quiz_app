@@ -1230,7 +1230,7 @@
   "@raffleTitle": {
     "description": "Title of the raffle functionality"
   },
-  "raffleTooltip": "Raffle",
+  "raffleTooltip": "Start raffle",
   "@raffleTooltip": {
     "description": "Tooltip of the raffle button in the app bar"
   },

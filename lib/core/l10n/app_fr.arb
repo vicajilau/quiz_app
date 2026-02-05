@@ -1222,7 +1222,7 @@
   "@raffleTitle": {
     "description": "Titre de la fonctionnalité de tirage au sort"
   },
-  "raffleTooltip": "Tirage au sort",
+  "raffleTooltip": "Commencer le tirage",
   "@raffleTooltip": {
     "description": "Infobulle du bouton de tirage au sort dans la barre d'applications"
   },

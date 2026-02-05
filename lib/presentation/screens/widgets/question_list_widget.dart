@@ -13,10 +13,13 @@ import 'package:quiz_app/core/l10n/app_localizations.dart';
 class QuestionListWidget extends StatefulWidget {
   final QuizFile quizFile;
   final VoidCallback onFileChange;
+  final bool isReordering;
+
   const QuestionListWidget({
     super.key,
     required this.quizFile,
     required this.onFileChange,
+    this.isReordering = false,
   });
 
   @override
@@ -68,68 +71,119 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
   Widget _buildQuestionCard(Question question, int index) {
     final isDisabled = !question.isEnabled;
 
-    return ReorderableDragStartListener(
-      key: ValueKey<Question>(question),
-      index: index,
-
-      child: Card(
-        key: ValueKey('${question.text}_${question.type}_$index'),
-        margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-        elevation: 2,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            border: isDisabled
-                ? Border.all(
-                    color: Colors.orange.withValues(alpha: 0.5),
-                    width: 2,
-                  )
-                : null,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (isDisabled) ...[
-                const SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.only(left: 70),
-                  child: Text(
-                    AppLocalizations.of(context)!.questionDisabled,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.orange,
+    return Card(
+      key: ValueKey('${question.text}_${question.type}_$index'),
+      margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: isDisabled
+              ? Border.all(
+                  color: Colors.orange.withValues(alpha: 0.5),
+                  width: 2,
+                )
+              : null,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (isDisabled) ...[
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.only(left: 70),
+                child: Text(
+                  AppLocalizations.of(context)!.questionDisabled,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.orange,
+                  ),
+                ),
+              ),
+            ],
+            ListTile(
+              contentPadding: EdgeInsets.only(
+                top: isDisabled ? 0 : 8,
+                left: 16,
+                right: 16,
+                bottom: 8,
+              ),
+              enabled: !isDisabled,
+              title: LaTeXText(
+                question.text,
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  decoration: isDisabled ? TextDecoration.lineThrough : null,
+                  color: isDisabled ? Colors.grey : null,
+                ),
+                maxLines: 2,
+              ),
+              subtitle: Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Wrap(
+                  alignment: WrapAlignment.start,
+                  spacing: 6,
+                  children: [
+                    Tooltip(
+                      message: AppLocalizations.of(context)!.optionsTooltip,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 2,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.outline.withValues(alpha: 0.3),
+                          ),
+                        ),
+                        child: Row(
+                          spacing: 8,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Tooltip(
+                              message: question.type.getQuestionTypeLabel(
+                                context,
+                              ),
+                              child: Icon(
+                                question.type.getQuestionTypeIcon(),
+                                size: 16,
+                                color: isDisabled
+                                    ? Colors.grey
+                                    : Theme.of(
+                                        context,
+                                      ).colorScheme.onSurfaceVariant,
+                              ),
+                            ),
+                            if (question.options.isNotEmpty)
+                              Text(
+                                AppLocalizations.of(
+                                  context,
+                                )!.optionsCount(question.options.length),
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w500,
+                                  color: isDisabled
+                                      ? Colors.grey
+                                      : Theme.of(
+                                          context,
+                                        ).colorScheme.onSurfaceVariant,
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ],
-              ListTile(
-                contentPadding: EdgeInsets.only(
-                  top: isDisabled ? 0 : 8,
-                  left: 16,
-                  right: 16,
-                  bottom: 8,
-                ),
-                enabled: !isDisabled,
-                title: LaTeXText(
-                  question.text,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
-                    decoration: isDisabled ? TextDecoration.lineThrough : null,
-                    color: isDisabled ? Colors.grey : null,
-                  ),
-                  maxLines: 2,
-                ),
-                subtitle: Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Wrap(
-                    alignment: WrapAlignment.start,
-                    spacing: 6,
-                    children: [
+                    if (question.explanation.isNotEmpty)
                       Tooltip(
-                        message: AppLocalizations.of(context)!.optionsTooltip,
+                        message: AppLocalizations.of(
+                          context,
+                        )!.explanationTooltip,
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 8,
@@ -143,216 +197,172 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                               ).colorScheme.outline.withValues(alpha: 0.3),
                             ),
                           ),
-                          child: Row(
-                            spacing: 8,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Tooltip(
-                                message: question.type.getQuestionTypeLabel(
-                                  context,
-                                ),
-                                child: Icon(
-                                  question.type.getQuestionTypeIcon(),
-                                  size: 16,
-                                  color: isDisabled
-                                      ? Colors.grey
-                                      : Theme.of(
-                                          context,
-                                        ).colorScheme.onSurfaceVariant,
-                                ),
-                              ),
-                              if (question.options.isNotEmpty)
-                                Text(
-                                  AppLocalizations.of(
+                          child: Icon(
+                            Icons.lightbulb,
+                            size: 16,
+                            color: isDisabled
+                                ? Colors.grey
+                                : Theme.of(
                                     context,
-                                  )!.optionsCount(question.options.length),
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w500,
-                                    color: isDisabled
-                                        ? Colors.grey
-                                        : Theme.of(
-                                            context,
-                                          ).colorScheme.onSurfaceVariant,
-                                  ),
-                                ),
-                            ],
+                                  ).colorScheme.onSurfaceVariant,
                           ),
                         ),
                       ),
-                      if (question.explanation.isNotEmpty)
-                        Tooltip(
+                    if (question.image != null)
+                      Tooltip(
+                        message: AppLocalizations.of(context)!.imageTooltip,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 2,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.outline.withValues(alpha: 0.3),
+                            ),
+                          ),
+                          child: Icon(
+                            Icons.image,
+                            size: 16,
+                            color: isDisabled
+                                ? Colors.grey
+                                : Theme.of(
+                                    context,
+                                  ).colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ),
+
+                    if (_aiAssistantEnabled && !isDisabled)
+                      GestureDetector(
+                        onTap: () async {
+                          final isAiAvailable = await ConfigurationService
+                              .instance
+                              .getIsAiAvailable();
+
+                          if (!mounted) return;
+
+                          if (!isAiAvailable) {
+                            context.presentSnackBar(
+                              AppLocalizations.of(context)!.aiApiKeyRequired,
+                            );
+                          } else {
+                            showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (context) =>
+                                  AIQuestionDialog(question: question),
+                            );
+                          }
+                        },
+                        child: Tooltip(
                           message: AppLocalizations.of(
                             context,
-                          )!.explanationTooltip,
+                          )!.aiButtonTooltip,
                           child: Container(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 8,
-                              vertical: 2,
+                              vertical: 3,
                             ),
                             decoration: BoxDecoration(
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.primaryContainer,
                               borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: Theme.of(
-                                  context,
-                                ).colorScheme.outline.withValues(alpha: 0.3),
-                              ),
                             ),
-                            child: Icon(
-                              Icons.lightbulb,
-                              size: 16,
-                              color: isDisabled
-                                  ? Colors.grey
-                                  : Theme.of(
-                                      context,
-                                    ).colorScheme.onSurfaceVariant,
-                            ),
-                          ),
-                        ),
-                      if (question.image != null)
-                        Tooltip(
-                          message: AppLocalizations.of(context)!.imageTooltip,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 2,
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: Theme.of(
-                                  context,
-                                ).colorScheme.outline.withValues(alpha: 0.3),
-                              ),
-                            ),
-                            child: Icon(
-                              Icons.image,
-                              size: 16,
-                              color: isDisabled
-                                  ? Colors.grey
-                                  : Theme.of(
-                                      context,
-                                    ).colorScheme.onSurfaceVariant,
-                            ),
-                          ),
-                        ),
-
-                      if (_aiAssistantEnabled && !isDisabled)
-                        GestureDetector(
-                          onTap: () async {
-                            final isAiAvailable = await ConfigurationService
-                                .instance
-                                .getIsAiAvailable();
-
-                            if (!mounted) return;
-
-                            if (!isAiAvailable) {
-                              context.presentSnackBar(
-                                AppLocalizations.of(context)!.aiApiKeyRequired,
-                              );
-                            } else {
-                              showDialog(
-                                context: context,
-                                barrierDismissible: false,
-                                builder: (context) =>
-                                    AIQuestionDialog(question: question),
-                              );
-                            }
-                          },
-                          child: Tooltip(
-                            message: AppLocalizations.of(
-                              context,
-                            )!.aiButtonTooltip,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                                vertical: 3,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Theme.of(
-                                  context,
-                                ).colorScheme.primaryContainer,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                spacing: 6,
-                                children: [
-                                  Text(
-                                    AppLocalizations.of(context)!.aiButtonText,
-                                    style: TextStyle(
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.onPrimaryContainer,
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.auto_awesome,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              spacing: 6,
+                              children: [
+                                Text(
+                                  AppLocalizations.of(context)!.aiButtonText,
+                                  style: TextStyle(
                                     color: Theme.of(
                                       context,
                                     ).colorScheme.onPrimaryContainer,
-                                    size: 16,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                ],
-                              ),
+                                ),
+                                Icon(
+                                  Icons.auto_awesome,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onPrimaryContainer,
+                                  size: 16,
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                    ],
-                  ),
+                      ),
+                  ],
                 ),
-                onTap: () => _editQuestion(question, index),
-                leading: Tooltip(
-                  message: isDisabled
-                      ? AppLocalizations.of(context)!.enableQuestion
-                      : AppLocalizations.of(context)!.disableQuestion,
-                  child: GestureDetector(
-                    onTap: () => _toggleQuestionEnabled(index),
-                    child: Container(
-                      width: 42,
-                      height: 42,
-                      decoration: BoxDecoration(
-                        color: isDisabled
-                            ? Colors.orange.withValues(alpha: 0.1)
-                            : Theme.of(
-                                context,
-                              ).primaryColor.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(80),
-                        border: Border.all(
+              ),
+              onTap: () => _editQuestion(question, index),
+              leading: Row(
+                mainAxisSize: MainAxisSize.min,
+                spacing: 16,
+                children: [
+                  if (widget.isReordering)
+                    ReorderableDragStartListener(
+                      key: ValueKey<Question>(question),
+                      index: index,
+                      child: const Icon(Icons.drag_handle),
+                    ),
+                  Tooltip(
+                    message: isDisabled
+                        ? AppLocalizations.of(context)!.enableQuestion
+                        : AppLocalizations.of(context)!.disableQuestion,
+                    child: GestureDetector(
+                      onTap: () => _toggleQuestionEnabled(index),
+                      child: Container(
+                        width: 42,
+                        height: 42,
+                        decoration: BoxDecoration(
                           color: isDisabled
-                              ? Colors.orange.withValues(alpha: 0.3)
+                              ? Colors.orange.withValues(alpha: 0.1)
                               : Theme.of(
                                   context,
-                                ).primaryColor.withValues(alpha: 0.3),
-                          width: 1,
+                                ).primaryColor.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(80),
+                          border: Border.all(
+                            color: isDisabled
+                                ? Colors.orange.withValues(alpha: 0.3)
+                                : Theme.of(
+                                    context,
+                                  ).primaryColor.withValues(alpha: 0.3),
+                            width: 1,
+                          ),
                         ),
-                      ),
-                      child: Center(
-                        child: isDisabled
-                            ? const Icon(
-                                Icons.pause_circle_outline,
-                                color: Colors.orange,
-                                size: 16,
-                              )
-                            : Text(
-                                '${index + 1}',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 14,
+                        child: Center(
+                          child: isDisabled
+                              ? const Icon(
+                                  Icons.pause_circle_outline,
+                                  color: Colors.orange,
+                                  size: 16,
+                                )
+                              : Text(
+                                  '${index + 1}',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: 14,
+                                  ),
                                 ),
-                              ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                isThreeLine: true,
-                trailing: _buildPopupMenu(question, index),
+                ],
               ),
-            ],
-          ),
+              isThreeLine: true,
+              trailing: _buildPopupMenu(question, index),
+            ),
+          ],
         ),
       ),
     );

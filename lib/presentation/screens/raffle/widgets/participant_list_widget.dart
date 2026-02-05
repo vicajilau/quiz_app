@@ -84,75 +84,63 @@ class ParticipantListWidget extends StatelessWidget {
             const SizedBox(height: 16),
 
             // Participants list
-            Expanded(
-              child: ListView(
-                children: [
-                  if (activeParticipants.isNotEmpty) ...[
-                    Text(
-                      AppLocalizations.of(context)!.activeParticipants,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.green,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    ...activeParticipants.map(
-                      (participant) => Card(
-                        margin: const EdgeInsets.only(bottom: 4),
-                        child: ListTile(
-                          dense: true,
-                          leading: const Icon(
-                            Icons.person,
-                            color: Colors.green,
-                          ),
-                          title: Text(participant.name),
-                          trailing: const Icon(
-                            Icons.check_circle_outline,
-                            color: Colors.green,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-
-                  if (inactiveParticipants.isNotEmpty) ...[
-                    const SizedBox(height: 16),
-                    Text(
-                      AppLocalizations.of(context)!.alreadySelected,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.orange,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    ...inactiveParticipants.map(
-                      (participant) => Card(
-                        margin: const EdgeInsets.only(bottom: 4),
-                        color: Colors.grey[100],
-                        child: ListTile(
-                          dense: true,
-                          leading: const Icon(
-                            Icons.person_off,
-                            color: Colors.grey,
-                          ),
-                          title: Text(
-                            participant.name,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              decoration: TextDecoration.lineThrough,
-                            ),
-                          ),
-                          trailing: const Icon(
-                            Icons.emoji_events,
-                            color: Colors.orange,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ],
+            if (activeParticipants.isNotEmpty) ...[
+              Text(
+                AppLocalizations.of(context)!.activeParticipants,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
+                ),
               ),
-            ),
+              const SizedBox(height: 8),
+              ...activeParticipants.map(
+                (participant) => Card(
+                  margin: const EdgeInsets.only(bottom: 4),
+                  child: ListTile(
+                    dense: true,
+                    leading: const Icon(Icons.person, color: Colors.green),
+                    title: Text(participant.name),
+                    trailing: const Icon(
+                      Icons.check_circle_outline,
+                      color: Colors.green,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+
+            if (inactiveParticipants.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              Text(
+                AppLocalizations.of(context)!.alreadySelected,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.orange,
+                ),
+              ),
+              const SizedBox(height: 8),
+              ...inactiveParticipants.map(
+                (participant) => Card(
+                  margin: const EdgeInsets.only(bottom: 4),
+                  color: Colors.grey[100],
+                  child: ListTile(
+                    dense: true,
+                    leading: const Icon(Icons.person_off, color: Colors.grey),
+                    title: Text(
+                      participant.name,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        decoration: TextDecoration.lineThrough,
+                      ),
+                    ),
+                    trailing: const Icon(
+                      Icons.emoji_events,
+                      color: Colors.orange,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ],
         );
       },

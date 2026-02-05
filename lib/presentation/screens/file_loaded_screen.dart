@@ -49,6 +49,7 @@ class FileLoadedScreen extends StatefulWidget {
 class _FileLoadedScreenState extends State<FileLoadedScreen> {
   late QuizFile cachedQuizFile;
   bool _hasFileChanged = false; // Variable to track file change status
+  bool _isReordering = false;
 
   // Function to check if the file has changed
   void _checkFileChange() {
@@ -422,6 +423,14 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                         context,
                       )!.generateQuestionsWithAI,
                     ),
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _isReordering = !_isReordering;
+                        });
+                      },
+                      icon: const Icon(Icons.swap_vert),
+                    ),
                     // Import Action
                     IconButton(
                       onPressed: () async {
@@ -467,9 +476,11 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                   child: QuestionListWidget(
                     quizFile: cachedQuizFile,
                     onFileChange: _checkFileChange,
+                    isReordering: _isReordering,
                   ),
                 ),
-                floatingActionButton: cachedQuizFile.questions.isNotEmpty
+                floatingActionButton:
+                    cachedQuizFile.questions.isNotEmpty && !_isReordering
                     ? FloatingActionButton(
                         tooltip: AppLocalizations.of(context)!.executeTooltip,
                         onPressed: () async {
@@ -513,6 +524,23 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                           }
                         },
                         child: const Icon(Icons.play_arrow),
+                      )
+                    : null,
+                bottomNavigationBar: _isReordering
+                    ? Container(
+                        padding: const EdgeInsets.all(16),
+                        width: double.infinity,
+                        color: Theme.of(context).colorScheme.surface,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              _isReordering = false;
+                            });
+                          },
+                          child: Text(
+                            AppLocalizations.of(context)!.acceptButton,
+                          ),
+                        ),
                       )
                     : null,
               );
