@@ -887,7 +887,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get raffleTitle => 'Verlosung';
 
   @override
-  String get raffleTooltip => 'Verlosung';
+  String get raffleTooltip => 'Verlosung starten';
 
   @override
   String get participantListTitle => 'Teilnehmerliste';

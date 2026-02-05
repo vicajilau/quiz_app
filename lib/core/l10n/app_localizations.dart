@@ -1619,7 +1619,7 @@ abstract class AppLocalizations {
   /// Tooltip of the raffle button in the app bar
   ///
   /// In en, this message translates to:
-  /// **'Raffle'**
+  /// **'Start raffle'**
   String get raffleTooltip;
 
   /// Title of the participant list section

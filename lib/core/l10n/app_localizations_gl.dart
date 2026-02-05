@@ -886,7 +886,7 @@ class AppLocalizationsGl extends AppLocalizations {
   String get raffleTitle => 'Sorteo';
 
   @override
-  String get raffleTooltip => 'Abrir pantalla de sorteo';
+  String get raffleTooltip => 'Comezar sorteo';
 
   @override
   String get participantListTitle => 'Lista de Participantes';

@@ -882,7 +882,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get raffleTitle => 'Sorteio';
 
   @override
-  String get raffleTooltip => 'Sorteio';
+  String get raffleTooltip => 'Iniciar sorteio';
 
   @override
   String get participantListTitle => 'Lista de participantes';

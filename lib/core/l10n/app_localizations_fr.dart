@@ -886,7 +886,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get raffleTitle => 'Tirage au sort';
 
   @override
-  String get raffleTooltip => 'Tirage au sort';
+  String get raffleTooltip => 'Commencer le tirage';
 
   @override
   String get participantListTitle => 'Liste des participants';
