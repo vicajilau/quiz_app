@@ -109,33 +109,6 @@ class _HomeScreenState extends State<HomeScreen> {
               appBar: AppBar(
                 title: Text(AppLocalizations.of(context)!.titleAppBar),
                 actions: [
-                  // Disable the create and load button if a file is loading
-                  Tooltip(
-                    message: AppLocalizations.of(context)!.createFileTooltip,
-                    child: TextButton(
-                      onPressed: _isLoading
-                          ? null
-                          : () => _showCreateQuizFileDialog(context),
-                      child: Text(
-                        AppLocalizations.of(context)!.create,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                  Tooltip(
-                    message: AppLocalizations.of(context)!.loadFileTooltip,
-                    child: TextButton(
-                      onPressed: _isLoading
-                          ? null
-                          : () => context.read<FileBloc>().add(
-                              QuizFilePickRequested(),
-                            ),
-                      child: Text(
-                        AppLocalizations.of(context)!.load,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
                   // Configuration button
                   Tooltip(
                     message: AppLocalizations.of(
@@ -149,6 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ],
+                centerTitle: false,
               ),
               body: Column(
                 children: [
