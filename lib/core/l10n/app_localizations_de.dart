@@ -1186,4 +1186,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get askAiAssistant => 'KI-Assistenten fragen';
+
+  @override
+  String get sorteosLabel => 'Raffles';
 }

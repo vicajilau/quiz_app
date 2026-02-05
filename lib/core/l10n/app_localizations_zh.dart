@@ -1120,4 +1120,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get askAiAssistant => '询问 AI 助手';
+
+  @override
+  String get sorteosLabel => 'Raffles';
 }

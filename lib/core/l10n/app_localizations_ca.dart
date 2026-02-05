@@ -1186,4 +1186,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get askAiAssistant => 'Pregunta a l\'assistent d\'IA';
+
+  @override
+  String get sorteosLabel => 'Raffles';
 }

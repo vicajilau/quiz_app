@@ -1158,4 +1158,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get askAiAssistant => 'اسأل مساعد الذكاء الاصطناعي';
+
+  @override
+  String get sorteosLabel => 'Raffles';
 }

@@ -1182,4 +1182,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get askAiAssistant => 'Perguntar ao Assistente de IA';
+
+  @override
+  String get sorteosLabel => 'Raffles';
 }

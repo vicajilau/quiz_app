@@ -845,7 +845,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get evaluateWithAI => 'Evaluar con IA';
 
   @override
-  String get aiEvaluation => 'Evaluación de IA';
+  String get aiEvaluation => 'Evaluación IA';
 
   @override
   String aiEvaluationError(String error) {
@@ -1182,4 +1182,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get askAiAssistant => 'Preguntar a la IA';
+
+  @override
+  String get sorteosLabel => 'Sorteos';
 }

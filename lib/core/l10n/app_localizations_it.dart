@@ -1177,4 +1177,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get askAiAssistant => 'Chiedi all\'assistente AI';
+
+  @override
+  String get sorteosLabel => 'Raffles';
 }
