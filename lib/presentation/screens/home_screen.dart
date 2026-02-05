@@ -201,20 +201,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   Container(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
-                      spacing: 16,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: 8,
                       children: [
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton.icon(
-                            onPressed: _isLoading
-                                ? null
-                                : () => context.go('/raffle'),
-                            icon: const Icon(Icons.casino),
-                            label: Text(
-                              AppLocalizations.of(context)!.sorteosLabel,
-                            ),
-                          ),
-                        ),
                         SizedBox(
                           width: double.infinity,
                           child: OutlinedButton.icon(
@@ -240,6 +229,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                   },
                             icon: const Icon(Icons.file_upload),
                             label: Text(AppLocalizations.of(context)!.load),
+                          ),
+                        ),
+
+                        SizedBox(
+                          width: double.infinity,
+                          child: OutlinedButton.icon(
+                            onPressed: _isLoading
+                                ? null
+                                : () => context.go('/raffle'),
+                            icon: const Icon(Icons.casino),
+                            label: Text(
+                              AppLocalizations.of(context)!.sorteosLabel,
+                            ),
                           ),
                         ),
                       ],
