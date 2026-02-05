@@ -2,8 +2,8 @@ import 'package:quiz_app/core/debug_print.dart';
 import 'package:quiz_app/core/service_locator.dart';
 import 'package:quiz_app/data/services/file_service/i_file_service.dart';
 
-import '../../domain/models/quiz/quiz_file.dart';
-import '../../domain/models/quiz/quiz_metadata.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_metadata.dart';
 
 /// The `QuizFileRepository` class manages file-related operations such as loading, saving,
 /// and selecting quiz files. It delegates these tasks to an instance of `FileService`.
@@ -124,7 +124,7 @@ class QuizFileRepository {
 
     final hasChanged = originalFile != cachedQuizFile;
     printInDebug(
-      "File changed: $hasChanged (Original questions: ${originalFile.questions.length}, Cached questions: ${cachedQuizFile.questions.length})",
+      'File changed: $hasChanged (Original questions: ${originalFile.questions.length}, Cached questions: ${cachedQuizFile.questions.length})',
     );
 
     return hasChanged;

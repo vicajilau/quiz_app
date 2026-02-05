@@ -8,8 +8,8 @@ import 'package:platform_detail/platform_detail.dart';
 import 'package:quiz_app/data/services/file_service/i_file_service.dart';
 import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 
-import '../../../domain/models/custom_exceptions/bad_quiz_file_error_type.dart';
-import '../../../domain/models/quiz/quiz_file.dart';
+import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_error_type.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 
 /// The `QuizFileService` class provides functionalities for managing `.quiz` files.
 /// This includes reading a `.quiz` file, saving a `QuizFile` object to the file system,
@@ -28,7 +28,7 @@ class QuizFileService implements IFileService {
   @override
   Future<QuizFile> readQuizFile(String filePath) async {
     if (!filePath.endsWith('.quiz')) {
-      throw BadQuizFileException(type: BadQuizFileErrorType.invalidExtension);
+      throw const BadQuizFileException(type: BadQuizFileErrorType.invalidExtension);
     }
     // Create a File object for the provided file path
     final file = File(filePath);

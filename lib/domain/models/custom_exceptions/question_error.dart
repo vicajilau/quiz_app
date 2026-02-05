@@ -25,15 +25,15 @@ class QuestionError implements ProcessError {
   String getDescriptionForInputError(BuildContext context) {
     switch (errorType) {
       case QuestionErrorType.emptyText:
-        return "Question text cannot be empty";
+        return 'Question text cannot be empty';
       case QuestionErrorType.duplicatedText:
-        return "Question text already exists";
+        return 'Question text already exists';
       case QuestionErrorType.insufficientOptions:
-        return "Question must have at least 2 options";
+        return 'Question must have at least 2 options';
       case QuestionErrorType.invalidCorrectAnswers:
-        return "Invalid correct answer indices";
+        return 'Invalid correct answer indices';
       case QuestionErrorType.emptyOption:
-        return "Option text cannot be empty";
+        return 'Option text cannot be empty';
     }
   }
 

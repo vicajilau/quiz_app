@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../data/services/ai/ai_question_generation_service.dart';
-import '../../../../core/l10n/app_localizations.dart';
+import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
 
 class AiQuestionTypeSelector extends StatelessWidget {
   final Set<AiQuestionType> selectedTypes;

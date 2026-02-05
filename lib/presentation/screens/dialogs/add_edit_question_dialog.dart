@@ -4,13 +4,13 @@ import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 
-import '../../../../core/l10n/app_localizations.dart';
-import '../../utils/question_translation_helper.dart';
-import '../widgets/add_edit_question/question_image_section.dart';
-import '../widgets/add_edit_question/question_options_section.dart';
-import 'mixins/option_management_mixin.dart';
-import 'mixins/validation_mixin.dart';
-import '../../widgets/latex_text.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/presentation/utils/question_translation_helper.dart';
+import 'package:quiz_app/presentation/screens/widgets/add_edit_question/question_image_section.dart';
+import 'package:quiz_app/presentation/screens/widgets/add_edit_question/question_options_section.dart';
+import 'package:quiz_app/presentation/screens/dialogs/mixins/option_management_mixin.dart';
+import 'package:quiz_app/presentation/screens/dialogs/mixins/validation_mixin.dart';
+import 'package:quiz_app/presentation/widgets/latex_text.dart';
 
 /// Dialog widget for creating or editing a Question.
 class AddEditQuestionDialog extends StatefulWidget {

@@ -12,13 +12,13 @@ void main() {
         'If it is staying on a single line, then there is a bug in the implementation or configuration.';
 
     await tester.pumpWidget(
-      MaterialApp(
+      const MaterialApp(
         home: Center(
           child: SizedBox(
             width: 200, // Narrow width to force wrapping
             child: LaTeXText(
               longText,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 20,
               ), // Large font to ensure it needs more than 200px
             ),
@@ -50,13 +50,13 @@ void main() {
         r'More text here to ensure it definitely wraps $x^2 + y^2 = z^2$.';
 
     await tester.pumpWidget(
-      MaterialApp(
+      const MaterialApp(
         home: Center(
           child: SizedBox(
             width: 200,
             child: LaTeXText(
               longLatexText,
-              style: const TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 20),
             ),
           ),
         ),

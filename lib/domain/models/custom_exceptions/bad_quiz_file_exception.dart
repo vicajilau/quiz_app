@@ -1,4 +1,4 @@
-import 'bad_quiz_file_error_type.dart';
+import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_error_type.dart';
 
 /// Exception thrown when there are issues with a Quiz file.
 class BadQuizFileException implements Exception {

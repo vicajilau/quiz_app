@@ -1,4 +1,4 @@
-import '../../../domain/models/raffle/raffle_session.dart';
+import 'package:quiz_app/domain/models/raffle/raffle_session.dart';
 
 /// Abstract class representing the base state for raffle operations.
 abstract class RaffleState {}

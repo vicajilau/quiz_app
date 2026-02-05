@@ -1,5 +1,5 @@
-import '../../../domain/models/quiz/question.dart';
-import '../../../domain/models/quiz/question_type.dart';
+import 'package:quiz_app/domain/models/quiz/question.dart';
+import 'package:quiz_app/domain/models/quiz/question_type.dart';
 
 /// Abstract class representing the base state for quiz execution.
 abstract class QuizExecutionState {}

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
-import '../../core/l10n/app_localizations.dart';
-import '../../data/services/ai/ai_service.dart';
-import '../../data/services/ai/ai_service_selector.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/data/services/ai/ai_service.dart';
+import 'package:quiz_app/data/services/ai/ai_service_selector.dart';
 
 class AiServiceModelSelector extends StatefulWidget {
   final String? initialService;

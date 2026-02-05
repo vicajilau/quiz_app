@@ -13,21 +13,21 @@ import 'package:quiz_app/presentation/screens/widgets/question_list_widget.dart'
 import 'package:quiz_app/routes/app_router.dart';
 import 'package:platform_detail/platform_detail.dart';
 
-import '../../core/l10n/app_localizations.dart';
-import '../../core/extensions/string_extensions.dart';
-import '../../core/service_locator.dart';
-import '../../data/services/configuration_service.dart';
-import '../../domain/use_cases/check_file_changes_use_case.dart';
-import '../blocs/file_bloc/file_bloc.dart';
-import '../blocs/file_bloc/file_event.dart';
-import '../blocs/file_bloc/file_state.dart';
-import 'dialogs/question_count_selection_dialog.dart';
-import 'dialogs/import_questions_dialog.dart';
-import 'dialogs/ai_generate_questions_dialog.dart';
-import 'widgets/request_file_name_dialog.dart';
-import 'dialogs/settings_dialog.dart';
-import 'dialogs/quiz_metadata_dialog.dart';
-import '../../data/services/ai/ai_question_generation_service.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/extensions/string_extensions.dart';
+import 'package:quiz_app/core/service_locator.dart';
+import 'package:quiz_app/data/services/configuration_service.dart';
+import 'package:quiz_app/domain/use_cases/check_file_changes_use_case.dart';
+import 'package:quiz_app/presentation/blocs/file_bloc/file_bloc.dart';
+import 'package:quiz_app/presentation/blocs/file_bloc/file_event.dart';
+import 'package:quiz_app/presentation/blocs/file_bloc/file_state.dart';
+import 'package:quiz_app/presentation/screens/dialogs/question_count_selection_dialog.dart';
+import 'package:quiz_app/presentation/screens/dialogs/import_questions_dialog.dart';
+import 'package:quiz_app/presentation/screens/dialogs/ai_generate_questions_dialog.dart';
+import 'package:quiz_app/presentation/screens/widgets/request_file_name_dialog.dart';
+import 'package:quiz_app/presentation/screens/dialogs/settings_dialog.dart';
+import 'package:quiz_app/presentation/screens/dialogs/quiz_metadata_dialog.dart';
+import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
 
 class FileLoadedScreen extends StatefulWidget {
   final FileBloc fileBloc;
@@ -495,7 +495,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
     if (PlatformDetail.isWeb) {
       final result = await showDialog<String>(
         context: context,
-        builder: (_) => RequestFileNameDialog(format: '.quiz'),
+        builder: (_) => const RequestFileNameDialog(format: '.quiz'),
       );
       fileName = result;
     } else {

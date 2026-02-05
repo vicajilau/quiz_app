@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
-import '../../../../../core/l10n/app_localizations.dart';
-import '../../../widgets/latex_text.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/presentation/widgets/latex_text.dart';
 
 /// Separate widget for each option row to optimize rendering
 class QuestionOptionRow extends StatefulWidget {
@@ -122,7 +122,7 @@ class _QuestionOptionRowState extends State<QuestionOptionRow>
                   controller: widget.controller,
                   decoration: InputDecoration(
                     labelText:
-                        "${localizations.optionLabel} ${widget.index + 1}",
+                        '${localizations.optionLabel} ${widget.index + 1}',
                     border: const OutlineInputBorder(),
                     errorText:
                         widget.optionsError != null &&

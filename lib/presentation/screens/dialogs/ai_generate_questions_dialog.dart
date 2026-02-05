@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/extensions/string_extension.dart';
-import '../../../core/l10n/app_localizations.dart';
-import '../../../data/services/configuration_service.dart';
-import '../../../data/services/ai/ai_question_generation_service.dart';
-import '../../../data/services/ai/ai_service.dart';
-import '../../../domain/models/ai/ai_file_attachment.dart';
-import '../../../domain/models/ai/ai_generation_stored_settings.dart';
-import '../../widgets/ai_content_info_box.dart';
-import '../../widgets/ai_file_picker_section.dart';
-import '../../widgets/ai_question_mode_indicator.dart';
-import '../../widgets/ai_service_model_selector.dart';
-import '../../widgets/ai_question_type_selector.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/data/services/configuration_service.dart';
+import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
+import 'package:quiz_app/data/services/ai/ai_service.dart';
+import 'package:quiz_app/domain/models/ai/ai_file_attachment.dart';
+import 'package:quiz_app/domain/models/ai/ai_generation_stored_settings.dart';
+import 'package:quiz_app/presentation/widgets/ai_content_info_box.dart';
+import 'package:quiz_app/presentation/widgets/ai_file_picker_section.dart';
+import 'package:quiz_app/presentation/widgets/ai_question_mode_indicator.dart';
+import 'package:quiz_app/presentation/widgets/ai_service_model_selector.dart';
+import 'package:quiz_app/presentation/widgets/ai_question_type_selector.dart';
 
 enum AIQuestionMode { topic, content, file }
 

@@ -1,5 +1,5 @@
-import 'question_type.dart';
-import '../../../core/constants/question_constants.dart';
+import 'package:quiz_app/domain/models/quiz/question_type.dart';
+import 'package:quiz_app/core/constants/question_constants.dart';
 
 /// Represents a question in a quiz.
 class Question {

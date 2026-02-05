@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../core/l10n/app_localizations.dart';
-import '../screens/dialogs/ai_generate_questions_dialog.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/presentation/screens/dialogs/ai_generate_questions_dialog.dart';
 
 class AiQuestionModeIndicator extends StatelessWidget {
   final AIQuestionMode mode;

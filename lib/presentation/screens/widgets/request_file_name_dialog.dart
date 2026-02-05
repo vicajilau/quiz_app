@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
 
 /// A dialog widget for requesting a file name from the user.
 class RequestFileNameDialog extends StatefulWidget {
@@ -46,7 +46,7 @@ class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
     // Check if the filename ends with '.quiz'; if not, append it.
     if (!filename.endsWith(widget.format)) {
       _controller.text =
-          "$filename${widget.format}"; // Update the text with the correct extension.
+          '$filename${widget.format}'; // Update the text with the correct extension.
     }
 
     setState(() {

@@ -5,16 +5,16 @@ import 'package:go_router/go_router.dart';
 import 'package:platform_detail/platform_detail.dart';
 import 'package:quiz_app/presentation/screens/raffle/widgets/logo_widget.dart';
 import 'package:quiz_app/routes/app_router.dart';
-import '../../../core/l10n/app_localizations.dart';
-import '../../../domain/models/raffle/raffle_logo.dart';
-import '../../blocs/raffle_bloc/raffle_bloc.dart';
-import '../../blocs/raffle_bloc/raffle_event.dart';
-import '../../blocs/raffle_bloc/raffle_state.dart';
-import 'widgets/participant_input_widget.dart';
-import 'widgets/participant_list_widget.dart';
-import 'widgets/raffle_controls_widget.dart';
-import 'widgets/winner_dialog.dart';
-import 'widgets/reset_raffle_dialog.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/domain/models/raffle/raffle_logo.dart';
+import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_bloc.dart';
+import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_event.dart';
+import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_state.dart';
+import 'package:quiz_app/presentation/screens/raffle/widgets/participant_input_widget.dart';
+import 'package:quiz_app/presentation/screens/raffle/widgets/participant_list_widget.dart';
+import 'package:quiz_app/presentation/screens/raffle/widgets/raffle_controls_widget.dart';
+import 'package:quiz_app/presentation/screens/raffle/widgets/winner_dialog.dart';
+import 'package:quiz_app/presentation/screens/raffle/widgets/reset_raffle_dialog.dart';
 
 class RaffleScreen extends StatelessWidget {
   const RaffleScreen({super.key});
@@ -187,7 +187,7 @@ class _RaffleScreenContent extends StatelessWidget {
               children: [
                 Text(
                   AppLocalizations.of(context)!.participantListTitle,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 16),
                 const Expanded(child: ParticipantInputWidget()),
@@ -208,7 +208,7 @@ class _RaffleScreenContent extends StatelessWidget {
               children: [
                 Text(
                   AppLocalizations.of(context)!.participants,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 16),
                 const Expanded(child: ParticipantListWidget()),
@@ -228,19 +228,19 @@ class _RaffleScreenContent extends StatelessWidget {
         children: [
           Text(
             AppLocalizations.of(context)!.participantListTitle,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),
-          SizedBox(height: 300, child: const ParticipantInputWidget()),
+          const SizedBox(height: 300, child: ParticipantInputWidget()),
           const SizedBox(height: 24),
           const RaffleControlsWidget(),
           const SizedBox(height: 24),
           Text(
             AppLocalizations.of(context)!.activeParticipants,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),
-          SizedBox(height: 200, child: const ParticipantListWidget()),
+          const SizedBox(height: 200, child: ParticipantListWidget()),
         ],
       ),
     );
@@ -304,9 +304,9 @@ class _RaffleScreenContent extends StatelessWidget {
                     logo: currentLogo!,
                     fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) =>
-                        Icon(Icons.broken_image, color: Colors.grey),
+                        const Icon(Icons.broken_image, color: Colors.grey),
                     loadingBuilder: (context) =>
-                        Center(child: CircularProgressIndicator()),
+                        const Center(child: CircularProgressIndicator()),
                   ),
                 ),
               ),
@@ -319,7 +319,7 @@ class _RaffleScreenContent extends StatelessWidget {
             ],
             Text(
               AppLocalizations.of(context)!.logoUrlHint,
-              style: TextStyle(fontSize: 14),
+              style: const TextStyle(fontSize: 14),
             ),
           ],
         ),
@@ -338,7 +338,7 @@ class _RaffleScreenContent extends StatelessWidget {
               },
               child: Text(
                 AppLocalizations.of(context)!.removeLogo,
-                style: TextStyle(color: Colors.red),
+                style: const TextStyle(color: Colors.red),
               ),
             ),
           // Select new logo button

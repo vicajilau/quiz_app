@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/l10n/app_localizations.dart';
-import '../../../blocs/raffle_bloc/raffle_bloc.dart';
-import '../../../blocs/raffle_bloc/raffle_state.dart';
-import '../../../../domain/models/raffle/raffle_session.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_bloc.dart';
+import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_state.dart';
+import 'package:quiz_app/domain/models/raffle/raffle_session.dart';
 
 class ParticipantListWidget extends StatelessWidget {
   const ParticipantListWidget({super.key});

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
-import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
-import 'quiz_progress_indicator.dart';
-import 'quiz_question_header.dart';
-import 'quiz_options_wrapper.dart';
-import 'quiz_navigation_buttons.dart';
-import '../../../core/service_locator.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
+import 'package:quiz_app/presentation/screens/quiz_execution/quiz_progress_indicator.dart';
+import 'package:quiz_app/presentation/screens/quiz_execution/quiz_question_header.dart';
+import 'package:quiz_app/presentation/screens/quiz_execution/quiz_options_wrapper.dart';
+import 'package:quiz_app/presentation/screens/quiz_execution/quiz_navigation_buttons.dart';
+import 'package:quiz_app/core/service_locator.dart';
 
 class QuizInProgressView extends StatefulWidget {
   final QuizExecutionInProgress state;

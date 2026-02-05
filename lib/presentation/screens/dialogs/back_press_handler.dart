@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
-import '../../blocs/quiz_execution_bloc/quiz_execution_state.dart';
-import 'abandon_quiz_dialog.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
+import 'package:quiz_app/presentation/screens/dialogs/abandon_quiz_dialog.dart';
 
 class BackPressHandler {
   static Future<void> handle(

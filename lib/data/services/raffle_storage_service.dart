@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../domain/models/raffle/raffle_logo.dart';
+import 'package:quiz_app/domain/models/raffle/raffle_logo.dart';
 
 /// Service for handling raffle-specific persistent storage
 class RaffleStorageService {

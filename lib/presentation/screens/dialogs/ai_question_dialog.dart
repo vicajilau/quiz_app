@@ -8,9 +8,9 @@ import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
 import 'package:quiz_app/presentation/widgets/ai_service_model_selector.dart';
 
-import '../../../../domain/models/ai/chat_message.dart';
-import 'widgets/ai_chat_bubble.dart';
-import 'widgets/question_context_widget.dart';
+import 'package:quiz_app/domain/models/ai/chat_message.dart';
+import 'package:quiz_app/presentation/screens/dialogs/widgets/ai_chat_bubble.dart';
+import 'package:quiz_app/presentation/screens/dialogs/widgets/question_context_widget.dart';
 
 class AIQuestionDialog extends StatefulWidget {
   final Question question;
@@ -383,7 +383,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                                 ),
                               ),
                             )
-                          : Icon(Icons.send),
+                          : const Icon(Icons.send),
                     );
                   },
                 ),

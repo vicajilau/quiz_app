@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/l10n/app_localizations.dart';
-import '../../../../domain/models/quiz/question.dart';
-import '../../dialogs/ai_question_dialog.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/domain/models/quiz/question.dart';
+import 'package:quiz_app/presentation/screens/dialogs/ai_question_dialog.dart';
 
 /// A button that triggers the AI Assistant dialog for a specific question.
 ///

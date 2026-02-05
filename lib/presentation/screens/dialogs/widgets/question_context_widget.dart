@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../core/l10n/app_localizations.dart';
-import '../../../../domain/models/quiz/question.dart';
-import '../../../../domain/models/quiz/question_type.dart';
-import '../../../widgets/latex_text.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/domain/models/quiz/question.dart';
+import 'package:quiz_app/domain/models/quiz/question_type.dart';
+import 'package:quiz_app/presentation/widgets/latex_text.dart';
 
 /// A widget that displays the context of the question being discussed.
 ///
@@ -49,7 +49,7 @@ class QuestionContextWidget extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 4),
                 child: LaTeXText(
-                  "$letter) $option",
+                  '$letter) $option',
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               );

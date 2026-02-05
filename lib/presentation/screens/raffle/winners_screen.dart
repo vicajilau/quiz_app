@@ -4,14 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:platform_detail/platform_detail.dart';
 import 'package:quiz_app/routes/app_router.dart';
-import '../../../core/l10n/app_localizations.dart';
-import '../../../../domain/models/raffle/raffle_winner.dart';
-import '../../../../domain/models/raffle/raffle_logo.dart';
-import '../../blocs/raffle_bloc/raffle_bloc.dart';
-import '../../blocs/raffle_bloc/raffle_state.dart';
-import 'widgets/logo_widget.dart';
-import 'widgets/clear_winners_dialog.dart';
-import 'widgets/reset_raffle_dialog.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/domain/models/raffle/raffle_winner.dart';
+import 'package:quiz_app/domain/models/raffle/raffle_logo.dart';
+import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_bloc.dart';
+import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_state.dart';
+import 'package:quiz_app/presentation/screens/raffle/widgets/logo_widget.dart';
+import 'package:quiz_app/presentation/screens/raffle/widgets/clear_winners_dialog.dart';
+import 'package:quiz_app/presentation/screens/raffle/widgets/reset_raffle_dialog.dart';
 
 class WinnersScreen extends StatelessWidget {
   const WinnersScreen({super.key});
