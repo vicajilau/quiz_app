@@ -37,9 +37,7 @@ class ServiceLocator {
     getIt.registerFactory<FileBloc>(
       () => FileBloc(fileRepository: getIt<QuizFileRepository>()),
     );
-    getIt.registerFactory<QuizExecutionBloc>(
-      () => QuizExecutionBloc(),
-    );
+    getIt.registerFactory<QuizExecutionBloc>(() => QuizExecutionBloc());
   }
 
   // Function to register or update QuizFile in GetIt
@@ -65,5 +63,4 @@ class ServiceLocator {
     }
     return null;
   }
-
 }
