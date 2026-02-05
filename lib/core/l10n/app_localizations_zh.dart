@@ -1120,4 +1120,16 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get askAiAssistant => '询问 AI 助手';
+
+  @override
+  String get sorteosLabel => 'Raffles';
+
+  @override
+  String get edit => '编辑';
+
+  @override
+  String get enable => '启用';
+
+  @override
+  String get disable => '禁用';
 }

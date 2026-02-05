@@ -1,4 +1,5 @@
 {
+  "@@locale": "fr",
   "titleAppBar": "Quiz - Simulateur d'Examens",
   "@titleAppBar": {
     "description": "Titre de l'application affiché dans l'AppBar."
@@ -222,10 +223,6 @@
   "finishQuizConfirmation": "Êtes-vous sûr de vouloir terminer le quiz ? Vous ne pourrez plus modifier vos réponses après.",
   "@finishQuizConfirmation": {
     "description": "Message de confirmation pour terminer le quiz"
-  },
-  "cancel": "Annuler",
-  "@cancel": {
-    "description": "Texte du bouton annuler"
   },
   "abandonQuiz": "Abandonner le Quiz",
   "@abandonQuiz": {
@@ -472,10 +469,6 @@
   "optionsLabel": "Options",
   "@optionsLabel": {
     "description": "Libellé pour les options dans la boîte de dialogue IA"
-  },
-  "explanationLabel": "Explication",
-  "@explanationLabel": {
-    "description": "Libellé pour l'explication dans la boîte de dialogue IA"
   },
   "studentComment": "Commentaire de l'étudiant",
   "@studentComment": {
@@ -1187,14 +1180,6 @@
   "@noEnabledQuestionsError": {
     "description": "Message d'erreur lors de la tentative de démarrage d'un quiz sans questions activées"
   },
-  "evaluateWithAI": "Évaluer avec l'IA",
-  "@evaluateWithAI": {
-    "description": "Texte du bouton pour évaluer les réponses d'essai avec l'IA"
-  },
-  "aiEvaluation": "Évaluation IA",
-  "@aiEvaluation": {
-    "description": "Titre pour la section d'évaluation IA"
-  },
   "aiEvaluationError": "Erreur lors de l'évaluation de la réponse : {error}",
   "@aiEvaluationError": {
     "description": "Message d'erreur lorsque l'évaluation IA échoue",
@@ -1666,5 +1651,21 @@
   "aiEvaluation": "Évaluation IA",
   "@aiEvaluation": {
     "description": "Label for AI evaluation section"
+  },
+  "sorteosLabel": "Raffles",
+  "@sorteosLabel": {
+    "description": "Label for the raffles button"
+  },
+  "edit": "Modifier",
+  "@edit": {
+    "description": "Button label to edit a question"
+  },
+  "enable": "Activer",
+  "@enable": {
+    "description": "Button label to enable a question"
+  },
+  "disable": "Désactiver",
+  "@disable": {
+    "description": "Button label to disable a question"
   }
 }

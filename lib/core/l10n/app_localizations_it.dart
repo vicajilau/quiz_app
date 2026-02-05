@@ -1177,4 +1177,16 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get askAiAssistant => 'Chiedi all\'assistente AI';
+
+  @override
+  String get sorteosLabel => 'Raffles';
+
+  @override
+  String get edit => 'Modifica';
+
+  @override
+  String get enable => 'Abilita';
+
+  @override
+  String get disable => 'Disabilita';
 }

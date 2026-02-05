@@ -1,4 +1,5 @@
 {
+  "@@locale": "ja",
   "titleAppBar": "クイズ - 試験シミュレーター",
   "@titleAppBar": {
     "description": "Title of the application displayed in the AppBar."
@@ -472,10 +473,6 @@
   "optionsLabel": "選択肢",
   "@optionsLabel": {
     "description": "Label for options in AI dialog"
-  },
-  "explanationLabel": "解説",
-  "@explanationLabel": {
-    "description": "Label for explanation in AI dialog"
   },
   "studentComment": "学生のコメント",
   "@studentComment": {
@@ -1187,14 +1184,6 @@
   "@noEnabledQuestionsError": {
     "description": "有効な質問がない場合のエラーメッセージ"
   },
-  "evaluateWithAI": "AIで評価",
-  "@evaluateWithAI": {
-    "description": "エッセイの回答をAIで評価するボタンのテキスト"
-  },
-  "aiEvaluation": "AI評価",
-  "@aiEvaluation": {
-    "description": "AI評価セクションのタイトル"
-  },
   "aiEvaluationError": "回答の評価中にエラーが発生しました：{error}",
   "@aiEvaluationError": {
     "description": "AI評価が失敗した場合のエラーメッセージ",
@@ -1626,5 +1615,9 @@
   "skip": "スキップ",
   "askAiAssistant": "AIアシスタントに聞く",
   "evaluateWithAI": "AIで評価",
-  "aiEvaluation": "AI評価"
+  "aiEvaluation": "AI評価",
+  "sorteosLabel": "Raffles",
+  "edit": "編集",
+  "enable": "有効化",
+  "disable": "無効化"
 }

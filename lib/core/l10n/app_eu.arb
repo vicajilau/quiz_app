@@ -1,4 +1,5 @@
 {
+  "@@locale": "eu",
   "titleAppBar": "Quiz - Azterketa Simuladorea",
   "@titleAppBar": {
     "description": "AppBar-ean erakutsitako aplikazioaren izenburua."
@@ -472,10 +473,6 @@
   "optionsLabel": "Aukerak",
   "@optionsLabel": {
     "description": "AI elkarrizketan aukeren etiketa"
-  },
-  "explanationLabel": "Azalpena",
-  "@explanationLabel": {
-    "description": "AI elkarrizketan azalpenaren etiketa"
   },
   "studentComment": "Ikaslearen iruzkinak",
   "@studentComment": {
@@ -1187,14 +1184,6 @@
   "@noEnabledQuestionsError": {
     "description": "Errore mezua gaitutako galderarik gabe galdetegia hasi saiatzerakoan"
   },
-  "evaluateWithAI": "AIaz ebaluatu",
-  "@evaluateWithAI": {
-    "description": "Saiakera erantzunak AIaz ebaluatzeko botoiaren testua"
-  },
-  "aiEvaluation": "AI Ebaluazioa",
-  "@aiEvaluation": {
-    "description": "AI ebaluazio atalaren izenburua"
-  },
   "aiEvaluationError": "Errorea erantzuna ebaluatzean: {error}",
   "@aiEvaluationError": {
     "description": "Errore mezua AI ebaluazioak huts egiten duenean",
@@ -1626,5 +1615,9 @@
   "skip": "Saltatu",
   "askAiAssistant": "Galdetu AI Laguntzaileari",
   "evaluateWithAI": "Ebaluatu AIrekin",
-  "aiEvaluation": "AI Ebaluazioa"
+  "aiEvaluation": "AI Ebaluazioa",
+  "sorteosLabel": "Raffles",
+  "edit": "Editatu",
+  "enable": "Gaitu",
+  "disable": "Desgaitu"
 }

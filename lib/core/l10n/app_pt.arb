@@ -1,4 +1,5 @@
 {
+  "@@locale": "pt",
   "titleAppBar": "Quiz - Simulador de Exames",
   "@titleAppBar": {
     "description": "Título da aplicação exibido na AppBar."
@@ -222,10 +223,6 @@
   "finishQuizConfirmation": "Tem certeza de que deseja finalizar o quiz? Você não poderá mais alterar suas respostas depois.",
   "@finishQuizConfirmation": {
     "description": "Mensagem de confirmação para finalizar o quiz"
-  },
-  "cancel": "Cancelar",
-  "@cancel": {
-    "description": "Texto do botão cancelar"
   },
   "abandonQuiz": "Abandonar Quiz",
   "@abandonQuiz": {
@@ -472,10 +469,6 @@
   "optionsLabel": "Opções",
   "@optionsLabel": {
     "description": "Rótulo para opções na caixa de diálogo IA"
-  },
-  "explanationLabel": "Explicação",
-  "@explanationLabel": {
-    "description": "Rótulo para explicação na caixa de diálogo IA"
   },
   "studentComment": "Comentário do estudante",
   "@studentComment": {
@@ -1115,7 +1108,7 @@
   "@aiAssistantDisabled": {
     "description": "Título para diálogo quando assistente IA está desabilitado"
   },
-    "enableAiAssistant": "O assistente de IA está desabilitado. Por favor, habilite-o nas configurações para usar recursos de IA.",
+  "enableAiAssistant": "O assistente de IA está desabilitado. Por favor, habilite-o nas configurações para usar recursos de IA.",
   "@enableAiAssistant": {
     "description": "Mensagem a ser exibida quando o assistente de IA está desabilitado"
   },
@@ -1186,14 +1179,6 @@
   "noEnabledQuestionsError": "Nenhuma pergunta ativada disponível para executar o quiz",
   "@noEnabledQuestionsError": {
     "description": "Mensagem de erro ao tentar iniciar um quiz sem perguntas ativadas"
-  },
-  "evaluateWithAI": "Avaliar com IA",
-  "@evaluateWithAI": {
-    "description": "Texto do botão para avaliar respostas de ensaio com IA"
-  },
-  "aiEvaluation": "Avaliação IA",
-  "@aiEvaluation": {
-    "description": "Título para a seção de avaliação IA"
   },
   "aiEvaluationError": "Erro ao avaliar a resposta: {error}",
   "@aiEvaluationError": {
@@ -1666,5 +1651,21 @@
   "aiEvaluation": "Avaliação da IA",
   "@aiEvaluation": {
     "description": "Label for AI evaluation section"
+  },
+  "sorteosLabel": "Raffles",
+  "@sorteosLabel": {
+    "description": "Label for the raffles button"
+  },
+  "edit": "Editar",
+  "@edit": {
+    "description": "Button label to edit a question"
+  },
+  "enable": "Ativar",
+  "@enable": {
+    "description": "Button label to enable a question"
+  },
+  "disable": "Desativar",
+  "@disable": {
+    "description": "Button label to disable a question"
   }
 }

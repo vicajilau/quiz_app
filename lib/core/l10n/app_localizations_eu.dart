@@ -1179,4 +1179,16 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get askAiAssistant => 'Galdetu AI Laguntzaileari';
+
+  @override
+  String get sorteosLabel => 'Raffles';
+
+  @override
+  String get edit => 'Editatu';
+
+  @override
+  String get enable => 'Gaitu';
+
+  @override
+  String get disable => 'Desgaitu';
 }

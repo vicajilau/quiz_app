@@ -1526,19 +1526,19 @@ abstract class AppLocalizations {
   /// **'Minimum {minWords} words required ({moreNeeded} more needed)'**
   String aiValidationMinWords(int minWords, int moreNeeded);
 
-  /// No description provided for @enableQuestion.
+  /// Button text to enable a question
   ///
   /// In en, this message translates to:
   /// **'Enable question'**
   String get enableQuestion;
 
-  /// No description provided for @disableQuestion.
+  /// Button text to disable a question
   ///
   /// In en, this message translates to:
   /// **'Disable question'**
   String get disableQuestion;
 
-  /// No description provided for @questionDisabled.
+  /// Text indicating that a question is disabled
   ///
   /// In en, this message translates to:
   /// **'Disabled'**
@@ -2143,6 +2143,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ask AI Assistant'**
   String get askAiAssistant;
+
+  /// Label for the raffles button
+  ///
+  /// In en, this message translates to:
+  /// **'Raffles'**
+  String get sorteosLabel;
+
+  /// Button label to edit a question
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// Button label to enable a question
+  ///
+  /// In en, this message translates to:
+  /// **'Enable'**
+  String get enable;
+
+  /// Button label to disable a question
+  ///
+  /// In en, this message translates to:
+  /// **'Disable'**
+  String get disable;
 }
 
 class _AppLocalizationsDelegate

@@ -1,4 +1,5 @@
 {
+  "@@locale": "el",
   "titleAppBar": "Κουίζ - Προσομοιωτής Εξετάσεων",
   "create": "Δημιουργία",
   "preview": "Προεπισκόπηση",
@@ -179,9 +180,7 @@
   "randomizeAnswersDescription": "Ανακάτεμα της σειράς των επιλογών απάντησης κατά την εκτέλεση του κουίζ",
   "showCorrectAnswerCountTitle": "Εμφάνιση Αριθμού Σωστών Απαντήσεων",
   "showCorrectAnswerCountDescription": "Εμφάνιση του αριθμού των σωστών απαντήσεων σε ερωτήσεις πολλαπλής επιλογής",
-  "pasteQuestionsTooltip": "Επικόλληση ερωτήσεων από το πρόχειρο",
   "logoTooLargeWarning": "Η εικόνα είναι πολύ μεγάλη για να αποθηκευτεί. Θα χρησιμοποιηθεί μόνο κατά τη διάρκεια αυτής της συνεδρίας.",
-  "enableLatex": "Λειτουργία Latex",
   "correctAnswersCount": "Επιλέξτε {count} σωστές απαντήσεις",
   "correctSelectedLabel": "Σωστό",
   "correctMissedLabel": "Σωστό",
@@ -310,7 +309,6 @@
   "invalidLogoUrl": "Μη έγκυρο URL εικόνας. Πρέπει να είναι έγκυρο URL που τελειώνει σε .jpg, .png, .gif, κλπ.",
   "logoPreview": "Προεπισκόπηση",
   "removeLogo": "Αφαίρεση Λογότυπου",
-  "logoTooLargeWarning": "Η εικόνα είναι πολύ μεγάλη για να αποθηκευτεί. Θα χρησιμοποιηθεί μόνο κατά τη διάρκεια αυτής της συνεδρίας.",
   "aiModeTopicTitle": "Λειτουργία Θέματος",
   "aiModeTopicDescription": "Δημιουργική εξερεύνηση του θέματος",
   "aiModeContentTitle": "Λειτουργία Περιεχομένου",
@@ -339,6 +337,8 @@
   "quizModeTitle": "Λειτουργία Κουίζ",
   "skip": "Παράλειψη",
   "askAiAssistant": "Ρωτήστε τον Βοηθό AI",
-  "evaluateWithAI": "Αξιολόγηση με AI",
-  "aiEvaluation": "Αξιολόγηση AI"
+  "sorteosLabel": "Raffles",
+  "edit": "Επεξεργασία",
+  "enable": "Ενεργοποίηση",
+  "disable": "Απενεργοποίηση"
 }

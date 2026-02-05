@@ -14,8 +14,9 @@ class QuizProgressIndicator extends StatelessWidget {
         children: [
           LinearProgressIndicator(
             value: state.progress,
+            minHeight: 6,
+            borderRadius: BorderRadius.circular(10),
             backgroundColor: Colors.grey[300],
-            valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
           ),
           const SizedBox(height: 8),
           Text(

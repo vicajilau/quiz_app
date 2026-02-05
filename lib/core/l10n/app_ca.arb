@@ -1,4 +1,5 @@
 {
+  "@@locale": "ca",
   "titleAppBar": "Quiz - Simulador d'Exàmens",
   "@titleAppBar": {
     "description": "Títol de l'aplicació mostrat a l'AppBar."
@@ -472,10 +473,6 @@
   "optionsLabel": "Opcions",
   "@optionsLabel": {
     "description": "Etiqueta per opcions al diàleg IA"
-  },
-  "explanationLabel": "Explicació",
-  "@explanationLabel": {
-    "description": "Etiqueta per explicació al diàleg IA"
   },
   "studentComment": "Comentari de l'estudiant",
   "@studentComment": {
@@ -1115,7 +1112,7 @@
   "@aiAssistantDisabled": {
     "description": "Títol per al diàleg quan l'assistent d'IA està deshabilitat"
   },
-    "enableAiAssistant": "L'assistent d'IA està desactivat. Si us plau, activa'l a la configuració per utilitzar les funcions d'IA.",
+  "enableAiAssistant": "L'assistent d'IA està desactivat. Si us plau, activa'l a la configuració per utilitzar les funcions d'IA.",
   "@enableAiAssistant": {
     "description": "Missatge a mostrar quan l'assistent d'IA està desactivat"
   },
@@ -1186,14 +1183,6 @@
   "noEnabledQuestionsError": "No hi ha preguntes activades disponibles per executar el qüestionari",
   "@noEnabledQuestionsError": {
     "description": "Missatge d'error en intentar iniciar un qüestionari sense preguntes activades"
-  },
-  "evaluateWithAI": "Avaluar amb IA",
-  "@evaluateWithAI": {
-    "description": "Text del botó per avaluar respostes d'assaig amb IA"
-  },
-  "aiEvaluation": "Avaluació IA",
-  "@aiEvaluation": {
-    "description": "Títol per a la secció d'avaluació IA"
   },
   "aiEvaluationError": "Error en avaluar la resposta: {error}",
   "@aiEvaluationError": {
@@ -1656,5 +1645,21 @@
   "aiEvaluation": "Avaluació IA",
   "@aiEvaluation": {
     "description": "Label for AI evaluation section"
+  },
+  "sorteosLabel": "Raffles",
+  "@sorteosLabel": {
+    "description": "Label for the raffles button"
+  },
+  "edit": "Editar",
+  "@edit": {
+    "description": "Button label to edit a question"
+  },
+  "enable": "Activar",
+  "@enable": {
+    "description": "Button label to enable a question"
+  },
+  "disable": "Desactivar",
+  "@disable": {
+    "description": "Button label to disable a question"
   }
 }
