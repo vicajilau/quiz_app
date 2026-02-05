@@ -171,6 +171,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 onDragDone: (details) {
                   // Validate that we have files
                   if (details.files.isNotEmpty && !_isLoading) {
+                    // If we are not on the home screen, ignore the drop in HomeScreen
+                    if (context.currentRoute != AppRoutes.home) {
+                      return;
+                    }
+
                     final firstFile = details.files.first;
                     // Additional validation: check if the file has a valid path
                     if (firstFile.path.isNotEmpty) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 extension SnackbarExtension on BuildContext {
   /// Displays a snack bar with the given text message.
@@ -16,5 +17,14 @@ extension SnackbarExtension on BuildContext {
   /// ```
   void presentSnackBar(String text) {
     ScaffoldMessenger.of(this).showSnackBar(SnackBar(content: Text(text)));
+  }
+}
+
+extension NavigationExtension on BuildContext {
+  /// Returns the current route location from GoRouter.
+  String get currentRoute {
+    return GoRouter.of(
+      this,
+    ).routerDelegate.currentConfiguration.matches.last.matchedLocation;
   }
 }
