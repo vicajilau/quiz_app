@@ -1,4 +1,5 @@
 {
+  "@@locale": "gl",
   "titleAppBar": "Quiz - Simulador de Exames",
   "@titleAppBar": {
     "description": "Título da aplicación mostrado na AppBar."
@@ -472,10 +473,6 @@
   "optionsLabel": "Opcións",
   "@optionsLabel": {
     "description": "Etiqueta para opcións no diálogo IA"
-  },
-  "explanationLabel": "Explicación",
-  "@explanationLabel": {
-    "description": "Etiqueta para explicación no diálogo IA"
   },
   "studentComment": "Comentario do estudante",
   "@studentComment": {
@@ -1187,14 +1184,6 @@
   "@noEnabledQuestionsError": {
     "description": "Mensaxe de erro ao tentar iniciar un cuestionario sen preguntas activadas"
   },
-  "evaluateWithAI": "Avaliar con IA",
-  "@evaluateWithAI": {
-    "description": "Texto do botón para avaliar respostas de ensaio con IA"
-  },
-  "aiEvaluation": "Avaliación IA",
-  "@aiEvaluation": {
-    "description": "Título para a sección de avaliación IA"
-  },
   "aiEvaluationError": "Erro ao avaliar a resposta: {error}",
   "@aiEvaluationError": {
     "description": "Mensaxe de erro cando a avaliación IA falla",
@@ -1627,5 +1616,8 @@
   "askAiAssistant": "Preguntar ao Asistente de IA",
   "evaluateWithAI": "Avaliar con IA",
   "aiEvaluation": "Avaliación de IA",
-  "sorteosLabel": "Raffles"
+  "sorteosLabel": "Raffles",
+  "edit": "Editar",
+  "enable": "Activar",
+  "disable": "Desactivar"
 }

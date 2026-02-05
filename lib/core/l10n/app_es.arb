@@ -1610,5 +1610,17 @@
   "sorteosLabel": "Sorteos",
   "@sorteosLabel": {
     "description": "Label for the raffles button"
+  },
+  "edit": "Editar",
+  "@edit": {
+    "description": "Button label to edit a question"
+  },
+  "enable": "Activar",
+  "@enable": {
+    "description": "Button label to enable a question"
+  },
+  "disable": "Desactivar",
+  "@disable": {
+    "description": "Button label to disable a question"
   }
 }

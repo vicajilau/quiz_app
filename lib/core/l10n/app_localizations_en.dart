@@ -1174,4 +1174,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sorteosLabel => 'Raffles';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get enable => 'Enable';
+
+  @override
+  String get disable => 'Disable';
 }

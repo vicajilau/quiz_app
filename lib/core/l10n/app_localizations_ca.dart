@@ -1189,4 +1189,13 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get sorteosLabel => 'Raffles';
+
+  @override
+  String get edit => 'Editar';
+
+  @override
+  String get enable => 'Activar';
+
+  @override
+  String get disable => 'Desactivar';
 }

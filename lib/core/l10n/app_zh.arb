@@ -1616,5 +1616,8 @@
   "askAiAssistant": "询问 AI 助手",
   "evaluateWithAI": "用 AI 评估",
   "aiEvaluation": "AI 评估",
-  "sorteosLabel": "Raffles"
+  "sorteosLabel": "Raffles",
+  "edit": "编辑",
+  "enable": "启用",
+  "disable": "禁用"
 }

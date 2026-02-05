@@ -2149,6 +2149,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Raffles'**
   String get sorteosLabel;
+
+  /// Button label to edit a question
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// Button label to enable a question
+  ///
+  /// In en, this message translates to:
+  /// **'Enable'**
+  String get enable;
+
+  /// Button label to disable a question
+  ///
+  /// In en, this message translates to:
+  /// **'Disable'**
+  String get disable;
 }
 
 class _AppLocalizationsDelegate

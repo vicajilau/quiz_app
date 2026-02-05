@@ -434,7 +434,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
               children: [
                 const Icon(Icons.edit, color: Colors.blue),
                 const SizedBox(width: 8),
-                Text(AppLocalizations.of(context)!.editQuestion),
+                Text(AppLocalizations.of(context)!.edit),
               ],
             ),
           ),
@@ -451,8 +451,8 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                 const SizedBox(width: 8),
                 Text(
                   question.isEnabled
-                      ? AppLocalizations.of(context)!.disableQuestion
-                      : AppLocalizations.of(context)!.enableQuestion,
+                      ? AppLocalizations.of(context)!.disable
+                      : AppLocalizations.of(context)!.enable,
                 ),
               ],
             ),
@@ -463,7 +463,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
               children: [
                 const Icon(Icons.delete, color: Colors.red),
                 const SizedBox(width: 8),
-                Text(AppLocalizations.of(context)!.deleteAction),
+                Text(AppLocalizations.of(context)!.deleteButton),
               ],
             ),
           ),

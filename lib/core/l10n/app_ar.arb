@@ -1616,5 +1616,8 @@
   "askAiAssistant": "اسأل مساعد الذكاء الاصطناعي",
   "evaluateWithAI": "تقييم بالذكاء الاصطناعي",
   "aiEvaluation": "تقييم الذكاء الاصطناعي",
-  "sorteosLabel": "Raffles"
+  "sorteosLabel": "Raffles",
+  "edit": "تعديل",
+  "enable": "تفعيل",
+  "disable": "تعطيل"
 }

@@ -1,4 +1,5 @@
 {
+  "@@locale": "it",
   "titleAppBar": "Quiz - Simulatore d'Esame",
   "@titleAppBar": {
     "description": "Titolo dell'applicazione mostrato nella AppBar."
@@ -222,10 +223,6 @@
   "finishQuizConfirmation": "Sei sicuro di voler terminare il quiz? Non potrai più modificare le tue risposte dopo.",
   "@finishQuizConfirmation": {
     "description": "Messaggio di conferma per terminare il quiz"
-  },
-  "cancel": "Annulla",
-  "@cancel": {
-    "description": "Testo del pulsante annulla"
   },
   "abandonQuiz": "Abbandona Quiz",
   "@abandonQuiz": {
@@ -472,10 +469,6 @@
   "optionsLabel": "Opzioni",
   "@optionsLabel": {
     "description": "Etichetta per opzioni nella finestra di dialogo IA"
-  },
-  "explanationLabel": "Spiegazione",
-  "@explanationLabel": {
-    "description": "Etichetta per spiegazione nella finestra di dialogo IA"
   },
   "studentComment": "Commento studente",
   "@studentComment": {
@@ -1187,14 +1180,6 @@
   "@noEnabledQuestionsError": {
     "description": "Messaggio di errore quando si tenta di avviare un quiz senza domande abilitate"
   },
-  "evaluateWithAI": "Valuta con IA",
-  "@evaluateWithAI": {
-    "description": "Testo del pulsante per valutare le risposte del saggio con IA"
-  },
-  "aiEvaluation": "Valutazione IA",
-  "@aiEvaluation": {
-    "description": "Titolo per la sezione di valutazione IA"
-  },
   "aiEvaluationError": "Errore nella valutazione della risposta: {error}",
   "@aiEvaluationError": {
     "description": "Messaggio di errore quando la valutazione IA fallisce",
@@ -1670,5 +1655,17 @@
   "sorteosLabel": "Raffles",
   "@sorteosLabel": {
     "description": "Label for the raffles button"
+  },
+  "edit": "Modifica",
+  "@edit": {
+    "description": "Button label to edit a question"
+  },
+  "enable": "Abilita",
+  "@enable": {
+    "description": "Button label to enable a question"
+  },
+  "disable": "Disabilita",
+  "@disable": {
+    "description": "Button label to disable a question"
   }
 }

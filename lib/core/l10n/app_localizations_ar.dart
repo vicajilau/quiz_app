@@ -1161,4 +1161,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get sorteosLabel => 'Raffles';
+
+  @override
+  String get edit => 'تعديل';
+
+  @override
+  String get enable => 'تفعيل';
+
+  @override
+  String get disable => 'تعطيل';
 }

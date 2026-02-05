@@ -1,4 +1,5 @@
 {
+  "@@locale": "hi",
   "titleAppBar": "क्विज़ - परीक्षा सिमुलेटर",
   "@titleAppBar": {
     "description": "Title of the application displayed in the AppBar."
@@ -472,10 +473,6 @@
   "optionsLabel": "विकल्प",
   "@optionsLabel": {
     "description": "Label for options in AI dialog"
-  },
-  "explanationLabel": "स्पष्टीकरण",
-  "@explanationLabel": {
-    "description": "Label for explanation in AI dialog"
   },
   "studentComment": "छात्र की टिप्पणी",
   "@studentComment": {
@@ -1187,14 +1184,6 @@
   "@noEnabledQuestionsError": {
     "description": "सक्रिय प्रश्नों के बिना क्विज़ शुरू करने का प्रयास करते समय त्रुटि संदेश"
   },
-  "evaluateWithAI": "AI के साथ मूल्यांकन करें",
-  "@evaluateWithAI": {
-    "description": "निबंध उत्तरों को AI के साथ मूल्यांकन करने के लिए बटन टेक्स्ट"
-  },
-  "aiEvaluation": "AI मूल्यांकन",
-  "@aiEvaluation": {
-    "description": "AI मूल्यांकन अनुभाग के लिए शीर्षक"
-  },
   "aiEvaluationError": "उत्तर का मूल्यांकन करने में त्रुटि: {error}",
   "@aiEvaluationError": {
     "description": "AI मूल्यांकन असफल होने पर त्रुटि संदेश",
@@ -1627,5 +1616,8 @@
   "askAiAssistant": "AI सहायक से पूछें",
   "evaluateWithAI": "AI के साथ मूल्यांकन करें",
   "aiEvaluation": "AI मूल्यांकन",
-  "sorteosLabel": "Raffles"
+  "sorteosLabel": "Raffles",
+  "edit": "संपादित करें",
+  "enable": "सक्षम करें",
+  "disable": "अक्षम करें"
 }
