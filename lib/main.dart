@@ -41,7 +41,6 @@ class _QuizApplicationState extends State<QuizApplication> {
       routerConfig: appRouter,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       localeResolutionCallback: (locale, supportedLocales) {
@@ -75,8 +74,6 @@ class _QuizApplicationState extends State<QuizApplication> {
           return const Locale('en');
         }
       },
-      showSemanticsDebugger: false,
-      debugShowCheckedModeBanner: false,
     );
   }
 }

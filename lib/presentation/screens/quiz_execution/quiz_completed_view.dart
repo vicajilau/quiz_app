@@ -88,60 +88,60 @@ class QuizCompletedView extends StatelessWidget {
           const SizedBox(height: 12),
           // Fixed action buttons at bottom
           IntrinsicHeight(
-            child: Row(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
+              spacing: 12,
               children: [
                 // First column of buttons (Repetir y Reintentar errores)
                 Expanded(
-                  child: Column(
+                  child: Flex(
+                    direction: Axis.horizontal,
+                    spacing: 12,
                     children: [
-                      SizedBox(
-                        width: double.infinity,
-                        child: OutlinedButton.icon(
-                          onPressed: () {
-                            // Get the bloc from the current context since we're inside BlocConsumer
-                            final bloc = BlocProvider.of<QuizExecutionBloc>(
-                              context,
-                            );
-                            bloc.add(QuizRestarted());
-                          },
-                          icon: const Icon(Icons.refresh),
-                          label: Text(AppLocalizations.of(context)!.retry),
+                      Flexible(
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: OutlinedButton.icon(
+                            onPressed: () {
+                              // Get the bloc from the current context since we're inside BlocConsumer
+                              final bloc = BlocProvider.of<QuizExecutionBloc>(
+                                context,
+                              );
+                              bloc.add(QuizRestarted());
+                            },
+                            icon: const Icon(Icons.refresh),
+                            label: Text(AppLocalizations.of(context)!.retry),
+                          ),
                         ),
                       ),
                       // Second row - button for failed questions
-                      if (_hasIncorrectAnswers()) ...[
-                        const SizedBox(height: 12),
-                        SizedBox(
-                          width: double.infinity,
-                          child: OutlinedButton.icon(
-                            onPressed: () => _startFailedQuestionsQuiz(context),
-                            icon: const Icon(Icons.quiz),
-                            label: Text(
-                              AppLocalizations.of(
-                                context,
-                              )!.retryFailedQuestions,
-                            ),
-                            style: OutlinedButton.styleFrom(
-                              foregroundColor: Colors.orange,
-                              side: const BorderSide(color: Colors.orange),
+                      if (_hasIncorrectAnswers())
+                        Flexible(
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: OutlinedButton.icon(
+                              onPressed: () =>
+                                  _startFailedQuestionsQuiz(context),
+                              icon: const Icon(Icons.quiz),
+                              label: Text(
+                                AppLocalizations.of(
+                                  context,
+                                )!.retryFailedQuestions,
+                              ),
+                              style: OutlinedButton.styleFrom(
+                                foregroundColor: Colors.orange,
+                                side: const BorderSide(color: Colors.orange),
+                              ),
                             ),
                           ),
                         ),
-                      ],
                     ],
                   ),
                 ),
-
-                const SizedBox(width: 12),
-
-                // Second column (Finalizar) - same height as first column
-                Expanded(
-                  child: ElevatedButton.icon(
-                    onPressed: () => context.pop(),
-                    icon: const Icon(Icons.home),
-                    label: Text(AppLocalizations.of(context)!.goBack),
-                  ),
+                ElevatedButton.icon(
+                  onPressed: () => context.pop(),
+                  icon: const Icon(Icons.home),
+                  label: Text(AppLocalizations.of(context)!.goBack),
                 ),
               ],
             ),
