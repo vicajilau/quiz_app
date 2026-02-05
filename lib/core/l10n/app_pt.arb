@@ -525,9 +525,9 @@
   "@invalidApiKeyError": {
     "description": "Mensagem de erro para chave API inválida"
   },
-  "rateLimitError": "Limite de taxa excedido. Tente novamente mais tarde.",
+  "rateLimitError": "Cota excedida ou modelo não disponível no seu plano. Verifique seu plano.",
   "@rateLimitError": {
-    "description": "Mensagem de erro para limite de taxa excedido"
+    "description": "Mensagem de erro para limite de taxa excedido ou problemas de cota"
   },
   "modelNotFoundError": "Modelo não encontrado. Verifique seu acesso à API.",
   "@modelNotFoundError": {

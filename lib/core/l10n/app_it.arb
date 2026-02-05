@@ -525,9 +525,9 @@
   "@invalidApiKeyError": {
     "description": "Messaggio di errore per chiave API non valida"
   },
-  "rateLimitError": "Limite di velocità superato. Riprova più tardi.",
+  "rateLimitError": "Quota superata o modello non disponibile nel tuo piano. Controlla il tuo piano.",
   "@rateLimitError": {
-    "description": "Messaggio di errore per limite di velocità superato"
+    "description": "Messaggio di errore per limite di velocità superato o problemi di quota"
   },
   "modelNotFoundError": "Modello non trovato. Controlla il tuo accesso API.",
   "@modelNotFoundError": {

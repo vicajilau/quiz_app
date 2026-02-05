@@ -525,9 +525,9 @@
   "@invalidApiKeyError": {
     "description": "Error message for invalid API key"
   },
-  "rateLimitError": "تم تجاوز حد المعدل. يرجى المحاولة مرة أخرى لاحقاً.",
+  "rateLimitError": "تم تجاوز الحصة أو أن النموذج غير متوفر في خطتك. تحقق من خطتك.",
   "@rateLimitError": {
-    "description": "Error message for rate limit exceeded"
+    "description": "Error message for rate limit exceeded or quota issues"
   },
   "modelNotFoundError": "النموذج غير موجود. يرجى التحقق من إمكانية الوصول إلى API.",
   "@modelNotFoundError": {

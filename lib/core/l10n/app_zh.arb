@@ -525,9 +525,9 @@
   "@invalidApiKeyError": {
     "description": "Error message for invalid API key"
   },
-  "rateLimitError": "超出速率限制。请稍后重试。",
+  "rateLimitError": "配额已用完或该模型在您的套餐中不可用。请检查您的计划。",
   "@rateLimitError": {
-    "description": "Error message for rate limit exceeded"
+    "description": "Error message for rate limit exceeded or quota issues"
   },
   "modelNotFoundError": "未找到模型。请检查您的API访问权限。",
   "@modelNotFoundError": {

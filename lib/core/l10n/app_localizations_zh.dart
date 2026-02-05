@@ -360,7 +360,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get invalidApiKeyError => '无效的API密钥。请在设置中检查您的OpenAI API密钥。';
 
   @override
-  String get rateLimitError => '超出速率限制。请稍后重试。';
+  String get rateLimitError => '配额已用完或该模型在您的套餐中不可用。请检查您的计划。';
 
   @override
   String get modelNotFoundError => '未找到模型。请检查您的API访问权限。';

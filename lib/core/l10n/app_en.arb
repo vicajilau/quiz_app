@@ -513,9 +513,9 @@
   "@invalidApiKeyError": {
     "description": "Error message for invalid API key"
   },
-  "rateLimitError": "Rate limit exceeded. Please try again later.",
+  "rateLimitError": "Quota exceeded or model not available in your tier. Check your plan.",
   "@rateLimitError": {
-    "description": "Error message for rate limit exceeded"
+    "description": "Error message for rate limit exceeded or quota issues"
   },
   "modelNotFoundError": "Model not found. Please check your API access.",
   "@modelNotFoundError": {

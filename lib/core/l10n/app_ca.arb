@@ -525,9 +525,9 @@
   "@invalidApiKeyError": {
     "description": "Missatge d'error per clau API no vàlida"
   },
-  "rateLimitError": "Límit de velocitat excedit. Torneu-ho a provar més tard.",
+  "rateLimitError": "Quota excedida o model no disponible en el teu pla.",
   "@rateLimitError": {
-    "description": "Missatge d'error per límit de velocitat excedit"
+    "description": "Missatge d'error per límit de velocitat excedit o problemes de quota"
   },
   "modelNotFoundError": "Model no trobat. Comproveu el vostre accés a l'API.",
   "@modelNotFoundError": {

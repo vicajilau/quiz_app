@@ -381,7 +381,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get rateLimitError =>
-      'Límit de velocitat excedit. Torneu-ho a provar més tard.';
+      'Quota excedida o model no disponible en el teu pla.';
 
   @override
   String get modelNotFoundError =>

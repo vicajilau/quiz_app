@@ -380,7 +380,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get rateLimitError =>
-      'Limite de taxa excedido. Tente novamente mais tarde.';
+      'Cota excedida ou modelo não disponível no seu plano. Verifique seu plano.';
 
   @override
   String get modelNotFoundError =>

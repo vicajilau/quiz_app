@@ -525,9 +525,9 @@
   "@invalidApiKeyError": {
     "description": "Error message for invalid API key"
   },
-  "rateLimitError": "दर सीमा पार हो गई। कृपया बाद में पुनः प्रयास करें।",
+  "rateLimitError": "कोटा पार हो गया है या मॉडल आपकी योजना में उपलब्ध नहीं है। अपनी योजना की जाँच करें।",
   "@rateLimitError": {
-    "description": "Error message for rate limit exceeded"
+    "description": "Error message for rate limit exceeded or quota issues"
   },
   "modelNotFoundError": "मॉडल नहीं मिला। कृपया अपनी API पहुंच जांचें।",
   "@modelNotFoundError": {
