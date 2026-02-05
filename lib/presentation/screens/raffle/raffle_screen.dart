@@ -2,9 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:platform_detail/platform_detail.dart';
 import 'package:quiz_app/presentation/screens/raffle/widgets/logo_widget.dart';
-import 'package:quiz_app/routes/app_router.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/domain/models/raffle/raffle_logo.dart';
 import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_bloc.dart';
@@ -86,13 +84,10 @@ class _RaffleScreenContent extends StatelessWidget {
                 ),
               ),
             ),
-            automaticallyImplyLeading: !PlatformDetail.isWeb,
-            leading: PlatformDetail.isWeb
-                ? null
-                : IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () => context.go(AppRoutes.home),
-                  ),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => context.go('/'),
+            ),
             actions: [
               // Winners history button
               BlocBuilder<RaffleBloc, RaffleState>(
@@ -108,7 +103,7 @@ class _RaffleScreenContent extends StatelessWidget {
 
                   return IconButton(
                     onPressed: hasWinners
-                        ? () => context.go(AppRoutes.raffleWinners)
+                        ? () => context.go('/raffle/winners')
                         : null,
                     icon: Icon(
                       Icons.emoji_events,
@@ -187,7 +182,10 @@ class _RaffleScreenContent extends StatelessWidget {
               children: [
                 Text(
                   AppLocalizations.of(context)!.participantListTitle,
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 16),
                 const Expanded(child: ParticipantInputWidget()),
@@ -208,7 +206,10 @@ class _RaffleScreenContent extends StatelessWidget {
               children: [
                 Text(
                   AppLocalizations.of(context)!.participants,
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 16),
                 const Expanded(child: ParticipantListWidget()),
@@ -260,7 +261,7 @@ class _RaffleScreenContent extends StatelessWidget {
         onFinishRaffle: () {
           Navigator.of(dialogContext).pop();
           context.read<RaffleBloc>().add(ConfirmWinner(winner));
-          context.go(AppRoutes.raffleWinners);
+          context.go('/raffle/winners');
         },
       ),
     );

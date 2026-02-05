@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:platform_detail/platform_detail.dart';
-import 'package:quiz_app/routes/app_router.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/domain/models/raffle/raffle_winner.dart';
 import 'package:quiz_app/domain/models/raffle/raffle_logo.dart';
@@ -39,13 +37,10 @@ class WinnersScreen extends StatelessWidget {
                         Text(AppLocalizations.of(context)!.winnersTitle),
                   )
                 : Text(AppLocalizations.of(context)!.winnersTitle),
-            automaticallyImplyLeading: !PlatformDetail.isWeb,
-            leading: PlatformDetail.isWeb
-                ? null
-                : IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () => context.go(AppRoutes.raffle),
-                  ),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => context.go('/raffle'),
+            ),
             actions: [
               IconButton(
                 onPressed: () => _showShareDialog(context),
@@ -102,7 +97,7 @@ class WinnersScreen extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             ElevatedButton.icon(
-              onPressed: () => context.go(AppRoutes.raffle),
+              onPressed: () => context.go('/raffle'),
               icon: const Icon(Icons.casino),
               label: Text(AppLocalizations.of(context)!.goToRaffle),
             ),

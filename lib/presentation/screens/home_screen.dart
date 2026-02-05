@@ -71,18 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocProvider<FileBloc>(
       create: (_) => ServiceLocator.instance.getIt<FileBloc>(),
       child: BlocListener<FileBloc, FileState>(
-        listenWhen: (previous, current) {
-          if (current is FileLoaded && previous is! FileLoaded) {
-            return true;
-          }
-          if (current is FileError ||
-              current is FileLoading ||
-              current is FileInitial) {
-            return true;
-          }
-          return false;
-        },
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state is FileLoaded) {
             context.presentSnackBar(
               AppLocalizations.of(context)!.fileLoaded(
@@ -90,8 +79,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     '${state.quizFile.metadata.title}.quiz',
               ),
             );
-            context.push(AppRoutes.fileLoadedScreen);
-          } else if (state is FileError) {
+            if (!context.mounted) return;
+            final _ = await context.push(AppRoutes.fileLoadedScreen);
+            if (!context.mounted) return;
+            context.read<FileBloc>().add(QuizFileReset());
+          }
+          if (state is FileError && context.mounted) {
             if (state.error is BadQuizFileException) {
               final badFileException = state.error as BadQuizFileException;
               context.presentSnackBar(badFileException.toString());
@@ -141,12 +134,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: TextButton(
                       onPressed: _isLoading
                           ? null
-                          : () {
-                              context.read<FileBloc>().add(QuizFileReset());
-                              context.read<FileBloc>().add(
-                                QuizFilePickRequested(),
-                              );
-                            },
+                          : () => context.read<FileBloc>().add(
+                              QuizFilePickRequested(),
+                            ),
                       child: Text(
                         AppLocalizations.of(context)!.load,
                         style: const TextStyle(color: Colors.white),
@@ -179,8 +169,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     final firstFile = details.files.first;
                     // Additional validation: check if the file has a valid path
                     if (firstFile.path.isNotEmpty) {
-                      // Reset state before loading to ensure clean state on web
-                      context.read<FileBloc>().add(QuizFileReset());
                       context.read<FileBloc>().add(FileDropped(firstFile.path));
                     }
                   }
@@ -195,14 +183,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           GestureDetector(
                             onTap: _isLoading
                                 ? null
-                                : () {
-                                    context.read<FileBloc>().add(
-                                      QuizFileReset(),
-                                    );
-                                    context.read<FileBloc>().add(
-                                      QuizFilePickRequested(),
-                                    );
-                                  },
+                                : () => context.read<FileBloc>().add(
+                                    QuizFilePickRequested(),
+                                  ),
                             child: ConstrainedBox(
                               constraints: BoxConstraints(
                                 maxWidth:
