@@ -165,32 +165,19 @@ class _EssayAnswerInputState extends State<EssayAnswerInput> {
           const SizedBox(height: 12),
           SizedBox(
             height: 300,
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Theme.of(
-                    context,
-                  ).colorScheme.outline.withValues(alpha: 0.5),
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(8),
+            child: TextField(
+              controller: _essayController,
+              maxLines: null,
+              expands: true,
+              textAlignVertical: TextAlignVertical.top,
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.explanationHint,
+                border: InputBorder.none,
+                contentPadding: const EdgeInsets.all(16),
               ),
-              child: TextField(
-                controller: _essayController,
-                maxLines: null,
-                expands: true,
-                textAlignVertical: TextAlignVertical.top,
-                decoration: InputDecoration(
-                  hintText: AppLocalizations.of(context)!.explanationHint,
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.all(16),
-                ),
-                onChanged: (text) {
-                  context.read<QuizExecutionBloc>().add(
-                    EssayAnswerChanged(text),
-                  );
-                },
-              ),
+              onChanged: (text) {
+                context.read<QuizExecutionBloc>().add(EssayAnswerChanged(text));
+              },
             ),
           ),
 
