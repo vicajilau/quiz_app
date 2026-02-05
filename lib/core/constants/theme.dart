@@ -163,7 +163,7 @@ class AppTheme {
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
-        borderSide: BorderSide(color: Colors.black54),
+        borderSide: BorderSide(color: Colors.white),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
