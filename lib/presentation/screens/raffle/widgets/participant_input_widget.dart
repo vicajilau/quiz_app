@@ -81,17 +81,18 @@ class _ParticipantInputWidgetState extends State<ParticipantInputWidget> {
               style: TextStyle(fontSize: 14, color: Colors.grey[600]),
             ),
             const SizedBox(height: 8),
-            Expanded(
+            ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: 200),
               child: TextField(
                 controller: _controller,
                 maxLines: null,
-                expands: true,
+                minLines: 8,
                 textAlignVertical: TextAlignVertical.top,
                 decoration: InputDecoration(
                   hintText: AppLocalizations.of(
                     context,
                   )!.participantListPlaceholder,
-                  border: InputBorder.none,
+                  border: const OutlineInputBorder(),
                   contentPadding: const EdgeInsets.all(16),
                 ),
                 style: const TextStyle(fontSize: 16),

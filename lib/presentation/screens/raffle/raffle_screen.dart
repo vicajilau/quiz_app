@@ -171,54 +171,56 @@ class _RaffleScreenContent extends StatelessWidget {
   }
 
   Widget _buildWideLayout(BuildContext context) {
-    return Row(
-      children: [
-        // Left side: Input and controls
-        Expanded(
-          flex: 2,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.participantListTitle,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16.0),
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Left side: Input and controls
+            Expanded(
+              flex: 2,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.participantListTitle,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                const Expanded(child: ParticipantInputWidget()),
-                const SizedBox(height: 16),
-                const RaffleControlsWidget(),
-              ],
+                  const SizedBox(height: 16),
+                  const ParticipantInputWidget(),
+                  const SizedBox(height: 16),
+                  const RaffleControlsWidget(),
+                ],
+              ),
             ),
-          ),
-        ),
-        Container(width: 1, color: Colors.grey[300]),
-        // Right side: Participant list
-        Expanded(
-          flex: 1,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.participants,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+            const SizedBox(width: 16),
+            Container(width: 1, color: Colors.grey),
+            const SizedBox(width: 16),
+            // Right side: Participant list
+            Expanded(
+              flex: 1,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.participants,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                const Expanded(child: ParticipantListWidget()),
-              ],
+                  const SizedBox(height: 16),
+                  const ParticipantListWidget(),
+                ],
+              ),
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
@@ -233,7 +235,7 @@ class _RaffleScreenContent extends StatelessWidget {
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),
-          const SizedBox(height: 300, child: ParticipantInputWidget()),
+          const ParticipantInputWidget(),
           const SizedBox(height: 24),
           const RaffleControlsWidget(),
           const SizedBox(height: 24),
@@ -242,7 +244,7 @@ class _RaffleScreenContent extends StatelessWidget {
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),
-          const SizedBox(height: 200, child: ParticipantListWidget()),
+          const ParticipantListWidget(),
         ],
       ),
     );
