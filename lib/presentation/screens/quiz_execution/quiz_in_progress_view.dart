@@ -90,13 +90,7 @@ class _QuizInProgressViewState extends State<QuizInProgressView> {
           ),
 
           // Navigation buttons (fixed at bottom)
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: QuizNavigationButtons(
-              state: widget.state,
-              isStudyMode: isStudyMode,
-            ),
-          ),
+          QuizNavigationButtons(state: widget.state, isStudyMode: isStudyMode),
         ],
       ),
     );

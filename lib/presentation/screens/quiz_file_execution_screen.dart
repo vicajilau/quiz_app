@@ -156,20 +156,24 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
                         ),
                     ],
                   ),
-                  body: BlocConsumer<QuizExecutionBloc, QuizExecutionState>(
-                    listener: (context, state) {
-                      // Handle any side effects if needed
-                    },
-                    builder: (context, state) {
-                      if (state is QuizExecutionInitial) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else if (state is QuizExecutionInProgress) {
-                        return QuizInProgressView(state: state);
-                      } else if (state is QuizExecutionCompleted) {
-                        return QuizCompletedView(state: state);
-                      }
-                      return const SizedBox.shrink();
-                    },
+                  body: SafeArea(
+                    child: BlocConsumer<QuizExecutionBloc, QuizExecutionState>(
+                      listener: (context, state) {
+                        // Handle any side effects if needed
+                      },
+                      builder: (context, state) {
+                        if (state is QuizExecutionInitial) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (state is QuizExecutionInProgress) {
+                          return QuizInProgressView(state: state);
+                        } else if (state is QuizExecutionCompleted) {
+                          return QuizCompletedView(state: state);
+                        }
+                        return const SizedBox.shrink();
+                      },
+                    ),
                   ),
                 ),
               ),
