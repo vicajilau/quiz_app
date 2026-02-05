@@ -879,7 +879,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get raffleTitle => 'Estrazione';
 
   @override
-  String get raffleTooltip => 'Estrazione';
+  String get raffleTooltip => 'Inizia sorteggio';
 
   @override
   String get participantListTitle => 'Lista partecipanti';

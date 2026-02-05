@@ -874,7 +874,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get raffleTitle => 'Raffle';
 
   @override
-  String get raffleTooltip => 'Raffle';
+  String get raffleTooltip => 'Start raffle';
 
   @override
   String get participantListTitle => 'Participant List';

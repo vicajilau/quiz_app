@@ -883,7 +883,7 @@ class AppLocalizationsCa extends AppLocalizations {
   String get raffleTitle => 'Sorteig';
 
   @override
-  String get raffleTooltip => 'Obrir pantalla de sorteig';
+  String get raffleTooltip => 'Començar sorteig';
 
   @override
   String get participantListTitle => 'Llista de Participants';

@@ -52,6 +52,15 @@ class AppTheme {
       buttonColor: primaryColor,
       textTheme: ButtonTextTheme.primary,
     ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        textStyle: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+        minimumSize: const Size(0, 52),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        ),
+      ),
+    ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         shape: const RoundedRectangleBorder(
@@ -144,6 +153,15 @@ class AppTheme {
         ),
         textStyle: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
         minimumSize: const Size(0, 52),
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        textStyle: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+        minimumSize: const Size(0, 52),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        ),
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
