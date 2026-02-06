@@ -114,6 +114,9 @@ class GeminiService extends AIService {
       } else {
         return localizations.noResponseReceived;
       }
+    } else if (response.statusCode == 302) {
+      final location = response.headers['location'];
+      throw Exception('Redirected (302) to: $location');
     } else if (response.statusCode == 400) {
       throw Exception(localizations.aiErrorResponse);
     } else if (response.statusCode == 403) {
@@ -147,6 +150,24 @@ class GeminiService extends AIService {
 
     final base64Data = base64Encode(file.bytes);
 
+    Map<String, dynamic> attachmentPart;
+    if (file.mimeType == 'application/pdf' ||
+        file.mimeType.startsWith('image/')) {
+      attachmentPart = {
+        'inline_data': {'mime_type': file.mimeType, 'data': base64Data},
+      };
+    } else {
+      try {
+        final textContent = utf8.decode(file.bytes);
+        attachmentPart = {'text': 'Context file (${file.name}):\n$textContent'};
+      } catch (_) {
+        // Fallback for binary files incorrectly identified or unsupported
+        attachmentPart = {
+          'inline_data': {'mime_type': file.mimeType, 'data': base64Data},
+        };
+      }
+    }
+
     final http.Response response;
     try {
       response = await http.post(
@@ -157,12 +178,7 @@ class GeminiService extends AIService {
             {
               'parts': [
                 {'text': prompt},
-                {
-                  'inline_data': {
-                    'mime_type': file.mimeType,
-                    'data': base64Data,
-                  },
-                },
+                attachmentPart,
               ],
             },
           ],
@@ -206,14 +222,37 @@ class GeminiService extends AIService {
       } else {
         return localizations.noResponseReceived;
       }
+    } else if (response.statusCode == 302) {
+      final location = response.headers['location'];
+      throw Exception('Redirected (302) to: $location');
     } else if (response.statusCode == 400) {
-      throw Exception(localizations.aiErrorResponse);
+      String errorMessage = localizations.aiErrorResponse;
+      try {
+        final jsonResponse = jsonDecode(response.body);
+        if (jsonResponse['error'] != null &&
+            jsonResponse['error']['message'] != null) {
+          errorMessage += ': ${jsonResponse['error']['message']}';
+        }
+      } catch (_) {}
+      throw Exception(errorMessage);
     } else if (response.statusCode == 403) {
       throw Exception(localizations.invalidApiKeyError);
     } else if (response.statusCode == 429) {
       throw Exception(localizations.rateLimitError);
     } else {
-      throw Exception(localizations.aiErrorResponse);
+      String errorMessage = localizations.aiErrorResponse;
+      try {
+        final jsonResponse = jsonDecode(response.body);
+        if (jsonResponse['error'] != null &&
+            jsonResponse['error']['message'] != null) {
+          errorMessage += ': ${jsonResponse['error']['message']}';
+        } else {
+          errorMessage += ' (${response.statusCode})';
+        }
+      } catch (_) {
+        errorMessage += ' (${response.statusCode})';
+      }
+      throw Exception(errorMessage);
     }
   }
 }
