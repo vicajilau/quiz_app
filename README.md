@@ -6,6 +6,8 @@
   <img src="https://github.com/vicajilau/quiz_app/actions/workflows/flutter_workflow.yml/badge.svg" alt="CI Status">
   <img src="https://github.com/vicajilau/quiz_app/actions/workflows/deploy_web.yml/badge.svg" alt="Web CD Status">
   <img src="https://github.com/vicajilau/quiz_app/actions/workflows/publish_android.yml/badge.svg" alt="Android CD Status">
+  <img src="https://github.com/vicajilau/quiz_app/actions/workflows/publish_ios.yml/badge.svg" alt="iOS CD Status">
+  <img src="https://github.com/vicajilau/quiz_app/actions/workflows/publish_macos.yml/badge.svg" alt="MacOS CD Status">
   <img src="https://github.com/vicajilau/quiz_app/actions/workflows/publish_microsoft_store.yml/badge.svg" alt="Windows Store CD Status">
   <img src="https://snapcraft.io/quiz-app/badge.svg" alt="Linux Snapcraft Status">
 </p>
@@ -26,7 +28,7 @@ Access Quiz App on your favorite platform:
 - 🐧 **Linux**: [Snapcraft](https://snapcraft.io/quiz-app)
   Download and install easily on any Linux distribution compatible with Snap.
 
-> **Note:** MacOS and iOS versions are under development and will be added soon.
+> **Note:** MacOS and iOS versions are under review and will be added soon.
 
 A cross-platform Flutter application that provides two powerful modes:
 
