@@ -150,24 +150,6 @@ class GeminiService extends AIService {
 
     final base64Data = base64Encode(file.bytes);
 
-    Map<String, dynamic> attachmentPart;
-    if (file.mimeType == 'application/pdf' ||
-        file.mimeType.startsWith('image/')) {
-      attachmentPart = {
-        'inline_data': {'mime_type': file.mimeType, 'data': base64Data},
-      };
-    } else {
-      try {
-        final textContent = utf8.decode(file.bytes);
-        attachmentPart = {'text': 'Context file (${file.name}):\n$textContent'};
-      } catch (_) {
-        // Fallback for binary files incorrectly identified or unsupported
-        attachmentPart = {
-          'inline_data': {'mime_type': file.mimeType, 'data': base64Data},
-        };
-      }
-    }
-
     final http.Response response;
     try {
       response = await http.post(
@@ -178,7 +160,12 @@ class GeminiService extends AIService {
             {
               'parts': [
                 {'text': prompt},
-                attachmentPart,
+                {
+                  'inline_data': {
+                    'mime_type': file.mimeType,
+                    'data': base64Data,
+                  },
+                },
               ],
             },
           ],
