@@ -28,7 +28,10 @@ class AiFilePickerSection extends StatelessWidget {
             AiFileAttachment(
               bytes: pickedFile.bytes!,
               mimeType:
-                  lookupMimeType(pickedFile.path!) ??
+                  lookupMimeType(
+                    pickedFile.name,
+                    headerBytes: pickedFile.bytes,
+                  ) ??
                   'application/octet-stream',
               name: pickedFile.name,
             ),
