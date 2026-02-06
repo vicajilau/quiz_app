@@ -4057,6 +4057,8 @@
                             "thickness": 2,
                             "fill": "#FFFFFF"
                           },
+                          "justifyContent": "center",
+                          "alignItems": "center",
                           "children": [
                             {
                               "type": "ellipse",
@@ -4635,6 +4637,8 @@
                             "thickness": 2,
                             "fill": "#FFFFFF"
                           },
+                          "justifyContent": "center",
+                          "alignItems": "center",
                           "children": [
                             {
                               "type": "ellipse",
