@@ -1171,6 +1171,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get quizModeTitle => 'وضع الاختبار';
 
   @override
+  String get settingsTitle => 'Settings';
+
+  @override
   String get skip => 'تخطي';
 
   @override

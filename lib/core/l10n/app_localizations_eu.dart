@@ -1193,6 +1193,9 @@ class AppLocalizationsEu extends AppLocalizations {
   String get quizModeTitle => 'Galdetegi Modua';
 
   @override
+  String get settingsTitle => 'Settings';
+
+  @override
   String get skip => 'Saltatu';
 
   @override

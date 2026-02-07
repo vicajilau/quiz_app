@@ -1186,6 +1186,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get quizModeTitle => 'Quiz Mode';
 
   @override
+  String get settingsTitle => 'Settings';
+
+  @override
   String get skip => 'Skip';
 
   @override

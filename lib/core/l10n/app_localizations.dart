@@ -2162,6 +2162,12 @@ abstract class AppLocalizations {
   /// **'Quiz Mode'**
   String get quizModeTitle;
 
+  /// Title for the settings dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsTitle;
+
   /// Label for skip button
   ///
   /// In en, this message translates to:

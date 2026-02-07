@@ -1670,6 +1670,10 @@
   "@quizModeTitle": {
     "description": "Title for the quiz mode selection section"
   },
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "Title for the settings dialog"
+  },
   "skip": "Skip",
   "@skip": {
     "description": "Label for skip button"

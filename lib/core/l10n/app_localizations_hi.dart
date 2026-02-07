@@ -1182,6 +1182,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get quizModeTitle => 'क्विज़ मोड';
 
   @override
+  String get settingsTitle => 'Settings';
+
+  @override
   String get skip => 'छोड़ें';
 
   @override

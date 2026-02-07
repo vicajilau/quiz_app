@@ -1657,4 +1657,5 @@
   "errorSavingFile": "Erro ao gardar o ficheiro",
   "deleteSingleQuestionConfirmation": "Estás seguro de que queres eliminar esta pregunta?",
   "deleteMultipleQuestionsConfirmation": "Estás seguro de que queres eliminar {count} preguntas?"
+  ,"settingsTitle": "Axustes"
 }

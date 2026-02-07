@@ -1663,4 +1663,5 @@
   "errorSavingFile": "Error al guardar el archivo",
   "deleteSingleQuestionConfirmation": "¿Estás seguro de que quieres eliminar esta pregunta?",
   "deleteMultipleQuestionsConfirmation": "¿Estás seguro de que quieres eliminar {count} preguntas?"
+  ,"settingsTitle": "Ajustes"
 }

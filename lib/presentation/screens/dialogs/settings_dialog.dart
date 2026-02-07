@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quiz_app/core/extensions/string_extensions.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
@@ -186,95 +187,195 @@ class _SettingsDialogState extends State<SettingsDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text(AppLocalizations.of(context)!.questionOrderConfigTitle),
-      content: _isLoading
-          ? const Center(
-              child: SizedBox(
-                width: 40,
-                height: 40,
-                child: CircularProgressIndicator(),
-              ),
-            )
-          : SingleChildScrollView(
-              controller: _scrollController,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final cardColor = isDark ? const Color(0xFF27272A) : Colors.white;
+    final textColor = isDark ? Colors.white : const Color(0xFF18181B);
+    final borderColor = isDark
+        ? const Color(0xFF3F3F46)
+        : const Color(0xFFE4E4E7);
+    final closeBtnColor = isDark
+        ? const Color(0xFF3F3F46)
+        : const Color(0xFFF4F4F5);
+    final closeIconColor = isDark
+        ? const Color(0xFFA1A1AA)
+        : const Color(0xFF71717A);
+
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+      child: Container(
+        width: 520, // Node Eql6E width
+        decoration: BoxDecoration(
+          color: cardColor,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: borderColor, width: 1),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.1),
+              blurRadius: 20,
+              offset: const Offset(0, 10),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Header
+            Padding(
+              padding: const EdgeInsets.fromLTRB(32, 32, 32, 24),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  QuestionSettingsSection(
-                    selectedOrder: _selectedOrder,
-                    randomizeAnswers: _randomizeAnswers,
-                    showCorrectAnswerCount: _showCorrectAnswerCount,
-                    onOrderChanged: (value) =>
-                        setState(() => _selectedOrder = value),
-                    onRandomizeAnswersChanged: (value) =>
-                        setState(() => _randomizeAnswers = value),
-                    onShowCorrectAnswerCountChanged: (value) =>
-                        setState(() => _showCorrectAnswerCount = value),
-                  ),
-                  ExamSettingsSection(
-                    enabled: _examTimeEnabled,
-                    minutes: _examTimeMinutes,
-                    onEnabledChanged: (value) =>
-                        setState(() => _examTimeEnabled = value),
-                    onMinutesChanged: (value) =>
-                        setState(() => _examTimeMinutes = value),
-                  ),
-                  AiSettingsSection(
-                    key: _aiSettingsKey,
-                    enabled: _aiAssistantEnabled,
-                    keepDraft: _keepAiDraft,
-                    geminiController: _geminiApiKeyController,
-                    openAiController: _openAiApiKeyController,
-                    defaultModel: _defaultAIModel,
-                    errorMessage: _apiKeyErrorMessage,
-                    isGeminiVisible: _isGeminiKeyVisible,
-                    isOpenAiVisible: _isOpenAiKeyVisible,
-                    errorKey: _errorKey,
-                    onEnabledChanged: (value) {
-                      setState(() => _aiAssistantEnabled = value);
-                      if (value) {
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          if (_aiSettingsKey.currentContext != null) {
-                            Scrollable.ensureVisible(
-                              _aiSettingsKey.currentContext!,
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.easeOut,
-                            );
-                          }
-                        });
-                      }
-                    },
-                    onKeepDraftChanged: (value) =>
-                        setState(() => _keepAiDraft = value),
-                    onToggleGeminiVisibility: () => setState(
-                      () => _isGeminiKeyVisible = !_isGeminiKeyVisible,
+                  Text(
+                    AppLocalizations.of(context)!.settingsTitle,
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700,
+                      color: textColor,
                     ),
-                    onToggleOpenAiVisibility: () => setState(
-                      () => _isOpenAiKeyVisible = !_isOpenAiKeyVisible,
+                  ),
+                  InkWell(
+                    onTap: () => context.pop(),
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: closeBtnColor,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        LucideIcons.x,
+                        size: 20,
+                        color: closeIconColor,
+                      ),
                     ),
-                    onApiKeyChanged: () async {
-                      _clearApiKeyError();
-                      await _onApiKeyChanged();
-                      setState(() {
-                        // Rebuild
-                      });
-                    },
                   ),
                 ],
               ),
             ),
-      actions: [
-        TextButton(
-          onPressed: () => context.pop(),
-          child: Text(AppLocalizations.of(context)!.cancel),
+
+            // Content
+            Flexible(
+              child: _isLoading
+                  ? const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(32),
+                        child: CircularProgressIndicator(),
+                      ),
+                    )
+                  : SingleChildScrollView(
+                      controller: _scrollController,
+                      padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          QuestionSettingsSection(
+                            selectedOrder: _selectedOrder,
+                            randomizeAnswers: _randomizeAnswers,
+                            showCorrectAnswerCount: _showCorrectAnswerCount,
+                            onOrderChanged: (value) =>
+                                setState(() => _selectedOrder = value),
+                            onRandomizeAnswersChanged: (value) =>
+                                setState(() => _randomizeAnswers = value),
+                            onShowCorrectAnswerCountChanged: (value) =>
+                                setState(() => _showCorrectAnswerCount = value),
+                          ),
+                          const SizedBox(height: 24),
+                          ExamSettingsSection(
+                            enabled: _examTimeEnabled,
+                            minutes: _examTimeMinutes,
+                            onEnabledChanged: (value) =>
+                                setState(() => _examTimeEnabled = value),
+                            onMinutesChanged: (value) =>
+                                setState(() => _examTimeMinutes = value),
+                          ),
+                          const SizedBox(height: 24),
+                          AiSettingsSection(
+                            key: _aiSettingsKey,
+                            enabled: _aiAssistantEnabled,
+                            keepDraft: _keepAiDraft,
+                            geminiController: _geminiApiKeyController,
+                            openAiController: _openAiApiKeyController,
+                            defaultModel: _defaultAIModel,
+                            errorMessage: _apiKeyErrorMessage,
+                            isGeminiVisible: _isGeminiKeyVisible,
+                            isOpenAiVisible: _isOpenAiKeyVisible,
+                            errorKey: _errorKey,
+                            onEnabledChanged: (value) {
+                              setState(() => _aiAssistantEnabled = value);
+                              if (value) {
+                                WidgetsBinding.instance.addPostFrameCallback((
+                                  _,
+                                ) {
+                                  if (_aiSettingsKey.currentContext != null) {
+                                    Scrollable.ensureVisible(
+                                      _aiSettingsKey.currentContext!,
+                                      duration: const Duration(
+                                        milliseconds: 300,
+                                      ),
+                                      curve: Curves.easeOut,
+                                    );
+                                  }
+                                });
+                              }
+                            },
+                            onKeepDraftChanged: (value) =>
+                                setState(() => _keepAiDraft = value),
+                            onToggleGeminiVisibility: () => setState(
+                              () => _isGeminiKeyVisible = !_isGeminiKeyVisible,
+                            ),
+                            onToggleOpenAiVisibility: () => setState(
+                              () => _isOpenAiKeyVisible = !_isOpenAiKeyVisible,
+                            ),
+                            onApiKeyChanged: () async {
+                              _clearApiKeyError();
+                              await _onApiKeyChanged();
+                              setState(() {
+                                // Rebuild
+                              });
+                            },
+                          ),
+                          const SizedBox(height: 32),
+                          ElevatedButton(
+                            onPressed: _isLoading ? null : _saveSettings,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF8B5CF6),
+                              foregroundColor: Colors.white,
+                              elevation: 0,
+                              minimumSize: const Size(double.infinity, 56),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              textStyle: const TextStyle(
+                                fontFamily: 'Inter',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            child: _isLoading
+                                ? const SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                      strokeWidth: 2,
+                                    ),
+                                  )
+                                : Text(
+                                    AppLocalizations.of(context)!.saveButton,
+                                  ),
+                          ),
+                        ],
+                      ),
+                    ),
+            ),
+          ],
         ),
-        ElevatedButton(
-          onPressed: _isLoading ? null : _saveSettings,
-          child: Text(AppLocalizations.of(context)!.saveButton),
-        ),
-      ],
+      ),
     );
   }
 }
