@@ -264,6 +264,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get questionOrderConfigTooltip => 'إعداد ترتيب الأسئلة';
 
   @override
+  String get reorderQuestionsTooltip => 'إعادة ترتيب الأسئلة';
+
+  @override
   String get save => 'حفظ';
 
   @override
@@ -1173,4 +1176,40 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get disable => 'تعطيل';
+
+  @override
+  String get quizPreviewTitle => 'معاينة الاختبار';
+
+  @override
+  String get select => 'تحديد';
+
+  @override
+  String get done => 'تم';
+
+  @override
+  String get importButton => 'استيراد';
+
+  @override
+  String get reorderButton => 'إعادة ترتيب';
+
+  @override
+  String get startQuizButton => 'بدء الاختبار';
+
+  @override
+  String get deleteConfirmation => 'هل أنت متأكد أنك تريد حذف هذا الاختبار؟';
+
+  @override
+  String get saveSuccess => 'تم حفظ الملف بنجاح';
+
+  @override
+  String get errorSavingFile => 'خطأ في حفظ الملف';
+
+  @override
+  String get deleteSingleQuestionConfirmation =>
+      'هل أنت متأكد أنك تريد حذف هذا السؤال؟';
+
+  @override
+  String deleteMultipleQuestionsConfirmation(int count) {
+    return 'هل أنت متأكد أنك تريد حذف $count أسئلة؟';
+  }
 }

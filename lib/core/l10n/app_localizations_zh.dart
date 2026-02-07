@@ -259,6 +259,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get questionOrderConfigTooltip => '问题顺序配置';
 
   @override
+  String get reorderQuestionsTooltip => '重新排序问题';
+
+  @override
   String get save => '保存';
 
   @override
@@ -1135,4 +1138,39 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get disable => '禁用';
+
+  @override
+  String get quizPreviewTitle => '测验预览';
+
+  @override
+  String get select => '选择';
+
+  @override
+  String get done => '完成';
+
+  @override
+  String get importButton => '导入';
+
+  @override
+  String get reorderButton => '重新排序';
+
+  @override
+  String get startQuizButton => '开始测验';
+
+  @override
+  String get deleteConfirmation => '您确定要删除此测验吗？';
+
+  @override
+  String get saveSuccess => '文件保存成功';
+
+  @override
+  String get errorSavingFile => '保存文件时出错';
+
+  @override
+  String get deleteSingleQuestionConfirmation => '您确定要删除这个问题吗？';
+
+  @override
+  String deleteMultipleQuestionsConfirmation(int count) {
+    return '您确定要删除 $count 个问题吗？';
+  }
 }

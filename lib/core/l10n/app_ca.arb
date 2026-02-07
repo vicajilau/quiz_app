@@ -1665,5 +1665,20 @@
   "disable": "Desactivar",
   "@disable": {
     "description": "Button label to disable a question"
-  }
+  },
+  "reorderQuestionsTooltip": "Reordenar preguntes",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "Vista prèvia del qüestionari",
+  "select": "Seleccionar",
+  "done": "Fet",
+  "importButton": "Importar",
+  "reorderButton": "Reordenar",
+  "startQuizButton": "Començar qüestionari",
+  "deleteConfirmation": "Esteu segur que voleu eliminar aquest qüestionari?",
+  "saveSuccess": "Fitxer desat correctament",
+  "errorSavingFile": "Error en desar el fitxer",
+  "deleteSingleQuestionConfirmation": "Estàs segur que vols eliminar aquesta pregunta?",
+  "deleteMultipleQuestionsConfirmation": "Estàs segur que vols eliminar {count} preguntes?"
 }

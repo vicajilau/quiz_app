@@ -344,5 +344,20 @@
   "sorteosLabel": "Raffles",
   "edit": "Επεξεργασία",
   "enable": "Ενεργοποίηση",
-  "disable": "Απενεργοποίηση"
+  "disable": "Απενεργοποίηση",
+  "reorderQuestionsTooltip": "Αναδιάταξη ερωτήσεων",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "Προεπισκόπηση Κουίζ",
+  "select": "Επιλογή",
+  "done": "Τέλος",
+  "importButton": "Εισαγωγή",
+  "reorderButton": "Αναδιάταξη",
+  "startQuizButton": "Έναρξη Κουίζ",
+  "deleteConfirmation": "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το κουίζ;",
+  "saveSuccess": "Το αρχείο αποθηκεύτηκε επιτυχώς",
+  "errorSavingFile": "Σφάλμα κατά την αποθήκευση του αρχείου",
+  "deleteSingleQuestionConfirmation": "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτή την ερώτηση;",
+  "deleteMultipleQuestionsConfirmation": "Είστε σίγουροι ότι θέλετε να διαγράψετε {count} ερωτήσεις;"
 }

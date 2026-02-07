@@ -1623,5 +1623,20 @@
   "sorteosLabel": "Raffles",
   "edit": "Editatu",
   "enable": "Gaitu",
-  "disable": "Desgaitu"
+  "disable": "Desgaitu",
+  "reorderQuestionsTooltip": "Galderak berrantolatu",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "Galdetegiaren Aurrebista",
+  "select": "Hautatu",
+  "done": "Eginda",
+  "importButton": "Inportatu",
+  "reorderButton": "Berrantolatu",
+  "startQuizButton": "Hasi Galdetegia",
+  "deleteConfirmation": "Ziur zaude galdetegi hau ezabatu nahi duzula?",
+  "saveSuccess": "Fitxategia ondo gorde da",
+  "errorSavingFile": "Errorea fitxategia gordetzean",
+  "deleteSingleQuestionConfirmation": "Ziur zaude galdera hau ezabatu nahi duzula?",
+  "deleteMultipleQuestionsConfirmation": "Ziur zaude {count} galdera ezabatu nahi dituzula?"
 }

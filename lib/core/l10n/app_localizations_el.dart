@@ -274,6 +274,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get questionOrderConfigTooltip => 'Διαμόρφωση σειράς ερωτήσεων';
 
   @override
+  String get reorderQuestionsTooltip => 'Αναδιάταξη ερωτήσεων';
+
+  @override
   String get save => 'Αποθήκευση';
 
   @override
@@ -1205,4 +1208,41 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get disable => 'Απενεργοποίηση';
+
+  @override
+  String get quizPreviewTitle => 'Προεπισκόπηση Κουίζ';
+
+  @override
+  String get select => 'Επιλογή';
+
+  @override
+  String get done => 'Τέλος';
+
+  @override
+  String get importButton => 'Εισαγωγή';
+
+  @override
+  String get reorderButton => 'Αναδιάταξη';
+
+  @override
+  String get startQuizButton => 'Έναρξη Κουίζ';
+
+  @override
+  String get deleteConfirmation =>
+      'Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το κουίζ;';
+
+  @override
+  String get saveSuccess => 'Το αρχείο αποθηκεύτηκε επιτυχώς';
+
+  @override
+  String get errorSavingFile => 'Σφάλμα κατά την αποθήκευση του αρχείου';
+
+  @override
+  String get deleteSingleQuestionConfirmation =>
+      'Είστε σίγουροι ότι θέλετε να διαγράψετε αυτή την ερώτηση;';
+
+  @override
+  String deleteMultipleQuestionsConfirmation(int count) {
+    return 'Είστε σίγουροι ότι θέλετε να διαγράψετε $count ερωτήσεις;';
+  }
 }

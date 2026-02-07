@@ -273,6 +273,9 @@ class AppLocalizationsCa extends AppLocalizations {
       'Configuració de l\'ordre de les preguntes';
 
   @override
+  String get reorderQuestionsTooltip => 'Reordenar preguntes';
+
+  @override
   String get save => 'Desar';
 
   @override
@@ -1202,4 +1205,41 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get disable => 'Desactivar';
+
+  @override
+  String get quizPreviewTitle => 'Vista prèvia del qüestionari';
+
+  @override
+  String get select => 'Seleccionar';
+
+  @override
+  String get done => 'Fet';
+
+  @override
+  String get importButton => 'Importar';
+
+  @override
+  String get reorderButton => 'Reordenar';
+
+  @override
+  String get startQuizButton => 'Començar qüestionari';
+
+  @override
+  String get deleteConfirmation =>
+      'Esteu segur que voleu eliminar aquest qüestionari?';
+
+  @override
+  String get saveSuccess => 'Fitxer desat correctament';
+
+  @override
+  String get errorSavingFile => 'Error en desar el fitxer';
+
+  @override
+  String get deleteSingleQuestionConfirmation =>
+      'Estàs segur que vols eliminar aquesta pregunta?';
+
+  @override
+  String deleteMultipleQuestionsConfirmation(int count) {
+    return 'Estàs segur que vols eliminar $count preguntes?';
+  }
 }

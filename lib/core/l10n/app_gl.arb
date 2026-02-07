@@ -1623,5 +1623,20 @@
   "sorteosLabel": "Raffles",
   "edit": "Editar",
   "enable": "Activar",
-  "disable": "Desactivar"
+  "disable": "Desactivar",
+  "reorderQuestionsTooltip": "Reordenar preguntas",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "Vista previa do cuestionario",
+  "select": "Seleccionar",
+  "done": "Feito",
+  "importButton": "Importar",
+  "reorderButton": "Reordenar",
+  "startQuizButton": "Comezar cuestionario",
+  "deleteConfirmation": "Estás seguro de que queres eliminar este cuestionario?",
+  "saveSuccess": "Ficheiro gardado correctamente",
+  "errorSavingFile": "Erro ao gardar o ficheiro",
+  "deleteSingleQuestionConfirmation": "Estás seguro de que queres eliminar esta pregunta?",
+  "deleteMultipleQuestionsConfirmation": "Estás seguro de que queres eliminar {count} preguntas?"
 }

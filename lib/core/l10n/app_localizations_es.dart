@@ -273,6 +273,9 @@ class AppLocalizationsEs extends AppLocalizations {
       'Configuración del orden de preguntas';
 
   @override
+  String get reorderQuestionsTooltip => 'Reordenar preguntas';
+
+  @override
   String get save => 'Guardar';
 
   @override
@@ -1198,4 +1201,40 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get disable => 'Desactivar';
+
+  @override
+  String get quizPreviewTitle => 'Vista Previa del Quiz';
+
+  @override
+  String get select => 'Seleccionar';
+
+  @override
+  String get done => 'Listo';
+
+  @override
+  String get importButton => 'Importar';
+
+  @override
+  String get reorderButton => 'Reordenar';
+
+  @override
+  String get startQuizButton => 'Comenzar Quiz';
+
+  @override
+  String get deleteConfirmation => '¿Seguro que quieres eliminar este quiz?';
+
+  @override
+  String get saveSuccess => 'Archivo guardado exitosamente';
+
+  @override
+  String get errorSavingFile => 'Error al guardar el archivo';
+
+  @override
+  String get deleteSingleQuestionConfirmation =>
+      '¿Estás seguro de que quieres eliminar esta pregunta?';
+
+  @override
+  String deleteMultipleQuestionsConfirmation(int count) {
+    return '¿Estás seguro de que quieres eliminar $count preguntas?';
+  }
 }

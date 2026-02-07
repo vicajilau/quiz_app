@@ -374,6 +374,10 @@
   "@questionOrderConfigTooltip": {
     "description": "Tooltip for the question order configuration button"
   },
+  "reorderQuestionsTooltip": "Reorder Questions",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
   "save": "Save",
   "@save": {
     "description": "Label for the save button"
@@ -1671,5 +1675,55 @@
   "disable": "Disable",
   "@disable": {
     "description": "Button label to disable a question"
+  },
+  "quizPreviewTitle": "Quiz Preview",
+  "@quizPreviewTitle": {
+    "description": "Title for the Quiz Preview screen"
+  },
+  "select": "Select",
+  "@select": {
+    "description": "Label for select button"
+  },
+  "done": "Done",
+  "@done": {
+    "description": "Label for done button"
+  },
+  "importButton": "Import",
+  "@importButton": {
+    "description": "Label for import button"
+  },
+  "reorderButton": "Reorder",
+  "@reorderButton": {
+    "description": "Label for reorder button"
+  },
+  "startQuizButton": "Start Quiz",
+  "@startQuizButton": {
+    "description": "Label for start quiz button"
+  },
+  "deleteConfirmation": "Are you sure you want to delete this quiz?",
+  "@deleteConfirmation": {
+    "description": "Confirmation message for deleting a quiz"
+  },
+  "saveSuccess": "File saved successfully",
+  "@saveSuccess": {
+    "description": "Message displayed when file is saved successfully"
+  },
+  "errorSavingFile": "Error saving file",
+  "@errorSavingFile": {
+    "description": "Message displayed when saving file fails"
+  },
+  "deleteSingleQuestionConfirmation": "Are you sure you want to delete this question?",
+  "@deleteSingleQuestionConfirmation": {
+    "description": "Confirmation message for deleting a single question"
+  },
+  "deleteMultipleQuestionsConfirmation": "Are you sure you want to delete {count} questions?",
+  "@deleteMultipleQuestionsConfirmation": {
+    "description": "Confirmation message for deleting multiple questions",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }

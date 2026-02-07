@@ -268,6 +268,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get questionOrderConfigTooltip => 'प्रश्न क्रम कॉन्फ़िगरेशन';
 
   @override
+  String get reorderQuestionsTooltip => 'प्रश्नों को पुनः व्यवस्थित करें';
+
+  @override
   String get save => 'सेव करें';
 
   @override
@@ -1184,4 +1187,41 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get disable => 'अक्षम करें';
+
+  @override
+  String get quizPreviewTitle => 'प्रश्नोत्तरी पूर्वावलोकन';
+
+  @override
+  String get select => 'चुनें';
+
+  @override
+  String get done => 'हो गया';
+
+  @override
+  String get importButton => 'आयात करें';
+
+  @override
+  String get reorderButton => 'पुनः क्रमित करें';
+
+  @override
+  String get startQuizButton => 'प्रश्नोत्तरी शुरू करें';
+
+  @override
+  String get deleteConfirmation =>
+      'क्या आप वाकई इस प्रश्नोत्तरी को हटाना चाहते हैं?';
+
+  @override
+  String get saveSuccess => 'फ़ाइल सफलतापूर्वक सहेजी गई';
+
+  @override
+  String get errorSavingFile => 'फ़ाइल सहेजने में त्रुटि';
+
+  @override
+  String get deleteSingleQuestionConfirmation =>
+      'क्या आप वाकई इस प्रश्न को हटाना चाहते हैं?';
+
+  @override
+  String deleteMultipleQuestionsConfirmation(int count) {
+    return 'क्या आप वाकई $count प्रश्नों को हटाना चाहते हैं?';
+  }
 }

@@ -1623,5 +1623,20 @@
   "sorteosLabel": "Raffles",
   "edit": "تعديل",
   "enable": "تفعيل",
-  "disable": "تعطيل"
+  "disable": "تعطيل",
+  "reorderQuestionsTooltip": "إعادة ترتيب الأسئلة",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "معاينة الاختبار",
+  "select": "تحديد",
+  "done": "تم",
+  "importButton": "استيراد",
+  "reorderButton": "إعادة ترتيب",
+  "startQuizButton": "بدء الاختبار",
+  "deleteConfirmation": "هل أنت متأكد أنك تريد حذف هذا الاختبار؟",
+  "saveSuccess": "تم حفظ الملف بنجاح",
+  "errorSavingFile": "خطأ في حفظ الملف",
+  "deleteSingleQuestionConfirmation": "هل أنت متأكد أنك تريد حذف هذا السؤال؟",
+  "deleteMultipleQuestionsConfirmation": "هل أنت متأكد أنك تريد حذف {count} أسئلة؟"
 }

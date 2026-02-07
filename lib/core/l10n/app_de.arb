@@ -1671,5 +1671,20 @@
   "disable": "Deaktivieren",
   "@disable": {
     "description": "Button label to disable a question"
-  }
+  },
+  "reorderQuestionsTooltip": "Fragen neu ordnen",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "Quiz-Vorschau",
+  "select": "Auswählen",
+  "done": "Fertig",
+  "importButton": "Importieren",
+  "reorderButton": "Neu ordnen",
+  "startQuizButton": "Quiz starten",
+  "deleteConfirmation": "Sind Sie sicher, dass Sie dieses Quiz löschen möchten?",
+  "saveSuccess": "Datei erfolgreich gespeichert",
+  "errorSavingFile": "Fehler beim Speichern der Datei",
+  "deleteSingleQuestionConfirmation": "Sind Sie sicher, dass Sie diese Frage löschen möchten?",
+  "deleteMultipleQuestionsConfirmation": "Sind Sie sicher, dass Sie {count} Fragen löschen möchten?"
 }

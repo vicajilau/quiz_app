@@ -1623,5 +1623,20 @@
   "sorteosLabel": "Raffles",
   "edit": "संपादित करें",
   "enable": "सक्षम करें",
-  "disable": "अक्षम करें"
+  "disable": "अक्षम करें",
+  "reorderQuestionsTooltip": "प्रश्नों को पुनः व्यवस्थित करें",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "प्रश्नोत्तरी पूर्वावलोकन",
+  "select": "चुनें",
+  "done": "हो गया",
+  "importButton": "आयात करें",
+  "reorderButton": "पुनः क्रमित करें",
+  "startQuizButton": "प्रश्नोत्तरी शुरू करें",
+  "deleteConfirmation": "क्या आप वाकई इस प्रश्नोत्तरी को हटाना चाहते हैं?",
+  "saveSuccess": "फ़ाइल सफलतापूर्वक सहेजी गई",
+  "errorSavingFile": "फ़ाइल सहेजने में त्रुटि",
+  "deleteSingleQuestionConfirmation": "क्या आप वाकई इस प्रश्न को हटाना चाहते हैं?",
+  "deleteMultipleQuestionsConfirmation": "क्या आप वाकई {count} प्रश्नों को हटाना चाहते हैं?"
 }

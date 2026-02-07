@@ -259,6 +259,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get questionOrderConfigTooltip => '問題順序の設定';
 
   @override
+  String get reorderQuestionsTooltip => '質問を並べ替える';
+
+  @override
   String get save => '保存';
 
   @override
@@ -1140,4 +1143,39 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get disable => '無効化';
+
+  @override
+  String get quizPreviewTitle => 'クイズプレビュー';
+
+  @override
+  String get select => '選択';
+
+  @override
+  String get done => '完了';
+
+  @override
+  String get importButton => 'インポート';
+
+  @override
+  String get reorderButton => '並べ替え';
+
+  @override
+  String get startQuizButton => 'クイズを開始';
+
+  @override
+  String get deleteConfirmation => 'このクイズを削除してもよろしいですか？';
+
+  @override
+  String get saveSuccess => 'ファイルが正常に保存されました';
+
+  @override
+  String get errorSavingFile => 'ファイルの保存中にエラーが発生しました';
+
+  @override
+  String get deleteSingleQuestionConfirmation => 'この質問を削除してもよろしいですか？';
+
+  @override
+  String deleteMultipleQuestionsConfirmation(int count) {
+    return '$count 個の質問を削除してもよろしいですか？';
+  }
 }

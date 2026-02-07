@@ -1623,5 +1623,20 @@
   "sorteosLabel": "Raffles",
   "edit": "编辑",
   "enable": "启用",
-  "disable": "禁用"
+  "disable": "禁用",
+  "reorderQuestionsTooltip": "重新排序问题",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "测验预览",
+  "select": "选择",
+  "done": "完成",
+  "importButton": "导入",
+  "reorderButton": "重新排序",
+  "startQuizButton": "开始测验",
+  "deleteConfirmation": "您确定要删除此测验吗？",
+  "saveSuccess": "文件保存成功",
+  "errorSavingFile": "保存文件时出错",
+  "deleteSingleQuestionConfirmation": "您确定要删除这个问题吗？",
+  "deleteMultipleQuestionsConfirmation": "您确定要删除 {count} 个问题吗？"
 }

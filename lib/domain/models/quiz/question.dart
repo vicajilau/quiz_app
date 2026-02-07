@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import 'package:quiz_app/core/constants/question_constants.dart';
 
@@ -141,8 +142,8 @@ class Question {
         other.image == image &&
         other.explanation == explanation &&
         other.isEnabled == isEnabled &&
-        _listEquals(other.options, options) &&
-        _listEquals(other.correctAnswers, correctAnswers);
+        listEquals(other.options, options) &&
+        listEquals(other.correctAnswers, correctAnswers);
   }
 
   @override
@@ -150,28 +151,18 @@ class Question {
     if (image == null) {
       return type.hashCode ^
           text.hashCode ^
-          options.hashCode ^
-          correctAnswers.hashCode ^
+          Object.hashAll(options) ^ // Use Object.hashAll
+          Object.hashAll(correctAnswers) ^ // Use Object.hashAll
           explanation.hashCode ^
           isEnabled.hashCode;
     }
     return type.hashCode ^
         text.hashCode ^
         image.hashCode ^
-        options.hashCode ^
-        correctAnswers.hashCode ^
+        Object.hashAll(options) ^ // Use Object.hashAll
+        Object.hashAll(correctAnswers) ^ // Use Object.hashAll
         explanation.hashCode ^
         isEnabled.hashCode;
-  }
-
-  /// Helper method to compare two lists for equality.
-  bool _listEquals<T>(List<T>? a, List<T>? b) {
-    if (a == null) return b == null;
-    if (b == null || a.length != b.length) return false;
-    for (int index = 0; index < a.length; index += 1) {
-      if (a[index] != b[index]) return false;
-    }
-    return true;
   }
 
   @override

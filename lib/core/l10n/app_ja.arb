@@ -1623,5 +1623,20 @@
   "sorteosLabel": "Raffles",
   "edit": "編集",
   "enable": "有効化",
-  "disable": "無効化"
+  "disable": "無効化",
+  "reorderQuestionsTooltip": "質問を並べ替える",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "クイズプレビュー",
+  "select": "選択",
+  "done": "完了",
+  "importButton": "インポート",
+  "reorderButton": "並べ替え",
+  "startQuizButton": "クイズを開始",
+  "deleteConfirmation": "このクイズを削除してもよろしいですか？",
+  "saveSuccess": "ファイルが正常に保存されました",
+  "errorSavingFile": "ファイルの保存中にエラーが発生しました",
+  "deleteSingleQuestionConfirmation": "この質問を削除してもよろしいですか？",
+  "deleteMultipleQuestionsConfirmation": "{count} 個の質問を削除してもよろしいですか？"
 }
