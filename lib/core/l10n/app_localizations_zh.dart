@@ -34,6 +34,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get dropFileHere => '点击这里或将.quiz文件拖拽到屏幕';
 
   @override
+  String get clickOrDragFile => '点击加载或将 .quiz 文件拖动到屏幕上';
+
+  @override
   String get errorInvalidFile => '错误：无效文件。必须是.quiz文件。';
 
   @override

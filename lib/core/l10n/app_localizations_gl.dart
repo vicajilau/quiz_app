@@ -35,6 +35,10 @@ class AppLocalizationsGl extends AppLocalizations {
       'Preme aquí ou arrastra un ficheiro .quiz á pantalla';
 
   @override
+  String get clickOrDragFile =>
+      'Preme para cargar ou arrastra un ficheiro .quiz á pantalla';
+
+  @override
   String get errorInvalidFile =>
       'Erro: Ficheiro non válido. Debe ser un ficheiro .quiz.';
 

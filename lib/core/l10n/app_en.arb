@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Text displayed inside the drop area for dragging files."
   },
+  "clickOrDragFile": "Click to load or drag a .quiz file to the screen",
+  "@clickOrDragFile": {
+    "description": "Text displayed below the drop area"
+  },
   "errorInvalidFile": "Error: Invalid file. Must be a .quiz file.",
   "@errorInvalidFile": {
     "description": "Message displayed when the dropped file is not a .quiz file."

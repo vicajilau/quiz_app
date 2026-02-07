@@ -32,7 +32,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get dropFileHere =>
-      'Haz clic aquí o arrastra un archivo .quiz a la pantalla';
+      'Haz clic en el logo o arrastra un archivo .quiz a la pantalla';
+
+  @override
+  String get clickOrDragFile =>
+      'Haz clic para cargar o arrastra un archivo .quiz a la pantalla';
 
   @override
   String get errorInvalidFile =>

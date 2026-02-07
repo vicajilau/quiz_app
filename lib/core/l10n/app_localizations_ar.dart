@@ -31,7 +31,10 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get dropFileHere => 'انقر هنا أو اسحب ملف .quiz إلى الشاشة';
+  String get dropFileHere => 'انقر فوق الشعار أو اسحب ملف .quiz إلى الشاشة';
+
+  @override
+  String get clickOrDragFile => 'انقر للتحميل أو اسحب ملف .quiz إلى الشاشة';
 
   @override
   String get errorInvalidFile => 'خطأ: ملف غير صالح. يجب أن يكون ملف .quiz.';

@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Texte affiché dans la zone de dépôt pour faire glisser des fichiers."
   },
+  "clickOrDragFile": "Cliquez pour charger ou faites glisser un fichier .quiz vers l'écran",
+  "@clickOrDragFile": {
+    "description": "Texte affiché sous la zone de dépôt"
+  },
   "errorInvalidFile": "Erreur : Fichier invalide. Doit être un fichier .quiz.",
   "@errorInvalidFile": {
     "description": "Message affiché lorsque le fichier déposé n'est pas un fichier .quiz."

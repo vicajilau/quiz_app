@@ -35,6 +35,10 @@ class AppLocalizationsEl extends AppLocalizations {
       'Κάντε κλικ στο λογότυπο ή σύρετε ένα αρχείο .quiz στην οθόνη';
 
   @override
+  String get clickOrDragFile =>
+      'Κάντε κλικ για φόρτωση ή σύρετε ένα αρχείο .quiz στην οθόνη';
+
+  @override
   String get errorInvalidFile =>
       'Σφάλμα: Μη έγκυρο αρχείο. Πρέπει να είναι αρχείο .quiz.';
 

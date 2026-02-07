@@ -35,6 +35,10 @@ class AppLocalizationsCa extends AppLocalizations {
       'Feu clic aquí o arrossegueu un fitxer .quiz a la pantalla';
 
   @override
+  String get clickOrDragFile =>
+      'Feu clic per carregar o arrossegueu un fitxer .quiz a la pantalla';
+
+  @override
   String get errorInvalidFile =>
       'Error: Fitxer no vàlid. Ha de ser un fitxer .quiz.';
 

@@ -32,7 +32,11 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get dropFileHere =>
-      'Clique aqui ou arraste um arquivo .quiz para a tela';
+      'Clique no logotipo ou arraste um arquivo .quiz para a tela';
+
+  @override
+  String get clickOrDragFile =>
+      'Clique para carregar ou arraste um arquiro .quiz para a tela';
 
   @override
   String get errorInvalidFile =>

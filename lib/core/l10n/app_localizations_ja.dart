@@ -34,6 +34,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get dropFileHere => 'ここをクリックするか、.quizファイルを画面にドラッグしてください';
 
   @override
+  String get clickOrDragFile => 'クリックしてロードするか、.quizファイルを画面にドラッグしてください';
+
+  @override
   String get errorInvalidFile => 'エラー：無効なファイルです。.quizファイルである必要があります。';
 
   @override

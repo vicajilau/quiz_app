@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Text, der im Ablagebereich zum Ziehen von Dateien angezeigt wird."
   },
+  "clickOrDragFile": "Klicken zum Laden oder .quiz-Datei auf den Bildschirm ziehen",
+  "@clickOrDragFile": {
+    "description": "Text unter dem Ladebereich"
+  },
   "errorInvalidFile": "Fehler: Ungültige Datei. Muss eine .quiz-Datei sein.",
   "@errorInvalidFile": {
     "description": "Nachricht, die angezeigt wird, wenn die abgelegte Datei keine .quiz-Datei ist."

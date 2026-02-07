@@ -35,6 +35,10 @@ class AppLocalizationsEu extends AppLocalizations {
       'Egin klik hemen edo arrastatu .quiz fitxategi bat pantailara';
 
   @override
+  String get clickOrDragFile =>
+      'Egin klik kargatzeko edo arrastatu .quiz fitxategi bat pantailara';
+
+  @override
   String get errorInvalidFile =>
       'Errorea: Fitxategi baliogabea. .quiz fitxategia izan behar da.';
 

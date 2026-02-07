@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Text displayed inside the drop area for dragging files."
   },
+  "clickOrDragFile": "Load karne ke liye click karen ya screen par .quiz file drag karen",
+  "@clickOrDragFile": {
+    "description": "Text displayed below the drop area"
+  },
   "errorInvalidFile": "त्रुटि: अमान्य फ़ाइल। .quiz फ़ाइल होनी चाहिए।",
   "@errorInvalidFile": {
     "description": "Message displayed when the dropped file is not a .quiz file."

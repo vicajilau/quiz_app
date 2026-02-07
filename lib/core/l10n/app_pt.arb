@@ -36,9 +36,13 @@
       }
     }
   },
-  "dropFileHere": "Clique aqui ou arraste um arquivo .quiz para a tela",
+  "dropFileHere": "Clique no logotipo ou arraste um arquivo .quiz para a tela",
   "@dropFileHere": {
-    "description": "Texto exibido na área de soltar para arrastar arquivos."
+    "description": "Texto exibido dentro da área de soltar arquivos."
+  },
+  "clickOrDragFile": "Clique para carregar ou arraste um arquiro .quiz para a tela",
+  "@clickOrDragFile": {
+    "description": "Texto exibido abaixo da área de carregamento"
   },
   "errorInvalidFile": "Erro: Arquivo inválido. Deve ser um arquivo .quiz.",
   "@errorInvalidFile": {

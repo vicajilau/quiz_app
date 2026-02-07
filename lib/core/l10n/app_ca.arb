@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Text mostrat a l'àrea de deixar anar per arrossegar fitxers."
   },
+  "clickOrDragFile": "Feu clic per carregar o arrossegueu un fitxer .quiz a la pantalla",
+  "@clickOrDragFile": {
+    "description": "Text mostrat sota l'àrea de càrrega"
+  },
   "errorInvalidFile": "Error: Fitxer no vàlid. Ha de ser un fitxer .quiz.",
   "@errorInvalidFile": {
     "description": "Missatge mostrat quan el fitxer deixat no és un fitxer .quiz."

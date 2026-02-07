@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Text displayed inside the drop area for dragging files."
   },
+  "clickOrDragFile": "クリックしてロードするか、.quizファイルを画面にドラッグしてください",
+  "@clickOrDragFile": {
+    "description": "ロードエリアの下に表示されるテキスト"
+  },
   "errorInvalidFile": "エラー：無効なファイルです。.quizファイルである必要があります。",
   "@errorInvalidFile": {
     "description": "Message displayed when the dropped file is not a .quiz file."

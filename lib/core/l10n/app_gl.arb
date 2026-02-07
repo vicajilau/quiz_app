@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Texto mostrado na área de soltar para arrastrar ficheiros."
   },
+  "clickOrDragFile": "Preme para cargar ou arrastra un ficheiro .quiz á pantalla",
+  "@clickOrDragFile": {
+    "description": "Texto mostrado debaixo da área de carga"
+  },
   "errorInvalidFile": "Erro: Ficheiro non válido. Debe ser un ficheiro .quiz.",
   "@errorInvalidFile": {
     "description": "Mensaxe mostrada cando o ficheiro soltado non é un ficheiro .quiz."

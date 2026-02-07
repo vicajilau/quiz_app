@@ -36,9 +36,13 @@
       }
     }
   },
-  "dropFileHere": "انقر هنا أو اسحب ملف .quiz إلى الشاشة",
+  "dropFileHere": "انقر فوق الشعار أو اسحب ملف .quiz إلى الشاشة",
   "@dropFileHere": {
-    "description": "Text displayed inside the drop area for dragging files."
+    "description": "النص المعروض داخل منطقة الإفلات لسحب الملفات."
+  },
+  "clickOrDragFile": "انقر للتحميل أو اسحب ملف .quiz إلى الشاشة",
+  "@clickOrDragFile": {
+    "description": "النص المعروض أسفل منطقة التحميل"
   },
   "errorInvalidFile": "خطأ: ملف غير صالح. يجب أن يكون ملف .quiz.",
   "@errorInvalidFile": {

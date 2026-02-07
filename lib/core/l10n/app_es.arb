@@ -68,9 +68,13 @@
   "@score": {
     "description": "Etiqueta para mostrar la puntuación del usuario."
   },
-  "dropFileHere": "Haz clic aquí o arrastra un archivo .quiz a la pantalla",
+  "dropFileHere": "Haz clic en el logo o arrastra un archivo .quiz a la pantalla",
   "@dropFileHere": {
-    "description": "Texto mostrado dentro del área de arrastre para archivos."
+    "description": "Texto mostrado dentro del área para arrastrar archivos"
+  },
+  "clickOrDragFile": "Haz clic para cargar o arrastra un archivo .quiz a la pantalla",
+  "@clickOrDragFile": {
+    "description": "Texto mostrado debajo del área de carga"
   },
   "errorInvalidFile": "Error: archivo no válido. Debe ser un archivo .quiz.",
   "@errorInvalidFile": {

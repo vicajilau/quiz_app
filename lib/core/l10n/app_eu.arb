@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Fitxategiak arrastatzeko eremuan erakusten den testua."
   },
+  "clickOrDragFile": "Egin klik kargatzeko edo arrastatu .quiz fitxategi bat pantailara",
+  "@clickOrDragFile": {
+    "description": "Kargatzeko eremuaren azpian agertzen den testua"
+  },
   "errorInvalidFile": "Errorea: Fitxategi baliogabea. .quiz fitxategia izan behar da.",
   "@errorInvalidFile": {
     "description": "Uzten den fitxategia .quiz fitxategia ez denean erakusten den mezua."

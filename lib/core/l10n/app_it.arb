@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Testo visualizzato nell'area di rilascio per trascinare i file."
   },
+  "clickOrDragFile": "Clicca per caricare o trascina un file .quiz sullo schermo",
+  "@clickOrDragFile": {
+    "description": "Testo visualizzato sotto l'area di caricamento"
+  },
   "errorInvalidFile": "Errore: File non valido. Deve essere un file .quiz.",
   "@errorInvalidFile": {
     "description": "Messaggio visualizzato quando il file rilasciato non è un file .quiz."

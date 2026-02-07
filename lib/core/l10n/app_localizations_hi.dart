@@ -35,6 +35,10 @@ class AppLocalizationsHi extends AppLocalizations {
       'यहाँ क्लिक करें या स्क्रीन पर .quiz फ़ाइल ड्रैग करें';
 
   @override
+  String get clickOrDragFile =>
+      'Load karne ke liye click karen ya screen par .quiz file drag karen';
+
+  @override
   String get errorInvalidFile =>
       'त्रुटि: अमान्य फ़ाइल। .quiz फ़ाइल होनी चाहिए।';
 

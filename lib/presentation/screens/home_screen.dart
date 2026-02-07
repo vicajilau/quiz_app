@@ -2,6 +2,7 @@ import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quiz_app/core/context_extension.dart';
 import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 
@@ -24,17 +25,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool _isLoading = false; // Variable to track loading state
+  bool _isLoading = false;
+  bool _isDragging = false;
+
+  void _pickFile(BuildContext context) {
+    if (_isLoading) return;
+    context.read<FileBloc>().add(QuizFilePickRequested());
+  }
 
   Future<void> _showCreateQuizFileDialog(BuildContext context) async {
     final result = await showDialog<Map<String, String>>(
       context: context,
-      barrierDismissible: false, // Prevent dismissing by tapping outside
+      barrierDismissible: false,
       builder: (_) => const QuizMetadataDialog(),
     );
 
     if (result != null && result.isNotEmpty && context.mounted) {
-      // Validate required fields before proceeding
       final name = result['name']?.trim() ?? '';
       final description = result['description']?.trim() ?? '';
       const version = QuizMetadataConstants.version;
@@ -50,7 +56,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         );
       } else {
-        // Show error if required fields are missing
         context.presentSnackBar(
           AppLocalizations.of(context)!.requiredFieldsError,
         );
@@ -93,13 +98,9 @@ class _HomeScreenState extends State<HomeScreen> {
             }
           }
           if (state is FileLoading) {
-            setState(() {
-              _isLoading = true;
-            });
+            setState(() => _isLoading = true);
           } else {
-            setState(() {
-              _isLoading = false;
-            });
+            setState(() => _isLoading = false);
           }
         },
         child: Builder(
@@ -107,219 +108,15 @@ class _HomeScreenState extends State<HomeScreen> {
             checkDeepLink(context);
             return Scaffold(
               body: SafeArea(
-                child: Stack(
-                  children: [
-                    Column(
-                      children: [
-                        Expanded(
-                          child: DropTarget(
-                            onDragDone: (details) {
-                              // Validate that we have files
-                              if (details.files.isNotEmpty && !_isLoading) {
-                                // If we are not on the home screen, ignore the drop in HomeScreen
-                                if (context.currentRoute != AppRoutes.home) {
-                                  return;
-                                }
-
-                                final firstFile = details.files.first;
-                                // Additional validation: check if the file has a valid path
-                                if (firstFile.path.isNotEmpty) {
-                                  // Reset state before loading to ensure clean state on web
-                                  context.read<FileBloc>().add(QuizFileReset());
-                                  context.read<FileBloc>().add(
-                                    FileDropped(firstFile.path),
-                                  );
-                                }
-                              }
-                            },
-                            child: Center(
-                              child: SingleChildScrollView(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      GestureDetector(
-                                        onTap: _isLoading
-                                            ? null
-                                            : () {
-                                                context.read<FileBloc>().add(
-                                                  QuizFileReset(),
-                                                );
-                                                context.read<FileBloc>().add(
-                                                  QuizFilePickRequested(),
-                                                );
-                                              },
-                                        child: ConstrainedBox(
-                                          constraints: BoxConstraints(
-                                            maxWidth:
-                                                MediaQuery.of(
-                                                  context,
-                                                ).size.width *
-                                                0.7,
-                                            maxHeight:
-                                                MediaQuery.of(
-                                                  context,
-                                                ).size.height *
-                                                0.4,
-                                          ),
-                                          child: Image.asset(
-                                            'images/QUIZ.png',
-                                            fit: BoxFit.contain,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 24),
-                                      Text(
-                                        AppLocalizations.of(
-                                          context,
-                                        )!.dropFileHere,
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: _isLoading
-                                              ? Colors.grey
-                                              : Colors.grey[600],
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            spacing: 12,
-                            children: [
-                              // Primary Action: Create Quiz
-                              Tooltip(
-                                message: AppLocalizations.of(
-                                  context,
-                                )!.createFileTooltip,
-                                child: ElevatedButton.icon(
-                                  onPressed: _isLoading
-                                      ? null
-                                      : () =>
-                                            _showCreateQuizFileDialog(context),
-                                  icon: const Icon(Icons.add),
-                                  label: Text(
-                                    AppLocalizations.of(context)!.create,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Theme.of(
-                                      context,
-                                    ).primaryColor,
-                                    foregroundColor: Colors.white,
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 16,
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    elevation: 2,
-                                  ),
-                                ),
-                              ),
-
-                              // Secondary Action: Load Quiz
-                              Tooltip(
-                                message: AppLocalizations.of(
-                                  context,
-                                )!.loadFileTooltip,
-                                child: OutlinedButton.icon(
-                                  onPressed: _isLoading
-                                      ? null
-                                      : () {
-                                          context.read<FileBloc>().add(
-                                            QuizFileReset(),
-                                          );
-                                          context.read<FileBloc>().add(
-                                            QuizFilePickRequested(),
-                                          );
-                                        },
-                                  icon: const Icon(Icons.file_upload),
-                                  label: Text(
-                                    AppLocalizations.of(context)!.load,
-                                  ),
-                                  style: OutlinedButton.styleFrom(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 16,
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    side: BorderSide(
-                                      color: Theme.of(context).primaryColor,
-                                    ),
-                                  ),
-                                ),
-                              ),
-
-                              // Tertiary Action: Raffle / Tools
-                              Tooltip(
-                                message: AppLocalizations.of(
-                                  context,
-                                )!.raffleTooltip,
-                                child: TextButton.icon(
-                                  onPressed: _isLoading
-                                      ? null
-                                      : () => context.go(AppRoutes.raffle),
-                                  icon: Icon(
-                                    Icons.casino_outlined,
-                                    size: 20,
-                                    color: Theme.of(
-                                      context,
-                                    ).textTheme.bodyMedium?.color,
-                                  ),
-                                  label: Text(
-                                    AppLocalizations.of(context)!.sorteosLabel,
-                                    style: TextStyle(
-                                      color: Theme.of(
-                                        context,
-                                      ).textTheme.bodyMedium?.color,
-                                    ),
-                                  ),
-                                  style: TextButton.styleFrom(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    Positioned(
-                      top: 16,
-                      right: 16,
-                      child: Tooltip(
-                        message: AppLocalizations.of(
-                          context,
-                        )!.questionOrderConfigTooltip,
-                        child: IconButton(
-                          onPressed: _isLoading
-                              ? null
-                              : () => _showSettingsDialog(context),
-                          icon: Icon(
-                            Icons.settings,
-                            color: Theme.of(
-                              context,
-                            ).textTheme.bodyMedium?.color,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 48.0),
+                  child: Column(
+                    children: [
+                      _buildHeader(context),
+                      Expanded(child: _buildDropZone(context)),
+                      _buildFooter(context),
+                    ],
+                  ),
                 ),
               ),
             );
@@ -329,8 +126,249 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  /// Check if there is a deep link and handle it
-  /// Check if there is a deep link and handle it
+  Widget _buildHeader(BuildContext context) {
+    return SizedBox(
+      height: 72,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(color: Theme.of(context).dividerColor),
+            ),
+            child: IconButton(
+              icon: const Icon(LucideIcons.settings),
+              color: Theme.of(context).iconTheme.color,
+              iconSize: 24,
+              onPressed: _isLoading ? null : () => _showSettingsDialog(context),
+              padding: EdgeInsets.zero,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDropZone(BuildContext context) {
+    return DropTarget(
+      onDragDone: (details) {
+        if (details.files.isNotEmpty && !_isLoading) {
+          if (context.currentRoute != AppRoutes.home) return;
+
+          final firstFile = details.files.first;
+          if (firstFile.path.isNotEmpty) {
+            if (!firstFile.path.toLowerCase().endsWith('.quiz')) {
+              context.presentSnackBar(
+                AppLocalizations.of(context)!.errorInvalidFile,
+              );
+              return;
+            }
+            context.read<FileBloc>().add(QuizFileReset());
+            context.read<FileBloc>().add(FileDropped(firstFile.path));
+          }
+        }
+        setState(() => _isDragging = false);
+      },
+      onDragEntered: (_) => setState(() => _isDragging = true),
+      onDragExited: (_) => setState(() => _isDragging = false),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () => _pickFile(context),
+                      borderRadius: BorderRadius.circular(32),
+                      child: Container(
+                        constraints: const BoxConstraints(
+                          maxWidth: 480,
+                          maxHeight: 320,
+                        ),
+                        width: double.infinity,
+                        height: 320,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(32),
+                          border: Border.all(
+                            color: _isDragging
+                                ? Theme.of(context).primaryColor
+                                : Theme.of(context).dividerColor,
+                            width: 3,
+                          ),
+                          boxShadow: _isDragging
+                              ? [
+                                  BoxShadow(
+                                    color: Theme.of(
+                                      context,
+                                    ).primaryColor.withValues(alpha: 0.1),
+                                    blurRadius: 20,
+                                    offset: const Offset(0, 10),
+                                  ),
+                                ]
+                              : null,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 180,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).primaryColor,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Quiz',
+                                style: Theme.of(context).textTheme.headlineLarge
+                                    ?.copyWith(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onPrimary,
+                                      fontSize: 48,
+                                    ),
+                              ),
+                            ),
+                            const SizedBox(height: 32),
+                            Column(
+                              children: [
+                                Icon(
+                                  LucideIcons.upload,
+                                  size: 32,
+                                  color: Theme.of(context).hintColor,
+                                ),
+                                const SizedBox(height: 12),
+                                Text(
+                                  AppLocalizations.of(context)!.dropFileHere,
+                                  style: Theme.of(context).textTheme.bodyMedium
+                                      ?.copyWith(
+                                        color: Theme.of(context).hintColor,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16,
+                                      ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 48),
+                    Text(
+                      AppLocalizations.of(context)!.clickOrDragFile,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium?.copyWith(fontSize: 18),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildFooter(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 48, top: 32),
+      child: Column(
+        children: [
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 16,
+            runSpacing: 16,
+            children: [
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 200, minWidth: 160),
+                child: SizedBox(
+                  height: 56,
+                  width: double.infinity,
+                  child: ElevatedButton.icon(
+                    onPressed: _isLoading
+                        ? null
+                        : () => _showCreateQuizFileDialog(context),
+                    icon: Icon(
+                      LucideIcons.plus,
+                      size: 22,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                    label: Text(
+                      AppLocalizations.of(context)!.create,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 200, minWidth: 160),
+                child: SizedBox(
+                  height: 56,
+                  width: double.infinity,
+                  child: OutlinedButton.icon(
+                    onPressed: _isLoading
+                        ? null
+                        : () {
+                            context.read<FileBloc>().add(QuizFileReset());
+                            context.read<FileBloc>().add(
+                              QuizFilePickRequested(),
+                            );
+                          },
+                    icon: const Icon(LucideIcons.folderOpen, size: 22),
+                    label: Text(
+                      AppLocalizations.of(context)!.load,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          TextButton.icon(
+            onPressed: _isLoading ? null : () => context.go(AppRoutes.raffle),
+            icon: Icon(
+              LucideIcons.gift,
+              size: 20,
+              color: Theme.of(context).primaryColor,
+            ),
+            label: Text(
+              AppLocalizations.of(context)!.sorteosLabel,
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 15,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   void checkDeepLink(BuildContext c) {
     FileHandler.initialize((filePath) {
       c.read<FileBloc>().add(FileDropped(filePath));

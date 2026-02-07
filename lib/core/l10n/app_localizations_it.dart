@@ -35,6 +35,10 @@ class AppLocalizationsIt extends AppLocalizations {
       'Clicca qui o trascina un file .quiz sullo schermo';
 
   @override
+  String get clickOrDragFile =>
+      'Clicca per caricare o trascina un file .quiz sullo schermo';
+
+  @override
   String get errorInvalidFile =>
       'Errore: File non valido. Deve essere un file .quiz.';
 

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quiz_app/core/context_extension.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
@@ -50,6 +51,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
   late QuizFile cachedQuizFile;
   bool _hasFileChanged = false; // Variable to track file change status
   bool _isReordering = false;
+  bool _isDragging = false;
 
   // Function to check if the file has changed
   void _checkFileChange() {
@@ -465,18 +467,86 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                 ),
                 body: DropTarget(
                   onDragDone: (details) {
-                    // Handle file drop for importing questions
+                    setState(() => _isDragging = false);
                     if (details.files.isNotEmpty) {
                       final firstFile = details.files.first;
                       if (firstFile.path.isNotEmpty) {
+                        if (!firstFile.path.toLowerCase().endsWith('.quiz')) {
+                          if (mounted) {
+                            context.presentSnackBar(
+                              AppLocalizations.of(context)!.errorInvalidFile,
+                            );
+                          }
+                          return;
+                        }
                         _handleFileImport(firstFile.path);
                       }
                     }
                   },
-                  child: QuestionListWidget(
-                    quizFile: cachedQuizFile,
-                    onFileChange: _checkFileChange,
-                    isReordering: _isReordering,
+                  onDragEntered: (_) => setState(() => _isDragging = true),
+                  onDragExited: (_) => setState(() => _isDragging = false),
+                  child: Stack(
+                    children: [
+                      QuestionListWidget(
+                        quizFile: cachedQuizFile,
+                        onFileChange: _checkFileChange,
+                        isReordering: _isReordering,
+                      ),
+                      if (_isDragging)
+                        Positioned.fill(
+                          child: Container(
+                            color: Theme.of(
+                              context,
+                            ).primaryColor.withValues(alpha: 0.1),
+                            child: Center(
+                              child: Container(
+                                padding: const EdgeInsets.all(32),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).cardColor,
+                                  borderRadius: BorderRadius.circular(24),
+                                  border: Border.all(
+                                    color: Theme.of(context).primaryColor,
+                                    width: 3,
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Theme.of(
+                                        context,
+                                      ).primaryColor.withValues(alpha: 0.2),
+                                      blurRadius: 20,
+                                      offset: const Offset(0, 10),
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      LucideIcons.upload,
+                                      size: 48,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                    const SizedBox(height: 16),
+                                    Text(
+                                      AppLocalizations.of(
+                                        context,
+                                      )!.dropFileHere,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineMedium
+                                          ?.copyWith(
+                                            color: Theme.of(
+                                              context,
+                                            ).primaryColor,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
                 ),
                 floatingActionButton:
