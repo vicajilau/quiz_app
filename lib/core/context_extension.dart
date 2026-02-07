@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,7 +17,22 @@ extension SnackbarExtension on BuildContext {
   /// context.presentSnackBar("File uploaded successfully!");
   /// ```
   void presentSnackBar(String text) {
-    ScaffoldMessenger.of(this).showSnackBar(SnackBar(content: Text(text)));
+    showGeneralDialog(
+      context: this,
+      barrierDismissible: true,
+      barrierLabel: MaterialLocalizations.of(this).modalBarrierDismissLabel,
+      barrierColor: Colors.black12,
+      transitionDuration: const Duration(milliseconds: 200),
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return _AutoDismissDialog(text: text);
+      },
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        return ScaleTransition(
+          scale: CurvedAnimation(parent: animation, curve: Curves.easeOutBack),
+          child: FadeTransition(opacity: animation, child: child),
+        );
+      },
+    );
   }
 }
 
@@ -26,5 +42,61 @@ extension NavigationExtension on BuildContext {
     return GoRouter.of(
       this,
     ).routerDelegate.currentConfiguration.matches.last.matchedLocation;
+  }
+}
+
+class _AutoDismissDialog extends StatefulWidget {
+  final String text;
+
+  const _AutoDismissDialog({required this.text});
+
+  @override
+  State<_AutoDismissDialog> createState() => _AutoDismissDialogState();
+}
+
+class _AutoDismissDialogState extends State<_AutoDismissDialog> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 2), () {
+      if (mounted && Navigator.canPop(context)) {
+        Navigator.of(context).pop();
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Material(
+        color: Colors.transparent,
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 32),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(color: Theme.of(context).dividerColor, width: 1),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.1),
+                blurRadius: 20,
+                offset: const Offset(0, 10),
+              ),
+            ],
+          ),
+          child: Text(
+            widget.text,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              fontFamily: 'Inter',
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+    );
   }
 }
