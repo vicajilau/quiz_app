@@ -78,13 +78,6 @@ class _HomeScreenState extends State<HomeScreen> {
       child: BlocListener<FileBloc, FileState>(
         listener: (context, state) async {
           if (state is FileLoaded) {
-            context.presentSnackBar(
-              AppLocalizations.of(context)!.fileLoaded(
-                state.quizFile.filePath ??
-                    '${state.quizFile.metadata.title}.quiz',
-              ),
-            );
-            if (!context.mounted) return;
             final _ = await context.push(AppRoutes.fileLoadedScreen);
             if (!context.mounted) return;
             context.read<FileBloc>().add(QuizFileReset());
@@ -107,15 +100,37 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context) {
             checkDeepLink(context);
             return Scaffold(
-              body: SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 48.0),
-                  child: Column(
-                    children: [
-                      _buildHeader(context),
-                      Expanded(child: _buildDropZone(context)),
-                      _buildFooter(context),
-                    ],
+              body: DropTarget(
+                onDragDone: (details) {
+                  if (details.files.isNotEmpty && !_isLoading) {
+                    if (context.currentRoute != AppRoutes.home) return;
+
+                    final firstFile = details.files.first;
+                    if (firstFile.path.isNotEmpty) {
+                      if (!firstFile.path.toLowerCase().endsWith('.quiz')) {
+                        context.presentSnackBar(
+                          AppLocalizations.of(context)!.errorInvalidFile,
+                        );
+                        return;
+                      }
+                      context.read<FileBloc>().add(QuizFileReset());
+                      context.read<FileBloc>().add(FileDropped(firstFile.path));
+                    }
+                  }
+                  setState(() => _isDragging = false);
+                },
+                onDragEntered: (_) => setState(() => _isDragging = true),
+                onDragExited: (_) => setState(() => _isDragging = false),
+                child: SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 48.0),
+                    child: Column(
+                      children: [
+                        _buildHeader(context),
+                        Expanded(child: _buildDropZone(context)),
+                        _buildFooter(context),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -154,129 +169,107 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildDropZone(BuildContext context) {
-    return DropTarget(
-      onDragDone: (details) {
-        if (details.files.isNotEmpty && !_isLoading) {
-          if (context.currentRoute != AppRoutes.home) return;
-
-          final firstFile = details.files.first;
-          if (firstFile.path.isNotEmpty) {
-            if (!firstFile.path.toLowerCase().endsWith('.quiz')) {
-              context.presentSnackBar(
-                AppLocalizations.of(context)!.errorInvalidFile,
-              );
-              return;
-            }
-            context.read<FileBloc>().add(QuizFileReset());
-            context.read<FileBloc>().add(FileDropped(firstFile.path));
-          }
-        }
-        setState(() => _isDragging = false);
-      },
-      onDragEntered: (_) => setState(() => _isDragging = true),
-      onDragExited: (_) => setState(() => _isDragging = false),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          return SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: constraints.maxHeight),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: () => _pickFile(context),
-                      borderRadius: BorderRadius.circular(32),
-                      child: Container(
-                        constraints: const BoxConstraints(
-                          maxWidth: 480,
-                          maxHeight: 320,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: constraints.maxHeight),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: () => _pickFile(context),
+                    borderRadius: BorderRadius.circular(32),
+                    child: Container(
+                      constraints: const BoxConstraints(
+                        maxWidth: 480,
+                        maxHeight: 320,
+                      ),
+                      width: double.infinity,
+                      height: 320,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).cardColor,
+                        borderRadius: BorderRadius.circular(32),
+                        border: Border.all(
+                          color: _isDragging
+                              ? Theme.of(context).primaryColor
+                              : Theme.of(context).dividerColor,
+                          width: 3,
                         ),
-                        width: double.infinity,
-                        height: 320,
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(32),
-                          border: Border.all(
-                            color: _isDragging
-                                ? Theme.of(context).primaryColor
-                                : Theme.of(context).dividerColor,
-                            width: 3,
-                          ),
-                          boxShadow: _isDragging
-                              ? [
-                                  BoxShadow(
+                        boxShadow: _isDragging
+                            ? [
+                                BoxShadow(
+                                  color: Theme.of(
+                                    context,
+                                  ).primaryColor.withValues(alpha: 0.1),
+                                  blurRadius: 20,
+                                  offset: const Offset(0, 10),
+                                ),
+                              ]
+                            : null,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 180,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).primaryColor,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              'Quiz',
+                              style: Theme.of(context).textTheme.headlineLarge
+                                  ?.copyWith(
                                     color: Theme.of(
                                       context,
-                                    ).primaryColor.withValues(alpha: 0.1),
-                                    blurRadius: 20,
-                                    offset: const Offset(0, 10),
+                                    ).colorScheme.onPrimary,
+                                    fontSize: 48,
                                   ),
-                                ]
-                              : null,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 180,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor,
-                                borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          const SizedBox(height: 32),
+                          Column(
+                            children: [
+                              Icon(
+                                LucideIcons.upload,
+                                size: 32,
+                                color: Theme.of(context).hintColor,
                               ),
-                              alignment: Alignment.center,
-                              child: Text(
-                                'Quiz',
-                                style: Theme.of(context).textTheme.headlineLarge
+                              const SizedBox(height: 12),
+                              Text(
+                                AppLocalizations.of(context)!.dropFileHere,
+                                style: Theme.of(context).textTheme.bodyMedium
                                     ?.copyWith(
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.onPrimary,
-                                      fontSize: 48,
+                                      color: Theme.of(context).hintColor,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
                                     ),
+                                textAlign: TextAlign.center,
                               ),
-                            ),
-                            const SizedBox(height: 32),
-                            Column(
-                              children: [
-                                Icon(
-                                  LucideIcons.upload,
-                                  size: 32,
-                                  color: Theme.of(context).hintColor,
-                                ),
-                                const SizedBox(height: 12),
-                                Text(
-                                  AppLocalizations.of(context)!.dropFileHere,
-                                  style: Theme.of(context).textTheme.bodyMedium
-                                      ?.copyWith(
-                                        color: Theme.of(context).hintColor,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16,
-                                      ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                    const SizedBox(height: 48),
-                    Text(
-                      AppLocalizations.of(context)!.clickOrDragFile,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodyMedium?.copyWith(fontSize: 18),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 48),
+                  Text(
+                    AppLocalizations.of(context)!.clickOrDragFile,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium?.copyWith(fontSize: 18),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 
