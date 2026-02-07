@@ -28,22 +28,47 @@ class FileLoadedBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    // Add Button Colors
+    final addBtnBg = isDark ? const Color(0xFF3F3F46) : Colors.white;
+    final addBtnBorder = isDark
+        ? const Color(0xFF52525B)
+        : const Color(0xFFE4E4E7);
+    final addBtnText = isDark ? Colors.white : const Color(0xFF18181B);
+    final addBtnIcon = isDark ? Colors.white : const Color(0xFF18181B);
+
+    // Secondary Button Colors (Import, Save)
+    final secondaryBtnBg = isDark
+        ? const Color(0xFF3F3F46)
+        : const Color(0xFFE4E4E7);
+    final secondaryBtnText = isDark ? Colors.white : const Color(0xFF18181B);
+    final secondaryBtnIcon = isDark ? Colors.white : const Color(0xFF18181B);
+
+    // Delete Button Colors
+    final deleteBtnBg = isDark
+        ? const Color(0xFF7F1D1D)
+        : const Color(0xFFFEE2E2);
+    final deleteBtnText = isDark
+        ? const Color(0xFFFCA5A5)
+        : const Color(0xFFDC2626);
+    final deleteBtnIcon = isDark
+        ? const Color(0xFFFCA5A5)
+        : const Color(0xFFDC2626);
+
     return Container(
       color: Colors.transparent,
       child: Container(
         padding: const EdgeInsets.all(24.0),
         decoration: BoxDecoration(
-          color: const Color(0xFF27272A), // Zinc 800
+          color: Theme.of(context).cardColor,
           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
           border: Border(
-            top: BorderSide(
-              color: Colors.white.withValues(alpha: 0.05),
-              width: 1,
-            ),
+            top: BorderSide(color: Theme.of(context).dividerColor, width: 1),
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.2),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 20,
               offset: const Offset(0, -10),
             ),
@@ -63,8 +88,10 @@ class FileLoadedBottomBar extends StatelessWidget {
                       icon: LucideIcons.plus,
                       label: AppLocalizations.of(context)!.addQuestion,
                       onPressed: onAddQuestion,
-                      backgroundColor: const Color(0xFF3F3F46), // Zinc 700
-                      borderColor: const Color(0xFF52525B), // Zinc 600
+                      backgroundColor: addBtnBg,
+                      borderColor: addBtnBorder,
+                      textColor: addBtnText,
+                      iconColor: addBtnIcon,
                     ),
                     const SizedBox(width: 12),
                     _buildActionButton(
@@ -82,7 +109,9 @@ class FileLoadedBottomBar extends StatelessWidget {
                       icon: LucideIcons.upload,
                       label: AppLocalizations.of(context)!.importButton,
                       onPressed: onImport,
-                      backgroundColor: const Color(0xFF3F3F46), // Zinc 700
+                      backgroundColor: secondaryBtnBg,
+                      textColor: secondaryBtnText,
+                      iconColor: secondaryBtnIcon,
                     ),
                     if (showSaveButton) ...[
                       const SizedBox(width: 12),
@@ -91,7 +120,9 @@ class FileLoadedBottomBar extends StatelessWidget {
                         icon: LucideIcons.save,
                         label: AppLocalizations.of(context)!.saveButton,
                         onPressed: onSave,
-                        backgroundColor: const Color(0xFF3F3F46), // Zinc 700
+                        backgroundColor: secondaryBtnBg,
+                        textColor: secondaryBtnText,
+                        iconColor: secondaryBtnIcon,
                       ),
                     ],
                     if (selectedQuestionCount > 0) ...[
@@ -102,9 +133,9 @@ class FileLoadedBottomBar extends StatelessWidget {
                         label:
                             '${AppLocalizations.of(context)!.deleteButton} ($selectedQuestionCount)',
                         onPressed: onDelete,
-                        backgroundColor: const Color(0xFF7F1D1D), // Red 900
-                        textColor: const Color(0xFFFCA5A5), // Red 300
-                        iconColor: const Color(0xFFFCA5A5), // Red 300
+                        backgroundColor: deleteBtnBg,
+                        textColor: deleteBtnText, // Red 300 / Red 600
+                        iconColor: deleteBtnIcon, // Red 300 / Red 600
                       ),
                     ],
                   ],

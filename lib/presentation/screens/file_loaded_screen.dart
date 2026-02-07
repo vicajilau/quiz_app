@@ -411,7 +411,6 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
           child: Builder(
             builder: (context) {
               return Scaffold(
-                backgroundColor: const Color(0xFF18181B), // Zinc 900
                 appBar: PreferredSize(
                   preferredSize: const Size.fromHeight(72),
                   child: AppBar(

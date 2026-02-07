@@ -6,7 +6,8 @@ class AppTheme {
   // Define main application colors
   static const Color primaryColor = Color(0xFF8B5CF6);
   static const Color secondaryColor = Color(0xFF03DAC6);
-  static const Color backgroundColor = Color(0xFFFAFAFA);
+  static const Color backgroundColor = Colors.white;
+  static const Color cardColorLight = Color(0xFFF4F4F5); // Zinc 100
   static const Color surfaceColor = Colors.white;
   static const Color errorColor = Color(0xFFEF4444); // Lucide red
   static const Color textColor = Color(0xFF18181B); // Zinc 900
@@ -19,7 +20,7 @@ class AppTheme {
   static ThemeData get lightTheme => ThemeData(
     primaryColor: primaryColor,
     scaffoldBackgroundColor: backgroundColor,
-    cardColor: surfaceColor,
+    cardColor: cardColorLight,
     dividerColor: borderColor,
     hintColor: const Color(0xFFA1A1AA), // Zinc 400
     fontFamily: GoogleFonts.inter().fontFamily,
@@ -90,7 +91,7 @@ class AppTheme {
   // Define the dark theme
   static ThemeData get darkTheme => ThemeData(
     primaryColor: primaryColor,
-    scaffoldBackgroundColor: const Color(0xFF09090B), // Zinc 950
+    scaffoldBackgroundColor: const Color(0xFF18181B), // Zinc 900
     cardColor: cardColorDark,
     dividerColor: borderColorDark,
     hintColor: const Color(0xFFA1A1AA), // Zinc 400

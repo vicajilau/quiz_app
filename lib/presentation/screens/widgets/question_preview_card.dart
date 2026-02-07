@@ -65,12 +65,12 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
-          color: const Color(0xFF27272A), // Zinc 800 - Design specific
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(24),
           border: Border.all(
             color: widget.isSelected
                 ? const Color(0xFF8B5CF6) // Violet 500 when selected
-                : Colors.white.withValues(alpha: 0.05),
+                : Theme.of(context).dividerColor,
             width: widget.isSelected ? 2 : 1,
           ),
         ),
@@ -107,7 +107,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                     border: Border.all(
                                       color: widget.isSelected
                                           ? const Color(0xFF8B5CF6)
-                                          : const Color(0xFFA1A1AA),
+                                          : Theme.of(context).hintColor,
                                     ),
                                   ),
                                   child: widget.isSelected
@@ -128,13 +128,15 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                   vertical: 6,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFF3F3F46), // Zinc 700
+                                  color: Theme.of(context).dividerColor,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Text(
                                   (widget.index + 1).toString().padLeft(2, '0'),
-                                  style: const TextStyle(
-                                    color: Colors.white,
+                                  style: TextStyle(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onSurface,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
                                     fontFamily: 'Inter',
@@ -151,7 +153,8 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                   vertical: 4,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.white.withValues(alpha: 0.3),
+                                  color: Theme.of(context).colorScheme.onSurface
+                                      .withValues(alpha: 0.1),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Row(
@@ -175,11 +178,11 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                           if (widget.isSelectionMode)
                             ReorderableDragStartListener(
                               index: widget.index,
-                              child: const Padding(
-                                padding: EdgeInsets.all(4.0),
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
                                 child: Icon(
                                   Icons.drag_indicator,
-                                  color: Color(0xFFA1A1AA),
+                                  color: Theme.of(context).hintColor,
                                 ),
                               ),
                             )
@@ -219,7 +222,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                   icon: _isExpanded
                                       ? LucideIcons.chevronUp
                                       : LucideIcons.chevronDown,
-                                  color: const Color(0xFFA1A1AA), // Zinc 400
+                                  color: Theme.of(context).hintColor,
                                   onPressed: _toggleExpanded,
                                   tooltip: _isExpanded ? 'Collapse' : 'Expand',
                                 ),
@@ -243,17 +246,17 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                 maxLines: _isExpanded ? 100 : 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Plus Jakarta Sans',
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Inter',
                   decoration: isDisabled ? TextDecoration.lineThrough : null,
                 ),
               ),
             ),
 
             if (_isExpanded)
-              const Divider(height: 1, color: Color(0xFF3F3F46)), // Separator
+              Divider(height: 1, color: Theme.of(context).dividerColor),
             // Question Content
             AnimatedSize(
               duration: const Duration(milliseconds: 300),
@@ -276,10 +279,12 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                     Container(
                                       height: 150,
                                       width: double.infinity,
-                                      color: const Color(0xFF18181B),
-                                      child: const Icon(
+                                      color: Theme.of(
+                                        context,
+                                      ).scaffoldBackgroundColor,
+                                      child: Icon(
                                         LucideIcons.imageOff,
-                                        color: Colors.grey,
+                                        color: Theme.of(context).hintColor,
                                       ),
                                     ),
                               ),
@@ -298,10 +303,12 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                               width: double.infinity,
                               padding: const EdgeInsets.all(16),
                               decoration: BoxDecoration(
-                                color: const Color(0xFF18181B), // Zinc 900
+                                color: Theme.of(
+                                  context,
+                                ).scaffoldBackgroundColor,
                                 borderRadius: BorderRadius.circular(16),
                                 border: Border.all(
-                                  color: const Color(0xFF3F3F46), // Zinc 700
+                                  color: Theme.of(context).dividerColor,
                                 ),
                               ),
                               child: Column(
@@ -331,8 +338,8 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                   const SizedBox(height: 12),
                                   LaTeXText(
                                     widget.question.explanation,
-                                    style: const TextStyle(
-                                      color: Color(0xFFA1A1AA), // Zinc 400
+                                    style: TextStyle(
+                                      color: Theme.of(context).hintColor,
                                       fontSize: 14,
                                       fontFamily: 'Inter',
                                       height: 1.5,
@@ -390,12 +397,12 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                 ? const Color(0xFF10B981).withValues(
                     alpha: 0.1,
                   ) // Emerald 500 with opacity
-                : const Color(0xFF18181B), // Zinc 900
+                : Theme.of(context).scaffoldBackgroundColor,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: isCorrect
                   ? const Color(0xFF10B981) // Emerald 500
-                  : const Color(0xFF3F3F46), // Zinc 700
+                  : Theme.of(context).dividerColor,
               width: 1,
             ),
           ),
@@ -414,7 +421,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                   border: Border.all(
                     color: isCorrect
                         ? const Color(0xFF10B981)
-                        : const Color(0xFF52525B), // Zinc 600
+                        : Theme.of(context).dividerColor,
                   ),
                 ),
                 child: isCorrect
@@ -425,8 +432,8 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                       )
                     : Text(
                         String.fromCharCode(65 + idx),
-                        style: const TextStyle(
-                          color: Color(0xFFA1A1AA), // Zinc 400
+                        style: TextStyle(
+                          color: Theme.of(context).hintColor,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -437,7 +444,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                 child: LaTeXText(
                   option,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontSize: 14,
                     fontFamily: 'Inter',
                     decoration: isDisabled ? TextDecoration.lineThrough : null,
@@ -470,7 +477,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
         icon = LucideIcons.helpCircle;
     }
 
-    return Icon(icon, size: 12, color: Colors.white);
+    return Icon(icon, size: 12, color: Theme.of(context).colorScheme.onSurface);
   }
 
   Widget _buildQuestionTypeText(BuildContext context) {
@@ -494,8 +501,8 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
 
     return Text(
       text,
-      style: const TextStyle(
-        color: Colors.white,
+      style: TextStyle(
+        color: Theme.of(context).colorScheme.onSurface,
         fontSize: 11,
         fontWeight: FontWeight.w500,
         fontFamily: 'Inter',
