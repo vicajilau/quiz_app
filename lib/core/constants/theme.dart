@@ -85,7 +85,16 @@ class AppTheme {
       ),
     ),
     iconTheme: const IconThemeData(color: textSecondaryColor, size: 24),
-    extensions: const [CustomColors(aiIconColor: Colors.amber)],
+    extensions: [
+      const CustomColors(
+        aiIconColor: Colors.amber,
+        success: Color(0xFF10B981), // Emerald 500
+        info: Color(0xFF3B82F6), // Blue 500
+        warning: Color(0xFFFBBF24), // Amber 400
+        warningContainer: Color(0xFFFEF3C7), // Amber 100
+        onWarningContainer: Color(0xFFD97706), // Amber 600
+      ),
+    ],
   );
 
   // Define the dark theme
@@ -163,6 +172,17 @@ class AppTheme {
       color: Color(0xFFA1A1AA), // Zinc 400
       size: 24,
     ),
-    extensions: const [CustomColors(aiIconColor: primaryColor)],
+    extensions: [
+      CustomColors(
+        aiIconColor: primaryColor,
+        success: const Color(0xFF10B981), // Emerald 500
+        info: const Color(0xFF3B82F6), // Blue 500
+        warning: const Color(0xFFFBBF24), // Amber 400
+        warningContainer: const Color(
+          0xFFF59E0B,
+        ).withValues(alpha: 0.2), // Amber 500 with opacity
+        onWarningContainer: const Color(0xFFF59E0B), // Amber 500
+      ),
+    ],
   );
 }

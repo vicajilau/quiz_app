@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 
 import 'package:quiz_app/core/l10n/app_localizations.dart';
-
-import 'package:quiz_app/domain/models/quiz/quiz_config.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_config.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_config_stored_settings.dart';
 
 class QuestionCountSelectionDialog extends StatefulWidget {
@@ -19,24 +19,13 @@ class QuestionCountSelectionDialog extends StatefulWidget {
 
 class _QuestionCountSelectionDialogState
     extends State<QuestionCountSelectionDialog> {
-  int selectedCount = 10; // Default value
-  bool _isStudyMode = false; // Default to Exam Mode
-  String? _inputError; // Track input validation errors
-  late TextEditingController _customCountController;
+  int _selectedCount = 10;
+  bool _isStudyMode = false; // false = Exam, true = Study
 
   @override
   void initState() {
     super.initState();
-    _customCountController = TextEditingController();
-    // Set default to all questions initially
-    selectedCount = widget.totalQuestions;
     _loadSavedSettings();
-  }
-
-  @override
-  void dispose() {
-    _customCountController.dispose();
-    super.dispose();
   }
 
   Future<void> _loadSavedSettings() async {
@@ -45,14 +34,14 @@ class _QuestionCountSelectionDialogState
     if (mounted) {
       setState(() {
         if (settings.questionCount != null) {
-          // Specific count saved
-          selectedCount = settings.questionCount!;
-          _customCountController.text = selectedCount.toString();
+          _selectedCount = settings.questionCount!.clamp(
+            1,
+            widget.totalQuestions,
+          );
         } else {
-          // "All Questions" mode (default)
-          selectedCount = widget.totalQuestions;
-          _customCountController.clear();
+          _selectedCount = widget.totalQuestions;
         }
+
         if (settings.isStudyMode != null) {
           _isStudyMode = settings.isStudyMode!;
         }
@@ -60,121 +49,327 @@ class _QuestionCountSelectionDialogState
     }
   }
 
+  void _incrementCount() {
+    setState(() {
+      if (_selectedCount < widget.totalQuestions) {
+        _selectedCount++;
+      }
+    });
+  }
+
+  void _decrementCount() {
+    setState(() {
+      if (_selectedCount > 1) {
+        _selectedCount--;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text(AppLocalizations.of(context)!.selectQuestionCountTitle),
-      content: SingleChildScrollView(
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final cardColor = isDark ? const Color(0xFF27272A) : Colors.white;
+    final textColor = isDark ? Colors.white : const Color(0xFF18181B);
+    final subTextColor = isDark
+        ? const Color(0xFFA1A1AA)
+        : const Color(0xFF71717A);
+    final borderColor = isDark
+        ? const Color(0xFF3F3F46)
+        : const Color(0xFFE4E4E7);
+    final controlBgColor = isDark
+        ? const Color(0xFF3F3F46)
+        : const Color(0xFFF4F4F5);
+    final controlIconColor = isDark
+        ? const Color(0xFFA1A1AA)
+        : const Color(0xFF3F3F46);
+    final primaryColor = const Color(0xFF8B5CF6);
+
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Container(
+        width: 520, // Max width from design
+        padding: const EdgeInsets.all(32),
+        decoration: BoxDecoration(
+          color: cardColor,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: borderColor, width: 1),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.1),
+              blurRadius: 20,
+              offset: const Offset(0, 10),
+            ),
+          ],
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(AppLocalizations.of(context)!.selectQuestionCountMessage),
-            const SizedBox(height: 16),
-
-            // Only show "All Questions" option
-            RadioGroup(
-              groupValue: selectedCount,
-              onChanged: (value) {
-                if (value != null) {
-                  setState(() {
-                    selectedCount = value;
-                    _customCountController.clear();
-                    _inputError = null;
-                  });
-                }
-              },
-              child: RadioListTile<int>(
-                title: Text(
-                  AppLocalizations.of(
-                    context,
-                  )!.allQuestions(widget.totalQuestions),
+            // Header
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.selectQuestionCountTitle,
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 24,
+                    fontWeight: FontWeight.w700,
+                    color: textColor,
+                    height: 1.2,
+                  ),
                 ),
-                value: widget.totalQuestions,
-              ),
-            ),
-
-            // Custom count option (always available)
-            const SizedBox(height: 8),
-            Text(
-              AppLocalizations.of(context)!.customNumberLabel,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            const SizedBox(height: 8),
-            TextField(
-              controller: _customCountController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.numberInputLabel,
-                border: const OutlineInputBorder(),
-                helperText: AppLocalizations.of(
-                  context,
-                )!.customNumberHelper(widget.totalQuestions),
-                helperMaxLines: 2,
-                errorText: _getErrorText(),
-              ),
-              onChanged: (value) {
-                final customCount = int.tryParse(value);
-                if (customCount != null && customCount > 0) {
-                  setState(() {
-                    selectedCount = customCount;
-                    _inputError = null;
-                  });
-                  return;
-                }
-                setState(() {
-                  _inputError = value.isEmpty ? null : value;
-                  selectedCount = widget.totalQuestions;
-                });
-              },
-            ),
-            const SizedBox(height: 24),
-            const Divider(),
-            const SizedBox(height: 8),
-            // Quiz Mode Selection
-            Text(
-              AppLocalizations.of(context)!.quizModeTitle,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-
-            RadioGroup<bool>(
-              groupValue: _isStudyMode,
-              onChanged: (value) {
-                if (value != null) {
-                  setState(() {
-                    _isStudyMode = value;
-                  });
-                }
-              },
-              child: Column(
-                children: [
-                  RadioListTile<bool>(
-                    title: Text(AppLocalizations.of(context)!.examModeLabel),
-                    subtitle: Text(
-                      AppLocalizations.of(context)!.examModeDescription,
+                InkWell(
+                  onTap: () => context.pop(null),
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: controlBgColor,
+                      shape: BoxShape.circle,
                     ),
-                    value: false,
-                    activeColor: Theme.of(context).colorScheme.primary,
-                    secondary: Icon(
-                      Icons.timer,
-                      color: !_isStudyMode
-                          ? Theme.of(context).colorScheme.primary
-                          : null,
+                    child: Icon(LucideIcons.x, size: 20, color: subTextColor),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 32),
+
+            // Question Count
+            Text(
+              // Using existing key, but strictly "Number of Questions" in design
+              // If localization key text differs, user might notice, but functionally mostly same.
+              // Design says "Number of Questions".
+              AppLocalizations.of(context)!.numberInputLabel,
+              style: TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: subTextColor,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                // Minus Button
+                _buildCountControl(
+                  icon: LucideIcons.minus,
+                  onTap: _decrementCount,
+                  bgColor: controlBgColor,
+                  iconColor: controlIconColor,
+                ),
+                const SizedBox(width: 16),
+                // Display
+                Expanded(
+                  child: Container(
+                    height: 56,
+                    decoration: BoxDecoration(
+                      color: controlBgColor,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      _selectedCount.toString(),
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        color: textColor,
+                      ),
                     ),
                   ),
-                  RadioListTile<bool>(
-                    title: Text(AppLocalizations.of(context)!.studyModeLabel),
-                    subtitle: Text(
-                      AppLocalizations.of(context)!.studyModeDescription,
-                    ),
-                    value: true,
-                    activeColor: Theme.of(context).colorScheme.primary,
-                    secondary: Icon(
-                      Icons.school,
-                      color: _isStudyMode
-                          ? Theme.of(context).colorScheme.primary
-                          : null,
+                ),
+                const SizedBox(width: 16),
+                // Plus Button
+                _buildCountControl(
+                  icon: LucideIcons.plus,
+                  onTap: _incrementCount,
+                  bgColor: primaryColor,
+                  iconColor: Colors.white,
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 32),
+
+            // Quiz Mode
+            Text(
+              AppLocalizations.of(context)!.quizModeTitle,
+              style: TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: subTextColor,
+              ),
+            ),
+            const SizedBox(height: 12),
+
+            // Mode Options (Horizontal Row)
+            Row(
+              children: [
+                Expanded(
+                  child: _buildModeOption(
+                    context: context,
+                    title: AppLocalizations.of(context)!.examModeLabel,
+                    icon: LucideIcons.fileText,
+                    isSelected: !_isStudyMode,
+                    onTap: () => setState(() => _isStudyMode = false),
+                    primaryColor: primaryColor,
+                    defaultBgColor: controlBgColor,
+                    defaultTextColor: subTextColor,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _buildModeOption(
+                    context: context,
+                    title: AppLocalizations.of(context)!.studyModeLabel,
+                    icon: LucideIcons.bookOpen,
+                    isSelected: _isStudyMode,
+                    onTap: () => setState(() => _isStudyMode = true),
+                    primaryColor: primaryColor,
+                    defaultBgColor: controlBgColor,
+                    defaultTextColor: subTextColor,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+
+            // Mode Description
+            Text(
+              _isStudyMode
+                  ? AppLocalizations.of(context)!.studyModeDescription
+                  : AppLocalizations.of(context)!.examModeDescription,
+              style: TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 13,
+                fontWeight: FontWeight.w400,
+                color: subTextColor,
+                height: 1.4,
+              ),
+              textAlign: TextAlign.start,
+            ),
+
+            const SizedBox(height: 32),
+
+            // Start Button
+            ElevatedButton(
+              onPressed: () {
+                ConfigurationService.instance.saveQuizConfigSettings(
+                  QuizConfigStoredSettings(
+                    questionCount: _selectedCount,
+                    isStudyMode: _isStudyMode,
+                  ),
+                );
+
+                context.pop(
+                  QuizConfig(
+                    questionCount: _selectedCount,
+                    isStudyMode: _isStudyMode,
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: primaryColor,
+                foregroundColor: Colors.white,
+                elevation: 0,
+                minimumSize: const Size(double.infinity, 56),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                textStyle: const TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(LucideIcons.play, size: 20),
+                  const SizedBox(width: 8),
+                  Text(AppLocalizations.of(context)!.startQuiz),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCountControl({
+    required IconData icon,
+    required VoidCallback onTap,
+    required Color bgColor,
+    required Color iconColor,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        width: 48,
+        height: 48,
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Icon(icon, size: 20, color: iconColor),
+      ),
+    );
+  }
+
+  Widget _buildModeOption({
+    required BuildContext context,
+    required String title,
+    required IconData icon,
+    required bool isSelected,
+    required VoidCallback onTap,
+    required Color primaryColor,
+    required Color defaultBgColor,
+    required Color defaultTextColor,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        height: 64,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        decoration: BoxDecoration(
+          color: isSelected ? primaryColor : defaultBgColor,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          children: [
+            // Centered content as per design vertical stack?
+            // Actually previous analysis said "Vertical stack of modes" but inside the card
+            // `modeExamL` children were Icon and Text.
+            // If I look at the design code again:
+            // "layout": "vertical", "gap": 4, "justifyContent": "center", "alignItems": "center"
+            // So: Icon on top, Text below. Centered.
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    icon,
+                    size: 20,
+                    color: isSelected ? Colors.white : defaultTextColor,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 14,
+                      fontWeight: isSelected
+                          ? FontWeight.w600
+                          : FontWeight.w500,
+                      color: isSelected ? Colors.white : defaultTextColor,
                     ),
                   ),
                 ],
@@ -183,56 +378,6 @@ class _QuestionCountSelectionDialogState
           ],
         ),
       ),
-      actions: [
-        TextButton(
-          onPressed: () => context.pop(null),
-          child: Text(AppLocalizations.of(context)!.cancelButton),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            if (_inputError == null) {
-              // Determine value to save
-              // If text field is empty, it means we selected "All Questions" cleanly
-              // (or cleared custom input). We save -1 to represent "All".
-              // If text field has content, we save the specific number.
-              final int? countToSave = _customCountController.text.isEmpty
-                  ? null
-                  : selectedCount;
-
-              // Save settings
-              ConfigurationService.instance.saveQuizConfigSettings(
-                QuizConfigStoredSettings(
-                  questionCount: countToSave,
-                  isStudyMode: _isStudyMode,
-                ),
-              );
-
-              context.pop(
-                QuizConfig(
-                  questionCount: selectedCount,
-                  isStudyMode: _isStudyMode,
-                ),
-              );
-            }
-          },
-          child: Text(AppLocalizations.of(context)!.startQuiz),
-        ),
-      ],
     );
-  }
-
-  String? _getErrorText() {
-    if (_inputError == null || _inputError!.isEmpty) {
-      return null;
-    }
-
-    final number = int.tryParse(_inputError!);
-    if (number == null) {
-      return AppLocalizations.of(context)!.errorInvalidNumber;
-    } else if (number <= 0) {
-      return AppLocalizations.of(context)!.errorNumberMustBePositive;
-    }
-
-    return null;
   }
 }

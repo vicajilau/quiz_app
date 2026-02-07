@@ -6,6 +6,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/presentation/widgets/latex_text.dart';
+import 'package:quiz_app/core/constants/theme_extensions.dart';
 
 class QuestionPreviewCard extends StatefulWidget {
   final Question question;
@@ -69,7 +70,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
           borderRadius: BorderRadius.circular(24),
           border: Border.all(
             color: widget.isSelected
-                ? const Color(0xFF8B5CF6) // Violet 500 when selected
+                ? Theme.of(context).extension<CustomColors>()!.aiIconColor!
                 : Theme.of(context).dividerColor,
             width: widget.isSelected ? 2 : 1,
           ),
@@ -101,12 +102,16 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                   height: 24,
                                   decoration: BoxDecoration(
                                     color: widget.isSelected
-                                        ? const Color(0xFF8B5CF6)
+                                        ? Theme.of(context)
+                                              .extension<CustomColors>()!
+                                              .aiIconColor!
                                         : Colors.transparent,
                                     shape: BoxShape.circle,
                                     border: Border.all(
                                       color: widget.isSelected
-                                          ? const Color(0xFF8B5CF6)
+                                          ? Theme.of(context)
+                                                .extension<CustomColors>()!
+                                                .aiIconColor!
                                           : Theme.of(context).hintColor,
                                     ),
                                   ),
@@ -189,13 +194,9 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                       vertical: 4,
                                     ),
                                     decoration: BoxDecoration(
-                                      color:
-                                          Theme.of(context).brightness ==
-                                              Brightness.dark
-                                          ? const Color(
-                                              0xFFF59E0B,
-                                            ).withValues(alpha: 0.2)
-                                          : const Color(0xFFFEF3C7),
+                                      color: Theme.of(context)
+                                          .extension<CustomColors>()!
+                                          .warningContainer,
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     child: Row(
@@ -204,11 +205,9 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                         Icon(
                                           LucideIcons.alertTriangle,
                                           size: 12,
-                                          color:
-                                              Theme.of(context).brightness ==
-                                                  Brightness.dark
-                                              ? const Color(0xFFF59E0B)
-                                              : const Color(0xFFD97706),
+                                          color: Theme.of(context)
+                                              .extension<CustomColors>()!
+                                              .onWarningContainer,
                                         ),
                                         if (constraints.maxWidth > 340) ...[
                                           const SizedBox(width: 4),
@@ -217,13 +216,9 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                               context,
                                             )!.missingExplanation,
                                             style: TextStyle(
-                                              color:
-                                                  Theme.of(
-                                                        context,
-                                                      ).brightness ==
-                                                      Brightness.dark
-                                                  ? const Color(0xFFF59E0B)
-                                                  : const Color(0xFFD97706),
+                                              color: Theme.of(context)
+                                                  .extension<CustomColors>()!
+                                                  .onWarningContainer,
                                               fontSize:
                                                   Theme.of(
                                                         context,
@@ -272,9 +267,9 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                 if (widget.onAiAssistant != null && !isDisabled)
                                   _buildIconButton(
                                     icon: LucideIcons.sparkles,
-                                    color: const Color(
-                                      0xFF8B5CF6,
-                                    ), // Violet 500
+                                    color: Theme.of(
+                                      context,
+                                    ).extension<CustomColors>()!.aiIconColor!,
                                     onPressed: widget.onAiAssistant!,
                                     tooltip: AppLocalizations.of(
                                       context,
@@ -283,14 +278,16 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                 const SizedBox(width: 8),
                                 _buildIconButton(
                                   icon: LucideIcons.pencil,
-                                  color: const Color(0xFF3B82F6), // Blue 500
+                                  color: Theme.of(
+                                    context,
+                                  ).extension<CustomColors>()!.info!,
                                   onPressed: widget.onEdit,
                                   tooltip: AppLocalizations.of(context)!.edit,
                                 ),
                                 const SizedBox(width: 8),
                                 _buildIconButton(
                                   icon: LucideIcons.trash2,
-                                  color: const Color(0xFFEF4444), // Red 500
+                                  color: Theme.of(context).colorScheme.error,
                                   onPressed: widget.onDelete,
                                   tooltip: AppLocalizations.of(
                                     context,
@@ -395,18 +392,22 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                 children: [
                                   Row(
                                     children: [
-                                      const Icon(
+                                      Icon(
                                         LucideIcons.lightbulb,
                                         size: 16,
-                                        color: Color(0xFFFBBF24), // Amber 400
+                                        color: Theme.of(
+                                          context,
+                                        ).extension<CustomColors>()!.warning,
                                       ),
                                       const SizedBox(width: 8),
                                       Text(
                                         AppLocalizations.of(
                                           context,
                                         )!.explanationTitle,
-                                        style: const TextStyle(
-                                          color: Color(0xFFFBBF24), // Amber 400
+                                        style: TextStyle(
+                                          color: Theme.of(
+                                            context,
+                                          ).extension<CustomColors>()!.warning,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w600,
                                           fontFamily: 'Inter',
@@ -473,14 +474,14 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: isCorrect
-                ? const Color(0xFF10B981).withValues(
-                    alpha: 0.1,
-                  ) // Emerald 500 with opacity
+                ? Theme.of(
+                    context,
+                  ).extension<CustomColors>()!.success!.withValues(alpha: 0.1)
                 : Theme.of(context).scaffoldBackgroundColor,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: isCorrect
-                  ? const Color(0xFF10B981) // Emerald 500
+                  ? Theme.of(context).extension<CustomColors>()!.success!
                   : Theme.of(context).dividerColor,
               width: 1,
             ),
@@ -494,12 +495,12 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: isCorrect
-                      ? const Color(0xFF10B981)
+                      ? Theme.of(context).extension<CustomColors>()!.success
                       : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     color: isCorrect
-                        ? const Color(0xFF10B981)
+                        ? Theme.of(context).extension<CustomColors>()!.success!
                         : Theme.of(context).dividerColor,
                   ),
                 ),
