@@ -1638,5 +1638,23 @@
   "saveSuccess": "ファイルが正常に保存されました",
   "errorSavingFile": "ファイルの保存中にエラーが発生しました",
   "deleteSingleQuestionConfirmation": "この質問を削除してもよろしいですか？",
-  "deleteMultipleQuestionsConfirmation": "{count} 個の質問を削除してもよろしいですか？"
+  "deleteMultipleQuestionsConfirmation": "{count} 個の質問を削除してもよろしいですか？",
+  "missingExplanation": "説明がありません",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "この質問には説明がありません",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "質問の種類: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  }
 }

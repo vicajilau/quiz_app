@@ -337,6 +337,17 @@ class AppLocalizationsEu extends AppLocalizations {
   String get explanationTooltip => 'Galdera honek azalpena du';
 
   @override
+  String get missingExplanation => 'Azalpena falta da';
+
+  @override
+  String get missingExplanationTooltip => 'Galdera honek ez du azalpenik';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return 'Galdera mota: $type';
+  }
+
+  @override
   String get aiPrompt =>
       'Zentratu ikaslearen galderan, ez jatorrizko azterketa galderari zuzenean erantzutean. Azaldu ikuspegi pedagogiko batekin, argudio argiak emanez gaia alboratzen gabe. Ez egituratu erantzuna ataletan. Ez erreferentziatu zeure burua. Beti erantzun galdetu zaizun hizkuntza berean.';
 

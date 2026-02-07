@@ -1638,5 +1638,23 @@
   "saveSuccess": "फ़ाइल सफलतापूर्वक सहेजी गई",
   "errorSavingFile": "फ़ाइल सहेजने में त्रुटि",
   "deleteSingleQuestionConfirmation": "क्या आप वाकई इस प्रश्न को हटाना चाहते हैं?",
-  "deleteMultipleQuestionsConfirmation": "क्या आप वाकई {count} प्रश्नों को हटाना चाहते हैं?"
+  "deleteMultipleQuestionsConfirmation": "क्या आप वाकई {count} प्रश्नों को हटाना चाहते हैं?",
+  "missingExplanation": "स्पष्टीकरण गायब है",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "इस प्रश्न का कोई स्पष्टीकरण नहीं है",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "प्रश्न का प्रकार: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  }
 }

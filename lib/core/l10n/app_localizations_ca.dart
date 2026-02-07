@@ -340,6 +340,17 @@ class AppLocalizationsCa extends AppLocalizations {
   String get explanationTooltip => 'Aquesta pregunta té una explicació';
 
   @override
+  String get missingExplanation => 'Manca explicació';
+
+  @override
+  String get missingExplanationTooltip => 'Aquesta pregunta no té explicació';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return 'Tipus de pregunta: $type';
+  }
+
+  @override
   String get aiPrompt =>
       'Centreu-vos en la pregunta de l\'estudiant, no en respondre directament la pregunta original de l\'examen. Expliqueu amb un enfocament pedagògic, proporcionant arguments clars sense divagar ni sortir del tema. No estructureu la resposta en seccions. No us referiu a vosaltres mateixos. Responeu en la mateixa llengua en què se us pregunta.';
 

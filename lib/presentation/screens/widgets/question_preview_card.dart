@@ -147,27 +147,106 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                               const SizedBox(width: 8),
 
                               // Question Type Badge (Always Full)
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 4,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).colorScheme.onSurface
-                                      .withValues(alpha: 0.1),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    _buildQuestionTypeIcon(context),
-                                    if (constraints.maxWidth > 340) ...[
-                                      const SizedBox(width: 6),
-                                      _buildQuestionTypeText(context),
+                              Tooltip(
+                                message: AppLocalizations.of(context)!
+                                    .questionTypeTooltip(
+                                      _getQuestionTypeString(context),
+                                    ),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 4,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurface
+                                        .withValues(alpha: 0.1),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      _buildQuestionTypeIcon(context),
+                                      if (constraints.maxWidth > 340) ...[
+                                        const SizedBox(width: 6),
+                                        _buildQuestionTypeText(context),
+                                      ],
                                     ],
-                                  ],
+                                  ),
                                 ),
                               ),
+
+                              if (widget.question.explanation.isEmpty) ...[
+                                const SizedBox(width: 8),
+                                Tooltip(
+                                  message: AppLocalizations.of(
+                                    context,
+                                  )!.missingExplanationTooltip,
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                      vertical: 4,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color:
+                                          Theme.of(context).brightness ==
+                                              Brightness.dark
+                                          ? const Color(
+                                              0xFFF59E0B,
+                                            ).withValues(alpha: 0.2)
+                                          : const Color(0xFFFEF3C7),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(
+                                          LucideIcons.alertTriangle,
+                                          size: 12,
+                                          color:
+                                              Theme.of(context).brightness ==
+                                                  Brightness.dark
+                                              ? const Color(0xFFF59E0B)
+                                              : const Color(0xFFD97706),
+                                        ),
+                                        if (constraints.maxWidth > 340) ...[
+                                          const SizedBox(width: 4),
+                                          Text(
+                                            AppLocalizations.of(
+                                              context,
+                                            )!.missingExplanation,
+                                            style: TextStyle(
+                                              color:
+                                                  Theme.of(
+                                                        context,
+                                                      ).brightness ==
+                                                      Brightness.dark
+                                                  ? const Color(0xFFF59E0B)
+                                                  : const Color(0xFFD97706),
+                                              fontSize:
+                                                  Theme.of(
+                                                        context,
+                                                      ).brightness ==
+                                                      Brightness.dark
+                                                  ? 11
+                                                  : 10,
+                                              fontWeight:
+                                                  Theme.of(
+                                                        context,
+                                                      ).brightness ==
+                                                      Brightness.dark
+                                                  ? FontWeight.w500
+                                                  : FontWeight.w600,
+                                              fontFamily: 'Inter',
+                                            ),
+                                          ),
+                                        ],
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
 
                               // Minimum gap before actions
                               const SizedBox(width: 16),
@@ -481,26 +560,8 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
   }
 
   Widget _buildQuestionTypeText(BuildContext context) {
-    String text;
-    switch (widget.question.type.value) {
-      case 'multiple_choice':
-        text = AppLocalizations.of(context)!.questionTypeMultipleChoice;
-        break;
-      case 'true_false':
-        text = AppLocalizations.of(context)!.questionTypeTrueFalse;
-        break;
-      case 'single_choice':
-        text = AppLocalizations.of(context)!.questionTypeSingleChoice;
-        break;
-      case 'essay':
-        text = AppLocalizations.of(context)!.questionTypeEssay;
-        break;
-      default:
-        text = AppLocalizations.of(context)!.questionTypeUnknown;
-    }
-
     return Text(
-      text,
+      _getQuestionTypeString(context),
       style: TextStyle(
         color: Theme.of(context).colorScheme.onSurface,
         fontSize: 11,
@@ -508,5 +569,20 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
         fontFamily: 'Inter',
       ),
     );
+  }
+
+  String _getQuestionTypeString(BuildContext context) {
+    switch (widget.question.type.value) {
+      case 'multiple_choice':
+        return AppLocalizations.of(context)!.questionTypeMultipleChoice;
+      case 'true_false':
+        return AppLocalizations.of(context)!.questionTypeTrueFalse;
+      case 'single_choice':
+        return AppLocalizations.of(context)!.questionTypeSingleChoice;
+      case 'essay':
+        return AppLocalizations.of(context)!.questionTypeEssay;
+      default:
+        return AppLocalizations.of(context)!.questionTypeUnknown;
+    }
   }
 }

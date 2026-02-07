@@ -466,6 +466,24 @@
   "@explanationTooltip": {
     "description": "Tooltip text for the explanation indicator badge"
   },
+  "missingExplanation": "Missing explanation",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "This question is missing an explanation",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "Question type: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  },
   "aiPrompt": "Focus on the student's question, not on directly answering the original exam question. Explain with a pedagogical approach, providing clear arguments without rambling or going off-topic. Do not structure the response in sections. Do not refer to yourself. Respond in the same language you are asked in.",
   "@aiPrompt": {
     "description": "Base prompt for AI assistant"

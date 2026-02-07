@@ -338,6 +338,17 @@ class AppLocalizationsIt extends AppLocalizations {
   String get explanationTooltip => 'Questa domanda ha una spiegazione';
 
   @override
+  String get missingExplanation => 'Spiegazione mancante';
+
+  @override
+  String get missingExplanationTooltip => 'Questa domanda non ha spiegazione';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return 'Tipo di domanda: $type';
+  }
+
+  @override
   String get aiPrompt =>
       'Concentrati sulla domanda dello studente, non sul rispondere direttamente alla domanda d\'esame originale. Spiega con un approccio pedagogico, fornendo argomenti chiari senza divagare o uscire dal tema. Non strutturare la risposta in sezioni. Non riferirti a te stesso. Rispondi nella stessa lingua in cui ti viene posta la domanda.';
 

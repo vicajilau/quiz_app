@@ -1638,5 +1638,23 @@
   "saveSuccess": "Fitxategia ondo gorde da",
   "errorSavingFile": "Errorea fitxategia gordetzean",
   "deleteSingleQuestionConfirmation": "Ziur zaude galdera hau ezabatu nahi duzula?",
-  "deleteMultipleQuestionsConfirmation": "Ziur zaude {count} galdera ezabatu nahi dituzula?"
+  "deleteMultipleQuestionsConfirmation": "Ziur zaude {count} galdera ezabatu nahi dituzula?",
+  "missingExplanation": "Azalpena falta da",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "Galdera honek ez du azalpenik",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "Galdera mota: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  }
 }

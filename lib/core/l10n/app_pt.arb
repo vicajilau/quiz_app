@@ -1686,5 +1686,23 @@
   "saveSuccess": "Arquivo salvo com sucesso",
   "errorSavingFile": "Erro ao salvar o arquivo",
   "deleteSingleQuestionConfirmation": "Tem certeza de que deseja excluir esta pergunta?",
-  "deleteMultipleQuestionsConfirmation": "Tem certeza de que deseja excluir {count} perguntas?"
+  "deleteMultipleQuestionsConfirmation": "Tem certeza de que deseja excluir {count} perguntas?",
+  "missingExplanation": "Explicação em falta",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "Esta pergunta não tem explicação",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "Tipo de pergunta: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  }
 }

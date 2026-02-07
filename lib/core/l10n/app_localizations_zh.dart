@@ -323,6 +323,17 @@ class AppLocalizationsZh extends AppLocalizations {
   String get explanationTooltip => '此问题有解释';
 
   @override
+  String get missingExplanation => '缺少解释';
+
+  @override
+  String get missingExplanationTooltip => '此问题没有解释';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return '问题类型：$type';
+  }
+
+  @override
   String get aiPrompt =>
       '专注于学生的问题，而不是直接回答原始考试题目。用教学方法解释，提供清晰的论据，不要跑题或离题。不要将回答分成章节。不要提及自己。用被问问题的相同语言回答。';
 

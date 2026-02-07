@@ -417,6 +417,24 @@
   "@explanationTooltip": {
     "description": "Texto del tooltip para el badge indicador de explicación"
   },
+  "missingExplanation": "Falta explicación",
+  "@missingExplanation": {
+    "description": "Etiqueta indicando que a una pregunta le falta la explicación"
+  },
+  "missingExplanationTooltip": "Esta pregunta no tiene explicación",
+  "@missingExplanationTooltip": {
+    "description": "Texto del tooltip para el badge indicador de falta de explicación"
+  },
+  "questionTypeTooltip": "Tipo de pregunta: {type}",
+  "@questionTypeTooltip": {
+    "description": "Texto del tooltip para el badge de tipo de pregunta",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Opción múltiple"
+      }
+    }
+  },
   "aiPrompt": "Enfócate en la pregunta del estudiante, no en responder directamente la pregunta original del examen. Explica con un enfoque pedagógico, proporcionando argumentos claros sin divagar ni salirte del tema. No estructures la respuesta en secciones. No te refieras a ti mismo. Responde en el mismo idioma en que te pregunten.",
   "@aiPrompt": {
     "description": "Prompt base para el asistente de IA"

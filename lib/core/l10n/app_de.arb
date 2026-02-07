@@ -1686,5 +1686,23 @@
   "saveSuccess": "Datei erfolgreich gespeichert",
   "errorSavingFile": "Fehler beim Speichern der Datei",
   "deleteSingleQuestionConfirmation": "Sind Sie sicher, dass Sie diese Frage löschen möchten?",
-  "deleteMultipleQuestionsConfirmation": "Sind Sie sicher, dass Sie {count} Fragen löschen möchten?"
+  "deleteMultipleQuestionsConfirmation": "Sind Sie sicher, dass Sie {count} Fragen löschen möchten?",
+  "missingExplanation": "Erklärung fehlt",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "Dieser Frage fehlt eine Erklärung",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "Fragetyp: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  }
 }

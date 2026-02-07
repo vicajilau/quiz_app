@@ -1686,5 +1686,23 @@
   "saveSuccess": "Fichier enregistré avec succès",
   "errorSavingFile": "Erreur lors de l'enregistrement du fichier",
   "deleteSingleQuestionConfirmation": "Êtes-vous sûr de vouloir supprimer cette question ?",
-  "deleteMultipleQuestionsConfirmation": "Êtes-vous sûr de vouloir supprimer {count} questions ?"
+  "deleteMultipleQuestionsConfirmation": "Êtes-vous sûr de vouloir supprimer {count} questions ?",
+  "missingExplanation": "Explication manquante",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "Cette question n'a pas d'explication",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "Type de question : {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  }
 }

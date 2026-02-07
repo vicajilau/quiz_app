@@ -334,6 +334,17 @@ class AppLocalizationsHi extends AppLocalizations {
   String get explanationTooltip => 'इस प्रश्न का स्पष्टीकरण है';
 
   @override
+  String get missingExplanation => 'स्पष्टीकरण गायब है';
+
+  @override
+  String get missingExplanationTooltip => 'इस प्रश्न का कोई स्पष्टीकरण नहीं है';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return 'प्रश्न का प्रकार: $type';
+  }
+
+  @override
   String get aiPrompt =>
       'छात्र के प्रश्न पर ध्यान दें, मूल परीक्षा प्रश्न का सीधे उत्तर देने पर नहीं। शैक्षणिक दृष्टिकोण से समझाएं, विषय से भटके बिना स्पष्ट तर्क प्रदान करें। उत्तर को खंडों में न बांटें। अपने आप का संदर्भ न दें। उसी भाषा में जवाब दें जिसमें आपसे पूछा गया है।';
 

@@ -341,6 +341,17 @@ class AppLocalizationsEl extends AppLocalizations {
   String get explanationTooltip => 'Αυτή η ερώτηση έχει εξήγηση';
 
   @override
+  String get missingExplanation => 'Λείπει η επεξήγηση';
+
+  @override
+  String get missingExplanationTooltip => 'Αυτή η ερώτηση δεν έχει επεξήγηση';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return 'Τύπος ερώτησης: $type';
+  }
+
+  @override
   String get aiPrompt =>
       'Εστιάστε στην ερώτηση του μαθητή, όχι στο να απαντήσετε απευθείας την αρχική ερώτηση εξέτασης. Εξηγήστε με παιδαγωγική προσέγγιση, παρέχοντας σαφή επιχειρήματα χωρίς να παρεκκλίνετε από το θέμα. Μη δομείτε την απάντηση σε ενότητες. Μην αναφέρεστε στον εαυτό σας. Απαντάτε στην ίδια γλώσσα που σας ρωτούν.';
 

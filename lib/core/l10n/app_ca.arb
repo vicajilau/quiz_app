@@ -1680,5 +1680,23 @@
   "saveSuccess": "Fitxer desat correctament",
   "errorSavingFile": "Error en desar el fitxer",
   "deleteSingleQuestionConfirmation": "Estàs segur que vols eliminar aquesta pregunta?",
-  "deleteMultipleQuestionsConfirmation": "Estàs segur que vols eliminar {count} preguntes?"
+  "deleteMultipleQuestionsConfirmation": "Estàs segur que vols eliminar {count} preguntes?",
+  "missingExplanation": "Manca explicació",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "Aquesta pregunta no té explicació",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "Tipus de pregunta: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  }
 }

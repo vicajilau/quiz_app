@@ -686,6 +686,24 @@ abstract class AppLocalizations {
   /// **'This question has an explanation'**
   String get explanationTooltip;
 
+  /// Label indicating that a question is missing an explanation
+  ///
+  /// In en, this message translates to:
+  /// **'Missing explanation'**
+  String get missingExplanation;
+
+  /// Tooltip text for the missing explanation badge
+  ///
+  /// In en, this message translates to:
+  /// **'This question is missing an explanation'**
+  String get missingExplanationTooltip;
+
+  /// Tooltip text for the question type badge
+  ///
+  /// In en, this message translates to:
+  /// **'Question type: {type}'**
+  String questionTypeTooltip(String type);
+
   /// Base prompt for AI assistant
   ///
   /// In en, this message translates to:

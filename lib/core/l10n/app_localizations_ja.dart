@@ -324,6 +324,17 @@ class AppLocalizationsJa extends AppLocalizations {
   String get explanationTooltip => 'この問題には解説があります';
 
   @override
+  String get missingExplanation => '説明がありません';
+
+  @override
+  String get missingExplanationTooltip => 'この質問には説明がありません';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return '質問の種類: $type';
+  }
+
+  @override
   String get aiPrompt =>
       '学生の質問に焦点を当て、元の試験問題に直接答えるのではなく。教育的なアプローチで説明し、脱線せずに明確な論拠を提供してください。回答をセクションに分けないでください。自分自身に言及しないでください。質問された言語と同じ言語で回答してください。';
 

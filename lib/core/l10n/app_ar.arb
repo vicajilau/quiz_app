@@ -1638,5 +1638,23 @@
   "saveSuccess": "تم حفظ الملف بنجاح",
   "errorSavingFile": "خطأ في حفظ الملف",
   "deleteSingleQuestionConfirmation": "هل أنت متأكد أنك تريد حذف هذا السؤال؟",
-  "deleteMultipleQuestionsConfirmation": "هل أنت متأكد أنك تريد حذف {count} أسئلة؟"
+  "deleteMultipleQuestionsConfirmation": "هل أنت متأكد أنك تريد حذف {count} أسئلة؟",
+  "missingExplanation": "شرح مفقود",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "هذا السؤال يفتقد للشرح",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "نوع السؤال: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  }
 }

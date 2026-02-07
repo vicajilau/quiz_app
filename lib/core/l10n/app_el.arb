@@ -359,5 +359,23 @@
   "saveSuccess": "Το αρχείο αποθηκεύτηκε επιτυχώς",
   "errorSavingFile": "Σφάλμα κατά την αποθήκευση του αρχείου",
   "deleteSingleQuestionConfirmation": "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτή την ερώτηση;",
-  "deleteMultipleQuestionsConfirmation": "Είστε σίγουροι ότι θέλετε να διαγράψετε {count} ερωτήσεις;"
+  "deleteMultipleQuestionsConfirmation": "Είστε σίγουροι ότι θέλετε να διαγράψετε {count} ερωτήσεις;",
+  "missingExplanation": "Λείπει η επεξήγηση",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "Αυτή η ερώτηση δεν έχει επεξήγηση",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "Τύπος ερώτησης: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  }
 }

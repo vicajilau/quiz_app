@@ -334,6 +334,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get explanationTooltip => 'This question has an explanation';
 
   @override
+  String get missingExplanation => 'Missing explanation';
+
+  @override
+  String get missingExplanationTooltip =>
+      'This question is missing an explanation';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return 'Question type: $type';
+  }
+
+  @override
   String get aiPrompt =>
       'Focus on the student\'s question, not on directly answering the original exam question. Explain with a pedagogical approach, providing clear arguments without rambling or going off-topic. Do not structure the response in sections. Do not refer to yourself. Respond in the same language you are asked in.';
 

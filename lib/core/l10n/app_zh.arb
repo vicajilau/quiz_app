@@ -1638,5 +1638,23 @@
   "saveSuccess": "文件保存成功",
   "errorSavingFile": "保存文件时出错",
   "deleteSingleQuestionConfirmation": "您确定要删除这个问题吗？",
-  "deleteMultipleQuestionsConfirmation": "您确定要删除 {count} 个问题吗？"
+  "deleteMultipleQuestionsConfirmation": "您确定要删除 {count} 个问题吗？",
+  "missingExplanation": "缺少解释",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "此问题没有解释",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "问题类型：{type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  }
 }

@@ -466,6 +466,24 @@
   "@explanationTooltip": {
     "description": "Texto do tooltip para a insignia indicadora de explicación"
   },
+  "missingExplanation": "Falta explicación",
+  "@missingExplanation": {
+    "description": "Etiqueta indicando que a unha pregunta fáltalle a explicación"
+  },
+  "missingExplanationTooltip": "Esta pregunta non ten explicación",
+  "@missingExplanationTooltip": {
+    "description": "Texto do tooltip para a insignia indicadora de falta de explicación"
+  },
+  "questionTypeTooltip": "Tipo de pregunta: {type}",
+  "@questionTypeTooltip": {
+    "description": "Texto do tooltip para a insignia de tipo de pregunta",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Elección Múltiple"
+      }
+    }
+  },
   "aiPrompt": "Céntrate na pregunta do estudante, non en responder directamente a pregunta orixinal do exame. Explica cun enfoque pedagóxico, proporcionando argumentos claros sen divagar nin saír do tema. Non estrutures a resposta en seccións. Non te refiras a ti mesmo. Responde na mesma lingua na que se che pregunta.",
   "@aiPrompt": {
     "description": "Prompt base para asistente IA"

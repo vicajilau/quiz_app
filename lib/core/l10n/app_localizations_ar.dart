@@ -330,6 +330,17 @@ class AppLocalizationsAr extends AppLocalizations {
   String get explanationTooltip => 'هذا السؤال له شرح';
 
   @override
+  String get missingExplanation => 'شرح مفقود';
+
+  @override
+  String get missingExplanationTooltip => 'هذا السؤال يفتقد للشرح';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return 'نوع السؤال: $type';
+  }
+
+  @override
   String get aiPrompt =>
       'ركز على سؤال الطالب، وليس على الإجابة مباشرة على سؤال الامتحان الأصلي. اشرح بمنهج تربوي، مقدماً حججاً واضحة دون الاستطراد أو الخروج عن الموضوع. لا تنظم الإجابة في أقسام. لا تشر إلى نفسك. استجب بنفس اللغة التي يُطرح بها السؤال.';
 
