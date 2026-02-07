@@ -122,15 +122,27 @@ class _HomeScreenState extends State<HomeScreen> {
                 onDragEntered: (_) => setState(() => _isDragging = true),
                 onDragExited: (_) => setState(() => _isDragging = false),
                 child: SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 48.0),
-                    child: Column(
-                      children: [
-                        _buildHeader(context),
-                        Expanded(child: _buildDropZone(context)),
-                        _buildFooter(context),
-                      ],
-                    ),
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      final isMobile = constraints.maxWidth < 600;
+                      // Calculate the visual top margin:
+                      // SafeArea (padding.top) + Header centering offset ((72 - 48) / 2 = 12)
+                      final topPadding = MediaQuery.of(context).padding.top;
+                      final visualTopMargin = topPadding + 12.0;
+
+                      return Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: isMobile ? visualTopMargin : 48.0,
+                        ),
+                        child: Column(
+                          children: [
+                            _buildHeader(context),
+                            Expanded(child: _buildDropZone(context)),
+                            _buildFooter(context),
+                          ],
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),

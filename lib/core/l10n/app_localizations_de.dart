@@ -1200,7 +1200,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get quizModeTitle => 'Quizmodus';
 
   @override
-  String get settingsTitle => 'Settings';
+  String get settingsTitle => 'Einstellungen';
 
   @override
   String get skip => 'Überspringen';

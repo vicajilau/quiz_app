@@ -1133,7 +1133,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get quizModeTitle => '测验模式';
 
   @override
-  String get settingsTitle => 'Settings';
+  String get settingsTitle => '设置';
 
   @override
   String get skip => '跳过';

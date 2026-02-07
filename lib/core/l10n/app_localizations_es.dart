@@ -1196,7 +1196,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get quizModeTitle => 'Modo Cuestionario';
 
   @override
-  String get settingsTitle => 'Settings';
+  String get settingsTitle => 'Ajustes';
 
   @override
   String get skip => 'Saltar';

@@ -1203,7 +1203,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get quizModeTitle => 'Λειτουργία Κουίζ';
 
   @override
-  String get settingsTitle => 'Settings';
+  String get settingsTitle => 'Ρυθμίσεις';
 
   @override
   String get skip => 'Παράλειψη';

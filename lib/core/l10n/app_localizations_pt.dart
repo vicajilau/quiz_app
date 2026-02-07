@@ -1196,7 +1196,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get quizModeTitle => 'Modo Quiz';
 
   @override
-  String get settingsTitle => 'Settings';
+  String get settingsTitle => 'Configurações';
 
   @override
   String get skip => 'Pular';

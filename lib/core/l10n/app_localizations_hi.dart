@@ -1182,7 +1182,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get quizModeTitle => 'क्विज़ मोड';
 
   @override
-  String get settingsTitle => 'Settings';
+  String get settingsTitle => 'सेटिंग्स';
 
   @override
   String get skip => 'छोड़ें';

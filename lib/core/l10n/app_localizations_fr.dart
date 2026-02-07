@@ -1200,7 +1200,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get quizModeTitle => 'Mode Quiz';
 
   @override
-  String get settingsTitle => 'Settings';
+  String get settingsTitle => 'Paramètres';
 
   @override
   String get skip => 'Passer';

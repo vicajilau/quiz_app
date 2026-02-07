@@ -1193,7 +1193,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get quizModeTitle => 'Galdetegi Modua';
 
   @override
-  String get settingsTitle => 'Settings';
+  String get settingsTitle => 'Ezarpenak';
 
   @override
   String get skip => 'Saltatu';

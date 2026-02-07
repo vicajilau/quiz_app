@@ -1200,7 +1200,7 @@ class AppLocalizationsCa extends AppLocalizations {
   String get quizModeTitle => 'Mode Qüestionari';
 
   @override
-  String get settingsTitle => 'Settings';
+  String get settingsTitle => 'Configuració';
 
   @override
   String get skip => 'Saltar';
