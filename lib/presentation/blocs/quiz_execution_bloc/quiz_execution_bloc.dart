@@ -166,6 +166,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
             essayAnswers: currentState.essayAnswers,
             correctAnswers: correctCount,
             totalQuestions: currentState.totalQuestions,
+            isStudyMode: currentState.isStudyMode,
           ),
         );
       }
@@ -195,7 +196,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
             userAnswers: {},
             essayAnswers: {},
             validatedQuestions: {},
-            isStudyMode: false, // Potentially losing mode here on plain restart
+            isStudyMode: completedState.isStudyMode,
           ),
         );
       }

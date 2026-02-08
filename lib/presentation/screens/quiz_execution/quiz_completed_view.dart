@@ -273,7 +273,9 @@ class QuizCompletedView extends StatelessWidget {
     if (failedQuestions.isNotEmpty) {
       // Start a new quiz with only the failed questions
       final bloc = BlocProvider.of<QuizExecutionBloc>(context);
-      bloc.add(QuizExecutionStarted(failedQuestions));
+      bloc.add(
+        QuizExecutionStarted(failedQuestions, isStudyMode: state.isStudyMode),
+      );
     }
   }
 }

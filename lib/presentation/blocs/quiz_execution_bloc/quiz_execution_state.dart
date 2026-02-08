@@ -108,6 +108,7 @@ class QuizExecutionCompleted extends QuizExecutionState {
   final int correctAnswers;
   final int totalQuestions;
   final double score; // percentage
+  final bool isStudyMode;
 
   QuizExecutionCompleted({
     required this.questions,
@@ -115,6 +116,7 @@ class QuizExecutionCompleted extends QuizExecutionState {
     required this.essayAnswers,
     required this.correctAnswers,
     required this.totalQuestions,
+    required this.isStudyMode,
   }) : score = (correctAnswers / totalQuestions) * 100;
 
   /// Get details for each question
