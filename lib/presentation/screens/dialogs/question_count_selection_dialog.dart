@@ -111,16 +111,20 @@ class _QuestionCountSelectionDialogState
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  AppLocalizations.of(context)!.selectQuestionCountTitle,
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    color: textColor,
-                    height: 1.2,
+                Expanded(
+                  child: Text(
+                    AppLocalizations.of(context)!.startQuiz,
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700,
+                      color: textColor,
+                      height: 1.2,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
+                const SizedBox(width: 16),
                 IconButton(
                   onPressed: () => context.pop(null),
                   style: IconButton.styleFrom(
