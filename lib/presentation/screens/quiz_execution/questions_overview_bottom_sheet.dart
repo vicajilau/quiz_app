@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quiz_app/core/extensions/question_validation_extension.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
@@ -97,7 +99,6 @@ class QuestionsOverviewBottomSheet extends StatelessWidget {
             itemCount: state.totalQuestions,
             itemBuilder: (context, index) {
               final isCurrent = index == state.currentQuestionIndex;
-              // Use index for checking if answered since Question doesn't have ID
               final isAnswered =
                   state.userAnswers.containsKey(index) &&
                   state.userAnswers[index]!.isNotEmpty;
@@ -106,24 +107,41 @@ class QuestionsOverviewBottomSheet extends StatelessWidget {
                   state.essayAnswers[index]!.trim().isNotEmpty;
               final hasAnswer = isAnswered || isEssayAnswered;
 
+              final question = state.questions[index];
+              bool isCorrect = false;
+
+              if (hasAnswer) {
+                if (question.type == QuestionType.essay) {
+                  // For essay, if answered, we consider it "green" for now as per plan
+                  isCorrect = true;
+                } else {
+                  final userAns = state.userAnswers[index] ?? [];
+                  isCorrect = question.isAnswerCorrect(userAns);
+                }
+              }
+
               Color bgColor;
               Color textColor;
               Border? border;
 
-              if (isCurrent) {
-                bgColor = primaryColor.withValues(alpha: 0.2);
-                textColor = primaryColor;
-                border = Border.all(color: primaryColor, width: 2);
-              } else if (hasAnswer) {
-                bgColor = isDark
-                    ? const Color(0xFF3F3F46)
-                    : const Color(0xFFF4F4F5); // Zinc
-                textColor = isDark ? Colors.white : Colors.black87;
-                border = Border.all(
-                  color: isDark
-                      ? const Color(0xFF52525B)
-                      : const Color(0xFFE4E4E7),
-                );
+              if (hasAnswer) {
+                if (isCorrect) {
+                  bgColor = isDark
+                      ? Colors.green.withOpacity(0.2)
+                      : Colors.green.withOpacity(0.1);
+                  textColor = isDark ? Colors.green[200]! : Colors.green[800]!;
+                  border = Border.all(
+                    color: isDark ? Colors.green[700]! : Colors.green[300]!,
+                  );
+                } else {
+                  bgColor = isDark
+                      ? Colors.red.withOpacity(0.2)
+                      : Colors.red.withOpacity(0.1);
+                  textColor = isDark ? Colors.red[200]! : Colors.red[800]!;
+                  border = Border.all(
+                    color: isDark ? Colors.red[700]! : Colors.red[300]!,
+                  );
+                }
               } else {
                 bgColor = Colors.transparent;
                 textColor = isDark ? Colors.grey[500]! : Colors.grey[400]!;
@@ -132,6 +150,24 @@ class QuestionsOverviewBottomSheet extends StatelessWidget {
                       ? const Color(0xFF27272A)
                       : const Color(0xFFE4E4E7),
                 );
+              }
+
+              if (isCurrent) {
+                // Overlay purple styling for current question
+                // If it has answer, we keep the background indicating correctness/incorrectness
+                // but add a strong purple border to indicate "current".
+                // If no answer, we use purple background as before?
+                // Request says: "Si no se ha contestado no tiene color y se pone lila sobre la actual indicando que estás encima de esa"
+                // This implies:
+                // - Unanswered & Current -> Purple overlay (or background)
+                // - Answered & Current -> Green/Red background + Purple indication (border?)
+
+                // Let's prioritize the "Current" indication.
+                if (!hasAnswer) {
+                  bgColor = primaryColor.withOpacity(0.2);
+                  textColor = primaryColor;
+                }
+                border = Border.all(color: primaryColor, width: 2);
               }
 
               return InkWell(
