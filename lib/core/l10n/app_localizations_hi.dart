@@ -985,7 +985,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get viewWinners => 'विजेता देखें';
 
   @override
-  String get congratulations => 'बधाई हो!';
+  String get congratulations => '🎉 बधाई हो! 🎉';
 
   @override
   String positionLabel(int position) {
@@ -1241,4 +1241,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String deleteMultipleQuestionsConfirmation(int count) {
     return 'क्या आप वाकई $count प्रश्नों को हटाना चाहते हैं?';
   }
+
+  @override
+  String get keepPracticing => 'सुधार के लिए अभ्यास जारी रखें!';
+
+  @override
+  String get tryAgain => 'Try Again';
+
+  @override
+  String get review => 'Review';
+
+  @override
+  String get home => 'Home';
 }

@@ -1709,5 +1709,7 @@
   "questionsOverview": "Questions Map",
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
-  }
+  },
+  "congratulations": "🎉 Herzlichen Glückwunsch! 🎉",
+  "keepPracticing": "Übe weiter, um dich zu verbessern!"
 }

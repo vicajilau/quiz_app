@@ -1255,4 +1255,16 @@ class AppLocalizationsPt extends AppLocalizations {
   String deleteMultipleQuestionsConfirmation(int count) {
     return 'Tem certeza de que deseja excluir $count perguntas?';
   }
+
+  @override
+  String get keepPracticing => 'Continue praticando para melhorar!';
+
+  @override
+  String get tryAgain => 'Try Again';
+
+  @override
+  String get review => 'Review';
+
+  @override
+  String get home => 'Home';
 }

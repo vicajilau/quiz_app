@@ -1661,5 +1661,7 @@
   "questionsOverview": "题目概览",
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
-  }
+  },
+  "congratulations": "🎉 恭喜！ 🎉",
+  "keepPracticing": "继续练习以提高！"
 }

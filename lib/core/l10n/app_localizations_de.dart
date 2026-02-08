@@ -1259,4 +1259,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String deleteMultipleQuestionsConfirmation(int count) {
     return 'Sind Sie sicher, dass Sie $count Fragen löschen möchten?';
   }
+
+  @override
+  String get keepPracticing => 'Übe weiter, um dich zu verbessern!';
+
+  @override
+  String get tryAgain => 'Try Again';
+
+  @override
+  String get review => 'Review';
+
+  @override
+  String get home => 'Home';
 }

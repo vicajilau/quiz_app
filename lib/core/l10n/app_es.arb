@@ -1666,6 +1666,14 @@
   "saveSuccess": "Archivo guardado exitosamente",
   "errorSavingFile": "Error al guardar el archivo",
   "deleteSingleQuestionConfirmation": "¿Estás seguro de que quieres eliminar esta pregunta?",
-  "deleteMultipleQuestionsConfirmation": "¿Estás seguro de que quieres eliminar {count} preguntas?"
-  ,"settingsTitle": "Ajustes"
+  "deleteMultipleQuestionsConfirmation": "¿Estás seguro de que quieres eliminar {count} preguntas?",
+  "settingsTitle": "Ajustes",
+  "congratulations": "🎉 ¡Felicidades! 🎉",
+  "keepPracticing": "¡Sigue practicando para mejorar!",
+  "@keepPracticing": {
+    "description": "Mensaje de aliento para puntuaciones bajas en el quiz"
+  },
+  "tryAgain": "Intentar de nuevo",
+  "review": "Repasar",
+  "home": "Inicio"
 }
