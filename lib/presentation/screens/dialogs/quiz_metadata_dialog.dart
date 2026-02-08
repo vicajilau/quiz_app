@@ -117,7 +117,8 @@ class _QuizMetadataDialogState extends State<QuizMetadataDialog> {
     required String? errorText,
     required Function(String) onChanged,
     String? hintText,
-    int maxLines = 1,
+    int? maxLines = 1,
+    int? minLines,
     TextCapitalization textCapitalization = TextCapitalization.sentences,
   }) {
     return Column(
@@ -136,6 +137,7 @@ class _QuizMetadataDialogState extends State<QuizMetadataDialog> {
         TextFormField(
           controller: controller,
           maxLines: maxLines,
+          minLines: minLines,
           textCapitalization: textCapitalization,
           style: const TextStyle(
             color: Colors.white,
@@ -223,23 +225,14 @@ class _QuizMetadataDialogState extends State<QuizMetadataDialog> {
                       ),
                     ),
                   ),
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () => context.pop(),
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF3F3F46), // Zinc 700
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Icon(
-                          LucideIcons.x,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                      ),
+                  IconButton(
+                    onPressed: () => context.pop(),
+                    icon: const Icon(LucideIcons.x, size: 20),
+                    style: IconButton.styleFrom(
+                      backgroundColor: const Color(0xFF3F3F46), // Zinc 700
+                      foregroundColor: Colors.white,
+                      fixedSize: const Size(40, 40),
+                      padding: EdgeInsets.zero,
                     ),
                   ),
                 ],
@@ -262,7 +255,8 @@ class _QuizMetadataDialogState extends State<QuizMetadataDialog> {
                 hintText: unknownHint,
                 errorText: _descriptionError,
                 onChanged: _onDescriptionChanged,
-                maxLines: 2,
+                minLines: 1,
+                maxLines: null,
               ),
               const SizedBox(height: 16),
               _buildTextField(
