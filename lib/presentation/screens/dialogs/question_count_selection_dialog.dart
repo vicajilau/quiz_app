@@ -305,18 +305,16 @@ class _QuestionCountSelectionDialogState
     required Color bgColor,
     required Color iconColor,
   }) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        width: 48,
-        height: 48,
-        decoration: BoxDecoration(
-          color: bgColor,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Icon(icon, size: 20, color: iconColor),
+    return IconButton(
+      onPressed: onTap,
+      style: IconButton.styleFrom(
+        backgroundColor: bgColor,
+        foregroundColor: iconColor,
+        fixedSize: const Size(48, 48),
+        padding: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
+      icon: Icon(icon, size: 20),
     );
   }
 
@@ -330,46 +328,33 @@ class _QuestionCountSelectionDialogState
     required Color defaultBgColor,
     required Color defaultTextColor,
   }) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        height: 64,
+    return IconButton(
+      onPressed: onTap,
+      style: IconButton.styleFrom(
+        backgroundColor: isSelected ? primaryColor : defaultBgColor,
+        foregroundColor: isSelected ? Colors.white : defaultTextColor,
+        minimumSize: const Size(double.infinity, 64),
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        decoration: BoxDecoration(
-          color: isSelected ? primaryColor : defaultBgColor,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Row(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      ),
+      icon: SizedBox(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Centered content as per design vertical stack?
-            // Actually previous analysis said "Vertical stack of modes" but inside the card
-            // `modeExamL` children were Icon and Text.
-            // If I look at the design code again:
-            // "layout": "vertical", "gap": 4, "justifyContent": "center", "alignItems": "center"
-            // So: Icon on top, Text below. Centered.
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    icon,
-                    size: 20,
-                    color: isSelected ? Colors.white : defaultTextColor,
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: 14,
-                      fontWeight: isSelected
-                          ? FontWeight.w600
-                          : FontWeight.w500,
-                      color: isSelected ? Colors.white : defaultTextColor,
-                    ),
-                  ),
-                ],
+            Icon(
+              icon,
+              size: 20,
+              color: isSelected ? Colors.white : defaultTextColor,
+            ),
+            const SizedBox(height: 4),
+            Text(
+              title,
+              style: TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 14,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                color: isSelected ? Colors.white : defaultTextColor,
               ),
             ),
           ],
