@@ -3,9 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 
+/// A widget that displays a countdown timer for an exam.
+///
+/// This widget handles the countdown logic, visual representation (including warnings
+/// when time is low), and triggers a callback when the time expires.
 class ExamTimerWidget extends StatefulWidget {
+  /// The initial duration of the exam in minutes.
   final int initialDurationMinutes;
+
+  /// Callback function to be executed when the timer reaches zero.
   final VoidCallback onTimeExpired;
+
+  /// Whether the quiz has been completed.
+  ///
+  /// If true, the timer stops ticking and the icon animation freezes.
   final bool isQuizCompleted;
 
   const ExamTimerWidget({
@@ -204,7 +215,6 @@ class _ExamTimerWidgetState extends State<ExamTimerWidget>
     final minutes = (_remainingTime!.inMinutes % 60).toString().padLeft(2, '0');
     final seconds = (_remainingTime!.inSeconds % 60).toString().padLeft(2, '0');
 
-    // Determine color based on remaining time (e.g. red if < 5 mins)
     // Determine color based on time remaining to match design logic or fallback
     final bool isLowTime = _remainingTime!.inMinutes < 5;
     final primaryColor = Theme.of(context).primaryColor;
