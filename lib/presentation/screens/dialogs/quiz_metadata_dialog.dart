@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 
@@ -8,6 +9,7 @@ import 'package:quiz_app/core/l10n/app_localizations.dart';
 /// This dialog collects the quiz name, description, and author.
 /// It supports both creating a new quiz (where fields are initially empty)
 /// and editing an existing one (where fields are pre-filled).
+/// Styled according to design node 75JA2.
 class QuizMetadataDialog extends StatefulWidget {
   /// The initial name of the quiz, used when editing.
   final String? initialName;
@@ -93,110 +95,217 @@ class _QuizMetadataDialogState extends State<QuizMetadataDialog> {
 
   /// Validates the inputs and closes the dialog with the result if valid.
   void _submit() {
-    final name = _nameController.text.trim();
-    final description = _descriptionController.text.trim();
-    final author = _authorController.text.trim();
+    final unknownValue = AppLocalizations.of(context)!.questionTypeUnknown;
 
-    setState(() {
-      _nameError = name.isEmpty
-          ? AppLocalizations.of(context)!.fileNameRequiredError
-          : null;
-      _descriptionError = description.isEmpty
-          ? AppLocalizations.of(context)!.fileDescriptionRequiredError
-          : null;
-      _authorError = author.isEmpty
-          ? AppLocalizations.of(context)!.authorRequiredError
-          : null;
-    });
+    final name = _nameController.text.trim().isEmpty
+        ? unknownValue
+        : _nameController.text.trim();
+    final description = _descriptionController.text.trim().isEmpty
+        ? unknownValue
+        : _descriptionController.text.trim();
+    final author = _authorController.text.trim().isEmpty
+        ? unknownValue
+        : _authorController.text.trim();
 
-    if (_nameError == null &&
-        _descriptionError == null &&
-        _authorError == null) {
-      context.pop({'name': name, 'description': description, 'author': author});
-    }
+    // No validation errors needed as we have defaults
+    context.pop({'name': name, 'description': description, 'author': author});
+  }
+
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String label,
+    required String? errorText,
+    required Function(String) onChanged,
+    String? hintText,
+    int maxLines = 1,
+    TextCapitalization textCapitalization = TextCapitalization.sentences,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            color: Colors.white.withValues(alpha: 0.7),
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            fontFamily: 'Inter',
+          ),
+        ),
+        const SizedBox(height: 8),
+        TextFormField(
+          controller: controller,
+          maxLines: maxLines,
+          textCapitalization: textCapitalization,
+          style: const TextStyle(
+            color: Colors.white,
+            fontFamily: 'Inter',
+            fontSize: 16,
+          ),
+          cursorColor: const Color(0xFF8B5CF6), // Violet 500
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: const Color(0xFF3F3F46), // Zinc 700
+            hintText: hintText,
+            hintStyle: TextStyle(
+              color: Colors.white.withValues(alpha: 0.3),
+              fontFamily: 'Inter',
+            ),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 16,
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide.none,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide.none,
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(
+                color: Color(0xFF8B5CF6), // Violet 500
+                width: 2,
+              ),
+            ),
+            errorText: errorText,
+            errorStyle: const TextStyle(
+              color: Color(0xFFEF4444), // Red 500
+              fontFamily: 'Inter',
+            ),
+          ),
+          onChanged: onChanged,
+        ),
+      ],
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Row(
-        children: [
-          Icon(
-            widget.isEditing ? Icons.edit : Icons.note_add,
-            color: Theme.of(context).colorScheme.primary,
+    final unknownHint = AppLocalizations.of(context)!.questionTypeUnknown;
+
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Container(
+        width: 520,
+        padding: const EdgeInsets.all(32),
+        decoration: BoxDecoration(
+          color: const Color(0xFF27272A), // Zinc 800
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(
+            color: Colors.white.withValues(alpha: 0.1),
+            width: 1,
           ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              widget.isEditing
-                  ? AppLocalizations.of(context)!.editQuizFileTitle
-                  : AppLocalizations.of(context)!.createQuizFileTitle,
-            ),
-          ),
-        ],
-      ),
-      content: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.8,
+        ),
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              TextField(
+              // Header
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      widget.isEditing
+                          ? AppLocalizations.of(context)!.editQuizFileTitle
+                          : AppLocalizations.of(context)!.createQuizFileTitle,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Inter',
+                      ),
+                    ),
+                  ),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () => context.pop(),
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF3F3F46), // Zinc 700
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Icon(
+                          LucideIcons.x,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 32),
+
+              // Fields
+              _buildTextField(
                 controller: _nameController,
-                decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.fileNameLabel,
-                  errorText: _nameError,
-                  border: const OutlineInputBorder(),
-                  prefixIcon: const Icon(Icons.title),
-                ),
+                label: AppLocalizations.of(context)!.fileNameLabel,
+                hintText: unknownHint,
+                errorText: _nameError,
                 onChanged: _onNameChanged,
                 textCapitalization: TextCapitalization.words,
               ),
               const SizedBox(height: 16),
-              TextField(
+              _buildTextField(
                 controller: _descriptionController,
-                decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.fileDescriptionLabel,
-                  errorText: _descriptionError,
-                  border: const OutlineInputBorder(),
-                  prefixIcon: const Icon(Icons.description),
-                ),
-                maxLines: 2,
+                label: AppLocalizations.of(context)!.fileDescriptionLabel,
+                hintText: unknownHint,
+                errorText: _descriptionError,
                 onChanged: _onDescriptionChanged,
-                textCapitalization: TextCapitalization.sentences,
+                maxLines: 2,
               ),
               const SizedBox(height: 16),
-              TextField(
+              _buildTextField(
                 controller: _authorController,
-                decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.authorLabel,
-                  errorText: _authorError,
-                  border: const OutlineInputBorder(),
-                  prefixIcon: const Icon(Icons.person),
-                ),
+                label: AppLocalizations.of(context)!.authorLabel,
+                hintText: unknownHint,
+                errorText: _authorError,
                 onChanged: _onAuthorChanged,
                 textCapitalization: TextCapitalization.words,
+              ),
+
+              const SizedBox(height: 32),
+
+              // Submit Button
+              SizedBox(
+                height: 56,
+                child: ElevatedButton(
+                  onPressed: _submit,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF8B5CF6), // Violet 500
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: EdgeInsets.zero,
+                  ),
+                  child: Text(
+                    widget.isEditing
+                        ? AppLocalizations.of(context)!.saveButton
+                        : AppLocalizations.of(context)!.createButton,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Inter',
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
         ),
       ),
-      actions: [
-        TextButton(
-          onPressed: () => context.pop(),
-          child: Text(AppLocalizations.of(context)!.cancelButton),
-        ),
-        FilledButton.icon(
-          onPressed: _submit,
-          icon: Icon(widget.isEditing ? Icons.save : Icons.create),
-          label: Text(
-            widget.isEditing
-                ? AppLocalizations.of(context)!.saveButton
-                : AppLocalizations.of(context)!.createButton,
-          ),
-        ),
-      ],
     );
   }
 }

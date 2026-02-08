@@ -28,6 +28,7 @@ import 'package:quiz_app/presentation/screens/widgets/file_loaded_bottom_bar.dar
 import 'package:quiz_app/presentation/screens/dialogs/settings_dialog.dart';
 import 'package:quiz_app/presentation/screens/widgets/request_file_name_dialog.dart';
 import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
+import 'package:quiz_app/presentation/screens/dialogs/quiz_metadata_dialog.dart';
 
 class FileLoadedScreen extends StatefulWidget {
   final FileBloc fileBloc;
@@ -479,13 +480,45 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          AppLocalizations.of(context)!.quizPreviewTitle,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: 'Plus Jakarta Sans',
+                        MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () async {
+                              final result =
+                                  await showDialog<Map<String, String>>(
+                                    context: context,
+                                    builder: (context) => QuizMetadataDialog(
+                                      isEditing: true,
+                                      initialName:
+                                          cachedQuizFile.metadata.title,
+                                      initialDescription:
+                                          cachedQuizFile.metadata.description,
+                                      initialAuthor:
+                                          cachedQuizFile.metadata.author,
+                                    ),
+                                  );
+
+                              if (result != null && mounted) {
+                                setState(() {
+                                  cachedQuizFile = cachedQuizFile.copyWith(
+                                    metadata: cachedQuizFile.metadata.copyWith(
+                                      title: result['name'],
+                                      description: result['description'],
+                                      author: result['author'],
+                                    ),
+                                  );
+                                });
+                              }
+                            },
+                            child: Text(
+                              AppLocalizations.of(context)!.quizPreviewTitle,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'Plus Jakarta Sans',
+                              ),
+                            ),
                           ),
                         ),
                       ],
