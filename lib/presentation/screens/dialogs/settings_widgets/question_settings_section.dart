@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/domain/models/quiz/question_order.dart';
@@ -41,28 +43,33 @@ class QuestionSettingsSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              _buildOrderOption(
-                context,
-                order: QuestionOrder.ascending,
-                isSelected: selectedOrder == QuestionOrder.ascending,
-              ),
-              const SizedBox(width: 12),
-              _buildOrderOption(
-                context,
-                order: QuestionOrder.descending,
-                isSelected: selectedOrder == QuestionOrder.descending,
-              ),
-              const SizedBox(width: 12),
-              _buildOrderOption(
-                context,
-                order: QuestionOrder.random,
-                isSelected: selectedOrder == QuestionOrder.random,
-              ),
-            ],
+        ScrollConfiguration(
+          behavior: ScrollConfiguration.of(context).copyWith(
+            dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
+          ),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                _buildOrderOption(
+                  context,
+                  order: QuestionOrder.ascending,
+                  isSelected: selectedOrder == QuestionOrder.ascending,
+                ),
+                const SizedBox(width: 12),
+                _buildOrderOption(
+                  context,
+                  order: QuestionOrder.descending,
+                  isSelected: selectedOrder == QuestionOrder.descending,
+                ),
+                const SizedBox(width: 12),
+                _buildOrderOption(
+                  context,
+                  order: QuestionOrder.random,
+                  isSelected: selectedOrder == QuestionOrder.random,
+                ),
+              ],
+            ),
           ),
         ),
 
