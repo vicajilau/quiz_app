@@ -132,70 +132,74 @@ class _FileLoadedBottomBarState extends State<FileLoadedBottomBar> {
                         PointerDeviceKind.mouse,
                       },
                     ),
-                    child: SingleChildScrollView(
-                      controller: _scrollController,
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          _buildActionButton(
-                            context,
-                            icon: LucideIcons.plus,
-                            label: AppLocalizations.of(context)!.addQuestion,
-                            onPressed: widget.onAddQuestion,
-                            backgroundColor: addBtnBg,
-                            borderColor: addBtnBorder,
-                            textColor: addBtnText,
-                            iconColor: addBtnIcon,
-                          ),
-                          const SizedBox(width: 12),
-                          _buildActionButton(
-                            context,
-                            icon: LucideIcons.sparkles,
-                            label: AppLocalizations.of(
+                    child: NotificationListener<ScrollMetricsNotification>(
+                      onNotification: (notification) {
+                        _updateShadows();
+                        return true;
+                      },
+                      child: SingleChildScrollView(
+                        controller: _scrollController,
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            _buildActionButton(
                               context,
-                            )!.generateQuestionsWithAI,
-                            onPressed: widget.onGenerateAI,
-                            backgroundColor: const Color(
-                              0xFF14B8A6,
-                            ), // Teal 500
-                          ),
-                          const SizedBox(width: 12),
-                          _buildActionButton(
-                            context,
-                            icon: LucideIcons.upload,
-                            label: AppLocalizations.of(context)!.importButton,
-                            onPressed: widget.onImport,
-                            backgroundColor: secondaryBtnBg,
-                            textColor: secondaryBtnText,
-                            iconColor: secondaryBtnIcon,
-                          ),
-                          if (widget.showSaveButton) ...[
+                              icon: LucideIcons.plus,
+                              label: AppLocalizations.of(context)!.addQuestion,
+                              onPressed: widget.onAddQuestion,
+                              backgroundColor: addBtnBg,
+                              borderColor: addBtnBorder,
+                              textColor: addBtnText,
+                              iconColor: addBtnIcon,
+                            ),
                             const SizedBox(width: 12),
                             _buildActionButton(
                               context,
-                              icon: LucideIcons.save,
-                              label: AppLocalizations.of(context)!.saveButton,
-                              onPressed: widget.onSave,
+                              icon: LucideIcons.sparkles,
+                              label: AppLocalizations.of(
+                                context,
+                              )!.generateQuestionsWithAI,
+                              onPressed: widget.onGenerateAI,
+                              backgroundColor: const Color(0xFF14B8A6), // Teal 500
+                            ),
+                            const SizedBox(width: 12),
+                            _buildActionButton(
+                              context,
+                              icon: LucideIcons.upload,
+                              label: AppLocalizations.of(context)!.importButton,
+                              onPressed: widget.onImport,
                               backgroundColor: secondaryBtnBg,
                               textColor: secondaryBtnText,
                               iconColor: secondaryBtnIcon,
                             ),
+                            if (widget.showSaveButton) ...[
+                              const SizedBox(width: 12),
+                              _buildActionButton(
+                                context,
+                                icon: LucideIcons.save,
+                                label: AppLocalizations.of(context)!.saveButton,
+                                onPressed: widget.onSave,
+                                backgroundColor: secondaryBtnBg,
+                                textColor: secondaryBtnText,
+                                iconColor: secondaryBtnIcon,
+                              ),
+                            ],
+                            if (widget.selectedQuestionCount > 0) ...[
+                              const SizedBox(width: 12),
+                              _buildActionButton(
+                                context,
+                                icon: LucideIcons.trash2,
+                                label:
+                                    '${AppLocalizations.of(context)!.deleteButton} (${widget.selectedQuestionCount})',
+                                onPressed: widget.onDelete,
+                                backgroundColor: deleteBtnBg,
+                                textColor: deleteBtnText,
+                                iconColor: deleteBtnIcon,
+                              ),
+                            ],
                           ],
-                          if (widget.selectedQuestionCount > 0) ...[
-                            const SizedBox(width: 12),
-                            _buildActionButton(
-                              context,
-                              icon: LucideIcons.trash2,
-                              label:
-                                  '${AppLocalizations.of(context)!.deleteButton} (${widget.selectedQuestionCount})',
-                              onPressed: widget.onDelete,
-                              backgroundColor: deleteBtnBg,
-                              textColor: deleteBtnText,
-                              iconColor: deleteBtnIcon,
-                            ),
-                          ],
-                        ],
+                        ),
                       ),
                     ),
                   ),
