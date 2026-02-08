@@ -127,16 +127,16 @@ class QuestionsOverviewBottomSheet extends StatelessWidget {
               if (hasAnswer) {
                 if (isCorrect) {
                   bgColor = isDark
-                      ? Colors.green.withOpacity(0.2)
-                      : Colors.green.withOpacity(0.1);
+                      ? Colors.green.withValues(alpha: 0.2)
+                      : Colors.green.withValues(alpha: 0.1);
                   textColor = isDark ? Colors.green[200]! : Colors.green[800]!;
                   border = Border.all(
                     color: isDark ? Colors.green[700]! : Colors.green[300]!,
                   );
                 } else {
                   bgColor = isDark
-                      ? Colors.red.withOpacity(0.2)
-                      : Colors.red.withOpacity(0.1);
+                      ? Colors.red.withValues(alpha: 0.2)
+                      : Colors.red.withValues(alpha: 0.1);
                   textColor = isDark ? Colors.red[200]! : Colors.red[800]!;
                   border = Border.all(
                     color: isDark ? Colors.red[700]! : Colors.red[300]!,
@@ -164,7 +164,7 @@ class QuestionsOverviewBottomSheet extends StatelessWidget {
 
                 // Let's prioritize the "Current" indication.
                 if (!hasAnswer) {
-                  bgColor = primaryColor.withOpacity(0.2);
+                  bgColor = primaryColor.withValues(alpha: 0.2);
                   textColor = primaryColor;
                 }
                 border = Border.all(color: primaryColor, width: 2);

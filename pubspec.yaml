@@ -57,6 +57,7 @@ dependencies:
   google_fonts: ^8.0.1
   lucide_icons: ^0.257.0
   path_provider: ^2.1.5
+  collection: ^1.19.1
 
 dev_dependencies:
   flutter_test:
