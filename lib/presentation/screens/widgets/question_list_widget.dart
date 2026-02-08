@@ -53,7 +53,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
   Widget build(BuildContext context) {
     return ReorderableListView.builder(
       onReorder: _onReorder,
-      padding: const EdgeInsets.all(8.0).copyWith(bottom: 80),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0).copyWith(top: 24),
       itemCount: widget.quizFile.questions.length,
       buildDefaultDragHandles: false, // We use custom drag handles
       itemBuilder: (constext, index) {

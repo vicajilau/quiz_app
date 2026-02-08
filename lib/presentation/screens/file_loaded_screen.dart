@@ -617,7 +617,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                   child: Stack(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(24.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
                         child: QuestionListWidget(
                           quizFile: cachedQuizFile,
                           onFileChange: () {},
