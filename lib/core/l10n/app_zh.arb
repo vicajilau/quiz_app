@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Text displayed inside the drop area for dragging files."
   },
+  "clickOrDragFile": "点击加载或将 .quiz 文件拖动到屏幕上",
+  "@clickOrDragFile": {
+    "description": "加载区域下方显示的文本"
+  },
   "errorInvalidFile": "错误：无效文件。必须是.quiz文件。",
   "@errorInvalidFile": {
     "description": "Message displayed when the dropped file is not a .quiz file."
@@ -1619,5 +1623,45 @@
   "sorteosLabel": "Raffles",
   "edit": "编辑",
   "enable": "启用",
-  "disable": "禁用"
+  "disable": "禁用",
+  "reorderQuestionsTooltip": "重新排序问题",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "测验预览",
+  "select": "选择",
+  "done": "完成",
+  "importButton": "导入",
+  "reorderButton": "重新排序",
+  "startQuizButton": "开始测验",
+  "deleteConfirmation": "您确定要删除此测验吗？",
+  "saveSuccess": "文件保存成功",
+  "errorSavingFile": "保存文件时出错",
+  "deleteSingleQuestionConfirmation": "您确定要删除这个问题吗？",
+  "deleteMultipleQuestionsConfirmation": "您确定要删除 {count} 个问题吗？",
+  "missingExplanation": "缺少解释",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "此问题没有解释",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "问题类型：{type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  },
+  "settingsTitle": "设置",
+  "questionsOverview": "题目概览",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
+  },
+  "congratulations": "🎉 恭喜！ 🎉",
+  "keepPracticing": "继续练习以提高！"
 }

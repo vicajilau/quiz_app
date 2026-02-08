@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Text displayed inside the drop area for dragging files."
   },
+  "clickOrDragFile": "クリックしてロードするか、.quizファイルを画面にドラッグしてください",
+  "@clickOrDragFile": {
+    "description": "ロードエリアの下に表示されるテキスト"
+  },
   "errorInvalidFile": "エラー：無効なファイルです。.quizファイルである必要があります。",
   "@errorInvalidFile": {
     "description": "Message displayed when the dropped file is not a .quiz file."
@@ -207,6 +211,14 @@
   "previous": "前へ",
   "@previous": {
     "description": "Previous button text in quiz navigation"
+  },
+  "skip": "スキップ",
+  "@skip": {
+      "description": "Skip button text in quiz navigation"
+  },
+  "questionsOverview": "質問マップ",
+  "@questionsOverview": {
+      "description": "Title for the questions overview bottom sheet"
   },
   "next": "次へ",
   "@next": {
@@ -1619,5 +1631,45 @@
   "sorteosLabel": "Raffles",
   "edit": "編集",
   "enable": "有効化",
-  "disable": "無効化"
+  "disable": "無効化",
+  "reorderQuestionsTooltip": "質問を並べ替える",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "クイズプレビュー",
+  "select": "選択",
+  "done": "完了",
+  "importButton": "インポート",
+  "reorderButton": "並べ替え",
+  "startQuizButton": "クイズを開始",
+  "deleteConfirmation": "このクイズを削除してもよろしいですか？",
+  "saveSuccess": "ファイルが正常に保存されました",
+  "errorSavingFile": "ファイルの保存中にエラーが発生しました",
+  "deleteSingleQuestionConfirmation": "この質問を削除してもよろしいですか？",
+  "deleteMultipleQuestionsConfirmation": "{count} 個の質問を削除してもよろしいですか？",
+  "missingExplanation": "説明がありません",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "この質問には説明がありません",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "質問の種類: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  },
+  "settingsTitle": "設定",
+  "questionsOverview": "Questions Map",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
+  },
+  "congratulations": "🎉 おめでとうございます！ 🎉",
+  "keepPracticing": "改善のために練習を続けましょう！"
 }

@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 
-class ExitConfirmationDialog extends StatelessWidget {
-  const ExitConfirmationDialog({super.key});
+class AbandonQuizDialog extends StatelessWidget {
+  const AbandonQuizDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class ExitConfirmationDialog extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    AppLocalizations.of(context)!.confirmExitTitle,
+                    AppLocalizations.of(context)!.abandonQuiz,
                     style: TextStyle(
                       fontFamily: 'Inter',
                       fontSize: 24,
@@ -62,7 +62,7 @@ class ExitConfirmationDialog extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: () => context.pop(false),
+                  onPressed: () => context.pop(),
                   style: IconButton.styleFrom(
                     backgroundColor: controlBgColor,
                     fixedSize: const Size(40, 40),
@@ -77,7 +77,7 @@ class ExitConfirmationDialog extends StatelessWidget {
 
             // Content
             Text(
-              AppLocalizations.of(context)!.confirmExitMessage,
+              AppLocalizations.of(context)!.abandonQuizConfirmation,
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontSize: 16,
@@ -90,7 +90,10 @@ class ExitConfirmationDialog extends StatelessWidget {
 
             // Buttons
             ElevatedButton(
-              onPressed: () => context.pop(true),
+              onPressed: () {
+                context.pop(); // Close dialog
+                context.pop(); // Exit screen
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: primaryColor,
                 foregroundColor: Colors.white,
@@ -105,7 +108,7 @@ class ExitConfirmationDialog extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              child: Text(AppLocalizations.of(context)!.exitButton),
+              child: Text(AppLocalizations.of(context)!.abandon),
             ),
           ],
         ),

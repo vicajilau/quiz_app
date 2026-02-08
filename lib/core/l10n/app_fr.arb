@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Texte affiché dans la zone de dépôt pour faire glisser des fichiers."
   },
+  "clickOrDragFile": "Cliquez pour charger ou faites glisser un fichier .quiz vers l'écran",
+  "@clickOrDragFile": {
+    "description": "Texte affiché sous la zone de dépôt"
+  },
   "errorInvalidFile": "Erreur : Fichier invalide. Doit être un fichier .quiz.",
   "@errorInvalidFile": {
     "description": "Message affiché lorsque le fichier déposé n'est pas un fichier .quiz."
@@ -1667,5 +1671,45 @@
   "disable": "Désactiver",
   "@disable": {
     "description": "Button label to disable a question"
-  }
+  },
+  "reorderQuestionsTooltip": "Réorganiser les questions",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "Aperçu du Quiz",
+  "select": "Sélectionner",
+  "done": "Terminé",
+  "importButton": "Importer",
+  "reorderButton": "Réorganiser",
+  "startQuizButton": "Commencer le Quiz",
+  "deleteConfirmation": "Êtes-vous sûr de vouloir supprimer ce quiz ?",
+  "saveSuccess": "Fichier enregistré avec succès",
+  "errorSavingFile": "Erreur lors de l'enregistrement du fichier",
+  "deleteSingleQuestionConfirmation": "Êtes-vous sûr de vouloir supprimer cette question ?",
+  "deleteMultipleQuestionsConfirmation": "Êtes-vous sûr de vouloir supprimer {count} questions ?",
+  "missingExplanation": "Explication manquante",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "Cette question n'a pas d'explication",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "Type de question : {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  },
+  "settingsTitle": "Paramètres",
+  "questionsOverview": "Questions Map",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
+  },
+  "congratulations": "🎉 Félicitations ! 🎉",
+  "keepPracticing": "Continuez à vous entraîner pour vous améliorer !"
 }

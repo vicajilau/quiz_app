@@ -270,7 +270,7 @@ class _RaffleScreenContent extends StatelessWidget {
     );
   }
 
-  void _showLogoSelector(BuildContext context) async {
+  void _showLogoSelector(BuildContext context) {
     // Get current logo state
     RaffleLogo? currentLogo;
     final currentState = context.read<RaffleBloc>().state;
@@ -284,93 +284,216 @@ class _RaffleScreenContent extends StatelessWidget {
 
     final hasLogo = currentLogo != null;
 
-    // Show dialog with options
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(AppLocalizations.of(context)!.selectLogo),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (hasLogo) ...[
-              // Show current logo preview
-              Container(
-                height: 80,
-                width: 120,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey[300]!),
-                  borderRadius: BorderRadius.circular(8),
+      builder: (dialogContext) {
+        final isDark = Theme.of(context).brightness == Brightness.dark;
+
+        // Design Tokens (matching SubmitQuizDialog)
+        final dialogBg = isDark
+            ? const Color(0xFF27272A)
+            : const Color(0xFFFFFFFF);
+        final titleColor = isDark
+            ? const Color(0xFFFFFFFF)
+            : const Color(0xFF000000);
+        final contentColor = isDark
+            ? const Color(0xFFA1A1AA)
+            : const Color(0xFF71717A);
+        final closeBtnBg = isDark
+            ? const Color(0xFF3F3F46)
+            : const Color(0xFFF4F4F5);
+        final closeBtnIcon = isDark
+            ? const Color(0xFFA1A1AA)
+            : const Color(0xFF71717A);
+
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          insetPadding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Container(
+            padding: const EdgeInsets.all(32),
+            decoration: BoxDecoration(
+              color: dialogBg,
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // Header (Title + Close Button)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.selectLogo,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        color: titleColor,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () => Navigator.of(dialogContext).pop(),
+                      style: IconButton.styleFrom(
+                        backgroundColor: closeBtnBg,
+                        fixedSize: const Size(40, 40),
+                        padding: EdgeInsets.zero,
+                      ),
+                      icon: Icon(Icons.close, size: 20, color: closeBtnIcon),
+                    ),
+                  ],
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: LogoWidget(
-                    logo: currentLogo!,
-                    fit: BoxFit.contain,
-                    errorBuilder: (context, error, stackTrace) =>
-                        const Icon(Icons.broken_image, color: Colors.grey),
-                    loadingBuilder: (context) =>
-                        const Center(child: CircularProgressIndicator()),
+                const SizedBox(height: 24),
+
+                // Content
+                if (hasLogo) ...[
+                  // Logo Preview
+                  Container(
+                    height: 120,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: isDark
+                          ? Colors.black.withValues(alpha: 0.2)
+                          : Colors.grey[100],
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: isDark
+                            ? Colors.white.withValues(alpha: 0.1)
+                            : Colors.grey[300]!,
+                      ),
+                    ),
+                    padding: const EdgeInsets.all(16),
+                    child: Center(
+                      child: LogoWidget(
+                        logo: currentLogo!,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Icon(
+                              Icons.broken_image,
+                              color: Colors.grey,
+                              size: 40,
+                            ),
+                        loadingBuilder: (context) =>
+                            const Center(child: CircularProgressIndicator()),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    AppLocalizations.of(context)!.logoPreview,
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 12,
+                      color: contentColor,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 24),
+                ],
+
+                Text(
+                  AppLocalizations.of(context)!.logoUrlHint,
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 14,
+                    color: contentColor,
+                    height: 1.5,
                   ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                AppLocalizations.of(context)!.logoPreview,
-                style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-              ),
-              const SizedBox(height: 16),
-            ],
-            Text(
-              AppLocalizations.of(context)!.logoUrlHint,
-              style: const TextStyle(fontSize: 14),
+                const SizedBox(height: 32),
+
+                // Actions
+                Column(
+                  children: [
+                    // Select Logo Button (Primary)
+                    SizedBox(
+                      width: double.infinity,
+                      height: 56,
+                      child: ElevatedButton.icon(
+                        onPressed: () async {
+                          Navigator.of(dialogContext).pop();
+
+                          final result = await FilePicker.platform.pickFiles(
+                            type: FileType.custom,
+                            allowedExtensions: [
+                              'png',
+                              'jpg',
+                              'jpeg',
+                              'gif',
+                              'webp',
+                              'svg',
+                            ],
+                            allowMultiple: false,
+                            withData: true,
+                          );
+
+                          final file = result?.files.first;
+                          final logoContent = file?.bytes;
+                          final filename = file?.name;
+
+                          if (logoContent != null && context.mounted) {
+                            context.read<RaffleBloc>().add(
+                              SetRaffleLogo(logoContent, filename: filename),
+                            );
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF8B5CF6),
+                          foregroundColor: Colors.white,
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        icon: const Icon(Icons.upload_file, size: 20),
+                        label: Text(
+                          AppLocalizations.of(context)!.selectLogo,
+                          style: const TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    if (hasLogo) ...[
+                      const SizedBox(height: 12),
+                      // Remove Logo Button (Secondary Destructive)
+                      SizedBox(
+                        width: double.infinity,
+                        height: 56,
+                        child: TextButton.icon(
+                          onPressed: () {
+                            Navigator.of(dialogContext).pop();
+                            context.read<RaffleBloc>().add(RemoveRaffleLogo());
+                          },
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.red[400],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          icon: const Icon(Icons.delete_outline, size: 20),
+                          label: Text(
+                            AppLocalizations.of(context)!.removeLogo,
+                            style: const TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ],
             ),
-          ],
-        ),
-        actions: [
-          // Cancel button
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(),
-            child: Text(AppLocalizations.of(context)!.cancel),
           ),
-          // Remove logo button (only if there's a current logo)
-          if (hasLogo)
-            TextButton(
-              onPressed: () {
-                Navigator.of(dialogContext).pop();
-                context.read<RaffleBloc>().add(RemoveRaffleLogo());
-              },
-              child: Text(
-                AppLocalizations.of(context)!.removeLogo,
-                style: const TextStyle(color: Colors.red),
-              ),
-            ),
-          // Select new logo button
-          ElevatedButton(
-            onPressed: () async {
-              Navigator.of(dialogContext).pop();
-
-              final result = await FilePicker.platform.pickFiles(
-                type: FileType.custom,
-                allowedExtensions: ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'],
-                allowMultiple: false,
-                withData: true,
-              );
-
-              final file = result?.files.first;
-              final logoContent = file?.bytes;
-              final filename = file?.name;
-
-              if (logoContent != null && context.mounted) {
-                context.read<RaffleBloc>().add(
-                  SetRaffleLogo(logoContent, filename: filename),
-                );
-              }
-            },
-            child: Text(AppLocalizations.of(context)!.selectLogo),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

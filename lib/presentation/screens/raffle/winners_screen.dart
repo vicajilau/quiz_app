@@ -97,10 +97,28 @@ class WinnersScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),
-            ElevatedButton.icon(
-              onPressed: () => context.go(AppRoutes.raffle),
-              icon: const Icon(Icons.casino),
-              label: Text(AppLocalizations.of(context)!.goToRaffle),
+            SizedBox(
+              width: double.infinity,
+              height: 56,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: ElevatedButton.icon(
+                  onPressed: () => context.go(AppRoutes.raffle),
+                  icon: const Icon(Icons.casino),
+                  label: Text(
+                    AppLocalizations.of(context)!.goToRaffle,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF8B5CF6),
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
+              ),
             ),
           ],
         ),
@@ -199,33 +217,52 @@ class WinnersScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                ElevatedButton.icon(
-                  onPressed: () async {
-                    final confirmed = await showResetRaffleDialog(context);
-                    if (confirmed && context.mounted) {
-                      context.go(AppRoutes.raffle);
-                    }
-                  },
-                  icon: const Icon(Icons.refresh),
-                  label: Text(AppLocalizations.of(context)!.newRaffle),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 12),
+                SizedBox(
+                  height: 56,
+                  child: ElevatedButton.icon(
+                    onPressed: () async {
+                      final confirmed = await showResetRaffleDialog(context);
+                      if (confirmed && context.mounted) {
+                        context.go(AppRoutes.raffle);
+                      }
+                    },
+                    icon: const Icon(Icons.refresh),
+                    label: Text(
+                      AppLocalizations.of(context)!.newRaffle,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF8B5CF6),
+                      foregroundColor: Colors.white,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 12),
-                OutlinedButton.icon(
-                  onPressed: () async {
-                    final confirmed = await showClearWinnersDialog(context);
-                    if (confirmed && context.mounted) {
-                      context.go(AppRoutes.raffle);
-                    }
-                  },
-                  icon: const Icon(Icons.restart_alt),
-                  label: Text(AppLocalizations.of(context)!.resetWinners),
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
+                SizedBox(
+                  height: 56,
+                  child: OutlinedButton.icon(
+                    onPressed: () async {
+                      final confirmed = await showClearWinnersDialog(context);
+                      if (confirmed && context.mounted) {
+                        context.go(AppRoutes.raffle);
+                      }
+                    },
+                    icon: const Icon(Icons.restart_alt),
+                    label: Text(
+                      AppLocalizations.of(context)!.resetWinners,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: Colors.red[400],
+                      side: BorderSide(color: Colors.red[200]!),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -330,54 +367,146 @@ class WinnersScreen extends StatelessWidget {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(AppLocalizations.of(context)!.shareResultsTitle),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(AppLocalizations.of(context)!.raffleResultsLabel),
-            const SizedBox(height: 16),
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: Colors.grey[100],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Text(
-                resultsText,
-                style: const TextStyle(
-                  fontFamily: 'monospace',
-                  color: Colors.black87,
-                ),
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(),
-            child: Text(AppLocalizations.of(context)!.close),
-          ),
-          TextButton(
-            onPressed: () async {
-              // Close the dialog first
-              Navigator.of(dialogContext).pop();
+      builder: (dialogContext) {
+        final isDark = Theme.of(context).brightness == Brightness.dark;
 
-              // Copy to clipboard
-              await Clipboard.setData(ClipboardData(text: resultsText));
-              if (context.mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(AppLocalizations.of(context)!.shareSuccess),
+        // Design Tokens
+        final dialogBg = isDark
+            ? const Color(0xFF27272A)
+            : const Color(0xFFFFFFFF);
+        final titleColor = isDark
+            ? const Color(0xFFFFFFFF)
+            : const Color(0xFF000000);
+        final contentColor = isDark
+            ? const Color(0xFFA1A1AA)
+            : const Color(0xFF71717A);
+        final closeBtnBg = isDark
+            ? const Color(0xFF3F3F46)
+            : const Color(0xFFF4F4F5);
+        final closeBtnIcon = isDark
+            ? const Color(0xFFA1A1AA)
+            : const Color(0xFF71717A);
+        final codeBg = isDark
+            ? const Color(0xFF18181B)
+            : const Color(0xFFF4F4F5);
+        final codeText = isDark
+            ? const Color(0xFFE4E4E7)
+            : const Color(0xFF18181B);
+
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          insetPadding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Container(
+            padding: const EdgeInsets.all(32),
+            decoration: BoxDecoration(
+              color: dialogBg,
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // Header
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.shareResultsTitle,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        color: titleColor,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () => Navigator.of(dialogContext).pop(),
+                      style: IconButton.styleFrom(
+                        backgroundColor: closeBtnBg,
+                        fixedSize: const Size(40, 40),
+                        padding: EdgeInsets.zero,
+                      ),
+                      icon: Icon(Icons.close, size: 20, color: closeBtnIcon),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+
+                Text(
+                  AppLocalizations.of(context)!.raffleResultsLabel,
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 14,
+                    color: contentColor,
                   ),
-                );
-              }
-            },
-            child: Text(AppLocalizations.of(context)!.share),
+                ),
+                const SizedBox(height: 12),
+
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: codeBg,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  height: 150,
+                  child: SingleChildScrollView(
+                    child: Text(
+                      resultsText,
+                      style: TextStyle(
+                        fontFamily: 'monospace',
+                        color: codeText,
+                        fontSize: 13,
+                      ),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 32),
+
+                SizedBox(
+                  height: 56,
+                  child: ElevatedButton.icon(
+                    onPressed: () async {
+                      Navigator.of(dialogContext).pop();
+                      await Clipboard.setData(ClipboardData(text: resultsText));
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              AppLocalizations.of(context)!.shareSuccess,
+                            ),
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF8B5CF6),
+                      foregroundColor: Colors.white,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    icon: const Icon(Icons.copy, size: 20),
+                    label: Text(
+                      AppLocalizations.of(context)!.share,
+                      style: const TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 

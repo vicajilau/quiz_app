@@ -11,14 +11,51 @@ class CustomColors extends ThemeExtension<CustomColors> {
   /// Specific color for the AI functionality icon.
   ///
   /// Used to visually differentiate the AI state or branding
+  /// Used to visually differentiate the AI state or branding
   /// (e.g., Amber in Light mode, Purple in Dark mode).
   final Color? aiIconColor;
 
-  const CustomColors({required this.aiIconColor});
+  /// Success color (e.g., Green for correct answers).
+  final Color? success;
+
+  /// Info color (e.g., Blue for edit actions).
+  final Color? info;
+
+  /// Warning color (e.g., Amber for missing explanations).
+  final Color? warning;
+
+  /// Warning container background color.
+  final Color? warningContainer;
+
+  /// Warning container text/icon color.
+  final Color? onWarningContainer;
+
+  const CustomColors({
+    required this.aiIconColor,
+    this.success,
+    this.info,
+    this.warning,
+    this.warningContainer,
+    this.onWarningContainer,
+  });
 
   @override
-  CustomColors copyWith({Color? aiIconColor}) {
-    return CustomColors(aiIconColor: aiIconColor ?? this.aiIconColor);
+  CustomColors copyWith({
+    Color? aiIconColor,
+    Color? success,
+    Color? info,
+    Color? warning,
+    Color? warningContainer,
+    Color? onWarningContainer,
+  }) {
+    return CustomColors(
+      aiIconColor: aiIconColor ?? this.aiIconColor,
+      success: success ?? this.success,
+      info: info ?? this.info,
+      warning: warning ?? this.warning,
+      warningContainer: warningContainer ?? this.warningContainer,
+      onWarningContainer: onWarningContainer ?? this.onWarningContainer,
+    );
   }
 
   /// Linearly interpolates between two instances of [CustomColors].
@@ -32,6 +69,15 @@ class CustomColors extends ThemeExtension<CustomColors> {
     }
     return CustomColors(
       aiIconColor: Color.lerp(aiIconColor, other.aiIconColor, t),
+      success: Color.lerp(success, other.success, t),
+      info: Color.lerp(info, other.info, t),
+      warning: Color.lerp(warning, other.warning, t),
+      warningContainer: Color.lerp(warningContainer, other.warningContainer, t),
+      onWarningContainer: Color.lerp(
+        onWarningContainer,
+        other.onWarningContainer,
+        t,
+      ),
     );
   }
 }

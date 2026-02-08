@@ -7,6 +7,7 @@ import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_b
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/quiz_question_options.dart';
+import 'package:quiz_app/presentation/screens/quiz_execution/widgets/question_option_tile.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -54,8 +55,8 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    // Verify RadioListTiles are present
-    expect(find.byType(RadioListTile<int>), findsNWidgets(2));
+    // Verify QuestionOptionTile are present
+    expect(find.byType(QuestionOptionTile), findsNWidgets(2));
     expect(find.text('Option A'), findsOneWidget);
     expect(find.text('Option B'), findsOneWidget);
   });

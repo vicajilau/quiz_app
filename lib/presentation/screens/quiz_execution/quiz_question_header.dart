@@ -33,8 +33,9 @@ class QuizQuestionHeader extends StatelessWidget {
             context,
           )!.questionNumber(state.currentQuestionIndex + 1),
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            fontFamily: 'Inter',
             color: Colors.grey[600],
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
           ),
         ),
         const SizedBox(height: 8),
@@ -42,9 +43,11 @@ class QuizQuestionHeader extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: LaTeXText(
             state.currentQuestion.text,
-            style: Theme.of(
-              context,
-            ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w600),
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.bold,
+              height: 1.3,
+            ),
           ),
         ),
 
@@ -54,11 +57,13 @@ class QuizQuestionHeader extends StatelessWidget {
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              border: Border.all(color: Theme.of(context).dividerColor),
-              borderRadius: BorderRadius.circular(8),
+              border: Border.all(
+                color: Theme.of(context).dividerColor.withValues(alpha: 0.5),
+              ),
+              borderRadius: BorderRadius.circular(12),
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(12),
               child: Image.memory(
                 _getImageBytes(state.currentQuestion.image)!,
                 fit: BoxFit.contain,

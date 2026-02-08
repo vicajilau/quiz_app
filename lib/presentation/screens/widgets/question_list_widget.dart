@@ -6,20 +6,26 @@ import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:quiz_app/presentation/screens/dialogs/add_edit_question_dialog.dart';
 import 'package:quiz_app/presentation/screens/dialogs/ai_question_dialog.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
-import 'package:quiz_app/presentation/widgets/latex_text.dart';
+import 'package:quiz_app/presentation/screens/widgets/question_preview_card.dart';
 
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 
 class QuestionListWidget extends StatefulWidget {
   final QuizFile quizFile;
   final VoidCallback onFileChange;
-  final bool isReordering;
+  final bool isSelectionMode;
+  final Set<int> selectedQuestions;
+  final Function(int) onToggleSelection;
+  final Function(Set<int>)? onSelectionChanged;
 
   const QuestionListWidget({
     super.key,
     required this.quizFile,
     required this.onFileChange,
-    this.isReordering = false,
+    this.isSelectionMode = false,
+    this.selectedQuestions = const {},
+    required this.onToggleSelection,
+    this.onSelectionChanged,
   });
 
   @override
@@ -49,16 +55,154 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
       onReorder: _onReorder,
       padding: const EdgeInsets.all(8.0).copyWith(bottom: 80),
       itemCount: widget.quizFile.questions.length,
-      buildDefaultDragHandles: false,
+      buildDefaultDragHandles: false, // We use custom drag handles
       itemBuilder: (constext, index) {
         final question = widget.quizFile.questions[index];
-        return _buildDismissible(
-          question,
-          index,
-          _buildQuestionCard(question, index),
+        return _buildQuestionCard(question, index);
+      },
+      // ProxyDecorator is optional but good for visual feedback
+      proxyDecorator: (child, index, animation) {
+        final isSelected = widget.selectedQuestions.contains(index);
+        final count = widget.selectedQuestions.length;
+
+        return Material(
+          elevation: 4,
+          color: Colors.transparent,
+          child: Stack(
+            children: [
+              child,
+              if (isSelected && count > 1)
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF8B5CF6),
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.2),
+                          blurRadius: 4,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Text(
+                      '$count',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
         );
       },
     );
+  }
+
+  void _onReorder(int oldIndex, int newIndex) {
+    final isOldIndexSelected = widget.selectedQuestions.contains(oldIndex);
+
+    // If dragging a selected item with multiple items selected, use bulk move
+    if (isOldIndexSelected && widget.selectedQuestions.length > 1) {
+      final sortedIndices = widget.selectedQuestions.toList()..sort();
+      _handleBulkMove(sortedIndices, newIndex);
+    } else {
+      // Single move logic (adjust newIndex if moving down)
+      if (oldIndex < newIndex) {
+        newIndex -= 1;
+      }
+      _handleSingleMove(oldIndex, newIndex);
+    }
+  }
+
+  void _handleSingleMove(int oldIndex, int newIndex) {
+    setState(() {
+      final item = widget.quizFile.questions.removeAt(oldIndex);
+      widget.quizFile.questions.insert(newIndex, item);
+
+      // Update selection indices
+      _updateSelectionAfterSingleMove(oldIndex, newIndex);
+
+      widget.onFileChange();
+    });
+  }
+
+  void _handleBulkMove(List<int> sortedIndices, int targetIndex) {
+    setState(() {
+      final questions = widget.quizFile.questions;
+
+      // 1. Collect items to move
+      final itemsToMove = sortedIndices.map((i) => questions[i]).toList();
+
+      // 2. Determine effective insertion index
+      // When we remove items, indices shift.
+      // We need to map the targetIndex to the index in the list *after* removal.
+
+      // Count how many items BEFORE targetIndex are being removed
+      int itemsRemovedBeforeTarget = 0;
+      for (final index in sortedIndices) {
+        if (index < targetIndex) {
+          itemsRemovedBeforeTarget++;
+        }
+      }
+
+      final insertionIndex = targetIndex - itemsRemovedBeforeTarget;
+
+      // 3. Remove items from list (iterate in reverse to avoid index issues)
+      for (final index in sortedIndices.reversed) {
+        questions.removeAt(index);
+      }
+
+      // 4. Insert items at new position
+      questions.insertAll(insertionIndex, itemsToMove);
+
+      // 5. Update selection to match new positions
+      final newSelection = <int>{};
+      for (int i = 0; i < itemsToMove.length; i++) {
+        newSelection.add(insertionIndex + i);
+      }
+
+      // Notify parent of new selection
+      widget.onSelectionChanged?.call(newSelection);
+      widget.onFileChange();
+    });
+  }
+
+  void _updateSelectionAfterSingleMove(int oldIndex, int newIndex) {
+    if (widget.selectedQuestions.isEmpty) return;
+
+    final newSelection = <int>{};
+
+    for (final selectedIndex in widget.selectedQuestions) {
+      if (selectedIndex == oldIndex) {
+        newSelection.add(newIndex);
+      } else {
+        // Calculate new index for other items
+        int adjustedIndex = selectedIndex;
+        if (oldIndex < newIndex) {
+          // Moving down: items between old and new shift up (-1)
+          if (selectedIndex > oldIndex && selectedIndex <= newIndex) {
+            adjustedIndex--;
+          }
+        } else {
+          // Moving up: items between new and old shift down (+1)
+          if (selectedIndex >= newIndex && selectedIndex < oldIndex) {
+            adjustedIndex++;
+          }
+        }
+        newSelection.add(adjustedIndex);
+      }
+    }
+    widget.onSelectionChanged?.call(newSelection);
   }
 
   @override
@@ -69,302 +213,36 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
   }
 
   Widget _buildQuestionCard(Question question, int index) {
-    final isDisabled = !question.isEnabled;
-
-    return Card(
+    return QuestionPreviewCard(
       key: ValueKey('${question.text}_${question.type}_$index'),
-      margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: isDisabled
-              ? Border.all(
-                  color: Colors.orange.withValues(alpha: 0.5),
-                  width: 2,
-                )
-              : null,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (isDisabled) ...[
-              const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.only(left: 70),
-                child: Text(
-                  AppLocalizations.of(context)!.questionDisabled,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.orange,
-                  ),
-                ),
-              ),
-            ],
-            ListTile(
-              contentPadding: EdgeInsets.only(
-                top: isDisabled ? 0 : 8,
-                left: 16,
-                right: 16,
-                bottom: 8,
-              ),
-              enabled: !isDisabled,
-              title: LaTeXText(
-                question.text,
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                  decoration: isDisabled ? TextDecoration.lineThrough : null,
-                  color: isDisabled ? Colors.grey : null,
-                ),
-                maxLines: 2,
-              ),
-              subtitle: Padding(
-                padding: const EdgeInsets.only(top: 8),
-                child: Wrap(
-                  alignment: WrapAlignment.start,
-                  spacing: 6,
-                  children: [
-                    Tooltip(
-                      message: AppLocalizations.of(context)!.optionsTooltip,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 2,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.outline.withValues(alpha: 0.3),
-                          ),
-                        ),
-                        child: Row(
-                          spacing: 8,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Tooltip(
-                              message: question.type.getQuestionTypeLabel(
-                                context,
-                              ),
-                              child: Icon(
-                                question.type.getQuestionTypeIcon(),
-                                size: 16,
-                                color: isDisabled
-                                    ? Colors.grey
-                                    : Theme.of(
-                                        context,
-                                      ).colorScheme.onSurfaceVariant,
-                              ),
-                            ),
-                            if (question.options.isNotEmpty)
-                              Text(
-                                AppLocalizations.of(
-                                  context,
-                                )!.optionsCount(question.options.length),
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w500,
-                                  color: isDisabled
-                                      ? Colors.grey
-                                      : Theme.of(
-                                          context,
-                                        ).colorScheme.onSurfaceVariant,
-                                ),
-                              ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    if (question.explanation.isNotEmpty)
-                      Tooltip(
-                        message: AppLocalizations.of(
-                          context,
-                        )!.explanationTooltip,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 2,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.outline.withValues(alpha: 0.3),
-                            ),
-                          ),
-                          child: Icon(
-                            Icons.lightbulb,
-                            size: 16,
-                            color: isDisabled
-                                ? Colors.grey
-                                : Theme.of(
-                                    context,
-                                  ).colorScheme.onSurfaceVariant,
-                          ),
-                        ),
-                      ),
-                    if (question.image != null)
-                      Tooltip(
-                        message: AppLocalizations.of(context)!.imageTooltip,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 2,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.outline.withValues(alpha: 0.3),
-                            ),
-                          ),
-                          child: Icon(
-                            Icons.image,
-                            size: 16,
-                            color: isDisabled
-                                ? Colors.grey
-                                : Theme.of(
-                                    context,
-                                  ).colorScheme.onSurfaceVariant,
-                          ),
-                        ),
-                      ),
+      question: question,
+      index: index,
+      onEdit: () => _editQuestion(question, index),
+      onDelete: () => _deleteQuestion(index),
+      onToggle: () => _toggleQuestionEnabled(index),
+      isSelectionMode: widget.isSelectionMode,
+      isSelected: widget.selectedQuestions.contains(index),
+      onSelectionToggle: () => widget.onToggleSelection(index),
+      onAiAssistant: (_aiAssistantEnabled && question.isEnabled)
+          ? () async {
+              final isAiAvailable = await ConfigurationService.instance
+                  .getIsAiAvailable();
 
-                    if (_aiAssistantEnabled && !isDisabled)
-                      GestureDetector(
-                        onTap: () async {
-                          final isAiAvailable = await ConfigurationService
-                              .instance
-                              .getIsAiAvailable();
+              if (!mounted) return;
 
-                          if (!mounted) return;
-
-                          if (!isAiAvailable) {
-                            context.presentSnackBar(
-                              AppLocalizations.of(context)!.aiApiKeyRequired,
-                            );
-                          } else {
-                            showDialog(
-                              context: context,
-                              barrierDismissible: false,
-                              builder: (context) =>
-                                  AIQuestionDialog(question: question),
-                            );
-                          }
-                        },
-                        child: Tooltip(
-                          message: AppLocalizations.of(
-                            context,
-                          )!.aiButtonTooltip,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 3,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.primaryContainer,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              spacing: 6,
-                              children: [
-                                Text(
-                                  AppLocalizations.of(context)!.aiButtonText,
-                                  style: TextStyle(
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.onPrimaryContainer,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.auto_awesome,
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onPrimaryContainer,
-                                  size: 16,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-              onTap: () => _editQuestion(question, index),
-              leading: Row(
-                mainAxisSize: MainAxisSize.min,
-                spacing: 16,
-                children: [
-                  if (widget.isReordering)
-                    ReorderableDragStartListener(
-                      key: ValueKey<Question>(question),
-                      index: index,
-                      child: const Icon(Icons.drag_handle),
-                    ),
-                  Tooltip(
-                    message: isDisabled
-                        ? AppLocalizations.of(context)!.enableQuestion
-                        : AppLocalizations.of(context)!.disableQuestion,
-                    child: GestureDetector(
-                      onTap: () => _toggleQuestionEnabled(index),
-                      child: Container(
-                        width: 42,
-                        height: 42,
-                        decoration: BoxDecoration(
-                          color: isDisabled
-                              ? Colors.orange.withValues(alpha: 0.1)
-                              : Theme.of(
-                                  context,
-                                ).primaryColor.withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(80),
-                          border: Border.all(
-                            color: isDisabled
-                                ? Colors.orange.withValues(alpha: 0.3)
-                                : Theme.of(
-                                    context,
-                                  ).primaryColor.withValues(alpha: 0.3),
-                            width: 1,
-                          ),
-                        ),
-                        child: Center(
-                          child: isDisabled
-                              ? const Icon(
-                                  Icons.pause_circle_outline,
-                                  color: Colors.orange,
-                                  size: 16,
-                                )
-                              : Text(
-                                  '${index + 1}',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Theme.of(context).primaryColor,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              isThreeLine: true,
-              trailing: _buildPopupMenu(question, index),
-            ),
-          ],
-        ),
-      ),
+              if (!isAiAvailable) {
+                context.presentSnackBar(
+                  AppLocalizations.of(context)!.aiApiKeyRequired,
+                );
+              } else {
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (context) => AIQuestionDialog(question: question),
+                );
+              }
+            }
+          : null,
     );
   }
 
@@ -421,68 +299,6 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
     }
   }
 
-  Widget _buildPopupMenu(Question question, int index) {
-    return PopupMenuButton<String>(
-      onSelected: (value) async {
-        switch (value) {
-          case 'edit':
-            _editQuestion(question, index);
-            break;
-          case 'delete':
-            _deleteQuestion(index);
-            break;
-          case 'toggle':
-            _toggleQuestionEnabled(index);
-            break;
-        }
-      },
-      itemBuilder: (BuildContext context) {
-        return [
-          PopupMenuItem<String>(
-            value: 'edit',
-            child: Row(
-              children: [
-                const Icon(Icons.edit, color: Colors.blue),
-                const SizedBox(width: 8),
-                Text(AppLocalizations.of(context)!.edit),
-              ],
-            ),
-          ),
-          PopupMenuItem<String>(
-            value: 'toggle',
-            child: Row(
-              children: [
-                Icon(
-                  question.isEnabled
-                      ? Icons.pause_circle_outline
-                      : Icons.play_circle_outline,
-                  color: Colors.orange,
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  question.isEnabled
-                      ? AppLocalizations.of(context)!.disable
-                      : AppLocalizations.of(context)!.enable,
-                ),
-              ],
-            ),
-          ),
-          PopupMenuItem<String>(
-            value: 'delete',
-            child: Row(
-              children: [
-                const Icon(Icons.delete, color: Colors.red),
-                const SizedBox(width: 8),
-                Text(AppLocalizations.of(context)!.deleteButton),
-              ],
-            ),
-          ),
-        ];
-      },
-      icon: const Icon(Icons.more_vert),
-    );
-  }
-
   /// Shows a confirmation dialog before deleting a [question].
   ///
   /// Returns `true` if the user confirms the deletion, `false` otherwise.
@@ -507,67 +323,5 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
           ),
         ) ??
         false;
-  }
-
-  void _onReorder(int oldIndex, int newIndex) {
-    setState(() {
-      // Adjust newIndex if dragging down
-      if (newIndex > oldIndex) {
-        newIndex -= 1;
-      }
-
-      // Remove the item from old position and insert at new position
-      final question = widget.quizFile.questions.removeAt(oldIndex);
-      widget.quizFile.questions.insert(newIndex, question);
-
-      // Notify parent that file has changed
-      widget.onFileChange();
-    });
-  }
-
-  Widget _buildDismissible(Question question, int index, Widget child) {
-    return Dismissible(
-      key: ValueKey('dismissible_${question.text}_${question.type}_$index'),
-      direction: DismissDirection.horizontal,
-      confirmDismiss: (direction) => _confirmDismiss(context, question),
-      onDismissed: (direction) {
-        setState(() {
-          widget.quizFile.questions.removeAt(index);
-          widget.onFileChange();
-        });
-      },
-      background: _buildDismissBackground(alignment: Alignment.centerLeft),
-      secondaryBackground: _buildDismissBackground(
-        alignment: Alignment.centerRight,
-      ),
-      child: child,
-    );
-  }
-
-  Widget _buildDismissBackground({required Alignment alignment}) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-      decoration: BoxDecoration(
-        color: Colors.red,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      alignment: alignment,
-      padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Icon(Icons.delete_forever, color: Colors.white, size: 28),
-          const SizedBox(height: 4),
-          Text(
-            AppLocalizations.of(context)!.deleteAction,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w600,
-              fontSize: 12,
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }

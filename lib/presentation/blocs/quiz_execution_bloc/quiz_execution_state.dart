@@ -63,6 +63,20 @@ class QuizExecutionInProgress extends QuizExecutionState {
     return currentQuestionAnswers.isNotEmpty;
   }
 
+  /// Get total answered questions count
+  int get answeredQuestionsCount {
+    int count = 0;
+    for (int i = 0; i < totalQuestions; i++) {
+      if (userAnswers.containsKey(i) && userAnswers[i]!.isNotEmpty) {
+        count++;
+      } else if (essayAnswers.containsKey(i) &&
+          essayAnswers[i]!.trim().isNotEmpty) {
+        count++;
+      }
+    }
+    return count;
+  }
+
   /// Get progress percentage
   double get progress => (currentQuestionIndex + 1) / totalQuestions;
 
@@ -94,6 +108,7 @@ class QuizExecutionCompleted extends QuizExecutionState {
   final int correctAnswers;
   final int totalQuestions;
   final double score; // percentage
+  final bool isStudyMode;
 
   QuizExecutionCompleted({
     required this.questions,
@@ -101,6 +116,7 @@ class QuizExecutionCompleted extends QuizExecutionState {
     required this.essayAnswers,
     required this.correctAnswers,
     required this.totalQuestions,
+    required this.isStudyMode,
   }) : score = (correctAnswers / totalQuestions) * 100;
 
   /// Get details for each question

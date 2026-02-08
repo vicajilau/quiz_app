@@ -35,6 +35,10 @@ class AppLocalizationsGl extends AppLocalizations {
       'Preme aquí ou arrastra un ficheiro .quiz á pantalla';
 
   @override
+  String get clickOrDragFile =>
+      'Preme para cargar ou arrastra un ficheiro .quiz á pantalla';
+
+  @override
   String get errorInvalidFile =>
       'Erro: Ficheiro non válido. Debe ser un ficheiro .quiz.';
 
@@ -156,6 +160,12 @@ class AppLocalizationsGl extends AppLocalizations {
   String get previous => 'Anterior';
 
   @override
+  String get skip => 'Saltar';
+
+  @override
+  String get questionsOverview => 'Mapa de preguntas';
+
+  @override
   String get next => 'Seguinte';
 
   @override
@@ -270,6 +280,9 @@ class AppLocalizationsGl extends AppLocalizations {
       'Configuración da orde das preguntas';
 
   @override
+  String get reorderQuestionsTooltip => 'Reordenar preguntas';
+
+  @override
   String get save => 'Gardar';
 
   @override
@@ -332,6 +345,17 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get explanationTooltip => 'Esta pregunta ten unha explicación';
+
+  @override
+  String get missingExplanation => 'Falta explicación';
+
+  @override
+  String get missingExplanationTooltip => 'Esta pregunta non ten explicación';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return 'Tipo de pregunta: $type';
+  }
 
   @override
   String get aiPrompt =>
@@ -977,7 +1001,7 @@ class AppLocalizationsGl extends AppLocalizations {
   String get viewWinners => 'Ver Gañadores';
 
   @override
-  String get congratulations => 'Parabéns!';
+  String get congratulations => '🎉 Parabéns! 🎉';
 
   @override
   String positionLabel(int position) {
@@ -1183,7 +1207,7 @@ class AppLocalizationsGl extends AppLocalizations {
   String get quizModeTitle => 'Modo Cuestionario';
 
   @override
-  String get skip => 'Saltar';
+  String get settingsTitle => 'Axustes';
 
   @override
   String get askAiAssistant => 'Preguntar ao Asistente de IA';
@@ -1199,4 +1223,53 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get disable => 'Desactivar';
+
+  @override
+  String get quizPreviewTitle => 'Vista previa do cuestionario';
+
+  @override
+  String get select => 'Seleccionar';
+
+  @override
+  String get done => 'Feito';
+
+  @override
+  String get importButton => 'Importar';
+
+  @override
+  String get reorderButton => 'Reordenar';
+
+  @override
+  String get startQuizButton => 'Comezar cuestionario';
+
+  @override
+  String get deleteConfirmation =>
+      'Estás seguro de que queres eliminar este cuestionario?';
+
+  @override
+  String get saveSuccess => 'Ficheiro gardado correctamente';
+
+  @override
+  String get errorSavingFile => 'Erro ao gardar o ficheiro';
+
+  @override
+  String get deleteSingleQuestionConfirmation =>
+      'Estás seguro de que queres eliminar esta pregunta?';
+
+  @override
+  String deleteMultipleQuestionsConfirmation(int count) {
+    return 'Estás seguro de que queres eliminar $count preguntas?';
+  }
+
+  @override
+  String get keepPracticing => 'Segue practicando para mellorar!';
+
+  @override
+  String get tryAgain => 'Try Again';
+
+  @override
+  String get review => 'Review';
+
+  @override
+  String get home => 'Home';
 }

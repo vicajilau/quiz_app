@@ -164,6 +164,12 @@ abstract class AppLocalizations {
   /// **'Click logo or drag a .quiz file to the screen'**
   String get dropFileHere;
 
+  /// Text displayed below the drop area
+  ///
+  /// In en, this message translates to:
+  /// **'Click to load or drag a .quiz file to the screen'**
+  String get clickOrDragFile;
+
   /// Message displayed when the dropped file is not a .quiz file.
   ///
   /// In en, this message translates to:
@@ -380,6 +386,18 @@ abstract class AppLocalizations {
   /// **'Previous'**
   String get previous;
 
+  /// Label for skip button
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
+  /// Title for the questions overview bottom sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Questions Map'**
+  String get questionsOverview;
+
   /// Next button text in quiz navigation
   ///
   /// In en, this message translates to:
@@ -572,6 +590,12 @@ abstract class AppLocalizations {
   /// **'Question order configuration'**
   String get questionOrderConfigTooltip;
 
+  /// Tooltip for the reorder questions button
+  ///
+  /// In en, this message translates to:
+  /// **'Reorder Questions'**
+  String get reorderQuestionsTooltip;
+
   /// Label for the save button
   ///
   /// In en, this message translates to:
@@ -673,6 +697,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This question has an explanation'**
   String get explanationTooltip;
+
+  /// Label indicating that a question is missing an explanation
+  ///
+  /// In en, this message translates to:
+  /// **'Missing explanation'**
+  String get missingExplanation;
+
+  /// Tooltip text for the missing explanation badge
+  ///
+  /// In en, this message translates to:
+  /// **'This question is missing an explanation'**
+  String get missingExplanationTooltip;
+
+  /// Tooltip text for the question type badge
+  ///
+  /// In en, this message translates to:
+  /// **'Question type: {type}'**
+  String questionTypeTooltip(String type);
 
   /// Base prompt for AI assistant
   ///
@@ -2132,11 +2174,11 @@ abstract class AppLocalizations {
   /// **'Quiz Mode'**
   String get quizModeTitle;
 
-  /// Label for skip button
+  /// Title for the settings dialog
   ///
   /// In en, this message translates to:
-  /// **'Skip'**
-  String get skip;
+  /// **'Settings'**
+  String get settingsTitle;
 
   /// Button label to open AI assistant for current question
   ///
@@ -2167,6 +2209,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Disable'**
   String get disable;
+
+  /// Title for the Quiz Preview screen
+  ///
+  /// In en, this message translates to:
+  /// **'Quiz Preview'**
+  String get quizPreviewTitle;
+
+  /// Label for select button
+  ///
+  /// In en, this message translates to:
+  /// **'Select'**
+  String get select;
+
+  /// Label for done button
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// Label for import button
+  ///
+  /// In en, this message translates to:
+  /// **'Import'**
+  String get importButton;
+
+  /// Label for reorder button
+  ///
+  /// In en, this message translates to:
+  /// **'Reorder'**
+  String get reorderButton;
+
+  /// Label for start quiz button
+  ///
+  /// In en, this message translates to:
+  /// **'Start Quiz'**
+  String get startQuizButton;
+
+  /// Confirmation message for deleting a quiz
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this quiz?'**
+  String get deleteConfirmation;
+
+  /// Message displayed when file is saved successfully
+  ///
+  /// In en, this message translates to:
+  /// **'File saved successfully'**
+  String get saveSuccess;
+
+  /// Message displayed when saving file fails
+  ///
+  /// In en, this message translates to:
+  /// **'Error saving file'**
+  String get errorSavingFile;
+
+  /// Confirmation message for deleting a single question
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this question?'**
+  String get deleteSingleQuestionConfirmation;
+
+  /// Confirmation message for deleting multiple questions
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete {count} questions?'**
+  String deleteMultipleQuestionsConfirmation(int count);
+
+  /// Encouraging message for lower quiz scores
+  ///
+  /// In en, this message translates to:
+  /// **'Keep practicing to improve!'**
+  String get keepPracticing;
+
+  /// No description provided for @tryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Try Again'**
+  String get tryAgain;
+
+  /// No description provided for @review.
+  ///
+  /// In en, this message translates to:
+  /// **'Review'**
+  String get review;
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
 }
 
 class _AppLocalizationsDelegate

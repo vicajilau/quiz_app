@@ -163,12 +163,17 @@ class _EssayAnswerInputState extends State<EssayAnswerInput> {
             ),
           ),
           const SizedBox(height: 12),
-          SizedBox(
-            height: 300,
+          Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Theme.of(context).dividerColor),
+            ),
             child: TextField(
               controller: _essayController,
+              minLines: 5,
               maxLines: null,
-              expands: true,
+              keyboardType: TextInputType.multiline,
               textAlignVertical: TextAlignVertical.top,
               decoration: InputDecoration(
                 hintText: AppLocalizations.of(context)!.explanationHint,

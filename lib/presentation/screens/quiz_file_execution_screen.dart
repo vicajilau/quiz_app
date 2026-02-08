@@ -13,7 +13,6 @@ import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_e
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/quiz_in_progress_view.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/quiz_completed_view.dart';
-import 'package:quiz_app/presentation/screens/dialogs/back_press_handler.dart';
 
 class QuizFileExecutionScreen extends StatefulWidget {
   final QuizFile quizFile;
@@ -26,34 +25,11 @@ class QuizFileExecutionScreen extends StatefulWidget {
 }
 
 class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
-  bool _examTimeEnabled = false;
-  int _examTimeMinutes = 60;
   bool _randomizeAnswers = false;
-
   @override
   void initState() {
     super.initState();
-    _loadExamTimeSettings();
     _loadQuizSettings();
-  }
-
-  Future<void> _loadExamTimeSettings() async {
-    final examTimeEnabled = await ConfigurationService.instance
-        .getExamTimeEnabled();
-    final examTimeMinutes = await ConfigurationService.instance
-        .getExamTimeMinutes();
-
-    // Get Study Mode setting from ServiceLocator
-    final quizConfig = ServiceLocator.instance.getQuizConfig();
-    final isStudyMode = quizConfig?.isStudyMode ?? false;
-
-    if (mounted) {
-      setState(() {
-        // In Study Mode, force disable the timer
-        _examTimeEnabled = isStudyMode ? false : examTimeEnabled;
-        _examTimeMinutes = examTimeMinutes;
-      });
-    }
   }
 
   Future<void> _loadQuizSettings() async {
@@ -69,18 +45,25 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return FutureBuilder(
       future: _prepareQuizQuestions(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+          return Scaffold(
+            backgroundColor: isDark
+                ? const Color(0xFF18181B)
+                : const Color(0xFFFAFAFA),
+            body: const Center(child: CircularProgressIndicator()),
           );
         }
 
         if (snapshot.hasError) {
           return Scaffold(
-            appBar: AppBar(title: Text(widget.quizFile.metadata.title)),
+            backgroundColor: isDark
+                ? const Color(0xFF18181B)
+                : const Color(0xFFFAFAFA),
             body: Center(
               child: Text(
                 AppLocalizations.of(
@@ -104,44 +87,15 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
           },
           child: Builder(
             builder: (context) => Scaffold(
-              appBar: AppBar(
-                title: Text(widget.quizFile.metadata.title),
-                leading: IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () => BackPressHandler.handle(
-                    context,
-                    context.read<QuizExecutionBloc>(),
-                  ),
-                ),
-                actions: [
-                  if (_examTimeEnabled)
-                    Padding(
-                      padding: const EdgeInsets.only(right: 16.0),
-                      child: Center(
-                        child:
-                            BlocBuilder<QuizExecutionBloc, QuizExecutionState>(
-                              builder: (context, state) {
-                                return ExamTimerWidget(
-                                  initialDurationMinutes: _examTimeMinutes,
-                                  isQuizCompleted:
-                                      state is QuizExecutionCompleted,
-                                  onTimeExpired: () {
-                                    // Force complete the quiz
-                                    final bloc = context
-                                        .read<QuizExecutionBloc>();
-                                    bloc.add(QuizSubmitted());
-                                  },
-                                );
-                              },
-                            ),
-                      ),
-                    ),
-                ],
-              ),
+              backgroundColor: isDark
+                  ? const Color(0xFF18181B)
+                  : const Color(0xFFFAFAFA),
               body: SafeArea(
                 child: BlocConsumer<QuizExecutionBloc, QuizExecutionState>(
                   listener: (context, state) {
-                    // Handle any side effects if needed
+                    if (state is QuizExecutionCompleted) {
+                      // Handled by view
+                    }
                   },
                   builder: (context, state) {
                     if (state is QuizExecutionInitial) {

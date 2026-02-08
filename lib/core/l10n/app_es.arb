@@ -68,9 +68,13 @@
   "@score": {
     "description": "Etiqueta para mostrar la puntuación del usuario."
   },
-  "dropFileHere": "Haz clic aquí o arrastra un archivo .quiz a la pantalla",
+  "dropFileHere": "Haz clic en el logo o arrastra un archivo .quiz a la pantalla",
   "@dropFileHere": {
-    "description": "Texto mostrado dentro del área de arrastre para archivos."
+    "description": "Texto mostrado dentro del área para arrastrar archivos"
+  },
+  "clickOrDragFile": "Haz clic para cargar o arrastra un archivo .quiz a la pantalla",
+  "@clickOrDragFile": {
+    "description": "Texto mostrado debajo del área de carga"
   },
   "errorInvalidFile": "Error: archivo no válido. Debe ser un archivo .quiz.",
   "@errorInvalidFile": {
@@ -211,6 +215,14 @@
   "previous": "Anterior",
   "@previous": {
     "description": "Texto del botón anterior en la navegación del quiz"
+  },
+  "skip": "Saltar",
+  "@skip": {
+      "description": "Texto del botón saltar en la navegación del quiz"
+  },
+  "questionsOverview": "Mapa de Preguntas",
+  "@questionsOverview": {
+      "description": "Title for the questions overview bottom sheet"
   },
   "next": "Siguiente",
   "@next": {
@@ -412,6 +424,24 @@
   "explanationTooltip": "Esta pregunta tiene una explicación",
   "@explanationTooltip": {
     "description": "Texto del tooltip para el badge indicador de explicación"
+  },
+  "missingExplanation": "Falta explicación",
+  "@missingExplanation": {
+    "description": "Etiqueta indicando que a una pregunta le falta la explicación"
+  },
+  "missingExplanationTooltip": "Esta pregunta no tiene explicación",
+  "@missingExplanationTooltip": {
+    "description": "Texto del tooltip para el badge indicador de falta de explicación"
+  },
+  "questionTypeTooltip": "Tipo de pregunta: {type}",
+  "@questionTypeTooltip": {
+    "description": "Texto del tooltip para el badge de tipo de pregunta",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Opción múltiple"
+      }
+    }
   },
   "aiPrompt": "Enfócate en la pregunta del estudiante, no en responder directamente la pregunta original del examen. Explica con un enfoque pedagógico, proporcionando argumentos claros sin divagar ni salirte del tema. No estructures la respuesta en secciones. No te refieras a ti mismo. Responde en el mismo idioma en que te pregunten.",
   "@aiPrompt": {
@@ -1599,10 +1629,6 @@
   "@quizModeTitle": {
     "description": "Title for the quiz mode selection section"
   },
-  "skip": "Saltar",
-  "@skip": {
-    "description": "Label for skip button"
-  },
   "askAiAssistant": "Preguntar a la IA",
   "@askAiAssistant": {
     "description": "Button label to open AI assistant for current question"
@@ -1622,5 +1648,32 @@
   "disable": "Desactivar",
   "@disable": {
     "description": "Button label to disable a question"
-  }
+  },
+  "reorderQuestionsTooltip": "Reordenar preguntas",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "Vista Previa del Quiz",
+  "select": "Seleccionar",
+  "done": "Listo",
+  "importButton": "Importar",
+  "reorderButton": "Reordenar",
+  "saveButton": "Guardar",
+  "deleteButton": "Eliminar",
+  "startQuizButton": "Comenzar Quiz",
+  "deleteConfirmation": "¿Seguro que quieres eliminar este quiz?",
+  "cancel": "Cancelar",
+  "saveSuccess": "Archivo guardado exitosamente",
+  "errorSavingFile": "Error al guardar el archivo",
+  "deleteSingleQuestionConfirmation": "¿Estás seguro de que quieres eliminar esta pregunta?",
+  "deleteMultipleQuestionsConfirmation": "¿Estás seguro de que quieres eliminar {count} preguntas?",
+  "settingsTitle": "Ajustes",
+  "congratulations": "🎉 ¡Felicidades! 🎉",
+  "keepPracticing": "¡Sigue practicando para mejorar!",
+  "@keepPracticing": {
+    "description": "Mensaje de aliento para puntuaciones bajas en el quiz"
+  },
+  "tryAgain": "Intentar de nuevo",
+  "review": "Repasar",
+  "home": "Inicio"
 }

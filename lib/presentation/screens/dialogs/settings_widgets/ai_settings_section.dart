@@ -80,44 +80,143 @@ class AiSettingsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bgColor = isDark ? const Color(0xFF3F3F46) : const Color(0xFFF4F4F5);
+    final titleColor = isDark ? Colors.white : const Color(0xFF18181B);
+    final subtitleColor = isDark
+        ? const Color(0xFFA1A1AA)
+        : const Color(0xFF71717A);
+    final sectionLabelColor = isDark
+        ? const Color(0xFFA1A1AA)
+        : const Color(0xFF71717A);
+
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 24),
-        const Divider(),
-        const SizedBox(height: 16),
-        SwitchListTile(
-          title: Row(
+        // AI Assistant Toggle
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          decoration: BoxDecoration(
+            color: bgColor,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(
-                Icons.auto_awesome,
-                size: 20,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              const SizedBox(width: 8),
               Expanded(
-                child: Text(
-                  AppLocalizations.of(context)!.aiAssistantSettingsTitle,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.auto_awesome,
+                          size: 16,
+                          color: Color(0xFF8B5CF6),
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          AppLocalizations.of(
+                            context,
+                          )!.aiAssistantSettingsTitle,
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: titleColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      AppLocalizations.of(
+                        context,
+                      )!.aiAssistantSettingsDescription,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: subtitleColor,
+                      ),
+                    ),
+                  ],
                 ),
+              ),
+              Switch(
+                value: enabled,
+                onChanged: onEnabledChanged,
+                activeThumbColor: Colors.white,
+                activeTrackColor: const Color(0xFF8B5CF6),
+                inactiveThumbColor: Colors.white,
+                inactiveTrackColor: isDark
+                    ? const Color(0xFF52525B)
+                    : const Color(0xFFD4D4D8),
+                trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
               ),
             ],
           ),
-          subtitle: Text(
-            AppLocalizations.of(context)!.aiAssistantSettingsDescription,
-          ),
-          value: enabled,
-          onChanged: onEnabledChanged,
         ),
+
         if (enabled) ...[
           const SizedBox(height: 16),
-          SwitchListTile(
-            title: Text(AppLocalizations.of(context)!.aiKeepDraftTitle),
-            subtitle: Text(
-              AppLocalizations.of(context)!.aiKeepDraftDescription,
+          // Keep Draft Toggle
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              color: bgColor,
+              borderRadius: BorderRadius.circular(12),
             ),
-            value: keepDraft,
-            onChanged: onKeepDraftChanged,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.aiKeepDraftTitle,
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: titleColor,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        AppLocalizations.of(context)!.aiKeepDraftDescription,
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: subtitleColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Switch(
+                  value: keepDraft,
+                  onChanged: onKeepDraftChanged,
+                  activeThumbColor: Colors.white,
+                  activeTrackColor: const Color(0xFF8B5CF6),
+                  inactiveThumbColor: Colors.white,
+                  inactiveTrackColor: isDark
+                      ? const Color(0xFF52525B)
+                      : const Color(0xFFD4D4D8),
+                  trackOutlineColor: WidgetStateProperty.all(
+                    Colors.transparent,
+                  ),
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: 16),
+
+          const SizedBox(height: 24),
+
           _buildApiKeyField(
             context,
             controller: geminiController,
@@ -128,6 +227,7 @@ class AiSettingsSection extends StatelessWidget {
             onToggleVisibility: onToggleGeminiVisibility,
             isValid: geminiController.text.isValidGeminiApiKey,
             onInfoPressed: () => _openGeminiApiKeysUrl(context),
+            buttonLabel: AppLocalizations.of(context)!.getGeminiApiKeyTooltip,
           ),
           const SizedBox(height: 16),
           _buildApiKeyField(
@@ -140,9 +240,10 @@ class AiSettingsSection extends StatelessWidget {
             onToggleVisibility: onToggleOpenAiVisibility,
             isValid: openAiController.text.isValidOpenAIApiKey,
             onInfoPressed: () => _openAiApiKeysUrl(context),
+            buttonLabel: AppLocalizations.of(context)!.getApiKeyTooltip,
           ),
           if (errorMessage != null) ...[
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
             Container(
               key: errorKey,
               width: double.infinity,
@@ -166,7 +267,9 @@ class AiSettingsSection extends StatelessWidget {
                   Expanded(
                     child: Text(
                       errorMessage!,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 12,
                         color: Theme.of(context).colorScheme.onErrorContainer,
                       ),
                     ),
@@ -180,16 +283,16 @@ class AiSettingsSection extends StatelessWidget {
             const SizedBox(height: 24),
             Text(
               AppLocalizations.of(context)!.aiDefaultModelTitle,
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: sectionLabelColor,
+              ),
             ),
-            const SizedBox(height: 4),
-            Text(
-              AppLocalizations.of(context)!.aiDefaultModelDescription,
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 8),
+            // Note: AiServiceModelSelector might need internal styling updates too,
+            // but for now we place it here.
             AiServiceModelSelector(
               initialModel: defaultModel,
               saveToPreferences: true,
@@ -216,6 +319,7 @@ class AiSettingsSection extends StatelessWidget {
     required VoidCallback onToggleVisibility,
     required bool isValid,
     required VoidCallback onInfoPressed,
+    required String buttonLabel,
   }) {
     return Column(
       children: [
@@ -262,28 +366,46 @@ class AiSettingsSection extends StatelessWidget {
           },
         ),
         const SizedBox(height: 4),
-        Row(
+        const SizedBox(height: 4),
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: Text(
-                description,
-                style: Theme.of(context).textTheme.bodySmall,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            const SizedBox(width: 8),
-            IconButton(
-              onPressed: onInfoPressed,
-              icon: const Icon(Icons.info_outline),
-              tooltip: AppLocalizations.of(
-                context,
-              )!.getApiKeyTooltip, // Assuming generic tooltip or use specific if passed
-              style: IconButton.styleFrom(
-                backgroundColor: Theme.of(
-                  context,
-                ).colorScheme.surfaceContainerHighest,
+            Text(description, style: Theme.of(context).textTheme.bodySmall),
+            const SizedBox(height: 4),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton.icon(
+                onPressed: onInfoPressed,
+                icon: const Icon(Icons.open_in_new, size: 16),
+                label: Text(
+                  // Use the tooltip text as the button label for clarity
+                  // (e.g. "Get API Key from OpenAI")
+                  // We need to access the tooltip text dynamically based on the passed string?
+                  // The passed string was just the description.
+                  // The tooltip was passed in the build method.
+                  // Wait, onInfoPressed is a callback, but we need the label text.
+                  // In the build method, we see:
+                  // tooltip: AppLocalizations.of(context)!.getApiKeyTooltip
+                  // We should probably pass the button label as a parameter to this method instead of just 'description'.
+                  // Checking usage:
+                  // _buildApiKeyField(..., onInfoPressed: () => ...)
+                  // Let's see how to get the text.
+                  // The original code used a hardcoded tooltip lookup inside the method for one case?
+                  // No, wait.
+                  // In lines 381-385:
+                  // tooltip: AppLocalizations.of(context)!.getApiKeyTooltip
+                  // This was hardcoded in the method! This is a bug for Gemini potentially if it used the same tooltip?
+                  // Let's check the usage in build().
+                  // Line 231: onInfoPressed: () => _openGeminiApiKeysUrl(context)
+                  // Line 243: onInfoPressed: () => _openAiApiKeysUrl(context)
+                  // But the *tooltip* was hardcoded in _buildApiKeyField to `getApiKeyTooltip` which is "Get API Key from OpenAI" (based on the variable name usually, but let's check arb).
+                  // validGeminiApiKeyTooltip is "Get API Key from Google AI Studio"
+                  // getApiKeyTooltip is "Get API Key from OpenAI"
+                  // customization is needed.
+                  // I will add a `buttonLabel` parameter to `_buildApiKeyField`.
+                  buttonLabel.toUpperCase(),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ],
