@@ -205,16 +205,16 @@ class _ExamTimerWidgetState extends State<ExamTimerWidget>
     final seconds = (_remainingTime!.inSeconds % 60).toString().padLeft(2, '0');
 
     // Determine color based on remaining time (e.g. red if < 5 mins)
+    // Determine color based on time remaining to match design logic or fallback
     final bool isLowTime = _remainingTime!.inMinutes < 5;
     final primaryColor = Theme.of(context).primaryColor;
     final color = isLowTime ? Colors.red : primaryColor;
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: color),
+        color: color.withValues(alpha: 0.2),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -223,21 +223,16 @@ class _ExamTimerWidgetState extends State<ExamTimerWidget>
             turns: widget.isQuizCompleted
                 ? const AlwaysStoppedAnimation(0)
                 : _timerAnimationController,
-            child: Icon(Icons.hourglass_empty, size: 16, color: color),
+            child: Icon(Icons.timer_outlined, size: 18, color: color),
           ),
-          const SizedBox(width: 6),
-          // We need a context for localization to work properly, passing dynamic strings
+          const SizedBox(width: 8),
           Text(
-            // Assuming remainingTime format "%s:%s:%s" is supported by arb,
-            // or we construct the string manually if the arb expects variables.
-            // Based on previous view_file, 'remainingTime' key maps to something taking args.
-            // Let's assume standard Arb support or just use string interpolation if key relies on it.
-            // Checking arb file earlier: "remainingTime": "Time remaining: {hours}:{minutes}:{seconds}"
             AppLocalizations.of(
               context,
             )!.remainingTime(hours, minutes, seconds),
             style: TextStyle(
-              fontWeight: FontWeight.bold,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w600,
               fontSize: 14,
               color: color,
             ),
