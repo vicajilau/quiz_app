@@ -237,22 +237,15 @@ class _SettingsDialogState extends State<SettingsDialog> {
                       color: textColor,
                     ),
                   ),
-                  InkWell(
-                    onTap: () => context.pop(),
-                    borderRadius: BorderRadius.circular(20),
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: closeBtnColor,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(
-                        LucideIcons.x,
-                        size: 20,
-                        color: closeIconColor,
-                      ),
+                  IconButton(
+                    onPressed: () => context.pop(),
+                    style: IconButton.styleFrom(
+                      backgroundColor: closeBtnColor,
+                      fixedSize: const Size(40, 40),
+                      padding: EdgeInsets.zero,
+                      shape: const CircleBorder(),
                     ),
+                    icon: Icon(LucideIcons.x, size: 20, color: closeIconColor),
                   ),
                 ],
               ),

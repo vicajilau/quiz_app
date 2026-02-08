@@ -121,18 +121,15 @@ class _QuestionCountSelectionDialogState
                     height: 1.2,
                   ),
                 ),
-                InkWell(
-                  onTap: () => context.pop(null),
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: controlBgColor,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(LucideIcons.x, size: 20, color: subTextColor),
+                IconButton(
+                  onPressed: () => context.pop(null),
+                  style: IconButton.styleFrom(
+                    backgroundColor: controlBgColor,
+                    fixedSize: const Size(40, 40),
+                    padding: EdgeInsets.zero,
+                    shape: const CircleBorder(),
                   ),
+                  icon: Icon(LucideIcons.x, size: 20, color: subTextColor),
                 ),
               ],
             ),

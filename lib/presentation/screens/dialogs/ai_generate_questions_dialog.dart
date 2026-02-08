@@ -363,18 +363,15 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                     color: titleColor,
                   ),
                 ),
-                GestureDetector(
-                  onTap: () => context.pop(),
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: closeBtnColor,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    alignment: Alignment.center,
-                    child: Icon(LucideIcons.x, color: closeIconColor, size: 20),
+                IconButton(
+                  onPressed: () => context.pop(),
+                  style: IconButton.styleFrom(
+                    backgroundColor: closeBtnColor,
+                    fixedSize: const Size(40, 40),
+                    padding: EdgeInsets.zero,
+                    shape: const CircleBorder(),
                   ),
+                  icon: Icon(LucideIcons.x, color: closeIconColor, size: 20),
                 ),
               ],
             ),
@@ -754,22 +751,15 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                       color: titleColor,
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () => context.pop(),
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: closeBtnColor,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      alignment: Alignment.center,
-                      child: Icon(
-                        LucideIcons.x,
-                        color: closeIconColor,
-                        size: 20,
-                      ),
+                  IconButton(
+                    onPressed: () => context.pop(),
+                    style: IconButton.styleFrom(
+                      backgroundColor: closeBtnColor,
+                      fixedSize: const Size(40, 40),
+                      padding: EdgeInsets.zero,
+                      shape: const CircleBorder(),
                     ),
+                    icon: Icon(LucideIcons.x, color: closeIconColor, size: 20),
                   ),
                 ],
               ),
