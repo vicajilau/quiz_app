@@ -18,127 +18,215 @@ class WinnerDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      contentPadding: const EdgeInsets.all(24),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // Trophy icon
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.amber[100],
-              shape: BoxShape.circle,
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    // Design Tokens
+    final dialogBg = isDark ? const Color(0xFF27272A) : const Color(0xFFFFFFFF);
+    final titleColor = isDark
+        ? const Color(0xFFFFFFFF)
+        : const Color(0xFF000000);
+    final contentColor = isDark
+        ? const Color(0xFFA1A1AA)
+        : const Color(0xFF71717A);
+    final trophyBg = isDark ? const Color(0xFF4C1D95) : const Color(0xFFEDE9FE);
+    final trophyIcon = isDark
+        ? const Color(0xFFA78BFA)
+        : const Color(0xFF8B5CF6);
+    final nameBg = isDark ? const Color(0xFF3F3F46) : const Color(0xFFF4F4F5);
+    final nameText = isDark ? const Color(0xFFFFFFFF) : const Color(0xFF18181B);
+    final statsBg = isDark ? const Color(0xFF18181B) : const Color(0xFFFAFAFA);
+    final statsLabel = isDark
+        ? const Color(0xFFFFFFFF)
+        : const Color(0xFF000000);
+
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Container(
+        padding: const EdgeInsets.all(32),
+        decoration: BoxDecoration(
+          color: dialogBg,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Trophy icon
+            Align(
+              alignment: Alignment.center,
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: trophyBg,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(Icons.emoji_events, size: 48, color: trophyIcon),
+              ),
             ),
-            child: const Icon(
-              Icons.emoji_events,
-              size: 48,
-              color: Colors.amber,
-            ),
-          ),
 
-          const SizedBox(height: 24),
+            const SizedBox(height: 24),
 
-          // Winner announcement
-          Text(
-            AppLocalizations.of(context)!.congratulations,
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
-          ),
-
-          const SizedBox(height: 16),
-
-          // Winner name
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            decoration: BoxDecoration(
-              color: Colors.blue[50],
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.blue[200]!),
-            ),
-            child: Text(
-              winnerName,
+            // Winner announcement
+            Text(
+              AppLocalizations.of(context)!.congratulations,
               style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.blue[800],
+                fontFamily: 'Inter',
+                fontSize: 24,
+                fontWeight: FontWeight.w700,
+                color: titleColor,
               ),
               textAlign: TextAlign.center,
             ),
-          ),
 
-          const SizedBox(height: 24),
+            const SizedBox(height: 16),
 
-          // Statistics
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: Colors.grey[50],
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Column(
-              children: [
-                Text(
-                  AppLocalizations.of(
-                    context,
-                  )!.positionLabel(session.winnersCount + 1),
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  AppLocalizations.of(
-                    context,
-                  )!.remainingParticipants(session.activeParticipantsCount - 1),
-                  style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-                ),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 32),
-
-          // Action buttons
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // Continue raffle button
-              if (session.activeParticipantsCount > 1) ...[
-                ElevatedButton.icon(
-                  onPressed: onRepeatRaffle,
-                  icon: const Icon(Icons.casino),
-                  label: Text(AppLocalizations.of(context)!.continueRaffle),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                  ),
-                ),
-                const SizedBox(height: 12),
-              ],
-
-              // Finish raffle button
-              ElevatedButton.icon(
-                onPressed: onFinishRaffle,
-                icon: const Icon(Icons.emoji_events),
-                label: Text(
-                  session.activeParticipantsCount > 1
-                      ? AppLocalizations.of(context)!.winnersTitle
-                      : AppLocalizations.of(context)!.finishRaffle,
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.amber,
-                  foregroundColor: Colors.black87,
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                ),
+            // Winner name
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              decoration: BoxDecoration(
+                color: nameBg,
+                borderRadius: BorderRadius.circular(16),
               ),
-            ],
-          ),
-        ],
+              child: Text(
+                winnerName,
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: nameText,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+
+            const SizedBox(height: 24),
+
+            // Statistics
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: statsBg,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    AppLocalizations.of(
+                      context,
+                    )!.positionLabel(session.winnersCount + 1),
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: statsLabel,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    AppLocalizations.of(context)!.remainingParticipants(
+                      session.activeParticipantsCount - 1,
+                    ),
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 14,
+                      color: contentColor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 32),
+
+            // Action buttons
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // Continue raffle button
+                if (session.activeParticipantsCount > 1) ...[
+                  SizedBox(
+                    height: 56,
+                    child: ElevatedButton.icon(
+                      onPressed: onRepeatRaffle,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF8B5CF6),
+                        foregroundColor: Colors.white,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      icon: const Icon(Icons.casino, size: 20),
+                      label: Text(
+                        AppLocalizations.of(context)!.continueRaffle,
+                        style: const TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                ],
+
+                // Finish raffle / View Winners button
+                SizedBox(
+                  height: 56,
+                  child: session.activeParticipantsCount > 1
+                      ? OutlinedButton.icon(
+                          onPressed: onFinishRaffle,
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: contentColor,
+                            side: BorderSide(
+                              color: isDark
+                                  ? const Color(0xFF3F3F46)
+                                  : const Color(0xFFE4E4E7),
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          icon: Icon(
+                            Icons.emoji_events,
+                            size: 20,
+                            color: contentColor,
+                          ),
+                          label: Text(
+                            AppLocalizations.of(context)!.winnersTitle,
+                            style: const TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        )
+                      : ElevatedButton.icon(
+                          onPressed: onFinishRaffle,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF8B5CF6),
+                            foregroundColor: Colors.white,
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          icon: const Icon(Icons.emoji_events, size: 20),
+                          label: Text(
+                            AppLocalizations.of(context)!.finishRaffle,
+                            style: const TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
