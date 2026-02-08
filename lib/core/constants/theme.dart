@@ -87,7 +87,7 @@ class AppTheme {
     iconTheme: const IconThemeData(color: textSecondaryColor, size: 24),
     extensions: [
       const CustomColors(
-        aiIconColor: Colors.amber,
+        aiIconColor: primaryColor,
         success: Color(0xFF10B981), // Emerald 500
         info: Color(0xFF3B82F6), // Blue 500
         warning: Color(0xFFFBBF24), // Amber 400
