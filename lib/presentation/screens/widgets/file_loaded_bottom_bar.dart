@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:lucide_icons/lucide_icons.dart';
@@ -79,66 +80,75 @@ class FileLoadedBottomBar extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               // Action Buttons Row (Scrollable)
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    _buildActionButton(
-                      context,
-                      icon: LucideIcons.plus,
-                      label: AppLocalizations.of(context)!.addQuestion,
-                      onPressed: onAddQuestion,
-                      backgroundColor: addBtnBg,
-                      borderColor: addBtnBorder,
-                      textColor: addBtnText,
-                      iconColor: addBtnIcon,
-                    ),
-                    const SizedBox(width: 12),
-                    _buildActionButton(
-                      context,
-                      icon: LucideIcons.sparkles,
-                      label: AppLocalizations.of(
+              ScrollConfiguration(
+                behavior: ScrollConfiguration.of(context).copyWith(
+                  dragDevices: {
+                    PointerDeviceKind.touch,
+                    PointerDeviceKind.mouse,
+                  },
+                ),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _buildActionButton(
                         context,
-                      )!.generateQuestionsWithAI,
-                      onPressed: onGenerateAI,
-                      backgroundColor: const Color(0xFF14B8A6), // Teal 500
-                    ),
-                    const SizedBox(width: 12),
-                    _buildActionButton(
-                      context,
-                      icon: LucideIcons.upload,
-                      label: AppLocalizations.of(context)!.importButton,
-                      onPressed: onImport,
-                      backgroundColor: secondaryBtnBg,
-                      textColor: secondaryBtnText,
-                      iconColor: secondaryBtnIcon,
-                    ),
-                    if (showSaveButton) ...[
+                        icon: LucideIcons.plus,
+                        label: AppLocalizations.of(context)!.addQuestion,
+                        onPressed: onAddQuestion,
+                        backgroundColor: addBtnBg,
+                        borderColor: addBtnBorder,
+                        textColor: addBtnText,
+                        iconColor: addBtnIcon,
+                      ),
                       const SizedBox(width: 12),
                       _buildActionButton(
                         context,
-                        icon: LucideIcons.save,
-                        label: AppLocalizations.of(context)!.saveButton,
-                        onPressed: onSave,
+                        icon: LucideIcons.sparkles,
+                        label: AppLocalizations.of(
+                          context,
+                        )!.generateQuestionsWithAI,
+                        onPressed: onGenerateAI,
+                        backgroundColor: const Color(0xFF14B8A6), // Teal 500
+                      ),
+                      const SizedBox(width: 12),
+                      _buildActionButton(
+                        context,
+                        icon: LucideIcons.upload,
+                        label: AppLocalizations.of(context)!.importButton,
+                        onPressed: onImport,
                         backgroundColor: secondaryBtnBg,
                         textColor: secondaryBtnText,
                         iconColor: secondaryBtnIcon,
                       ),
+                      if (showSaveButton) ...[
+                        const SizedBox(width: 12),
+                        _buildActionButton(
+                          context,
+                          icon: LucideIcons.save,
+                          label: AppLocalizations.of(context)!.saveButton,
+                          onPressed: onSave,
+                          backgroundColor: secondaryBtnBg,
+                          textColor: secondaryBtnText,
+                          iconColor: secondaryBtnIcon,
+                        ),
+                      ],
+                      if (selectedQuestionCount > 0) ...[
+                        const SizedBox(width: 12),
+                        _buildActionButton(
+                          context,
+                          icon: LucideIcons.trash2,
+                          label:
+                              '${AppLocalizations.of(context)!.deleteButton} ($selectedQuestionCount)',
+                          onPressed: onDelete,
+                          backgroundColor: deleteBtnBg,
+                          textColor: deleteBtnText, // Red 300 / Red 600
+                          iconColor: deleteBtnIcon, // Red 300 / Red 600
+                        ),
+                      ],
                     ],
-                    if (selectedQuestionCount > 0) ...[
-                      const SizedBox(width: 12),
-                      _buildActionButton(
-                        context,
-                        icon: LucideIcons.trash2,
-                        label:
-                            '${AppLocalizations.of(context)!.deleteButton} ($selectedQuestionCount)',
-                        onPressed: onDelete,
-                        backgroundColor: deleteBtnBg,
-                        textColor: deleteBtnText, // Red 300 / Red 600
-                        iconColor: deleteBtnIcon, // Red 300 / Red 600
-                      ),
-                    ],
-                  ],
+                  ),
                 ),
               ),
 
