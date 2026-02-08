@@ -262,7 +262,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
                     )
                   : SingleChildScrollView(
                       controller: _scrollController,
-                      padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
+                      padding: const EdgeInsets.fromLTRB(32, 0, 32, 24),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -332,39 +332,39 @@ class _SettingsDialogState extends State<SettingsDialog> {
                               });
                             },
                           ),
-                          const SizedBox(height: 32),
-                          ElevatedButton(
-                            onPressed: _isLoading ? null : _saveSettings,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF8B5CF6),
-                              foregroundColor: Colors.white,
-                              elevation: 0,
-                              minimumSize: const Size(double.infinity, 56),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              textStyle: const TextStyle(
-                                fontFamily: 'Inter',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            child: _isLoading
-                                ? const SizedBox(
-                                    width: 24,
-                                    height: 24,
-                                    child: CircularProgressIndicator(
-                                      color: Colors.white,
-                                      strokeWidth: 2,
-                                    ),
-                                  )
-                                : Text(
-                                    AppLocalizations.of(context)!.saveButton,
-                                  ),
-                          ),
                         ],
                       ),
                     ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
+              child: ElevatedButton(
+                onPressed: _isLoading ? null : _saveSettings,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF8B5CF6),
+                  foregroundColor: Colors.white,
+                  elevation: 0,
+                  minimumSize: const Size(double.infinity, 56),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  textStyle: const TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                child: _isLoading
+                    ? const SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: 2,
+                        ),
+                      )
+                    : Text(AppLocalizations.of(context)!.saveButton),
+              ),
             ),
           ],
         ),
