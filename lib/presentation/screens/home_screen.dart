@@ -107,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     final firstFile = details.files.first;
                     if (firstFile.path.isNotEmpty) {
-                      if (!firstFile.path.toLowerCase().endsWith('.quiz')) {
+                      if (!firstFile.name.toLowerCase().endsWith('.quiz')) {
                         context.presentSnackBar(
                           AppLocalizations.of(context)!.errorInvalidFile,
                         );

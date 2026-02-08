@@ -26,6 +26,7 @@ import 'package:quiz_app/presentation/screens/dialogs/import_questions_dialog.da
 import 'package:quiz_app/presentation/screens/dialogs/ai_generate_questions_dialog.dart';
 import 'package:quiz_app/presentation/screens/widgets/file_loaded_bottom_bar.dart';
 import 'package:quiz_app/presentation/screens/dialogs/settings_dialog.dart';
+import 'package:quiz_app/presentation/screens/widgets/request_file_name_dialog.dart';
 import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
 
 class FileLoadedScreen extends StatefulWidget {
@@ -89,13 +90,34 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
   }
 
   Future<void> _handleSave() async {
-    widget.fileBloc.add(
-      QuizFileSaveRequested(
-        cachedQuizFile,
-        AppLocalizations.of(context)!.saveButton,
-        cachedQuizFile.filePath?.split('/').last ?? 'quiz.quiz',
-      ),
-    );
+    var fileName = cachedQuizFile.filePath?.split('/').last;
+
+    // If fileName is null, empty, or likely a blob URL (doesn't have .quiz extension), ask for a name
+    if (fileName == null ||
+        fileName.isEmpty ||
+        !fileName.toLowerCase().endsWith('.quiz')) {
+      if (!mounted) return;
+      final result = await showDialog<String>(
+        context: context,
+        builder: (context) => const RequestFileNameDialog(format: '.quiz'),
+      );
+
+      if (result != null && result.isNotEmpty) {
+        fileName = result;
+      } else {
+        // User cancelled the dialog
+        return;
+      }
+    }
+    if (mounted) {
+      widget.fileBloc.add(
+        QuizFileSaveRequested(
+          cachedQuizFile,
+          AppLocalizations.of(context)!.saveButton,
+          fileName,
+        ),
+      );
+    }
   }
 
   void _toggleSelectionMode() {
@@ -545,7 +567,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                     if (details.files.isNotEmpty) {
                       final firstFile = details.files.first;
                       if (firstFile.path.isNotEmpty) {
-                        if (!firstFile.path.toLowerCase().endsWith('.quiz')) {
+                        if (!firstFile.name.toLowerCase().endsWith('.quiz')) {
                           if (mounted) {
                             context.presentSnackBar(
                               AppLocalizations.of(context)!.errorInvalidFile,
