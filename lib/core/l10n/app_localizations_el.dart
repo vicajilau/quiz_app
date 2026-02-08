@@ -1267,11 +1267,11 @@ class AppLocalizationsEl extends AppLocalizations {
   String get keepPracticing => 'Συνεχίστε την εξάσκηση για να βελτιωθείτε!';
 
   @override
-  String get tryAgain => 'Try Again';
+  String get tryAgain => 'Δοκιμάστε ξανά';
 
   @override
-  String get review => 'Review';
+  String get review => 'Ανασκόπηση';
 
   @override
-  String get home => 'Home';
+  String get home => 'Αρχική';
 }

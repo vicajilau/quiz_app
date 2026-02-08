@@ -1265,11 +1265,11 @@ class AppLocalizationsFr extends AppLocalizations {
       'Continuez à vous entraîner pour vous améliorer !';
 
   @override
-  String get tryAgain => 'Try Again';
+  String get tryAgain => 'Réessayer';
 
   @override
-  String get review => 'Review';
+  String get review => 'Réviser';
 
   @override
-  String get home => 'Home';
+  String get home => 'Accueil';
 }

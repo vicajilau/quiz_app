@@ -1705,5 +1705,9 @@
     "description": "Title for the questions overview bottom sheet"
   },
   "congratulations": "🎉 Felicitats! 🎉",
-  "keepPracticing": "Segueix practicant per millorar!"
+  "keepPracticing": "Segueix practicant per millorar!",
+  "tryAgain": "Tornar a intentar",
+  "review": "Repassar",
+  "home": "Inici"
 }
+

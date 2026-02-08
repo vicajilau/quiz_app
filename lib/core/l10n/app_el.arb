@@ -384,5 +384,9 @@
     "description": "Title for the questions overview bottom sheet"
   },
   "congratulations": "🎉 Συγχαρητήρια! 🎉",
-  "keepPracticing": "Συνεχίστε την εξάσκηση για να βελτιωθείτε!"
+  "keepPracticing": "Συνεχίστε την εξάσκηση για να βελτιωθείτε!",
+  "tryAgain": "Δοκιμάστε ξανά",
+  "review": "Ανασκόπηση",
+  "home": "Αρχική"
 }
+

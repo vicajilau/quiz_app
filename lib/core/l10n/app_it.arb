@@ -1711,5 +1711,9 @@
     "description": "Title for the questions overview bottom sheet"
   },
   "congratulations": "🎉 Congratulazioni! 🎉",
-  "keepPracticing": "Continua a fare pratica per migliorare!"
+  "keepPracticing": "Continua a fare pratica per migliorare!",
+  "tryAgain": "Riprova",
+  "review": "Ripassa",
+  "home": "Home"
 }
+

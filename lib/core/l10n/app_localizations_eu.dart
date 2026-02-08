@@ -1257,11 +1257,11 @@ class AppLocalizationsEu extends AppLocalizations {
   String get keepPracticing => 'Jarraitu praktikatzen hobetzeko!';
 
   @override
-  String get tryAgain => 'Try Again';
+  String get tryAgain => 'Berriro saiatu';
 
   @override
-  String get review => 'Review';
+  String get review => 'Berrikusi';
 
   @override
-  String get home => 'Home';
+  String get home => 'Hasiera';
 }

@@ -1200,11 +1200,11 @@ class AppLocalizationsJa extends AppLocalizations {
   String get keepPracticing => '改善のために練習を続けましょう！';
 
   @override
-  String get tryAgain => 'Try Again';
+  String get tryAgain => 'もう一度試す';
 
   @override
-  String get review => 'Review';
+  String get review => '復習する';
 
   @override
-  String get home => 'Home';
+  String get home => 'ホーム';
 }

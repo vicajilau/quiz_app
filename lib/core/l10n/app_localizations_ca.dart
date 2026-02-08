@@ -1264,11 +1264,11 @@ class AppLocalizationsCa extends AppLocalizations {
   String get keepPracticing => 'Segueix practicant per millorar!';
 
   @override
-  String get tryAgain => 'Try Again';
+  String get tryAgain => 'Tornar a intentar';
 
   @override
-  String get review => 'Review';
+  String get review => 'Repassar';
 
   @override
-  String get home => 'Home';
+  String get home => 'Inici';
 }

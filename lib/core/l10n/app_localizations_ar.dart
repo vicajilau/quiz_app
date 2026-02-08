@@ -1234,11 +1234,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get keepPracticing => 'استمر في التدريب للتحسن!';
 
   @override
-  String get tryAgain => 'Try Again';
+  String get tryAgain => 'إعادة المحاولة';
 
   @override
-  String get review => 'Review';
+  String get review => 'مراجعة';
 
   @override
-  String get home => 'Home';
+  String get home => 'الرئيسية';
 }

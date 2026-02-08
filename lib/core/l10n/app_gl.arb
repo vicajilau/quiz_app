@@ -1663,5 +1663,9 @@
     "description": "Title for the questions overview bottom sheet"
   },
   "congratulations": "🎉 Parabéns! 🎉",
-  "keepPracticing": "Segue practicando para mellorar!"
+  "keepPracticing": "Segue practicando para mellorar!",
+  "tryAgain": "Intentalo de novo",
+  "review": "Repasar",
+  "home": "Inicio"
 }
+

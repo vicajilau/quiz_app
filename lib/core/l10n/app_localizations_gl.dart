@@ -1265,11 +1265,11 @@ class AppLocalizationsGl extends AppLocalizations {
   String get keepPracticing => 'Segue practicando para mellorar!';
 
   @override
-  String get tryAgain => 'Try Again';
+  String get tryAgain => 'Intentalo de novo';
 
   @override
-  String get review => 'Review';
+  String get review => 'Repasar';
 
   @override
-  String get home => 'Home';
+  String get home => 'Inicio';
 }

@@ -1254,10 +1254,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get keepPracticing => 'Continua a fare pratica per migliorare!';
 
   @override
-  String get tryAgain => 'Try Again';
+  String get tryAgain => 'Riprova';
 
   @override
-  String get review => 'Review';
+  String get review => 'Ripassa';
 
   @override
   String get home => 'Home';

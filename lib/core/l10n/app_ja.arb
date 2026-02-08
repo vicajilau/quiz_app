@@ -1671,5 +1671,9 @@
     "description": "Title for the questions overview bottom sheet"
   },
   "congratulations": "🎉 おめでとうございます！ 🎉",
-  "keepPracticing": "改善のために練習を続けましょう！"
+  "keepPracticing": "改善のために練習を続けましょう！",
+  "tryAgain": "もう一度試す",
+  "review": "復習する",
+  "home": "ホーム"
 }
+

@@ -1246,11 +1246,11 @@ class AppLocalizationsHi extends AppLocalizations {
   String get keepPracticing => 'सुधार के लिए अभ्यास जारी रखें!';
 
   @override
-  String get tryAgain => 'Try Again';
+  String get tryAgain => 'फिर कोशिश करें';
 
   @override
-  String get review => 'Review';
+  String get review => 'समीक्षा';
 
   @override
-  String get home => 'Home';
+  String get home => 'होम';
 }

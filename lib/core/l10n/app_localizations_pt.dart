@@ -1260,11 +1260,11 @@ class AppLocalizationsPt extends AppLocalizations {
   String get keepPracticing => 'Continue praticando para melhorar!';
 
   @override
-  String get tryAgain => 'Try Again';
+  String get tryAgain => 'Tentar novamente';
 
   @override
-  String get review => 'Review';
+  String get review => 'Revisar';
 
   @override
-  String get home => 'Home';
+  String get home => 'Início';
 }

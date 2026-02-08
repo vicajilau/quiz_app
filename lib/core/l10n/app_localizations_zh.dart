@@ -1195,11 +1195,11 @@ class AppLocalizationsZh extends AppLocalizations {
   String get keepPracticing => '继续练习以提高！';
 
   @override
-  String get tryAgain => 'Try Again';
+  String get tryAgain => '再试一次';
 
   @override
-  String get review => 'Review';
+  String get review => '复习';
 
   @override
-  String get home => 'Home';
+  String get home => '首页';
 }
