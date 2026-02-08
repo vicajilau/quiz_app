@@ -102,23 +102,14 @@ class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
                     ),
                   ),
                 ),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () => context.pop(),
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF3F3F46), // Zinc 700
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const Icon(
-                        LucideIcons.x,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                    ),
+                IconButton(
+                  onPressed: () => context.pop(),
+                  icon: const Icon(LucideIcons.x, size: 20),
+                  style: IconButton.styleFrom(
+                    backgroundColor: const Color(0xFF3F3F46), // Zinc 700
+                    foregroundColor: Colors.white,
+                    fixedSize: const Size(40, 40),
+                    padding: EdgeInsets.zero,
                   ),
                 ),
               ],
