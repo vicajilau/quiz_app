@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
-class FileLoadedBottomBar extends StatelessWidget {
+class FileLoadedBottomBar extends StatefulWidget {
   final VoidCallback onAddQuestion;
   final VoidCallback onGenerateAI;
   final VoidCallback onImport;
@@ -26,6 +26,47 @@ class FileLoadedBottomBar extends StatelessWidget {
     this.selectedQuestionCount = 0,
     this.showSaveButton = false,
   });
+
+  @override
+  State<FileLoadedBottomBar> createState() => _FileLoadedBottomBarState();
+}
+
+class _FileLoadedBottomBarState extends State<FileLoadedBottomBar> {
+  late final ScrollController _scrollController;
+  bool _showLeftShadow = false;
+  bool _showRightShadow = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+    _scrollController.addListener(_updateShadows);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _updateShadows());
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_updateShadows);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _updateShadows() {
+    if (!_scrollController.hasClients) return;
+
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.position.pixels;
+
+    final showLeft = currentScroll > 0;
+    final showRight = currentScroll < maxScroll;
+
+    if (showLeft != _showLeftShadow || showRight != _showRightShadow) {
+      setState(() {
+        _showLeftShadow = showLeft;
+        _showRightShadow = showRight;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +98,14 @@ class FileLoadedBottomBar extends StatelessWidget {
         ? const Color(0xFFFCA5A5)
         : const Color(0xFFDC2626);
 
+    final backgroundColor = Theme.of(context).cardColor;
+
     return Container(
       color: Colors.transparent,
       child: Container(
         padding: const EdgeInsets.all(24.0),
         decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
+          color: backgroundColor,
           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
           border: Border(
             top: BorderSide(color: Theme.of(context).dividerColor, width: 1),
@@ -79,86 +122,139 @@ class FileLoadedBottomBar extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Action Buttons Row (Scrollable)
-              ScrollConfiguration(
-                behavior: ScrollConfiguration.of(context).copyWith(
-                  dragDevices: {
-                    PointerDeviceKind.touch,
-                    PointerDeviceKind.mouse,
-                  },
-                ),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      _buildActionButton(
-                        context,
-                        icon: LucideIcons.plus,
-                        label: AppLocalizations.of(context)!.addQuestion,
-                        onPressed: onAddQuestion,
-                        backgroundColor: addBtnBg,
-                        borderColor: addBtnBorder,
-                        textColor: addBtnText,
-                        iconColor: addBtnIcon,
+              // Action Buttons Row (Scrollable with Shadows)
+              Stack(
+                children: [
+                  ScrollConfiguration(
+                    behavior: ScrollConfiguration.of(context).copyWith(
+                      dragDevices: {
+                        PointerDeviceKind.touch,
+                        PointerDeviceKind.mouse,
+                      },
+                    ),
+                    child: SingleChildScrollView(
+                      controller: _scrollController,
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          _buildActionButton(
+                            context,
+                            icon: LucideIcons.plus,
+                            label: AppLocalizations.of(context)!.addQuestion,
+                            onPressed: widget.onAddQuestion,
+                            backgroundColor: addBtnBg,
+                            borderColor: addBtnBorder,
+                            textColor: addBtnText,
+                            iconColor: addBtnIcon,
+                          ),
+                          const SizedBox(width: 12),
+                          _buildActionButton(
+                            context,
+                            icon: LucideIcons.sparkles,
+                            label: AppLocalizations.of(
+                              context,
+                            )!.generateQuestionsWithAI,
+                            onPressed: widget.onGenerateAI,
+                            backgroundColor: const Color(
+                              0xFF14B8A6,
+                            ), // Teal 500
+                          ),
+                          const SizedBox(width: 12),
+                          _buildActionButton(
+                            context,
+                            icon: LucideIcons.upload,
+                            label: AppLocalizations.of(context)!.importButton,
+                            onPressed: widget.onImport,
+                            backgroundColor: secondaryBtnBg,
+                            textColor: secondaryBtnText,
+                            iconColor: secondaryBtnIcon,
+                          ),
+                          if (widget.showSaveButton) ...[
+                            const SizedBox(width: 12),
+                            _buildActionButton(
+                              context,
+                              icon: LucideIcons.save,
+                              label: AppLocalizations.of(context)!.saveButton,
+                              onPressed: widget.onSave,
+                              backgroundColor: secondaryBtnBg,
+                              textColor: secondaryBtnText,
+                              iconColor: secondaryBtnIcon,
+                            ),
+                          ],
+                          if (widget.selectedQuestionCount > 0) ...[
+                            const SizedBox(width: 12),
+                            _buildActionButton(
+                              context,
+                              icon: LucideIcons.trash2,
+                              label:
+                                  '${AppLocalizations.of(context)!.deleteButton} (${widget.selectedQuestionCount})',
+                              onPressed: widget.onDelete,
+                              backgroundColor: deleteBtnBg,
+                              textColor: deleteBtnText,
+                              iconColor: deleteBtnIcon,
+                            ),
+                          ],
+                        ],
                       ),
-                      const SizedBox(width: 12),
-                      _buildActionButton(
-                        context,
-                        icon: LucideIcons.sparkles,
-                        label: AppLocalizations.of(
-                          context,
-                        )!.generateQuestionsWithAI,
-                        onPressed: onGenerateAI,
-                        backgroundColor: const Color(0xFF14B8A6), // Teal 500
-                      ),
-                      const SizedBox(width: 12),
-                      _buildActionButton(
-                        context,
-                        icon: LucideIcons.upload,
-                        label: AppLocalizations.of(context)!.importButton,
-                        onPressed: onImport,
-                        backgroundColor: secondaryBtnBg,
-                        textColor: secondaryBtnText,
-                        iconColor: secondaryBtnIcon,
-                      ),
-                      if (showSaveButton) ...[
-                        const SizedBox(width: 12),
-                        _buildActionButton(
-                          context,
-                          icon: LucideIcons.save,
-                          label: AppLocalizations.of(context)!.saveButton,
-                          onPressed: onSave,
-                          backgroundColor: secondaryBtnBg,
-                          textColor: secondaryBtnText,
-                          iconColor: secondaryBtnIcon,
-                        ),
-                      ],
-                      if (selectedQuestionCount > 0) ...[
-                        const SizedBox(width: 12),
-                        _buildActionButton(
-                          context,
-                          icon: LucideIcons.trash2,
-                          label:
-                              '${AppLocalizations.of(context)!.deleteButton} ($selectedQuestionCount)',
-                          onPressed: onDelete,
-                          backgroundColor: deleteBtnBg,
-                          textColor: deleteBtnText, // Red 300 / Red 600
-                          iconColor: deleteBtnIcon, // Red 300 / Red 600
-                        ),
-                      ],
-                    ],
+                    ),
                   ),
-                ),
+
+                  // Left Shadow Indicator
+                  if (_showLeftShadow)
+                    Positioned(
+                      left: -1,
+                      top: 0,
+                      bottom: 0,
+                      width: 40,
+                      child: IgnorePointer(
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [
+                                backgroundColor,
+                                backgroundColor.withValues(alpha: 0.0),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                  // Right Shadow Indicator
+                  if (_showRightShadow)
+                    Positioned(
+                      right: -1,
+                      top: 0,
+                      bottom: 0,
+                      width: 40,
+                      child: IgnorePointer(
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.centerRight,
+                              end: Alignment.centerLeft,
+                              colors: [
+                                backgroundColor,
+                                backgroundColor.withValues(alpha: 0.0),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
               ),
 
               const SizedBox(height: 24),
 
-              // Start Quis Button
+              // Start Quiz Button
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: isPlayEnabled ? onPlay : null,
+                  onPressed: widget.isPlayEnabled ? widget.onPlay : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF8B5CF6), // Violet 500
                     foregroundColor: Colors.white,
