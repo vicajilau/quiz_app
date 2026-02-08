@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/quiz_progress_indicator.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/quiz_question_header.dart';
@@ -8,6 +9,7 @@ import 'package:quiz_app/presentation/screens/quiz_execution/quiz_options_wrappe
 import 'package:quiz_app/presentation/screens/quiz_execution/quiz_navigation_buttons.dart';
 import 'package:quiz_app/core/service_locator.dart';
 import 'package:quiz_app/presentation/screens/dialogs/back_press_handler.dart';
+import 'package:quiz_app/presentation/widgets/exam_timer.dart';
 
 class QuizInProgressView extends StatefulWidget {
   final QuizExecutionInProgress state;
@@ -59,6 +61,7 @@ class _QuizInProgressViewState extends State<QuizInProgressView> {
 
     final cardBg = isDark ? const Color(0xFF27272A) : const Color(0xFFFFFFFF);
     final cardBorder = isDark ? Colors.transparent : const Color(0xFFE4E4E7);
+    final showTimer = !isStudyMode && (quizConfig?.enableTimeLimit ?? false);
 
     return BlocListener<QuizExecutionBloc, QuizExecutionState>(
       listener: (context, state) {
@@ -91,6 +94,18 @@ class _QuizInProgressViewState extends State<QuizInProgressView> {
               children: [
                 // Progress Indicator (Left)
                 Expanded(child: QuizProgressIndicator(state: widget.state)),
+
+                if (showTimer) ...[
+                  const SizedBox(width: 8),
+                  ExamTimerWidget(
+                    initialDurationMinutes: quizConfig?.timeLimitMinutes ?? 0,
+                    onTimeExpired: () {
+                      context.read<QuizExecutionBloc>().add(QuizSubmitted());
+                    },
+                  ),
+                ],
+
+                const SizedBox(width: 16),
 
                 // Close Button (Right)
                 IconButton(

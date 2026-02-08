@@ -162,7 +162,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get skip => 'Saltar';
 
   @override
-  String get questionsOverview => 'Mapa de Preguntas';
+  String get questionsOverview => 'Ver mapa de preguntas';
 
   @override
   String get next => 'Siguiente';

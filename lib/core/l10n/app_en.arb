@@ -216,7 +216,7 @@
   "@skip": {
       "description": "Skip button text in quiz navigation"
   },
-  "questionsOverview": "Questions Map",
+  "questionsOverview": "View Questions Map",
   "@questionsOverview": {
       "description": "Title for the questions overview bottom sheet"
   },

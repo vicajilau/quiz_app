@@ -259,20 +259,29 @@ class _QuestionCountSelectionDialogState
 
             // Start Button
             ElevatedButton(
-              onPressed: () {
-                ConfigurationService.instance.saveQuizConfigSettings(
-                  QuizConfigStoredSettings(
-                    questionCount: _selectedCount,
-                    isStudyMode: _isStudyMode,
-                  ),
-                );
+              onPressed: () async {
+                final examTimeEnabled = await ConfigurationService.instance
+                    .getExamTimeEnabled();
+                final examTimeMinutes = await ConfigurationService.instance
+                    .getExamTimeMinutes();
 
-                context.pop(
-                  QuizConfig(
-                    questionCount: _selectedCount,
-                    isStudyMode: _isStudyMode,
-                  ),
-                );
+                if (context.mounted) {
+                  ConfigurationService.instance.saveQuizConfigSettings(
+                    QuizConfigStoredSettings(
+                      questionCount: _selectedCount,
+                      isStudyMode: _isStudyMode,
+                    ),
+                  );
+
+                  context.pop(
+                    QuizConfig(
+                      questionCount: _selectedCount,
+                      isStudyMode: _isStudyMode,
+                      enableTimeLimit: examTimeEnabled,
+                      timeLimitMinutes: examTimeMinutes,
+                    ),
+                  );
+                }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: primaryColor,

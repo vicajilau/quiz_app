@@ -220,7 +220,7 @@
   "@skip": {
       "description": "Texto del botón saltar en la navegación del quiz"
   },
-  "questionsOverview": "Mapa de Preguntas",
+  "questionsOverview": "Ver mapa de preguntas",
   "@questionsOverview": {
       "description": "Title for the questions overview bottom sheet"
   },
