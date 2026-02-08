@@ -103,16 +103,25 @@ class QuizNavigationButtons extends StatelessWidget {
                       }
                     : (isCheckPhase && !state.hasCurrentQuestionAnswered
                           ? () {
-                              context.read<QuizExecutionBloc>().add(
-                                NextQuestionRequested(),
-                              );
+                              if (state.isLastQuestion) {
+                                SubmitQuizDialog.show(
+                                  context,
+                                  context.read<QuizExecutionBloc>(),
+                                );
+                              } else {
+                                context.read<QuizExecutionBloc>().add(
+                                  NextQuestionRequested(),
+                                );
+                              }
                             }
                           : null),
                 icon: Icon(
                   isCheckPhase
                       ? (state.hasCurrentQuestionAnswered
                             ? Icons.check_circle
-                            : Icons.skip_next)
+                            : (state.isLastQuestion
+                                  ? Icons.check
+                                  : Icons.skip_next))
                       : (state.isLastQuestion
                             ? Icons.check
                             : Icons.chevron_right),
@@ -122,7 +131,9 @@ class QuizNavigationButtons extends StatelessWidget {
                   isCheckPhase
                       ? (state.hasCurrentQuestionAnswered
                             ? AppLocalizations.of(context)!.checkAnswer
-                            : AppLocalizations.of(context)!.skip)
+                            : (state.isLastQuestion
+                                  ? AppLocalizations.of(context)!.finish
+                                  : AppLocalizations.of(context)!.skip))
                       : (state.isLastQuestion
                             ? AppLocalizations.of(context)!.finish
                             : AppLocalizations.of(context)!.next),

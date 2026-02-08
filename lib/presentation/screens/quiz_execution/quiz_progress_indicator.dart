@@ -20,13 +20,15 @@ class QuizProgressIndicator extends StatelessWidget {
         : const Color(0xFFE4E4E7); // Zinc-800 : Zinc-200
 
     return GestureDetector(
-      onTap: () {
-        QuestionsOverviewBottomSheet.show(
-          context,
-          state,
-          context.read<QuizExecutionBloc>(),
-        );
-      },
+      onTap: state.isStudyMode
+          ? () {
+              QuestionsOverviewBottomSheet.show(
+                context,
+                state,
+                context.read<QuizExecutionBloc>(),
+              );
+            }
+          : null,
       child: Container(
         color: Colors.transparent,
         child: Column(
