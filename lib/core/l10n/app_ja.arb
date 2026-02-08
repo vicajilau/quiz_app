@@ -1669,5 +1669,7 @@
   "questionsOverview": "Questions Map",
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
-  }
+  },
+  "congratulations": "🎉 おめでとうございます！ 🎉",
+  "keepPracticing": "改善のために練習を続けましょう！"
 }

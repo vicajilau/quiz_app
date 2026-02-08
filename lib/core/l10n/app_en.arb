@@ -1759,5 +1759,12 @@
         "example": "3"
       }
     }
-  }
+  },
+  "keepPracticing": "Keep practicing to improve!",
+  "@keepPracticing": {
+    "description": "Encouraging message for lower quiz scores"
+  },
+  "tryAgain": "Try Again",
+  "review": "Review",
+  "home": "Home"
 }

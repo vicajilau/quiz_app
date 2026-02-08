@@ -29,41 +29,60 @@ class QuizQuestionResultCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final successColor = Colors.green;
+    final errorColor = Colors.red;
+
     return Card(
-      // TODO: Small "padding" is added on top and bottom on ExpansionTile widget, should be removed but there is no way right now. This Theme was added to "remove" dividers.
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide(color: theme.dividerColor.withValues(alpha: 0.1)),
+      ),
+      color: theme.cardColor,
       child: Theme(
-        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+        data: theme.copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
-          leading: Icon(
-            result.isCorrect ? Icons.check_circle : Icons.cancel,
-            color: result.isCorrect ? Colors.green : Colors.red,
+          leading: Container(
+            width: 32,
+            height: 32,
+            decoration: BoxDecoration(
+              color: (result.isCorrect ? successColor : errorColor)
+                  .withValues(alpha: 0.1),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              result.isCorrect ? Icons.check : Icons.close,
+              color: result.isCorrect ? successColor : errorColor,
+              size: 20,
+            ),
           ),
           title: Text(
             AppLocalizations.of(context)!.questionNumber(questionNumber),
-            style: const TextStyle(fontWeight: FontWeight.w600),
+            style: theme.textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
           ),
-          subtitle: Align(
-            alignment: Alignment.centerLeft,
-            child: LaTeXText(
-              result.question.text,
-              maxLines: 2,
-              style: Theme.of(context).textTheme.bodySmall,
+          subtitle: LaTeXText(
+            result.question.text,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.hintColor,
             ),
           ),
           children: [
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: LaTeXText(
-                      result.question.text,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                      ),
+                  const Divider(height: 1),
+                  const SizedBox(height: 16),
+                  LaTeXText(
+                    result.question.text,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                   const SizedBox(height: 12),

@@ -224,26 +224,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            width: 180,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).primaryColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            alignment: Alignment.center,
-                            child: Text(
-                              'Quiz',
-                              style: Theme.of(context).textTheme.headlineLarge
-                                  ?.copyWith(
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.onPrimary,
-                                    fontSize: 48,
-                                  ),
-                            ),
+                          Image.asset(
+                            'images/QUIZ.png',
+                            height: 180,
+                            fit: BoxFit.contain,
                           ),
-                          const SizedBox(height: 32),
+                          const SizedBox(height: 16),
                           Column(
                             children: [
                               Icon(

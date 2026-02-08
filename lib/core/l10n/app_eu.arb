@@ -1661,5 +1661,7 @@
   "questionsOverview": "Galdera mapa",
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
-  }
+  },
+  "congratulations": "🎉 Zorionak! 🎉",
+  "keepPracticing": "Jarraitu praktikatzen hobetzeko!"
 }

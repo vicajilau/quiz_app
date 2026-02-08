@@ -1661,5 +1661,7 @@
   "questionsOverview": "Mapa de preguntas",
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
-  }
+  },
+  "congratulations": "🎉 Parabéns! 🎉",
+  "keepPracticing": "Segue practicando para mellorar!"
 }

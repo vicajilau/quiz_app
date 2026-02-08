@@ -1669,5 +1669,7 @@
   "questionsOverview": "Questions Map",
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
-  }
+  },
+  "congratulations": "🎉 बधाई हो! 🎉",
+  "keepPracticing": "सुधार के लिए अभ्यास जारी रखें!"
 }

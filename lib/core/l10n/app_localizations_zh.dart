@@ -943,7 +943,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get viewWinners => '查看获奖者';
 
   @override
-  String get congratulations => '恭喜！';
+  String get congratulations => '🎉 恭喜！ 🎉';
 
   @override
   String positionLabel(int position) {
@@ -1190,4 +1190,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String deleteMultipleQuestionsConfirmation(int count) {
     return '您确定要删除 $count 个问题吗？';
   }
+
+  @override
+  String get keepPracticing => '继续练习以提高！';
+
+  @override
+  String get tryAgain => 'Try Again';
+
+  @override
+  String get review => 'Review';
+
+  @override
+  String get home => 'Home';
 }

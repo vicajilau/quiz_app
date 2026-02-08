@@ -382,5 +382,7 @@
   "questionsOverview": "Χάρτης Ερωτήσεων",
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
-  }
+  },
+  "congratulations": "🎉 Συγχαρητήρια! 🎉",
+  "keepPracticing": "Συνεχίστε την εξάσκηση για να βελτιωθείτε!"
 }
