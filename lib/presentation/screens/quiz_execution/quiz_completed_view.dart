@@ -164,96 +164,119 @@ class QuizCompletedView extends StatelessWidget {
               top: BorderSide(color: theme.dividerColor.withValues(alpha: 0.1)),
             ),
           ),
-          child: Row(
-            spacing: 12,
-            children: [
-              // Try Again Button
-              if (_hasIncorrectAnswers())
-                Expanded(
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      final bloc = BlocProvider.of<QuizExecutionBloc>(context);
-                      bloc.add(QuizRestarted());
-                    },
-                    icon: const Icon(Icons.refresh, size: 20),
-                    label: Text(
-                      AppLocalizations.of(context)!.tryAgain,
-                      style: const TextStyle(fontWeight: FontWeight.w600),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final isMobile = constraints.maxWidth < 600;
+              final hasIncorrect = _hasIncorrectAnswers();
+
+              // Define buttons
+              final tryAgainBtn = _buildTryAgainButton(context);
+              final retryBtn = _buildRetryButton(context, isDarkMode);
+              final homeBtn = _buildHomeButton(context, isDarkMode);
+
+              // Responsive Layout Logic:
+              // Mobile AND has incorrect answers (3 buttons total) -> 2 Rows
+              if (isMobile && hasIncorrect) {
+                return Column(
+                  children: [
+                    Row(
+                      spacing: 12,
+                      children: [
+                        Expanded(child: tryAgainBtn),
+                        Expanded(child: retryBtn!),
+                      ],
                     ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF8B5CF6),
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 25),
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                  ),
-                ),
-              // Review Button
-              if (_hasIncorrectAnswers())
-                Expanded(
-                  child: OutlinedButton.icon(
-                    onPressed: () => _startFailedQuestionsQuiz(context),
-                    icon: const Icon(Icons.quiz_outlined, size: 20),
-                    label: Text(
-                      AppLocalizations.of(context)!.retryFailedQuestions,
-                      style: const TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                    style: OutlinedButton.styleFrom(
-                      backgroundColor: isDarkMode
-                          ? const Color(0xFF27272A)
-                          : const Color(0xFFF4F4F5),
-                      foregroundColor: isDarkMode
-                          ? const Color(0xFFA1A1AA)
-                          : const Color(0xFF71717A),
-                      side: BorderSide(
-                        color: isDarkMode
-                            ? const Color(0xFF3F3F46)
-                            : const Color(0xFFE4E4E7),
-                        width: 2,
-                      ),
-                      padding: const EdgeInsets.symmetric(vertical: 25),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                  ),
-                ),
-              // Home Button
-              Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: () => context.pop(),
-                  icon: const Icon(Icons.home_outlined, size: 20),
-                  label: Text(
-                    AppLocalizations.of(context)!.home,
-                    style: const TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: isDarkMode
-                        ? const Color(0xFF27272A)
-                        : const Color(0xFFF4F4F5),
-                    foregroundColor: isDarkMode
-                        ? const Color(0xFFA1A1AA)
-                        : const Color(0xFF71717A),
-                    side: BorderSide(
-                      color: isDarkMode
-                          ? const Color(0xFF3F3F46)
-                          : const Color(0xFFE4E4E7),
-                      width: 2,
-                    ),
-                    padding: const EdgeInsets.symmetric(vertical: 25),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+                    const SizedBox(height: 12),
+                    Row(children: [Expanded(child: homeBtn)]),
+                  ],
+                );
+              }
+
+              // Desktop OR no incorrect answers (2 buttons) -> 1 Row
+              return Row(
+                spacing: 12,
+                children: [
+                  if (hasIncorrect) Expanded(child: tryAgainBtn),
+                  if (hasIncorrect) Expanded(child: retryBtn!),
+                  Expanded(child: homeBtn),
+                ],
+              );
+            },
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildTryAgainButton(BuildContext context) {
+    return ElevatedButton.icon(
+      onPressed: () {
+        final bloc = BlocProvider.of<QuizExecutionBloc>(context);
+        bloc.add(QuizRestarted());
+      },
+      icon: const Icon(Icons.refresh, size: 20),
+      label: Text(
+        AppLocalizations.of(context)!.tryAgain,
+        style: const TextStyle(fontWeight: FontWeight.w600),
+      ),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color(0xFF8B5CF6),
+        foregroundColor: Colors.white,
+        padding: const EdgeInsets.symmetric(vertical: 25),
+        elevation: 0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      ),
+    );
+  }
+
+  Widget? _buildRetryButton(BuildContext context, bool isDarkMode) {
+    if (!_hasIncorrectAnswers()) return null;
+    return OutlinedButton.icon(
+      onPressed: () => _startFailedQuestionsQuiz(context),
+      icon: const Icon(Icons.quiz_outlined, size: 20),
+      label: Text(
+        AppLocalizations.of(context)!.retryFailedQuestions,
+        style: const TextStyle(fontWeight: FontWeight.w600),
+      ),
+      style: OutlinedButton.styleFrom(
+        backgroundColor: isDarkMode
+            ? const Color(0xFF27272A)
+            : const Color(0xFFF4F4F5),
+        foregroundColor: isDarkMode
+            ? const Color(0xFFA1A1AA)
+            : const Color(0xFF71717A),
+        side: BorderSide(
+          color: isDarkMode ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
+          width: 2,
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 25),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      ),
+    );
+  }
+
+  Widget _buildHomeButton(BuildContext context, bool isDarkMode) {
+    return OutlinedButton.icon(
+      onPressed: () => context.pop(),
+      icon: const Icon(Icons.home_outlined, size: 20),
+      label: Text(
+        AppLocalizations.of(context)!.home,
+        style: const TextStyle(fontWeight: FontWeight.w600),
+      ),
+      style: OutlinedButton.styleFrom(
+        backgroundColor: isDarkMode
+            ? const Color(0xFF27272A)
+            : const Color(0xFFF4F4F5),
+        foregroundColor: isDarkMode
+            ? const Color(0xFFA1A1AA)
+            : const Color(0xFF71717A),
+        side: BorderSide(
+          color: isDarkMode ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
+          width: 2,
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 25),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      ),
     );
   }
 
