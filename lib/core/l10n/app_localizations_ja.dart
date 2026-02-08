@@ -153,6 +153,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get previous => '前へ';
 
   @override
+  String get skip => 'スキップ';
+
+  @override
+  String get questionsOverview => 'Questions Map';
+
+  @override
   String get next => '次へ';
 
   @override
@@ -1139,9 +1145,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get settingsTitle => '設定';
-
-  @override
-  String get skip => 'スキップ';
 
   @override
   String get askAiAssistant => 'AIアシスタントに聞く';

@@ -377,6 +377,10 @@
         "example": "Multiple Choice"
       }
     }
+  },
+  "settingsTitle": "Ρυθμίσεις",
+  "questionsOverview": "Χάρτης Ερωτήσεων",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
   }
-  ,"settingsTitle": "Ρυθμίσεις"
 }

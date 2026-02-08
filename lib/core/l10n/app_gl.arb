@@ -1656,6 +1656,10 @@
   "saveSuccess": "Ficheiro gardado correctamente",
   "errorSavingFile": "Erro ao gardar o ficheiro",
   "deleteSingleQuestionConfirmation": "Estás seguro de que queres eliminar esta pregunta?",
-  "deleteMultipleQuestionsConfirmation": "Estás seguro de que queres eliminar {count} preguntas?"
-  ,"settingsTitle": "Axustes"
+  "deleteMultipleQuestionsConfirmation": "Estás seguro de que queres eliminar {count} preguntas?",
+  "settingsTitle": "Axustes",
+  "questionsOverview": "Mapa de preguntas",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
+  }
 }

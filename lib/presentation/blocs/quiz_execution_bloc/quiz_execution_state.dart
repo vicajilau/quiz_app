@@ -63,6 +63,20 @@ class QuizExecutionInProgress extends QuizExecutionState {
     return currentQuestionAnswers.isNotEmpty;
   }
 
+  /// Get total answered questions count
+  int get answeredQuestionsCount {
+    int count = 0;
+    for (int i = 0; i < totalQuestions; i++) {
+      if (userAnswers.containsKey(i) && userAnswers[i]!.isNotEmpty) {
+        count++;
+      } else if (essayAnswers.containsKey(i) &&
+          essayAnswers[i]!.trim().isNotEmpty) {
+        count++;
+      }
+    }
+    return count;
+  }
+
   /// Get progress percentage
   double get progress => (currentQuestionIndex + 1) / totalQuestions;
 

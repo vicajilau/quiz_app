@@ -158,6 +158,12 @@ class AppLocalizationsCa extends AppLocalizations {
   String get previous => 'Anterior';
 
   @override
+  String get skip => 'Saltar';
+
+  @override
+  String get questionsOverview => 'Mapa de preguntes';
+
+  @override
   String get next => 'Següent';
 
   @override
@@ -1201,9 +1207,6 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get settingsTitle => 'Configuració';
-
-  @override
-  String get skip => 'Saltar';
 
   @override
   String get askAiAssistant => 'Pregunta a l\'assistent d\'IA';

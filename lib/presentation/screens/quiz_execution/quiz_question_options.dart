@@ -147,17 +147,13 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
 
               return Padding(
                 padding: const EdgeInsets.only(bottom: 12.0),
-                child: Card(
-                  clipBehavior: Clip.hardEdge,
-                  elevation: isSelected ? 4 : 1,
-                  child: QuestionOptionTile(
-                    questionType: questionType,
-                    option: option,
-                    index: index,
-                    isSelected: isSelected,
-                    isStudyMode: widget.isStudyMode,
-                    state: widget.state,
-                  ),
+                child: QuestionOptionTile(
+                  questionType: questionType,
+                  option: option,
+                  index: index,
+                  isSelected: isSelected,
+                  isStudyMode: widget.isStudyMode,
+                  state: widget.state,
                 ),
               );
             },
@@ -190,17 +186,13 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
 
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 12.0),
-                  child: Card(
-                    clipBehavior: Clip.hardEdge,
-                    elevation: isSelected ? 4 : 1,
-                    child: QuestionOptionTile(
-                      questionType: questionType,
-                      option: option,
-                      index: index,
-                      isSelected: isSelected,
-                      isStudyMode: widget.isStudyMode,
-                      state: widget.state,
-                    ),
+                  child: QuestionOptionTile(
+                    questionType: questionType,
+                    option: option,
+                    index: index,
+                    isSelected: isSelected,
+                    isStudyMode: widget.isStudyMode,
+                    state: widget.state,
                   ),
                 );
               },

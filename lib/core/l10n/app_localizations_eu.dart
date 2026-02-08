@@ -157,6 +157,12 @@ class AppLocalizationsEu extends AppLocalizations {
   String get previous => 'Aurrekoa';
 
   @override
+  String get skip => 'Saltatu';
+
+  @override
+  String get questionsOverview => 'Galdera mapa';
+
+  @override
   String get next => 'Hurrengoa';
 
   @override
@@ -1194,9 +1200,6 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get settingsTitle => 'Ezarpenak';
-
-  @override
-  String get skip => 'Saltatu';
 
   @override
   String get askAiAssistant => 'Galdetu AI Laguntzaileari';

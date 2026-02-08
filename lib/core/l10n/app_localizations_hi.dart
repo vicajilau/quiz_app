@@ -157,6 +157,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get previous => 'पिछला';
 
   @override
+  String get skip => 'छोड़ें';
+
+  @override
+  String get questionsOverview => 'Questions Map';
+
+  @override
   String get next => 'अगला';
 
   @override
@@ -1183,9 +1189,6 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get settingsTitle => 'सेटिंग्स';
-
-  @override
-  String get skip => 'छोड़ें';
 
   @override
   String get askAiAssistant => 'AI सहायक से पूछें';

@@ -212,6 +212,14 @@
   "@previous": {
     "description": "Previous button text in quiz navigation"
   },
+  "skip": "تخطي",
+  "@skip": {
+      "description": "Skip button text in quiz navigation"
+  },
+  "questionsOverview": "خريطة الأسئلة",
+  "@questionsOverview": {
+      "description": "Title for the questions overview bottom sheet"
+  },
   "next": "التالي",
   "@next": {
     "description": "Next button text in quiz navigation"
@@ -1616,7 +1624,6 @@
   "examModeDescription": "توقيت قياسي ونتائج في النهاية",
   "checkAnswer": "تحقق",
   "quizModeTitle": "وضع الاختبار",
-  "skip": "تخطي",
   "askAiAssistant": "اسأل مساعد الذكاء الاصطناعي",
   "evaluateWithAI": "تقييم بالذكاء الاصطناعي",
   "aiEvaluation": "تقييم الذكاء الاصطناعي",
@@ -1656,6 +1663,6 @@
         "example": "Multiple Choice"
       }
     }
-  }
-  ,"settingsTitle": "الإعدادات"
+  },
+  "settingsTitle": "الإعدادات"
 }

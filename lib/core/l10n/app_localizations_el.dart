@@ -160,6 +160,12 @@ class AppLocalizationsEl extends AppLocalizations {
   String get previous => 'Προηγούμενο';
 
   @override
+  String get skip => 'Παράλειψη';
+
+  @override
+  String get questionsOverview => 'Χάρτης Ερωτήσεων';
+
+  @override
   String get next => 'Επόμενο';
 
   @override
@@ -1204,9 +1210,6 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get settingsTitle => 'Ρυθμίσεις';
-
-  @override
-  String get skip => 'Παράλειψη';
 
   @override
   String get askAiAssistant => 'Ρωτήστε τον Βοηθό AI';

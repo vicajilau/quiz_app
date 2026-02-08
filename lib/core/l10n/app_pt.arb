@@ -1704,6 +1704,10 @@
         "example": "Multiple Choice"
       }
     }
+  },
+  "settingsTitle": "Configurações",
+  "questionsOverview": "Mapa de questões",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
   }
-  ,"settingsTitle": "Configurações"
 }

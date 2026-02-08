@@ -212,6 +212,14 @@
   "@previous": {
     "description": "Previous button text in quiz navigation"
   },
+  "skip": "スキップ",
+  "@skip": {
+      "description": "Skip button text in quiz navigation"
+  },
+  "questionsOverview": "質問マップ",
+  "@questionsOverview": {
+      "description": "Title for the questions overview bottom sheet"
+  },
   "next": "次へ",
   "@next": {
     "description": "Next button text in quiz navigation"
@@ -1656,6 +1664,10 @@
         "example": "Multiple Choice"
       }
     }
+  },
+  "settingsTitle": "設定",
+  "questionsOverview": "Questions Map",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
   }
-  ,"settingsTitle": "設定"
 }

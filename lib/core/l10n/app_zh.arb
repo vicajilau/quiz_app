@@ -1656,6 +1656,10 @@
         "example": "Multiple Choice"
       }
     }
+  },
+  "settingsTitle": "设置",
+  "questionsOverview": "题目概览",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
   }
-  ,"settingsTitle": "设置"
 }

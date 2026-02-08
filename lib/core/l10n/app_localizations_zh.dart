@@ -153,6 +153,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get previous => '上一个';
 
   @override
+  String get skip => '跳过';
+
+  @override
+  String get questionsOverview => '题目概览';
+
+  @override
   String get next => '下一个';
 
   @override
@@ -1134,9 +1140,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settingsTitle => '设置';
-
-  @override
-  String get skip => '跳过';
 
   @override
   String get askAiAssistant => '询问 AI 助手';

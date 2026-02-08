@@ -212,6 +212,14 @@
   "@previous": {
     "description": "Previous button text in quiz navigation"
   },
+  "skip": "Skip",
+  "@skip": {
+      "description": "Skip button text in quiz navigation"
+  },
+  "questionsOverview": "Questions Map",
+  "@questionsOverview": {
+      "description": "Title for the questions overview bottom sheet"
+  },
   "next": "Next",
   "@next": {
     "description": "Next button text in quiz navigation"
@@ -801,6 +809,10 @@
         "description": "The URL that could not be opened"
       }
     }
+  },
+  "questionsOverview": "Questions Map",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
   },
   "loadingAiServices": "Loading AI services...",
   "@loadingAiServices": {

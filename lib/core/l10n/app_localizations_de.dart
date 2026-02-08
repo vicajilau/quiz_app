@@ -159,6 +159,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get previous => 'Zurück';
 
   @override
+  String get skip => 'Überspringen';
+
+  @override
+  String get questionsOverview => 'Questions Map';
+
+  @override
   String get next => 'Weiter';
 
   @override
@@ -1201,9 +1207,6 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settingsTitle => 'Einstellungen';
-
-  @override
-  String get skip => 'Überspringen';
 
   @override
   String get askAiAssistant => 'KI-Assistenten fragen';

@@ -95,6 +95,16 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
       }
     });
 
+    // Handle jump to question
+    on<JumpToQuestionRequested>((event, emit) {
+      if (state is QuizExecutionInProgress) {
+        final currentState = state as QuizExecutionInProgress;
+        if (event.index >= 0 && event.index < currentState.questions.length) {
+          emit(currentState.copyWith(currentQuestionIndex: event.index));
+        }
+      }
+    });
+
     // Handle next question
     on<NextQuestionRequested>((event, emit) {
       if (state is QuizExecutionInProgress) {

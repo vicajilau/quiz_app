@@ -153,6 +153,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get previous => 'السابق';
 
   @override
+  String get skip => 'تخطي';
+
+  @override
+  String get questionsOverview => 'خريطة الأسئلة';
+
+  @override
   String get next => 'التالي';
 
   @override
@@ -1172,9 +1178,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get settingsTitle => 'الإعدادات';
-
-  @override
-  String get skip => 'تخطي';
 
   @override
   String get askAiAssistant => 'اسأل مساعد الذكاء الاصطناعي';

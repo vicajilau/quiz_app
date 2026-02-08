@@ -158,6 +158,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String get previous => 'Anterior';
 
   @override
+  String get skip => 'Pular';
+
+  @override
+  String get questionsOverview => 'Mapa de questões';
+
+  @override
   String get next => 'Próximo';
 
   @override
@@ -1197,9 +1203,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get settingsTitle => 'Configurações';
-
-  @override
-  String get skip => 'Pular';
 
   @override
   String get askAiAssistant => 'Perguntar ao Assistente de IA';

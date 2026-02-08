@@ -386,6 +386,18 @@ abstract class AppLocalizations {
   /// **'Previous'**
   String get previous;
 
+  /// Label for skip button
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
+  /// Title for the questions overview bottom sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Questions Map'**
+  String get questionsOverview;
+
   /// Next button text in quiz navigation
   ///
   /// In en, this message translates to:
@@ -2167,12 +2179,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get settingsTitle;
-
-  /// Label for skip button
-  ///
-  /// In en, this message translates to:
-  /// **'Skip'**
-  String get skip;
 
   /// Button label to open AI assistant for current question
   ///

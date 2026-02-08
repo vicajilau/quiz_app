@@ -216,6 +216,14 @@
   "@previous": {
     "description": "Texto del botón anterior en la navegación del quiz"
   },
+  "skip": "Saltar",
+  "@skip": {
+      "description": "Texto del botón saltar en la navegación del quiz"
+  },
+  "questionsOverview": "Mapa de Preguntas",
+  "@questionsOverview": {
+      "description": "Title for the questions overview bottom sheet"
+  },
   "next": "Siguiente",
   "@next": {
     "description": "Texto del botón siguiente en la navegación del quiz"
@@ -1620,10 +1628,6 @@
   "quizModeTitle": "Modo Cuestionario",
   "@quizModeTitle": {
     "description": "Title for the quiz mode selection section"
-  },
-  "skip": "Saltar",
-  "@skip": {
-    "description": "Label for skip button"
   },
   "askAiAssistant": "Preguntar a la IA",
   "@askAiAssistant": {

@@ -18,88 +18,135 @@ class QuizNavigationButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    final isCheckPhase = isStudyMode && !state.isCurrentQuestionValidated;
+    final canProceed = isCheckPhase
+        ? state.hasCurrentQuestionAnswered
+        : (isStudyMode || state.hasCurrentQuestionAnswered);
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Check Answer button (Only in Study Mode and not validated, full width)
-          if (isStudyMode && !state.isCurrentQuestionValidated) ...[
-            SizedBox(
-              width: double.infinity,
-              child: OutlinedButton.icon(
-                onPressed: () {
-                  context.read<QuizExecutionBloc>().add(CheckAnswerRequested());
-                },
-                icon: const Icon(Icons.check_circle_outline),
-                label: Text(AppLocalizations.of(context)!.checkAnswer),
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: Theme.of(context).primaryColor,
-                  side: BorderSide(color: Theme.of(context).primaryColor),
-                  padding: const EdgeInsets.symmetric(vertical: 12),
+          // Previous Button
+          if (!state.isFirstQuestion) ...[
+            Expanded(
+              child: SizedBox(
+                height: 52,
+                child: OutlinedButton.icon(
+                  onPressed: () {
+                    context.read<QuizExecutionBloc>().add(
+                      PreviousQuestionRequested(),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.chevron_left,
+                    color: isDark
+                        ? const Color(0xFFA1A1AA)
+                        : const Color(0xFF71717A),
+                  ),
+                  label: Text(
+                    AppLocalizations.of(context)!.previous,
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: isDark
+                          ? const Color(0xFFA1A1AA)
+                          : const Color(0xFF71717A),
+                    ),
+                  ),
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: isDark
+                        ? const Color(0xFF27272A)
+                        : Colors.white,
+                    side: BorderSide(
+                      color: isDark
+                          ? const Color(0xFF3F3F46)
+                          : const Color(0xFFE4E4E7),
+                      width: 2,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: EdgeInsets.zero,
+                  ),
                 ),
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(width: 16),
           ],
 
-          Row(
-            children: [
-              // Previous button
-              if (!state.isFirstQuestion) ...[
-                Expanded(
-                  child: OutlinedButton.icon(
-                    onPressed: () {
-                      context.read<QuizExecutionBloc>().add(
-                        PreviousQuestionRequested(),
-                      );
-                    },
-                    icon: const Icon(Icons.arrow_back),
-                    label: Text(AppLocalizations.of(context)!.previous),
+          // Next / Check / Finish Button
+          Expanded(
+            child: SizedBox(
+              height: 52,
+              child: ElevatedButton.icon(
+                onPressed: canProceed
+                    ? () {
+                        if (isCheckPhase) {
+                          context.read<QuizExecutionBloc>().add(
+                            CheckAnswerRequested(),
+                          );
+                        } else if (state.isLastQuestion) {
+                          SubmitQuizDialog.show(
+                            context,
+                            context.read<QuizExecutionBloc>(),
+                          );
+                        } else {
+                          context.read<QuizExecutionBloc>().add(
+                            NextQuestionRequested(),
+                          );
+                        }
+                      }
+                    : (isCheckPhase && !state.hasCurrentQuestionAnswered
+                          ? () {
+                              context.read<QuizExecutionBloc>().add(
+                                NextQuestionRequested(),
+                              );
+                            }
+                          : null),
+                icon: Icon(
+                  isCheckPhase
+                      ? (state.hasCurrentQuestionAnswered
+                            ? Icons.check_circle
+                            : Icons.skip_next)
+                      : (state.isLastQuestion
+                            ? Icons.check
+                            : Icons.chevron_right),
+                  color: Colors.white,
+                ),
+                label: Text(
+                  isCheckPhase
+                      ? (state.hasCurrentQuestionAnswered
+                            ? AppLocalizations.of(context)!.checkAnswer
+                            : AppLocalizations.of(context)!.skip)
+                      : (state.isLastQuestion
+                            ? AppLocalizations.of(context)!.finish
+                            : AppLocalizations.of(context)!.next),
+                  style: const TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
                   ),
                 ),
-                const SizedBox(width: 8),
-              ],
-
-              // Next/Submit button
-              Expanded(
-                child: ElevatedButton.icon(
-                  onPressed: (isStudyMode || state.hasCurrentQuestionAnswered)
-                      ? () {
-                          if (state.isLastQuestion) {
-                            SubmitQuizDialog.show(
-                              context,
-                              context.read<QuizExecutionBloc>(),
-                            );
-                          } else {
-                            context.read<QuizExecutionBloc>().add(
-                              NextQuestionRequested(),
-                            );
-                          }
-                        }
-                      : null, // Disable button if no answer selected (only in Exam Mode)
-                  icon: Icon(
-                    state.isLastQuestion ? Icons.check : Icons.arrow_forward,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF8B5CF6),
+                  foregroundColor: Colors.white,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  label: Text(_getLabel(context)),
+                  padding: EdgeInsets.zero,
                 ),
               ),
-            ],
+            ),
           ),
         ],
       ),
     );
-  }
-
-  String _getLabel(BuildContext context) {
-    if (state.isLastQuestion) {
-      return AppLocalizations.of(context)!.finish;
-    }
-    if (isStudyMode &&
-        !state.hasCurrentQuestionAnswered &&
-        !state.isCurrentQuestionValidated) {
-      return AppLocalizations.of(context)!.skip;
-    }
-    return AppLocalizations.of(context)!.next;
   }
 }

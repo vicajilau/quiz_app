@@ -1656,6 +1656,10 @@
         "example": "Multiple Choice"
       }
     }
+  },
+  "settingsTitle": "Ezarpenak",
+  "questionsOverview": "Galdera mapa",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
   }
-  ,"settingsTitle": "Ezarpenak"
 }
