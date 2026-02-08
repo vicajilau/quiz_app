@@ -11226,6 +11226,679 @@
           ]
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "rW1aB",
+      "x": 0,
+      "y": 10400,
+      "name": "Raffle Winners - Dark",
+      "width": 1200,
+      "height": 800,
+      "fill": "#18181B",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "sX2bC",
+          "name": "headerWD",
+          "width": "fill_container",
+          "height": 64,
+          "fill": "#8B5CF6",
+          "cornerRadius": [
+            0,
+            0,
+            24,
+            24
+          ],
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "tY3cD",
+              "name": "headerLeftWD",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "uZ4dE",
+                  "name": "backIconWD",
+                  "width": 24,
+                  "height": 24,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "vA5eF",
+                  "name": "headerTitleWD",
+                  "fill": "#FFFFFF",
+                  "content": "Raffle Winners",
+                  "fontFamily": "Inter",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "icon_font",
+              "id": "wB6fG",
+              "name": "shareIconWD",
+              "width": 24,
+              "height": 24,
+              "iconFontName": "share-2",
+              "iconFontFamily": "lucide",
+              "fill": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "xC7gH",
+          "name": "contentWD",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            48,
+            32
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "yD8hI",
+              "name": "trophyCircleWD",
+              "width": 80,
+              "height": 80,
+              "fill": "#FCD34D",
+              "cornerRadius": 40,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "zE9iJ",
+                  "name": "trophyBigIconWD",
+                  "width": 40,
+                  "height": 40,
+                  "iconFontName": "trophy",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "aF0jK",
+              "name": "completedTitleWD",
+              "fill": "#FFFFFF",
+              "content": "Raffle Completed",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "bG1kL",
+              "name": "dividerRowWD",
+              "width": "fill_container",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "cH2lM",
+                  "name": "dividerLeftWD",
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": "#3F3F46"
+                },
+                {
+                  "type": "text",
+                  "id": "dI3mN",
+                  "name": "dividerTextWD",
+                  "fill": "#A1A1AA",
+                  "content": "1 winner(s) selected",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "textAlign": "center"
+                },
+                {
+                  "type": "frame",
+                  "id": "eJ4nO",
+                  "name": "dividerRightWD",
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": "#3F3F46"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "fK5oP",
+              "name": "winnerCardWD",
+              "width": "fill_container",
+              "fill": "#FEF9C3",
+              "cornerRadius": 12,
+              "padding": [
+                12,
+                16
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "gL6pQ",
+                  "name": "winnerCardLeftWD",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "hM7qR",
+                      "name": "positionBadgeWD",
+                      "width": 36,
+                      "height": 36,
+                      "fill": "#22C55E",
+                      "cornerRadius": 18,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "iN8rS",
+                          "name": "positionNumWD",
+                          "fill": "#FFFFFF",
+                          "content": "1",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "jO9sT",
+                      "name": "winnerInfoWD",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "kP0tU",
+                          "name": "winnerNameWD",
+                          "fill": "#18181B",
+                          "content": "Maria",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "lQ1uV",
+                          "name": "winnerSubWD",
+                          "fill": "#71717A",
+                          "content": "1st place · 12:09",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "icon_font",
+                  "id": "mR2vW",
+                  "name": "winnerTrophyWD",
+                  "width": 24,
+                  "height": 24,
+                  "iconFontName": "trophy",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FCD34D"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "nS3wX",
+          "name": "bottomBtnsWD",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": [
+            16,
+            32
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "oT4xY",
+              "name": "newRaffleBtnWD",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#22C55E",
+              "cornerRadius": 12,
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "pU5yZ",
+                  "name": "newRaffleIconWD",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "refresh-cw",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "qV6zA",
+                  "name": "newRaffleTextWD",
+                  "fill": "#FFFFFF",
+                  "content": "New Raffle",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "rW7aB",
+              "name": "resetBtnWD",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "transparent",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#3F3F46"
+              },
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "sX8bC",
+                  "name": "resetIconWD",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "rotate-ccw",
+                  "iconFontFamily": "lucide",
+                  "fill": "#8B5CF6"
+                },
+                {
+                  "type": "text",
+                  "id": "tY9cD",
+                  "name": "resetTextWD",
+                  "fill": "#8B5CF6",
+                  "content": "Reset Winners",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "uZ0dE",
+      "x": 1260,
+      "y": 10400,
+      "name": "Raffle Winners - Light",
+      "width": 1200,
+      "height": 800,
+      "fill": "#FAFAFA",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "vA1eF",
+          "name": "headerWL",
+          "width": "fill_container",
+          "height": 64,
+          "fill": "#8B5CF6",
+          "cornerRadius": [
+            0,
+            0,
+            24,
+            24
+          ],
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "wB2fG",
+              "name": "headerLeftWL",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "xC3gH",
+                  "name": "backIconWL",
+                  "width": 24,
+                  "height": 24,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "yD4hI",
+                  "name": "headerTitleWL",
+                  "fill": "#FFFFFF",
+                  "content": "Raffle Winners",
+                  "fontFamily": "Inter",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "icon_font",
+              "id": "zE5iJ",
+              "name": "shareIconWL",
+              "width": 24,
+              "height": 24,
+              "iconFontName": "share-2",
+              "iconFontFamily": "lucide",
+              "fill": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "aF6jK",
+          "name": "contentWL",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            48,
+            32
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "bG7kL",
+              "name": "trophyCircleWL",
+              "width": 80,
+              "height": 80,
+              "fill": "#FCD34D",
+              "cornerRadius": 40,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "cH8lM",
+                  "name": "trophyBigIconWL",
+                  "width": 40,
+                  "height": 40,
+                  "iconFontName": "trophy",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "dI9mN",
+              "name": "completedTitleWL",
+              "fill": "#18181B",
+              "content": "Raffle Completed",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "eJ0nO",
+              "name": "dividerRowWL",
+              "width": "fill_container",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "fK1oP",
+                  "name": "dividerLeftWL",
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": "#E4E4E7"
+                },
+                {
+                  "type": "text",
+                  "id": "gL2pQ",
+                  "name": "dividerTextWL",
+                  "fill": "#71717A",
+                  "content": "1 winner(s) selected",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "textAlign": "center"
+                },
+                {
+                  "type": "frame",
+                  "id": "hM3qR",
+                  "name": "dividerRightWL",
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": "#E4E4E7"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "iN4rS",
+              "name": "winnerCardWL",
+              "width": "fill_container",
+              "fill": "#FEF9C3",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E4E4E7"
+              },
+              "padding": [
+                12,
+                16
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "jO5sT",
+                  "name": "winnerCardLeftWL",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "kP6tU",
+                      "name": "positionBadgeWL",
+                      "width": 36,
+                      "height": 36,
+                      "fill": "#22C55E",
+                      "cornerRadius": 18,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "lQ7uV",
+                          "name": "positionNumWL",
+                          "fill": "#FFFFFF",
+                          "content": "1",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "mR8vW",
+                      "name": "winnerInfoWL",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "nS9wX",
+                          "name": "winnerNameWL",
+                          "fill": "#18181B",
+                          "content": "Maria",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "oT0xY",
+                          "name": "winnerSubWL",
+                          "fill": "#71717A",
+                          "content": "1st place · 12:09",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "icon_font",
+                  "id": "pU1yZ",
+                  "name": "winnerTrophyWL",
+                  "width": 24,
+                  "height": 24,
+                  "iconFontName": "trophy",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FCD34D"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "qV2zA",
+          "name": "bottomBtnsWL",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": [
+            16,
+            32
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "rW3aB",
+              "name": "newRaffleBtnWL",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#22C55E",
+              "cornerRadius": 12,
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "sX4bC",
+                  "name": "newRaffleIconWL",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "refresh-cw",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "tY5cD",
+                  "name": "newRaffleTextWL",
+                  "fill": "#FFFFFF",
+                  "content": "New Raffle",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "uZ6dE",
+              "name": "resetBtnWL",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "transparent",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E4E4E7"
+              },
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "vA7eF",
+                  "name": "resetIconWL",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "rotate-ccw",
+                  "iconFontFamily": "lucide",
+                  "fill": "#8B5CF6"
+                },
+                {
+                  "type": "text",
+                  "id": "wB8fG",
+                  "name": "resetTextWL",
+                  "fill": "#8B5CF6",
+                  "content": "Reset Winners",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
