@@ -196,9 +196,9 @@ class QuizCompletedView extends StatelessWidget {
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: () => _startFailedQuestionsQuiz(context),
-                    icon: const Icon(Icons.visibility_outlined, size: 20),
+                    icon: const Icon(Icons.quiz_outlined, size: 20),
                     label: Text(
-                      AppLocalizations.of(context)!.review,
+                      AppLocalizations.of(context)!.retryFailedQuestions,
                       style: const TextStyle(fontWeight: FontWeight.w600),
                     ),
                     style: OutlinedButton.styleFrom(
