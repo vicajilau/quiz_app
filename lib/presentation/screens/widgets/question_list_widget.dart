@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:quiz_app/core/context_extension.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
@@ -7,6 +7,7 @@ import 'package:quiz_app/presentation/screens/dialogs/add_edit_question_dialog.d
 import 'package:quiz_app/presentation/screens/dialogs/ai_question_dialog.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
 import 'package:quiz_app/presentation/screens/widgets/question_preview_card.dart';
+import 'package:quiz_app/presentation/screens/dialogs/custom_confirm_dialog.dart';
 
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 
@@ -305,21 +306,13 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
   Future<bool> _confirmDismiss(BuildContext context, Question question) async {
     return await showDialog<bool>(
           context: context,
-          builder: (context) => AlertDialog(
-            title: Text(AppLocalizations.of(context)!.confirmDeleteTitle),
-            content: Text(
-              AppLocalizations.of(context)!.confirmDeleteMessage(question.text),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => context.pop(false),
-                child: Text(AppLocalizations.of(context)!.cancelButton),
-              ),
-              ElevatedButton(
-                onPressed: () => context.pop(true),
-                child: Text(AppLocalizations.of(context)!.deleteButton),
-              ),
-            ],
+          builder: (context) => CustomConfirmDialog(
+            title: AppLocalizations.of(context)!.confirmDeleteTitle,
+            message: AppLocalizations.of(
+              context,
+            )!.confirmDeleteMessage(question.text),
+            confirmText: AppLocalizations.of(context)!.deleteButton,
+            isDestructive: true,
           ),
         ) ??
         false;

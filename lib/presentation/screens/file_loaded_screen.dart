@@ -11,6 +11,7 @@ import 'package:quiz_app/domain/models/quiz/quiz_config.dart';
 import 'package:quiz_app/presentation/screens/dialogs/add_edit_question_dialog.dart';
 import 'package:quiz_app/presentation/screens/dialogs/exit_confirmation_dialog.dart';
 import 'package:quiz_app/presentation/screens/widgets/question_list_widget.dart';
+import 'package:quiz_app/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quiz_app/routes/app_router.dart';
 
 import 'package:quiz_app/core/l10n/app_localizations.dart';
@@ -355,27 +356,15 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
 
     final confirmed = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(AppLocalizations.of(context)!.deleteButton),
-        content: Text(
-          _selectedQuestions.length == 1
-              ? AppLocalizations.of(context)!.deleteSingleQuestionConfirmation
-              : AppLocalizations.of(
-                  context,
-                )!.deleteMultipleQuestionsConfirmation(
-                  _selectedQuestions.length,
-                ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: Text(AppLocalizations.of(context)!.cancelButton),
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: Text(AppLocalizations.of(context)!.deleteButton),
-          ),
-        ],
+      builder: (context) => CustomConfirmDialog(
+        title: AppLocalizations.of(context)!.deleteButton,
+        message: _selectedQuestions.length == 1
+            ? AppLocalizations.of(context)!.deleteSingleQuestionConfirmation
+            : AppLocalizations.of(
+                context,
+              )!.deleteMultipleQuestionsConfirmation(_selectedQuestions.length),
+        confirmText: AppLocalizations.of(context)!.deleteButton,
+        isDestructive: true,
       ),
     );
 
