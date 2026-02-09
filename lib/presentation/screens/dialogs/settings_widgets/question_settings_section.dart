@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/domain/models/quiz/question_order.dart';
 
-class QuestionSettingsSection extends StatelessWidget {
+class QuestionSettingsSection extends StatefulWidget {
   final QuestionOrder selectedOrder;
   final bool randomizeAnswers;
   final bool showCorrectAnswerCount;
@@ -23,11 +23,56 @@ class QuestionSettingsSection extends StatelessWidget {
   });
 
   @override
+  State<QuestionSettingsSection> createState() =>
+      _QuestionSettingsSectionState();
+}
+
+class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
+  late final ScrollController _scrollController;
+  bool _showLeftShadow = false;
+  bool _showRightShadow = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+    _scrollController.addListener(_updateShadows);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _updateShadows());
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_updateShadows);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _updateShadows() {
+    if (!_scrollController.hasClients) return;
+
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.position.pixels;
+
+    final showLeft = currentScroll > 0;
+    final showRight = currentScroll < maxScroll;
+
+    if (showLeft != _showLeftShadow || showRight != _showRightShadow) {
+      setState(() {
+        _showLeftShadow = showLeft;
+        _showRightShadow = showRight;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final labelColor = isDark
         ? const Color(0xFFA1A1AA)
         : const Color(0xFF71717A);
+
+    // Get background color to match the dialog
+    final backgroundColor = isDark ? const Color(0xFF27272A) : Colors.white;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,34 +88,94 @@ class QuestionSettingsSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        ScrollConfiguration(
-          behavior: ScrollConfiguration.of(context).copyWith(
-            dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
-          ),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                _buildOrderOption(
-                  context,
-                  order: QuestionOrder.ascending,
-                  isSelected: selectedOrder == QuestionOrder.ascending,
+        Stack(
+          children: [
+            ScrollConfiguration(
+              behavior: ScrollConfiguration.of(context).copyWith(
+                dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
+              ),
+              child: NotificationListener<ScrollMetricsNotification>(
+                onNotification: (notification) {
+                  _updateShadows();
+                  return true;
+                },
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      _buildOrderOption(
+                        context,
+                        order: QuestionOrder.ascending,
+                        isSelected:
+                            widget.selectedOrder == QuestionOrder.ascending,
+                      ),
+                      const SizedBox(width: 12),
+                      _buildOrderOption(
+                        context,
+                        order: QuestionOrder.descending,
+                        isSelected:
+                            widget.selectedOrder == QuestionOrder.descending,
+                      ),
+                      const SizedBox(width: 12),
+                      _buildOrderOption(
+                        context,
+                        order: QuestionOrder.random,
+                        isSelected:
+                            widget.selectedOrder == QuestionOrder.random,
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(width: 12),
-                _buildOrderOption(
-                  context,
-                  order: QuestionOrder.descending,
-                  isSelected: selectedOrder == QuestionOrder.descending,
-                ),
-                const SizedBox(width: 12),
-                _buildOrderOption(
-                  context,
-                  order: QuestionOrder.random,
-                  isSelected: selectedOrder == QuestionOrder.random,
-                ),
-              ],
+              ),
             ),
-          ),
+
+            // Left Shadow Indicator
+            if (_showLeftShadow)
+              Positioned(
+                left: -1,
+                top: 0,
+                bottom: 0,
+                width: 40,
+                child: IgnorePointer(
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                          backgroundColor,
+                          backgroundColor.withValues(alpha: 0.0),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+            // Right Shadow Indicator
+            if (_showRightShadow)
+              Positioned(
+                right: -1,
+                top: 0,
+                bottom: 0,
+                width: 40,
+                child: IgnorePointer(
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.centerRight,
+                        end: Alignment.centerLeft,
+                        colors: [
+                          backgroundColor,
+                          backgroundColor.withValues(alpha: 0.0),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+          ],
         ),
 
         const SizedBox(height: 12),
@@ -80,8 +185,8 @@ class QuestionSettingsSection extends StatelessWidget {
           context,
           title: AppLocalizations.of(context)!.randomizeAnswersTitle,
           subtitle: AppLocalizations.of(context)!.randomizeAnswersDescription,
-          value: randomizeAnswers,
-          onChanged: onRandomizeAnswersChanged,
+          value: widget.randomizeAnswers,
+          onChanged: widget.onRandomizeAnswersChanged,
         ),
 
         const SizedBox(height: 12),
@@ -93,8 +198,8 @@ class QuestionSettingsSection extends StatelessWidget {
           subtitle: AppLocalizations.of(
             context,
           )!.showCorrectAnswerCountDescription,
-          value: showCorrectAnswerCount,
-          onChanged: onShowCorrectAnswerCountChanged,
+          value: widget.showCorrectAnswerCount,
+          onChanged: widget.onShowCorrectAnswerCountChanged,
         ),
       ],
     );
@@ -129,7 +234,7 @@ class QuestionSettingsSection extends StatelessWidget {
     }
 
     return InkWell(
-      onTap: () => onOrderChanged(order),
+      onTap: () => widget.onOrderChanged(order),
       borderRadius: BorderRadius.circular(12),
       child: Container(
         height: 48,
