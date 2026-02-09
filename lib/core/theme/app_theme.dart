@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quiz_app/core/constants/theme_extensions.dart';
+import 'package:quiz_app/core/theme/extensions/custom_colors.dart';
+import 'package:quiz_app/core/theme/extensions/exam_timer_theme.dart';
+import 'package:quiz_app/core/theme/extensions/home_theme.dart';
+import 'package:quiz_app/core/theme/extensions/file_loaded_theme.dart';
 
 class AppTheme {
   // Define main application colors
@@ -94,6 +97,48 @@ class AppTheme {
         warningContainer: Color(0xFFFEF3C7), // Amber 100
         onWarningContainer: Color(0xFFD97706), // Amber 600
       ),
+      const ExamTimerTheme(
+        dialogBackgroundColor: surfaceColor,
+        dialogTextColor: textColor,
+        dialogSubTextColor: textSecondaryColor, // Zinc 500
+        dialogBorderColor: borderColor,
+        dialogButtonColor: primaryColor,
+        dialogButtonTextColor: Colors.white,
+        dialogShadowColor: Color(
+          0x1A000000,
+        ), // Colors.black.withValues(alpha: 0.1)
+        timerLowColor: errorColor,
+        timerBackgroundColor: Color(
+          0x338B5CF6,
+        ), // primaryColor.withValues(alpha: 0.2)
+        timerLowBackgroundColor: Color(
+          0x33EF4444,
+        ), // errorColor.withValues(alpha: 0.2)
+        dialogCanvasColor: Colors.transparent,
+      ),
+      const HomeTheme(
+        dropZoneShadowColor: Color(
+          0x1A8B5CF6,
+        ), // primaryColor.withValues(alpha: 0.1)
+      ),
+      const FileLoadedTheme(
+        deleteDialogBackgroundColor: Color(0xFF27272A), // Zinc 800
+        deleteDialogTextColor: Colors.white,
+        deleteDialogSubTextColor: Colors.white70,
+        appBarIconBackgroundColor: Color(
+          0x33FFFFFF,
+        ), // Colors.white.withValues(alpha: 0.2)
+        selectionInactiveBackgroundColor: Color(
+          0x33FFFFFF,
+        ), // Colors.white.withValues(alpha: 0.2)
+        dragOverlayColor: Color(
+          0x1A8B5CF6,
+        ), // primaryColor.withValues(alpha: 0.1)
+        dragOverlayBorderColor: primaryColor,
+        dragOverlayShadowColor: Color(
+          0x338B5CF6,
+        ), // primaryColor.withValues(alpha: 0.2)
+      ),
     ],
   );
 
@@ -182,6 +227,48 @@ class AppTheme {
           0xFFF59E0B,
         ).withValues(alpha: 0.2), // Amber 500 with opacity
         onWarningContainer: const Color(0xFFF59E0B), // Amber 500
+      ),
+      const ExamTimerTheme(
+        dialogBackgroundColor: Color(0xFF27272A), // Zinc 800
+        dialogTextColor: Colors.white,
+        dialogSubTextColor: Color(0xFFA1A1AA), // Zinc 400
+        dialogBorderColor: Color(0xFF3F3F46), // Zinc 700
+        dialogButtonColor: primaryColor,
+        dialogButtonTextColor: Colors.white,
+        dialogShadowColor: Color(
+          0x40000000,
+        ), // Colors.black.withValues(alpha: 0.25)
+        timerLowColor: errorColor,
+        timerBackgroundColor: Color(
+          0x338B5CF6,
+        ), // primaryColor.withValues(alpha: 0.2)
+        timerLowBackgroundColor: Color(
+          0x33EF4444,
+        ), // errorColor.withValues(alpha: 0.2)
+        dialogCanvasColor: Colors.transparent,
+      ),
+      const HomeTheme(
+        dropZoneShadowColor: Color(
+          0x1A8B5CF6,
+        ), // primaryColor.withValues(alpha: 0.1)
+      ),
+      const FileLoadedTheme(
+        deleteDialogBackgroundColor: Color(0xFF27272A), // Zinc 800
+        deleteDialogTextColor: Colors.white,
+        deleteDialogSubTextColor: Colors.white70,
+        appBarIconBackgroundColor: Color(
+          0x33FFFFFF,
+        ), // Colors.white.withValues(alpha: 0.2)
+        selectionInactiveBackgroundColor: Color(
+          0x33FFFFFF,
+        ), // Colors.white.withValues(alpha: 0.2)
+        dragOverlayColor: Color(
+          0x1A8B5CF6,
+        ), // primaryColor.withValues(alpha: 0.1)
+        dragOverlayBorderColor: primaryColor,
+        dragOverlayShadowColor: Color(
+          0x338B5CF6,
+        ), // primaryColor.withValues(alpha: 0.2)
       ),
     ],
   );

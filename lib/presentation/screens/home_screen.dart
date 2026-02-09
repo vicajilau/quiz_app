@@ -16,6 +16,7 @@ import 'package:quiz_app/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quiz_app/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quiz_app/presentation/screens/dialogs/quiz_metadata_dialog.dart';
 import 'package:quiz_app/presentation/screens/dialogs/settings_dialog.dart';
+import 'package:quiz_app/core/theme/extensions/home_theme.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -212,9 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         boxShadow: _isDragging
                             ? [
                                 BoxShadow(
-                                  color: Theme.of(
-                                    context,
-                                  ).primaryColor.withValues(alpha: 0.1),
+                                  color: context.homeTheme.dropZoneShadowColor,
                                   blurRadius: 20,
                                   offset: const Offset(0, 10),
                                 ),

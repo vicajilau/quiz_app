@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/theme/extensions/exam_timer_theme.dart';
 
 /// A widget that displays a countdown timer for an exam.
 ///
@@ -113,31 +114,22 @@ class _ExamTimerWidgetState extends State<ExamTimerWidget>
       context: context,
       barrierDismissible: false,
       builder: (context) {
-        final isDark = Theme.of(context).brightness == Brightness.dark;
-        final cardColor = isDark ? const Color(0xFF27272A) : Colors.white;
-        final textColor = isDark ? Colors.white : const Color(0xFF18181B);
-        final subTextColor = isDark
-            ? const Color(0xFFA1A1AA)
-            : const Color(0xFF71717A);
-        final borderColor = isDark
-            ? const Color(0xFF3F3F46)
-            : const Color(0xFFE4E4E7);
-        final primaryColor = const Color(0xFF8B5CF6);
+        final theme = context.examTimerTheme;
 
         return Dialog(
-          backgroundColor: Colors.transparent,
+          backgroundColor: theme.dialogCanvasColor,
           elevation: 0,
           insetPadding: const EdgeInsets.symmetric(horizontal: 16),
           child: Container(
             width: 520,
             padding: const EdgeInsets.all(32),
             decoration: BoxDecoration(
-              color: cardColor,
+              color: theme.dialogBackgroundColor,
               borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: borderColor, width: 1),
+              border: Border.all(color: theme.dialogBorderColor, width: 1),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.1),
+                  color: theme.dialogShadowColor,
                   blurRadius: 20,
                   offset: const Offset(0, 10),
                 ),
@@ -154,7 +146,7 @@ class _ExamTimerWidgetState extends State<ExamTimerWidget>
                     fontFamily: 'Inter',
                     fontSize: 24,
                     fontWeight: FontWeight.w700,
-                    color: textColor,
+                    color: theme.dialogTextColor,
                     height: 1.2,
                   ),
                   textAlign: TextAlign.center,
@@ -168,7 +160,7 @@ class _ExamTimerWidgetState extends State<ExamTimerWidget>
                     fontFamily: 'Inter',
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
-                    color: subTextColor,
+                    color: theme.dialogSubTextColor,
                     height: 1.5,
                   ),
                   textAlign: TextAlign.center,
@@ -182,8 +174,8 @@ class _ExamTimerWidgetState extends State<ExamTimerWidget>
                     widget.onTimeExpired();
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor,
-                    foregroundColor: Colors.white,
+                    backgroundColor: theme.dialogButtonColor,
+                    foregroundColor: theme.dialogButtonTextColor,
                     elevation: 0,
                     minimumSize: const Size(double.infinity, 56),
                     shape: RoundedRectangleBorder(
@@ -218,12 +210,16 @@ class _ExamTimerWidgetState extends State<ExamTimerWidget>
     // Determine color based on time remaining to match design logic or fallback
     final bool isLowTime = _remainingTime!.inMinutes < 5;
     final primaryColor = Theme.of(context).primaryColor;
-    final color = isLowTime ? Colors.red : primaryColor;
+    final extension = context.examTimerTheme;
+    final color = isLowTime ? extension.timerLowColor : primaryColor;
+    final backgroundColor = isLowTime
+        ? extension.timerLowBackgroundColor
+        : extension.timerBackgroundColor;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.2),
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(

@@ -7,7 +7,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/presentation/widgets/latex_text.dart';
-import 'package:quiz_app/core/constants/theme_extensions.dart';
+import 'package:quiz_app/core/theme/extensions/custom_colors.dart';
 
 class QuestionPreviewCard extends StatefulWidget {
   final Question question;

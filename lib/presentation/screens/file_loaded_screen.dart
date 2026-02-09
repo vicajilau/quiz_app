@@ -29,6 +29,8 @@ import 'package:quiz_app/presentation/screens/dialogs/settings_dialog.dart';
 import 'package:quiz_app/presentation/screens/widgets/request_file_name_dialog.dart';
 import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
 import 'package:quiz_app/presentation/screens/dialogs/quiz_metadata_dialog.dart';
+import 'package:quiz_app/core/theme/extensions/file_loaded_theme.dart';
+import 'package:quiz_app/core/theme/extensions/custom_colors.dart';
 
 class FileLoadedScreen extends StatefulWidget {
   final FileBloc fileBloc;
@@ -354,10 +356,12 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFF27272A), // Zinc 800
+        backgroundColor: context.fileLoadedTheme.deleteDialogBackgroundColor,
         title: Text(
           AppLocalizations.of(context)!.deleteButton,
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(
+            color: context.fileLoadedTheme.deleteDialogTextColor,
+          ),
         ),
         content: Text(
           _selectedQuestions.length == 1
@@ -367,20 +371,24 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                 )!.deleteMultipleQuestionsConfirmation(
                   _selectedQuestions.length,
                 ),
-          style: const TextStyle(color: Colors.white70),
+          style: TextStyle(
+            color: context.fileLoadedTheme.deleteDialogSubTextColor,
+          ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
             child: Text(
               AppLocalizations.of(context)!.cancelButton,
-              style: const TextStyle(color: Colors.white),
+              style: TextStyle(
+                color: context.fileLoadedTheme.deleteDialogTextColor,
+              ),
             ),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
             style: TextButton.styleFrom(
-              foregroundColor: const Color(0xFFEF4444),
+              foregroundColor: Theme.of(context).colorScheme.error,
             ),
             child: Text(AppLocalizations.of(context)!.deleteButton),
           ),
@@ -437,7 +445,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                 appBar: PreferredSize(
                   preferredSize: const Size.fromHeight(72),
                   child: AppBar(
-                    backgroundColor: const Color(0xFF8B5CF6), // Violet 500
+                    backgroundColor: Theme.of(context).primaryColor,
                     elevation: 0,
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.vertical(
@@ -453,14 +461,16 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.2),
+                            color: context
+                                .fileLoadedTheme
+                                .appBarIconBackgroundColor,
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: IconButton(
                             padding: EdgeInsets.zero,
-                            icon: const Icon(
+                            icon: Icon(
                               LucideIcons.arrowLeft,
-                              color: Colors.white,
+                              color: Theme.of(context).colorScheme.onPrimary,
                               size: 20,
                             ),
                             tooltip: AppLocalizations.of(
@@ -512,8 +522,8 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                             },
                             child: Text(
                               AppLocalizations.of(context)!.quizPreviewTitle,
-                              style: const TextStyle(
-                                color: Colors.white,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onPrimary,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w700,
                                 fontFamily: 'Plus Jakarta Sans',
@@ -530,15 +540,16 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                         height: 40,
                         margin: const EdgeInsets.only(right: 8),
                         decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.2),
+                          color:
+                              context.fileLoadedTheme.appBarIconBackgroundColor,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: IconButton(
                           padding: EdgeInsets.zero,
                           onPressed: () => _showSettingsDialog(context),
-                          icon: const Icon(
+                          icon: Icon(
                             LucideIcons.settings,
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.onPrimary,
                             size: 20,
                           ),
                           tooltip: AppLocalizations.of(
@@ -551,8 +562,10 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                         margin: const EdgeInsets.only(right: 24),
                         child: Material(
                           color: _isSelectionMode
-                              ? const Color(0xFF8B5CF6) // Active state color
-                              : Colors.white.withValues(alpha: 0.2),
+                              ? Theme.of(context).primaryColor
+                              : context
+                                    .fileLoadedTheme
+                                    .selectionInactiveBackgroundColor,
                           borderRadius: BorderRadius.circular(20),
                           child: InkWell(
                             borderRadius: BorderRadius.circular(20),
@@ -570,7 +583,9 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                                     _isSelectionMode
                                         ? LucideIcons.checkSquare
                                         : LucideIcons.mousePointer2,
-                                    color: Colors.white,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onPrimary,
                                     size: 18,
                                   ),
                                   const SizedBox(width: 8),
@@ -578,8 +593,10 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                                     _isSelectionMode
                                         ? AppLocalizations.of(context)!.done
                                         : AppLocalizations.of(context)!.select,
-                                    style: const TextStyle(
-                                      color: Colors.white,
+                                    style: TextStyle(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onPrimary,
                                       fontSize: 13,
                                       fontWeight: FontWeight.w600,
                                       fontFamily: 'Inter',
@@ -635,9 +652,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                       if (_isDragging)
                         Positioned.fill(
                           child: Container(
-                            color: Theme.of(
-                              context,
-                            ).primaryColor.withValues(alpha: 0.1),
+                            color: context.fileLoadedTheme.dragOverlayColor,
                             child: Center(
                               child: Container(
                                 padding: const EdgeInsets.all(32),
@@ -645,14 +660,16 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                                   color: Theme.of(context).cardColor,
                                   borderRadius: BorderRadius.circular(24),
                                   border: Border.all(
-                                    color: Theme.of(context).primaryColor,
+                                    color: context
+                                        .fileLoadedTheme
+                                        .dragOverlayBorderColor,
                                     width: 3,
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Theme.of(
-                                        context,
-                                      ).primaryColor.withValues(alpha: 0.2),
+                                      color: context
+                                          .fileLoadedTheme
+                                          .dragOverlayShadowColor,
                                       blurRadius: 20,
                                       offset: const Offset(0, 10),
                                     ),
@@ -731,7 +748,9 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                               context,
                             )!.noEnabledQuestionsError,
                           ),
-                          backgroundColor: Colors.orange,
+                          backgroundColor: Theme.of(
+                            context,
+                          ).extension<CustomColors>()!.warning,
                         ),
                       );
                       return;
