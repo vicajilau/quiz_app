@@ -97,9 +97,17 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
           create: (_) {
             final quizConfig = ServiceLocator.instance.getQuizConfig();
             final isStudyMode = quizConfig?.isStudyMode ?? false;
+            final metadata = widget.quizFile.metadata;
 
             return ServiceLocator.instance.getIt<QuizExecutionBloc>()..add(
-              QuizExecutionStarted(questionsToUse, isStudyMode: isStudyMode),
+              QuizExecutionStarted(
+                questionsToUse,
+                isStudyMode: isStudyMode,
+                quizId: metadata.id,
+                quizTitle: metadata.title,
+                quizVersion: metadata.version,
+                quizAuthor: metadata.author,
+              ),
             );
           },
           child: Builder(

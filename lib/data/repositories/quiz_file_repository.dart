@@ -1,3 +1,4 @@
+import 'package:uuid/uuid.dart';
 import 'package:quiz_app/core/debug_print.dart';
 import 'package:quiz_app/core/service_locator.dart';
 import 'package:quiz_app/data/services/file_service/i_file_service.dart';
@@ -21,18 +22,27 @@ class QuizFileRepository {
   /// Loads a `QuizFile` from a file at the specified [filePath].
   /// This method calls `readQuizFile` from `QuizFileService` to read the file,
   /// and then registers the loaded file in the service locator.
+  /// If the quiz file doesn't have an ID, one is generated for tracking purposes.
   ///
   /// - [filePath]: The path to the file to load.
   /// - Returns: A `Future<QuizFile>` containing the loaded `QuizFile`.
   /// - Throws: An exception if there is an error loading the file.
   Future<QuizFile> loadQuizFile(String filePath) async {
-    final quizFile = await _fileService.readQuizFile(filePath);
+    var quizFile = await _fileService.readQuizFile(filePath);
+
+    // Generate UUID if quiz doesn't have one (migration for old files)
+    if (quizFile.metadata.id == null) {
+      final newMetadata = quizFile.metadata.copyWith(id: const Uuid().v4());
+      quizFile = quizFile.copyWith(metadata: newMetadata);
+      printInDebug('Generated new UUID for quiz: ${newMetadata.id}');
+    }
+
     ServiceLocator.instance.registerQuizFile(quizFile);
     return quizFile;
   }
 
   /// Creates a new `QuizFile` with the specified metadata.
-  /// The method generates a new `QuizFile` with the provided metadata.
+  /// The method generates a new `QuizFile` with the provided metadata and a unique ID.
   ///
   /// - [title]: The title for the new `QuizFile`.
   /// - [description]: The description for the new `QuizFile`.
@@ -46,6 +56,7 @@ class QuizFileRepository {
     required String author,
   }) async {
     final metadata = QuizMetadata(
+      id: const Uuid().v4(), // Generate unique ID for new quiz
       title: title,
       description: description,
       version: version,
@@ -86,11 +97,18 @@ class QuizFileRepository {
 
   /// Opens a file picker for the user to select a quiz file.
   /// This method calls `pickFile` from `QuizFileService` to open the file picker.
+  /// If the quiz file doesn't have an ID, one is generated for tracking purposes.
   ///
   /// - Returns: A `Future<QuizFile?>` containing the selected `QuizFile`, or `null` if no file is selected.
   Future<QuizFile?> pickFile() async {
-    final quizFile = await _fileService.pickFile();
+    var quizFile = await _fileService.pickFile();
     if (quizFile != null) {
+      // Generate UUID if quiz doesn't have one (migration for old files)
+      if (quizFile.metadata.id == null) {
+        final newMetadata = quizFile.metadata.copyWith(id: const Uuid().v4());
+        quizFile = quizFile.copyWith(metadata: newMetadata);
+        printInDebug('Generated new UUID for picked quiz: ${newMetadata.id}');
+      }
       ServiceLocator.instance.registerQuizFile(quizFile);
     }
     return quizFile;
@@ -99,11 +117,18 @@ class QuizFileRepository {
   /// Picks a file manually using the file picker dialog.
   /// This method delegates the task of selecting a file to the `_fileService`'s
   /// `pickFile` method, and registers the selected file in the service locator.
+  /// If the quiz file doesn't have an ID, one is generated for tracking purposes.
   ///
   /// - Returns: A `Future<QuizFile?>` containing the selected `QuizFile`, or `null` if no file was selected.
   Future<QuizFile?> pickFileManually() async {
-    final quizFile = await _fileService.pickFile();
+    var quizFile = await _fileService.pickFile();
     if (quizFile != null) {
+      // Generate UUID if quiz doesn't have one (migration for old files)
+      if (quizFile.metadata.id == null) {
+        final newMetadata = quizFile.metadata.copyWith(id: const Uuid().v4());
+        quizFile = quizFile.copyWith(metadata: newMetadata);
+        printInDebug('Generated new UUID for picked quiz: ${newMetadata.id}');
+      }
       ServiceLocator.instance.registerQuizFile(quizFile);
     }
     return quizFile;

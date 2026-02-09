@@ -1,14 +1,39 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quiz_app/core/service_locator.dart';
+import 'package:quiz_app/data/services/quiz_record/quiz_record_service.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
+import 'package:quiz_app/domain/models/history/quiz_record.dart';
+import 'package:quiz_app/domain/models/history/question_result.dart' as history;
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 
 /// BLoC for managing quiz execution state and logic.
 class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
-  QuizExecutionBloc() : super(QuizExecutionInitial()) {
+  final QuizRecordService _recordService;
+
+  // Track quiz metadata for record saving
+  DateTime? _quizStartTime;
+  String? _currentQuizId;
+  String? _currentQuizTitle;
+  String? _currentQuizVersion;
+  String? _currentQuizAuthor;
+
+  QuizExecutionBloc({QuizRecordService? recordService})
+    : _recordService =
+          recordService ?? ServiceLocator.instance.getIt<QuizRecordService>(),
+      super(QuizExecutionInitial()) {
     // Handle quiz start
     on<QuizExecutionStarted>((event, emit) {
+      // Track quiz start time and metadata
+      // Preserve existing metadata if new values are null (for retry scenarios)
+      _quizStartTime = DateTime.now();
+      _currentQuizId = event.quizId ?? _currentQuizId;
+      _currentQuizTitle = event.quizTitle ?? _currentQuizTitle;
+      _currentQuizVersion = event.quizVersion ?? _currentQuizVersion;
+      _currentQuizAuthor = event.quizAuthor ?? _currentQuizAuthor;
+
       emit(
         QuizExecutionInProgress(
           questions: event.questions,
@@ -133,7 +158,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
     });
 
     // Handle quiz submission
-    on<QuizSubmitted>((event, emit) {
+    on<QuizSubmitted>((event, emit) async {
       if (state is QuizExecutionInProgress) {
         final currentState = state as QuizExecutionInProgress;
 
@@ -149,15 +174,22 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
           }
         }
 
-        emit(
-          QuizExecutionCompleted(
-            questions: currentState.questions,
-            userAnswers: currentState.userAnswers,
-            essayAnswers: currentState.essayAnswers,
-            correctAnswers: correctCount,
-            totalQuestions: currentState.totalQuestions,
-          ),
+        final completedState = QuizExecutionCompleted(
+          questions: currentState.questions,
+          userAnswers: currentState.userAnswers,
+          essayAnswers: currentState.essayAnswers,
+          correctAnswers: correctCount,
+          totalQuestions: currentState.totalQuestions,
         );
+
+        // Save quiz record (non-blocking)
+        await _saveQuizRecord(
+          currentState: currentState,
+          correctCount: correctCount,
+          score: completedState.score,
+        );
+
+        emit(completedState);
       }
     });
 
@@ -165,18 +197,8 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
     on<QuizRestarted>((event, emit) {
       if (state is QuizExecutionCompleted) {
         final completedState = state as QuizExecutionCompleted;
-        // NOTE: We don't have isStudyMode persisted in CompletedState usually,
-        // but for restart we might need it.
-        // For now defaulting to false or we need to pass it in Restart event?
-        // Let's assume restart resets to basic mode or we need to capture it.
-        // Actually, preventing regression:
-        // If we restart, we lose the isStudyMode unless we stored it in CompletedState too.
-        // Let's modify logic to perhaps keep it simple for now,
-        // or just accept it resets.
-        // Given complexity, let's just initialize false, or better,
-        // we should probably pass it back.
-        // BUT, for this specific request "Skip not working",
-        // I will just init valid-looking state.
+        // Reset start time for new attempt
+        _quizStartTime = DateTime.now();
 
         emit(
           QuizExecutionInProgress(
@@ -185,11 +207,69 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
             userAnswers: {},
             essayAnswers: {},
             validatedQuestions: {},
-            isStudyMode: false, // Potentially losing mode here on plain restart
+            isStudyMode: false,
           ),
         );
       }
     });
+  }
+
+  /// Saves the quiz record to persistent storage.
+  Future<void> _saveQuizRecord({
+    required QuizExecutionInProgress currentState,
+    required int correctCount,
+    required double score,
+  }) async {
+    // Only save if we have quiz metadata
+    if (_quizStartTime == null || _currentQuizId == null) {
+      debugPrint('Quiz record not saved: missing quiz metadata');
+      return;
+    }
+
+    try {
+      // Build question results
+      final questionResults = <history.QuestionResult>[];
+      for (int i = 0; i < currentState.questions.length; i++) {
+        final question = currentState.questions[i];
+        final userAnswers = currentState.userAnswers[i] ?? [];
+        final essayAnswer = currentState.essayAnswers[i];
+
+        questionResults.add(
+          history.QuestionResult(
+            questionHash: question.contentHash,
+            questionText: question.text,
+            isCorrect: _isAnswerCorrect(
+              question,
+              userAnswers,
+              essayAnswer ?? '',
+            ),
+            userAnswers: userAnswers,
+            correctAnswers: question.correctAnswers,
+            essayAnswer: essayAnswer,
+          ),
+        );
+      }
+
+      final record = QuizRecord.fromQuizCompletion(
+        quizId: _currentQuizId!,
+        quizTitle: _currentQuizTitle ?? 'Unknown Quiz',
+        quizVersion: _currentQuizVersion ?? '1.0',
+        quizAuthor: _currentQuizAuthor,
+        startedAt: _quizStartTime!,
+        questionResults: questionResults,
+        essayAnswers: currentState.essayAnswers,
+        correctCount: correctCount,
+        totalQuestions: currentState.totalQuestions,
+        score: score,
+        isStudyMode: currentState.isStudyMode,
+      );
+
+      await _recordService.saveRecord(record);
+      debugPrint('Quiz record saved: ${record.id}');
+    } catch (e) {
+      // Log error but don't fail the quiz completion
+      debugPrint('Error saving quiz record: $e');
+    }
   }
 
   /// Helper method to check if answer is correct

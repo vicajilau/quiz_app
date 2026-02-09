@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:crypto/crypto.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import 'package:quiz_app/core/constants/question_constants.dart';
 
@@ -23,6 +25,17 @@ class Question {
 
   /// Whether this question is enabled/active or disabled.
   final bool isEnabled;
+
+  /// Computes a content-based hash for this question.
+  /// The hash changes if the question content (type, text, options, correctAnswers) changes.
+  /// Used to track question-level statistics and identify questions across quiz attempts.
+  String get contentHash {
+    final content =
+        '${type.value}|$text|${options.join("|")}|${correctAnswers.join(",")}';
+    final bytes = utf8.encode(content);
+    final digest = sha256.convert(bytes);
+    return digest.toString().substring(0, 16);
+  }
 
   /// Constructor for creating a `Question` instance.
   const Question({

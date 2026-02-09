@@ -2167,6 +2167,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Disable'**
   String get disable;
+
+  /// Button label for reordering questions
+  ///
+  /// In en, this message translates to:
+  /// **'Reorder'**
+  String get reorder;
+
+  /// Confirmation message for deleting all questions
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete all questions? This action cannot be undone.'**
+  String get deleteAllQuestionsConfirmation;
 }
 
 class _AppLocalizationsDelegate

@@ -1622,5 +1622,13 @@
   "disable": "Desactivar",
   "@disable": {
     "description": "Button label to disable a question"
+  },
+  "reorder": "Reordenar",
+  "@reorder": {
+    "description": "Button label for reordering questions"
+  },
+  "deleteAllQuestionsConfirmation": "¿Estás seguro de que quieres eliminar todas las preguntas? Esta acción no se puede deshacer.",
+  "@deleteAllQuestionsConfirmation": {
+    "description": "Confirmation message for deleting all questions"
   }
 }

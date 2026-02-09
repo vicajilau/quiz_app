@@ -8,7 +8,20 @@ class QuizExecutionStarted extends QuizExecutionEvent {
   final List<Question> questions;
   final bool isStudyMode;
 
-  QuizExecutionStarted(this.questions, {this.isStudyMode = false});
+  /// Quiz metadata for record keeping (optional for backwards compatibility)
+  final String? quizId;
+  final String? quizTitle;
+  final String? quizVersion;
+  final String? quizAuthor;
+
+  QuizExecutionStarted(
+    this.questions, {
+    this.isStudyMode = false,
+    this.quizId,
+    this.quizTitle,
+    this.quizVersion,
+    this.quizAuthor,
+  });
 }
 
 /// Event triggered when a user selects an answer.

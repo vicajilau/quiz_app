@@ -6,12 +6,15 @@ import 'package:quiz_app/core/constants/theme.dart';
 import 'package:quiz_app/core/file_handler.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/core/service_locator.dart';
+import 'package:quiz_app/data/local/hive/hive_initializer.dart';
 import 'package:quiz_app/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quiz_app/presentation/blocs/file_bloc/file_event.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   setUrlStrategy(null);
-  ServiceLocator.instance.setup();
+  await HiveInitializer.initialize();
+  await ServiceLocator.instance.setup();
   runApp(const QuizApplication());
 }
 

@@ -1194,4 +1194,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get disable => 'Desactivar';
+
+  @override
+  String get reorder => 'Reordenar';
+
+  @override
+  String get deleteAllQuestionsConfirmation =>
+      '¿Estás seguro de que quieres eliminar todas las preguntas? Esta acción no se puede deshacer.';
 }

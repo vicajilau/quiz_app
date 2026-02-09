@@ -1137,4 +1137,11 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get disable => '無効化';
+
+  @override
+  String get reorder => 'Reorder';
+
+  @override
+  String get deleteAllQuestionsConfirmation =>
+      'Are you sure you want to delete all questions? This action cannot be undone.';
 }
