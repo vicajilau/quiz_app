@@ -4,6 +4,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
 import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/domain/models/ai/ai_file_attachment.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
 
 class AiGenerateStep2Widget extends StatelessWidget {
   final TextEditingController textController;
@@ -39,6 +40,7 @@ class AiGenerateStep2Widget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final backgroundColor = isDark ? const Color(0xFF27272A) : Colors.white;
     final borderColor = isDark ? Colors.transparent : const Color(0xFFE4E4E7);
@@ -83,7 +85,7 @@ class AiGenerateStep2Widget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Enter Content',
+                    localizations.aiEnterContentTitle,
                     style: TextStyle(
                       fontFamily: 'Inter',
                       fontSize: 24,
@@ -105,7 +107,7 @@ class AiGenerateStep2Widget extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                'Enter the topic or paste content to generate questions from',
+                localizations.aiEnterContentDescription,
                 style: TextStyle(
                   fontFamily: 'Inter',
                   fontSize: 14,
@@ -136,8 +138,7 @@ class AiGenerateStep2Widget extends StatelessWidget {
                           color: titleColor,
                         ),
                         decoration: InputDecoration.collapsed(
-                          hintText:
-                              'Enter a topic like "World War II history" or paste text content here...',
+                          hintText: localizations.aiContentFieldHint,
                           hintStyle: TextStyle(
                             fontFamily: 'Inter',
                             fontSize: 14,
@@ -203,7 +204,7 @@ class AiGenerateStep2Widget extends StatelessWidget {
                                 ),
                               )
                             : Text(
-                                'Attach a file (PDF, TXT, DOCX)',
+                                localizations.aiAttachFileHint,
                                 style: TextStyle(
                                   fontFamily: 'Inter',
                                   fontSize: 14,
@@ -233,7 +234,7 @@ class AiGenerateStep2Widget extends StatelessWidget {
 
               // Question Count
               Text(
-                'Number of Questions',
+                localizations.aiNumberQuestionsLabel,
                 style: TextStyle(
                   fontFamily: 'Inter',
                   fontSize: 14,
@@ -335,12 +336,12 @@ class AiGenerateStep2Widget extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(LucideIcons.arrowLeft, size: 16),
-                            SizedBox(width: 8),
-                            Text('Back'),
+                            const Icon(LucideIcons.arrowLeft, size: 16),
+                            const SizedBox(width: 8),
+                            Text(localizations.backButton),
                           ],
                         ),
                       ),
@@ -380,12 +381,12 @@ class AiGenerateStep2Widget extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(LucideIcons.sparkles, size: 16),
-                            SizedBox(width: 8),
-                            Text('Generate'),
+                            const Icon(LucideIcons.sparkles, size: 16),
+                            const SizedBox(width: 8),
+                            Text(localizations.generateButton),
                           ],
                         ),
                       ),
