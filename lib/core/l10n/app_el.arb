@@ -7,6 +7,10 @@
   "fileLoaded": "Το αρχείο φορτώθηκε: {filePath}",
   "fileSaved": "Το αρχείο αποθηκεύτηκε: {filePath}",
   "dropFileHere": "Κάντε κλικ στο λογότυπο ή σύρετε ένα αρχείο .quiz στην οθόνη",
+  "clickOrDragFile": "Κάντε κλικ για φόρτωση ή σύρετε ένα αρχείο .quiz στην οθόνη",
+  "@clickOrDragFile": {
+    "description": "Κείμενο που εμφανίζεται κάτω από την περιοχή φόρτωσης"
+  },
   "errorInvalidFile": "Σφάλμα: Μη έγκυρο αρχείο. Πρέπει να είναι αρχείο .quiz.",
   "errorLoadingFile": "Σφάλμα κατά τη φόρτωση του αρχείου Quiz: {error}",
   "errorExportingFile": "Σφάλμα κατά την εξαγωγή του αρχείου: {error}",
@@ -340,5 +344,49 @@
   "sorteosLabel": "Raffles",
   "edit": "Επεξεργασία",
   "enable": "Ενεργοποίηση",
-  "disable": "Απενεργοποίηση"
+  "disable": "Απενεργοποίηση",
+  "reorderQuestionsTooltip": "Αναδιάταξη ερωτήσεων",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "Προεπισκόπηση Κουίζ",
+  "select": "Επιλογή",
+  "done": "Τέλος",
+  "importButton": "Εισαγωγή",
+  "reorderButton": "Αναδιάταξη",
+  "startQuizButton": "Έναρξη Κουίζ",
+  "deleteConfirmation": "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το κουίζ;",
+  "saveSuccess": "Το αρχείο αποθηκεύτηκε επιτυχώς",
+  "errorSavingFile": "Σφάλμα κατά την αποθήκευση του αρχείου",
+  "deleteSingleQuestionConfirmation": "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτή την ερώτηση;",
+  "deleteMultipleQuestionsConfirmation": "Είστε σίγουροι ότι θέλετε να διαγράψετε {count} ερωτήσεις;",
+  "missingExplanation": "Λείπει η επεξήγηση",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "Αυτή η ερώτηση δεν έχει επεξήγηση",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "Τύπος ερώτησης: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  },
+  "settingsTitle": "Ρυθμίσεις",
+  "questionsOverview": "Χάρτης Ερωτήσεων",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
+  },
+  "congratulations": "🎉 Συγχαρητήρια! 🎉",
+  "keepPracticing": "Συνεχίστε την εξάσκηση για να βελτιωθείτε!",
+  "tryAgain": "Δοκιμάστε ξανά",
+  "review": "Ανασκόπηση",
+  "home": "Αρχική"
 }
+

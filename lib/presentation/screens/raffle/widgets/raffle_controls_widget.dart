@@ -60,8 +60,13 @@ class RaffleControlsWidget extends StatelessWidget {
                   style: const TextStyle(fontSize: 18),
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: canStartRaffle ? Colors.green : null,
+                  backgroundColor: canStartRaffle
+                      ? const Color(0xFF8B5CF6)
+                      : null,
                   foregroundColor: canStartRaffle ? Colors.white : null,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
               ),
             ),
@@ -83,10 +88,26 @@ class RaffleControlsWidget extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: OutlinedButton.icon(
-                      onPressed: () => showClearWinnersDialog(context),
-                      icon: const Icon(Icons.restart_alt),
-                      label: Text(AppLocalizations.of(context)!.resetWinners),
+                    child: SizedBox(
+                      height: 56,
+                      child: OutlinedButton.icon(
+                        onPressed: () => showClearWinnersDialog(context),
+                        icon: const Icon(Icons.restart_alt),
+                        label: Text(
+                          AppLocalizations.of(context)!.resetWinners,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.red[400],
+                          side: BorderSide(color: Colors.red[200]!),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],

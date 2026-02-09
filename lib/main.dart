@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/routes/app_router.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 
-import 'package:quiz_app/core/constants/theme.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
 import 'package:quiz_app/core/file_handler.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/core/service_locator.dart';

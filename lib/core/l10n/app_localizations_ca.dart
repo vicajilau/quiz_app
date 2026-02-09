@@ -35,6 +35,10 @@ class AppLocalizationsCa extends AppLocalizations {
       'Feu clic aquí o arrossegueu un fitxer .quiz a la pantalla';
 
   @override
+  String get clickOrDragFile =>
+      'Feu clic per carregar o arrossegueu un fitxer .quiz a la pantalla';
+
+  @override
   String get errorInvalidFile =>
       'Error: Fitxer no vàlid. Ha de ser un fitxer .quiz.';
 
@@ -154,6 +158,12 @@ class AppLocalizationsCa extends AppLocalizations {
   String get previous => 'Anterior';
 
   @override
+  String get skip => 'Saltar';
+
+  @override
+  String get questionsOverview => 'Mapa de preguntes';
+
+  @override
   String get next => 'Següent';
 
   @override
@@ -269,6 +279,9 @@ class AppLocalizationsCa extends AppLocalizations {
       'Configuració de l\'ordre de les preguntes';
 
   @override
+  String get reorderQuestionsTooltip => 'Reordenar preguntes';
+
+  @override
   String get save => 'Desar';
 
   @override
@@ -331,6 +344,17 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get explanationTooltip => 'Aquesta pregunta té una explicació';
+
+  @override
+  String get missingExplanation => 'Manca explicació';
+
+  @override
+  String get missingExplanationTooltip => 'Aquesta pregunta no té explicació';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return 'Tipus de pregunta: $type';
+  }
 
   @override
   String get aiPrompt =>
@@ -974,7 +998,7 @@ class AppLocalizationsCa extends AppLocalizations {
   String get viewWinners => 'Veure Guanyadors';
 
   @override
-  String get congratulations => 'Felicitats!';
+  String get congratulations => '🎉 Felicitats! 🎉';
 
   @override
   String positionLabel(int position) {
@@ -1182,7 +1206,7 @@ class AppLocalizationsCa extends AppLocalizations {
   String get quizModeTitle => 'Mode Qüestionari';
 
   @override
-  String get skip => 'Saltar';
+  String get settingsTitle => 'Configuració';
 
   @override
   String get askAiAssistant => 'Pregunta a l\'assistent d\'IA';
@@ -1198,4 +1222,53 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get disable => 'Desactivar';
+
+  @override
+  String get quizPreviewTitle => 'Vista prèvia del qüestionari';
+
+  @override
+  String get select => 'Seleccionar';
+
+  @override
+  String get done => 'Fet';
+
+  @override
+  String get importButton => 'Importar';
+
+  @override
+  String get reorderButton => 'Reordenar';
+
+  @override
+  String get startQuizButton => 'Començar qüestionari';
+
+  @override
+  String get deleteConfirmation =>
+      'Esteu segur que voleu eliminar aquest qüestionari?';
+
+  @override
+  String get saveSuccess => 'Fitxer desat correctament';
+
+  @override
+  String get errorSavingFile => 'Error en desar el fitxer';
+
+  @override
+  String get deleteSingleQuestionConfirmation =>
+      'Estàs segur que vols eliminar aquesta pregunta?';
+
+  @override
+  String deleteMultipleQuestionsConfirmation(int count) {
+    return 'Estàs segur que vols eliminar $count preguntes?';
+  }
+
+  @override
+  String get keepPracticing => 'Segueix practicant per millorar!';
+
+  @override
+  String get tryAgain => 'Tornar a intentar';
+
+  @override
+  String get review => 'Repassar';
+
+  @override
+  String get home => 'Inici';
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+
 import 'dart:async';
 import 'package:quiz_app/core/service_locator.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
@@ -13,7 +13,6 @@ import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_e
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/quiz_in_progress_view.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/quiz_completed_view.dart';
-import 'package:quiz_app/presentation/screens/dialogs/back_press_handler.dart';
 
 class QuizFileExecutionScreen extends StatefulWidget {
   final QuizFile quizFile;
@@ -26,34 +25,11 @@ class QuizFileExecutionScreen extends StatefulWidget {
 }
 
 class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
-  bool _examTimeEnabled = false;
-  int _examTimeMinutes = 60;
   bool _randomizeAnswers = false;
-
   @override
   void initState() {
     super.initState();
-    _loadExamTimeSettings();
     _loadQuizSettings();
-  }
-
-  Future<void> _loadExamTimeSettings() async {
-    final examTimeEnabled = await ConfigurationService.instance
-        .getExamTimeEnabled();
-    final examTimeMinutes = await ConfigurationService.instance
-        .getExamTimeMinutes();
-
-    // Get Study Mode setting from ServiceLocator
-    final quizConfig = ServiceLocator.instance.getQuizConfig();
-    final isStudyMode = quizConfig?.isStudyMode ?? false;
-
-    if (mounted) {
-      setState(() {
-        // In Study Mode, force disable the timer
-        _examTimeEnabled = isStudyMode ? false : examTimeEnabled;
-        _examTimeMinutes = examTimeMinutes;
-      });
-    }
   }
 
   Future<void> _loadQuizSettings() async {
@@ -69,18 +45,25 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return FutureBuilder(
       future: _prepareQuizQuestions(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+          return Scaffold(
+            backgroundColor: isDark
+                ? const Color(0xFF18181B)
+                : const Color(0xFFFAFAFA),
+            body: const Center(child: CircularProgressIndicator()),
           );
         }
 
         if (snapshot.hasError) {
           return Scaffold(
-            appBar: AppBar(title: Text(widget.quizFile.metadata.title)),
+            backgroundColor: isDark
+                ? const Color(0xFF18181B)
+                : const Color(0xFFFAFAFA),
             body: Center(
               child: Text(
                 AppLocalizations.of(
@@ -104,44 +87,15 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
           },
           child: Builder(
             builder: (context) => Scaffold(
-              appBar: AppBar(
-                title: Text(widget.quizFile.metadata.title),
-                leading: IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () => BackPressHandler.handle(
-                    context,
-                    context.read<QuizExecutionBloc>(),
-                  ),
-                ),
-                actions: [
-                  if (_examTimeEnabled)
-                    Padding(
-                      padding: const EdgeInsets.only(right: 16.0),
-                      child: Center(
-                        child:
-                            BlocBuilder<QuizExecutionBloc, QuizExecutionState>(
-                              builder: (context, state) {
-                                return ExamTimerWidget(
-                                  initialDurationMinutes: _examTimeMinutes,
-                                  isQuizCompleted:
-                                      state is QuizExecutionCompleted,
-                                  onTimeExpired: () {
-                                    // Force complete the quiz
-                                    final bloc = context
-                                        .read<QuizExecutionBloc>();
-                                    bloc.add(QuizSubmitted());
-                                  },
-                                );
-                              },
-                            ),
-                      ),
-                    ),
-                ],
-              ),
+              backgroundColor: isDark
+                  ? const Color(0xFF18181B)
+                  : const Color(0xFFFAFAFA),
               body: SafeArea(
                 child: BlocConsumer<QuizExecutionBloc, QuizExecutionState>(
                   listener: (context, state) {
-                    // Handle any side effects if needed
+                    if (state is QuizExecutionCompleted) {
+                      // Handled by view
+                    }
                   },
                   builder: (context, state) {
                     if (state is QuizExecutionInitial) {
@@ -192,171 +146,5 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
     }
 
     return selectedQuestions;
-  }
-}
-
-// Separate widget for the exam timer to avoid rebuilding the entire screen
-class ExamTimerWidget extends StatefulWidget {
-  final int initialDurationMinutes;
-  final VoidCallback onTimeExpired;
-  final bool isQuizCompleted;
-
-  const ExamTimerWidget({
-    super.key,
-    required this.initialDurationMinutes,
-    required this.onTimeExpired,
-    this.isQuizCompleted = false,
-  });
-
-  @override
-  State<ExamTimerWidget> createState() => _ExamTimerWidgetState();
-}
-
-class _ExamTimerWidgetState extends State<ExamTimerWidget>
-    with TickerProviderStateMixin {
-  Timer? _examTimer;
-  Duration? _remainingTime;
-  late AnimationController _timerAnimationController;
-
-  @override
-  void initState() {
-    super.initState();
-    _timerAnimationController = AnimationController(
-      duration: const Duration(seconds: 1),
-      vsync: this,
-    );
-    _remainingTime = Duration(minutes: widget.initialDurationMinutes);
-    if (!widget.isQuizCompleted) {
-      _startExamTimer();
-    }
-  }
-
-  @override
-  void didUpdateWidget(ExamTimerWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    // Stop timer when quiz is completed
-    if (!oldWidget.isQuizCompleted && widget.isQuizCompleted) {
-      _stopTimer();
-    }
-  }
-
-  @override
-  void dispose() {
-    _examTimer?.cancel();
-    _timerAnimationController.dispose();
-    super.dispose();
-  }
-
-  void _stopTimer() {
-    _examTimer?.cancel();
-    _timerAnimationController.stop();
-  }
-
-  void _startExamTimer() {
-    if (_remainingTime == null) return;
-
-    _timerAnimationController.repeat();
-
-    _examTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (!mounted) {
-        timer.cancel();
-        return;
-      }
-
-      if (_remainingTime!.inSeconds <= 0) {
-        _handleTimeExpired();
-        return;
-      }
-
-      setState(() {
-        _remainingTime = _remainingTime! - const Duration(seconds: 1);
-      });
-    });
-  }
-
-  void _handleTimeExpired() {
-    _stopTimer();
-
-    if (!mounted) return;
-
-    // Show time expired dialog
-    _showTimeExpiredDialog();
-  }
-
-  void _showTimeExpiredDialog() {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        title: Text(AppLocalizations.of(context)!.examTimeExpiredTitle),
-        content: Text(AppLocalizations.of(context)!.examTimeExpiredMessage),
-        actions: [
-          ElevatedButton(
-            onPressed: () {
-              context.pop();
-              widget.onTimeExpired();
-            },
-            child: Text(AppLocalizations.of(context)!.finish),
-          ),
-        ],
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (_remainingTime == null) {
-      return const SizedBox.shrink();
-    }
-
-    final hours = _remainingTime!.inHours.toString().padLeft(2, '0');
-    final minutes = (_remainingTime!.inMinutes % 60).toString().padLeft(2, '0');
-    final seconds = (_remainingTime!.inSeconds % 60).toString().padLeft(2, '0');
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        color: _remainingTime!.inMinutes < 5
-            ? Colors.red.withValues(alpha: 0.1)
-            : Theme.of(context).primaryColor.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: _remainingTime!.inMinutes < 5
-              ? Colors.red
-              : Theme.of(context).primaryColor,
-        ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          RotationTransition(
-            turns: widget.isQuizCompleted
-                ? const AlwaysStoppedAnimation(0)
-                : _timerAnimationController,
-            child: Icon(
-              Icons.hourglass_empty,
-              size: 16,
-              color: _remainingTime!.inMinutes < 5
-                  ? Colors.red
-                  : Theme.of(context).primaryColor,
-            ),
-          ),
-          const SizedBox(width: 6),
-          Text(
-            AppLocalizations.of(
-              context,
-            )!.remainingTime(hours, minutes, seconds),
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-              color: _remainingTime!.inMinutes < 5
-                  ? Colors.red
-                  : Theme.of(context).primaryColor,
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }

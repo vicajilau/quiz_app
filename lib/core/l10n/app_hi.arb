@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Text displayed inside the drop area for dragging files."
   },
+  "clickOrDragFile": "Load karne ke liye click karen ya screen par .quiz file drag karen",
+  "@clickOrDragFile": {
+    "description": "Text displayed below the drop area"
+  },
   "errorInvalidFile": "त्रुटि: अमान्य फ़ाइल। .quiz फ़ाइल होनी चाहिए।",
   "@errorInvalidFile": {
     "description": "Message displayed when the dropped file is not a .quiz file."
@@ -207,6 +211,14 @@
   "previous": "पिछला",
   "@previous": {
     "description": "Previous button text in quiz navigation"
+  },
+  "skip": "छोड़ें",
+  "@skip": {
+      "description": "Skip button text in quiz navigation"
+  },
+  "questionsOverview": "प्रश्न मानचित्र",
+  "@questionsOverview": {
+      "description": "Title for the questions overview bottom sheet"
   },
   "next": "अगला",
   "@next": {
@@ -1619,5 +1631,49 @@
   "sorteosLabel": "Raffles",
   "edit": "संपादित करें",
   "enable": "सक्षम करें",
-  "disable": "अक्षम करें"
+  "disable": "अक्षम करें",
+  "reorderQuestionsTooltip": "प्रश्नों को पुनः व्यवस्थित करें",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "प्रश्नोत्तरी पूर्वावलोकन",
+  "select": "चुनें",
+  "done": "हो गया",
+  "importButton": "आयात करें",
+  "reorderButton": "पुनः क्रमित करें",
+  "startQuizButton": "प्रश्नोत्तरी शुरू करें",
+  "deleteConfirmation": "क्या आप वाकई इस प्रश्नोत्तरी को हटाना चाहते हैं?",
+  "saveSuccess": "फ़ाइल सफलतापूर्वक सहेजी गई",
+  "errorSavingFile": "फ़ाइल सहेजने में त्रुटि",
+  "deleteSingleQuestionConfirmation": "क्या आप वाकई इस प्रश्न को हटाना चाहते हैं?",
+  "deleteMultipleQuestionsConfirmation": "क्या आप वाकई {count} प्रश्नों को हटाना चाहते हैं?",
+  "missingExplanation": "स्पष्टीकरण गायब है",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "इस प्रश्न का कोई स्पष्टीकरण नहीं है",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "प्रश्न का प्रकार: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  },
+  "settingsTitle": "सेटिंग्स",
+  "questionsOverview": "Questions Map",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
+  },
+  "congratulations": "🎉 बधाई हो! 🎉",
+  "keepPracticing": "सुधार के लिए अभ्यास जारी रखें!",
+  "tryAgain": "फिर कोशिश करें",
+  "review": "समीक्षा",
+  "home": "होम"
 }
+

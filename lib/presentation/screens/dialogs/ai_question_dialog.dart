@@ -7,6 +7,7 @@ import 'package:quiz_app/data/services/configuration_service.dart';
 import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
 import 'package:quiz_app/presentation/widgets/ai_service_model_selector.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 
 import 'package:quiz_app/domain/models/ai/chat_message.dart';
 import 'package:quiz_app/presentation/screens/dialogs/widgets/ai_chat_bubble.dart';
@@ -204,186 +205,252 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    // Design Tokens
+    final backgroundColor = isDark ? const Color(0xFF27272A) : Colors.white;
+    final borderColor = isDark ? Colors.transparent : const Color(0xFFE4E4E7);
+    final closeBtnColor = isDark
+        ? const Color(0xFF3F3F46)
+        : const Color(0xFFF4F4F5);
+    final closeIconColor = isDark
+        ? const Color(0xFFA1A1AA)
+        : const Color(0xFF71717A);
+    final titleColor = isDark ? Colors.white : const Color(0xFF18181B);
 
     return Dialog(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.8,
-        height: MediaQuery.of(context).size.height * 0.8,
-        padding: const EdgeInsets.all(24.0),
+        constraints: const BoxConstraints(
+          maxWidth: 800,
+          maxHeight: 680,
+        ), // Max dimensions from design
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 0.85,
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: borderColor, width: 1),
+        ),
+        padding: const EdgeInsets.all(32),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      AppLocalizations.of(context)!.aiButtonText,
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    const Icon(
+                      LucideIcons.sparkles,
+                      color: Color(0xFF8B5CF6), // Violet 500
+                      size: 24,
                     ),
-                    const SizedBox(width: 8),
-                    Icon(
-                      Icons.auto_awesome,
-                      color: Theme.of(context).primaryColor,
-                      size: 28,
+                    const SizedBox(width: 12),
+                    Text(
+                      localizations.aiAssistantTitle,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 22,
+                        fontWeight: FontWeight.w700,
+                        color: titleColor,
+                      ),
                     ),
                   ],
                 ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    localizations.aiAssistantTitle,
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
+                GestureDetector(
+                  onTap: () => context.pop(),
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: closeBtnColor,
+                      borderRadius: BorderRadius.circular(20),
                     ),
+                    alignment: Alignment.center,
+                    child: Icon(LucideIcons.x, color: closeIconColor, size: 20),
                   ),
-                ),
-                IconButton(
-                  onPressed: () => context.pop(),
-                  icon: const Icon(Icons.close),
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
 
-            // Main Content Area (Chat + Context)
+            // Selectors & Chat Content
             Expanded(
-              child: ListView.builder(
-                controller: _scrollController,
-                itemCount:
-                    2 +
-                    _messages.length +
-                    (_isLoading
-                        ? 1
-                        : 0), // Selector + Context + Messages + Loading
-                itemBuilder: (context, index) {
-                  // 1. Service Selector
-                  if (index == 0) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
-                      child: AiServiceModelSelector(
-                        onServiceChanged: (service) {
-                          setState(() {
-                            _selectedService = service;
-                          });
-                        },
-                        onModelChanged: (model) {
-                          setState(() {
-                            _selectedModel = model;
-                          });
-                        },
-                        saveToPreferences: true,
-                      ),
-                    );
-                  }
+              child: Column(
+                children: [
+                  // Selectors
+                  AiServiceModelSelector(
+                    onServiceChanged: (service) {
+                      setState(() {
+                        _selectedService = service;
+                      });
+                    },
+                    onModelChanged: (model) {
+                      setState(() {
+                        _selectedModel = model;
+                      });
+                    },
+                    saveToPreferences: true,
+                  ),
+                  const SizedBox(height: 16),
 
-                  // 2. Question Context
-                  if (index == 1) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 24),
-                      child: QuestionContextWidget(question: widget.question),
-                    );
-                  }
+                  // Chat Area
+                  Expanded(
+                    child: ListView.builder(
+                      controller: _scrollController,
+                      itemCount:
+                          1 +
+                          _messages.length +
+                          (_isLoading ? 1 : 0), // Context + Messages + Loading
+                      itemBuilder: (context, index) {
+                        // 0. Question Context
+                        if (index == 0) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            child: QuestionContextWidget(
+                              question: widget.question,
+                            ),
+                          );
+                        }
 
-                  // 3. Chat Messages
-                  final messageIndex = index - 2;
-                  if (messageIndex < _messages.length) {
-                    final message = _messages[messageIndex];
-                    return AiChatBubble(
-                      content: message.content,
-                      isUser: message.isUser,
-                      isError: message.isError,
-                      aiServiceName: message.isUser
-                          ? null
-                          : _selectedService?.serviceName,
-                      onRetry: message.isError
-                          ? () => _retryLastQuestion(messageIndex)
-                          : null,
-                    );
-                  }
+                        // 1. Chat Messages
+                        final messageIndex = index - 1;
+                        if (messageIndex < _messages.length) {
+                          final message = _messages[messageIndex];
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 16),
+                            child: AiChatBubble(
+                              content: message.content,
+                              isUser: message.isUser,
+                              isError: message.isError,
+                              aiServiceName: message.isUser
+                                  ? null
+                                  : _selectedService?.serviceName,
+                              onRetry: message.isError
+                                  ? () => _retryLastQuestion(messageIndex)
+                                  : null,
+                            ),
+                          );
+                        }
 
-                  // 4. Loading Indicator
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    child: Center(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SizedBox(
-                            width: 20,
-                            height: 20,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                Theme.of(context).colorScheme.primary,
-                              ),
+                        // 2. Loading Indicator
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: Center(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      Theme.of(context).colorScheme.primary,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                Text(
+                                  localizations.aiThinking,
+                                  style: Theme.of(context).textTheme.bodyMedium
+                                      ?.copyWith(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.primary,
+                                      ),
+                                ),
+                              ],
                             ),
                           ),
-                          const SizedBox(width: 12),
-                          Text(
-                            localizations.aiThinking,
-                            style: Theme.of(context).textTheme.bodyMedium
-                                ?.copyWith(
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                          ),
-                        ],
-                      ),
+                        );
+                      },
                     ),
-                  );
-                },
+                  ),
+                ],
               ),
             ),
 
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
 
-            // Input area
+            // Input Area
             Row(
               children: [
                 Expanded(
-                  child: TextField(
-                    controller: _questionController,
-                    decoration: InputDecoration(
-                      hintText: localizations.askAIHint,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 12,
-                      ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: isDark ? const Color(0xFF3F3F46) : Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      border: isDark
+                          ? null
+                          : Border.all(color: const Color(0xFFE4E4E7)),
                     ),
-                    maxLines: 3,
-                    minLines: 1,
-                    onSubmitted: (_) => _askAI(),
+                    child: TextField(
+                      controller: _questionController,
+                      decoration: InputDecoration(
+                        hintText: localizations.askAIHint,
+                        hintStyle: TextStyle(
+                          color: isDark
+                              ? const Color(0xFFA1A1AA)
+                              : const Color(0xFF71717A),
+                          fontFamily: 'Inter',
+                        ),
+                        border: InputBorder.none,
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 14,
+                        ),
+                      ),
+                      style: TextStyle(color: titleColor, fontFamily: 'Inter'),
+                      maxLines: 3,
+                      minLines: 1,
+                      onSubmitted: (_) => _askAI(),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 12),
                 ValueListenableBuilder<TextEditingValue>(
                   valueListenable: _questionController,
                   builder: (_, value, _) {
-                    return FilledButton(
-                      onPressed: (_isLoading || value.text.trim().isEmpty)
-                          ? null
-                          : _askAI,
-                      child: _isLoading
-                          ? const SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  Colors.white,
+                    final canSend = !_isLoading && value.text.trim().isNotEmpty;
+                    return GestureDetector(
+                      onTap: canSend ? _askAI : null,
+                      child: Container(
+                        width: 48,
+                        height: 48,
+                        decoration: BoxDecoration(
+                          color: canSend
+                              ? Theme.of(context).primaryColor
+                              : (isDark
+                                    ? const Color(0xFF3F3F46)
+                                    : const Color(0xFFE4E4E7)),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        alignment: Alignment.center,
+                        child: _isLoading
+                            ? const SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    Colors.white,
+                                  ),
                                 ),
+                              )
+                            : Icon(
+                                LucideIcons.send,
+                                color: canSend
+                                    ? Colors.white
+                                    : (isDark
+                                          ? const Color(0xFFA1A1AA)
+                                          : const Color(0xFFA1A1AA)),
+                                size: 20,
                               ),
-                            )
-                          : const Icon(Icons.send),
+                      ),
                     );
                   },
                 ),

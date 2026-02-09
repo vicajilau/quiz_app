@@ -12,20 +12,107 @@ import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_event.dart';
 Future<bool> showResetRaffleDialog(BuildContext context) async {
   final confirmed = await showDialog<bool>(
     context: context,
-    builder: (dialogContext) => AlertDialog(
-      title: Text(AppLocalizations.of(context)!.resetRaffleTitle),
-      content: Text(AppLocalizations.of(context)!.resetRaffleConfirmMessage),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.of(dialogContext).pop(false),
-          child: Text(AppLocalizations.of(context)!.cancel),
+    barrierDismissible: false,
+    builder: (dialogContext) {
+      final isDark = Theme.of(context).brightness == Brightness.dark;
+
+      // Design Tokens
+      final dialogBg = isDark
+          ? const Color(0xFF27272A)
+          : const Color(0xFFFFFFFF);
+      final titleColor = isDark
+          ? const Color(0xFFFFFFFF)
+          : const Color(0xFF000000);
+      final contentColor = isDark
+          ? const Color(0xFFA1A1AA)
+          : const Color(0xFF71717A);
+      final closeBtnBg = isDark
+          ? const Color(0xFF3F3F46)
+          : const Color(0xFFF4F4F5);
+      final closeBtnIcon = isDark
+          ? const Color(0xFFA1A1AA)
+          : const Color(0xFF71717A);
+
+      return Dialog(
+        backgroundColor: Colors.transparent,
+        insetPadding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Container(
+          padding: const EdgeInsets.all(32),
+          decoration: BoxDecoration(
+            color: dialogBg,
+            borderRadius: BorderRadius.circular(24),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Header
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.resetRaffleTitle,
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700,
+                      color: titleColor,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () => Navigator.of(dialogContext).pop(false),
+                    style: IconButton.styleFrom(
+                      backgroundColor: closeBtnBg,
+                      fixedSize: const Size(40, 40),
+                      padding: EdgeInsets.zero,
+                    ),
+                    icon: Icon(Icons.close, size: 20, color: closeBtnIcon),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+
+              // Content
+              Text(
+                AppLocalizations.of(context)!.resetRaffleConfirmMessage,
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 16,
+                  color: contentColor,
+                  height: 1.5,
+                ),
+              ),
+              const SizedBox(height: 32),
+
+              // Actions
+              SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: ElevatedButton(
+                  onPressed: () => Navigator.of(dialogContext).pop(true),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: Text(
+                    AppLocalizations.of(context)!.reset,
+                    style: const TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-        TextButton(
-          onPressed: () => Navigator.of(dialogContext).pop(true),
-          child: Text(AppLocalizations.of(context)!.reset),
-        ),
-      ],
-    ),
+      );
+    },
   );
 
   if (confirmed == true && context.mounted) {

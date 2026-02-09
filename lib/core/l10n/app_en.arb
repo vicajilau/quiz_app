@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Text displayed inside the drop area for dragging files."
   },
+  "clickOrDragFile": "Click to load or drag a .quiz file to the screen",
+  "@clickOrDragFile": {
+    "description": "Text displayed below the drop area"
+  },
   "errorInvalidFile": "Error: Invalid file. Must be a .quiz file.",
   "@errorInvalidFile": {
     "description": "Message displayed when the dropped file is not a .quiz file."
@@ -208,6 +212,14 @@
   "@previous": {
     "description": "Previous button text in quiz navigation"
   },
+  "skip": "Skip",
+  "@skip": {
+      "description": "Skip button text in quiz navigation"
+  },
+  "questionsOverview": "View Questions Map",
+  "@questionsOverview": {
+      "description": "Title for the questions overview bottom sheet"
+  },
   "next": "Next",
   "@next": {
     "description": "Next button text in quiz navigation"
@@ -370,6 +382,10 @@
   "@questionOrderConfigTooltip": {
     "description": "Tooltip for the question order configuration button"
   },
+  "reorderQuestionsTooltip": "Reorder Questions",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
   "save": "Save",
   "@save": {
     "description": "Label for the save button"
@@ -457,6 +473,24 @@
   "explanationTooltip": "This question has an explanation",
   "@explanationTooltip": {
     "description": "Tooltip text for the explanation indicator badge"
+  },
+  "missingExplanation": "Missing explanation",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "This question is missing an explanation",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "Question type: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
   },
   "aiPrompt": "Focus on the student's question, not on directly answering the original exam question. Explain with a pedagogical approach, providing clear arguments without rambling or going off-topic. Do not structure the response in sections. Do not refer to yourself. Respond in the same language you are asked in.",
   "@aiPrompt": {
@@ -775,6 +809,10 @@
         "description": "The URL that could not be opened"
       }
     }
+  },
+  "questionsOverview": "Questions Map",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
   },
   "loadingAiServices": "Loading AI services...",
   "@loadingAiServices": {
@@ -1644,6 +1682,10 @@
   "@quizModeTitle": {
     "description": "Title for the quiz mode selection section"
   },
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "Title for the settings dialog"
+  },
   "skip": "Skip",
   "@skip": {
     "description": "Label for skip button"
@@ -1667,5 +1709,62 @@
   "disable": "Disable",
   "@disable": {
     "description": "Button label to disable a question"
-  }
+  },
+  "quizPreviewTitle": "Quiz Preview",
+  "@quizPreviewTitle": {
+    "description": "Title for the Quiz Preview screen"
+  },
+  "select": "Select",
+  "@select": {
+    "description": "Label for select button"
+  },
+  "done": "Done",
+  "@done": {
+    "description": "Label for done button"
+  },
+  "importButton": "Import",
+  "@importButton": {
+    "description": "Label for import button"
+  },
+  "reorderButton": "Reorder",
+  "@reorderButton": {
+    "description": "Label for reorder button"
+  },
+  "startQuizButton": "Start Quiz",
+  "@startQuizButton": {
+    "description": "Label for start quiz button"
+  },
+  "deleteConfirmation": "Are you sure you want to delete this quiz?",
+  "@deleteConfirmation": {
+    "description": "Confirmation message for deleting a quiz"
+  },
+  "saveSuccess": "File saved successfully",
+  "@saveSuccess": {
+    "description": "Message displayed when file is saved successfully"
+  },
+  "errorSavingFile": "Error saving file",
+  "@errorSavingFile": {
+    "description": "Message displayed when saving file fails"
+  },
+  "deleteSingleQuestionConfirmation": "Are you sure you want to delete this question?",
+  "@deleteSingleQuestionConfirmation": {
+    "description": "Confirmation message for deleting a single question"
+  },
+  "deleteMultipleQuestionsConfirmation": "Are you sure you want to delete {count} questions?",
+  "@deleteMultipleQuestionsConfirmation": {
+    "description": "Confirmation message for deleting multiple questions",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "keepPracticing": "Keep practicing to improve!",
+  "@keepPracticing": {
+    "description": "Encouraging message for lower quiz scores"
+  },
+  "tryAgain": "Try Again",
+  "review": "Review",
+  "home": "Home"
 }

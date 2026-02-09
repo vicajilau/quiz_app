@@ -35,6 +35,10 @@ class AppLocalizationsEu extends AppLocalizations {
       'Egin klik hemen edo arrastatu .quiz fitxategi bat pantailara';
 
   @override
+  String get clickOrDragFile =>
+      'Egin klik kargatzeko edo arrastatu .quiz fitxategi bat pantailara';
+
+  @override
   String get errorInvalidFile =>
       'Errorea: Fitxategi baliogabea. .quiz fitxategia izan behar da.';
 
@@ -153,6 +157,12 @@ class AppLocalizationsEu extends AppLocalizations {
   String get previous => 'Aurrekoa';
 
   @override
+  String get skip => 'Saltatu';
+
+  @override
+  String get questionsOverview => 'Galdera mapa';
+
+  @override
   String get next => 'Hurrengoa';
 
   @override
@@ -267,6 +277,9 @@ class AppLocalizationsEu extends AppLocalizations {
   String get questionOrderConfigTooltip => 'Galdera ordenaren konfigurazioa';
 
   @override
+  String get reorderQuestionsTooltip => 'Galderak berrantolatu';
+
+  @override
   String get save => 'Gorde';
 
   @override
@@ -328,6 +341,17 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get explanationTooltip => 'Galdera honek azalpena du';
+
+  @override
+  String get missingExplanation => 'Azalpena falta da';
+
+  @override
+  String get missingExplanationTooltip => 'Galdera honek ez du azalpenik';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return 'Galdera mota: $type';
+  }
 
   @override
   String get aiPrompt =>
@@ -970,7 +994,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get viewWinners => 'Irabazleak Ikusi';
 
   @override
-  String get congratulations => 'Zorionak!';
+  String get congratulations => '🎉 Zorionak! 🎉';
 
   @override
   String positionLabel(int position) {
@@ -1175,7 +1199,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get quizModeTitle => 'Galdetegi Modua';
 
   @override
-  String get skip => 'Saltatu';
+  String get settingsTitle => 'Ezarpenak';
 
   @override
   String get askAiAssistant => 'Galdetu AI Laguntzaileari';
@@ -1191,4 +1215,53 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get disable => 'Desgaitu';
+
+  @override
+  String get quizPreviewTitle => 'Galdetegiaren Aurrebista';
+
+  @override
+  String get select => 'Hautatu';
+
+  @override
+  String get done => 'Eginda';
+
+  @override
+  String get importButton => 'Inportatu';
+
+  @override
+  String get reorderButton => 'Berrantolatu';
+
+  @override
+  String get startQuizButton => 'Hasi Galdetegia';
+
+  @override
+  String get deleteConfirmation =>
+      'Ziur zaude galdetegi hau ezabatu nahi duzula?';
+
+  @override
+  String get saveSuccess => 'Fitxategia ondo gorde da';
+
+  @override
+  String get errorSavingFile => 'Errorea fitxategia gordetzean';
+
+  @override
+  String get deleteSingleQuestionConfirmation =>
+      'Ziur zaude galdera hau ezabatu nahi duzula?';
+
+  @override
+  String deleteMultipleQuestionsConfirmation(int count) {
+    return 'Ziur zaude $count galdera ezabatu nahi dituzula?';
+  }
+
+  @override
+  String get keepPracticing => 'Jarraitu praktikatzen hobetzeko!';
+
+  @override
+  String get tryAgain => 'Berriro saiatu';
+
+  @override
+  String get review => 'Berrikusi';
+
+  @override
+  String get home => 'Hasiera';
 }

@@ -58,72 +58,155 @@ class QuestionOptionTile extends StatelessWidget {
       fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
     );
 
-    // For multiple choice questions, use CheckboxListTile
-    if (questionType == QuestionType.multipleChoice) {
-      Color? tileColor;
-      Color? activeColor;
+    // Determine colors and border based on state
+    Color borderColor = Theme.of(context).dividerColor.withValues(alpha: 0.5);
+    Color backgroundColor = Theme.of(context).cardColor;
+    Color? iconColor;
 
-      if (isStudyMode && state.isCurrentQuestionValidated) {
-        final isCorrect = state.currentQuestion.correctAnswers.contains(index);
-        if (isSelected) {
-          tileColor = isCorrect
-              ? Colors.green.withValues(alpha: 0.2)
-              : Colors.red.withValues(alpha: 0.2);
-          activeColor = isCorrect ? Colors.green : Colors.red;
-        } else if (isCorrect) {
-          // Show correct answer even if not selected
-          tileColor = Colors.green.withValues(alpha: 0.2);
-          activeColor = Colors.green;
-        }
+    // Logic for Study Mode validation styling
+    if (isStudyMode && state.isCurrentQuestionValidated) {
+      final isCorrect = state.currentQuestion.correctAnswers.contains(index);
+
+      // Background Color
+      if (isCorrect) {
+        backgroundColor = Colors.green.withValues(alpha: 0.1);
+      } else if (isSelected) {
+        backgroundColor = Colors.red.withValues(alpha: 0.1);
       }
 
-      return CheckboxListTile(
-        title: IgnorePointer(
-          child: LaTeXText(translatedOption, style: optionTextStyle),
-        ),
-        value: isSelected,
-        onChanged: (bool? value) {
-          context.read<QuizExecutionBloc>().add(
-            AnswerSelected(index, value ?? false),
-          );
-        },
-        activeColor: activeColor ?? Theme.of(context).primaryColor,
-        tileColor: tileColor,
-        controlAffinity: ListTileControlAffinity.leading,
-      );
+      // Border Color
+      if (isSelected) {
+        borderColor = Theme.of(
+          context,
+        ).primaryColor; // User selection always Purple
+      } else if (isCorrect) {
+        borderColor = Colors.green; // Missed correct answer
+      }
+
+      // Icon Color (used for checkbox border in some cases)
+      if (isSelected) {
+        iconColor = Theme.of(context).primaryColor;
+      } else if (isCorrect) {
+        iconColor = Colors.green;
+      }
     }
-    // For single choice, true/false, and essay questions, use RadioListTile
-    else {
-      Color? tileColor;
-      Color? activeColor;
+    // Logic for normal selection styling
+    else if (isSelected) {
+      borderColor = Theme.of(context).primaryColor;
+      backgroundColor = Theme.of(context).primaryColor.withValues(alpha: 0.05);
+      iconColor = Theme.of(context).primaryColor;
+    }
 
-      if (isStudyMode) {
-        final isCorrect = state.currentQuestion.correctAnswers.contains(index);
-        final isValidated = state.isCurrentQuestionValidated;
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {
+          // Disable interaction if validated in study mode
+          if (isStudyMode && state.isCurrentQuestionValidated) return;
 
-        if (isValidated) {
-          if (isSelected) {
-            tileColor = isCorrect
-                ? Colors.green.withValues(alpha: 0.2)
-                : Colors.red.withValues(alpha: 0.2);
-            activeColor = isCorrect ? Colors.green : Colors.red;
-          } else if (isCorrect) {
-            // Show correct answer even if not selected
-            tileColor = Colors.green.withValues(alpha: 0.2);
-            activeColor = Colors.green;
+          // Toggle for multiple choice
+          if (questionType == QuestionType.multipleChoice) {
+            context.read<QuizExecutionBloc>().add(
+              AnswerSelected(index, !isSelected),
+            );
           }
-        }
-      }
-
-      return RadioListTile<int>(
-        title: IgnorePointer(
-          child: LaTeXText(translatedOption, style: optionTextStyle),
+          // Select for single choice/others
+          else {
+            context.read<QuizExecutionBloc>().add(AnswerSelected(index, true));
+          }
+        },
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          decoration: BoxDecoration(
+            color: backgroundColor,
+            border: Border.all(
+              color: borderColor,
+              width:
+                  isSelected ||
+                      (isStudyMode &&
+                          state.isCurrentQuestionValidated &&
+                          state.currentQuestion.correctAnswers.contains(index))
+                  ? 2
+                  : 1,
+            ),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              // Indicator (Radio or Checkbox look-alike)
+              Container(
+                width: 24,
+                height: 24,
+                decoration: BoxDecoration(
+                  shape: questionType == QuestionType.multipleChoice
+                      ? BoxShape.rectangle
+                      : BoxShape.circle,
+                  borderRadius: questionType == QuestionType.multipleChoice
+                      ? BorderRadius.circular(6)
+                      : null,
+                  border: Border.all(
+                    color: isStudyMode && state.isCurrentQuestionValidated
+                        ? (isSelected
+                              ? Theme.of(context).primaryColor
+                              : (state.currentQuestion.correctAnswers.contains(
+                                      index,
+                                    )
+                                    ? Colors.green
+                                    : Colors.grey.shade400))
+                        : (isSelected
+                              ? Theme.of(context).primaryColor
+                              : Colors.grey.shade400),
+                    width: 2,
+                  ),
+                  color: isStudyMode && state.isCurrentQuestionValidated
+                      ? Colors
+                            .transparent // Transparent in study mode to show colored icons
+                      : (isSelected ? Theme.of(context).primaryColor : null),
+                ),
+                child: () {
+                  if (isStudyMode && state.isCurrentQuestionValidated) {
+                    final isCorrect = state.currentQuestion.correctAnswers
+                        .contains(index);
+                    if (isSelected) {
+                      return Icon(
+                        isCorrect ? Icons.check : Icons.close,
+                        size: 16,
+                        color: isCorrect ? Colors.green : Colors.red,
+                      );
+                    } else if (isCorrect) {
+                      return const Icon(
+                        Icons.check,
+                        size: 16,
+                        color: Colors.green,
+                      );
+                    }
+                  } else if (isSelected) {
+                    return const Icon(
+                      Icons.check,
+                      size: 16,
+                      color: Colors.white,
+                    );
+                  }
+                  return null;
+                }(),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: LaTeXText(
+                  translatedOption,
+                  style: optionTextStyle.copyWith(
+                    color: isSelected
+                        ? (iconColor ?? Theme.of(context).primaryColor)
+                        : null,
+                    fontFamily: 'Inter',
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-        value: index,
-        activeColor: activeColor ?? Theme.of(context).primaryColor,
-        tileColor: tileColor,
-        controlAffinity: ListTileControlAffinity.leading,
-      );
-    }
+      ),
+    );
   }
 }

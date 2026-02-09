@@ -82,7 +82,10 @@ class QuizFileService implements IFileService {
   @override
   Future<QuizFile?> pickFile() async {
     // Open the file picker dialog
-    final result = await FilePicker.platform.pickFiles();
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['quiz'],
+    );
 
     // If a file is selected, read and return the file as a QuizFile object
     if (result != null) {

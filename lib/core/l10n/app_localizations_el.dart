@@ -35,6 +35,10 @@ class AppLocalizationsEl extends AppLocalizations {
       'Κάντε κλικ στο λογότυπο ή σύρετε ένα αρχείο .quiz στην οθόνη';
 
   @override
+  String get clickOrDragFile =>
+      'Κάντε κλικ για φόρτωση ή σύρετε ένα αρχείο .quiz στην οθόνη';
+
+  @override
   String get errorInvalidFile =>
       'Σφάλμα: Μη έγκυρο αρχείο. Πρέπει να είναι αρχείο .quiz.';
 
@@ -156,6 +160,12 @@ class AppLocalizationsEl extends AppLocalizations {
   String get previous => 'Προηγούμενο';
 
   @override
+  String get skip => 'Παράλειψη';
+
+  @override
+  String get questionsOverview => 'Χάρτης Ερωτήσεων';
+
+  @override
   String get next => 'Επόμενο';
 
   @override
@@ -270,6 +280,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get questionOrderConfigTooltip => 'Διαμόρφωση σειράς ερωτήσεων';
 
   @override
+  String get reorderQuestionsTooltip => 'Αναδιάταξη ερωτήσεων';
+
+  @override
   String get save => 'Αποθήκευση';
 
   @override
@@ -332,6 +345,17 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get explanationTooltip => 'Αυτή η ερώτηση έχει εξήγηση';
+
+  @override
+  String get missingExplanation => 'Λείπει η επεξήγηση';
+
+  @override
+  String get missingExplanationTooltip => 'Αυτή η ερώτηση δεν έχει επεξήγηση';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return 'Τύπος ερώτησης: $type';
+  }
 
   @override
   String get aiPrompt =>
@@ -1185,7 +1209,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get quizModeTitle => 'Λειτουργία Κουίζ';
 
   @override
-  String get skip => 'Παράλειψη';
+  String get settingsTitle => 'Ρυθμίσεις';
 
   @override
   String get askAiAssistant => 'Ρωτήστε τον Βοηθό AI';
@@ -1201,4 +1225,53 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get disable => 'Απενεργοποίηση';
+
+  @override
+  String get quizPreviewTitle => 'Προεπισκόπηση Κουίζ';
+
+  @override
+  String get select => 'Επιλογή';
+
+  @override
+  String get done => 'Τέλος';
+
+  @override
+  String get importButton => 'Εισαγωγή';
+
+  @override
+  String get reorderButton => 'Αναδιάταξη';
+
+  @override
+  String get startQuizButton => 'Έναρξη Κουίζ';
+
+  @override
+  String get deleteConfirmation =>
+      'Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το κουίζ;';
+
+  @override
+  String get saveSuccess => 'Το αρχείο αποθηκεύτηκε επιτυχώς';
+
+  @override
+  String get errorSavingFile => 'Σφάλμα κατά την αποθήκευση του αρχείου';
+
+  @override
+  String get deleteSingleQuestionConfirmation =>
+      'Είστε σίγουροι ότι θέλετε να διαγράψετε αυτή την ερώτηση;';
+
+  @override
+  String deleteMultipleQuestionsConfirmation(int count) {
+    return 'Είστε σίγουροι ότι θέλετε να διαγράψετε $count ερωτήσεις;';
+  }
+
+  @override
+  String get keepPracticing => 'Συνεχίστε την εξάσκηση για να βελτιωθείτε!';
+
+  @override
+  String get tryAgain => 'Δοκιμάστε ξανά';
+
+  @override
+  String get review => 'Ανασκόπηση';
+
+  @override
+  String get home => 'Αρχική';
 }

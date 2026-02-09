@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Text, der im Ablagebereich zum Ziehen von Dateien angezeigt wird."
   },
+  "clickOrDragFile": "Klicken zum Laden oder .quiz-Datei auf den Bildschirm ziehen",
+  "@clickOrDragFile": {
+    "description": "Text unter dem Ladebereich"
+  },
   "errorInvalidFile": "Fehler: Ungültige Datei. Muss eine .quiz-Datei sein.",
   "@errorInvalidFile": {
     "description": "Nachricht, die angezeigt wird, wenn die abgelegte Datei keine .quiz-Datei ist."
@@ -1667,5 +1671,49 @@
   "disable": "Deaktivieren",
   "@disable": {
     "description": "Button label to disable a question"
-  }
+  },
+  "reorderQuestionsTooltip": "Fragen neu ordnen",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "Quiz-Vorschau",
+  "select": "Auswählen",
+  "done": "Fertig",
+  "importButton": "Importieren",
+  "reorderButton": "Neu ordnen",
+  "startQuizButton": "Quiz starten",
+  "deleteConfirmation": "Sind Sie sicher, dass Sie dieses Quiz löschen möchten?",
+  "saveSuccess": "Datei erfolgreich gespeichert",
+  "errorSavingFile": "Fehler beim Speichern der Datei",
+  "deleteSingleQuestionConfirmation": "Sind Sie sicher, dass Sie diese Frage löschen möchten?",
+  "deleteMultipleQuestionsConfirmation": "Sind Sie sicher, dass Sie {count} Fragen löschen möchten?",
+  "missingExplanation": "Erklärung fehlt",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "Dieser Frage fehlt eine Erklärung",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "Fragetyp: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  },
+  "settingsTitle": "Einstellungen",
+  "questionsOverview": "Questions Map",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
+  },
+  "congratulations": "🎉 Herzlichen Glückwunsch! 🎉",
+  "keepPracticing": "Übe weiter, um dich zu verbessern!",
+  "tryAgain": "Erneut versuchen",
+  "review": "Überprüfen",
+  "home": "Startseite"
 }
+

@@ -35,6 +35,10 @@ class AppLocalizationsHi extends AppLocalizations {
       'यहाँ क्लिक करें या स्क्रीन पर .quiz फ़ाइल ड्रैग करें';
 
   @override
+  String get clickOrDragFile =>
+      'Load karne ke liye click karen ya screen par .quiz file drag karen';
+
+  @override
   String get errorInvalidFile =>
       'त्रुटि: अमान्य फ़ाइल। .quiz फ़ाइल होनी चाहिए।';
 
@@ -153,6 +157,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get previous => 'पिछला';
 
   @override
+  String get skip => 'छोड़ें';
+
+  @override
+  String get questionsOverview => 'Questions Map';
+
+  @override
   String get next => 'अगला';
 
   @override
@@ -264,6 +274,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get questionOrderConfigTooltip => 'प्रश्न क्रम कॉन्फ़िगरेशन';
 
   @override
+  String get reorderQuestionsTooltip => 'प्रश्नों को पुनः व्यवस्थित करें';
+
+  @override
   String get save => 'सेव करें';
 
   @override
@@ -325,6 +338,17 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get explanationTooltip => 'इस प्रश्न का स्पष्टीकरण है';
+
+  @override
+  String get missingExplanation => 'स्पष्टीकरण गायब है';
+
+  @override
+  String get missingExplanationTooltip => 'इस प्रश्न का कोई स्पष्टीकरण नहीं है';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return 'प्रश्न का प्रकार: $type';
+  }
 
   @override
   String get aiPrompt =>
@@ -961,7 +985,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get viewWinners => 'विजेता देखें';
 
   @override
-  String get congratulations => 'बधाई हो!';
+  String get congratulations => '🎉 बधाई हो! 🎉';
 
   @override
   String positionLabel(int position) {
@@ -1164,7 +1188,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get quizModeTitle => 'क्विज़ मोड';
 
   @override
-  String get skip => 'छोड़ें';
+  String get settingsTitle => 'सेटिंग्स';
 
   @override
   String get askAiAssistant => 'AI सहायक से पूछें';
@@ -1180,4 +1204,53 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get disable => 'अक्षम करें';
+
+  @override
+  String get quizPreviewTitle => 'प्रश्नोत्तरी पूर्वावलोकन';
+
+  @override
+  String get select => 'चुनें';
+
+  @override
+  String get done => 'हो गया';
+
+  @override
+  String get importButton => 'आयात करें';
+
+  @override
+  String get reorderButton => 'पुनः क्रमित करें';
+
+  @override
+  String get startQuizButton => 'प्रश्नोत्तरी शुरू करें';
+
+  @override
+  String get deleteConfirmation =>
+      'क्या आप वाकई इस प्रश्नोत्तरी को हटाना चाहते हैं?';
+
+  @override
+  String get saveSuccess => 'फ़ाइल सफलतापूर्वक सहेजी गई';
+
+  @override
+  String get errorSavingFile => 'फ़ाइल सहेजने में त्रुटि';
+
+  @override
+  String get deleteSingleQuestionConfirmation =>
+      'क्या आप वाकई इस प्रश्न को हटाना चाहते हैं?';
+
+  @override
+  String deleteMultipleQuestionsConfirmation(int count) {
+    return 'क्या आप वाकई $count प्रश्नों को हटाना चाहते हैं?';
+  }
+
+  @override
+  String get keepPracticing => 'सुधार के लिए अभ्यास जारी रखें!';
+
+  @override
+  String get tryAgain => 'फिर कोशिश करें';
+
+  @override
+  String get review => 'समीक्षा';
+
+  @override
+  String get home => 'होम';
 }

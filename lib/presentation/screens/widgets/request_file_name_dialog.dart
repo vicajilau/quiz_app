@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 
 /// A dialog widget for requesting a file name from the user.
+/// Styled according to design node 75JA2.
 class RequestFileNameDialog extends StatefulWidget {
   final String format;
   const RequestFileNameDialog({super.key, required this.format});
@@ -66,49 +68,147 @@ class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text(
-        AppLocalizations.of(context)!.requestFileNameTitle,
-      ), // Title of the dialog.
-      content: SingleChildScrollView(
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Container(
+        width: 520,
+        padding: const EdgeInsets.all(32),
+        decoration: BoxDecoration(
+          color: const Color(0xFF27272A), // Zinc 800
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(
+            color: Colors.white.withValues(alpha: 0.1),
+            width: 1,
+          ),
+        ),
         child: Column(
-          mainAxisSize:
-              MainAxisSize.min, // Minimize column size to fit content.
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // TextFormField for file name input.
-            TextFormField(
-              controller: _controller,
-              decoration: InputDecoration(
-                hintText: AppLocalizations.of(
-                  context,
-                )!.fileNameHint, // Hint text for the input field.
-                errorText:
-                    _errorMessage, // Display error message if validation fails.
-                border: const OutlineInputBorder(), // Define border style.
-              ),
-              onChanged: (value) {
-                setState(() {
-                  _errorMessage =
-                      null; // Clear error message when input changes.
-                });
-              },
+            // Header
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    AppLocalizations.of(context)!.requestFileNameTitle,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Inter',
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () => context.pop(),
+                  icon: const Icon(LucideIcons.x, size: 20),
+                  style: IconButton.styleFrom(
+                    backgroundColor: const Color(0xFF3F3F46), // Zinc 700
+                    foregroundColor: Colors.white,
+                    fixedSize: const Size(40, 40),
+                    padding: EdgeInsets.zero,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 10), // Add spacing below the input field.
+            const SizedBox(height: 32),
+
+            // Input Field
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.fileNameHint,
+                  style: TextStyle(
+                    color: Colors.white.withValues(alpha: 0.7),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Inter',
+                  ),
+                ),
+                const SizedBox(height: 8),
+                TextFormField(
+                  controller: _controller,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Inter',
+                    fontSize: 16,
+                  ),
+                  cursorColor: const Color(0xFF8B5CF6), // Violet 500
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color(0xFF3F3F46), // Zinc 700
+                    hintText: 'quiz_name',
+                    hintStyle: TextStyle(
+                      color: Colors.white.withValues(alpha: 0.3),
+                      fontFamily: 'Inter',
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 16,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(
+                        color: Color(0xFF8B5CF6), // Violet 500
+                        width: 2,
+                      ),
+                    ),
+                    errorText: _errorMessage,
+                    errorStyle: const TextStyle(
+                      color: Color(0xFFEF4444), // Red 500
+                      fontFamily: 'Inter',
+                    ),
+                  ),
+                  onFieldSubmitted: (_) => _submit(),
+                  onChanged: (value) {
+                    setState(() {
+                      _errorMessage = null;
+                    });
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 32),
+
+            // Submit Button
+            SizedBox(
+              height: 56,
+              child: ElevatedButton(
+                onPressed: _submit,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF8B5CF6), // Violet 500
+                  foregroundColor: Colors.white,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  padding: EdgeInsets.zero,
+                ),
+                child: Text(
+                  AppLocalizations.of(context)!.acceptButton,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Inter',
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
-      actions: [
-        // Cancel button to close the dialog without saving.
-        TextButton(
-          onPressed: () => context.pop(),
-          child: Text(AppLocalizations.of(context)!.cancelButton),
-        ),
-        // Accept button to submit the filename.
-        ElevatedButton(
-          onPressed: _submit,
-          child: Text(AppLocalizations.of(context)!.acceptButton),
-        ),
-      ],
     );
   }
 }

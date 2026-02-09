@@ -36,9 +36,13 @@
       }
     }
   },
-  "dropFileHere": "انقر هنا أو اسحب ملف .quiz إلى الشاشة",
+  "dropFileHere": "انقر فوق الشعار أو اسحب ملف .quiz إلى الشاشة",
   "@dropFileHere": {
-    "description": "Text displayed inside the drop area for dragging files."
+    "description": "النص المعروض داخل منطقة الإفلات لسحب الملفات."
+  },
+  "clickOrDragFile": "انقر للتحميل أو اسحب ملف .quiz إلى الشاشة",
+  "@clickOrDragFile": {
+    "description": "النص المعروض أسفل منطقة التحميل"
   },
   "errorInvalidFile": "خطأ: ملف غير صالح. يجب أن يكون ملف .quiz.",
   "@errorInvalidFile": {
@@ -207,6 +211,14 @@
   "previous": "السابق",
   "@previous": {
     "description": "Previous button text in quiz navigation"
+  },
+  "skip": "تخطي",
+  "@skip": {
+      "description": "Skip button text in quiz navigation"
+  },
+  "questionsOverview": "خريطة الأسئلة",
+  "@questionsOverview": {
+      "description": "Title for the questions overview bottom sheet"
   },
   "next": "التالي",
   "@next": {
@@ -1612,12 +1624,51 @@
   "examModeDescription": "توقيت قياسي ونتائج في النهاية",
   "checkAnswer": "تحقق",
   "quizModeTitle": "وضع الاختبار",
-  "skip": "تخطي",
   "askAiAssistant": "اسأل مساعد الذكاء الاصطناعي",
   "evaluateWithAI": "تقييم بالذكاء الاصطناعي",
   "aiEvaluation": "تقييم الذكاء الاصطناعي",
   "sorteosLabel": "Raffles",
   "edit": "تعديل",
   "enable": "تفعيل",
-  "disable": "تعطيل"
+  "disable": "تعطيل",
+  "reorderQuestionsTooltip": "إعادة ترتيب الأسئلة",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "معاينة الاختبار",
+  "select": "تحديد",
+  "done": "تم",
+  "importButton": "استيراد",
+  "reorderButton": "إعادة ترتيب",
+  "startQuizButton": "بدء الاختبار",
+  "deleteConfirmation": "هل أنت متأكد أنك تريد حذف هذا الاختبار؟",
+  "saveSuccess": "تم حفظ الملف بنجاح",
+  "errorSavingFile": "خطأ في حفظ الملف",
+  "deleteSingleQuestionConfirmation": "هل أنت متأكد أنك تريد حذف هذا السؤال؟",
+  "deleteMultipleQuestionsConfirmation": "هل أنت متأكد أنك تريد حذف {count} أسئلة؟",
+  "missingExplanation": "شرح مفقود",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "هذا السؤال يفتقد للشرح",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "نوع السؤال: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  },
+  "settingsTitle": "الإعدادات",
+  "congratulations": "🎉 تهانينا! 🎉",
+  "keepPracticing": "استمر في التدريب للتحسن!",
+  "tryAgain": "إعادة المحاولة",
+  "review": "مراجعة",
+  "home": "الرئيسية"
 }
+

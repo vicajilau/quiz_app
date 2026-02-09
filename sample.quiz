@@ -95,6 +95,17 @@
       ],
       "correct_answers": [0],
       "explanation": "The area $A$ is given by $\\pi r^2$. With $r=5$, $A = \\pi (5^2) = 25\\pi$."
+    },
+    {
+      "type": "single_choice",
+      "text": "[Missing Explanation] What is the largest planet in our solar system?",
+      "options": [
+        "Earth",
+        "Mars",
+        "Jupiter",
+        "Saturn"
+      ],
+      "correct_answers": [2]
     }
   ]
 }

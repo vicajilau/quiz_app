@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/quiz_progress_indicator.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/quiz_question_header.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/quiz_options_wrapper.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/quiz_navigation_buttons.dart';
 import 'package:quiz_app/core/service_locator.dart';
+import 'package:quiz_app/presentation/screens/dialogs/back_press_handler.dart';
+import 'package:quiz_app/presentation/widgets/exam_timer.dart';
 
 class QuizInProgressView extends StatefulWidget {
   final QuizExecutionInProgress state;
@@ -43,6 +46,22 @@ class _QuizInProgressViewState extends State<QuizInProgressView> {
     // Get Study Mode setting
     final quizConfig = ServiceLocator.instance.getQuizConfig();
     final isStudyMode = quizConfig?.isStudyMode ?? false;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    // Design Tokens
+    final closeBtnBg = isDark
+        ? const Color(0xFF27272A)
+        : const Color(0xFFFFFFFF);
+    final closeBtnIcon = isDark
+        ? const Color(0xFFA1A1AA)
+        : const Color(0xFF71717A);
+    final closeBtnBorder = isDark
+        ? Colors.transparent
+        : const Color(0xFFE4E4E7);
+
+    final cardBg = isDark ? const Color(0xFF27272A) : const Color(0xFFFFFFFF);
+    final cardBorder = isDark ? Colors.transparent : const Color(0xFFE4E4E7);
+    final showTimer = !isStudyMode && (quizConfig?.enableTimeLimit ?? false);
 
     return BlocListener<QuizExecutionBloc, QuizExecutionState>(
       listener: (context, state) {
@@ -55,7 +74,6 @@ class _QuizInProgressViewState extends State<QuizInProgressView> {
         }
       },
       listenWhen: (previous, current) {
-        // Only trigger listen logic if we are staying in progress and checking validation change
         if (previous is QuizExecutionInProgress &&
             current is QuizExecutionInProgress) {
           return current.isCurrentQuestionValidated !=
@@ -65,32 +83,100 @@ class _QuizInProgressViewState extends State<QuizInProgressView> {
       },
       child: Column(
         children: [
-          // Progress indicator (fixed)
-          QuizProgressIndicator(state: widget.state),
+          // Custom Header (Close Left + Progress Center)
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24.0,
+              vertical: 16.0,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // Progress Indicator (Left)
+                Expanded(child: QuizProgressIndicator(state: widget.state)),
 
-          // Main content area (flexible)
-          Expanded(
-            child: SingleChildScrollView(
-              controller: _scrollController,
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  QuizQuestionHeader(state: widget.state),
-
-                  const SizedBox(height: 16),
-
-                  // Options section
-                  QuizOptionsWrapper(state: widget.state),
-
-                  const SizedBox(height: 16),
+                if (showTimer) ...[
+                  const SizedBox(width: 8),
+                  ExamTimerWidget(
+                    initialDurationMinutes: quizConfig?.timeLimitMinutes ?? 0,
+                    onTimeExpired: () {
+                      context.read<QuizExecutionBloc>().add(QuizSubmitted());
+                    },
+                  ),
                 ],
+
+                const SizedBox(width: 16),
+
+                // Close Button (Right)
+                IconButton(
+                  onPressed: () => BackPressHandler.handle(
+                    context,
+                    context.read<QuizExecutionBloc>(),
+                  ),
+                  style: IconButton.styleFrom(
+                    backgroundColor: closeBtnBg,
+                    fixedSize: const Size(48, 48),
+                    padding: EdgeInsets.zero,
+                    shape: CircleBorder(
+                      side: closeBtnBorder == Colors.transparent
+                          ? BorderSide.none
+                          : BorderSide(color: closeBtnBorder),
+                    ),
+                  ),
+                  icon: Icon(Icons.close, color: closeBtnIcon, size: 24),
+                ),
+              ],
+            ),
+          ),
+
+          // Main Content (Centered Question Card)
+          Expanded(
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 720),
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Container(
+                    padding: const EdgeInsets.all(32),
+                    decoration: BoxDecoration(
+                      color: cardBg,
+                      borderRadius: BorderRadius.circular(24),
+                      border: Border.all(color: cardBorder),
+                    ),
+                    child: Column(
+                      crossAxisAlignment:
+                          CrossAxisAlignment.center, // Center aligned text
+                      children: [
+                        // Question Header (Text, Number, Type)
+                        // Note: Ensure QuestionHeader text alignment is handled inside that widget or here
+                        QuizQuestionHeader(state: widget.state),
+
+                        const SizedBox(height: 32),
+
+                        // Options
+                        QuizOptionsWrapper(state: widget.state),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
 
-          // Navigation buttons (fixed at bottom)
-          QuizNavigationButtons(state: widget.state, isStudyMode: isStudyMode),
+          // Footer (Navigation Buttons)
+          Container(
+            height: 120,
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            alignment: Alignment.center,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 720),
+              child: QuizNavigationButtons(
+                state: widget.state,
+                isStudyMode: isStudyMode,
+              ),
+            ),
+          ),
         ],
       ),
     );

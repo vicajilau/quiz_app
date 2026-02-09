@@ -31,7 +31,10 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get dropFileHere => 'انقر هنا أو اسحب ملف .quiz إلى الشاشة';
+  String get dropFileHere => 'انقر فوق الشعار أو اسحب ملف .quiz إلى الشاشة';
+
+  @override
+  String get clickOrDragFile => 'انقر للتحميل أو اسحب ملف .quiz إلى الشاشة';
 
   @override
   String get errorInvalidFile => 'خطأ: ملف غير صالح. يجب أن يكون ملف .quiz.';
@@ -150,6 +153,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get previous => 'السابق';
 
   @override
+  String get skip => 'تخطي';
+
+  @override
+  String get questionsOverview => 'خريطة الأسئلة';
+
+  @override
   String get next => 'التالي';
 
   @override
@@ -261,6 +270,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get questionOrderConfigTooltip => 'إعداد ترتيب الأسئلة';
 
   @override
+  String get reorderQuestionsTooltip => 'إعادة ترتيب الأسئلة';
+
+  @override
   String get save => 'حفظ';
 
   @override
@@ -322,6 +334,17 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get explanationTooltip => 'هذا السؤال له شرح';
+
+  @override
+  String get missingExplanation => 'شرح مفقود';
+
+  @override
+  String get missingExplanationTooltip => 'هذا السؤال يفتقد للشرح';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return 'نوع السؤال: $type';
+  }
 
   @override
   String get aiPrompt =>
@@ -954,7 +977,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get viewWinners => 'عرض الفائزين';
 
   @override
-  String get congratulations => 'تهانينا!';
+  String get congratulations => '🎉 تهانينا! 🎉';
 
   @override
   String positionLabel(int position) {
@@ -1154,7 +1177,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get quizModeTitle => 'وضع الاختبار';
 
   @override
-  String get skip => 'تخطي';
+  String get settingsTitle => 'الإعدادات';
 
   @override
   String get askAiAssistant => 'اسأل مساعد الذكاء الاصطناعي';
@@ -1170,4 +1193,52 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get disable => 'تعطيل';
+
+  @override
+  String get quizPreviewTitle => 'معاينة الاختبار';
+
+  @override
+  String get select => 'تحديد';
+
+  @override
+  String get done => 'تم';
+
+  @override
+  String get importButton => 'استيراد';
+
+  @override
+  String get reorderButton => 'إعادة ترتيب';
+
+  @override
+  String get startQuizButton => 'بدء الاختبار';
+
+  @override
+  String get deleteConfirmation => 'هل أنت متأكد أنك تريد حذف هذا الاختبار؟';
+
+  @override
+  String get saveSuccess => 'تم حفظ الملف بنجاح';
+
+  @override
+  String get errorSavingFile => 'خطأ في حفظ الملف';
+
+  @override
+  String get deleteSingleQuestionConfirmation =>
+      'هل أنت متأكد أنك تريد حذف هذا السؤال؟';
+
+  @override
+  String deleteMultipleQuestionsConfirmation(int count) {
+    return 'هل أنت متأكد أنك تريد حذف $count أسئلة؟';
+  }
+
+  @override
+  String get keepPracticing => 'استمر في التدريب للتحسن!';
+
+  @override
+  String get tryAgain => 'إعادة المحاولة';
+
+  @override
+  String get review => 'مراجعة';
+
+  @override
+  String get home => 'الرئيسية';
 }

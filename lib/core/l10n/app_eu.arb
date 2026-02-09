@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Fitxategiak arrastatzeko eremuan erakusten den testua."
   },
+  "clickOrDragFile": "Egin klik kargatzeko edo arrastatu .quiz fitxategi bat pantailara",
+  "@clickOrDragFile": {
+    "description": "Kargatzeko eremuaren azpian agertzen den testua"
+  },
   "errorInvalidFile": "Errorea: Fitxategi baliogabea. .quiz fitxategia izan behar da.",
   "@errorInvalidFile": {
     "description": "Uzten den fitxategia .quiz fitxategia ez denean erakusten den mezua."
@@ -1619,5 +1623,49 @@
   "sorteosLabel": "Raffles",
   "edit": "Editatu",
   "enable": "Gaitu",
-  "disable": "Desgaitu"
+  "disable": "Desgaitu",
+  "reorderQuestionsTooltip": "Galderak berrantolatu",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "Galdetegiaren Aurrebista",
+  "select": "Hautatu",
+  "done": "Eginda",
+  "importButton": "Inportatu",
+  "reorderButton": "Berrantolatu",
+  "startQuizButton": "Hasi Galdetegia",
+  "deleteConfirmation": "Ziur zaude galdetegi hau ezabatu nahi duzula?",
+  "saveSuccess": "Fitxategia ondo gorde da",
+  "errorSavingFile": "Errorea fitxategia gordetzean",
+  "deleteSingleQuestionConfirmation": "Ziur zaude galdera hau ezabatu nahi duzula?",
+  "deleteMultipleQuestionsConfirmation": "Ziur zaude {count} galdera ezabatu nahi dituzula?",
+  "missingExplanation": "Azalpena falta da",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "Galdera honek ez du azalpenik",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "Galdera mota: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  },
+  "settingsTitle": "Ezarpenak",
+  "questionsOverview": "Galdera mapa",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
+  },
+  "congratulations": "🎉 Zorionak! 🎉",
+  "keepPracticing": "Jarraitu praktikatzen hobetzeko!",
+  "tryAgain": "Berriro saiatu",
+  "review": "Berrikusi",
+  "home": "Hasiera"
 }
+

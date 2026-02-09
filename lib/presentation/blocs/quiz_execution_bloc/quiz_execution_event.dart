@@ -40,3 +40,10 @@ class QuizSubmitted extends QuizExecutionEvent {}
 
 /// Event triggered when the user wants to restart the quiz.
 class QuizRestarted extends QuizExecutionEvent {}
+
+/// Event triggered when the user wants to jump to a specific question index.
+class JumpToQuestionRequested extends QuizExecutionEvent {
+  final int index;
+
+  JumpToQuestionRequested(this.index);
+}

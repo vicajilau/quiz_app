@@ -268,7 +268,7 @@ QUESTION TYPES:
 - "multiple_choice": Allows multiple correct answers
 - "single_choice": Only one correct answer
 - "true_false": True/false question (options: ["True", "False"])
-- "essay": Essay question (no options)
+- "essay": Essay question ("options" and "correctAnswers" must be [])
 
 $questionTypesText
 
@@ -286,7 +286,7 @@ IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
       AiQuestionType.trueFalse:
           'Use ONLY the "true_false" type for all questions. Options must be ["True", "False"].',
       AiQuestionType.essay:
-          'Use ONLY the "essay" type for all questions. Do not include options.',
+          'Use ONLY the "essay" type for all questions. "options" and "correctAnswers" MUST be empty arrays [].',
       AiQuestionType.random:
           'Mix different question types: "multiple_choice", "single_choice", "true_false", and "essay".',
     };
@@ -405,14 +405,18 @@ IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
     );
 
     List<String> options = [];
-    if (json['options'] != null) {
+    if (questionType == QuestionType.essay) {
+      options = [];
+    } else if (json['options'] != null) {
       options = List<String>.from(json['options']);
     } else if (questionType == QuestionType.trueFalse) {
       options = ['True', 'False'];
     }
 
     List<int> correctAnswers = [];
-    if (json['correctAnswers'] != null) {
+    if (questionType == QuestionType.essay) {
+      correctAnswers = [];
+    } else if (json['correctAnswers'] != null) {
       correctAnswers = List<int>.from(json['correctAnswers']);
     } else if (questionType == QuestionType.trueFalse) {
       // For true/false, assume the first option is correct if not specified

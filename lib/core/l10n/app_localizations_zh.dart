@@ -34,6 +34,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get dropFileHere => '点击这里或将.quiz文件拖拽到屏幕';
 
   @override
+  String get clickOrDragFile => '点击加载或将 .quiz 文件拖动到屏幕上';
+
+  @override
   String get errorInvalidFile => '错误：无效文件。必须是.quiz文件。';
 
   @override
@@ -150,6 +153,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get previous => '上一个';
 
   @override
+  String get skip => '跳过';
+
+  @override
+  String get questionsOverview => '题目概览';
+
+  @override
   String get next => '下一个';
 
   @override
@@ -256,6 +265,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get questionOrderConfigTooltip => '问题顺序配置';
 
   @override
+  String get reorderQuestionsTooltip => '重新排序问题';
+
+  @override
   String get save => '保存';
 
   @override
@@ -315,6 +327,17 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get explanationTooltip => '此问题有解释';
+
+  @override
+  String get missingExplanation => '缺少解释';
+
+  @override
+  String get missingExplanationTooltip => '此问题没有解释';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return '问题类型：$type';
+  }
 
   @override
   String get aiPrompt =>
@@ -920,7 +943,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get viewWinners => '查看获奖者';
 
   @override
-  String get congratulations => '恭喜！';
+  String get congratulations => '🎉 恭喜！ 🎉';
 
   @override
   String positionLabel(int position) {
@@ -1116,7 +1139,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get quizModeTitle => '测验模式';
 
   @override
-  String get skip => '跳过';
+  String get settingsTitle => '设置';
 
   @override
   String get askAiAssistant => '询问 AI 助手';
@@ -1132,4 +1155,51 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get disable => '禁用';
+
+  @override
+  String get quizPreviewTitle => '测验预览';
+
+  @override
+  String get select => '选择';
+
+  @override
+  String get done => '完成';
+
+  @override
+  String get importButton => '导入';
+
+  @override
+  String get reorderButton => '重新排序';
+
+  @override
+  String get startQuizButton => '开始测验';
+
+  @override
+  String get deleteConfirmation => '您确定要删除此测验吗？';
+
+  @override
+  String get saveSuccess => '文件保存成功';
+
+  @override
+  String get errorSavingFile => '保存文件时出错';
+
+  @override
+  String get deleteSingleQuestionConfirmation => '您确定要删除这个问题吗？';
+
+  @override
+  String deleteMultipleQuestionsConfirmation(int count) {
+    return '您确定要删除 $count 个问题吗？';
+  }
+
+  @override
+  String get keepPracticing => '继续练习以提高！';
+
+  @override
+  String get tryAgain => '再试一次';
+
+  @override
+  String get review => '复习';
+
+  @override
+  String get home => '首页';
 }

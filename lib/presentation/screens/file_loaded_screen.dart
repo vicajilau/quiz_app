@@ -1,9 +1,9 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:quiz_app/core/constants/theme_extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:desktop_drop/desktop_drop.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quiz_app/core/context_extension.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
@@ -12,7 +12,6 @@ import 'package:quiz_app/presentation/screens/dialogs/add_edit_question_dialog.d
 import 'package:quiz_app/presentation/screens/dialogs/exit_confirmation_dialog.dart';
 import 'package:quiz_app/presentation/screens/widgets/question_list_widget.dart';
 import 'package:quiz_app/routes/app_router.dart';
-import 'package:platform_detail/platform_detail.dart';
 
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/core/extensions/string_extensions.dart';
@@ -25,10 +24,13 @@ import 'package:quiz_app/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quiz_app/presentation/screens/dialogs/question_count_selection_dialog.dart';
 import 'package:quiz_app/presentation/screens/dialogs/import_questions_dialog.dart';
 import 'package:quiz_app/presentation/screens/dialogs/ai_generate_questions_dialog.dart';
-import 'package:quiz_app/presentation/screens/widgets/request_file_name_dialog.dart';
+import 'package:quiz_app/presentation/screens/widgets/file_loaded_bottom_bar.dart';
 import 'package:quiz_app/presentation/screens/dialogs/settings_dialog.dart';
-import 'package:quiz_app/presentation/screens/dialogs/quiz_metadata_dialog.dart';
+import 'package:quiz_app/presentation/screens/widgets/request_file_name_dialog.dart';
 import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
+import 'package:quiz_app/presentation/screens/dialogs/quiz_metadata_dialog.dart';
+import 'package:quiz_app/core/theme/extensions/file_loaded_theme.dart';
+import 'package:quiz_app/core/theme/extensions/custom_colors.dart';
 
 class FileLoadedScreen extends StatefulWidget {
   final FileBloc fileBloc;
@@ -48,16 +50,9 @@ class FileLoadedScreen extends StatefulWidget {
 
 class _FileLoadedScreenState extends State<FileLoadedScreen> {
   late QuizFile cachedQuizFile;
-  bool _hasFileChanged = false; // Variable to track file change status
-  bool _isReordering = false;
-
-  // Function to check if the file has changed
-  void _checkFileChange() {
-    final hasChanged = widget.checkFileChangesUseCase.execute(cachedQuizFile);
-    setState(() {
-      _hasFileChanged = hasChanged;
-    });
-  }
+  bool _isSelectionMode = false;
+  final Set<int> _selectedQuestions = {};
+  bool _isDragging = false;
 
   Future<bool> _confirmExit() async {
     if (widget.checkFileChangesUseCase.execute(cachedQuizFile)) {
@@ -76,6 +71,73 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
       barrierDismissible: false,
       builder: (_) => const SettingsDialog(),
     );
+  }
+
+  Future<void> _handleImportButton() async {
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['quiz'],
+      );
+
+      if (result != null && result.files.single.path != null) {
+        await _handleFileImport(result.files.single.path!);
+      }
+    } catch (e) {
+      if (mounted) {
+        context.presentSnackBar(
+          AppLocalizations.of(context)!.errorLoadingFile(e.toString()),
+        );
+      }
+    }
+  }
+
+  Future<void> _handleSave() async {
+    var fileName = cachedQuizFile.filePath?.split('/').last;
+
+    // If fileName is null, empty, or likely a blob URL (doesn't have .quiz extension), ask for a name
+    if (fileName == null ||
+        fileName.isEmpty ||
+        !fileName.toLowerCase().endsWith('.quiz')) {
+      if (!mounted) return;
+      final result = await showDialog<String>(
+        context: context,
+        builder: (context) => const RequestFileNameDialog(format: '.quiz'),
+      );
+
+      if (result != null && result.isNotEmpty) {
+        fileName = result;
+      } else {
+        // User cancelled the dialog
+        return;
+      }
+    }
+    if (mounted) {
+      widget.fileBloc.add(
+        QuizFileSaveRequested(
+          cachedQuizFile,
+          AppLocalizations.of(context)!.saveButton,
+          fileName,
+        ),
+      );
+    }
+  }
+
+  void _toggleSelectionMode() {
+    setState(() {
+      _isSelectionMode = !_isSelectionMode;
+      _selectedQuestions.clear();
+    });
+  }
+
+  void _toggleQuestionSelection(int index) {
+    setState(() {
+      if (_selectedQuestions.contains(index)) {
+        _selectedQuestions.remove(index);
+      } else {
+        _selectedQuestions.add(index);
+      }
+    });
   }
 
   /// Handle importing questions from a dropped file
@@ -108,7 +170,6 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
             setState(() {
               cachedQuizFile.questions.insertAll(0, importedQuizFile.questions);
             });
-            _checkFileChange();
             if (mounted) {
               context.presentSnackBar(
                 AppLocalizations.of(
@@ -142,7 +203,6 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                 cachedQuizFile.questions.addAll(importedQuizFile.questions);
               }
             });
-            _checkFileChange();
 
             if (mounted) {
               context.presentSnackBar(
@@ -171,39 +231,6 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
     }
   }
 
-  /// Handle importing questions using file picker
-  Future<void> _pickAndImportFile() async {
-    try {
-      final result = await FilePicker.platform.pickFiles(
-        type: FileType.custom,
-        allowedExtensions: ['quiz'],
-        withData: false,
-        withReadStream: false,
-      );
-
-      if (result != null && result.files.isNotEmpty) {
-        final pickedFile = result.files.first;
-        if (pickedFile.path != null) {
-          await _handleFileImport(pickedFile.path!);
-        } else {
-          if (mounted) {
-            context.presentSnackBar(
-              AppLocalizations.of(context)!.errorLoadingFile(
-                AppLocalizations.of(context)!.couldNotAccessFile,
-              ),
-            );
-          }
-        }
-      }
-    } catch (e) {
-      if (mounted) {
-        context.presentSnackBar(
-          AppLocalizations.of(context)!.errorLoadingFile(e.toString()),
-        );
-      }
-    }
-  }
-
   /// Handle generating questions with AI
   Future<void> _generateQuestionsWithAI() async {
     try {
@@ -223,7 +250,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
       if (!mounted) return;
       final config = await showDialog<AiQuestionGenerationConfig>(
         context: context,
-        barrierDismissible: false, // Prevent dismissing by tapping outside
+        barrierDismissible: false,
         builder: (context) => const AiGenerateQuestionsDialog(),
       );
 
@@ -264,7 +291,6 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
           setState(() {
             cachedQuizFile.questions.insertAll(0, generatedQuestions);
           });
-          _checkFileChange();
           if (mounted) {
             context.presentSnackBar(
               AppLocalizations.of(
@@ -296,7 +322,6 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
               cachedQuizFile.questions.addAll(generatedQuestions);
             }
           });
-          _checkFileChange();
 
           if (mounted) {
             context.presentSnackBar(
@@ -325,11 +350,51 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
     }
   }
 
+  Future<void> _handleDeleteQuestions() async {
+    if (_selectedQuestions.isEmpty) return;
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(AppLocalizations.of(context)!.deleteButton),
+        content: Text(
+          _selectedQuestions.length == 1
+              ? AppLocalizations.of(context)!.deleteSingleQuestionConfirmation
+              : AppLocalizations.of(
+                  context,
+                )!.deleteMultipleQuestionsConfirmation(
+                  _selectedQuestions.length,
+                ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: Text(AppLocalizations.of(context)!.cancelButton),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: Text(AppLocalizations.of(context)!.deleteButton),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true && mounted) {
+      setState(() {
+        final indices = _selectedQuestions.toList()
+          ..sort((a, b) => b.compareTo(a));
+        for (final index in indices) {
+          cachedQuizFile.questions.removeAt(index);
+        }
+        _selectedQuestions.clear();
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     cachedQuizFile = widget.quizFile.deepCopy();
-    _checkFileChange(); // Check the file change status when the screen is loaded
   }
 
   @override
@@ -345,16 +410,13 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
         child: BlocListener<FileBloc, FileState>(
           listener: (context, state) {
             if (state is FileLoaded) {
-              // Update the cached file reference when a file is saved successfully
-              // This ensures that change detection works correctly with the new file path
               cachedQuizFile = state.quizFile.deepCopy();
-
+              setState(() {});
               context.presentSnackBar(
                 AppLocalizations.of(
                   context,
                 )!.fileSaved(state.quizFile.filePath!),
               );
-              _checkFileChange();
             }
             if (state is FileError) {
               context.presentSnackBar(state.getDescription(context));
@@ -363,239 +425,339 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
           child: Builder(
             builder: (context) {
               return Scaffold(
-                appBar: AppBar(
-                  title: Tooltip(
-                    message: cachedQuizFile.metadata.description,
-                    child: InkWell(
-                      onTap: () => _editQuizMetadata(context),
-                      child: Text(
-                        cachedQuizFile.metadata.title,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                appBar: PreferredSize(
+                  preferredSize: const Size.fromHeight(72),
+                  child: AppBar(
+                    backgroundColor: Theme.of(context).primaryColor,
+                    elevation: 0,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        bottom: Radius.circular(24),
                       ),
                     ),
-                  ),
-                  leading: IconButton(
-                    icon: Icon(
-                      Icons.arrow_back,
-                      semanticLabel: AppLocalizations.of(
-                        context,
-                      )!.backSemanticLabel,
-                    ),
-                    onPressed: () async {
-                      final shouldExit = await _confirmExit();
-                      if (shouldExit && context.mounted) {
-                        context.pop();
-                      }
-                    },
-                  ),
-                  actions: [
-                    IconButton(
-                      onPressed: () async {
-                        final createdQuestion = await showDialog<Question>(
-                          context: context,
-                          barrierDismissible:
-                              false, // Prevent dismissing by tapping outside
-                          builder: (context) =>
-                              AddEditQuestionDialog(quizFile: cachedQuizFile),
-                        );
-                        if (createdQuestion != null) {
-                          setState(() {
-                            cachedQuizFile.questions.add(createdQuestion);
-                          });
-                          _checkFileChange();
-                        }
-                      },
-                      icon: const Icon(Icons.add),
-                      tooltip: AppLocalizations.of(context)!.addTooltip,
-                    ),
-                    // Generate with AI Action
-                    IconButton(
-                      onPressed: () async {
-                        await _generateQuestionsWithAI();
-                      },
-                      icon: Icon(
-                        Icons.auto_awesome,
-                        color: Theme.of(
-                          context,
-                        ).extension<CustomColors>()!.aiIconColor,
+                    toolbarHeight: 72,
+                    leadingWidth: 72,
+                    leading: Padding(
+                      padding: const EdgeInsets.only(left: 24),
+                      child: Center(
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: context
+                                .fileLoadedTheme
+                                .appBarIconBackgroundColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: IconButton(
+                            padding: EdgeInsets.zero,
+                            icon: Icon(
+                              LucideIcons.arrowLeft,
+                              color: Theme.of(context).colorScheme.onPrimary,
+                              size: 20,
+                            ),
+                            tooltip: AppLocalizations.of(
+                              context,
+                            )!.backSemanticLabel,
+                            onPressed: () async {
+                              final shouldExit = await _confirmExit();
+                              if (shouldExit && context.mounted) {
+                                context.pop();
+                              }
+                            },
+                          ),
+                        ),
                       ),
-                      tooltip: AppLocalizations.of(
-                        context,
-                      )!.generateQuestionsWithAI,
                     ),
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          _isReordering = !_isReordering;
-                        });
-                      },
-                      icon: const Icon(Icons.swap_vert),
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () async {
+                              final result =
+                                  await showDialog<Map<String, String>>(
+                                    context: context,
+                                    builder: (context) => QuizMetadataDialog(
+                                      isEditing: true,
+                                      initialName:
+                                          cachedQuizFile.metadata.title,
+                                      initialDescription:
+                                          cachedQuizFile.metadata.description,
+                                      initialAuthor:
+                                          cachedQuizFile.metadata.author,
+                                    ),
+                                  );
+
+                              if (result != null && mounted) {
+                                setState(() {
+                                  cachedQuizFile = cachedQuizFile.copyWith(
+                                    metadata: cachedQuizFile.metadata.copyWith(
+                                      title: result['name'],
+                                      description: result['description'],
+                                      author: result['author'],
+                                    ),
+                                  );
+                                });
+                              }
+                            },
+                            child: Text(
+                              AppLocalizations.of(context)!.quizPreviewTitle,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'Plus Jakarta Sans',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    // Import Action
-                    IconButton(
-                      onPressed: () async {
-                        await _pickAndImportFile();
-                      },
-                      icon: const Icon(Icons.file_upload),
-                      tooltip: AppLocalizations.of(
-                        context,
-                      )!.importQuestionsTooltip,
-                    ),
-                    // Save Action
-                    IconButton(
-                      icon: const Icon(Icons.save),
-                      tooltip: _hasFileChanged
-                          ? AppLocalizations.of(context)!.saveTooltip
-                          : AppLocalizations.of(context)!.saveDisabledTooltip,
-                      onPressed: _hasFileChanged
-                          ? () async {
-                              await _onSavePressed(context);
-                            }
-                          : null, // Disable button if file hasn't changed
-                    ),
-                    // Configuration button
-                    IconButton(
-                      onPressed: () => _showSettingsDialog(context),
-                      icon: const Icon(Icons.settings),
-                      tooltip: AppLocalizations.of(
-                        context,
-                      )!.questionOrderConfigTooltip,
-                    ),
-                  ],
+                    actions: [
+                      // Settings Button
+                      Container(
+                        width: 40,
+                        height: 40,
+                        margin: const EdgeInsets.only(right: 8),
+                        decoration: BoxDecoration(
+                          color:
+                              context.fileLoadedTheme.appBarIconBackgroundColor,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: IconButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: () => _showSettingsDialog(context),
+                          icon: Icon(
+                            LucideIcons.settings,
+                            color: Theme.of(context).colorScheme.onPrimary,
+                            size: 20,
+                          ),
+                          tooltip: AppLocalizations.of(
+                            context,
+                          )!.questionOrderConfigTooltip,
+                        ),
+                      ),
+                      // Select Button
+                      Container(
+                        margin: const EdgeInsets.only(right: 24),
+                        child: Material(
+                          color: _isSelectionMode
+                              ? Theme.of(context).primaryColor
+                              : context
+                                    .fileLoadedTheme
+                                    .selectionInactiveBackgroundColor,
+                          borderRadius: BorderRadius.circular(20),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(20),
+                            onTap: () {
+                              _toggleSelectionMode();
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 10,
+                              ),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    _isSelectionMode
+                                        ? LucideIcons.checkSquare
+                                        : LucideIcons.mousePointer2,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onPrimary,
+                                    size: 18,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    _isSelectionMode
+                                        ? AppLocalizations.of(context)!.done
+                                        : AppLocalizations.of(context)!.select,
+                                    style: TextStyle(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onPrimary,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: 'Inter',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 body: DropTarget(
                   onDragDone: (details) {
-                    // Handle file drop for importing questions
+                    setState(() => _isDragging = false);
                     if (details.files.isNotEmpty) {
                       final firstFile = details.files.first;
                       if (firstFile.path.isNotEmpty) {
+                        if (!firstFile.name.toLowerCase().endsWith('.quiz')) {
+                          if (mounted) {
+                            context.presentSnackBar(
+                              AppLocalizations.of(context)!.errorInvalidFile,
+                            );
+                          }
+                          return;
+                        }
                         _handleFileImport(firstFile.path);
                       }
                     }
                   },
-                  child: QuestionListWidget(
-                    quizFile: cachedQuizFile,
-                    onFileChange: _checkFileChange,
-                    isReordering: _isReordering,
-                  ),
-                ),
-                floatingActionButton:
-                    cachedQuizFile.questions.isNotEmpty && !_isReordering
-                    ? FloatingActionButton(
-                        tooltip: AppLocalizations.of(context)!.executeTooltip,
-                        onPressed: () async {
-                          // Filter enabled questions first
-                          final enabledQuestions = cachedQuizFile.questions
-                              .where((question) => question.isEnabled)
-                              .toList();
-
-                          if (enabledQuestions.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  AppLocalizations.of(
-                                    context,
-                                  )!.noEnabledQuestionsError,
-                                ),
-                                backgroundColor: Colors.orange,
-                              ),
-                            );
-                            return;
-                          }
-
-                          final quizConfig = await showDialog<QuizConfig>(
-                            context: context,
-                            builder: (context) => QuestionCountSelectionDialog(
-                              totalQuestions: enabledQuestions.length,
-                            ),
-                          );
-
-                          if (quizConfig != null && context.mounted) {
-                            // Register the updated quiz file and question count in the service locator
-                            ServiceLocator.instance.registerQuizFile(
-                              cachedQuizFile,
-                            );
-                            ServiceLocator.instance.registerQuizConfig(
-                              quizConfig,
-                            );
-
-                            // Navigate to the quiz execution screen
-                            context.push(AppRoutes.quizFileExecutionScreen);
-                          }
-                        },
-                        child: const Icon(Icons.play_arrow),
-                      )
-                    : null,
-                bottomNavigationBar: _isReordering
-                    ? Container(
-                        padding: const EdgeInsets.all(16),
-                        width: double.infinity,
-                        color: Theme.of(context).colorScheme.surface,
-                        child: ElevatedButton(
-                          onPressed: () {
+                  onDragEntered: (_) => setState(() => _isDragging = true),
+                  onDragExited: (_) => setState(() => _isDragging = false),
+                  child: Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                        child: QuestionListWidget(
+                          quizFile: cachedQuizFile,
+                          onFileChange: () {},
+                          isSelectionMode: _isSelectionMode,
+                          selectedQuestions: _selectedQuestions,
+                          onToggleSelection: _toggleQuestionSelection,
+                          onSelectionChanged: (newSelection) {
                             setState(() {
-                              _isReordering = false;
+                              _selectedQuestions.clear();
+                              _selectedQuestions.addAll(newSelection);
                             });
                           },
-                          child: Text(
-                            AppLocalizations.of(context)!.acceptButton,
+                        ),
+                      ),
+                      if (_isDragging)
+                        Positioned.fill(
+                          child: Container(
+                            color: context.fileLoadedTheme.dragOverlayColor,
+                            child: Center(
+                              child: Container(
+                                padding: const EdgeInsets.all(32),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).cardColor,
+                                  borderRadius: BorderRadius.circular(24),
+                                  border: Border.all(
+                                    color: context
+                                        .fileLoadedTheme
+                                        .dragOverlayBorderColor,
+                                    width: 3,
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: context
+                                          .fileLoadedTheme
+                                          .dragOverlayShadowColor,
+                                      blurRadius: 20,
+                                      offset: const Offset(0, 10),
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      LucideIcons.upload,
+                                      size: 48,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                    const SizedBox(height: 16),
+                                    Text(
+                                      AppLocalizations.of(
+                                        context,
+                                      )!.dropFileHere,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineMedium
+                                          ?.copyWith(
+                                            color: Theme.of(
+                                              context,
+                                            ).primaryColor,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      )
-                    : null,
+                    ],
+                  ),
+                ),
+
+                bottomNavigationBar: FileLoadedBottomBar(
+                  onAddQuestion: () async {
+                    final createdQuestion = await showDialog<Question>(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (context) =>
+                          AddEditQuestionDialog(quizFile: cachedQuizFile),
+                    );
+                    if (createdQuestion != null) {
+                      setState(() {
+                        cachedQuizFile.questions.add(createdQuestion);
+                      });
+                    }
+                  },
+                  onGenerateAI: () async {
+                    await _generateQuestionsWithAI();
+                  },
+                  onImport: _handleImportButton,
+                  onSave: _handleSave,
+                  onDelete: _handleDeleteQuestions,
+                  selectedQuestionCount: _selectedQuestions.length,
+                  showSaveButton: widget.checkFileChangesUseCase.execute(
+                    cachedQuizFile,
+                  ),
+                  isPlayEnabled: cachedQuizFile.questions.any(
+                    (q) => q.isEnabled,
+                  ),
+                  onPlay: () async {
+                    // Filter enabled questions first
+                    final enabledQuestions = cachedQuizFile.questions
+                        .where((question) => question.isEnabled)
+                        .toList();
+
+                    if (enabledQuestions.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            AppLocalizations.of(
+                              context,
+                            )!.noEnabledQuestionsError,
+                          ),
+                          backgroundColor: Theme.of(
+                            context,
+                          ).extension<CustomColors>()!.warning,
+                        ),
+                      );
+                      return;
+                    }
+
+                    final quizConfig = await showDialog<QuizConfig>(
+                      context: context,
+                      builder: (context) => QuestionCountSelectionDialog(
+                        totalQuestions: enabledQuestions.length,
+                      ),
+                    );
+
+                    if (quizConfig != null && context.mounted) {
+                      ServiceLocator.instance.registerQuizFile(cachedQuizFile);
+                      ServiceLocator.instance.registerQuizConfig(quizConfig);
+                      context.push(AppRoutes.quizFileExecutionScreen);
+                    }
+                  },
+                ),
               );
             },
           ),
         ),
       ),
     );
-  }
-
-  Future<void> _onSavePressed(BuildContext context) async {
-    final String? fileName;
-    if (PlatformDetail.isWeb) {
-      final result = await showDialog<String>(
-        context: context,
-        builder: (_) => const RequestFileNameDialog(format: '.quiz'),
-      );
-      fileName = result;
-    } else {
-      fileName = AppLocalizations.of(context)!.defaultOutputFileName;
-    }
-    if (fileName != null && context.mounted) {
-      context.read<FileBloc>().add(
-        QuizFileSaveRequested(
-          cachedQuizFile,
-          AppLocalizations.of(context)!.saveDialogTitle,
-          fileName,
-        ),
-      );
-    }
-  }
-
-  Future<void> _editQuizMetadata(BuildContext context) async {
-    final result = await showDialog<Map<String, String>>(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) => QuizMetadataDialog(
-        initialName: cachedQuizFile.metadata.title,
-        initialDescription: cachedQuizFile.metadata.description,
-        initialAuthor: cachedQuizFile.metadata.author,
-        isEditing: true,
-      ),
-    );
-
-    if (result != null && mounted) {
-      setState(() {
-        cachedQuizFile = cachedQuizFile.copyWith(
-          metadata: cachedQuizFile.metadata.copyWith(
-            title: result['name'],
-            description: result['description'],
-            author: result['author'],
-          ),
-        );
-      });
-      _checkFileChange();
-    }
   }
 }

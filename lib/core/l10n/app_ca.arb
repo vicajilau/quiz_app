@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Text mostrat a l'àrea de deixar anar per arrossegar fitxers."
   },
+  "clickOrDragFile": "Feu clic per carregar o arrossegueu un fitxer .quiz a la pantalla",
+  "@clickOrDragFile": {
+    "description": "Text mostrat sota l'àrea de càrrega"
+  },
   "errorInvalidFile": "Error: Fitxer no vàlid. Ha de ser un fitxer .quiz.",
   "@errorInvalidFile": {
     "description": "Missatge mostrat quan el fitxer deixat no és un fitxer .quiz."
@@ -1661,5 +1665,49 @@
   "disable": "Desactivar",
   "@disable": {
     "description": "Button label to disable a question"
-  }
+  },
+  "reorderQuestionsTooltip": "Reordenar preguntes",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "Vista prèvia del qüestionari",
+  "select": "Seleccionar",
+  "done": "Fet",
+  "importButton": "Importar",
+  "reorderButton": "Reordenar",
+  "startQuizButton": "Començar qüestionari",
+  "deleteConfirmation": "Esteu segur que voleu eliminar aquest qüestionari?",
+  "saveSuccess": "Fitxer desat correctament",
+  "errorSavingFile": "Error en desar el fitxer",
+  "deleteSingleQuestionConfirmation": "Estàs segur que vols eliminar aquesta pregunta?",
+  "deleteMultipleQuestionsConfirmation": "Estàs segur que vols eliminar {count} preguntes?",
+  "missingExplanation": "Manca explicació",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "Aquesta pregunta no té explicació",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "Tipus de pregunta: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  },
+  "settingsTitle": "Configuració",
+  "questionsOverview": "Mapa de preguntes",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
+  },
+  "congratulations": "🎉 Felicitats! 🎉",
+  "keepPracticing": "Segueix practicant per millorar!",
+  "tryAgain": "Tornar a intentar",
+  "review": "Repassar",
+  "home": "Inici"
 }
+

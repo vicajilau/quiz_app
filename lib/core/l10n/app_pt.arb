@@ -36,9 +36,13 @@
       }
     }
   },
-  "dropFileHere": "Clique aqui ou arraste um arquivo .quiz para a tela",
+  "dropFileHere": "Clique no logotipo ou arraste um arquivo .quiz para a tela",
   "@dropFileHere": {
-    "description": "Texto exibido na área de soltar para arrastar arquivos."
+    "description": "Texto exibido dentro da área de soltar arquivos."
+  },
+  "clickOrDragFile": "Clique para carregar ou arraste um arquiro .quiz para a tela",
+  "@clickOrDragFile": {
+    "description": "Texto exibido abaixo da área de carregamento"
   },
   "errorInvalidFile": "Erro: Arquivo inválido. Deve ser um arquivo .quiz.",
   "@errorInvalidFile": {
@@ -1667,5 +1671,49 @@
   "disable": "Desativar",
   "@disable": {
     "description": "Button label to disable a question"
-  }
+  },
+  "reorderQuestionsTooltip": "Reordenar perguntas",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "Pré-visualização do Quiz",
+  "select": "Selecionar",
+  "done": "Concluído",
+  "importButton": "Importar",
+  "reorderButton": "Reordenar",
+  "startQuizButton": "Iniciar Quiz",
+  "deleteConfirmation": "Tem certeza de que deseja excluir este quiz?",
+  "saveSuccess": "Arquivo salvo com sucesso",
+  "errorSavingFile": "Erro ao salvar o arquivo",
+  "deleteSingleQuestionConfirmation": "Tem certeza de que deseja excluir esta pergunta?",
+  "deleteMultipleQuestionsConfirmation": "Tem certeza de que deseja excluir {count} perguntas?",
+  "missingExplanation": "Explicação em falta",
+  "@missingExplanation": {
+    "description": "Label indicating that a question is missing an explanation"
+  },
+  "missingExplanationTooltip": "Esta pergunta não tem explicação",
+  "@missingExplanationTooltip": {
+    "description": "Tooltip text for the missing explanation badge"
+  },
+  "questionTypeTooltip": "Tipo de pergunta: {type}",
+  "@questionTypeTooltip": {
+    "description": "Tooltip text for the question type badge",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Multiple Choice"
+      }
+    }
+  },
+  "settingsTitle": "Configurações",
+  "questionsOverview": "Mapa de questões",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
+  },
+  "congratulations": "🎉 Parabéns! 🎉",
+  "keepPracticing": "Continue praticando para melhorar!",
+  "tryAgain": "Tentar novamente",
+  "review": "Revisar",
+  "home": "Início"
 }
+

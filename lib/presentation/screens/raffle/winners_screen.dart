@@ -8,9 +8,10 @@ import 'package:quiz_app/domain/models/raffle/raffle_logo.dart';
 import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_bloc.dart';
 import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_state.dart';
 import 'package:quiz_app/presentation/screens/raffle/widgets/logo_widget.dart';
-import 'package:quiz_app/presentation/screens/raffle/widgets/clear_winners_dialog.dart';
-import 'package:quiz_app/presentation/screens/raffle/widgets/reset_raffle_dialog.dart';
+import 'package:quiz_app/presentation/screens/raffle/widgets/winners_empty_state.dart';
+import 'package:quiz_app/presentation/screens/raffle/widgets/winners_list_widget.dart';
 import 'package:quiz_app/routes/app_router.dart';
+
 
 class WinnersScreen extends StatelessWidget {
   const WinnersScreen({super.key});
@@ -61,257 +62,13 @@ class WinnersScreen extends StatelessWidget {
               }
 
               return winners.isEmpty
-                  ? _buildEmptyState()
-                  : _buildWinnersList(winners, context);
+                  ? const WinnersEmptyState()
+                  : WinnersListWidget(winners: winners);
             },
           ),
         );
       },
     );
-  }
-
-  Widget _buildEmptyState() {
-    return Builder(
-      builder: (context) => Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.emoji_events_outlined,
-              size: 80,
-              color: Colors.grey[400],
-            ),
-            const SizedBox(height: 24),
-            Text(
-              AppLocalizations.of(context)!.noWinnersYet,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey[600],
-              ),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              AppLocalizations.of(context)!.performRaffleToSeeWinners,
-              style: TextStyle(fontSize: 16, color: Colors.grey[500]),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 32),
-            ElevatedButton.icon(
-              onPressed: () => context.go(AppRoutes.raffle),
-              icon: const Icon(Icons.casino),
-              label: Text(AppLocalizations.of(context)!.goToRaffle),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildWinnersList(List<RaffleWinner> winners, BuildContext context) {
-    return Column(
-      children: [
-        // Header with summary
-        Container(
-          margin: const EdgeInsets.fromLTRB(16, 16, 16, 24),
-          child: Column(
-            children: [
-              // Crown icon at the top
-              Container(
-                width: 80,
-                height: 80,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Colors.amber[300]!, Colors.orange[400]!],
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.amber.withValues(alpha: 0.3),
-                      blurRadius: 16,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
-                ),
-                child: const Icon(
-                  Icons.emoji_events,
-                  color: Colors.white,
-                  size: 40,
-                ),
-              ),
-              const SizedBox(height: 16),
-              // Title
-              Text(
-                AppLocalizations.of(context)!.raffleCompleted,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 8),
-              // Subtitle with divider
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(height: 1, color: Colors.grey[300]),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      AppLocalizations.of(
-                        context,
-                      )!.winnersSelectedCount(winners.length),
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey[600],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(height: 1, color: Colors.grey[300]),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-
-        // Winners list
-        Expanded(
-          child: ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            itemCount: winners.length,
-            itemBuilder: (context, index) {
-              final winner = winners[index];
-              return _buildWinnerCard(winner, index, context);
-            },
-          ),
-        ),
-
-        // Footer with action buttons
-        Builder(
-          builder: (context) => Container(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                ElevatedButton.icon(
-                  onPressed: () async {
-                    final confirmed = await showResetRaffleDialog(context);
-                    if (confirmed && context.mounted) {
-                      context.go(AppRoutes.raffle);
-                    }
-                  },
-                  icon: const Icon(Icons.refresh),
-                  label: Text(AppLocalizations.of(context)!.newRaffle),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                OutlinedButton.icon(
-                  onPressed: () async {
-                    final confirmed = await showClearWinnersDialog(context);
-                    if (confirmed && context.mounted) {
-                      context.go(AppRoutes.raffle);
-                    }
-                  },
-                  icon: const Icon(Icons.restart_alt),
-                  label: Text(AppLocalizations.of(context)!.resetWinners),
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildWinnerCard(
-    RaffleWinner winner,
-    int index,
-    BuildContext context,
-  ) {
-    final position = winner.position;
-    Color cardColor;
-    IconData icon;
-    Color iconColor;
-
-    // Different styling for different positions
-    switch (position) {
-      case 1:
-        cardColor = Colors.amber[50]!;
-        icon = Icons.looks_one;
-        iconColor = Colors.amber;
-        break;
-      case 2:
-        cardColor = Colors.grey[100]!;
-        icon = Icons.looks_two;
-        iconColor = Colors.grey[600]!;
-        break;
-      case 3:
-        cardColor = Colors.orange[50]!;
-        icon = Icons.looks_3;
-        iconColor = Colors.orange;
-        break;
-      default:
-        cardColor = Colors.blue[50]!;
-        icon = Icons.emoji_events;
-        iconColor = Colors.blue;
-    }
-
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      color: cardColor,
-      child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-        leading: CircleAvatar(
-          backgroundColor: iconColor.withValues(alpha: 0.2),
-          child: Icon(icon, color: iconColor, size: 24),
-        ),
-        title: Text(
-          winner.name,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
-          ),
-        ),
-        subtitle: Text(
-          '${AppLocalizations.of(context)!.placeLabel(_getPositionText(context, position))} • ${_formatTime(winner.selectedAt)}',
-          style: TextStyle(color: Colors.grey[600], fontSize: 14),
-        ),
-        trailing: position <= 3
-            ? Icon(Icons.emoji_events, color: iconColor, size: 28)
-            : null,
-      ),
-    );
-  }
-
-  String _getPositionText(BuildContext context, int position) {
-    switch (position) {
-      case 1:
-        return AppLocalizations.of(context)!.firstPlace;
-      case 2:
-        return AppLocalizations.of(context)!.secondPlace;
-      case 3:
-        return AppLocalizations.of(context)!.thirdPlace;
-      default:
-        return AppLocalizations.of(context)!.nthPlace(position);
-    }
-  }
-
-  String _formatTime(DateTime dateTime) {
-    return '${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}';
   }
 
   void _showShareDialog(BuildContext context) {
@@ -330,55 +87,160 @@ class WinnersScreen extends StatelessWidget {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(AppLocalizations.of(context)!.shareResultsTitle),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(AppLocalizations.of(context)!.raffleResultsLabel),
-            const SizedBox(height: 16),
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: Colors.grey[100],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Text(
-                resultsText,
-                style: const TextStyle(
-                  fontFamily: 'monospace',
-                  color: Colors.black87,
-                ),
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(),
-            child: Text(AppLocalizations.of(context)!.close),
-          ),
-          TextButton(
-            onPressed: () async {
-              // Close the dialog first
-              Navigator.of(dialogContext).pop();
+      builder: (dialogContext) {
+        final isDark = Theme.of(context).brightness == Brightness.dark;
 
-              // Copy to clipboard
-              await Clipboard.setData(ClipboardData(text: resultsText));
-              if (context.mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(AppLocalizations.of(context)!.shareSuccess),
+        // Design Tokens
+        final dialogBg = isDark
+            ? const Color(0xFF27272A)
+            : const Color(0xFFFFFFFF);
+        final titleColor = isDark
+            ? const Color(0xFFFFFFFF)
+            : const Color(0xFF000000);
+        final contentColor = isDark
+            ? const Color(0xFFA1A1AA)
+            : const Color(0xFF71717A);
+        final closeBtnBg = isDark
+            ? const Color(0xFF3F3F46)
+            : const Color(0xFFF4F4F5);
+        final closeBtnIcon = isDark
+            ? const Color(0xFFA1A1AA)
+            : const Color(0xFF71717A);
+        final codeBg = isDark
+            ? const Color(0xFF18181B)
+            : const Color(0xFFF4F4F5);
+        final codeText = isDark
+            ? const Color(0xFFE4E4E7)
+            : const Color(0xFF18181B);
+
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          insetPadding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Container(
+            padding: const EdgeInsets.all(32),
+            decoration: BoxDecoration(
+              color: dialogBg,
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // Header
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.shareResultsTitle,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        color: titleColor,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () => Navigator.of(dialogContext).pop(),
+                      style: IconButton.styleFrom(
+                        backgroundColor: closeBtnBg,
+                        fixedSize: const Size(40, 40),
+                        padding: EdgeInsets.zero,
+                      ),
+                      icon: Icon(Icons.close, size: 20, color: closeBtnIcon),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+
+                Text(
+                  AppLocalizations.of(context)!.raffleResultsLabel,
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 14,
+                    color: contentColor,
                   ),
-                );
-              }
-            },
-            child: Text(AppLocalizations.of(context)!.share),
+                ),
+                const SizedBox(height: 12),
+
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: codeBg,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  height: 150,
+                  child: SingleChildScrollView(
+                    child: Text(
+                      resultsText,
+                      style: TextStyle(
+                        fontFamily: 'monospace',
+                        color: codeText,
+                        fontSize: 13,
+                      ),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 32),
+
+                SizedBox(
+                  height: 56,
+                  child: ElevatedButton.icon(
+                    onPressed: () async {
+                      Navigator.of(dialogContext).pop();
+                      await Clipboard.setData(ClipboardData(text: resultsText));
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              AppLocalizations.of(context)!.shareSuccess,
+                            ),
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF8B5CF6),
+                      foregroundColor: Colors.white,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    icon: const Icon(Icons.copy, size: 20),
+                    label: Text(
+                      AppLocalizations.of(context)!.share,
+                      style: const TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ],
-      ),
+        );
+      },
     );
+  }
+
+  String _getPositionText(BuildContext context, int position) {
+    switch (position) {
+      case 1:
+        return AppLocalizations.of(context)!.firstPlace;
+      case 2:
+        return AppLocalizations.of(context)!.secondPlace;
+      case 3:
+        return AppLocalizations.of(context)!.thirdPlace;
+      default:
+        return AppLocalizations.of(context)!.nthPlace(position);
+    }
   }
 
   String _generateResultsText(

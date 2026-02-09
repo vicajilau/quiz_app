@@ -34,6 +34,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get dropFileHere => 'ここをクリックするか、.quizファイルを画面にドラッグしてください';
 
   @override
+  String get clickOrDragFile => 'クリックしてロードするか、.quizファイルを画面にドラッグしてください';
+
+  @override
   String get errorInvalidFile => 'エラー：無効なファイルです。.quizファイルである必要があります。';
 
   @override
@@ -150,6 +153,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get previous => '前へ';
 
   @override
+  String get skip => 'スキップ';
+
+  @override
+  String get questionsOverview => 'Questions Map';
+
+  @override
   String get next => '次へ';
 
   @override
@@ -256,6 +265,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get questionOrderConfigTooltip => '問題順序の設定';
 
   @override
+  String get reorderQuestionsTooltip => '質問を並べ替える';
+
+  @override
   String get save => '保存';
 
   @override
@@ -316,6 +328,17 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get explanationTooltip => 'この問題には解説があります';
+
+  @override
+  String get missingExplanation => '説明がありません';
+
+  @override
+  String get missingExplanationTooltip => 'この質問には説明がありません';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return '質問の種類: $type';
+  }
 
   @override
   String get aiPrompt =>
@@ -923,7 +946,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get viewWinners => '当選者を見る';
 
   @override
-  String get congratulations => 'おめでとうございます！';
+  String get congratulations => '🎉 おめでとうございます！ 🎉';
 
   @override
   String positionLabel(int position) {
@@ -1121,7 +1144,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get quizModeTitle => 'クイズモード';
 
   @override
-  String get skip => 'スキップ';
+  String get settingsTitle => '設定';
 
   @override
   String get askAiAssistant => 'AIアシスタントに聞く';
@@ -1137,4 +1160,51 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get disable => '無効化';
+
+  @override
+  String get quizPreviewTitle => 'クイズプレビュー';
+
+  @override
+  String get select => '選択';
+
+  @override
+  String get done => '完了';
+
+  @override
+  String get importButton => 'インポート';
+
+  @override
+  String get reorderButton => '並べ替え';
+
+  @override
+  String get startQuizButton => 'クイズを開始';
+
+  @override
+  String get deleteConfirmation => 'このクイズを削除してもよろしいですか？';
+
+  @override
+  String get saveSuccess => 'ファイルが正常に保存されました';
+
+  @override
+  String get errorSavingFile => 'ファイルの保存中にエラーが発生しました';
+
+  @override
+  String get deleteSingleQuestionConfirmation => 'この質問を削除してもよろしいですか？';
+
+  @override
+  String deleteMultipleQuestionsConfirmation(int count) {
+    return '$count 個の質問を削除してもよろしいですか？';
+  }
+
+  @override
+  String get keepPracticing => '改善のために練習を続けましょう！';
+
+  @override
+  String get tryAgain => 'もう一度試す';
+
+  @override
+  String get review => '復習する';
+
+  @override
+  String get home => 'ホーム';
 }

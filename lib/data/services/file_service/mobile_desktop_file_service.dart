@@ -28,7 +28,9 @@ class QuizFileService implements IFileService {
   @override
   Future<QuizFile> readQuizFile(String filePath) async {
     if (!filePath.endsWith('.quiz')) {
-      throw const BadQuizFileException(type: BadQuizFileErrorType.invalidExtension);
+      throw const BadQuizFileException(
+        type: BadQuizFileErrorType.invalidExtension,
+      );
     }
     // Create a File object for the provided file path
     final file = File(filePath);
@@ -97,6 +99,8 @@ class QuizFileService implements IFileService {
   @override
   Future<QuizFile?> pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['quiz'],
       allowMultiple: false,
     );
 

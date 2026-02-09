@@ -40,6 +40,10 @@
   "@dropFileHere": {
     "description": "Texto mostrado na área de soltar para arrastrar ficheiros."
   },
+  "clickOrDragFile": "Preme para cargar ou arrastra un ficheiro .quiz á pantalla",
+  "@clickOrDragFile": {
+    "description": "Texto mostrado debaixo da área de carga"
+  },
   "errorInvalidFile": "Erro: Ficheiro non válido. Debe ser un ficheiro .quiz.",
   "@errorInvalidFile": {
     "description": "Mensaxe mostrada cando o ficheiro soltado non é un ficheiro .quiz."
@@ -461,6 +465,24 @@
   "explanationTooltip": "Esta pregunta ten unha explicación",
   "@explanationTooltip": {
     "description": "Texto do tooltip para a insignia indicadora de explicación"
+  },
+  "missingExplanation": "Falta explicación",
+  "@missingExplanation": {
+    "description": "Etiqueta indicando que a unha pregunta fáltalle a explicación"
+  },
+  "missingExplanationTooltip": "Esta pregunta non ten explicación",
+  "@missingExplanationTooltip": {
+    "description": "Texto do tooltip para a insignia indicadora de falta de explicación"
+  },
+  "questionTypeTooltip": "Tipo de pregunta: {type}",
+  "@questionTypeTooltip": {
+    "description": "Texto do tooltip para a insignia de tipo de pregunta",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Elección Múltiple"
+      }
+    }
   },
   "aiPrompt": "Céntrate na pregunta do estudante, non en responder directamente a pregunta orixinal do exame. Explica cun enfoque pedagóxico, proporcionando argumentos claros sen divagar nin saír do tema. Non estrutures a resposta en seccións. Non te refiras a ti mesmo. Responde na mesma lingua na que se che pregunta.",
   "@aiPrompt": {
@@ -1619,5 +1641,31 @@
   "sorteosLabel": "Raffles",
   "edit": "Editar",
   "enable": "Activar",
-  "disable": "Desactivar"
+  "disable": "Desactivar",
+  "reorderQuestionsTooltip": "Reordenar preguntas",
+  "@reorderQuestionsTooltip": {
+    "description": "Tooltip for the reorder questions button"
+  },
+  "quizPreviewTitle": "Vista previa do cuestionario",
+  "select": "Seleccionar",
+  "done": "Feito",
+  "importButton": "Importar",
+  "reorderButton": "Reordenar",
+  "startQuizButton": "Comezar cuestionario",
+  "deleteConfirmation": "Estás seguro de que queres eliminar este cuestionario?",
+  "saveSuccess": "Ficheiro gardado correctamente",
+  "errorSavingFile": "Erro ao gardar o ficheiro",
+  "deleteSingleQuestionConfirmation": "Estás seguro de que queres eliminar esta pregunta?",
+  "deleteMultipleQuestionsConfirmation": "Estás seguro de que queres eliminar {count} preguntas?",
+  "settingsTitle": "Axustes",
+  "questionsOverview": "Mapa de preguntas",
+  "@questionsOverview": {
+    "description": "Title for the questions overview bottom sheet"
+  },
+  "congratulations": "🎉 Parabéns! 🎉",
+  "keepPracticing": "Segue practicando para mellorar!",
+  "tryAgain": "Intentalo de novo",
+  "review": "Repasar",
+  "home": "Inicio"
 }
+

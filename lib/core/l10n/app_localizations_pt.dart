@@ -32,7 +32,11 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get dropFileHere =>
-      'Clique aqui ou arraste um arquivo .quiz para a tela';
+      'Clique no logotipo ou arraste um arquivo .quiz para a tela';
+
+  @override
+  String get clickOrDragFile =>
+      'Clique para carregar ou arraste um arquiro .quiz para a tela';
 
   @override
   String get errorInvalidFile =>
@@ -154,6 +158,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String get previous => 'Anterior';
 
   @override
+  String get skip => 'Pular';
+
+  @override
+  String get questionsOverview => 'Mapa de questões';
+
+  @override
   String get next => 'Próximo';
 
   @override
@@ -268,6 +278,9 @@ class AppLocalizationsPt extends AppLocalizations {
       'Configuração da ordem das perguntas';
 
   @override
+  String get reorderQuestionsTooltip => 'Reordenar perguntas';
+
+  @override
   String get save => 'Salvar';
 
   @override
@@ -330,6 +343,17 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get explanationTooltip => 'Esta pergunta tem uma explicação';
+
+  @override
+  String get missingExplanation => 'Explicação em falta';
+
+  @override
+  String get missingExplanationTooltip => 'Esta pergunta não tem explicação';
+
+  @override
+  String questionTypeTooltip(String type) {
+    return 'Tipo de pergunta: $type';
+  }
 
   @override
   String get aiPrompt =>
@@ -1178,7 +1202,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get quizModeTitle => 'Modo Quiz';
 
   @override
-  String get skip => 'Pular';
+  String get settingsTitle => 'Configurações';
 
   @override
   String get askAiAssistant => 'Perguntar ao Assistente de IA';
@@ -1194,4 +1218,53 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get disable => 'Desativar';
+
+  @override
+  String get quizPreviewTitle => 'Pré-visualização do Quiz';
+
+  @override
+  String get select => 'Selecionar';
+
+  @override
+  String get done => 'Concluído';
+
+  @override
+  String get importButton => 'Importar';
+
+  @override
+  String get reorderButton => 'Reordenar';
+
+  @override
+  String get startQuizButton => 'Iniciar Quiz';
+
+  @override
+  String get deleteConfirmation =>
+      'Tem certeza de que deseja excluir este quiz?';
+
+  @override
+  String get saveSuccess => 'Arquivo salvo com sucesso';
+
+  @override
+  String get errorSavingFile => 'Erro ao salvar o arquivo';
+
+  @override
+  String get deleteSingleQuestionConfirmation =>
+      'Tem certeza de que deseja excluir esta pergunta?';
+
+  @override
+  String deleteMultipleQuestionsConfirmation(int count) {
+    return 'Tem certeza de que deseja excluir $count perguntas?';
+  }
+
+  @override
+  String get keepPracticing => 'Continue praticando para melhorar!';
+
+  @override
+  String get tryAgain => 'Tentar novamente';
+
+  @override
+  String get review => 'Revisar';
+
+  @override
+  String get home => 'Início';
 }
