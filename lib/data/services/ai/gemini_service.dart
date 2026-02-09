@@ -101,7 +101,7 @@ class GeminiService extends AIService {
         }),
       );
     } catch (e) {
-      throw Exception(localizations.networkError);
+      throw Exception(localizations.networkErrorGemini);
     }
 
     if (response.statusCode == 200) {
@@ -196,7 +196,7 @@ class GeminiService extends AIService {
         }),
       );
     } catch (e) {
-      throw Exception(localizations.networkError);
+      throw Exception(localizations.networkErrorGemini);
     }
 
     if (response.statusCode == 200) {

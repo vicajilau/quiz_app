@@ -610,9 +610,13 @@
   "@unknownError": {
     "description": "Missatge d'error genèric desconegut"
   },
-  "networkError": "Error de xarxa: No es pot connectar a OpenAI. Comproveu la vostra connexió a internet.",
-  "@networkError": {
-    "description": "Missatge d'error de connectivitat de xarxa"
+  "networkErrorOpenAI": "Error de xarxa: No s'ha pogut connectar amb OpenAI. Comproveu la vostra connexió a Internet.",
+  "@networkErrorOpenAI": {
+    "description": "Missatge d'error de connectivitat de xarxa per a OpenAI"
+  },
+  "networkErrorGemini": "Error de xarxa: No s'ha pogut connectar amb Gemini. Comproveu la vostra connexió a Internet.",
+  "@networkErrorGemini": {
+    "description": "Missatge d'error de connectivitat de xarxa per a Gemini"
   },
   "openaiApiKeyNotConfigured": "Clau API OpenAI no configurada",
   "@openaiApiKeyNotConfigured": {

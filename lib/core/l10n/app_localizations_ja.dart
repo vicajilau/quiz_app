@@ -413,7 +413,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get unknownError => '不明なエラー';
 
   @override
-  String get networkError => 'ネットワークエラー：OpenAIに接続できません。インターネット接続を確認してください。';
+  String get networkErrorOpenAI =>
+      'ネットワークエラー：OpenAIに接続できません。インターネット接続を確認してください。';
+
+  @override
+  String get networkErrorGemini =>
+      'ネットワークエラー：Geminiに接続できません。インターネット接続を確認してください。';
 
   @override
   String get openaiApiKeyNotConfigured => 'OpenAI APIキーが設定されていません';

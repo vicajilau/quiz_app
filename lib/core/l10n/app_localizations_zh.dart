@@ -411,7 +411,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get unknownError => '未知错误';
 
   @override
-  String get networkError => '网络错误：无法连接到OpenAI。请检查您的网络连接。';
+  String get networkErrorOpenAI => '网络错误：无法连接到OpenAI。请检查您的网络连接。';
+
+  @override
+  String get networkErrorGemini => '网络错误：无法连接到Gemini。请检查您的网络连接。';
 
   @override
   String get openaiApiKeyNotConfigured => 'OpenAI API密钥未配置';

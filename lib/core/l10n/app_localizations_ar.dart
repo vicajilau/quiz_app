@@ -424,8 +424,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get unknownError => 'خطأ غير معروف';
 
   @override
-  String get networkError =>
-      'خطأ في الشبكة: غير قادر على الاتصال بـ OpenAI. يرجى التحقق من اتصال الإنترنت.';
+  String get networkErrorOpenAI =>
+      'خطأ في الشبكة: تعذر الاتصال بـ OpenAI. يرجى التحقق من اتصالك بالإنترنت.';
+
+  @override
+  String get networkErrorGemini =>
+      'خطأ في الشبكة: تعذر الاتصال بـ Gemini. يرجى التحقق من اتصالك بالإنترنت.';
 
   @override
   String get openaiApiKeyNotConfigured => 'مفتاح OpenAI API غير مُكوَّن';

@@ -85,7 +85,7 @@ class OpenAIService extends AIService {
         throw Exception(localizations.aiErrorResponse);
       }
     } catch (e) {
-      throw Exception(localizations.networkError);
+      throw Exception(localizations.networkErrorOpenAI);
     }
   }
 
@@ -139,7 +139,7 @@ class OpenAIService extends AIService {
         throw Exception(localizations.aiErrorResponse);
       }
     } catch (e) {
-      throw Exception(localizations.networkError);
+      throw Exception(localizations.networkErrorOpenAI);
     }
   }
 }

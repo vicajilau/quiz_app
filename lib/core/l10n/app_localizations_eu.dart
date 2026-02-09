@@ -431,8 +431,12 @@ class AppLocalizationsEu extends AppLocalizations {
   String get unknownError => 'Errore ezezaguna';
 
   @override
-  String get networkError =>
+  String get networkErrorOpenAI =>
       'Sare errorea: Ezin da OpenAI-ra konektatu. Egiaztatu zure internet konexioa.';
+
+  @override
+  String get networkErrorGemini =>
+      'Sare errorea: Ezin da Gemini-ra konektatu. Egiaztatu zure internet konexioa.';
 
   @override
   String get openaiApiKeyNotConfigured =>

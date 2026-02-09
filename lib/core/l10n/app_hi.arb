@@ -546,9 +546,13 @@
   "@unknownError": {
     "description": "Generic unknown error message"
   },
-  "networkError": "नेटवर्क त्रुटि: OpenAI से कनेक्ट नहीं हो सका। कृपया अपना इंटरनेट कनेक्शन जांचें।",
-  "@networkError": {
-    "description": "Network connectivity error message"
+  "networkErrorOpenAI": "नेटवर्क त्रुटि: OpenAI से कनेक्ट नहीं हो सका। कृपया अपना इंटरनेट कनेक्शन जांचें।",
+  "@networkErrorOpenAI": {
+    "description": "नेटवर्क कनेक्टिविटी त्रुटि संदेश OpenAI के लिए"
+  },
+  "networkErrorGemini": "नेटवर्क त्रुटि: Gemini से कनेक्ट नहीं हो सका। कृपया अपना इंटरनेट कनेक्शन जांचें।",
+  "@networkErrorGemini": {
+    "description": "नेटवर्क कनेक्टिविटी त्रुटि संदेश Gemini के लिए"
   },
   "openaiApiKeyNotConfigured": "OpenAI API Key कॉन्फ़िगर नहीं की गई",
   "@openaiApiKeyNotConfigured": {

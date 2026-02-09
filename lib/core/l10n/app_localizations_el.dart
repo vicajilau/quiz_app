@@ -435,8 +435,12 @@ class AppLocalizationsEl extends AppLocalizations {
   String get unknownError => 'Άγνωστο σφάλμα';
 
   @override
-  String get networkError =>
-      'Σφάλμα δικτύου: Αδυναμία σύνδεσης στο OpenAI. Παρακαλώ ελέγξτε τη σύνδεσή σας στο διαδίκτυο.';
+  String get networkErrorOpenAI =>
+      'Σφάλμα δικτύου: Αδυναμία σύνδεσης με το OpenAI. Ελέγξτε τη σύνδεσή σας στο διαδίκτυο.';
+
+  @override
+  String get networkErrorGemini =>
+      'Σφάλμα δικτύου: Αδυναμία σύνδεσης με το Gemini. Ελέγξτε τη σύνδεσή σας στο διαδίκτυο.';
 
   @override
   String get openaiApiKeyNotConfigured =>
