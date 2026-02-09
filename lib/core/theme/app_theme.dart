@@ -4,6 +4,7 @@ import 'package:quiz_app/core/theme/extensions/custom_colors.dart';
 import 'package:quiz_app/core/theme/extensions/exam_timer_theme.dart';
 import 'package:quiz_app/core/theme/extensions/home_theme.dart';
 import 'package:quiz_app/core/theme/extensions/file_loaded_theme.dart';
+import 'package:quiz_app/core/theme/extensions/question_dialog_theme.dart';
 
 class AppTheme {
   // Define main application colors
@@ -18,6 +19,8 @@ class AppTheme {
   static const Color borderColor = Color(0xFFE4E4E7); // Zinc 200
   static const Color cardColorDark = Color(0xFF27272A); // Zinc 800
   static const Color borderColorDark = Color(0xFF3F3F46); // Zinc 700
+  static const Color shadowColor = Colors.black;
+  static const Color transparent = Colors.transparent;
 
   // Define the light theme
   static ThemeData get lightTheme => ThemeData(
@@ -138,6 +141,14 @@ class AppTheme {
         dragOverlayShadowColor: Color(
           0x338B5CF6,
         ), // primaryColor.withValues(alpha: 0.2)
+      ),
+      const QuestionDialogTheme(
+        backgroundColor: surfaceColor,
+        textColor: textColor,
+        borderColor: borderColor,
+        closeButtonColor: cardColorLight,
+        closeIconColor: textSecondaryColor,
+        shadowColor: shadowColor,
       ),
     ],
   );
@@ -269,6 +280,14 @@ class AppTheme {
         dragOverlayShadowColor: Color(
           0x338B5CF6,
         ), // primaryColor.withValues(alpha: 0.2)
+      ),
+      const QuestionDialogTheme(
+        backgroundColor: cardColorDark,
+        textColor: Colors.white,
+        borderColor: borderColorDark,
+        closeButtonColor: borderColorDark,
+        closeIconColor: Color(0xFFA1A1AA), // hintColor
+        shadowColor: Color(0x40000000), // black with opacity
       ),
     ],
   );

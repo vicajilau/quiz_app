@@ -4,6 +4,11 @@ import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 
+import 'package:lucide_icons/lucide_icons.dart';
+import 'package:quiz_app/core/theme/extensions/custom_colors.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/question_dialog_theme.dart';
+
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/presentation/utils/question_translation_helper.dart';
 import 'package:quiz_app/presentation/screens/widgets/add_edit_question/question_image_section.dart';
@@ -168,252 +173,436 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
+    final theme = Theme.of(context).extension<QuestionDialogTheme>()!;
 
-    return AlertDialog(
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            widget.question == null
-                ? localizations.addQuestion
-                : localizations.editQuestion,
-          ),
-          if (widget.question != null && widget.onDelete != null)
-            IconButton(
-              onPressed: _confirmAndDelete,
-              icon: const Icon(Icons.delete, color: Colors.red),
-              tooltip: localizations.deleteAction,
+    return Dialog(
+      backgroundColor: AppTheme.transparent,
+      elevation: 0,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+      child: Container(
+        width: 600,
+        decoration: BoxDecoration(
+          color: theme.backgroundColor,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: theme.borderColor, width: 1),
+          boxShadow: [
+            BoxShadow(
+              color: theme.shadowColor.withValues(alpha: 0.1),
+              blurRadius: 20,
+              offset: const Offset(0, 10),
             ),
-        ],
-      ),
-      content: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.8,
-        height: MediaQuery.of(context).size.height * 0.7,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 16),
-              // Question Type Dropdown with Icon
-              Row(
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Header
+            Padding(
+              padding: const EdgeInsets.fromLTRB(32, 32, 32, 24),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Question type icon
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primaryContainer,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Icon(
-                      _selectedType.getQuestionTypeIcon(),
-                      color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      size: 24,
+                  Text(
+                    widget.question == null
+                        ? localizations.addQuestion
+                        : localizations.editQuestion,
+                    style: TextStyle(
+                      fontFamily: 'Plus Jakarta Sans',
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: theme.textColor,
                     ),
                   ),
-                  const SizedBox(width: 12),
-                  // Question type dropdown
-                  Expanded(
-                    child: DropdownButtonFormField<QuestionType>(
-                      initialValue: _selectedType,
-                      onChanged: _onQuestionTypeChanged,
-                      decoration: InputDecoration(
-                        labelText: localizations.questionType,
-                        border: const OutlineInputBorder(),
-                      ),
-                      items: QuestionType.values.map((type) {
-                        return DropdownMenuItem(
-                          value: type,
-                          child: Text(type.getQuestionTypeLabel(context)),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-
-              // Question Text Field with Live Preview
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              if (_questionTextController.text.contains(
-                                '\$',
-                              )) ...[
-                                const SizedBox(width: 12),
-                                Text(
-                                  '${localizations.preview}: ',
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                const SizedBox(width: 4),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                    vertical: 2,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.blue.withValues(alpha: 0.05),
-                                    border: Border.all(
-                                      color: Colors.blue.withValues(alpha: 0.3),
-                                    ),
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                  child: Center(
-                                    heightFactor: 1.0,
-                                    child: LaTeXText(
-                                      _questionTextController.text,
-                                      style: const TextStyle(
-                                        fontSize: 12,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ],
+                      if (widget.question != null && widget.onDelete != null)
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: IconButton(
+                            onPressed: _confirmAndDelete,
+                            style: IconButton.styleFrom(
+                              backgroundColor: Theme.of(
+                                context,
+                              ).colorScheme.error.withValues(alpha: 0.1),
+                              fixedSize: const Size(40, 40),
+                              padding: EdgeInsets.zero,
+                              shape: const CircleBorder(),
+                            ),
+                            icon: Icon(
+                              LucideIcons.trash2,
+                              color: Theme.of(context).colorScheme.error,
+                              size: 20,
+                            ),
+                            tooltip: localizations.deleteAction,
                           ),
+                        ),
+                      IconButton(
+                        onPressed: () => context.pop(),
+                        style: IconButton.styleFrom(
+                          backgroundColor: theme.closeButtonColor,
+                          fixedSize: const Size(40, 40),
+                          padding: EdgeInsets.zero,
+                          shape: const CircleBorder(),
+                        ),
+                        icon: Icon(
+                          LucideIcons.x,
+                          size: 20,
+                          color: theme.closeIconColor,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
-                  TextField(
-                    controller: _questionTextController,
-                    maxLines: null,
-                    textAlignVertical: TextAlignVertical.top,
-                    onChanged: (_) {
-                      clearQuestionTextError();
-                      setState(() {}); // Trigger rebuild for live preview
-                    },
-                    decoration: InputDecoration(
-                      labelText: localizations.questionText,
-                      border: const OutlineInputBorder(),
-                      errorText: questionTextError,
-                    ),
-                  ),
                 ],
               ),
-              const SizedBox(height: 16),
+            ),
 
-              // Image Section
-              QuestionImageSection(
-                imageData: _imageData,
-                onImagePicked: () {}, // Will be handled by onImageChanged
-                onImageRemoved: _onImageRemoved,
-                onImageChanged: _onImageChanged,
-              ),
-              const SizedBox(height: 16),
+            // Content
+            Flexible(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(32, 0, 32, 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Question Type Label
+                    Text(
+                      localizations.questionType,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: theme.closeIconColor,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    // Question Type Dropdown
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.primaryContainer,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Icon(
+                            _selectedType.getQuestionTypeIcon(),
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onPrimaryContainer,
+                            size: 24,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: DropdownButtonFormField<QuestionType>(
+                            initialValue: _selectedType,
+                            isExpanded: true,
+                            onChanged: _onQuestionTypeChanged,
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 16,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide(
+                                  color: theme.borderColor,
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide(
+                                  color: theme.borderColor,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide(
+                                  color: Theme.of(context).primaryColor,
+                                  width: 2,
+                                ),
+                              ),
+                              filled: true,
+                              fillColor: Theme.of(context).cardColor,
+                            ),
+                            items: QuestionType.values.map((type) {
+                              return DropdownMenuItem(
+                                value: type,
+                                child: Text(
+                                  type.getQuestionTypeLabel(context),
+                                  style: TextStyle(
+                                    color: theme
+                                        .textColor, // Ensure text is visible
+                                    fontSize: 14,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
 
-              // Options Section (only for non-essay questions)
-              if (_selectedType != QuestionType.essay)
-                QuestionOptionsSection(
-                  questionType: _selectedType,
-                  optionControllers: optionControllers,
-                  correctAnswersNotifier: correctAnswersNotifier,
-                  optionsErrorNotifier: optionsErrorNotifier,
-                  optionKeys: optionKeys,
-                  onAddOption: addOption,
-                  onRemove: removeOption,
-                  onCorrectChanged: (index, value) =>
-                      updateCorrectAnswer(index, value, _selectedType),
-                  onTextChanged: clearOptionsError,
+                    // Question Text Field
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Question Text Label
+                        Text(
+                          localizations.questionText,
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: theme.closeIconColor,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        if (_questionTextController.text.contains('\$')) ...[
+                          Container(
+                            margin: const EdgeInsets.only(bottom: 12),
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color:
+                                  Theme.of(context)
+                                      .extension<CustomColors>()
+                                      ?.info
+                                      ?.withValues(alpha: 0.1) ??
+                                  Theme.of(
+                                    context,
+                                  ).primaryColor.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color:
+                                    Theme.of(context)
+                                        .extension<CustomColors>()
+                                        ?.info
+                                        ?.withValues(alpha: 0.3) ??
+                                    Theme.of(
+                                      context,
+                                    ).primaryColor.withValues(alpha: 0.3),
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  localizations.preview,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                    color:
+                                        Theme.of(
+                                          context,
+                                        ).extension<CustomColors>()?.info ??
+                                        Theme.of(context).primaryColor,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                LaTeXText(
+                                  _questionTextController.text,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: theme.textColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                        TextField(
+                          controller: _questionTextController,
+                          maxLines: 3,
+                          textAlignVertical: TextAlignVertical.top,
+                          style: TextStyle(color: theme.textColor),
+                          onChanged: (_) {
+                            clearQuestionTextError();
+                            setState(() {});
+                          },
+                          decoration: InputDecoration(
+                            alignLabelWithHint: true,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: theme.borderColor),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: theme.borderColor),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2,
+                              ),
+                            ),
+                            errorText: questionTextError,
+                            filled: true,
+                            fillColor: Theme.of(context).cardColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
+
+                    // Image Section
+                    QuestionImageSection(
+                      imageData: _imageData,
+                      onImagePicked: () {}, // Handled by onImageChanged
+                      onImageRemoved: _onImageRemoved,
+                      onImageChanged: _onImageChanged,
+                    ),
+                    const SizedBox(height: 24),
+
+                    // Options Section
+                    if (_selectedType != QuestionType.essay)
+                      QuestionOptionsSection(
+                        questionType: _selectedType,
+                        optionControllers: optionControllers,
+                        correctAnswersNotifier: correctAnswersNotifier,
+                        optionsErrorNotifier: optionsErrorNotifier,
+                        optionKeys: optionKeys,
+                        onAddOption: addOption,
+                        onRemove: removeOption,
+                        onCorrectChanged: (index, value) =>
+                            updateCorrectAnswer(index, value, _selectedType),
+                        onTextChanged: clearOptionsError,
+                      ),
+
+                    const SizedBox(height: 24),
+
+                    // Explanation Field
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Explanation Label
+                        Text(
+                          AppLocalizations.of(context)!.explanationLabel,
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: theme.closeIconColor,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        if (_explanationController.text.contains('\$')) ...[
+                          Container(
+                            margin: const EdgeInsets.only(bottom: 12),
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color:
+                                  Theme.of(context)
+                                      .extension<CustomColors>()
+                                      ?.info
+                                      ?.withValues(alpha: 0.1) ??
+                                  Theme.of(
+                                    context,
+                                  ).primaryColor.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color:
+                                    Theme.of(context)
+                                        .extension<CustomColors>()
+                                        ?.info
+                                        ?.withValues(alpha: 0.3) ??
+                                    Theme.of(
+                                      context,
+                                    ).primaryColor.withValues(alpha: 0.3),
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  localizations.preview,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                    color:
+                                        Theme.of(
+                                          context,
+                                        ).extension<CustomColors>()?.info ??
+                                        Theme.of(context).primaryColor,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                LaTeXText(
+                                  _explanationController.text,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: theme.textColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                        TextField(
+                          controller: _explanationController,
+                          maxLines: 2,
+                          textAlignVertical: TextAlignVertical.top,
+                          style: TextStyle(color: theme.textColor),
+                          onChanged: (_) {
+                            setState(() {});
+                          },
+                          decoration: InputDecoration(
+                            alignLabelWithHint: true,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: theme.borderColor),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: theme.borderColor),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2,
+                              ),
+                            ),
+                            filled: true,
+                            fillColor: Theme.of(context).cardColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-
-              const SizedBox(height: 16),
-
-              // Explanation Field with Live Preview
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              if (_explanationController.text.contains(
-                                '\$',
-                              )) ...[
-                                const SizedBox(width: 12),
-                                Text(
-                                  '${localizations.preview}: ',
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                const SizedBox(width: 4),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                    vertical: 2,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.blue.withValues(alpha: 0.05),
-                                    border: Border.all(
-                                      color: Colors.blue.withValues(alpha: 0.3),
-                                    ),
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                  child: Center(
-                                    heightFactor: 1.0,
-                                    child: LaTeXText(
-                                      _explanationController.text,
-                                      style: const TextStyle(
-                                        fontSize: 12,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  TextField(
-                    controller: _explanationController,
-                    maxLines: null,
-                    textAlignVertical: TextAlignVertical.top,
-                    onChanged: (_) {
-                      setState(() {}); // Trigger rebuild for live preview
-                    },
-                    decoration: InputDecoration(
-                      labelText: AppLocalizations.of(context)!.explanationLabel,
-                      border: const OutlineInputBorder(),
-                    ),
-                  ),
-                ],
               ),
-            ],
-          ),
+            ),
+
+            // Footer / Actions
+            Padding(
+              padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
+              child: ElevatedButton(
+                onPressed: _saveQuestion,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).primaryColor,
+                  foregroundColor: AppTheme.surfaceColor,
+                  elevation: 0,
+                  minimumSize: const Size(double.infinity, 56),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  textStyle: const TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                child: Text(localizations.save),
+              ),
+            ),
+          ],
         ),
       ),
-      actions: [
-        TextButton(
-          onPressed: () => context.pop(),
-          child: Text(localizations.cancel),
-        ),
-        ElevatedButton(
-          onPressed: _saveQuestion,
-          child: Text(localizations.save),
-        ),
-      ],
     );
   }
 
