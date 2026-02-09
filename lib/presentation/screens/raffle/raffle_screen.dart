@@ -139,7 +139,7 @@ class _RaffleScreenContent extends StatelessWidget {
                     backgroundColor: Colors.orange,
                     duration: const Duration(seconds: 5),
                     action: SnackBarAction(
-                      label: 'OK',
+                      label: AppLocalizations.of(context)!.okButton,
                       textColor: Colors.white,
                       onPressed: () {
                         ScaffoldMessenger.of(context).hideCurrentSnackBar();

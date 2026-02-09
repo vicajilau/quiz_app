@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/presentation/widgets/latex_text.dart';
 
 /// A dialog to preview how an option will appear with LaTeX rendering
@@ -21,7 +22,7 @@ class LaTeXPreviewDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Preview:'),
+            Text(AppLocalizations.of(context)!.previewLabel),
             const SizedBox(height: 12),
             Container(
               padding: const EdgeInsets.all(12),
@@ -32,9 +33,9 @@ class LaTeXPreviewDialog extends StatelessWidget {
               ),
               constraints: const BoxConstraints(minHeight: 80),
               child: optionText.trim().isEmpty
-                  ? const Text(
-                      '(empty)',
-                      style: TextStyle(color: Colors.white70),
+                  ? Text(
+                      AppLocalizations.of(context)!.emptyPlaceholder,
+                      style: const TextStyle(color: Colors.white70),
                     )
                   : LaTeXText(
                       optionText,
@@ -44,23 +45,19 @@ class LaTeXPreviewDialog extends StatelessWidget {
             const SizedBox(height: 16),
             const Divider(),
             const SizedBox(height: 8),
-            const Text(
-              'LaTeX Syntax:',
-              style: TextStyle(fontWeight: FontWeight.bold),
+            Text(
+              AppLocalizations.of(context)!.latexSyntaxTitle,
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            const Text(
-              r'Inline math: Use $...$ for LaTeX expressions'
-              '\n'
-              r'Example: $x^2 + y^2 = z^2$',
-            ),
+            Text(AppLocalizations.of(context)!.latexSyntaxHelp),
           ],
         ),
       ),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('Close'),
+          child: Text(AppLocalizations.of(context)!.close),
         ),
       ],
     );
@@ -82,7 +79,7 @@ class LaTeXPreviewButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: const Icon(Icons.preview),
-      tooltip: 'Preview LaTeX rendering',
+      tooltip: AppLocalizations.of(context)!.previewLatexTooltip,
       onPressed: () {
         showDialog(
           context: context,

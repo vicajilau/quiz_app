@@ -216,10 +216,11 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
 
   String _getWordCountText() {
     final count = _getWordCount();
+    final localizations = AppLocalizations.of(context)!;
     if (count <= 10) {
-      return 'Topic Mode ($count words)';
+      return localizations.aiTopicModeCount(count);
     } else {
-      return 'Text Mode ($count words)';
+      return localizations.aiTextModeCount(count);
     }
   }
 
@@ -389,5 +390,4 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
         return code.toUpperCase();
     }
   }
-
 }

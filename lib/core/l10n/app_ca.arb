@@ -12,6 +12,78 @@
   "@preview": {
     "description": "Etiqueta per a la secció de previsualització LaTeX en diàlegs de preguntes."
   },
+  "previewLabel": "Previsualització:",
+  "@previewLabel": {
+    "description": "Label text for preview section"
+  },
+  "emptyPlaceholder": "(buit)",
+  "@emptyPlaceholder": {
+    "description": "Placeholder text when content is empty"
+  },
+  "latexSyntaxTitle": "Sintaxi LaTeX:",
+  "@latexSyntaxTitle": {
+    "description": "Title for LaTeX syntax help section"
+  },
+  "latexSyntaxHelp": "Matemàtiques en línia: Utilitzeu $...$ per a expressions LaTeX\nExemple: $x^2 + y^2 = z^2$",
+  "@latexSyntaxHelp": {
+    "description": "Help text explaining LaTeX syntax"
+  },
+  "previewLatexTooltip": "Previsualització del renderitzat LaTeX",
+  "@previewLatexTooltip": {
+    "description": "Tooltip for preview LaTeX button"
+  },
+  "okButton": "D'acord",
+  "@okButton": {
+    "description": "Generic OK button text"
+  },
+  "aiEnterContentTitle": "Introduir contingut",
+  "@aiEnterContentTitle": {
+    "description": "Title for the step 2 of AI question generation"
+  },
+  "aiEnterContentDescription": "Introduïu el tema o enganxeu el contingut per generar preguntes",
+  "@aiEnterContentDescription": {
+    "description": "Description for the content input step"
+  },
+  "aiContentFieldHint": "Introduïu un tema com \"Història de la Segona Guerra Mundial\" o enganxeu contingut de text aquí...",
+  "@aiContentFieldHint": {
+    "description": "Hint text for the content input field"
+  },
+  "aiAttachFileHint": "Adjunteu un fitxer (PDF, TXT, DOCX)",
+  "@aiAttachFileHint": {
+    "description": "Hint text for the file attachment area"
+  },
+  "aiNumberQuestionsLabel": "Nombre de preguntes",
+  "@aiNumberQuestionsLabel": {
+    "description": "Label for number of questions input"
+  },
+  "backButton": "Enrere",
+  "@backButton": {
+    "description": "Generic back button text"
+  },
+  "generateButton": "Generar",
+  "@generateButton": {
+    "description": "Generic generate button text"
+  },
+  "aiTopicModeCount": "Mode Tema ({count} paraules)",
+  "@aiTopicModeCount": {
+    "description": "Topic mode with word count",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiTextModeCount": "Mode Text ({count} paraules)",
+  "@aiTextModeCount": {
+    "description": "Text mode with word count",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "150"
+      }
+    }
+  },
   "load": "Carregar",
   "@load": {
     "description": "Etiqueta pel botó Carregar fitxer Quiz a l'AppBar."

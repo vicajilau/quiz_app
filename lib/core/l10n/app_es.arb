@@ -12,6 +12,30 @@
   "@preview": {
     "description": "Etiqueta para la sección de vista previa de LaTeX en diálogos de preguntas."
   },
+  "previewLabel": "Vista previa:",
+  "@previewLabel": {
+    "description": "Texto de etiqueta para la sección de vista previa"
+  },
+  "emptyPlaceholder": "(vacío)",
+  "@emptyPlaceholder": {
+    "description": "Texto de marcador de posición cuando el contenido está vacío"
+  },
+  "latexSyntaxTitle": "Sintaxis LaTeX:",
+  "@latexSyntaxTitle": {
+    "description": "Título para la sección de ayuda de sintaxis LaTeX"
+  },
+  "latexSyntaxHelp": "Matemáticas en línea: Usa $...$ para expresiones LaTeX\nEjemplo: $x^2 + y^2 = z^2$",
+  "@latexSyntaxHelp": {
+    "description": "Texto de ayuda explicando la sintaxis LaTeX"
+  },
+  "previewLatexTooltip": "Vista previa del renderizado LaTeX",
+  "@previewLatexTooltip": {
+    "description": "Tooltip para el botón de vista previa LaTeX"
+  },
+  "okButton": "Aceptar",
+  "@okButton": {
+    "description": "Texto genérico del botón Aceptar"
+  },
   "load": "Cargar",
   "@load": {
     "description": "Etiqueta para el botón Cargar archivo Quiz en la AppBar."
@@ -961,7 +985,55 @@
   },
   "aiGenerateButton": "Generar Preguntas",
   "@aiGenerateButton": {
-    "description": "Texto del botón para generar preguntas."
+    "description": "Texto para el botón de generar preguntas."
+  },
+  "aiEnterContentTitle": "Introducir contenido",
+  "@aiEnterContentTitle": {
+    "description": "Título para el paso 2 de la generación de preguntas con IA"
+  },
+  "aiEnterContentDescription": "Introduce el tema o pega el contenido para generar preguntas",
+  "@aiEnterContentDescription": {
+    "description": "Descripción para el paso de entrada de contenido"
+  },
+  "aiContentFieldHint": "Introduce un tema como \"Historia de la Segunda Guerra Mundial\" o pega el contenido de texto aquí...",
+  "@aiContentFieldHint": {
+    "description": "Texto de ayuda para el campo de entrada de contenido"
+  },
+  "aiAttachFileHint": "Adjunta un archivo (PDF, TXT, DOCX)",
+  "@aiAttachFileHint": {
+    "description": "Texto de ayuda para el área de archivos adjuntos"
+  },
+  "aiNumberQuestionsLabel": "Número de preguntas",
+  "@aiNumberQuestionsLabel": {
+    "description": "Etiqueta para la entrada del número de preguntas"
+  },
+  "backButton": "Volver",
+  "@backButton": {
+    "description": "Texto genérico del botón de volver"
+  },
+  "generateButton": "Generar",
+  "@generateButton": {
+    "description": "Texto genérico del botón de generar"
+  },
+  "aiTopicModeCount": "Modo Tema ({count} palabras)",
+  "@aiTopicModeCount": {
+    "description": "Modo tema con recuento de palabras",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiTextModeCount": "Modo Texto ({count} palabras)",
+  "@aiTextModeCount": {
+    "description": "Modo texto con recuento de palabras",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "150"
+      }
+    }
   },
   "languageSpanish": "Español",
   "@languageSpanish": {

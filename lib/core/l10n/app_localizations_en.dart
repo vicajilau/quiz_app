@@ -18,6 +18,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get preview => 'Preview';
 
   @override
+  String get previewLabel => 'Preview:';
+
+  @override
+  String get emptyPlaceholder => '(empty)';
+
+  @override
+  String get latexSyntaxTitle => 'LaTeX Syntax:';
+
+  @override
+  String get latexSyntaxHelp =>
+      'Inline math: Use \$...\$ for LaTeX expressions\nExample: \$x^2 + y^2 = z^2\$';
+
+  @override
+  String get previewLatexTooltip => 'Preview LaTeX rendering';
+
+  @override
+  String get okButton => 'OK';
+
+  @override
   String get load => 'Load';
 
   @override
@@ -731,6 +750,39 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aiGenerateButton => 'Generate Questions';
+
+  @override
+  String get aiEnterContentTitle => 'Enter Content';
+
+  @override
+  String get aiEnterContentDescription =>
+      'Enter the topic or paste content to generate questions from';
+
+  @override
+  String get aiContentFieldHint =>
+      'Enter a topic like \"World War II history\" or paste text content here...';
+
+  @override
+  String get aiAttachFileHint => 'Attach a file (PDF, TXT, DOCX)';
+
+  @override
+  String get aiNumberQuestionsLabel => 'Number of Questions';
+
+  @override
+  String get backButton => 'Back';
+
+  @override
+  String get generateButton => 'Generate';
+
+  @override
+  String aiTopicModeCount(int count) {
+    return 'Topic Mode ($count words)';
+  }
+
+  @override
+  String aiTextModeCount(int count) {
+    return 'Text Mode ($count words)';
+  }
 
   @override
   String get languageSpanish => 'Español';

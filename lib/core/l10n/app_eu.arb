@@ -1666,6 +1666,21 @@
   "keepPracticing": "Jarraitu praktikatzen hobetzeko!",
   "tryAgain": "Berriro saiatu",
   "review": "Berrikusi",
-  "home": "Hasiera"
+  "home": "Hasiera",
+  "previewLabel": "Aurrebista:",
+  "emptyPlaceholder": "(hutsik)",
+  "latexSyntaxTitle": "LaTeX sintaxia:",
+  "latexSyntaxHelp": "Lineako matematika: Erabili $...$ LaTeX adierazpenetarako\nAdibidea: $x^2 + y^2 = z^2$",
+  "previewLatexTooltip": "Ikusi LaTeX errendatzea",
+  "okButton": "Ados",
+  "aiEnterContentTitle": "Sartu edukia",
+  "aiEnterContentDescription": "Sartu gaia edo itsatsi edukia galderak sortzeko",
+  "aiContentFieldHint": "Sartu gai bat, adibidez \"Bigarren Mundu Gerrako historia\" edo itsatsi testua hemen...",
+  "aiAttachFileHint": "Erantsi fitxategia (PDF, TXT, DOCX)",
+  "aiNumberQuestionsLabel": "Galdera kopurua",
+  "backButton": "Itzuli",
+  "generateButton": "Sortu",
+  "aiTopicModeCount": "Gai modua ({count} hitz)",
+  "aiTextModeCount": "Testu modua ({count} hitz)"
 }
 

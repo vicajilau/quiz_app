@@ -18,6 +18,25 @@ class AppLocalizationsAr extends AppLocalizations {
   String get preview => 'معاينة';
 
   @override
+  String get previewLabel => 'معاينة:';
+
+  @override
+  String get emptyPlaceholder => '(فارغ)';
+
+  @override
+  String get latexSyntaxTitle => 'بناء جملة LaTeX:';
+
+  @override
+  String get latexSyntaxHelp =>
+      'الرياضيات المضمنة: استخدم \$...\$ لتعبيرات LaTeX\nمثال: \$x^2 + y^2 = z^2\$';
+
+  @override
+  String get previewLatexTooltip => 'معاينة عرض LaTeX';
+
+  @override
+  String get okButton => 'موافق';
+
+  @override
   String get load => 'تحميل';
 
   @override
@@ -723,6 +742,39 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get aiGenerateButton => 'إنتاج الأسئلة';
+
+  @override
+  String get aiEnterContentTitle => 'إدخال المحتوى';
+
+  @override
+  String get aiEnterContentDescription =>
+      'أدخل الموضوع أو الصق المحتوى لتوليد الأسئلة منه';
+
+  @override
+  String get aiContentFieldHint =>
+      'أدخل موضوعاً مثل \"تاريخ الحرب العالمية الثانية\" أو الصق محتوى نصي هنا...';
+
+  @override
+  String get aiAttachFileHint => 'إرفاق ملف (PDF، TXT، DOCX)';
+
+  @override
+  String get aiNumberQuestionsLabel => 'عدد الأسئلة';
+
+  @override
+  String get backButton => 'رجوع';
+
+  @override
+  String get generateButton => 'توليد';
+
+  @override
+  String aiTopicModeCount(int count) {
+    return 'وضع الموضوع ($count كلمات)';
+  }
+
+  @override
+  String aiTextModeCount(int count) {
+    return 'وضع النص ($count كلمات)';
+  }
 
   @override
   String get languageSpanish => 'Español';

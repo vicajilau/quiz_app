@@ -4,6 +4,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
 import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/domain/models/ai/ai_file_attachment.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
 
 class AiGenerateStep2Widget extends StatelessWidget {
   final TextEditingController textController;
@@ -39,22 +40,27 @@ class AiGenerateStep2Widget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final backgroundColor = isDark ? const Color(0xFF27272A) : Colors.white;
     final borderColor = isDark ? Colors.transparent : const Color(0xFFE4E4E7);
     final titleColor = isDark ? Colors.white : const Color(0xFF18181B);
-    final closeBtnColor =
-        isDark ? const Color(0xFF3F3F46) : const Color(0xFFF4F4F5);
-    final closeIconColor =
-        isDark ? const Color(0xFFA1A1AA) : const Color(0xFF71717A);
-    final inputBg =
-        isDark ? const Color(0xFF3F3F46) : const Color(0xFFF4F4F5);
-    final placeholderColor =
-        isDark ? const Color(0xFF71717A) : const Color(0xFFA1A1AA);
-    final attachStroke =
-        isDark ? const Color(0xFF52525B) : const Color(0xFFD4D4D8);
-    final labelColor =
-        isDark ? const Color(0xFFA1A1AA) : const Color(0xFF71717A);
+    final closeBtnColor = isDark
+        ? const Color(0xFF3F3F46)
+        : const Color(0xFFF4F4F5);
+    final closeIconColor = isDark
+        ? const Color(0xFFA1A1AA)
+        : const Color(0xFF71717A);
+    final inputBg = isDark ? const Color(0xFF3F3F46) : const Color(0xFFF4F4F5);
+    final placeholderColor = isDark
+        ? const Color(0xFF71717A)
+        : const Color(0xFFA1A1AA);
+    final attachStroke = isDark
+        ? const Color(0xFF52525B)
+        : const Color(0xFFD4D4D8);
+    final labelColor = isDark
+        ? const Color(0xFFA1A1AA)
+        : const Color(0xFF71717A);
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -79,7 +85,7 @@ class AiGenerateStep2Widget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Enter Content',
+                    localizations.aiEnterContentTitle,
                     style: TextStyle(
                       fontFamily: 'Inter',
                       fontSize: 24,
@@ -95,14 +101,13 @@ class AiGenerateStep2Widget extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       shape: const CircleBorder(),
                     ),
-                    icon:
-                        Icon(LucideIcons.x, color: closeIconColor, size: 20),
+                    icon: Icon(LucideIcons.x, color: closeIconColor, size: 20),
                   ),
                 ],
               ),
               const SizedBox(height: 8),
               Text(
-                'Enter the topic or paste content to generate questions from',
+                localizations.aiEnterContentDescription,
                 style: TextStyle(
                   fontFamily: 'Inter',
                   fontSize: 14,
@@ -133,8 +138,7 @@ class AiGenerateStep2Widget extends StatelessWidget {
                           color: titleColor,
                         ),
                         decoration: InputDecoration.collapsed(
-                          hintText:
-                              'Enter a topic like "World War II history" or paste text content here...',
+                          hintText: localizations.aiContentFieldHint,
                           hintStyle: TextStyle(
                             fontFamily: 'Inter',
                             fontSize: 14,
@@ -175,46 +179,53 @@ class AiGenerateStep2Widget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(color: attachStroke, width: 2),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(LucideIcons.paperclip, color: labelColor, size: 20),
-                      const SizedBox(width: 12),
-                      fileAttachment != null
-                          ? Expanded(
-                              child: Text(
-                                fileAttachment!.name,
+                  child: Padding(
+                    padding: const EdgeInsetsGeometry.only(left: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          LucideIcons.paperclip,
+                          color: labelColor,
+                          size: 20,
+                        ),
+                        const SizedBox(width: 12),
+                        fileAttachment != null
+                            ? Expanded(
+                                child: Text(
+                                  fileAttachment!.name,
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: labelColor,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              )
+                            : Text(
+                                localizations.aiAttachFileHint,
                                 style: TextStyle(
                                   fontFamily: 'Inter',
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                   color: labelColor,
                                 ),
-                                overflow: TextOverflow.ellipsis,
                               ),
-                            )
-                          : Text(
-                              'Attach a file (PDF, TXT, DOCX)',
-                              style: TextStyle(
-                                fontFamily: 'Inter',
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
+                        if (fileAttachment != null)
+                          Padding(
+                            padding: const EdgeInsets.only(right: 16.0),
+                            child: GestureDetector(
+                              onTap: onRemoveFile,
+                              child: Icon(
+                                LucideIcons.x,
                                 color: labelColor,
+                                size: 16,
                               ),
-                            ),
-                      if (fileAttachment != null)
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
-                          child: GestureDetector(
-                            onTap: onRemoveFile,
-                            child: Icon(
-                              LucideIcons.x,
-                              color: labelColor,
-                              size: 16,
                             ),
                           ),
-                        ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -223,7 +234,7 @@ class AiGenerateStep2Widget extends StatelessWidget {
 
               // Question Count
               Text(
-                'Number of Questions',
+                localizations.aiNumberQuestionsLabel,
                 style: TextStyle(
                   fontFamily: 'Inter',
                   fontSize: 14,
@@ -325,12 +336,12 @@ class AiGenerateStep2Widget extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(LucideIcons.arrowLeft, size: 16),
-                            SizedBox(width: 8),
-                            Text('Back'),
+                            const Icon(LucideIcons.arrowLeft, size: 16),
+                            const SizedBox(width: 8),
+                            Text(localizations.backButton),
                           ],
                         ),
                       ),
@@ -341,13 +352,13 @@ class AiGenerateStep2Widget extends StatelessWidget {
                     child: SizedBox(
                       height: 48,
                       child: ElevatedButton(
-                        onPressed: (textController.text.isNotEmpty ||
+                        onPressed:
+                            (textController.text.isNotEmpty ||
                                 fileAttachment != null)
                             ? () {
                                 final config = AiQuestionGenerationConfig(
                                   questionCount: questionCount,
-                                  questionTypes:
-                                      selectedQuestionTypes.toList(),
+                                  questionTypes: selectedQuestionTypes.toList(),
                                   language: selectedLanguage,
                                   content: textController.text.trim(),
                                   preferredService: selectedService,
@@ -370,12 +381,12 @@ class AiGenerateStep2Widget extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(LucideIcons.sparkles, size: 16),
-                            SizedBox(width: 8),
-                            Text('Generate'),
+                            const Icon(LucideIcons.sparkles, size: 16),
+                            const SizedBox(width: 8),
+                            Text(localizations.generateButton),
                           ],
                         ),
                       ),

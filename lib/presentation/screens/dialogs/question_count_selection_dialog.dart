@@ -103,210 +103,212 @@ class _QuestionCountSelectionDialogState
             ),
           ],
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Header
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(
-                    AppLocalizations.of(context)!.startQuiz,
-                    style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
-                      color: textColor,
-                      height: 1.2,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                const SizedBox(width: 16),
-                IconButton(
-                  onPressed: () => context.pop(null),
-                  style: IconButton.styleFrom(
-                    backgroundColor: controlBgColor,
-                    fixedSize: const Size(40, 40),
-                    padding: EdgeInsets.zero,
-                    shape: const CircleBorder(),
-                  ),
-                  icon: Icon(LucideIcons.x, size: 20, color: subTextColor),
-                ),
-              ],
-            ),
-            const SizedBox(height: 32),
-
-            // Question Count
-            Text(
-              // Using existing key, but strictly "Number of Questions" in design
-              // If localization key text differs, user might notice, but functionally mostly same.
-              // Design says "Number of Questions".
-              AppLocalizations.of(context)!.numberInputLabel,
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: subTextColor,
-              ),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                // Minus Button
-                _buildCountControl(
-                  icon: LucideIcons.minus,
-                  onTap: _decrementCount,
-                  bgColor: controlBgColor,
-                  iconColor: controlIconColor,
-                ),
-                const SizedBox(width: 16),
-                // Display
-                Expanded(
-                  child: Container(
-                    height: 56,
-                    decoration: BoxDecoration(
-                      color: controlBgColor,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    alignment: Alignment.center,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Header
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
                     child: Text(
-                      _selectedCount.toString(),
+                      AppLocalizations.of(context)!.startQuiz,
                       style: TextStyle(
                         fontFamily: 'Inter',
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
                         color: textColor,
+                        height: 1.2,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  IconButton(
+                    onPressed: () => context.pop(null),
+                    style: IconButton.styleFrom(
+                      backgroundColor: controlBgColor,
+                      fixedSize: const Size(40, 40),
+                      padding: EdgeInsets.zero,
+                      shape: const CircleBorder(),
+                    ),
+                    icon: Icon(LucideIcons.x, size: 20, color: subTextColor),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 32),
+
+              // Question Count
+              Text(
+                // Using existing key, but strictly "Number of Questions" in design
+                // If localization key text differs, user might notice, but functionally mostly same.
+                // Design says "Number of Questions".
+                AppLocalizations.of(context)!.numberInputLabel,
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: subTextColor,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  // Minus Button
+                  _buildCountControl(
+                    icon: LucideIcons.minus,
+                    onTap: _decrementCount,
+                    bgColor: controlBgColor,
+                    iconColor: controlIconColor,
+                  ),
+                  const SizedBox(width: 16),
+                  // Display
+                  Expanded(
+                    child: Container(
+                      height: 56,
+                      decoration: BoxDecoration(
+                        color: controlBgColor,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        _selectedCount.toString(),
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: 24,
+                          fontWeight: FontWeight.w700,
+                          color: textColor,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 16),
-                // Plus Button
-                _buildCountControl(
-                  icon: LucideIcons.plus,
-                  onTap: _incrementCount,
-                  bgColor: primaryColor,
-                  iconColor: Colors.white,
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 32),
-
-            // Quiz Mode
-            Text(
-              AppLocalizations.of(context)!.quizModeTitle,
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: subTextColor,
-              ),
-            ),
-            const SizedBox(height: 12),
-
-            // Mode Options (Horizontal Row)
-            Row(
-              children: [
-                Expanded(
-                  child: _buildModeOption(
-                    context: context,
-                    title: AppLocalizations.of(context)!.examModeLabel,
-                    icon: LucideIcons.fileText,
-                    isSelected: !_isStudyMode,
-                    onTap: () => setState(() => _isStudyMode = false),
-                    primaryColor: primaryColor,
-                    defaultBgColor: controlBgColor,
-                    defaultTextColor: subTextColor,
+                  const SizedBox(width: 16),
+                  // Plus Button
+                  _buildCountControl(
+                    icon: LucideIcons.plus,
+                    onTap: _incrementCount,
+                    bgColor: primaryColor,
+                    iconColor: Colors.white,
                   ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: _buildModeOption(
-                    context: context,
-                    title: AppLocalizations.of(context)!.studyModeLabel,
-                    icon: LucideIcons.bookOpen,
-                    isSelected: _isStudyMode,
-                    onTap: () => setState(() => _isStudyMode = true),
-                    primaryColor: primaryColor,
-                    defaultBgColor: controlBgColor,
-                    defaultTextColor: subTextColor,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-
-            // Mode Description
-            Text(
-              _isStudyMode
-                  ? AppLocalizations.of(context)!.studyModeDescription
-                  : AppLocalizations.of(context)!.examModeDescription,
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 13,
-                fontWeight: FontWeight.w400,
-                color: subTextColor,
-                height: 1.4,
-              ),
-              textAlign: TextAlign.start,
-            ),
-
-            const SizedBox(height: 32),
-
-            // Start Button
-            ElevatedButton(
-              onPressed: () async {
-                final examTimeEnabled = await ConfigurationService.instance
-                    .getExamTimeEnabled();
-                final examTimeMinutes = await ConfigurationService.instance
-                    .getExamTimeMinutes();
-
-                if (context.mounted) {
-                  ConfigurationService.instance.saveQuizConfigSettings(
-                    QuizConfigStoredSettings(
-                      questionCount: _selectedCount,
-                      isStudyMode: _isStudyMode,
-                    ),
-                  );
-
-                  context.pop(
-                    QuizConfig(
-                      questionCount: _selectedCount,
-                      isStudyMode: _isStudyMode,
-                      enableTimeLimit: examTimeEnabled,
-                      timeLimitMinutes: examTimeMinutes,
-                    ),
-                  );
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: primaryColor,
-                foregroundColor: Colors.white,
-                elevation: 0,
-                minimumSize: const Size(double.infinity, 56),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                textStyle: const TextStyle(
-                  fontFamily: 'Inter',
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(LucideIcons.play, size: 20),
-                  const SizedBox(width: 8),
-                  Text(AppLocalizations.of(context)!.startQuiz),
                 ],
               ),
-            ),
-          ],
+
+              const SizedBox(height: 32),
+
+              // Quiz Mode
+              Text(
+                AppLocalizations.of(context)!.quizModeTitle,
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: subTextColor,
+                ),
+              ),
+              const SizedBox(height: 12),
+
+              // Mode Options (Horizontal Row)
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildModeOption(
+                      context: context,
+                      title: AppLocalizations.of(context)!.examModeLabel,
+                      icon: LucideIcons.fileText,
+                      isSelected: !_isStudyMode,
+                      onTap: () => setState(() => _isStudyMode = false),
+                      primaryColor: primaryColor,
+                      defaultBgColor: controlBgColor,
+                      defaultTextColor: subTextColor,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: _buildModeOption(
+                      context: context,
+                      title: AppLocalizations.of(context)!.studyModeLabel,
+                      icon: LucideIcons.bookOpen,
+                      isSelected: _isStudyMode,
+                      onTap: () => setState(() => _isStudyMode = true),
+                      primaryColor: primaryColor,
+                      defaultBgColor: controlBgColor,
+                      defaultTextColor: subTextColor,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+
+              // Mode Description
+              Text(
+                _isStudyMode
+                    ? AppLocalizations.of(context)!.studyModeDescription
+                    : AppLocalizations.of(context)!.examModeDescription,
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 13,
+                  fontWeight: FontWeight.w400,
+                  color: subTextColor,
+                  height: 1.4,
+                ),
+                textAlign: TextAlign.start,
+              ),
+
+              const SizedBox(height: 32),
+
+              // Start Button
+              ElevatedButton(
+                onPressed: () async {
+                  final examTimeEnabled = await ConfigurationService.instance
+                      .getExamTimeEnabled();
+                  final examTimeMinutes = await ConfigurationService.instance
+                      .getExamTimeMinutes();
+
+                  if (context.mounted) {
+                    ConfigurationService.instance.saveQuizConfigSettings(
+                      QuizConfigStoredSettings(
+                        questionCount: _selectedCount,
+                        isStudyMode: _isStudyMode,
+                      ),
+                    );
+
+                    context.pop(
+                      QuizConfig(
+                        questionCount: _selectedCount,
+                        isStudyMode: _isStudyMode,
+                        enableTimeLimit: examTimeEnabled,
+                        timeLimitMinutes: examTimeMinutes,
+                      ),
+                    );
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: primaryColor,
+                  foregroundColor: Colors.white,
+                  elevation: 0,
+                  minimumSize: const Size(double.infinity, 56),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  textStyle: const TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(LucideIcons.play, size: 20),
+                    const SizedBox(width: 8),
+                    Text(AppLocalizations.of(context)!.startQuiz),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

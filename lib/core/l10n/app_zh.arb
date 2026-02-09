@@ -1666,6 +1666,21 @@
   "keepPracticing": "继续练习以提高！",
   "tryAgain": "再试一次",
   "review": "复习",
-  "home": "首页"
+  "home": "首页",
+  "previewLabel": "预览：",
+  "emptyPlaceholder": "(空)",
+  "latexSyntaxTitle": "LaTeX 语法：",
+  "latexSyntaxHelp": "行内数学公式：使用 $...$ 包裹 LaTeX 表达式\n示例：$x^2 + y^2 = z^2$",
+  "previewLatexTooltip": "预览 LaTeX 渲染",
+  "okButton": "确定",
+  "aiEnterContentTitle": "输入内容",
+  "aiEnterContentDescription": "输入主题或粘贴内容以生成问题",
+  "aiContentFieldHint": "输入主题如“二战史”或在此粘贴文本...",
+  "aiAttachFileHint": "附加文件 (PDF, TXT, DOCX)",
+  "aiNumberQuestionsLabel": "问题数量",
+  "backButton": "返回",
+  "generateButton": "生成",
+  "aiTopicModeCount": "主题模式 ({count} 字)",
+  "aiTextModeCount": "文本模式 ({count} 字)"
 }
 

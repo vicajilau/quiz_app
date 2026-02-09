@@ -18,6 +18,25 @@ class AppLocalizationsEu extends AppLocalizations {
   String get preview => 'Aurrebista';
 
   @override
+  String get previewLabel => 'Aurrebista:';
+
+  @override
+  String get emptyPlaceholder => '(hutsik)';
+
+  @override
+  String get latexSyntaxTitle => 'LaTeX sintaxia:';
+
+  @override
+  String get latexSyntaxHelp =>
+      'Lineako matematika: Erabili \$...\$ LaTeX adierazpenetarako\nAdibidea: \$x^2 + y^2 = z^2\$';
+
+  @override
+  String get previewLatexTooltip => 'Ikusi LaTeX errendatzea';
+
+  @override
+  String get okButton => 'Ados';
+
+  @override
   String get load => 'Kargatu';
 
   @override
@@ -737,6 +756,39 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get aiGenerateButton => 'Galderak Sortu';
+
+  @override
+  String get aiEnterContentTitle => 'Sartu edukia';
+
+  @override
+  String get aiEnterContentDescription =>
+      'Sartu gaia edo itsatsi edukia galderak sortzeko';
+
+  @override
+  String get aiContentFieldHint =>
+      'Sartu gai bat, adibidez \"Bigarren Mundu Gerrako historia\" edo itsatsi testua hemen...';
+
+  @override
+  String get aiAttachFileHint => 'Erantsi fitxategia (PDF, TXT, DOCX)';
+
+  @override
+  String get aiNumberQuestionsLabel => 'Galdera kopurua';
+
+  @override
+  String get backButton => 'Itzuli';
+
+  @override
+  String get generateButton => 'Sortu';
+
+  @override
+  String aiTopicModeCount(int count) {
+    return 'Gai modua ($count hitz)';
+  }
+
+  @override
+  String aiTextModeCount(int count) {
+    return 'Testu modua ($count hitz)';
+  }
 
   @override
   String get languageSpanish => 'Español';
