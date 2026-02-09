@@ -2,11 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
+/// A custom confirmation dialog that matches the app's design language.
+///
+/// This dialog displays a [title], a [message], and a confirmation button.
+/// The dialog can be configured as [isDestructive] to show red accents.
 class CustomConfirmDialog extends StatelessWidget {
+  /// The title of the dialog.
   final String title;
+
+  /// The message body of the dialog.
   final String message;
+
+  /// The text to display on the confirmation button.
   final String confirmText;
+
+  /// The callback to execute when the confirmation button is pressed.
+  ///
+  /// If null, the dialog just closes returning `true`.
   final VoidCallback? onConfirm;
+
+  /// Whether the action is destructive (e.g., delete).
+  ///
+  /// If true, the button and accents will be red.
   final bool isDestructive;
 
   const CustomConfirmDialog({
