@@ -260,17 +260,22 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                     ),
                   ],
                 ),
-                GestureDetector(
-                  onTap: () => context.pop(),
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: closeBtnColor,
-                      borderRadius: BorderRadius.circular(20),
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: closeBtnColor,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: IconButton(
+                    icon: Icon(LucideIcons.x, color: closeIconColor, size: 20),
+                    onPressed: () => context.pop(),
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                    style: IconButton.styleFrom(
+                      backgroundColor: closeBtnColor,
+                      shape: const CircleBorder(),
                     ),
-                    alignment: Alignment.center,
-                    child: Icon(LucideIcons.x, color: closeIconColor, size: 20),
                   ),
                 ),
               ],
