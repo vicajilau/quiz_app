@@ -84,13 +84,16 @@ class AiGenerateStep2Widget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    localizations.aiEnterContentTitle,
-                    style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
-                      color: titleColor,
+                  Expanded(
+                    child: Text(
+                      localizations.aiEnterContentTitle,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        color: titleColor,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   IconButton(
@@ -180,19 +183,21 @@ class AiGenerateStep2Widget extends StatelessWidget {
                     border: Border.all(color: attachStroke, width: 2),
                   ),
                   child: Padding(
-                    padding: const EdgeInsetsGeometry.only(left: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          LucideIcons.paperclip,
-                          color: labelColor,
-                          size: 20,
-                        ),
-                        const SizedBox(width: 12),
-                        fileAttachment != null
-                            ? Expanded(
-                                child: Text(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerLeft,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            LucideIcons.paperclip,
+                            color: labelColor,
+                            size: 20,
+                          ),
+                          const SizedBox(width: 12),
+                          fileAttachment != null
+                              ? Text(
                                   fileAttachment!.name,
                                   style: TextStyle(
                                     fontFamily: 'Inter',
@@ -201,30 +206,34 @@ class AiGenerateStep2Widget extends StatelessWidget {
                                     color: labelColor,
                                   ),
                                   overflow: TextOverflow.ellipsis,
+                                )
+                              : Text(
+                                  localizations.aiAttachFileHint,
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: labelColor,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
                                 ),
-                              )
-                            : Text(
-                                localizations.aiAttachFileHint,
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: labelColor,
-                                ),
+                          if (fileAttachment != null)
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 12.0,
+                                right: 16.0,
                               ),
-                        if (fileAttachment != null)
-                          Padding(
-                            padding: const EdgeInsets.only(right: 16.0),
-                            child: GestureDetector(
-                              onTap: onRemoveFile,
-                              child: Icon(
-                                LucideIcons.x,
-                                color: labelColor,
-                                size: 16,
+                              child: GestureDetector(
+                                onTap: onRemoveFile,
+                                child: Icon(
+                                  LucideIcons.x,
+                                  color: labelColor,
+                                  size: 16,
+                                ),
                               ),
                             ),
-                          ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -336,13 +345,19 @@ class AiGenerateStep2Widget extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(LucideIcons.arrowLeft, size: 16),
-                            const SizedBox(width: 8),
-                            Text(localizations.backButton),
-                          ],
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(LucideIcons.arrowLeft, size: 16),
+                              const SizedBox(width: 8),
+                              Text(
+                                localizations.backButton,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -381,13 +396,19 @@ class AiGenerateStep2Widget extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(LucideIcons.sparkles, size: 16),
-                            const SizedBox(width: 8),
-                            Text(localizations.generateButton),
-                          ],
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(LucideIcons.sparkles, size: 16),
+                              const SizedBox(width: 8),
+                              Text(
+                                localizations.generateButton,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

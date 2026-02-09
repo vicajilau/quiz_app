@@ -103,13 +103,15 @@ class AiGenerateStep1Widget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    AppLocalizations.of(context)!.generateQuestionsWithAI,
-                    style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
-                      color: titleColor,
+                  Expanded(
+                    child: Text(
+                      AppLocalizations.of(context)!.generateQuestionsWithAI,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        color: titleColor,
+                      ),
                     ),
                   ),
                   IconButton(
@@ -165,25 +167,39 @@ class AiGenerateStep1Widget extends StatelessWidget {
                               color: geminiBgColor,
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  LucideIcons.sparkles,
-                                  color: geminiContentColor,
-                                  size: 18,
-                                ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  'Gemini',
-                                  style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: geminiContentColor,
-                                  ),
-                                ),
-                              ],
+                            child: LayoutBuilder(
+                              builder: (context, constraints) {
+                                // Calculate if text fits: Icon (18) + Gap (8) + Text (~50-60) + Padding (~16)
+                                // A safe minimum width for text is around 100px.
+                                // If less, show only icon.
+                                final showText = constraints.maxWidth > 90;
+
+                                return Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      LucideIcons.sparkles,
+                                      color: geminiContentColor,
+                                      size: 18,
+                                    ),
+                                    if (showText) ...[
+                                      const SizedBox(width: 8),
+                                      Flexible(
+                                        child: Text(
+                                          'Gemini',
+                                          style: TextStyle(
+                                            fontFamily: 'Inter',
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                            color: geminiContentColor,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ],
+                                );
+                              },
                             ),
                           ),
                         ),
@@ -211,25 +227,39 @@ class AiGenerateStep1Widget extends StatelessWidget {
                               color: openAiBgColor,
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  LucideIcons.bot,
-                                  color: openAiContentColor,
-                                  size: 18,
-                                ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  'OpenAI',
-                                  style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    color: openAiContentColor,
-                                  ),
-                                ),
-                              ],
+                            child: LayoutBuilder(
+                              builder: (context, constraints) {
+                                // Calculate if text fits: Icon (18) + Gap (8) + Text (~50-60) + Padding (~16)
+                                // A safe minimum width for text is around 100px.
+                                // If less, show only icon.
+                                final showText = constraints.maxWidth > 90;
+
+                                return Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      LucideIcons.bot,
+                                      color: openAiContentColor,
+                                      size: 18,
+                                    ),
+                                    if (showText) ...[
+                                      const SizedBox(width: 8),
+                                      Flexible(
+                                        child: Text(
+                                          'OpenAI',
+                                          style: TextStyle(
+                                            fontFamily: 'Inter',
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                            color: openAiContentColor,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ],
+                                );
+                              },
                             ),
                           ),
                         ),

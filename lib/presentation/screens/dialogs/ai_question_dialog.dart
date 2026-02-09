@@ -241,24 +241,29 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    const Icon(
-                      LucideIcons.sparkles,
-                      color: Color(0xFF8B5CF6), // Violet 500
-                      size: 24,
-                    ),
-                    const SizedBox(width: 12),
-                    Text(
-                      localizations.aiAssistantTitle,
-                      style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 22,
-                        fontWeight: FontWeight.w700,
-                        color: titleColor,
+                Expanded(
+                  child: Row(
+                    children: [
+                      const Icon(
+                        LucideIcons.sparkles,
+                        color: Color(0xFF8B5CF6), // Violet 500
+                        size: 24,
                       ),
-                    ),
-                  ],
+                      const SizedBox(width: 12),
+                      Flexible(
+                        child: Text(
+                          localizations.aiAssistantTitle,
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: 22,
+                            fontWeight: FontWeight.w700,
+                            color: titleColor,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Container(
                   width: 40,

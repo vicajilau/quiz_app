@@ -458,49 +458,70 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                         ),
                       ),
                     ),
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    title: Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          child: GestureDetector(
-                            onTap: () async {
-                              final result =
-                                  await showDialog<Map<String, String>>(
-                                    context: context,
-                                    builder: (context) => QuizMetadataDialog(
-                                      isEditing: true,
-                                      initialName:
-                                          cachedQuizFile.metadata.title,
-                                      initialDescription:
-                                          cachedQuizFile.metadata.description,
-                                      initialAuthor:
-                                          cachedQuizFile.metadata.author,
-                                    ),
-                                  );
+                        Flexible(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () async {
+                                    final result =
+                                        await showDialog<Map<String, String>>(
+                                          context: context,
+                                          builder: (context) =>
+                                              QuizMetadataDialog(
+                                                isEditing: true,
+                                                initialName: cachedQuizFile
+                                                    .metadata
+                                                    .title,
+                                                initialDescription:
+                                                    cachedQuizFile
+                                                        .metadata
+                                                        .description,
+                                                initialAuthor: cachedQuizFile
+                                                    .metadata
+                                                    .author,
+                                              ),
+                                        );
 
-                              if (result != null && mounted) {
-                                setState(() {
-                                  cachedQuizFile = cachedQuizFile.copyWith(
-                                    metadata: cachedQuizFile.metadata.copyWith(
-                                      title: result['name'],
-                                      description: result['description'],
-                                      author: result['author'],
+                                    if (result != null && mounted) {
+                                      setState(() {
+                                        cachedQuizFile = cachedQuizFile
+                                            .copyWith(
+                                              metadata: cachedQuizFile.metadata
+                                                  .copyWith(
+                                                    title: result['name'],
+                                                    description:
+                                                        result['description'],
+                                                    author: result['author'],
+                                                  ),
+                                            );
+                                      });
+                                    }
+                                  },
+                                  child: Text(
+                                    AppLocalizations.of(
+                                      context,
+                                    )!.quizPreviewTitle,
+                                    style: TextStyle(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onPrimary,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w700,
+                                      fontFamily: 'Plus Jakarta Sans',
                                     ),
-                                  );
-                                });
-                              }
-                            },
-                            child: Text(
-                              AppLocalizations.of(context)!.quizPreviewTitle,
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.onPrimary,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700,
-                                fontFamily: 'Plus Jakarta Sans',
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
                         ),
                       ],
@@ -529,9 +550,9 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                           )!.questionOrderConfigTooltip,
                         ),
                       ),
-                      // Select Button
                       Container(
                         margin: const EdgeInsets.only(right: 24),
+                        constraints: const BoxConstraints(minWidth: 40),
                         child: Material(
                           color: _isSelectionMode
                               ? Theme.of(context).primaryColor
@@ -546,35 +567,58 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                             },
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
+                                horizontal: 12,
                                 vertical: 10,
                               ),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    _isSelectionMode
-                                        ? LucideIcons.checkSquare
-                                        : LucideIcons.mousePointer2,
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.onPrimary,
-                                    size: 18,
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    _isSelectionMode
-                                        ? AppLocalizations.of(context)!.done
-                                        : AppLocalizations.of(context)!.select,
-                                    style: TextStyle(
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.onPrimary,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w600,
-                                      fontFamily: 'Inter',
-                                    ),
-                                  ),
-                                ],
+                              child: LayoutBuilder(
+                                builder: (context, constraints) {
+                                  // Breakpoint for showing text:
+                                  // MediaQuery check or local constraints if possible.
+                                  // In an AppBar action, we might get unconstrained width
+                                  // unless we wrap it.
+                                  // Using a conservative screen width check for reliability.
+                                  final showText =
+                                      MediaQuery.of(context).size.width > 500;
+
+                                  return Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        _isSelectionMode
+                                            ? LucideIcons.checkSquare
+                                            : LucideIcons.mousePointer2,
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onPrimary,
+                                        size: 18,
+                                      ),
+                                      if (showText) ...[
+                                        const SizedBox(width: 8),
+                                        Flexible(
+                                          child: Text(
+                                            _isSelectionMode
+                                                ? AppLocalizations.of(
+                                                    context,
+                                                  )!.done
+                                                : AppLocalizations.of(
+                                                    context,
+                                                  )!.select,
+                                            style: TextStyle(
+                                              color: Theme.of(
+                                                context,
+                                              ).colorScheme.onPrimary,
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w600,
+                                              fontFamily: 'Inter',
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
+                                    ],
+                                  );
+                                },
                               ),
                             ),
                           ),

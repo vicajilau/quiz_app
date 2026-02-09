@@ -69,17 +69,20 @@ class AiQuestionTypeChip extends StatelessWidget {
                         : const Color(0xFF71717A)),
             ),
             const SizedBox(width: 6),
-            Text(
-              label,
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 12,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                color: isSelected
-                    ? Colors.white
-                    : (isDark
-                          ? const Color(0xFFA1A1AA)
-                          : const Color(0xFF71717A)),
+            Flexible(
+              child: Text(
+                label,
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 12,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                  color: isSelected
+                      ? Colors.white
+                      : (isDark
+                            ? const Color(0xFFA1A1AA)
+                            : const Color(0xFF71717A)),
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],
