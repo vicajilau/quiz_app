@@ -116,15 +116,17 @@ class AiSettingsSection extends StatelessWidget {
                           color: Color(0xFF8B5CF6),
                         ),
                         const SizedBox(width: 6),
-                        Text(
-                          AppLocalizations.of(
-                            context,
-                          )!.aiAssistantSettingsTitle,
-                          style: TextStyle(
-                            fontFamily: 'Inter',
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                            color: titleColor,
+                        Flexible(
+                          child: Text(
+                            AppLocalizations.of(
+                              context,
+                            )!.aiAssistantSettingsTitle,
+                            style: TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                              color: titleColor,
+                            ),
                           ),
                         ),
                       ],
