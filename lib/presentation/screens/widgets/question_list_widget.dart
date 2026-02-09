@@ -312,9 +312,6 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
               context,
             )!.confirmDeleteMessage(question.text),
             confirmText: AppLocalizations.of(context)!.deleteButton,
-            onConfirm: () {
-              // Confirm logic is handled by returning true
-            },
             isDestructive: true,
           ),
         ) ??

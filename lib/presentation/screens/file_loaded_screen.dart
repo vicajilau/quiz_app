@@ -364,7 +364,6 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                 context,
               )!.deleteMultipleQuestionsConfirmation(_selectedQuestions.length),
         confirmText: AppLocalizations.of(context)!.deleteButton,
-        onConfirm: () {},
         isDestructive: true,
       ),
     );

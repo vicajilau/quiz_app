@@ -6,7 +6,7 @@ class CustomConfirmDialog extends StatelessWidget {
   final String title;
   final String message;
   final String confirmText;
-  final VoidCallback onConfirm;
+  final VoidCallback? onConfirm;
   final bool isDestructive;
 
   const CustomConfirmDialog({
@@ -14,7 +14,7 @@ class CustomConfirmDialog extends StatelessWidget {
     required this.title,
     required this.message,
     required this.confirmText,
-    required this.onConfirm,
+    this.onConfirm,
     this.isDestructive = false,
   });
 
@@ -110,7 +110,7 @@ class CustomConfirmDialog extends StatelessWidget {
               height: 52,
               child: FilledButton(
                 onPressed: () {
-                  onConfirm();
+                  onConfirm?.call();
                   context.pop(true);
                 },
                 style: FilledButton.styleFrom(
