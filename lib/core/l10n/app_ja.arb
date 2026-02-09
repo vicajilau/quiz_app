@@ -546,9 +546,13 @@
   "@unknownError": {
     "description": "Generic unknown error message"
   },
-  "networkError": "ネットワークエラー：OpenAIに接続できません。インターネット接続を確認してください。",
-  "@networkError": {
-    "description": "Network connectivity error message"
+  "networkErrorOpenAI": "ネットワークエラー：OpenAIに接続できません。インターネット接続を確認してください。",
+  "@networkErrorOpenAI": {
+    "description": "Network connectivity error message for OpenAI"
+  },
+  "networkErrorGemini": "ネットワークエラー：Geminiに接続できません。インターネット接続を確認してください。",
+  "@networkErrorGemini": {
+    "description": "Network connectivity error message for Gemini"
   },
   "openaiApiKeyNotConfigured": "OpenAI APIキーが設定されていません",
   "@openaiApiKeyNotConfigured": {

@@ -428,8 +428,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get unknownError => 'अज्ञात त्रुटि';
 
   @override
-  String get networkError =>
+  String get networkErrorOpenAI =>
       'नेटवर्क त्रुटि: OpenAI से कनेक्ट नहीं हो सका। कृपया अपना इंटरनेट कनेक्शन जांचें।';
+
+  @override
+  String get networkErrorGemini =>
+      'नेटवर्क त्रुटि: Gemini से कनेक्ट नहीं हो सका। कृपया अपना इंटरनेट कनेक्शन जांचें।';
 
   @override
   String get openaiApiKeyNotConfigured => 'OpenAI API Key कॉन्फ़िगर नहीं की गई';

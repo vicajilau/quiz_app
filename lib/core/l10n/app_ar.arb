@@ -618,9 +618,13 @@
   "@unknownError": {
     "description": "Generic unknown error message"
   },
-  "networkError": "خطأ في الشبكة: غير قادر على الاتصال بـ OpenAI. يرجى التحقق من اتصال الإنترنت.",
-  "@networkError": {
-    "description": "Network connectivity error message"
+  "networkErrorOpenAI": "خطأ في الشبكة: تعذر الاتصال بـ OpenAI. يرجى التحقق من اتصالك بالإنترنت.",
+  "@networkErrorOpenAI": {
+    "description": "رسالة خطأ في الاتصال بالشبكة لـ OpenAI"
+  },
+  "networkErrorGemini": "خطأ في الشبكة: تعذر الاتصال بـ Gemini. يرجى التحقق من اتصالك بالإنترنت.",
+  "@networkErrorGemini": {
+    "description": "رسالة خطأ في الاتصال بالشبكة لـ Gemini"
   },
   "openaiApiKeyNotConfigured": "مفتاح OpenAI API غير مُكوَّن",
   "@openaiApiKeyNotConfigured": {

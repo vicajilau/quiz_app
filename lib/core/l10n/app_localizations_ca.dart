@@ -434,8 +434,12 @@ class AppLocalizationsCa extends AppLocalizations {
   String get unknownError => 'Error desconegut';
 
   @override
-  String get networkError =>
-      'Error de xarxa: No es pot connectar a OpenAI. Comproveu la vostra connexió a internet.';
+  String get networkErrorOpenAI =>
+      'Error de xarxa: No s\'ha pogut connectar amb OpenAI. Comproveu la vostra connexió a Internet.';
+
+  @override
+  String get networkErrorGemini =>
+      'Error de xarxa: No s\'ha pogut connectar amb Gemini. Comproveu la vostra connexió a Internet.';
 
   @override
   String get openaiApiKeyNotConfigured => 'Clau API OpenAI no configurada';

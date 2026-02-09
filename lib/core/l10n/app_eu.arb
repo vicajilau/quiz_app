@@ -538,9 +538,13 @@
   "@unknownError": {
     "description": "Errore ezezagun generikoa mezua"
   },
-  "networkError": "Sare errorea: Ezin da OpenAI-ra konektatu. Egiaztatu zure internet konexioa.",
-  "@networkError": {
-    "description": "Sare konektagarritasun errore mezua"
+  "networkErrorOpenAI": "Sare errorea: Ezin da OpenAI-ra konektatu. Egiaztatu zure internet konexioa.",
+  "@networkErrorOpenAI": {
+    "description": "Sare errorea mezu OpenAI-rentzat"
+  },
+  "networkErrorGemini": "Sare errorea: Ezin da Gemini-ra konektatu. Egiaztatu zure internet konexioa.",
+  "@networkErrorGemini": {
+    "description": "Sare errorea mezu Gemini-rentzat"
   },
   "openaiApiKeyNotConfigured": "OpenAI API Gakoa ez dago konfiguratuta",
   "@openaiApiKeyNotConfigured": {

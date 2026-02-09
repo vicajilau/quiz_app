@@ -556,9 +556,13 @@
   "@unknownError": {
     "description": "Mensaxe de erro xenérico descoñecido"
   },
-  "networkError": "Erro de rede: Non se pode conectar a OpenAI. Comproba a túa conexión a internet.",
-  "@networkError": {
-    "description": "Mensaxe de erro de conectividade de rede"
+  "networkErrorOpenAI": "Erro de rede: Non se pode conectar a OpenAI. Comproba a túa conexión a internet.",
+  "@networkErrorOpenAI": {
+    "description": "Mensaxe de erro de conectividade de rede para OpenAI"
+  },
+  "networkErrorGemini": "Erro de rede: Non se pode conectar a Gemini. Comproba a túa conexión a internet.",
+  "@networkErrorGemini": {
+    "description": "Mensaxe de erro de conectividade de rede para Gemini"
   },
   "openaiApiKeyNotConfigured": "Clave API OpenAI non configurada",
   "@openaiApiKeyNotConfigured": {

@@ -435,8 +435,12 @@ class AppLocalizationsGl extends AppLocalizations {
   String get unknownError => 'Erro descoñecido';
 
   @override
-  String get networkError =>
+  String get networkErrorOpenAI =>
       'Erro de rede: Non se pode conectar a OpenAI. Comproba a túa conexión a internet.';
+
+  @override
+  String get networkErrorGemini =>
+      'Erro de rede: Non se pode conectar a Gemini. Comproba a túa conexión a internet.';
 
   @override
   String get openaiApiKeyNotConfigured => 'Clave API OpenAI non configurada';

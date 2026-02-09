@@ -7,8 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.6.0] - 2026-02-09
 
-- ui: Complete redesign of the application UI
-- feat: Added multi-selection support for moving and deleting files 
+- ui: Complete redesign of the application UI.
+- feat: Added multi-selection support for moving and deleting files.
+- fix: Improved network error messages by distinguishing between OpenAI and Gemini connection failures and localizing them.
 
 ## [1.5.0] - 2026-02-06
 

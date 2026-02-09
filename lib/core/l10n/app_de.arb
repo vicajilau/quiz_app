@@ -606,9 +606,13 @@
   "@unknownError": {
     "description": "Generische unbekannte Fehlermeldung"
   },
-  "networkError": "Netzwerkfehler: Verbindung zu OpenAI nicht möglich. Bitte überprüfen Sie Ihre Internetverbindung.",
-  "@networkError": {
-    "description": "Netzwerkverbindungs-Fehlermeldung"
+  "networkErrorOpenAI": "Netzwerkfehler: Verbindung zu OpenAI konnte nicht hergestellt werden. Bitte überprüfen Sie Ihre Internetverbindung.",
+  "@networkErrorOpenAI": {
+    "description": "Netzwerkverbindungsfehler für OpenAI"
+  },
+  "networkErrorGemini": "Netzwerkfehler: Verbindung zu Gemini konnte nicht hergestellt werden. Bitte überprüfen Sie Ihre Internetverbindung.",
+  "@networkErrorGemini": {
+    "description": "Netzwerkverbindungsfehler für Gemini"
   },
   "openaiApiKeyNotConfigured": "OpenAI-API-Schlüssel nicht konfiguriert",
   "@openaiApiKeyNotConfigured": {

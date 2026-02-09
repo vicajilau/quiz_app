@@ -854,11 +854,17 @@ abstract class AppLocalizations {
   /// **'Unknown error'**
   String get unknownError;
 
-  /// Network connectivity error message
+  /// Network connectivity error message for OpenAI
   ///
   /// In en, this message translates to:
   /// **'Network error: Unable to connect to OpenAI. Please check your internet connection.'**
-  String get networkError;
+  String get networkErrorOpenAI;
+
+  /// Network connectivity error message for Google Gemini
+  ///
+  /// In en, this message translates to:
+  /// **'Network error: Unable to connect to Google Gemini. Please check your internet connection.'**
+  String get networkErrorGemini;
 
   /// Error message when API key is not configured
   ///
