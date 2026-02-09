@@ -2,7 +2,6 @@ import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quiz_app/core/context_extension.dart';
 import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 
@@ -16,7 +15,9 @@ import 'package:quiz_app/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quiz_app/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quiz_app/presentation/screens/dialogs/quiz_metadata_dialog.dart';
 import 'package:quiz_app/presentation/screens/dialogs/settings_dialog.dart';
-import 'package:quiz_app/core/theme/extensions/home_theme.dart';
+import 'package:quiz_app/presentation/screens/widgets/home/home_header_widget.dart';
+import 'package:quiz_app/presentation/screens/widgets/home/home_drop_zone_widget.dart';
+import 'package:quiz_app/presentation/screens/widgets/home/home_footer_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -137,9 +138,21 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         child: Column(
                           children: [
-                            _buildHeader(context),
-                            Expanded(child: _buildDropZone(context)),
-                            _buildFooter(context),
+                            HomeHeaderWidget(
+                              isLoading: _isLoading,
+                              onSettingsTap: () => _showSettingsDialog(context),
+                            ),
+                            Expanded(
+                              child: HomeDropZoneWidget(
+                                isDragging: _isDragging,
+                                onTap: () => _pickFile(context),
+                              ),
+                            ),
+                            HomeFooterWidget(
+                              isLoading: _isLoading,
+                              onCreateTap: () =>
+                                  _showCreateQuizFileDialog(context),
+                            ),
                           ],
                         ),
                       );
@@ -150,211 +163,6 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           },
         ),
-      ),
-    );
-  }
-
-  Widget _buildHeader(BuildContext context) {
-    return SizedBox(
-      height: 72,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              color: Theme.of(context).cardColor,
-              borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: Theme.of(context).dividerColor),
-            ),
-            child: IconButton(
-              icon: const Icon(LucideIcons.settings),
-              color: Theme.of(context).iconTheme.color,
-              iconSize: 24,
-              onPressed: _isLoading ? null : () => _showSettingsDialog(context),
-              padding: EdgeInsets.zero,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDropZone(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InkWell(
-                    onTap: () => _pickFile(context),
-                    borderRadius: BorderRadius.circular(32),
-                    child: Container(
-                      constraints: const BoxConstraints(
-                        maxWidth: 480,
-                        maxHeight: 320,
-                      ),
-                      width: double.infinity,
-                      height: 320,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
-                        borderRadius: BorderRadius.circular(32),
-                        border: Border.all(
-                          color: _isDragging
-                              ? Theme.of(context).primaryColor
-                              : Theme.of(context).dividerColor,
-                          width: 3,
-                        ),
-                        boxShadow: _isDragging
-                            ? [
-                                BoxShadow(
-                                  color: context.homeTheme.dropZoneShadowColor,
-                                  blurRadius: 20,
-                                  offset: const Offset(0, 10),
-                                ),
-                              ]
-                            : null,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'images/QUIZ.png',
-                            height: 180,
-                            fit: BoxFit.contain,
-                          ),
-                          const SizedBox(height: 16),
-                          Column(
-                            children: [
-                              Icon(
-                                LucideIcons.upload,
-                                size: 32,
-                                color: Theme.of(context).hintColor,
-                              ),
-                              const SizedBox(height: 12),
-                              Text(
-                                AppLocalizations.of(context)!.dropFileHere,
-                                style: Theme.of(context).textTheme.bodyMedium
-                                    ?.copyWith(
-                                      color: Theme.of(context).hintColor,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 16,
-                                    ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 48),
-                  Text(
-                    AppLocalizations.of(context)!.clickOrDragFile,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyMedium?.copyWith(fontSize: 18),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _buildFooter(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 48, top: 32),
-      child: Column(
-        children: [
-          Wrap(
-            alignment: WrapAlignment.center,
-            spacing: 16,
-            runSpacing: 16,
-            children: [
-              ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 200, minWidth: 160),
-                child: SizedBox(
-                  height: 56,
-                  width: double.infinity,
-                  child: ElevatedButton.icon(
-                    onPressed: _isLoading
-                        ? null
-                        : () => _showCreateQuizFileDialog(context),
-                    icon: Icon(
-                      LucideIcons.plus,
-                      size: 22,
-                      color: Theme.of(context).colorScheme.onPrimary,
-                    ),
-                    label: Text(
-                      AppLocalizations.of(context)!.create,
-                      style: const TextStyle(fontWeight: FontWeight.w600),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 200, minWidth: 160),
-                child: SizedBox(
-                  height: 56,
-                  width: double.infinity,
-                  child: OutlinedButton.icon(
-                    onPressed: _isLoading
-                        ? null
-                        : () {
-                            context.read<FileBloc>().add(QuizFileReset());
-                            context.read<FileBloc>().add(
-                              QuizFilePickRequested(),
-                            );
-                          },
-                    icon: const Icon(LucideIcons.folderOpen, size: 22),
-                    label: Text(
-                      AppLocalizations.of(context)!.load,
-                      style: const TextStyle(fontWeight: FontWeight.w600),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    style: OutlinedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          TextButton.icon(
-            onPressed: _isLoading ? null : () => context.go(AppRoutes.raffle),
-            icon: Icon(
-              LucideIcons.gift,
-              size: 20,
-              color: Theme.of(context).primaryColor,
-            ),
-            label: Text(
-              AppLocalizations.of(context)!.sorteosLabel,
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontWeight: FontWeight.w600,
-                fontSize: 15,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

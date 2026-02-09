@@ -1,16 +1,15 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:mime/mime.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
 import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
 import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/data/services/ai/ai_service_selector.dart';
-import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import 'package:quiz_app/domain/models/ai/ai_file_attachment.dart';
 import 'package:quiz_app/domain/models/ai/ai_generation_stored_settings.dart';
+import 'package:quiz_app/presentation/screens/dialogs/widgets/ai_generate_step1_widget.dart';
+import 'package:quiz_app/presentation/screens/dialogs/widgets/ai_generate_step2_widget.dart';
 
 class AiGenerateQuestionsDialog extends StatefulWidget {
   const AiGenerateQuestionsDialog({super.key});
@@ -284,807 +283,76 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   @override
   Widget build(BuildContext context) {
     if (_currentStep == 0) {
-      return _buildStep1(context);
+      return AiGenerateStep1Widget(
+        isLoadingServices: _isLoadingServices,
+        availableServices: _availableServices,
+        selectedService: _selectedService,
+        selectedModel: _selectedModel,
+        selectedLanguage: _selectedLanguage,
+        selectedQuestionTypes: _selectedQuestionTypes,
+        supportedLanguages: _supportedLanguages,
+        onServiceChanged: (service) {
+          setState(() {
+            _selectedService = service;
+            _selectedModel = service.defaultModel;
+          });
+        },
+        onModelChanged: (value) {
+          setState(() {
+            _selectedModel = value;
+          });
+        },
+        onLanguageChanged: (value) {
+          setState(() {
+            _selectedLanguage = value;
+          });
+        },
+        onQuestionTypeToggled: (type) {
+          setState(() {
+            if (_selectedQuestionTypes.contains(type)) {
+              _selectedQuestionTypes.remove(type);
+            } else {
+              _selectedQuestionTypes.add(type);
+            }
+          });
+        },
+        onNext: () {
+          setState(() {
+            _currentStep = 1;
+          });
+        },
+        getLanguageName: _getLanguageName,
+      );
     } else {
-      return _buildStep2(context);
+      return AiGenerateStep2Widget(
+        textController: _textController,
+        questionCount: _questionCount,
+        fileAttachment: _fileAttachment,
+        selectedQuestionTypes: _selectedQuestionTypes,
+        selectedLanguage: _selectedLanguage,
+        selectedService: _selectedService,
+        selectedModel: _selectedModel,
+        onPickFile: _pickFile,
+        onRemoveFile: () {
+          setState(() {
+            _fileAttachment = null;
+          });
+        },
+        onBack: () {
+          setState(() {
+            _currentStep = 0;
+          });
+        },
+        onQuestionCountChanged: (count) {
+          setState(() {
+            _questionCount = count;
+            _questionCountController.text = count.toString();
+          });
+        },
+        getWordCountText: _getWordCountText,
+        getWordCount: _getWordCount,
+      );
     }
-  }
-
-  Widget _buildStep1(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final backgroundColor = isDark ? const Color(0xFF27272A) : Colors.white;
-    final borderColor = isDark ? Colors.transparent : const Color(0xFFE4E4E7);
-    final titleColor = isDark ? Colors.white : const Color(0xFF18181B);
-    final closeBtnColor = isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFF4F4F5);
-    final closeIconColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
-    final labelColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
-
-    final isGeminiSelected =
-        _selectedService?.serviceName.toLowerCase().contains('gemini') ?? false;
-    final isOpenAiSelected =
-        _selectedService?.serviceName.toLowerCase().contains('openai') ?? false;
-
-    // Check availability based on service list
-    final isGeminiAvailable = _availableServices.any(
-      (s) => s.serviceName.toLowerCase().contains('gemini'),
-    );
-    final isOpenAiAvailable = _availableServices.any(
-      (s) => s.serviceName.toLowerCase().contains('openai'),
-    );
-
-    // Styling logic for buttons
-    final geminiBgColor = isGeminiSelected
-        ? const Color(0xFF8B5CF6)
-        : (isDark ? const Color(0xFF3F3F46) : const Color(0xFFF4F4F5));
-    final geminiContentColor = isGeminiSelected
-        ? Colors.white
-        : (isDark ? const Color(0xFFA1A1AA) : const Color(0xFF71717A));
-
-    final openAiBgColor = isOpenAiSelected
-        ? (isDark ? Colors.white : Colors.black)
-        : (isDark ? const Color(0xFF3F3F46) : const Color(0xFFF4F4F5));
-    final openAiContentColor = isOpenAiSelected
-        ? (isDark ? Colors.black : Colors.white)
-        : (isDark ? const Color(0xFFA1A1AA) : const Color(0xFF71717A));
-
-    return Dialog(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      insetPadding: const EdgeInsets.all(16),
-      child: Container(
-        width: 560,
-        padding: const EdgeInsets.all(32),
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: borderColor, width: 1),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Generate with AI',
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    color: titleColor,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () => context.pop(),
-                  style: IconButton.styleFrom(
-                    backgroundColor: closeBtnColor,
-                    fixedSize: const Size(40, 40),
-                    padding: EdgeInsets.zero,
-                    shape: const CircleBorder(),
-                  ),
-                  icon: Icon(LucideIcons.x, color: closeIconColor, size: 20),
-                ),
-              ],
-            ),
-            const SizedBox(height: 24),
-
-            // AI Service Label
-            Text(
-              'AI Service',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: labelColor,
-              ),
-            ),
-            const SizedBox(height: 12),
-
-            // Service Options
-            if (_isLoadingServices)
-              const Center(child: CircularProgressIndicator())
-            else
-              Row(
-                children: [
-                  // Gemini Button
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: isGeminiAvailable
-                          ? () {
-                              final service = _availableServices.firstWhere(
-                                (s) => s.serviceName.toLowerCase().contains(
-                                  'gemini',
-                                ),
-                              );
-                              setState(() {
-                                _selectedService = service;
-                                _selectedModel = service.defaultModel;
-                              });
-                            }
-                          : null,
-                      child: Opacity(
-                        opacity: isGeminiAvailable ? 1.0 : 0.5,
-                        child: Container(
-                          height: 48,
-                          decoration: BoxDecoration(
-                            color: geminiBgColor,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                LucideIcons.sparkles,
-                                color: geminiContentColor,
-                                size: 18,
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                'Gemini',
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  color: geminiContentColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  // OpenAI Button
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: isOpenAiAvailable
-                          ? () {
-                              final service = _availableServices.firstWhere(
-                                (s) => s.serviceName.toLowerCase().contains(
-                                  'openai',
-                                ),
-                              );
-                              setState(() {
-                                _selectedService = service;
-                                _selectedModel = service.defaultModel;
-                              });
-                            }
-                          : null,
-                      child: Opacity(
-                        opacity: isOpenAiAvailable ? 1.0 : 0.5,
-                        child: Container(
-                          height: 48,
-                          decoration: BoxDecoration(
-                            color: openAiBgColor,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                LucideIcons.bot,
-                                color: openAiContentColor,
-                                size: 18,
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                'OpenAI',
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: openAiContentColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-            const SizedBox(height: 24),
-
-            // Model Selection
-            Text(
-              'Model',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: labelColor,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Container(
-              height: 52,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                color: isDark
-                    ? const Color(0xFF3F3F46)
-                    : const Color(0xFFF4F4F5),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: DropdownButtonHideUnderline(
-                child: DropdownButton<String>(
-                  value: _selectedModel,
-                  isExpanded: true,
-                  icon: Icon(
-                    LucideIcons.chevronDown,
-                    color: closeIconColor,
-                    size: 18,
-                  ),
-                  dropdownColor: isDark
-                      ? const Color(0xFF3F3F46)
-                      : const Color(0xFFF4F4F5),
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: titleColor,
-                  ),
-                  hint: Text(
-                    'Select Model',
-                    style: TextStyle(color: labelColor),
-                  ),
-                  items:
-                      _selectedService?.availableModels
-                          .map(
-                            (model) => DropdownMenuItem(
-                              value: model,
-                              child: Text(model),
-                            ),
-                          )
-                          .toList() ??
-                      [],
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedModel = value;
-                    });
-                  },
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 24),
-
-            // Question Types
-            Text(
-              'Question Types',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: labelColor,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: AiQuestionType.values
-                  .where((type) => type != AiQuestionType.random)
-                  .map((type) {
-                    return _buildQuestionTypeChip(
-                      context,
-                      type: type,
-                      isSelected: _selectedQuestionTypes.contains(type),
-                      onTap: () {
-                        setState(() {
-                          if (_selectedQuestionTypes.contains(type)) {
-                            _selectedQuestionTypes.remove(type);
-                          } else {
-                            _selectedQuestionTypes.add(type);
-                          }
-                        });
-                      },
-                      isDark: isDark,
-                    );
-                  })
-                  .toList(),
-            ),
-
-            const SizedBox(height: 24),
-
-            // Language
-            Text(
-              'Language',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: labelColor,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Container(
-              height: 52,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                color: isDark
-                    ? const Color(0xFF3F3F46)
-                    : const Color(0xFFF4F4F5),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: DropdownButtonHideUnderline(
-                child: DropdownButton<String>(
-                  value: _selectedLanguage,
-                  isExpanded: true,
-                  icon: Icon(
-                    LucideIcons.chevronDown,
-                    color: closeIconColor,
-                    size: 18,
-                  ),
-                  dropdownColor: isDark
-                      ? const Color(0xFF3F3F46)
-                      : const Color(0xFFF4F4F5),
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: titleColor,
-                  ),
-                  items: _supportedLanguages
-                      .map(
-                        (lang) => DropdownMenuItem(
-                          value: lang,
-                          child: Text(_getLanguageName(lang, localizations)),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (value) {
-                    if (value != null) {
-                      setState(() {
-                        _selectedLanguage = value;
-                      });
-                    }
-                  },
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 32),
-
-            // Next Button
-            SizedBox(
-              width: double.infinity,
-              height: 48,
-              child: ElevatedButton(
-                onPressed: _selectedService != null
-                    ? () {
-                        setState(() {
-                          _currentStep = 1;
-                        });
-                      }
-                    : null,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF8B5CF6),
-                  foregroundColor: Colors.white,
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  textStyle: const TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text('Next'),
-                    SizedBox(width: 8),
-                    Icon(LucideIcons.arrowRight, size: 16),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildStep2(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final backgroundColor = isDark ? const Color(0xFF27272A) : Colors.white;
-    final borderColor = isDark ? Colors.transparent : const Color(0xFFE4E4E7);
-    final titleColor = isDark ? Colors.white : const Color(0xFF18181B);
-    final closeBtnColor = isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFF4F4F5);
-    final closeIconColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
-    final inputBg = isDark ? const Color(0xFF3F3F46) : const Color(0xFFF4F4F5);
-    final placeholderColor = isDark
-        ? const Color(0xFF71717A)
-        : const Color(0xFFA1A1AA);
-    final attachStroke = isDark
-        ? const Color(0xFF52525B)
-        : const Color(0xFFD4D4D8);
-    final labelColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
-
-    return Dialog(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      insetPadding: const EdgeInsets.all(16),
-      child: Container(
-        width: 600,
-        constraints: const BoxConstraints(maxHeight: 800),
-        padding: const EdgeInsets.all(32),
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: borderColor, width: 1),
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Header
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Enter Content',
-                    style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
-                      color: titleColor,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () => context.pop(),
-                    style: IconButton.styleFrom(
-                      backgroundColor: closeBtnColor,
-                      fixedSize: const Size(40, 40),
-                      padding: EdgeInsets.zero,
-                      shape: const CircleBorder(),
-                    ),
-                    icon: Icon(LucideIcons.x, color: closeIconColor, size: 20),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Enter the topic or paste content to generate questions from',
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal,
-                  color: labelColor,
-                ),
-              ),
-              const SizedBox(height: 24),
-
-              // Input Area
-              Container(
-                height: 200,
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: inputBg,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: _textController,
-                        maxLines: null,
-                        style: TextStyle(
-                          fontFamily: 'Inter',
-                          fontSize: 14,
-                          color: titleColor,
-                        ),
-                        decoration: InputDecoration.collapsed(
-                          hintText:
-                              'Enter a topic like "World War II history" or paste text content here...',
-                          hintStyle: TextStyle(
-                            fontFamily: 'Inter',
-                            fontSize: 14,
-                            color: placeholderColor,
-                          ),
-                        ),
-                        onChanged: (value) {
-                          setState(() {}); // Trigger rebuild for counter
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Container(
-                      width: double.infinity,
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        _getWordCountText(),
-                        style: TextStyle(
-                          fontFamily: 'Inter',
-                          fontSize: 12,
-                          color: _getWordCount() > 10
-                              ? const Color(0xFF8B5CF6) // Lilac for Text Mode
-                              : labelColor,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12),
-
-              // Attach File
-              GestureDetector(
-                onTap: _pickFile,
-                child: Container(
-                  height: 64,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: attachStroke, width: 2),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(LucideIcons.paperclip, color: labelColor, size: 20),
-                      const SizedBox(width: 12),
-                      _fileAttachment != null
-                          ? Expanded(
-                              child: Text(
-                                _fileAttachment!.name,
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: labelColor,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            )
-                          : Text(
-                              'Attach a file (PDF, TXT, DOCX)',
-                              style: TextStyle(
-                                fontFamily: 'Inter',
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: labelColor,
-                              ),
-                            ),
-                      if (_fileAttachment != null)
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _fileAttachment = null;
-                              });
-                            },
-                            child: Icon(
-                              LucideIcons.x,
-                              color: labelColor,
-                              size: 16,
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-              ),
-
-              // Question Types & Language (Preserved Logic)
-              // Only showed briefly in design but logic requires them.
-              // I'll put them in an expandable or just below?
-              // Design doesn't visually emphasize them.
-              // I will keep them hidden or minimal if they are not in the design screenshots I analyzed.
-              // BUT functional requirements say we need language. Use system default if not shown?
-              // The user said "Divide in 2 steps" based on design.
-              // I'll assume standard question types (Random) and language (System) if not in design.
-              // However, preserving 'AiQuestionTypeSelector' might be good.
-              // I will add a small "Advanced Options" or similar if needed.
-              // Ref checking: In original file, `_selectedQuestionTypes` and `_selectedLanguage` were there.
-              // I'll leave them out of UI to match visual design STRICTLY, but assume defaults.
-              // Wait, if I generate, I need to pass them.
-              // I'll assume they stay at defaults (Random, System/Draft).
-              const SizedBox(height: 24),
-
-              // Question Count
-              Text(
-                'Number of Questions',
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: labelColor,
-                ),
-              ),
-              const SizedBox(height: 12),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Minus
-                  GestureDetector(
-                    onTap: () {
-                      if (_questionCount > 1) {
-                        setState(() {
-                          _questionCount--;
-                          _questionCountController.text = _questionCount
-                              .toString();
-                        });
-                      }
-                    },
-                    child: Container(
-                      width: 44,
-                      height: 44,
-                      decoration: BoxDecoration(
-                        color: closeBtnColor,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Icon(
-                        LucideIcons.minus,
-                        color: titleColor,
-                        size: 18,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  // Display
-                  Expanded(
-                    child: Container(
-                      height: 52,
-                      decoration: BoxDecoration(
-                        color: closeBtnColor,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        '$_questionCount',
-                        style: TextStyle(
-                          fontFamily: 'Inter',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: titleColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  // Plus
-                  GestureDetector(
-                    onTap: () {
-                      if (_questionCount < 50) {
-                        setState(() {
-                          _questionCount++;
-                          _questionCountController.text = _questionCount
-                              .toString();
-                        });
-                      }
-                    },
-                    child: Container(
-                      width: 44,
-                      height: 44,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF8B5CF6),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Icon(
-                        LucideIcons.plus,
-                        color: Colors.white,
-                        size: 18,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 32),
-
-              // Action Buttons
-              Row(
-                children: [
-                  Expanded(
-                    child: SizedBox(
-                      height: 48,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            _currentStep = 0;
-                          });
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: closeBtnColor,
-                          foregroundColor: titleColor,
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          textStyle: const TextStyle(
-                            fontFamily: 'Inter',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(LucideIcons.arrowLeft, size: 16),
-                            SizedBox(width: 8),
-                            Text('Back'),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: SizedBox(
-                      height: 48,
-                      child: ElevatedButton(
-                        onPressed:
-                            (_textController.text.isNotEmpty ||
-                                _fileAttachment != null)
-                            ? () {
-                                final config = AiQuestionGenerationConfig(
-                                  questionCount: _questionCount,
-                                  questionTypes: _selectedQuestionTypes
-                                      .toList(),
-                                  language: _selectedLanguage,
-                                  content: _textController.text.trim(),
-                                  preferredService: _selectedService,
-                                  preferredModel: _selectedModel,
-                                  file: _fileAttachment,
-                                );
-                                context.pop(config);
-                              }
-                            : null,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF8B5CF6),
-                          foregroundColor: Colors.white,
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          textStyle: const TextStyle(
-                            fontFamily: 'Inter',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(LucideIcons.sparkles, size: 16),
-                            SizedBox(width: 8),
-                            Text('Generate'),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
   }
 
   String _getLanguageName(String code, AppLocalizations localizations) {
@@ -1122,80 +390,4 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
     }
   }
 
-  Widget _buildQuestionTypeChip(
-    BuildContext context, {
-    required AiQuestionType type,
-    required bool isSelected,
-    required VoidCallback onTap,
-    required bool isDark,
-  }) {
-    // Resolve label and icon from QuestionType if possible
-    String label;
-    IconData icon;
-
-    switch (type) {
-      case AiQuestionType.multipleChoice:
-        label = QuestionType.multipleChoice.getQuestionTypeLabel(context);
-        icon = QuestionType.multipleChoice.getQuestionTypeIcon();
-        break;
-      case AiQuestionType.singleChoice:
-        label = QuestionType.singleChoice.getQuestionTypeLabel(context);
-        icon = QuestionType.singleChoice.getQuestionTypeIcon();
-        break;
-      case AiQuestionType.trueFalse:
-        label = QuestionType.trueFalse.getQuestionTypeLabel(context);
-        icon = QuestionType.trueFalse.getQuestionTypeIcon();
-        break;
-      case AiQuestionType.essay:
-        label = QuestionType.essay.getQuestionTypeLabel(context);
-        icon = QuestionType.essay.getQuestionTypeIcon();
-        break;
-      case AiQuestionType.random:
-        label = 'Random'; // Fallback, though we filter it out
-        icon = LucideIcons.shuffle;
-        break;
-    }
-
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        height: 36,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? const Color(0xFF8B5CF6)
-              : (isDark ? const Color(0xFF3F3F46) : const Color(0xFFF4F4F5)),
-          borderRadius: BorderRadius.circular(18),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              isSelected ? LucideIcons.checkCircle2 : icon,
-              size: 14,
-              color: isSelected
-                  ? Colors.white
-                  : (isDark
-                        ? const Color(0xFFA1A1AA)
-                        : const Color(0xFF71717A)),
-            ),
-            const SizedBox(width: 6),
-            Text(
-              label,
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 12,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                color: isSelected
-                    ? Colors.white
-                    : (isDark
-                          ? const Color(0xFFA1A1AA)
-                          : const Color(0xFF71717A)),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }

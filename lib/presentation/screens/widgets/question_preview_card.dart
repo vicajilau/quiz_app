@@ -8,6 +8,8 @@ import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/presentation/widgets/latex_text.dart';
 import 'package:quiz_app/core/theme/extensions/custom_colors.dart';
+import 'package:quiz_app/presentation/screens/widgets/question_preview/question_options_list.dart';
+import 'package:quiz_app/presentation/screens/widgets/question_preview/question_type_indicator.dart';
 
 class QuestionPreviewCard extends StatefulWidget {
   final Question question;
@@ -166,7 +168,10 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                 Tooltip(
                                   message: AppLocalizations.of(context)!
                                       .questionTypeTooltip(
-                                        _getQuestionTypeString(context),
+                                        QuestionTypeIndicator.getQuestionTypeString(
+                                        context,
+                                        widget.question.type,
+                                      ),
                                       ),
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
@@ -180,15 +185,9 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                           .withValues(alpha: 0.1),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        _buildQuestionTypeIcon(context),
-                                        if (constraints.maxWidth > 340) ...[
-                                          const SizedBox(width: 6),
-                                          _buildQuestionTypeText(context),
-                                        ],
-                                      ],
+                                    child: QuestionTypeIndicator(
+                                      questionType: widget.question.type,
+                                      showText: constraints.maxWidth > 340,
                                     ),
                                   ),
                                 ),
@@ -385,7 +384,10 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                           const SizedBox(height: 24),
 
                           // Options List
-                          _buildOptionsList(context, isDisabled),
+                          QuestionOptionsList(
+                            question: widget.question,
+                            isDisabled: isDisabled,
+                          ),
 
                           // Explanation
                           if (widget.question.explanation.isNotEmpty) ...[
@@ -477,128 +479,4 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
     );
   }
 
-  Widget _buildOptionsList(BuildContext context, bool isDisabled) {
-    return Column(
-      children: widget.question.options.asMap().entries.map((entry) {
-        final idx = entry.key;
-        final option = entry.value;
-        final isCorrect = widget.question.correctAnswers.contains(idx);
-
-        return Container(
-          margin: const EdgeInsets.only(bottom: 12),
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: isCorrect
-                ? Theme.of(
-                    context,
-                  ).extension<CustomColors>()!.success!.withValues(alpha: 0.1)
-                : Theme.of(context).scaffoldBackgroundColor,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: isCorrect
-                  ? Theme.of(context).extension<CustomColors>()!.success!
-                  : Theme.of(context).dividerColor,
-              width: 1,
-            ),
-          ),
-          child: Row(
-            children: [
-              // Option Letter Circle
-              Container(
-                width: 32,
-                height: 32,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: isCorrect
-                      ? Theme.of(context).extension<CustomColors>()!.success
-                      : Colors.transparent,
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: isCorrect
-                        ? Theme.of(context).extension<CustomColors>()!.success!
-                        : Theme.of(context).dividerColor,
-                  ),
-                ),
-                child: isCorrect
-                    ? const Icon(
-                        LucideIcons.check,
-                        size: 16,
-                        color: Colors.white,
-                      )
-                    : Text(
-                        String.fromCharCode(65 + idx),
-                        style: TextStyle(
-                          color: Theme.of(context).hintColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-              ),
-              const SizedBox(width: 16),
-              // Option Text
-              Expanded(
-                child: LaTeXText(
-                  option,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onSurface,
-                    fontSize: 14,
-                    fontFamily: 'Inter',
-                    decoration: isDisabled ? TextDecoration.lineThrough : null,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      }).toList(),
-    );
-  }
-
-  Widget _buildQuestionTypeIcon(BuildContext context) {
-    IconData icon;
-    switch (widget.question.type.value) {
-      case 'multiple_choice':
-        icon = LucideIcons.listChecks;
-        break;
-      case 'true_false':
-        icon = LucideIcons.circleDot;
-        break;
-      case 'single_choice':
-        icon = LucideIcons.circle;
-        break;
-      case 'essay':
-        icon = LucideIcons.fileText;
-        break;
-      default:
-        icon = LucideIcons.helpCircle;
-    }
-
-    return Icon(icon, size: 12, color: Theme.of(context).colorScheme.onSurface);
-  }
-
-  Widget _buildQuestionTypeText(BuildContext context) {
-    return Text(
-      _getQuestionTypeString(context),
-      style: TextStyle(
-        color: Theme.of(context).colorScheme.onSurface,
-        fontSize: 11,
-        fontWeight: FontWeight.w500,
-        fontFamily: 'Inter',
-      ),
-    );
-  }
-
-  String _getQuestionTypeString(BuildContext context) {
-    switch (widget.question.type.value) {
-      case 'multiple_choice':
-        return AppLocalizations.of(context)!.questionTypeMultipleChoice;
-      case 'true_false':
-        return AppLocalizations.of(context)!.questionTypeTrueFalse;
-      case 'single_choice':
-        return AppLocalizations.of(context)!.questionTypeSingleChoice;
-      case 'essay':
-        return AppLocalizations.of(context)!.questionTypeEssay;
-      default:
-        return AppLocalizations.of(context)!.questionTypeUnknown;
-    }
-  }
 }

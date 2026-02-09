@@ -6,6 +6,7 @@ import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_b
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/quiz_question_result_card.dart';
+import 'package:quiz_app/presentation/screens/quiz_execution/widgets/quiz_completed_buttons.dart';
 
 class QuizCompletedView extends StatelessWidget {
   const QuizCompletedView({super.key, required this.state});
@@ -170,9 +171,12 @@ class QuizCompletedView extends StatelessWidget {
               final hasIncorrect = _hasIncorrectAnswers();
 
               // Define buttons
-              final tryAgainBtn = _buildTryAgainButton(context);
-              final retryBtn = _buildRetryButton(context, isDarkMode);
-              final homeBtn = _buildHomeButton(context, isDarkMode);
+              final tryAgainBtn = const QuizTryAgainButton();
+              final retryBtn = QuizRetryFailedButton(
+                isDarkMode: isDarkMode,
+                onPressed: () => _startFailedQuestionsQuiz(context),
+              );
+              final homeBtn = QuizHomeButton(isDarkMode: isDarkMode);
 
               // Responsive Layout Logic:
               // Mobile AND has incorrect answers (3 buttons total) -> 2 Rows
@@ -183,7 +187,7 @@ class QuizCompletedView extends StatelessWidget {
                       spacing: 12,
                       children: [
                         Expanded(child: tryAgainBtn),
-                        Expanded(child: retryBtn!),
+                        Expanded(child: retryBtn),
                       ],
                     ),
                     const SizedBox(height: 12),
@@ -197,7 +201,7 @@ class QuizCompletedView extends StatelessWidget {
                 spacing: 12,
                 children: [
                   if (hasIncorrect) Expanded(child: tryAgainBtn),
-                  if (hasIncorrect) Expanded(child: retryBtn!),
+                  if (hasIncorrect) Expanded(child: retryBtn),
                   Expanded(child: homeBtn),
                 ],
               );
@@ -205,78 +209,6 @@ class QuizCompletedView extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildTryAgainButton(BuildContext context) {
-    return ElevatedButton.icon(
-      onPressed: () {
-        final bloc = BlocProvider.of<QuizExecutionBloc>(context);
-        bloc.add(QuizRestarted());
-      },
-      icon: const Icon(Icons.refresh, size: 20),
-      label: Text(
-        AppLocalizations.of(context)!.tryAgain,
-        style: const TextStyle(fontWeight: FontWeight.w600),
-      ),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF8B5CF6),
-        foregroundColor: Colors.white,
-        padding: const EdgeInsets.symmetric(vertical: 25),
-        elevation: 0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      ),
-    );
-  }
-
-  Widget? _buildRetryButton(BuildContext context, bool isDarkMode) {
-    if (!_hasIncorrectAnswers()) return null;
-    return OutlinedButton.icon(
-      onPressed: () => _startFailedQuestionsQuiz(context),
-      icon: const Icon(Icons.quiz_outlined, size: 20),
-      label: Text(
-        AppLocalizations.of(context)!.retryFailedQuestions,
-        style: const TextStyle(fontWeight: FontWeight.w600),
-      ),
-      style: OutlinedButton.styleFrom(
-        backgroundColor: isDarkMode
-            ? const Color(0xFF27272A)
-            : const Color(0xFFF4F4F5),
-        foregroundColor: isDarkMode
-            ? const Color(0xFFA1A1AA)
-            : const Color(0xFF71717A),
-        side: BorderSide(
-          color: isDarkMode ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
-          width: 2,
-        ),
-        padding: const EdgeInsets.symmetric(vertical: 25),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      ),
-    );
-  }
-
-  Widget _buildHomeButton(BuildContext context, bool isDarkMode) {
-    return OutlinedButton.icon(
-      onPressed: () => context.pop(),
-      icon: const Icon(Icons.home_outlined, size: 20),
-      label: Text(
-        AppLocalizations.of(context)!.home,
-        style: const TextStyle(fontWeight: FontWeight.w600),
-      ),
-      style: OutlinedButton.styleFrom(
-        backgroundColor: isDarkMode
-            ? const Color(0xFF27272A)
-            : const Color(0xFFF4F4F5),
-        foregroundColor: isDarkMode
-            ? const Color(0xFFA1A1AA)
-            : const Color(0xFF71717A),
-        side: BorderSide(
-          color: isDarkMode ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
-          width: 2,
-        ),
-        padding: const EdgeInsets.symmetric(vertical: 25),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      ),
     );
   }
 

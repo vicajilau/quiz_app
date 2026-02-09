@@ -356,13 +356,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: context.fileLoadedTheme.deleteDialogBackgroundColor,
-        title: Text(
-          AppLocalizations.of(context)!.deleteButton,
-          style: TextStyle(
-            color: context.fileLoadedTheme.deleteDialogTextColor,
-          ),
-        ),
+        title: Text(AppLocalizations.of(context)!.deleteButton),
         content: Text(
           _selectedQuestions.length == 1
               ? AppLocalizations.of(context)!.deleteSingleQuestionConfirmation
@@ -371,25 +365,14 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                 )!.deleteMultipleQuestionsConfirmation(
                   _selectedQuestions.length,
                 ),
-          style: TextStyle(
-            color: context.fileLoadedTheme.deleteDialogSubTextColor,
-          ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: Text(
-              AppLocalizations.of(context)!.cancelButton,
-              style: TextStyle(
-                color: context.fileLoadedTheme.deleteDialogTextColor,
-              ),
-            ),
+            child: Text(AppLocalizations.of(context)!.cancelButton),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            style: TextButton.styleFrom(
-              foregroundColor: Theme.of(context).colorScheme.error,
-            ),
             child: Text(AppLocalizations.of(context)!.deleteButton),
           ),
         ],

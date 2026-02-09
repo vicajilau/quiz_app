@@ -1,0 +1,81 @@
+import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/domain/models/quiz/question_type.dart';
+
+class QuestionTypeIndicator extends StatelessWidget {
+  final QuestionType questionType;
+  final bool showText;
+
+  const QuestionTypeIndicator({
+    super.key,
+    required this.questionType,
+    this.showText = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _buildIcon(context),
+        if (showText) ...[
+          const SizedBox(width: 6),
+          _buildText(context),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildIcon(BuildContext context) {
+    IconData icon;
+    switch (questionType.value) {
+      case 'multiple_choice':
+        icon = LucideIcons.listChecks;
+        break;
+      case 'true_false':
+        icon = LucideIcons.circleDot;
+        break;
+      case 'single_choice':
+        icon = LucideIcons.circle;
+        break;
+      case 'essay':
+        icon = LucideIcons.fileText;
+        break;
+      default:
+        icon = LucideIcons.helpCircle;
+    }
+
+    return Icon(icon, size: 12, color: Theme.of(context).colorScheme.onSurface);
+  }
+
+  Widget _buildText(BuildContext context) {
+    return Text(
+      getQuestionTypeString(context, questionType),
+      style: TextStyle(
+        color: Theme.of(context).colorScheme.onSurface,
+        fontSize: 11,
+        fontWeight: FontWeight.w500,
+        fontFamily: 'Inter',
+      ),
+    );
+  }
+
+  static String getQuestionTypeString(
+    BuildContext context,
+    QuestionType questionType,
+  ) {
+    switch (questionType.value) {
+      case 'multiple_choice':
+        return AppLocalizations.of(context)!.questionTypeMultipleChoice;
+      case 'true_false':
+        return AppLocalizations.of(context)!.questionTypeTrueFalse;
+      case 'single_choice':
+        return AppLocalizations.of(context)!.questionTypeSingleChoice;
+      case 'essay':
+        return AppLocalizations.of(context)!.questionTypeEssay;
+      default:
+        return AppLocalizations.of(context)!.questionTypeUnknown;
+    }
+  }
+}
