@@ -1693,6 +1693,10 @@
   "backButton": "वापस",
   "generateButton": "उत्पन्न करें",
   "aiTopicModeCount": "विषय मोड ({count} शब्द)",
-  "aiTextModeCount": "पाठ मोड ({count} शब्द)"
+  "aiTextModeCount": "पाठ मोड ({count} शब्द)",
+  "allLabel": "सभी",
+  "@allLabel": {
+    "description": "सभी प्रश्नों का चयन करने के विकल्प के लिए लेबल"
+  }
 }
 

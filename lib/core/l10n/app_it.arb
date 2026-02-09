@@ -1733,6 +1733,10 @@
   "backButton": "Indietro",
   "generateButton": "Genera",
   "aiTopicModeCount": "Modalità Argomento ({count} parole)",
-  "aiTextModeCount": "Modalità Testo ({count} parole)"
+  "aiTextModeCount": "Modalità Testo ({count} parole)",
+  "allLabel": "Tutte",
+  "@allLabel": {
+    "description": "Etichetta per l'opzione di selezionare tutte le domande"
+  }
 }
 

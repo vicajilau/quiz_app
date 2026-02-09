@@ -1693,6 +1693,10 @@
   "backButton": "戻る",
   "generateButton": "生成",
   "aiTopicModeCount": "トピックモード ({count} 語)",
-  "aiTextModeCount": "テキストモード ({count} 語)"
+  "aiTextModeCount": "テキストモード ({count} 語)",
+  "allLabel": "すべて",
+  "@allLabel": {
+    "description": "すべての質問を選択するオプションのラベル"
+  }
 }
 

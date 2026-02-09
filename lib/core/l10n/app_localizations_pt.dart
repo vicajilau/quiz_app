@@ -1323,4 +1323,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get home => 'Início';
+
+  @override
+  String get allLabel => 'Todas';
 }

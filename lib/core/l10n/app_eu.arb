@@ -1685,6 +1685,10 @@
   "backButton": "Itzuli",
   "generateButton": "Sortu",
   "aiTopicModeCount": "Gai modua ({count} hitz)",
-  "aiTextModeCount": "Testu modua ({count} hitz)"
+  "aiTextModeCount": "Testu modua ({count} hitz)",
+  "allLabel": "Guztiak",
+  "@allLabel": {
+    "description": "Galdera guztiak hautatzeko aukeraren etiketa"
+  }
 }
 

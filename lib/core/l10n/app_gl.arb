@@ -1685,6 +1685,10 @@
   "backButton": "Atrás",
   "generateButton": "Xerar",
   "aiTopicModeCount": "Modo Tema ({count} palabras)",
-  "aiTextModeCount": "Modo Texto ({count} palabras)"
+  "aiTextModeCount": "Modo Texto ({count} palabras)",
+  "allLabel": "Todas",
+  "@allLabel": {
+    "description": "Etiqueta para a opción de seleccionar todas as preguntas"
+  }
 }
 

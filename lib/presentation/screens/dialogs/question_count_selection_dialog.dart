@@ -194,6 +194,52 @@ class _QuestionCountSelectionDialogState
                   ),
                 ],
               ),
+              const SizedBox(height: 16),
+              // All Questions Button
+              SizedBox(
+                width: double.infinity,
+                child: TextButton.icon(
+                  onPressed: () {
+                    setState(() {
+                      _selectedCount = widget.totalQuestions;
+                    });
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: _selectedCount == widget.totalQuestions
+                        ? primaryColor.withValues(alpha: 0.1)
+                        : Colors.transparent,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      side: BorderSide(
+                        color: _selectedCount == widget.totalQuestions
+                            ? primaryColor
+                            : borderColor,
+                      ),
+                    ),
+                  ),
+                  icon: Icon(
+                    LucideIcons.listChecks,
+                    size: 18,
+                    color: _selectedCount == widget.totalQuestions
+                        ? primaryColor
+                        : subTextColor,
+                  ),
+                  label: Text(
+                    // Default to 'All' if localization key not ready, but we just added it.
+                    // Assuming AppLocalizations.of(context)!.allLabel will be available after gen-l10n
+                    AppLocalizations.of(context)!.allLabel,
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: _selectedCount == widget.totalQuestions
+                          ? primaryColor
+                          : subTextColor,
+                    ),
+                  ),
+                ),
+              ),
 
               const SizedBox(height: 32),
 
