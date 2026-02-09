@@ -18,6 +18,25 @@ class AppLocalizationsHi extends AppLocalizations {
   String get preview => 'पूर्वावलोकन';
 
   @override
+  String get previewLabel => 'पूर्वावलोकन:';
+
+  @override
+  String get emptyPlaceholder => '(खाली)';
+
+  @override
+  String get latexSyntaxTitle => 'LaTeX सिंटैक्स:';
+
+  @override
+  String get latexSyntaxHelp =>
+      'इनलाइन गणित: LaTeX अभिव्यक्तियों के लिए \$...\$ का उपयोग करें\nउदाहरण: \$x^2 + y^2 = z^2\$';
+
+  @override
+  String get previewLatexTooltip => 'LaTeX रेंडरिंग का पूर्वावलोकन करें';
+
+  @override
+  String get okButton => 'ठीक है';
+
+  @override
   String get load => 'लोड करें';
 
   @override
@@ -729,6 +748,39 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get aiGenerateButton => 'प्रश्न बनाएं';
+
+  @override
+  String get aiEnterContentTitle => 'सामग्री दर्ज करें';
+
+  @override
+  String get aiEnterContentDescription =>
+      'प्रश्न उत्पन्न करने के लिए विषय दर्ज करें या सामग्री पेस्ट करें';
+
+  @override
+  String get aiContentFieldHint =>
+      '\"द्वितीय विश्व युद्ध का इतिहास\" जैसा कोई विषय दर्ज करें या यहां पाठ पेस्ट करें...';
+
+  @override
+  String get aiAttachFileHint => 'फ़ाइल संलग्न करें (PDF, TXT, DOCX)';
+
+  @override
+  String get aiNumberQuestionsLabel => 'प्रश्नों की संख्या';
+
+  @override
+  String get backButton => 'वापस';
+
+  @override
+  String get generateButton => 'उत्पन्न करें';
+
+  @override
+  String aiTopicModeCount(int count) {
+    return 'विषय मोड ($count शब्द)';
+  }
+
+  @override
+  String aiTextModeCount(int count) {
+    return 'पाठ मोड ($count शब्द)';
+  }
 
   @override
   String get languageSpanish => 'Español';

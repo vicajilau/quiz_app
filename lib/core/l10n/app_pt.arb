@@ -1714,6 +1714,21 @@
   "keepPracticing": "Continue praticando para melhorar!",
   "tryAgain": "Tentar novamente",
   "review": "Revisar",
-  "home": "Início"
+  "home": "Início",
+  "previewLabel": "Pré-visualização:",
+  "emptyPlaceholder": "(vazio)",
+  "latexSyntaxTitle": "Sintaxe LaTeX:",
+  "latexSyntaxHelp": "Matemática inline: Use $...$ para expressões LaTeX\nExemplo: $x^2 + y^2 = z^2$",
+  "previewLatexTooltip": "Pré-visualizar renderização LaTeX",
+  "okButton": "OK",
+  "aiEnterContentTitle": "Inserir Conteúdo",
+  "aiEnterContentDescription": "Insira o tópico ou cole o conteúdo para gerar perguntas",
+  "aiContentFieldHint": "Insira um tópico como \"História da Segunda Guerra Mundial\" ou cole o texto aqui...",
+  "aiAttachFileHint": "Anexar arquivo (PDF, TXT, DOCX)",
+  "aiNumberQuestionsLabel": "Número de Perguntas",
+  "backButton": "Voltar",
+  "generateButton": "Gerar",
+  "aiTopicModeCount": "Modo Tópico ({count} palavras)",
+  "aiTextModeCount": "Modo Texto ({count} palavras)"
 }
 

@@ -1674,6 +1674,21 @@
   "keepPracticing": "改善のために練習を続けましょう！",
   "tryAgain": "もう一度試す",
   "review": "復習する",
-  "home": "ホーム"
+  "home": "ホーム",
+  "previewLabel": "プレビュー:",
+  "emptyPlaceholder": "(空)",
+  "latexSyntaxTitle": "LaTeX 構文:",
+  "latexSyntaxHelp": "インライン数式: LaTeX 式には $...$ を使用します\n例: $x^2 + y^2 = z^2$",
+  "previewLatexTooltip": "LaTeX レンダリングのプレビュー",
+  "okButton": "OK",
+  "aiEnterContentTitle": "コンテンツを入力",
+  "aiEnterContentDescription": "質問を作成するトピックを入力するか、コンテンツを貼り付けてください",
+  "aiContentFieldHint": "「第二次世界大戦の歴史」のようなトピックを入力するか、ここにテキストを貼り付けてください...",
+  "aiAttachFileHint": "ファイルを添付 (PDF, TXT, DOCX)",
+  "aiNumberQuestionsLabel": "質問数",
+  "backButton": "戻る",
+  "generateButton": "生成",
+  "aiTopicModeCount": "トピックモード ({count} 語)",
+  "aiTextModeCount": "テキストモード ({count} 語)"
 }
 

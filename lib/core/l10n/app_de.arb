@@ -12,6 +12,78 @@
   "@preview": {
     "description": "Beschriftung für den LaTeX-Vorschaubereich in Fragen-Dialogen."
   },
+  "previewLabel": "Vorschau:",
+  "@previewLabel": {
+    "description": "Label text for preview section"
+  },
+  "emptyPlaceholder": "(leer)",
+  "@emptyPlaceholder": {
+    "description": "Placeholder text when content is empty"
+  },
+  "latexSyntaxTitle": "LaTeX-Syntax:",
+  "@latexSyntaxTitle": {
+    "description": "Title for LaTeX syntax help section"
+  },
+  "latexSyntaxHelp": "Inline-Mathematik: Verwenden Sie $...$ für LaTeX-Ausdrücke\nBeispiel: $x^2 + y^2 = z^2$",
+  "@latexSyntaxHelp": {
+    "description": "Help text explaining LaTeX syntax"
+  },
+  "previewLatexTooltip": "LaTeX-Rendering-Vorschau",
+  "@previewLatexTooltip": {
+    "description": "Tooltip for preview LaTeX button"
+  },
+  "okButton": "OK",
+  "@okButton": {
+    "description": "Generic OK button text"
+  },
+  "aiEnterContentTitle": "Inhalt eingeben",
+  "@aiEnterContentTitle": {
+    "description": "Title for the step 2 of AI question generation"
+  },
+  "aiEnterContentDescription": "Geben Sie das Thema ein oder fügen Sie Inhalte ein, um Fragen zu generieren",
+  "@aiEnterContentDescription": {
+    "description": "Description for the content input step"
+  },
+  "aiContentFieldHint": "Geben Sie ein Thema wie \"Geschichte des Zweiten Weltkriegs\" ein oder fügen Sie hier Textinhalt ein...",
+  "@aiContentFieldHint": {
+    "description": "Hint text for the content input field"
+  },
+  "aiAttachFileHint": "Datei anhängen (PDF, TXT, DOCX)",
+  "@aiAttachFileHint": {
+    "description": "Hint text for the file attachment area"
+  },
+  "aiNumberQuestionsLabel": "Anzahl der Fragen",
+  "@aiNumberQuestionsLabel": {
+    "description": "Label for number of questions input"
+  },
+  "backButton": "Zurück",
+  "@backButton": {
+    "description": "Generic back button text"
+  },
+  "generateButton": "Generieren",
+  "@generateButton": {
+    "description": "Generic generate button text"
+  },
+  "aiTopicModeCount": "Themenmodus ({count} Wörter)",
+  "@aiTopicModeCount": {
+    "description": "Topic mode with word count",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "aiTextModeCount": "Textmodus ({count} Wörter)",
+  "@aiTextModeCount": {
+    "description": "Text mode with word count",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "150"
+      }
+    }
+  },
   "load": "Laden",
   "@load": {
     "description": "Beschriftung für die Schaltfläche Quiz-Datei laden in der AppBar."

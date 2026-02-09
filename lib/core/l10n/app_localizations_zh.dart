@@ -18,6 +18,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get preview => '预览';
 
   @override
+  String get previewLabel => '预览：';
+
+  @override
+  String get emptyPlaceholder => '(空)';
+
+  @override
+  String get latexSyntaxTitle => 'LaTeX 语法：';
+
+  @override
+  String get latexSyntaxHelp =>
+      '行内数学公式：使用 \$...\$ 包裹 LaTeX 表达式\n示例：\$x^2 + y^2 = z^2\$';
+
+  @override
+  String get previewLatexTooltip => '预览 LaTeX 渲染';
+
+  @override
+  String get okButton => '确定';
+
+  @override
   String get load => '加载';
 
   @override
@@ -696,6 +715,37 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get aiGenerateButton => '生成问题';
+
+  @override
+  String get aiEnterContentTitle => '输入内容';
+
+  @override
+  String get aiEnterContentDescription => '输入主题或粘贴内容以生成问题';
+
+  @override
+  String get aiContentFieldHint => '输入主题如“二战史”或在此粘贴文本...';
+
+  @override
+  String get aiAttachFileHint => '附加文件 (PDF, TXT, DOCX)';
+
+  @override
+  String get aiNumberQuestionsLabel => '问题数量';
+
+  @override
+  String get backButton => '返回';
+
+  @override
+  String get generateButton => '生成';
+
+  @override
+  String aiTopicModeCount(int count) {
+    return '主题模式 ($count 字)';
+  }
+
+  @override
+  String aiTextModeCount(int count) {
+    return '文本模式 ($count 字)';
+  }
 
   @override
   String get languageSpanish => 'Español';

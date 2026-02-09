@@ -1674,6 +1674,21 @@
   "keepPracticing": "सुधार के लिए अभ्यास जारी रखें!",
   "tryAgain": "फिर कोशिश करें",
   "review": "समीक्षा",
-  "home": "होम"
+  "home": "होम",
+  "previewLabel": "पूर्वावलोकन:",
+  "emptyPlaceholder": "(खाली)",
+  "latexSyntaxTitle": "LaTeX सिंटैक्स:",
+  "latexSyntaxHelp": "इनलाइन गणित: LaTeX अभिव्यक्तियों के लिए $...$ का उपयोग करें\nउदाहरण: $x^2 + y^2 = z^2$",
+  "previewLatexTooltip": "LaTeX रेंडरिंग का पूर्वावलोकन करें",
+  "okButton": "ठीक है",
+  "aiEnterContentTitle": "सामग्री दर्ज करें",
+  "aiEnterContentDescription": "प्रश्न उत्पन्न करने के लिए विषय दर्ज करें या सामग्री पेस्ट करें",
+  "aiContentFieldHint": "\"द्वितीय विश्व युद्ध का इतिहास\" जैसा कोई विषय दर्ज करें या यहां पाठ पेस्ट करें...",
+  "aiAttachFileHint": "फ़ाइल संलग्न करें (PDF, TXT, DOCX)",
+  "aiNumberQuestionsLabel": "प्रश्नों की संख्या",
+  "backButton": "वापस",
+  "generateButton": "उत्पन्न करें",
+  "aiTopicModeCount": "विषय मोड ({count} शब्द)",
+  "aiTextModeCount": "पाठ मोड ({count} शब्द)"
 }
 

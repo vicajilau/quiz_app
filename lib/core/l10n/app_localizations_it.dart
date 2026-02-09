@@ -18,6 +18,25 @@ class AppLocalizationsIt extends AppLocalizations {
   String get preview => 'Anteprima';
 
   @override
+  String get previewLabel => 'Anteprima:';
+
+  @override
+  String get emptyPlaceholder => '(vuoto)';
+
+  @override
+  String get latexSyntaxTitle => 'Sintassi LaTeX:';
+
+  @override
+  String get latexSyntaxHelp =>
+      'Matematica in linea: Usa \$...\$ per le espressioni LaTeX\nEsempio: \$x^2 + y^2 = z^2\$';
+
+  @override
+  String get previewLatexTooltip => 'Anteprima rendering LaTeX';
+
+  @override
+  String get okButton => 'OK';
+
+  @override
   String get load => 'Carica';
 
   @override
@@ -735,6 +754,39 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get aiGenerateButton => 'Genera Domande';
+
+  @override
+  String get aiEnterContentTitle => 'Inserisci contenuto';
+
+  @override
+  String get aiEnterContentDescription =>
+      'Inserisci l\'argomento o incolla il contenuto da cui generare le domande';
+
+  @override
+  String get aiContentFieldHint =>
+      'Inserisci un argomento come \"Storia della Seconda Guerra Mondiale\" o incolla il testo qui...';
+
+  @override
+  String get aiAttachFileHint => 'Allega file (PDF, TXT, DOCX)';
+
+  @override
+  String get aiNumberQuestionsLabel => 'Numero di domande';
+
+  @override
+  String get backButton => 'Indietro';
+
+  @override
+  String get generateButton => 'Genera';
+
+  @override
+  String aiTopicModeCount(int count) {
+    return 'Modalità Argomento ($count parole)';
+  }
+
+  @override
+  String aiTextModeCount(int count) {
+    return 'Modalità Testo ($count parole)';
+  }
 
   @override
   String get languageSpanish => 'Español';

@@ -18,6 +18,25 @@ class AppLocalizationsJa extends AppLocalizations {
   String get preview => 'プレビュー';
 
   @override
+  String get previewLabel => 'プレビュー:';
+
+  @override
+  String get emptyPlaceholder => '(空)';
+
+  @override
+  String get latexSyntaxTitle => 'LaTeX 構文:';
+
+  @override
+  String get latexSyntaxHelp =>
+      'インライン数式: LaTeX 式には \$...\$ を使用します\n例: \$x^2 + y^2 = z^2\$';
+
+  @override
+  String get previewLatexTooltip => 'LaTeX レンダリングのプレビュー';
+
+  @override
+  String get okButton => 'OK';
+
+  @override
   String get load => '読み込み';
 
   @override
@@ -698,6 +717,38 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get aiGenerateButton => '問題を生成';
+
+  @override
+  String get aiEnterContentTitle => 'コンテンツを入力';
+
+  @override
+  String get aiEnterContentDescription => '質問を作成するトピックを入力するか、コンテンツを貼り付けてください';
+
+  @override
+  String get aiContentFieldHint =>
+      '「第二次世界大戦の歴史」のようなトピックを入力するか、ここにテキストを貼り付けてください...';
+
+  @override
+  String get aiAttachFileHint => 'ファイルを添付 (PDF, TXT, DOCX)';
+
+  @override
+  String get aiNumberQuestionsLabel => '質問数';
+
+  @override
+  String get backButton => '戻る';
+
+  @override
+  String get generateButton => '生成';
+
+  @override
+  String aiTopicModeCount(int count) {
+    return 'トピックモード ($count 語)';
+  }
+
+  @override
+  String aiTextModeCount(int count) {
+    return 'テキストモード ($count 語)';
+  }
 
   @override
   String get languageSpanish => 'Español';

@@ -140,6 +140,42 @@ abstract class AppLocalizations {
   /// **'Preview'**
   String get preview;
 
+  /// Label text for preview section
+  ///
+  /// In en, this message translates to:
+  /// **'Preview:'**
+  String get previewLabel;
+
+  /// Placeholder text when content is empty
+  ///
+  /// In en, this message translates to:
+  /// **'(empty)'**
+  String get emptyPlaceholder;
+
+  /// Title for LaTeX syntax help section
+  ///
+  /// In en, this message translates to:
+  /// **'LaTeX Syntax:'**
+  String get latexSyntaxTitle;
+
+  /// Help text explaining LaTeX syntax
+  ///
+  /// In en, this message translates to:
+  /// **'Inline math: Use \$...\$ for LaTeX expressions\nExample: \$x^2 + y^2 = z^2\$'**
+  String get latexSyntaxHelp;
+
+  /// Tooltip for preview LaTeX button
+  ///
+  /// In en, this message translates to:
+  /// **'Preview LaTeX rendering'**
+  String get previewLatexTooltip;
+
+  /// Generic OK button text
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get okButton;
+
   /// Label for the Load Quiz file button in the AppBar.
   ///
   /// In en, this message translates to:
@@ -1375,6 +1411,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Generate Questions'**
   String get aiGenerateButton;
+
+  /// Title for the step 2 of AI question generation
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Content'**
+  String get aiEnterContentTitle;
+
+  /// Description for the content input step
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the topic or paste content to generate questions from'**
+  String get aiEnterContentDescription;
+
+  /// Hint text for the content input field
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a topic like \"World War II history\" or paste text content here...'**
+  String get aiContentFieldHint;
+
+  /// Hint text for the file attachment area
+  ///
+  /// In en, this message translates to:
+  /// **'Attach a file (PDF, TXT, DOCX)'**
+  String get aiAttachFileHint;
+
+  /// Label for number of questions input
+  ///
+  /// In en, this message translates to:
+  /// **'Number of Questions'**
+  String get aiNumberQuestionsLabel;
+
+  /// Generic back button text
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get backButton;
+
+  /// Generic generate button text
+  ///
+  /// In en, this message translates to:
+  /// **'Generate'**
+  String get generateButton;
+
+  /// Topic mode with word count
+  ///
+  /// In en, this message translates to:
+  /// **'Topic Mode ({count} words)'**
+  String aiTopicModeCount(int count);
+
+  /// Text mode with word count
+  ///
+  /// In en, this message translates to:
+  /// **'Text Mode ({count} words)'**
+  String aiTextModeCount(int count);
 
   /// Spanish language name.
   ///

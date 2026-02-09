@@ -18,6 +18,25 @@ class AppLocalizationsEs extends AppLocalizations {
   String get preview => 'Vista previa';
 
   @override
+  String get previewLabel => 'Vista previa:';
+
+  @override
+  String get emptyPlaceholder => '(vacío)';
+
+  @override
+  String get latexSyntaxTitle => 'Sintaxis LaTeX:';
+
+  @override
+  String get latexSyntaxHelp =>
+      'Matemáticas en línea: Usa \$...\$ para expresiones LaTeX\nEjemplo: \$x^2 + y^2 = z^2\$';
+
+  @override
+  String get previewLatexTooltip => 'Vista previa del renderizado LaTeX';
+
+  @override
+  String get okButton => 'Aceptar';
+
+  @override
   String get load => 'Cargar';
 
   @override
@@ -737,6 +756,39 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get aiGenerateButton => 'Generar Preguntas';
+
+  @override
+  String get aiEnterContentTitle => 'Introducir contenido';
+
+  @override
+  String get aiEnterContentDescription =>
+      'Introduce el tema o pega el contenido para generar preguntas';
+
+  @override
+  String get aiContentFieldHint =>
+      'Introduce un tema como \"Historia de la Segunda Guerra Mundial\" o pega el contenido de texto aquí...';
+
+  @override
+  String get aiAttachFileHint => 'Adjunta un archivo (PDF, TXT, DOCX)';
+
+  @override
+  String get aiNumberQuestionsLabel => 'Número de preguntas';
+
+  @override
+  String get backButton => 'Volver';
+
+  @override
+  String get generateButton => 'Generar';
+
+  @override
+  String aiTopicModeCount(int count) {
+    return 'Modo Tema ($count palabras)';
+  }
+
+  @override
+  String aiTextModeCount(int count) {
+    return 'Modo Texto ($count palabras)';
+  }
 
   @override
   String get languageSpanish => 'Español';
