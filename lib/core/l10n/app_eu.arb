@@ -902,7 +902,11 @@
   },
   "generateQuestionsWithAI": "AI-rekin galderak sortu",
   "@generateQuestionsWithAI": {
-    "description": "AI-rekin galderak sortzeko botoiarentzako tooltip-a."
+    "description": "Tooltip for the generate questions with AI button."
+  },
+  "addQuestionsWithAI": "Gehitu galderak AI bidez",
+  "@addQuestionsWithAI": {
+    "description": "Label for the button to add more questions using AI when some already exist."
   },
   "aiGenerateDialogTitle": "AI-rekin Galderak Sortu",
   "@aiGenerateDialogTitle": {

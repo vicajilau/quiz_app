@@ -14,6 +14,7 @@ class FileLoadedBottomBar extends StatefulWidget {
   final bool isPlayEnabled;
   final int selectedQuestionCount;
   final bool showSaveButton;
+  final bool hasQuestions;
 
   const FileLoadedBottomBar({
     super.key,
@@ -26,6 +27,7 @@ class FileLoadedBottomBar extends StatefulWidget {
     this.isPlayEnabled = false,
     this.selectedQuestionCount = 0,
     this.showSaveButton = false,
+    this.hasQuestions = false,
   });
 
   @override
@@ -158,9 +160,13 @@ class _FileLoadedBottomBarState extends State<FileLoadedBottomBar> {
                             _buildActionButton(
                               context,
                               icon: LucideIcons.sparkles,
-                              label: AppLocalizations.of(
-                                context,
-                              )!.generateQuestionsWithAI,
+                              label: widget.hasQuestions
+                                  ? AppLocalizations.of(
+                                      context,
+                                    )!.addQuestionsWithAI
+                                  : AppLocalizations.of(
+                                      context,
+                                    )!.generateQuestionsWithAI,
                               onPressed: widget.onGenerateAI,
                               backgroundColor: const Color(
                                 0xFF14B8A6,

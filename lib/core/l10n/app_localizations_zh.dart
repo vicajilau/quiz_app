@@ -826,6 +826,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get generateQuestionsWithAI => '使用AI生成问题';
 
   @override
+  String get addQuestionsWithAI => '使用 AI 添加问题';
+
+  @override
   String aiServiceLimitsWithChars(int words, int chars) {
     return '限制：$words词或$chars字符';
   }

@@ -10,11 +10,13 @@ import 'package:quiz_app/routes/app_router.dart';
 class HomeFooterWidget extends StatelessWidget {
   final bool isLoading;
   final VoidCallback onCreateTap;
+  final VoidCallback onGenerateAITap;
 
   const HomeFooterWidget({
     super.key,
     required this.isLoading,
     required this.onCreateTap,
+    required this.onGenerateAITap,
   });
 
   @override
@@ -23,30 +25,53 @@ class HomeFooterWidget extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 48, top: 32),
       child: Column(
         children: [
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 412, minWidth: 292),
+            child: SizedBox(
+              height: 56,
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: isLoading ? null : onGenerateAITap,
+                icon: Icon(
+                  LucideIcons.sparkles,
+                  size: 20,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+                label: Text(
+                  AppLocalizations.of(context)!.generateQuestionsWithAI,
+                  style: const TextStyle(fontWeight: FontWeight.w600),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).primaryColor,
+                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
           Wrap(
             alignment: WrapAlignment.center,
-            spacing: 16,
-            runSpacing: 16,
+            spacing: 12,
+            runSpacing: 12,
             children: [
               ConstrainedBox(
-                constraints:
-                    const BoxConstraints(maxWidth: 200, minWidth: 160),
+                constraints: const BoxConstraints(maxWidth: 200, minWidth: 140),
                 child: SizedBox(
                   height: 56,
                   width: double.infinity,
-                  child: ElevatedButton.icon(
+                  child: OutlinedButton.icon(
                     onPressed: isLoading ? null : onCreateTap,
-                    icon: Icon(
-                      LucideIcons.plus,
-                      size: 22,
-                      color: Theme.of(context).colorScheme.onPrimary,
-                    ),
+                    icon: const Icon(LucideIcons.plus, size: 22),
                     label: Text(
                       AppLocalizations.of(context)!.create,
                       style: const TextStyle(fontWeight: FontWeight.w600),
                       overflow: TextOverflow.ellipsis,
                     ),
-                    style: ElevatedButton.styleFrom(
+                    style: OutlinedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
@@ -55,8 +80,7 @@ class HomeFooterWidget extends StatelessWidget {
                 ),
               ),
               ConstrainedBox(
-                constraints:
-                    const BoxConstraints(maxWidth: 200, minWidth: 160),
+                constraints: const BoxConstraints(maxWidth: 200, minWidth: 140),
                 child: SizedBox(
                   height: 56,
                   width: double.infinity,

@@ -858,6 +858,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get generateQuestionsWithAI => 'إنتاج أسئلة بالذكاء الاصطناعي';
 
   @override
+  String get addQuestionsWithAI => 'إضافة أسئلة باستخدام الذكاء الاصطناعي';
+
+  @override
   String aiServiceLimitsWithChars(int words, int chars) {
     return 'الحد: $words كلمة أو $chars حرف';
   }

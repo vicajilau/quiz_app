@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiz_app/data/repositories/quiz_file_repository.dart';
-
 import 'package:quiz_app/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quiz_app/presentation/blocs/file_bloc/file_state.dart';
 
@@ -51,6 +50,34 @@ class FileBloc extends Bloc<FileEvent, FileState> {
           description: event.description,
         );
         emit(FileLoaded(quizFile)); // Emit the loaded file state after creation
+      } on Exception catch (e) {
+        emit(
+          FileError(reason: FileErrorType.errorOpeningFile, error: e),
+        ); // Emit error if file creation fails
+      } catch (e) {
+        emit(
+          FileError(
+            reason: FileErrorType.errorOpeningFile,
+            error: Exception(e),
+          ),
+        ); // Emit error if file creation fails
+      }
+    });
+
+    // Handling the CreateQuizWithQuestions event
+    on<CreateQuizWithQuestions>((event, emit) async {
+      emit(
+        FileLoading(),
+      ); // Emit loading state while the file is being processed
+      try {
+        final quizFile = await _fileRepository.createQuizFile(
+          title: event.name,
+          version: event.version,
+          author: event.author,
+          description: event.description,
+          questions: event.questions,
+        );
+        emit(FileLoaded(quizFile)); // Emit the loaded file state
       } on Exception catch (e) {
         emit(
           FileError(reason: FileErrorType.errorOpeningFile, error: e),

@@ -15,6 +15,11 @@ import 'package:quiz_app/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quiz_app/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quiz_app/presentation/screens/dialogs/quiz_metadata_dialog.dart';
 import 'package:quiz_app/presentation/screens/dialogs/settings_dialog.dart';
+import 'package:quiz_app/presentation/screens/dialogs/ai_generate_questions_dialog.dart';
+import 'package:quiz_app/presentation/screens/dialogs/custom_confirm_dialog.dart';
+import 'package:quiz_app/data/services/configuration_service.dart';
+import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
+import 'package:quiz_app/core/extensions/string_extensions.dart';
 import 'package:quiz_app/presentation/screens/widgets/home/home_header_widget.dart';
 import 'package:quiz_app/presentation/screens/widgets/home/home_drop_zone_widget.dart';
 import 'package:quiz_app/presentation/screens/widgets/home/home_footer_widget.dart';
@@ -73,18 +78,105 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Future<void> _generateQuestionsWithAI(BuildContext context) async {
+    try {
+      final isAiAvailable = await ConfigurationService.instance
+          .getIsAiAvailable();
+
+      if (!isAiAvailable) {
+        if (context.mounted) {
+          context.presentSnackBar(
+            AppLocalizations.of(context)!.aiApiKeyRequired,
+          );
+        }
+        return;
+      }
+
+      // Show AI generation dialog
+      if (!context.mounted) return;
+      final config = await showDialog<AiQuestionGenerationConfig>(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const AiGenerateQuestionsDialog(),
+      );
+
+      if (config == null || !context.mounted) return;
+
+      // Show loading
+      setState(() => _isLoading = true);
+      // Wait a frame to show loading
+      await Future.delayed(Duration.zero);
+
+      try {
+        // Generate questions with AI
+        final aiService = AiQuestionGenerationService();
+        if (!context.mounted) return;
+        final localizations = AppLocalizations.of(context)!;
+        final generatedQuestions = await aiService.generateQuestions(
+          config,
+          localizations: localizations,
+        );
+
+        if (generatedQuestions.isEmpty) {
+          setState(() => _isLoading = false);
+          if (context.mounted) {
+            context.presentSnackBar(
+              AppLocalizations.of(context)!.aiGenerationFailed,
+            );
+          }
+          return;
+        }
+
+        if (context.mounted) {
+          final unknownValue = AppLocalizations.of(
+            context,
+          )!.questionTypeUnknown;
+          context.read<FileBloc>().add(
+            CreateQuizWithQuestions(
+              name: unknownValue,
+              version: QuizMetadataConstants.version,
+              description: unknownValue,
+              author: unknownValue,
+              questions: generatedQuestions,
+            ),
+          );
+        }
+      } catch (e) {
+        if (context.mounted) {
+          setState(() => _isLoading = false);
+          await showDialog(
+            context: context,
+            builder: (context) => CustomConfirmDialog(
+              title: AppLocalizations.of(context)!.aiGenerationErrorTitle,
+              message: e.toString().cleanExceptionPrefix(),
+              confirmText: AppLocalizations.of(context)!.acceptButton,
+              showCloseButton: false,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        setState(() => _isLoading = false);
+        context.presentSnackBar('Error: ${e.toString()}');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<FileBloc>(
-      create: (_) => ServiceLocator.instance.getIt<FileBloc>(),
+    return BlocProvider<FileBloc>.value(
+      value: ServiceLocator.instance.getIt<FileBloc>(),
       child: BlocListener<FileBloc, FileState>(
         listener: (context, state) async {
           if (state is FileLoaded) {
+            setState(() => _isLoading = false);
             final _ = await context.push(AppRoutes.fileLoadedScreen);
             if (!context.mounted) return;
             context.read<FileBloc>().add(QuizFileReset());
           }
           if (state is FileError && context.mounted) {
+            setState(() => _isLoading = false);
             if (state.error is BadQuizFileException) {
               final badFileException = state.error as BadQuizFileException;
               context.presentSnackBar(badFileException.toString());
@@ -94,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
           }
           if (state is FileLoading) {
             setState(() => _isLoading = true);
-          } else {
+          } else if (state is FileInitial) {
             setState(() => _isLoading = false);
           }
         },
@@ -124,39 +216,66 @@ class _HomeScreenState extends State<HomeScreen> {
                 onDragEntered: (_) => setState(() => _isDragging = true),
                 onDragExited: (_) => setState(() => _isDragging = false),
                 child: SafeArea(
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      final isMobile = constraints.maxWidth < 600;
-                      // Calculate the visual top margin:
-                      // SafeArea (padding.top) + Header centering offset ((72 - 48) / 2 = 12)
-                      final topPadding = MediaQuery.of(context).padding.top;
-                      final visualTopMargin = topPadding + 12.0;
+                  child: Stack(
+                    children: [
+                      LayoutBuilder(
+                        builder: (context, constraints) {
+                          final isMobile = constraints.maxWidth < 600;
+                          // Calculate the visual top margin:
+                          // SafeArea (padding.top) + Header centering offset ((72 - 48) / 2 = 12)
+                          final topPadding = MediaQuery.of(context).padding.top;
+                          final visualTopMargin = topPadding + 12.0;
 
-                      return Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: isMobile ? visualTopMargin : 48.0,
-                        ),
-                        child: Column(
-                          children: [
-                            HomeHeaderWidget(
-                              isLoading: _isLoading,
-                              onSettingsTap: () => _showSettingsDialog(context),
-                            ),
-                            Expanded(
-                              child: HomeDropZoneWidget(
-                                isDragging: _isDragging,
-                                onTap: () => _pickFile(context),
+                          return SingleChildScrollView(
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(
+                                minHeight: constraints.maxHeight,
+                              ),
+                              child: IntrinsicHeight(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: isMobile
+                                        ? visualTopMargin
+                                        : 48.0,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      HomeHeaderWidget(
+                                        isLoading: _isLoading,
+                                        onSettingsTap: () =>
+                                            _showSettingsDialog(context),
+                                      ),
+                                      Expanded(
+                                        child: HomeDropZoneWidget(
+                                          isDragging: _isDragging,
+                                          onTap: () => _pickFile(context),
+                                        ),
+                                      ),
+                                      HomeFooterWidget(
+                                        isLoading: _isLoading,
+                                        onCreateTap: () =>
+                                            _showCreateQuizFileDialog(context),
+                                        onGenerateAITap: () =>
+                                            _generateQuestionsWithAI(context),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
-                            HomeFooterWidget(
-                              isLoading: _isLoading,
-                              onCreateTap: () =>
-                                  _showCreateQuizFileDialog(context),
+                          );
+                        },
+                      ),
+                      if (_isLoading)
+                        Positioned.fill(
+                          child: Container(
+                            color: Colors.black.withValues(alpha: 0.3),
+                            child: const Center(
+                              child: CircularProgressIndicator(),
                             ),
-                          ],
+                          ),
                         ),
-                      );
-                    },
+                    ],
                   ),
                 ),
               ),

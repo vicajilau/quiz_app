@@ -1194,6 +1194,10 @@
   "@generateQuestionsWithAI": {
     "description": "Tooltip for the generate questions with AI button."
   },
+  "addQuestionsWithAI": "Add questions with AI",
+  "@addQuestionsWithAI": {
+    "description": "Label for the button to add more questions using AI when some already exist."
+  },
   "aiServiceLimitsWithChars": "Limit: {words} words or {chars} characters",
   "@aiServiceLimitsWithChars": {
     "description": "Description of AI service limits with both word and character limits.",

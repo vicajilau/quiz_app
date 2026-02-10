@@ -1622,6 +1622,12 @@ abstract class AppLocalizations {
   /// **'Generate questions with AI'**
   String get generateQuestionsWithAI;
 
+  /// Label for the button to add more questions using AI when some already exist.
+  ///
+  /// In en, this message translates to:
+  /// **'Add questions with AI'**
+  String get addQuestionsWithAI;
+
   /// Description of AI service limits with both word and character limits.
   ///
   /// In en, this message translates to:

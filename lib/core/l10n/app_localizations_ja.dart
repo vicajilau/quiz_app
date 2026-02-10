@@ -831,6 +831,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get generateQuestionsWithAI => 'AIで問題を生成';
 
   @override
+  String get addQuestionsWithAI => 'AIで質問を追加';
+
+  @override
   String aiServiceLimitsWithChars(int words, int chars) {
     return '制限：$words語または$chars文字';
   }

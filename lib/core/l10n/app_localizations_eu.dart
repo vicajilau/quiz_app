@@ -873,6 +873,9 @@ class AppLocalizationsEu extends AppLocalizations {
   String get generateQuestionsWithAI => 'AI-rekin galderak sortu';
 
   @override
+  String get addQuestionsWithAI => 'Gehitu galderak AI bidez';
+
+  @override
   String aiServiceLimitsWithChars(int words, int chars) {
     return 'Muga: $words hitz edo $chars karaktere';
   }

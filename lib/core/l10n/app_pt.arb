@@ -900,6 +900,10 @@
   "@generateQuestionsWithAI": {
     "description": "Tooltip para o botão gerar perguntas com IA."
   },
+  "addQuestionsWithAI": "Adicionar perguntas com IA",
+  "@addQuestionsWithAI": {
+    "description": "Label for the button to add more questions using AI when some already exist."
+  },
   "aiGenerateDialogTitle": "Gerar perguntas com IA",
   "@aiGenerateDialogTitle": {
     "description": "Título da caixa de diálogo geração de perguntas IA."

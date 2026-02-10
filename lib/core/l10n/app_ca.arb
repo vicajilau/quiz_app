@@ -976,6 +976,10 @@
   "@generateQuestionsWithAI": {
     "description": "Tooltip pel botó generar preguntes amb IA."
   },
+  "addQuestionsWithAI": "Afegir preguntes amb IA",
+  "@addQuestionsWithAI": {
+    "description": "Label for the button to add more questions using AI when some already exist."
+  },
   "aiGenerateDialogTitle": "Generar preguntes amb IA",
   "@aiGenerateDialogTitle": {
     "description": "Títol del diàleg generació de preguntes IA."

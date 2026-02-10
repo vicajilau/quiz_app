@@ -2,6 +2,7 @@ import 'package:quiz_app/core/debug_print.dart';
 import 'package:quiz_app/core/service_locator.dart';
 import 'package:quiz_app/data/services/file_service/i_file_service.dart';
 
+import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_metadata.dart';
 
@@ -44,6 +45,7 @@ class QuizFileRepository {
     required String description,
     required String version,
     required String author,
+    List<Question>? questions,
   }) async {
     final metadata = QuizMetadata(
       title: title,
@@ -54,7 +56,7 @@ class QuizFileRepository {
 
     final quizFile = QuizFile(
       metadata: metadata,
-      questions: [], // Start with empty questions
+      questions: questions ?? [], // Start with empty questions or provided ones
     );
 
     ServiceLocator.instance.registerQuizFile(quizFile);

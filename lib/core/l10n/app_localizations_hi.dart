@@ -864,6 +864,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get generateQuestionsWithAI => 'AI के साथ प्रश्न बनाएं';
 
   @override
+  String get addQuestionsWithAI => 'AI के साथ प्रश्न जोड़ें';
+
+  @override
   String aiServiceLimitsWithChars(int words, int chars) {
     return 'सीमा: $words शब्द या $chars अक्षर';
   }

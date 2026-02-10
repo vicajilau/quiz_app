@@ -1,4 +1,5 @@
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -97,9 +98,10 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
     var fileName = cachedQuizFile.filePath?.split('/').last;
 
     // If fileName is null, empty, or likely a blob URL (doesn't have .quiz extension), ask for a name
-    if (fileName == null ||
-        fileName.isEmpty ||
-        !fileName.toLowerCase().endsWith('.quiz')) {
+    if (kIsWeb &&
+        (fileName == null ||
+            fileName.isEmpty ||
+            !fileName.toLowerCase().endsWith('.quiz'))) {
       if (!mounted) return;
       final result = await showDialog<String>(
         context: context,
@@ -118,7 +120,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
         QuizFileSaveRequested(
           cachedQuizFile,
           AppLocalizations.of(context)!.saveButton,
-          fileName,
+          fileName ?? '',
         ),
       );
     }
@@ -398,8 +400,8 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
         final shouldExit = await _confirmExit();
         return shouldExit;
       },
-      child: BlocProvider<FileBloc>(
-        create: (_) => widget.fileBloc,
+      child: BlocProvider.value(
+        value: widget.fileBloc,
         child: BlocListener<FileBloc, FileState>(
           listener: (context, state) {
             if (state is FileLoaded) {
@@ -751,6 +753,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                   showSaveButton: widget.checkFileChangesUseCase.execute(
                     cachedQuizFile,
                   ),
+                  hasQuestions: cachedQuizFile.questions.isNotEmpty,
                   isPlayEnabled: cachedQuizFile.questions.any(
                     (q) => q.isEnabled,
                   ),

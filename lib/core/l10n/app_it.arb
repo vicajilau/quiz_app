@@ -898,7 +898,11 @@
   },
   "generateQuestionsWithAI": "Genera domande con IA",
   "@generateQuestionsWithAI": {
-    "description": "Tooltip per il pulsante genera domande con IA."
+    "description": "Tooltip for the generate questions with AI button."
+  },
+  "addQuestionsWithAI": "Aggiungi domande con l'IA",
+  "@addQuestionsWithAI": {
+    "description": "Label for the button to add more questions using AI when some already exist."
   },
   "aiGenerateDialogTitle": "Genera domande con IA",
   "@aiGenerateDialogTitle": {
