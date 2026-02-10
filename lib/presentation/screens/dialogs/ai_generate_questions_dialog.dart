@@ -312,25 +312,38 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
         },
         onQuestionTypeToggled: (type) {
           setState(() {
+            Set<AiQuestionType> newSelectedTypes = Set.from(
+              _selectedQuestionTypes,
+            );
             if (type == AiQuestionType.random) {
-              // If selecting random, clear others
-              _selectedQuestionTypes = {AiQuestionType.random};
-            } else {
-              // If selecting a specific type
-              if (_selectedQuestionTypes.contains(AiQuestionType.random)) {
-                // Remove random if it was selected
-                _selectedQuestionTypes.remove(AiQuestionType.random);
+              if (newSelectedTypes.contains(type)) {
+                newSelectedTypes = {AiQuestionType.random};
+              } else {
+                if (newSelectedTypes.length == 1) {
+                  newSelectedTypes = {AiQuestionType.multipleChoice};
+                } else {
+                  newSelectedTypes.remove(type);
+                }
               }
-
-              if (_selectedQuestionTypes.contains(type)) {
-                // Only remove if it's not the last one selected
-                if (_selectedQuestionTypes.length > 1) {
-                  _selectedQuestionTypes.remove(type);
+            } else {
+              if (newSelectedTypes.contains(type)) {
+                newSelectedTypes.remove(type);
+                if (newSelectedTypes.isEmpty) {
+                  newSelectedTypes = {AiQuestionType.random};
                 }
               } else {
-                _selectedQuestionTypes.add(type);
+                newSelectedTypes.remove(AiQuestionType.random);
+                newSelectedTypes.add(type);
+
+                final allSpecificTypes = AiQuestionType.values
+                    .where((t) => t != AiQuestionType.random)
+                    .toSet();
+                if (newSelectedTypes.containsAll(allSpecificTypes)) {
+                  newSelectedTypes = {AiQuestionType.random};
+                }
               }
             }
+            _selectedQuestionTypes = newSelectedTypes;
           });
         },
         onNext: () {
