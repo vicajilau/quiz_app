@@ -201,6 +201,9 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get resolveUnansweredQuestions => 'Resolve questions';
+
+  @override
   String get abandonQuiz => '放弃测验';
 
   @override

@@ -240,6 +240,10 @@
   "@cancel": {
     "description": "Cancel button text"
   },
+  "resolveUnansweredQuestions": "प्रश्न हल करें",
+  "@resolveUnansweredQuestions": {
+    "description": "Button text to resolve unanswered questions"
+  },
   "abandonQuiz": "क्विज़ छोड़ें",
   "@abandonQuiz": {
     "description": "Title of abandon quiz dialog"

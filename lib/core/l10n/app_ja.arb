@@ -320,6 +320,10 @@
       }
     }
   },
+  "resolveUnansweredQuestions": "未回答の問題を解く",
+  "@resolveUnansweredQuestions": {
+    "description": "Button text to resolve unanswered questions"
+  },
   "startQuiz": "クイズ開始",
   "@startQuiz": {
     "description": "Button text to start the quiz"

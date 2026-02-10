@@ -380,6 +380,10 @@
       }
     }
   },
+  "resolveUnansweredQuestions": "Fragen lösen",
+  "@resolveUnansweredQuestions": {
+    "description": "Schaltflächentext zum Lösen unbeantworteter Fragen"
+  },
   "startQuiz": "Quiz starten",
   "@startQuiz": {
     "description": "Schaltflächentext zum Starten des Quiz"

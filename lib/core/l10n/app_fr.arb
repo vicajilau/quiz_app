@@ -226,7 +226,12 @@
   },
   "finishQuizConfirmation": "Êtes-vous sûr de vouloir terminer le quiz ? Vous ne pourrez plus modifier vos réponses après.",
   "@finishQuizConfirmation": {
-    "description": "Message de confirmation pour terminer le quiz"
+    "description": "Message de confirmation pour terminer      }
+    }
+  },
+  "resolveUnansweredQuestions": "Résoudre les questions",
+  "@resolveUnansweredQuestions": {
+    "description": "Texte du bouton pour résoudre les questions sans réponse"
   },
   "abandonQuiz": "Abandonner le quiz",
   "@abandonQuiz": {

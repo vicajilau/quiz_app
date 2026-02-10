@@ -312,6 +312,10 @@
       }
     }
   },
+  "resolveUnansweredQuestions": "Galderak ebatzi",
+  "@resolveUnansweredQuestions": {
+    "description": "Erantzun gabeko galderak ebazteko botoiaren testua"
+  },
   "startQuiz": "Quiz Hasi",
   "@startQuiz": {
     "description": "Quiz hasteko botoiaren testua"

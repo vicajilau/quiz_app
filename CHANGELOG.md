@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ui: Complete redesign of the application UI.
 - feat: Added multi-selection support for moving and deleting files.
 - fix: Improved network error messages by distinguishing between OpenAI and Gemini connection failures and localizing them.
+- feat: Added "Resolve Questions" button to the quiz submission dialog for quick access to unanswered questions.
+- ui: Made dialog buttons responsive and fixed dialog sizing issues on larger screens.
 
 ## [1.5.0] - 2026-02-06
 

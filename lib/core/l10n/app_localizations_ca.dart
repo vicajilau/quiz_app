@@ -207,6 +207,9 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
+  String get resolveUnansweredQuestions => 'Resoldre preguntes';
+
+  @override
   String get abandonQuiz => 'Abandonar quiz';
 
   @override

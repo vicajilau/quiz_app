@@ -304,6 +304,10 @@
   "@cancel": {
     "description": "Text del botó cancel·lar"
   },
+  "resolveUnansweredQuestions": "Resoldre preguntes",
+  "@resolveUnansweredQuestions": {
+    "description": "Text del botó per resoldre preguntes sense resposta"
+  },
   "abandonQuiz": "Abandonar quiz",
   "@abandonQuiz": {
     "description": "Títol del diàleg abandonar quiz"

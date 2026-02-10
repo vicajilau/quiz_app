@@ -392,6 +392,10 @@
       }
     }
   },
+  "resolveUnansweredQuestions": "حل الأسئلة",
+  "@resolveUnansweredQuestions": {
+    "description": "Button text to resolve unanswered questions"
+  },
   "startQuiz": "بدء الاختبار",
   "@startQuiz": {
     "description": "Button text to start the quiz"

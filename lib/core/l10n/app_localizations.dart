@@ -464,6 +464,12 @@ abstract class AppLocalizations {
   /// **'You have {unansweredCount, plural, =1{1 unanswered question} other{{unansweredCount} unanswered questions}}. Are you sure you want to finish?'**
   String finishQuizUnansweredQuestions(int unansweredCount);
 
+  /// Button text to resolve unanswered questions
+  ///
+  /// In en, this message translates to:
+  /// **'Resolve questions'**
+  String get resolveUnansweredQuestions;
+
   /// Title of abandon quiz dialog
   ///
   /// In en, this message translates to:

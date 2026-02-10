@@ -232,6 +232,10 @@
   "@cancel": {
     "description": "Texto do botón cancelar"
   },
+  "resolveUnansweredQuestions": "Resolver preguntas",
+  "@resolveUnansweredQuestions": {
+    "description": "Texto do botón para resolver preguntas sen responder"
+  },
   "abandonQuiz": "Abandonar quiz",
   "@abandonQuiz": {
     "description": "Título do diálogo abandonar quiz"

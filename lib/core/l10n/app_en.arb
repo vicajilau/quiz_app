@@ -270,6 +270,10 @@
       }
     }
   },
+  "resolveUnansweredQuestions": "Resolve questions",
+  "@resolveUnansweredQuestions": {
+    "description": "Button text to resolve unanswered questions"
+  },
   "abandonQuiz": "Abandon Quiz",
   "@abandonQuiz": {
     "description": "Title of abandon quiz dialog"

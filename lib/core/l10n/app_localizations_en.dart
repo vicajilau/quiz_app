@@ -205,6 +205,9 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get resolveUnansweredQuestions => 'Resolve questions';
+
+  @override
   String get abandonQuiz => 'Abandon Quiz';
 
   @override

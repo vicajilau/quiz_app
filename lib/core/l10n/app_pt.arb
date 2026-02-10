@@ -228,7 +228,11 @@
   "@finishQuizConfirmation": {
     "description": "Mensagem de confirmação para finalizar o quiz"
   },
-  "abandonQuiz": "Abandonar quiz",
+  "resolveUnansweredQuestions": "Resolver perguntas",
+  "@resolveUnansweredQuestions": {
+    "description": "Texto do botão para resolver perguntas não respondidas"
+  },
+  "abandonQuiz": "Abandone o questionário",
   "@abandonQuiz": {
     "description": "Título da caixa de diálogo abandonar quiz"
   },
