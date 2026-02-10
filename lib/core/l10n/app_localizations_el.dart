@@ -1330,4 +1330,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get home => 'Αρχική';
+
+  @override
+  String get allLabel => 'Όλες';
 }

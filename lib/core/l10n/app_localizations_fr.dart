@@ -1328,4 +1328,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get home => 'Accueil';
+
+  @override
+  String get allLabel => 'Toutes';
 }

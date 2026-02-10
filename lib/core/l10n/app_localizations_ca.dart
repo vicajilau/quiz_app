@@ -1327,4 +1327,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get home => 'Inici';
+
+  @override
+  String get allLabel => 'Totes';
 }

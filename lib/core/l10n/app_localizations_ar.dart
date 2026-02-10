@@ -1297,4 +1297,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get home => 'الرئيسية';
+
+  @override
+  String get allLabel => 'الكل';
 }

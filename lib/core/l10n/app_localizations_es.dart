@@ -1322,4 +1322,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get home => 'Inicio';
+
+  @override
+  String get allLabel => 'Todas';
 }

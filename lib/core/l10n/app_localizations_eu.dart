@@ -1320,4 +1320,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get home => 'Hasiera';
+
+  @override
+  String get allLabel => 'Guztiak';
 }

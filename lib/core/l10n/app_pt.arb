@@ -1733,6 +1733,10 @@
   "backButton": "Voltar",
   "generateButton": "Gerar",
   "aiTopicModeCount": "Modo Tópico ({count} palavras)",
-  "aiTextModeCount": "Modo Texto ({count} palavras)"
+  "aiTextModeCount": "Modo Texto ({count} palavras)",
+  "allLabel": "Todas",
+  "@allLabel": {
+    "description": "Rótulo para a opção de selecionar todas as perguntas"
+  }
 }
 

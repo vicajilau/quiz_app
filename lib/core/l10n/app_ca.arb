@@ -1784,6 +1784,10 @@
   "keepPracticing": "Segueix practicant per millorar!",
   "tryAgain": "Tornar a intentar",
   "review": "Repassar",
-  "home": "Inici"
+  "home": "Inici",
+  "allLabel": "Totes",
+  "@allLabel": {
+    "description": "Etiqueta per a l'opció de seleccionar totes les preguntes"
+  }
 }
 

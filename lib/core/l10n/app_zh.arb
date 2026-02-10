@@ -1685,6 +1685,10 @@
   "backButton": "返回",
   "generateButton": "生成",
   "aiTopicModeCount": "主题模式 ({count} 字)",
-  "aiTextModeCount": "文本模式 ({count} 字)"
+  "aiTextModeCount": "文本模式 ({count} 字)",
+  "allLabel": "全部",
+  "@allLabel": {
+    "description": "选择所有问题的选项标签"
+  }
 }
 

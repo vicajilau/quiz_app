@@ -1317,4 +1317,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get home => 'Home';
+
+  @override
+  String get allLabel => 'Tutte';
 }

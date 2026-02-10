@@ -2,11 +2,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Quiz App",
-            "request": "launch",
-            "type": "dart",
-        },
-        {
             "name": "Quiz App (debug mode)",
             "request": "launch",
             "type": "dart",

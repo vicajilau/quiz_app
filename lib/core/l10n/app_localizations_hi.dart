@@ -1309,4 +1309,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get home => 'होम';
+
+  @override
+  String get allLabel => 'सभी';
 }

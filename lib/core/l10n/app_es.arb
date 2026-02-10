@@ -1751,5 +1751,9 @@
   },
   "tryAgain": "Intentar de nuevo",
   "review": "Repasar",
-  "home": "Inicio"
+  "home": "Inicio",
+  "allLabel": "Todas",
+  "@allLabel": {
+    "description": "Etiqueta para la opción de seleccionar todas las preguntas"
+  }
 }

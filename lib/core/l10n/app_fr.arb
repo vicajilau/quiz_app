@@ -1733,6 +1733,10 @@
   "backButton": "Retour",
   "generateButton": "Générer",
   "aiTopicModeCount": "Mode Sujet ({count} mots)",
-  "aiTextModeCount": "Mode Texte ({count} mots)"
+  "aiTextModeCount": "Mode Texte ({count} mots)",
+  "allLabel": "Toutes",
+  "@allLabel": {
+    "description": "Libellé pour l'option de sélectionner toutes les questions"
+  }
 }
 

@@ -1842,5 +1842,9 @@
   },
   "tryAgain": "Try Again",
   "review": "Review",
-  "home": "Home"
+  "home": "Home",
+  "allLabel": "All",
+  "@allLabel": {
+    "description": "Label for the option to select all questions"
+  }
 }

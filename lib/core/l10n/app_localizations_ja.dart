@@ -1263,4 +1263,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get home => 'ホーム';
+
+  @override
+  String get allLabel => 'すべて';
 }

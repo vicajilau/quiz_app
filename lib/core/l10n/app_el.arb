@@ -424,6 +424,10 @@
   "backButton": "Πίσω",
   "generateButton": "Δημιουργία",
   "aiTopicModeCount": "Λειτουργία Θέματος ({count} λέξεις)",
-  "aiTextModeCount": "Λειτουργία Κειμένου ({count} λέξεις)"
+  "aiTextModeCount": "Λειτουργία Κειμένου ({count} λέξεις)",
+  "allLabel": "Όλες",
+  "@allLabel": {
+    "description": "Ετικέτα για την επιλογή όλων των ερωτήσεων"
+  }
 }
 

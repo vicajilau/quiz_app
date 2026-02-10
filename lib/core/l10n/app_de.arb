@@ -1790,6 +1790,10 @@
   "keepPracticing": "Übe weiter, um dich zu verbessern!",
   "tryAgain": "Erneut versuchen",
   "review": "Überprüfen",
-  "home": "Startseite"
+  "home": "Startseite",
+  "allLabel": "Alle",
+  "@allLabel": {
+    "description": "Label für die Option, alle Fragen auszuwählen"
+  }
 }
 

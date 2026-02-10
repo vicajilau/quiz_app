@@ -1255,4 +1255,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get home => '首页';
+
+  @override
+  String get allLabel => '全部';
 }

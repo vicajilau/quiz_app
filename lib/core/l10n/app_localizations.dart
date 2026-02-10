@@ -2395,6 +2395,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Home'**
   String get home;
+
+  /// Label for the option to select all questions
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get allLabel;
 }
 
 class _AppLocalizationsDelegate
