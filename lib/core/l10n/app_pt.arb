@@ -1066,15 +1066,10 @@
   "@aiGenerationFailed": {
     "description": "Mensagem mostrada quando geração de perguntas IA falha."
   },
-  "aiGenerationError": "Erro ao gerar perguntas: {error}",
-  "@aiGenerationError": {
-    "description": "Mensagem de erro ao gerar perguntas com IA.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Chave API inválida"
-      }
-    }
+
+  "aiGenerationErrorTitle": "Erro ao gerar perguntas",
+  "@aiGenerationErrorTitle": {
+    "description": "Título para o diálogo de erro ao gerar perguntas com IA."
   },
   "noQuestionsInFile": "Nenhuma pergunta encontrada no arquivo importado",
   "@noQuestionsInFile": {

@@ -248,7 +248,11 @@
   "aiGeneratedQuestions": "Δημιουργήθηκε από AI",
   "aiApiKeyRequired": "Παρακαλώ ρυθμίστε τουλάχιστον ένα κλειδί API AI στις Ρυθμίσεις για να χρησιμοποιήσετε τη δημιουργία AI.",
   "aiGenerationFailed": "Αδυναμία δημιουργίας ερωτήσεων. Δοκιμάστε με διαφορετικό περιεχόμενο.",
-  "aiGenerationError": "Σφάλμα δημιουργίας ερωτήσεων: {error}",
+
+  "aiGenerationErrorTitle": "Σφάλμα δημιουργίας ερωτήσεων",
+  "@aiGenerationErrorTitle": {
+    "description": "Τίτλος για το παράθυρο διαλόγου σφάλματος κατά τη δημιουργία ερωτήσεων με AI."
+  },
   "noQuestionsInFile": "Δεν βρέθηκαν ερωτήσεις στο εισαγόμενο αρχείο",
   "couldNotAccessFile": "Αδυναμία πρόσβασης στο επιλεγμένο αρχείο",
   "defaultOutputFileName": "output-file.quiz",

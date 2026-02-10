@@ -858,9 +858,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Fragen konnten nicht generiert werden. Versuchen Sie es mit anderem Inhalt.';
 
   @override
-  String aiGenerationError(String error) {
-    return 'Fehler beim Generieren von Fragen: $error';
-  }
+  String get aiGenerationErrorTitle => 'Fehler beim Generieren von Fragen';
 
   @override
   String get noQuestionsInFile =>

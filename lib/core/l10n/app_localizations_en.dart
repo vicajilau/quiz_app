@@ -848,9 +848,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Could not generate questions. Try with different content.';
 
   @override
-  String aiGenerationError(String error) {
-    return 'Error generating questions: $error';
-  }
+  String get aiGenerationErrorTitle => 'Error generating questions';
 
   @override
   String get noQuestionsInFile => 'No questions found in the imported file';

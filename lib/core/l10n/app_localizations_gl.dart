@@ -857,9 +857,7 @@ class AppLocalizationsGl extends AppLocalizations {
       'Non se puideron xerar preguntas. Proba con contido diferente.';
 
   @override
-  String aiGenerationError(String error) {
-    return 'Erro xerando preguntas: $error';
-  }
+  String get aiGenerationErrorTitle => 'Erro xerando preguntas';
 
   @override
   String get noQuestionsInFile =>

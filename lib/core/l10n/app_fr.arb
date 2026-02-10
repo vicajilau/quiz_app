@@ -1066,15 +1066,10 @@
   "@aiGenerationFailed": {
     "description": "Message affiché lorsque la génération de questions IA échoue."
   },
-  "aiGenerationError": "Erreur de génération de questions : {error}",
-  "@aiGenerationError": {
-    "description": "Message d'erreur lors de la génération de questions avec l'IA.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Clé API invalide"
-      }
-    }
+
+  "aiGenerationErrorTitle": "Erreur de génération de questions",
+  "@aiGenerationErrorTitle": {
+    "description": "Titre de la boîte de dialogue d'erreur lors de la génération de questions avec l'IA."
   },
   "noQuestionsInFile": "Aucune question trouvée dans le fichier importé",
   "@noQuestionsInFile": {

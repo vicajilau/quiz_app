@@ -1088,15 +1088,10 @@
   "@aiGenerationFailed": {
     "description": "Mensaxe mostrada cando a xeración de preguntas IA falla."
   },
-  "aiGenerationError": "Erro xerando preguntas: {error}",
-  "@aiGenerationError": {
-    "description": "Mensaxe de erro en xerar preguntas con IA.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Clave API non válida"
-      }
-    }
+
+  "aiGenerationErrorTitle": "Erro xerando preguntas",
+  "@aiGenerationErrorTitle": {
+    "description": "Título para o diálogo de erro xerando preguntas con IA."
   },
   "noQuestionsInFile": "Non se atoparon preguntas no ficheiro importado",
   "@noQuestionsInFile": {

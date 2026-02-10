@@ -1168,16 +1168,12 @@
   "@aiGenerationFailed": {
     "description": "Message shown when AI question generation fails."
   },
-  "aiGenerationError": "Error generating questions: {error}",
-  "@aiGenerationError": {
-    "description": "Error message when generating questions with AI.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "API key invalid"
-      }
-    }
+
+  "aiGenerationErrorTitle": "Error generating questions",
+  "@aiGenerationErrorTitle": {
+    "description": "Title for the error dialog when generating questions with AI."
   },
+
   "noQuestionsInFile": "No questions found in the imported file",
   "@noQuestionsInFile": {
     "description": "Message shown when an imported file contains no questions."

@@ -1078,15 +1078,9 @@
   "@aiGenerationFailed": {
     "description": "Message shown when AI question generation fails."
   },
-  "aiGenerationError": "प्रश्न बनाने में त्रुटि: {error}",
-  "@aiGenerationError": {
-    "description": "Error message when generating questions with AI.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "API key invalid"
-      }
-    }
+  "aiGenerationErrorTitle": "प्रश्न बनाने में त्रुटि",
+  "@aiGenerationErrorTitle": {
+    "description": "AI के साथ प्रश्न बनाने में त्रुटि संवाद के लिए शीर्षक।"
   },
   "noQuestionsInFile": "आयातित फ़ाइल में कोई प्रश्न नहीं मिले",
   "@noQuestionsInFile": {

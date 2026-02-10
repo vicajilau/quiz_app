@@ -852,9 +852,7 @@ class AppLocalizationsIt extends AppLocalizations {
       'Impossibile generare domande. Prova con contenuto diverso.';
 
   @override
-  String aiGenerationError(String error) {
-    return 'Errore nella generazione domande: $error';
-  }
+  String get aiGenerationErrorTitle => 'Errore nella generazione domande';
 
   @override
   String get noQuestionsInFile => 'Nessuna domanda trovata nel file importato';

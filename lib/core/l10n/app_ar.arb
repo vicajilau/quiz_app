@@ -1150,15 +1150,9 @@
   "@aiGenerationFailed": {
     "description": "Message shown when AI question generation fails."
   },
-  "aiGenerationError": "خطأ في إنتاج الأسئلة: {error}",
-  "@aiGenerationError": {
-    "description": "Error message when generating questions with AI.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "API key invalid"
-      }
-    }
+  "aiGenerationErrorTitle": "خطأ في إنتاج الأسئلة",
+  "@aiGenerationErrorTitle": {
+    "description": "عنوان لمربع حوار الخطأ عند إنشاء الأسئلة باستخدام الذكاء الاصطناعي."
   },
   "noQuestionsInFile": "لم توجد أسئلة في الملف المستورد",
   "@noQuestionsInFile": {

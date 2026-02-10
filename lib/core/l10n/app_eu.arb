@@ -1070,15 +1070,10 @@
   "@aiGenerationFailed": {
     "description": "AI galdera sorkuntza huts egiten duenean erakusten den mezua."
   },
-  "aiGenerationError": "Errorea galderak sortzean: {error}",
-  "@aiGenerationError": {
-    "description": "AI-rekin galderak sortzean errore mezua.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "API gako baliogabea"
-      }
-    }
+
+  "aiGenerationErrorTitle": "Errorea galderak sortzean",
+  "@aiGenerationErrorTitle": {
+    "description": "AI bidez galderak sortzean errore-leihoaren izenburua."
   },
   "noQuestionsInFile": "Ez da galderarik aurkitu inportatutako fitxategian",
   "@noQuestionsInFile": {

@@ -808,9 +808,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get aiGenerationFailed => '无法生成问题。请尝试不同的内容。';
 
   @override
-  String aiGenerationError(String error) {
-    return '生成问题时出错：$error';
-  }
+  String get aiGenerationErrorTitle => '生成问题时出错';
 
   @override
   String get noQuestionsInFile => '导入的文件中未找到问题';

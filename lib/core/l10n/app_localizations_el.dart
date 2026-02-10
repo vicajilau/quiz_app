@@ -859,9 +859,7 @@ class AppLocalizationsEl extends AppLocalizations {
       'Αδυναμία δημιουργίας ερωτήσεων. Δοκιμάστε με διαφορετικό περιεχόμενο.';
 
   @override
-  String aiGenerationError(String error) {
-    return 'Σφάλμα δημιουργίας ερωτήσεων: $error';
-  }
+  String get aiGenerationErrorTitle => 'Σφάλμα δημιουργίας ερωτήσεων';
 
   @override
   String get noQuestionsInFile =>

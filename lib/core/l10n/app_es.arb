@@ -1115,16 +1115,12 @@
   "@aiGenerationFailed": {
     "description": "Mensaje mostrado cuando la generación de preguntas con IA falla."
   },
-  "aiGenerationError": "Error al generar preguntas: {error}",
-  "@aiGenerationError": {
-    "description": "Mensaje de error al generar preguntas con IA.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "API key invalid"
-      }
-    }
+
+  "aiGenerationErrorTitle": "Error al generar preguntas",
+  "@aiGenerationErrorTitle": {
+    "description": "Título para el diálogo de error al generar preguntas con IA."
   },
+
   "noQuestionsInFile": "No se encontraron preguntas en el archivo importado",
   "@noQuestionsInFile": {
     "description": "Mensaje mostrado cuando un archivo importado no contiene preguntas."

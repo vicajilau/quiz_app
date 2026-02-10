@@ -813,9 +813,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get aiGenerationFailed => '問題を生成できませんでした。異なるコンテンツで試してください。';
 
   @override
-  String aiGenerationError(String error) {
-    return '問題生成エラー：$error';
-  }
+  String get aiGenerationErrorTitle => '問題生成エラー';
 
   @override
   String get noQuestionsInFile => 'インポートされたファイルに問題が見つかりませんでした';

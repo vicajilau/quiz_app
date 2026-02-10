@@ -840,9 +840,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'لم أتمكن من إنتاج الأسئلة. جرب بمحتوى مختلف.';
 
   @override
-  String aiGenerationError(String error) {
-    return 'خطأ في إنتاج الأسئلة: $error';
-  }
+  String get aiGenerationErrorTitle => 'خطأ في إنتاج الأسئلة';
 
   @override
   String get noQuestionsInFile => 'لم توجد أسئلة في الملف المستورد';

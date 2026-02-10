@@ -58,14 +58,21 @@ class CustomConfirmDialog extends StatelessWidget {
       elevation: 0,
       insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       child: Container(
-        constraints: const BoxConstraints(maxWidth: 400),
+        constraints: const BoxConstraints(maxWidth: 520),
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: BorderRadius.circular(24),
           border: Border.all(color: borderColor, width: 1),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.1),
+              blurRadius: 20,
+              offset: const Offset(0, 10),
+            ),
+          ],
         ),
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(32),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,18 +81,21 @@ class CustomConfirmDialog extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    color: titleColor,
+                Expanded(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700,
+                      color: titleColor,
+                    ),
                   ),
                 ),
                 Container(
                   width: 40,
                   height: 40,
+                  margin: const EdgeInsets.only(left: 16),
                   decoration: BoxDecoration(
                     color: closeBtnColor,
                     borderRadius: BorderRadius.circular(20),
@@ -119,12 +129,12 @@ class CustomConfirmDialog extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 32),
 
             // Actions
             SizedBox(
               width: double.infinity,
-              height: 52,
+              height: 56,
               child: FilledButton(
                 onPressed: () {
                   onConfirm?.call();
