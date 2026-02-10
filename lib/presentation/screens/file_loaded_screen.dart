@@ -1,4 +1,5 @@
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -97,7 +98,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
     var fileName = cachedQuizFile.filePath?.split('/').last;
 
     // If fileName is null, empty, or likely a blob URL (doesn't have .quiz extension), ask for a name
-    if (fileName == null ||
+    if (kIsWeb || fileName == null ||
         fileName.isEmpty ||
         !fileName.toLowerCase().endsWith('.quiz')) {
       if (!mounted) return;
