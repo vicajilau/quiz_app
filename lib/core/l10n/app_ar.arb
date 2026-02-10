@@ -984,6 +984,10 @@
   "@generateQuestionsWithAI": {
     "description": "Tooltip for the generate questions with AI button."
   },
+  "addQuestionsWithAI": "إضافة أسئلة باستخدام الذكاء الاصطناعي",
+  "@addQuestionsWithAI": {
+    "description": "Label for the button to add more questions using AI when some already exist."
+  },
   "aiGenerateDialogTitle": "إنتاج أسئلة بالذكاء الاصطناعي",
   "@aiGenerateDialogTitle": {
     "description": "Title of the AI question generation dialog."

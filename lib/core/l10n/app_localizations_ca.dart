@@ -874,6 +874,9 @@ class AppLocalizationsCa extends AppLocalizations {
   String get generateQuestionsWithAI => 'Generar preguntes amb IA';
 
   @override
+  String get addQuestionsWithAI => 'Afegir preguntes amb IA';
+
+  @override
   String aiServiceLimitsWithChars(int words, int chars) {
     return 'Límit: $words paraules o $chars caràcters';
   }

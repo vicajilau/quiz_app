@@ -1141,6 +1141,10 @@
   "@generateQuestionsWithAI": {
     "description": "Tooltip para el botón de generar preguntas con IA."
   },
+  "addQuestionsWithAI": "Añadir preguntas con IA",
+  "@addQuestionsWithAI": {
+    "description": "Etiqueta para el botón de añadir más preguntas usando IA cuando ya existen algunas."
+  },
   "aiServiceLimitsWithChars": "Límite: {words} palabras o {chars} caracteres",
   "@aiServiceLimitsWithChars": {
     "description": "Descripción de límites del servicio de IA con límites de palabras y caracteres.",

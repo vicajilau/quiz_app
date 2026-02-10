@@ -753,6 +753,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                   showSaveButton: widget.checkFileChangesUseCase.execute(
                     cachedQuizFile,
                   ),
+                  hasQuestions: cachedQuizFile.questions.isNotEmpty,
                   isPlayEnabled: cachedQuizFile.questions.any(
                     (q) => q.isEnabled,
                   ),

@@ -870,6 +870,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get generateQuestionsWithAI => 'Genera domande con IA';
 
   @override
+  String get addQuestionsWithAI => 'Aggiungi domande con l\'IA';
+
+  @override
   String aiServiceLimitsWithChars(int words, int chars) {
     return 'Limite: $words parole o $chars caratteri';
   }

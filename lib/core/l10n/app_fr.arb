@@ -898,7 +898,11 @@
   },
   "generateQuestionsWithAI": "Générer des questions avec l'IA",
   "@generateQuestionsWithAI": {
-    "description": "Info-bulle pour le bouton de génération de questions avec l'IA."
+    "description": "Tooltip for the generate questions with AI button."
+  },
+  "addQuestionsWithAI": "Ajouter des questions avec l'IA",
+  "@addQuestionsWithAI": {
+    "description": "Label for the button to add more questions using AI when some already exist."
   },
   "aiGenerateDialogTitle": "Générer des Questions avec l'IA",
   "@aiGenerateDialogTitle": {

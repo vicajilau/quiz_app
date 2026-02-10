@@ -878,6 +878,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get generateQuestionsWithAI => 'Δημιουργία ερωτήσεων με AI';
 
   @override
+  String get addQuestionsWithAI => 'Προσθήκη ερωτήσεων με AI';
+
+  @override
   String aiServiceLimitsWithChars(int words, int chars) {
     return 'Όριο: $words λέξεις ή $chars χαρακτήρες';
   }

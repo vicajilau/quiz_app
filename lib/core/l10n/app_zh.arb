@@ -904,6 +904,10 @@
   "@generateQuestionsWithAI": {
     "description": "Tooltip for the generate questions with AI button."
   },
+  "addQuestionsWithAI": "使用 AI 添加问题",
+  "@addQuestionsWithAI": {
+    "description": "Label for the button to add more questions using AI when some already exist."
+  },
   "aiGenerateDialogTitle": "使用AI生成问题",
   "@aiGenerateDialogTitle": {
     "description": "Title of the AI question generation dialog."

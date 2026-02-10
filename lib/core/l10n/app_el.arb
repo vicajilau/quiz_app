@@ -264,6 +264,10 @@
   "couldNotAccessFile": "Αδυναμία πρόσβασης στο επιλεγμένο αρχείο",
   "defaultOutputFileName": "output-file.quiz",
   "generateQuestionsWithAI": "Δημιουργία ερωτήσεων με AI",
+  "addQuestionsWithAI": "Προσθήκη ερωτήσεων με AI",
+  "@addQuestionsWithAI": {
+    "description": "Label for the button to add more questions using AI when some already exist."
+  },
   "aiServiceLimitsWithChars": "Όριο: {words} λέξεις ή {chars} χαρακτήρες",
   "aiServiceLimitsWordsOnly": "Όριο: {words} λέξεις",
   "aiAssistantDisabled": "Βοηθός AI Απενεργοποιημένος",
