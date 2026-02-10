@@ -26,6 +26,9 @@ class CustomConfirmDialog extends StatelessWidget {
   /// If true, the button and accents will be red.
   final bool isDestructive;
 
+  /// Whether to show the close (X) button in the top right.
+  final bool showCloseButton;
+
   const CustomConfirmDialog({
     super.key,
     required this.title,
@@ -33,6 +36,7 @@ class CustomConfirmDialog extends StatelessWidget {
     required this.confirmText,
     this.onConfirm,
     this.isDestructive = false,
+    this.showCloseButton = true,
   });
 
   @override
@@ -92,25 +96,30 @@ class CustomConfirmDialog extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  width: 40,
-                  height: 40,
-                  margin: const EdgeInsets.only(left: 16),
-                  decoration: BoxDecoration(
-                    color: closeBtnColor,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: IconButton(
-                    icon: Icon(LucideIcons.x, color: closeIconColor, size: 20),
-                    onPressed: () => context.pop(false),
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(),
-                    style: IconButton.styleFrom(
-                      backgroundColor: closeBtnColor,
-                      shape: const CircleBorder(),
+                if (showCloseButton)
+                  Container(
+                    width: 40,
+                    height: 40,
+                    margin: const EdgeInsets.only(left: 16),
+                    decoration: BoxDecoration(
+                      color: closeBtnColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: IconButton(
+                      icon: Icon(
+                        LucideIcons.x,
+                        color: closeIconColor,
+                        size: 20,
+                      ),
+                      onPressed: () => context.pop(false),
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(),
+                      style: IconButton.styleFrom(
+                        backgroundColor: closeBtnColor,
+                        shape: const CircleBorder(),
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
             const SizedBox(height: 16),

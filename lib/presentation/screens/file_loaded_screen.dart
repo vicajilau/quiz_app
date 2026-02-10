@@ -343,6 +343,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
               title: AppLocalizations.of(context)!.aiGenerationErrorTitle,
               message: e.toString().cleanExceptionPrefix(),
               confirmText: AppLocalizations.of(context)!.acceptButton,
+              showCloseButton: false,
             ),
           );
         }
