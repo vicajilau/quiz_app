@@ -18,19 +18,15 @@ class QuizProgressIndicator extends StatelessWidget {
     final barBgColor = isDark ? AppTheme.zinc800 : AppTheme.zinc200;
 
     return Tooltip(
-      message: state.isStudyMode
-          ? AppLocalizations.of(context)!.questionsOverview
-          : '',
+      message: AppLocalizations.of(context)!.questionsOverview,
       child: GestureDetector(
-        onTap: state.isStudyMode
-            ? () {
-                QuestionsOverviewBottomSheet.show(
-                  context,
-                  state,
-                  context.read<QuizExecutionBloc>(),
-                );
-              }
-            : null,
+        onTap: () {
+          QuestionsOverviewBottomSheet.show(
+            context,
+            state,
+            context.read<QuizExecutionBloc>(),
+          );
+        },
         child: Container(
           color: Colors.transparent,
           child: Column(

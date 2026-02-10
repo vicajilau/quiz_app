@@ -109,15 +109,6 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
     on<NextQuestionRequested>((event, emit) {
       if (state is QuizExecutionInProgress) {
         final currentState = state as QuizExecutionInProgress;
-
-        // Check if current question has been answered
-        // In Study Mode, we allow skipping (Next without answering)
-        if (!currentState.isStudyMode &&
-            !currentState.hasCurrentQuestionAnswered) {
-          // Don't proceed if no answer is selected in Exam Mode
-          return;
-        }
-
         if (!currentState.isLastQuestion) {
           emit(
             currentState.copyWith(
