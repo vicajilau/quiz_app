@@ -403,6 +403,8 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                 preferredService: widget.selectedService,
                                 preferredModel: widget.selectedModel,
                                 file: widget.fileAttachment,
+                                isTopicMode: widget.fileAttachment == null &&
+                                    widget.getWordCount() <= 10,
                               );
                               context.pop(config);
                             }
