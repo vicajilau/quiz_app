@@ -520,7 +520,7 @@
   "@questionTypeEssay": {
     "description": "تسمية لنوع السؤال المقالي"
   },
-  "questionTypeRandom": "الكل",
+  "questionTypeRandom": "مختلط",
   "@questionTypeRandom": {
     "description": "تسمية لنوع السؤال المختلط"
   },

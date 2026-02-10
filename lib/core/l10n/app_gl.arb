@@ -76,7 +76,7 @@
   "@saveButton": {
     "description": "Botón Gardar."
   },
-  "confirmDeleteTitle": "Confirmar Eliminación",
+  "confirmDeleteTitle": "Confirmar eliminación",
   "@confirmDeleteTitle": {
     "description": "Título para o diálogo de confirmación en eliminar un proceso."
   },
@@ -94,7 +94,7 @@
   "@deleteButton": {
     "description": "Texto do botón para confirmar a eliminación."
   },
-  "confirmExitTitle": "Confirmar Saída",
+  "confirmExitTitle": "Confirmar saída",
   "@confirmExitTitle": {
     "description": "Título para o diálogo de confirmación en saír."
   },
@@ -110,19 +110,19 @@
   "@saveDialogTitle": {
     "description": "Título para o diálogo de gardado."
   },
-  "createQuizFileTitle": "Crear Ficheiro Quiz",
+  "createQuizFileTitle": "Crear ficheiro Quiz",
   "@createQuizFileTitle": {
     "description": "Título para o diálogo de creación de ficheiro quiz."
   },
-  "editQuizFileTitle": "Editar Ficheiro Quiz",
+  "editQuizFileTitle": "Editar ficheiro Quiz",
   "@editQuizFileTitle": {
     "description": "Título para o diálogo de edición de ficheiro quiz."
   },
-  "fileNameLabel": "Nome do Ficheiro",
+  "fileNameLabel": "Nome do ficheiro",
   "@fileNameLabel": {
     "description": "Etiqueta para a entrada do nome do ficheiro."
   },
-  "fileDescriptionLabel": "Descrición do Ficheiro",
+  "fileDescriptionLabel": "Descrición do ficheiro",
   "@fileDescriptionLabel": {
     "description": "Etiqueta para a entrada da descrición do ficheiro."
   },
@@ -220,7 +220,7 @@
   "@finish": {
     "description": "Texto do botón rematar na navegación do quiz"
   },
-  "finishQuiz": "Rematar Quiz",
+  "finishQuiz": "Rematar quiz",
   "@finishQuiz": {
     "description": "Título do diálogo rematar quiz"
   },
@@ -232,7 +232,7 @@
   "@cancel": {
     "description": "Texto do botón cancelar"
   },
-  "abandonQuiz": "Abandonar Quiz",
+  "abandonQuiz": "Abandonar quiz",
   "@abandonQuiz": {
     "description": "Título do diálogo abandonar quiz"
   },
@@ -280,7 +280,7 @@
   "@goBack": {
     "description": "Texto do botón volver atrás"
   },
-  "retryFailedQuestions": "Reintentar Falladas",
+  "retryFailedQuestions": "Reintentar falladas",
   "@retryFailedQuestions": {
     "description": "Texto do botón para reintentar só as preguntas con respostas incorrectas"
   },
@@ -294,7 +294,7 @@
       }
     }
   },
-  "selectQuestionCountTitle": "Seleccionar Número de Preguntas",
+  "selectQuestionCountTitle": "Seleccionar número de preguntas",
   "@selectQuestionCountTitle": {
     "description": "Título para o diálogo para seleccionar o número de preguntas para o quiz"
   },
@@ -312,7 +312,7 @@
       }
     }
   },
-  "startQuiz": "Comezar Quiz",
+  "startQuiz": "Comezar quiz",
   "@startQuiz": {
     "description": "Texto do botón para comezar o quiz"
   },
@@ -342,7 +342,7 @@
   "@errorNumberMustBePositive": {
     "description": "Mensaxe de erro cando o número é cero ou negativo"
   },
-  "questionOrderConfigTitle": "Configuración da Orde das Preguntas",
+  "questionOrderConfigTitle": "Configuración da orde das preguntas",
   "@questionOrderConfigTitle": {
     "description": "Título para o diálogo de configuración da orde das preguntas"
   },
@@ -350,7 +350,7 @@
   "@questionOrderConfigDescription": {
     "description": "Texto descriptivo para o diálogo de configuración da orde das preguntas"
   },
-  "questionOrderAscending": "Orde Ascendente",
+  "questionOrderAscending": "Orde ascendente",
   "@questionOrderAscending": {
     "description": "Etiqueta para a opción orde ascendente das preguntas"
   },
@@ -358,7 +358,7 @@
   "@questionOrderAscendingDesc": {
     "description": "Descrición para a opción orde ascendente das preguntas"
   },
-  "questionOrderDescending": "Orde Descendente",
+  "questionOrderDescending": "Orde descendent",
   "@questionOrderDescending": {
     "description": "Etiqueta para a opción orde descendente das preguntas"
   },
@@ -382,7 +382,7 @@
   "@save": {
     "description": "Etiqueta para o botón gardar"
   },
-  "examTimeLimitTitle": "Límite de Tempo do Exame",
+  "examTimeLimitTitle": "Límite de tempo do exame",
   "@examTimeLimitTitle": {
     "description": "Título para a sección límite de tempo do exame"
   },
@@ -398,7 +398,7 @@
   "@timeLimitMinutes": {
     "description": "Etiqueta para a entrada de minutos do límite de tempo do exame"
   },
-  "examTimeExpiredTitle": "Tempo Esgotado!",
+  "examTimeExpiredTitle": "Tempo esgotado!",
   "@examTimeExpiredTitle": {
     "description": "Título para o diálogo tempo do exame esgotado"
   },
@@ -424,11 +424,11 @@
       }
     }
   },
-  "questionTypeMultipleChoice": "Elección Múltiple",
+  "questionTypeMultipleChoice": "Elección múltiple",
   "@questionTypeMultipleChoice": {
     "description": "Etiqueta para o tipo de pregunta elección múltiple"
   },
-  "questionTypeSingleChoice": "Elección Única",
+  "questionTypeSingleChoice": "Elección única",
   "@questionTypeSingleChoice": {
     "description": "Etiqueta para o tipo de pregunta elección única"
   },
@@ -440,7 +440,7 @@
   "@questionTypeEssay": {
     "description": "Etiqueta para o tipo de pregunta de ensaio"
   },
-  "questionTypeRandom": "Todas",
+  "questionTypeRandom": "Todos",
   "@questionTypeRandom": {
     "description": "Etiqueta para o tipo de pregunta mixta"
   },
@@ -504,11 +504,11 @@
   "@studentComment": {
     "description": "Etiqueta para comentario do estudante no diálogo IA"
   },
-  "aiAssistantTitle": "Asistente de Estudo IA",
+  "aiAssistantTitle": "Asistente de estudo IA",
   "@aiAssistantTitle": {
     "description": "Título para o diálogo asistente IA"
   },
-  "questionContext": "Contexto da Pregunta",
+  "questionContext": "Contexto da pregunta",
   "@questionContext": {
     "description": "Etiqueta para a sección contexto da pregunta"
   },
@@ -706,23 +706,23 @@
   "@falseLabel": {
     "description": "Etiqueta para a opción falso en preguntas certo/falso"
   },
-  "addQuestion": "Engadir Pregunta",
+  "addQuestion": "Engadir pregunta",
   "@addQuestion": {
     "description": "Título para o diálogo engadir nova pregunta"
   },
-  "editQuestion": "Editar Pregunta",
+  "editQuestion": "Editar pregunta",
   "@editQuestion": {
     "description": "Título para o diálogo editar pregunta existente"
   },
-  "questionText": "Texto da Pregunta",
+  "questionText": "Texto da pregunta",
   "@questionText": {
     "description": "Etiqueta para o campo de entrada texto da pregunta"
   },
-  "questionType": "Tipo de Pregunta",
+  "questionType": "Tipo de pregunta",
   "@questionType": {
     "description": "Etiqueta para o despregable tipo de pregunta"
   },
-  "addOption": "Engadir Opción",
+  "addOption": "Engadir opción",
   "@addOption": {
     "description": "Etiqueta para o botón engadir opción"
   },
@@ -832,7 +832,7 @@
   "@aiModelLabel": {
     "description": "Etiqueta para o selector de modelo IA."
   },
-  "importQuestionsTitle": "Importar Preguntas",
+  "importQuestionsTitle": "Importar preguntas",
   "@importQuestionsTitle": {
     "description": "Título para o diálogo importar preguntas."
   },
@@ -854,11 +854,11 @@
   "@importQuestionsPositionQuestion": {
     "description": "Pregunta sobre posición de importación."
   },
-  "importAtBeginning": "Ao Principio",
+  "importAtBeginning": "Ao principio",
   "@importAtBeginning": {
     "description": "Botón para importar preguntas ao principio da lista."
   },
-  "importAtEnd": "Ao Final",
+  "importAtEnd": "Ao final",
   "@importAtEnd": {
     "description": "Botón para importar preguntas ao final da lista."
   },
@@ -880,7 +880,7 @@
   "@dragDropHintText": {
     "description": "Texto de suxestión mostrado cando a lista de preguntas está baleira, indicando funcionalidade de arrastrar e soltar."
   },
-  "randomizeAnswersTitle": "Aleatorizar Opcións de Resposta",
+  "randomizeAnswersTitle": "Aleatorizar opcións de resposta",
   "@randomizeAnswersTitle": {
     "description": "Título para a configuración de aleatorización de opcións de resposta."
   },
@@ -888,7 +888,7 @@
   "@randomizeAnswersDescription": {
     "description": "Descrición para a configuración aleatorizar respostas."
   },
-  "showCorrectAnswerCountTitle": "Mostrar Número de Respostas Correctas",
+  "showCorrectAnswerCountTitle": "Mostrar número de respostas correctas",
   "@showCorrectAnswerCountTitle": {
     "description": "Título para a configuración mostrar número de respostas correctas."
   },
@@ -922,11 +922,11 @@
   "@generateQuestionsWithAI": {
     "description": "Tooltip para o botón xerar preguntas con IA."
   },
-  "aiGenerateDialogTitle": "Xerar Preguntas con IA",
+  "aiGenerateDialogTitle": "Xerar preguntas con IA",
   "@aiGenerateDialogTitle": {
     "description": "Título do diálogo xeración de preguntas IA."
   },
-  "aiQuestionCountLabel": "Número de Preguntas (Opcional)",
+  "aiQuestionCountLabel": "Número de preguntas (Opcional)",
   "@aiQuestionCountLabel": {
     "description": "Etiqueta para o campo número de preguntas."
   },
@@ -938,7 +938,7 @@
   "@aiQuestionCountValidation": {
     "description": "Mensaxe de validación para número de preguntas."
   },
-  "aiQuestionTypeLabel": "Tipo de Pregunta",
+  "aiQuestionTypeLabel": "Tipo de pregunta",
   "@aiQuestionTypeLabel": {
     "description": "Etiqueta para o selector tipo de pregunta."
   },
@@ -946,7 +946,7 @@
   "@aiQuestionTypeRandom": {
     "description": "Opción tipo aleatorio para preguntas."
   },
-  "aiLanguageLabel": "Idioma das Preguntas",
+  "aiLanguageLabel": "Idioma das preguntas",
   "@aiLanguageLabel": {
     "description": "Etiqueta para o selector de idioma."
   },
@@ -1631,14 +1631,14 @@
   "@aiFilePickerError": {
     "description": "Error message when file picker fails"
   },
-  "studyModeLabel": "Modo Estudo",
+  "studyModeLabel": "Modo estudo",
   "studyModeDescription": "Retroalimentación instantánea e sen tempo",
-  "examModeLabel": "Modo Exame",
+  "examModeLabel": "Modo exame",
   "examModeDescription": "Tempo estándar e resultados ao final",
   "checkAnswer": "Comprobar",
-  "quizModeTitle": "Modo Cuestionario",
+  "quizModeTitle": "Modo cuestionario",
   "skip": "Saltar",
-  "askAiAssistant": "Preguntar ao Asistente de IA",
+  "askAiAssistant": "Preguntar ao asistente de IA",
   "evaluateWithAI": "Avaliar con IA",
   "aiEvaluation": "Avaliación de IA",
   "sorteosLabel": "Raffles",

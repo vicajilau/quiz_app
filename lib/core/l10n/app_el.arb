@@ -109,7 +109,7 @@
   "@questionTypeEssay": {
     "description": "Ετικέτα για τον τύπο ερώτησης δοκιμίου"
   },
-  "questionTypeRandom": "Όλες",
+  "questionTypeRandom": "Μεικτό",
   "@questionTypeRandom": {
     "description": "Ετικέτα για τον μεικτό τύπο ερώτησης"
   },

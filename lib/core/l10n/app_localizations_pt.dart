@@ -78,7 +78,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get saveButton => 'Salvar';
 
   @override
-  String get confirmDeleteTitle => 'Confirmar Exclusão';
+  String get confirmDeleteTitle => 'Confirmar exclusão';
 
   @override
   String confirmDeleteMessage(String processName) {
@@ -89,7 +89,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get deleteButton => 'Excluir';
 
   @override
-  String get confirmExitTitle => 'Confirmar Saída';
+  String get confirmExitTitle => 'Confirmar saída';
 
   @override
   String get confirmExitMessage => 'Tem certeza de que deseja sair sem salvar?';
@@ -101,16 +101,16 @@ class AppLocalizationsPt extends AppLocalizations {
   String get saveDialogTitle => 'Selecione um arquivo de saída:';
 
   @override
-  String get createQuizFileTitle => 'Criar Arquivo Quiz';
+  String get createQuizFileTitle => 'Criar arquivo Quiz';
 
   @override
-  String get editQuizFileTitle => 'Editar Arquivo Quiz';
+  String get editQuizFileTitle => 'Editar arquivo Quiz';
 
   @override
-  String get fileNameLabel => 'Nome do Arquivo';
+  String get fileNameLabel => 'Nome do arquivo';
 
   @override
-  String get fileDescriptionLabel => 'Descrição do Arquivo';
+  String get fileDescriptionLabel => 'Descrição do arquivo';
 
   @override
   String get createButton => 'Criar';
@@ -189,14 +189,14 @@ class AppLocalizationsPt extends AppLocalizations {
   String get finish => 'Finalizar';
 
   @override
-  String get finishQuiz => 'Finalizar Quiz';
+  String get finishQuiz => 'Finalizar quiz';
 
   @override
   String get finishQuizConfirmation =>
       'Tem certeza de que deseja finalizar o quiz? Você não poderá mais alterar suas respostas depois.';
 
   @override
-  String get abandonQuiz => 'Abandonar Quiz';
+  String get abandonQuiz => 'Abandonar quiz';
 
   @override
   String get abandonQuizConfirmation =>
@@ -233,7 +233,7 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get selectQuestionCountTitle => 'Selecionar Número de Perguntas';
+  String get selectQuestionCountTitle => 'Selecionar número de perguntas';
 
   @override
   String get selectQuestionCountMessage =>
@@ -265,21 +265,21 @@ class AppLocalizationsPt extends AppLocalizations {
   String get numberInputLabel => 'Número de perguntas';
 
   @override
-  String get questionOrderConfigTitle => 'Configuração da Ordem das Perguntas';
+  String get questionOrderConfigTitle => 'Configuração da ordem das perguntas';
 
   @override
   String get questionOrderConfigDescription =>
       'Selecione a ordem na qual deseja que as perguntas apareçam durante o exame:';
 
   @override
-  String get questionOrderAscending => 'Ordem Crescente';
+  String get questionOrderAscending => 'Ordem crescente';
 
   @override
   String get questionOrderAscendingDesc =>
       'As perguntas aparecerão em ordem de 1 ao final';
 
   @override
-  String get questionOrderDescending => 'Ordem Decrescente';
+  String get questionOrderDescending => 'Ordem decrescente';
 
   @override
   String get questionOrderDescendingDesc =>
@@ -303,7 +303,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get save => 'Salvar';
 
   @override
-  String get examTimeLimitTitle => 'Limite de Tempo do Exame';
+  String get examTimeLimitTitle => 'Limite de tempo do exame';
 
   @override
   String get examTimeLimitDescription =>
@@ -316,7 +316,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get timeLimitMinutes => 'Limite de tempo (minutos)';
 
   @override
-  String get examTimeExpiredTitle => 'Tempo Esgotado!';
+  String get examTimeExpiredTitle => 'Tempo esgotado!';
 
   @override
   String get examTimeExpiredMessage =>
@@ -328,10 +328,10 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get questionTypeMultipleChoice => 'Múltipla Escolha';
+  String get questionTypeMultipleChoice => 'Múltipla escolha';
 
   @override
-  String get questionTypeSingleChoice => 'Escolha Única';
+  String get questionTypeSingleChoice => 'Escolha única';
 
   @override
   String get questionTypeTrueFalse => 'Verdadeiro/Falso';
@@ -340,7 +340,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get questionTypeEssay => 'Dissertativa';
 
   @override
-  String get questionTypeRandom => 'Todas';
+  String get questionTypeRandom => 'Todos';
 
   @override
   String get questionTypeUnknown => 'Desconhecido';
@@ -388,10 +388,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get studentComment => 'Comentário do estudante';
 
   @override
-  String get aiAssistantTitle => 'Assistente de Estudo IA';
+  String get aiAssistantTitle => 'Assistente de estudo IA';
 
   @override
-  String get questionContext => 'Contexto da Pergunta';
+  String get questionContext => 'Contexto da pergunta';
 
   @override
   String get aiAssistant => 'Assistente IA';
@@ -552,19 +552,19 @@ class AppLocalizationsPt extends AppLocalizations {
   String get falseLabel => 'Falso';
 
   @override
-  String get addQuestion => 'Adicionar Pergunta';
+  String get addQuestion => 'Adicionar pergunta';
 
   @override
-  String get editQuestion => 'Editar Pergunta';
+  String get editQuestion => 'Editar pergunta';
 
   @override
-  String get questionText => 'Texto da Pergunta';
+  String get questionText => 'Texto da pergunta';
 
   @override
-  String get questionType => 'Tipo de Pergunta';
+  String get questionType => 'Tipo de pergunta';
 
   @override
-  String get addOption => 'Adicionar Opção';
+  String get addOption => 'Adicionar opção';
 
   @override
   String get optionsLabel => 'Opções';
@@ -639,7 +639,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get aiModelLabel => 'Modelo:';
 
   @override
-  String get importQuestionsTitle => 'Importar Perguntas';
+  String get importQuestionsTitle => 'Importar perguntas';
 
   @override
   String importQuestionsMessage(int count, String fileName) {
@@ -651,10 +651,10 @@ class AppLocalizationsPt extends AppLocalizations {
       'Onde você gostaria de adicionar essas perguntas?';
 
   @override
-  String get importAtBeginning => 'No Início';
+  String get importAtBeginning => 'No início';
 
   @override
-  String get importAtEnd => 'No Final';
+  String get importAtEnd => 'No final';
 
   @override
   String questionsImportedSuccess(int count) {
@@ -670,7 +670,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'Você também pode arrastar e soltar arquivos .quiz aqui para importar perguntas';
 
   @override
-  String get randomizeAnswersTitle => 'Aleatorizar Opções de Resposta';
+  String get randomizeAnswersTitle => 'Aleatorizar opções de resposta';
 
   @override
   String get randomizeAnswersDescription =>
@@ -678,7 +678,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get showCorrectAnswerCountTitle =>
-      'Mostrar Número de Respostas Corretas';
+      'Mostrar número de respostas corretas';
 
   @override
   String get showCorrectAnswerCountDescription =>
@@ -699,10 +699,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get incorrectSelectedLabel => 'Incorreto';
 
   @override
-  String get aiGenerateDialogTitle => 'Gerar Perguntas com IA';
+  String get aiGenerateDialogTitle => 'Gerar perguntas com IA';
 
   @override
-  String get aiQuestionCountLabel => 'Número de Perguntas (Opcional)';
+  String get aiQuestionCountLabel => 'Número de perguntas (Opcional)';
 
   @override
   String get aiQuestionCountHint => 'Deixe vazio para a IA decidir';
@@ -711,13 +711,13 @@ class AppLocalizationsPt extends AppLocalizations {
   String get aiQuestionCountValidation => 'Deve ser um número entre 1 e 50';
 
   @override
-  String get aiQuestionTypeLabel => 'Tipo de Pergunta';
+  String get aiQuestionTypeLabel => 'Tipo de pergunta';
 
   @override
   String get aiQuestionTypeRandom => 'Aleatório (Misto)';
 
   @override
-  String get aiLanguageLabel => 'Idioma das Perguntas';
+  String get aiLanguageLabel => 'Idioma das perguntas';
 
   @override
   String get aiContentLabel => 'Conteúdo para gerar perguntas';
@@ -778,7 +778,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get aiAttachFileHint => 'Anexar arquivo (PDF, TXT, DOCX)';
 
   @override
-  String get aiNumberQuestionsLabel => 'Número de Perguntas';
+  String get aiNumberQuestionsLabel => 'Número de perguntas';
 
   @override
   String get backButton => 'Voltar';
@@ -1026,17 +1026,17 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get resetWinners => 'Resetar vencedores';
+  String get resetWinners => 'Reiniciar vencedores';
 
   @override
-  String get resetWinnersConfirmTitle => 'Resetar vencedores';
+  String get resetWinnersConfirmTitle => 'Reiniciar vencedores';
 
   @override
   String get resetWinnersConfirmMessage =>
       'Tem certeza de que deseja resetar a lista de vencedores? Todos os participantes estarão disponíveis para o sorteio novamente.';
 
   @override
-  String get resetRaffleTitle => 'Resetar sorteio';
+  String get resetRaffleTitle => 'Reiniciar sorteio';
 
   @override
   String get resetRaffleConfirmMessage =>
@@ -1147,10 +1147,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get shareSuccess => 'Resultados copiados com sucesso';
 
   @override
-  String get selectLogo => 'Selecionar Logo';
+  String get selectLogo => 'Selecionar logo';
 
   @override
-  String get logoUrl => 'URL do Logo';
+  String get logoUrl => 'URL do logo';
 
   @override
   String get logoUrlHint =>
@@ -1164,20 +1164,20 @@ class AppLocalizationsPt extends AppLocalizations {
   String get logoPreview => 'Pré-visualização';
 
   @override
-  String get removeLogo => 'Remover Logo';
+  String get removeLogo => 'Remover logo';
 
   @override
   String get logoTooLargeWarning =>
       'A imagem é muito grande para ser salva. Será usada apenas durante esta sessão.';
 
   @override
-  String get aiModeTopicTitle => 'Modo Tópico';
+  String get aiModeTopicTitle => 'Modo tópico';
 
   @override
   String get aiModeTopicDescription => 'Exploração criativa do tema';
 
   @override
-  String get aiModeContentTitle => 'Modo Conteúdo';
+  String get aiModeContentTitle => 'Modo conteúdo';
 
   @override
   String get aiModeContentDescription =>
@@ -1241,13 +1241,13 @@ class AppLocalizationsPt extends AppLocalizations {
       'Não foi possível carregar o arquivo selecionato';
 
   @override
-  String get studyModeLabel => 'Modo Estudo';
+  String get studyModeLabel => 'Modo estudo';
 
   @override
   String get studyModeDescription => 'Feedback instantâneo e sem cronômetro';
 
   @override
-  String get examModeLabel => 'Modo Exame';
+  String get examModeLabel => 'Modo exame';
 
   @override
   String get examModeDescription => 'Cronômetro padrão e resultados no final';
@@ -1256,7 +1256,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get checkAnswer => 'Verificar';
 
   @override
-  String get quizModeTitle => 'Modo Quiz';
+  String get quizModeTitle => 'Modo quiz';
 
   @override
   String get settingsTitle => 'Configurações';

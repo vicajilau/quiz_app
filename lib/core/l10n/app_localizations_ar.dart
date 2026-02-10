@@ -332,7 +332,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get questionTypeEssay => 'مقالي';
 
   @override
-  String get questionTypeRandom => 'الكل';
+  String get questionTypeRandom => 'مختلط';
 
   @override
   String get questionTypeUnknown => 'غير معروف';

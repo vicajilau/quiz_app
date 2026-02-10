@@ -76,7 +76,7 @@
   "@saveButton": {
     "description": "Pulsante Salva."
   },
-  "confirmDeleteTitle": "Conferma Eliminazione",
+  "confirmDeleteTitle": "Conferma eliminazione",
   "@confirmDeleteTitle": {
     "description": "Titolo per la finestra di dialogo di conferma durante l'eliminazione di un processo."
   },
@@ -94,7 +94,7 @@
   "@deleteButton": {
     "description": "Testo del pulsante per confermare l'eliminazione."
   },
-  "confirmExitTitle": "Conferma Uscita",
+  "confirmExitTitle": "Conferma uscita",
   "@confirmExitTitle": {
     "description": "Titolo per la finestra di dialogo di conferma durante l'uscita."
   },
@@ -110,19 +110,19 @@
   "@saveDialogTitle": {
     "description": "Titolo per la finestra di dialogo di salvataggio."
   },
-  "createQuizFileTitle": "Crea File Quiz",
+  "createQuizFileTitle": "Crea file Quiz",
   "@createQuizFileTitle": {
     "description": "Titolo per la finestra di dialogo di creazione file quiz."
   },
-  "editQuizFileTitle": "Modifica File Quiz",
+  "editQuizFileTitle": "Modifica file Quiz",
   "@editQuizFileTitle": {
     "description": "Titolo per la finestra di dialogo di modifica file quiz."
   },
-  "fileNameLabel": "Nome File",
+  "fileNameLabel": "Nome file",
   "@fileNameLabel": {
     "description": "Etichetta per l'input del nome file."
   },
-  "fileDescriptionLabel": "Descrizione File",
+  "fileDescriptionLabel": "Descrizione file",
   "@fileDescriptionLabel": {
     "description": "Etichetta per l'input della descrizione file."
   },
@@ -220,7 +220,7 @@
   "@finish": {
     "description": "Testo del pulsante termina nella navigazione del quiz"
   },
-  "finishQuiz": "Termina Quiz",
+  "finishQuiz": "Termina quiz",
   "@finishQuiz": {
     "description": "Titolo della finestra di dialogo termina quiz"
   },
@@ -228,7 +228,7 @@
   "@finishQuizConfirmation": {
     "description": "Messaggio di conferma per terminare il quiz"
   },
-  "abandonQuiz": "Abbandona Quiz",
+  "abandonQuiz": "Abbandona quiz",
   "@abandonQuiz": {
     "description": "Titolo della finestra di dialogo abbandona quiz"
   },
@@ -276,7 +276,7 @@
   "@goBack": {
     "description": "Testo del pulsante torna indietro"
   },
-  "retryFailedQuestions": "Riprova Sbagliate",
+  "retryFailedQuestions": "Riprova sbagliate",
   "@retryFailedQuestions": {
     "description": "Testo del pulsante per riprovare solo le domande con risposte errate"
   },
@@ -290,7 +290,7 @@
       }
     }
   },
-  "selectQuestionCountTitle": "Seleziona Numero di Domande",
+  "selectQuestionCountTitle": "Seleziona numero di domande",
   "@selectQuestionCountTitle": {
     "description": "Titolo per la finestra di dialogo per selezionare il numero di domande per il quiz"
   },
@@ -308,7 +308,7 @@
       }
     }
   },
-  "startQuiz": "Inizia Quiz",
+  "startQuiz": "Inizia quiz",
   "@startQuiz": {
     "description": "Testo del pulsante per iniziare il quiz"
   },
@@ -338,7 +338,7 @@
   "@errorNumberMustBePositive": {
     "description": "Messaggio di errore quando il numero è zero o negativo"
   },
-  "questionOrderConfigTitle": "Configurazione Ordine Domande",
+  "questionOrderConfigTitle": "Configurazione ordine domande",
   "@questionOrderConfigTitle": {
     "description": "Titolo per la finestra di dialogo di configurazione ordine domande"
   },
@@ -346,7 +346,7 @@
   "@questionOrderConfigDescription": {
     "description": "Testo descrittivo per la finestra di dialogo di configurazione ordine domande"
   },
-  "questionOrderAscending": "Ordine Crescente",
+  "questionOrderAscending": "Ordine crescente",
   "@questionOrderAscending": {
     "description": "Etichetta per l'opzione ordine crescente delle domande"
   },
@@ -354,7 +354,7 @@
   "@questionOrderAscendingDesc": {
     "description": "Descrizione per l'opzione ordine crescente delle domande"
   },
-  "questionOrderDescending": "Ordine Decrescente",
+  "questionOrderDescending": "Ordine decrescente",
   "@questionOrderDescending": {
     "description": "Etichetta per l'opzione ordine decrescente delle domande"
   },
@@ -378,7 +378,7 @@
   "@save": {
     "description": "Etichetta per il pulsante salva"
   },
-  "examTimeLimitTitle": "Limite di Tempo Esame",
+  "examTimeLimitTitle": "Limite di tempo esame",
   "@examTimeLimitTitle": {
     "description": "Titolo per la sezione limite di tempo esame"
   },
@@ -394,7 +394,7 @@
   "@timeLimitMinutes": {
     "description": "Etichetta per l'input minuti limite di tempo esame"
   },
-  "examTimeExpiredTitle": "Tempo Scaduto!",
+  "examTimeExpiredTitle": "Tempo scaduto!",
   "@examTimeExpiredTitle": {
     "description": "Titolo per la finestra di dialogo tempo esame scaduto"
   },
@@ -420,11 +420,11 @@
       }
     }
   },
-  "questionTypeMultipleChoice": "Scelta Multipla",
+  "questionTypeMultipleChoice": "Scelta multipla",
   "@questionTypeMultipleChoice": {
     "description": "Etichetta per il tipo di domanda a scelta multipla"
   },
-  "questionTypeSingleChoice": "Scelta Singola",
+  "questionTypeSingleChoice": "Scelta singola",
   "@questionTypeSingleChoice": {
     "description": "Etichetta per il tipo di domanda a scelta singola"
   },
@@ -436,7 +436,7 @@
   "@questionTypeEssay": {
     "description": "Etichetta per il tipo di domanda a saggio"
   },
-  "questionTypeRandom": "Tutte",
+  "questionTypeRandom": "Tutti",
   "@questionTypeRandom": {
     "description": "Etichetta per il tipo di domanda mista"
   },
@@ -482,11 +482,11 @@
   "@studentComment": {
     "description": "Etichetta per commento studente nella finestra di dialogo IA"
   },
-  "aiAssistantTitle": "Assistente di Studio IA",
+  "aiAssistantTitle": "Assistente di studio IA",
   "@aiAssistantTitle": {
     "description": "Titolo per la finestra di dialogo assistente IA"
   },
-  "questionContext": "Contesto Domanda",
+  "questionContext": "Contesto domanda",
   "@questionContext": {
     "description": "Etichetta per la sezione contesto domanda"
   },
@@ -684,23 +684,23 @@
   "@falseLabel": {
     "description": "Etichetta per l'opzione falso nelle domande vero/falso"
   },
-  "addQuestion": "Aggiungi Domanda",
+  "addQuestion": "Aggiungi domanda",
   "@addQuestion": {
     "description": "Titolo per la finestra di dialogo aggiunta nuova domanda"
   },
-  "editQuestion": "Modifica Domanda",
+  "editQuestion": "Modifica domanda",
   "@editQuestion": {
     "description": "Titolo per la finestra di dialogo modifica domanda esistente"
   },
-  "questionText": "Testo Domanda",
+  "questionText": "Testo domanda",
   "@questionText": {
     "description": "Etichetta per il campo di input testo domanda"
   },
-  "questionType": "Tipo Domanda",
+  "questionType": "Tipo domanda",
   "@questionType": {
     "description": "Etichetta per il menu a tendina tipo domanda"
   },
-  "addOption": "Aggiungi Opzione",
+  "addOption": "Aggiungi opzione",
   "@addOption": {
     "description": "Etichetta per il pulsante aggiungi opzione"
   },
@@ -810,7 +810,7 @@
   "@aiModelLabel": {
     "description": "Etichetta per il selettore modello IA."
   },
-  "importQuestionsTitle": "Importa Domande",
+  "importQuestionsTitle": "Importa domande",
   "@importQuestionsTitle": {
     "description": "Titolo per la finestra di dialogo importa domande."
   },
@@ -832,11 +832,11 @@
   "@importQuestionsPositionQuestion": {
     "description": "Domanda sulla posizione di importazione."
   },
-  "importAtBeginning": "All'Inizio",
+  "importAtBeginning": "All'inizio",
   "@importAtBeginning": {
     "description": "Pulsante per importare domande all'inizio della lista."
   },
-  "importAtEnd": "Alla Fine",
+  "importAtEnd": "Alla fine",
   "@importAtEnd": {
     "description": "Pulsante per importare domande alla fine della lista."
   },
@@ -858,7 +858,7 @@
   "@dragDropHintText": {
     "description": "Testo di suggerimento mostrato quando la lista domande è vuota, indicando la funzionalità drag and drop."
   },
-  "randomizeAnswersTitle": "Randomizza Opzioni di Risposta",
+  "randomizeAnswersTitle": "Randomizza opzioni di risposta",
   "@randomizeAnswersTitle": {
     "description": "Titolo per l'impostazione di randomizzazione opzioni di risposta."
   },
@@ -866,7 +866,7 @@
   "@randomizeAnswersDescription": {
     "description": "Descrizione per l'impostazione randomizza risposte."
   },
-  "showCorrectAnswerCountTitle": "Mostra Numero Risposte Corrette",
+  "showCorrectAnswerCountTitle": "Mostra numero risposte corrette",
   "@showCorrectAnswerCountTitle": {
     "description": "Titolo per l'impostazione mostra numero risposte corrette."
   },
@@ -900,11 +900,11 @@
   "@generateQuestionsWithAI": {
     "description": "Tooltip per il pulsante genera domande con IA."
   },
-  "aiGenerateDialogTitle": "Genera Domande con IA",
+  "aiGenerateDialogTitle": "Genera domande con IA",
   "@aiGenerateDialogTitle": {
     "description": "Titolo della finestra di dialogo generazione domande IA."
   },
-  "aiQuestionCountLabel": "Numero di Domande (Opzionale)",
+  "aiQuestionCountLabel": "Numero di domande (Opzionale)",
   "@aiQuestionCountLabel": {
     "description": "Etichetta per il campo numero domande."
   },
@@ -916,7 +916,7 @@
   "@aiQuestionCountValidation": {
     "description": "Messaggio di validazione per numero domande."
   },
-  "aiQuestionTypeLabel": "Tipo di Domanda",
+  "aiQuestionTypeLabel": "Tipo di domanda",
   "@aiQuestionTypeLabel": {
     "description": "Etichetta per il selettore tipo domanda."
   },
@@ -924,7 +924,7 @@
   "@aiQuestionTypeRandom": {
     "description": "Opzione tipo casuale per domande."
   },
-  "aiLanguageLabel": "Lingua Domande",
+  "aiLanguageLabel": "Lingua domande",
   "@aiLanguageLabel": {
     "description": "Etichetta per il selettore lingua."
   },
@@ -1499,11 +1499,11 @@
   "@shareSuccess": {
     "description": "Messaggio di successo quando i risultati dell'estrazione vengono copiati"
   },
-  "selectLogo": "Seleziona Logo",
+  "selectLogo": "Seleziona logo",
   "@selectLogo": {
     "description": "Titolo del dialogo per selezionare il logo personalizzato"
   },
-  "logoUrl": "URL del Logo",
+  "logoUrl": "URL del logo",
   "@logoUrl": {
     "description": "Etichetta per il campo di inserimento dell'URL del logo"
   },
@@ -1519,7 +1519,7 @@
   "@logoPreview": {
     "description": "Titolo della sezione di anteprima del logo"
   },
-  "removeLogo": "Rimuovi Logo",
+  "removeLogo": "Rimuovi logo",
   "@removeLogo": {
     "description": "Testo del pulsante per rimuovere il logo personalizzato"
   },
@@ -1527,7 +1527,7 @@
   "@logoTooLargeWarning": {
     "description": "Messaggio di avviso quando il logo è troppo grande per l'archiviazione persistente"
   },
-  "aiModeTopicTitle": "Modalità Argomento",
+  "aiModeTopicTitle": "Modalità argomento",
   "@aiModeTopicTitle": {
     "description": "Titolo per la modalità argomento nell'assistente AI"
   },
@@ -1535,7 +1535,7 @@
   "@aiModeTopicDescription": {
     "description": "Descrizione per la modalità argomento"
   },
-  "aiModeContentTitle": "Modalità Contenuto",
+  "aiModeContentTitle": "Modalità contenuto",
   "@aiModeContentTitle": {
     "description": "Titolo per la modalità contenuto nell'assistente AI"
   },
@@ -1619,7 +1619,7 @@
   "@aiFilePickerError": {
     "description": "Error message when file picker fails"
   },
-  "studyModeLabel": "Modalità Studio",
+  "studyModeLabel": "Modalità studio",
   "@studyModeLabel": {
     "description": "Label for study mode option"
   },
@@ -1627,7 +1627,7 @@
   "@studyModeDescription": {
     "description": "Description for study mode"
   },
-  "examModeLabel": "Modalità Esame",
+  "examModeLabel": "Modalità esame",
   "@examModeLabel": {
     "description": "Label for exam mode option"
   },
@@ -1639,7 +1639,7 @@
   "@checkAnswer": {
     "description": "Button label to check the answer in study mode"
   },
-  "quizModeTitle": "Modalità Quiz",
+  "quizModeTitle": "Modalità quiz",
   "@quizModeTitle": {
     "description": "Title for the quiz mode selection section"
   },

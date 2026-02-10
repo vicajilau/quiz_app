@@ -1,6 +1,6 @@
 {
   "@@locale": "es",
-  "titleAppBar": "Quiz - Simulador de Exámenes",
+  "titleAppBar": "Quiz - Simulador de exámenes",
   "@titleAppBar": {
     "description": "Título de la aplicación mostrado en la AppBar."
   },
@@ -112,7 +112,7 @@
   "@saveButton": {
     "description": "Botón de guardar."
   },
-  "confirmDeleteTitle": "Confirmar Eliminación",
+  "confirmDeleteTitle": "Confirmar eliminación",
   "@confirmDeleteTitle": {
     "description": "Título para el diálogo de confirmación al eliminar un proceso."
   },
@@ -130,7 +130,7 @@
   "@deleteButton": {
     "description": "Texto del botón para confirmar eliminación."
   },
-  "confirmExitTitle": "Confirmar Salida",
+  "confirmExitTitle": "Confirmar salida",
   "@confirmExitTitle": {
     "description": "Título para el diálogo de confirmación al salir."
   },
@@ -146,7 +146,7 @@
   "@saveDialogTitle": {
     "description": "Título para el diálogo de guardar."
   },
-  "createQuizFileTitle": "Crear Archivo Quiz",
+  "createQuizFileTitle": "Crear archivo Quiz",
   "@createQuizFileTitle": {
     "description": "Título para el diálogo de crear archivo quiz."
   },
@@ -154,11 +154,11 @@
   "@editQuizFileTitle": {
     "description": "Título para el diálogo de editar archivo de cuestionario."
   },
-  "fileNameLabel": "Nombre del Archivo",
+  "fileNameLabel": "Nombre del archivo",
   "@fileNameLabel": {
     "description": "Etiqueta para la entrada del nombre del archivo."
   },
-  "fileDescriptionLabel": "Descripción del Archivo",
+  "fileDescriptionLabel": "Descripción del archivo",
   "@fileDescriptionLabel": {
     "description": "Etiqueta para la entrada de la descripción del archivo."
   },
@@ -276,7 +276,7 @@
   "@abandon": {
     "description": "Texto del botón abandonar"
   },
-  "quizCompleted": "¡Quiz Completado!",
+  "quizCompleted": "¡Quiz completado!",
   "@quizCompleted": {
     "description": "Mensaje de quiz completado"
   },
@@ -316,7 +316,7 @@
       }
     }
   },
-  "selectQuestionCountTitle": "Seleccionar Número de Preguntas",
+  "selectQuestionCountTitle": "Seleccionar número de preguntas",
   "selectQuestionCountMessage": "¿Cuántas preguntas te gustaría responder en este quiz?",
   "allQuestions": "Todas las preguntas ({count})",
   "startQuiz": "Iniciar Quiz",
@@ -333,7 +333,7 @@
   "@questionOrderConfigDescription": {
     "description": "Texto descriptivo para el diálogo de configuración del orden de preguntas"
   },
-  "questionOrderAscending": "Orden Ascendente",
+  "questionOrderAscending": "Orden ascendente",
   "@questionOrderAscending": {
     "description": "Etiqueta para la opción de orden ascendente de preguntas"
   },
@@ -341,7 +341,7 @@
   "@questionOrderAscendingDesc": {
     "description": "Descripción para la opción de orden ascendente de preguntas"
   },
-  "questionOrderDescending": "Orden Descendente",
+  "questionOrderDescending": "Orden descendente",
   "@questionOrderDescending": {
     "description": "Etiqueta para la opción de orden descendente de preguntas"
   },
@@ -365,7 +365,7 @@
   "@save": {
     "description": "Etiqueta para el botón guardar"
   },
-  "examTimeLimitTitle": "Límite de Tiempo del Examen",
+  "examTimeLimitTitle": "Límite de tiempo del examen",
   "@examTimeLimitTitle": {
     "description": "Título para la sección de límite de tiempo del examen"
   },
@@ -423,7 +423,7 @@
   "@questionTypeEssay": {
     "description": "Etiqueta para el tipo de pregunta de ensayo"
   },
-  "questionTypeRandom": "Todas",
+  "questionTypeRandom": "Todos",
   "@questionTypeRandom": {
     "description": "Etiqueta para el tipo de pregunta aleatoria"
   },
@@ -461,9 +461,9 @@
   "@missingExplanationTooltip": {
     "description": "Texto del tooltip para el badge indicador de falta de explicación"
   },
-  "questionTypeTooltip": "Tipo de pregunta: {type}",
+  "questionTypeTooltip": "Tipos de pregunta: {type}",
   "@questionTypeTooltip": {
-    "description": "Texto del tooltip para el badge de tipo de pregunta",
+    "description": "Texto del tooltip para el badge de tipos de pregunta",
     "placeholders": {
       "type": {
         "type": "String",
@@ -483,11 +483,11 @@
   "@studentComment": {
     "description": "Etiqueta para comentario del estudiante en diálogo de IA"
   },
-  "aiAssistantTitle": "Asistente de Estudio IA",
+  "aiAssistantTitle": "Asistente de estudio IA",
   "@aiAssistantTitle": {
     "description": "Título para diálogo del asistente de IA"
   },
-  "questionContext": "Contexto de la Pregunta",
+  "questionContext": "Contexto de la pregunta",
   "@questionContext": {
     "description": "Etiqueta para sección de contexto de pregunta"
   },
@@ -571,7 +571,7 @@
   "@getGeminiApiKeyTooltip": {
     "description": "Tooltip para el botón de obtener clave API de Gemini"
   },
-  "aiRequiresAtLeastOneApiKeyError": "El Asistente de Estudio IA requiere al menos una clave API (Gemini u OpenAI). Por favor, ingresa una clave API o deshabilita el Asistente de IA.",
+  "aiRequiresAtLeastOneApiKeyError": "El Asistente de estudio IA requiere al menos una clave API (Gemini u OpenAI). Por favor, ingresa una clave API o deshabilita el Asistente de IA.",
   "@aiRequiresAtLeastOneApiKeyError": {
     "description": "Mensaje de error cuando el Asistente de IA está habilitado pero no se proporcionan claves API"
   },
@@ -579,7 +579,7 @@
   "@minutesAbbreviation": {
     "description": "Abreviación para minutos"
   },
-  "aiButtonTooltip": "Asistente de Estudio IA",
+  "aiButtonTooltip": "Asistente de estudio IA",
   "@aiButtonTooltip": {
     "description": "Tooltip para botón del asistente de IA"
   },
@@ -587,7 +587,7 @@
   "@aiButtonText": {
     "description": "Texto para botón del asistente de IA"
   },
-  "aiAssistantSettingsTitle": "Asistente de Estudio IA (Preview)",
+  "aiAssistantSettingsTitle": "Asistente de estudio IA (Preview)",
   "@aiAssistantSettingsTitle": {
     "description": "Título para sección de configuración del asistente de IA"
   },
@@ -615,7 +615,7 @@
   "@openaiApiKeyDescription": {
     "description": "Descripción para el campo de clave API de OpenAI"
   },
-  "aiAssistantRequiresApiKeyError": "El Asistente de Estudio IA requiere una clave API de OpenAI. Por favor, ingresa tu clave API o desactiva el Asistente de IA.",
+  "aiAssistantRequiresApiKeyError": "El Asistente de estudio IA requiere una clave API de OpenAI. Por favor, ingresa tu clave API o desactiva el Asistente de IA.",
   "@aiAssistantRequiresApiKeyError": {
     "description": "Mensaje de error cuando el Asistente de IA está habilitado pero no se proporciona clave API"
   },
@@ -685,23 +685,23 @@
   "@falseLabel": {
     "description": "Etiqueta para la opción falso en preguntas de verdadero/falso"
   },
-  "addQuestion": "Agregar Pregunta",
+  "addQuestion": "Agregar pregunta",
   "@addQuestion": {
     "description": "Título para el diálogo de agregar nueva pregunta"
   },
-  "editQuestion": "Editar Pregunta",
+  "editQuestion": "Editar pregunta",
   "@editQuestion": {
     "description": "Título para el diálogo de editar pregunta existente"
   },
-  "questionText": "Texto de la Pregunta",
+  "questionText": "Texto de la pregunta",
   "@questionText": {
     "description": "Etiqueta para el campo de entrada del texto de la pregunta"
   },
-  "questionType": "Tipo de Pregunta",
+  "questionType": "Tipo de pregunta",
   "@questionType": {
     "description": "Etiqueta para el desplegable del tipo de pregunta"
   },
-  "addOption": "Agregar Opción",
+  "addOption": "Agregar opción",
   "@addOption": {
     "description": "Etiqueta para el botón de agregar opción"
   },
@@ -837,11 +837,11 @@
   "@importQuestionsPositionQuestion": {
     "description": "Pregunta sobre la posición de importación."
   },
-  "importAtBeginning": "Al Inicio",
+  "importAtBeginning": "Al inicio",
   "@importAtBeginning": {
     "description": "Botón para importar preguntas al inicio de la lista."
   },
-  "importAtEnd": "Al Final",
+  "importAtEnd": "Al final",
   "@importAtEnd": {
     "description": "Botón para importar preguntas al final de la lista."
   },
@@ -863,7 +863,7 @@
   "@dragDropHintText": {
     "description": "Texto de sugerencia mostrado cuando la lista de preguntas está vacía, indicando la funcionalidad de arrastrar y soltar."
   },
-  "randomizeAnswersTitle": "Aleatorizar Opciones de Respuesta",
+  "randomizeAnswersTitle": "Aleatorizar opciones de respuesta",
   "@randomizeAnswersTitle": {
     "description": "Título para la configuración de aleatorizar opciones de respuesta."
   },
@@ -871,7 +871,7 @@
   "@randomizeAnswersDescription": {
     "description": "Descripción para la configuración de aleatorizar respuestas."
   },
-  "showCorrectAnswerCountTitle": "Mostrar Número de Respuestas Correctas",
+  "showCorrectAnswerCountTitle": "Mostrar número de respuestas correctas",
   "@showCorrectAnswerCountTitle": {
     "description": "Título para la configuración de mostrar el número de respuestas correctas."
   },
@@ -901,11 +901,11 @@
   "@incorrectSelectedLabel": {
     "description": "Etiqueta para respuestas incorrectas seleccionadas en resultados del quiz."
   },
-  "aiGenerateDialogTitle": "Generar Preguntas con IA",
+  "aiGenerateDialogTitle": "Generar preguntas con IA",
   "@aiGenerateDialogTitle": {
     "description": "Título del diálogo de generación de preguntas con IA."
   },
-  "aiQuestionCountLabel": "Número de Preguntas (Opcional)",
+  "aiQuestionCountLabel": "Número de preguntas (Opcional)",
   "@aiQuestionCountLabel": {
     "description": "Etiqueta para el campo de número de preguntas."
   },
@@ -917,7 +917,7 @@
   "@aiQuestionCountValidation": {
     "description": "Mensaje de validación para el número de preguntas."
   },
-  "aiQuestionTypeLabel": "Tipo de Preguntas",
+  "aiQuestionTypeLabel": "Tipo de preguntas",
   "@aiQuestionTypeLabel": {
     "description": "Etiqueta para el selector de tipo de preguntas."
   },
@@ -925,7 +925,7 @@
   "@aiQuestionTypeRandom": {
     "description": "Opción de tipo aleatorio para preguntas."
   },
-  "aiLanguageLabel": "Idioma de las Preguntas",
+  "aiLanguageLabel": "Idioma de las preguntas",
   "@aiLanguageLabel": {
     "description": "Etiqueta para el selector de idioma."
   },
@@ -991,7 +991,7 @@
   "@aiInfoDescription": {
     "description": "Descripción informativa sobre el proceso de generación con IA."
   },
-  "aiGenerateButton": "Generar Preguntas",
+  "aiGenerateButton": "Generar preguntas",
   "@aiGenerateButton": {
     "description": "Texto para el botón de generar preguntas."
   },
@@ -1385,11 +1385,11 @@
       }
     }
   },
-  "resetWinners": "Reiniciar Ganadores",
+  "resetWinners": "Reiniciar ganadores",
   "@resetWinners": {
     "description": "Texto del botón para reiniciar ganadores"
   },
-  "resetWinnersConfirmTitle": "Reiniciar Ganadores",
+  "resetWinnersConfirmTitle": "Reiniciar ganadores",
   "@resetWinnersConfirmTitle": {
     "description": "Título del diálogo de confirmación para reiniciar ganadores"
   },
@@ -1397,7 +1397,7 @@
   "@resetWinnersConfirmMessage": {
     "description": "Mensaje de confirmación para reiniciar ganadores"
   },
-  "resetRaffleTitle": "Reiniciar Sorteo",
+  "resetRaffleTitle": "Reiniciar sorteo",
   "@resetRaffleTitle": {
     "description": "Título del botón y diálogo para reiniciar sorteo"
   },
@@ -1441,15 +1441,15 @@
       }
     }
   },
-  "continueRaffle": "Continuar Sorteo",
+  "continueRaffle": "Continuar sorteo",
   "@continueRaffle": {
     "description": "Texto del botón para continuar sorteo"
   },
-  "finishRaffle": "Finalizar Sorteo",
+  "finishRaffle": "Finalizar sorteo",
   "@finishRaffle": {
     "description": "Texto del botón para finalizar sorteo"
   },
-  "winnersTitle": "Ganadores del Sorteo",
+  "winnersTitle": "Ganadores del sorteo",
   "@winnersTitle": {
     "description": "Título de la pantalla de ganadores"
   },
@@ -1465,11 +1465,11 @@
   "@performRaffleToSeeWinners": {
     "description": "Sugerencia para realizar un sorteo"
   },
-  "goToRaffle": "Ir al Sorteo",
+  "goToRaffle": "Ir al sorteo",
   "@goToRaffle": {
     "description": "Texto del botón para ir al sorteo"
   },
-  "raffleCompleted": "Sorteo Completado",
+  "raffleCompleted": "Sorteo completado",
   "@raffleCompleted": {
     "description": "Mensaje de sorteo completado"
   },
@@ -1483,11 +1483,11 @@
       }
     }
   },
-  "newRaffle": "Nuevo Sorteo",
+  "newRaffle": "Nuevo sorteo",
   "@newRaffle": {
     "description": "Texto del botón para nuevo sorteo"
   },
-  "shareResultsTitle": "Compartir Resultados",
+  "shareResultsTitle": "Compartir resultados",
   "@shareResultsTitle": {
     "description": "Título del diálogo de compartir resultados"
   },
@@ -1561,11 +1561,11 @@
   "@shareSuccess": {
     "description": "Mensaje de éxito cuando se copian los resultados del sorteo"
   },
-  "selectLogo": "Seleccionar Logo",
+  "selectLogo": "Seleccionar logo",
   "@selectLogo": {
     "description": "Título del diálogo para seleccionar logo personalizado"
   },
-  "logoUrl": "URL del Logo",
+  "logoUrl": "URL del logo",
   "@logoUrl": {
     "description": "Etiqueta para el campo de entrada de URL del logo"
   },
@@ -1577,11 +1577,11 @@
   "@invalidLogoUrl": {
     "description": "Mensaje de error para URL de logo inválida"
   },
-  "logoPreview": "Vista Previa",
+  "logoPreview": "Vista previa",
   "@logoPreview": {
     "description": "Título de la sección de vista previa del logo"
   },
-  "removeLogo": "Quitar Logo",
+  "removeLogo": "Quitar logo",
   "@removeLogo": {
     "description": "Texto del botón para quitar el logo personalizado"
   },
