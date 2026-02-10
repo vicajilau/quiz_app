@@ -432,9 +432,13 @@
   "@questionTypeTrueFalse": {
     "description": "Rótulo para o tipo de pergunta verdadeiro/falso"
   },
-  "questionTypeEssay": "Ensaio",
+  "questionTypeEssay": "Dissertativa",
   "@questionTypeEssay": {
-    "description": "Rótulo para o tipo de pergunta ensaio"
+    "description": "Etiqueta para o tipo de pergunta dissertativa"
+  },
+  "questionTypeRandom": "Misto",
+  "@questionTypeRandom": {
+    "description": "Etiqueta para o tipo de pergunta mista"
   },
   "questionTypeUnknown": "Desconhecido",
   "@questionTypeUnknown": {

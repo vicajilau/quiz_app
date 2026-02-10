@@ -510,7 +510,11 @@
   },
   "questionTypeEssay": "Assaig",
   "@questionTypeEssay": {
-    "description": "Etiqueta pel tipus de pregunta assaig"
+    "description": "Etiqueta per al tipus de pregunta d'assaig"
+  },
+  "questionTypeRandom": "Mixt",
+  "@questionTypeRandom": {
+    "description": "Etiqueta per al tipus de pregunta mixta"
   },
   "questionTypeUnknown": "Desconegut",
   "@questionTypeUnknown": {

@@ -25,7 +25,9 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
 
   int _currentStep = 0; // 0: Configuration, 1: Content
 
-  Set<AiQuestionType> _selectedQuestionTypes = {AiQuestionType.random};
+  Set<AiQuestionType> _selectedQuestionTypes = AiQuestionType.values
+      .where((type) => type != AiQuestionType.random)
+      .toSet();
   String _selectedLanguage = 'en';
   List<AIService> _availableServices = [];
   AIService? _selectedService;
@@ -310,11 +312,38 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
         },
         onQuestionTypeToggled: (type) {
           setState(() {
-            if (_selectedQuestionTypes.contains(type)) {
-              _selectedQuestionTypes.remove(type);
+            Set<AiQuestionType> newSelectedTypes = Set.from(
+              _selectedQuestionTypes,
+            );
+            if (type == AiQuestionType.random) {
+              if (newSelectedTypes.contains(type)) {
+                newSelectedTypes = {AiQuestionType.random};
+              } else {
+                if (newSelectedTypes.length == 1) {
+                  newSelectedTypes = {AiQuestionType.multipleChoice};
+                } else {
+                  newSelectedTypes.remove(type);
+                }
+              }
             } else {
-              _selectedQuestionTypes.add(type);
+              if (newSelectedTypes.contains(type)) {
+                newSelectedTypes.remove(type);
+                if (newSelectedTypes.isEmpty) {
+                  newSelectedTypes = {AiQuestionType.random};
+                }
+              } else {
+                newSelectedTypes.remove(AiQuestionType.random);
+                newSelectedTypes.add(type);
+
+                final allSpecificTypes = AiQuestionType.values
+                    .where((t) => t != AiQuestionType.random)
+                    .toSet();
+                if (newSelectedTypes.containsAll(allSpecificTypes)) {
+                  newSelectedTypes = {AiQuestionType.random};
+                }
+              }
             }
+            _selectedQuestionTypes = newSelectedTypes;
           });
         },
         onNext: () {

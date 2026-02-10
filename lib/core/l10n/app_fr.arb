@@ -434,7 +434,11 @@
   },
   "questionTypeEssay": "Essai",
   "@questionTypeEssay": {
-    "description": "Libellé pour le type de question essai"
+    "description": "Label pour le type de question à développement"
+  },
+  "questionTypeRandom": "Mixte",
+  "@questionTypeRandom": {
+    "description": "Label pour le type de question mixte"
   },
   "questionTypeUnknown": "Inconnu",
   "@questionTypeUnknown": {

@@ -34,7 +34,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get previewLatexTooltip => 'Προεπισκόπηση απόδοσης LaTeX';
 
   @override
-  String get okButton => 'OK';
+  String get okButton => 'ΟΚ';
 
   @override
   String get load => 'Φόρτωση';
@@ -340,6 +340,9 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get questionTypeEssay => 'Ανάπτυξης';
+
+  @override
+  String get questionTypeRandom => 'Μεικτό';
 
   @override
   String get questionTypeUnknown => 'Άγνωστο';
@@ -767,7 +770,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get aiGenerateButton => 'Δημιουργία Ερωτήσεων';
 
   @override
-  String get aiEnterContentTitle => 'Εισαγωγή Περιεχομένου';
+  String get aiEnterContentTitle => 'Εισαγωγή περιεχομένου';
 
   @override
   String get aiEnterContentDescription =>
@@ -775,13 +778,13 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get aiContentFieldHint =>
-      'Εισάγετε ένα θέμα όπως \"Ιστορία του Β\' Παγκοσμίου Πολέμου\" ή επικολλήστε κείμενο εδώ...';
+      'Εισάγετε ένα θέμα όπως \"Ιστορία του Β\' Παγκόσμιου Πολέμου\" ή επικολλήστε κείμενο εδώ...';
 
   @override
   String get aiAttachFileHint => 'Επισύναψη αρχείου (PDF, TXT, DOCX)';
 
   @override
-  String get aiNumberQuestionsLabel => 'Αριθμός Ερωτήσεων';
+  String get aiNumberQuestionsLabel => 'Αριθμός ερωτήσεων';
 
   @override
   String get backButton => 'Πίσω';
@@ -791,12 +794,12 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String aiTopicModeCount(int count) {
-    return 'Λειτουργία Θέματος ($count λέξεις)';
+    return 'Λειτουργία θέματος ($count λέξεις)';
   }
 
   @override
   String aiTextModeCount(int count) {
-    return 'Λειτουργία Κειμένου ($count λέξεις)';
+    return 'Λειτουργία κειμένου ($count λέξεις)';
   }
 
   @override

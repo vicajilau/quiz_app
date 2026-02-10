@@ -322,7 +322,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get questionTypeTrueFalse => '判断题';
 
   @override
-  String get questionTypeEssay => '论述题';
+  String get questionTypeEssay => '论文';
+
+  @override
+  String get questionTypeRandom => '混合';
 
   @override
   String get questionTypeUnknown => '未知';

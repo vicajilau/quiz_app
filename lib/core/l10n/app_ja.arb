@@ -444,9 +444,13 @@
   "@questionTypeTrueFalse": {
     "description": "Label for true/false question type"
   },
-  "questionTypeEssay": "記述",
+  "questionTypeEssay": "エッセイ",
   "@questionTypeEssay": {
-    "description": "Label for essay question type"
+    "description": "エッセイ形式の質問のラベル"
+  },
+  "questionTypeRandom": "混合",
+  "@questionTypeRandom": {
+    "description": "混合形式の質問のラベル"
   },
   "questionTypeUnknown": "不明",
   "@questionTypeUnknown": {

@@ -436,9 +436,13 @@
   "@questionTypeTrueFalse": {
     "description": "Label for true/false question type"
   },
-  "questionTypeEssay": "论述题",
+  "questionTypeEssay": "论文",
   "@questionTypeEssay": {
-    "description": "Label for essay question type"
+    "description": "问答题类型的标签"
+  },
+  "questionTypeRandom": "混合",
+  "@questionTypeRandom": {
+    "description": "混合题类型的标签"
   },
   "questionTypeUnknown": "未知",
   "@questionTypeUnknown": {

@@ -102,6 +102,13 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
                     children: [
                       _buildOrderOption(
                         context,
+                        order: QuestionOrder.random,
+                        isSelected:
+                            widget.selectedOrder == QuestionOrder.random,
+                      ),
+                      const SizedBox(width: 12),
+                      _buildOrderOption(
+                        context,
                         order: QuestionOrder.ascending,
                         isSelected:
                             widget.selectedOrder == QuestionOrder.ascending,
@@ -112,13 +119,6 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
                         order: QuestionOrder.descending,
                         isSelected:
                             widget.selectedOrder == QuestionOrder.descending,
-                      ),
-                      const SizedBox(width: 12),
-                      _buildOrderOption(
-                        context,
-                        order: QuestionOrder.random,
-                        isSelected:
-                            widget.selectedOrder == QuestionOrder.random,
                       ),
                     ],
                   ),

@@ -472,6 +472,10 @@
   "@questionTypeEssay": {
     "description": "Label for essay question type"
   },
+  "questionTypeRandom": "Mixed",
+  "@questionTypeRandom": {
+    "description": "Label for random question type"
+  },
   "questionTypeUnknown": "Unknown",
   "@questionTypeUnknown": {
     "description": "Label for unknown question type"

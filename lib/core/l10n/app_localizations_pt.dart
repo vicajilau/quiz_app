@@ -337,7 +337,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get questionTypeTrueFalse => 'Verdadeiro/Falso';
 
   @override
-  String get questionTypeEssay => 'Ensaio';
+  String get questionTypeEssay => 'Dissertativa';
+
+  @override
+  String get questionTypeRandom => 'Misto';
 
   @override
   String get questionTypeUnknown => 'Desconhecido';

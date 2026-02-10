@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import 'package:quiz_app/core/theme/app_theme.dart';
@@ -43,7 +44,7 @@ class AiQuestionTypeChip extends StatelessWidget {
         icon = QuestionType.essay.getQuestionTypeIcon();
         break;
       case AiQuestionType.random:
-        label = 'Random';
+        label = AppLocalizations.of(context)!.questionTypeRandom;
         icon = LucideIcons.shuffle;
         break;
     }

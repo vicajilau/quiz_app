@@ -323,7 +323,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get questionTypeTrueFalse => '真偽';
 
   @override
-  String get questionTypeEssay => '記述';
+  String get questionTypeEssay => 'エッセイ';
+
+  @override
+  String get questionTypeRandom => '混合';
 
   @override
   String get questionTypeUnknown => '不明';
