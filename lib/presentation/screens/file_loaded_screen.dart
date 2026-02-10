@@ -98,9 +98,10 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
     var fileName = cachedQuizFile.filePath?.split('/').last;
 
     // If fileName is null, empty, or likely a blob URL (doesn't have .quiz extension), ask for a name
-    if (kIsWeb || fileName == null ||
-        fileName.isEmpty ||
-        !fileName.toLowerCase().endsWith('.quiz')) {
+    if (kIsWeb &&
+        (fileName == null ||
+            fileName.isEmpty ||
+            !fileName.toLowerCase().endsWith('.quiz'))) {
       if (!mounted) return;
       final result = await showDialog<String>(
         context: context,
@@ -119,7 +120,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
         QuizFileSaveRequested(
           cachedQuizFile,
           AppLocalizations.of(context)!.saveButton,
-          fileName,
+          fileName ?? '',
         ),
       );
     }
