@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:quiz_app/core/context_extension.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:quiz_app/presentation/screens/dialogs/add_edit_question_dialog.dart';
@@ -82,7 +83,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
                       vertical: 6,
                     ),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF8B5CF6),
+                      color: AppTheme.primaryColor,
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [
                         BoxShadow(

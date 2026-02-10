@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quiz_app/core/theme/extensions/custom_colors.dart';
 import 'package:quiz_app/core/theme/extensions/exam_timer_theme.dart';
 import 'package:quiz_app/core/theme/extensions/home_theme.dart';
@@ -19,6 +20,22 @@ class AppTheme {
   static const Color borderColor = Color(0xFFE4E4E7); // Zinc 200
   static const Color cardColorDark = Color(0xFF27272A); // Zinc 800
   static const Color borderColorDark = Color(0xFF3F3F46); // Zinc 700
+  static const Color zinc50 = Color(0xFFFAFAFA);
+  static const Color zinc100 = Color(0xFFF4F4F5); // cardColorLight
+  static const Color zinc200 = Color(0xFFE4E4E7); // borderColor
+  static const Color zinc300 = Color(0xFFD4D4D8);
+  static const Color zinc400 = Color(0xFFA1A1AA);
+  static const Color zinc500 = Color(0xFF71717A); // textSecondaryColor
+  static const Color zinc600 = Color(0xFF52525B);
+  static const Color zinc700 = Color(0xFF3F3F46); // borderColorDark
+  static const Color zinc800 = Color(0xFF27272A); // cardColorDark
+  static const Color zinc900 = Color(0xFF18181B); // textColor
+
+  static const Color violet100 = Color(0xFFEDE9FE);
+  static const Color violet400 = Color(0xFFA78BFA);
+  static const Color violet500 = Color(0xFF8B5CF6); // primaryColor
+  static const Color violet900 = Color(0xFF4C1D95);
+
   static const Color shadowColor = Colors.black;
   static const Color transparent = Colors.transparent;
 
@@ -28,7 +45,7 @@ class AppTheme {
     scaffoldBackgroundColor: backgroundColor,
     cardColor: cardColorLight,
     dividerColor: borderColor,
-    hintColor: const Color(0xFFA1A1AA), // Zinc 400
+    hintColor: zinc400,
     fontFamily: GoogleFonts.inter().fontFamily,
     colorScheme: const ColorScheme.light(
       primary: primaryColor,
@@ -92,6 +109,13 @@ class AppTheme {
     ),
     iconTheme: const IconThemeData(color: textSecondaryColor, size: 24),
     extensions: [
+      const ConfirmingDialogColorsExtension(
+        card: Colors.white,
+        title: textColor,
+        subtitle: textSecondaryColor,
+        surface: cardColorLight,
+        border: borderColor,
+      ),
       const CustomColors(
         aiIconColor: primaryColor,
         success: Color(0xFF10B981), // Emerald 500
@@ -159,7 +183,7 @@ class AppTheme {
     scaffoldBackgroundColor: const Color(0xFF18181B), // Zinc 900
     cardColor: cardColorDark,
     dividerColor: borderColorDark,
-    hintColor: const Color(0xFFA1A1AA), // Zinc 400
+    hintColor: zinc400,
     fontFamily: GoogleFonts.inter().fontFamily,
     colorScheme: const ColorScheme.dark(
       primary: primaryColor,
@@ -229,6 +253,13 @@ class AppTheme {
       size: 24,
     ),
     extensions: [
+      const ConfirmingDialogColorsExtension(
+        card: cardColorDark,
+        title: Colors.white,
+        subtitle: zinc400,
+        surface: borderColorDark,
+        border: borderColorDark,
+      ),
       CustomColors(
         aiIconColor: primaryColor,
         success: const Color(0xFF10B981), // Emerald 500

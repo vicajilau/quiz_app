@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/presentation/screens/raffle/widgets/logo_widget.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/custom_colors.dart';
 import 'package:quiz_app/domain/models/raffle/raffle_logo.dart';
 import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_bloc.dart';
 import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_event.dart';
@@ -107,7 +109,9 @@ class _RaffleScreenContent extends StatelessWidget {
                         : null,
                     icon: Icon(
                       Icons.emoji_events,
-                      color: hasWinners ? Colors.amber : Colors.grey,
+                      color: hasWinners
+                          ? Theme.of(context).extension<CustomColors>()!.warning
+                          : AppTheme.zinc500,
                     ),
                     tooltip: AppLocalizations.of(context)!.viewWinners,
                   );
@@ -129,14 +133,16 @@ class _RaffleScreenContent extends StatelessWidget {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(state.message),
-                    backgroundColor: Colors.red,
+                    backgroundColor: AppTheme.errorColor,
                   ),
                 );
               } else if (state is RaffleWarning) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(state.message),
-                    backgroundColor: Colors.orange,
+                    backgroundColor: Theme.of(
+                      context,
+                    ).extension<CustomColors>()!.onWarningContainer,
                     duration: const Duration(seconds: 5),
                     action: SnackBarAction(
                       label: AppLocalizations.of(context)!.okButton,
@@ -210,21 +216,17 @@ class _RaffleScreenContent extends StatelessWidget {
         final isDark = Theme.of(context).brightness == Brightness.dark;
 
         // Design Tokens (matching SubmitQuizDialog)
-        final dialogBg = isDark
-            ? const Color(0xFF27272A)
-            : const Color(0xFFFFFFFF);
-        final titleColor = isDark
-            ? const Color(0xFFFFFFFF)
-            : const Color(0xFF000000);
+        final dialogBg = isDark ? AppTheme.cardColorDark : Colors.white;
+        final titleColor = isDark ? Colors.white : Colors.black;
         final contentColor = isDark
-            ? const Color(0xFFA1A1AA)
-            : const Color(0xFF71717A);
+            ? AppTheme.zinc400
+            : AppTheme.textSecondaryColor;
         final closeBtnBg = isDark
-            ? const Color(0xFF3F3F46)
-            : const Color(0xFFF4F4F5);
+            ? AppTheme.borderColorDark
+            : AppTheme.cardColorLight;
         final closeBtnIcon = isDark
-            ? const Color(0xFFA1A1AA)
-            : const Color(0xFF71717A);
+            ? AppTheme.zinc400
+            : AppTheme.textSecondaryColor;
 
         return Dialog(
           backgroundColor: Colors.transparent,
@@ -274,12 +276,12 @@ class _RaffleScreenContent extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: isDark
                           ? Colors.black.withValues(alpha: 0.2)
-                          : Colors.grey[100],
+                          : AppTheme.zinc100,
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
                         color: isDark
                             ? Colors.white.withValues(alpha: 0.1)
-                            : Colors.grey[300]!,
+                            : AppTheme.zinc300,
                       ),
                     ),
                     padding: const EdgeInsets.all(16),
@@ -290,7 +292,7 @@ class _RaffleScreenContent extends StatelessWidget {
                         errorBuilder: (context, error, stackTrace) =>
                             const Icon(
                               Icons.broken_image,
-                              color: Colors.grey,
+                              color: AppTheme.zinc500,
                               size: 40,
                             ),
                         loadingBuilder: (context) =>
@@ -358,7 +360,7 @@ class _RaffleScreenContent extends StatelessWidget {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF8B5CF6),
+                          backgroundColor: AppTheme.primaryColor,
                           foregroundColor: Colors.white,
                           elevation: 0,
                           shape: RoundedRectangleBorder(
@@ -389,7 +391,7 @@ class _RaffleScreenContent extends StatelessWidget {
                             context.read<RaffleBloc>().add(RemoveRaffleLogo());
                           },
                           style: TextButton.styleFrom(
-                            foregroundColor: Colors.red[400],
+                            foregroundColor: AppTheme.errorColor,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),

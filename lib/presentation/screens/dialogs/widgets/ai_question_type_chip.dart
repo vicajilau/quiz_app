@@ -3,6 +3,8 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 
 class AiQuestionTypeChip extends StatelessWidget {
   final AiQuestionType type;
@@ -20,6 +22,7 @@ class AiQuestionTypeChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.appColors;
     String label;
     IconData icon;
 
@@ -52,9 +55,7 @@ class AiQuestionTypeChip extends StatelessWidget {
         height: 36,
         padding: const EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
-          color: isSelected
-              ? const Color(0xFF8B5CF6)
-              : (isDark ? const Color(0xFF3F3F46) : const Color(0xFFF4F4F5)),
+          color: isSelected ? AppTheme.primaryColor : colors.surface,
           borderRadius: BorderRadius.circular(18),
         ),
         child: Row(
@@ -63,11 +64,7 @@ class AiQuestionTypeChip extends StatelessWidget {
             Icon(
               isSelected ? LucideIcons.checkCircle2 : icon,
               size: 14,
-              color: isSelected
-                  ? Colors.white
-                  : (isDark
-                        ? const Color(0xFFA1A1AA)
-                        : const Color(0xFF71717A)),
+              color: isSelected ? Colors.white : colors.subtitle,
             ),
             const SizedBox(width: 6),
             Flexible(
@@ -77,12 +74,9 @@ class AiQuestionTypeChip extends StatelessWidget {
                   fontFamily: 'Inter',
                   fontSize: 12,
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                  color: isSelected
-                      ? Colors.white
-                      : (isDark
-                            ? const Color(0xFFA1A1AA)
-                            : const Color(0xFF71717A)),
+                  color: isSelected ? Colors.white : colors.subtitle,
                 ),
+
                 overflow: TextOverflow.ellipsis,
               ),
             ),

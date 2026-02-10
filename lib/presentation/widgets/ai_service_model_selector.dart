@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/data/services/ai/ai_service_selector.dart';
 import 'package:lucide_icons/lucide_icons.dart';
@@ -134,23 +136,7 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    // Define colors based on design
-    final labelColor = isDark
-        ? const Color(0xFFA1A1AA) // Zinc 400
-        : const Color(0xFF71717A); // Zinc 500
-
-    final containerColor = isDark
-        ? const Color(0xFF3F3F46) // Zinc 700
-        : Colors.white;
-
-    final borderColor = isDark
-        ? Colors.transparent
-        : const Color(0xFFE4E4E7); // Zinc 200
-
-    final textColor = isDark
-        ? Colors.white
-        : const Color(0xFF18181B); // Zinc 900
+    final colors = context.appColors;
 
     Widget buildSelector({
       required String label,
@@ -171,7 +157,7 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
               fontFamily: 'Inter',
               fontSize: 13,
               fontWeight: FontWeight.w500,
-              color: labelColor,
+              color: colors.subtitle,
             ),
           ),
           const SizedBox(height: 8),
@@ -179,9 +165,9 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
             height: 48,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             decoration: BoxDecoration(
-              color: containerColor,
+              color: colors.surface,
               borderRadius: BorderRadius.circular(12),
-              border: isDark ? null : Border.all(color: borderColor),
+              border: isDark ? null : Border.all(color: colors.border),
             ),
             alignment: Alignment.centerLeft,
             child: isLoading
@@ -191,7 +177,7 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                       fontFamily: 'Inter',
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
-                      color: textColor,
+                      color: colors.title,
                     ),
                   )
                 : (items.isEmpty && emptyText != null)
@@ -201,7 +187,7 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                       fontFamily: 'Inter',
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
-                      color: textColor,
+                      color: colors.title,
                     ),
                   )
                 : DropdownButtonHideUnderline(
@@ -210,15 +196,15 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                       isExpanded: true,
                       icon: const Icon(
                         LucideIcons.chevronDown,
-                        color: Color(0xFFA1A1AA), // Zinc 400
+                        color: AppTheme.zinc400,
                         size: 18,
                       ),
-                      dropdownColor: containerColor,
+                      dropdownColor: colors.card,
                       style: TextStyle(
                         fontFamily: 'Inter',
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: textColor,
+                        color: colors.title,
                       ),
                       items: items,
                       onChanged: isEnabled ? onChanged : null,

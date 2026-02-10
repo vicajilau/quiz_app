@@ -5,6 +5,8 @@ import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
 import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/presentation/screens/dialogs/widgets/ai_question_type_chip.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 
 class AiGenerateStep1Widget extends StatelessWidget {
   final bool isLoadingServices;
@@ -43,18 +45,8 @@ class AiGenerateStep1Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final backgroundColor = isDark ? const Color(0xFF27272A) : Colors.white;
-    final borderColor = isDark ? Colors.transparent : const Color(0xFFE4E4E7);
-    final titleColor = isDark ? Colors.white : const Color(0xFF18181B);
-    final closeBtnColor = isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFF4F4F5);
-    final closeIconColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
-    final labelColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
+    final colors = context.appColors;
+    final borderColor = isDark ? Colors.transparent : AppTheme.borderColor;
 
     final isGeminiSelected =
         selectedService?.serviceName.toLowerCase().contains('gemini') ?? false;
@@ -69,18 +61,18 @@ class AiGenerateStep1Widget extends StatelessWidget {
     );
 
     final geminiBgColor = isGeminiSelected
-        ? const Color(0xFF8B5CF6)
-        : (isDark ? const Color(0xFF3F3F46) : const Color(0xFFF4F4F5));
+        ? AppTheme.primaryColor
+        : (isDark ? AppTheme.borderColorDark : AppTheme.cardColorLight);
     final geminiContentColor = isGeminiSelected
-        ? Colors.white
-        : (isDark ? const Color(0xFFA1A1AA) : const Color(0xFF71717A));
+        ? AppTheme.zinc50
+        : (isDark ? AppTheme.zinc400 : AppTheme.textSecondaryColor);
 
     final openAiBgColor = isOpenAiSelected
-        ? (isDark ? Colors.white : Colors.black)
-        : (isDark ? const Color(0xFF3F3F46) : const Color(0xFFF4F4F5));
+        ? (isDark ? AppTheme.zinc50 : AppTheme.zinc900)
+        : (isDark ? AppTheme.borderColorDark : AppTheme.cardColorLight);
     final openAiContentColor = isOpenAiSelected
-        ? (isDark ? Colors.black : Colors.white)
-        : (isDark ? const Color(0xFFA1A1AA) : const Color(0xFF71717A));
+        ? (isDark ? AppTheme.zinc900 : AppTheme.zinc50)
+        : (isDark ? AppTheme.zinc400 : AppTheme.textSecondaryColor);
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -93,7 +85,7 @@ class AiGenerateStep1Widget extends StatelessWidget {
         ),
         padding: const EdgeInsets.all(32),
         decoration: BoxDecoration(
-          color: backgroundColor,
+          color: colors.card,
           borderRadius: BorderRadius.circular(24),
           border: Border.all(color: borderColor, width: 1),
         ),
@@ -112,26 +104,26 @@ class AiGenerateStep1Widget extends StatelessWidget {
                       fontFamily: 'Inter',
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
-                      color: titleColor,
+                      color: colors.title,
                     ),
                   ),
                 ),
                 IconButton(
                   onPressed: () => context.pop(),
                   style: IconButton.styleFrom(
-                    backgroundColor: closeBtnColor,
+                    backgroundColor: colors.surface,
                     fixedSize: const Size(40, 40),
                     padding: EdgeInsets.zero,
                     shape: const CircleBorder(),
                   ),
-                  icon: Icon(LucideIcons.x, color: closeIconColor, size: 20),
+                  icon: Icon(LucideIcons.x, color: colors.subtitle, size: 20),
                 ),
               ],
             ),
             const SizedBox(height: 24),
 
             // Scrollable Content
-            Expanded(
+            Flexible(
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -143,7 +135,7 @@ class AiGenerateStep1Widget extends StatelessWidget {
                         fontFamily: 'Inter',
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: labelColor,
+                        color: colors.subtitle,
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -285,7 +277,7 @@ class AiGenerateStep1Widget extends StatelessWidget {
                         fontFamily: 'Inter',
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: labelColor,
+                        color: colors.subtitle,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -304,17 +296,15 @@ class AiGenerateStep1Widget extends StatelessWidget {
                           isExpanded: true,
                           icon: Icon(
                             LucideIcons.chevronDown,
-                            color: closeIconColor,
+                            color: colors.subtitle,
                             size: 18,
                           ),
-                          dropdownColor: isDark
-                              ? const Color(0xFF3F3F46)
-                              : const Color(0xFFF4F4F5),
+                          dropdownColor: colors.border,
                           style: TextStyle(
                             fontFamily: 'Inter',
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
-                            color: titleColor,
+                            color: colors.title,
                           ),
                           items:
                               selectedService?.availableModels
@@ -340,7 +330,7 @@ class AiGenerateStep1Widget extends StatelessWidget {
                         fontFamily: 'Inter',
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: labelColor,
+                        color: colors.subtitle,
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -366,7 +356,7 @@ class AiGenerateStep1Widget extends StatelessWidget {
                         fontFamily: 'Inter',
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: labelColor,
+                        color: colors.subtitle,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -385,17 +375,17 @@ class AiGenerateStep1Widget extends StatelessWidget {
                           isExpanded: true,
                           icon: Icon(
                             LucideIcons.chevronDown,
-                            color: closeIconColor,
+                            color: colors.title,
                             size: 18,
                           ),
                           dropdownColor: isDark
-                              ? const Color(0xFF3F3F46)
-                              : const Color(0xFFF4F4F5),
+                              ? AppTheme.borderColorDark
+                              : AppTheme.zinc100,
                           style: TextStyle(
                             fontFamily: 'Inter',
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
-                            color: titleColor,
+                            color: colors.title,
                           ),
                           items: supportedLanguages
                               .map(
@@ -429,7 +419,7 @@ class AiGenerateStep1Widget extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: selectedService != null ? onNext : null,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF8B5CF6),
+                  backgroundColor: AppTheme.primaryColor,
                   foregroundColor: Colors.white,
                   elevation: 0,
                   shape: RoundedRectangleBorder(

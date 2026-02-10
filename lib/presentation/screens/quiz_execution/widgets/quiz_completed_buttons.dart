@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
 
 class QuizTryAgainButton extends StatelessWidget {
   const QuizTryAgainButton({super.key});
@@ -21,7 +22,7 @@ class QuizTryAgainButton extends StatelessWidget {
         style: const TextStyle(fontWeight: FontWeight.w600),
       ),
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF8B5CF6),
+        backgroundColor: AppTheme.primaryColor,
         foregroundColor: Colors.white,
         padding: const EdgeInsets.symmetric(vertical: 25),
         elevation: 0,
@@ -51,14 +52,10 @@ class QuizRetryFailedButton extends StatelessWidget {
         style: const TextStyle(fontWeight: FontWeight.w600),
       ),
       style: OutlinedButton.styleFrom(
-        backgroundColor:
-            isDarkMode ? const Color(0xFF27272A) : const Color(0xFFF4F4F5),
-        foregroundColor:
-            isDarkMode ? const Color(0xFFA1A1AA) : const Color(0xFF71717A),
+        backgroundColor: isDarkMode ? AppTheme.zinc800 : AppTheme.zinc100,
+        foregroundColor: isDarkMode ? AppTheme.zinc400 : AppTheme.zinc500,
         side: BorderSide(
-          color: isDarkMode
-              ? const Color(0xFF3F3F46)
-              : const Color(0xFFE4E4E7),
+          color: isDarkMode ? AppTheme.zinc700 : AppTheme.zinc200,
           width: 2,
         ),
         padding: const EdgeInsets.symmetric(vertical: 25),
@@ -83,14 +80,10 @@ class QuizHomeButton extends StatelessWidget {
         style: const TextStyle(fontWeight: FontWeight.w600),
       ),
       style: OutlinedButton.styleFrom(
-        backgroundColor:
-            isDarkMode ? const Color(0xFF27272A) : const Color(0xFFF4F4F5),
-        foregroundColor:
-            isDarkMode ? const Color(0xFFA1A1AA) : const Color(0xFF71717A),
+        backgroundColor: isDarkMode ? AppTheme.zinc800 : AppTheme.zinc100,
+        foregroundColor: isDarkMode ? AppTheme.zinc400 : AppTheme.zinc500,
         side: BorderSide(
-          color: isDarkMode
-              ? const Color(0xFF3F3F46)
-              : const Color(0xFFE4E4E7),
+          color: isDarkMode ? AppTheme.zinc700 : AppTheme.zinc200,
           width: 2,
         ),
         padding: const EdgeInsets.symmetric(vertical: 25),

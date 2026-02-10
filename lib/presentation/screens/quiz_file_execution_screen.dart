@@ -13,6 +13,7 @@ import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_e
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/quiz_in_progress_view.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/quiz_completed_view.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
 
 class QuizFileExecutionScreen extends StatefulWidget {
   final QuizFile quizFile;
@@ -52,18 +53,14 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(
-            backgroundColor: isDark
-                ? const Color(0xFF18181B)
-                : const Color(0xFFFAFAFA),
+            backgroundColor: isDark ? AppTheme.zinc900 : AppTheme.zinc50,
             body: const Center(child: CircularProgressIndicator()),
           );
         }
 
         if (snapshot.hasError) {
           return Scaffold(
-            backgroundColor: isDark
-                ? const Color(0xFF18181B)
-                : const Color(0xFFFAFAFA),
+            backgroundColor: isDark ? AppTheme.zinc900 : AppTheme.zinc50,
             body: Center(
               child: Text(
                 AppLocalizations.of(
@@ -87,9 +84,7 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
           },
           child: Builder(
             builder: (context) => Scaffold(
-              backgroundColor: isDark
-                  ? const Color(0xFF18181B)
-                  : const Color(0xFFFAFAFA),
+              backgroundColor: isDark ? AppTheme.zinc900 : AppTheme.zinc50,
               body: SafeArea(
                 child: BlocConsumer<QuizExecutionBloc, QuizExecutionState>(
                   listener: (context, state) {

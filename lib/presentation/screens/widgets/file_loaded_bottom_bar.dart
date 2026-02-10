@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
 class FileLoadedBottomBar extends StatefulWidget {
@@ -73,24 +74,22 @@ class _FileLoadedBottomBarState extends State<FileLoadedBottomBar> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     // Add Button Colors
-    final addBtnBg = isDark ? const Color(0xFF3F3F46) : Colors.white;
-    final addBtnBorder = isDark
-        ? const Color(0xFF52525B)
-        : const Color(0xFFE4E4E7);
-    final addBtnText = isDark ? Colors.white : const Color(0xFF18181B);
-    final addBtnIcon = isDark ? Colors.white : const Color(0xFF18181B);
+    final addBtnBg = isDark ? AppTheme.borderColorDark : Colors.white;
+    final addBtnBorder = isDark ? AppTheme.zinc600 : AppTheme.borderColor;
+    final addBtnText = isDark ? Colors.white : AppTheme.textColor;
+    final addBtnIcon = isDark ? Colors.white : AppTheme.textColor;
 
     // Secondary Button Colors (Import, Save)
     final secondaryBtnBg = isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFE4E4E7);
-    final secondaryBtnText = isDark ? Colors.white : const Color(0xFF18181B);
-    final secondaryBtnIcon = isDark ? Colors.white : const Color(0xFF18181B);
+        ? AppTheme.borderColorDark
+        : AppTheme.borderColor;
+    final secondaryBtnText = isDark ? Colors.white : AppTheme.textColor;
+    final secondaryBtnIcon = isDark ? Colors.white : AppTheme.textColor;
 
     // Delete Button Colors
     final deleteBtnBg = isDark
-        ? const Color(0xFF7F1D1D)
-        : const Color(0xFFFEE2E2);
+        ? AppTheme.errorColor.withValues(alpha: 0.2)
+        : AppTheme.errorColor.withValues(alpha: 0.1);
     final deleteBtnText = isDark
         ? const Color(0xFFFCA5A5)
         : const Color(0xFFDC2626);
@@ -112,7 +111,9 @@ class _FileLoadedBottomBarState extends State<FileLoadedBottomBar> {
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.1),
+              color: isDark
+                  ? Colors.black.withValues(alpha: 0.3)
+                  : Colors.black.withValues(alpha: 0.05),
               blurRadius: 20,
               offset: const Offset(0, -10),
             ),
@@ -161,7 +162,9 @@ class _FileLoadedBottomBarState extends State<FileLoadedBottomBar> {
                                 context,
                               )!.generateQuestionsWithAI,
                               onPressed: widget.onGenerateAI,
-                              backgroundColor: const Color(0xFF14B8A6), // Teal 500
+                              backgroundColor: const Color(
+                                0xFF14B8A6,
+                              ), // Teal 500
                             ),
                             const SizedBox(width: 12),
                             _buildActionButton(
@@ -260,11 +263,11 @@ class _FileLoadedBottomBarState extends State<FileLoadedBottomBar> {
                 child: ElevatedButton(
                   onPressed: widget.isPlayEnabled ? widget.onPlay : null,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF8B5CF6), // Violet 500
+                    backgroundColor: AppTheme.primaryColor, // Violet 500
                     foregroundColor: Colors.white,
-                    disabledBackgroundColor: const Color(
-                      0xFF8B5CF6,
-                    ).withValues(alpha: 0.5),
+                    disabledBackgroundColor: AppTheme.primaryColor.withValues(
+                      alpha: 0.5,
+                    ),
                     disabledForegroundColor: Colors.white.withValues(
                       alpha: 0.5,
                     ),

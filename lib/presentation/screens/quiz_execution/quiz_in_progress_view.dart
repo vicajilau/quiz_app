@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
@@ -47,20 +49,11 @@ class _QuizInProgressViewState extends State<QuizInProgressView> {
     final quizConfig = ServiceLocator.instance.getQuizConfig();
     final isStudyMode = quizConfig?.isStudyMode ?? false;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final colors = context.appColors;
 
     // Design Tokens
-    final closeBtnBg = isDark
-        ? const Color(0xFF27272A)
-        : const Color(0xFFFFFFFF);
-    final closeBtnIcon = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
-    final closeBtnBorder = isDark
-        ? Colors.transparent
-        : const Color(0xFFE4E4E7);
-
-    final cardBg = isDark ? const Color(0xFF27272A) : const Color(0xFFFFFFFF);
-    final cardBorder = isDark ? Colors.transparent : const Color(0xFFE4E4E7);
+    final closeBtnBorder = isDark ? Colors.transparent : AppTheme.zinc200;
+    final cardBorder = isDark ? Colors.transparent : AppTheme.zinc200;
     final showTimer = !isStudyMode && (quizConfig?.enableTimeLimit ?? false);
 
     return BlocListener<QuizExecutionBloc, QuizExecutionState>(
@@ -114,7 +107,7 @@ class _QuizInProgressViewState extends State<QuizInProgressView> {
                     context.read<QuizExecutionBloc>(),
                   ),
                   style: IconButton.styleFrom(
-                    backgroundColor: closeBtnBg,
+                    backgroundColor: colors.card,
                     fixedSize: const Size(48, 48),
                     padding: EdgeInsets.zero,
                     shape: CircleBorder(
@@ -123,7 +116,7 @@ class _QuizInProgressViewState extends State<QuizInProgressView> {
                           : BorderSide(color: closeBtnBorder),
                     ),
                   ),
-                  icon: Icon(Icons.close, color: closeBtnIcon, size: 24),
+                  icon: Icon(Icons.close, color: colors.subtitle, size: 24),
                 ),
               ],
             ),
@@ -140,7 +133,7 @@ class _QuizInProgressViewState extends State<QuizInProgressView> {
                   child: Container(
                     padding: const EdgeInsets.all(32),
                     decoration: BoxDecoration(
-                      color: cardBg,
+                      color: colors.card,
                       borderRadius: BorderRadius.circular(24),
                       border: Border.all(color: cardBorder),
                     ),

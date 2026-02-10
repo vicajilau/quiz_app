@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/questions_overview_bottom_sheet.dart';
@@ -13,12 +14,8 @@ class QuizProgressIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final textColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A); // Zinc-400 : Zinc-500
-    final barBgColor = isDark
-        ? const Color(0xFF27272A)
-        : const Color(0xFFE4E4E7); // Zinc-800 : Zinc-200
+    final textColor = isDark ? AppTheme.zinc400 : AppTheme.zinc500;
+    final barBgColor = isDark ? AppTheme.zinc800 : AppTheme.zinc200;
 
     return Tooltip(
       message: state.isStudyMode
@@ -59,7 +56,7 @@ class QuizProgressIndicator extends StatelessWidget {
                     value: state.progress,
                     backgroundColor: barBgColor,
                     valueColor: const AlwaysStoppedAnimation<Color>(
-                      Color(0xFF8B5CF6), // Primary Lilac
+                      AppTheme.primaryColor,
                     ),
                   ),
                 ),
