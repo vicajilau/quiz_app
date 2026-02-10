@@ -1,7 +1,7 @@
 enum QuestionOrder {
+  random('random'),
   ascending('ascending'),
-  descending('descending'),
-  random('random');
+  descending('descending');
 
   const QuestionOrder(this.value);
   final String value;
