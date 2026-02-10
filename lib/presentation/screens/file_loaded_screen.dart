@@ -398,8 +398,8 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
         final shouldExit = await _confirmExit();
         return shouldExit;
       },
-      child: BlocProvider<FileBloc>(
-        create: (_) => widget.fileBloc,
+      child: BlocProvider.value(
+        value: widget.fileBloc,
         child: BlocListener<FileBloc, FileState>(
           listener: (context, state) {
             if (state is FileLoaded) {
