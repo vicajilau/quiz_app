@@ -336,7 +336,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get questionTypeEssay => 'निबंध';
 
   @override
-  String get questionTypeRandom => 'मिश्रित';
+  String get questionTypeRandom => 'सभी';
 
   @override
   String get questionTypeUnknown => 'अज्ञात';

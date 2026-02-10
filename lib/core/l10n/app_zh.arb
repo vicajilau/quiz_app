@@ -440,7 +440,7 @@
   "@questionTypeEssay": {
     "description": "问答题类型的标签"
   },
-  "questionTypeRandom": "混合",
+  "questionTypeRandom": "全部",
   "@questionTypeRandom": {
     "description": "混合题类型的标签"
   },

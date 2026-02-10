@@ -436,7 +436,7 @@
   "@questionTypeEssay": {
     "description": "Label pour le type de question à développement"
   },
-  "questionTypeRandom": "Mixte",
+  "questionTypeRandom": "Toutes",
   "@questionTypeRandom": {
     "description": "Label pour le type de question mixte"
   },

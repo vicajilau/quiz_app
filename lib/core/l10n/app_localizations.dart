@@ -707,7 +707,7 @@ abstract class AppLocalizations {
   /// Label for random question type
   ///
   /// In en, this message translates to:
-  /// **'Mixed'**
+  /// **'All'**
   String get questionTypeRandom;
 
   /// Label for unknown question type

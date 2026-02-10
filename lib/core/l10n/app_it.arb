@@ -436,7 +436,7 @@
   "@questionTypeEssay": {
     "description": "Etichetta per il tipo di domanda a saggio"
   },
-  "questionTypeRandom": "Misto",
+  "questionTypeRandom": "Tutte",
   "@questionTypeRandom": {
     "description": "Etichetta per il tipo di domanda mista"
   },

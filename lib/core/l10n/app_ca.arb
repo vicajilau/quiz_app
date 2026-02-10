@@ -512,7 +512,7 @@
   "@questionTypeEssay": {
     "description": "Etiqueta per al tipus de pregunta d'assaig"
   },
-  "questionTypeRandom": "Mixt",
+  "questionTypeRandom": "Totes",
   "@questionTypeRandom": {
     "description": "Etiqueta per al tipus de pregunta mixta"
   },

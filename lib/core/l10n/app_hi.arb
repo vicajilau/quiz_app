@@ -448,7 +448,7 @@
   "@questionTypeEssay": {
     "description": "निबंध प्रश्न प्रकार के लिए लेबल"
   },
-  "questionTypeRandom": "मिश्रित",
+  "questionTypeRandom": "सभी",
   "@questionTypeRandom": {
     "description": "मिश्रित प्रश्न प्रकार के लिए लेबल"
   },

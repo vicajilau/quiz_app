@@ -336,7 +336,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get questionTypeEssay => 'Essay';
 
   @override
-  String get questionTypeRandom => 'Mixed';
+  String get questionTypeRandom => 'All';
 
   @override
   String get questionTypeUnknown => 'Unknown';

@@ -472,7 +472,7 @@
   "@questionTypeEssay": {
     "description": "Label for essay question type"
   },
-  "questionTypeRandom": "Mixed",
+  "questionTypeRandom": "All",
   "@questionTypeRandom": {
     "description": "Label for random question type"
   },

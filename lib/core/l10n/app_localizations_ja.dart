@@ -326,7 +326,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get questionTypeEssay => 'エッセイ';
 
   @override
-  String get questionTypeRandom => '混合';
+  String get questionTypeRandom => 'すべて';
 
   @override
   String get questionTypeUnknown => '不明';

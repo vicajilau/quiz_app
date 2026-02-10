@@ -448,7 +448,7 @@
   "@questionTypeEssay": {
     "description": "エッセイ形式の質問のラベル"
   },
-  "questionTypeRandom": "混合",
+  "questionTypeRandom": "すべて",
   "@questionTypeRandom": {
     "description": "混合形式の質問のラベル"
   },
