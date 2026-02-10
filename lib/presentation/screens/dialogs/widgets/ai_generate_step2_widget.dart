@@ -22,6 +22,7 @@ class AiGenerateStep2Widget extends StatefulWidget {
   final ValueChanged<int> onQuestionCountChanged;
   final String Function() getWordCountText;
   final int Function() getWordCount;
+  final int Function() getTopicCount;
 
   const AiGenerateStep2Widget({
     super.key,
@@ -38,6 +39,7 @@ class AiGenerateStep2Widget extends StatefulWidget {
     required this.onQuestionCountChanged,
     required this.getWordCountText,
     required this.getWordCount,
+    required this.getTopicCount,
   });
 
   @override
@@ -174,7 +176,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                               style: TextStyle(
                                 fontFamily: 'Inter',
                                 fontSize: 12,
-                                color: widget.getWordCount() > 10
+                                color: widget.getTopicCount() > 10
                                     ? AppTheme.primaryColor
                                     : colors.subtitle,
                                 fontWeight: FontWeight.w500,
@@ -404,7 +406,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                 preferredModel: widget.selectedModel,
                                 file: widget.fileAttachment,
                                 isTopicMode: widget.fileAttachment == null &&
-                                    widget.getWordCount() <= 10,
+                                    widget.getTopicCount() <= 10,
                               );
                               context.pop(config);
                             }
