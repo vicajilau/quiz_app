@@ -148,7 +148,7 @@
   "@saveButton": {
     "description": "Botó Desar."
   },
-  "confirmDeleteTitle": "Confirmar Eliminació",
+  "confirmDeleteTitle": "Confirmar eliminació",
   "@confirmDeleteTitle": {
     "description": "Títol per al diàleg de confirmació en eliminar un procés."
   },
@@ -166,7 +166,7 @@
   "@deleteButton": {
     "description": "Text del botó per confirmar l'eliminació."
   },
-  "confirmExitTitle": "Confirmar Sortida",
+  "confirmExitTitle": "Confirmar sortida",
   "@confirmExitTitle": {
     "description": "Títol per al diàleg de confirmació en sortir."
   },
@@ -182,19 +182,19 @@
   "@saveDialogTitle": {
     "description": "Títol per al diàleg de desament."
   },
-  "createQuizFileTitle": "Crear Fitxer Quiz",
+  "createQuizFileTitle": "Crear fitxer Quiz",
   "@createQuizFileTitle": {
     "description": "Títol per al diàleg de creació de fitxer quiz."
   },
-  "editQuizFileTitle": "Editar Fitxer Quiz",
+  "editQuizFileTitle": "Editar fitxer Quiz",
   "@editQuizFileTitle": {
     "description": "Títol per al diàleg d'edició de fitxer quiz."
   },
-  "fileNameLabel": "Nom del Fitxer",
+  "fileNameLabel": "Nom del fitxer",
   "@fileNameLabel": {
     "description": "Etiqueta per l'entrada del nom del fitxer."
   },
-  "fileDescriptionLabel": "Descripció del Fitxer",
+  "fileDescriptionLabel": "Descripció del fitxer",
   "@fileDescriptionLabel": {
     "description": "Etiqueta per l'entrada de la descripció del fitxer."
   },
@@ -292,7 +292,7 @@
   "@finish": {
     "description": "Text del botó acabar en la navegació del quiz"
   },
-  "finishQuiz": "Acabar Quiz",
+  "finishQuiz": "Acabar quiz",
   "@finishQuiz": {
     "description": "Títol del diàleg acabar quiz"
   },
@@ -304,7 +304,7 @@
   "@cancel": {
     "description": "Text del botó cancel·lar"
   },
-  "abandonQuiz": "Abandonar Quiz",
+  "abandonQuiz": "Abandonar quiz",
   "@abandonQuiz": {
     "description": "Títol del diàleg abandonar quiz"
   },
@@ -352,7 +352,7 @@
   "@goBack": {
     "description": "Text del botó tornar enrere"
   },
-  "retryFailedQuestions": "Repetir Fallades",
+  "retryFailedQuestions": "Repetir fallades",
   "@retryFailedQuestions": {
     "description": "Text del botó per repetir només les preguntes amb respostes incorrectes"
   },
@@ -366,7 +366,7 @@
       }
     }
   },
-  "selectQuestionCountTitle": "Seleccionar Nombre de Preguntes",
+  "selectQuestionCountTitle": "Seleccionar nombre de preguntes",
   "@selectQuestionCountTitle": {
     "description": "Títol per al diàleg per seleccionar el nombre de preguntes pel quiz"
   },
@@ -384,7 +384,7 @@
       }
     }
   },
-  "startQuiz": "Començar Quiz",
+  "startQuiz": "Començar quiz",
   "@startQuiz": {
     "description": "Text del botó per començar el quiz"
   },
@@ -414,7 +414,7 @@
   "@errorNumberMustBePositive": {
     "description": "Missatge d'error quan el número és zero o negatiu"
   },
-  "questionOrderConfigTitle": "Configuració de l'Ordre de les Preguntes",
+  "questionOrderConfigTitle": "Configuració de l'ordre de les preguntes",
   "@questionOrderConfigTitle": {
     "description": "Títol per al diàleg de configuració de l'ordre de les preguntes"
   },
@@ -422,7 +422,7 @@
   "@questionOrderConfigDescription": {
     "description": "Text descriptiu per al diàleg de configuració de l'ordre de les preguntes"
   },
-  "questionOrderAscending": "Ordre Ascendent",
+  "questionOrderAscending": "Ordre ascendent",
   "@questionOrderAscending": {
     "description": "Etiqueta per l'opció ordre ascendent de les preguntes"
   },
@@ -430,7 +430,7 @@
   "@questionOrderAscendingDesc": {
     "description": "Descripció per l'opció ordre ascendent de les preguntes"
   },
-  "questionOrderDescending": "Ordre Descendent",
+  "questionOrderDescending": "Ordre descendent",
   "@questionOrderDescending": {
     "description": "Etiqueta per l'opció ordre descendent de les preguntes"
   },
@@ -454,7 +454,7 @@
   "@save": {
     "description": "Etiqueta pel botó desar"
   },
-  "examTimeLimitTitle": "Límit de Temps de l'Examen",
+  "examTimeLimitTitle": "Límit de temps de l'examen",
   "@examTimeLimitTitle": {
     "description": "Títol per la secció límit de temps de l'examen"
   },
@@ -470,7 +470,7 @@
   "@timeLimitMinutes": {
     "description": "Etiqueta per l'entrada de minuts del límit de temps de l'examen"
   },
-  "examTimeExpiredTitle": "Temps Esgotat!",
+  "examTimeExpiredTitle": "Temps esgotat!",
   "@examTimeExpiredTitle": {
     "description": "Títol pel diàleg temps de l'examen esgotat"
   },
@@ -496,11 +496,11 @@
       }
     }
   },
-  "questionTypeMultipleChoice": "Elecció Múltiple",
+  "questionTypeMultipleChoice": "Elecció múltiple",
   "@questionTypeMultipleChoice": {
     "description": "Etiqueta pel tipus de pregunta elecció múltiple"
   },
-  "questionTypeSingleChoice": "Elecció Única",
+  "questionTypeSingleChoice": "Elecció única",
   "@questionTypeSingleChoice": {
     "description": "Etiqueta pel tipus de pregunta elecció única"
   },
@@ -512,7 +512,7 @@
   "@questionTypeEssay": {
     "description": "Etiqueta per al tipus de pregunta d'assaig"
   },
-  "questionTypeRandom": "Totes",
+  "questionTypeRandom": "Tots",
   "@questionTypeRandom": {
     "description": "Etiqueta per al tipus de pregunta mixta"
   },
@@ -558,11 +558,11 @@
   "@studentComment": {
     "description": "Etiqueta per comentari de l'estudiant al diàleg IA"
   },
-  "aiAssistantTitle": "Assistent d'Estudi IA",
+  "aiAssistantTitle": "Assistent d'estudi IA",
   "@aiAssistantTitle": {
     "description": "Títol pel diàleg assistent IA"
   },
-  "questionContext": "Context de la Pregunta",
+  "questionContext": "Context de la pregunta",
   "@questionContext": {
     "description": "Etiqueta per la secció context de la pregunta"
   },
@@ -760,23 +760,23 @@
   "@falseLabel": {
     "description": "Etiqueta per l'opció fals en preguntes cert/fals"
   },
-  "addQuestion": "Afegir Pregunta",
+  "addQuestion": "Afegir pregunta",
   "@addQuestion": {
     "description": "Títol pel diàleg afegir nova pregunta"
   },
-  "editQuestion": "Editar Pregunta",
+  "editQuestion": "Editar pregunta",
   "@editQuestion": {
     "description": "Títol pel diàleg editar pregunta existent"
   },
-  "questionText": "Text de la Pregunta",
+  "questionText": "Text de la pregunta",
   "@questionText": {
     "description": "Etiqueta pel camp d'entrada text de la pregunta"
   },
-  "questionType": "Tipus de Pregunta",
+  "questionType": "Tipus de pregunta",
   "@questionType": {
     "description": "Etiqueta pel desplegable tipus de pregunta"
   },
-  "addOption": "Afegir Opció",
+  "addOption": "Afegir opció",
   "@addOption": {
     "description": "Etiqueta pel botó afegir opció"
   },
@@ -886,7 +886,7 @@
   "@aiModelLabel": {
     "description": "Etiqueta pel selector de model IA."
   },
-  "importQuestionsTitle": "Importar Preguntes",
+  "importQuestionsTitle": "Importar preguntes",
   "@importQuestionsTitle": {
     "description": "Títol pel diàleg importar preguntes."
   },
@@ -908,11 +908,11 @@
   "@importQuestionsPositionQuestion": {
     "description": "Pregunta sobre posició d'importació."
   },
-  "importAtBeginning": "Al Principi",
+  "importAtBeginning": "Al principi",
   "@importAtBeginning": {
     "description": "Botó per importar preguntes al principi de la llista."
   },
-  "importAtEnd": "Al Final",
+  "importAtEnd": "Al final",
   "@importAtEnd": {
     "description": "Botó per importar preguntes al final de la llista."
   },
@@ -934,7 +934,7 @@
   "@dragDropHintText": {
     "description": "Text de pista mostrat quan la llista de preguntes està buida, indicant funcionalitat d'arrossegar i deixar anar."
   },
-  "randomizeAnswersTitle": "Aleatoritzar Opcions de Resposta",
+  "randomizeAnswersTitle": "Aleatoritzar opcions de resposta",
   "@randomizeAnswersTitle": {
     "description": "Títol per la configuració d'aleatorització d'opcions de resposta."
   },
@@ -942,7 +942,7 @@
   "@randomizeAnswersDescription": {
     "description": "Descripció per la configuració aleatoritzar respostes."
   },
-  "showCorrectAnswerCountTitle": "Mostrar Nombre de Respostes Correctes",
+  "showCorrectAnswerCountTitle": "Mostrar nombre de respostes correctes",
   "@showCorrectAnswerCountTitle": {
     "description": "Títol per la configuració mostrar nombre de respostes correctes."
   },
@@ -976,11 +976,11 @@
   "@generateQuestionsWithAI": {
     "description": "Tooltip pel botó generar preguntes amb IA."
   },
-  "aiGenerateDialogTitle": "Generar Preguntes amb IA",
+  "aiGenerateDialogTitle": "Generar preguntes amb IA",
   "@aiGenerateDialogTitle": {
     "description": "Títol del diàleg generació de preguntes IA."
   },
-  "aiQuestionCountLabel": "Nombre de Preguntes (Opcional)",
+  "aiQuestionCountLabel": "Nombre de preguntes (Opcional)",
   "@aiQuestionCountLabel": {
     "description": "Etiqueta pel camp nombre de preguntes."
   },
@@ -992,7 +992,7 @@
   "@aiQuestionCountValidation": {
     "description": "Missatge de validació per nombre de preguntes."
   },
-  "aiQuestionTypeLabel": "Tipus de Pregunta",
+  "aiQuestionTypeLabel": "Tipus de pregunta",
   "@aiQuestionTypeLabel": {
     "description": "Etiqueta pel selector tipus de pregunta."
   },
@@ -1000,7 +1000,7 @@
   "@aiQuestionTypeRandom": {
     "description": "Opció tipus aleatori per preguntes."
   },
-  "aiLanguageLabel": "Idioma de les Preguntes",
+  "aiLanguageLabel": "Idioma de les preguntes",
   "@aiLanguageLabel": {
     "description": "Etiqueta pel selector d'idioma."
   },
@@ -1684,7 +1684,7 @@
   "@aiFilePickerError": {
     "description": "Error message when file picker fails"
   },
-  "studyModeLabel": "Mode Estudi",
+  "studyModeLabel": "Mode estudi",
   "@studyModeLabel": {
     "description": "Label for study mode option"
   },
@@ -1692,7 +1692,7 @@
   "@studyModeDescription": {
     "description": "Description for study mode"
   },
-  "examModeLabel": "Mode Examen",
+  "examModeLabel": "Mode examen",
   "@examModeLabel": {
     "description": "Label for exam mode option"
   },
@@ -1704,7 +1704,7 @@
   "@checkAnswer": {
     "description": "Button label to check the answer in study mode"
   },
-  "quizModeTitle": "Mode Qüestionari",
+  "quizModeTitle": "Mode qüestionari",
   "@quizModeTitle": {
     "description": "Title for the quiz mode selection section"
   },

@@ -190,14 +190,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get finish => 'Terminer';
 
   @override
-  String get finishQuiz => 'Terminer le Quiz';
+  String get finishQuiz => 'Terminer le quiz';
 
   @override
   String get finishQuizConfirmation =>
       'Êtes-vous sûr de vouloir terminer le quiz ? Vous ne pourrez plus modifier vos réponses après.';
 
   @override
-  String get abandonQuiz => 'Abandonner le Quiz';
+  String get abandonQuiz => 'Abandonner le quiz';
 
   @override
   String get abandonQuizConfirmation =>
@@ -226,7 +226,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get goBack => 'Terminer';
 
   @override
-  String get retryFailedQuestions => 'Reprendre Échecs';
+  String get retryFailedQuestions => 'Reprendre échecs';
 
   @override
   String question(String question) {
@@ -246,7 +246,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get startQuiz => 'Commencer le Quiz';
+  String get startQuiz => 'Commencer le quiz';
 
   @override
   String get errorInvalidNumber => 'Veuillez entrer un nombre valide';
@@ -274,14 +274,14 @@ class AppLocalizationsFr extends AppLocalizations {
       'Sélectionnez l\'ordre dans lequel vous voulez que les questions apparaissent pendant l\'examen :';
 
   @override
-  String get questionOrderAscending => 'Ordre Croissant';
+  String get questionOrderAscending => 'Ordre croissant';
 
   @override
   String get questionOrderAscendingDesc =>
       'Les questions apparaîtront dans l\'ordre de 1 à la fin';
 
   @override
-  String get questionOrderDescending => 'Ordre Décroissant';
+  String get questionOrderDescending => 'Ordre décroissant';
 
   @override
   String get questionOrderDescendingDesc =>
@@ -330,10 +330,10 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get questionTypeMultipleChoice => 'Choix Multiple';
+  String get questionTypeMultipleChoice => 'Choix multiple';
 
   @override
-  String get questionTypeSingleChoice => 'Choix Unique';
+  String get questionTypeSingleChoice => 'Choix unique';
 
   @override
   String get questionTypeTrueFalse => 'Vrai/Faux';
@@ -342,7 +342,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get questionTypeEssay => 'Essai';
 
   @override
-  String get questionTypeRandom => 'Toutes';
+  String get questionTypeRandom => 'Tous';
 
   @override
   String get questionTypeUnknown => 'Inconnu';
@@ -391,10 +391,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get studentComment => 'Commentaire de l\'étudiant';
 
   @override
-  String get aiAssistantTitle => 'Assistant d\'Étude IA';
+  String get aiAssistantTitle => 'Assistant d\'étude IA';
 
   @override
-  String get questionContext => 'Contexte de la Question';
+  String get questionContext => 'Contexte de la question';
 
   @override
   String get aiAssistant => 'Assistant IA';
@@ -556,19 +556,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get falseLabel => 'Faux';
 
   @override
-  String get addQuestion => 'Ajouter une Question';
+  String get addQuestion => 'Ajouter une question';
 
   @override
-  String get editQuestion => 'Modifier la Question';
+  String get editQuestion => 'Modifier la question';
 
   @override
-  String get questionText => 'Texte de la Question';
+  String get questionText => 'Texte de la question';
 
   @override
-  String get questionType => 'Type de Question';
+  String get questionType => 'Type de question';
 
   @override
-  String get addOption => 'Ajouter une Option';
+  String get addOption => 'Ajouter une option';
 
   @override
   String get optionsLabel => 'Options';

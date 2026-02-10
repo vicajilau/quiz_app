@@ -220,7 +220,7 @@
   "@finish": {
     "description": "Texte du bouton terminer dans la navigation du quiz"
   },
-  "finishQuiz": "Terminer le Quiz",
+  "finishQuiz": "Terminer le quiz",
   "@finishQuiz": {
     "description": "Titre de la boîte de dialogue terminer quiz"
   },
@@ -228,7 +228,7 @@
   "@finishQuizConfirmation": {
     "description": "Message de confirmation pour terminer le quiz"
   },
-  "abandonQuiz": "Abandonner le Quiz",
+  "abandonQuiz": "Abandonner le quiz",
   "@abandonQuiz": {
     "description": "Titre de la boîte de dialogue abandonner quiz"
   },
@@ -276,7 +276,7 @@
   "@goBack": {
     "description": "Texte du bouton retour"
   },
-  "retryFailedQuestions": "Reprendre Échecs",
+  "retryFailedQuestions": "Reprendre échecs",
   "@retryFailedQuestions": {
     "description": "Texte du bouton pour reprendre seulement les questions avec des réponses incorrectes"
   },
@@ -308,7 +308,7 @@
       }
     }
   },
-  "startQuiz": "Commencer le Quiz",
+  "startQuiz": "Commencer le quiz",
   "@startQuiz": {
     "description": "Texte du bouton pour commencer le quiz"
   },
@@ -346,7 +346,7 @@
   "@questionOrderConfigDescription": {
     "description": "Texte de description de la boîte de dialogue de configuration de l'ordre des questions"
   },
-  "questionOrderAscending": "Ordre Croissant",
+  "questionOrderAscending": "Ordre croissant",
   "@questionOrderAscending": {
     "description": "Libellé pour l'option d'ordre croissant des questions"
   },
@@ -354,7 +354,7 @@
   "@questionOrderAscendingDesc": {
     "description": "Description pour l'option d'ordre croissant des questions"
   },
-  "questionOrderDescending": "Ordre Décroissant",
+  "questionOrderDescending": "Ordre décroissant",
   "@questionOrderDescending": {
     "description": "Libellé pour l'option d'ordre décroissant des questions"
   },
@@ -420,11 +420,11 @@
       }
     }
   },
-  "questionTypeMultipleChoice": "Choix Multiple",
+  "questionTypeMultipleChoice": "Choix multiple",
   "@questionTypeMultipleChoice": {
     "description": "Libellé pour le type de question à choix multiple"
   },
-  "questionTypeSingleChoice": "Choix Unique",
+  "questionTypeSingleChoice": "Choix unique",
   "@questionTypeSingleChoice": {
     "description": "Libellé pour le type de question à choix unique"
   },
@@ -436,7 +436,7 @@
   "@questionTypeEssay": {
     "description": "Label pour le type de question à développement"
   },
-  "questionTypeRandom": "Toutes",
+  "questionTypeRandom": "Tous",
   "@questionTypeRandom": {
     "description": "Label pour le type de question mixte"
   },
@@ -482,11 +482,11 @@
   "@studentComment": {
     "description": "Libellé pour le commentaire de l'étudiant dans la boîte de dialogue IA"
   },
-  "aiAssistantTitle": "Assistant d'Étude IA",
+  "aiAssistantTitle": "Assistant d'étude IA",
   "@aiAssistantTitle": {
     "description": "Titre de la boîte de dialogue assistant IA"
   },
-  "questionContext": "Contexte de la Question",
+  "questionContext": "Contexte de la question",
   "@questionContext": {
     "description": "Libellé pour la section contexte de la question"
   },
@@ -684,23 +684,23 @@
   "@falseLabel": {
     "description": "Libellé pour l'option faux dans les questions vrai/faux"
   },
-  "addQuestion": "Ajouter une Question",
+  "addQuestion": "Ajouter une question",
   "@addQuestion": {
     "description": "Titre pour la boîte de dialogue d'ajout d'une nouvelle question"
   },
-  "editQuestion": "Modifier la Question",
+  "editQuestion": "Modifier la question",
   "@editQuestion": {
     "description": "Titre pour la boîte de dialogue de modification d'une question existante"
   },
-  "questionText": "Texte de la Question",
+  "questionText": "Texte de la question",
   "@questionText": {
     "description": "Libellé pour le champ de saisie du texte de la question"
   },
-  "questionType": "Type de Question",
+  "questionType": "Type de question",
   "@questionType": {
     "description": "Libellé pour la liste déroulante du type de question"
   },
-  "addOption": "Ajouter une Option",
+  "addOption": "Ajouter une option",
   "@addOption": {
     "description": "Libellé pour le bouton d'ajout d'option"
   },

@@ -342,7 +342,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get questionTypeEssay => 'Ανάπτυξης';
 
   @override
-  String get questionTypeRandom => 'Όλες';
+  String get questionTypeRandom => 'Μεικτό';
 
   @override
   String get questionTypeUnknown => 'Άγνωστο';
