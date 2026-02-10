@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_bloc.dart';
 import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_event.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 
 /// Shows a confirmation dialog to clear all winners from the raffle.
 ///
@@ -14,24 +16,7 @@ Future<bool> showClearWinnersDialog(BuildContext context) async {
     context: context,
     barrierDismissible: false,
     builder: (dialogContext) {
-      final isDark = Theme.of(context).brightness == Brightness.dark;
-
-      // Design Tokens
-      final dialogBg = isDark
-          ? const Color(0xFF27272A)
-          : const Color(0xFFFFFFFF);
-      final titleColor = isDark
-          ? const Color(0xFFFFFFFF)
-          : const Color(0xFF000000);
-      final contentColor = isDark
-          ? const Color(0xFFA1A1AA)
-          : const Color(0xFF71717A);
-      final closeBtnBg = isDark
-          ? const Color(0xFF3F3F46)
-          : const Color(0xFFF4F4F5);
-      final closeBtnIcon = isDark
-          ? const Color(0xFFA1A1AA)
-          : const Color(0xFF71717A);
+      final colors = context.appColors;
 
       return Dialog(
         backgroundColor: Colors.transparent,
@@ -39,7 +24,7 @@ Future<bool> showClearWinnersDialog(BuildContext context) async {
         child: Container(
           padding: const EdgeInsets.all(32),
           decoration: BoxDecoration(
-            color: dialogBg,
+            color: colors.card,
             borderRadius: BorderRadius.circular(24),
           ),
           child: Column(
@@ -56,17 +41,17 @@ Future<bool> showClearWinnersDialog(BuildContext context) async {
                       fontFamily: 'Inter',
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
-                      color: titleColor,
+                      color: colors.title,
                     ),
                   ),
                   IconButton(
                     onPressed: () => Navigator.of(dialogContext).pop(false),
                     style: IconButton.styleFrom(
-                      backgroundColor: closeBtnBg,
+                      backgroundColor: colors.surface,
                       fixedSize: const Size(40, 40),
                       padding: EdgeInsets.zero,
                     ),
-                    icon: Icon(Icons.close, size: 20, color: closeBtnIcon),
+                    icon: Icon(Icons.close, size: 20, color: colors.subtitle),
                   ),
                 ],
               ),
@@ -78,7 +63,7 @@ Future<bool> showClearWinnersDialog(BuildContext context) async {
                 style: TextStyle(
                   fontFamily: 'Inter',
                   fontSize: 16,
-                  color: contentColor,
+                  color: colors.subtitle,
                   height: 1.5,
                 ),
               ),
@@ -91,7 +76,7 @@ Future<bool> showClearWinnersDialog(BuildContext context) async {
                 child: ElevatedButton(
                   onPressed: () => Navigator.of(dialogContext).pop(true),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
+                    backgroundColor: AppTheme.errorColor,
                     foregroundColor: Colors.white,
                     elevation: 0,
                     shape: RoundedRectangleBorder(

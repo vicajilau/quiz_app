@@ -1,26 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 
 class ExitConfirmationDialog extends StatelessWidget {
   const ExitConfirmationDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final cardColor = isDark ? const Color(0xFF27272A) : Colors.white;
-    final textColor = isDark ? Colors.white : const Color(0xFF18181B);
-    final subTextColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
-    final borderColor = isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFE4E4E7);
-    final controlBgColor = isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFF4F4F5);
-    final primaryColor = const Color(0xFF8B5CF6);
+    final colors = context.appColors;
+    const primaryColor = AppTheme.primaryColor;
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -30,9 +20,9 @@ class ExitConfirmationDialog extends StatelessWidget {
         width: 400,
         padding: const EdgeInsets.all(32),
         decoration: BoxDecoration(
-          color: cardColor,
+          color: colors.card,
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: borderColor, width: 1),
+          border: Border.all(color: colors.border, width: 1),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.1),
@@ -56,7 +46,7 @@ class ExitConfirmationDialog extends StatelessWidget {
                       fontFamily: 'Inter',
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
-                      color: textColor,
+                      color: colors.title,
                       height: 1.2,
                     ),
                   ),
@@ -64,12 +54,12 @@ class ExitConfirmationDialog extends StatelessWidget {
                 IconButton(
                   onPressed: () => context.pop(false),
                   style: IconButton.styleFrom(
-                    backgroundColor: controlBgColor,
+                    backgroundColor: colors.surface,
                     fixedSize: const Size(40, 40),
                     padding: EdgeInsets.zero,
                     shape: const CircleBorder(),
                   ),
-                  icon: Icon(Icons.close, size: 20, color: subTextColor),
+                  icon: Icon(Icons.close, size: 20, color: colors.subtitle),
                 ),
               ],
             ),
@@ -82,7 +72,7 @@ class ExitConfirmationDialog extends StatelessWidget {
                 fontFamily: 'Inter',
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
-                color: subTextColor,
+                color: colors.subtitle,
                 height: 1.5,
               ),
             ),

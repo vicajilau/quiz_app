@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
@@ -18,7 +20,7 @@ class QuizNavigationButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final colors = context.appColors;
 
     final isCheckPhase = isStudyMode && !state.isCurrentQuestionValidated;
     final canProceed = isCheckPhase
@@ -41,33 +43,19 @@ class QuizNavigationButtons extends StatelessWidget {
                       PreviousQuestionRequested(),
                     );
                   },
-                  icon: Icon(
-                    Icons.chevron_left,
-                    color: isDark
-                        ? const Color(0xFFA1A1AA)
-                        : const Color(0xFF71717A),
-                  ),
+                  icon: Icon(Icons.chevron_left, color: colors.subtitle),
                   label: Text(
                     AppLocalizations.of(context)!.previous,
                     style: TextStyle(
                       fontFamily: 'Inter',
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
-                      color: isDark
-                          ? const Color(0xFFA1A1AA)
-                          : const Color(0xFF71717A),
+                      color: colors.subtitle,
                     ),
                   ),
                   style: OutlinedButton.styleFrom(
-                    backgroundColor: isDark
-                        ? const Color(0xFF27272A)
-                        : Colors.white,
-                    side: BorderSide(
-                      color: isDark
-                          ? const Color(0xFF3F3F46)
-                          : const Color(0xFFE4E4E7),
-                      width: 2,
-                    ),
+                    backgroundColor: colors.card,
+                    side: BorderSide(color: colors.border, width: 2),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -145,7 +133,7 @@ class QuizNavigationButtons extends StatelessWidget {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF8B5CF6),
+                  backgroundColor: AppTheme.primaryColor,
                   foregroundColor: Colors.white,
                   elevation: 0,
                   shape: RoundedRectangleBorder(

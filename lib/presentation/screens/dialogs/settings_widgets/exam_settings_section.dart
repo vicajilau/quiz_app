@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 
 /// A widget that handles the exam mode settings section.
 ///
@@ -21,18 +23,14 @@ class ExamSettingsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final bgColor = isDark ? const Color(0xFF3F3F46) : const Color(0xFFF4F4F5);
-    final titleColor = isDark ? Colors.white : const Color(0xFF18181B);
-    final subtitleColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
+    final colors = context.appColors;
 
     return Column(
       children: [
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
-            color: bgColor,
+            color: colors.surface,
             borderRadius: BorderRadius.circular(12),
           ),
           child: Row(
@@ -49,7 +47,7 @@ class ExamSettingsSection extends StatelessWidget {
                         fontFamily: 'Inter',
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
-                        color: titleColor,
+                        color: colors.title,
                       ),
                     ),
                     const SizedBox(height: 2),
@@ -59,7 +57,7 @@ class ExamSettingsSection extends StatelessWidget {
                         fontFamily: 'Inter',
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
-                        color: subtitleColor,
+                        color: colors.subtitle,
                       ),
                     ),
                   ],
@@ -69,11 +67,11 @@ class ExamSettingsSection extends StatelessWidget {
                 value: enabled,
                 onChanged: onEnabledChanged,
                 activeThumbColor: Colors.white,
-                activeTrackColor: const Color(0xFF8B5CF6),
+                activeTrackColor: AppTheme.primaryColor,
                 inactiveThumbColor: Colors.white,
                 inactiveTrackColor: isDark
-                    ? const Color(0xFF52525B)
-                    : const Color(0xFFD4D4D8),
+                    ? AppTheme.zinc600
+                    : AppTheme.zinc300,
                 trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
               ),
             ],
@@ -85,30 +83,33 @@ class ExamSettingsSection extends StatelessWidget {
             initialValue: minutes.toString(),
             decoration: InputDecoration(
               labelText: AppLocalizations.of(context)!.timeLimitMinutes,
-              labelStyle: TextStyle(fontFamily: 'Inter', color: subtitleColor),
+              labelStyle: TextStyle(
+                fontFamily: 'Inter',
+                color: colors.subtitle,
+              ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
                   color: isDark
-                      ? const Color(0xFF3F3F46)
-                      : const Color(0xFFE4E4E7),
+                      ? AppTheme.borderColorDark
+                      : AppTheme.borderColor,
                 ),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
                   color: isDark
-                      ? const Color(0xFF3F3F46)
-                      : const Color(0xFFE4E4E7),
+                      ? AppTheme.borderColorDark
+                      : AppTheme.borderColor,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(color: Color(0xFF8B5CF6)),
+                borderSide: const BorderSide(color: AppTheme.primaryColor),
               ),
               suffixText: AppLocalizations.of(context)!.minutesAbbreviation,
             ),
-            style: TextStyle(fontFamily: 'Inter', color: titleColor),
+            style: TextStyle(fontFamily: 'Inter', color: colors.title),
             keyboardType: TextInputType.number,
             onChanged: (value) {
               final newMinutes = int.tryParse(value);

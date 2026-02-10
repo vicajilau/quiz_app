@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
 
 /// A dialog widget for requesting a file name from the user.
 /// Styled according to design node 75JA2.
@@ -76,12 +77,9 @@ class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
         width: 520,
         padding: const EdgeInsets.all(32),
         decoration: BoxDecoration(
-          color: const Color(0xFF27272A), // Zinc 800
+          color: AppTheme.zinc800,
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(
-            color: Colors.white.withValues(alpha: 0.1),
-            width: 1,
-          ),
+          border: Border.all(color: AppTheme.borderColorDark, width: 1),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -106,7 +104,7 @@ class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
                   onPressed: () => context.pop(),
                   icon: const Icon(LucideIcons.x, size: 20),
                   style: IconButton.styleFrom(
-                    backgroundColor: const Color(0xFF3F3F46), // Zinc 700
+                    backgroundColor: AppTheme.zinc700,
                     foregroundColor: Colors.white,
                     fixedSize: const Size(40, 40),
                     padding: EdgeInsets.zero,
@@ -137,10 +135,10 @@ class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
                     fontFamily: 'Inter',
                     fontSize: 16,
                   ),
-                  cursorColor: const Color(0xFF8B5CF6), // Violet 500
+                  cursorColor: AppTheme.primaryColor,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: const Color(0xFF3F3F46), // Zinc 700
+                    fillColor: AppTheme.zinc700, // Zinc 700
                     hintText: 'quiz_name',
                     hintStyle: TextStyle(
                       color: Colors.white.withValues(alpha: 0.3),
@@ -161,13 +159,13 @@ class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: const BorderSide(
-                        color: Color(0xFF8B5CF6), // Violet 500
+                        color: AppTheme.primaryColor, // Violet 500
                         width: 2,
                       ),
                     ),
                     errorText: _errorMessage,
                     errorStyle: const TextStyle(
-                      color: Color(0xFFEF4444), // Red 500
+                      color: AppTheme.errorColor, // Red 500
                       fontFamily: 'Inter',
                     ),
                   ),
@@ -188,7 +186,7 @@ class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
               child: ElevatedButton(
                 onPressed: _submit,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF8B5CF6), // Violet 500
+                  backgroundColor: AppTheme.primaryColor, // Violet 500
                   foregroundColor: Colors.white,
                   elevation: 0,
                   shape: RoundedRectangleBorder(

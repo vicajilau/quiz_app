@@ -12,6 +12,8 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quiz_app/domain/models/ai/chat_message.dart';
 import 'package:quiz_app/presentation/screens/dialogs/widgets/ai_chat_bubble.dart';
 import 'package:quiz_app/presentation/screens/dialogs/widgets/question_context_widget.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 
 class AIQuestionDialog extends StatefulWidget {
   final Question question;
@@ -206,17 +208,10 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final colors = context.appColors;
 
     // Design Tokens
-    final backgroundColor = isDark ? const Color(0xFF27272A) : Colors.white;
-    final borderColor = isDark ? Colors.transparent : const Color(0xFFE4E4E7);
-    final closeBtnColor = isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFF4F4F5);
-    final closeIconColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
-    final titleColor = isDark ? Colors.white : const Color(0xFF18181B);
+    final borderColor = isDark ? Colors.transparent : AppTheme.borderColor;
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -230,7 +225,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 0.85,
         decoration: BoxDecoration(
-          color: backgroundColor,
+          color: colors.card,
           borderRadius: BorderRadius.circular(24),
           border: Border.all(color: borderColor, width: 1),
         ),
@@ -246,7 +241,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                     children: [
                       const Icon(
                         LucideIcons.sparkles,
-                        color: Color(0xFF8B5CF6), // Violet 500
+                        color: AppTheme.primaryColor, // Violet 500
                         size: 24,
                       ),
                       const SizedBox(width: 12),
@@ -257,7 +252,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                             fontFamily: 'Inter',
                             fontSize: 22,
                             fontWeight: FontWeight.w700,
-                            color: titleColor,
+                            color: colors.title,
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -269,16 +264,16 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: closeBtnColor,
+                    color: colors.surface,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: IconButton(
-                    icon: Icon(LucideIcons.x, color: closeIconColor, size: 20),
+                    icon: Icon(LucideIcons.x, color: colors.subtitle, size: 20),
                     onPressed: () => context.pop(),
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
                     style: IconButton.styleFrom(
-                      backgroundColor: closeBtnColor,
+                      backgroundColor: colors.surface,
                       shape: const CircleBorder(),
                     ),
                   ),
@@ -392,11 +387,11 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
-                      color: isDark ? const Color(0xFF3F3F46) : Colors.white,
+                      color: isDark ? AppTheme.borderColorDark : Colors.white,
                       borderRadius: BorderRadius.circular(12),
                       border: isDark
                           ? null
-                          : Border.all(color: const Color(0xFFE4E4E7)),
+                          : Border.all(color: AppTheme.borderColor),
                     ),
                     child: TextField(
                       controller: _questionController,
@@ -404,8 +399,8 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                         hintText: localizations.askAIHint,
                         hintStyle: TextStyle(
                           color: isDark
-                              ? const Color(0xFFA1A1AA)
-                              : const Color(0xFF71717A),
+                              ? AppTheme.zinc400
+                              : AppTheme.textSecondaryColor,
                           fontFamily: 'Inter',
                         ),
                         border: InputBorder.none,
@@ -414,7 +409,10 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                           vertical: 14,
                         ),
                       ),
-                      style: TextStyle(color: titleColor, fontFamily: 'Inter'),
+                      style: TextStyle(
+                        color: colors.title,
+                        fontFamily: 'Inter',
+                      ),
                       maxLines: 3,
                       minLines: 1,
                       onSubmitted: (_) => _askAI(),
@@ -435,8 +433,8 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                           color: canSend
                               ? Theme.of(context).primaryColor
                               : (isDark
-                                    ? const Color(0xFF3F3F46)
-                                    : const Color(0xFFE4E4E7)),
+                                    ? AppTheme.borderColorDark
+                                    : AppTheme.borderColor),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         alignment: Alignment.center,
@@ -455,9 +453,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                                 LucideIcons.send,
                                 color: canSend
                                     ? Colors.white
-                                    : (isDark
-                                          ? const Color(0xFFA1A1AA)
-                                          : const Color(0xFFA1A1AA)),
+                                    : AppTheme.zinc400,
                                 size: 20,
                               ),
                       ),

@@ -45,8 +45,7 @@ class WinnerCardWidget extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       color: cardColor,
       child: ListTile(
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         leading: CircleAvatar(
           backgroundColor: iconColor.withValues(alpha: 0.2),
           child: Icon(icon, color: iconColor, size: 24),

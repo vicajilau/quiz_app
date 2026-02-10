@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/presentation/widgets/latex_text.dart';
 
+import 'package:quiz_app/core/theme/app_theme.dart';
+
 /// A dialog to preview how an option will appear with LaTeX rendering
 class LaTeXPreviewDialog extends StatelessWidget {
   final String optionText;
@@ -15,6 +17,7 @@ class LaTeXPreviewDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return AlertDialog(
       title: Text(title),
       content: SingleChildScrollView(
@@ -27,19 +30,26 @@ class LaTeXPreviewDialog extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey[600]!),
+                border: Border.all(
+                  color: isDark ? AppTheme.zinc600 : AppTheme.zinc300,
+                ),
                 borderRadius: BorderRadius.circular(4),
-                color: Colors.grey[900],
+                color: isDark ? AppTheme.zinc900 : AppTheme.zinc100,
               ),
               constraints: const BoxConstraints(minHeight: 80),
               child: optionText.trim().isEmpty
                   ? Text(
                       AppLocalizations.of(context)!.emptyPlaceholder,
-                      style: const TextStyle(color: Colors.white70),
+                      style: TextStyle(
+                        color: isDark ? AppTheme.zinc400 : AppTheme.zinc500,
+                      ),
                     )
                   : LaTeXText(
                       optionText,
-                      style: const TextStyle(fontSize: 16, color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: isDark ? AppTheme.zinc50 : AppTheme.zinc900,
+                      ),
                     ),
             ),
             const SizedBox(height: 16),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_config.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_config_stored_settings.dart';
@@ -68,21 +69,11 @@ class _QuestionCountSelectionDialogState
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final cardColor = isDark ? const Color(0xFF27272A) : Colors.white;
-    final textColor = isDark ? Colors.white : const Color(0xFF18181B);
-    final subTextColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
-    final borderColor = isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFE4E4E7);
-    final controlBgColor = isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFF4F4F5);
+    final colors = context.appColors;
     final controlIconColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF3F3F46);
-    final primaryColor = const Color(0xFF8B5CF6);
+        ? AppTheme.zinc400
+        : AppTheme.borderColorDark;
+    const primaryColor = AppTheme.primaryColor;
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -92,9 +83,9 @@ class _QuestionCountSelectionDialogState
         width: 520, // Max width from design
         padding: const EdgeInsets.all(32),
         decoration: BoxDecoration(
-          color: cardColor,
+          color: colors.card,
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: borderColor, width: 1),
+          border: Border.all(color: colors.border, width: 1),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.1),
@@ -119,7 +110,7 @@ class _QuestionCountSelectionDialogState
                         fontFamily: 'Inter',
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
-                        color: textColor,
+                        color: colors.title,
                         height: 1.2,
                       ),
                       overflow: TextOverflow.ellipsis,
@@ -129,12 +120,12 @@ class _QuestionCountSelectionDialogState
                   IconButton(
                     onPressed: () => context.pop(null),
                     style: IconButton.styleFrom(
-                      backgroundColor: controlBgColor,
+                      backgroundColor: colors.surface,
                       fixedSize: const Size(40, 40),
                       padding: EdgeInsets.zero,
                       shape: const CircleBorder(),
                     ),
-                    icon: Icon(LucideIcons.x, size: 20, color: subTextColor),
+                    icon: Icon(LucideIcons.x, size: 20, color: colors.subtitle),
                   ),
                 ],
               ),
@@ -150,7 +141,7 @@ class _QuestionCountSelectionDialogState
                   fontFamily: 'Inter',
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: subTextColor,
+                  color: colors.subtitle,
                 ),
               ),
               const SizedBox(height: 16),
@@ -160,7 +151,7 @@ class _QuestionCountSelectionDialogState
                   _buildCountControl(
                     icon: LucideIcons.minus,
                     onTap: _decrementCount,
-                    bgColor: controlBgColor,
+                    bgColor: colors.surface,
                     iconColor: controlIconColor,
                   ),
                   const SizedBox(width: 16),
@@ -169,7 +160,7 @@ class _QuestionCountSelectionDialogState
                     child: Container(
                       height: 56,
                       decoration: BoxDecoration(
-                        color: controlBgColor,
+                        color: colors.surface,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       alignment: Alignment.center,
@@ -179,7 +170,7 @@ class _QuestionCountSelectionDialogState
                           fontFamily: 'Inter',
                           fontSize: 24,
                           fontWeight: FontWeight.w700,
-                          color: textColor,
+                          color: colors.title,
                         ),
                       ),
                     ),
@@ -214,7 +205,7 @@ class _QuestionCountSelectionDialogState
                       side: BorderSide(
                         color: _selectedCount == widget.totalQuestions
                             ? primaryColor
-                            : borderColor,
+                            : colors.border,
                       ),
                     ),
                   ),
@@ -223,7 +214,7 @@ class _QuestionCountSelectionDialogState
                     size: 18,
                     color: _selectedCount == widget.totalQuestions
                         ? primaryColor
-                        : subTextColor,
+                        : colors.subtitle,
                   ),
                   label: Text(
                     // Default to 'All' if localization key not ready, but we just added it.
@@ -235,7 +226,7 @@ class _QuestionCountSelectionDialogState
                       fontWeight: FontWeight.w600,
                       color: _selectedCount == widget.totalQuestions
                           ? primaryColor
-                          : subTextColor,
+                          : colors.subtitle,
                     ),
                   ),
                 ),
@@ -250,7 +241,7 @@ class _QuestionCountSelectionDialogState
                   fontFamily: 'Inter',
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: subTextColor,
+                  color: colors.subtitle,
                 ),
               ),
               const SizedBox(height: 12),
@@ -266,8 +257,8 @@ class _QuestionCountSelectionDialogState
                       isSelected: !_isStudyMode,
                       onTap: () => setState(() => _isStudyMode = false),
                       primaryColor: primaryColor,
-                      defaultBgColor: controlBgColor,
-                      defaultTextColor: subTextColor,
+                      defaultBgColor: colors.surface,
+                      defaultTextColor: colors.subtitle,
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -279,8 +270,8 @@ class _QuestionCountSelectionDialogState
                       isSelected: _isStudyMode,
                       onTap: () => setState(() => _isStudyMode = true),
                       primaryColor: primaryColor,
-                      defaultBgColor: controlBgColor,
-                      defaultTextColor: subTextColor,
+                      defaultBgColor: colors.surface,
+                      defaultTextColor: colors.subtitle,
                     ),
                   ),
                 ],
@@ -296,7 +287,7 @@ class _QuestionCountSelectionDialogState
                   fontFamily: 'Inter',
                   fontSize: 13,
                   fontWeight: FontWeight.w400,
-                  color: subTextColor,
+                  color: colors.subtitle,
                   height: 1.4,
                 ),
                 textAlign: TextAlign.start,

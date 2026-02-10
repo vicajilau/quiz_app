@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/domain/models/raffle/raffle_winner.dart';
 import 'package:quiz_app/presentation/screens/raffle/widgets/clear_winners_dialog.dart';
@@ -61,24 +62,23 @@ class WinnersListWidget extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: Container(height: 1, color: Colors.grey[300]),
+                    child: Container(height: 1, color: AppTheme.zinc300),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
                       AppLocalizations.of(
                         context,
-                      )!
-                          .winnersSelectedCount(winners.length),
-                      style: TextStyle(
+                      )!.winnersSelectedCount(winners.length),
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
-                        color: Colors.grey[600],
+                        color: AppTheme.zinc500,
                       ),
                     ),
                   ),
                   Expanded(
-                    child: Container(height: 1, color: Colors.grey[300]),
+                    child: Container(height: 1, color: AppTheme.zinc300),
                   ),
                 ],
               ),
@@ -119,7 +119,7 @@ class WinnersListWidget extends StatelessWidget {
                     style: const TextStyle(fontWeight: FontWeight.w600),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF8B5CF6),
+                    backgroundColor: AppTheme.primaryColor,
                     foregroundColor: Colors.white,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
@@ -144,8 +144,10 @@ class WinnersListWidget extends StatelessWidget {
                     style: const TextStyle(fontWeight: FontWeight.w600),
                   ),
                   style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.red[400],
-                    side: BorderSide(color: Colors.red[200]!),
+                    foregroundColor: AppTheme.errorColor,
+                    side: BorderSide(
+                      color: AppTheme.errorColor.withValues(alpha: 0.3),
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),

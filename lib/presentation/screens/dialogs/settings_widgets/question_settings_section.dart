@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quiz_app/domain/models/quiz/question_order.dart';
 
 class QuestionSettingsSection extends StatefulWidget {
@@ -66,13 +68,7 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final labelColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
-
-    // Get background color to match the dialog
-    final backgroundColor = isDark ? const Color(0xFF27272A) : Colors.white;
+    final colors = context.appColors;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,7 +80,7 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
             fontFamily: 'Inter',
             fontSize: 14,
             fontWeight: FontWeight.w500,
-            color: labelColor,
+            color: colors.subtitle,
           ),
         ),
         const SizedBox(height: 12),
@@ -144,8 +140,8 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
                         colors: [
-                          backgroundColor,
-                          backgroundColor.withValues(alpha: 0.0),
+                          colors.card,
+                          colors.card.withValues(alpha: 0.0),
                         ],
                       ),
                     ),
@@ -167,8 +163,8 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
                         begin: Alignment.centerRight,
                         end: Alignment.centerLeft,
                         colors: [
-                          backgroundColor,
-                          backgroundColor.withValues(alpha: 0.0),
+                          colors.card,
+                          colors.card.withValues(alpha: 0.0),
                         ],
                       ),
                     ),
@@ -210,15 +206,9 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
     required QuestionOrder order,
     required bool isSelected,
   }) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final activeColor = const Color(0xFF8B5CF6);
-    final inactiveBg = isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFF4F4F5);
+    final colors = context.appColors;
+    const activeColor = AppTheme.primaryColor;
     final activeText = Colors.white;
-    final inactiveText = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
 
     String label;
     switch (order) {
@@ -240,7 +230,7 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
         height: 48,
         padding: const EdgeInsets.symmetric(horizontal: 24),
         decoration: BoxDecoration(
-          color: isSelected ? activeColor : inactiveBg,
+          color: isSelected ? activeColor : colors.surface,
           borderRadius: BorderRadius.circular(12),
         ),
         alignment: Alignment.center,
@@ -250,7 +240,7 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
             fontFamily: 'Inter',
             fontSize: 14,
             fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-            color: isSelected ? activeText : inactiveText,
+            color: isSelected ? activeText : colors.subtitle,
           ),
         ),
       ),
@@ -265,16 +255,12 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
     required ValueChanged<bool> onChanged,
   }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final bgColor = isDark ? const Color(0xFF3F3F46) : const Color(0xFFF4F4F5);
-    final titleColor = isDark ? Colors.white : const Color(0xFF18181B);
-    final subtitleColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
+    final colors = context.appColors;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: bgColor,
+        color: colors.surface,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -291,7 +277,7 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
                     fontFamily: 'Inter',
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
-                    color: titleColor,
+                    color: colors.title,
                   ),
                 ),
                 const SizedBox(height: 2),
@@ -301,7 +287,7 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
                     fontFamily: 'Inter',
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
-                    color: subtitleColor,
+                    color: colors.subtitle,
                   ),
                 ),
               ],
@@ -311,11 +297,9 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
             value: value,
             onChanged: onChanged,
             activeThumbColor: Colors.white,
-            activeTrackColor: const Color(0xFF8B5CF6),
+            activeTrackColor: AppTheme.primaryColor,
             inactiveThumbColor: Colors.white,
-            inactiveTrackColor: isDark
-                ? const Color(0xFF52525B)
-                : const Color(0xFFD4D4D8),
+            inactiveTrackColor: isDark ? AppTheme.zinc600 : AppTheme.zinc300,
             trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
           ),
         ],
