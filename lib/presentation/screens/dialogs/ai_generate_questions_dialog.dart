@@ -315,26 +315,26 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
             Set<AiQuestionType> newSelectedTypes = Set.from(
               _selectedQuestionTypes,
             );
+
             if (type == AiQuestionType.random) {
-              if (newSelectedTypes.contains(type)) {
-                newSelectedTypes = {AiQuestionType.random};
-              } else {
-                if (newSelectedTypes.length == 1) {
-                  newSelectedTypes = {AiQuestionType.multipleChoice};
-                } else {
-                  newSelectedTypes.remove(type);
-                }
-              }
+              // Clicking Random always makes it the only selection
+              newSelectedTypes = {AiQuestionType.random};
             } else {
               if (newSelectedTypes.contains(type)) {
+                // Deselecting an individual type
                 newSelectedTypes.remove(type);
+                // If nothing left, default to Random
                 if (newSelectedTypes.isEmpty) {
                   newSelectedTypes = {AiQuestionType.random};
                 }
               } else {
+                // Selecting an individual type
+                // 1. Remove Random if it was there
                 newSelectedTypes.remove(AiQuestionType.random);
+                // 2. Add the new type
                 newSelectedTypes.add(type);
 
+                // 3. Check if all individual types are now selected
                 final allSpecificTypes = AiQuestionType.values
                     .where((t) => t != AiQuestionType.random)
                     .toSet();
