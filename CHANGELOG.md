@@ -5,7 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.6.0] - 2026-02-09
+## [1.6.0] - 2026-02-10
+
+- feat: Added "Generate questions with AI" button to the home screen for a more direct creation flow.
+- feat: Made the home screen scrollable to prevent overflows on small screens and improved overall layout.
+- feat: Improved AI generation UX with a centered loading overlay and better button hierarchy.
+- fix: Standardized capitalization to "Sentence case" in Portuguese, Italian, French, Catalan, and Galician localizations for a more modern UI.
+- fix: Updated "Mixed" question type label to "All" (e.g., "Todos", "Tutti", "Tous") across all languages for better clarity.
+- refactor: Changed `FileBloc` to a Singleton to preserve state across screens and resolve navigation issues.
 
 - ui: Complete redesign of the application UI.
 - feat: Added multi-selection support for moving and deleting files.

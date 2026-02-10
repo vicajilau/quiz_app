@@ -34,12 +34,10 @@ class ServiceLocator {
     getIt.registerLazySingleton<QuizFileRepository>(
       () => QuizFileRepository(fileService: getIt<QuizFileService>()),
     );
-    getIt.registerFactory<FileBloc>(
+    getIt.registerLazySingleton<FileBloc>(
       () => FileBloc(fileRepository: getIt<QuizFileRepository>()),
     );
-    getIt.registerFactory<QuizExecutionBloc>(
-      () => QuizExecutionBloc(),
-    );
+    getIt.registerFactory<QuizExecutionBloc>(() => QuizExecutionBloc());
   }
 
   // Function to register or update QuizFile in GetIt
@@ -65,5 +63,4 @@ class ServiceLocator {
     }
     return null;
   }
-
 }

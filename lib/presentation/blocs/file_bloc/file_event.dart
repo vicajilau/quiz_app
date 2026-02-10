@@ -1,3 +1,4 @@
+import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 
 /// Abstract class representing the base event for file operations.
@@ -33,6 +34,23 @@ class CreateQuizMetadata extends FileEvent {
     required this.version,
     required this.description,
     required this.author,
+  });
+}
+
+/// Event triggered to create a new quiz file with initial questions.
+class CreateQuizWithQuestions extends FileEvent {
+  final String name;
+  final String version;
+  final String description;
+  final String author;
+  final List<Question> questions;
+
+  CreateQuizWithQuestions({
+    required this.name,
+    required this.version,
+    required this.description,
+    required this.author,
+    required this.questions,
   });
 }
 
