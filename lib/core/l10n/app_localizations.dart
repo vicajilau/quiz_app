@@ -458,6 +458,12 @@ abstract class AppLocalizations {
   /// **'Are you sure you want to finish the quiz? You won\'t be able to change your answers afterwards.'**
   String get finishQuizConfirmation;
 
+  /// Confirmation message for finishing quiz with unanswered questions
+  ///
+  /// In en, this message translates to:
+  /// **'You have {unansweredCount, plural, =1{1 unanswered question} other{{unansweredCount} unanswered questions}}. Are you sure you want to finish?'**
+  String finishQuizUnansweredQuestions(int unansweredCount);
+
   /// Title of abandon quiz dialog
   ///
   /// In en, this message translates to:

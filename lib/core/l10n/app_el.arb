@@ -428,6 +428,16 @@
   "allLabel": "Όλες",
   "@allLabel": {
     "description": "Ετικέτα για την επιλογή όλων των ερωτήσεων"
+  },
+  "finishQuizUnansweredQuestions": "Έχετε {unansweredCount,plural, =1{1 αναπάντητη ερώτηση}other{{unansweredCount} αναπάντητες ερωτήσεις}}. Είστε σίγουροι ότι θέλετε να ολοκληρώσετε το κουίζ?",
+  "@finishQuizUnansweredQuestions": {
+    "description": "Message shown when there are unanswered questions.",
+    "placeholders": {
+      "unansweredCount": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }
 

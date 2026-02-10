@@ -190,6 +190,17 @@ class AppLocalizationsZh extends AppLocalizations {
   String get finishQuizConfirmation => '您确定要完成测验吗？之后您将无法更改答案。';
 
   @override
+  String finishQuizUnansweredQuestions(int unansweredCount) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unansweredCount,
+      locale: localeName,
+      other: '$unansweredCount 道未回答的问题',
+      one: '1 道未回答的问题',
+    );
+    return '你还有 $_temp0。你确定要结束测验吗？';
+  }
+
+  @override
   String get abandonQuiz => '放弃测验';
 
   @override

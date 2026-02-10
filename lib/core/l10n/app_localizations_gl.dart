@@ -198,6 +198,17 @@ class AppLocalizationsGl extends AppLocalizations {
       'Estás seguro de que queres rematar o quiz? Non poderás cambiar as túas respostas despois.';
 
   @override
+  String finishQuizUnansweredQuestions(int unansweredCount) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unansweredCount,
+      locale: localeName,
+      other: '$unansweredCount preguntas sen contestar',
+      one: '1 pregunta sen contestar',
+    );
+    return 'Tes $_temp0. Estás seguro de que queres finalizar o cuestionario?';
+  }
+
+  @override
   String get abandonQuiz => 'Abandonar quiz';
 
   @override

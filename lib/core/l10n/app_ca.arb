@@ -1790,6 +1790,16 @@
   "allLabel": "Totes",
   "@allLabel": {
     "description": "Etiqueta per a l'opció de seleccionar totes les preguntes"
+  },
+  "finishQuizUnansweredQuestions": "Tens {unansweredCount,plural, =1{1 pregunta sense respondre}other{{unansweredCount} preguntes sense respondre}}. Segur que vols acabar el qüestionari?",
+  "@finishQuizUnansweredQuestions": {
+    "description": "Message shown when there are unanswered questions.",
+    "placeholders": {
+      "unansweredCount": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }
 

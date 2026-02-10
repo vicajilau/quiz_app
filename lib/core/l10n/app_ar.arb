@@ -1751,6 +1751,16 @@
   "allLabel": "الكل",
   "@allLabel": {
     "description": "تسمية لخيار اختيار جميع الأسئلة"
+  },
+  "finishQuizUnansweredQuestions": "لديك {unansweredCount,plural, =1{سؤال واحد غير مجاب}other{{unansweredCount} أسئلة غير مجابة}}. هل أنت متأكد أنك تريد إنهاء الاختبار؟",
+  "@finishQuizUnansweredQuestions": {
+    "description": "Message shown when there are unanswered questions.",
+    "placeholders": {
+      "unansweredCount": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }
 

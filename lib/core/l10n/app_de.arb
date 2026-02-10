@@ -1797,6 +1797,16 @@
   "allLabel": "Alle",
   "@allLabel": {
     "description": "Label für die Option, alle Fragen auszuwählen"
+  },
+  "finishQuizUnansweredQuestions": "Du hast {unansweredCount,plural, =1{1 unbeantwortete Frage}other{{unansweredCount} unbeantwortete Fragen}}. Bist du sicher, dass du das Quiz beenden möchtest?",
+  "@finishQuizUnansweredQuestions": {
+    "description": "Message shown when there are unanswered questions.",
+    "placeholders": {
+      "unansweredCount": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }
 

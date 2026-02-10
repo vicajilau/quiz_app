@@ -5,6 +5,7 @@ import 'package:quiz_app/core/theme/app_theme.dart';
 import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
+import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 
 class SubmitQuizDialog {
   static void show(BuildContext context, QuizExecutionBloc bloc) {
@@ -54,15 +55,32 @@ class SubmitQuizDialog {
                 const SizedBox(height: 24),
 
                 // Content
-                Text(
-                  AppLocalizations.of(context)!.finishQuizConfirmation,
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                    color: colors.subtitle,
-                    height: 1.5,
-                  ),
+                Builder(
+                  builder: (context) {
+                    final state = bloc.state;
+                    int unansweredCount = 0;
+                    if (state is QuizExecutionInProgress) {
+                      unansweredCount =
+                          state.totalQuestions - state.answeredQuestionsCount;
+                    }
+
+                    final message = unansweredCount > 0
+                        ? AppLocalizations.of(
+                            context,
+                          )!.finishQuizUnansweredQuestions(unansweredCount)
+                        : AppLocalizations.of(context)!.finishQuizConfirmation;
+
+                    return Text(
+                      message,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                        color: colors.subtitle,
+                        height: 1.5,
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(height: 32),
 

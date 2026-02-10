@@ -77,5 +77,38 @@ void main() {
       // Wait, let's check AppLocalizations. 'Questions Map' is the EN string for questionsOverview.
       // But we are running with context, so it should resolve.
     });
+
+    testWidgets('progress bar reflects answered questions count', (
+      tester,
+    ) async {
+      // Create state with 10 questions, 3 answered
+      final questions = List.generate(10, (_) => testQuestion);
+      final userAnswers = {
+        0: [0], // Answered
+        1: [0], // Answered
+        2: [0], // Answered
+      };
+
+      final state = QuizExecutionInProgress(
+        questions: questions,
+        currentQuestionIndex: 5, // Currently at question 6
+        userAnswers: userAnswers,
+        isStudyMode: false,
+      );
+
+      await tester.pumpWidget(createWidgetUnderTest(state));
+
+      // Verify progress value
+      final progressIndicatorFinder = find.byType(LinearProgressIndicator);
+      final LinearProgressIndicator progressIndicator = tester.widget(
+        progressIndicatorFinder,
+      );
+
+      // Should be 3/10 = 0.3
+      expect(progressIndicator.value, closeTo(0.3, 0.001));
+
+      // Verify text says "Question 6 of 10" (current index + 1)
+      expect(find.text('Question 6 of 10'), findsOneWidget);
+    });
   });
 }

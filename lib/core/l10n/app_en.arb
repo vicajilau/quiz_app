@@ -260,6 +260,16 @@
   "@finishQuizConfirmation": {
     "description": "Confirmation message for finishing quiz"
   },
+  "finishQuizUnansweredQuestions": "You have {unansweredCount, plural, =1{1 unanswered question} other{{unansweredCount} unanswered questions}}. Are you sure you want to finish?",
+  "@finishQuizUnansweredQuestions": {
+    "description": "Confirmation message for finishing quiz with unanswered questions",
+    "placeholders": {
+      "unansweredCount": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
   "abandonQuiz": "Abandon Quiz",
   "@abandonQuiz": {
     "description": "Title of abandon quiz dialog"

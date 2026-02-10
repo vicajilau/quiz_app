@@ -52,13 +52,18 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
             // Clear all previous answers and set only the selected one
             currentAnswers.clear();
             currentAnswers.add(event.optionIndex);
+          } else {
+            // Allow deselecting if trying to select the currently selected one
+            currentAnswers.remove(event.optionIndex);
           }
-          // For single selection types, we don't handle deselection
-          // The radio button behavior handles this automatically
         }
 
         // Update the answers map
-        newUserAnswers[currentQuestionIndex] = currentAnswers;
+        if (currentAnswers.isEmpty) {
+          newUserAnswers.remove(currentQuestionIndex);
+        } else {
+          newUserAnswers[currentQuestionIndex] = currentAnswers;
+        }
 
         emit(currentState.copyWith(userAnswers: newUserAnswers));
       }

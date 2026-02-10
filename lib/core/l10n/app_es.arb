@@ -264,6 +264,16 @@
   "@finishQuizConfirmation": {
     "description": "Mensaje de confirmación para finalizar quiz"
   },
+  "finishQuizUnansweredQuestions": "Tienes {count, plural, =1{1 pregunta sin responder} other{{count} preguntas sin responder}}. ¿Estás seguro de que quieres finalizar?",
+  "@finishQuizUnansweredQuestions": {
+    "description": "Mensaje de confirmación para finalizar quiz con preguntas sin responder",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
   "abandonQuiz": "Abandonar Quiz",
   "@abandonQuiz": {
     "description": "Título del diálogo de abandonar quiz"
@@ -1759,5 +1769,15 @@
   "allLabel": "Todas",
   "@allLabel": {
     "description": "Etiqueta para la opción de seleccionar todas las preguntas"
+  },
+  "finishQuizUnansweredQuestions": "Tienes {unansweredCount,plural, =1{1 pregunta sin responder}other{{unansweredCount} preguntas sin responder}}. ¿Estás seguro de que quieres terminar el cuestionario?",
+  "@finishQuizUnansweredQuestions": {
+    "description": "Message shown when there are unanswered questions.",
+    "placeholders": {
+      "unansweredCount": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }

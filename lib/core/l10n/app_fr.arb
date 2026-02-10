@@ -1740,6 +1740,16 @@
   "allLabel": "Toutes",
   "@allLabel": {
     "description": "Libellé pour l'option de sélectionner toutes les questions"
+  },
+  "finishQuizUnansweredQuestions": "Vous avez {unansweredCount,plural, =1{1 question sans réponse}other{{unansweredCount} questions sans réponse}}. Êtes-vous sûr de vouloir terminer le quiz ?",
+  "@finishQuizUnansweredQuestions": {
+    "description": "Message shown when there are unanswered questions.",
+    "placeholders": {
+      "unansweredCount": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }
 

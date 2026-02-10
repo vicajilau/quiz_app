@@ -112,7 +112,9 @@ class QuestionOptionTile extends StatelessWidget {
           }
           // Select for single choice/others
           else {
-            context.read<QuizExecutionBloc>().add(AnswerSelected(index, true));
+            context.read<QuizExecutionBloc>().add(
+              AnswerSelected(index, !isSelected),
+            );
           }
         },
         borderRadius: BorderRadius.circular(12),

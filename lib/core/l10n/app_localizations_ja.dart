@@ -190,6 +190,17 @@ class AppLocalizationsJa extends AppLocalizations {
   String get finishQuizConfirmation => '本当にクイズを完了しますか？その後、回答を変更することはできません。';
 
   @override
+  String finishQuizUnansweredQuestions(int unansweredCount) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unansweredCount,
+      locale: localeName,
+      other: '$unansweredCount 問の未回答があります',
+      one: '1 問の未回答があります',
+    );
+    return '$_temp0。クイズを終了してもよろしいですか？';
+  }
+
+  @override
   String get abandonQuiz => 'クイズを放棄';
 
   @override

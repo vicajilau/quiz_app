@@ -1699,6 +1699,16 @@
   "allLabel": "すべて",
   "@allLabel": {
     "description": "すべての質問を選択するオプションのラベル"
+  },
+  "finishQuizUnansweredQuestions": "{unansweredCount,plural, =1{1 問の未回答があります}other{{unansweredCount} 問の未回答があります}}。クイズを終了してもよろしいですか？",
+  "@finishQuizUnansweredQuestions": {
+    "description": "Message shown when there are unanswered questions.",
+    "placeholders": {
+      "unansweredCount": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }
 

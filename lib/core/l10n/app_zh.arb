@@ -1691,6 +1691,16 @@
   "allLabel": "全部",
   "@allLabel": {
     "description": "选择所有问题的选项标签"
+  },
+  "finishQuizUnansweredQuestions": "你还有 {unansweredCount,plural, =1{1 道未回答的问题}other{{unansweredCount} 道未回答的问题}}。你确定要结束测验吗？",
+  "@finishQuizUnansweredQuestions": {
+    "description": "Message shown when there are unanswered questions.",
+    "placeholders": {
+      "unansweredCount": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }
 
