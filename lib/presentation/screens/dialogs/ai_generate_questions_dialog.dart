@@ -210,18 +210,23 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
     }
   }
 
+  /// Counts words by splitting on whitespace and commas, so
+  /// "math,science" counts as 2. Used to determine topic vs content mode.
   int _getWordCount() {
     final text = _textController.text.trim();
     if (text.isEmpty) return 0;
     return text.split(RegExp(r'[\s,]+')).where((w) => w.isNotEmpty).length;
   }
 
+  /// Counts comma-separated items. Used as the displayed count in topic mode.
   int _getTopicCount() {
     final text = _textController.text.trim();
     if (text.isEmpty) return 0;
     return text.split(',').where((t) => t.trim().isNotEmpty).length;
   }
 
+  /// Returns the counter label: topic count when in topic mode (≤10 words),
+  /// word count when in content mode (>10 words).
   String _getWordCountText() {
     final wordCount = _getWordCount();
     final localizations = AppLocalizations.of(context)!;
