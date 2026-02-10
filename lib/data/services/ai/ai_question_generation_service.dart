@@ -27,6 +27,7 @@ class AiQuestionGenerationConfig {
   final AIService? preferredService; // Preferred AI service
   final String? preferredModel; // Preferred model for the service
   final AiFileAttachment? file;
+  final bool isTopicMode;
 
   bool get hasFile => file != null;
 
@@ -38,6 +39,7 @@ class AiQuestionGenerationConfig {
     this.preferredService,
     this.preferredModel,
     this.file,
+    this.isTopicMode = false,
   });
 }
 
@@ -229,6 +231,14 @@ class AiQuestionGenerationService {
           '''
           Based on the attached file, generate $questionCountText quiz questions $questionTypesText in $languageText.
           $commentsSection''';
+    } else if (config.isTopicMode) {
+      header =
+          '''
+          The user wants quiz questions about the following topic/s: ${config.content}
+
+          Generate $questionCountText creative and in-depth quiz questions $questionTypesText in $languageText.
+          Go beyond surface-level knowledge — create questions that test deeper understanding, explore interesting aspects of these subjects, and encourage critical thinking.
+          ''';
     } else {
       header =
           '''
@@ -241,6 +251,8 @@ class AiQuestionGenerationService {
 
     final sourceReference = config.hasFile
         ? 'the content of the attached file'
+        : config.isTopicMode
+        ? 'the provided topics'
         : 'the provided content';
 
     return '''
