@@ -285,9 +285,7 @@ class AiGenerateStep1Widget extends StatelessWidget {
                       height: 52,
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       decoration: BoxDecoration(
-                        color: isDark
-                            ? const Color(0xFF3F3F46)
-                            : const Color(0xFFF4F4F5),
+                        color: colors.border,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: DropdownButtonHideUnderline(
@@ -364,9 +362,7 @@ class AiGenerateStep1Widget extends StatelessWidget {
                       height: 52,
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       decoration: BoxDecoration(
-                        color: isDark
-                            ? const Color(0xFF3F3F46)
-                            : const Color(0xFFF4F4F5),
+                        color: colors.border,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: DropdownButtonHideUnderline(
