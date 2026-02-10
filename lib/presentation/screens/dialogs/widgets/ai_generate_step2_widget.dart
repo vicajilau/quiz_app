@@ -6,7 +6,7 @@ import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/domain/models/ai/ai_file_attachment.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 
-class AiGenerateStep2Widget extends StatelessWidget {
+class AiGenerateStep2Widget extends StatefulWidget {
   final TextEditingController textController;
   final int questionCount;
   final AiFileAttachment? fileAttachment;
@@ -37,6 +37,27 @@ class AiGenerateStep2Widget extends StatelessWidget {
     required this.getWordCountText,
     required this.getWordCount,
   });
+
+  @override
+  State<AiGenerateStep2Widget> createState() => _AiGenerateStep2WidgetState();
+}
+
+class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
+  @override
+  void initState() {
+    super.initState();
+    widget.textController.addListener(_onTextChanged);
+  }
+
+  @override
+  void dispose() {
+    widget.textController.removeListener(_onTextChanged);
+    super.dispose();
+  }
+
+  void _onTextChanged() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +154,7 @@ class AiGenerateStep2Widget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: TextField(
-                        controller: textController,
+                        controller: widget.textController,
                         maxLines: null,
                         style: TextStyle(
                           fontFamily: 'Inter',
@@ -155,11 +176,11 @@ class AiGenerateStep2Widget extends StatelessWidget {
                       width: double.infinity,
                       alignment: Alignment.centerRight,
                       child: Text(
-                        getWordCountText(),
+                        widget.getWordCountText(),
                         style: TextStyle(
                           fontFamily: 'Inter',
                           fontSize: 12,
-                          color: getWordCount() > 10
+                          color: widget.getWordCount() > 10
                               ? const Color(0xFF8B5CF6)
                               : labelColor,
                           fontWeight: FontWeight.w500,
@@ -173,7 +194,7 @@ class AiGenerateStep2Widget extends StatelessWidget {
 
               // Attach File
               GestureDetector(
-                onTap: onPickFile,
+                onTap: widget.onPickFile,
                 child: Container(
                   height: 64,
                   width: double.infinity,
@@ -196,9 +217,9 @@ class AiGenerateStep2Widget extends StatelessWidget {
                             size: 20,
                           ),
                           const SizedBox(width: 12),
-                          fileAttachment != null
+                          widget.fileAttachment != null
                               ? Text(
-                                  fileAttachment!.name,
+                                  widget.fileAttachment!.name,
                                   style: TextStyle(
                                     fontFamily: 'Inter',
                                     fontSize: 14,
@@ -217,14 +238,14 @@ class AiGenerateStep2Widget extends StatelessWidget {
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
-                          if (fileAttachment != null)
+                          if (widget.fileAttachment != null)
                             Padding(
                               padding: const EdgeInsets.only(
                                 left: 12.0,
                                 right: 16.0,
                               ),
                               child: GestureDetector(
-                                onTap: onRemoveFile,
+                                onTap: widget.onRemoveFile,
                                 child: Icon(
                                   LucideIcons.x,
                                   color: labelColor,
@@ -258,8 +279,8 @@ class AiGenerateStep2Widget extends StatelessWidget {
                   // Minus
                   GestureDetector(
                     onTap: () {
-                      if (questionCount > 1) {
-                        onQuestionCountChanged(questionCount - 1);
+                      if (widget.questionCount > 1) {
+                        widget.onQuestionCountChanged(widget.questionCount - 1);
                       }
                     },
                     child: Container(
@@ -287,7 +308,7 @@ class AiGenerateStep2Widget extends StatelessWidget {
                       ),
                       alignment: Alignment.center,
                       child: Text(
-                        '$questionCount',
+                        '${widget.questionCount}',
                         style: TextStyle(
                           fontFamily: 'Inter',
                           fontSize: 16,
@@ -301,8 +322,8 @@ class AiGenerateStep2Widget extends StatelessWidget {
                   // Plus
                   GestureDetector(
                     onTap: () {
-                      if (questionCount < 50) {
-                        onQuestionCountChanged(questionCount + 1);
+                      if (widget.questionCount < 50) {
+                        widget.onQuestionCountChanged(widget.questionCount + 1);
                       }
                     },
                     child: Container(
@@ -331,7 +352,7 @@ class AiGenerateStep2Widget extends StatelessWidget {
                     child: SizedBox(
                       height: 48,
                       child: ElevatedButton(
-                        onPressed: onBack,
+                        onPressed: widget.onBack,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: closeBtnColor,
                           foregroundColor: titleColor,
@@ -368,17 +389,18 @@ class AiGenerateStep2Widget extends StatelessWidget {
                       height: 48,
                       child: ElevatedButton(
                         onPressed:
-                            (textController.text.isNotEmpty ||
-                                fileAttachment != null)
+                            (widget.textController.text.isNotEmpty ||
+                                widget.fileAttachment != null)
                             ? () {
                                 final config = AiQuestionGenerationConfig(
-                                  questionCount: questionCount,
-                                  questionTypes: selectedQuestionTypes.toList(),
-                                  language: selectedLanguage,
-                                  content: textController.text.trim(),
-                                  preferredService: selectedService,
-                                  preferredModel: selectedModel,
-                                  file: fileAttachment,
+                                  questionCount: widget.questionCount,
+                                  questionTypes: widget.selectedQuestionTypes
+                                      .toList(),
+                                  language: widget.selectedLanguage,
+                                  content: widget.textController.text.trim(),
+                                  preferredService: widget.selectedService,
+                                  preferredModel: widget.selectedModel,
+                                  file: widget.fileAttachment,
                                 );
                                 context.pop(config);
                               }
