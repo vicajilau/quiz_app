@@ -341,6 +341,9 @@ class AppLocalizationsCa extends AppLocalizations {
   String get questionTypeEssay => 'Assaig';
 
   @override
+  String get questionTypeRandom => 'Mixt';
+
+  @override
   String get questionTypeUnknown => 'Desconegut';
 
   @override

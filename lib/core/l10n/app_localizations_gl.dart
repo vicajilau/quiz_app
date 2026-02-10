@@ -342,6 +342,9 @@ class AppLocalizationsGl extends AppLocalizations {
   String get questionTypeEssay => 'Ensaio';
 
   @override
+  String get questionTypeRandom => 'Mixto';
+
+  @override
   String get questionTypeUnknown => 'Descoñecido';
 
   @override

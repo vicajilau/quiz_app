@@ -106,6 +106,13 @@
   "questionTypeSingleChoice": "Μονής Επιλογής",
   "questionTypeTrueFalse": "Σωστό/Λάθος",
   "questionTypeEssay": "Ανάπτυξης",
+  "@questionTypeEssay": {
+    "description": "Ετικέτα για τον τύπο ερώτησης δοκιμίου"
+  },
+  "questionTypeRandom": "Μεικτό",
+  "@questionTypeRandom": {
+    "description": "Ετικέτα για τον μεικτό τύπο ερώτησης"
+  },
   "questionTypeUnknown": "Άγνωστο",
   "optionsCount": "{count, plural, =1{1 επιλογή} other{{count} επιλογές}}",
   "optionsTooltip": "Αριθμός επιλογών απάντησης για αυτή την ερώτηση",
@@ -414,21 +421,6 @@
   "tryAgain": "Δοκιμάστε ξανά",
   "review": "Ανασκόπηση",
   "home": "Αρχική",
-  "previewLabel": "Προεπισκόπηση:",
-  "emptyPlaceholder": "(κενό)",
-  "latexSyntaxTitle": "Σύνταξη LaTeX:",
-  "latexSyntaxHelp": "Ενσωματωμένα μαθηματικά: Χρησιμοποιήστε $...$ για εκφράσεις LaTeX\nΠαράδειγμα: $x^2 + y^2 = z^2$",
-  "previewLatexTooltip": "Προεπισκόπηση απόδοσης LaTeX",
-  "okButton": "OK",
-  "aiEnterContentTitle": "Εισαγωγή Περιεχομένου",
-  "aiEnterContentDescription": "Εισάγετε το θέμα ή επικολλήστε περιεχόμενο για τη δημιουργία ερωτήσεων",
-  "aiContentFieldHint": "Εισάγετε ένα θέμα όπως \"Ιστορία του Β' Παγκοσμίου Πολέμου\" ή επικολλήστε κείμενο εδώ...",
-  "aiAttachFileHint": "Επισύναψη αρχείου (PDF, TXT, DOCX)",
-  "aiNumberQuestionsLabel": "Αριθμός Ερωτήσεων",
-  "backButton": "Πίσω",
-  "generateButton": "Δημιουργία",
-  "aiTopicModeCount": "Λειτουργία Θέματος ({count} λέξεις)",
-  "aiTextModeCount": "Λειτουργία Κειμένου ({count} λέξεις)",
   "allLabel": "Όλες",
   "@allLabel": {
     "description": "Ετικέτα για την επιλογή όλων των ερωτήσεων"

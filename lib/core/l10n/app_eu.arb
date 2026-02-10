@@ -438,7 +438,11 @@
   },
   "questionTypeEssay": "Saiakera",
   "@questionTypeEssay": {
-    "description": "Saiakera galdera motaren etiketa"
+    "description": "Saiakera galdera-motaerako etiketa"
+  },
+  "questionTypeRandom": "Mistoa",
+  "@questionTypeRandom": {
+    "description": "Galdera misto-motaerako etiketa"
   },
   "questionTypeUnknown": "Ezezaguna",
   "@questionTypeUnknown": {

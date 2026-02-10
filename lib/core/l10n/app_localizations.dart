@@ -704,6 +704,12 @@ abstract class AppLocalizations {
   /// **'Essay'**
   String get questionTypeEssay;
 
+  /// Label for random question type
+  ///
+  /// In en, this message translates to:
+  /// **'Mixed'**
+  String get questionTypeRandom;
+
   /// Label for unknown question type
   ///
   /// In en, this message translates to:

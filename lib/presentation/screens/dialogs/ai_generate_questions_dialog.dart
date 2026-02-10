@@ -25,7 +25,9 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
 
   int _currentStep = 0; // 0: Configuration, 1: Content
 
-  Set<AiQuestionType> _selectedQuestionTypes = {AiQuestionType.random};
+  Set<AiQuestionType> _selectedQuestionTypes = AiQuestionType.values
+      .where((type) => type != AiQuestionType.random)
+      .toSet();
   String _selectedLanguage = 'en';
   List<AIService> _availableServices = [];
   AIService? _selectedService;
@@ -310,10 +312,24 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
         },
         onQuestionTypeToggled: (type) {
           setState(() {
-            if (_selectedQuestionTypes.contains(type)) {
-              _selectedQuestionTypes.remove(type);
+            if (type == AiQuestionType.random) {
+              // If selecting random, clear others
+              _selectedQuestionTypes = {AiQuestionType.random};
             } else {
-              _selectedQuestionTypes.add(type);
+              // If selecting a specific type
+              if (_selectedQuestionTypes.contains(AiQuestionType.random)) {
+                // Remove random if it was selected
+                _selectedQuestionTypes.remove(AiQuestionType.random);
+              }
+
+              if (_selectedQuestionTypes.contains(type)) {
+                // Only remove if it's not the last one selected
+                if (_selectedQuestionTypes.length > 1) {
+                  _selectedQuestionTypes.remove(type);
+                }
+              } else {
+                _selectedQuestionTypes.add(type);
+              }
             }
           });
         },

@@ -508,6 +508,10 @@
   "@questionTypeEssay": {
     "description": "Beschriftung für den Aufsatz-Fragentyp"
   },
+  "questionTypeRandom": "Gemischt",
+  "@questionTypeRandom": {
+    "description": "Beschriftung für den gemischten Fragentyp"
+  },
   "questionTypeUnknown": "Unbekannt",
   "@questionTypeUnknown": {
     "description": "Beschriftung für unbekannten Fragentyp"

@@ -518,7 +518,11 @@
   },
   "questionTypeEssay": "مقالي",
   "@questionTypeEssay": {
-    "description": "Label for essay question type"
+    "description": "تسمية لنوع السؤال المقالي"
+  },
+  "questionTypeRandom": "مختلط",
+  "@questionTypeRandom": {
+    "description": "تسمية لنوع السؤال المختلط"
   },
   "questionTypeUnknown": "غير معروف",
   "@questionTypeUnknown": {

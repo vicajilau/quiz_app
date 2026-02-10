@@ -434,7 +434,11 @@
   },
   "questionTypeEssay": "Saggio",
   "@questionTypeEssay": {
-    "description": "Etichetta per il tipo di domanda saggio"
+    "description": "Etichetta per il tipo di domanda a saggio"
+  },
+  "questionTypeRandom": "Misto",
+  "@questionTypeRandom": {
+    "description": "Etichetta per il tipo di domanda mista"
   },
   "questionTypeUnknown": "Sconosciuto",
   "@questionTypeUnknown": {

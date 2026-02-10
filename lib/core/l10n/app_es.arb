@@ -423,6 +423,10 @@
   "@questionTypeEssay": {
     "description": "Etiqueta para el tipo de pregunta de ensayo"
   },
+  "questionTypeRandom": "Mixto",
+  "@questionTypeRandom": {
+    "description": "Etiqueta para el tipo de pregunta aleatoria"
+  },
   "questionTypeUnknown": "Desconocido",
   "@questionTypeUnknown": {
     "description": "Etiqueta para el tipo de pregunta desconocido"
