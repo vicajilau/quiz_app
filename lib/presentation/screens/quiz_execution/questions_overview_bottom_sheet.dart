@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiz_app/core/extensions/question_validation_extension.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
@@ -52,7 +53,7 @@ class QuestionsOverviewBottomSheet extends StatelessWidget {
           width: 40,
           height: 4,
           decoration: BoxDecoration(
-            color: isDark ? Colors.grey[700] : Colors.grey[300],
+            color: isDark ? AppTheme.zinc700 : AppTheme.zinc300,
             borderRadius: BorderRadius.circular(2),
           ),
         ),
@@ -135,20 +136,22 @@ class QuestionsOverviewBottomSheet extends StatelessWidget {
                   );
                 } else {
                   bgColor = isDark
-                      ? Colors.red.withValues(alpha: 0.2)
-                      : Colors.red.withValues(alpha: 0.1);
-                  textColor = isDark ? Colors.red[200]! : Colors.red[800]!;
+                      ? AppTheme.errorColor.withValues(alpha: 0.2)
+                      : AppTheme.errorColor.withValues(alpha: 0.1);
+                  textColor = isDark
+                      ? const Color(0xFFFCA5A5)
+                      : const Color(0xFF991B1B);
                   border = Border.all(
-                    color: isDark ? Colors.red[700]! : Colors.red[300]!,
+                    color: isDark
+                        ? const Color(0xFFB91C1C)
+                        : const Color(0xFFFCA5A5),
                   );
                 }
               } else {
                 bgColor = Colors.transparent;
-                textColor = isDark ? Colors.grey[500]! : Colors.grey[400]!;
+                textColor = isDark ? AppTheme.zinc500 : AppTheme.zinc400;
                 border = Border.all(
-                  color: isDark
-                      ? const Color(0xFF27272A)
-                      : const Color(0xFFE4E4E7),
+                  color: isDark ? AppTheme.zinc800 : AppTheme.borderColor,
                 );
               }
 

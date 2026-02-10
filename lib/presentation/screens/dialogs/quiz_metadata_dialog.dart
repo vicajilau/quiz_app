@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
 
 /// A dialog that allows the user to create or edit quiz metadata.
 ///
@@ -144,10 +145,10 @@ class _QuizMetadataDialogState extends State<QuizMetadataDialog> {
             fontFamily: 'Inter',
             fontSize: 16,
           ),
-          cursorColor: const Color(0xFF8B5CF6), // Violet 500
+          cursorColor: AppTheme.primaryColor,
           decoration: InputDecoration(
             filled: true,
-            fillColor: const Color(0xFF3F3F46), // Zinc 700
+            fillColor: AppTheme.borderColorDark,
             hintText: hintText,
             hintStyle: TextStyle(
               color: Colors.white.withValues(alpha: 0.3),
@@ -168,13 +169,13 @@ class _QuizMetadataDialogState extends State<QuizMetadataDialog> {
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: const BorderSide(
-                color: Color(0xFF8B5CF6), // Violet 500
+                color: AppTheme.primaryColor,
                 width: 2,
               ),
             ),
             errorText: errorText,
             errorStyle: const TextStyle(
-              color: Color(0xFFEF4444), // Red 500
+              color: AppTheme.errorColor,
               fontFamily: 'Inter',
             ),
           ),
@@ -196,7 +197,7 @@ class _QuizMetadataDialogState extends State<QuizMetadataDialog> {
         width: 520,
         padding: const EdgeInsets.all(32),
         decoration: BoxDecoration(
-          color: const Color(0xFF27272A), // Zinc 800
+          color: AppTheme.cardColorDark,
           borderRadius: BorderRadius.circular(24),
           border: Border.all(
             color: Colors.white.withValues(alpha: 0.1),
@@ -229,7 +230,7 @@ class _QuizMetadataDialogState extends State<QuizMetadataDialog> {
                     onPressed: () => context.pop(),
                     icon: const Icon(LucideIcons.x, size: 20),
                     style: IconButton.styleFrom(
-                      backgroundColor: const Color(0xFF3F3F46), // Zinc 700
+                      backgroundColor: AppTheme.borderColorDark,
                       foregroundColor: Colors.white,
                       fixedSize: const Size(40, 40),
                       padding: EdgeInsets.zero,
@@ -276,7 +277,7 @@ class _QuizMetadataDialogState extends State<QuizMetadataDialog> {
                 child: ElevatedButton(
                   onPressed: _submit,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF8B5CF6), // Violet 500
+                    backgroundColor: AppTheme.primaryColor,
                     foregroundColor: Colors.white,
                     elevation: 0,
                     shape: RoundedRectangleBorder(

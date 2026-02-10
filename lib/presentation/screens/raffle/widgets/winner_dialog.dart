@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/domain/models/raffle/raffle_session.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 
 class WinnerDialog extends StatelessWidget {
   final String winnerName;
@@ -19,25 +21,16 @@ class WinnerDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final colors = context.appColors;
 
     // Design Tokens
-    final dialogBg = isDark ? const Color(0xFF27272A) : const Color(0xFFFFFFFF);
-    final titleColor = isDark
-        ? const Color(0xFFFFFFFF)
-        : const Color(0xFF000000);
-    final contentColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
-    final trophyBg = isDark ? const Color(0xFF4C1D95) : const Color(0xFFEDE9FE);
-    final trophyIcon = isDark
-        ? const Color(0xFFA78BFA)
-        : const Color(0xFF8B5CF6);
-    final nameBg = isDark ? const Color(0xFF3F3F46) : const Color(0xFFF4F4F5);
-    final nameText = isDark ? const Color(0xFFFFFFFF) : const Color(0xFF18181B);
-    final statsBg = isDark ? const Color(0xFF18181B) : const Color(0xFFFAFAFA);
-    final statsLabel = isDark
-        ? const Color(0xFFFFFFFF)
-        : const Color(0xFF000000);
+    final titleColor = isDark ? AppTheme.backgroundColor : Colors.black;
+    final trophyBg = isDark ? AppTheme.violet900 : AppTheme.violet100;
+    final trophyIcon = isDark ? AppTheme.violet400 : AppTheme.primaryColor;
+    final nameBg = isDark ? AppTheme.zinc700 : AppTheme.zinc100;
+    final nameText = isDark ? AppTheme.backgroundColor : AppTheme.zinc900;
+    final statsBg = isDark ? AppTheme.zinc900 : AppTheme.zinc50;
+    final statsLabel = isDark ? AppTheme.backgroundColor : Colors.black;
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -45,7 +38,7 @@ class WinnerDialog extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(32),
         decoration: BoxDecoration(
-          color: dialogBg,
+          color: colors.card,
           borderRadius: BorderRadius.circular(24),
         ),
         child: Column(
@@ -130,7 +123,7 @@ class WinnerDialog extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: 'Inter',
                       fontSize: 14,
-                      color: contentColor,
+                      color: colors.subtitle,
                     ),
                   ),
                 ],
@@ -150,7 +143,7 @@ class WinnerDialog extends StatelessWidget {
                     child: ElevatedButton.icon(
                       onPressed: onRepeatRaffle,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF8B5CF6),
+                        backgroundColor: AppTheme.primaryColor,
                         foregroundColor: Colors.white,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
@@ -178,11 +171,11 @@ class WinnerDialog extends StatelessWidget {
                       ? OutlinedButton.icon(
                           onPressed: onFinishRaffle,
                           style: OutlinedButton.styleFrom(
-                            foregroundColor: contentColor,
+                            foregroundColor: colors.subtitle,
                             side: BorderSide(
                               color: isDark
-                                  ? const Color(0xFF3F3F46)
-                                  : const Color(0xFFE4E4E7),
+                                  ? AppTheme.zinc700
+                                  : AppTheme.zinc200,
                             ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -191,7 +184,7 @@ class WinnerDialog extends StatelessWidget {
                           icon: Icon(
                             Icons.emoji_events,
                             size: 20,
-                            color: contentColor,
+                            color: colors.subtitle,
                           ),
                           label: Text(
                             AppLocalizations.of(context)!.winnersTitle,
@@ -205,7 +198,7 @@ class WinnerDialog extends StatelessWidget {
                       : ElevatedButton.icon(
                           onPressed: onFinishRaffle,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF8B5CF6),
+                            backgroundColor: AppTheme.primaryColor,
                             foregroundColor: Colors.white,
                             elevation: 0,
                             shape: RoundedRectangleBorder(

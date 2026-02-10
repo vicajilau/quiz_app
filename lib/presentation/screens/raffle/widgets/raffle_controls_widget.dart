@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_bloc.dart';
@@ -61,7 +62,7 @@ class RaffleControlsWidget extends StatelessWidget {
                 ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: canStartRaffle
-                      ? const Color(0xFF8B5CF6)
+                      ? AppTheme.primaryColor
                       : null,
                   foregroundColor: canStartRaffle ? Colors.white : null,
                   shape: RoundedRectangleBorder(
@@ -78,7 +79,7 @@ class RaffleControlsWidget extends StatelessWidget {
               Text(
                 _getStatusText(session, isSelecting, context),
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                style: const TextStyle(fontSize: 14, color: AppTheme.zinc500),
               ),
             ],
 
@@ -101,8 +102,10 @@ class RaffleControlsWidget extends StatelessWidget {
                           ),
                         ),
                         style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.red[400],
-                          side: BorderSide(color: Colors.red[200]!),
+                          foregroundColor: AppTheme.errorColor,
+                          side: BorderSide(
+                            color: AppTheme.errorColor.withValues(alpha: 0.3),
+                          ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),

@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quiz_app/domain/models/raffle/raffle_winner.dart';
 import 'package:quiz_app/domain/models/raffle/raffle_logo.dart';
 import 'package:quiz_app/presentation/blocs/raffle_bloc/raffle_bloc.dart';
@@ -11,7 +13,6 @@ import 'package:quiz_app/presentation/screens/raffle/widgets/logo_widget.dart';
 import 'package:quiz_app/presentation/screens/raffle/widgets/winners_empty_state.dart';
 import 'package:quiz_app/presentation/screens/raffle/widgets/winners_list_widget.dart';
 import 'package:quiz_app/routes/app_router.dart';
-
 
 class WinnersScreen extends StatelessWidget {
   const WinnersScreen({super.key});
@@ -89,29 +90,12 @@ class WinnersScreen extends StatelessWidget {
       barrierDismissible: false,
       builder: (dialogContext) {
         final isDark = Theme.of(context).brightness == Brightness.dark;
+        final colors = context.appColors;
 
         // Design Tokens
-        final dialogBg = isDark
-            ? const Color(0xFF27272A)
-            : const Color(0xFFFFFFFF);
-        final titleColor = isDark
-            ? const Color(0xFFFFFFFF)
-            : const Color(0xFF000000);
-        final contentColor = isDark
-            ? const Color(0xFFA1A1AA)
-            : const Color(0xFF71717A);
-        final closeBtnBg = isDark
-            ? const Color(0xFF3F3F46)
-            : const Color(0xFFF4F4F5);
-        final closeBtnIcon = isDark
-            ? const Color(0xFFA1A1AA)
-            : const Color(0xFF71717A);
-        final codeBg = isDark
-            ? const Color(0xFF18181B)
-            : const Color(0xFFF4F4F5);
-        final codeText = isDark
-            ? const Color(0xFFE4E4E7)
-            : const Color(0xFF18181B);
+        final titleColor = isDark ? Colors.white : Colors.black;
+        final codeBg = isDark ? AppTheme.textColor : AppTheme.cardColorLight;
+        final codeText = isDark ? AppTheme.borderColor : AppTheme.textColor;
 
         return Dialog(
           backgroundColor: Colors.transparent,
@@ -119,7 +103,7 @@ class WinnersScreen extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(32),
             decoration: BoxDecoration(
-              color: dialogBg,
+              color: colors.card,
               borderRadius: BorderRadius.circular(24),
             ),
             child: Column(
@@ -142,11 +126,11 @@ class WinnersScreen extends StatelessWidget {
                     IconButton(
                       onPressed: () => Navigator.of(dialogContext).pop(),
                       style: IconButton.styleFrom(
-                        backgroundColor: closeBtnBg,
+                        backgroundColor: colors.surface,
                         fixedSize: const Size(40, 40),
                         padding: EdgeInsets.zero,
                       ),
-                      icon: Icon(Icons.close, size: 20, color: closeBtnIcon),
+                      icon: Icon(Icons.close, size: 20, color: colors.subtitle),
                     ),
                   ],
                 ),
@@ -157,7 +141,7 @@ class WinnersScreen extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'Inter',
                     fontSize: 14,
-                    color: contentColor,
+                    color: colors.subtitle,
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -204,7 +188,7 @@ class WinnersScreen extends StatelessWidget {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF8B5CF6),
+                      backgroundColor: AppTheme.primaryColor,
                       foregroundColor: Colors.white,
                       elevation: 0,
                       shape: RoundedRectangleBorder(

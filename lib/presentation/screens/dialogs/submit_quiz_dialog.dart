@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
 
@@ -10,24 +12,7 @@ class SubmitQuizDialog {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        final isDark = Theme.of(context).brightness == Brightness.dark;
-
-        // Design Tokens
-        final dialogBg = isDark
-            ? const Color(0xFF27272A)
-            : const Color(0xFFFFFFFF);
-        final titleColor = isDark
-            ? const Color(0xFFFFFFFF)
-            : const Color(0xFF000000);
-        final contentColor = isDark
-            ? const Color(0xFFA1A1AA)
-            : const Color(0xFF71717A);
-        final closeBtnBg = isDark
-            ? const Color(0xFF3F3F46)
-            : const Color(0xFFF4F4F5);
-        final closeBtnIcon = isDark
-            ? const Color(0xFFA1A1AA)
-            : const Color(0xFF71717A);
+        final colors = context.appColors;
 
         return Dialog(
           backgroundColor: Colors.transparent,
@@ -35,7 +20,7 @@ class SubmitQuizDialog {
           child: Container(
             padding: const EdgeInsets.all(32),
             decoration: BoxDecoration(
-              color: dialogBg,
+              color: colors.card,
               borderRadius: BorderRadius.circular(24),
             ),
             child: Column(
@@ -52,17 +37,17 @@ class SubmitQuizDialog {
                         fontFamily: 'Inter',
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
-                        color: titleColor,
+                        color: colors.title,
                       ),
                     ),
                     IconButton(
                       onPressed: () => context.pop(),
                       style: IconButton.styleFrom(
-                        backgroundColor: closeBtnBg,
+                        backgroundColor: colors.surface,
                         fixedSize: const Size(40, 40),
                         padding: EdgeInsets.zero,
                       ),
-                      icon: Icon(Icons.close, size: 20, color: closeBtnIcon),
+                      icon: Icon(Icons.close, size: 20, color: colors.subtitle),
                     ),
                   ],
                 ),
@@ -75,7 +60,7 @@ class SubmitQuizDialog {
                     fontFamily: 'Inter',
                     fontSize: 14,
                     fontWeight: FontWeight.normal,
-                    color: contentColor,
+                    color: colors.subtitle,
                     height: 1.5,
                   ),
                 ),
@@ -94,7 +79,7 @@ class SubmitQuizDialog {
                           bloc.add(QuizSubmitted());
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF8B5CF6),
+                          backgroundColor: AppTheme.primaryColor,
                           foregroundColor: Colors.white,
                           elevation: 0,
                           shape: RoundedRectangleBorder(

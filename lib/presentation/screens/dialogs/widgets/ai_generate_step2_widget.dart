@@ -5,6 +5,8 @@ import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
 import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/domain/models/ai/ai_file_attachment.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 
 class AiGenerateStep2Widget extends StatefulWidget {
   final TextEditingController textController;
@@ -63,25 +65,10 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final backgroundColor = isDark ? const Color(0xFF27272A) : Colors.white;
-    final borderColor = isDark ? Colors.transparent : const Color(0xFFE4E4E7);
-    final titleColor = isDark ? Colors.white : const Color(0xFF18181B);
-    final closeBtnColor = isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFF4F4F5);
-    final closeIconColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
-    final inputBg = isDark ? const Color(0xFF3F3F46) : const Color(0xFFF4F4F5);
-    final placeholderColor = isDark
-        ? const Color(0xFF71717A)
-        : const Color(0xFFA1A1AA);
-    final attachStroke = isDark
-        ? const Color(0xFF52525B)
-        : const Color(0xFFD4D4D8);
-    final labelColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
+    final colors = context.appColors;
+    final borderColor = isDark ? Colors.transparent : AppTheme.borderColor;
+    final inputBg = isDark ? AppTheme.borderColorDark : AppTheme.cardColorLight;
+    final attachStroke = isDark ? AppTheme.zinc600 : AppTheme.zinc300;
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -92,7 +79,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
         constraints: const BoxConstraints(maxHeight: 800),
         padding: const EdgeInsets.all(32),
         decoration: BoxDecoration(
-          color: backgroundColor,
+          color: colors.card,
           borderRadius: BorderRadius.circular(24),
           border: Border.all(color: borderColor, width: 1),
         ),
@@ -112,7 +99,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                         fontFamily: 'Inter',
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
-                        color: titleColor,
+                        color: colors.title,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -120,12 +107,12 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                   IconButton(
                     onPressed: () => context.pop(),
                     style: IconButton.styleFrom(
-                      backgroundColor: closeBtnColor,
+                      backgroundColor: colors.surface,
                       fixedSize: const Size(40, 40),
                       padding: EdgeInsets.zero,
                       shape: const CircleBorder(),
                     ),
-                    icon: Icon(LucideIcons.x, color: closeIconColor, size: 20),
+                    icon: Icon(LucideIcons.x, color: colors.subtitle, size: 20),
                   ),
                 ],
               ),
@@ -136,7 +123,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                   fontFamily: 'Inter',
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
-                  color: labelColor,
+                  color: colors.subtitle,
                 ),
               ),
               const SizedBox(height: 24),
@@ -159,14 +146,14 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                         style: TextStyle(
                           fontFamily: 'Inter',
                           fontSize: 14,
-                          color: titleColor,
+                          color: colors.title,
                         ),
                         decoration: InputDecoration.collapsed(
                           hintText: localizations.aiContentFieldHint,
                           hintStyle: TextStyle(
                             fontFamily: 'Inter',
                             fontSize: 14,
-                            color: placeholderColor,
+                            color: colors.subtitle,
                           ),
                         ),
                       ),
@@ -181,8 +168,8 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                           fontFamily: 'Inter',
                           fontSize: 12,
                           color: widget.getWordCount() > 10
-                              ? const Color(0xFF8B5CF6)
-                              : labelColor,
+                              ? AppTheme.primaryColor
+                              : colors.subtitle,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -213,7 +200,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                         children: [
                           Icon(
                             LucideIcons.paperclip,
-                            color: labelColor,
+                            color: colors.subtitle,
                             size: 20,
                           ),
                           const SizedBox(width: 12),
@@ -224,7 +211,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                     fontFamily: 'Inter',
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
-                                    color: labelColor,
+                                    color: colors.subtitle,
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 )
@@ -234,7 +221,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                     fontFamily: 'Inter',
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
-                                    color: labelColor,
+                                    color: colors.subtitle,
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -248,7 +235,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                 onTap: widget.onRemoveFile,
                                 child: Icon(
                                   LucideIcons.x,
-                                  color: labelColor,
+                                  color: colors.subtitle,
                                   size: 16,
                                 ),
                               ),
@@ -269,7 +256,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                   fontFamily: 'Inter',
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: labelColor,
+                  color: colors.subtitle,
                 ),
               ),
               const SizedBox(height: 12),
@@ -287,12 +274,12 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                       width: 44,
                       height: 44,
                       decoration: BoxDecoration(
-                        color: closeBtnColor,
+                        color: colors.surface,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Icon(
                         LucideIcons.minus,
-                        color: titleColor,
+                        color: colors.title,
                         size: 18,
                       ),
                     ),
@@ -303,7 +290,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                     child: Container(
                       height: 52,
                       decoration: BoxDecoration(
-                        color: closeBtnColor,
+                        color: colors.surface,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       alignment: Alignment.center,
@@ -313,7 +300,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                           fontFamily: 'Inter',
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
-                          color: titleColor,
+                          color: colors.title,
                         ),
                       ),
                     ),
@@ -330,7 +317,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                       width: 44,
                       height: 44,
                       decoration: BoxDecoration(
-                        color: const Color(0xFF8B5CF6),
+                        color: AppTheme.primaryColor,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: const Icon(
@@ -354,8 +341,8 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                       child: ElevatedButton(
                         onPressed: widget.onBack,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: closeBtnColor,
-                          foregroundColor: titleColor,
+                          backgroundColor: colors.surface,
+                          foregroundColor: colors.title,
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -406,7 +393,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                               }
                             : null,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF8B5CF6),
+                          backgroundColor: AppTheme.primaryColor,
                           foregroundColor: Colors.white,
                           elevation: 0,
                           shape: RoundedRectangleBorder(

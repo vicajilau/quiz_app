@@ -5,6 +5,8 @@ import 'package:quiz_app/core/extensions/string_extensions.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
 import 'package:quiz_app/domain/models/quiz/question_order.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quiz_app/presentation/screens/dialogs/settings_widgets/ai_settings_section.dart';
 import 'package:quiz_app/presentation/screens/dialogs/settings_widgets/exam_settings_section.dart';
 import 'package:quiz_app/presentation/screens/dialogs/settings_widgets/question_settings_section.dart';
@@ -187,18 +189,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final cardColor = isDark ? const Color(0xFF27272A) : Colors.white;
-    final textColor = isDark ? Colors.white : const Color(0xFF18181B);
-    final borderColor = isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFE4E4E7);
-    final closeBtnColor = isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFF4F4F5);
-    final closeIconColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
+    final colors = context.appColors;
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -207,9 +198,9 @@ class _SettingsDialogState extends State<SettingsDialog> {
       child: Container(
         width: 520, // Node Eql6E width
         decoration: BoxDecoration(
-          color: cardColor,
+          color: colors.card,
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: borderColor, width: 1),
+          border: Border.all(color: colors.border, width: 1),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.1),
@@ -234,18 +225,18 @@ class _SettingsDialogState extends State<SettingsDialog> {
                       fontFamily: 'Inter',
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
-                      color: textColor,
+                      color: colors.title,
                     ),
                   ),
                   IconButton(
                     onPressed: () => context.pop(),
                     style: IconButton.styleFrom(
-                      backgroundColor: closeBtnColor,
+                      backgroundColor: colors.surface,
                       fixedSize: const Size(40, 40),
                       padding: EdgeInsets.zero,
                       shape: const CircleBorder(),
                     ),
-                    icon: Icon(LucideIcons.x, size: 20, color: closeIconColor),
+                    icon: Icon(LucideIcons.x, size: 20, color: colors.subtitle),
                   ),
                 ],
               ),
@@ -341,7 +332,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
               child: ElevatedButton(
                 onPressed: _isLoading ? null : _saveSettings,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF8B5CF6),
+                  backgroundColor: AppTheme.primaryColor,
                   foregroundColor: Colors.white,
                   elevation: 0,
                   minimumSize: const Size(double.infinity, 56),

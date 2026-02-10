@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:quiz_app/core/theme/app_theme.dart';
+import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
 
 /// A custom confirmation dialog that matches the app's design language.
 ///
@@ -38,20 +40,10 @@ class CustomConfirmDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final colors = context.appColors;
 
     // Design Tokens matching AIQuestionDialog style
-    final backgroundColor = isDark ? const Color(0xFF27272A) : Colors.white;
-    final borderColor = isDark ? Colors.transparent : const Color(0xFFE4E4E7);
-    final closeBtnColor = isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFF4F4F5);
-    final closeIconColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
-    final titleColor = isDark ? Colors.white : const Color(0xFF18181B);
-    final messageColor = isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
+    final borderColor = isDark ? Colors.transparent : AppTheme.borderColor;
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -61,7 +53,7 @@ class CustomConfirmDialog extends StatelessWidget {
         constraints: const BoxConstraints(maxWidth: 520),
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          color: backgroundColor,
+          color: colors.card,
           borderRadius: BorderRadius.circular(24),
           border: Border.all(color: borderColor, width: 1),
           boxShadow: [
@@ -88,7 +80,7 @@ class CustomConfirmDialog extends StatelessWidget {
                       fontFamily: 'Inter',
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
-                      color: titleColor,
+                      color: colors.title,
                     ),
                   ),
                 ),
@@ -97,16 +89,16 @@ class CustomConfirmDialog extends StatelessWidget {
                   height: 40,
                   margin: const EdgeInsets.only(left: 16),
                   decoration: BoxDecoration(
-                    color: closeBtnColor,
+                    color: colors.surface,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: IconButton(
-                    icon: Icon(LucideIcons.x, color: closeIconColor, size: 20),
+                    icon: Icon(LucideIcons.x, color: colors.subtitle, size: 20),
                     onPressed: () => context.pop(false),
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
                     style: IconButton.styleFrom(
-                      backgroundColor: closeBtnColor,
+                      backgroundColor: colors.surface,
                       shape: const CircleBorder(),
                     ),
                   ),
@@ -124,7 +116,7 @@ class CustomConfirmDialog extends StatelessWidget {
                     fontFamily: 'Inter',
                     fontSize: 14,
                     height: 1.5,
-                    color: messageColor,
+                    color: colors.subtitle,
                   ),
                 ),
               ),
@@ -142,7 +134,8 @@ class CustomConfirmDialog extends StatelessWidget {
                 },
                 style: FilledButton.styleFrom(
                   backgroundColor: isDestructive
-                      ? const Color(0xFFDC2626) // Red 600
+                      ? AppTheme
+                            .errorColor // Red 600
                       : Theme.of(context).primaryColor,
                   foregroundColor: Colors.white,
                   textStyle: const TextStyle(
