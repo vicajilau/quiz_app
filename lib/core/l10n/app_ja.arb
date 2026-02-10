@@ -1078,15 +1078,9 @@
   "@aiGenerationFailed": {
     "description": "Message shown when AI question generation fails."
   },
-  "aiGenerationError": "問題生成エラー：{error}",
-  "@aiGenerationError": {
-    "description": "Error message when generating questions with AI.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "API key invalid"
-      }
-    }
+  "aiGenerationErrorTitle": "問題生成エラー",
+  "@aiGenerationErrorTitle": {
+    "description": "AIによる問題生成時のエラーダイアログのタイトル。"
   },
   "noQuestionsInFile": "インポートされたファイルに問題が見つかりませんでした",
   "@noQuestionsInFile": {

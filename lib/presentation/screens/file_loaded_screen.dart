@@ -337,10 +337,13 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
         if (mounted) {
           context.pop();
 
-          context.presentSnackBar(
-            AppLocalizations.of(
-              context,
-            )!.aiGenerationError(e.toString().cleanExceptionPrefix()),
+          showDialog(
+            context: context,
+            builder: (context) => CustomConfirmDialog(
+              title: AppLocalizations.of(context)!.aiGenerationErrorTitle,
+              message: e.toString().cleanExceptionPrefix(),
+              confirmText: AppLocalizations.of(context)!.acceptButton,
+            ),
           );
         }
       }

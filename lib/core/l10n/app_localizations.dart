@@ -1586,11 +1586,11 @@ abstract class AppLocalizations {
   /// **'Could not generate questions. Try with different content.'**
   String get aiGenerationFailed;
 
-  /// Error message when generating questions with AI.
+  /// Title for the error dialog when generating questions with AI.
   ///
   /// In en, this message translates to:
-  /// **'Error generating questions: {error}'**
-  String aiGenerationError(String error);
+  /// **'Error generating questions'**
+  String get aiGenerationErrorTitle;
 
   /// Message shown when an imported file contains no questions.
   ///

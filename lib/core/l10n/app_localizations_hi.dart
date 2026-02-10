@@ -846,9 +846,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'प्रश्न नहीं बना सके। अलग सामग्री के साथ प्रयास करें।';
 
   @override
-  String aiGenerationError(String error) {
-    return 'प्रश्न बनाने में त्रुटि: $error';
-  }
+  String get aiGenerationErrorTitle => 'प्रश्न बनाने में त्रुटि';
 
   @override
   String get noQuestionsInFile => 'आयातित फ़ाइल में कोई प्रश्न नहीं मिले';

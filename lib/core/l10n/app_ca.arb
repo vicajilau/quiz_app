@@ -1142,15 +1142,9 @@
   "@aiGenerationFailed": {
     "description": "Missatge mostrat quan la generació de preguntes IA falla."
   },
-  "aiGenerationError": "Error en generar preguntes: {error}",
-  "@aiGenerationError": {
-    "description": "Missatge d'error en generar preguntes amb IA.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Clau API no vàlida"
-      }
-    }
+  "aiGenerationErrorTitle": "Error en generar preguntes",
+  "@aiGenerationErrorTitle": {
+    "description": "Títol per al diàleg d'error en generar preguntes amb IA."
   },
   "noQuestionsInFile": "Cap pregunta trobada al fitxer importat",
   "@noQuestionsInFile": {

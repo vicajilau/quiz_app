@@ -855,9 +855,7 @@ class AppLocalizationsCa extends AppLocalizations {
       'No s\'han pogut generar preguntes. Proveu amb contingut diferent.';
 
   @override
-  String aiGenerationError(String error) {
-    return 'Error en generar preguntes: $error';
-  }
+  String get aiGenerationErrorTitle => 'Error en generar preguntes';
 
   @override
   String get noQuestionsInFile => 'Cap pregunta trobada al fitxer importat';

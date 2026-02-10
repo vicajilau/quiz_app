@@ -1138,15 +1138,10 @@
   "@aiGenerationFailed": {
     "description": "Nachricht, die angezeigt wird, wenn die KI-Fragengenerierung fehlschlägt."
   },
-  "aiGenerationError": "Fehler beim Generieren von Fragen: {error}",
-  "@aiGenerationError": {
-    "description": "Fehlermeldung beim Generieren von Fragen mit KI.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "API-Schlüssel ungültig"
-      }
-    }
+
+  "aiGenerationErrorTitle": "Fehler beim Generieren von Fragen",
+  "@aiGenerationErrorTitle": {
+    "description": "Titel für den Fehlerdialog beim Generieren von Fragen mit KI."
   },
   "noQuestionsInFile": "Keine Fragen in der importierten Datei gefunden",
   "@noQuestionsInFile": {

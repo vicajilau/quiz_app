@@ -1070,15 +1070,9 @@
   "@aiGenerationFailed": {
     "description": "Message shown when AI question generation fails."
   },
-  "aiGenerationError": "生成问题时出错：{error}",
-  "@aiGenerationError": {
-    "description": "Error message when generating questions with AI.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "API key invalid"
-      }
-    }
+  "aiGenerationErrorTitle": "生成问题时出错",
+  "@aiGenerationErrorTitle": {
+    "description": "AI 生成问题出错时的对话框标题。"
   },
   "noQuestionsInFile": "导入的文件中未找到问题",
   "@noQuestionsInFile": {

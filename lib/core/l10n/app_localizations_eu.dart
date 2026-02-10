@@ -854,9 +854,7 @@ class AppLocalizationsEu extends AppLocalizations {
       'Ezin izan dira galderak sortu. Saiatu eduki ezberdinarekin.';
 
   @override
-  String aiGenerationError(String error) {
-    return 'Errorea galderak sortzean: $error';
-  }
+  String get aiGenerationErrorTitle => 'Errorea galderak sortzean';
 
   @override
   String get noQuestionsInFile =>
