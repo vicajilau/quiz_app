@@ -13,7 +13,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix: Standardized capitalization to "Sentence case" in Portuguese, Italian, French, Catalan, and Galician localizations for a more modern UI.
 - fix: Updated "Mixed" question type label to "All" (e.g., "Todos", "Tutti", "Tous") across all languages for better clarity.
 - refactor: Changed `FileBloc` to a Singleton to preserve state across screens and resolve navigation issues.
-
 - ui: Complete redesign of the application UI.
 - feat: Added multi-selection support for moving and deleting files.
 - fix: Improved network error messages by distinguishing between OpenAI and Gemini connection failures and localizing them.
