@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gpt_markdown/gpt_markdown.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
@@ -8,10 +7,12 @@ import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_s
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/data/services/ai/ai_service_selector.dart';
-
 import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
 import 'package:quiz_app/core/extensions/string_extensions.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/widgets/ai_assistant_button.dart';
+import 'package:quiz_app/presentation/screens/quiz_execution/widgets/ai_evaluate_button.dart';
+import 'package:quiz_app/presentation/screens/quiz_execution/widgets/ai_evaluation_result.dart';
+import 'package:quiz_app/presentation/screens/quiz_execution/widgets/ai_service_selector.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/widgets/quiz_question_explanation.dart';
 
 /// A widget that handles essay-type questions.
@@ -59,6 +60,7 @@ class _EssayAnswerInputState extends State<EssayAnswerInput> {
   String? _aiEvaluation;
   List<AIService> _availableServices = [];
   AIService? _selectedService;
+  String? _errorMessage;
 
   @override
   void initState() {
@@ -101,6 +103,7 @@ class _EssayAnswerInputState extends State<EssayAnswerInput> {
     if (_isEvaluating || _selectedService == null) return;
 
     setState(() {
+      _errorMessage = null;
       _isEvaluating = true;
     });
 
@@ -129,7 +132,7 @@ class _EssayAnswerInputState extends State<EssayAnswerInput> {
     } catch (e) {
       if (mounted) {
         setState(() {
-          _aiEvaluation = AppLocalizations.of(
+          _errorMessage = AppLocalizations.of(
             context,
           )!.aiEvaluationError(e.toString().cleanErrorMessage());
         });
@@ -202,141 +205,29 @@ class _EssayAnswerInputState extends State<EssayAnswerInput> {
                   // AI Evaluation Section
                   if (widget.isAiAvailable) ...[
                     const SizedBox(height: 16),
-                    // AI Service Selector (if multiple services available)
-                    if (_availableServices.length > 1) ...[
-                      Row(
-                        children: [
-                          const SizedBox(width: 8),
-                          Text(
-                            AppLocalizations.of(context)!.aiServiceLabel,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: DropdownButtonFormField<AIService>(
-                              initialValue: _selectedService,
-                              decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                  vertical: 8,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: BorderSide(
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.outline,
-                                  ),
-                                ),
-                              ),
-                              items: _availableServices.map((service) {
-                                return DropdownMenuItem<AIService>(
-                                  value: service,
-                                  child: Text(
-                                    service.serviceName,
-                                    style: const TextStyle(fontSize: 14),
-                                  ),
-                                );
-                              }).toList(),
-                              onChanged: (AIService? newService) {
-                                setState(() {
-                                  _selectedService = newService;
-                                  // Reset evaluation when changing service
-                                  _aiEvaluation = null;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 12),
-                    ],
-
-                    // Evaluate Button
-                    Center(
-                      child: ElevatedButton.icon(
-                        onPressed: _isEvaluating || _selectedService == null
-                            ? null
-                            : _evaluateEssayWithAI,
-                        icon: _isEvaluating
-                            ? const SizedBox(
-                                width: 16,
-                                height: 16,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                ),
-                              )
-                            : const Icon(Icons.psychology, size: 18),
-                        label: Text(
-                          _isEvaluating
-                              ? AppLocalizations.of(context)!.aiThinking
-                              : AppLocalizations.of(context)!.evaluateWithAI,
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Theme.of(
-                            context,
-                          ).colorScheme.primaryContainer,
-                          foregroundColor: Theme.of(
-                            context,
-                          ).colorScheme.onPrimaryContainer,
-                        ),
-                      ),
+                    AiServiceSelector(
+                      availableServices: _availableServices,
+                      selectedService: _selectedService,
+                      onServiceChanged: (newService) {
+                        setState(() {
+                          _selectedService = newService;
+                          _aiEvaluation = null;
+                        });
+                      },
                     ),
-
-                    // Evaluation Result
-                    if (_aiEvaluation != null) ...[
+                    if (_errorMessage != null || _aiEvaluation == null)
+                      AiEvaluateButton(
+                        isEvaluating: _isEvaluating,
+                        selectedService: _selectedService,
+                        availableServicesCount: _availableServices.length,
+                        onEvaluate: _evaluateEssayWithAI,
+                      ),
+                    if ((_aiEvaluation != null || _errorMessage != null) &&
+                        !_isEvaluating) ...[
                       const SizedBox(height: 16),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(16.0),
-                        decoration: BoxDecoration(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.surfaceContainerHighest,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.outline.withValues(alpha: 0.2),
-                          ),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.auto_awesome,
-                                  size: 20,
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  AppLocalizations.of(context)!.aiEvaluation,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.primary,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 12),
-                            GptMarkdown(
-                              _aiEvaluation!,
-                              style: TextStyle(
-                                color: Theme.of(
-                                  context,
-                                ).colorScheme.onSurfaceVariant,
-                              ),
-                            ),
-                          ],
-                        ),
+                      AiEvaluationResult(
+                        aiEvaluation: _aiEvaluation,
+                        errorMessage: _errorMessage,
                       ),
                     ],
                   ],
