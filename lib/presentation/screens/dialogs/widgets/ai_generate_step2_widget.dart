@@ -175,7 +175,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                 fontFamily: 'Inter',
                                 fontSize: 12,
                                 color: widget.getWordCount() > 10
-                                    ? const Color(0xFF8B5CF6)
+                                    ? AppTheme.primaryColor
                                     : colors.subtitle,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -328,7 +328,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                             width: 44,
                             height: 44,
                             decoration: BoxDecoration(
-                              color: const Color(0xFF8B5CF6),
+                              color: AppTheme.primaryColor,
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: const Icon(
@@ -408,7 +408,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                             }
                           : null,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF8B5CF6),
+                        backgroundColor: AppTheme.primaryColor,
                         foregroundColor: Colors.white,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
