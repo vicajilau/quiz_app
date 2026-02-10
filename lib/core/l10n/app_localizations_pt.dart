@@ -207,10 +207,10 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get resolveUnansweredQuestions => 'Resolve questions';
+  String get resolveUnansweredQuestions => 'Resolver perguntas';
 
   @override
-  String get abandonQuiz => 'Abandonar quiz';
+  String get abandonQuiz => 'Abandone o questionário';
 
   @override
   String get abandonQuizConfirmation =>

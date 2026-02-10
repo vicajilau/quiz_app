@@ -226,8 +226,7 @@
   },
   "finishQuizConfirmation": "Êtes-vous sûr de vouloir terminer le quiz ? Vous ne pourrez plus modifier vos réponses après.",
   "@finishQuizConfirmation": {
-    "description": "Message de confirmation pour terminer      }
-    }
+    "description": "Message de confirmation pour terminer"
   },
   "resolveUnansweredQuestions": "Résoudre les questions",
   "@resolveUnansweredQuestions": {

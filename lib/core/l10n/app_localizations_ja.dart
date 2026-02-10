@@ -201,7 +201,7 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get resolveUnansweredQuestions => 'Resolve questions';
+  String get resolveUnansweredQuestions => '未回答の問題を解く';
 
   @override
   String get abandonQuiz => 'クイズを放棄';

@@ -206,7 +206,7 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get resolveUnansweredQuestions => 'Resolve questions';
+  String get resolveUnansweredQuestions => 'प्रश्न हल करें';
 
   @override
   String get abandonQuiz => 'क्विज़ छोड़ें';
