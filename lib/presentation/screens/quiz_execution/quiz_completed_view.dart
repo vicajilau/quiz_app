@@ -92,7 +92,7 @@ class QuizCompletedView extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                '${state.score.toStringAsFixed(0)}%',
+                                '${state.score % 1 == 0 ? state.score.toStringAsFixed(0) : state.score.toStringAsFixed(1)}%',
                                 style: theme.textTheme.headlineMedium?.copyWith(
                                   fontWeight: FontWeight.bold,
                                   color: state.score >= 70

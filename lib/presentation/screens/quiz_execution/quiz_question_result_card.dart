@@ -44,12 +44,14 @@ class QuizQuestionResultCard extends StatelessWidget {
     if (scoreDelta > 0) {
       deltaColor = successColor;
       deltaText =
-          '+${scoreDelta.toStringAsFixed(scoreDelta.truncateToDouble() == scoreDelta ? 0 : 1)}';
+          '+${scoreDelta % 1 == 0 ? scoreDelta.toStringAsFixed(0) : (scoreDelta * 10 % 1 == 0 ? scoreDelta.toStringAsFixed(1) : scoreDelta.toStringAsFixed(2))}';
     } else if (scoreDelta < 0) {
       deltaColor = errorColor;
-      deltaText = scoreDelta.toStringAsFixed(
-        scoreDelta.truncateToDouble() == scoreDelta ? 0 : 1,
-      );
+      deltaText = scoreDelta % 1 == 0
+          ? scoreDelta.toStringAsFixed(0)
+          : (scoreDelta * 10 % 1 == 0
+                ? scoreDelta.toStringAsFixed(1)
+                : scoreDelta.toStringAsFixed(2));
     } else {
       deltaColor = neutralColor;
       deltaText = '0';
