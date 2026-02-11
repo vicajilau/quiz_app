@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Quiz App</string>
+	<string>Quiz Appl</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -53,7 +53,7 @@
 		<string>zh</string>
 	</array>
 	<key>CFBundleName</key>
-	<string>Quiz App</string>
+	<string>Quiz Appl</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -109,5 +109,7 @@
 	<string>This app needs access to the photo library to select quiz files or images.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app needs access to the camera to take photos for quiz questions.</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>
