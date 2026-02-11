@@ -30,6 +30,7 @@ class _QuestionCountSelectionDialogState
   late TextEditingController _penaltyController;
   late TextEditingController _questionCountController;
   final FocusNode _questionCountFocusNode = FocusNode();
+  final FocusNode _penaltyFocusNode = FocusNode();
 
   @override
   void initState() {
@@ -52,6 +53,25 @@ class _QuestionCountSelectionDialogState
         }
       }
     });
+
+    _penaltyFocusNode.addListener(() {
+      if (!_penaltyFocusNode.hasFocus) {
+        final text = _penaltyController.text.replaceAll(',', '.');
+        final val = double.tryParse(text);
+        if (text.isEmpty || val == null) {
+          setState(() {
+            _penaltyAmount = 0.05;
+            _penaltyController.text = '0.05';
+          });
+        } else if (val == 0) {
+          setState(() {
+            _penaltyAmount = 0.0;
+            _penaltyController.text = '0.00';
+            _subtractPoints = false;
+          });
+        }
+      }
+    });
     _loadSavedSettings();
   }
 
@@ -60,6 +80,7 @@ class _QuestionCountSelectionDialogState
     _penaltyController.dispose();
     _questionCountController.dispose();
     _questionCountFocusNode.dispose();
+    _penaltyFocusNode.dispose();
     super.dispose();
   }
 
@@ -136,6 +157,9 @@ class _QuestionCountSelectionDialogState
               .toStringAsFixed(2),
         );
         _penaltyController.text = _penaltyAmount.toStringAsFixed(2);
+        if (_penaltyAmount == 0.0) {
+          _subtractPoints = false;
+        }
       }
     });
   }
@@ -349,14 +373,16 @@ class _QuestionCountSelectionDialogState
                                         final val = int.tryParse(value);
                                         if (val != null) {
                                           setState(() {
-                                            _selectedCount = val.clamp(
+                                            final clampedVal = val.clamp(
                                               1,
                                               widget.totalQuestions,
                                             );
-                                            // If user typed 0, force it to 1 immediately for better UX
-                                            if (val <= 0) {
+                                            _selectedCount = clampedVal;
+
+                                            // If user typed a value outside range, update the text field
+                                            if (val != clampedVal) {
                                               _questionCountController.text =
-                                                  '1';
+                                                  clampedVal.toString();
                                               _questionCountController
                                                       .selection =
                                                   TextSelection.fromPosition(
@@ -672,7 +698,15 @@ class _QuestionCountSelectionDialogState
                 ),
                 Switch(
                   value: _subtractPoints,
-                  onChanged: (value) => setState(() => _subtractPoints = value),
+                  onChanged: (value) {
+                    setState(() {
+                      _subtractPoints = value;
+                      if (_subtractPoints && _penaltyAmount <= 0.0) {
+                        _penaltyAmount = 0.05;
+                        _penaltyController.text = '0.05';
+                      }
+                    });
+                  },
                   activeTrackColor: primaryColor,
                   activeThumbColor: Colors.white,
                   inactiveThumbColor: Colors.white,
@@ -721,6 +755,7 @@ class _QuestionCountSelectionDialogState
                         alignment: Alignment.center,
                         child: TextFormField(
                           controller: _penaltyController,
+                          focusNode: _penaltyFocusNode,
                           keyboardType: const TextInputType.numberWithOptions(
                             decimal: true,
                           ),
