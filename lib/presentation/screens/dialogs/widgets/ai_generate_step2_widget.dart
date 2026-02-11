@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
@@ -10,6 +11,7 @@ import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.d
 
 class AiGenerateStep2Widget extends StatefulWidget {
   final TextEditingController textController;
+  final TextEditingController questionCountController;
   final int questionCount;
   final AiFileAttachment? fileAttachment;
   final Set<AiQuestionType> selectedQuestionTypes;
@@ -27,6 +29,7 @@ class AiGenerateStep2Widget extends StatefulWidget {
   const AiGenerateStep2Widget({
     super.key,
     required this.textController,
+    required this.questionCountController,
     required this.questionCount,
     required this.fileAttachment,
     required this.selectedQuestionTypes,
@@ -47,16 +50,33 @@ class AiGenerateStep2Widget extends StatefulWidget {
 }
 
 class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
+  late final FocusNode _questionCountFocusNode;
+
   @override
   void initState() {
     super.initState();
     widget.textController.addListener(_onTextChanged);
+    _questionCountFocusNode = FocusNode();
+    _questionCountFocusNode.addListener(_onFocusChange);
   }
 
   @override
   void dispose() {
     widget.textController.removeListener(_onTextChanged);
+    _questionCountFocusNode.removeListener(_onFocusChange);
+    _questionCountFocusNode.dispose();
     super.dispose();
+  }
+
+  void _onFocusChange() {
+    if (!_questionCountFocusNode.hasFocus) {
+      final text = widget.questionCountController.text;
+      final count = int.tryParse(text);
+      if (count == null || count < 1 || count > 50) {
+        // Reset to current valid count
+        widget.questionCountController.text = widget.questionCount.toString();
+      }
+    }
   }
 
   void _onTextChanged() {
@@ -305,14 +325,37 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                               borderRadius: BorderRadius.circular(12),
                             ),
                             alignment: Alignment.center,
-                            child: Text(
-                              '${widget.questionCount}',
+                            child: TextField(
+                              controller: widget.questionCountController,
+                              focusNode: _questionCountFocusNode,
+                              keyboardType: TextInputType.number,
+                              textAlign: TextAlign.center,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly,
+                                LengthLimitingTextInputFormatter(2),
+                              ],
                               style: TextStyle(
                                 fontFamily: 'Inter',
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                                 color: colors.title,
                               ),
+                              decoration: const InputDecoration(
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.zero,
+                                isDense: true,
+                              ),
+                              onChanged: (value) {
+                                if (value.isEmpty) return;
+                                final count = int.tryParse(value);
+                                if (count != null) {
+                                  if (count > 50) {
+                                    widget.onQuestionCountChanged(50);
+                                  } else if (count > 0) {
+                                    widget.onQuestionCountChanged(count);
+                                  }
+                                }
+                              },
                             ),
                           ),
                         ),
@@ -405,7 +448,8 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                 preferredService: widget.selectedService,
                                 preferredModel: widget.selectedModel,
                                 file: widget.fileAttachment,
-                                isTopicMode: widget.fileAttachment == null &&
+                                isTopicMode:
+                                    widget.fileAttachment == null &&
                                     widget.getTopicCount() <= 10,
                               );
                               context.pop(config);
