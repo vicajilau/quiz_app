@@ -2425,6 +2425,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'All'**
   String get allLabel;
+
+  /// Label for the checkbox to subtract points for incorrect answers
+  ///
+  /// In en, this message translates to:
+  /// **'Subtract points for wrong answer'**
+  String get subtractPointsLabel;
+
+  /// Label for the input field to set the penalty amount
+  ///
+  /// In en, this message translates to:
+  /// **'Penalty amount'**
+  String get penaltyAmountLabel;
 }
 
 class _AppLocalizationsDelegate

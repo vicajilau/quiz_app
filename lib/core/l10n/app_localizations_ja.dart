@@ -1284,4 +1284,10 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get allLabel => 'すべて';
+
+  @override
+  String get subtractPointsLabel => '不正解でポイントを減点';
+
+  @override
+  String get penaltyAmountLabel => 'ペナルティ額';
 }

@@ -10,5 +10,16 @@ class QuizConfigStoredSettings {
   final bool? isStudyMode;
 
   /// Creates a [QuizConfigStoredSettings] instance.
-  const QuizConfigStoredSettings({this.questionCount, this.isStudyMode});
+  const QuizConfigStoredSettings({
+    this.questionCount,
+    this.isStudyMode,
+    this.subtractPoints,
+    this.penaltyAmount,
+  });
+
+  /// Whether to subtract points for incorrect answers.
+  final bool? subtractPoints;
+
+  /// The amount of points to subtract for each incorrect answer.
+  final double? penaltyAmount;
 }

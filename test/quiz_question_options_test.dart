@@ -10,6 +10,7 @@ import 'package:quiz_app/presentation/screens/quiz_execution/quiz_question_optio
 import 'package:quiz_app/presentation/screens/quiz_execution/widgets/question_option_tile.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_config.dart';
 
 class FakeQuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState>
     implements QuizExecutionBloc {
@@ -33,6 +34,7 @@ void main() {
       questions: [question],
       currentQuestionIndex: 0,
       userAnswers: {},
+      quizConfig: const QuizConfig(questionCount: 1, isStudyMode: false),
     );
 
     final bloc = FakeQuizExecutionBloc(state);

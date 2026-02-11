@@ -442,6 +442,13 @@
         "example": "3"
       }
     }
+  },
+  "subtractPointsLabel": "Αφαίρεση πόντων για λάθος απάντηση",
+  "@subtractPointsLabel": {
+    "description": "Label for the checkbox to subtract points for incorrect answers"
+  },
+  "penaltyAmountLabel": "Ποσό ποινής",
+  "@penaltyAmountLabel": {
+    "description": "Label for the input field to set the penalty amount"
   }
 }
-

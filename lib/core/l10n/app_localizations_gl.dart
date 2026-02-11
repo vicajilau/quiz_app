@@ -1349,4 +1349,10 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get allLabel => 'Todas';
+
+  @override
+  String get subtractPointsLabel => 'Restar puntos por resposta incorrecta';
+
+  @override
+  String get penaltyAmountLabel => 'Cantidade de penalización';
 }

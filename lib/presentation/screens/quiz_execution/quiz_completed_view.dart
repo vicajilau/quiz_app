@@ -141,11 +141,24 @@ class QuizCompletedView extends StatelessWidget {
                 ...state.questionResults.asMap().entries.map((entry) {
                   final index = entry.key;
                   final result = entry.value;
+
+                  double scoreDelta = 0.0;
+                  if (result.isCorrect) {
+                    scoreDelta = 1.0;
+                  } else if (result.userAnswers.isNotEmpty ||
+                      (result.essayAnswer.isNotEmpty == true)) {
+                    // Answered but incorrect
+                    if (state.quizConfig.subtractPoints) {
+                      scoreDelta = -state.quizConfig.penaltyAmount;
+                    }
+                  }
+
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 12.0),
                     child: QuizQuestionResultCard(
                       result: result,
                       questionNumber: index + 1,
+                      scoreDelta: scoreDelta,
                     ),
                   );
                 }),
@@ -229,7 +242,7 @@ class QuizCompletedView extends StatelessWidget {
       // Start a new quiz with only the failed questions
       final bloc = BlocProvider.of<QuizExecutionBloc>(context);
       bloc.add(
-        QuizExecutionStarted(failedQuestions, isStudyMode: state.isStudyMode),
+        QuizExecutionStarted(failedQuestions, quizConfig: state.quizConfig),
       );
     }
   }

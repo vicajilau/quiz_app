@@ -1330,4 +1330,10 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get allLabel => 'सभी';
+
+  @override
+  String get subtractPointsLabel => 'गलत उत्तर के लिए अंक घटाएं';
+
+  @override
+  String get penaltyAmountLabel => 'दंड राशि';
 }

@@ -1,5 +1,6 @@
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_config.dart';
 
 /// Abstract class representing the base state for quiz execution.
 abstract class QuizExecutionState {}
@@ -18,17 +19,19 @@ class QuizExecutionInProgress extends QuizExecutionState {
   final Set<int>
   validatedQuestions; // Indices of questions that have been checked in Study Mode
   final bool isStudyMode;
+  final QuizConfig quizConfig;
 
   QuizExecutionInProgress({
     required this.questions,
     required this.currentQuestionIndex,
     required this.userAnswers,
+    required this.quizConfig,
     Map<int, String>? essayAnswers,
     Set<int>? validatedQuestions,
-    this.isStudyMode = false,
   }) : totalQuestions = questions.length,
        essayAnswers = essayAnswers ?? {},
-       validatedQuestions = validatedQuestions ?? {};
+       validatedQuestions = validatedQuestions ?? {},
+       isStudyMode = quizConfig.isStudyMode;
 
   /// Get the current question
   Question get currentQuestion => questions[currentQuestionIndex];
@@ -88,7 +91,7 @@ class QuizExecutionInProgress extends QuizExecutionState {
     Map<int, List<int>>? userAnswers,
     Map<int, String>? essayAnswers,
     Set<int>? validatedQuestions,
-    bool? isStudyMode,
+    QuizConfig? quizConfig,
   }) {
     return QuizExecutionInProgress(
       questions: questions ?? this.questions,
@@ -96,7 +99,7 @@ class QuizExecutionInProgress extends QuizExecutionState {
       userAnswers: userAnswers ?? this.userAnswers,
       essayAnswers: essayAnswers ?? this.essayAnswers,
       validatedQuestions: validatedQuestions ?? this.validatedQuestions,
-      isStudyMode: isStudyMode ?? this.isStudyMode,
+      quizConfig: quizConfig ?? this.quizConfig,
     );
   }
 }
@@ -110,6 +113,7 @@ class QuizExecutionCompleted extends QuizExecutionState {
   final int totalQuestions;
   final double score; // percentage
   final bool isStudyMode;
+  final QuizConfig quizConfig;
 
   QuizExecutionCompleted({
     required this.questions,
@@ -117,8 +121,9 @@ class QuizExecutionCompleted extends QuizExecutionState {
     required this.essayAnswers,
     required this.correctAnswers,
     required this.totalQuestions,
-    required this.isStudyMode,
-  }) : score = (correctAnswers / totalQuestions) * 100;
+    required this.quizConfig,
+    required this.score,
+  }) : isStudyMode = quizConfig.isStudyMode;
 
   /// Get details for each question
   List<QuestionResult> get questionResults {

@@ -1348,4 +1348,10 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get allLabel => 'Totes';
+
+  @override
+  String get subtractPointsLabel => 'Restar punts per resposta incorrecta';
+
+  @override
+  String get penaltyAmountLabel => 'Quantitat de penalització';
 }

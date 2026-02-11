@@ -1705,6 +1705,13 @@
         "example": "3"
       }
     }
+  },
+  "subtractPointsLabel": "答错扣分",
+  "@subtractPointsLabel": {
+    "description": "Label for the checkbox to subtract points for incorrect answers"
+  },
+  "penaltyAmountLabel": "扣分金额",
+  "@penaltyAmountLabel": {
+    "description": "Label for the input field to set the penalty amount"
   }
 }
-

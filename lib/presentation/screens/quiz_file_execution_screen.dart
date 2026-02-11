@@ -6,6 +6,7 @@ import 'package:quiz_app/core/service_locator.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_config.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:quiz_app/data/services/quiz_service.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
@@ -75,11 +76,15 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
 
         return BlocProvider<QuizExecutionBloc>(
           create: (_) {
-            final quizConfig = ServiceLocator.instance.getQuizConfig();
-            final isStudyMode = quizConfig?.isStudyMode ?? false;
+            final quizConfig =
+                ServiceLocator.instance.getQuizConfig() ??
+                QuizConfig(
+                  questionCount: questionsToUse.length,
+                  isStudyMode: false,
+                );
 
             return ServiceLocator.instance.getIt<QuizExecutionBloc>()..add(
-              QuizExecutionStarted(questionsToUse, isStudyMode: isStudyMode),
+              QuizExecutionStarted(questionsToUse, quizConfig: quizConfig),
             );
           },
           child: Builder(

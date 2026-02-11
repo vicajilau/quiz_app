@@ -1341,4 +1341,10 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get allLabel => 'Guztiak';
+
+  @override
+  String get subtractPointsLabel => 'Kendu puntuak erantzun okerrengatik';
+
+  @override
+  String get penaltyAmountLabel => 'Penalizazio kopurua';
 }

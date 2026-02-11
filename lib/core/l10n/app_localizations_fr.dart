@@ -1349,4 +1349,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get allLabel => 'Toutes';
+
+  @override
+  String get subtractPointsLabel =>
+      'Retirer des points pour une mauvaise réponse';
+
+  @override
+  String get penaltyAmountLabel => 'Montant de la pénalité';
 }

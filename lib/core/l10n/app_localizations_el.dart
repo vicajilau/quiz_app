@@ -1351,4 +1351,10 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get allLabel => 'Όλες';
+
+  @override
+  String get subtractPointsLabel => 'Αφαίρεση πόντων για λάθος απάντηση';
+
+  @override
+  String get penaltyAmountLabel => 'Ποσό ποινής';
 }

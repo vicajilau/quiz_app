@@ -1864,5 +1864,13 @@
   "allLabel": "All",
   "@allLabel": {
     "description": "Label for the option to select all questions"
+  },
+  "subtractPointsLabel": "Subtract points for wrong answer",
+  "@subtractPointsLabel": {
+    "description": "Label for the checkbox to subtract points for incorrect answers"
+  },
+  "penaltyAmountLabel": "Penalty amount",
+  "@penaltyAmountLabel": {
+    "description": "Label for the input field to set the penalty amount"
   }
 }

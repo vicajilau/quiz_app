@@ -1713,6 +1713,13 @@
         "example": "3"
       }
     }
+  },
+  "subtractPointsLabel": "不正解でポイントを減点",
+  "@subtractPointsLabel": {
+    "description": "Label for the checkbox to subtract points for incorrect answers"
+  },
+  "penaltyAmountLabel": "ペナルティ額",
+  "@penaltyAmountLabel": {
+    "description": "Label for the input field to set the penalty amount"
   }
 }
-

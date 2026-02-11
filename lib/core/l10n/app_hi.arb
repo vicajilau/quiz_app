@@ -1713,6 +1713,13 @@
         "example": "3"
       }
     }
+  },
+  "subtractPointsLabel": "गलत उत्तर के लिए अंक घटाएं",
+  "@subtractPointsLabel": {
+    "description": "Label for the checkbox to subtract points for incorrect answers"
+  },
+  "penaltyAmountLabel": "दंड राशि",
+  "@penaltyAmountLabel": {
+    "description": "Label for the input field to set the penalty amount"
   }
 }
-

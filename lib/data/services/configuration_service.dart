@@ -253,6 +253,9 @@ class ConfigurationService {
     );
   }
 
+  static const String _lastQuizSubtractPointsKey = 'last_quiz_subtract_points';
+  static const String _lastQuizPenaltyAmountKey = 'last_quiz_penalty_amount';
+
   /// Saves the Quiz Config settings
   Future<void> saveQuizConfigSettings(QuizConfigStoredSettings settings) async {
     final prefs = await SharedPreferences.getInstance();
@@ -265,6 +268,12 @@ class ConfigurationService {
     if (settings.isStudyMode != null) {
       await prefs.setBool(_lastQuizModeKey, settings.isStudyMode!);
     }
+    if (settings.subtractPoints != null) {
+      await prefs.setBool(_lastQuizSubtractPointsKey, settings.subtractPoints!);
+    }
+    if (settings.penaltyAmount != null) {
+      await prefs.setDouble(_lastQuizPenaltyAmountKey, settings.penaltyAmount!);
+    }
   }
 
   /// Gets the Quiz Config settings
@@ -274,6 +283,8 @@ class ConfigurationService {
     return QuizConfigStoredSettings(
       questionCount: prefs.getInt(_lastQuestionCountKey),
       isStudyMode: prefs.getBool(_lastQuizModeKey),
+      subtractPoints: prefs.getBool(_lastQuizSubtractPointsKey),
+      penaltyAmount: prefs.getDouble(_lastQuizPenaltyAmountKey),
     );
   }
 

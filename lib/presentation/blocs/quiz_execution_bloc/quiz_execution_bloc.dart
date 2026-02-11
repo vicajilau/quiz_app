@@ -14,7 +14,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
           questions: event.questions,
           currentQuestionIndex: 0,
           userAnswers: {},
-          isStudyMode: event.isStudyMode,
+          quizConfig: event.quizConfig,
         ),
       );
     });
@@ -145,15 +145,40 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
 
         // Calculate correct answers
         int correctCount = 0;
+        int incorrectCount = 0;
+
         for (int i = 0; i < currentState.questions.length; i++) {
           final question = currentState.questions[i];
           final userAnswer = currentState.userAnswers[i] ?? [];
           final essayAnswer = currentState.essayAnswers[i] ?? '';
 
-          if (_isAnswerCorrect(question, userAnswer, essayAnswer)) {
-            correctCount++;
+          // Determine if answered
+          bool isAnswered = false;
+          if (question.type == QuestionType.essay) {
+            isAnswered = essayAnswer.trim().isNotEmpty;
+          } else {
+            isAnswered = userAnswer.isNotEmpty;
+          }
+
+          if (isAnswered) {
+            if (_isAnswerCorrect(question, userAnswer, essayAnswer)) {
+              correctCount++;
+            } else {
+              incorrectCount++;
+            }
           }
         }
+
+        // Calculate score
+        double penalty = currentState.quizConfig.subtractPoints
+            ? currentState.quizConfig.penaltyAmount
+            : 0.0;
+
+        double netScore = correctCount - (incorrectCount * penalty);
+        double totalQuestions = currentState.totalQuestions.toDouble();
+        double scorePercentage = totalQuestions > 0
+            ? (netScore / totalQuestions) * 100
+            : 0.0;
 
         emit(
           QuizExecutionCompleted(
@@ -162,7 +187,8 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
             essayAnswers: currentState.essayAnswers,
             correctAnswers: correctCount,
             totalQuestions: currentState.totalQuestions,
-            isStudyMode: currentState.isStudyMode,
+            quizConfig: currentState.quizConfig,
+            score: scorePercentage,
           ),
         );
       }
@@ -172,19 +198,6 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
     on<QuizRestarted>((event, emit) {
       if (state is QuizExecutionCompleted) {
         final completedState = state as QuizExecutionCompleted;
-        // NOTE: We don't have isStudyMode persisted in CompletedState usually,
-        // but for restart we might need it.
-        // For now defaulting to false or we need to pass it in Restart event?
-        // Let's assume restart resets to basic mode or we need to capture it.
-        // Actually, preventing regression:
-        // If we restart, we lose the isStudyMode unless we stored it in CompletedState too.
-        // Let's modify logic to perhaps keep it simple for now,
-        // or just accept it resets.
-        // Given complexity, let's just initialize false, or better,
-        // we should probably pass it back.
-        // BUT, for this specific request "Skip not working",
-        // I will just init valid-looking state.
-
         emit(
           QuizExecutionInProgress(
             questions: completedState.questions,
@@ -192,7 +205,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
             userAnswers: {},
             essayAnswers: {},
             validatedQuestions: {},
-            isStudyMode: completedState.isStudyMode,
+            quizConfig: completedState.quizConfig,
           ),
         );
       }

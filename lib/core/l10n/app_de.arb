@@ -1811,6 +1811,13 @@
         "example": "3"
       }
     }
+  },
+  "subtractPointsLabel": "Punkte für falsche Antwort abziehen",
+  "@subtractPointsLabel": {
+    "description": "Label for the checkbox to subtract points for incorrect answers"
+  },
+  "penaltyAmountLabel": "Strafbetrag",
+  "@penaltyAmountLabel": {
+    "description": "Label for the input field to set the penalty amount"
   }
 }
-

@@ -1276,4 +1276,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get allLabel => '全部';
+
+  @override
+  String get subtractPointsLabel => '答错扣分';
+
+  @override
+  String get penaltyAmountLabel => '扣分金额';
 }

@@ -1765,6 +1765,13 @@
         "example": "3"
       }
     }
+  },
+  "subtractPointsLabel": "خصم نقاط للإجابة الخاطئة",
+  "@subtractPointsLabel": {
+    "description": "Label for the checkbox to subtract points for incorrect answers"
+  },
+  "penaltyAmountLabel": "مبلغ الغرامة",
+  "@penaltyAmountLabel": {
+    "description": "Label for the input field to set the penalty amount"
   }
 }
-

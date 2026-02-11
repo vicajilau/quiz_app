@@ -1333,4 +1333,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get allLabel => 'All';
+
+  @override
+  String get subtractPointsLabel => 'Subtract points for wrong answer';
+
+  @override
+  String get penaltyAmountLabel => 'Penalty amount';
 }

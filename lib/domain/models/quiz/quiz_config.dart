@@ -12,12 +12,20 @@ class QuizConfig {
   /// Whether a time limit is enabled for the quiz.
   final bool enableTimeLimit;
 
+  /// Whether to subtract points for incorrect answers.
+  final bool subtractPoints;
+
+  /// The amount of points to subtract for each incorrect answer.
+  final double penaltyAmount;
+
   /// Creates a [QuizConfig] instance with the specified settings.
   const QuizConfig({
     required this.questionCount,
     this.isStudyMode = false,
     this.enableTimeLimit = false,
     this.timeLimitMinutes,
+    this.subtractPoints = false,
+    this.penaltyAmount = 0.0,
   });
 
   @override
@@ -28,7 +36,9 @@ class QuizConfig {
         other.questionCount == questionCount &&
         other.isStudyMode == isStudyMode &&
         other.enableTimeLimit == enableTimeLimit &&
-        other.timeLimitMinutes == timeLimitMinutes;
+        other.timeLimitMinutes == timeLimitMinutes &&
+        other.subtractPoints == subtractPoints &&
+        other.penaltyAmount == penaltyAmount;
   }
 
   @override
@@ -36,9 +46,11 @@ class QuizConfig {
       questionCount.hashCode ^
       isStudyMode.hashCode ^
       enableTimeLimit.hashCode ^
-      timeLimitMinutes.hashCode;
+      timeLimitMinutes.hashCode ^
+      subtractPoints.hashCode ^
+      penaltyAmount.hashCode;
 
   @override
   String toString() =>
-      'QuizConfig(questionCount: $questionCount, isStudyMode: $isStudyMode, enableTimeLimit: $enableTimeLimit, timeLimitMinutes: $timeLimitMinutes)';
+      'QuizConfig(questionCount: $questionCount, isStudyMode: $isStudyMode, enableTimeLimit: $enableTimeLimit, timeLimitMinutes: $timeLimitMinutes, subtractPoints: $subtractPoints, penaltyAmount: $penaltyAmount)';
 }

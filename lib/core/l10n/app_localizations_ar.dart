@@ -1318,4 +1318,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get allLabel => 'الكل';
+
+  @override
+  String get subtractPointsLabel => 'خصم نقاط للإجابة الخاطئة';
+
+  @override
+  String get penaltyAmountLabel => 'مبلغ الغرامة';
 }
