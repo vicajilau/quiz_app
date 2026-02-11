@@ -208,6 +208,20 @@
       }
     }
   },
+  "questionOfTotal": "प्रश्न {current} / {total}",
+  "@questionOfTotal": {
+    "description": "वर्तमान प्रश्न संख्या और कुल प्रश्नों को दर्शाने वाला लेबल",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
   "previous": "पिछला",
   "@previous": {
     "description": "Previous button text in quiz navigation"

@@ -37,7 +37,10 @@ class QuizProgressIndicator extends StatelessWidget {
                 children: [
                   Flexible(
                     child: Text(
-                      'Question ${state.currentQuestionIndex + 1} of ${state.totalQuestions}',
+                      AppLocalizations.of(context)!.questionOfTotal(
+                        state.currentQuestionIndex + 1,
+                        state.totalQuestions,
+                      ),
                       style: TextStyle(
                         fontFamily: 'Inter',
                         fontSize: 14,

@@ -169,6 +169,11 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String questionOfTotal(int current, int total) {
+    return '第 $current 题，共 $total 题';
+  }
+
+  @override
   String get previous => '上一个';
 
   @override

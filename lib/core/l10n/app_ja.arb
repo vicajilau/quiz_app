@@ -208,6 +208,20 @@
       }
     }
   },
+  "questionOfTotal": "{total} 問中 {current} 問目",
+  "@questionOfTotal": {
+    "description": "現在の問題番号と全問題数を表示するラベル",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
   "previous": "前へ",
   "@previous": {
     "description": "Previous button text in quiz navigation"

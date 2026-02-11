@@ -208,6 +208,20 @@
       }
     }
   },
+  "questionOfTotal": "Question {current} sur {total}",
+  "@questionOfTotal": {
+    "description": "Libellé indiquant le numéro de la question actuelle et le nombre total de questions",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
   "previous": "Précédent",
   "@previous": {
     "description": "Texte du bouton précédent dans la navigation du quiz"

@@ -416,6 +416,12 @@ abstract class AppLocalizations {
   /// **'Question {number}'**
   String questionNumber(int number);
 
+  /// Label showing current question number and total questions
+  ///
+  /// In en, this message translates to:
+  /// **'Question {current} of {total}'**
+  String questionOfTotal(int current, int total);
+
   /// Previous button text in quiz navigation
   ///
   /// In en, this message translates to:

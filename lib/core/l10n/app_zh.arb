@@ -208,6 +208,20 @@
       }
     }
   },
+  "questionOfTotal": "第 {current} 题，共 {total} 题",
+  "@questionOfTotal": {
+    "description": "显示当前问题编号和问题总数的标签",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
   "previous": "上一个",
   "@previous": {
     "description": "Previous button text in quiz navigation"

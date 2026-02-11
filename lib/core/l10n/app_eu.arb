@@ -208,6 +208,20 @@
       }
     }
   },
+  "questionOfTotal": "{current}. galdera {total}(e)tik",
+  "@questionOfTotal": {
+    "description": "Uneko galdera-zenbakia eta galdera guztiak erakusten dituen etiketa",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
   "previous": "Aurrekoa",
   "@previous": {
     "description": "Quiz nabigazioan aurrekoa botoiaren testua"

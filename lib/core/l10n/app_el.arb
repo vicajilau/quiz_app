@@ -61,6 +61,7 @@
   "createFileTooltip": "Δημιουργία νέου αρχείου Quiz",
   "loadFileTooltip": "Φόρτωση υπάρχοντος αρχείου Quiz",
   "questionNumber": "Ερώτηση {number}",
+  "questionOfTotal": "Ερώτηση {current} από {total}",
   "previous": "Προηγούμενο",
   "next": "Επόμενο",
   "finish": "Τέλος",

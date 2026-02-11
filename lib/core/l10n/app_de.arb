@@ -280,6 +280,20 @@
       }
     }
   },
+  "questionOfTotal": "Frage {current} von {total}",
+  "@questionOfTotal": {
+    "description": "Bezeichnung, die die aktuelle Fragennummer und die Gesamtzahl der Fragen anzeigt",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
   "previous": "Zurück",
   "@previous": {
     "description": "Zurück-Schaltflächentext in der Quiz-Navigation"

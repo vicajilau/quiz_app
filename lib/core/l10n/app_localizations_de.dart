@@ -175,6 +175,11 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String questionOfTotal(int current, int total) {
+    return 'Frage $current von $total';
+  }
+
+  @override
   String get previous => 'Zurück';
 
   @override

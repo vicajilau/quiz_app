@@ -232,6 +232,20 @@
       }
     }
   },
+  "questionOfTotal": "Question {current} of {total}",
+  "@questionOfTotal": {
+    "description": "Label showing current question number and total questions",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
   "previous": "Previous",
   "@previous": {
     "description": "Previous button text in quiz navigation"

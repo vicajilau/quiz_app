@@ -173,6 +173,11 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
+  String questionOfTotal(int current, int total) {
+    return '$current. galdera $total(e)tik';
+  }
+
+  @override
   String get previous => 'Aurrekoa';
 
   @override

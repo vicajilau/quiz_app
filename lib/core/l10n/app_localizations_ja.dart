@@ -169,6 +169,11 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String questionOfTotal(int current, int total) {
+    return '$total 問中 $current 問目';
+  }
+
+  @override
   String get previous => '前へ';
 
   @override

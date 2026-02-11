@@ -280,6 +280,20 @@
       }
     }
   },
+  "questionOfTotal": "السؤال {current} من {total}",
+  "@questionOfTotal": {
+    "description": "تسمية تعرض رقم السؤال الحالي وإجمالي عدد الأسئلة",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
   "previous": "السابق",
   "@previous": {
     "description": "Previous button text in quiz navigation"
