@@ -66,6 +66,10 @@
   "finish": "Τέλος",
   "finishQuiz": "Ολοκλήρωση Κουίζ",
   "finishQuizConfirmation": "Είστε σίγουροι ότι θέλετε να ολοκληρώσετε το κουίζ; Δεν θα μπορείτε να αλλάξετε τις απαντήσεις σας μετά.",
+  "resolveUnansweredQuestions": "Επίλυση ερωτήσεων",
+  "@resolveUnansweredQuestions": {
+    "description": "Κείμενο κουμπιού για την επίλυση αναπάντητων ερωτήσεων"
+  },
   "abandonQuiz": "Εγκατάλειψη Κουίζ",
   "abandonQuizConfirmation": "Είστε σίγουροι ότι θέλετε να εγκαταλείψετε το κουίζ; Όλη η πρόοδος θα χαθεί.",
   "abandon": "Εγκατάλειψη",
@@ -428,6 +432,16 @@
   "allLabel": "Όλες",
   "@allLabel": {
     "description": "Ετικέτα για την επιλογή όλων των ερωτήσεων"
+  },
+  "finishQuizUnansweredQuestions": "Έχετε {unansweredCount,plural, =1{1 αναπάντητη ερώτηση}other{{unansweredCount} αναπάντητες ερωτήσεις}}. Είστε σίγουροι ότι θέλετε να ολοκληρώσετε το κουίζ?",
+  "@finishQuizUnansweredQuestions": {
+    "description": "Message shown when there are unanswered questions.",
+    "placeholders": {
+      "unansweredCount": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }
 

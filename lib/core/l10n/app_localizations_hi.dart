@@ -195,6 +195,20 @@ class AppLocalizationsHi extends AppLocalizations {
       'क्या आप वाकई क्विज़ समाप्त करना चाहते हैं? इसके बाद आप अपने उत्तर नहीं बदल सकेंगे।';
 
   @override
+  String finishQuizUnansweredQuestions(int unansweredCount) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unansweredCount,
+      locale: localeName,
+      other: '$unansweredCount निरुत्तरित प्रश्न हैं',
+      one: '1 निरुत्तरित प्रश्न है',
+    );
+    return 'आपके पास $_temp0। क्या आप वाकई क्विज़ समाप्त करना चाहते हैं?';
+  }
+
+  @override
+  String get resolveUnansweredQuestions => 'प्रश्न हल करें';
+
+  @override
   String get abandonQuiz => 'क्विज़ छोड़ें';
 
   @override

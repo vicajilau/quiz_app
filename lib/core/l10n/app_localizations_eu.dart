@@ -195,6 +195,20 @@ class AppLocalizationsEu extends AppLocalizations {
       'Ziur zaude quiz-a amaitu nahi duzula? Ezingo dituzu zure erantzunak aldatu gero.';
 
   @override
+  String finishQuizUnansweredQuestions(int unansweredCount) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unansweredCount,
+      locale: localeName,
+      other: '$unansweredCount erantzun gabeko galdera',
+      one: 'erantzun gabeko galdera 1',
+    );
+    return '$_temp0 dituzu. Ziur galdetegia amaitu nahi duzula?';
+  }
+
+  @override
+  String get resolveUnansweredQuestions => 'Galderak ebatzi';
+
+  @override
   String get abandonQuiz => 'Quiz Utzi';
 
   @override

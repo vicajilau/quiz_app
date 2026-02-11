@@ -232,6 +232,10 @@
   "@cancel": {
     "description": "Texto do botón cancelar"
   },
+  "resolveUnansweredQuestions": "Resolver preguntas",
+  "@resolveUnansweredQuestions": {
+    "description": "Texto do botón para resolver preguntas sen responder"
+  },
   "abandonQuiz": "Abandonar quiz",
   "@abandonQuiz": {
     "description": "Título do diálogo abandonar quiz"
@@ -1692,6 +1696,16 @@
   "allLabel": "Todas",
   "@allLabel": {
     "description": "Etiqueta para a opción de seleccionar todas as preguntas"
+  },
+  "finishQuizUnansweredQuestions": "Tes {unansweredCount,plural, =1{1 pregunta sen contestar}other{{unansweredCount} preguntas sen contestar}}. Estás seguro de que queres finalizar o cuestionario?",
+  "@finishQuizUnansweredQuestions": {
+    "description": "Message shown when there are unanswered questions.",
+    "placeholders": {
+      "unansweredCount": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }
 

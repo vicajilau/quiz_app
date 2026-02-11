@@ -18,33 +18,38 @@ class QuizProgressIndicator extends StatelessWidget {
     final barBgColor = isDark ? AppTheme.zinc800 : AppTheme.zinc200;
 
     return Tooltip(
-      message: state.isStudyMode
-          ? AppLocalizations.of(context)!.questionsOverview
-          : '',
+      message: AppLocalizations.of(context)!.questionsOverview,
       child: GestureDetector(
-        onTap: state.isStudyMode
-            ? () {
-                QuestionsOverviewBottomSheet.show(
-                  context,
-                  state,
-                  context.read<QuizExecutionBloc>(),
-                );
-              }
-            : null,
+        onTap: () {
+          QuestionsOverviewBottomSheet.show(
+            context,
+            state,
+            context.read<QuizExecutionBloc>(),
+          );
+        },
         child: Container(
           color: Colors.transparent,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start, // Left aligned
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                'Question ${state.currentQuestionIndex + 1} of ${state.totalQuestions}',
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: textColor,
-                ),
+              Row(
+                children: [
+                  Flexible(
+                    child: Text(
+                      'Question ${state.currentQuestionIndex + 1} of ${state.totalQuestions}',
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: textColor,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Icon(Icons.info_outline, color: textColor, size: 20),
+                ],
               ),
               const SizedBox(height: 8),
               ClipRRect(

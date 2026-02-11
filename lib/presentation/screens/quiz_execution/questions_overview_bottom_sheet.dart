@@ -27,13 +27,16 @@ class QuestionsOverviewBottomSheet extends StatelessWidget {
       ),
       builder: (context) => BlocProvider.value(
         value: bloc,
-        child: DraggableScrollableSheet(
-          initialChildSize: 0.6,
-          minChildSize: 0.4,
-          maxChildSize: 0.9,
-          expand: false,
-          builder: (context, scrollController) =>
-              QuestionsOverviewBottomSheet(state: state),
+        child: Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.85,
+            ),
+            child: QuestionsOverviewBottomSheet(state: state),
+          ),
         ),
       ),
     );
@@ -46,6 +49,7 @@ class QuestionsOverviewBottomSheet extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Column(
+      mainAxisSize: MainAxisSize.min, // Wrap content height
       children: [
         // Handle bar
         Container(
@@ -88,8 +92,9 @@ class QuestionsOverviewBottomSheet extends StatelessWidget {
         const Divider(),
 
         // Grid
-        Expanded(
+        Flexible(
           child: GridView.builder(
+            shrinkWrap: true, // Allow GridView to wrap its content
             padding: const EdgeInsets.all(16),
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 60,
@@ -126,7 +131,14 @@ class QuestionsOverviewBottomSheet extends StatelessWidget {
               Border? border;
 
               if (hasAnswer) {
-                if (isCorrect) {
+                if (!state.isStudyMode) {
+                  // Exam Mode: Neutral "answered" color
+                  bgColor = primaryColor.withValues(alpha: 0.1);
+                  textColor = primaryColor;
+                  border = Border.all(
+                    color: primaryColor.withValues(alpha: 0.3),
+                  );
+                } else if (isCorrect) {
                   bgColor = isDark
                       ? Colors.green.withValues(alpha: 0.2)
                       : Colors.green.withValues(alpha: 0.1);

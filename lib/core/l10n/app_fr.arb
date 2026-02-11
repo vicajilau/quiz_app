@@ -226,7 +226,11 @@
   },
   "finishQuizConfirmation": "Êtes-vous sûr de vouloir terminer le quiz ? Vous ne pourrez plus modifier vos réponses après.",
   "@finishQuizConfirmation": {
-    "description": "Message de confirmation pour terminer le quiz"
+    "description": "Message de confirmation pour terminer"
+  },
+  "resolveUnansweredQuestions": "Résoudre les questions",
+  "@resolveUnansweredQuestions": {
+    "description": "Texte du bouton pour résoudre les questions sans réponse"
   },
   "abandonQuiz": "Abandonner le quiz",
   "@abandonQuiz": {
@@ -1740,6 +1744,16 @@
   "allLabel": "Toutes",
   "@allLabel": {
     "description": "Libellé pour l'option de sélectionner toutes les questions"
+  },
+  "finishQuizUnansweredQuestions": "Vous avez {unansweredCount,plural, =1{1 question sans réponse}other{{unansweredCount} questions sans réponse}}. Êtes-vous sûr de vouloir terminer le quiz ?",
+  "@finishQuizUnansweredQuestions": {
+    "description": "Message shown when there are unanswered questions.",
+    "placeholders": {
+      "unansweredCount": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }
 

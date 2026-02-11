@@ -240,6 +240,10 @@
   "@cancel": {
     "description": "Cancel button text"
   },
+  "resolveUnansweredQuestions": "प्रश्न हल करें",
+  "@resolveUnansweredQuestions": {
+    "description": "Button text to resolve unanswered questions"
+  },
   "abandonQuiz": "क्विज़ छोड़ें",
   "@abandonQuiz": {
     "description": "Title of abandon quiz dialog"
@@ -1699,6 +1703,16 @@
   "allLabel": "सभी",
   "@allLabel": {
     "description": "सभी प्रश्नों का चयन करने के विकल्प के लिए लेबल"
+  },
+  "finishQuizUnansweredQuestions": "आपके पास {unansweredCount,plural, =1{1 निरुत्तरित प्रश्न है}other{{unansweredCount} निरुत्तरित प्रश्न हैं}}। क्या आप वाकई क्विज़ समाप्त करना चाहते हैं?",
+  "@finishQuizUnansweredQuestions": {
+    "description": "Message shown when there are unanswered questions.",
+    "placeholders": {
+      "unansweredCount": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }
 

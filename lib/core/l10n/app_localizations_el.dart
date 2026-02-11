@@ -198,6 +198,20 @@ class AppLocalizationsEl extends AppLocalizations {
       'Είστε σίγουροι ότι θέλετε να ολοκληρώσετε το κουίζ; Δεν θα μπορείτε να αλλάξετε τις απαντήσεις σας μετά.';
 
   @override
+  String finishQuizUnansweredQuestions(int unansweredCount) {
+    String _temp0 = intl.Intl.pluralLogic(
+      unansweredCount,
+      locale: localeName,
+      other: '$unansweredCount αναπάντητες ερωτήσεις',
+      one: '1 αναπάντητη ερώτηση',
+    );
+    return 'Έχετε $_temp0. Είστε σίγουροι ότι θέλετε να ολοκληρώσετε το κουίζ?';
+  }
+
+  @override
+  String get resolveUnansweredQuestions => 'Επίλυση ερωτήσεων';
+
+  @override
   String get abandonQuiz => 'Εγκατάλειψη Κουίζ';
 
   @override

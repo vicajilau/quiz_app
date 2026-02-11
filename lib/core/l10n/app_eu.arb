@@ -312,6 +312,10 @@
       }
     }
   },
+  "resolveUnansweredQuestions": "Galderak ebatzi",
+  "@resolveUnansweredQuestions": {
+    "description": "Erantzun gabeko galderak ebazteko botoiaren testua"
+  },
   "startQuiz": "Quiz Hasi",
   "@startQuiz": {
     "description": "Quiz hasteko botoiaren testua"
@@ -1692,6 +1696,16 @@
   "allLabel": "Guztiak",
   "@allLabel": {
     "description": "Galdera guztiak hautatzeko aukeraren etiketa"
+  },
+  "finishQuizUnansweredQuestions": "{unansweredCount,plural, =1{erantzun gabeko galdera 1}other{{unansweredCount} erantzun gabeko galdera}} dituzu. Ziur galdetegia amaitu nahi duzula?",
+  "@finishQuizUnansweredQuestions": {
+    "description": "Message shown when there are unanswered questions.",
+    "placeholders": {
+      "unansweredCount": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }
 

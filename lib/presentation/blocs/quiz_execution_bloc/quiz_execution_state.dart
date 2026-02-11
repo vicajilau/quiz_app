@@ -77,8 +77,9 @@ class QuizExecutionInProgress extends QuizExecutionState {
     return count;
   }
 
-  /// Get progress percentage
-  double get progress => (currentQuestionIndex + 1) / totalQuestions;
+  /// Get progress percentage based on answered questions
+  double get progress =>
+      totalQuestions > 0 ? answeredQuestionsCount / totalQuestions : 0.0;
 
   /// Copy with method for state updates
   QuizExecutionInProgress copyWith({

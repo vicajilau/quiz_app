@@ -23,9 +23,7 @@ class QuizNavigationButtons extends StatelessWidget {
     final colors = context.appColors;
 
     final isCheckPhase = isStudyMode && !state.isCurrentQuestionValidated;
-    final canProceed = isCheckPhase
-        ? state.hasCurrentQuestionAnswered
-        : (isStudyMode || state.hasCurrentQuestionAnswered);
+    final canProceed = isCheckPhase ? state.hasCurrentQuestionAnswered : true;
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -112,7 +110,9 @@ class QuizNavigationButtons extends StatelessWidget {
                                   : Icons.skip_next))
                       : (state.isLastQuestion
                             ? Icons.check
-                            : Icons.chevron_right),
+                            : (state.hasCurrentQuestionAnswered
+                                  ? Icons.chevron_right
+                                  : Icons.skip_next)),
                   color: Colors.white,
                 ),
                 label: Text(
@@ -124,7 +124,9 @@ class QuizNavigationButtons extends StatelessWidget {
                                   : AppLocalizations.of(context)!.skip))
                       : (state.isLastQuestion
                             ? AppLocalizations.of(context)!.finish
-                            : AppLocalizations.of(context)!.next),
+                            : (state.hasCurrentQuestionAnswered
+                                  ? AppLocalizations.of(context)!.next
+                                  : AppLocalizations.of(context)!.skip)),
                   style: const TextStyle(
                     fontFamily: 'Inter',
                     fontSize: 15,
