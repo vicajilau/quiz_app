@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.7.0]
 
-- fix: Prevent collapsing a `QuestionPreviewCard` when tapping callapsible content.
+- fix: Prevent collapsing a `QuestionPreviewCard` when tapping collapsible content.
 
 ## [1.6.0] - 2026-02-11
 
