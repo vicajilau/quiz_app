@@ -176,6 +176,11 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
+  String questionOfTotal(int current, int total) {
+    return 'Ερώτηση $current από $total';
+  }
+
+  @override
   String get previous => 'Προηγούμενο';
 
   @override
@@ -272,11 +277,6 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get customNumberLabel => 'Ή εισάγετε προσαρμοσμένο αριθμό:';
-
-  @override
-  String customNumberHelper(int total) {
-    return 'Αν μεγαλύτερος από $total, οι ερωτήσεις θα επαναληφθούν';
-  }
 
   @override
   String get numberInputLabel => 'Αριθμός ερωτήσεων';
@@ -1351,4 +1351,18 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get allLabel => 'Όλες';
+
+  @override
+  String get subtractPointsLabel => 'Αφαίρεση πόντων για λάθος απάντηση';
+
+  @override
+  String get penaltyAmountLabel => 'Ποσό ποινής';
+
+  @override
+  String penaltyPointsLabel(String amount) {
+    return '-$amount πόντοι / λάθος';
+  }
+
+  @override
+  String get allQuestionsLabel => 'Όλες οι ερωτήσεις';
 }

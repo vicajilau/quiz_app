@@ -20,11 +20,15 @@ class QuizQuestionResultCard extends StatelessWidget {
   /// The number of the question in the quiz.
   final int questionNumber;
 
+  /// The score delta for this question (e.g., +1, -0.5, 0).
+  final double scoreDelta;
+
   /// Creates a [QuizQuestionResultCard] widget.
   const QuizQuestionResultCard({
     super.key,
     required this.result,
     required this.questionNumber,
+    required this.scoreDelta,
   });
 
   @override
@@ -32,6 +36,26 @@ class QuizQuestionResultCard extends StatelessWidget {
     final theme = Theme.of(context);
     final successColor = Colors.green;
     final errorColor = Colors.red;
+    final neutralColor = theme.disabledColor;
+
+    Color deltaColor;
+    String deltaText;
+
+    if (scoreDelta > 0) {
+      deltaColor = successColor;
+      deltaText =
+          '+${scoreDelta % 1 == 0 ? scoreDelta.toStringAsFixed(0) : (scoreDelta * 10 % 1 == 0 ? scoreDelta.toStringAsFixed(1) : scoreDelta.toStringAsFixed(2))}';
+    } else if (scoreDelta < 0) {
+      deltaColor = errorColor;
+      deltaText = scoreDelta % 1 == 0
+          ? scoreDelta.toStringAsFixed(0)
+          : (scoreDelta * 10 % 1 == 0
+                ? scoreDelta.toStringAsFixed(1)
+                : scoreDelta.toStringAsFixed(2));
+    } else {
+      deltaColor = neutralColor;
+      deltaText = '0';
+    }
 
     return Card(
       elevation: 0,
@@ -47,8 +71,9 @@ class QuizQuestionResultCard extends StatelessWidget {
             width: 32,
             height: 32,
             decoration: BoxDecoration(
-              color: (result.isCorrect ? successColor : errorColor)
-                  .withValues(alpha: 0.1),
+              color: (result.isCorrect ? successColor : errorColor).withValues(
+                alpha: 0.1,
+              ),
               shape: BoxShape.circle,
             ),
             child: Icon(
@@ -63,13 +88,32 @@ class QuizQuestionResultCard extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: deltaColor.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  deltaText,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: deltaColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Icon(Icons.expand_more, color: theme.iconTheme.color),
+            ],
+          ),
           subtitle: LaTeXText(
             result.question.text,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: theme.hintColor,
-            ),
+            style: theme.textTheme.bodySmall?.copyWith(color: theme.hintColor),
           ),
           children: [
             Padding(

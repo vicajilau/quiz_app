@@ -169,6 +169,11 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String questionOfTotal(int current, int total) {
+    return '第 $current 题，共 $total 题';
+  }
+
+  @override
   String get previous => '上一个';
 
   @override
@@ -261,11 +266,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get customNumberLabel => '或输入自定义数量：';
-
-  @override
-  String customNumberHelper(int total) {
-    return '输入任意数量（最多$total个）。如果超过，问题会重复。';
-  }
 
   @override
   String get numberInputLabel => '问题数量';
@@ -1276,4 +1276,18 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get allLabel => '全部';
+
+  @override
+  String get subtractPointsLabel => '答错扣分';
+
+  @override
+  String get penaltyAmountLabel => '扣分金额';
+
+  @override
+  String penaltyPointsLabel(String amount) {
+    return '-$amount 分 / 错误';
+  }
+
+  @override
+  String get allQuestionsLabel => '所有题目';
 }

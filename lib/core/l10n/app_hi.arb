@@ -208,17 +208,31 @@
       }
     }
   },
+  "questionOfTotal": "प्रश्न {current} / {total}",
+  "@questionOfTotal": {
+    "description": "वर्तमान प्रश्न संख्या और कुल प्रश्नों को दर्शाने वाला लेबल",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
   "previous": "पिछला",
   "@previous": {
     "description": "Previous button text in quiz navigation"
   },
   "skip": "छोड़ें",
   "@skip": {
-      "description": "Skip button text in quiz navigation"
+    "description": "Skip button text in quiz navigation"
   },
-  "questionsOverview": "प्रश्न मानचित्र",
+  "questionsOverview": "Questions Map",
   "@questionsOverview": {
-      "description": "Title for the questions overview bottom sheet"
+    "description": "Title for the questions overview bottom sheet"
   },
   "next": "अगला",
   "@next": {
@@ -335,16 +349,6 @@
   "numberInputLabel": "प्रश्नों की संख्या",
   "@numberInputLabel": {
     "description": "Label for the number input field"
-  },
-  "customNumberHelper": "कोई भी संख्या दर्ज करें (अधिकतम {total})। यदि अधिक है, तो प्रश्न दोहराए जाएंगे।",
-  "@customNumberHelper": {
-    "description": "Helper text explaining custom number input",
-    "placeholders": {
-      "total": {
-        "type": "int",
-        "example": "25"
-      }
-    }
   },
   "errorInvalidNumber": "कृपया वैध संख्या दर्ज करें",
   "@errorInvalidNumber": {
@@ -1364,7 +1368,7 @@
   "@viewWinners": {
     "description": "विजेता देखने के लिए बटन लेबल"
   },
-  "congratulations": "बधाई हो!",
+  "congratulations": "🎉 बधाई हो! 🎉",
   "@congratulations": {
     "description": "विजेता के लिए बधाई संदेश"
   },
@@ -1634,7 +1638,6 @@
   "examModeDescription": "मानक समय और अंत में परिणाम",
   "checkAnswer": "जांचें",
   "quizModeTitle": "क्विज़ मोड",
-  "skip": "छोड़ें",
   "askAiAssistant": "AI सहायक से पूछें",
   "evaluateWithAI": "AI के साथ मूल्यांकन करें",
   "aiEvaluation": "AI मूल्यांकन",
@@ -1676,11 +1679,6 @@
     }
   },
   "settingsTitle": "सेटिंग्स",
-  "questionsOverview": "Questions Map",
-  "@questionsOverview": {
-    "description": "Title for the questions overview bottom sheet"
-  },
-  "congratulations": "🎉 बधाई हो! 🎉",
   "keepPracticing": "सुधार के लिए अभ्यास जारी रखें!",
   "tryAgain": "फिर कोशिश करें",
   "review": "समीक्षा",
@@ -1713,6 +1711,24 @@
         "example": "3"
       }
     }
-  }
+  },
+  "subtractPointsLabel": "गलत उत्तर के लिए अंक घटाएं",
+  "@subtractPointsLabel": {
+    "description": "Label for the checkbox to subtract points for incorrect answers"
+  },
+  "penaltyAmountLabel": "दंड राशि",
+  "@penaltyAmountLabel": {
+    "description": "Label for the input field to set the penalty amount"
+  },
+  "penaltyPointsLabel": "-{amount} अंक / गलती",
+  "@penaltyPointsLabel": {
+    "description": "Label showing the points deducted per mistake",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "0.50"
+      }
+    }
+  },
+  "allQuestionsLabel": "सभी प्रश्न"
 }
-

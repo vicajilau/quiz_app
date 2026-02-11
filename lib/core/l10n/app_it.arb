@@ -208,6 +208,20 @@
       }
     }
   },
+  "questionOfTotal": "Domanda {current} di {total}",
+  "@questionOfTotal": {
+    "description": "Etichetta che mostra il numero della domanda corrente e il numero totale di domande",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
   "previous": "Precedente",
   "@previous": {
     "description": "Testo del pulsante precedente nella navigazione del quiz"
@@ -323,16 +337,6 @@
   "numberInputLabel": "Numero di domande",
   "@numberInputLabel": {
     "description": "Etichetta per il campo di input numero"
-  },
-  "customNumberHelper": "Inserisci qualsiasi numero (max {total}). Se superiore, le domande si ripeteranno.",
-  "@customNumberHelper": {
-    "description": "Testo di aiuto che spiega l'input numero personalizzato",
-    "placeholders": {
-      "total": {
-        "type": "int",
-        "example": "25"
-      }
-    }
   },
   "errorInvalidNumber": "Inserisci un numero valido",
   "@errorInvalidNumber": {
@@ -1078,7 +1082,6 @@
   "@aiGenerationFailed": {
     "description": "Messaggio mostrato quando la generazione domande IA fallisce."
   },
-
   "aiGenerationErrorTitle": "Errore nella generazione domande",
   "@aiGenerationErrorTitle": {
     "description": "Titolo per la finestra di dialogo di errore durante la generazione di domande con IA."
@@ -1721,7 +1724,6 @@
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
   },
-  "congratulations": "🎉 Congratulazioni! 🎉",
   "keepPracticing": "Continua a fare pratica per migliorare!",
   "tryAgain": "Riprova",
   "review": "Ripassa",
@@ -1754,6 +1756,24 @@
         "example": "3"
       }
     }
-  }
+  },
+  "subtractPointsLabel": "Sottrai punti per risposta errata",
+  "@subtractPointsLabel": {
+    "description": "Label for the checkbox to subtract points for incorrect answers"
+  },
+  "penaltyAmountLabel": "Importo penalità",
+  "@penaltyAmountLabel": {
+    "description": "Label for the input field to set the penalty amount"
+  },
+  "penaltyPointsLabel": "-{amount} pt / errore",
+  "@penaltyPointsLabel": {
+    "description": "Label showing the points deducted per mistake",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "0.50"
+      }
+    }
+  },
+  "allQuestionsLabel": "Tutte le domande"
 }
-

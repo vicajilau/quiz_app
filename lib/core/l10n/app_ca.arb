@@ -280,6 +280,20 @@
       }
     }
   },
+  "questionOfTotal": "Pregunta {current} de {total}",
+  "@questionOfTotal": {
+    "description": "Etiqueta que mostra el número de pregunta actual i el total de preguntes",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
   "previous": "Anterior",
   "@previous": {
     "description": "Text del botó anterior en la navegació del quiz"
@@ -399,16 +413,6 @@
   "numberInputLabel": "Nombre de preguntes",
   "@numberInputLabel": {
     "description": "Etiqueta pel camp d'entrada de número"
-  },
-  "customNumberHelper": "Introduïu qualsevol número (màx {total}). Si és més gran, les preguntes es repetiran.",
-  "@customNumberHelper": {
-    "description": "Text d'ajuda explicant l'entrada de número personalitzat",
-    "placeholders": {
-      "total": {
-        "type": "int",
-        "example": "25"
-      }
-    }
   },
   "errorInvalidNumber": "Si us plau, introduïu un número vàlid",
   "@errorInvalidNumber": {
@@ -1428,7 +1432,7 @@
   "@viewWinners": {
     "description": "Etiqueta del botó per veure els guanyadors"
   },
-  "congratulations": "Felicitats!",
+  "congratulations": "🎉 Felicitats! 🎉",
   "@congratulations": {
     "description": "Missatge de felicitació per al guanyador"
   },
@@ -1786,7 +1790,6 @@
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
   },
-  "congratulations": "🎉 Felicitats! 🎉",
   "keepPracticing": "Segueix practicant per millorar!",
   "tryAgain": "Tornar a intentar",
   "review": "Repassar",
@@ -1804,6 +1807,24 @@
         "example": "3"
       }
     }
-  }
+  },
+  "subtractPointsLabel": "Restar punts per resposta incorrecta",
+  "@subtractPointsLabel": {
+    "description": "Label for the checkbox to subtract points for incorrect answers"
+  },
+  "penaltyAmountLabel": "Quantitat de penalització",
+  "@penaltyAmountLabel": {
+    "description": "Label for the input field to set the penalty amount"
+  },
+  "penaltyPointsLabel": "-{amount} pts / error",
+  "@penaltyPointsLabel": {
+    "description": "Label showing the points deducted per mistake",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "0.50"
+      }
+    }
+  },
+  "allQuestionsLabel": "Totes les preguntes"
 }
-

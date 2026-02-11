@@ -208,6 +208,20 @@
       }
     }
   },
+  "questionOfTotal": "Pregunta {current} de {total}",
+  "@questionOfTotal": {
+    "description": "Etiqueta que amosa o número da pregunta actual e o total de preguntas",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
   "previous": "Anterior",
   "@previous": {
     "description": "Texto do botón anterior na navegación do quiz"
@@ -327,16 +341,6 @@
   "numberInputLabel": "Número de preguntas",
   "@numberInputLabel": {
     "description": "Etiqueta para o campo de entrada de número"
-  },
-  "customNumberHelper": "Introduce calquera número (máx {total}). Se é maior, as preguntas repetiránse.",
-  "@customNumberHelper": {
-    "description": "Texto de axuda explicando a entrada de número personalizado",
-    "placeholders": {
-      "total": {
-        "type": "int",
-        "example": "25"
-      }
-    }
   },
   "errorInvalidNumber": "Por favor, introduce un número válido",
   "@errorInvalidNumber": {
@@ -1100,7 +1104,6 @@
   "@aiGenerationFailed": {
     "description": "Mensaxe mostrada cando a xeración de preguntas IA falla."
   },
-
   "aiGenerationErrorTitle": "Erro xerando preguntas",
   "@aiGenerationErrorTitle": {
     "description": "Título para o diálogo de erro xerando preguntas con IA."
@@ -1375,7 +1378,7 @@
   "@viewWinners": {
     "description": "Etiqueta do botón para ver os gañadores"
   },
-  "congratulations": "Parabéns!",
+  "congratulations": "🎉 Parabéns! 🎉",
   "@congratulations": {
     "description": "Mensaxe de felicitación para o gañador"
   },
@@ -1673,7 +1676,6 @@
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
   },
-  "congratulations": "🎉 Parabéns! 🎉",
   "keepPracticing": "Segue practicando para mellorar!",
   "tryAgain": "Intentalo de novo",
   "review": "Repasar",
@@ -1706,6 +1708,24 @@
         "example": "3"
       }
     }
-  }
+  },
+  "subtractPointsLabel": "Restar puntos por resposta incorrecta",
+  "@subtractPointsLabel": {
+    "description": "Label for the checkbox to subtract points for incorrect answers"
+  },
+  "penaltyAmountLabel": "Cantidade de penalización",
+  "@penaltyAmountLabel": {
+    "description": "Label for the input field to set the penalty amount"
+  },
+  "penaltyPointsLabel": "-{amount} pts / erro",
+  "@penaltyPointsLabel": {
+    "description": "Label showing the points deducted per mistake",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "0.50"
+      }
+    }
+  },
+  "allQuestionsLabel": "Todas as preguntas"
 }
-

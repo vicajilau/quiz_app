@@ -208,6 +208,20 @@
       }
     }
   },
+  "questionOfTotal": "Question {current} sur {total}",
+  "@questionOfTotal": {
+    "description": "Libellé indiquant le numéro de la question actuelle et le nombre total de questions",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
   "previous": "Précédent",
   "@previous": {
     "description": "Texte du bouton précédent dans la navigation du quiz"
@@ -323,16 +337,6 @@
   "numberInputLabel": "Nombre de questions",
   "@numberInputLabel": {
     "description": "Libellé pour le champ de saisie de nombre"
-  },
-  "customNumberHelper": "Entrez n'importe quel nombre (max {total}). Si supérieur, les questions se répéteront.",
-  "@customNumberHelper": {
-    "description": "Texte d'aide expliquant la saisie de nombre personnalisé",
-    "placeholders": {
-      "total": {
-        "type": "int",
-        "example": "25"
-      }
-    }
   },
   "errorInvalidNumber": "Veuillez entrer un nombre valide",
   "@errorInvalidNumber": {
@@ -1078,7 +1082,6 @@
   "@aiGenerationFailed": {
     "description": "Message affiché lorsque la génération de questions IA échoue."
   },
-
   "aiGenerationErrorTitle": "Erreur de génération de questions",
   "@aiGenerationErrorTitle": {
     "description": "Titre de la boîte de dialogue d'erreur lors de la génération de questions avec l'IA."
@@ -1721,7 +1724,6 @@
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
   },
-  "congratulations": "🎉 Félicitations ! 🎉",
   "keepPracticing": "Continuez à vous entraîner pour vous améliorer !",
   "tryAgain": "Réessayer",
   "review": "Réviser",
@@ -1754,6 +1756,24 @@
         "example": "3"
       }
     }
-  }
+  },
+  "subtractPointsLabel": "Retirer des points pour une mauvaise réponse",
+  "@subtractPointsLabel": {
+    "description": "Label for the checkbox to subtract points for incorrect answers"
+  },
+  "penaltyAmountLabel": "Montant de la pénalité",
+  "@penaltyAmountLabel": {
+    "description": "Label for the input field to set the penalty amount"
+  },
+  "penaltyPointsLabel": "-{amount} pts / erreur",
+  "@penaltyPointsLabel": {
+    "description": "Label showing the points deducted per mistake",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "0.50"
+      }
+    }
+  },
+  "allQuestionsLabel": "Toutes les questions"
 }
-

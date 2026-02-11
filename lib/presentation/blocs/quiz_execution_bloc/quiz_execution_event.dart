@@ -1,4 +1,5 @@
 import 'package:quiz_app/domain/models/quiz/question.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_config.dart';
 
 /// Abstract class representing the base event for quiz execution operations.
 abstract class QuizExecutionEvent {}
@@ -6,9 +7,9 @@ abstract class QuizExecutionEvent {}
 /// Event triggered when the quiz execution starts.
 class QuizExecutionStarted extends QuizExecutionEvent {
   final List<Question> questions;
-  final bool isStudyMode;
+  final QuizConfig quizConfig;
 
-  QuizExecutionStarted(this.questions, {this.isStudyMode = false});
+  QuizExecutionStarted(this.questions, {required this.quizConfig});
 }
 
 /// Event triggered when a user selects an answer.

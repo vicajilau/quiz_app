@@ -280,6 +280,20 @@
       }
     }
   },
+  "questionOfTotal": "Frage {current} von {total}",
+  "@questionOfTotal": {
+    "description": "Bezeichnung, die die aktuelle Fragennummer und die Gesamtzahl der Fragen anzeigt",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
   "previous": "Zurück",
   "@previous": {
     "description": "Zurück-Schaltflächentext in der Quiz-Navigation"
@@ -395,16 +409,6 @@
   "numberInputLabel": "Anzahl der Fragen",
   "@numberInputLabel": {
     "description": "Beschriftung für das Zahlen-Eingabefeld"
-  },
-  "customNumberHelper": "Geben Sie eine beliebige Zahl ein (max {total}). Bei höherer Zahl wiederholen sich die Fragen.",
-  "@customNumberHelper": {
-    "description": "Hilfstext zur Erklärung der benutzerdefinierten Zahleneingabe",
-    "placeholders": {
-      "total": {
-        "type": "int",
-        "example": "25"
-      }
-    }
   },
   "errorInvalidNumber": "Bitte geben Sie eine gültige Zahl ein",
   "@errorInvalidNumber": {
@@ -1150,7 +1154,6 @@
   "@aiGenerationFailed": {
     "description": "Nachricht, die angezeigt wird, wenn die KI-Fragengenerierung fehlschlägt."
   },
-
   "aiGenerationErrorTitle": "Fehler beim Generieren von Fragen",
   "@aiGenerationErrorTitle": {
     "description": "Titel für den Fehlerdialog beim Generieren von Fragen mit KI."
@@ -1793,7 +1796,6 @@
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
   },
-  "congratulations": "🎉 Herzlichen Glückwunsch! 🎉",
   "keepPracticing": "Übe weiter, um dich zu verbessern!",
   "tryAgain": "Erneut versuchen",
   "review": "Überprüfen",
@@ -1811,6 +1813,24 @@
         "example": "3"
       }
     }
-  }
+  },
+  "subtractPointsLabel": "Punkte für falsche Antwort abziehen",
+  "@subtractPointsLabel": {
+    "description": "Label for the checkbox to subtract points for incorrect answers"
+  },
+  "penaltyAmountLabel": "Strafbetrag",
+  "@penaltyAmountLabel": {
+    "description": "Label for the input field to set the penalty amount"
+  },
+  "penaltyPointsLabel": "-{amount} Pkt. / Fehler",
+  "@penaltyPointsLabel": {
+    "description": "Label showing the points deducted per mistake",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "0.50"
+      }
+    }
+  },
+  "allQuestionsLabel": "Alle Fragen"
 }
-

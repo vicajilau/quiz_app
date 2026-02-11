@@ -10,6 +10,7 @@ import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_e
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'package:quiz_app/presentation/screens/dialogs/submit_quiz_dialog.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_config.dart';
 
 class MockQuizExecutionBloc
     extends MockBloc<QuizExecutionEvent, QuizExecutionState>
@@ -57,7 +58,7 @@ void main() {
       userAnswers: {
         0: [0],
       }, // Answered
-      isStudyMode: false,
+      quizConfig: const QuizConfig(questionCount: 1, isStudyMode: false),
     );
     when(() => mockBloc.state).thenReturn(state);
 
@@ -83,7 +84,7 @@ void main() {
       userAnswers: {
         0: [0],
       }, // Only 1 answered
-      isStudyMode: false,
+      quizConfig: const QuizConfig(questionCount: 2, isStudyMode: false),
     );
     when(() => mockBloc.state).thenReturn(state);
 
@@ -105,7 +106,7 @@ void main() {
       questions: [testQuestion, testQuestion, testQuestion], // 3 questions
       currentQuestionIndex: 0,
       userAnswers: {}, // 0 answered
-      isStudyMode: false,
+      quizConfig: const QuizConfig(questionCount: 3, isStudyMode: false),
     );
     when(() => mockBloc.state).thenReturn(state);
 

@@ -175,6 +175,11 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String questionOfTotal(int current, int total) {
+    return 'Pregunta $current de $total';
+  }
+
+  @override
   String get previous => 'Anterior';
 
   @override
@@ -270,11 +275,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get customNumberLabel => 'O introduce un número personalizado:';
-
-  @override
-  String customNumberHelper(int total) {
-    return 'Si es mayor que $total, las preguntas se repetirán';
-  }
 
   @override
   String get numberInputLabel => 'Número de preguntas';
@@ -1343,4 +1343,18 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get allLabel => 'Todas';
+
+  @override
+  String get subtractPointsLabel => 'Restar puntos por respuesta incorrecta';
+
+  @override
+  String get penaltyAmountLabel => 'Cantidad de penalización';
+
+  @override
+  String penaltyPointsLabel(String amount) {
+    return '-$amount pts / error';
+  }
+
+  @override
+  String get allQuestionsLabel => 'Todas las preguntas';
 }

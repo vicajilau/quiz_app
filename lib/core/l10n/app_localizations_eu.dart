@@ -173,6 +173,11 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
+  String questionOfTotal(int current, int total) {
+    return '$current. galdera $total(e)tik';
+  }
+
+  @override
   String get previous => 'Aurrekoa';
 
   @override
@@ -269,11 +274,6 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get customNumberLabel => 'Edo sartu zenbaki pertsonalizatua:';
-
-  @override
-  String customNumberHelper(int total) {
-    return 'Sartu edozein zenbaki (geh. $total). Handiagoa bada, galderak errepikatu egingo dira.';
-  }
 
   @override
   String get numberInputLabel => 'Galdera kopurua';
@@ -1341,4 +1341,18 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get allLabel => 'Guztiak';
+
+  @override
+  String get subtractPointsLabel => 'Kendu puntuak erantzun okerrengatik';
+
+  @override
+  String get penaltyAmountLabel => 'Penalizazio kopurua';
+
+  @override
+  String penaltyPointsLabel(String amount) {
+    return '-$amount puntu / errore';
+  }
+
+  @override
+  String get allQuestionsLabel => 'Galdera guztiak';
 }

@@ -61,6 +61,7 @@
   "createFileTooltip": "Δημιουργία νέου αρχείου Quiz",
   "loadFileTooltip": "Φόρτωση υπάρχοντος αρχείου Quiz",
   "questionNumber": "Ερώτηση {number}",
+  "questionOfTotal": "Ερώτηση {current} από {total}",
   "previous": "Προηγούμενο",
   "next": "Επόμενο",
   "finish": "Τέλος",
@@ -87,7 +88,6 @@
   "errorInvalidNumber": "Παρακαλώ εισάγετε έγκυρο αριθμό",
   "errorNumberMustBePositive": "Ο αριθμός πρέπει να είναι μεγαλύτερος από 0",
   "customNumberLabel": "Ή εισάγετε προσαρμοσμένο αριθμό:",
-  "customNumberHelper": "Αν μεγαλύτερος από {total}, οι ερωτήσεις θα επαναληφθούν",
   "numberInputLabel": "Αριθμός ερωτήσεων",
   "questionOrderConfigTitle": "Διαμόρφωση Σειράς Ερωτήσεων",
   "questionOrderConfigDescription": "Επιλέξτε τη σειρά εμφάνισης των ερωτήσεων κατά την εξέταση:",
@@ -259,7 +259,6 @@
   "aiGeneratedQuestions": "Δημιουργήθηκε από AI",
   "aiApiKeyRequired": "Παρακαλώ ρυθμίστε τουλάχιστον ένα κλειδί API AI στις Ρυθμίσεις για να χρησιμοποιήσετε τη δημιουργία AI.",
   "aiGenerationFailed": "Αδυναμία δημιουργίας ερωτήσεων. Δοκιμάστε με διαφορετικό περιεχόμενο.",
-
   "aiGenerationErrorTitle": "Σφάλμα δημιουργίας ερωτήσεων",
   "@aiGenerationErrorTitle": {
     "description": "Τίτλος για το παράθυρο διαλόγου σφάλματος κατά τη δημιουργία ερωτήσεων με AI."
@@ -424,7 +423,6 @@
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
   },
-  "congratulations": "🎉 Συγχαρητήρια! 🎉",
   "keepPracticing": "Συνεχίστε την εξάσκηση για να βελτιωθείτε!",
   "tryAgain": "Δοκιμάστε ξανά",
   "review": "Ανασκόπηση",
@@ -442,6 +440,24 @@
         "example": "3"
       }
     }
-  }
+  },
+  "subtractPointsLabel": "Αφαίρεση πόντων για λάθος απάντηση",
+  "@subtractPointsLabel": {
+    "description": "Label for the checkbox to subtract points for incorrect answers"
+  },
+  "penaltyAmountLabel": "Ποσό ποινής",
+  "@penaltyAmountLabel": {
+    "description": "Label for the input field to set the penalty amount"
+  },
+  "penaltyPointsLabel": "-{amount} πόντοι / λάθος",
+  "@penaltyPointsLabel": {
+    "description": "Label showing the points deducted per mistake",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "0.50"
+      }
+    }
+  },
+  "allQuestionsLabel": "Όλες οι ερωτήσεις"
 }
-

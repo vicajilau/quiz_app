@@ -9,6 +9,7 @@ import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_b
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import 'package:quiz_app/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'package:quiz_app/presentation/screens/quiz_execution/quiz_progress_indicator.dart';
+import 'package:quiz_app/domain/models/quiz/quiz_config.dart';
 
 class MockQuizExecutionBloc
     extends MockBloc<QuizExecutionEvent, QuizExecutionState>
@@ -46,7 +47,7 @@ void main() {
         questions: [testQuestion],
         currentQuestionIndex: 0,
         userAnswers: {},
-        isStudyMode: false,
+        quizConfig: const QuizConfig(questionCount: 1, isStudyMode: false),
       );
 
       await tester.pumpWidget(createWidgetUnderTest(state));
@@ -93,7 +94,7 @@ void main() {
         questions: questions,
         currentQuestionIndex: 5, // Currently at question 6
         userAnswers: userAnswers,
-        isStudyMode: false,
+        quizConfig: const QuizConfig(questionCount: 10, isStudyMode: false),
       );
 
       await tester.pumpWidget(createWidgetUnderTest(state));

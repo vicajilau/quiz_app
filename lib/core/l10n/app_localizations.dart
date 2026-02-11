@@ -416,6 +416,12 @@ abstract class AppLocalizations {
   /// **'Question {number}'**
   String questionNumber(int number);
 
+  /// Label showing current question number and total questions
+  ///
+  /// In en, this message translates to:
+  /// **'Question {current} of {total}'**
+  String questionOfTotal(int current, int total);
+
   /// Previous button text in quiz navigation
   ///
   /// In en, this message translates to:
@@ -571,12 +577,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Or enter a custom number:'**
   String get customNumberLabel;
-
-  /// Helper text for custom number input
-  ///
-  /// In en, this message translates to:
-  /// **'If greater than {total}, questions will repeat'**
-  String customNumberHelper(int total);
 
   /// Label for the number input field
   ///
@@ -2425,6 +2425,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'All'**
   String get allLabel;
+
+  /// Label for the checkbox to subtract points for incorrect answers
+  ///
+  /// In en, this message translates to:
+  /// **'Subtract points for wrong answer'**
+  String get subtractPointsLabel;
+
+  /// Label for the input field to set the penalty amount
+  ///
+  /// In en, this message translates to:
+  /// **'Penalty amount'**
+  String get penaltyAmountLabel;
+
+  /// Label showing the points deducted per mistake
+  ///
+  /// In en, this message translates to:
+  /// **'-{amount} pts / mistake'**
+  String penaltyPointsLabel(String amount);
+
+  /// Label for the toggle to select all questions
+  ///
+  /// In en, this message translates to:
+  /// **'All Questions'**
+  String get allQuestionsLabel;
 }
 
 class _AppLocalizationsDelegate

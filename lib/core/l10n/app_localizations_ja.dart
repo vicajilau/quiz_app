@@ -169,6 +169,11 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String questionOfTotal(int current, int total) {
+    return '$total 問中 $current 問目';
+  }
+
+  @override
   String get previous => '前へ';
 
   @override
@@ -261,11 +266,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get customNumberLabel => 'またはカスタム数を入力：';
-
-  @override
-  String customNumberHelper(int total) {
-    return '任意の数を入力（最大$total問）。超過した場合、問題が繰り返されます。';
-  }
 
   @override
   String get numberInputLabel => '問題数';
@@ -1284,4 +1284,18 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get allLabel => 'すべて';
+
+  @override
+  String get subtractPointsLabel => '不正解でポイントを減点';
+
+  @override
+  String get penaltyAmountLabel => 'ペナルティ額';
+
+  @override
+  String penaltyPointsLabel(String amount) {
+    return '-$amount 点 / 誤答';
+  }
+
+  @override
+  String get allQuestionsLabel => 'すべての問題';
 }

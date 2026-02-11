@@ -208,17 +208,31 @@
       }
     }
   },
+  "questionOfTotal": "{total} 問中 {current} 問目",
+  "@questionOfTotal": {
+    "description": "現在の問題番号と全問題数を表示するラベル",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
   "previous": "前へ",
   "@previous": {
     "description": "Previous button text in quiz navigation"
   },
   "skip": "スキップ",
   "@skip": {
-      "description": "Skip button text in quiz navigation"
+    "description": "Skip button text in quiz navigation"
   },
-  "questionsOverview": "質問マップ",
+  "questionsOverview": "Questions Map",
   "@questionsOverview": {
-      "description": "Title for the questions overview bottom sheet"
+    "description": "Title for the questions overview bottom sheet"
   },
   "next": "次へ",
   "@next": {
@@ -335,16 +349,6 @@
   "numberInputLabel": "問題数",
   "@numberInputLabel": {
     "description": "Label for the number input field"
-  },
-  "customNumberHelper": "任意の数を入力（最大{total}問）。超過した場合、問題が繰り返されます。",
-  "@customNumberHelper": {
-    "description": "Helper text explaining custom number input",
-    "placeholders": {
-      "total": {
-        "type": "int",
-        "example": "25"
-      }
-    }
   },
   "errorInvalidNumber": "有効な数字を入力してください",
   "@errorInvalidNumber": {
@@ -1364,7 +1368,7 @@
   "@viewWinners": {
     "description": "当選者を見るボタンのラベル"
   },
-  "congratulations": "おめでとうございます！",
+  "congratulations": "🎉 おめでとうございます！ 🎉",
   "@congratulations": {
     "description": "当選者への祝福メッセージ"
   },
@@ -1634,7 +1638,6 @@
   "examModeDescription": "標準時間、最後に結果表示",
   "checkAnswer": "確認",
   "quizModeTitle": "クイズモード",
-  "skip": "スキップ",
   "askAiAssistant": "AIアシスタントに聞く",
   "evaluateWithAI": "AIで評価",
   "aiEvaluation": "AI評価",
@@ -1676,11 +1679,6 @@
     }
   },
   "settingsTitle": "設定",
-  "questionsOverview": "Questions Map",
-  "@questionsOverview": {
-    "description": "Title for the questions overview bottom sheet"
-  },
-  "congratulations": "🎉 おめでとうございます！ 🎉",
   "keepPracticing": "改善のために練習を続けましょう！",
   "tryAgain": "もう一度試す",
   "review": "復習する",
@@ -1713,6 +1711,24 @@
         "example": "3"
       }
     }
-  }
+  },
+  "subtractPointsLabel": "不正解でポイントを減点",
+  "@subtractPointsLabel": {
+    "description": "Label for the checkbox to subtract points for incorrect answers"
+  },
+  "penaltyAmountLabel": "ペナルティ額",
+  "@penaltyAmountLabel": {
+    "description": "Label for the input field to set the penalty amount"
+  },
+  "penaltyPointsLabel": "-{amount} 点 / 誤答",
+  "@penaltyPointsLabel": {
+    "description": "Label showing the points deducted per mistake",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "0.50"
+      }
+    }
+  },
+  "allQuestionsLabel": "すべての問題"
 }
-

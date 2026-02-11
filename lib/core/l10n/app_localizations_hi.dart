@@ -173,6 +173,11 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
+  String questionOfTotal(int current, int total) {
+    return 'प्रश्न $current / $total';
+  }
+
+  @override
   String get previous => 'पिछला';
 
   @override
@@ -268,11 +273,6 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get customNumberLabel => 'या कस्टम संख्या दर्ज करें:';
-
-  @override
-  String customNumberHelper(int total) {
-    return 'कोई भी संख्या दर्ज करें (अधिकतम $total)। यदि अधिक है, तो प्रश्न दोहराए जाएंगे।';
-  }
 
   @override
   String get numberInputLabel => 'प्रश्नों की संख्या';
@@ -1330,4 +1330,18 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get allLabel => 'सभी';
+
+  @override
+  String get subtractPointsLabel => 'गलत उत्तर के लिए अंक घटाएं';
+
+  @override
+  String get penaltyAmountLabel => 'दंड राशि';
+
+  @override
+  String penaltyPointsLabel(String amount) {
+    return '-$amount अंक / गलती';
+  }
+
+  @override
+  String get allQuestionsLabel => 'सभी प्रश्न';
 }
