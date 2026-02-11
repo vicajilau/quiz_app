@@ -1882,5 +1882,9 @@
         "example": "0.50"
       }
     }
+  },
+  "allQuestionsLabel": "All Questions",
+  "@allQuestionsLabel": {
+    "description": "Label for the toggle to select all questions"
   }
 }

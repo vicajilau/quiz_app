@@ -1329,4 +1329,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String penaltyPointsLabel(String amount) {
     return '-$amount نقاط / خطأ';
   }
+
+  @override
+  String get allQuestionsLabel => 'جميع الأسئلة';
 }

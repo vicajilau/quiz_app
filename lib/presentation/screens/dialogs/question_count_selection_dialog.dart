@@ -23,10 +23,13 @@ class _QuestionCountSelectionDialogState
     extends State<QuestionCountSelectionDialog>
     with TickerProviderStateMixin {
   int _selectedCount = 10;
+  bool _allQuestions = false;
   bool _isStudyMode = false; // false = Exam, true = Study
   bool _subtractPoints = false;
   double _penaltyAmount = 0.5;
   late TextEditingController _penaltyController;
+  late TextEditingController _questionCountController;
+  final FocusNode _questionCountFocusNode = FocusNode();
 
   @override
   void initState() {
@@ -34,12 +37,29 @@ class _QuestionCountSelectionDialogState
     _penaltyController = TextEditingController(
       text: _penaltyAmount.toStringAsFixed(2),
     );
+    _questionCountController = TextEditingController(
+      text: _selectedCount.toString(),
+    );
+
+    _questionCountFocusNode.addListener(() {
+      if (!_questionCountFocusNode.hasFocus) {
+        if (_questionCountController.text.isEmpty ||
+            int.tryParse(_questionCountController.text) == 0) {
+          setState(() {
+            _selectedCount = 1;
+            _questionCountController.text = '1';
+          });
+        }
+      }
+    });
     _loadSavedSettings();
   }
 
   @override
   void dispose() {
     _penaltyController.dispose();
+    _questionCountController.dispose();
+    _questionCountFocusNode.dispose();
     super.dispose();
   }
 
@@ -53,9 +73,12 @@ class _QuestionCountSelectionDialogState
             1,
             widget.totalQuestions,
           );
+          _allQuestions = _selectedCount == widget.totalQuestions;
         } else {
           _selectedCount = widget.totalQuestions;
+          _allQuestions = true;
         }
+        _questionCountController.text = _selectedCount.toString();
 
         if (settings.isStudyMode != null) {
           _isStudyMode = settings.isStudyMode!;
@@ -74,17 +97,24 @@ class _QuestionCountSelectionDialogState
   }
 
   void _incrementCount() {
+    if (_allQuestions) return;
     setState(() {
       if (_selectedCount < widget.totalQuestions) {
         _selectedCount++;
+        _questionCountController.text = _selectedCount.toString();
+        if (_selectedCount == widget.totalQuestions) {
+          _allQuestions = true;
+        }
       }
     });
   }
 
   void _decrementCount() {
+    if (_allQuestions) return;
     setState(() {
       if (_selectedCount > 1) {
         _selectedCount--;
+        _questionCountController.text = _selectedCount.toString();
       }
     });
   }
@@ -128,6 +158,7 @@ class _QuestionCountSelectionDialogState
         ? const Color(0xFFA1A1AA)
         : const Color(0xFF3F3F46);
     final primaryColor = const Color(0xFF8B5CF6);
+    final l10n = AppLocalizations.of(context)!;
     return Dialog(
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -184,104 +215,166 @@ class _QuestionCountSelectionDialogState
               ),
               const SizedBox(height: 32),
 
-              // Question Count
-              Text(
-                // Using existing key, but strictly "Number of Questions" in design
-                // If localization key text differs, user might notice, but functionally mostly same.
-                // Design says "Number of Questions".
-                AppLocalizations.of(context)!.numberInputLabel,
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: subTextColor,
-                ),
-              ),
-              const SizedBox(height: 16),
-              Row(
-                children: [
-                  // Minus Button
-                  _buildCountControl(
-                    icon: LucideIcons.minus,
-                    onTap: _decrementCount,
-                    bgColor: controlBgColor,
-                    iconColor: controlIconColor,
-                  ),
-                  const SizedBox(width: 16),
-                  // Display
-                  Expanded(
-                    child: Container(
-                      height: 56,
+              // All Questions Toggle Section
+              AnimatedSize(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
                       decoration: BoxDecoration(
                         color: controlBgColor,
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        _selectedCount.toString(),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            l10n.allQuestionsLabel,
+                            style: TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                              color: textColor,
+                            ),
+                          ),
+                          Switch(
+                            value: _allQuestions,
+                            onChanged: (value) {
+                              setState(() {
+                                _allQuestions = value;
+                                if (_allQuestions) {
+                                  _selectedCount = widget.totalQuestions;
+                                  _questionCountController.text = _selectedCount
+                                      .toString();
+                                }
+                              });
+                            },
+                            activeTrackColor: primaryColor,
+                            activeThumbColor: Colors.white,
+                            inactiveThumbColor: Colors.white,
+                            inactiveTrackColor: isDark
+                                ? const Color(0xFF52525B) // zinc600
+                                : const Color(0xFFD4D4D8), // zinc300
+                            trackOutlineColor: WidgetStateProperty.all(
+                              Colors.transparent,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    if (!_allQuestions) ...[
+                      const SizedBox(height: 24),
+                      Text(
+                        l10n.numberInputLabel,
                         style: TextStyle(
                           fontFamily: 'Inter',
-                          fontSize: 24,
-                          fontWeight: FontWeight.w700,
-                          color: textColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: subTextColor,
                         ),
                       ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  // Plus Button
-                  _buildCountControl(
-                    icon: LucideIcons.plus,
-                    onTap: _incrementCount,
-                    bgColor: primaryColor,
-                    iconColor: Colors.white,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              // All Questions Button
-              SizedBox(
-                width: double.infinity,
-                child: TextButton.icon(
-                  onPressed: () {
-                    setState(() {
-                      _selectedCount = widget.totalQuestions;
-                    });
-                  },
-                  style: TextButton.styleFrom(
-                    backgroundColor: _selectedCount == widget.totalQuestions
-                        ? primaryColor.withValues(alpha: 0.1)
-                        : Colors.transparent,
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      side: BorderSide(
-                        color: _selectedCount == widget.totalQuestions
-                            ? primaryColor
-                            : borderColor,
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          // Minus Button
+                          _buildCountControl(
+                            icon: LucideIcons.minus,
+                            onTap: _decrementCount,
+                            bgColor: controlBgColor,
+                            iconColor: controlIconColor,
+                          ),
+                          const SizedBox(width: 16),
+                          // Display
+                          Expanded(
+                            child: Container(
+                              height: 56,
+                              decoration: BoxDecoration(
+                                color: controlBgColor,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              alignment: Alignment.center,
+                              child: TextFormField(
+                                controller: _questionCountController,
+                                focusNode: _questionCountFocusNode,
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
+                                textAlign: TextAlign.center,
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  isDense: true,
+                                  contentPadding: EdgeInsets.zero,
+                                ),
+                                style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w700,
+                                  color: textColor,
+                                ),
+                                onEditingComplete: () {
+                                  if (_questionCountController.text.isEmpty ||
+                                      int.tryParse(
+                                            _questionCountController.text,
+                                          ) ==
+                                          0) {
+                                    setState(() {
+                                      _selectedCount = 1;
+                                      _questionCountController.text = '1';
+                                    });
+                                  }
+                                  _questionCountFocusNode.unfocus();
+                                },
+                                onChanged: (value) {
+                                  if (value.isEmpty) {
+                                    setState(() {
+                                      _selectedCount = 1;
+                                    });
+                                    return;
+                                  }
+                                  final val = int.tryParse(value);
+                                  if (val != null) {
+                                    setState(() {
+                                      _selectedCount = val.clamp(
+                                        1,
+                                        widget.totalQuestions,
+                                      );
+                                      // If user typed 0, force it to 1 immediately for better UX
+                                      if (val <= 0) {
+                                        _questionCountController.text = '1';
+                                        _questionCountController.selection =
+                                            TextSelection.fromPosition(
+                                              TextPosition(
+                                                offset: _questionCountController
+                                                    .text
+                                                    .length,
+                                              ),
+                                            );
+                                      }
+                                    });
+                                  }
+                                },
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          // Plus Button
+                          _buildCountControl(
+                            icon: LucideIcons.plus,
+                            onTap: _incrementCount,
+                            bgColor: primaryColor,
+                            iconColor: Colors.white,
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
-                  icon: Icon(
-                    LucideIcons.listChecks,
-                    size: 18,
-                    color: _selectedCount == widget.totalQuestions
-                        ? primaryColor
-                        : subTextColor,
-                  ),
-                  label: Text(
-                    // Default to 'All' if localization key not ready, but we just added it.
-                    // Assuming AppLocalizations.of(context)!.allLabel will be available after gen-l10n
-                    AppLocalizations.of(context)!.allLabel,
-                    style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: _selectedCount == widget.totalQuestions
-                          ? primaryColor
-                          : subTextColor,
-                    ),
-                  ),
+                    ],
+                  ],
                 ),
               ),
 
@@ -289,7 +382,7 @@ class _QuestionCountSelectionDialogState
 
               // Quiz Mode
               Text(
-                AppLocalizations.of(context)!.quizModeTitle,
+                l10n.quizModeTitle,
                 style: TextStyle(
                   fontFamily: 'Inter',
                   fontSize: 14,
@@ -363,6 +456,30 @@ class _QuestionCountSelectionDialogState
               // Start Button
               ElevatedButton(
                 onPressed: () async {
+                  // Final validation for question count
+                  int finalCount = _selectedCount;
+                  if (!_allQuestions) {
+                    final text = _questionCountController.text;
+                    final val = int.tryParse(text);
+                    if (text.isEmpty || val == null || val <= 0) {
+                      finalCount = 1;
+                      if (mounted) {
+                        setState(() {
+                          _selectedCount = 1;
+                          _questionCountController.text = '1';
+                        });
+                      }
+                    } else {
+                      finalCount = val.clamp(1, widget.totalQuestions);
+                      if (mounted) {
+                        setState(() {
+                          _selectedCount = finalCount;
+                          _questionCountController.text = finalCount.toString();
+                        });
+                      }
+                    }
+                  }
+
                   final examTimeEnabled = await ConfigurationService.instance
                       .getExamTimeEnabled();
                   final examTimeMinutes = await ConfigurationService.instance
@@ -371,7 +488,7 @@ class _QuestionCountSelectionDialogState
                   if (context.mounted) {
                     ConfigurationService.instance.saveQuizConfigSettings(
                       QuizConfigStoredSettings(
-                        questionCount: _selectedCount,
+                        questionCount: finalCount,
                         isStudyMode: _isStudyMode,
                         subtractPoints: _subtractPoints,
                         penaltyAmount: _penaltyAmount,
@@ -380,7 +497,7 @@ class _QuestionCountSelectionDialogState
 
                     context.pop(
                       QuizConfig(
-                        questionCount: _selectedCount,
+                        questionCount: finalCount,
                         isStudyMode: _isStudyMode,
                         enableTimeLimit: examTimeEnabled,
                         timeLimitMinutes: examTimeMinutes,
@@ -422,7 +539,7 @@ class _QuestionCountSelectionDialogState
 
   Widget _buildCountControl({
     required IconData icon,
-    required VoidCallback onTap,
+    VoidCallback? onTap,
     required Color bgColor,
     required Color iconColor,
   }) {

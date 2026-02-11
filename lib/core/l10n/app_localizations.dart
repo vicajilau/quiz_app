@@ -2443,6 +2443,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'-{amount} pts / mistake'**
   String penaltyPointsLabel(String amount);
+
+  /// Label for the toggle to select all questions
+  ///
+  /// In en, this message translates to:
+  /// **'All Questions'**
+  String get allQuestionsLabel;
 }
 
 class _AppLocalizationsDelegate

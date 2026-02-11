@@ -1352,4 +1352,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String penaltyPointsLabel(String amount) {
     return '-$amount puntu / errore';
   }
+
+  @override
+  String get allQuestionsLabel => 'Galdera guztiak';
 }

@@ -1287,4 +1287,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String penaltyPointsLabel(String amount) {
     return '-$amount 分 / 错误';
   }
+
+  @override
+  String get allQuestionsLabel => '所有题目';
 }

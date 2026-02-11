@@ -1360,4 +1360,7 @@ class AppLocalizationsGl extends AppLocalizations {
   String penaltyPointsLabel(String amount) {
     return '-$amount pts / erro';
   }
+
+  @override
+  String get allQuestionsLabel => 'Todas as preguntas';
 }
