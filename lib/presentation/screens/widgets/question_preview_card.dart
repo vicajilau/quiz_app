@@ -62,27 +62,27 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
   Widget build(BuildContext context) {
     final isDisabled = !widget.question.isEnabled;
 
-    return GestureDetector(
-      onTap: widget.isSelectionMode
-          ? widget.onSelectionToggle
-          : _toggleExpanded,
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 16),
-        decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(
-            color: widget.isSelected
-                ? Theme.of(context).extension<CustomColors>()!.aiIconColor!
-                : Theme.of(context).dividerColor,
-            width: widget.isSelected ? 2 : 1,
-          ),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: Theme.of(context).cardColor,
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(
+          color: widget.isSelected
+              ? Theme.of(context).extension<CustomColors>()!.aiIconColor!
+              : Theme.of(context).dividerColor,
+          width: widget.isSelected ? 2 : 1,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header with Question Index Badge and Actions
-            Padding(
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Header with Question Index Badge and Actions
+          GestureDetector(
+            onTap: widget.isSelectionMode
+                ? widget.onSelectionToggle
+                : _toggleExpanded,
+            child: Padding(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 12),
               child: LayoutBuilder(
                 builder: (context, constraints) {
@@ -169,9 +169,9 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                   message: AppLocalizations.of(context)!
                                       .questionTypeTooltip(
                                         QuestionTypeIndicator.getQuestionTypeString(
-                                        context,
-                                        widget.question.type,
-                                      ),
+                                          context,
+                                          widget.question.type,
+                                        ),
                                       ),
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
@@ -325,9 +325,14 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                 },
               ),
             ),
+          ),
 
-            // Question Text Preview (Always visible)
-            Padding(
+          // Question Text Preview (Always visible)
+          GestureDetector(
+            onTap: widget.isSelectionMode
+                ? widget.onSelectionToggle
+                : _toggleExpanded,
+            child: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 20,
               ).copyWith(bottom: 20),
@@ -344,115 +349,113 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                 ),
               ),
             ),
+          ),
 
-            if (_isExpanded)
-              Divider(height: 1, color: Theme.of(context).dividerColor),
-            // Question Content
-            AnimatedSize(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-              child: _isExpanded
-                  ? Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Image if present
-                          if (widget.question.image != null) ...[
-                            const SizedBox(height: 20),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(16),
-                              child: Image.memory(
-                                _getImageBytes(widget.question.image)!,
-                                fit: BoxFit.contain,
-                                errorBuilder: (context, error, stackTrace) =>
-                                    Container(
-                                      height: 150,
-                                      width: double.infinity,
-                                      color: Theme.of(
-                                        context,
-                                      ).scaffoldBackgroundColor,
-                                      child: Icon(
-                                        LucideIcons.imageOff,
-                                        color: Theme.of(context).hintColor,
-                                      ),
+          if (_isExpanded)
+            Divider(height: 1, color: Theme.of(context).dividerColor),
+          // Question Content
+          AnimatedSize(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+            child: _isExpanded
+                ? Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Image if present
+                        if (widget.question.image != null) ...[
+                          const SizedBox(height: 20),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.memory(
+                              _getImageBytes(widget.question.image)!,
+                              fit: BoxFit.contain,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  Container(
+                                    height: 150,
+                                    width: double.infinity,
+                                    color: Theme.of(
+                                      context,
+                                    ).scaffoldBackgroundColor,
+                                    child: Icon(
+                                      LucideIcons.imageOff,
+                                      color: Theme.of(context).hintColor,
                                     ),
+                                  ),
+                            ),
+                          ),
+                        ],
+
+                        const SizedBox(height: 24),
+
+                        // Options List
+                        QuestionOptionsList(
+                          question: widget.question,
+                          isDisabled: isDisabled,
+                        ),
+
+                        // Explanation
+                        if (widget.question.explanation.isNotEmpty) ...[
+                          const SizedBox(height: 24),
+                          Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).scaffoldBackgroundColor,
+                              borderRadius: BorderRadius.circular(16),
+                              border: Border.all(
+                                color: Theme.of(context).dividerColor,
                               ),
                             ),
-                          ],
-
-                          const SizedBox(height: 24),
-
-                          // Options List
-                          QuestionOptionsList(
-                            question: widget.question,
-                            isDisabled: isDisabled,
-                          ),
-
-                          // Explanation
-                          if (widget.question.explanation.isNotEmpty) ...[
-                            const SizedBox(height: 24),
-                            Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.all(16),
-                              decoration: BoxDecoration(
-                                color: Theme.of(
-                                  context,
-                                ).scaffoldBackgroundColor,
-                                borderRadius: BorderRadius.circular(16),
-                                border: Border.all(
-                                  color: Theme.of(context).dividerColor,
-                                ),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        LucideIcons.lightbulb,
-                                        size: 16,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(
+                                      LucideIcons.lightbulb,
+                                      size: 16,
+                                      color: Theme.of(
+                                        context,
+                                      ).extension<CustomColors>()!.warning,
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      AppLocalizations.of(
+                                        context,
+                                      )!.explanationTitle,
+                                      style: TextStyle(
                                         color: Theme.of(
                                           context,
                                         ).extension<CustomColors>()!.warning,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: 'Inter',
                                       ),
-                                      const SizedBox(width: 8),
-                                      Text(
-                                        AppLocalizations.of(
-                                          context,
-                                        )!.explanationTitle,
-                                        style: TextStyle(
-                                          color: Theme.of(
-                                            context,
-                                          ).extension<CustomColors>()!.warning,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                          fontFamily: 'Inter',
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 12),
-                                  LaTeXText(
-                                    widget.question.explanation,
-                                    style: TextStyle(
-                                      color: Theme.of(context).hintColor,
-                                      fontSize: 14,
-                                      fontFamily: 'Inter',
-                                      height: 1.5,
                                     ),
+                                  ],
+                                ),
+                                const SizedBox(height: 12),
+                                LaTeXText(
+                                  widget.question.explanation,
+                                  style: TextStyle(
+                                    color: Theme.of(context).hintColor,
+                                    fontSize: 14,
+                                    fontFamily: 'Inter',
+                                    height: 1.5,
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ],
-                      ),
-                    )
-                  : const SizedBox.shrink(),
-            ),
-          ],
-        ),
+                      ],
+                    ),
+                  )
+                : const SizedBox.shrink(),
+          ),
+        ],
       ),
     );
   }
@@ -478,5 +481,4 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
       ),
     );
   }
-
 }
