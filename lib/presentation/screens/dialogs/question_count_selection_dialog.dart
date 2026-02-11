@@ -282,6 +282,15 @@ class _QuestionCountSelectionDialogState
                                         _selectedCount = widget.totalQuestions;
                                         _questionCountController.text =
                                             _selectedCount.toString();
+                                      } else if (_selectedCount ==
+                                              widget.totalQuestions &&
+                                          widget.totalQuestions > 1) {
+                                        // If turning OFF "All" and we are at max,
+                                        // decrement to allow the user to use the + button
+                                        _selectedCount =
+                                            widget.totalQuestions - 1;
+                                        _questionCountController.text =
+                                            _selectedCount.toString();
                                       }
                                     });
                                   },
