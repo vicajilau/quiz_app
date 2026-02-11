@@ -178,360 +178,374 @@ class _QuestionCountSelectionDialogState
             ),
           ],
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // Header
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Text(
-                      AppLocalizations.of(context)!.startQuiz,
-                      style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                        color: textColor,
-                        height: 1.2,
-                      ),
-                      overflow: TextOverflow.ellipsis,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Header (Pinned)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    AppLocalizations.of(context)!.startQuiz,
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700,
+                      color: textColor,
+                      height: 1.2,
                     ),
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(width: 16),
-                  IconButton(
-                    onPressed: () => context.pop(null),
-                    style: IconButton.styleFrom(
-                      backgroundColor: controlBgColor,
-                      fixedSize: const Size(40, 40),
-                      padding: EdgeInsets.zero,
-                      shape: const CircleBorder(),
-                    ),
-                    icon: Icon(LucideIcons.x, size: 20, color: subTextColor),
+                ),
+                const SizedBox(width: 16),
+                IconButton(
+                  onPressed: () => context.pop(null),
+                  style: IconButton.styleFrom(
+                    backgroundColor: controlBgColor,
+                    fixedSize: const Size(40, 40),
+                    padding: EdgeInsets.zero,
+                    shape: const CircleBorder(),
                   ),
-                ],
-              ),
-              const SizedBox(height: 32),
+                  icon: Icon(LucideIcons.x, size: 20, color: subTextColor),
+                ),
+              ],
+            ),
+            const SizedBox(height: 32),
 
-              // All Questions Toggle Section
-              AnimatedSize(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
+            // Scrollable Content
+            Flexible(
+              child: SingleChildScrollView(
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 12,
-                      ),
-                      decoration: BoxDecoration(
-                        color: controlBgColor,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // All Questions Toggle Section
+                    AnimatedSize(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Text(
-                            l10n.allQuestionsLabel,
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500,
-                              color: textColor,
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 12,
                             ),
-                          ),
-                          Switch(
-                            value: _allQuestions,
-                            onChanged: (value) {
-                              setState(() {
-                                _allQuestions = value;
-                                if (_allQuestions) {
-                                  _selectedCount = widget.totalQuestions;
-                                  _questionCountController.text = _selectedCount
-                                      .toString();
-                                }
-                              });
-                            },
-                            activeTrackColor: primaryColor,
-                            activeThumbColor: Colors.white,
-                            inactiveThumbColor: Colors.white,
-                            inactiveTrackColor: isDark
-                                ? const Color(0xFF52525B) // zinc600
-                                : const Color(0xFFD4D4D8), // zinc300
-                            trackOutlineColor: WidgetStateProperty.all(
-                              Colors.transparent,
+                            decoration: BoxDecoration(
+                              color: controlBgColor,
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    if (!_allQuestions) ...[
-                      const SizedBox(height: 24),
-                      Text(
-                        l10n.numberInputLabel,
-                        style: TextStyle(
-                          fontFamily: 'Inter',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: subTextColor,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Row(
-                        children: [
-                          // Minus Button
-                          _buildCountControl(
-                            icon: LucideIcons.minus,
-                            onTap: _decrementCount,
-                            bgColor: controlBgColor,
-                            iconColor: controlIconColor,
-                          ),
-                          const SizedBox(width: 16),
-                          // Display
-                          Expanded(
-                            child: Container(
-                              height: 56,
-                              decoration: BoxDecoration(
-                                color: controlBgColor,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              alignment: Alignment.center,
-                              child: TextFormField(
-                                controller: _questionCountController,
-                                focusNode: _questionCountFocusNode,
-                                keyboardType: TextInputType.number,
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly,
-                                ],
-                                textAlign: TextAlign.center,
-                                decoration: const InputDecoration(
-                                  border: InputBorder.none,
-                                  isDense: true,
-                                  contentPadding: EdgeInsets.zero,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  l10n.allQuestionsLabel,
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500,
+                                    color: textColor,
+                                  ),
                                 ),
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w700,
-                                  color: textColor,
-                                ),
-                                onEditingComplete: () {
-                                  if (_questionCountController.text.isEmpty ||
-                                      int.tryParse(
-                                            _questionCountController.text,
-                                          ) ==
-                                          0) {
+                                Switch(
+                                  value: _allQuestions,
+                                  onChanged: (value) {
                                     setState(() {
-                                      _selectedCount = 1;
-                                      _questionCountController.text = '1';
-                                    });
-                                  }
-                                  _questionCountFocusNode.unfocus();
-                                },
-                                onChanged: (value) {
-                                  if (value.isEmpty) {
-                                    setState(() {
-                                      _selectedCount = 1;
-                                    });
-                                    return;
-                                  }
-                                  final val = int.tryParse(value);
-                                  if (val != null) {
-                                    setState(() {
-                                      _selectedCount = val.clamp(
-                                        1,
-                                        widget.totalQuestions,
-                                      );
-                                      // If user typed 0, force it to 1 immediately for better UX
-                                      if (val <= 0) {
-                                        _questionCountController.text = '1';
-                                        _questionCountController.selection =
-                                            TextSelection.fromPosition(
-                                              TextPosition(
-                                                offset: _questionCountController
-                                                    .text
-                                                    .length,
-                                              ),
-                                            );
+                                      _allQuestions = value;
+                                      if (_allQuestions) {
+                                        _selectedCount = widget.totalQuestions;
+                                        _questionCountController.text =
+                                            _selectedCount.toString();
                                       }
                                     });
-                                  }
-                                },
-                              ),
+                                  },
+                                  activeTrackColor: primaryColor,
+                                  activeThumbColor: Colors.white,
+                                  inactiveThumbColor: Colors.white,
+                                  inactiveTrackColor: isDark
+                                      ? const Color(0xFF52525B) // zinc600
+                                      : const Color(0xFFD4D4D8), // zinc300
+                                  trackOutlineColor: WidgetStateProperty.all(
+                                    Colors.transparent,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          const SizedBox(width: 16),
-                          // Plus Button
-                          _buildCountControl(
-                            icon: LucideIcons.plus,
-                            onTap: _incrementCount,
-                            bgColor: primaryColor,
-                            iconColor: Colors.white,
-                          ),
+                          if (!_allQuestions) ...[
+                            const SizedBox(height: 24),
+                            Text(
+                              l10n.numberInputLabel,
+                              style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: subTextColor,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            Row(
+                              children: [
+                                // Minus Button
+                                _buildCountControl(
+                                  icon: LucideIcons.minus,
+                                  onTap: _decrementCount,
+                                  bgColor: controlBgColor,
+                                  iconColor: controlIconColor,
+                                ),
+                                const SizedBox(width: 16),
+                                // Display
+                                Expanded(
+                                  child: Container(
+                                    height: 56,
+                                    decoration: BoxDecoration(
+                                      color: controlBgColor,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: TextFormField(
+                                      controller: _questionCountController,
+                                      focusNode: _questionCountFocusNode,
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly,
+                                      ],
+                                      textAlign: TextAlign.center,
+                                      decoration: const InputDecoration(
+                                        border: InputBorder.none,
+                                        isDense: true,
+                                        contentPadding: EdgeInsets.zero,
+                                      ),
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w700,
+                                        color: textColor,
+                                      ),
+                                      onEditingComplete: () {
+                                        if (_questionCountController
+                                                .text
+                                                .isEmpty ||
+                                            int.tryParse(
+                                                  _questionCountController.text,
+                                                ) ==
+                                                0) {
+                                          setState(() {
+                                            _selectedCount = 1;
+                                            _questionCountController.text = '1';
+                                          });
+                                        }
+                                        _questionCountFocusNode.unfocus();
+                                      },
+                                      onChanged: (value) {
+                                        if (value.isEmpty) {
+                                          setState(() {
+                                            _selectedCount = 1;
+                                          });
+                                          return;
+                                        }
+                                        final val = int.tryParse(value);
+                                        if (val != null) {
+                                          setState(() {
+                                            _selectedCount = val.clamp(
+                                              1,
+                                              widget.totalQuestions,
+                                            );
+                                            // If user typed 0, force it to 1 immediately for better UX
+                                            if (val <= 0) {
+                                              _questionCountController.text =
+                                                  '1';
+                                              _questionCountController
+                                                      .selection =
+                                                  TextSelection.fromPosition(
+                                                    TextPosition(
+                                                      offset:
+                                                          _questionCountController
+                                                              .text
+                                                              .length,
+                                                    ),
+                                                  );
+                                            }
+                                          });
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                // Plus Button
+                                _buildCountControl(
+                                  icon: LucideIcons.plus,
+                                  onTap: _incrementCount,
+                                  bgColor: primaryColor,
+                                  iconColor: Colors.white,
+                                ),
+                              ],
+                            ),
+                          ],
                         ],
                       ),
-                    ],
+                    ),
+
+                    const SizedBox(height: 32),
+
+                    // Quiz Mode
+                    Text(
+                      l10n.quizModeTitle,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: subTextColor,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+
+                    // Mode Options (Horizontal Row)
+                    Row(
+                      children: [
+                        Expanded(
+                          child: _buildModeOption(
+                            context: context,
+                            title: AppLocalizations.of(context)!.examModeLabel,
+                            icon: LucideIcons.fileText,
+                            isSelected: !_isStudyMode,
+                            onTap: () => setState(() => _isStudyMode = false),
+                            primaryColor: primaryColor,
+                            defaultBgColor: controlBgColor,
+                            defaultTextColor: subTextColor,
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: _buildModeOption(
+                            context: context,
+                            title: AppLocalizations.of(context)!.studyModeLabel,
+                            icon: LucideIcons.bookOpen,
+                            isSelected: _isStudyMode,
+                            onTap: () => setState(() => _isStudyMode = true),
+                            primaryColor: primaryColor,
+                            defaultBgColor: controlBgColor,
+                            defaultTextColor: subTextColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+
+                    // Mode Description
+                    Text(
+                      _isStudyMode
+                          ? AppLocalizations.of(context)!.studyModeDescription
+                          : AppLocalizations.of(context)!.examModeDescription,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                        color: subTextColor,
+                        height: 1.4,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+
+                    const SizedBox(height: 24),
+                    _buildAdvancedOptions(
+                      context,
+                      textColor,
+                      subTextColor,
+                      borderColor,
+                      primaryColor,
+                      controlBgColor,
+                      controlIconColor,
+                      isDark,
+                    ),
                   ],
                 ),
               ),
+            ),
 
-              const SizedBox(height: 32),
+            const SizedBox(height: 32),
 
-              // Quiz Mode
-              Text(
-                l10n.quizModeTitle,
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: subTextColor,
-                ),
-              ),
-              const SizedBox(height: 12),
-
-              // Mode Options (Horizontal Row)
-              Row(
-                children: [
-                  Expanded(
-                    child: _buildModeOption(
-                      context: context,
-                      title: AppLocalizations.of(context)!.examModeLabel,
-                      icon: LucideIcons.fileText,
-                      isSelected: !_isStudyMode,
-                      onTap: () => setState(() => _isStudyMode = false),
-                      primaryColor: primaryColor,
-                      defaultBgColor: controlBgColor,
-                      defaultTextColor: subTextColor,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: _buildModeOption(
-                      context: context,
-                      title: AppLocalizations.of(context)!.studyModeLabel,
-                      icon: LucideIcons.bookOpen,
-                      isSelected: _isStudyMode,
-                      onTap: () => setState(() => _isStudyMode = true),
-                      primaryColor: primaryColor,
-                      defaultBgColor: controlBgColor,
-                      defaultTextColor: subTextColor,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12),
-
-              // Mode Description
-              Text(
-                _isStudyMode
-                    ? AppLocalizations.of(context)!.studyModeDescription
-                    : AppLocalizations.of(context)!.examModeDescription,
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontSize: 13,
-                  fontWeight: FontWeight.w400,
-                  color: subTextColor,
-                  height: 1.4,
-                ),
-                textAlign: TextAlign.start,
-              ),
-
-              const SizedBox(height: 24),
-              _buildAdvancedOptions(
-                context,
-                textColor,
-                subTextColor,
-                borderColor,
-                primaryColor,
-                controlBgColor,
-                controlIconColor,
-                isDark,
-              ),
-
-              const SizedBox(height: 32),
-
-              // Start Button
-              ElevatedButton(
-                onPressed: () async {
-                  // Final validation for question count
-                  int finalCount = _selectedCount;
-                  if (!_allQuestions) {
-                    final text = _questionCountController.text;
-                    final val = int.tryParse(text);
-                    if (text.isEmpty || val == null || val <= 0) {
-                      finalCount = 1;
-                      if (mounted) {
-                        setState(() {
-                          _selectedCount = 1;
-                          _questionCountController.text = '1';
-                        });
-                      }
-                    } else {
-                      finalCount = val.clamp(1, widget.totalQuestions);
-                      if (mounted) {
-                        setState(() {
-                          _selectedCount = finalCount;
-                          _questionCountController.text = finalCount.toString();
-                        });
-                      }
+            // Start Button
+            ElevatedButton(
+              onPressed: () async {
+                // Final validation for question count
+                int finalCount = _selectedCount;
+                if (!_allQuestions) {
+                  final text = _questionCountController.text;
+                  final val = int.tryParse(text);
+                  if (text.isEmpty || val == null || val <= 0) {
+                    finalCount = 1;
+                    if (mounted) {
+                      setState(() {
+                        _selectedCount = 1;
+                        _questionCountController.text = '1';
+                      });
+                    }
+                  } else {
+                    finalCount = val.clamp(1, widget.totalQuestions);
+                    if (mounted) {
+                      setState(() {
+                        _selectedCount = finalCount;
+                        _questionCountController.text = finalCount.toString();
+                      });
                     }
                   }
+                }
 
-                  final examTimeEnabled = await ConfigurationService.instance
-                      .getExamTimeEnabled();
-                  final examTimeMinutes = await ConfigurationService.instance
-                      .getExamTimeMinutes();
+                final examTimeEnabled = await ConfigurationService.instance
+                    .getExamTimeEnabled();
+                final examTimeMinutes = await ConfigurationService.instance
+                    .getExamTimeMinutes();
 
-                  if (context.mounted) {
-                    ConfigurationService.instance.saveQuizConfigSettings(
-                      QuizConfigStoredSettings(
-                        questionCount: finalCount,
-                        isStudyMode: _isStudyMode,
-                        subtractPoints: _subtractPoints,
-                        penaltyAmount: _penaltyAmount,
-                      ),
-                    );
+                if (context.mounted) {
+                  ConfigurationService.instance.saveQuizConfigSettings(
+                    QuizConfigStoredSettings(
+                      questionCount: finalCount,
+                      isStudyMode: _isStudyMode,
+                      subtractPoints: _subtractPoints,
+                      penaltyAmount: _penaltyAmount,
+                    ),
+                  );
 
-                    context.pop(
-                      QuizConfig(
-                        questionCount: finalCount,
-                        isStudyMode: _isStudyMode,
-                        enableTimeLimit: examTimeEnabled,
-                        timeLimitMinutes: examTimeMinutes,
-                        subtractPoints: _subtractPoints,
-                        penaltyAmount: _penaltyAmount,
-                      ),
-                    );
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: primaryColor,
-                  foregroundColor: Colors.white,
-                  elevation: 0,
-                  minimumSize: const Size(double.infinity, 56),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  textStyle: const TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  context.pop(
+                    QuizConfig(
+                      questionCount: finalCount,
+                      isStudyMode: _isStudyMode,
+                      enableTimeLimit: examTimeEnabled,
+                      timeLimitMinutes: examTimeMinutes,
+                      subtractPoints: _subtractPoints,
+                      penaltyAmount: _penaltyAmount,
+                    ),
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: primaryColor,
+                foregroundColor: Colors.white,
+                elevation: 0,
+                minimumSize: const Size(double.infinity, 56),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(LucideIcons.play, size: 20),
-                    const SizedBox(width: 8),
-                    Text(AppLocalizations.of(context)!.startQuiz),
-                  ],
+                textStyle: const TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-            ],
-          ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(LucideIcons.play, size: 20),
+                  const SizedBox(width: 8),
+                  Text(AppLocalizations.of(context)!.startQuiz),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
