@@ -268,11 +268,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get customNumberLabel => '或输入自定义数量：';
 
   @override
-  String customNumberHelper(int total) {
-    return '输入任意数量（最多$total个）。如果超过，问题会重复。';
-  }
-
-  @override
   String get numberInputLabel => '问题数量';
 
   @override

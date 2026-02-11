@@ -252,11 +252,11 @@
   },
   "skip": "Skip",
   "@skip": {
-      "description": "Skip button text in quiz navigation"
+    "description": "Label for skip button"
   },
-  "questionsOverview": "View Questions Map",
+  "questionsOverview": "Questions Map",
   "@questionsOverview": {
-      "description": "Title for the questions overview bottom sheet"
+    "description": "Title for the questions overview bottom sheet"
   },
   "next": "Next",
   "@next": {
@@ -383,16 +383,6 @@
   "customNumberLabel": "Or enter a custom number:",
   "@customNumberLabel": {
     "description": "Label for custom number input field"
-  },
-  "customNumberHelper": "If greater than {total}, questions will repeat",
-  "@customNumberHelper": {
-    "description": "Helper text for custom number input",
-    "placeholders": {
-      "total": {
-        "type": "int",
-        "example": "10"
-      }
-    }
   },
   "numberInputLabel": "Number of questions",
   "@numberInputLabel": {
@@ -870,10 +860,6 @@
       }
     }
   },
-  "questionsOverview": "Questions Map",
-  "@questionsOverview": {
-    "description": "Title for the questions overview bottom sheet"
-  },
   "loadingAiServices": "Loading AI services...",
   "@loadingAiServices": {
     "description": "Message displayed while loading available AI services."
@@ -1200,12 +1186,10 @@
   "@aiGenerationFailed": {
     "description": "Message shown when AI question generation fails."
   },
-
   "aiGenerationErrorTitle": "Error generating questions",
   "@aiGenerationErrorTitle": {
     "description": "Title for the error dialog when generating questions with AI."
   },
-
   "noQuestionsInFile": "No questions found in the imported file",
   "@noQuestionsInFile": {
     "description": "Message shown when an imported file contains no questions."
@@ -1793,10 +1777,6 @@
   "settingsTitle": "Settings",
   "@settingsTitle": {
     "description": "Title for the settings dialog"
-  },
-  "skip": "Skip",
-  "@skip": {
-    "description": "Label for skip button"
   },
   "askAiAssistant": "Ask AI Assistant",
   "@askAiAssistant": {

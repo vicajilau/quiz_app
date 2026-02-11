@@ -88,7 +88,6 @@
   "errorInvalidNumber": "Παρακαλώ εισάγετε έγκυρο αριθμό",
   "errorNumberMustBePositive": "Ο αριθμός πρέπει να είναι μεγαλύτερος από 0",
   "customNumberLabel": "Ή εισάγετε προσαρμοσμένο αριθμό:",
-  "customNumberHelper": "Αν μεγαλύτερος από {total}, οι ερωτήσεις θα επαναληφθούν",
   "numberInputLabel": "Αριθμός ερωτήσεων",
   "questionOrderConfigTitle": "Διαμόρφωση Σειράς Ερωτήσεων",
   "questionOrderConfigDescription": "Επιλέξτε τη σειρά εμφάνισης των ερωτήσεων κατά την εξέταση:",
@@ -260,7 +259,6 @@
   "aiGeneratedQuestions": "Δημιουργήθηκε από AI",
   "aiApiKeyRequired": "Παρακαλώ ρυθμίστε τουλάχιστον ένα κλειδί API AI στις Ρυθμίσεις για να χρησιμοποιήσετε τη δημιουργία AI.",
   "aiGenerationFailed": "Αδυναμία δημιουργίας ερωτήσεων. Δοκιμάστε με διαφορετικό περιεχόμενο.",
-
   "aiGenerationErrorTitle": "Σφάλμα δημιουργίας ερωτήσεων",
   "@aiGenerationErrorTitle": {
     "description": "Τίτλος για το παράθυρο διαλόγου σφάλματος κατά τη δημιουργία ερωτήσεων με AI."
@@ -425,7 +423,6 @@
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
   },
-  "congratulations": "🎉 Συγχαρητήρια! 🎉",
   "keepPracticing": "Συνεχίστε την εξάσκηση για να βελτιωθείτε!",
   "tryAgain": "Δοκιμάστε ξανά",
   "review": "Ανασκόπηση",
@@ -461,6 +458,6 @@
         "example": "0.50"
       }
     }
-  }
-  ,"allQuestionsLabel": "Όλες οι ερωτήσεις"
+  },
+  "allQuestionsLabel": "Όλες οι ερωτήσεις"
 }

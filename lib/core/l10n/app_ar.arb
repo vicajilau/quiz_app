@@ -300,11 +300,11 @@
   },
   "skip": "تخطي",
   "@skip": {
-      "description": "Skip button text in quiz navigation"
+    "description": "Skip button text in quiz navigation"
   },
   "questionsOverview": "خريطة الأسئلة",
   "@questionsOverview": {
-      "description": "Title for the questions overview bottom sheet"
+    "description": "Title for the questions overview bottom sheet"
   },
   "next": "التالي",
   "@next": {
@@ -421,16 +421,6 @@
   "numberInputLabel": "عدد الأسئلة",
   "@numberInputLabel": {
     "description": "Label for the number input field"
-  },
-  "customNumberHelper": "أدخل أي رقم (بحد أقصى {total}). إذا كان أكبر، ستتكرر الأسئلة.",
-  "@customNumberHelper": {
-    "description": "Helper text explaining custom number input",
-    "placeholders": {
-      "total": {
-        "type": "int",
-        "example": "25"
-      }
-    }
   },
   "errorInvalidNumber": "يرجى إدخال رقم صالح",
   "@errorInvalidNumber": {
@@ -1450,7 +1440,7 @@
   "@viewWinners": {
     "description": "تسمية زر عرض الفائزين"
   },
-  "congratulations": "تهانينا!",
+  "congratulations": "🎉 تهانينا! 🎉",
   "@congratulations": {
     "description": "رسالة تهنئة للفائز"
   },
@@ -1761,7 +1751,6 @@
     }
   },
   "settingsTitle": "الإعدادات",
-  "congratulations": "🎉 تهانينا! 🎉",
   "keepPracticing": "استمر في التدريب للتحسن!",
   "tryAgain": "إعادة المحاولة",
   "review": "مراجعة",
@@ -1797,6 +1786,6 @@
         "example": "0.50"
       }
     }
-  }
-  ,"allQuestionsLabel": "جميع الأسئلة"
+  },
+  "allQuestionsLabel": "جميع الأسئلة"
 }

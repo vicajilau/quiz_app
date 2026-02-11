@@ -338,16 +338,6 @@
   "@numberInputLabel": {
     "description": "Etichetta per il campo di input numero"
   },
-  "customNumberHelper": "Inserisci qualsiasi numero (max {total}). Se superiore, le domande si ripeteranno.",
-  "@customNumberHelper": {
-    "description": "Testo di aiuto che spiega l'input numero personalizzato",
-    "placeholders": {
-      "total": {
-        "type": "int",
-        "example": "25"
-      }
-    }
-  },
   "errorInvalidNumber": "Inserisci un numero valido",
   "@errorInvalidNumber": {
     "description": "Messaggio di errore per input numero non valido"
@@ -1092,7 +1082,6 @@
   "@aiGenerationFailed": {
     "description": "Messaggio mostrato quando la generazione domande IA fallisce."
   },
-
   "aiGenerationErrorTitle": "Errore nella generazione domande",
   "@aiGenerationErrorTitle": {
     "description": "Titolo per la finestra di dialogo di errore durante la generazione di domande con IA."
@@ -1735,7 +1724,6 @@
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
   },
-  "congratulations": "🎉 Congratulazioni! 🎉",
   "keepPracticing": "Continua a fare pratica per migliorare!",
   "tryAgain": "Riprova",
   "review": "Ripassa",
@@ -1786,6 +1774,6 @@
         "example": "0.50"
       }
     }
-  }
-  ,"allQuestionsLabel": "Tutte le domande"
+  },
+  "allQuestionsLabel": "Tutte le domande"
 }

@@ -279,11 +279,6 @@ class AppLocalizationsEl extends AppLocalizations {
   String get customNumberLabel => 'Ή εισάγετε προσαρμοσμένο αριθμό:';
 
   @override
-  String customNumberHelper(int total) {
-    return 'Αν μεγαλύτερος από $total, οι ερωτήσεις θα επαναληφθούν';
-  }
-
-  @override
   String get numberInputLabel => 'Αριθμός ερωτήσεων';
 
   @override

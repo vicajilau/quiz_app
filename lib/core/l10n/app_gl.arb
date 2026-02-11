@@ -342,16 +342,6 @@
   "@numberInputLabel": {
     "description": "Etiqueta para o campo de entrada de número"
   },
-  "customNumberHelper": "Introduce calquera número (máx {total}). Se é maior, as preguntas repetiránse.",
-  "@customNumberHelper": {
-    "description": "Texto de axuda explicando a entrada de número personalizado",
-    "placeholders": {
-      "total": {
-        "type": "int",
-        "example": "25"
-      }
-    }
-  },
   "errorInvalidNumber": "Por favor, introduce un número válido",
   "@errorInvalidNumber": {
     "description": "Mensaxe de erro para entrada de número non válido"
@@ -1114,7 +1104,6 @@
   "@aiGenerationFailed": {
     "description": "Mensaxe mostrada cando a xeración de preguntas IA falla."
   },
-
   "aiGenerationErrorTitle": "Erro xerando preguntas",
   "@aiGenerationErrorTitle": {
     "description": "Título para o diálogo de erro xerando preguntas con IA."
@@ -1389,7 +1378,7 @@
   "@viewWinners": {
     "description": "Etiqueta do botón para ver os gañadores"
   },
-  "congratulations": "Parabéns!",
+  "congratulations": "🎉 Parabéns! 🎉",
   "@congratulations": {
     "description": "Mensaxe de felicitación para o gañador"
   },
@@ -1687,7 +1676,6 @@
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
   },
-  "congratulations": "🎉 Parabéns! 🎉",
   "keepPracticing": "Segue practicando para mellorar!",
   "tryAgain": "Intentalo de novo",
   "review": "Repasar",
@@ -1738,6 +1726,6 @@
         "example": "0.50"
       }
     }
-  }
-  ,"allQuestionsLabel": "Todas as preguntas"
+  },
+  "allQuestionsLabel": "Todas as preguntas"
 }

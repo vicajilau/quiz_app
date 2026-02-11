@@ -271,11 +271,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get customNumberLabel => 'أو أدخل رقماً مخصصاً:';
 
   @override
-  String customNumberHelper(int total) {
-    return 'أدخل أي رقم (بحد أقصى $total). إذا كان أكبر، ستتكرر الأسئلة.';
-  }
-
-  @override
   String get numberInputLabel => 'عدد الأسئلة';
 
   @override

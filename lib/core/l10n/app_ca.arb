@@ -414,16 +414,6 @@
   "@numberInputLabel": {
     "description": "Etiqueta pel camp d'entrada de número"
   },
-  "customNumberHelper": "Introduïu qualsevol número (màx {total}). Si és més gran, les preguntes es repetiran.",
-  "@customNumberHelper": {
-    "description": "Text d'ajuda explicant l'entrada de número personalitzat",
-    "placeholders": {
-      "total": {
-        "type": "int",
-        "example": "25"
-      }
-    }
-  },
   "errorInvalidNumber": "Si us plau, introduïu un número vàlid",
   "@errorInvalidNumber": {
     "description": "Missatge d'error per entrada de número no vàlid"
@@ -1442,7 +1432,7 @@
   "@viewWinners": {
     "description": "Etiqueta del botó per veure els guanyadors"
   },
-  "congratulations": "Felicitats!",
+  "congratulations": "🎉 Felicitats! 🎉",
   "@congratulations": {
     "description": "Missatge de felicitació per al guanyador"
   },
@@ -1800,7 +1790,6 @@
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
   },
-  "congratulations": "🎉 Felicitats! 🎉",
   "keepPracticing": "Segueix practicant per millorar!",
   "tryAgain": "Tornar a intentar",
   "review": "Repassar",
@@ -1836,6 +1825,6 @@
         "example": "0.50"
       }
     }
-  }
-  ,"allQuestionsLabel": "Totes les preguntes"
+  },
+  "allQuestionsLabel": "Totes les preguntes"
 }

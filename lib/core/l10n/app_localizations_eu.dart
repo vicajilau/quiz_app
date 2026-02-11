@@ -276,11 +276,6 @@ class AppLocalizationsEu extends AppLocalizations {
   String get customNumberLabel => 'Edo sartu zenbaki pertsonalizatua:';
 
   @override
-  String customNumberHelper(int total) {
-    return 'Sartu edozein zenbaki (geh. $total). Handiagoa bada, galderak errepikatu egingo dira.';
-  }
-
-  @override
   String get numberInputLabel => 'Galdera kopurua';
 
   @override

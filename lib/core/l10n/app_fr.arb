@@ -338,16 +338,6 @@
   "@numberInputLabel": {
     "description": "Libellé pour le champ de saisie de nombre"
   },
-  "customNumberHelper": "Entrez n'importe quel nombre (max {total}). Si supérieur, les questions se répéteront.",
-  "@customNumberHelper": {
-    "description": "Texte d'aide expliquant la saisie de nombre personnalisé",
-    "placeholders": {
-      "total": {
-        "type": "int",
-        "example": "25"
-      }
-    }
-  },
   "errorInvalidNumber": "Veuillez entrer un nombre valide",
   "@errorInvalidNumber": {
     "description": "Message d'erreur pour une saisie de nombre invalide"
@@ -1092,7 +1082,6 @@
   "@aiGenerationFailed": {
     "description": "Message affiché lorsque la génération de questions IA échoue."
   },
-
   "aiGenerationErrorTitle": "Erreur de génération de questions",
   "@aiGenerationErrorTitle": {
     "description": "Titre de la boîte de dialogue d'erreur lors de la génération de questions avec l'IA."
@@ -1735,7 +1724,6 @@
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
   },
-  "congratulations": "🎉 Félicitations ! 🎉",
   "keepPracticing": "Continuez à vous entraîner pour vous améliorer !",
   "tryAgain": "Réessayer",
   "review": "Réviser",
@@ -1786,6 +1774,6 @@
         "example": "0.50"
       }
     }
-  }
-  ,"allQuestionsLabel": "Toutes les questions"
+  },
+  "allQuestionsLabel": "Toutes les questions"
 }

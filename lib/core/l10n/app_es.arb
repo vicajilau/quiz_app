@@ -256,11 +256,11 @@
   },
   "skip": "Saltar",
   "@skip": {
-      "description": "Texto del botón saltar en la navegación del quiz"
+    "description": "Texto del botón saltar en la navegación del quiz"
   },
   "questionsOverview": "Ver mapa de preguntas",
   "@questionsOverview": {
-      "description": "Title for the questions overview bottom sheet"
+    "description": "Title for the questions overview bottom sheet"
   },
   "next": "Siguiente",
   "@next": {
@@ -278,11 +278,11 @@
   "@finishQuizConfirmation": {
     "description": "Mensaje de confirmación para finalizar quiz"
   },
-  "finishQuizUnansweredQuestions": "Tienes {count, plural, =1{1 pregunta sin responder} other{{count} preguntas sin responder}}. ¿Estás seguro de que quieres finalizar?",
+  "finishQuizUnansweredQuestions": "Tienes {unansweredCount,plural, =1{1 pregunta sin responder}other{{unansweredCount} preguntas sin responder}}. ¿Estás seguro de que quieres terminar el cuestionario?",
   "@finishQuizUnansweredQuestions": {
-    "description": "Mensaje de confirmación para finalizar quiz con preguntas sin responder",
+    "description": "Message shown when there are unanswered questions.",
     "placeholders": {
-      "count": {
+      "unansweredCount": {
         "type": "int",
         "example": "3"
       }
@@ -351,7 +351,6 @@
   "errorInvalidNumber": "Por favor ingresa un número válido",
   "errorNumberMustBePositive": "El número debe ser mayor que 0",
   "customNumberLabel": "O introduce un número personalizado:",
-  "customNumberHelper": "Si es mayor que {total}, las preguntas se repetirán",
   "numberInputLabel": "Número de preguntas",
   "questionOrderConfigTitle": "Configuración del Orden de Preguntas",
   "@questionOrderConfigTitle": {
@@ -1147,12 +1146,10 @@
   "@aiGenerationFailed": {
     "description": "Mensaje mostrado cuando la generación de preguntas con IA falla."
   },
-
   "aiGenerationErrorTitle": "Error al generar preguntas",
   "@aiGenerationErrorTitle": {
     "description": "Título para el diálogo de error al generar preguntas con IA."
   },
-
   "noQuestionsInFile": "No se encontraron preguntas en el archivo importado",
   "@noQuestionsInFile": {
     "description": "Mensaje mostrado cuando un archivo importado no contiene preguntas."
@@ -1766,17 +1763,13 @@
   "done": "Listo",
   "importButton": "Importar",
   "reorderButton": "Reordenar",
-  "saveButton": "Guardar",
-  "deleteButton": "Eliminar",
   "startQuizButton": "Comenzar Quiz",
   "deleteConfirmation": "¿Seguro que quieres eliminar este quiz?",
-  "cancel": "Cancelar",
   "saveSuccess": "Archivo guardado exitosamente",
   "errorSavingFile": "Error al guardar el archivo",
   "deleteSingleQuestionConfirmation": "¿Estás seguro de que quieres eliminar esta pregunta?",
   "deleteMultipleQuestionsConfirmation": "¿Estás seguro de que quieres eliminar {count} preguntas?",
   "settingsTitle": "Ajustes",
-  "congratulations": "🎉 ¡Felicidades! 🎉",
   "keepPracticing": "¡Sigue practicando para mejorar!",
   "@keepPracticing": {
     "description": "Mensaje de aliento para puntuaciones bajas en el quiz"
@@ -1787,16 +1780,6 @@
   "allLabel": "Todas",
   "@allLabel": {
     "description": "Etiqueta para la opción de seleccionar todas las preguntas"
-  },
-  "finishQuizUnansweredQuestions": "Tienes {unansweredCount,plural, =1{1 pregunta sin responder}other{{unansweredCount} preguntas sin responder}}. ¿Estás seguro de que quieres terminar el cuestionario?",
-  "@finishQuizUnansweredQuestions": {
-    "description": "Message shown when there are unanswered questions.",
-    "placeholders": {
-      "unansweredCount": {
-        "type": "int",
-        "example": "3"
-      }
-    }
   },
   "subtractPointsLabel": "Restar puntos por respuesta incorrecta",
   "@subtractPointsLabel": {
@@ -1815,6 +1798,6 @@
         "example": "0.50"
       }
     }
-  }
-  ,"allQuestionsLabel": "Todas las preguntas"
+  },
+  "allQuestionsLabel": "Todas las preguntas"
 }

@@ -342,16 +342,6 @@
   "@numberInputLabel": {
     "description": "Zenbaki sarrera eremuaren etiketa"
   },
-  "customNumberHelper": "Sartu edozein zenbaki (geh. {total}). Handiagoa bada, galderak errepikatu egingo dira.",
-  "@customNumberHelper": {
-    "description": "Zenbaki pertsonalizatu sarrera azaltzen duen laguntza testua",
-    "placeholders": {
-      "total": {
-        "type": "int",
-        "example": "25"
-      }
-    }
-  },
   "errorInvalidNumber": "Mesedez, sartu zenbaki baliozkoa",
   "@errorInvalidNumber": {
     "description": "Zenbaki sarrera baliogabearen errore mezua"
@@ -1096,7 +1086,6 @@
   "@aiGenerationFailed": {
     "description": "AI galdera sorkuntza huts egiten duenean erakusten den mezua."
   },
-
   "aiGenerationErrorTitle": "Errorea galderak sortzean",
   "@aiGenerationErrorTitle": {
     "description": "AI bidez galderak sortzean errore-leihoaren izenburua."
@@ -1371,7 +1360,7 @@
   "@viewWinners": {
     "description": "Irabazleak ikusteko botoiaren etiketa"
   },
-  "congratulations": "Zorionak!",
+  "congratulations": "🎉 Zorionak! 🎉",
   "@congratulations": {
     "description": "Irabazlearentzako zorion mezua"
   },
@@ -1687,7 +1676,6 @@
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
   },
-  "congratulations": "🎉 Zorionak! 🎉",
   "keepPracticing": "Jarraitu praktikatzen hobetzeko!",
   "tryAgain": "Berriro saiatu",
   "review": "Berrikusi",
@@ -1738,6 +1726,6 @@
         "example": "0.50"
       }
     }
-  }
-  ,"allQuestionsLabel": "Galdera guztiak"
+  },
+  "allQuestionsLabel": "Galdera guztiak"
 }

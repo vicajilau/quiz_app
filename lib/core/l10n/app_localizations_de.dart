@@ -278,11 +278,6 @@ class AppLocalizationsDe extends AppLocalizations {
       'Oder geben Sie eine benutzerdefinierte Zahl ein:';
 
   @override
-  String customNumberHelper(int total) {
-    return 'Geben Sie eine beliebige Zahl ein (max $total). Bei höherer Zahl wiederholen sich die Fragen.';
-  }
-
-  @override
   String get numberInputLabel => 'Anzahl der Fragen';
 
   @override

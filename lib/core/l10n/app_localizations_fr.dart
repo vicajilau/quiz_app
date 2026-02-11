@@ -277,11 +277,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get customNumberLabel => 'Ou entrez un nombre personnalisé :';
 
   @override
-  String customNumberHelper(int total) {
-    return 'Entrez n\'importe quel nombre (max $total). Si supérieur, les questions se répéteront.';
-  }
-
-  @override
   String get numberInputLabel => 'Nombre de questions';
 
   @override

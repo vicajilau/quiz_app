@@ -342,16 +342,6 @@
   "@numberInputLabel": {
     "description": "Label for the number input field"
   },
-  "customNumberHelper": "输入任意数量（最多{total}个）。如果超过，问题会重复。",
-  "@customNumberHelper": {
-    "description": "Helper text explaining custom number input",
-    "placeholders": {
-      "total": {
-        "type": "int",
-        "example": "25"
-      }
-    }
-  },
   "errorInvalidNumber": "请输入有效数字",
   "@errorInvalidNumber": {
     "description": "Error message for invalid number input"
@@ -1370,7 +1360,7 @@
   "@viewWinners": {
     "description": "查看获奖者按钮标签"
   },
-  "congratulations": "恭喜！",
+  "congratulations": "🎉 恭喜！ 🎉",
   "@congratulations": {
     "description": "获奖者祝贺消息"
   },
@@ -1686,7 +1676,6 @@
   "@questionsOverview": {
     "description": "Title for the questions overview bottom sheet"
   },
-  "congratulations": "🎉 恭喜！ 🎉",
   "keepPracticing": "继续练习以提高！",
   "tryAgain": "再试一次",
   "review": "复习",
@@ -1737,6 +1726,6 @@
         "example": "0.50"
       }
     }
-  }
-  ,"allQuestionsLabel": "所有题目"
+  },
+  "allQuestionsLabel": "所有题目"
 }

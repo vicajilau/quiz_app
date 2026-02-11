@@ -228,11 +228,11 @@
   },
   "skip": "छोड़ें",
   "@skip": {
-      "description": "Skip button text in quiz navigation"
+    "description": "Skip button text in quiz navigation"
   },
-  "questionsOverview": "प्रश्न मानचित्र",
+  "questionsOverview": "Questions Map",
   "@questionsOverview": {
-      "description": "Title for the questions overview bottom sheet"
+    "description": "Title for the questions overview bottom sheet"
   },
   "next": "अगला",
   "@next": {
@@ -349,16 +349,6 @@
   "numberInputLabel": "प्रश्नों की संख्या",
   "@numberInputLabel": {
     "description": "Label for the number input field"
-  },
-  "customNumberHelper": "कोई भी संख्या दर्ज करें (अधिकतम {total})। यदि अधिक है, तो प्रश्न दोहराए जाएंगे।",
-  "@customNumberHelper": {
-    "description": "Helper text explaining custom number input",
-    "placeholders": {
-      "total": {
-        "type": "int",
-        "example": "25"
-      }
-    }
   },
   "errorInvalidNumber": "कृपया वैध संख्या दर्ज करें",
   "@errorInvalidNumber": {
@@ -1378,7 +1368,7 @@
   "@viewWinners": {
     "description": "विजेता देखने के लिए बटन लेबल"
   },
-  "congratulations": "बधाई हो!",
+  "congratulations": "🎉 बधाई हो! 🎉",
   "@congratulations": {
     "description": "विजेता के लिए बधाई संदेश"
   },
@@ -1648,7 +1638,6 @@
   "examModeDescription": "मानक समय और अंत में परिणाम",
   "checkAnswer": "जांचें",
   "quizModeTitle": "क्विज़ मोड",
-  "skip": "छोड़ें",
   "askAiAssistant": "AI सहायक से पूछें",
   "evaluateWithAI": "AI के साथ मूल्यांकन करें",
   "aiEvaluation": "AI मूल्यांकन",
@@ -1690,11 +1679,6 @@
     }
   },
   "settingsTitle": "सेटिंग्स",
-  "questionsOverview": "Questions Map",
-  "@questionsOverview": {
-    "description": "Title for the questions overview bottom sheet"
-  },
-  "congratulations": "🎉 बधाई हो! 🎉",
   "keepPracticing": "सुधार के लिए अभ्यास जारी रखें!",
   "tryAgain": "फिर कोशिश करें",
   "review": "समीक्षा",
@@ -1745,6 +1729,6 @@
         "example": "0.50"
       }
     }
-  }
-  ,"allQuestionsLabel": "सभी प्रश्न"
+  },
+  "allQuestionsLabel": "सभी प्रश्न"
 }

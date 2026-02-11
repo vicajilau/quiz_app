@@ -275,11 +275,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get customNumberLabel => 'या कस्टम संख्या दर्ज करें:';
 
   @override
-  String customNumberHelper(int total) {
-    return 'कोई भी संख्या दर्ज करें (अधिकतम $total)। यदि अधिक है, तो प्रश्न दोहराए जाएंगे।';
-  }
-
-  @override
   String get numberInputLabel => 'प्रश्नों की संख्या';
 
   @override

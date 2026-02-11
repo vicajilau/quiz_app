@@ -578,12 +578,6 @@ abstract class AppLocalizations {
   /// **'Or enter a custom number:'**
   String get customNumberLabel;
 
-  /// Helper text for custom number input
-  ///
-  /// In en, this message translates to:
-  /// **'If greater than {total}, questions will repeat'**
-  String customNumberHelper(int total);
-
   /// Label for the number input field
   ///
   /// In en, this message translates to:

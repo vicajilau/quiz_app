@@ -268,11 +268,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get customNumberLabel => 'またはカスタム数を入力：';
 
   @override
-  String customNumberHelper(int total) {
-    return '任意の数を入力（最大$total問）。超過した場合、問題が繰り返されます。';
-  }
-
-  @override
   String get numberInputLabel => '問題数';
 
   @override
