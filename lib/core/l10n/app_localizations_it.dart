@@ -1344,4 +1344,9 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get penaltyAmountLabel => 'Importo penalità';
+
+  @override
+  String penaltyPointsLabel(String amount) {
+    return '-$amount pt / errore';
+  }
 }

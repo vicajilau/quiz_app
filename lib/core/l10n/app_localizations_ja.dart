@@ -1290,4 +1290,9 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get penaltyAmountLabel => 'ペナルティ額';
+
+  @override
+  String penaltyPointsLabel(String amount) {
+    return '-$amount 点 / 誤答';
+  }
 }

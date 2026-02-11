@@ -1354,4 +1354,9 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get penaltyAmountLabel => 'Quantitat de penalització';
+
+  @override
+  String penaltyPointsLabel(String amount) {
+    return '-$amount pts / error';
+  }
 }

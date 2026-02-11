@@ -1282,4 +1282,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get penaltyAmountLabel => '扣分金额';
+
+  @override
+  String penaltyPointsLabel(String amount) {
+    return '-$amount 分 / 错误';
+  }
 }

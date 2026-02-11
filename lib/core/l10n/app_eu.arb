@@ -1714,5 +1714,15 @@
   "penaltyAmountLabel": "Penalizazio kopurua",
   "@penaltyAmountLabel": {
     "description": "Label for the input field to set the penalty amount"
+  },
+  "penaltyPointsLabel": "-{amount} puntu / errore",
+  "@penaltyPointsLabel": {
+    "description": "Label showing the points deducted per mistake",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "0.50"
+      }
+    }
   }
 }

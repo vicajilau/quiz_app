@@ -128,7 +128,6 @@ class _QuestionCountSelectionDialogState
         ? const Color(0xFFA1A1AA)
         : const Color(0xFF3F3F46);
     final primaryColor = const Color(0xFF8B5CF6);
-
     return Dialog(
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -526,7 +525,9 @@ class _QuestionCountSelectionDialogState
                       if (_subtractPoints) ...[
                         const SizedBox(height: 2),
                         Text(
-                          '-${_penaltyAmount.toStringAsFixed(2)} pts / mistake',
+                          AppLocalizations.of(context)!.penaltyPointsLabel(
+                            _penaltyAmount.toStringAsFixed(2),
+                          ),
                           style: const TextStyle(
                             fontFamily: 'Inter',
                             fontSize: 12,

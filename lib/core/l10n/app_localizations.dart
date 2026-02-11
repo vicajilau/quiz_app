@@ -2437,6 +2437,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Penalty amount'**
   String get penaltyAmountLabel;
+
+  /// Label showing the points deducted per mistake
+  ///
+  /// In en, this message translates to:
+  /// **'-{amount} pts / mistake'**
+  String penaltyPointsLabel(String amount);
 }
 
 class _AppLocalizationsDelegate

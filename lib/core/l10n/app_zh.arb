@@ -1713,5 +1713,15 @@
   "penaltyAmountLabel": "扣分金额",
   "@penaltyAmountLabel": {
     "description": "Label for the input field to set the penalty amount"
+  },
+  "penaltyPointsLabel": "-{amount} 分 / 错误",
+  "@penaltyPointsLabel": {
+    "description": "Label showing the points deducted per mistake",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "0.50"
+      }
+    }
   }
 }

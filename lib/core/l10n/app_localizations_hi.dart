@@ -1336,4 +1336,9 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get penaltyAmountLabel => 'दंड राशि';
+
+  @override
+  String penaltyPointsLabel(String amount) {
+    return '-$amount अंक / गलती';
+  }
 }
