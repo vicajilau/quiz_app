@@ -210,12 +210,12 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
     }
   }
 
-  /// Counts words by splitting on whitespace and commas, so
-  /// "math,science" counts as 2. Used to determine topic vs content mode.
+  /// Counts words by splitting on whitespace only.
+  /// Used as the displayed count in content mode (>10 topics).
   int _getWordCount() {
     final text = _textController.text.trim();
     if (text.isEmpty) return 0;
-    return text.split(RegExp(r'[\s,]+')).where((w) => w.isNotEmpty).length;
+    return text.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
   }
 
   /// Counts comma-separated items. Used as the displayed count in topic mode.
@@ -225,15 +225,15 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
     return text.split(',').where((t) => t.trim().isNotEmpty).length;
   }
 
-  /// Returns the counter label: topic count when in topic mode (≤10 words),
-  /// word count when in content mode (>10 words).
+  /// Returns the counter label: topic count when in topic mode (≤10 topics),
+  /// word count when in content mode (>10 topics).
   String _getWordCountText() {
-    final wordCount = _getWordCount();
+    final topicCount = _getTopicCount();
     final localizations = AppLocalizations.of(context)!;
-    if (wordCount <= 10) {
-      return localizations.aiTopicModeCount(_getTopicCount());
+    if (topicCount <= 10) {
+      return localizations.aiTopicModeCount(topicCount);
     } else {
-      return localizations.aiTextModeCount(wordCount);
+      return localizations.aiTextModeCount(_getWordCount());
     }
   }
 
@@ -392,6 +392,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
         },
         getWordCountText: _getWordCountText,
         getWordCount: _getWordCount,
+        getTopicCount: _getTopicCount,
       );
     }
   }
