@@ -477,15 +477,15 @@ class _QuestionCountSelectionDialogState
                           : AppLocalizations.of(context)!.examModeDescription,
                       style: TextStyle(
                         fontFamily: 'Inter',
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
                         color: subTextColor,
                         height: 1.4,
                       ),
                       textAlign: TextAlign.start,
                     ),
 
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 12),
                     _buildAdvancedOptions(
                       context,
                       textColor,
