@@ -201,10 +201,6 @@ class SubmitQuizDialog {
                         );
                       }
 
-                      // Check if Resolve button is actually needed (has content)
-                      // We need to peek into the state again or just build it and check size?
-                      // Simpler: The builder logic for Resolve button returns 0 size if not needed (SizedBox.shrink).
-                      // However, we need to know IF it is visible to determine layout.
                       bool showResolveButton = false;
                       final state = bloc.state;
                       if (state is QuizExecutionInProgress) {
@@ -217,9 +213,6 @@ class SubmitQuizDialog {
                         return buildFinishButton();
                       }
 
-                      // If we have both buttons, check width
-                      // Threshold: 300px? Or maybe just try to fit them.
-                      // If dialog width allows (e.g. > 400), use Row.
                       if (constraints.maxWidth > 450) {
                         return Row(
                           children: [
