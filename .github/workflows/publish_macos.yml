@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+*'
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -119,13 +121,13 @@ jobs:
            echo "Using App Identity for signing: $APP_IDENTITY"
            
            echo "Embedding Provisioning Profile..."
-           cp "$PP_PATH" "build/macos/Build/Products/Release/quiz_app.app/Contents/embedded.provisionprofile"
+           cp "$PP_PATH" "build/macos/Build/Products/Release/Quiz Appl.app/Contents/embedded.provisionprofile"
            
-           codesign --force --deep --options runtime --verbose --sign "$APP_IDENTITY" --entitlements macos/Runner/Release.entitlements "build/macos/Build/Products/Release/quiz_app.app"
+           codesign --force --deep --options runtime --verbose --sign "$APP_IDENTITY" --entitlements macos/Runner/Release.entitlements "build/macos/Build/Products/Release/Quiz Appl.app"
 
-           productbuild --component "build/macos/Build/Products/Release/quiz_app.app" /Applications \
+           productbuild --component "build/macos/Build/Products/Release/Quiz Appl.app" /Applications \
                         --sign "$INSTALLER_IDENTITY" \
-                        "build/macos/pkg/quiz_app.pkg"
+                        "build/macos/pkg/Quiz Appl.pkg"
 
 
       - name: Upload pkg to Artifacts
