@@ -18,6 +18,22 @@
   "generateButton": "Δημιουργία",
   "aiTopicModeCount": "Λειτουργία θέματος ({count} λέξεις)",
   "aiTextModeCount": "Λειτουργία κειμένου ({count} λέξεις)",
+  "aiGenerationCategoryLabel": "Λειτουργία Περιεχομένου",
+  "@aiGenerationCategoryLabel": {
+    "description": "Label for AI generation category selector"
+  },
+  "aiGenerationCategoryTheory": "Θεωρία",
+  "@aiGenerationCategoryTheory": {
+    "description": "Label for theory category"
+  },
+  "aiGenerationCategoryExercises": "Ασκήσεις",
+  "@aiGenerationCategoryExercises": {
+    "description": "Label for exercises category"
+  },
+  "aiGenerationCategoryBoth": "Μικτό",
+  "@aiGenerationCategoryBoth": {
+    "description": "Label for mixed category"
+  },
   "load": "Φόρτωση",
   "fileLoaded": "Το αρχείο φορτώθηκε: {filePath}",
   "fileSaved": "Το αρχείο αποθηκεύτηκε: {filePath}",

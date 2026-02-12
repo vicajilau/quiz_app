@@ -75,6 +75,22 @@
     }
   },
   "aiTextModeCount": "Textmodus ({count} Wörter)",
+  "aiGenerationCategoryLabel": "Inhaltsmodus",
+  "@aiGenerationCategoryLabel": {
+    "description": "Label for AI generation category selector"
+  },
+  "aiGenerationCategoryTheory": "Theorie",
+  "@aiGenerationCategoryTheory": {
+    "description": "Label for theory category"
+  },
+  "aiGenerationCategoryExercises": "Übungen",
+  "@aiGenerationCategoryExercises": {
+    "description": "Label for exercises category"
+  },
+  "aiGenerationCategoryBoth": "Gemischt",
+  "@aiGenerationCategoryBoth": {
+    "description": "Label for mixed category"
+  },
   "@aiTextModeCount": {
     "description": "Text mode with word count",
     "placeholders": {

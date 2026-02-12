@@ -15,6 +15,7 @@ import 'package:quiz_app/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quiz_app/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quiz_app/presentation/screens/dialogs/quiz_metadata_dialog.dart';
 import 'package:quiz_app/presentation/screens/dialogs/settings_dialog.dart';
+import 'package:quiz_app/domain/models/ai/ai_generation_config.dart';
 import 'package:quiz_app/presentation/screens/dialogs/ai_generate_questions_dialog.dart';
 import 'package:quiz_app/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';

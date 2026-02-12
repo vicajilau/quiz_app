@@ -1695,6 +1695,22 @@
   "generateButton": "生成",
   "aiTopicModeCount": "主题模式 ({count} 字)",
   "aiTextModeCount": "文本模式 ({count} 字)",
+  "aiGenerationCategoryLabel": "内容模式",
+  "@aiGenerationCategoryLabel": {
+    "description": "Label for AI generation category selector"
+  },
+  "aiGenerationCategoryTheory": "理论",
+  "@aiGenerationCategoryTheory": {
+    "description": "Label for theory category"
+  },
+  "aiGenerationCategoryExercises": "练习",
+  "@aiGenerationCategoryExercises": {
+    "description": "Label for exercises category"
+  },
+  "aiGenerationCategoryBoth": "混合",
+  "@aiGenerationCategoryBoth": {
+    "description": "Label for mixed category"
+  },
   "allLabel": "全部",
   "@allLabel": {
     "description": "选择所有问题的选项标签"

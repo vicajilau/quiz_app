@@ -768,6 +768,18 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get aiGenerationCategoryLabel => '内容模式';
+
+  @override
+  String get aiGenerationCategoryTheory => '理论';
+
+  @override
+  String get aiGenerationCategoryExercises => '练习';
+
+  @override
+  String get aiGenerationCategoryBoth => '混合';
+
+  @override
   String get languageSpanish => 'Español';
 
   @override

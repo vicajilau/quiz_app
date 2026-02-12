@@ -804,6 +804,18 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
+  String get aiGenerationCategoryLabel => 'सामग्री मोड';
+
+  @override
+  String get aiGenerationCategoryTheory => 'सिद्धांत';
+
+  @override
+  String get aiGenerationCategoryExercises => 'अभ्यास';
+
+  @override
+  String get aiGenerationCategoryBoth => 'मिश्रित';
+
+  @override
   String get languageSpanish => 'Español';
 
   @override

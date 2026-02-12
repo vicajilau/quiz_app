@@ -1490,6 +1490,30 @@ abstract class AppLocalizations {
   /// **'Text Mode ({count} words)'**
   String aiTextModeCount(int count);
 
+  /// Label for AI generation category selector
+  ///
+  /// In en, this message translates to:
+  /// **'Content Mode'**
+  String get aiGenerationCategoryLabel;
+
+  /// Label for theory category
+  ///
+  /// In en, this message translates to:
+  /// **'Theory'**
+  String get aiGenerationCategoryTheory;
+
+  /// Label for exercises category
+  ///
+  /// In en, this message translates to:
+  /// **'Exercises'**
+  String get aiGenerationCategoryExercises;
+
+  /// Label for mixed category
+  ///
+  /// In en, this message translates to:
+  /// **'Mixed'**
+  String get aiGenerationCategoryBoth;
+
   /// Spanish language name.
   ///
   /// In en, this message translates to:

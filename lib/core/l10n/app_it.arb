@@ -1743,6 +1743,22 @@
   "generateButton": "Genera",
   "aiTopicModeCount": "Modalità Argomento ({count} parole)",
   "aiTextModeCount": "Modalità Testo ({count} parole)",
+  "aiGenerationCategoryLabel": "Modalità Contenuto",
+  "@aiGenerationCategoryLabel": {
+    "description": "Label for AI generation category selector"
+  },
+  "aiGenerationCategoryTheory": "Teoria",
+  "@aiGenerationCategoryTheory": {
+    "description": "Label for theory category"
+  },
+  "aiGenerationCategoryExercises": "Esercizi",
+  "@aiGenerationCategoryExercises": {
+    "description": "Label for exercises category"
+  },
+  "aiGenerationCategoryBoth": "Misto",
+  "@aiGenerationCategoryBoth": {
+    "description": "Label for mixed category"
+  },
   "allLabel": "Tutte",
   "@allLabel": {
     "description": "Etichetta per l'opzione di selezionare tutte le domande"

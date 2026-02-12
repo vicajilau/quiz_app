@@ -812,6 +812,18 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
+  String get aiGenerationCategoryLabel => 'Eduki Modua';
+
+  @override
+  String get aiGenerationCategoryTheory => 'Teoria';
+
+  @override
+  String get aiGenerationCategoryExercises => 'Ariketak';
+
+  @override
+  String get aiGenerationCategoryBoth => 'Nahasia';
+
+  @override
   String get languageSpanish => 'Español';
 
   @override

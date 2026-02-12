@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
 import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/domain/models/ai/ai_file_attachment.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/core/theme/app_theme.dart';
 import 'package:quiz_app/core/theme/extensions/confirm_dialog_colors_extension.dart';
+import 'package:quiz_app/domain/models/ai/ai_generation_config.dart';
+import 'package:quiz_app/domain/models/ai/ai_question_type.dart';
+import 'package:quiz_app/domain/models/ai/ai_generation_category.dart';
 
 class AiGenerateStep2Widget extends StatefulWidget {
   final TextEditingController textController;
@@ -51,6 +53,7 @@ class AiGenerateStep2Widget extends StatefulWidget {
 
 class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
   late final FocusNode _questionCountFocusNode;
+  AiGenerationCategory _selectedCategory = AiGenerationCategory.both;
 
   @override
   void initState() {
@@ -275,6 +278,64 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 24),
+
+                    // Content Mode (Category selection)
+                    Text(
+                      localizations.aiGenerationCategoryLabel,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: colors.subtitle,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    SizedBox(
+                      width: double.infinity,
+                      child: SegmentedButton<AiGenerationCategory>(
+                        segments: [
+                          ButtonSegment<AiGenerationCategory>(
+                            value: AiGenerationCategory.both,
+                            label: Text(localizations.aiGenerationCategoryBoth),
+                          ),
+                          ButtonSegment<AiGenerationCategory>(
+                            value: AiGenerationCategory.exercises,
+                            label: Text(
+                              localizations.aiGenerationCategoryExercises,
+                            ),
+                          ),
+                          ButtonSegment<AiGenerationCategory>(
+                            value: AiGenerationCategory.theory,
+                            label: Text(
+                              localizations.aiGenerationCategoryTheory,
+                            ),
+                          ),
+                        ],
+                        selected: <AiGenerationCategory>{_selectedCategory},
+                        onSelectionChanged:
+                            (Set<AiGenerationCategory> newSelection) {
+                              setState(() {
+                                _selectedCategory = newSelection.first;
+                              });
+                            },
+                        showSelectedIcon: false,
+                        style: SegmentedButton.styleFrom(
+                          selectedBackgroundColor: AppTheme.primaryColor,
+                          selectedForegroundColor: Colors.white,
+                          backgroundColor: inputBg,
+                          side: BorderSide(color: attachStroke),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          textStyle: const TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
 
                     const SizedBox(height: 24),
 
@@ -451,6 +512,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                 isTopicMode:
                                     widget.fileAttachment == null &&
                                     widget.getTopicCount() <= 10,
+                                generationCategory: _selectedCategory,
                               );
                               context.pop(config);
                             }
