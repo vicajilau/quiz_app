@@ -4,48 +4,13 @@ import 'package:quiz_app/data/services/configuration_service.dart';
 import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/data/services/ai/gemini_service.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
-import 'package:quiz_app/domain/models/ai/ai_file_attachment.dart';
 import 'package:quiz_app/domain/models/ai/openai_content_block.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
 
-enum AiQuestionType {
-  multipleChoice,
-  singleChoice,
-  trueFalse,
-  essay,
-  random, // Mix of all types
-}
-
-// Category of generation
-enum AiGenerationCategory { theory, exercises, both }
-
-// Class for generation configuration
-class AiQuestionGenerationConfig {
-  final int? questionCount;
-  final List<AiQuestionType> questionTypes;
-  final String language;
-  final String content;
-  final AIService? preferredService; // Preferred AI service
-  final String? preferredModel; // Preferred model for the service
-  final AiFileAttachment? file;
-  final bool isTopicMode;
-  final AiGenerationCategory generationCategory;
-
-  bool get hasFile => file != null;
-
-  const AiQuestionGenerationConfig({
-    this.questionCount,
-    required this.questionTypes,
-    required this.language,
-    required this.content,
-    this.preferredService,
-    this.preferredModel,
-    this.file,
-    this.isTopicMode = false,
-    this.generationCategory = AiGenerationCategory.both,
-  });
-}
+import 'package:quiz_app/domain/models/ai/ai_generation_config.dart';
+import 'package:quiz_app/domain/models/ai/ai_question_type.dart';
+import 'package:quiz_app/domain/models/ai/ai_generation_category.dart';
 
 class AiQuestionGenerationService {
   static const String _openaiApiUrl =

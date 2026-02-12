@@ -25,6 +25,7 @@ import 'package:quiz_app/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quiz_app/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quiz_app/presentation/screens/dialogs/question_count_selection_dialog.dart';
 import 'package:quiz_app/presentation/screens/dialogs/import_questions_dialog.dart';
+import 'package:quiz_app/domain/models/ai/ai_generation_config.dart';
 import 'package:quiz_app/presentation/screens/dialogs/ai_generate_questions_dialog.dart';
 import 'package:quiz_app/presentation/screens/widgets/file_loaded_bottom_bar.dart';
 import 'package:quiz_app/presentation/screens/dialogs/settings_dialog.dart';
@@ -792,8 +793,9 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                       context: context,
                       builder: (context) => QuestionCountSelectionDialog(
                         totalQuestions: enabledQuestions.length,
-                        selectedQuestionCount:
-                            _isSelectionMode ? selectedEnabledCount : 0,
+                        selectedQuestionCount: _isSelectionMode
+                            ? selectedEnabledCount
+                            : 0,
                       ),
                     );
 
@@ -806,12 +808,14 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                         for (final index in _selectedQuestions) {
                           if (index < cachedQuizFile.questions.length &&
                               cachedQuizFile.questions[index].isEnabled) {
-                            selectedQuestions
-                                .add(cachedQuizFile.questions[index]);
+                            selectedQuestions.add(
+                              cachedQuizFile.questions[index],
+                            );
                           }
                         }
-                        quizFileToUse =
-                            cachedQuizFile.copyWith(questions: selectedQuestions);
+                        quizFileToUse = cachedQuizFile.copyWith(
+                          questions: selectedQuestions,
+                        );
                       }
 
                       ServiceLocator.instance.registerQuizFile(quizFileToUse);

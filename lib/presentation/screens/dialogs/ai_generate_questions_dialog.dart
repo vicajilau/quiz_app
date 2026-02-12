@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:mime/mime.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
 import 'package:quiz_app/data/services/configuration_service.dart';
-import 'package:quiz_app/data/services/ai/ai_question_generation_service.dart';
 import 'package:quiz_app/data/services/ai/ai_service.dart';
 import 'package:quiz_app/data/services/ai/ai_service_selector.dart';
 import 'package:quiz_app/domain/models/ai/ai_file_attachment.dart';
 import 'package:quiz_app/domain/models/ai/ai_generation_stored_settings.dart';
+import 'package:quiz_app/domain/models/ai/ai_question_type.dart';
 import 'package:quiz_app/presentation/screens/dialogs/widgets/ai_generate_step1_widget.dart';
 import 'package:quiz_app/presentation/screens/dialogs/widgets/ai_generate_step2_widget.dart';
 
