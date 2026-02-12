@@ -21,7 +21,7 @@ class AiGenerateQuestionsDialog extends StatefulWidget {
 
 class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   final _textController = TextEditingController();
-  final _questionCountController = TextEditingController();
+  final _questionCountController = TextEditingController(text: '5');
 
   int _currentStep = 0; // 0: Configuration, 1: Content
 
@@ -160,6 +160,12 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
     } else {
       // Establish defaults if no draft
       if (services.isNotEmpty) {
+        if (mounted) {
+          setState(() {
+            _questionCount = 5;
+            _questionCountController.text = '5';
+          });
+        }
         final defaultService = await ConfigurationService.instance
             .getDefaultAIService();
         if (defaultService != null) {
