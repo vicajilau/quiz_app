@@ -1775,5 +1775,6 @@
       }
     }
   },
-  "allQuestionsLabel": "Toutes les questions"
+  "allQuestionsLabel": "Toutes les questions",
+  "startWithSelectedQuestions": "Commencer avec {count} sélectionnées"
 }

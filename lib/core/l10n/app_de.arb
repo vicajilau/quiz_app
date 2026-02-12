@@ -1832,5 +1832,6 @@
       }
     }
   },
-  "allQuestionsLabel": "Alle Fragen"
+  "allQuestionsLabel": "Alle Fragen",
+  "startWithSelectedQuestions": "Mit {count} ausgewählten starten"
 }

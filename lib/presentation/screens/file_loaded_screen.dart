@@ -779,15 +779,42 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                       return;
                     }
 
+                    // Count selected questions that are also enabled
+                    final selectedEnabledCount = _selectedQuestions
+                        .where(
+                          (index) =>
+                              index < cachedQuizFile.questions.length &&
+                              cachedQuizFile.questions[index].isEnabled,
+                        )
+                        .length;
+
                     final quizConfig = await showDialog<QuizConfig>(
                       context: context,
                       builder: (context) => QuestionCountSelectionDialog(
                         totalQuestions: enabledQuestions.length,
+                        selectedQuestionCount:
+                            _isSelectionMode ? selectedEnabledCount : 0,
                       ),
                     );
 
                     if (quizConfig != null && context.mounted) {
-                      ServiceLocator.instance.registerQuizFile(cachedQuizFile);
+                      QuizFile quizFileToUse = cachedQuizFile;
+
+                      if (quizConfig.useSelectedOnly) {
+                        // Filter to only the selected + enabled questions
+                        final selectedQuestions = <Question>[];
+                        for (final index in _selectedQuestions) {
+                          if (index < cachedQuizFile.questions.length &&
+                              cachedQuizFile.questions[index].isEnabled) {
+                            selectedQuestions
+                                .add(cachedQuizFile.questions[index]);
+                          }
+                        }
+                        quizFileToUse =
+                            cachedQuizFile.copyWith(questions: selectedQuestions);
+                      }
+
+                      ServiceLocator.instance.registerQuizFile(quizFileToUse);
                       ServiceLocator.instance.registerQuizConfig(quizConfig);
                       context.push(AppRoutes.quizFileExecutionScreen);
                     }

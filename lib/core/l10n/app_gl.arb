@@ -1727,5 +1727,6 @@
       }
     }
   },
-  "allQuestionsLabel": "Todas as preguntas"
+  "allQuestionsLabel": "Todas as preguntas",
+  "startWithSelectedQuestions": "Iniciar con {count} seleccionadas"
 }

@@ -1787,5 +1787,6 @@
       }
     }
   },
-  "allQuestionsLabel": "جميع الأسئلة"
+  "allQuestionsLabel": "جميع الأسئلة",
+  "startWithSelectedQuestions": "ابدأ بـ {count} محددة"
 }
