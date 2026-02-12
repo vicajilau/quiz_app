@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 import 'package:quiz_app/data/services/configuration_service.dart';
 import 'package:quiz_app/data/services/ai/ai_service.dart';
@@ -104,7 +105,7 @@ class AiQuestionGenerationService {
     AIService aiService,
     AppLocalizations localizations,
   ) async {
-    final prompt = _buildPrompt(config);
+    final prompt = buildPrompt(config);
 
     try {
       final String response;
@@ -134,7 +135,7 @@ class AiQuestionGenerationService {
     String apiKey,
     AppLocalizations localizations,
   ) async {
-    final prompt = _buildPrompt(config);
+    final prompt = buildPrompt(config);
 
     final Map<String, Object> userMessage;
     if (config.hasFile) {
@@ -187,7 +188,7 @@ class AiQuestionGenerationService {
     String apiKey,
     AppLocalizations localizations,
   ) async {
-    final prompt = _buildPrompt(config);
+    final prompt = buildPrompt(config);
     final systemInstruction =
         'You are an expert in education who creates high-quality quiz questions. Respond ONLY with the requested JSON, without additional text.';
     final fullPrompt = '$systemInstruction\n\n$prompt';

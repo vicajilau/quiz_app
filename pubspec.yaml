@@ -58,6 +58,7 @@ dependencies:
   lucide_icons: ^0.257.0
   path_provider: ^2.1.5
   collection: ^1.19.1
+  meta: ^1.17.0
 
 dev_dependencies:
   flutter_test:
