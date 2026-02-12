@@ -578,6 +578,6 @@ We welcome suggestions for:
 
 ## License
 
-This project is under the MIT license.
+This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
 
 
