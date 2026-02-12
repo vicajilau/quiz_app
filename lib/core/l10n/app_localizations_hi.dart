@@ -782,7 +782,13 @@ class AppLocalizationsHi extends AppLocalizations {
       '\"द्वितीय विश्व युद्ध का इतिहास\" जैसा कोई विषय दर्ज करें या यहां पाठ पेस्ट करें...';
 
   @override
-  String get aiAttachFileHint => 'फ़ाइल संलग्न करें (PDF, TXT, DOCX)';
+  String get aiAttachFileHint => 'फ़ाइल संलग्न करें (PDF, TXT, MP3, MP4,...)';
+
+  @override
+  String get dropAttachmentHere => 'फ़ाइल यहाँ छोड़ें';
+
+  @override
+  String get dropImageHere => 'छवि यहाँ छोड़ें';
 
   @override
   String get aiNumberQuestionsLabel => 'प्रश्नों की संख्या';

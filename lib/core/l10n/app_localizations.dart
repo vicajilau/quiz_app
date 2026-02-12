@@ -1457,8 +1457,20 @@ abstract class AppLocalizations {
   /// Hint text for the file attachment area
   ///
   /// In en, this message translates to:
-  /// **'Attach a file (PDF, TXT, DOCX)'**
+  /// **'Attach a file (PDF, TXT, MP3, MP4,...)'**
   String get aiAttachFileHint;
+
+  /// Hint shown when dragging a file over the attachment area
+  ///
+  /// In en, this message translates to:
+  /// **'Drop file here'**
+  String get dropAttachmentHere;
+
+  /// Hint shown when dragging an image over the image section
+  ///
+  /// In en, this message translates to:
+  /// **'Drop image here'**
+  String get dropImageHere;
 
   /// Label for number of questions input
   ///

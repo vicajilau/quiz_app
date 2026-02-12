@@ -795,7 +795,13 @@ class AppLocalizationsEl extends AppLocalizations {
       'Εισάγετε ένα θέμα όπως \"Ιστορία του Β\' Παγκόσμιου Πολέμου\" ή επικολλήστε κείμενο εδώ...';
 
   @override
-  String get aiAttachFileHint => 'Επισύναψη αρχείου (PDF, TXT, DOCX)';
+  String get aiAttachFileHint => 'Επισύναψη αρχείου (PDF, TXT, MP3, MP4,...)';
+
+  @override
+  String get dropAttachmentHere => 'Αφήστε το αρχείο εδώ';
+
+  @override
+  String get dropImageHere => 'Αφήστε την εικόνα εδώ';
 
   @override
   String get aiNumberQuestionsLabel => 'Αριθμός ερωτήσεων';

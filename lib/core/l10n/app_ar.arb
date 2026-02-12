@@ -48,9 +48,17 @@
   "@aiContentFieldHint": {
     "description": "Hint text for the content input field"
   },
-  "aiAttachFileHint": "إرفاق ملف (PDF، TXT، DOCX)",
+  "aiAttachFileHint": "إرفاق ملف (PDF، TXT، MP3، MP4،...)",
   "@aiAttachFileHint": {
     "description": "Hint text for the file attachment area"
+  },
+  "dropAttachmentHere": "أفلت الملف هنا",
+  "@dropAttachmentHere": {
+    "description": "Hint shown when dragging a file over the attachment area"
+  },
+  "dropImageHere": "أفلت الصورة هنا",
+  "@dropImageHere": {
+    "description": "Hint shown when dragging an image over the image section"
   },
   "aiNumberQuestionsLabel": "عدد الأسئلة",
   "@aiNumberQuestionsLabel": {

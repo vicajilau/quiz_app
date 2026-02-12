@@ -746,7 +746,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get aiContentFieldHint => '输入主题如“二战史”或在此粘贴文本...';
 
   @override
-  String get aiAttachFileHint => '附加文件 (PDF, TXT, DOCX)';
+  String get aiAttachFileHint => '附加文件 (PDF, TXT, MP3, MP4,...)';
+
+  @override
+  String get dropAttachmentHere => '在此处放置文件';
+
+  @override
+  String get dropImageHere => '在此处放置图片';
 
   @override
   String get aiNumberQuestionsLabel => '问题数量';

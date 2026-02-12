@@ -1737,7 +1737,15 @@
   "aiEnterContentTitle": "Inserir Conteúdo",
   "aiEnterContentDescription": "Insira o tópico ou cole o conteúdo para gerar perguntas",
   "aiContentFieldHint": "Insira um tópico como \"História da Segunda Guerra Mundial\" ou cole o texto aqui...",
-  "aiAttachFileHint": "Anexar arquivo (PDF, TXT, DOCX)",
+  "aiAttachFileHint": "Anexar arquivo (PDF, TXT, MP3, MP4,...)",
+  "dropAttachmentHere": "Solte o arquivo aqui",
+  "@dropAttachmentHere": {
+    "description": "Hint shown when dragging a file over the attachment area"
+  },
+  "dropImageHere": "Solte a imagem aqui",
+  "@dropImageHere": {
+    "description": "Hint shown when dragging an image over the image section"
+  },
   "aiNumberQuestionsLabel": "Número de perguntas",
   "backButton": "Voltar",
   "generateButton": "Gerar",

@@ -784,7 +784,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'Enter a topic like \"World War II history\" or paste text content here...';
 
   @override
-  String get aiAttachFileHint => 'Attach a file (PDF, TXT, DOCX)';
+  String get aiAttachFileHint => 'Attach a file (PDF, TXT, MP3, MP4,...)';
+
+  @override
+  String get dropAttachmentHere => 'Drop file here';
+
+  @override
+  String get dropImageHere => 'Drop image here';
 
   @override
   String get aiNumberQuestionsLabel => 'Number of Questions';

@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quiz_app/core/context_extension.dart';
+import 'package:quiz_app/presentation/utils/dialog_drop_guard.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_file.dart';
 import 'package:quiz_app/domain/models/quiz/quiz_config.dart';
@@ -637,6 +638,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                 body: DropTarget(
                   onDragDone: (details) {
                     setState(() => _isDragging = false);
+                    if (DialogDropGuard.isActive) return;
                     if (details.files.isNotEmpty) {
                       final firstFile = details.files.first;
                       if (firstFile.path.isNotEmpty) {
@@ -652,7 +654,11 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                       }
                     }
                   },
-                  onDragEntered: (_) => setState(() => _isDragging = true),
+                  onDragEntered: (_) {
+                    if (!DialogDropGuard.isActive) {
+                      setState(() => _isDragging = true);
+                    }
+                  },
                   onDragExited: (_) => setState(() => _isDragging = false),
                   child: Stack(
                     children: [

@@ -1034,9 +1034,17 @@
   "@aiContentFieldHint": {
     "description": "Texto de ayuda para el campo de entrada de contenido"
   },
-  "aiAttachFileHint": "Adjunta un archivo (PDF, TXT, DOCX)",
+  "aiAttachFileHint": "Adjunta un archivo (PDF, TXT, MP3, MP4,...)",
   "@aiAttachFileHint": {
     "description": "Texto de ayuda para el área de archivos adjuntos"
+  },
+  "dropAttachmentHere": "Suelta el archivo aquí",
+  "@dropAttachmentHere": {
+    "description": "Hint shown when dragging a file over the attachment area"
+  },
+  "dropImageHere": "Suelta la imagen aquí",
+  "@dropImageHere": {
+    "description": "Hint shown when dragging an image over the image section"
   },
   "aiNumberQuestionsLabel": "Número de preguntas",
   "@aiNumberQuestionsLabel": {

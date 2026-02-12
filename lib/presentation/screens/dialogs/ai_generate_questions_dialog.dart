@@ -385,6 +385,11 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
             _fileAttachment = null;
           });
         },
+        onFileDropped: (attachment) {
+          setState(() {
+            _fileAttachment = attachment;
+          });
+        },
         onBack: () {
           setState(() {
             _currentStep = 0;

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/context_extension.dart';
 import 'package:quiz_app/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
+import 'package:quiz_app/presentation/utils/dialog_drop_guard.dart';
 
 import 'package:quiz_app/core/file_handler.dart';
 import 'package:quiz_app/core/l10n/app_localizations.dart';
@@ -197,6 +198,10 @@ class _HomeScreenState extends State<HomeScreen> {
             return Scaffold(
               body: DropTarget(
                 onDragDone: (details) {
+                  if (DialogDropGuard.isActive) {
+                    setState(() => _isDragging = false);
+                    return;
+                  }
                   if (details.files.isNotEmpty && !_isLoading) {
                     if (context.currentRoute != AppRoutes.home) return;
 
@@ -214,7 +219,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                   setState(() => _isDragging = false);
                 },
-                onDragEntered: (_) => setState(() => _isDragging = true),
+                onDragEntered: (_) {
+                  if (!DialogDropGuard.isActive) {
+                    setState(() => _isDragging = true);
+                  }
+                },
                 onDragExited: (_) => setState(() => _isDragging = false),
                 child: SafeArea(
                   child: Stack(

@@ -1737,7 +1737,15 @@
   "aiEnterContentTitle": "Saisir le contenu",
   "aiEnterContentDescription": "Entrez le sujet ou collez le contenu pour générer des questions",
   "aiContentFieldHint": "Entrez un sujet comme « Histoire de la Seconde Guerre mondiale » ou collez du texte ici...",
-  "aiAttachFileHint": "Joindre un fichier (PDF, TXT, DOCX)",
+  "aiAttachFileHint": "Joindre un fichier (PDF, TXT, MP3, MP4,...)",
+  "dropAttachmentHere": "Déposez le fichier ici",
+  "@dropAttachmentHere": {
+    "description": "Hint shown when dragging a file over the attachment area"
+  },
+  "dropImageHere": "Déposez l'image ici",
+  "@dropImageHere": {
+    "description": "Hint shown when dragging an image over the image section"
+  },
   "aiNumberQuestionsLabel": "Nombre de questions",
   "backButton": "Retour",
   "generateButton": "Générer",
