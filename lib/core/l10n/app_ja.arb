@@ -1730,5 +1730,6 @@
       }
     }
   },
-  "allQuestionsLabel": "すべての問題"
+  "allQuestionsLabel": "すべての問題",
+  "startWithSelectedQuestions": "{count}問を選択して開始"
 }

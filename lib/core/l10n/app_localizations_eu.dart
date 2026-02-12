@@ -1355,4 +1355,9 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get allQuestionsLabel => 'Galdera guztiak';
+
+  @override
+  String startWithSelectedQuestions(int count) {
+    return 'Hasi $count hautatuekin';
+  }
 }

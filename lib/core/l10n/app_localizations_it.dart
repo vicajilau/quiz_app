@@ -1352,4 +1352,9 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get allQuestionsLabel => 'Tutte le domande';
+
+  @override
+  String startWithSelectedQuestions(int count) {
+    return 'Inizia con $count selezionate';
+  }
 }

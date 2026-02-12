@@ -1730,5 +1730,6 @@
       }
     }
   },
-  "allQuestionsLabel": "सभी प्रश्न"
+  "allQuestionsLabel": "सभी प्रश्न",
+  "startWithSelectedQuestions": "{count} चयनित के साथ शुरू करें"
 }

@@ -1826,5 +1826,6 @@
       }
     }
   },
-  "allQuestionsLabel": "Totes les preguntes"
+  "allQuestionsLabel": "Totes les preguntes",
+  "startWithSelectedQuestions": "Iniciar amb {count} seleccionades"
 }

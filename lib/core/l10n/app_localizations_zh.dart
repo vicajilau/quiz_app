@@ -1290,4 +1290,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get allQuestionsLabel => '所有题目';
+
+  @override
+  String startWithSelectedQuestions(int count) {
+    return '开始 $count 道已选题目';
+  }
 }

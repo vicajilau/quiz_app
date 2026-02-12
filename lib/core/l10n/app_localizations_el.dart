@@ -1365,4 +1365,9 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get allQuestionsLabel => 'Όλες οι ερωτήσεις';
+
+  @override
+  String startWithSelectedQuestions(int count) {
+    return 'Έναρξη με $count επιλεγμένες';
+  }
 }

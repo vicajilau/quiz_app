@@ -459,5 +459,6 @@
       }
     }
   },
-  "allQuestionsLabel": "Όλες οι ερωτήσεις"
+  "allQuestionsLabel": "Όλες οι ερωτήσεις",
+  "startWithSelectedQuestions": "Έναρξη με {count} επιλεγμένες"
 }

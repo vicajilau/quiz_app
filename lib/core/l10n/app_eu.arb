@@ -1727,5 +1727,6 @@
       }
     }
   },
-  "allQuestionsLabel": "Galdera guztiak"
+  "allQuestionsLabel": "Galdera guztiak",
+  "startWithSelectedQuestions": "Hasi {count} hautatuekin"
 }

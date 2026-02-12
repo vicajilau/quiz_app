@@ -1727,5 +1727,6 @@
       }
     }
   },
-  "allQuestionsLabel": "所有题目"
+  "allQuestionsLabel": "所有题目",
+  "startWithSelectedQuestions": "开始 {count} 道已选题目"
 }

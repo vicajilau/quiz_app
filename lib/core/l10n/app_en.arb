@@ -1880,5 +1880,15 @@
   "allQuestionsLabel": "All Questions",
   "@allQuestionsLabel": {
     "description": "Label for the toggle to select all questions"
+  },
+  "startWithSelectedQuestions": "Start with {count} selected",
+  "@startWithSelectedQuestions": {
+    "description": "Button text to start the quiz with only the selected questions",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
   }
 }

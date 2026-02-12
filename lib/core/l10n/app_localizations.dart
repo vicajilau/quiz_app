@@ -2449,6 +2449,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'All Questions'**
   String get allQuestionsLabel;
+
+  /// Button text to start the quiz with only the selected questions
+  ///
+  /// In en, this message translates to:
+  /// **'Start with {count} selected'**
+  String startWithSelectedQuestions(int count);
 }
 
 class _AppLocalizationsDelegate
