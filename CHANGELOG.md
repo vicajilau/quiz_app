@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat: Set default question count to 5 in AI generation dialog when no preferences exist.
 - fix: Ensured "All" (Random) question type is selected by default in the AI generation dialog when no preferences exist.
 - feature: Add drag & drop file support for the AI question generation and manual question creation dialogs, with a guard to prevent conflicts with the global .quiz file drop handler.
+- refactor: Upgraded project to Flutter 3.41.0.
 
 ## [1.6.0] - 2026-02-11
 
