@@ -141,24 +141,27 @@ class _QuestionImageSectionState extends State<QuestionImageSection> {
               ),
             ),
             const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton.icon(
-                  onPressed: () => _pickImage(context),
-                  icon: const Icon(Icons.swap_horiz),
-                  label: Text(localizations.changeImage),
-                ),
-                const SizedBox(width: 8),
-                OutlinedButton.icon(
-                  onPressed: widget.onImageRemoved,
-                  icon: const Icon(Icons.delete_outline),
-                  label: Text(localizations.removeImage),
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Theme.of(context).colorScheme.error,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton.icon(
+                    onPressed: () => _pickImage(context),
+                    icon: const Icon(Icons.swap_horiz),
+                    label: Text(localizations.changeImage),
                   ),
-                ),
-              ],
+                  const SizedBox(width: 8),
+                  OutlinedButton.icon(
+                    onPressed: widget.onImageRemoved,
+                    icon: const Icon(Icons.delete_outline),
+                    label: Text(localizations.removeImage),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: Theme.of(context).colorScheme.error,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ] else ...[
             // No image state
