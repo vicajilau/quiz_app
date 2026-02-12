@@ -1698,6 +1698,22 @@
   "generateButton": "उत्पन्न करें",
   "aiTopicModeCount": "विषय मोड ({count} शब्द)",
   "aiTextModeCount": "पाठ मोड ({count} शब्द)",
+  "aiGenerationCategoryLabel": "सामग्री मोड",
+  "@aiGenerationCategoryLabel": {
+    "description": "Label for AI generation category selector"
+  },
+  "aiGenerationCategoryTheory": "सिद्धांत",
+  "@aiGenerationCategoryTheory": {
+    "description": "Label for theory category"
+  },
+  "aiGenerationCategoryExercises": "अभ्यास",
+  "@aiGenerationCategoryExercises": {
+    "description": "Label for exercises category"
+  },
+  "aiGenerationCategoryBoth": "मिश्रित",
+  "@aiGenerationCategoryBoth": {
+    "description": "Label for mixed category"
+  },
   "allLabel": "सभी",
   "@allLabel": {
     "description": "सभी प्रश्नों का चयन करने के विकल्प के लिए लेबल"

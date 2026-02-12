@@ -816,6 +816,18 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get aiGenerationCategoryLabel => 'Mode de Contenu';
+
+  @override
+  String get aiGenerationCategoryTheory => 'Théorie';
+
+  @override
+  String get aiGenerationCategoryExercises => 'Exercices';
+
+  @override
+  String get aiGenerationCategoryBoth => 'Mixte';
+
+  @override
   String get languageSpanish => 'Español';
 
   @override

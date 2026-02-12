@@ -817,6 +817,18 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
+  String get aiGenerationCategoryLabel => 'Λειτουργία Περιεχομένου';
+
+  @override
+  String get aiGenerationCategoryTheory => 'Θεωρία';
+
+  @override
+  String get aiGenerationCategoryExercises => 'Ασκήσεις';
+
+  @override
+  String get aiGenerationCategoryBoth => 'Μικτό';
+
+  @override
   String get languageSpanish => 'Ισπανικά';
 
   @override

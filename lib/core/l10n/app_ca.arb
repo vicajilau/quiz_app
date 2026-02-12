@@ -75,6 +75,22 @@
     }
   },
   "aiTextModeCount": "Mode Text ({count} paraules)",
+  "aiGenerationCategoryLabel": "Modo de Contingut",
+  "@aiGenerationCategoryLabel": {
+    "description": "Label for AI generation category selector"
+  },
+  "aiGenerationCategoryTheory": "Teoria",
+  "@aiGenerationCategoryTheory": {
+    "description": "Label for theory category"
+  },
+  "aiGenerationCategoryExercises": "Exercicis",
+  "@aiGenerationCategoryExercises": {
+    "description": "Label for exercises category"
+  },
+  "aiGenerationCategoryBoth": "Mixt",
+  "@aiGenerationCategoryBoth": {
+    "description": "Label for mixed category"
+  },
   "@aiTextModeCount": {
     "description": "Text mode with word count",
     "placeholders": {

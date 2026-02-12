@@ -811,6 +811,18 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String get aiGenerationCategoryLabel => 'Modo de Conteúdo';
+
+  @override
+  String get aiGenerationCategoryTheory => 'Teoria';
+
+  @override
+  String get aiGenerationCategoryExercises => 'Exercícios';
+
+  @override
+  String get aiGenerationCategoryBoth => 'Misto';
+
+  @override
   String get languageSpanish => 'Español';
 
   @override

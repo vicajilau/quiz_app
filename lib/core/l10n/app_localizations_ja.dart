@@ -773,6 +773,18 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get aiGenerationCategoryLabel => 'コンテンツモード';
+
+  @override
+  String get aiGenerationCategoryTheory => '理論';
+
+  @override
+  String get aiGenerationCategoryExercises => '演習';
+
+  @override
+  String get aiGenerationCategoryBoth => '混合';
+
+  @override
   String get languageSpanish => 'Español';
 
   @override

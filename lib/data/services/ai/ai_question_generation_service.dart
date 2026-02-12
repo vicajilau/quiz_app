@@ -9,7 +9,6 @@ import 'package:quiz_app/domain/models/ai/openai_content_block.dart';
 import 'package:quiz_app/domain/models/quiz/question.dart';
 import 'package:quiz_app/domain/models/quiz/question_type.dart';
 
-// Extended enum to include the "random" option
 enum AiQuestionType {
   multipleChoice,
   singleChoice,
@@ -17,6 +16,9 @@ enum AiQuestionType {
   essay,
   random, // Mix of all types
 }
+
+// Category of generation
+enum AiGenerationCategory { theory, exercises, both }
 
 // Class for generation configuration
 class AiQuestionGenerationConfig {
@@ -28,6 +30,7 @@ class AiQuestionGenerationConfig {
   final String? preferredModel; // Preferred model for the service
   final AiFileAttachment? file;
   final bool isTopicMode;
+  final AiGenerationCategory generationCategory;
 
   bool get hasFile => file != null;
 
@@ -40,6 +43,7 @@ class AiQuestionGenerationConfig {
     this.preferredModel,
     this.file,
     this.isTopicMode = false,
+    this.generationCategory = AiGenerationCategory.both,
   });
 }
 
@@ -255,6 +259,22 @@ class AiQuestionGenerationService {
         ? 'the provided topics'
         : 'the provided content';
 
+    String categoryInstructions = '';
+    switch (config.generationCategory) {
+      case AiGenerationCategory.theory:
+        categoryInstructions =
+            '6. CONCEPTUAL FOCUS: Questions must be strictly about theory, concepts, definitions, and facts. AVOID any calculations, code-writing exercises, or practical development tasks unless they are purely conceptual.';
+        break;
+      case AiGenerationCategory.exercises:
+        categoryInstructions =
+            '6. PRACTICAL FOCUS: Questions should be practical exercises, problem-solving tasks, or development-related implementation questions.';
+        break;
+      case AiGenerationCategory.both:
+        categoryInstructions =
+            '6. BALANCED FOCUS: Provide a mix of theoretical concepts and practical exercises/applications.';
+        break;
+    }
+
     return '''
 $header
 INSTRUCTIONS:
@@ -263,6 +283,7 @@ INSTRUCTIONS:
 3. Include a clear explanation for each question
 4. Make sure incorrect answers are plausible but clearly wrong
 5. Explanations should be educational and help understand why the answer is correct
+$categoryInstructions
 
 RESPONSE FORMAT (JSON):
 Respond ONLY with a valid JSON array in this exact format:

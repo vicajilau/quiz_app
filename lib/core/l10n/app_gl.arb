@@ -1695,6 +1695,22 @@
   "generateButton": "Xerar",
   "aiTopicModeCount": "Modo Tema ({count} palabras)",
   "aiTextModeCount": "Modo Texto ({count} palabras)",
+  "aiGenerationCategoryLabel": "Modo de Contido",
+  "@aiGenerationCategoryLabel": {
+    "description": "Label for AI generation category selector"
+  },
+  "aiGenerationCategoryTheory": "Teoría",
+  "@aiGenerationCategoryTheory": {
+    "description": "Label for theory category"
+  },
+  "aiGenerationCategoryExercises": "Exercicios",
+  "@aiGenerationCategoryExercises": {
+    "description": "Label for exercises category"
+  },
+  "aiGenerationCategoryBoth": "Mixto",
+  "@aiGenerationCategoryBoth": {
+    "description": "Label for mixed category"
+  },
   "allLabel": "Todas",
   "@allLabel": {
     "description": "Etiqueta para a opción de seleccionar todas as preguntas"

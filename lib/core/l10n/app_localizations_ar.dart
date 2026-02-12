@@ -798,6 +798,18 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String get aiGenerationCategoryLabel => 'وضع المحتوى';
+
+  @override
+  String get aiGenerationCategoryTheory => 'نظرية';
+
+  @override
+  String get aiGenerationCategoryExercises => 'تمارين';
+
+  @override
+  String get aiGenerationCategoryBoth => 'مختلط';
+
+  @override
   String get languageSpanish => 'Español';
 
   @override

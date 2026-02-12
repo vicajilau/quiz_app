@@ -1110,6 +1110,22 @@
       }
     }
   },
+  "aiGenerationCategoryLabel": "Content Mode",
+  "@aiGenerationCategoryLabel": {
+    "description": "Label for AI generation category selector"
+  },
+  "aiGenerationCategoryTheory": "Theory",
+  "@aiGenerationCategoryTheory": {
+    "description": "Label for theory category"
+  },
+  "aiGenerationCategoryExercises": "Exercises",
+  "@aiGenerationCategoryExercises": {
+    "description": "Label for exercises category"
+  },
+  "aiGenerationCategoryBoth": "Mixed",
+  "@aiGenerationCategoryBoth": {
+    "description": "Label for mixed category"
+  },
   "languageSpanish": "Español",
   "@languageSpanish": {
     "description": "Spanish language name."

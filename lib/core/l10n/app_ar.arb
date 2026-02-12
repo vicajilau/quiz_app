@@ -75,6 +75,22 @@
     }
   },
   "aiTextModeCount": "وضع النص ({count} كلمات)",
+  "aiGenerationCategoryLabel": "وضع المحتوى",
+  "@aiGenerationCategoryLabel": {
+    "description": "Label for AI generation category selector"
+  },
+  "aiGenerationCategoryTheory": "نظرية",
+  "@aiGenerationCategoryTheory": {
+    "description": "Label for theory category"
+  },
+  "aiGenerationCategoryExercises": "تمارين",
+  "@aiGenerationCategoryExercises": {
+    "description": "Label for exercises category"
+  },
+  "aiGenerationCategoryBoth": "مختلط",
+  "@aiGenerationCategoryBoth": {
+    "description": "Label for mixed category"
+  },
   "@aiTextModeCount": {
     "description": "Text mode with word count",
     "placeholders": {
