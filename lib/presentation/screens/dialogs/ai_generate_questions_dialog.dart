@@ -205,12 +205,13 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
     final systemLocale = Localizations.localeOf(context);
     final systemLanguageCode = systemLocale.languageCode;
     if (_supportedLanguages.contains(systemLanguageCode)) {
-      // Only set if not already set (e.g. by draft)
+      // Only set if we don't have a specific language set yet
+      // This is a loose check; _loadDraft will perform the authoritative set
       if (_selectedLanguage == 'en' && _textController.text.isEmpty) {
-        // simplistic check
-        // we let _loadDraft handle the definitive set, this is just a fallback
+        setState(() {
+          _selectedLanguage = systemLanguageCode;
+        });
       }
-      // For now, let's just default to system if not loaded
     }
   }
 
