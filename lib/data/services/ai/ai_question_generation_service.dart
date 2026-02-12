@@ -232,11 +232,11 @@ class AiQuestionGenerationService {
         break;
       case AiGenerationCategory.exercises:
         categoryInstructions =
-            '7. PRACTICAL FOCUS: Questions should be practical exercises, problem-solving tasks, or development-related implementation questions. If the content contains existing exercises, DO NOT reuse them directly; instead, generate NEW exercises that follow a similar pattern and difficulty level.';
+            '7. PRACTICAL FOCUS: Questions should be practical exercises, problem-solving tasks, or implementation questions. You MAY reuse or adapt existing exercises found in the content, or generate NEW ones that follow a similar pattern and difficulty level.';
         break;
       case AiGenerationCategory.both:
         categoryInstructions =
-            '7. BALANCED FOCUS: Provide a mix of theoretical concepts and NEW practical exercises. DO NOT reference or reuse existing exercises from the content directly.';
+            '7. MIXED FOCUS: Provide a balanced mix of theoretical concepts (theory, concepts, definitions, and facts) and practical exercises (practical exercises, problem-solving tasks, or implementation questions). Theoretical questions should focus on facts and definitions, while practical questions can be reused from the content or newly generated following the same style and difficulty.';
         break;
     }
 
@@ -248,7 +248,7 @@ INSTRUCTIONS:
 3. Include a clear explanation for each question
 4. Make sure incorrect answers are plausible but clearly wrong
 5. Explanations should be educational and help understand why the answer is correct
-6. NO DIRECT REFERENCES: DO NOT reference specific exercise numbers, figures, or labels from the source text (e.g., 'In exercise 17...', 'According to the table...'). All questions must be fully self-contained.
+6. SELF-CONTAINED QUESTIONS: All questions must be fully self-contained so they can be answered without looking at the original source material. If you reuse an existing exercise, make sure to include all necessary context (text, variables, or descriptions) within the question itself. DO NOT reference specific exercise numbers or labels from the source text (e.g., instead of 'In exercise 17...', say 'Given the following scenario...').
 $categoryInstructions
 
 RESPONSE FORMAT (JSON):
