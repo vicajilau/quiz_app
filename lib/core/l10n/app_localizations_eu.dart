@@ -790,7 +790,13 @@ class AppLocalizationsEu extends AppLocalizations {
       'Sartu gai bat, adibidez \"Bigarren Mundu Gerrako historia\" edo itsatsi testua hemen...';
 
   @override
-  String get aiAttachFileHint => 'Erantsi fitxategia (PDF, TXT, DOCX)';
+  String get aiAttachFileHint => 'Erantsi fitxategia (PDF, TXT, MP3, MP4,...)';
+
+  @override
+  String get dropAttachmentHere => 'Askatu fitxategia hemen';
+
+  @override
+  String get dropImageHere => 'Askatu irudia hemen';
 
   @override
   String get aiNumberQuestionsLabel => 'Galdera kopurua';

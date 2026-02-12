@@ -791,7 +791,13 @@ class AppLocalizationsCa extends AppLocalizations {
       'Introduïu un tema com \"Història de la Segona Guerra Mundial\" o enganxeu contingut de text aquí...';
 
   @override
-  String get aiAttachFileHint => 'Adjunteu un fitxer (PDF, TXT, DOCX)';
+  String get aiAttachFileHint => 'Adjunteu un fitxer (PDF, TXT, MP3, MP4,...)';
+
+  @override
+  String get dropAttachmentHere => 'Deixeu anar el fitxer aquí';
+
+  @override
+  String get dropImageHere => 'Deixeu anar la imatge aquí';
 
   @override
   String get aiNumberQuestionsLabel => 'Nombre de preguntes';

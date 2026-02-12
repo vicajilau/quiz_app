@@ -1692,7 +1692,15 @@
   "aiEnterContentTitle": "コンテンツを入力",
   "aiEnterContentDescription": "質問を作成するトピックを入力するか、コンテンツを貼り付けてください",
   "aiContentFieldHint": "「第二次世界大戦の歴史」のようなトピックを入力するか、ここにテキストを貼り付けてください...",
-  "aiAttachFileHint": "ファイルを添付 (PDF, TXT, DOCX)",
+  "aiAttachFileHint": "ファイルを添付 (PDF, TXT, MP3, MP4,...)",
+  "dropAttachmentHere": "ファイルをここにドロップ",
+  "@dropAttachmentHere": {
+    "description": "Hint shown when dragging a file over the attachment area"
+  },
+  "dropImageHere": "画像をここにドロップ",
+  "@dropImageHere": {
+    "description": "Hint shown when dragging an image over the image section"
+  },
   "aiNumberQuestionsLabel": "質問数",
   "backButton": "戻る",
   "generateButton": "生成",

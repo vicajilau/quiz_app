@@ -1689,7 +1689,15 @@
   "aiEnterContentTitle": "Introducir contido",
   "aiEnterContentDescription": "Introduza o tema ou pegue o contido para xerar preguntas",
   "aiContentFieldHint": "Introduza un tema como \"Historia da Segunda Guerra Mundial\" ou pegue texto aquí...",
-  "aiAttachFileHint": "Anexar ficheiro (PDF, TXT, DOCX)",
+  "aiAttachFileHint": "Anexar ficheiro (PDF, TXT, MP3, MP4,...)",
+  "dropAttachmentHere": "Solte o ficheiro aquí",
+  "@dropAttachmentHere": {
+    "description": "Hint shown when dragging a file over the attachment area"
+  },
+  "dropImageHere": "Solte a imaxe aquí",
+  "@dropImageHere": {
+    "description": "Hint shown when dragging an image over the image section"
+  },
   "aiNumberQuestionsLabel": "Número de preguntas",
   "backButton": "Atrás",
   "generateButton": "Xerar",

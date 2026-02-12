@@ -1689,7 +1689,15 @@
   "aiEnterContentTitle": "Sartu edukia",
   "aiEnterContentDescription": "Sartu gaia edo itsatsi edukia galderak sortzeko",
   "aiContentFieldHint": "Sartu gai bat, adibidez \"Bigarren Mundu Gerrako historia\" edo itsatsi testua hemen...",
-  "aiAttachFileHint": "Erantsi fitxategia (PDF, TXT, DOCX)",
+  "aiAttachFileHint": "Erantsi fitxategia (PDF, TXT, MP3, MP4,...)",
+  "dropAttachmentHere": "Askatu fitxategia hemen",
+  "@dropAttachmentHere": {
+    "description": "Hint shown when dragging a file over the attachment area"
+  },
+  "dropImageHere": "Askatu irudia hemen",
+  "@dropImageHere": {
+    "description": "Hint shown when dragging an image over the image section"
+  },
   "aiNumberQuestionsLabel": "Galdera kopurua",
   "backButton": "Itzuli",
   "generateButton": "Sortu",

@@ -48,9 +48,17 @@
   "@aiContentFieldHint": {
     "description": "Hint text for the content input field"
   },
-  "aiAttachFileHint": "Adjunteu un fitxer (PDF, TXT, DOCX)",
+  "aiAttachFileHint": "Adjunteu un fitxer (PDF, TXT, MP3, MP4,...)",
   "@aiAttachFileHint": {
     "description": "Hint text for the file attachment area"
+  },
+  "dropAttachmentHere": "Deixeu anar el fitxer aquí",
+  "@dropAttachmentHere": {
+    "description": "Hint shown when dragging a file over the attachment area"
+  },
+  "dropImageHere": "Deixeu anar la imatge aquí",
+  "@dropImageHere": {
+    "description": "Hint shown when dragging an image over the image section"
   },
   "aiNumberQuestionsLabel": "Nombre de preguntes",
   "@aiNumberQuestionsLabel": {

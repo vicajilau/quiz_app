@@ -1692,7 +1692,15 @@
   "aiEnterContentTitle": "सामग्री दर्ज करें",
   "aiEnterContentDescription": "प्रश्न उत्पन्न करने के लिए विषय दर्ज करें या सामग्री पेस्ट करें",
   "aiContentFieldHint": "\"द्वितीय विश्व युद्ध का इतिहास\" जैसा कोई विषय दर्ज करें या यहां पाठ पेस्ट करें...",
-  "aiAttachFileHint": "फ़ाइल संलग्न करें (PDF, TXT, DOCX)",
+  "aiAttachFileHint": "फ़ाइल संलग्न करें (PDF, TXT, MP3, MP4,...)",
+  "dropAttachmentHere": "फ़ाइल यहाँ छोड़ें",
+  "@dropAttachmentHere": {
+    "description": "Hint shown when dragging a file over the attachment area"
+  },
+  "dropImageHere": "छवि यहाँ छोड़ें",
+  "@dropImageHere": {
+    "description": "Hint shown when dragging an image over the image section"
+  },
   "aiNumberQuestionsLabel": "प्रश्नों की संख्या",
   "backButton": "वापस",
   "generateButton": "उत्पन्न करें",

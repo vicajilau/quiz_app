@@ -1689,7 +1689,15 @@
   "aiEnterContentTitle": "输入内容",
   "aiEnterContentDescription": "输入主题或粘贴内容以生成问题",
   "aiContentFieldHint": "输入主题如“二战史”或在此粘贴文本...",
-  "aiAttachFileHint": "附加文件 (PDF, TXT, DOCX)",
+  "aiAttachFileHint": "附加文件 (PDF, TXT, MP3, MP4,...)",
+  "dropAttachmentHere": "在此处放置文件",
+  "@dropAttachmentHere": {
+    "description": "Hint shown when dragging a file over the attachment area"
+  },
+  "dropImageHere": "在此处放置图片",
+  "@dropImageHere": {
+    "description": "Hint shown when dragging an image over the image section"
+  },
   "aiNumberQuestionsLabel": "问题数量",
   "backButton": "返回",
   "generateButton": "生成",

@@ -751,7 +751,13 @@ class AppLocalizationsJa extends AppLocalizations {
       '「第二次世界大戦の歴史」のようなトピックを入力するか、ここにテキストを貼り付けてください...';
 
   @override
-  String get aiAttachFileHint => 'ファイルを添付 (PDF, TXT, DOCX)';
+  String get aiAttachFileHint => 'ファイルを添付 (PDF, TXT, MP3, MP4,...)';
+
+  @override
+  String get dropAttachmentHere => 'ファイルをここにドロップ';
+
+  @override
+  String get dropImageHere => '画像をここにドロップ';
 
   @override
   String get aiNumberQuestionsLabel => '質問数';

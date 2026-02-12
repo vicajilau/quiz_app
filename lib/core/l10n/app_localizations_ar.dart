@@ -776,7 +776,13 @@ class AppLocalizationsAr extends AppLocalizations {
       'أدخل موضوعاً مثل \"تاريخ الحرب العالمية الثانية\" أو الصق محتوى نصي هنا...';
 
   @override
-  String get aiAttachFileHint => 'إرفاق ملف (PDF، TXT، DOCX)';
+  String get aiAttachFileHint => 'إرفاق ملف (PDF، TXT، MP3، MP4،...)';
+
+  @override
+  String get dropAttachmentHere => 'أفلت الملف هنا';
+
+  @override
+  String get dropImageHere => 'أفلت الصورة هنا';
 
   @override
   String get aiNumberQuestionsLabel => 'عدد الأسئلة';
