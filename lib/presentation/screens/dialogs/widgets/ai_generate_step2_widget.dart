@@ -300,15 +300,15 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                             label: Text(localizations.aiGenerationCategoryBoth),
                           ),
                           ButtonSegment<AiGenerationCategory>(
-                            value: AiGenerationCategory.theory,
-                            label: Text(
-                              localizations.aiGenerationCategoryTheory,
-                            ),
-                          ),
-                          ButtonSegment<AiGenerationCategory>(
                             value: AiGenerationCategory.exercises,
                             label: Text(
                               localizations.aiGenerationCategoryExercises,
+                            ),
+                          ),
+                          ButtonSegment<AiGenerationCategory>(
+                            value: AiGenerationCategory.theory,
+                            label: Text(
+                              localizations.aiGenerationCategoryTheory,
                             ),
                           ),
                         ],

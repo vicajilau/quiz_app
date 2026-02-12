@@ -25,9 +25,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
 
   int _currentStep = 0; // 0: Configuration, 1: Content
 
-  Set<AiQuestionType> _selectedQuestionTypes = AiQuestionType.values
-      .where((type) => type != AiQuestionType.random)
-      .toSet();
+  Set<AiQuestionType> _selectedQuestionTypes = {AiQuestionType.random};
   String _selectedLanguage = 'en';
   List<AIService> _availableServices = [];
   AIService? _selectedService;
