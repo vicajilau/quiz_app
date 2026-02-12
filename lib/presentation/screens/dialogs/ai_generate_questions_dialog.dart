@@ -367,6 +367,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
     } else {
       return AiGenerateStep2Widget(
         textController: _textController,
+        questionCountController: _questionCountController,
         questionCount: _questionCount,
         fileAttachment: _fileAttachment,
         selectedQuestionTypes: _selectedQuestionTypes,
@@ -387,7 +388,9 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
         onQuestionCountChanged: (count) {
           setState(() {
             _questionCount = count;
-            _questionCountController.text = count.toString();
+            if (_questionCountController.text != count.toString()) {
+              _questionCountController.text = count.toString();
+            }
           });
         },
         getWordCountText: _getWordCountText,
