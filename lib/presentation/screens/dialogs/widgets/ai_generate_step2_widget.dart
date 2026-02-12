@@ -296,6 +296,10 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                       child: SegmentedButton<AiGenerationCategory>(
                         segments: [
                           ButtonSegment<AiGenerationCategory>(
+                            value: AiGenerationCategory.both,
+                            label: Text(localizations.aiGenerationCategoryBoth),
+                          ),
+                          ButtonSegment<AiGenerationCategory>(
                             value: AiGenerationCategory.theory,
                             label: Text(
                               localizations.aiGenerationCategoryTheory,
@@ -306,10 +310,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                             label: Text(
                               localizations.aiGenerationCategoryExercises,
                             ),
-                          ),
-                          ButtonSegment<AiGenerationCategory>(
-                            value: AiGenerationCategory.both,
-                            label: Text(localizations.aiGenerationCategoryBoth),
                           ),
                         ],
                         selected: <AiGenerationCategory>{_selectedCategory},
