@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat: Added "Content Mode" selection (Theory, Exercises,Mixed) to AI generation to refine results and avoid unwanted generic exercises.
 - fix: Prevent collapsing a `QuestionPreviewCard` when tapping collapsible content.
 - feat: Allow execute a quiz with only-selected questions.
+- feat: Set default question count to 5 in AI generation dialog when no preferences exist.
+- fix: Ensured "All" (Random) question type is selected by default in the AI generation dialog when no preferences exist.
 
 ## [1.6.0] - 2026-02-11
 
