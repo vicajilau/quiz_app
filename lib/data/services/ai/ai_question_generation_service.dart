@@ -217,7 +217,8 @@ class AiQuestionGenerationService {
   }
 
   /// Builds the prompt for the AI
-  String _buildPrompt(AiQuestionGenerationConfig config) {
+  @visibleForTesting
+  String buildPrompt(AiQuestionGenerationConfig config) {
     final questionCountText = config.questionCount != null
         ? 'exactly ${config.questionCount}'
         : 'between 3 and 8';
@@ -263,15 +264,15 @@ class AiQuestionGenerationService {
     switch (config.generationCategory) {
       case AiGenerationCategory.theory:
         categoryInstructions =
-            '6. CONCEPTUAL FOCUS: Questions must be strictly about theory, concepts, definitions, and facts. AVOID any calculations, code-writing exercises, or practical development tasks unless they are purely conceptual.';
+            '7. CONCEPTUAL FOCUS: Questions must be strictly about theory, concepts, definitions, and facts. AVOID any calculations, code-writing exercises, or practical development tasks. If the content contains existing exercises, use them ONLY to understand what knowledge is being tested, but DO NOT ask questions about the exercises themselves.';
         break;
       case AiGenerationCategory.exercises:
         categoryInstructions =
-            '6. PRACTICAL FOCUS: Questions should be practical exercises, problem-solving tasks, or development-related implementation questions.';
+            '7. PRACTICAL FOCUS: Questions should be practical exercises, problem-solving tasks, or development-related implementation questions. If the content contains existing exercises, DO NOT reuse them directly; instead, generate NEW exercises that follow a similar pattern and difficulty level.';
         break;
       case AiGenerationCategory.both:
         categoryInstructions =
-            '6. BALANCED FOCUS: Provide a mix of theoretical concepts and practical exercises/applications.';
+            '7. BALANCED FOCUS: Provide a mix of theoretical concepts and NEW practical exercises. DO NOT reference or reuse existing exercises from the content directly.';
         break;
     }
 
@@ -283,6 +284,7 @@ INSTRUCTIONS:
 3. Include a clear explanation for each question
 4. Make sure incorrect answers are plausible but clearly wrong
 5. Explanations should be educational and help understand why the answer is correct
+6. NO DIRECT REFERENCES: DO NOT reference specific exercise numbers, figures, or labels from the source text (e.g., 'In exercise 17...', 'According to the table...'). All questions must be fully self-contained.
 $categoryInstructions
 
 RESPONSE FORMAT (JSON):
