@@ -198,12 +198,12 @@ class _QuestionCountSelectionDialogState
       }
     }
 
-    final examTimeEnabled =
-        await ConfigurationService.instance.getExamTimeEnabled();
-    final examTimeMinutes =
-        await ConfigurationService.instance.getExamTimeMinutes();
+    final examTimeEnabled = await ConfigurationService.instance
+        .getExamTimeEnabled();
+    final examTimeMinutes = await ConfigurationService.instance
+        .getExamTimeMinutes();
 
-    if (context.mounted) {
+    if (mounted) {
       ConfigurationService.instance.saveQuizConfigSettings(
         QuizConfigStoredSettings(
           questionCount: finalCount,
@@ -212,7 +212,6 @@ class _QuestionCountSelectionDialogState
           penaltyAmount: _penaltyAmount,
         ),
       );
-
       context.pop(
         QuizConfig(
           questionCount: finalCount,
