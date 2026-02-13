@@ -256,8 +256,8 @@ For detailed information about AI service limits and configuration, see: **[AI L
 
 ## Requirements
 
-- Flutter SDK 3.0.0 or higher
-- Dart SDK 3.0.0 or higher
+- Flutter SDK 3.41.0 or higher
+- Dart SDK 3.11.0 or higher
 - Android Studio / Xcode for mobile development
 - A device or emulator for testing
 
