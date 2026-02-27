@@ -1,13 +1,10 @@
 name: Flutter CI
 on:
-  push:
-    branches:
-      - feature/github-action-update
   workflow_dispatch:
 
-  # pull_request:
-  #   branches:
-  #     - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   flutter_ci:
@@ -45,12 +42,3 @@ jobs:
           else
             echo "✅ All files have the correct GPL-3.0 license header."
           fi
-
-      - name: Upload prepared workspace
-        uses: actions/upload-artifact@v4
-        with:
-          name: prepared-repo
-          path: |
-            .
-            !.git
-          retention-days: 1

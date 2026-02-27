@@ -1,0 +1,224 @@
+name: Flutter CI
+on:
+  push:
+    # tags:
+    #   - 'v[0-9]+.[0-9]+.[0-9]+*'
+    branches:
+      - feature/github-action-update
+  workflow_dispatch:
+
+jobs:
+  prepare_and_check:
+    name: Run flutter test and analyze
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repositoy
+        uses: actions/checkout@v5
+
+      - name: Install flutter
+        uses: subosito/flutter-action@v2
+
+      - name: Prepare repository
+        uses: Spaccesi/flutter-actions-suite/prepare@main
+        with:
+          run-build-runner: "false"
+          run-gen-l10n: "true"
+          gen-l10n-fails-if-untranslated: "true"
+
+      - name: Check repository
+        uses: Spaccesi/flutter-actions-suite/check@main
+        with:
+          run-license: "true"
+          compatible-licenses-conf-path: ".github/licenses_checker.yaml"
+
+      - name: Check license headers
+        run: |
+          MISSING_HEADERS=$(find lib test -name "*.dart" ! -name "*.g.dart" ! -name "*.freezed.dart" ! -name "*.mocks.dart" ! -name "app_localizations*.dart" -exec sh -c '! grep -q "^// Copyright (C) 2026 Víctor Carreras" "$1" && echo "$1"' _ {} \;)
+          if [ -n "$MISSING_HEADERS" ]; then
+            echo "❌ The following files are missing the GPL-3.0 license header:"
+            echo "$MISSING_HEADERS"
+            exit 1
+          else
+            echo "✅ All files have the correct GPL-3.0 license header."
+          fi
+
+      - name: Upload prepared workspace
+        uses: actions/upload-artifact@v4
+        with:
+          name: prepared-repo
+          path: |
+            .
+            !.git
+          retention-days: 1
+
+  build_and_deploy_web:
+    runs-on: ubuntu-latest
+    needs: [prepare_and_check]
+    steps:
+      - name: Download prepared workspace
+        uses: actions/download-artifact@v4
+        with:
+          name: prepared-repo
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+
+      - name: Build & Publish web
+        uses: Spaccesi/flutter-actions-suite@main
+        with:
+          base-href: ${{ github.event.repository.name }}
+          run-test: "false"
+          run-build-runner: "false"
+          run-gen-l10n: "false"
+          run-analyze: "false"
+          run-license: "false"
+          build-platform: "web"
+          publish-destination: "none"
+
+  build_and_deploy_ios:
+    runs-on: macos-latest
+    needs: [prepare_and_check]
+    steps:
+      - name: Download prepared workspace
+        uses: actions/download-artifact@v4
+        with:
+          name: prepared-repo
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+
+      - name: Build ios
+        uses: Spaccesi/flutter-actions-suite/build/ios@main
+        with:
+          ios-distribution-certificate-base64: ${{ secrets.IOS_DIST_CERTIFICATE_BASE64 }}
+          ios-distribution-certificate-password: ${{ secrets.IOS_DIST_CERTIFICATE_PASSWORD }}
+          ios-provisioning-profile-base64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
+          
+      # - name: Publish ios
+      #   uses: Spaccesi/flutter-actions-suite/publish/ios-app-store@main
+      #   with:
+      #     apple-app-id:
+      #     app-version: 
+      #     apple-api-key-id: ${{ secrets.APPLE_API_KEY_ID }}
+      #     apple-api-key-issuer-id: ${{ secrets.APPLE_API_KEY_ISSUER }}
+      #     apple-api-key-content: ${{ secrets.APPLE_API_KEY_CONTENT }}
+
+  build_and_deploy_macos:
+    runs-on: macos-latest
+    needs: [prepare_and_check]
+    steps:
+      - name: Download prepared workspace
+        uses: actions/download-artifact@v4
+        with:
+          name: prepared-repo
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+
+      - name: Build macos
+        uses: Spaccesi/flutter-actions-suite/build/macos@main
+        with:
+          macos-distribution-certificate-base64: ${{ secrets.MACOS_DIST_CERTIFICATE_BASE64 }}
+          macos-distribution-certificate-password: ${{ secrets.MACOS_DIST_CERTIFICATE_PASSWORD }}
+          macos-installer-certificate-base64: ${{ secrets.MACOS_INSTALLER_CERTIFICATE_BASE64 }}
+          macos-installer-certificate-password: ${{ secrets.MACOS_INSTALLER_CERTIFICATE_PASSWORD }}
+          macos-provisioning-profile-base64: ${{ secrets.MACOS_PROVISIONING_PROFILE_BASE64 }}
+
+      # - name: Publish macos
+      #   uses: Spaccesi/flutter-actions-suite/publish/macos-app-store@main
+      #   with:
+      #     macos-provisioning-profile-base64: ${{ secrets.MACOS_PROVISIONING_PROFILE_BASE64 }}
+      #     apple-api-key-id: ${{ secrets.APPLE_API_KEY_ID }}
+      #     apple-api-key-issuer-id: ${{ secrets.APPLE_API_KEY_ISSUER }}
+      #     apple-api-key-content: ${{ secrets.APPLE_API_KEY_CONTENT }}
+
+  build_and_deploy_linux:
+    runs-on: ubuntu-latest
+    needs: [prepare_and_check]
+    steps:
+      - name: Download prepared workspace
+        uses: actions/download-artifact@v4
+        with:
+          name: prepared-repo
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+
+      - name: Build linux
+        uses: Spaccesi/flutter-actions-suite/build/linux@main
+
+      # - name: Publish on snap
+      #   uses: Spaccesi/flutter-actions-suite/publish/snap-store@main
+      #   with:
+      #     snap-store-token: ${{ secrets.SNAPCRAFT_LOGIN }}
+
+  build_and_deploy_android:
+    runs-on: ubuntu-latest
+    needs: [prepare_and_check]
+    steps:
+      - name: Download prepared workspace
+        uses: actions/download-artifact@v4
+        with:
+          name: prepared-repo
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+
+      - name: Build android
+        uses: Spaccesi/flutter-actions-suite/build/android@main
+        with:
+          android-store-file-base64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          android-key-password:  ${{ secrets.ANDROID_KEY_PASSWORD }}
+          android-local-properties-file: ${{ secrets.ANDROID_LOCAL_PROPERTIES_FILE }}
+          android-store-password: ${{ secrets.ANDROID_STORE_PASSWORD }}
+          android-key-alias: ${{ secrets.ANDROID_KEY_ALIAS }}
+          
+      # - name: Publish Android
+      #   uses: Spaccesi/flutter-actions-suite/publish/play-store@main
+      #   with:
+      #     android-service-account-json-base64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+      #     android-package-name:
+      #     android-track: 
+
+  build_and_deploy_windows:
+    runs-on: windows-latest
+    needs: [prepare_and_check]
+    steps:
+      - name: Download prepared workspace
+        uses: actions/download-artifact@v4
+        with:
+          name: prepared-repo
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+
+      - name: Build ios
+        uses: Spaccesi/flutter-actions-suite/build/windows@main
+
+      # - name: Publish Microsoft store
+      #   uses: Spaccesi/flutter-actions-suite/publish/microsoft-store@main
+      #   with:
+      #     microsoft-partner-center-tenant-id: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
+      #     microsoft-partner-center-seller-id: ${{ secrets.PARTNER_CENTER_SELLER_ID }}
+      #     microsoft-center-client-id: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
+      #     microsoft-partner-center-client-secret: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
+
+  clean_up:
+    runs-on: ubuntu-latest
+    needs:
+      [
+        prepare_and_check,
+        build_and_deploy_web,
+        build_and_deploy_windows,
+        build_and_deploy_android,
+        build_and_deploy_linux,
+        build_and_deploy_macos,
+        build_and_deploy_ios
+      ]
+    steps:
+      - name: Delete artifacts
+        uses: geekyeggo/delete-artifact@v4
+        with:
+          name: prepared-repo
+
+
