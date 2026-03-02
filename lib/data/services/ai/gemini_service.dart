@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:quizdy/data/interceptors/ai_logging_interceptor.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
@@ -295,7 +296,7 @@ class GeminiService extends AIService {
 
       final List<int> footer = utf8.encode('\r\n--$boundary--\r\n');
 
-      final List<int> body = [...metadata, ...file.bytes, ...footer];
+      final body = Uint8List.fromList([...metadata, ...file.bytes, ...footer]);
 
       final response = await _dio.post(
         url,
@@ -303,9 +304,10 @@ class GeminiService extends AIService {
           headers: {
             'X-Goog-Upload-Protocol': 'multipart',
             'Content-Type': 'multipart/related; boundary=$boundary',
+            'Content-Length': '${body.length}',
           },
         ),
-        data: Stream.fromIterable([body]),
+        data: body,
       );
 
       final jsonResponse = response.data;
