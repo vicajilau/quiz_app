@@ -48,6 +48,7 @@ class AiGenerateStep2Widget extends StatefulWidget {
   final String Function() getWordCountText;
   final int Function() getWordCount;
   final int Function() getTopicCount;
+  final ValueChanged<AiQuestionGenerationConfig> onGenerate;
 
   const AiGenerateStep2Widget({
     super.key,
@@ -68,6 +69,7 @@ class AiGenerateStep2Widget extends StatefulWidget {
     required this.getWordCountText,
     required this.getWordCount,
     required this.getTopicCount,
+    required this.onGenerate,
   });
 
   @override
@@ -118,7 +120,12 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
         lookupMimeType(file.name, headerBytes: bytes) ??
         'application/octet-stream';
     widget.onFileDropped(
-      AiFileAttachment(bytes: bytes, mimeType: mimeType, name: file.name),
+      AiFileAttachment(
+        bytes: bytes,
+        mimeType: mimeType,
+        name: file.name,
+        path: file.path,
+      ),
     );
   }
 
@@ -569,7 +576,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                     widget.getTopicCount() <= 10,
                                 generationCategory: _selectedCategory,
                               );
-                              context.pop(config);
+                              widget.onGenerate(config);
                             }
                           : null,
                     ),

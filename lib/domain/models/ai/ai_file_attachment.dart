@@ -26,11 +26,15 @@ class AiFileAttachment {
   /// The original name of the file.
   final String name;
 
-  /// Creates an [AiFileAttachment] with the given [bytes], [mimeType], and [name].
+  /// The path of the file, if available.
+  final String? path;
+
+  /// Creates an [AiFileAttachment] with the given [bytes], [mimeType], [name], and optional [path].
   const AiFileAttachment({
     required this.bytes,
     required this.mimeType,
     required this.name,
+    this.path,
   });
 
   /// Whether the attached file is an image.
