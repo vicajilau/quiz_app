@@ -20,6 +20,7 @@ import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
+import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
@@ -28,14 +29,14 @@ import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_s
 
 class StudyScreen extends StatelessWidget {
   final List<StudyChunk> initialChunks;
-  final String documentText;
+  final AiFileAttachment? fileAttachment;
   final String documentTitle;
   final QuizFile? quizFile;
 
   const StudyScreen({
     super.key,
     required this.initialChunks,
-    required this.documentText,
+    this.fileAttachment,
     required this.documentTitle,
     this.quizFile,
   });
@@ -49,12 +50,12 @@ class StudyScreen extends StatelessWidget {
         jitProcessingService: AiJitProcessingService.instance,
         localizations: localizations,
         initialChunks: initialChunks,
-        documentText: documentText,
+        fileAttachment: fileAttachment ?? quizFile?.fileAttachment,
         documentTitle: documentTitle,
-        onProgressChanged: (coverage, processedChunks, chunks) {
+        onProgressChanged: (progress, processedChunks, chunks) {
           context.read<FileBloc>().add(
             StudyProgressUpdated(
-              coverage: coverage,
+              progress: progress,
               processedChunks: processedChunks,
               chunks: chunks,
             ),
@@ -84,12 +85,12 @@ class StudyScreenView extends StatelessWidget {
           preferredSize: const Size.fromHeight(6.0),
           child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
             buildWhen: (previous, current) =>
-                previous.coveragePercentage != current.coveragePercentage,
+                previous.progressPercentage != current.progressPercentage,
             builder: (context, state) {
               return Tooltip(
-                message: '${state.coveragePercentage.toStringAsFixed(1)}%',
+                message: '${state.progressPercentage.toStringAsFixed(1)}%',
                 child: LinearProgressIndicator(
-                  value: state.coveragePercentage / 100,
+                  value: state.progressPercentage / 100,
                   backgroundColor: Theme.of(
                     context,
                   ).colorScheme.surfaceContainerHighest,
@@ -258,7 +259,7 @@ class StudyScreenView extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  '${state.coveragePercentage.toStringAsFixed(0)}% ${localizations.studyScreenCoverage}',
+                                  '${state.progressPercentage.toStringAsFixed(0)}% ${localizations.studyScreenCoverage}',
                                   style: Theme.of(context).textTheme.bodySmall,
                                 ),
                               ],

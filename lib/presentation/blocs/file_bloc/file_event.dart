@@ -78,12 +78,12 @@ class CancelFileReplacement extends FileEvent {}
 
 /// Event triggered to update study progress metrics and chunks.
 class StudyProgressUpdated extends FileEvent {
-  final double coverage;
+  final double progress;
   final int processedChunks;
   final List<StudyChunk> chunks;
 
   StudyProgressUpdated({
-    required this.coverage,
+    required this.progress,
     required this.processedChunks,
     required this.chunks,
   });

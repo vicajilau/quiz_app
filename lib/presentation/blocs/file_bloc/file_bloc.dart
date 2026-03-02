@@ -213,7 +213,7 @@ class FileBloc extends Bloc<FileEvent, FileState> {
             currentFile.study ??
             const Study(
               content: StudyContent(
-                coveragePercentage: 0,
+                progressPercentage: 0,
                 totalChunks: 0,
                 processedChunks: 0,
                 cache: [],
@@ -222,7 +222,7 @@ class FileBloc extends Bloc<FileEvent, FileState> {
 
         final updatedStudy = currentStudy.copyWith(
           content: currentStudy.content.copyWith(
-            coveragePercentage: event.coverage,
+            progressPercentage: event.progress,
             processedChunks: event.processedChunks,
             cache: event.chunks,
             totalChunks: event.chunks.length,

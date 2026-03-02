@@ -44,6 +44,7 @@ import 'package:quizdy/core/extensions/string_extensions.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_header_widget.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_drop_zone_widget.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_footer_widget.dart';
+import 'package:quizdy/domain/use_cases/initialize_quiz_chunks_use_case.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -243,28 +244,39 @@ class _HomeScreenState extends State<HomeScreen> {
 
         final documentId = 'study_${DateTime.now().millisecondsSinceEpoch}';
 
-        // 1. Chunk the document
-        final chunkingService = AiDocumentChunkingService.instance;
-        final sourceReferences = await chunkingService.chunkDocument(
-          documentText,
-          documentId,
-          localizations,
-        );
+        List<StudyChunk> initialChunks = [];
 
-        if (sourceReferences.isEmpty) {
-          throw Exception(localizations.aiGenerationFailed);
-        }
-
-        // 2. Create chunks
-        final initialChunks = sourceReferences.asMap().entries.map((entry) {
-          return StudyChunk(
-            chunkIndex: entry.key,
-            status: StudyChunkState.created,
-            sourceReference: entry.value,
-            aiSummary: null,
-            slides: null,
+        if (config.hasFile) {
+          // Use AI-driven indexing for files
+          final initializeUseCase = InitializeQuizChunksUseCase();
+          initialChunks = await initializeUseCase.generateChunksOnly(
+            file: config.file!,
+            documentId: documentId,
+            localizations: localizations,
           );
-        }).toList();
+        } else {
+          // Fallback to text-based chunking for raw content
+          final chunkingService = AiDocumentChunkingService.instance;
+          final sourceReferences = await chunkingService.chunkDocument(
+            documentText,
+            documentId,
+            localizations,
+          );
+
+          if (sourceReferences.isEmpty) {
+            throw Exception(localizations.aiGenerationFailed);
+          }
+
+          initialChunks = sourceReferences.asMap().entries.map((entry) {
+            return StudyChunk(
+              chunkIndex: entry.key,
+              status: StudyChunkState.created,
+              sourceReference: entry.value,
+              aiSummary: null,
+              slides: null,
+            );
+          }).toList();
+        }
 
         if (context.mounted) {
           setState(() => _isLoading = false);
@@ -273,7 +285,7 @@ class _HomeScreenState extends State<HomeScreen> {
             AppRoutes.studyScreen,
             extra: {
               'initialChunks': initialChunks,
-              'documentText': documentText,
+              'fileAttachment': config.file,
               'documentTitle': documentTitle,
             },
           );

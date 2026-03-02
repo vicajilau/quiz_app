@@ -14,25 +14,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
+import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:collection/collection.dart';
 
 class StudyExecutionState {
   final List<StudyChunk> chunks;
   final int currentChunkIndex;
-  final String documentText;
+  final AiFileAttachment? fileAttachment;
+  final String? fileUri;
   final String documentTitle;
   final bool isLoading;
-  final double coveragePercentage;
+  final double progressPercentage;
   final int processedChunks;
   final String? error;
 
   const StudyExecutionState({
     this.chunks = const [],
     this.currentChunkIndex = 0,
-    this.documentText = '',
+    this.fileAttachment,
+    this.fileUri,
     this.documentTitle = '',
     this.isLoading = false,
-    this.coveragePercentage = 0.0,
+    this.progressPercentage = 0.0,
     this.processedChunks = 0,
     this.error,
   });
@@ -40,20 +43,22 @@ class StudyExecutionState {
   StudyExecutionState copyWith({
     List<StudyChunk>? chunks,
     int? currentChunkIndex,
-    String? documentText,
+    AiFileAttachment? fileAttachment,
+    String? fileUri,
     String? documentTitle,
     bool? isLoading,
-    double? coveragePercentage,
+    double? progressPercentage,
     int? processedChunks,
     String? error,
   }) {
     return StudyExecutionState(
       chunks: chunks ?? this.chunks,
       currentChunkIndex: currentChunkIndex ?? this.currentChunkIndex,
-      documentText: documentText ?? this.documentText,
+      fileAttachment: fileAttachment ?? this.fileAttachment,
+      fileUri: fileUri ?? this.fileUri,
       documentTitle: documentTitle ?? this.documentTitle,
       isLoading: isLoading ?? this.isLoading,
-      coveragePercentage: coveragePercentage ?? this.coveragePercentage,
+      progressPercentage: progressPercentage ?? this.progressPercentage,
       processedChunks: processedChunks ?? this.processedChunks,
       error: error, // Can be null to clear error
     );
@@ -83,10 +88,11 @@ class StudyExecutionState {
     return other is StudyExecutionState &&
         listEquals(other.chunks, chunks) &&
         other.currentChunkIndex == currentChunkIndex &&
-        other.documentText == documentText &&
+        other.fileAttachment == fileAttachment &&
+        other.fileUri == fileUri &&
         other.documentTitle == documentTitle &&
         other.isLoading == isLoading &&
-        other.coveragePercentage == coveragePercentage &&
+        other.progressPercentage == progressPercentage &&
         other.processedChunks == processedChunks &&
         other.error == error;
   }
@@ -95,10 +101,11 @@ class StudyExecutionState {
   int get hashCode {
     return chunks.hashCode ^
         currentChunkIndex.hashCode ^
-        documentText.hashCode ^
+        fileAttachment.hashCode ^
+        fileUri.hashCode ^
         documentTitle.hashCode ^
         isLoading.hashCode ^
-        coveragePercentage.hashCode ^
+        progressPercentage.hashCode ^
         processedChunks.hashCode ^
         error.hashCode;
   }

@@ -19,6 +19,7 @@ import 'package:quizdy/domain/models/custom_exceptions/bad_quiz_file_error_type.
 import 'package:quizdy/domain/models/quiz/quiz_metadata.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/study.dart';
+import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 
 /// The `QuizFile` class represents a Quiz file, which consists of metadata
 /// and a list of questions. This class provides methods for deserialization,
@@ -35,12 +36,16 @@ class QuizFile {
   /// The interactive study sequence content associated with the Quiz file.
   final Study? study;
 
+  /// The original file associated with this quiz (in-memory only).
+  final AiFileAttachment? fileAttachment;
+
   /// Constructor for creating a `QuizFile` instance with metadata and questions.
   QuizFile({
     required this.metadata,
     required this.questions,
     this.study,
     this.filePath,
+    this.fileAttachment,
   });
 
   /// Creates a `QuizFile` instance from a JSON map.
@@ -95,12 +100,14 @@ class QuizFile {
     List<Question>? questions,
     Study? study,
     String? filePath,
+    AiFileAttachment? fileAttachment,
   }) {
     return QuizFile(
       metadata: metadata ?? this.metadata,
       questions: questions ?? this.questions,
       study: study ?? this.study,
       filePath: filePath ?? this.filePath,
+      fileAttachment: fileAttachment ?? this.fileAttachment,
     );
   }
 

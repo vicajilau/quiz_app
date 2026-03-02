@@ -265,4 +265,208 @@ class GeminiService extends AIService {
       throw Exception(localizations.networkErrorGemini);
     }
   }
+
+  @override
+  Future<String> uploadFile(
+    AiFileAttachment file,
+    AppLocalizations localizations,
+  ) async {
+    final apiKey = await ConfigurationService.instance.getGeminiApiKey();
+
+    if (apiKey == null || apiKey.isEmpty) {
+      throw Exception(localizations.geminiApiKeyNotConfigured);
+    }
+
+    // Google Gemini Upload API uses a different base URL for media
+    const uploadBaseUrl =
+        'https://generativelanguage.googleapis.com/upload/v1beta';
+    final url = '$uploadBaseUrl/files?key=$apiKey';
+
+    try {
+      final boundary =
+          '--------------------------${DateTime.now().millisecondsSinceEpoch}';
+
+      final List<int> metadata = utf8.encode(
+        '--$boundary\r\n'
+        'Content-Type: application/json; charset=UTF-8\r\n\r\n'
+        '{"file": {"displayName": "${file.name}"}}\r\n'
+        '--$boundary\r\n'
+        'Content-Type: ${file.mimeType}\r\n\r\n',
+      );
+
+      final List<int> footer = utf8.encode('\r\n--$boundary--\r\n');
+
+      final List<int> body = [...metadata, ...file.bytes, ...footer];
+
+      final response = await _dio.post(
+        url,
+        options: Options(
+          headers: {
+            'X-Goog-Upload-Protocol': 'multipart',
+            'Content-Type': 'multipart/related; boundary=$boundary',
+          },
+        ),
+        data: Stream.fromIterable([body]),
+      );
+
+      final jsonResponse = response.data;
+      final fileUri = jsonResponse['file']?['uri'] as String?;
+
+      if (fileUri != null) {
+        return fileUri;
+      } else {
+        throw Exception(localizations.noResponseReceived);
+      }
+    } on DioException catch (e) {
+      String errorMessage = localizations.aiErrorResponse;
+      try {
+        final data = e.response?.data;
+        if (data != null &&
+            data['error'] != null &&
+            data['error']['message'] != null) {
+          errorMessage += ': ${data['error']['message']}';
+        } else {
+          errorMessage += ': ${e.message}';
+        }
+      } catch (_) {
+        errorMessage += ': ${e.message}';
+      }
+      throw Exception(errorMessage);
+    } catch (e) {
+      throw Exception(localizations.networkErrorGemini);
+    }
+  }
+
+  @override
+  Future<String> getChatResponseWithFileUri(
+    String prompt,
+    AppLocalizations localizations, {
+    String? model,
+    String? responseMimeType,
+    required String fileUri,
+    required String fileMimeType,
+  }) async {
+    final apiKey = await ConfigurationService.instance.getGeminiApiKey();
+
+    if (apiKey == null || apiKey.isEmpty) {
+      throw Exception(localizations.geminiApiKeyNotConfigured);
+    }
+
+    final selectedModel = model ?? _defaultModel;
+
+    final baseUrl = selectedModel == 'gemini-3-pro-preview'
+        ? _baseUrlAlpha
+        : _baseUrlBeta;
+    final url = '$baseUrl/models/$selectedModel:generateContent?key=$apiKey';
+
+    try {
+      final response = await _dio.post(
+        url,
+        options: Options(headers: {'Content-Type': 'application/json'}),
+        data: {
+          'contents': [
+            {
+              'parts': [
+                {'text': prompt},
+                {
+                  'file_data': {'mime_type': fileMimeType, 'file_uri': fileUri},
+                },
+              ],
+            },
+          ],
+          'generationConfig': {
+            'responseMimeType': ?responseMimeType,
+            'temperature': 0.2,
+            'topK': 5,
+            'topP': 0.95,
+            'maxOutputTokens': 8192,
+          },
+          'safetySettings': [
+            {
+              'category': 'HARM_CATEGORY_HARASSMENT',
+              'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
+            },
+            {
+              'category': 'HARM_CATEGORY_HATE_SPEECH',
+              'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
+            },
+            {
+              'category': 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+              'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
+            },
+            {
+              'category': 'HARM_CATEGORY_DANGEROUS_CONTENT',
+              'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
+            },
+          ],
+        },
+      );
+
+      final jsonResponse = response.data;
+      final candidates = jsonResponse['candidates'] as List?;
+
+      if (candidates != null && candidates.isNotEmpty) {
+        final content = candidates[0]['content']['parts'][0]['text'];
+        return content?.toString().trim() ?? localizations.noResponseReceived;
+      } else {
+        return localizations.noResponseReceived;
+      }
+    } on DioException catch (e) {
+      String errorMessage = localizations.aiErrorResponse;
+      try {
+        final data = e.response?.data;
+        if (data != null &&
+            data['error'] != null &&
+            data['error']['message'] != null) {
+          errorMessage += ': ${data['error']['message']}';
+        } else {
+          errorMessage += ': ${e.message}';
+        }
+      } catch (_) {
+        errorMessage += ': ${e.message}';
+      }
+      throw Exception(errorMessage);
+    } catch (e) {
+      throw Exception(localizations.networkErrorGemini);
+    }
+  }
+
+  @override
+  Future<String> generateStudyIndex(
+    AppLocalizations localizations, {
+    required String fileUri,
+    required String fileMimeType,
+  }) async {
+    final prompt =
+        '''
+Act as an expert academic educator. Analyze the provided document and generate a structured Table of Contents (index) for a personalized study plan.
+
+Rules:
+1. Divide the content into logical "Themes" or "Chapters" (chunks).
+2. Each theme should be granular enough to be studied in a single session.
+3. If a section is very long, break it down into sub-themes.
+4. For each theme, identify the start and end page (if the document has pages/is a PDF). If not, use estimated percentages or indices.
+5. High Priority: Chunks should feel like an index of a book.
+6. Themes should be logically treated as the main units of study.
+7. Output ONLY a valid JSON array of objects with this structure:
+[
+  {
+    "title": "Theme Title",
+    "startPage": 1, 
+    "endPage": 3,
+    "summary": "Brief 1-sentence description of what will be covered."
+  }
+]
+
+Current Language: ${localizations.localeName}
+''';
+
+    return getChatResponseWithFileUri(
+      prompt,
+      localizations,
+      responseMimeType: 'application/json',
+      fileUri: fileUri,
+      fileMimeType: fileMimeType,
+    );
+  }
 }

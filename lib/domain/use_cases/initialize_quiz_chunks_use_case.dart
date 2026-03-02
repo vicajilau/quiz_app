@@ -20,28 +20,66 @@ import 'package:quizdy/domain/models/quiz/study.dart';
 import 'package:quizdy/domain/models/quiz/study_content.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
+import 'package:quizdy/data/services/ai/ai_service.dart';
+import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
+import 'package:quizdy/data/services/ai/gemini_service.dart';
 
 /// Use case that configures the `.quiz` file with chunk boundaries identified by AI.
 class InitializeQuizChunksUseCase {
   final AiDocumentChunkingService _chunkingService;
+  final AIService _aiService;
 
-  InitializeQuizChunksUseCase([AiDocumentChunkingService? chunkingService])
-    : _chunkingService = chunkingService ?? AiDocumentChunkingService.instance;
+  InitializeQuizChunksUseCase({
+    AiDocumentChunkingService? chunkingService,
+    AIService? aiService,
+  }) : _chunkingService = chunkingService ?? AiDocumentChunkingService.instance,
+       _aiService = aiService ?? GeminiService.instance;
 
   /// Executes the AI chunking and returns a new [QuizFile] updated with the `study` mapping.
   Future<QuizFile> execute(
     QuizFile quizFile,
-    String documentText,
+    AiFileAttachment file,
     String documentId,
     AppLocalizations localizations,
   ) async {
-    final references = await _chunkingService.chunkDocument(
-      documentText,
-      documentId,
-      localizations,
+    final chunks = await generateChunksOnly(
+      file: file,
+      documentId: documentId,
+      localizations: localizations,
     );
 
-    final chunks = references.asMap().entries.map((entry) {
+    final studyContent = StudyContent(
+      progressPercentage: 0.0,
+      totalChunks: chunks.length,
+      processedChunks: 0,
+      cache: chunks,
+    );
+
+    final study = Study(content: studyContent);
+
+    // Ensure the quizFile also stores the fileAttachment or at least its metadata
+    return quizFile.copyWith(study: study, fileAttachment: file);
+  }
+
+  /// Helper to generate chunks directly from a file without requiring a QuizFile.
+  Future<List<StudyChunk>> generateChunksOnly({
+    required AiFileAttachment file,
+    required String documentId,
+    required AppLocalizations localizations,
+  }) async {
+    // 1. Upload the file to the AI service to get a URI (Gemini File API)
+    final fileUri = await _aiService.uploadFile(file, localizations);
+
+    // 2. Generate logical chunks using AI analysis of the uploaded file
+    final references = await _chunkingService.generateIndexWithAi(
+      aiService: _aiService,
+      fileUri: fileUri,
+      fileMimeType: file.mimeType,
+      documentId: documentId,
+      localizations: localizations,
+    );
+
+    return references.asMap().entries.map((entry) {
       return StudyChunk(
         chunkIndex: entry.key,
         status: StudyChunkState.created,
@@ -50,16 +88,5 @@ class InitializeQuizChunksUseCase {
         slides: null,
       );
     }).toList();
-
-    final studyContent = StudyContent(
-      coveragePercentage: 0.0,
-      totalChunks: chunks.length,
-      processedChunks: 0,
-      cache: chunks,
-    );
-
-    final study = Study(content: studyContent);
-
-    return quizFile.copyWith(study: study);
   }
 }

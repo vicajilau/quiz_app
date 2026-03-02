@@ -45,12 +45,6 @@ void main() {
   });
 
   group('StudyExecutionBloc Coverage Calculation', () {
-    final documentText =
-        'This is a test document with exactly 40 characters.'; // Length 51? Let's count
-    // T h i s   i s   a   t e s t   d o c u m e n t   w i t h   e x a c t l y   4 0   c h a r a c t e r s .
-    // 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    // It's 51 chars.
-
     final chunk1 = const StudyChunk(
       chunkIndex: 0,
       status: StudyChunkState.completed,
@@ -82,13 +76,12 @@ void main() {
         jitProcessingService: mockJitService,
         localizations: mockLocalizations,
         initialChunks: [chunk1, chunk2],
-        documentText: documentText,
         documentTitle: 'Test Doc',
       );
 
-      // 10 chars out of 51 is ~19.6%
+      // (1 / 2) * 100 = 50%
       expect(bloc.state.processedChunks, 1);
-      expect(bloc.state.coveragePercentage, closeTo(19.60, 0.01));
+      expect(bloc.state.progressPercentage, equals(50.0));
       bloc.close();
     });
 
@@ -99,21 +92,14 @@ void main() {
         localizations: mockLocalizations,
         initialChunks: [
           chunk1,
-          chunk2.copyWith(
-            status: StudyChunkState.completed,
-          ), // Pre-set to completed for testing update logic in bloc if it was processing
+          chunk2.copyWith(status: StudyChunkState.completed),
         ],
-        documentText: documentText,
         documentTitle: 'Test Doc',
       ),
-      act: (bloc) => bloc.add(
-        const StudyChunkRequested(0),
-      ), // Already completed, just triggers state update/emit if needed, but bloc ignores it
+      act: (bloc) => bloc.add(const StudyChunkRequested(0)),
       verify: (bloc) {
-        // total processed chars: 10 (chunk1) + 20 (chunk2) = 30
-        // 30 / 51 = ~58.82%
         expect(bloc.state.processedChunks, 2);
-        expect(bloc.state.coveragePercentage, closeTo(58.82, 0.01));
+        expect(bloc.state.progressPercentage, equals(100.0));
       },
     );
   });

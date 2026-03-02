@@ -16,6 +16,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:quizdy/core/debug_print.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/presentation/screens/file_loaded_screen.dart';
 import 'package:quizdy/presentation/screens/quiz_file_execution_screen.dart';
 import 'package:quizdy/presentation/screens/study_screen.dart';
@@ -70,8 +71,9 @@ GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
         final extra = state.extra as Map<String, dynamic>? ?? {};
         return StudyScreen(
           initialChunks: extra['initialChunks'] ?? [],
-          documentText: extra['documentText'] ?? '',
+          fileAttachment: extra['fileAttachment'] as AiFileAttachment?,
           documentTitle: extra['documentTitle'] ?? '',
+          quizFile: extra['quizFile'] as QuizFile?,
         );
       },
     ),

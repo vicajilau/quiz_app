@@ -168,4 +168,33 @@ class OpenAIService extends AIService {
       throw Exception(localizations.networkErrorOpenAI);
     }
   }
+
+  @override
+  Future<String> uploadFile(
+    AiFileAttachment file,
+    AppLocalizations localizations,
+  ) async {
+    throw UnimplementedError('OpenAI File API not implemented yet');
+  }
+
+  @override
+  Future<String> getChatResponseWithFileUri(
+    String prompt,
+    AppLocalizations localizations, {
+    String? model,
+    String? responseMimeType,
+    required String fileUri,
+    required String fileMimeType,
+  }) async {
+    throw UnimplementedError('OpenAI File API not implemented yet');
+  }
+
+  @override
+  Future<String> generateStudyIndex(
+    AppLocalizations localizations, {
+    required String fileUri,
+    required String fileMimeType,
+  }) async {
+    throw UnimplementedError('OpenAI File API not implemented yet');
+  }
 }

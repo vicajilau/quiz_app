@@ -18,6 +18,8 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
+import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
+import 'package:quizdy/data/services/ai/gemini_service.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
 
@@ -26,7 +28,7 @@ class StudyExecutionBloc
   final AiJitProcessingService _jitProcessingService;
   final AppLocalizations _localizations;
   final void Function(
-    double coverage,
+    double progress,
     int processedChunks,
     List<StudyChunk> chunks,
   )?
@@ -36,12 +38,20 @@ class StudyExecutionBloc
     required AiJitProcessingService jitProcessingService,
     required AppLocalizations localizations,
     required List<StudyChunk> initialChunks,
-    required String documentText,
     required String documentTitle,
+    AiFileAttachment? fileAttachment,
+    String? fileUri,
     this.onProgressChanged,
   }) : _jitProcessingService = jitProcessingService,
        _localizations = localizations,
-       super(_initialProgress(initialChunks, documentText, documentTitle)) {
+       super(
+         _initialProgress(
+           initialChunks,
+           documentTitle,
+           fileAttachment: fileAttachment,
+           fileUri: fileUri,
+         ),
+       ) {
     on<StudyChunkRequested>(_onStudyChunkRequested);
     on<NextStudyChunkRequested>(_onNextStudyChunkRequested);
     on<PreviousStudyChunkRequested>(_onPreviousStudyChunkRequested);
@@ -49,38 +59,30 @@ class StudyExecutionBloc
 
   static StudyExecutionState _initialProgress(
     List<StudyChunk> chunks,
-    String documentText,
-    String documentTitle,
-  ) {
+    String documentTitle, {
+    AiFileAttachment? fileAttachment,
+    String? fileUri,
+  }) {
     var state = StudyExecutionState(
       chunks: chunks,
-      documentText: documentText,
+      fileAttachment: fileAttachment,
+      fileUri: fileUri,
       documentTitle: documentTitle,
     );
 
-    if (documentText.isEmpty) return state;
+    if (chunks.isEmpty) return state;
 
-    int processedChars = 0;
-    int processedChunksCount = 0;
+    int processedChunksCount = chunks
+        .where((c) => c.status == StudyChunkState.completed)
+        .length;
 
-    for (final chunk in chunks) {
-      if (chunk.status == StudyChunkState.completed) {
-        processedChunksCount++;
-        final start = chunk.sourceReference.startOffset;
-        final end = chunk.sourceReference.endOffset;
-        if (end > start) {
-          processedChars += (end - start);
-        }
-      }
-    }
-
-    final coverage = (processedChars / documentText.length * 100).clamp(
+    final progress = (processedChunksCount / chunks.length * 100).clamp(
       0.0,
       100.0,
     );
 
     return state.copyWith(
-      coveragePercentage: coverage,
+      progressPercentage: progress,
       processedChunks: processedChunksCount,
     );
   }
@@ -110,11 +112,45 @@ class StudyExecutionBloc
     chunksProcessing[event.chunkIndex] = processingChunk;
     emit(state.copyWith(chunks: chunksProcessing));
 
+    // Ensure we have a fileUri (multimodal File API upload)
+    String? fileUri = state.fileUri;
+    String? fileMimeType = state.fileAttachment?.mimeType;
+
+    if (fileUri == null && state.fileAttachment != null) {
+      try {
+        fileUri = await GeminiService.instance.uploadFile(
+          state.fileAttachment!,
+          _localizations,
+        );
+        emit(state.copyWith(fileUri: fileUri));
+      } catch (e) {
+        final errorChunk = chunk.copyWith(status: StudyChunkState.error);
+        final chunksError = List<StudyChunk>.from(state.chunks);
+        chunksError[event.chunkIndex] = errorChunk;
+        emit(state.copyWith(chunks: chunksError, error: e.toString()));
+        return;
+      }
+    }
+
+    if (fileUri == null) {
+      final errorChunk = chunk.copyWith(status: StudyChunkState.error);
+      final chunksError = List<StudyChunk>.from(state.chunks);
+      chunksError[event.chunkIndex] = errorChunk;
+      emit(
+        state.copyWith(
+          chunks: chunksError,
+          error: _localizations.aiErrorResponse,
+        ),
+      );
+      return;
+    }
+
     // Wait for the JIT Processing Service
     final processedChunk = await _jitProcessingService.processChunk(
-      processingChunk,
-      state.documentText,
-      _localizations,
+      chunk: processingChunk,
+      fileUri: fileUri,
+      fileMimeType: fileMimeType ?? 'application/pdf',
+      localizations: _localizations,
     );
 
     // Update the state with the finished chunk (either completed or error)
@@ -126,35 +162,24 @@ class StudyExecutionBloc
 
     // Notify progress change for persistence
     onProgressChanged?.call(
-      newState.coveragePercentage,
+      newState.progressPercentage,
       newState.processedChunks,
       newState.chunks,
     );
   }
 
   StudyExecutionState _updateProgress(StudyExecutionState currentState) {
-    if (currentState.documentText.isEmpty) return currentState;
+    if (currentState.chunks.isEmpty) return currentState;
 
-    int processedChars = 0;
-    int processedChunksCount = 0;
+    int processedChunksCount = currentState.chunks
+        .where((c) => c.status == StudyChunkState.completed)
+        .length;
 
-    for (final chunk in currentState.chunks) {
-      if (chunk.status == StudyChunkState.completed) {
-        processedChunksCount++;
-        final start = chunk.sourceReference.startOffset;
-        final end = chunk.sourceReference.endOffset;
-        // Ensure we don't count negative lengths or hallucinated offsets
-        if (end > start) {
-          processedChars += (end - start);
-        }
-      }
-    }
-
-    final coverage = (processedChars / currentState.documentText.length * 100)
+    final progress = (processedChunksCount / currentState.chunks.length * 100)
         .clamp(0.0, 100.0);
 
     return currentState.copyWith(
-      coveragePercentage: coverage,
+      progressPercentage: progress,
       processedChunks: processedChunksCount,
     );
   }

@@ -43,7 +43,7 @@ void main() {
       expect(quizFile.study, isNotNull);
 
       final studyContent = quizFile.study!.content;
-      expect(studyContent.coveragePercentage, 30.5);
+      expect(studyContent.progressPercentage, 30.5);
       expect(studyContent.totalChunks, 10);
       expect(studyContent.cache.length, 1);
 

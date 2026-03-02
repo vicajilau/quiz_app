@@ -25,13 +25,36 @@ abstract class AIService {
     String? responseMimeType,
   });
 
-  /// Obtiene una respuesta del servicio de IA enviando un fichero adjunto
+  /// Obtiene una respuesta del servicio de IA enviando un fichero adjunto inline (base64)
   Future<String> getChatResponseWithFile(
     String prompt,
     AppLocalizations localizations, {
     String? model,
     String? responseMimeType,
     required AiFileAttachment file,
+  });
+
+  /// Sube un archivo al servicio de IA y devuelve su URI o identificador
+  Future<String> uploadFile(
+    AiFileAttachment file,
+    AppLocalizations localizations,
+  );
+
+  /// Obtiene una respuesta del servicio de IA referenciando un archivo ya subido por su URI
+  Future<String> getChatResponseWithFileUri(
+    String prompt,
+    AppLocalizations localizations, {
+    String? model,
+    String? responseMimeType,
+    required String fileUri,
+    required String fileMimeType,
+  });
+
+  /// Generates a structured syllabus or index from a previously uploaded file.
+  Future<String> generateStudyIndex(
+    AppLocalizations localizations, {
+    required String fileUri,
+    required String fileMimeType,
   });
 
   /// Verifica si el servicio está disponible (tiene API key configurada)

@@ -14,6 +14,8 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'dart:convert';
+import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/quiz/source_reference.dart';
 
 class _TextBatch {
@@ -81,6 +83,56 @@ class AiDocumentChunkingService {
     }
 
     return allReferences;
+  }
+
+  /// Generates logical chunks using AI analysis of the document.
+  Future<List<SourceReference>> generateIndexWithAi({
+    required AIService aiService,
+    required String fileUri,
+    required String fileMimeType,
+    required String documentId,
+    required AppLocalizations localizations,
+  }) async {
+    try {
+      final jsonResponse = await aiService.generateStudyIndex(
+        localizations,
+        fileUri: fileUri,
+        fileMimeType: fileMimeType,
+      );
+
+      // Clean the response if it contains markdown code blocks
+      String cleanedJson = jsonResponse.trim();
+      if (cleanedJson.startsWith('```json')) {
+        cleanedJson = cleanedJson.substring(7, cleanedJson.length - 3).trim();
+      } else if (cleanedJson.startsWith('```')) {
+        cleanedJson = cleanedJson.substring(3, cleanedJson.length - 3).trim();
+      }
+
+      final List<dynamic> decoded = jsonDecode(cleanedJson);
+
+      return decoded.map((item) {
+        return SourceReference(
+          documentId: documentId,
+          startPage: item['startPage'] ?? 1,
+          endPage: item['endPage'] ?? 1,
+          startOffset: 0,
+          endOffset: 0,
+          blockType: item['title'] ?? 'Generic Section',
+        );
+      }).toList();
+    } catch (e) {
+      // Fallback to a single chunk representing the whole file if AI indexing fails
+      return [
+        SourceReference(
+          documentId: documentId,
+          startPage: 1,
+          endPage: 1,
+          startOffset: 0,
+          endOffset: 0,
+          blockType: 'Full Document',
+        ),
+      ];
+    }
   }
 
   _TextBatch _getNextBatch(String text, int startOffset, int maxChars) {

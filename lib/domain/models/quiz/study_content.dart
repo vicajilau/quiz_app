@@ -19,7 +19,7 @@ import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 /// Represents the actual content and progress data mapping to an ongoing study session.
 class StudyContent {
   /// The percentage (0-100) of the source material covered/processed.
-  final double coveragePercentage;
+  final double progressPercentage;
 
   /// The total expected number of chunks.
   final int totalChunks;
@@ -32,7 +32,7 @@ class StudyContent {
 
   /// Constructor for `StudyContent`.
   const StudyContent({
-    required this.coveragePercentage,
+    required this.progressPercentage,
     required this.totalChunks,
     required this.processedChunks,
     required this.cache,
@@ -51,8 +51,10 @@ class StudyContent {
         .toList();
 
     return StudyContent(
-      coveragePercentage:
-          (json['coverage_percentage'] as num?)?.toDouble() ?? 0.0,
+      progressPercentage:
+          (json['progress_percentage'] as num?)?.toDouble() ??
+          (json['coverage_percentage'] as num?)?.toDouble() ??
+          0.0,
       totalChunks: json['total_chunks'] as int? ?? 0,
       processedChunks: json['processed_chunks'] as int? ?? 0,
       cache: cache,
@@ -64,7 +66,7 @@ class StudyContent {
   /// - Returns: A JSON map representation.
   Map<String, dynamic> toJson() {
     return {
-      'coverage_percentage': coveragePercentage,
+      'progress_percentage': progressPercentage,
       'total_chunks': totalChunks,
       'processed_chunks': processedChunks,
       'cache': cache.map((chunk) => chunk.toJson()).toList(),
@@ -73,13 +75,13 @@ class StudyContent {
 
   /// Creates a copy of the `StudyContent` with optional parameter modifications.
   StudyContent copyWith({
-    double? coveragePercentage,
+    double? progressPercentage,
     int? totalChunks,
     int? processedChunks,
     List<StudyChunk>? cache,
   }) {
     return StudyContent(
-      coveragePercentage: coveragePercentage ?? this.coveragePercentage,
+      progressPercentage: progressPercentage ?? this.progressPercentage,
       totalChunks: totalChunks ?? this.totalChunks,
       processedChunks: processedChunks ?? this.processedChunks,
       cache: cache ?? this.cache.map((c) => c.copyWith()).toList(),
@@ -91,7 +93,7 @@ class StudyContent {
     if (identical(this, other)) return true;
 
     return other is StudyContent &&
-        other.coveragePercentage == coveragePercentage &&
+        other.progressPercentage == progressPercentage &&
         other.totalChunks == totalChunks &&
         other.processedChunks == processedChunks &&
         listEquals(other.cache, cache);
@@ -99,7 +101,7 @@ class StudyContent {
 
   @override
   int get hashCode {
-    return coveragePercentage.hashCode ^
+    return progressPercentage.hashCode ^
         totalChunks.hashCode ^
         processedChunks.hashCode ^
         Object.hashAll(cache);
@@ -107,6 +109,6 @@ class StudyContent {
 
   @override
   String toString() {
-    return 'StudyContent(coverage: $coveragePercentage%, total: $totalChunks, processed: $processedChunks, cache: ${cache.length})';
+    return 'StudyContent(coverage: $progressPercentage%, total: $totalChunks, processed: $processedChunks, cache: ${cache.length})';
   }
 }

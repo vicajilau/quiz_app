@@ -14,7 +14,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'dart:convert';
-import 'dart:math' as math;
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/data/services/ai/gemini_service.dart';
 import 'package:quizdy/domain/models/quiz/slide.dart';
@@ -33,46 +32,39 @@ class AiJitProcessingService {
 
   /// Processes a [StudyChunk] on-demand to generate its AI summary and UI slides.
   ///
-  /// The specific chunk text is extracted from the full [documentText] using safe offsets.
   /// It returns a new immutable [StudyChunk] with the resulting state.
   ///
   /// - [chunk]: The raw chunk entity containing the source references.
-  /// - [documentText]: The full text extracted from the document.
+  /// - [fileUri]: The URI of the uploaded file in Gemini.
+  /// - [fileMimeType]: The MIME type of the uploaded file.
   /// - [localizations]: Localization bundle for error messages.
   /// - Returns: A future resolving to a populated or failed `StudyChunk`.
-  Future<StudyChunk> processChunk(
-    StudyChunk chunk,
-    String documentText,
-    AppLocalizations localizations,
-  ) async {
+  Future<StudyChunk> processChunk({
+    required StudyChunk chunk,
+    required String fileUri,
+    required String fileMimeType,
+    required AppLocalizations localizations,
+  }) async {
     // We only process chunks that have not been successfully processed yet.
     if (chunk.status == StudyChunkState.completed) {
       return chunk;
     }
 
     // Safety layer to protect against AI hallucinations extending offsets beyond the document length
-    final safeStart = math.max(
-      0,
-      math.min(chunk.sourceReference.startOffset, documentText.length),
-    );
-    final safeEnd = math.max(
-      safeStart,
-      math.min(chunk.sourceReference.endOffset, documentText.length),
-    );
-    final chunkText = documentText.substring(safeStart, safeEnd);
+    final startPage = chunk.sourceReference.startPage;
+    final endPage = chunk.sourceReference.endPage;
 
-    if (chunkText.trim().isEmpty) {
-      return chunk.copyWith(status: StudyChunkState.error);
-    }
-
-    final prompt = _buildSystemPrompt(chunkText);
+    final prompt = _buildSystemPrompt(startPage, endPage);
 
     try {
-      final responseBody = await GeminiService.instance.getChatResponse(
-        prompt,
-        localizations,
-        responseMimeType: 'application/json',
-      );
+      final responseBody = await GeminiService.instance
+          .getChatResponseWithFileUri(
+            prompt,
+            localizations,
+            fileUri: fileUri,
+            fileMimeType: fileMimeType,
+            responseMimeType: 'application/json',
+          );
 
       final cleanJsonString = _extractJsonFromResponse(responseBody);
       final parsedData = _parseJsonResponse(cleanJsonString);
@@ -97,10 +89,12 @@ class AiJitProcessingService {
     }
   }
 
-  /// Builds the instruction set and appends the specific chunk text.
-  String _buildSystemPrompt(String text) {
+  /// Builds the instruction set for specific page ranges.
+  String _buildSystemPrompt(int startPage, int endPage) {
     return '''
-You are an expert educational content generator. Your task is to analyze the provided portion of text and generate study material for it.
+You are an expert educational content generator. Your task is to analyze the provided pages of the document and generate study material for them.
+
+IMPORTANT: Focus ONLY on the content found between pages $startPage and $endPage (inclusive).
 
 Important Output Instructions:
 - If the provided text contains a Table of Contents (TOC), completely ignore it and do not generate study elements for the TOC itself.
@@ -129,7 +123,7 @@ Ensure the structure of the JSON is exactly as specified so it can be parsed pro
 
 Text Portion to Analyze:
 """
-$text
+Analyzing document range: Pages $startPage to $endPage.
 """
 ''';
   }
