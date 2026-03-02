@@ -29,8 +29,11 @@ class StudyChunk {
   /// The current processing state of the chunk.
   final StudyChunkState status;
 
-  /// Linking back to the specific part of the source document this chunk originated from.
+  /// Link back to the specific part of the source document this chunk originated from.
   final SourceReference sourceReference;
+
+  /// The title of the chunk/section, sourced from the blockType.
+  String get title => sourceReference.blockType;
 
   /// An AI-generated textual summary of the source section.
   final String? aiSummary;

@@ -55,6 +55,7 @@ class StudyExecutionBloc
     on<StudyChunkRequested>(_onStudyChunkRequested);
     on<NextStudyChunkRequested>(_onNextStudyChunkRequested);
     on<PreviousStudyChunkRequested>(_onPreviousStudyChunkRequested);
+    on<ReturnToIndexRequested>(_onReturnToIndexRequested);
   }
 
   static StudyExecutionState _initialProgress(
@@ -95,8 +96,10 @@ class StudyExecutionBloc
       return;
     }
 
-    // Set the current chunk
-    emit(state.copyWith(currentChunkIndex: event.chunkIndex));
+    // Set the current chunk and exit index mode
+    emit(
+      state.copyWith(currentChunkIndex: event.chunkIndex, isIndexMode: false),
+    );
 
     final chunk = state.chunks[event.chunkIndex];
 
@@ -200,5 +203,12 @@ class StudyExecutionBloc
     if (state.hasPrevious) {
       add(StudyChunkRequested(state.currentChunkIndex - 1));
     }
+  }
+
+  void _onReturnToIndexRequested(
+    ReturnToIndexRequested event,
+    Emitter<StudyExecutionState> emit,
+  ) {
+    emit(state.copyWith(isIndexMode: true));
   }
 }

@@ -24,6 +24,9 @@ class StudyChunkRequested extends StudyExecutionEvent {
   const StudyChunkRequested(this.chunkIndex);
 }
 
+/// Dispatched to return to the index view.
+class ReturnToIndexRequested extends StudyExecutionEvent {}
+
 /// Dispatched to move to the next chunk.
 class NextStudyChunkRequested extends StudyExecutionEvent {}
 

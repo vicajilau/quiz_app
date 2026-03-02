@@ -24,6 +24,7 @@ class StudyExecutionState {
   final String? fileUri;
   final String documentTitle;
   final bool isLoading;
+  final bool isIndexMode;
   final double progressPercentage;
   final int processedChunks;
   final String? error;
@@ -35,6 +36,7 @@ class StudyExecutionState {
     this.fileUri,
     this.documentTitle = '',
     this.isLoading = false,
+    this.isIndexMode = true,
     this.progressPercentage = 0.0,
     this.processedChunks = 0,
     this.error,
@@ -47,6 +49,7 @@ class StudyExecutionState {
     String? fileUri,
     String? documentTitle,
     bool? isLoading,
+    bool? isIndexMode,
     double? progressPercentage,
     int? processedChunks,
     String? error,
@@ -58,6 +61,7 @@ class StudyExecutionState {
       fileUri: fileUri ?? this.fileUri,
       documentTitle: documentTitle ?? this.documentTitle,
       isLoading: isLoading ?? this.isLoading,
+      isIndexMode: isIndexMode ?? this.isIndexMode,
       progressPercentage: progressPercentage ?? this.progressPercentage,
       processedChunks: processedChunks ?? this.processedChunks,
       error: error, // Can be null to clear error
@@ -92,6 +96,7 @@ class StudyExecutionState {
         other.fileUri == fileUri &&
         other.documentTitle == documentTitle &&
         other.isLoading == isLoading &&
+        other.isIndexMode == isIndexMode &&
         other.progressPercentage == progressPercentage &&
         other.processedChunks == processedChunks &&
         other.error == error;
@@ -105,6 +110,7 @@ class StudyExecutionState {
         fileUri.hashCode ^
         documentTitle.hashCode ^
         isLoading.hashCode ^
+        isIndexMode.hashCode ^
         progressPercentage.hashCode ^
         processedChunks.hashCode ^
         error.hashCode;

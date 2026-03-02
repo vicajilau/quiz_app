@@ -87,12 +87,40 @@ class AiLoggingInterceptor extends Interceptor {
 
   void _printPrettyJson(dynamic data) {
     try {
+      if (data is FormData) {
+        debugPrint(
+          '   [FormData with ${data.files.length} files and ${data.fields.length} fields]',
+        );
+        return;
+      }
+
+      if (data is List && data.isNotEmpty && data.first is num) {
+        debugPrint('   [Byte Array Output of length ${data.length}]');
+        return;
+      }
+
+      dynamic jsonObject = data;
+      if (data is String) {
+        try {
+          jsonObject = jsonDecode(data);
+        } catch (_) {
+          // Keep as string if not valid JSON
+        }
+      }
+
       const encoder = JsonEncoder.withIndent('  ');
-      final prettyString = encoder.convert(data);
+      final prettyString = encoder.convert(jsonObject);
 
       // Split by line to avoid debugPrint truncation issues and for better readability
-      for (final line in prettyString.split('\n')) {
-        debugPrint('   $line');
+      final lines = prettyString.split('\n');
+      const maxLines = 100;
+
+      for (int i = 0; i < lines.length && i < maxLines; i++) {
+        debugPrint('   ${lines[i]}');
+      }
+
+      if (lines.length > maxLines) {
+        debugPrint('   ... (TRUNCATED ${lines.length - maxLines} LINES) ...');
       }
     } catch (e) {
       debugPrint('   ${data.toString()}');

@@ -61,7 +61,7 @@ class StudyScreen extends StatelessWidget {
             ),
           );
         },
-      )..add(const StudyChunkRequested(0)), // Start with the first chunk
+      ),
       child: const StudyScreenView(),
     );
   }
@@ -79,6 +79,22 @@ class StudyScreenView extends StatelessWidget {
         title: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
           builder: (context, state) {
             return Text(state.documentTitle);
+          },
+        ),
+        leading: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+          builder: (context, state) {
+            if (!state.isIndexMode) {
+              return IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  context.read<StudyExecutionBloc>().add(
+                    ReturnToIndexRequested(),
+                  );
+                },
+                tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+              );
+            }
+            return const BackButton(); // Default navigator back to leave screen
           },
         ),
         bottom: PreferredSize(
@@ -148,6 +164,32 @@ class StudyScreenView extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
 
+            if (state.isIndexMode) {
+              return ListView.builder(
+                padding: const EdgeInsets.all(16),
+                itemCount: state.chunks.length,
+                itemBuilder: (context, index) {
+                  final chunk = state.chunks[index];
+                  // If it's the full document fallback, just show standard title
+                  final title = chunk.title;
+                  return Card(
+                    child: ListTile(
+                      title: Text(title),
+                      subtitle: Text(
+                        localizations.studyScreenSectionIndicator(index + 1, state.chunks.length),
+                      ),
+                      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                      onTap: () {
+                        context.read<StudyExecutionBloc>().add(
+                          StudyChunkRequested(index),
+                        );
+                      },
+                    ),
+                  );
+                },
+              );
+            }
+
             final currentChunk = state.currentChunk;
             if (currentChunk == null) {
               return Center(
@@ -170,6 +212,40 @@ class StudyScreenView extends StatelessWidget {
 
             return Row(
               children: [
+                // 1. Sidebar (Index)
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    color: Theme.of(context).colorScheme.surfaceContainerLow,
+                    child: ListView.builder(
+                      itemCount: state.chunks.length,
+                      itemBuilder: (context, index) {
+                        final chunk = state.chunks[index];
+                        final isSelected = index == state.currentChunkIndex;
+                        return ListTile(
+                          title: Text(
+                            chunk.title,
+                            style: TextStyle(
+                              fontWeight: isSelected
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
+                              color: isSelected
+                                  ? Theme.of(context).colorScheme.primary
+                                  : null,
+                            ),
+                          ),
+                          selected: isSelected,
+                          onTap: () {
+                            context.read<StudyExecutionBloc>().add(
+                              StudyChunkRequested(index),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                // 2. Main Content
                 Expanded(
                   flex: 2,
                   child: Padding(
@@ -278,6 +354,7 @@ class StudyScreenView extends StatelessWidget {
                     ),
                   ),
                 ),
+                // 3. AI Summary Panel
                 Expanded(
                   flex: 1,
                   child: Container(
