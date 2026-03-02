@@ -39,6 +39,7 @@ class StudyExecutionBloc
     required AppLocalizations localizations,
     required List<StudyChunk> initialChunks,
     required String documentTitle,
+    String? documentSummary,
     AiFileAttachment? fileAttachment,
     String? fileUri,
     this.onProgressChanged,
@@ -48,6 +49,7 @@ class StudyExecutionBloc
          _initialProgress(
            initialChunks,
            documentTitle,
+           documentSummary,
            fileAttachment: fileAttachment,
            fileUri: fileUri,
          ),
@@ -60,7 +62,8 @@ class StudyExecutionBloc
 
   static StudyExecutionState _initialProgress(
     List<StudyChunk> chunks,
-    String documentTitle, {
+    String documentTitle,
+    String? documentSummary, {
     AiFileAttachment? fileAttachment,
     String? fileUri,
   }) {
@@ -69,6 +72,7 @@ class StudyExecutionBloc
       fileAttachment: fileAttachment,
       fileUri: fileUri,
       documentTitle: documentTitle,
+      documentSummary: documentSummary,
     );
 
     if (chunks.isEmpty) return state;

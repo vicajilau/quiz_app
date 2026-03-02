@@ -52,6 +52,7 @@ class StudyScreen extends StatelessWidget {
         initialChunks: initialChunks,
         fileAttachment: fileAttachment ?? quizFile?.fileAttachment,
         documentTitle: documentTitle,
+        documentSummary: quizFile?.metadata.description,
         onProgressChanged: (progress, processedChunks, chunks) {
           context.read<FileBloc>().add(
             StudyProgressUpdated(
@@ -165,28 +166,98 @@ class StudyScreenView extends StatelessWidget {
             }
 
             if (state.isIndexMode) {
-              return ListView.builder(
-                padding: const EdgeInsets.all(16),
-                itemCount: state.chunks.length,
-                itemBuilder: (context, index) {
-                  final chunk = state.chunks[index];
-                  // If it's the full document fallback, just show standard title
-                  final title = chunk.title;
-                  return Card(
-                    child: ListTile(
-                      title: Text(title),
-                      subtitle: Text(
-                        localizations.studyScreenSectionIndicator(index + 1, state.chunks.length),
+              return Column(
+                children: [
+                  if (state.documentSummary != null &&
+                      state.documentSummary!.isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        state.documentSummary!,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                        textAlign: TextAlign.center,
                       ),
-                      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-                      onTap: () {
-                        context.read<StudyExecutionBloc>().add(
-                          StudyChunkRequested(index),
+                    ),
+                  Expanded(
+                    child: ListView.builder(
+                      padding: const EdgeInsets.all(16),
+                      itemCount: state.chunks.length,
+                      itemBuilder: (context, index) {
+                        final chunk = state.chunks[index];
+                        // If it's the full document fallback, just show standard title
+                        final title = chunk.title;
+                        return Card(
+                          child: InkWell(
+                            onTap: () {
+                              context.read<StudyExecutionBloc>().add(
+                                StudyChunkRequested(index),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              title,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleMedium
+                                                  ?.copyWith(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                            ),
+                                            const SizedBox(height: 4),
+                                            Text(
+                                              localizations
+                                                  .studyScreenSectionIndicator(
+                                                    index + 1,
+                                                    state.chunks.length,
+                                                  ),
+                                              style: Theme.of(
+                                                context,
+                                              ).textTheme.bodySmall,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const Icon(
+                                        Icons.arrow_forward_ios,
+                                        size: 16,
+                                      ),
+                                    ],
+                                  ),
+                                  if (chunk.status ==
+                                          StudyChunkState.completed &&
+                                      chunk.aiSummary != null &&
+                                      chunk.aiSummary!.isNotEmpty)
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 16.0),
+                                      child: Text(
+                                        chunk.aiSummary!,
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.bodyMedium,
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            ),
+                          ),
                         );
                       },
                     ),
-                  );
-                },
+                  ),
+                ],
               );
             }
 
@@ -211,6 +282,7 @@ class StudyScreenView extends StatelessWidget {
             }
 
             return Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // 1. Sidebar (Index)
                 Expanded(
@@ -245,9 +317,8 @@ class StudyScreenView extends StatelessWidget {
                     ),
                   ),
                 ),
-                // 2. Main Content
                 Expanded(
-                  flex: 2,
+                  flex: 3,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
@@ -315,6 +386,7 @@ class StudyScreenView extends StatelessWidget {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             ElevatedButton(
                               onPressed: state.hasPrevious
@@ -327,6 +399,7 @@ class StudyScreenView extends StatelessWidget {
                               ),
                             ),
                             Column(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
                                   localizations.studyScreenSectionIndicator(
@@ -349,34 +422,6 @@ class StudyScreenView extends StatelessWidget {
                               child: Text(localizations.studyScreenNextSection),
                             ),
                           ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                // 3. AI Summary Panel
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.surfaceContainerHighest,
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          localizations.studyScreenAiSummaryTitle,
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                        const SizedBox(height: 16),
-                        Expanded(
-                          child: SingleChildScrollView(
-                            child: Text(
-                              currentChunk.aiSummary ??
-                                  localizations.studyScreenNoSummary,
-                            ),
-                          ),
                         ),
                       ],
                     ),

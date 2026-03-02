@@ -23,6 +23,7 @@ class StudyExecutionState {
   final AiFileAttachment? fileAttachment;
   final String? fileUri;
   final String documentTitle;
+  final String? documentSummary;
   final bool isLoading;
   final bool isIndexMode;
   final double progressPercentage;
@@ -35,6 +36,7 @@ class StudyExecutionState {
     this.fileAttachment,
     this.fileUri,
     this.documentTitle = '',
+    this.documentSummary,
     this.isLoading = false,
     this.isIndexMode = true,
     this.progressPercentage = 0.0,
@@ -48,6 +50,7 @@ class StudyExecutionState {
     AiFileAttachment? fileAttachment,
     String? fileUri,
     String? documentTitle,
+    String? documentSummary,
     bool? isLoading,
     bool? isIndexMode,
     double? progressPercentage,
@@ -60,6 +63,7 @@ class StudyExecutionState {
       fileAttachment: fileAttachment ?? this.fileAttachment,
       fileUri: fileUri ?? this.fileUri,
       documentTitle: documentTitle ?? this.documentTitle,
+      documentSummary: documentSummary ?? this.documentSummary,
       isLoading: isLoading ?? this.isLoading,
       isIndexMode: isIndexMode ?? this.isIndexMode,
       progressPercentage: progressPercentage ?? this.progressPercentage,
@@ -95,6 +99,7 @@ class StudyExecutionState {
         other.fileAttachment == fileAttachment &&
         other.fileUri == fileUri &&
         other.documentTitle == documentTitle &&
+        other.documentSummary == documentSummary &&
         other.isLoading == isLoading &&
         other.isIndexMode == isIndexMode &&
         other.progressPercentage == progressPercentage &&
@@ -109,6 +114,7 @@ class StudyExecutionState {
         fileAttachment.hashCode ^
         fileUri.hashCode ^
         documentTitle.hashCode ^
+        documentSummary.hashCode ^
         isLoading.hashCode ^
         isIndexMode.hashCode ^
         progressPercentage.hashCode ^
