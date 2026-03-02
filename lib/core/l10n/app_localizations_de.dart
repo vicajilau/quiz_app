@@ -1506,4 +1506,7 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get documentTooLongForProcessing =>
       'Das Dokument ist möglicherweise zu lang, um in diesem MVP in einem Durchgang verarbeitet zu werden.';
+
+  @override
+  String get studyScreenCoverage => 'Abdeckung';
 }

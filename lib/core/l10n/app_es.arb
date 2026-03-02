@@ -1870,5 +1870,6 @@
   "studyScreenNextSection": "Página Siguiente",
   "studyScreenSectionIndicator": "Página {current} de {total}",
   "studyScreenAiSummaryTitle": "Resumen IA",
-  "studyScreenNoSummary": "No hay un resumen general disponible."
+  "studyScreenNoSummary": "No hay un resumen general disponible.",
+  "studyScreenCoverage": "Cobertura"
 }

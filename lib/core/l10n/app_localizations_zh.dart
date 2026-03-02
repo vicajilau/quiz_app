@@ -1415,4 +1415,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get documentTooLongForProcessing => '该文档可能太长，无法在此MVP中一次性处理。';
+
+  @override
+  String get studyScreenCoverage => '覆盖率';
 }

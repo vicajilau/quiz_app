@@ -1474,4 +1474,7 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get documentTooLongForProcessing =>
       'قد يكون المستند طويلاً جدًا بحيث لا يمكن معالجته في مسار واحد في أفضل منتج ممكن (MVP).';
+
+  @override
+  String get studyScreenCoverage => 'تغطية';
 }

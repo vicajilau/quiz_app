@@ -1425,4 +1425,7 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get documentTooLongForProcessing =>
       'ドキュメントが長すぎて、このMVPでは1回のパスで処理できない可能性があります。';
+
+  @override
+  String get studyScreenCoverage => '網羅率';
 }

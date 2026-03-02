@@ -1749,5 +1749,9 @@
     }
   },
   "studyScreenAiSummaryTitle": "AI Laburpena",
-  "studyScreenNoSummary": "Ez dago laburpenik erabilgarri."
+  "studyScreenNoSummary": "Ez dago laburpenik erabilgarri.",
+  "studyScreenCoverage": "Estaldura",
+  "@studyScreenCoverage": {
+    "description": "Label for the study coverage percentage"
+  }
 }

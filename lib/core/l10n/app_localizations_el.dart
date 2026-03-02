@@ -1508,4 +1508,7 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get documentTooLongForProcessing =>
       'Το έγγραφο ενδέχεται να είναι πολύ μεγάλο για να επεξεργαστεί με ένα μόνο πέρασμα σε αυτό το MVP.';
+
+  @override
+  String get studyScreenCoverage => 'Κάλυψη';
 }

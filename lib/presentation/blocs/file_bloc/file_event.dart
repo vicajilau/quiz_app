@@ -15,6 +15,7 @@
 
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 
 /// Abstract class representing the base event for file operations.
 abstract class FileEvent {}
@@ -74,6 +75,19 @@ class ConfirmFileReplacement extends FileEvent {}
 
 /// Event triggered to cancel file replacement.
 class CancelFileReplacement extends FileEvent {}
+
+/// Event triggered to update study progress metrics and chunks.
+class StudyProgressUpdated extends FileEvent {
+  final double coverage;
+  final int processedChunks;
+  final List<StudyChunk> chunks;
+
+  StudyProgressUpdated({
+    required this.coverage,
+    required this.processedChunks,
+    required this.chunks,
+  });
+}
 
 /// Event triggered to reset the file state.
 /// This event can be used to clear any file-related data or state.

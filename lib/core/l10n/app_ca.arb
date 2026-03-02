@@ -1851,5 +1851,9 @@
     }
   },
   "studyScreenAiSummaryTitle": "Resum d'IA",
-  "studyScreenNoSummary": "No hi ha cap resum disponible."
+  "studyScreenNoSummary": "No hi ha cap resum disponible.",
+  "studyScreenCoverage": "Cobertura",
+  "@studyScreenCoverage": {
+    "description": "Label for the study coverage percentage"
+  }
 }

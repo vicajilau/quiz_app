@@ -1752,5 +1752,9 @@
     }
   },
   "studyScreenAiSummaryTitle": "AI सारांश",
-  "studyScreenNoSummary": "कोई सारांश उपलब्ध नहीं है।"
+  "studyScreenNoSummary": "कोई सारांश उपलब्ध नहीं है।",
+  "studyScreenCoverage": "कवरेज",
+  "@studyScreenCoverage": {
+    "description": "Label for the study coverage percentage"
+  }
 }

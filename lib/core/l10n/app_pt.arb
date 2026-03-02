@@ -1840,5 +1840,9 @@
     }
   },
   "studyScreenAiSummaryTitle": "Resumo da IA",
-  "studyScreenNoSummary": "Nenhum resumo disponível."
+  "studyScreenNoSummary": "Nenhum resumo disponível.",
+  "studyScreenCoverage": "Cobertura",
+  "@studyScreenCoverage": {
+    "description": "Label for the study coverage percentage"
+  }
 }

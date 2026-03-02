@@ -19,6 +19,8 @@ import 'package:quizdy/data/repositories/quiz_file_repository.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+import 'package:quizdy/domain/models/quiz/study.dart';
+import 'package:quizdy/domain/models/quiz/study_content.dart';
 
 /// The `FileBloc` class handles file operations such as loading, saving, and picking files.
 /// It listens for file-related events and emits the corresponding states based on the outcome of those events.
@@ -197,6 +199,47 @@ class FileBloc extends Bloc<FileEvent, FileState> {
         emit(FileLoaded((state as FileReplacementRequest).currentFile));
       } else {
         debugPrint('FileBloc: CancelFileReplacement ignored (state: $state)');
+      }
+    });
+
+    on<StudyProgressUpdated>((event, emit) {
+      if (state is FileLoaded || state is FileSaved) {
+        final currentFile = state is FileLoaded
+            ? (state as FileLoaded).quizFile
+            : (state as FileSaved).quizFile;
+
+        // If study is null, we initialize it.
+        final currentStudy =
+            currentFile.study ??
+            const Study(
+              content: StudyContent(
+                coveragePercentage: 0,
+                totalChunks: 0,
+                processedChunks: 0,
+                cache: [],
+              ),
+            );
+
+        final updatedStudy = currentStudy.copyWith(
+          content: currentStudy.content.copyWith(
+            coveragePercentage: event.coverage,
+            processedChunks: event.processedChunks,
+            cache: event.chunks,
+            totalChunks: event.chunks.length,
+          ),
+        );
+
+        final updatedFile = currentFile.copyWith(study: updatedStudy);
+
+        // Update repository/service locator
+        _fileRepository.registerQuizFile(updatedFile);
+
+        // Emit new state to keep UI in sync
+        if (state is FileLoaded) {
+          emit(FileLoaded(updatedFile));
+        } else {
+          emit(FileSaved(updatedFile));
+        }
       }
     });
   }

@@ -21,11 +21,9 @@ class StudyExecutionState {
   final int currentChunkIndex;
   final String documentText;
   final String documentTitle;
-
-  /// Global loading state for things like initial setup.
   final bool isLoading;
-
-  /// Specific error message if any.
+  final double coveragePercentage;
+  final int processedChunks;
   final String? error;
 
   const StudyExecutionState({
@@ -34,6 +32,8 @@ class StudyExecutionState {
     this.documentText = '',
     this.documentTitle = '',
     this.isLoading = false,
+    this.coveragePercentage = 0.0,
+    this.processedChunks = 0,
     this.error,
   });
 
@@ -43,6 +43,8 @@ class StudyExecutionState {
     String? documentText,
     String? documentTitle,
     bool? isLoading,
+    double? coveragePercentage,
+    int? processedChunks,
     String? error,
   }) {
     return StudyExecutionState(
@@ -51,6 +53,8 @@ class StudyExecutionState {
       documentText: documentText ?? this.documentText,
       documentTitle: documentTitle ?? this.documentTitle,
       isLoading: isLoading ?? this.isLoading,
+      coveragePercentage: coveragePercentage ?? this.coveragePercentage,
+      processedChunks: processedChunks ?? this.processedChunks,
       error: error, // Can be null to clear error
     );
   }
@@ -82,6 +86,8 @@ class StudyExecutionState {
         other.documentText == documentText &&
         other.documentTitle == documentTitle &&
         other.isLoading == isLoading &&
+        other.coveragePercentage == coveragePercentage &&
+        other.processedChunks == processedChunks &&
         other.error == error;
   }
 
@@ -92,6 +98,8 @@ class StudyExecutionState {
         documentText.hashCode ^
         documentTitle.hashCode ^
         isLoading.hashCode ^
+        coveragePercentage.hashCode ^
+        processedChunks.hashCode ^
         error.hashCode;
   }
 }

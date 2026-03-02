@@ -1511,4 +1511,7 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get documentTooLongForProcessing =>
       'Le document est peut-être trop long pour être traité en une seule passe dans ce MVP.';
+
+  @override
+  String get studyScreenCoverage => 'Couverture';
 }

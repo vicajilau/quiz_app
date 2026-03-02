@@ -136,18 +136,21 @@ $text
 
   /// Extracts the JSON string from the LLM response, stripping markdown if present.
   String _extractJsonFromResponse(String response) {
-    String cleanResponse = response.trim();
-    if (cleanResponse.startsWith('```json')) {
-      cleanResponse = cleanResponse.substring('```json'.length);
-    } else if (cleanResponse.startsWith('```')) {
-      cleanResponse = cleanResponse.substring('```'.length);
+    // Try to find content between ```json and ```
+    final regExp = RegExp(r'```json\s*([\s\S]*?)\s*```', multiLine: true);
+    final match = regExp.firstMatch(response);
+    if (match != null && match.groupCount >= 1) {
+      return match.group(1)!.trim();
     }
 
-    if (cleanResponse.endsWith('```')) {
-      cleanResponse = cleanResponse.substring(0, cleanResponse.length - 3);
+    // Fallback to searching for the first { and last }
+    final firstBrace = response.indexOf('{');
+    final lastBrace = response.lastIndexOf('}');
+    if (firstBrace != -1 && lastBrace != -1 && lastBrace > firstBrace) {
+      return response.substring(firstBrace, lastBrace + 1).trim();
     }
 
-    return cleanResponse.trim();
+    return response.trim();
   }
 
   /// Parses the raw JSON object string into the summary and slides mapping.

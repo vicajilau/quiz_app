@@ -1500,4 +1500,7 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get documentTooLongForProcessing =>
       'Dokumentua luzeegia izan daiteke MVP honetan pasaldi batean prozesatzeko.';
+
+  @override
+  String get studyScreenCoverage => 'Estaldura';
 }

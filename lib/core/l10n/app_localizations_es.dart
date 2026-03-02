@@ -1501,4 +1501,7 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get documentTooLongForProcessing =>
       'El documento podría ser demasiado largo para procesarlo de una sola vez en este MVP.';
+
+  @override
+  String get studyScreenCoverage => 'Cobertura';
 }

@@ -25,6 +25,12 @@ class StudyExecutionBloc
     extends Bloc<StudyExecutionEvent, StudyExecutionState> {
   final AiJitProcessingService _jitProcessingService;
   final AppLocalizations _localizations;
+  final void Function(
+    double coverage,
+    int processedChunks,
+    List<StudyChunk> chunks,
+  )?
+  onProgressChanged;
 
   StudyExecutionBloc({
     required AiJitProcessingService jitProcessingService,
@@ -32,18 +38,51 @@ class StudyExecutionBloc
     required List<StudyChunk> initialChunks,
     required String documentText,
     required String documentTitle,
+    this.onProgressChanged,
   }) : _jitProcessingService = jitProcessingService,
        _localizations = localizations,
-       super(
-         StudyExecutionState(
-           chunks: initialChunks,
-           documentText: documentText,
-           documentTitle: documentTitle,
-         ),
-       ) {
+       super(_initialProgress(initialChunks, documentText, documentTitle)) {
     on<StudyChunkRequested>(_onStudyChunkRequested);
     on<NextStudyChunkRequested>(_onNextStudyChunkRequested);
     on<PreviousStudyChunkRequested>(_onPreviousStudyChunkRequested);
+  }
+
+  static StudyExecutionState _initialProgress(
+    List<StudyChunk> chunks,
+    String documentText,
+    String documentTitle,
+  ) {
+    var state = StudyExecutionState(
+      chunks: chunks,
+      documentText: documentText,
+      documentTitle: documentTitle,
+    );
+
+    if (documentText.isEmpty) return state;
+
+    int processedChars = 0;
+    int processedChunksCount = 0;
+
+    for (final chunk in chunks) {
+      if (chunk.status == StudyChunkState.completed) {
+        processedChunksCount++;
+        final start = chunk.sourceReference.startOffset;
+        final end = chunk.sourceReference.endOffset;
+        if (end > start) {
+          processedChars += (end - start);
+        }
+      }
+    }
+
+    final coverage = (processedChars / documentText.length * 100).clamp(
+      0.0,
+      100.0,
+    );
+
+    return state.copyWith(
+      coveragePercentage: coverage,
+      processedChunks: processedChunksCount,
+    );
   }
 
   Future<void> _onStudyChunkRequested(
@@ -81,7 +120,43 @@ class StudyExecutionBloc
     // Update the state with the finished chunk (either completed or error)
     final chunksFinished = List<StudyChunk>.from(state.chunks);
     chunksFinished[event.chunkIndex] = processedChunk;
-    emit(state.copyWith(chunks: chunksFinished));
+
+    final newState = _updateProgress(state.copyWith(chunks: chunksFinished));
+    emit(newState);
+
+    // Notify progress change for persistence
+    onProgressChanged?.call(
+      newState.coveragePercentage,
+      newState.processedChunks,
+      newState.chunks,
+    );
+  }
+
+  StudyExecutionState _updateProgress(StudyExecutionState currentState) {
+    if (currentState.documentText.isEmpty) return currentState;
+
+    int processedChars = 0;
+    int processedChunksCount = 0;
+
+    for (final chunk in currentState.chunks) {
+      if (chunk.status == StudyChunkState.completed) {
+        processedChunksCount++;
+        final start = chunk.sourceReference.startOffset;
+        final end = chunk.sourceReference.endOffset;
+        // Ensure we don't count negative lengths or hallucinated offsets
+        if (end > start) {
+          processedChars += (end - start);
+        }
+      }
+    }
+
+    final coverage = (processedChars / currentState.documentText.length * 100)
+        .clamp(0.0, 100.0);
+
+    return currentState.copyWith(
+      coveragePercentage: coverage,
+      processedChunks: processedChunksCount,
+    );
   }
 
   void _onNextStudyChunkRequested(

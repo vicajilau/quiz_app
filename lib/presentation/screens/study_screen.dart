@@ -17,8 +17,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
+import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
+import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
+import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
@@ -27,12 +30,14 @@ class StudyScreen extends StatelessWidget {
   final List<StudyChunk> initialChunks;
   final String documentText;
   final String documentTitle;
+  final QuizFile? quizFile;
 
   const StudyScreen({
     super.key,
     required this.initialChunks,
     required this.documentText,
     required this.documentTitle,
+    this.quizFile,
   });
 
   @override
@@ -46,6 +51,15 @@ class StudyScreen extends StatelessWidget {
         initialChunks: initialChunks,
         documentText: documentText,
         documentTitle: documentTitle,
+        onProgressChanged: (coverage, processedChunks, chunks) {
+          context.read<FileBloc>().add(
+            StudyProgressUpdated(
+              coverage: coverage,
+              processedChunks: processedChunks,
+              chunks: chunks,
+            ),
+          );
+        },
       )..add(const StudyChunkRequested(0)), // Start with the first chunk
       child: const StudyScreenView(),
     );
@@ -65,6 +79,28 @@ class StudyScreenView extends StatelessWidget {
           builder: (context, state) {
             return Text(state.documentTitle);
           },
+        ),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(6.0),
+          child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+            buildWhen: (previous, current) =>
+                previous.coveragePercentage != current.coveragePercentage,
+            builder: (context, state) {
+              return Tooltip(
+                message: '${state.coveragePercentage.toStringAsFixed(1)}%',
+                child: LinearProgressIndicator(
+                  value: state.coveragePercentage / 100,
+                  backgroundColor: Theme.of(
+                    context,
+                  ).colorScheme.surfaceContainerHighest,
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    Theme.of(context).colorScheme.primary,
+                  ),
+                  minHeight: 6,
+                ),
+              );
+            },
+          ),
         ),
       ),
       body: BlocListener<StudyExecutionBloc, StudyExecutionState>(
@@ -213,11 +249,19 @@ class StudyScreenView extends StatelessWidget {
                                 localizations.studyScreenPreviousSection,
                               ),
                             ),
-                            Text(
-                              localizations.studyScreenSectionIndicator(
-                                state.currentChunkIndex + 1,
-                                state.chunks.length,
-                              ),
+                            Column(
+                              children: [
+                                Text(
+                                  localizations.studyScreenSectionIndicator(
+                                    state.currentChunkIndex + 1,
+                                    state.chunks.length,
+                                  ),
+                                ),
+                                Text(
+                                  '${state.coveragePercentage.toStringAsFixed(0)}% ${localizations.studyScreenCoverage}',
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                ),
+                              ],
                             ),
                             ElevatedButton(
                               onPressed: state.hasNext

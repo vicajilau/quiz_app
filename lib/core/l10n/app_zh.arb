@@ -1801,5 +1801,9 @@
     }
   },
   "studyScreenAiSummaryTitle": "AI 总结",
-  "studyScreenNoSummary": "没有可用的总结。"
+  "studyScreenNoSummary": "没有可用的总结。",
+  "studyScreenCoverage": "覆盖率",
+  "@studyScreenCoverage": {
+    "description": "Label for the study coverage percentage"
+  }
 }

@@ -2682,6 +2682,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The document might be too long to process in a single pass in this MVP.'**
   String get documentTooLongForProcessing;
+
+  /// Label for the study coverage percentage
+  ///
+  /// In en, this message translates to:
+  /// **'Coverage'**
+  String get studyScreenCoverage;
 }
 
 class _AppLocalizationsDelegate
