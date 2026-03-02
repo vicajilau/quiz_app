@@ -57,8 +57,13 @@ class _QuizApplicationState extends State<QuizApplication> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LocaleCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => LocaleCubit()),
+        BlocProvider<FileBloc>.value(
+          value: ServiceLocator.instance.getIt<FileBloc>(),
+        ),
+      ],
       child: BlocBuilder<LocaleCubit, LocaleState>(
         builder: (context, state) {
           return MaterialApp.router(

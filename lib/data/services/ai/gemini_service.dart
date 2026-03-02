@@ -14,7 +14,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
+import 'package:quizdy/data/interceptors/ai_logging_interceptor.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
@@ -39,7 +40,12 @@ class GeminiService extends AIService {
   static GeminiService? _instance;
   static GeminiService get instance => _instance ??= GeminiService._();
 
-  GeminiService._();
+  late final Dio _dio;
+
+  GeminiService._() {
+    _dio = Dio();
+    _dio.interceptors.add(AiLoggingInterceptor());
+  }
 
   @override
   String get serviceName => 'Google Gemini';
@@ -77,12 +83,11 @@ class GeminiService extends AIService {
         : _baseUrlBeta;
     final url = '$baseUrl/models/$selectedModel:generateContent?key=$apiKey';
 
-    final http.Response response;
     try {
-      response = await http.post(
-        Uri.parse(url),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
+      final response = await _dio.post(
+        url,
+        options: Options(headers: {'Content-Type': 'application/json'}),
+        data: {
           'contents': [
             {
               'parts': [
@@ -114,14 +119,10 @@ class GeminiService extends AIService {
               'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
             },
           ],
-        }),
+        },
       );
-    } catch (e) {
-      throw Exception(localizations.networkErrorGemini);
-    }
 
-    if (response.statusCode == 200) {
-      final jsonResponse = jsonDecode(response.body);
+      final jsonResponse = response.data;
       final candidates = jsonResponse['candidates'] as List?;
 
       if (candidates != null && candidates.isNotEmpty) {
@@ -130,17 +131,21 @@ class GeminiService extends AIService {
       } else {
         return localizations.noResponseReceived;
       }
-    } else if (response.statusCode == 302) {
-      final location = response.headers['location'];
-      throw Exception('Redirected (302) to: $location');
-    } else if (response.statusCode == 400) {
-      throw Exception(localizations.aiErrorResponse);
-    } else if (response.statusCode == 403) {
-      throw Exception(localizations.invalidApiKeyError);
-    } else if (response.statusCode == 429) {
-      throw Exception(localizations.rateLimitError);
-    } else {
-      throw Exception(localizations.aiErrorResponse);
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 302) {
+        final location = e.response?.headers['location']?.first;
+        throw Exception('Redirected (302) to: $location');
+      } else if (e.response?.statusCode == 400) {
+        throw Exception(localizations.aiErrorResponse);
+      } else if (e.response?.statusCode == 403) {
+        throw Exception(localizations.invalidApiKeyError);
+      } else if (e.response?.statusCode == 429) {
+        throw Exception(localizations.rateLimitError);
+      } else {
+        throw Exception(localizations.networkErrorGemini);
+      }
+    } catch (e) {
+      throw Exception(localizations.networkErrorGemini);
     }
   }
 
@@ -167,12 +172,11 @@ class GeminiService extends AIService {
 
     final base64Data = base64Encode(file.bytes);
 
-    final http.Response response;
     try {
-      response = await http.post(
-        Uri.parse(url),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
+      final response = await _dio.post(
+        url,
+        options: Options(headers: {'Content-Type': 'application/json'}),
+        data: {
           'contents': [
             {
               'parts': [
@@ -210,14 +214,10 @@ class GeminiService extends AIService {
               'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
             },
           ],
-        }),
+        },
       );
-    } catch (e) {
-      throw Exception(localizations.networkErrorGemini);
-    }
 
-    if (response.statusCode == 200) {
-      final jsonResponse = jsonDecode(response.body);
+      final jsonResponse = response.data;
       final candidates = jsonResponse['candidates'] as List?;
 
       if (candidates != null && candidates.isNotEmpty) {
@@ -226,37 +226,43 @@ class GeminiService extends AIService {
       } else {
         return localizations.noResponseReceived;
       }
-    } else if (response.statusCode == 302) {
-      final location = response.headers['location'];
-      throw Exception('Redirected (302) to: $location');
-    } else if (response.statusCode == 400) {
-      String errorMessage = localizations.aiErrorResponse;
-      try {
-        final jsonResponse = jsonDecode(response.body);
-        if (jsonResponse['error'] != null &&
-            jsonResponse['error']['message'] != null) {
-          errorMessage += ': ${jsonResponse['error']['message']}';
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 302) {
+        final location = e.response?.headers['location']?.first;
+        throw Exception('Redirected (302) to: $location');
+      } else if (e.response?.statusCode == 400) {
+        String errorMessage = localizations.aiErrorResponse;
+        try {
+          final data = e.response?.data;
+          if (data != null &&
+              data['error'] != null &&
+              data['error']['message'] != null) {
+            errorMessage += ': ${data['error']['message']}';
+          }
+        } catch (_) {}
+        throw Exception(errorMessage);
+      } else if (e.response?.statusCode == 403) {
+        throw Exception(localizations.invalidApiKeyError);
+      } else if (e.response?.statusCode == 429) {
+        throw Exception(localizations.rateLimitError);
+      } else {
+        String errorMessage = localizations.aiErrorResponse;
+        try {
+          final data = e.response?.data;
+          if (data != null &&
+              data['error'] != null &&
+              data['error']['message'] != null) {
+            errorMessage += ': ${data['error']['message']}';
+          } else {
+            errorMessage += ' (${e.response?.statusCode})';
+          }
+        } catch (_) {
+          errorMessage += ' (${e.response?.statusCode})';
         }
-      } catch (_) {}
-      throw Exception(errorMessage);
-    } else if (response.statusCode == 403) {
-      throw Exception(localizations.invalidApiKeyError);
-    } else if (response.statusCode == 429) {
-      throw Exception(localizations.rateLimitError);
-    } else {
-      String errorMessage = localizations.aiErrorResponse;
-      try {
-        final jsonResponse = jsonDecode(response.body);
-        if (jsonResponse['error'] != null &&
-            jsonResponse['error']['message'] != null) {
-          errorMessage += ': ${jsonResponse['error']['message']}';
-        } else {
-          errorMessage += ' (${response.statusCode})';
-        }
-      } catch (_) {
-        errorMessage += ' (${response.statusCode})';
+        throw Exception(errorMessage);
       }
-      throw Exception(errorMessage);
+    } catch (e) {
+      throw Exception(localizations.networkErrorGemini);
     }
   }
 }

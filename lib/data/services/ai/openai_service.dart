@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
+import 'package:quizdy/data/interceptors/ai_logging_interceptor.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/openai_content_block.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
@@ -37,7 +37,12 @@ class OpenAIService extends AIService {
   static OpenAIService? _instance;
   static OpenAIService get instance => _instance ??= OpenAIService._();
 
-  OpenAIService._();
+  late final Dio _dio;
+
+  OpenAIService._() {
+    _dio = Dio();
+    _dio.interceptors.add(AiLoggingInterceptor());
+  }
 
   @override
   String get serviceName => 'OpenAI GPT';
@@ -71,31 +76,33 @@ class OpenAIService extends AIService {
     final selectedModel = model ?? _defaultModel;
 
     try {
-      final response = await http.post(
-        Uri.parse('$_baseUrl$_chatEndpoint'),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $apiKey',
-        },
-        body: jsonEncode({
+      final response = await _dio.post(
+        '$_baseUrl$_chatEndpoint',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer $apiKey',
+          },
+        ),
+        data: {
           'model': selectedModel,
           'messages': [
             {'role': 'user', 'content': prompt},
           ],
           'max_tokens': 8192,
           'temperature': 0.2,
-        }),
+        },
       );
 
-      if (response.statusCode == 200) {
-        final jsonResponse = jsonDecode(response.body);
-        final content = jsonResponse['choices'][0]['message']['content'];
-        return content?.toString().trim() ?? localizations.noResponseReceived;
-      } else if (response.statusCode == 401) {
+      final jsonResponse = response.data;
+      final content = jsonResponse['choices'][0]['message']['content'];
+      return content?.toString().trim() ?? localizations.noResponseReceived;
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 401) {
         throw Exception(localizations.invalidApiKeyError);
-      } else if (response.statusCode == 429) {
+      } else if (e.response?.statusCode == 429) {
         throw Exception(localizations.rateLimitError);
-      } else if (response.statusCode == 404) {
+      } else if (e.response?.statusCode == 404) {
         throw Exception(localizations.modelNotFoundError);
       } else {
         throw Exception(localizations.aiErrorResponse);
@@ -123,13 +130,15 @@ class OpenAIService extends AIService {
     final contentBlocks = OpenAIContentBlock.fromPromptAndFile(prompt, file);
 
     try {
-      final response = await http.post(
-        Uri.parse('$_baseUrl$_chatEndpoint'),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $apiKey',
-        },
-        body: jsonEncode({
+      final response = await _dio.post(
+        '$_baseUrl$_chatEndpoint',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer $apiKey',
+          },
+        ),
+        data: {
           'model': selectedModel,
           'messages': [
             {
@@ -139,18 +148,18 @@ class OpenAIService extends AIService {
           ],
           'max_tokens': 8192,
           'temperature': 0.2,
-        }),
+        },
       );
 
-      if (response.statusCode == 200) {
-        final jsonResponse = jsonDecode(response.body);
-        final content = jsonResponse['choices'][0]['message']['content'];
-        return content?.toString().trim() ?? localizations.noResponseReceived;
-      } else if (response.statusCode == 401) {
+      final jsonResponse = response.data;
+      final content = jsonResponse['choices'][0]['message']['content'];
+      return content?.toString().trim() ?? localizations.noResponseReceived;
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 401) {
         throw Exception(localizations.invalidApiKeyError);
-      } else if (response.statusCode == 429) {
+      } else if (e.response?.statusCode == 429) {
         throw Exception(localizations.rateLimitError);
-      } else if (response.statusCode == 404) {
+      } else if (e.response?.statusCode == 404) {
         throw Exception(localizations.modelNotFoundError);
       } else {
         throw Exception(localizations.aiErrorResponse);

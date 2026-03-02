@@ -23,7 +23,6 @@ import 'package:quizdy/domain/models/custom_exceptions/bad_quiz_file_exception.d
 import 'package:quizdy/presentation/utils/dialog_drop_guard.dart';
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/routes/app_router.dart';
 import 'package:quizdy/core/constants/quiz_metadata.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
@@ -303,150 +302,145 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<FileBloc>.value(
-      value: ServiceLocator.instance.getIt<FileBloc>(),
-      child: BlocListener<FileBloc, FileState>(
-        listener: (context, state) async {
-          if (state is FileLoaded) {
-            setState(() => _isLoading = false);
-            context.go(AppRoutes.fileLoadedScreen);
+    return BlocListener<FileBloc, FileState>(
+      listener: (context, state) async {
+        if (state is FileLoaded) {
+          setState(() => _isLoading = false);
+          context.go(AppRoutes.fileLoadedScreen);
+        }
+        if (state is FileError && context.mounted) {
+          setState(() => _isLoading = false);
+          if (state.error is BadQuizFileException) {
+            final badFileException = state.error as BadQuizFileException;
+            context.presentSnackBar(badFileException.toString());
+          } else {
+            context.presentSnackBar(state.getDescription(context));
           }
-          if (state is FileError && context.mounted) {
-            setState(() => _isLoading = false);
-            if (state.error is BadQuizFileException) {
-              final badFileException = state.error as BadQuizFileException;
-              context.presentSnackBar(badFileException.toString());
-            } else {
-              context.presentSnackBar(state.getDescription(context));
-            }
-          }
-          if (state is FileLoading) {
-            setState(() => _isLoading = true);
-          } else if (state is FileInitial) {
-            setState(() => _isLoading = false);
-          }
-        },
-        child: Builder(
-          builder: (context) {
-            return Scaffold(
-              body: DropTarget(
-                onDragDone: (details) {
-                  if (DialogDropGuard.isActive) {
-                    setState(() => _isDragging = false);
-                    return;
-                  }
-                  if (details.files.isNotEmpty && !_isLoading) {
-                    if (context.currentRoute != AppRoutes.home) return;
-
-                    final firstFile = details.files.first;
-                    if (firstFile.path.isNotEmpty) {
-                      if (!firstFile.name.toLowerCase().endsWith('.quiz')) {
-                        context.presentSnackBar(
-                          AppLocalizations.of(context)!.errorInvalidFile,
-                        );
-                        return;
-                      }
-                      context.read<FileBloc>().add(QuizFileReset());
-                      context.read<FileBloc>().add(FileDropped(firstFile.path));
-                    }
-                  }
+        }
+        if (state is FileLoading) {
+          setState(() => _isLoading = true);
+        } else if (state is FileInitial) {
+          setState(() => _isLoading = false);
+        }
+      },
+      child: Builder(
+        builder: (context) {
+          return Scaffold(
+            body: DropTarget(
+              onDragDone: (details) {
+                if (DialogDropGuard.isActive) {
                   setState(() => _isDragging = false);
-                },
-                onDragEntered: (_) {
-                  if (!DialogDropGuard.isActive) {
-                    setState(() => _isDragging = true);
-                  }
-                },
-                onDragExited: (_) => setState(() => _isDragging = false),
-                child: Stack(
-                  children: [
-                    SafeArea(
-                      child: LayoutBuilder(
-                        builder: (context, constraints) {
-                          final isMobile = constraints.maxWidth < 600;
-                          // Calculate the visual top margin:
-                          // SafeArea (padding.top) + Header centering offset ((72 - 48) / 2 = 12)
-                          final topPadding = MediaQuery.of(context).padding.top;
-                          final visualTopMargin = topPadding + 12.0;
+                  return;
+                }
+                if (details.files.isNotEmpty && !_isLoading) {
+                  if (context.currentRoute != AppRoutes.home) return;
 
-                          return SingleChildScrollView(
-                            child: ConstrainedBox(
-                              constraints: BoxConstraints(
-                                minHeight: constraints.maxHeight,
-                              ),
-                              child: IntrinsicHeight(
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: isMobile
-                                        ? visualTopMargin
-                                        : 48.0,
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      HomeHeaderWidget(
-                                        isLoading: _isLoading,
-                                        onSettingsTap: () =>
-                                            _showSettingsDialog(context),
+                  final firstFile = details.files.first;
+                  if (firstFile.path.isNotEmpty) {
+                    if (!firstFile.name.toLowerCase().endsWith('.quiz')) {
+                      context.presentSnackBar(
+                        AppLocalizations.of(context)!.errorInvalidFile,
+                      );
+                      return;
+                    }
+                    context.read<FileBloc>().add(QuizFileReset());
+                    context.read<FileBloc>().add(FileDropped(firstFile.path));
+                  }
+                }
+                setState(() => _isDragging = false);
+              },
+              onDragEntered: (_) {
+                if (!DialogDropGuard.isActive) {
+                  setState(() => _isDragging = true);
+                }
+              },
+              onDragExited: (_) => setState(() => _isDragging = false),
+              child: Stack(
+                children: [
+                  SafeArea(
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        final isMobile = constraints.maxWidth < 600;
+                        // Calculate the visual top margin:
+                        // SafeArea (padding.top) + Header centering offset ((72 - 48) / 2 = 12)
+                        final topPadding = MediaQuery.of(context).padding.top;
+                        final visualTopMargin = topPadding + 12.0;
+
+                        return SingleChildScrollView(
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minHeight: constraints.maxHeight,
+                            ),
+                            child: IntrinsicHeight(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: isMobile ? visualTopMargin : 48.0,
+                                ),
+                                child: Column(
+                                  children: [
+                                    HomeHeaderWidget(
+                                      isLoading: _isLoading,
+                                      onSettingsTap: () =>
+                                          _showSettingsDialog(context),
+                                    ),
+                                    Expanded(
+                                      child: HomeDropZoneWidget(
+                                        isDragging: _isDragging,
+                                        onTap: () => _pickFile(context),
                                       ),
-                                      Expanded(
-                                        child: HomeDropZoneWidget(
-                                          isDragging: _isDragging,
-                                          onTap: () => _pickFile(context),
-                                        ),
-                                      ),
-                                      HomeFooterWidget(
-                                        isLoading: _isLoading,
-                                        onCreateTap: () =>
-                                            _showCreateQuizFileDialog(context),
-                                        onGenerateAITap: () =>
-                                            _generateQuestionsWithAI(context),
-                                        onStudyModeTap: () =>
-                                            _startStudyModeWithAI(context),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                    HomeFooterWidget(
+                                      isLoading: _isLoading,
+                                      onCreateTap: () =>
+                                          _showCreateQuizFileDialog(context),
+                                      onGenerateAITap: () =>
+                                          _generateQuestionsWithAI(context),
+                                      onStudyModeTap: () =>
+                                          _startStudyModeWithAI(context),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
-                          );
-                        },
-                      ),
+                          ),
+                        );
+                      },
                     ),
-                    if (_isLoading)
-                      Positioned.fill(
-                        child: Container(
-                          color: Colors.black.withValues(alpha: 0.3),
-                          child: Center(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const CircularProgressIndicator(),
-                                if (_loadingText != null) ...[
-                                  const SizedBox(height: 16),
-                                  Material(
-                                    color: Colors.transparent,
-                                    child: Text(
-                                      _loadingText!,
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                      textAlign: TextAlign.center,
+                  ),
+                  if (_isLoading)
+                    Positioned.fill(
+                      child: Container(
+                        color: Colors.black.withValues(alpha: 0.3),
+                        child: Center(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const CircularProgressIndicator(),
+                              if (_loadingText != null) ...[
+                                const SizedBox(height: 16),
+                                Material(
+                                  color: Colors.transparent,
+                                  child: Text(
+                                    _loadingText!,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
                                     ),
+                                    textAlign: TextAlign.center,
                                   ),
-                                ],
+                                ),
                               ],
-                            ),
+                            ],
                           ),
                         ),
                       ),
-                  ],
-                ),
+                    ),
+                ],
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
