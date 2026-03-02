@@ -42,11 +42,12 @@ class InitializeQuizChunksUseCase {
     String documentId,
     AppLocalizations localizations,
   ) async {
-    final chunks = await generateChunksOnly(
+    final result = await generateChunksOnly(
       file: file,
       documentId: documentId,
       localizations: localizations,
     );
+    final chunks = result['chunks'] as List<StudyChunk>;
 
     final studyContent = StudyContent(
       progressPercentage: 0.0,
@@ -58,11 +59,12 @@ class InitializeQuizChunksUseCase {
     final study = Study(content: studyContent);
 
     // Ensure the quizFile also stores the fileAttachment or at least its metadata
+    // The UI should ideally pass the fileUri to the Bloc for JIT chunk generation.
     return quizFile.copyWith(study: study, fileAttachment: file);
   }
 
   /// Helper to generate chunks directly from a file without requiring a QuizFile.
-  Future<List<StudyChunk>> generateChunksOnly({
+  Future<Map<String, dynamic>> generateChunksOnly({
     required AiFileAttachment file,
     required String documentId,
     required AppLocalizations localizations,
@@ -79,7 +81,7 @@ class InitializeQuizChunksUseCase {
       localizations: localizations,
     );
 
-    return references.asMap().entries.map((entry) {
+    final chunks = references.asMap().entries.map((entry) {
       return StudyChunk(
         chunkIndex: entry.key,
         status: StudyChunkState.created,
@@ -88,5 +90,7 @@ class InitializeQuizChunksUseCase {
         slides: null,
       );
     }).toList();
+
+    return {'chunks': chunks, 'fileUri': fileUri};
   }
 }

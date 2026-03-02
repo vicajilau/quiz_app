@@ -245,15 +245,18 @@ class _HomeScreenState extends State<HomeScreen> {
         final documentId = 'study_${DateTime.now().millisecondsSinceEpoch}';
 
         List<StudyChunk> initialChunks = [];
+        String? fileUri;
 
         if (config.hasFile) {
           // Use AI-driven indexing for files
           final initializeUseCase = InitializeQuizChunksUseCase();
-          initialChunks = await initializeUseCase.generateChunksOnly(
+          final result = await initializeUseCase.generateChunksOnly(
             file: config.file!,
             documentId: documentId,
             localizations: localizations,
           );
+          initialChunks = result['chunks'] as List<StudyChunk>;
+          fileUri = result['fileUri'] as String?;
         } else {
           // Fallback to text-based chunking for raw content
           final chunkingService = AiDocumentChunkingService.instance;
@@ -286,6 +289,7 @@ class _HomeScreenState extends State<HomeScreen> {
             extra: {
               'initialChunks': initialChunks,
               'fileAttachment': config.file,
+              'fileUri': fileUri, // Pass the processed file URI
               'documentTitle': documentTitle,
             },
           );

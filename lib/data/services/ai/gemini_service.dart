@@ -24,6 +24,8 @@ import 'package:quizdy/data/services/ai/ai_service.dart';
 class GeminiService extends AIService {
   static const String _baseUrlBeta =
       'https://generativelanguage.googleapis.com/v1beta';
+  static const String _uploadBaseUrlBeta =
+      'https://generativelanguage.googleapis.com/upload/v1beta';
   static const String _baseUrlAlpha =
       'https://generativelanguage.googleapis.com/v1alpha';
   static const String _defaultModel = 'gemini-flash-latest';
@@ -277,10 +279,7 @@ class GeminiService extends AIService {
       throw Exception(localizations.geminiApiKeyNotConfigured);
     }
 
-    // Google Gemini Upload API uses a different base URL for media
-    const uploadBaseUrl =
-        'https://generativelanguage.googleapis.com/upload/v1beta';
-    final url = '$uploadBaseUrl/files?key=$apiKey';
+    final url = '$_uploadBaseUrlBeta/files?key=$apiKey';
 
     try {
       final boundary =
