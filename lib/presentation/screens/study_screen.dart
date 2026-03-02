@@ -67,187 +67,203 @@ class StudyScreenView extends StatelessWidget {
           },
         ),
       ),
-      body: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-        builder: (context, state) {
+      body: BlocListener<StudyExecutionBloc, StudyExecutionState>(
+        listenWhen: (previous, current) {
+          final currentChunk = current.currentChunk;
+          final previousChunk = previous.currentChunk;
+          return currentChunk?.status == StudyChunkState.error &&
+              previousChunk?.status != StudyChunkState.error;
+        },
+        listener: (context, state) {
           final currentChunk = state.currentChunk;
-          if (currentChunk == null) {
-            return Center(
-              child: Text(localizations.studyScreenNoSlidesAvailable),
-            );
-          }
+          if (currentChunk == null) return;
 
-          if (currentChunk.status == StudyChunkState.processing) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const CircularProgressIndicator(),
-                  const SizedBox(height: 16),
-                  Text(localizations.studyScreenGenerating),
-                ],
+          showDialog(
+            context: context,
+            builder: (dialogContext) => AlertDialog(
+              title: Text(localizations.studyScreenError),
+              content: Text(
+                currentChunk.errorMessage ?? localizations.studyScreenError,
               ),
-            );
-          }
-
-          if (currentChunk.status == StudyChunkState.error) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    localizations.studyScreenError,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  if (currentChunk.errorMessage != null) ...[
-                    const SizedBox(height: 8),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
-                      child: Text(
-                        currentChunk.errorMessage!,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.error,
-                        ),
-                      ),
-                    ),
-                  ],
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      context.read<StudyExecutionBloc>().add(
-                        StudyChunkRequested(state.currentChunkIndex),
-                      );
-                    },
-                    child: Text(localizations.studyScreenRetry),
-                  ),
-                ],
-              ),
-            );
-          }
-
-          return Row(
-            children: [
-              Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child:
-                            currentChunk.slides != null &&
-                                currentChunk.slides!.isNotEmpty
-                            ? ListView.builder(
-                                itemCount: currentChunk.slides!.length,
-                                itemBuilder: (context, index) {
-                                  final slide = currentChunk.slides![index];
-                                  return Card(
-                                    margin: const EdgeInsets.only(bottom: 16),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(16),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: slide.uiElements.map((
-                                          element,
-                                        ) {
-                                          final text =
-                                              element.props['text']
-                                                  ?.toString() ??
-                                              '';
-                                          if (element.componentType ==
-                                              'Title') {
-                                            return Padding(
-                                              padding: const EdgeInsets.only(
-                                                bottom: 8.0,
-                                              ),
-                                              child: Text(
-                                                text,
-                                                style: Theme.of(
-                                                  context,
-                                                ).textTheme.titleLarge,
-                                              ),
-                                            );
-                                          }
-                                          return Padding(
-                                            padding: const EdgeInsets.only(
-                                              bottom: 8.0,
-                                            ),
-                                            child: Text(text),
-                                          );
-                                        }).toList(),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              )
-                            : Center(
-                                child: Text(
-                                  localizations.studyScreenNoSlidesGenerated,
-                                ),
-                              ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ElevatedButton(
-                            onPressed: state.hasPrevious
-                                ? () => context.read<StudyExecutionBloc>().add(
-                                    PreviousStudyChunkRequested(),
-                                  )
-                                : null,
-                            child: Text(
-                              localizations.studyScreenPreviousSection,
-                            ),
-                          ),
-                          Text(
-                            localizations.studyScreenSectionIndicator(
-                              state.currentChunkIndex + 1,
-                              state.chunks.length,
-                            ),
-                          ),
-                          ElevatedButton(
-                            onPressed: state.hasNext
-                                ? () => context.read<StudyExecutionBloc>().add(
-                                    NextStudyChunkRequested(),
-                                  )
-                                : null,
-                            child: Text(localizations.studyScreenNextSection),
-                          ),
-                        ],
-                      ),
-                    ],
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(dialogContext).pop(),
+                  child: Text(
+                    MaterialLocalizations.of(context).closeButtonLabel,
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        localizations.studyScreenAiSummaryTitle,
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      const SizedBox(height: 16),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Text(
-                            currentChunk.aiSummary ??
-                                localizations.studyScreenNoSummary,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(dialogContext).pop();
+                    context.read<StudyExecutionBloc>().add(
+                      StudyChunkRequested(state.currentChunkIndex),
+                    );
+                  },
+                  child: Text(localizations.studyScreenRetry),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         },
+        child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+          builder: (context, state) {
+            if (state.chunks.isEmpty) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            final currentChunk = state.currentChunk;
+            if (currentChunk == null) {
+              return Center(
+                child: Text(localizations.studyScreenNoSlidesAvailable),
+              );
+            }
+
+            if (currentChunk.status == StudyChunkState.processing) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CircularProgressIndicator(),
+                    const SizedBox(height: 16),
+                    Text(localizations.studyScreenGenerating),
+                  ],
+                ),
+              );
+            }
+
+            return Row(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: currentChunk.status == StudyChunkState.error
+                              ? const SizedBox.shrink()
+                              : (currentChunk.slides != null &&
+                                        currentChunk.slides!.isNotEmpty
+                                    ? ListView.builder(
+                                        itemCount: currentChunk.slides!.length,
+                                        itemBuilder: (context, index) {
+                                          final slide =
+                                              currentChunk.slides![index];
+                                          return Card(
+                                            margin: const EdgeInsets.only(
+                                              bottom: 16,
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(16),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: slide.uiElements.map((
+                                                  element,
+                                                ) {
+                                                  final text =
+                                                      element.props['text']
+                                                          ?.toString() ??
+                                                      '';
+                                                  if (element.componentType ==
+                                                      'Title') {
+                                                    return Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                            bottom: 8.0,
+                                                          ),
+                                                      child: Text(
+                                                        text,
+                                                        style: Theme.of(
+                                                          context,
+                                                        ).textTheme.titleLarge,
+                                                      ),
+                                                    );
+                                                  }
+                                                  return Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                          bottom: 8.0,
+                                                        ),
+                                                    child: Text(text),
+                                                  );
+                                                }).toList(),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      )
+                                    : Center(
+                                        child: Text(
+                                          localizations
+                                              .studyScreenNoSlidesGenerated,
+                                        ),
+                                      )),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ElevatedButton(
+                              onPressed: state.hasPrevious
+                                  ? () => context
+                                        .read<StudyExecutionBloc>()
+                                        .add(PreviousStudyChunkRequested())
+                                  : null,
+                              child: Text(
+                                localizations.studyScreenPreviousSection,
+                              ),
+                            ),
+                            Text(
+                              localizations.studyScreenSectionIndicator(
+                                state.currentChunkIndex + 1,
+                                state.chunks.length,
+                              ),
+                            ),
+                            ElevatedButton(
+                              onPressed: state.hasNext
+                                  ? () => context
+                                        .read<StudyExecutionBloc>()
+                                        .add(NextStudyChunkRequested())
+                                  : null,
+                              child: Text(localizations.studyScreenNextSection),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.surfaceContainerHighest,
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          localizations.studyScreenAiSummaryTitle,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        const SizedBox(height: 16),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Text(
+                              currentChunk.aiSummary ??
+                                  localizations.studyScreenNoSummary,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
