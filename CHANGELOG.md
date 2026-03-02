@@ -5,9 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.8.1]
+## [1.8.2]
 
 - fix: AI Generation dialog now properly saves and restores attached file paths across sessions (#198).
+
+## [1.8.1] - 2026-02-26
+
 - ui: Updated app icon for all platforms.
 - feat: Renamed the application across all platforms to "Quizdy" for consistent branding.
 
