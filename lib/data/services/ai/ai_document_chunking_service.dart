@@ -121,17 +121,7 @@ class AiDocumentChunkingService {
         );
       }).toList();
     } catch (e) {
-      // Fallback to a single chunk representing the whole file if AI indexing fails
-      return [
-        SourceReference(
-          documentId: documentId,
-          startPage: 1,
-          endPage: 1,
-          startOffset: 0,
-          endOffset: 0,
-          blockType: 'Full Document',
-        ),
-      ];
+      rethrow;
     }
   }
 
