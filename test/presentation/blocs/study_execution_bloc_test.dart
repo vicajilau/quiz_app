@@ -36,7 +36,7 @@ void main() {
     // 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
     // It's 51 chars.
 
-    final chunk1 = StudyChunk(
+    final chunk1 = const StudyChunk(
       chunkIndex: 0,
       status: StudyChunkState.completed,
       sourceReference: SourceReference(
@@ -49,7 +49,7 @@ void main() {
       ),
     );
 
-    final chunk2 = StudyChunk(
+    final chunk2 = const StudyChunk(
       chunkIndex: 1,
       status: StudyChunkState.created,
       sourceReference: SourceReference(
