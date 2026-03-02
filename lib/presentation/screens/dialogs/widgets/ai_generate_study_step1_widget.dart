@@ -331,7 +331,7 @@ class AiGenerateStudyStep1Widget extends StatelessWidget {
 
                     // Language
                     Text(
-                      AppLocalizations.of(context)!.aiLanguageLabel,
+                      AppLocalizations.of(context)!.aiStudyLanguageLabel,
                       style: TextStyle(
                         fontFamily: 'Inter',
                         fontSize: 14,
