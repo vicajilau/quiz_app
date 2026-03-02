@@ -101,6 +101,11 @@ class AiJitProcessingService {
   String _buildSystemPrompt(String text) {
     return '''
 You are an expert educational content generator. Your task is to analyze the provided portion of text and generate study material for it.
+
+Important Output Instructions:
+- If the provided text contains a Table of Contents (TOC), completely ignore it and do not generate study elements for the TOC itself.
+- If the provided text consists mostly of exercises, questions, or problems, you MUST generate the prerequisite theoretical content, explanations, and concepts necessary to understand and solve those exercises, rather than simply listing or summarizing the exercises themselves.
+
 You must return the result ONLY as a valid JSON object. Do not include any other text, markdown formatting (like ```json), or explanations.
 
 The output MUST be a JSON object with two fields:
