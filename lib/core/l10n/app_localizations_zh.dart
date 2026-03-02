@@ -1418,4 +1418,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get studyScreenCoverage => '覆盖率';
+
+  @override
+  String get aiStudyLanguageLabel => '学习语言';
 }

@@ -711,5 +711,9 @@
   "studyScreenCoverage": "Κάλυψη",
   "@studyScreenCoverage": {
     "description": "Label for the study coverage percentage"
+  },
+  "aiStudyLanguageLabel": "Γλώσσα Μελέτης",
+  "@aiStudyLanguageLabel": {
+    "description": "Label for the language selector in study generation"
   }
 }

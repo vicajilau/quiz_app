@@ -1756,5 +1756,9 @@
   "studyScreenCoverage": "कवरेज",
   "@studyScreenCoverage": {
     "description": "Label for the study coverage percentage"
+  },
+  "aiStudyLanguageLabel": "अध्ययन भाषा",
+  "@aiStudyLanguageLabel": {
+    "description": "Label for the language selector in study generation"
   }
 }

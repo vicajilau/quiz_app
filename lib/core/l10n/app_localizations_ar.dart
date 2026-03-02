@@ -1477,4 +1477,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get studyScreenCoverage => 'تغطية';
+
+  @override
+  String get aiStudyLanguageLabel => 'لغة الدراسة';
 }

@@ -1753,5 +1753,9 @@
   "studyScreenCoverage": "Estaldura",
   "@studyScreenCoverage": {
     "description": "Label for the study coverage percentage"
+  },
+  "aiStudyLanguageLabel": "Ikasketa hizkuntza",
+  "@aiStudyLanguageLabel": {
+    "description": "Label for the language selector in study generation"
   }
 }

@@ -1500,4 +1500,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get studyScreenCoverage => 'Copertura';
+
+  @override
+  String get aiStudyLanguageLabel => 'Lingua di studio';
 }

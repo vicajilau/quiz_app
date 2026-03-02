@@ -1813,5 +1813,9 @@
   "studyScreenCoverage": "تغطية",
   "@studyScreenCoverage": {
     "description": "Label for the study coverage percentage"
+  },
+  "aiStudyLanguageLabel": "لغة الدراسة",
+  "@aiStudyLanguageLabel": {
+    "description": "Label for the language selector in study generation"
   }
 }

@@ -1753,5 +1753,9 @@
   "studyScreenCoverage": "Cobertura",
   "@studyScreenCoverage": {
     "description": "Label for the study coverage percentage"
+  },
+  "aiStudyLanguageLabel": "Idioma do estudo",
+  "@aiStudyLanguageLabel": {
+    "description": "Label for the language selector in study generation"
   }
 }

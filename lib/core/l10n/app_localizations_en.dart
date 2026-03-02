@@ -1493,4 +1493,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get studyScreenCoverage => 'Coverage';
+
+  @override
+  String get aiStudyLanguageLabel => 'Study Language';
 }

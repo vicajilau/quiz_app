@@ -1503,4 +1503,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get studyScreenCoverage => 'Estaldura';
+
+  @override
+  String get aiStudyLanguageLabel => 'Ikasketa hizkuntza';
 }

@@ -1428,4 +1428,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get studyScreenCoverage => '網羅率';
+
+  @override
+  String get aiStudyLanguageLabel => '学習言語';
 }

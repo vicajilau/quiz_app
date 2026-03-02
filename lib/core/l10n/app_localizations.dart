@@ -2688,6 +2688,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Coverage'**
   String get studyScreenCoverage;
+
+  /// Label for the language selector in study generation
+  ///
+  /// In en, this message translates to:
+  /// **'Study Language'**
+  String get aiStudyLanguageLabel;
 }
 
 class _AppLocalizationsDelegate

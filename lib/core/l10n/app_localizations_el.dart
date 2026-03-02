@@ -1511,4 +1511,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get studyScreenCoverage => 'Κάλυψη';
+
+  @override
+  String get aiStudyLanguageLabel => 'Γλώσσα Μελέτης';
 }
