@@ -22,6 +22,7 @@ import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
+import 'package:quizdy/domain/models/quiz/source_reference.dart';
 import 'package:quizdy/data/services/ai/gemini_service.dart';
 
 /// Use case that configures the `.quiz` file with chunk boundaries identified by AI.
@@ -73,7 +74,7 @@ class InitializeQuizChunksUseCase {
     final fileUri = await _aiService.uploadFile(file, localizations);
 
     // 2. Generate logical chunks using AI analysis of the uploaded file
-    final references = await _chunkingService.generateIndexWithAi(
+    final indexResult = await _chunkingService.generateIndexWithAi(
       aiService: _aiService,
       fileUri: fileUri,
       fileMimeType: file.mimeType,
@@ -81,6 +82,7 @@ class InitializeQuizChunksUseCase {
       localizations: localizations,
     );
 
+    final references = indexResult['references'] as List<SourceReference>;
     final chunks = references.asMap().entries.map((entry) {
       return StudyChunk(
         chunkIndex: entry.key,
@@ -91,6 +93,11 @@ class InitializeQuizChunksUseCase {
       );
     }).toList();
 
-    return {'chunks': chunks, 'fileUri': fileUri};
+    return {
+      'chunks': chunks,
+      'fileUri': fileUri,
+      'title': indexResult['title'] as String?,
+      'description': indexResult['description'] as String?,
+    };
   }
 }
