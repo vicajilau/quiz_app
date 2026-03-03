@@ -22,6 +22,8 @@ import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 
 class MockAppLocalizations implements AppLocalizations {
   @override
+  String get localeName => 'en';
+  @override
   String get aiErrorResponse => 'AI Error Response';
   @override
   String get documentTooLongForProcessing => 'Document length error';
