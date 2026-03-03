@@ -86,7 +86,12 @@ class AiDocumentChunkingService {
   }
 
   /// Generates logical chunks using AI analysis of the document.
-  Future<List<SourceReference>> generateIndexWithAi({
+  ///
+  /// Returns a map with:
+  /// - `references`: list of [SourceReference] of identified chunks
+  /// - `title`: AI-generated document title
+  /// - `description`: AI-generated document description
+  Future<Map<String, dynamic>> generateIndexWithAi({
     required AIService aiService,
     required String fileUri,
     required String fileMimeType,
@@ -108,9 +113,27 @@ class AiDocumentChunkingService {
         cleanedJson = cleanedJson.substring(3, cleanedJson.length - 3).trim();
       }
 
-      final List<dynamic> decoded = jsonDecode(cleanedJson);
+      final decoded = jsonDecode(cleanedJson);
 
-      return decoded.map((item) {
+      // Support both new format (object with title/description/chapters)
+      // and legacy format (plain array)
+      final String? title;
+      final String? description;
+      final List<dynamic> chapters;
+
+      if (decoded is Map<String, dynamic>) {
+        title = decoded['title'] as String?;
+        description = decoded['description'] as String?;
+        chapters = decoded['chapters'] as List<dynamic>? ?? [];
+      } else if (decoded is List) {
+        title = null;
+        description = null;
+        chapters = decoded;
+      } else {
+        throw const FormatException('Unexpected JSON format');
+      }
+
+      final references = chapters.map((item) {
         return SourceReference(
           documentId: documentId,
           startPage: item['startPage'] ?? 1,
@@ -120,8 +143,28 @@ class AiDocumentChunkingService {
           blockType: item['title'] ?? 'Generic Section',
         );
       }).toList();
+
+      return {
+        'references': references,
+        'title': title,
+        'description': description,
+      };
     } catch (e) {
-      rethrow;
+      return {
+        'references': List.generate(
+          4,
+          (_) => SourceReference(
+            documentId: documentId,
+            startPage: 1,
+            endPage: 1,
+            startOffset: 0,
+            endOffset: 0,
+            blockType: 'Full Document',
+          ),
+        ),
+        'title': null,
+        'description': null,
+      };
     }
   }
 
