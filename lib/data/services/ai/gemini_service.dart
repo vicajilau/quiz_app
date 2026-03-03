@@ -440,24 +440,30 @@ class GeminiService extends AIService {
   }) async {
     final prompt =
         '''
-Act as an expert academic educator. Analyze the provided document and generate a structured Table of Contents (index) for a personalized study plan.
+Act as an expert academic educator. Analyze the provided document and generate a structured study guide with a Table of Contents for a personalized study plan.
 
 Rules:
-1. Divide the content into logical "Themes" or "Chapters" (chunks).
-2. Each theme should be granular enough to be studied in a single session.
-3. If a section is very long, break it down into sub-themes.
-4. For each theme, identify the start and end page (if the document has pages/is a PDF). If not, use estimated percentages or indices.
-5. High Priority: Chunks should feel like an index of a book.
-6. Themes should be logically treated as the main units of study.
-7. Output ONLY a valid JSON array of objects with this structure:
-[
-  {
-    "title": "Theme Title",
-    "startPage": 1, 
-    "endPage": 3,
-    "summary": "Brief 1-sentence description of what will be covered."
-  }
-]
+1. Generate a concise title that summarizes the subject matter of the syllabus. Do NOT reference the document itself (e.g. avoid "Document about...", "This PDF covers..."). Just state the topic directly.
+2. Generate a brief description (2-3 sentences) explaining the syllabus content and its key learning objectives. Write it as if describing the subject, not the document.
+3. Divide the content into logical "Themes" or "Chapters" (chunks).
+4. Each theme should be granular enough to be studied in a single session.
+5. If a section is very long, break it down into sub-themes.
+6. For each theme, identify the start and end page (if the document has pages/is a PDF). If not, use estimated percentages or indices.
+7. High Priority: Chunks should feel like an index of a book.
+8. Themes should be logically treated as the main units of study.
+9. Output ONLY a valid JSON object with this structure:
+{
+  "title": "Subject Title",
+  "description": "Brief 2-3 sentence description of the syllabus and learning objectives.",
+  "chapters": [
+    {
+      "title": "Theme Title",
+      "startPage": 1,
+      "endPage": 3,
+      "summary": "Brief 1-sentence description of the topic covered. Do not reference the document."
+    }
+  ]
+}
 
 Current Language: ${localizations.localeName}
 ''';
