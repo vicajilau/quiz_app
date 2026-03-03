@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.8.2]
 
-- fix: AI Generation dialog now properly saves and restores attached file paths across sessions (#198).
+- feat: Added "Paste" button to API key text fields in settings for quicker setup.
+- fix: AI Generation dialog now properly saves and restores attached file paths across sessions.
 
 ## [1.8.1] - 2026-02-26
 

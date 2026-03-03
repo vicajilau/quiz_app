@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:pasteboard/pasteboard.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
@@ -355,6 +356,18 @@ class AiSettingsSection extends StatelessWidget {
                     ),
                   ),
                 IconButton(
+                  tooltip: AppLocalizations.of(context)!.pasteFromClipboard,
+                  icon: const Icon(Icons.paste),
+                  onPressed: () async {
+                    final clipboardContent = await Pasteboard.text;
+                    if (clipboardContent != null &&
+                        clipboardContent.isNotEmpty) {
+                      controller.text = clipboardContent;
+                      onApiKeyChanged();
+                    }
+                  },
+                ),
+                IconButton(
                   icon: Icon(
                     isVisible ? Icons.visibility_off : Icons.visibility,
                   ),
@@ -368,8 +381,7 @@ class AiSettingsSection extends StatelessWidget {
             onApiKeyChanged();
           },
         ),
-        const SizedBox(height: 4),
-        const SizedBox(height: 4),
+        const SizedBox(height: 8),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
