@@ -1809,5 +1809,16 @@
   "aiStudyLanguageLabel": "学习语言",
   "@aiStudyLanguageLabel": {
     "description": "Label for the language selector in study generation"
-  }
+  },
+  "studyScreenStudyGuide": "学习指南",
+  "studyScreenSections": "章节",
+  "studyScreenChaptersCount": "{count} 个章节",
+  "@studyScreenChaptersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenCompleted": "已完成"
 }
