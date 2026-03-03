@@ -33,6 +33,9 @@ class AiGenerationStoredSettings {
   /// The drafted text content.
   final String? draftText;
 
+  /// The attached file path.
+  final String? draftFilePath;
+
   /// Creates a new instance of [AiGenerationStoredSettings].
   const AiGenerationStoredSettings({
     this.serviceName,
@@ -41,5 +44,6 @@ class AiGenerationStoredSettings {
     this.questionCount,
     this.questionTypes,
     this.draftText,
+    this.draftFilePath,
   });
 }
