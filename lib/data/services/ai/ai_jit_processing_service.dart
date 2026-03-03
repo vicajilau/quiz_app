@@ -54,7 +54,7 @@ class AiJitProcessingService {
     final startPage = chunk.sourceReference.startPage;
     final endPage = chunk.sourceReference.endPage;
 
-    final prompt = _buildSystemPrompt(startPage, endPage);
+    final prompt = _buildSystemPrompt(startPage, endPage, localizations);
 
     try {
       final responseBody = await GeminiService.instance
@@ -90,11 +90,16 @@ class AiJitProcessingService {
   }
 
   /// Builds the instruction set for specific page ranges.
-  String _buildSystemPrompt(int startPage, int endPage) {
+  String _buildSystemPrompt(
+    int startPage,
+    int endPage,
+    AppLocalizations localizations,
+  ) {
     return '''
 You are an expert educational content generator. Your task is to analyze the provided pages of the document and generate study material for them.
 
 IMPORTANT: Focus ONLY on the content found between pages $startPage and $endPage (inclusive).
+IMPORTANT: All generated content (ai_summary, slide texts, titles, paragraphs) MUST be written in the following language: ${localizations.localeName}. Do NOT use English unless the target language is English.
 
 Important Output Instructions:
 - If the provided text contains a Table of Contents (TOC), completely ignore it and do not generate study elements for the TOC itself.
