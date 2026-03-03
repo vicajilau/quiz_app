@@ -150,6 +150,8 @@ class AiDocumentChunkingService {
         'description': description,
       };
     } catch (e) {
+      rethrow;
+      /* Testing purposes
       return {
         'references': List.generate(
           4,
@@ -165,6 +167,7 @@ class AiDocumentChunkingService {
         'title': null,
         'description': null,
       };
+      */
     }
   }
 
