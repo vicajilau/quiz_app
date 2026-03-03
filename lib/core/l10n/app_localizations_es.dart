@@ -879,11 +879,44 @@ class AppLocalizationsEs extends AppLocalizations {
   String get aiGenerateButton => 'Generar preguntas';
 
   @override
+  String get studyScreenNoSlidesAvailable =>
+      'No hay secciones de estudio disponibles.';
+
+  @override
+  String get studyScreenGenerating => 'Generando material de estudio...';
+
+  @override
+  String get studyScreenError => 'Ocurrió un error al generar el material.';
+
+  @override
+  String get studyScreenRetry => 'Reintentar';
+
+  @override
+  String get studyScreenNoSlidesGenerated => 'No se generaron diapositivas.';
+
+  @override
+  String get studyScreenPreviousSection => 'Página Anterior';
+
+  @override
+  String get studyScreenNextSection => 'Página Siguiente';
+
+  @override
+  String studyScreenSectionIndicator(int current, int total) {
+    return 'Página $current de $total';
+  }
+
+  @override
+  String get studyScreenAiSummaryTitle => 'Resumen IA';
+
+  @override
+  String get studyScreenNoSummary => 'No hay un resumen general disponible.';
+
+  @override
   String get aiEnterContentTitle => 'Introducir contenido';
 
   @override
   String get aiEnterContentDescription =>
-      'Introduce el tema o pega el contenido para generar preguntas';
+      'Pega un texto cualquiera o adjunta archivos para esquematizarlos en temas de estudio.';
 
   @override
   String get aiContentFieldHint =>
@@ -1464,4 +1497,28 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get onboardingAiMultiLanguageDescription =>
       'Genera en 13 idiomas diferentes';
+
+  @override
+  String get documentTooLongForProcessing =>
+      'El documento podría ser demasiado largo para procesarlo de una sola vez en este MVP.';
+
+  @override
+  String get studyScreenCoverage => 'Cobertura';
+
+  @override
+  String get aiStudyLanguageLabel => 'Idioma del estudio';
+
+  @override
+  String get studyScreenStudyGuide => 'Guía de estudio';
+
+  @override
+  String get studyScreenSections => 'Secciones';
+
+  @override
+  String studyScreenChaptersCount(int count) {
+    return '$count capítulos';
+  }
+
+  @override
+  String get studyScreenCompleted => 'Completados';
 }

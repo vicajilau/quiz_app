@@ -1821,5 +1821,48 @@
   "onboardingAiMultiLanguageDescription": "In 13 verschiedenen Sprachen generieren",
   "@onboardingAiMultiLanguageDescription": {
     "description": "KI-Funktionsbeschreibung im Onboarding"
-  }
+  },
+  "documentTooLongForProcessing": "Das Dokument ist möglicherweise zu lang, um in diesem MVP in einem Durchgang verarbeitet zu werden.",
+  "@documentTooLongForProcessing": {
+    "description": "Error message when AI document processing fails due to document length"
+  },
+  "studyScreenNoSlidesAvailable": "Keine Lernabschnitte verfügbar.",
+  "studyScreenGenerating": "Lernmaterialien werden erstellt...",
+  "studyScreenError": "Beim Erstellen des Lernmaterials ist ein Fehler aufgetreten.",
+  "studyScreenRetry": "Wiederholen",
+  "studyScreenNoSlidesGenerated": "Keine Folien erstellt.",
+  "studyScreenPreviousSection": "Vorherige Seite",
+  "studyScreenNextSection": "Nächste Seite",
+  "studyScreenSectionIndicator": "Seite {current} von {total}",
+  "@studyScreenSectionIndicator": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenAiSummaryTitle": "KI-Zusammenfassung",
+  "studyScreenNoSummary": "Keine Zusammenfassung verfügbar.",
+  "studyScreenCoverage": "Abdeckung",
+  "@studyScreenCoverage": {
+    "description": "Label for the study coverage percentage"
+  },
+  "aiStudyLanguageLabel": "Studiensprache",
+  "@aiStudyLanguageLabel": {
+    "description": "Label for the language selector in study generation"
+  },
+  "studyScreenStudyGuide": "Studienleitfaden",
+  "studyScreenSections": "Abschnitte",
+  "studyScreenChaptersCount": "{count} Kapitel",
+  "@studyScreenChaptersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenCompleted": "Abgeschlossen"
 }

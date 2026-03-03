@@ -1785,5 +1785,48 @@
   "onboardingAiMultiLanguageDescription": "توليد بـ 13 لغة مختلفة",
   "@onboardingAiMultiLanguageDescription": {
     "description": "وصف ميزة الذكاء الاصطناعي في العرض الترحيبي"
-  }
+  },
+  "documentTooLongForProcessing": "قد يكون المستند طويلاً جدًا بحيث لا يمكن معالجته في مسار واحد في أفضل منتج ممكن (MVP).",
+  "@documentTooLongForProcessing": {
+    "description": "Error message when AI document processing fails due to document length"
+  },
+  "studyScreenNoSlidesAvailable": "لا توجد أقسام دراسية متاحة.",
+  "studyScreenGenerating": "جاري إنشاء مواد دراسية...",
+  "studyScreenError": "حدث خطأ أثناء إنشاء مواد دراسية.",
+  "studyScreenRetry": "إعادة المحاولة",
+  "studyScreenNoSlidesGenerated": "لم يتم إنشاء شرائح.",
+  "studyScreenPreviousSection": "الصفحة السابقة",
+  "studyScreenNextSection": "الصفحة التالية",
+  "studyScreenSectionIndicator": "صفحة {current} من {total}",
+  "@studyScreenSectionIndicator": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenAiSummaryTitle": "ملخص الذكاء الاصطناعي",
+  "studyScreenNoSummary": "لا يوجد ملخص متاح.",
+  "studyScreenCoverage": "تغطية",
+  "@studyScreenCoverage": {
+    "description": "Label for the study coverage percentage"
+  },
+  "aiStudyLanguageLabel": "لغة الدراسة",
+  "@aiStudyLanguageLabel": {
+    "description": "Label for the language selector in study generation"
+  },
+  "studyScreenStudyGuide": "دليل الدراسة",
+  "studyScreenSections": "الأقسام",
+  "studyScreenChaptersCount": "{count} فصول",
+  "@studyScreenChaptersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenCompleted": "مكتمل"
 }

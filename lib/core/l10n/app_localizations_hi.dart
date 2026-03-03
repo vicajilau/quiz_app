@@ -871,6 +871,39 @@ class AppLocalizationsHi extends AppLocalizations {
   String get aiGenerateButton => 'प्रश्न बनाएं';
 
   @override
+  String get studyScreenNoSlidesAvailable =>
+      'कोई अध्ययन अनुभाग उपलब्ध नहीं है।';
+
+  @override
+  String get studyScreenGenerating => 'अध्ययन सामग्री तैयार की जा रही है...';
+
+  @override
+  String get studyScreenError => 'अध्ययन सामग्री तैयार करते समय एक त्रुटि हुई।';
+
+  @override
+  String get studyScreenRetry => 'पुनः प्रयास करें';
+
+  @override
+  String get studyScreenNoSlidesGenerated => 'कोई स्लाइड नहीं बनाई गई।';
+
+  @override
+  String get studyScreenPreviousSection => 'पिछला पृष्ठ';
+
+  @override
+  String get studyScreenNextSection => 'अगला पृष्ठ';
+
+  @override
+  String studyScreenSectionIndicator(int current, int total) {
+    return 'पृष्ठ $total में से $current';
+  }
+
+  @override
+  String get studyScreenAiSummaryTitle => 'AI सारांश';
+
+  @override
+  String get studyScreenNoSummary => 'कोई सारांश उपलब्ध नहीं है।';
+
+  @override
   String get aiEnterContentTitle => 'सामग्री दर्ज करें';
 
   @override
@@ -1452,4 +1485,28 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get onboardingAiMultiLanguageDescription =>
       '13 अलग-अलग भाषाओं में उत्पन्न करें';
+
+  @override
+  String get documentTooLongForProcessing =>
+      'सकता है कि दस्तावेज़ इस MVP में एक ही पास में संसाधित करने के लिए बहुत लंबा हो।';
+
+  @override
+  String get studyScreenCoverage => 'कवरेज';
+
+  @override
+  String get aiStudyLanguageLabel => 'अध्ययन भाषा';
+
+  @override
+  String get studyScreenStudyGuide => 'अध्ययन मार्गदर्शिका';
+
+  @override
+  String get studyScreenSections => 'अनुभाग';
+
+  @override
+  String studyScreenChaptersCount(int count) {
+    return '$count अध्याय';
+  }
+
+  @override
+  String get studyScreenCompleted => 'पूर्ण';
 }

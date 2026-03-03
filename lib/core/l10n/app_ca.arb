@@ -1827,5 +1827,48 @@
   "onboardingAiMultiLanguageDescription": "Genera en 13 idiomes diferents",
   "@onboardingAiMultiLanguageDescription": {
     "description": "Descripció de la funció IA a la benvinguda"
-  }
+  },
+  "documentTooLongForProcessing": "El document pot ser massa llarg per processar-lo d'una vegada en aquest MVP.",
+  "@documentTooLongForProcessing": {
+    "description": "Error message when AI document processing fails due to document length"
+  },
+  "studyScreenNoSlidesAvailable": "No hi ha seccions d'estudi disponibles.",
+  "studyScreenGenerating": "Generant materials d'estudi...",
+  "studyScreenError": "S'ha produït un error en generar el material d'estudi.",
+  "studyScreenRetry": "Reintenta",
+  "studyScreenNoSlidesGenerated": "No s'han generat diapositives.",
+  "studyScreenPreviousSection": "Pàgina anterior",
+  "studyScreenNextSection": "Pàgina següent",
+  "studyScreenSectionIndicator": "Pàgina {current} de {total}",
+  "@studyScreenSectionIndicator": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenAiSummaryTitle": "Resum d'IA",
+  "studyScreenNoSummary": "No hi ha cap resum disponible.",
+  "studyScreenCoverage": "Cobertura",
+  "@studyScreenCoverage": {
+    "description": "Label for the study coverage percentage"
+  },
+  "aiStudyLanguageLabel": "Idioma de l'estudi",
+  "@aiStudyLanguageLabel": {
+    "description": "Label for the language selector in study generation"
+  },
+  "studyScreenStudyGuide": "Guia d'estudi",
+  "studyScreenSections": "Seccions",
+  "studyScreenChaptersCount": "{count} capítols",
+  "@studyScreenChaptersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenCompleted": "Completat"
 }

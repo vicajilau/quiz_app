@@ -1598,16 +1598,76 @@ abstract class AppLocalizations {
   /// **'Generate Questions'**
   String get aiGenerateButton;
 
+  /// Text displayed when there are no chunks available to study.
+  ///
+  /// In en, this message translates to:
+  /// **'No study sections available.'**
+  String get studyScreenNoSlidesAvailable;
+
+  /// Text displayed while the AI is computing study materials.
+  ///
+  /// In en, this message translates to:
+  /// **'Generating study materials...'**
+  String get studyScreenGenerating;
+
+  /// Text displayed when chunk generation fails.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred while generating study material.'**
+  String get studyScreenError;
+
+  /// Button text to retry parsing a failed chunk.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get studyScreenRetry;
+
+  /// Text displayed if AI returns back empty slides for the current view.
+  ///
+  /// In en, this message translates to:
+  /// **'No slides generated.'**
+  String get studyScreenNoSlidesGenerated;
+
+  /// Button to go back to the previous study chunk.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous Page'**
+  String get studyScreenPreviousSection;
+
+  /// Button to go to the next study chunk.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Page'**
+  String get studyScreenNextSection;
+
+  /// Indicates the current chunk view versus the total available chunks.
+  ///
+  /// In en, this message translates to:
+  /// **'Page {current} of {total}'**
+  String studyScreenSectionIndicator(int current, int total);
+
+  /// Title header above the AI summary overview.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Summary'**
+  String get studyScreenAiSummaryTitle;
+
+  /// Placeholder when there is no AI summary processed.
+  ///
+  /// In en, this message translates to:
+  /// **'No summary available.'**
+  String get studyScreenNoSummary;
+
   /// Title for the step 2 of AI question generation
   ///
   /// In en, this message translates to:
   /// **'Enter Content'**
   String get aiEnterContentTitle;
 
-  /// Description for the content input step
+  /// Description telling the user to enter text or attach files
   ///
   /// In en, this message translates to:
-  /// **'Enter the topic or paste content to generate questions from'**
+  /// **'Provide unformatted text or attach files to convert into study topics automatically.'**
   String get aiEnterContentDescription;
 
   /// Hint text for the content input field
@@ -2616,6 +2676,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Generate in 13 different languages'**
   String get onboardingAiMultiLanguageDescription;
+
+  /// Error message when AI document processing fails due to document length
+  ///
+  /// In en, this message translates to:
+  /// **'The document might be too long to process in a single pass in this MVP.'**
+  String get documentTooLongForProcessing;
+
+  /// Label for the study coverage percentage
+  ///
+  /// In en, this message translates to:
+  /// **'Coverage'**
+  String get studyScreenCoverage;
+
+  /// Label for the language selector in study generation
+  ///
+  /// In en, this message translates to:
+  /// **'Study Language'**
+  String get aiStudyLanguageLabel;
+
+  /// Label shown in the study index hero card
+  ///
+  /// In en, this message translates to:
+  /// **'Study Guide'**
+  String get studyScreenStudyGuide;
+
+  /// Label for the sections list header in study index
+  ///
+  /// In en, this message translates to:
+  /// **'Sections'**
+  String get studyScreenSections;
+
+  /// Badge showing the number of chapters
+  ///
+  /// In en, this message translates to:
+  /// **'{count} chapters'**
+  String studyScreenChaptersCount(int count);
+
+  /// Label for completed chunks counter in study index
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get studyScreenCompleted;
 }
 
 class _AppLocalizationsDelegate

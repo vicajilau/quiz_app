@@ -883,6 +883,39 @@ class AppLocalizationsDe extends AppLocalizations {
   String get aiGenerateButton => 'Fragen generieren';
 
   @override
+  String get studyScreenNoSlidesAvailable => 'Keine Lernabschnitte verfügbar.';
+
+  @override
+  String get studyScreenGenerating => 'Lernmaterialien werden erstellt...';
+
+  @override
+  String get studyScreenError =>
+      'Beim Erstellen des Lernmaterials ist ein Fehler aufgetreten.';
+
+  @override
+  String get studyScreenRetry => 'Wiederholen';
+
+  @override
+  String get studyScreenNoSlidesGenerated => 'Keine Folien erstellt.';
+
+  @override
+  String get studyScreenPreviousSection => 'Vorherige Seite';
+
+  @override
+  String get studyScreenNextSection => 'Nächste Seite';
+
+  @override
+  String studyScreenSectionIndicator(int current, int total) {
+    return 'Seite $current von $total';
+  }
+
+  @override
+  String get studyScreenAiSummaryTitle => 'KI-Zusammenfassung';
+
+  @override
+  String get studyScreenNoSummary => 'Keine Zusammenfassung verfügbar.';
+
+  @override
   String get aiEnterContentTitle => 'Inhalt eingeben';
 
   @override
@@ -1469,4 +1502,28 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get onboardingAiMultiLanguageDescription =>
       'In 13 verschiedenen Sprachen generieren';
+
+  @override
+  String get documentTooLongForProcessing =>
+      'Das Dokument ist möglicherweise zu lang, um in diesem MVP in einem Durchgang verarbeitet zu werden.';
+
+  @override
+  String get studyScreenCoverage => 'Abdeckung';
+
+  @override
+  String get aiStudyLanguageLabel => 'Studiensprache';
+
+  @override
+  String get studyScreenStudyGuide => 'Studienleitfaden';
+
+  @override
+  String get studyScreenSections => 'Abschnitte';
+
+  @override
+  String studyScreenChaptersCount(int count) {
+    return '$count Kapitel';
+  }
+
+  @override
+  String get studyScreenCompleted => 'Abgeschlossen';
 }

@@ -873,11 +873,44 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aiGenerateButton => 'Generate Questions';
 
   @override
+  String get studyScreenNoSlidesAvailable => 'No study sections available.';
+
+  @override
+  String get studyScreenGenerating => 'Generating study materials...';
+
+  @override
+  String get studyScreenError =>
+      'An error occurred while generating study material.';
+
+  @override
+  String get studyScreenRetry => 'Retry';
+
+  @override
+  String get studyScreenNoSlidesGenerated => 'No slides generated.';
+
+  @override
+  String get studyScreenPreviousSection => 'Previous Page';
+
+  @override
+  String get studyScreenNextSection => 'Next Page';
+
+  @override
+  String studyScreenSectionIndicator(int current, int total) {
+    return 'Page $current of $total';
+  }
+
+  @override
+  String get studyScreenAiSummaryTitle => 'AI Summary';
+
+  @override
+  String get studyScreenNoSummary => 'No summary available.';
+
+  @override
   String get aiEnterContentTitle => 'Enter Content';
 
   @override
   String get aiEnterContentDescription =>
-      'Enter the topic or paste content to generate questions from';
+      'Provide unformatted text or attach files to convert into study topics automatically.';
 
   @override
   String get aiContentFieldHint =>
@@ -1453,4 +1486,28 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get onboardingAiMultiLanguageDescription =>
       'Generate in 13 different languages';
+
+  @override
+  String get documentTooLongForProcessing =>
+      'The document might be too long to process in a single pass in this MVP.';
+
+  @override
+  String get studyScreenCoverage => 'Coverage';
+
+  @override
+  String get aiStudyLanguageLabel => 'Study Language';
+
+  @override
+  String get studyScreenStudyGuide => 'Study Guide';
+
+  @override
+  String get studyScreenSections => 'Sections';
+
+  @override
+  String studyScreenChaptersCount(int count) {
+    return '$count chapters';
+  }
+
+  @override
+  String get studyScreenCompleted => 'Completed';
 }

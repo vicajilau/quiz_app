@@ -880,6 +880,40 @@ class AppLocalizationsEu extends AppLocalizations {
   String get aiGenerateButton => 'Galderak Sortu';
 
   @override
+  String get studyScreenNoSlidesAvailable =>
+      'Ez dago ikasketa atalik erabilgarri.';
+
+  @override
+  String get studyScreenGenerating => 'Ikasketa materiala sortzen...';
+
+  @override
+  String get studyScreenError =>
+      'Errore bat gertatu da ikasketa materiala sortzean.';
+
+  @override
+  String get studyScreenRetry => 'Saiatu berriro';
+
+  @override
+  String get studyScreenNoSlidesGenerated => 'Ez da diapositibarik sortu.';
+
+  @override
+  String get studyScreenPreviousSection => 'Aurreko orria';
+
+  @override
+  String get studyScreenNextSection => 'Hurrengo orria';
+
+  @override
+  String studyScreenSectionIndicator(int current, int total) {
+    return '$current/$total orria';
+  }
+
+  @override
+  String get studyScreenAiSummaryTitle => 'AI Laburpena';
+
+  @override
+  String get studyScreenNoSummary => 'Ez dago laburpenik erabilgarri.';
+
+  @override
   String get aiEnterContentTitle => 'Sartu edukia';
 
   @override
@@ -1462,4 +1496,28 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get onboardingAiMultiLanguageDescription =>
       'Sortu 13 hizkuntza desberdinetan';
+
+  @override
+  String get documentTooLongForProcessing =>
+      'Dokumentua luzeegia izan daiteke MVP honetan pasaldi batean prozesatzeko.';
+
+  @override
+  String get studyScreenCoverage => 'Estaldura';
+
+  @override
+  String get aiStudyLanguageLabel => 'Ikasketa hizkuntza';
+
+  @override
+  String get studyScreenStudyGuide => 'Ikasketa-gida';
+
+  @override
+  String get studyScreenSections => 'Atalak';
+
+  @override
+  String studyScreenChaptersCount(int count) {
+    return '$count kapitulu';
+  }
+
+  @override
+  String get studyScreenCompleted => 'Burututa';
 }

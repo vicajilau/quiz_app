@@ -14,7 +14,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'dart:typed_data';
+import 'package:dio/dio.dart';
+import 'package:quizdy/data/interceptors/ai_logging_interceptor.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
@@ -23,6 +25,8 @@ import 'package:quizdy/data/services/ai/ai_service.dart';
 class GeminiService extends AIService {
   static const String _baseUrlBeta =
       'https://generativelanguage.googleapis.com/v1beta';
+  static const String _uploadBaseUrlBeta =
+      'https://generativelanguage.googleapis.com/upload/v1beta';
   static const String _baseUrlAlpha =
       'https://generativelanguage.googleapis.com/v1alpha';
   static const String _defaultModel = 'gemini-flash-latest';
@@ -39,7 +43,12 @@ class GeminiService extends AIService {
   static GeminiService? _instance;
   static GeminiService get instance => _instance ??= GeminiService._();
 
-  GeminiService._();
+  late final Dio _dio;
+
+  GeminiService._() {
+    _dio = Dio();
+    _dio.interceptors.add(AiLoggingInterceptor());
+  }
 
   @override
   String get serviceName => 'Google Gemini';
@@ -62,6 +71,7 @@ class GeminiService extends AIService {
     String prompt,
     AppLocalizations localizations, {
     String? model,
+    String? responseMimeType,
   }) async {
     final apiKey = await ConfigurationService.instance.getGeminiApiKey();
 
@@ -76,12 +86,11 @@ class GeminiService extends AIService {
         : _baseUrlBeta;
     final url = '$baseUrl/models/$selectedModel:generateContent?key=$apiKey';
 
-    final http.Response response;
     try {
-      response = await http.post(
-        Uri.parse(url),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
+      final response = await _dio.post(
+        url,
+        options: Options(headers: {'Content-Type': 'application/json'}),
+        data: {
           'contents': [
             {
               'parts': [
@@ -113,14 +122,10 @@ class GeminiService extends AIService {
               'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
             },
           ],
-        }),
+        },
       );
-    } catch (e) {
-      throw Exception(localizations.networkErrorGemini);
-    }
 
-    if (response.statusCode == 200) {
-      final jsonResponse = jsonDecode(response.body);
+      final jsonResponse = response.data;
       final candidates = jsonResponse['candidates'] as List?;
 
       if (candidates != null && candidates.isNotEmpty) {
@@ -129,17 +134,21 @@ class GeminiService extends AIService {
       } else {
         return localizations.noResponseReceived;
       }
-    } else if (response.statusCode == 302) {
-      final location = response.headers['location'];
-      throw Exception('Redirected (302) to: $location');
-    } else if (response.statusCode == 400) {
-      throw Exception(localizations.aiErrorResponse);
-    } else if (response.statusCode == 403) {
-      throw Exception(localizations.invalidApiKeyError);
-    } else if (response.statusCode == 429) {
-      throw Exception(localizations.rateLimitError);
-    } else {
-      throw Exception(localizations.aiErrorResponse);
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 302) {
+        final location = e.response?.headers['location']?.first;
+        throw Exception('Redirected (302) to: $location');
+      } else if (e.response?.statusCode == 400) {
+        throw Exception(localizations.aiErrorResponse);
+      } else if (e.response?.statusCode == 403) {
+        throw Exception(localizations.invalidApiKeyError);
+      } else if (e.response?.statusCode == 429) {
+        throw Exception(localizations.rateLimitError);
+      } else {
+        throw Exception(localizations.networkErrorGemini);
+      }
+    } catch (e) {
+      throw Exception(localizations.networkErrorGemini);
     }
   }
 
@@ -148,6 +157,7 @@ class GeminiService extends AIService {
     String prompt,
     AppLocalizations localizations, {
     String? model,
+    String? responseMimeType,
     required AiFileAttachment file,
   }) async {
     final apiKey = await ConfigurationService.instance.getGeminiApiKey();
@@ -165,12 +175,11 @@ class GeminiService extends AIService {
 
     final base64Data = base64Encode(file.bytes);
 
-    final http.Response response;
     try {
-      response = await http.post(
-        Uri.parse(url),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
+      final response = await _dio.post(
+        url,
+        options: Options(headers: {'Content-Type': 'application/json'}),
+        data: {
           'contents': [
             {
               'parts': [
@@ -208,14 +217,10 @@ class GeminiService extends AIService {
               'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
             },
           ],
-        }),
+        },
       );
-    } catch (e) {
-      throw Exception(localizations.networkErrorGemini);
-    }
 
-    if (response.statusCode == 200) {
-      final jsonResponse = jsonDecode(response.body);
+      final jsonResponse = response.data;
       final candidates = jsonResponse['candidates'] as List?;
 
       if (candidates != null && candidates.isNotEmpty) {
@@ -224,37 +229,251 @@ class GeminiService extends AIService {
       } else {
         return localizations.noResponseReceived;
       }
-    } else if (response.statusCode == 302) {
-      final location = response.headers['location'];
-      throw Exception('Redirected (302) to: $location');
-    } else if (response.statusCode == 400) {
-      String errorMessage = localizations.aiErrorResponse;
-      try {
-        final jsonResponse = jsonDecode(response.body);
-        if (jsonResponse['error'] != null &&
-            jsonResponse['error']['message'] != null) {
-          errorMessage += ': ${jsonResponse['error']['message']}';
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 302) {
+        final location = e.response?.headers['location']?.first;
+        throw Exception('Redirected (302) to: $location');
+      } else if (e.response?.statusCode == 400) {
+        String errorMessage = localizations.aiErrorResponse;
+        try {
+          final data = e.response?.data;
+          if (data != null &&
+              data['error'] != null &&
+              data['error']['message'] != null) {
+            errorMessage += ': ${data['error']['message']}';
+          }
+        } catch (_) {}
+        throw Exception(errorMessage);
+      } else if (e.response?.statusCode == 403) {
+        throw Exception(localizations.invalidApiKeyError);
+      } else if (e.response?.statusCode == 429) {
+        throw Exception(localizations.rateLimitError);
+      } else {
+        String errorMessage = localizations.aiErrorResponse;
+        try {
+          final data = e.response?.data;
+          if (data != null &&
+              data['error'] != null &&
+              data['error']['message'] != null) {
+            errorMessage += ': ${data['error']['message']}';
+          } else {
+            errorMessage += ' (${e.response?.statusCode})';
+          }
+        } catch (_) {
+          errorMessage += ' (${e.response?.statusCode})';
         }
-      } catch (_) {}
-      throw Exception(errorMessage);
-    } else if (response.statusCode == 403) {
-      throw Exception(localizations.invalidApiKeyError);
-    } else if (response.statusCode == 429) {
-      throw Exception(localizations.rateLimitError);
-    } else {
+        throw Exception(errorMessage);
+      }
+    } catch (e) {
+      throw Exception(localizations.networkErrorGemini);
+    }
+  }
+
+  @override
+  Future<String> uploadFile(
+    AiFileAttachment file,
+    AppLocalizations localizations,
+  ) async {
+    final apiKey = await ConfigurationService.instance.getGeminiApiKey();
+
+    if (apiKey == null || apiKey.isEmpty) {
+      throw Exception(localizations.geminiApiKeyNotConfigured);
+    }
+
+    final url = '$_uploadBaseUrlBeta/files?key=$apiKey';
+
+    try {
+      final boundary =
+          '--------------------------${DateTime.now().millisecondsSinceEpoch}';
+
+      final List<int> metadata = utf8.encode(
+        '--$boundary\r\n'
+        'Content-Type: application/json; charset=UTF-8\r\n\r\n'
+        '{"file": {"displayName": "${file.name}"}}\r\n'
+        '--$boundary\r\n'
+        'Content-Type: ${file.mimeType}\r\n\r\n',
+      );
+
+      final List<int> footer = utf8.encode('\r\n--$boundary--\r\n');
+
+      final body = Uint8List.fromList([...metadata, ...file.bytes, ...footer]);
+
+      final response = await _dio.post(
+        url,
+        options: Options(
+          headers: {
+            'X-Goog-Upload-Protocol': 'multipart',
+            'Content-Type': 'multipart/related; boundary=$boundary',
+            'Content-Length': '${body.length}',
+          },
+        ),
+        data: body,
+      );
+
+      final jsonResponse = response.data;
+      final fileUri = jsonResponse['file']?['uri'] as String?;
+
+      if (fileUri != null) {
+        return fileUri;
+      } else {
+        throw Exception(localizations.noResponseReceived);
+      }
+    } on DioException catch (e) {
       String errorMessage = localizations.aiErrorResponse;
       try {
-        final jsonResponse = jsonDecode(response.body);
-        if (jsonResponse['error'] != null &&
-            jsonResponse['error']['message'] != null) {
-          errorMessage += ': ${jsonResponse['error']['message']}';
+        final data = e.response?.data;
+        if (data != null &&
+            data['error'] != null &&
+            data['error']['message'] != null) {
+          errorMessage += ': ${data['error']['message']}';
         } else {
-          errorMessage += ' (${response.statusCode})';
+          errorMessage += ': ${e.message}';
         }
       } catch (_) {
-        errorMessage += ' (${response.statusCode})';
+        errorMessage += ': ${e.message}';
       }
       throw Exception(errorMessage);
+    } catch (e) {
+      throw Exception(localizations.networkErrorGemini);
     }
+  }
+
+  @override
+  Future<String> getChatResponseWithFileUri(
+    String prompt,
+    AppLocalizations localizations, {
+    String? model,
+    String? responseMimeType,
+    required String fileUri,
+    required String fileMimeType,
+  }) async {
+    final apiKey = await ConfigurationService.instance.getGeminiApiKey();
+
+    if (apiKey == null || apiKey.isEmpty) {
+      throw Exception(localizations.geminiApiKeyNotConfigured);
+    }
+
+    final selectedModel = model ?? _defaultModel;
+
+    final baseUrl = selectedModel == 'gemini-3-pro-preview'
+        ? _baseUrlAlpha
+        : _baseUrlBeta;
+    final url = '$baseUrl/models/$selectedModel:generateContent?key=$apiKey';
+
+    try {
+      final response = await _dio.post(
+        url,
+        options: Options(headers: {'Content-Type': 'application/json'}),
+        data: {
+          'contents': [
+            {
+              'parts': [
+                {'text': prompt},
+                {
+                  'file_data': {'mime_type': fileMimeType, 'file_uri': fileUri},
+                },
+              ],
+            },
+          ],
+          'generationConfig': {
+            'responseMimeType': ?responseMimeType,
+            'temperature': 0.2,
+            'topK': 5,
+            'topP': 0.95,
+            'maxOutputTokens': 8192,
+          },
+          'safetySettings': [
+            {
+              'category': 'HARM_CATEGORY_HARASSMENT',
+              'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
+            },
+            {
+              'category': 'HARM_CATEGORY_HATE_SPEECH',
+              'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
+            },
+            {
+              'category': 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+              'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
+            },
+            {
+              'category': 'HARM_CATEGORY_DANGEROUS_CONTENT',
+              'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
+            },
+          ],
+        },
+      );
+
+      final jsonResponse = response.data;
+      final candidates = jsonResponse['candidates'] as List?;
+
+      if (candidates != null && candidates.isNotEmpty) {
+        final content = candidates[0]['content']['parts'][0]['text'];
+        return content?.toString().trim() ?? localizations.noResponseReceived;
+      } else {
+        return localizations.noResponseReceived;
+      }
+    } on DioException catch (e) {
+      String errorMessage = localizations.aiErrorResponse;
+      try {
+        final data = e.response?.data;
+        if (data != null &&
+            data['error'] != null &&
+            data['error']['message'] != null) {
+          errorMessage += ': ${data['error']['message']}';
+        } else {
+          errorMessage += ': ${e.message}';
+        }
+      } catch (_) {
+        errorMessage += ': ${e.message}';
+      }
+      throw Exception(errorMessage);
+    } catch (e) {
+      throw Exception(localizations.networkErrorGemini);
+    }
+  }
+
+  @override
+  Future<String> generateStudyIndex(
+    AppLocalizations localizations, {
+    required String fileUri,
+    required String fileMimeType,
+  }) async {
+    final prompt =
+        '''
+Act as an expert academic educator. Analyze the provided document and generate a structured study guide with a Table of Contents for a personalized study plan.
+
+Rules:
+1. Generate a concise title that summarizes the subject matter of the syllabus. Do NOT reference the document itself (e.g. avoid "Document about...", "This PDF covers..."). Just state the topic directly.
+2. Generate a brief description (2-3 sentences) explaining the syllabus content and its key learning objectives. Write it as if describing the subject, not the document.
+3. Divide the content into logical "Themes" or "Chapters" (chunks).
+4. Each theme should be granular enough to be studied in a single session.
+5. If a section is very long, break it down into sub-themes.
+6. For each theme, identify the start and end page (if the document has pages/is a PDF). If not, use estimated percentages or indices.
+7. High Priority: Chunks should feel like an index of a book.
+8. Themes should be logically treated as the main units of study.
+9. Output ONLY a valid JSON object with this structure:
+{
+  "title": "Subject Title",
+  "description": "Brief 2-3 sentence description of the syllabus and learning objectives.",
+  "chapters": [
+    {
+      "title": "Theme Title",
+      "startPage": 1,
+      "endPage": 3,
+      "summary": "Brief 1-sentence description of the topic covered. Do not reference the document."
+    }
+  ]
+}
+
+Current Language: ${localizations.localeName}
+''';
+
+    return getChatResponseWithFileUri(
+      prompt,
+      localizations,
+      responseMimeType: 'application/json',
+      fileUri: fileUri,
+      fileMimeType: fileMimeType,
+    );
   }
 }

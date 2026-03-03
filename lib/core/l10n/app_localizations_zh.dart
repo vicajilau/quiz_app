@@ -827,6 +827,38 @@ class AppLocalizationsZh extends AppLocalizations {
   String get aiGenerateButton => '生成问题';
 
   @override
+  String get studyScreenNoSlidesAvailable => '没有可用的学习部分。';
+
+  @override
+  String get studyScreenGenerating => '正在生成学习材料...';
+
+  @override
+  String get studyScreenError => '生成学习材料时发生错误。';
+
+  @override
+  String get studyScreenRetry => '重试';
+
+  @override
+  String get studyScreenNoSlidesGenerated => '没有生成幻灯片。';
+
+  @override
+  String get studyScreenPreviousSection => '上一页';
+
+  @override
+  String get studyScreenNextSection => '下一页';
+
+  @override
+  String studyScreenSectionIndicator(int current, int total) {
+    return '第 $current 页，共 $total 页';
+  }
+
+  @override
+  String get studyScreenAiSummaryTitle => 'AI 总结';
+
+  @override
+  String get studyScreenNoSummary => '没有可用的总结。';
+
+  @override
   String get aiEnterContentTitle => '输入内容';
 
   @override
@@ -1380,4 +1412,27 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get onboardingAiMultiLanguageDescription => '支持 13 种不同语言生成';
+
+  @override
+  String get documentTooLongForProcessing => '该文档可能太长，无法在此MVP中一次性处理。';
+
+  @override
+  String get studyScreenCoverage => '覆盖率';
+
+  @override
+  String get aiStudyLanguageLabel => '学习语言';
+
+  @override
+  String get studyScreenStudyGuide => '学习指南';
+
+  @override
+  String get studyScreenSections => '章节';
+
+  @override
+  String studyScreenChaptersCount(int count) {
+    return '$count 个章节';
+  }
+
+  @override
+  String get studyScreenCompleted => '已完成';
 }

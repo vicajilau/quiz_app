@@ -1,0 +1,163 @@
+// Copyright (C) 2026 Víctor Carreras
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+import 'package:flutter/material.dart';
+import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/theme/app_theme.dart';
+import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
+
+class StudyIndexHeroCard extends StatelessWidget {
+  final StudyExecutionState state;
+  final AppLocalizations localizations;
+
+  const StudyIndexHeroCard({
+    super.key,
+    required this.state,
+    required this.localizations,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final summaryColor = isDark ? AppTheme.zinc400 : AppTheme.zinc500;
+    final statCardBg = isDark ? const Color(0xFF1F1F23) : AppTheme.zinc100;
+    final statLabelColor = isDark ? AppTheme.zinc500 : AppTheme.zinc400;
+    final completedValueColor =
+        isDark ? const Color(0xFF5EEAD4) : AppTheme.secondaryColor;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: isDark ? AppTheme.cardColorDark : Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: isDark
+            ? null
+            : Border.all(color: AppTheme.borderColor, width: 1),
+      ),
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(
+                Icons.menu_book_rounded,
+                size: 18,
+                color: AppTheme.primaryColor,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                localizations.studyScreenStudyGuide,
+                style: theme.textTheme.labelMedium?.copyWith(
+                  color: AppTheme.primaryColor,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 0.5,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Text(
+            state.documentTitle,
+            style: theme.textTheme.titleLarge?.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          if (state.documentSummary != null &&
+              state.documentSummary!.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            Text(
+              state.documentSummary!,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: summaryColor,
+                height: 1.5,
+              ),
+            ),
+          ],
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              _buildStatCard(
+                context,
+                value: '${state.chunks.length}',
+                label: localizations.studyScreenSections,
+                cardBg: statCardBg,
+                labelColor: statLabelColor,
+              ),
+              const SizedBox(width: 12),
+              _buildStatCard(
+                context,
+                value: '${state.progressPercentage.toStringAsFixed(0)}%',
+                label: localizations.studyScreenCoverage,
+                valueColor: AppTheme.primaryColor,
+                cardBg: statCardBg,
+                labelColor: statLabelColor,
+              ),
+              const SizedBox(width: 12),
+              _buildStatCard(
+                context,
+                value: '${state.processedChunks}/${state.chunks.length}',
+                label: localizations.studyScreenCompleted,
+                valueColor: completedValueColor,
+                cardBg: statCardBg,
+                labelColor: statLabelColor,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatCard(
+    BuildContext context, {
+    required String value,
+    required String label,
+    Color? valueColor,
+    required Color cardBg,
+    required Color labelColor,
+  }) {
+    final theme = Theme.of(context);
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        decoration: BoxDecoration(
+          color: cardBg,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          children: [
+            Text(
+              value,
+              style: theme.textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.w700,
+                color: valueColor,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w500,
+                color: labelColor,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -18,11 +18,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizdy/core/context_extension.dart';
+import 'package:quizdy/data/services/file_service/document_text_extractor.dart';
 import 'package:quizdy/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 import 'package:quizdy/presentation/utils/dialog_drop_guard.dart';
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/routes/app_router.dart';
 import 'package:quizdy/core/constants/quiz_metadata.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
@@ -30,8 +30,13 @@ import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quizdy/presentation/screens/dialogs/quiz_metadata_dialog.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
-import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
 import 'package:quizdy/presentation/screens/dialogs/ai_generate_questions_dialog.dart';
+import 'package:quizdy/presentation/screens/dialogs/ai_generate_study_dialog.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
+import 'package:quizdy/domain/models/ai/ai_study_generation_config.dart';
+import 'package:quizdy/data/services/ai/ai_document_chunking_service.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
@@ -39,6 +44,7 @@ import 'package:quizdy/core/extensions/string_extensions.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_header_widget.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_drop_zone_widget.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_footer_widget.dart';
+import 'package:quizdy/domain/use_cases/initialize_quiz_chunks_use_case.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -48,8 +54,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool _isLoading = false;
   bool _isDragging = false;
+  bool _isLoading = false;
+  String? _loadingText;
 
   void _pickFile(BuildContext context) {
     if (_isLoading) return;
@@ -120,8 +127,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
       // Show loading
       setState(() => _isLoading = true);
-      // Wait a frame to show loading
-      await Future.delayed(Duration.zero);
 
       try {
         // Generate questions with AI
@@ -134,7 +139,10 @@ class _HomeScreenState extends State<HomeScreen> {
         );
 
         if (generatedQuestions.isEmpty) {
-          setState(() => _isLoading = false);
+          setState(() {
+            _isLoading = false;
+            _loadingText = null;
+          });
           if (context.mounted) {
             context.presentSnackBar(
               AppLocalizations.of(context)!.aiGenerationFailed,
@@ -179,130 +187,287 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  Future<void> _startStudyModeWithAI(BuildContext context) async {
+    try {
+      final isAiAvailable = await ConfigurationService.instance
+          .getIsAiAvailable();
+
+      if (!isAiAvailable) {
+        if (context.mounted) {
+          context.presentSnackBar(
+            AppLocalizations.of(context)!.aiApiKeyRequired,
+          );
+        }
+        return;
+      }
+
+      // Show AI generation dialog
+      if (!context.mounted) return;
+      final config = await showDialog<AiStudyGenerationConfig>(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const AiGenerateStudyDialog(),
+      );
+
+      if (config == null || !context.mounted) return;
+
+      // Show loading state immediately (compute handles yielding)
+      setState(() {
+        _isLoading = true;
+        _loadingText = null;
+      });
+
+      try {
+        if (!context.mounted) return;
+        final localizations = AppLocalizations.of(context)!;
+
+        String documentText = '';
+        String documentTitle = '';
+        String? documentSummary;
+
+        if (config.hasFile) {
+          try {
+            documentText = await DocumentTextExtractor.extractText(
+              config.file!,
+            );
+            documentTitle = config.file!.name;
+          } catch (e) {
+            throw Exception(e.toString());
+          }
+        } else {
+          documentText = config.content;
+          documentTitle = localizations.studyModeLabel; // Generic title
+        }
+
+        if (documentText.isEmpty) {
+          throw Exception('Document text cannot be empty.');
+        }
+
+        final documentId = 'study_${DateTime.now().millisecondsSinceEpoch}';
+
+        List<StudyChunk> initialChunks = [];
+        String? fileUri;
+
+        if (config.hasFile) {
+          // Use AI-driven indexing for files
+          final initializeUseCase = InitializeQuizChunksUseCase();
+          final result = await initializeUseCase.generateChunksOnly(
+            file: config.file!,
+            documentId: documentId,
+            localizations: localizations,
+          );
+          initialChunks = result['chunks'] as List<StudyChunk>;
+          fileUri = result['fileUri'] as String?;
+          // Use AI-generated title/description if available
+          final aiTitle = result['title'] as String?;
+          final aiDescription = result['description'] as String?;
+          if (aiTitle != null && aiTitle.isNotEmpty) {
+            documentTitle = aiTitle;
+          }
+          if (aiDescription != null && aiDescription.isNotEmpty) {
+            documentSummary = aiDescription;
+          }
+        } else {
+          // Fallback to text-based chunking for raw content
+          final chunkingService = AiDocumentChunkingService.instance;
+          final sourceReferences = await chunkingService.chunkDocument(
+            documentText,
+            documentId,
+            localizations,
+          );
+
+          if (sourceReferences.isEmpty) {
+            throw Exception(localizations.aiGenerationFailed);
+          }
+
+          initialChunks = sourceReferences.asMap().entries.map((entry) {
+            return StudyChunk(
+              chunkIndex: entry.key,
+              status: StudyChunkState.created,
+              sourceReference: entry.value,
+              aiSummary: null,
+              slides: null,
+            );
+          }).toList();
+        }
+
+        if (context.mounted) {
+          setState(() => _isLoading = false);
+          // 3. Navigate to Study screen
+          context.push(
+            AppRoutes.studyScreen,
+            extra: {
+              'initialChunks': initialChunks,
+              'fileAttachment': config.file,
+              'fileUri': fileUri, // Pass the processed file URI
+              'documentTitle': documentTitle,
+              'documentSummary': documentSummary,
+            },
+          );
+        }
+      } catch (e) {
+        if (context.mounted) {
+          setState(() => _isLoading = false);
+          await showDialog(
+            context: context,
+            builder: (context) => CustomConfirmDialog(
+              title: AppLocalizations.of(context)!.aiGenerationErrorTitle,
+              message: e.toString().cleanExceptionPrefix(),
+              confirmText: AppLocalizations.of(context)!.acceptButton,
+              showCloseButton: false,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        setState(() => _isLoading = false);
+        context.presentSnackBar('Error: ${e.toString()}');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<FileBloc>.value(
-      value: ServiceLocator.instance.getIt<FileBloc>(),
-      child: BlocListener<FileBloc, FileState>(
-        listener: (context, state) async {
-          if (state is FileLoaded) {
-            setState(() => _isLoading = false);
-            context.go(AppRoutes.fileLoadedScreen);
+    return BlocListener<FileBloc, FileState>(
+      listener: (context, state) async {
+        if (state is FileLoaded) {
+          setState(() => _isLoading = false);
+          context.go(AppRoutes.fileLoadedScreen);
+        }
+        if (state is FileError && context.mounted) {
+          setState(() => _isLoading = false);
+          if (state.error is BadQuizFileException) {
+            final badFileException = state.error as BadQuizFileException;
+            context.presentSnackBar(badFileException.toString());
+          } else {
+            context.presentSnackBar(state.getDescription(context));
           }
-          if (state is FileError && context.mounted) {
-            setState(() => _isLoading = false);
-            if (state.error is BadQuizFileException) {
-              final badFileException = state.error as BadQuizFileException;
-              context.presentSnackBar(badFileException.toString());
-            } else {
-              context.presentSnackBar(state.getDescription(context));
-            }
-          }
-          if (state is FileLoading) {
-            setState(() => _isLoading = true);
-          } else if (state is FileInitial) {
-            setState(() => _isLoading = false);
-          }
-        },
-        child: Builder(
-          builder: (context) {
-            return Scaffold(
-              body: DropTarget(
-                onDragDone: (details) {
-                  if (DialogDropGuard.isActive) {
-                    setState(() => _isDragging = false);
-                    return;
-                  }
-                  if (details.files.isNotEmpty && !_isLoading) {
-                    if (context.currentRoute != AppRoutes.home) return;
-
-                    final firstFile = details.files.first;
-                    if (firstFile.path.isNotEmpty) {
-                      if (!firstFile.name.toLowerCase().endsWith('.quiz')) {
-                        context.presentSnackBar(
-                          AppLocalizations.of(context)!.errorInvalidFile,
-                        );
-                        return;
-                      }
-                      context.read<FileBloc>().add(QuizFileReset());
-                      context.read<FileBloc>().add(FileDropped(firstFile.path));
-                    }
-                  }
+        }
+        if (state is FileLoading) {
+          setState(() => _isLoading = true);
+        } else if (state is FileInitial) {
+          setState(() => _isLoading = false);
+        }
+      },
+      child: Builder(
+        builder: (context) {
+          return Scaffold(
+            body: DropTarget(
+              onDragDone: (details) {
+                if (DialogDropGuard.isActive) {
                   setState(() => _isDragging = false);
-                },
-                onDragEntered: (_) {
-                  if (!DialogDropGuard.isActive) {
-                    setState(() => _isDragging = true);
-                  }
-                },
-                onDragExited: (_) => setState(() => _isDragging = false),
-                child: Stack(
-                  children: [
-                    SafeArea(
-                      child: LayoutBuilder(
-                        builder: (context, constraints) {
-                          final isMobile = constraints.maxWidth < 600;
-                          // Calculate the visual top margin:
-                          // SafeArea (padding.top) + Header centering offset ((72 - 48) / 2 = 12)
-                          final topPadding = MediaQuery.of(context).padding.top;
-                          final visualTopMargin = topPadding + 12.0;
+                  return;
+                }
+                if (details.files.isNotEmpty && !_isLoading) {
+                  if (context.currentRoute != AppRoutes.home) return;
 
-                          return SingleChildScrollView(
-                            child: ConstrainedBox(
-                              constraints: BoxConstraints(
-                                minHeight: constraints.maxHeight,
-                              ),
-                              child: IntrinsicHeight(
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: isMobile
-                                        ? visualTopMargin
-                                        : 48.0,
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      HomeHeaderWidget(
-                                        isLoading: _isLoading,
-                                        onSettingsTap: () =>
-                                            _showSettingsDialog(context),
+                  final firstFile = details.files.first;
+                  if (firstFile.path.isNotEmpty) {
+                    if (!firstFile.name.toLowerCase().endsWith('.quiz')) {
+                      context.presentSnackBar(
+                        AppLocalizations.of(context)!.errorInvalidFile,
+                      );
+                      return;
+                    }
+                    context.read<FileBloc>().add(QuizFileReset());
+                    context.read<FileBloc>().add(FileDropped(firstFile.path));
+                  }
+                }
+                setState(() => _isDragging = false);
+              },
+              onDragEntered: (_) {
+                if (!DialogDropGuard.isActive) {
+                  setState(() => _isDragging = true);
+                }
+              },
+              onDragExited: (_) => setState(() => _isDragging = false),
+              child: Stack(
+                children: [
+                  SafeArea(
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        final isMobile = constraints.maxWidth < 600;
+                        // Calculate the visual top margin:
+                        // SafeArea (padding.top) + Header centering offset ((72 - 48) / 2 = 12)
+                        final topPadding = MediaQuery.of(context).padding.top;
+                        final visualTopMargin = topPadding + 12.0;
+
+                        return SingleChildScrollView(
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minHeight: constraints.maxHeight,
+                            ),
+                            child: IntrinsicHeight(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: isMobile ? visualTopMargin : 48.0,
+                                ),
+                                child: Column(
+                                  children: [
+                                    HomeHeaderWidget(
+                                      isLoading: _isLoading,
+                                      onSettingsTap: () =>
+                                          _showSettingsDialog(context),
+                                    ),
+                                    Expanded(
+                                      child: HomeDropZoneWidget(
+                                        isDragging: _isDragging,
+                                        onTap: () => _pickFile(context),
                                       ),
-                                      Expanded(
-                                        child: HomeDropZoneWidget(
-                                          isDragging: _isDragging,
-                                          onTap: () => _pickFile(context),
-                                        ),
-                                      ),
-                                      HomeFooterWidget(
-                                        isLoading: _isLoading,
-                                        onCreateTap: () =>
-                                            _showCreateQuizFileDialog(context),
-                                        onGenerateAITap: () =>
-                                            _generateQuestionsWithAI(context),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                    HomeFooterWidget(
+                                      isLoading: _isLoading,
+                                      onCreateTap: () =>
+                                          _showCreateQuizFileDialog(context),
+                                      onGenerateAITap: () =>
+                                          _generateQuestionsWithAI(context),
+                                      onStudyModeTap: () =>
+                                          _startStudyModeWithAI(context),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
-                          );
-                        },
-                      ),
+                          ),
+                        );
+                      },
                     ),
-                    if (_isLoading)
-                      Positioned.fill(
-                        child: Container(
-                          color: Colors.black.withValues(alpha: 0.3),
-                          child: const Center(
-                            child: CircularProgressIndicator(),
+                  ),
+                  if (_isLoading)
+                    Positioned.fill(
+                      child: Container(
+                        color: Colors.black.withValues(alpha: 0.3),
+                        child: Center(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const CircularProgressIndicator(),
+                              if (_loadingText != null) ...[
+                                const SizedBox(height: 16),
+                                Material(
+                                  color: Colors.transparent,
+                                  child: Text(
+                                    _loadingText!,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            ],
                           ),
                         ),
                       ),
-                  ],
-                ),
+                    ),
+                ],
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

@@ -1725,5 +1725,48 @@
   "onboardingAiMultiLanguageDescription": "Xera en 13 idiomas diferentes",
   "@onboardingAiMultiLanguageDescription": {
     "description": "Descrición da función IA no acollemento"
-  }
+  },
+  "documentTooLongForProcessing": "O documento podería ser demasiado longo para procesalo dunha soa vez neste MVP.",
+  "@documentTooLongForProcessing": {
+    "description": "Error message when AI document processing fails due to document length"
+  },
+  "studyScreenNoSlidesAvailable": "Non hai seccións de estudo dispoñibles.",
+  "studyScreenGenerating": "Xerando materiais de estudo...",
+  "studyScreenError": "Produciuse un erro ao xerar o material de estudo.",
+  "studyScreenRetry": "Tentar de novo",
+  "studyScreenNoSlidesGenerated": "Non se xeraron diapositivas.",
+  "studyScreenPreviousSection": "Páxina anterior",
+  "studyScreenNextSection": "Páxina seguinte",
+  "studyScreenSectionIndicator": "Páxina {current} de {total}",
+  "@studyScreenSectionIndicator": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenAiSummaryTitle": "Resumo da IA",
+  "studyScreenNoSummary": "Non hai resumo dispoñible.",
+  "studyScreenCoverage": "Cobertura",
+  "@studyScreenCoverage": {
+    "description": "Label for the study coverage percentage"
+  },
+  "aiStudyLanguageLabel": "Idioma do estudo",
+  "@aiStudyLanguageLabel": {
+    "description": "Label for the language selector in study generation"
+  },
+  "studyScreenStudyGuide": "Guía de estudo",
+  "studyScreenSections": "Seccións",
+  "studyScreenChaptersCount": "{count} capítulos",
+  "@studyScreenChaptersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenCompleted": "Completado"
 }

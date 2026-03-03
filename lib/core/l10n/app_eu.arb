@@ -1725,5 +1725,48 @@
   "onboardingAiMultiLanguageDescription": "Sortu 13 hizkuntza desberdinetan",
   "@onboardingAiMultiLanguageDescription": {
     "description": "IA funtzioaren deskribapena ongietorrian"
-  }
+  },
+  "documentTooLongForProcessing": "Dokumentua luzeegia izan daiteke MVP honetan pasaldi batean prozesatzeko.",
+  "@documentTooLongForProcessing": {
+    "description": "Error message when AI document processing fails due to document length"
+  },
+  "studyScreenNoSlidesAvailable": "Ez dago ikasketa atalik erabilgarri.",
+  "studyScreenGenerating": "Ikasketa materiala sortzen...",
+  "studyScreenError": "Errore bat gertatu da ikasketa materiala sortzean.",
+  "studyScreenRetry": "Saiatu berriro",
+  "studyScreenNoSlidesGenerated": "Ez da diapositibarik sortu.",
+  "studyScreenPreviousSection": "Aurreko orria",
+  "studyScreenNextSection": "Hurrengo orria",
+  "studyScreenSectionIndicator": "{current}/{total} orria",
+  "@studyScreenSectionIndicator": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenAiSummaryTitle": "AI Laburpena",
+  "studyScreenNoSummary": "Ez dago laburpenik erabilgarri.",
+  "studyScreenCoverage": "Estaldura",
+  "@studyScreenCoverage": {
+    "description": "Label for the study coverage percentage"
+  },
+  "aiStudyLanguageLabel": "Ikasketa hizkuntza",
+  "@aiStudyLanguageLabel": {
+    "description": "Label for the language selector in study generation"
+  },
+  "studyScreenStudyGuide": "Ikasketa-gida",
+  "studyScreenSections": "Atalak",
+  "studyScreenChaptersCount": "{count} kapitulu",
+  "@studyScreenChaptersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenCompleted": "Burututa"
 }

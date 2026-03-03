@@ -683,5 +683,48 @@
   "onboardingAiMultiLanguageDescription": "Δημιουργία σε 13 διαφορετικές γλώσσες",
   "@onboardingAiMultiLanguageDescription": {
     "description": "Περιγραφή λειτουργίας AI στο καλωσόρισμα"
-  }
+  },
+  "documentTooLongForProcessing": "Το έγγραφο ενδέχεται να είναι πολύ μεγάλο για να επεξεργαστεί με ένα μόνο πέρασμα σε αυτό το MVP.",
+  "@documentTooLongForProcessing": {
+    "description": "Error message when AI document processing fails due to document length"
+  },
+  "studyScreenNoSlidesAvailable": "Δεν υπάρχουν διαθέσιμες ενότητες μελέτης.",
+  "studyScreenGenerating": "Δημιουργία υλικού μελέτης...",
+  "studyScreenError": "Παρουσιάστηκε σφάλμα κατά τη δημιουργία του υλικού μελέτης.",
+  "studyScreenRetry": "Δοκιμάστε ξανά",
+  "studyScreenNoSlidesGenerated": "Δεν δημιουργήθηκαν διαφάνειες.",
+  "studyScreenPreviousSection": "Προηγούμενη σελίδα",
+  "studyScreenNextSection": "Επόμενη σελίδα",
+  "studyScreenSectionIndicator": "Σελίδα {current} από {total}",
+  "@studyScreenSectionIndicator": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenAiSummaryTitle": "Σύνοψη τεχνητής νοημοσύνης",
+  "studyScreenNoSummary": "Δεν υπάρχει διαθέσιμη σύνοψη.",
+  "studyScreenCoverage": "Κάλυψη",
+  "@studyScreenCoverage": {
+    "description": "Label for the study coverage percentage"
+  },
+  "aiStudyLanguageLabel": "Γλώσσα Μελέτης",
+  "@aiStudyLanguageLabel": {
+    "description": "Label for the language selector in study generation"
+  },
+  "studyScreenStudyGuide": "Οδηγός μελέτης",
+  "studyScreenSections": "Ενότητες",
+  "studyScreenChaptersCount": "{count} κεφάλαια",
+  "@studyScreenChaptersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenCompleted": "Ολοκληρώθηκε"
 }

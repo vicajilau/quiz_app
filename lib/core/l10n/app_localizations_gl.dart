@@ -883,6 +883,40 @@ class AppLocalizationsGl extends AppLocalizations {
   String get aiGenerateButton => 'Xerar Preguntas';
 
   @override
+  String get studyScreenNoSlidesAvailable =>
+      'Non hai seccións de estudo dispoñibles.';
+
+  @override
+  String get studyScreenGenerating => 'Xerando materiais de estudo...';
+
+  @override
+  String get studyScreenError =>
+      'Produciuse un erro ao xerar o material de estudo.';
+
+  @override
+  String get studyScreenRetry => 'Tentar de novo';
+
+  @override
+  String get studyScreenNoSlidesGenerated => 'Non se xeraron diapositivas.';
+
+  @override
+  String get studyScreenPreviousSection => 'Páxina anterior';
+
+  @override
+  String get studyScreenNextSection => 'Páxina seguinte';
+
+  @override
+  String studyScreenSectionIndicator(int current, int total) {
+    return 'Páxina $current de $total';
+  }
+
+  @override
+  String get studyScreenAiSummaryTitle => 'Resumo da IA';
+
+  @override
+  String get studyScreenNoSummary => 'Non hai resumo dispoñible.';
+
+  @override
   String get aiEnterContentTitle => 'Introducir contido';
 
   @override
@@ -1469,4 +1503,28 @@ class AppLocalizationsGl extends AppLocalizations {
   @override
   String get onboardingAiMultiLanguageDescription =>
       'Xera en 13 idiomas diferentes';
+
+  @override
+  String get documentTooLongForProcessing =>
+      'O documento podería ser demasiado longo para procesalo dunha soa vez neste MVP.';
+
+  @override
+  String get studyScreenCoverage => 'Cobertura';
+
+  @override
+  String get aiStudyLanguageLabel => 'Idioma do estudo';
+
+  @override
+  String get studyScreenStudyGuide => 'Guía de estudo';
+
+  @override
+  String get studyScreenSections => 'Seccións';
+
+  @override
+  String studyScreenChaptersCount(int count) {
+    return '$count capítulos';
+  }
+
+  @override
+  String get studyScreenCompleted => 'Completado';
 }
