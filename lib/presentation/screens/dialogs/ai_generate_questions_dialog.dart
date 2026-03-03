@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mime/mime.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
@@ -27,6 +27,8 @@ import 'package:quizdy/domain/models/ai/ai_question_type.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step1_widget.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step2_widget.dart';
 import 'package:quizdy/presentation/utils/clipboard_image_helper.dart';
+import 'package:quizdy/presentation/utils/ai_file_helper.dart';
+import 'package:file_picker/file_picker.dart';
 
 class AiGenerateQuestionsDialog extends StatefulWidget {
   const AiGenerateQuestionsDialog({super.key});
@@ -137,6 +139,18 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
             }
           }
         });
+      }
+
+      if (settings.draftFilePath != null &&
+          settings.draftFilePath!.isNotEmpty) {
+        final attachment = await AiFileHelper.loadAttachmentFromPath(
+          settings.draftFilePath!,
+        );
+        if (mounted && attachment != null) {
+          setState(() {
+            _fileAttachment = attachment;
+          });
+        }
       }
 
       // Determine Service
@@ -261,7 +275,6 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
 
   @override
   void dispose() {
-    _saveDraft();
     _textController.dispose();
     _questionCountController.dispose();
     super.dispose();
@@ -270,6 +283,13 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   Future<void> _saveDraft() async {
     final keepDraft = await ConfigurationService.instance.getAiKeepDraft();
     if (keepDraft) {
+      String? persistentPath = _fileAttachment?.path;
+      if (_fileAttachment != null) {
+        persistentPath = await AiFileHelper.saveAttachmentForDraft(
+          _fileAttachment!,
+        );
+      }
+
       final settings = AiGenerationStoredSettings(
         serviceName: _selectedService?.serviceName,
         modelName: _selectedModel,
@@ -277,6 +297,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
         questionCount: _questionCount,
         questionTypes: _selectedQuestionTypes.map((t) => t.toString()).toList(),
         draftText: _textController.text.trim(),
+        draftFilePath: persistentPath,
       );
       await ConfigurationService.instance.saveAiGenerationSettings(settings);
     }
@@ -302,6 +323,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
                   ) ??
                   'application/octet-stream',
               name: pickedFile.name,
+              path: pickedFile.path,
             );
           });
         }
@@ -436,6 +458,12 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
         getWordCountText: _getWordCountText,
         getWordCount: _getWordCount,
         getTopicCount: _getTopicCount,
+        onGenerate: (config) async {
+          await _saveDraft();
+          if (context.mounted) {
+            context.pop(config);
+          }
+        },
       );
     }
   }

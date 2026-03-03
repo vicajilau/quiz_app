@@ -33,6 +33,7 @@ class ConfigurationService {
 
   static const String _aiKeepDraftKey = 'ai_keep_draft';
   static const String _aiDraftTextKey = 'ai_draft_text';
+  static const String _aiDraftFilePathKey = 'ai_draft_file_path';
   static const String _aiGenerationServiceKey = 'ai_generation_service';
   static const String _aiGenerationModelKey = 'ai_generation_model';
   static const String _aiGenerationLanguageKey = 'ai_generation_language';
@@ -269,6 +270,14 @@ class ConfigurationService {
 
     if (settings.draftText != null) {
       await prefs.setString(_aiDraftTextKey, settings.draftText!);
+    } else {
+      await prefs.remove(_aiDraftTextKey);
+    }
+
+    if (settings.draftFilePath != null) {
+      await prefs.setString(_aiDraftFilePathKey, settings.draftFilePath!);
+    } else {
+      await prefs.remove(_aiDraftFilePathKey);
     }
   }
 
@@ -283,6 +292,7 @@ class ConfigurationService {
       questionCount: prefs.getInt(_aiGenerationQuestionCountKey),
       questionTypes: prefs.getStringList(_aiGenerationQuestionTypesKey),
       draftText: prefs.getString(_aiDraftTextKey),
+      draftFilePath: prefs.getString(_aiDraftFilePathKey),
     );
   }
 
