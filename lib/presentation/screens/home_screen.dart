@@ -223,6 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         String documentText = '';
         String documentTitle = '';
+        String? documentSummary;
 
         if (config.hasFile) {
           try {
@@ -257,6 +258,15 @@ class _HomeScreenState extends State<HomeScreen> {
           );
           initialChunks = result['chunks'] as List<StudyChunk>;
           fileUri = result['fileUri'] as String?;
+          // Use AI-generated title/description if available
+          final aiTitle = result['title'] as String?;
+          final aiDescription = result['description'] as String?;
+          if (aiTitle != null && aiTitle.isNotEmpty) {
+            documentTitle = aiTitle;
+          }
+          if (aiDescription != null && aiDescription.isNotEmpty) {
+            documentSummary = aiDescription;
+          }
         } else {
           // Fallback to text-based chunking for raw content
           final chunkingService = AiDocumentChunkingService.instance;
@@ -291,6 +301,7 @@ class _HomeScreenState extends State<HomeScreen> {
               'fileAttachment': config.file,
               'fileUri': fileUri, // Pass the processed file URI
               'documentTitle': documentTitle,
+              'documentSummary': documentSummary,
             },
           );
         }
