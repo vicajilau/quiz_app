@@ -73,6 +73,7 @@ GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
           initialChunks: extra['initialChunks'] ?? [],
           fileAttachment: extra['fileAttachment'] as AiFileAttachment?,
           documentTitle: extra['documentTitle'] ?? '',
+          documentSummary: extra['documentSummary'] as String?,
           quizFile: extra['quizFile'] as QuizFile?,
         );
       },
