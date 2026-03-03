@@ -1760,5 +1760,16 @@
   "aiStudyLanguageLabel": "学習言語",
   "@aiStudyLanguageLabel": {
     "description": "Label for the language selector in study generation"
-  }
+  },
+  "studyScreenStudyGuide": "学習ガイド",
+  "studyScreenSections": "セクション",
+  "studyScreenChaptersCount": "{count} 章",
+  "@studyScreenChaptersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenCompleted": "完了"
 }

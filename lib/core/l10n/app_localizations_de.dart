@@ -1512,4 +1512,18 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get aiStudyLanguageLabel => 'Studiensprache';
+
+  @override
+  String get studyScreenStudyGuide => 'Studienleitfaden';
+
+  @override
+  String get studyScreenSections => 'Abschnitte';
+
+  @override
+  String studyScreenChaptersCount(int count) {
+    return '$count Kapitel';
+  }
+
+  @override
+  String get studyScreenCompleted => 'Abgeschlossen';
 }

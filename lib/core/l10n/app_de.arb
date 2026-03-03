@@ -1853,5 +1853,16 @@
   "aiStudyLanguageLabel": "Studiensprache",
   "@aiStudyLanguageLabel": {
     "description": "Label for the language selector in study generation"
-  }
+  },
+  "studyScreenStudyGuide": "Studienleitfaden",
+  "studyScreenSections": "Abschnitte",
+  "studyScreenChaptersCount": "{count} Kapitel",
+  "@studyScreenChaptersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenCompleted": "Abgeschlossen"
 }

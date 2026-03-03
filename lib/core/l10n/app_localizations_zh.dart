@@ -1421,4 +1421,18 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get aiStudyLanguageLabel => '学习语言';
+
+  @override
+  String get studyScreenStudyGuide => '学习指南';
+
+  @override
+  String get studyScreenSections => '章节';
+
+  @override
+  String studyScreenChaptersCount(int count) {
+    return '$count 个章节';
+  }
+
+  @override
+  String get studyScreenCompleted => '已完成';
 }

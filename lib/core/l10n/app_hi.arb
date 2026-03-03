@@ -1760,5 +1760,16 @@
   "aiStudyLanguageLabel": "अध्ययन भाषा",
   "@aiStudyLanguageLabel": {
     "description": "Label for the language selector in study generation"
-  }
+  },
+  "studyScreenStudyGuide": "अध्ययन मार्गदर्शिका",
+  "studyScreenSections": "अनुभाग",
+  "studyScreenChaptersCount": "{count} अध्याय",
+  "@studyScreenChaptersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenCompleted": "पूर्ण"
 }

@@ -1865,5 +1865,9 @@
   "aiStudyLanguageLabel": "Idioma del estudio",
   "@aiStudyLanguageLabel": {
     "description": "Label for the language selector in study generation"
-  }
+  },
+  "studyScreenStudyGuide": "Guía de estudio",
+  "studyScreenSections": "Secciones",
+  "studyScreenChaptersCount": "{count} capítulos",
+  "studyScreenCompleted": "Completados"
 }

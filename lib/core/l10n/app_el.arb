@@ -715,5 +715,16 @@
   "aiStudyLanguageLabel": "Γλώσσα Μελέτης",
   "@aiStudyLanguageLabel": {
     "description": "Label for the language selector in study generation"
-  }
+  },
+  "studyScreenStudyGuide": "Οδηγός μελέτης",
+  "studyScreenSections": "Ενότητες",
+  "studyScreenChaptersCount": "{count} κεφάλαια",
+  "@studyScreenChaptersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenCompleted": "Ολοκληρώθηκε"
 }

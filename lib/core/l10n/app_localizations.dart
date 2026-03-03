@@ -2694,6 +2694,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Study Language'**
   String get aiStudyLanguageLabel;
+
+  /// Label shown in the study index hero card
+  ///
+  /// In en, this message translates to:
+  /// **'Study Guide'**
+  String get studyScreenStudyGuide;
+
+  /// Label for the sections list header in study index
+  ///
+  /// In en, this message translates to:
+  /// **'Sections'**
+  String get studyScreenSections;
+
+  /// Badge showing the number of chapters
+  ///
+  /// In en, this message translates to:
+  /// **'{count} chapters'**
+  String studyScreenChaptersCount(int count);
+
+  /// Label for completed chunks counter in study index
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get studyScreenCompleted;
 }
 
 class _AppLocalizationsDelegate

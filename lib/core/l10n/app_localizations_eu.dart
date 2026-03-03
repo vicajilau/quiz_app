@@ -1506,4 +1506,18 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get aiStudyLanguageLabel => 'Ikasketa hizkuntza';
+
+  @override
+  String get studyScreenStudyGuide => 'Ikasketa-gida';
+
+  @override
+  String get studyScreenSections => 'Atalak';
+
+  @override
+  String studyScreenChaptersCount(int count) {
+    return '$count kapitulu';
+  }
+
+  @override
+  String get studyScreenCompleted => 'Burututa';
 }

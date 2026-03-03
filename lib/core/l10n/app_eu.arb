@@ -1757,5 +1757,16 @@
   "aiStudyLanguageLabel": "Ikasketa hizkuntza",
   "@aiStudyLanguageLabel": {
     "description": "Label for the language selector in study generation"
-  }
+  },
+  "studyScreenStudyGuide": "Ikasketa-gida",
+  "studyScreenSections": "Atalak",
+  "studyScreenChaptersCount": "{count} kapitulu",
+  "@studyScreenChaptersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenCompleted": "Burututa"
 }

@@ -1817,5 +1817,16 @@
   "aiStudyLanguageLabel": "لغة الدراسة",
   "@aiStudyLanguageLabel": {
     "description": "Label for the language selector in study generation"
-  }
+  },
+  "studyScreenStudyGuide": "دليل الدراسة",
+  "studyScreenSections": "الأقسام",
+  "studyScreenChaptersCount": "{count} فصول",
+  "@studyScreenChaptersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenCompleted": "مكتمل"
 }

@@ -1514,4 +1514,18 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get aiStudyLanguageLabel => 'Γλώσσα Μελέτης';
+
+  @override
+  String get studyScreenStudyGuide => 'Οδηγός μελέτης';
+
+  @override
+  String get studyScreenSections => 'Ενότητες';
+
+  @override
+  String studyScreenChaptersCount(int count) {
+    return '$count κεφάλαια';
+  }
+
+  @override
+  String get studyScreenCompleted => 'Ολοκληρώθηκε';
 }

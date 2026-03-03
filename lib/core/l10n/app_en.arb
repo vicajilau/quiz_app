@@ -2028,5 +2028,26 @@
   "aiStudyLanguageLabel": "Study Language",
   "@aiStudyLanguageLabel": {
     "description": "Label for the language selector in study generation"
+  },
+  "studyScreenStudyGuide": "Study Guide",
+  "@studyScreenStudyGuide": {
+    "description": "Label shown in the study index hero card"
+  },
+  "studyScreenSections": "Sections",
+  "@studyScreenSections": {
+    "description": "Label for the sections list header in study index"
+  },
+  "studyScreenChaptersCount": "{count} chapters",
+  "@studyScreenChaptersCount": {
+    "description": "Badge showing the number of chapters",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studyScreenCompleted": "Completed",
+  "@studyScreenCompleted": {
+    "description": "Label for completed chunks counter in study index"
   }
 }
