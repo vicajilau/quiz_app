@@ -149,6 +149,7 @@ class QuestionOptionTile extends StatelessWidget {
               Container(
                 width: 24,
                 height: 24,
+                alignment: Alignment.center,
                 decoration: BoxDecoration(
                   shape: isMultipleChoice
                       ? BoxShape.rectangle
