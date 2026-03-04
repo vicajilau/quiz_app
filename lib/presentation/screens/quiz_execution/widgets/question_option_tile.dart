@@ -182,7 +182,7 @@ class QuestionOptionTile extends StatelessWidget {
               Expanded(
                 child: LaTeXText(translatedOption, style: optionTextStyle),
               ),
-              if (statusBadge != null) statusBadge,
+              ?statusBadge,
             ],
           ),
         ),
