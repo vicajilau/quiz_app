@@ -19,7 +19,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/service_locator.dart';
-import 'package:quizdy/data/services/file_service/document_text_extractor.dart';
 import 'package:quizdy/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 import 'package:quizdy/presentation/utils/dialog_drop_guard.dart';
 
@@ -226,23 +225,8 @@ class _HomeScreenState extends State<HomeScreen> {
         String documentTitle = '';
         String? documentSummary;
 
-        if (config.hasFile) {
-          try {
-            documentText = await DocumentTextExtractor.extractText(
-              config.file!,
-            );
-            documentTitle = config.file!.name;
-          } catch (e) {
-            throw Exception(e.toString());
-          }
-        } else {
-          documentText = config.content;
-          documentTitle = localizations.studyModeLabel; // Generic title
-        }
-
-        if (documentText.isEmpty) {
-          throw Exception('Document text cannot be empty.');
-        }
+        documentText = config.content;
+        documentTitle = localizations.studyModeLabel; // Generic title
 
         final documentId = 'study_${DateTime.now().millisecondsSinceEpoch}';
 
@@ -270,7 +254,8 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         } else {
           // Fallback to text-based chunking for raw content
-          final chunkingService = ServiceLocator.getIt<AiDocumentChunkingService>();
+          final chunkingService =
+              ServiceLocator.getIt<AiDocumentChunkingService>();
           final sourceReferences = await chunkingService.chunkDocument(
             documentText,
             documentId,

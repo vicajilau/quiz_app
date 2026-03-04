@@ -27,7 +27,6 @@ import 'package:quizdy/domain/models/quiz/question_type.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
-import 'package:quizdy/data/services/file_service/document_text_extractor.dart';
 
 class AiQuestionGenerationService {
   static const String _openaiApiUrl =
@@ -45,17 +44,6 @@ class AiQuestionGenerationService {
     try {
       // If we have a file attached, let's extract its text first and convert to a content flow
       AiQuestionGenerationConfig executionConfig = config;
-      if (config.hasFile) {
-        final extractedText = await DocumentTextExtractor.extractText(
-          config.file!,
-        );
-        executionConfig = config.copyWith(
-          content:
-              '${config.content}\n\n---\n\nFile Content (${config.file!.name}):\n$extractedText',
-          file:
-              null, // Clear file so it processes as a standard text-based prompt
-        );
-      }
 
       // If a preferred service is specified, use it directly
       if (executionConfig.preferredService != null && localizations != null) {
@@ -121,6 +109,7 @@ class AiQuestionGenerationService {
           prompt,
           localizations,
           model: config.preferredModel,
+          responseMimeType: 'application/json',
           file: config.file!,
         );
       } else {
@@ -174,8 +163,8 @@ class AiQuestionGenerationService {
           },
           userMessage,
         ],
-        'max_tokens': 3000,
-        'temperature': 0.7,
+        'max_tokens': 8192,
+        'temperature': 0.2,
       }),
     );
 
@@ -208,6 +197,7 @@ class AiQuestionGenerationService {
               fullPrompt,
               localizations,
               model: config.preferredModel,
+              responseMimeType: 'application/json',
               file: config.file!,
             );
       } else {
@@ -242,7 +232,7 @@ class AiQuestionGenerationService {
           : '';
       header =
           '''
-          Based on the given context, generate $questionCountText quiz questions $questionTypesText in $languageText.
+          Based on the attached file, generate $questionCountText quiz questions $questionTypesText in $languageText.
           $commentsSection''';
     } else if (config.isTopicMode) {
       header =
