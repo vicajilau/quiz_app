@@ -18,6 +18,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/extensions/string_extensions.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
@@ -44,6 +45,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _errorKey = GlobalKey();
   final GlobalKey _aiSettingsKey = GlobalKey();
+  final configurationService = ServiceLocator.getIt<ConfigurationService>();
 
   bool _isGeminiKeyVisible = false;
   bool _isOpenAiKeyVisible = false;
@@ -56,14 +58,12 @@ class _SettingsDialogState extends State<SettingsDialog> {
 
   Future<void> _loadSettings() async {
     try {
-      final service = ConfigurationService.instance;
-
       // Load all configurations
-      final apiKey = await service.getOpenAIApiKey();
-      final geminiApiKey = await service.getGeminiApiKey();
-      _keepAiDraft = await service.getAiKeepDraft();
-      _defaultAIModel = await service.getDefaultAIModel();
-      _aiAssistantEnabled = await service.getIsAiAvailable();
+      final apiKey = await configurationService.getOpenAIApiKey();
+      final geminiApiKey = await configurationService.getGeminiApiKey();
+      _keepAiDraft = await configurationService.getAiKeepDraft();
+      _defaultAIModel = await configurationService.getDefaultAIModel();
+      _aiAssistantEnabled = await configurationService.getIsAiAvailable();
 
       if (mounted) {
         setState(() {
@@ -120,23 +120,21 @@ class _SettingsDialogState extends State<SettingsDialog> {
       return; // Don't save if validation fails
     }
 
-    await ConfigurationService.instance.saveAIAssistantEnabled(
-      _aiAssistantEnabled,
-    );
-    await ConfigurationService.instance.saveAiKeepDraft(_keepAiDraft);
+    await configurationService.saveAIAssistantEnabled(_aiAssistantEnabled);
+    await configurationService.saveAiKeepDraft(_keepAiDraft);
 
     // Save OpenAI API Key securely (only if valid format)
     if (hasValidOpenAI) {
-      await ConfigurationService.instance.saveOpenAIApiKey(apiKey);
+      await configurationService.saveOpenAIApiKey(apiKey);
     } else {
-      await ConfigurationService.instance.deleteOpenAIApiKey();
+      await configurationService.deleteOpenAIApiKey();
     }
 
     // Save Gemini API Key securely (only if valid format)
     if (hasValidGemini) {
-      await ConfigurationService.instance.saveGeminiApiKey(geminiApiKey);
+      await configurationService.saveGeminiApiKey(geminiApiKey);
     } else {
-      await ConfigurationService.instance.deleteGeminiApiKey();
+      await configurationService.deleteGeminiApiKey();
     }
 
     if (mounted) {
@@ -167,15 +165,15 @@ class _SettingsDialogState extends State<SettingsDialog> {
     final geminiKey = _geminiApiKeyController.text.trim();
 
     if (openaiKey.isValidOpenAIApiKey) {
-      await ConfigurationService.instance.saveOpenAIApiKey(openaiKey);
+      await configurationService.saveOpenAIApiKey(openaiKey);
     } else {
-      await ConfigurationService.instance.deleteOpenAIApiKey();
+      await configurationService.deleteOpenAIApiKey();
     }
 
     if (geminiKey.isValidGeminiApiKey) {
-      await ConfigurationService.instance.saveGeminiApiKey(geminiKey);
+      await configurationService.saveGeminiApiKey(geminiKey);
     } else {
-      await ConfigurationService.instance.deleteGeminiApiKey();
+      await configurationService.deleteGeminiApiKey();
     }
   }
 
@@ -332,7 +330,8 @@ class _OnboardingRow extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(12),
       onTap: () async {
-        await ConfigurationService.instance.setOnboardingCompleted(false);
+        await ServiceLocator.getIt<ConfigurationService>()
+            .setOnboardingCompleted(false);
         if (context.mounted) {
           context.pop();
           context.push('${AppRoutes.onboarding}?from=settings');

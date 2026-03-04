@@ -27,13 +27,7 @@ class _TextBatch {
 
 /// Service responsible for parsing documents into semantic chunks locally.
 class AiDocumentChunkingService {
-  static AiDocumentChunkingService? _instance;
-
-  /// Singleton instance
-  static AiDocumentChunkingService get instance =>
-      _instance ??= AiDocumentChunkingService._();
-
-  AiDocumentChunkingService._();
+  AiDocumentChunkingService();
 
   /// Identifies structural chunks within a document locally.
   ///

@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/presentation/blocs/onboarding_cubit/onboarding_state.dart';
 
@@ -37,6 +38,8 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   }
 
   Future<void> completeOnboarding() async {
-    await ConfigurationService.instance.setOnboardingCompleted(true);
+    await ServiceLocator.getIt<ConfigurationService>().setOnboardingCompleted(
+      true,
+    );
   }
 }

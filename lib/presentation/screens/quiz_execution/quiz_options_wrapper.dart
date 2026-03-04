@@ -42,7 +42,7 @@ class _QuizOptionsWrapperState extends State<QuizOptionsWrapper> {
 
   Future<void> _loadConfiguration() async {
     // Get settings from ServiceLocator
-    final quizConfig = ServiceLocator.instance.getQuizConfig();
+    final quizConfig = ServiceLocator.getQuizConfig();
     final isStudyMode = quizConfig?.isStudyMode ?? false;
     final showCorrectAnswerCount = quizConfig?.showCorrectAnswerCount ?? false;
 

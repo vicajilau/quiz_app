@@ -15,6 +15,7 @@
 
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/presentation/utils/dialog_drop_guard.dart';
 
 /// A drop zone wrapper for use inside dialogs.
@@ -45,12 +46,12 @@ class _DialogDropZoneState extends State<DialogDropZone> {
   void initState() {
     super.initState();
     // Block global drag & drop while this dialog is open
-    DialogDropGuard.activate();
+    ServiceLocator.getIt<DialogDropGuard>().activate();
   }
 
   @override
   void dispose() {
-    DialogDropGuard.deactivate();
+    ServiceLocator.getIt<DialogDropGuard>().deactivate();
     super.dispose();
   }
 

@@ -60,11 +60,9 @@ class ConfigurationService {
   static const String _lastQuizMaxIncorrectAnswersKey =
       'last_quiz_max_incorrect_answers';
 
-  static ConfigurationService? _instance;
-  static ConfigurationService get instance =>
-      _instance ??= ConfigurationService._();
+  final SharedPreferences sharedPreferences;
 
-  ConfigurationService._();
+  ConfigurationService({required this.sharedPreferences});
 
   /// Gets whether onboarding has been completed
   Future<bool> getOnboardingCompleted() async {

@@ -58,7 +58,7 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
   }
 
   Future<void> _loadQuizSettings() async {
-    final randomizeAnswers = await ConfigurationService.instance
+    final randomizeAnswers = await ServiceLocator.getIt<ConfigurationService>()
         .getRandomizeAnswers();
 
     if (mounted) {
@@ -108,20 +108,18 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
             BlocProvider<QuizExecutionBloc>(
               create: (_) {
                 final quizConfig =
-                    ServiceLocator.instance.getQuizConfig() ??
+                    ServiceLocator.getQuizConfig() ??
                     QuizConfig(
                       questionCount: questionsToUse.length,
                       isStudyMode: false,
                     );
 
-                return ServiceLocator.instance.getIt<QuizExecutionBloc>()..add(
+                return ServiceLocator.getIt<QuizExecutionBloc>()..add(
                   QuizExecutionStarted(questionsToUse, quizConfig: quizConfig),
                 );
               },
             ),
-            BlocProvider.value(
-              value: ServiceLocator.instance.getIt<FileBloc>(),
-            ),
+            BlocProvider.value(value: ServiceLocator.getIt<FileBloc>()),
           ],
           child: Builder(
             builder: (context) => BlocListener<FileBloc, FileState>(
@@ -203,13 +201,13 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
 
   Future<List<Question>> _prepareQuizQuestions() async {
     // Get the configured question count from service locator
-    final quizConfig = ServiceLocator.instance.getQuizConfig();
+    final quizConfig = ServiceLocator.getQuizConfig();
     final questionCount =
         quizConfig?.questionCount ?? widget.quizFile.questions.length;
 
     // Get the configured question order
-    final storedQuestionOrder = await ConfigurationService.instance
-        .getQuestionOrder();
+    final storedQuestionOrder =
+        await ServiceLocator.getIt<ConfigurationService>().getQuestionOrder();
     final questionOrder = quizConfig?.questionOrder ?? storedQuestionOrder;
 
     // Filter out disabled questions first

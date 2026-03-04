@@ -172,7 +172,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
   /// Handle importing questions from a dropped file
   Future<void> _handleFileImport(String filePath) async {
     try {
-      final repository = ServiceLocator.instance.getIt<QuizFileRepository>();
+      final repository = ServiceLocator.getIt<QuizFileRepository>();
 
       // Load the file content directly without updating the original file reference
       // This prevents the "Save" button from appearing prematurely
@@ -250,7 +250,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
   /// Handle generating questions with AI
   Future<void> _generateQuestionsWithAI() async {
     try {
-      final isAiAvailable = await ConfigurationService.instance
+      final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
           .getIsAiAvailable();
 
       if (!isAiAvailable) {
@@ -282,7 +282,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
 
       try {
         // Generate questions with AI
-        final aiService = AiQuestionGenerationService();
+        final aiService = ServiceLocator.getIt<AiQuestionGenerationService>();
         final localizations = AppLocalizations.of(context)!;
         final generatedQuestions = await aiService.generateQuestions(
           config,
@@ -684,7 +684,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                       return;
                     }
                     setState(() => _isDragging = false);
-                    if (DialogDropGuard.isActive) return;
+                    if (ServiceLocator.getIt<DialogDropGuard>().isActive) return;
                     if (details.files.isNotEmpty) {
                       final firstFile = details.files.first;
                       if (firstFile.path.isNotEmpty) {
@@ -701,7 +701,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                     }
                   },
                   onDragEntered: (_) {
-                    if (!DialogDropGuard.isActive) {
+                    if (!ServiceLocator.getIt<DialogDropGuard>().isActive) {
                       setState(() => _isDragging = true);
                     }
                   },
@@ -870,8 +870,8 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                         );
                       }
 
-                      ServiceLocator.instance.registerQuizFile(quizFileToUse);
-                      ServiceLocator.instance.registerQuizConfig(quizConfig);
+                      ServiceLocator.registerQuizFile(quizFileToUse);
+                      ServiceLocator.registerQuizConfig(quizConfig);
                       context.push(AppRoutes.quizFileExecutionScreen);
                     }
                   },

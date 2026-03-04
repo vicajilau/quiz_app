@@ -19,6 +19,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 
 import 'package:quizdy/data/services/configuration_service.dart';
@@ -70,6 +71,8 @@ class _QuestionCountSelectionDialogState
   final FocusNode _questionCountFocusNode = FocusNode();
   final FocusNode _penaltyFocusNode = FocusNode();
   final FocusNode _maxIncorrectAnswersFocusNode = FocusNode();
+
+  final configurationService = ServiceLocator.getIt<ConfigurationService>();
 
   @override
   void initState() {
@@ -143,8 +146,7 @@ class _QuestionCountSelectionDialogState
   }
 
   Future<void> _loadSavedSettings() async {
-    final settings = await ConfigurationService.instance
-        .getQuizConfigSettings();
+    final settings = await configurationService.getQuizConfigSettings();
     if (mounted) {
       setState(() {
         if (settings.questionCount != null) {
@@ -199,8 +201,8 @@ class _QuestionCountSelectionDialogState
   }
 
   Future<void> _loadExamTimeSettings() async {
-    final enabled = await ConfigurationService.instance.getExamTimeEnabled();
-    final minutes = await ConfigurationService.instance.getExamTimeMinutes();
+    final enabled = await configurationService.getExamTimeEnabled();
+    final minutes = await configurationService.getExamTimeMinutes();
     if (mounted) {
       setState(() {
         _examTimeEnabled = enabled;
@@ -314,7 +316,7 @@ class _QuestionCountSelectionDialogState
     }
 
     if (mounted) {
-      ConfigurationService.instance.saveQuizConfigSettings(
+      configurationService.saveQuizConfigSettings(
         QuizConfigStoredSettings(
           questionCount: finalCount,
           isStudyMode: _isStudyMode,
@@ -328,8 +330,8 @@ class _QuestionCountSelectionDialogState
         ),
       );
       // Also save exam time settings individually for now as they are still used elsewhere
-      ConfigurationService.instance.saveExamTimeEnabled(_examTimeEnabled);
-      ConfigurationService.instance.saveExamTimeMinutes(_examTimeMinutes);
+      configurationService.saveExamTimeEnabled(_examTimeEnabled);
+      configurationService.saveExamTimeMinutes(_examTimeMinutes);
 
       context.pop(
         QuizConfig(

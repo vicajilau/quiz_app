@@ -19,10 +19,10 @@ import 'package:quizdy/data/services/ai/gemini_service.dart';
 
 /// Service to automatically select the available AI service
 class AIServiceSelector {
-  static AIServiceSelector? _instance;
-  static AIServiceSelector get instance => _instance ??= AIServiceSelector._();
+  AIServiceSelector({required this.geminiService, required this.openAIService});
 
-  AIServiceSelector._();
+  final GeminiService geminiService;
+  final OpenAIService openAIService;
 
   /// Gets the first available AI service
   Future<AIService?> getAvailableService() async {
@@ -35,15 +35,15 @@ class AIServiceSelector {
     final services = <AIService>[];
 
     // Check Gemini
-    final geminiService = GeminiService.instance;
+
     if (await geminiService.isAvailable()) {
       services.add(geminiService);
     }
 
     // Check OpenAI
-    final openaiService = OpenAIService.instance;
-    if (await openaiService.isAvailable()) {
-      services.add(openaiService);
+
+    if (await openAIService.isAvailable()) {
+      services.add(openAIService);
     }
 
     return services;
@@ -57,12 +57,9 @@ class AIServiceSelector {
 
   /// Gets information about all configured services
   Future<Map<String, bool>> getServicesStatus() async {
-    final openaiService = OpenAIService.instance;
-    final geminiService = GeminiService.instance;
-
     return {
       'Gemini': await geminiService.isAvailable(),
-      'OpenAI': await openaiService.isAvailable(),
+      'OpenAI': await openAIService.isAvailable(),
     };
   }
 }

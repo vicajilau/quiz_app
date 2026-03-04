@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:mime/mime.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/ai/ai_study_generation_stored_settings.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
@@ -46,6 +47,7 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
   bool _isLoadingServices = true;
 
   AiFileAttachment? _fileAttachment;
+  final configurationService = ServiceLocator.getIt<ConfigurationService>();
 
   List<String> get _supportedLanguages {
     return AppLocalizations.supportedLocales
@@ -70,7 +72,8 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
     });
 
     try {
-      final services = await AIServiceSelector.instance.getAvailableServices();
+      final services = await ServiceLocator.getIt<AIServiceSelector>()
+          .getAvailableServices();
       if (mounted) {
         setState(() {
           _availableServices = services;
@@ -90,14 +93,14 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
   }
 
   Future<void> _loadDraft() async {
-    final keepDraft = await ConfigurationService.instance.getAiStudyKeepDraft();
+    final keepDraft = await configurationService.getAiStudyKeepDraft();
     AIService? serviceToSet;
     String? modelToSet;
 
     final services = _availableServices;
 
     if (keepDraft) {
-      final settings = await ConfigurationService.instance
+      final settings = await configurationService
           .getAiStudyGenerationSettings();
 
       if (mounted) {
@@ -120,8 +123,7 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
       }
 
       if (serviceToSet == null && services.isNotEmpty) {
-        final defaultService = await ConfigurationService.instance
-            .getDefaultAIService();
+        final defaultService = await configurationService.getDefaultAIService();
         if (defaultService != null) {
           serviceToSet = services
               .where((s) => s.serviceName == defaultService)
@@ -137,8 +139,7 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
       }
 
       if (modelToSet == null && serviceToSet != null) {
-        final defaultModel = await ConfigurationService.instance
-            .getDefaultAIModel();
+        final defaultModel = await configurationService.getDefaultAIModel();
         if (defaultModel != null &&
             serviceToSet.availableModels.contains(defaultModel)) {
           modelToSet = defaultModel;
@@ -148,8 +149,7 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
       }
     } else {
       if (services.isNotEmpty) {
-        final defaultService = await ConfigurationService.instance
-            .getDefaultAIService();
+        final defaultService = await configurationService.getDefaultAIService();
         if (defaultService != null) {
           serviceToSet = services
               .where((s) => s.serviceName == defaultService)
@@ -216,11 +216,11 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
   }
 
   Future<void> _saveDraft() async {
-    final keepDraft = await ConfigurationService.instance.getAiStudyKeepDraft();
+    final keepDraft = await configurationService.getAiStudyKeepDraft();
 
     if (!keepDraft) {
       // Clear draft explicitly if keep draft is disabled
-      await ConfigurationService.instance.saveAiStudyGenerationSettings(
+      await configurationService.saveAiStudyGenerationSettings(
         const AiStudyGenerationStoredSettings(draftText: ''),
       );
       return;
@@ -228,7 +228,7 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
 
     final String textToSave = _textController.text.trim();
 
-    await ConfigurationService.instance.saveAiStudyGenerationSettings(
+    await configurationService.saveAiStudyGenerationSettings(
       AiStudyGenerationStoredSettings(
         serviceName: _selectedService?.serviceName,
         modelName: _selectedModel,
@@ -274,7 +274,7 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
 
   Future<void> _pasteFromClipboard() async {
     final attachment =
-        await ClipboardImageHelper.getClipboardImageAsAttachment();
+        await ServiceLocator.getIt<ClipboardImageHelper>().getClipboardImageAsAttachment();
     if (!mounted) return;
     if (attachment != null) {
       setState(() {

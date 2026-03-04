@@ -15,9 +15,10 @@
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:quizdy/core/service_locator.dart';
+import 'package:quizdy/data/services/ai/gemini_service.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
-import 'package:quizdy/data/services/ai/gemini_service.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/ai/openai_content_block.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
@@ -31,6 +32,10 @@ import 'package:quizdy/data/services/file_service/document_text_extractor.dart';
 class AiQuestionGenerationService {
   static const String _openaiApiUrl =
       'https://api.openai.com/v1/chat/completions';
+
+  final ConfigurationService configurationService;
+
+  AiQuestionGenerationService({required this.configurationService});
 
   /// Generates questions using AI based on the provided configuration
   Future<List<Question>> generateQuestions(
@@ -62,8 +67,8 @@ class AiQuestionGenerationService {
       }
 
       // Verify that at least one API key is configured
-      final openaiKey = await ConfigurationService.instance.getOpenAIApiKey();
-      final geminiKey = await ConfigurationService.instance.getGeminiApiKey();
+      final openaiKey = await configurationService.getOpenAIApiKey();
+      final geminiKey = await configurationService.getGeminiApiKey();
 
       if ((openaiKey?.isEmpty ?? true) && (geminiKey?.isEmpty ?? true)) {
         throw Exception('No API key configured for AI services');
@@ -198,14 +203,15 @@ class AiQuestionGenerationService {
     try {
       final String response;
       if (config.hasFile) {
-        response = await GeminiService.instance.getChatResponseWithFile(
-          fullPrompt,
-          localizations,
-          model: config.preferredModel,
-          file: config.file!,
-        );
+        response = await ServiceLocator.getIt<GeminiService>()
+            .getChatResponseWithFile(
+              fullPrompt,
+              localizations,
+              model: config.preferredModel,
+              file: config.file!,
+            );
       } else {
-        response = await GeminiService.instance.getChatResponse(
+        response = await ServiceLocator.getIt<GeminiService>().getChatResponse(
           fullPrompt,
           localizations,
           model: config.preferredModel,
