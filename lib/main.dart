@@ -30,7 +30,7 @@ import 'package:quizdy/presentation/blocs/locale_cubit/locale_state.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setUrlStrategy(null);
-  ServiceLocator.instance.setup();
+  await ServiceLocator.setup();
   await initAppRouter();
 
   runApp(const QuizApplication());
@@ -49,7 +49,7 @@ class _QuizApplicationState extends State<QuizApplication> {
     super.initState();
     FileHandler.initialize((filePath) {
       if (mounted) {
-        final fileBloc = ServiceLocator.instance.getIt<FileBloc>();
+        final fileBloc = ServiceLocator.getIt<FileBloc>();
         fileBloc.add(FileDropped(filePath));
       }
     });
@@ -60,9 +60,7 @@ class _QuizApplicationState extends State<QuizApplication> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => LocaleCubit()),
-        BlocProvider<FileBloc>.value(
-          value: ServiceLocator.instance.getIt<FileBloc>(),
-        ),
+        BlocProvider<FileBloc>.value(value: ServiceLocator.getIt<FileBloc>()),
       ],
       child: BlocBuilder<LocaleCubit, LocaleState>(
         builder: (context, state) {
