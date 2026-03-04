@@ -96,7 +96,6 @@ class QuestionOptionTile extends StatelessWidget {
         borderColor = theme.colorScheme.onSurface;
         backgroundColor = theme.colorScheme.onSurface.withValues(alpha: 0.05);
         iconColor = theme.colorScheme.onSurface;
-        // User previously copied the correctSelectedLabel string here, but let's restore the correct label 'correctMissedLabel' conceptually
         statusBadge = _buildStatusBadge(
           localizations.correctMissedLabel,
           Colors.green,
