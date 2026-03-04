@@ -37,6 +37,11 @@ class QuizQuestionOptionsResult extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
+    final theme = Theme.of(context);
+    final localizations = AppLocalizations.of(context)!;
+    final isMultipleChoice =
+        result.question.type == QuestionType.multipleChoice;
+
     return Column(
       children: [
         ...result.question.options.asMap().entries.map((entry) {
@@ -47,42 +52,44 @@ class QuizQuestionOptionsResult extends StatelessWidget {
 
           Color? backgroundColor;
           Color? borderColor;
-          IconData? icon;
           Color? iconColor;
           Color? textColor;
+          Widget? statusBadge;
           FontWeight fontWeight = FontWeight.normal;
 
           if (isCorrect && wasSelected) {
-            // Correct answer selected - Bright green
             backgroundColor = Colors.green.withValues(alpha: 0.15);
             borderColor = Colors.green;
-            icon = Icons.check_circle;
             iconColor = Colors.green;
             textColor = Colors.green.shade800;
             fontWeight = FontWeight.w600;
+            statusBadge = _buildStatusBadge(
+              localizations.correctSelectedLabel,
+              Colors.green,
+            );
           } else if (isCorrect && !wasSelected) {
-            // Correct answer NOT selected - Orange/Yellow (missed)
-            backgroundColor = Colors.orange.withValues(alpha: 0.1);
-            borderColor = Colors.orange;
-            icon = Icons.radio_button_unchecked;
-            iconColor = Colors.orange;
-            textColor = Colors.orange.shade800;
+            backgroundColor = theme.colorScheme.onSurface.withValues(
+              alpha: 0.05,
+            );
+            borderColor = theme.colorScheme.onSurface;
+            textColor = theme.colorScheme.onSurface;
             fontWeight = FontWeight.w500;
+            statusBadge = _buildStatusBadge(
+              localizations.correctMissedLabel,
+              Colors.green,
+            );
           } else if (!isCorrect && wasSelected) {
-            // Incorrect answer selected - Red
             backgroundColor = Colors.red.withValues(alpha: 0.1);
             borderColor = Colors.red;
-            icon = Icons.cancel;
             iconColor = Colors.red;
             textColor = Colors.red.shade800;
             fontWeight = FontWeight.w500;
+            statusBadge = _buildStatusBadge(
+              localizations.incorrectSelectedLabel,
+              Colors.red,
+            );
           } else {
-            // Answer not selected and incorrect - Neutral gray
-            backgroundColor = null;
-            borderColor = null;
-            icon = null;
-            iconColor = null;
-            textColor = Theme.of(context).colorScheme.onSurface;
+            textColor = theme.colorScheme.onSurface;
           }
 
           return Container(
@@ -91,23 +98,45 @@ class QuizQuestionOptionsResult extends StatelessWidget {
             decoration: BoxDecoration(
               color: backgroundColor,
               borderRadius: BorderRadius.circular(8.0),
-              border: borderColor != null
-                  ? Border.all(color: borderColor, width: 1.5)
-                  : Border.all(
-                      color: Theme.of(
-                        context,
-                      ).dividerColor.withValues(alpha: 0.3),
-                    ),
+              border: Border.all(
+                color: borderColor ?? theme.dividerColor.withValues(alpha: 0.3),
+                width: 1.5,
+              ),
             ),
             child: Row(
               children: [
-                if (icon != null) Icon(icon, size: 22, color: iconColor),
-                if (icon != null) const SizedBox(width: 12),
+                Container(
+                  width: 24,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    shape: isMultipleChoice
+                        ? BoxShape.rectangle
+                        : BoxShape.circle,
+                    borderRadius: isMultipleChoice
+                        ? BorderRadius.circular(6)
+                        : null,
+                    border: Border.all(
+                      color: borderColor ?? theme.colorScheme.onSurface,
+                      width: 2,
+                    ),
+                    color: Colors.transparent,
+                  ),
+                  child: iconColor != null
+                      ? Icon(
+                          isMultipleChoice
+                              ? Icons.square_rounded
+                              : Icons.circle,
+                          size: 16,
+                          color: iconColor,
+                        )
+                      : null,
+                ),
+                const SizedBox(width: 12),
                 Expanded(
                   child: LaTeXText(
                     QuestionTranslationHelper.translateOption(
                       optionText,
-                      AppLocalizations.of(context)!,
+                      localizations,
                     ),
                     style: TextStyle(
                       color: textColor,
@@ -116,69 +145,31 @@ class QuizQuestionOptionsResult extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Add explanatory text for clarity
-                if (isCorrect && wasSelected)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 2,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      AppLocalizations.of(context)!.correctSelectedLabel,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                if (isCorrect && !wasSelected)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 2,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.orange,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      AppLocalizations.of(context)!.correctMissedLabel,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                if (!isCorrect && wasSelected)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 2,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      AppLocalizations.of(context)!.incorrectSelectedLabel,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                ?statusBadge,
               ],
             ),
           );
         }),
       ],
+    );
+  }
+
+  Widget _buildStatusBadge(String text, Color color) {
+    return Container(
+      margin: const EdgeInsets.only(left: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Text(
+        text,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 }

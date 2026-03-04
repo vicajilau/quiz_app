@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.8.2]
 
+- ui: Updated option indicator icons to use distinct visual shapes (e.g. rounded square for multiple-choice) instead of generic checkmarks.
 - feat: Unified Answer Option styling in Study Mode with Quiz Completed summary, bringing color-coded visual feedback for instant result clarification.
 - fix: Expanded click area to include the question title for expanding and collapsing the `QuestionPreviewCard`.
 - feat: Added "Paste" button to API key text fields in settings for quicker setup.
