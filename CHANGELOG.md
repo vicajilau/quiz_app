@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.8.2]
 
 - feat: Unified Answer Option styling in Study Mode with Quiz Completed summary, bringing color-coded visual feedback for instant result clarification.
+- fix: Expanded click area to include the question title for expanding and collapsing the `QuestionPreviewCard`.
 - feat: Added "Paste" button to API key text fields in settings for quicker setup.
 - fix: AI Generation dialog now properly saves and restores attached file paths across sessions.
 
