@@ -62,7 +62,9 @@ class QuestionOptionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final localizations = AppLocalizations.of(context)!;
+
     final translatedOption = QuestionTranslationHelper.translateOption(
       option,
       localizations,
@@ -70,82 +72,55 @@ class QuestionOptionTile extends StatelessWidget {
 
     final isValidatedStudyMode =
         isStudyMode && state.isCurrentQuestionValidated;
-    final isCorrect = isValidatedStudyMode
-        ? state.currentQuestion.correctAnswers.contains(index)
-        : false;
+    final isCorrect =
+        isValidatedStudyMode &&
+        state.currentQuestion.correctAnswers.contains(index);
+    final isMultipleChoice = questionType == QuestionType.multipleChoice;
 
     FontWeight fontWeight = isSelected ? FontWeight.w600 : FontWeight.normal;
-    Color borderColor = Theme.of(context).dividerColor.withValues(alpha: 0.5);
-    Color backgroundColor = Theme.of(context).cardColor;
+    Color borderColor = theme.dividerColor.withValues(alpha: 0.5);
+    Color backgroundColor = theme.cardColor;
     Color? iconColor;
-
-    Icon? indicatorIcon;
     Widget? statusBadge;
 
     if (isValidatedStudyMode) {
       if (isCorrect && isSelected) {
-        // Correct answer selected - Bright green
         backgroundColor = Colors.green.withValues(alpha: 0.15);
         borderColor = Colors.green;
         iconColor = Colors.green;
-        fontWeight = FontWeight.w600;
-        indicatorIcon = Icon(
-          questionType == QuestionType.multipleChoice
-              ? Icons.square_rounded
-              : Icons.circle,
-          size: 16,
-          color: Colors.green,
-        );
         statusBadge = _buildStatusBadge(
           localizations.correctSelectedLabel,
           Colors.green,
         );
       } else if (isCorrect && !isSelected) {
-        // Correct answer NOT selected - Orange/Yellow (missed)
-        borderColor = Theme.of(context).colorScheme.onSurface;
-        backgroundColor = Theme.of(
-          context,
-        ).colorScheme.onSurface.withValues(alpha: 0.05);
-        iconColor = Theme.of(context).colorScheme.onSurface;
+        borderColor = theme.colorScheme.onSurface;
+        backgroundColor = theme.colorScheme.onSurface.withValues(alpha: 0.05);
+        iconColor = theme.colorScheme.onSurface;
+        // User previously copied the correctSelectedLabel string here, but let's restore the correct label 'correctMissedLabel' conceptually
         statusBadge = _buildStatusBadge(
-          localizations.correctSelectedLabel,
+          localizations.correctMissedLabel,
           Colors.green,
         );
       } else if (!isCorrect && isSelected) {
-        // Incorrect answer selected - Red
         borderColor = Colors.red;
         backgroundColor = Colors.red.withValues(alpha: 0.1);
         iconColor = Colors.red;
         fontWeight = FontWeight.w500;
-        indicatorIcon = Icon(
-          questionType == QuestionType.multipleChoice
-              ? Icons.square_rounded
-              : Icons.circle,
-          size: 16,
-          color: Colors.red,
-        );
         statusBadge = _buildStatusBadge(
           localizations.incorrectSelectedLabel,
           Colors.red,
         );
       }
     } else if (isSelected) {
-      borderColor = Theme.of(context).primaryColor;
-      backgroundColor = Theme.of(context).primaryColor.withValues(alpha: 0.05);
-      iconColor = Theme.of(context).primaryColor;
-      indicatorIcon = Icon(
-        questionType == QuestionType.multipleChoice
-            ? Icons.square_rounded
-            : Icons.circle,
-        size: 16,
-        color: Theme.of(context).primaryColor,
-      );
+      borderColor = theme.primaryColor;
+      backgroundColor = theme.primaryColor.withValues(alpha: 0.05);
+      iconColor = theme.primaryColor;
     }
 
     final optionTextStyle = TextStyle(
       fontSize: 16,
       fontWeight: fontWeight,
-      color: isSelected ? (iconColor ?? Theme.of(context).primaryColor) : null,
+      color: isSelected ? (iconColor ?? theme.primaryColor) : null,
       fontFamily: 'Inter',
     );
 
@@ -176,23 +151,27 @@ class QuestionOptionTile extends StatelessWidget {
                 width: 24,
                 height: 24,
                 decoration: BoxDecoration(
-                  shape: questionType == QuestionType.multipleChoice
+                  shape: isMultipleChoice
                       ? BoxShape.rectangle
                       : BoxShape.circle,
-                  borderRadius: questionType == QuestionType.multipleChoice
+                  borderRadius: isMultipleChoice
                       ? BorderRadius.circular(6)
                       : null,
                   border: Border.all(
-                    color: isValidatedStudyMode
+                    color: (isSelected || isValidatedStudyMode)
                         ? borderColor
-                        : (isSelected
-                              ? Theme.of(context).primaryColor
-                              : Colors.grey.shade400),
+                        : Colors.grey.shade400,
                     width: 2,
                   ),
                   color: Colors.transparent,
                 ),
-                child: indicatorIcon,
+                child: isSelected
+                    ? Icon(
+                        isMultipleChoice ? Icons.square_rounded : Icons.circle,
+                        size: 16,
+                        color: iconColor,
+                      )
+                    : null,
               ),
               const SizedBox(width: 16),
               Expanded(
