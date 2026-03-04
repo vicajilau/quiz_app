@@ -38,7 +38,7 @@ void main() {
   late MockAppLocalizations mockLocalizations;
 
   setUp(() {
-    service = AiJitProcessingService.instance;
+    service = AiJitProcessingService();
     mockLocalizations = MockAppLocalizations();
   });
 

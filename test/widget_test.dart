@@ -21,12 +21,16 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/main.dart';
 import 'package:quizdy/routes/app_router.dart';
 
 void main() {
-  ServiceLocator.instance.setup();
+  setUpAll(() async {
+    SharedPreferences.setMockInitialValues({});
+    await ServiceLocator.setup();
+  });
 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Initialize the router directly to avoid SharedPreferences in tests.

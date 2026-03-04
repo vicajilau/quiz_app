@@ -34,7 +34,7 @@ void main() {
       final String longText = List.generate(1000, (i) => '1234567890').join('');
       expect(longText.length, 10000);
 
-      final refs = await AiDocumentChunkingService.instance.chunkDocument(
+      final refs = await AiDocumentChunkingService().chunkDocument(
         longText,
         'doc1',
         localizations,
