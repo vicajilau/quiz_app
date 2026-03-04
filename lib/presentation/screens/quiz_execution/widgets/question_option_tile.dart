@@ -68,12 +68,7 @@ class QuestionOptionTile extends StatelessWidget {
       localizations,
     );
 
-    final optionTextStyle = TextStyle(
-      fontSize: 16,
-      fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-    );
-
-    // Determine colors and border based on state
+    FontWeight fontWeight = isSelected ? FontWeight.w600 : FontWeight.normal;
     Color borderColor = Theme.of(context).dividerColor.withValues(alpha: 0.5);
     Color backgroundColor = Theme.of(context).cardColor;
     Color? iconColor;
@@ -82,27 +77,24 @@ class QuestionOptionTile extends StatelessWidget {
     if (isStudyMode && state.isCurrentQuestionValidated) {
       final isCorrect = state.currentQuestion.correctAnswers.contains(index);
 
-      // Background Color
-      if (isCorrect) {
-        backgroundColor = Colors.green.withValues(alpha: 0.1);
-      } else if (isSelected) {
-        backgroundColor = Colors.red.withValues(alpha: 0.1);
-      }
-
-      // Border Color
-      if (isSelected) {
-        borderColor = Theme.of(
-          context,
-        ).primaryColor; // User selection always Purple
-      } else if (isCorrect) {
-        borderColor = Colors.green; // Missed correct answer
-      }
-
-      // Icon Color (used for checkbox border in some cases)
-      if (isSelected) {
-        iconColor = Theme.of(context).primaryColor;
-      } else if (isCorrect) {
+      if (isCorrect && isSelected) {
+        // Correct answer selected - Bright green
+        backgroundColor = Colors.green.withValues(alpha: 0.15);
+        borderColor = Colors.green;
         iconColor = Colors.green;
+        fontWeight = FontWeight.w600;
+      } else if (isCorrect && !isSelected) {
+        // Correct answer NOT selected - Orange/Yellow (missed)
+        backgroundColor = Colors.orange.withValues(alpha: 0.1);
+        borderColor = Colors.orange;
+        iconColor = Colors.orange;
+        fontWeight = FontWeight.w500;
+      } else if (!isCorrect && isSelected) {
+        // Incorrect answer selected - Red
+        backgroundColor = Colors.red.withValues(alpha: 0.1);
+        borderColor = Colors.red;
+        iconColor = Colors.red;
+        fontWeight = FontWeight.w500;
       }
     }
     // Logic for normal selection styling
@@ -111,6 +103,8 @@ class QuestionOptionTile extends StatelessWidget {
       backgroundColor = Theme.of(context).primaryColor.withValues(alpha: 0.05);
       iconColor = Theme.of(context).primaryColor;
     }
+
+    final optionTextStyle = TextStyle(fontSize: 16, fontWeight: fontWeight);
 
     return Material(
       color: Colors.transparent,
@@ -139,13 +133,9 @@ class QuestionOptionTile extends StatelessWidget {
             color: backgroundColor,
             border: Border.all(
               color: borderColor,
-              width:
-                  isSelected ||
-                      (isStudyMode &&
-                          state.isCurrentQuestionValidated &&
-                          state.currentQuestion.correctAnswers.contains(index))
-                  ? 2
-                  : 1,
+              width: isStudyMode && state.isCurrentQuestionValidated
+                  ? 1.5
+                  : (isSelected ? 2 : 1),
             ),
             borderRadius: BorderRadius.circular(12),
           ),
@@ -164,38 +154,37 @@ class QuestionOptionTile extends StatelessWidget {
                       : null,
                   border: Border.all(
                     color: isStudyMode && state.isCurrentQuestionValidated
-                        ? (isSelected
-                              ? Theme.of(context).primaryColor
-                              : (state.currentQuestion.correctAnswers.contains(
-                                      index,
-                                    )
-                                    ? Colors.green
-                                    : Colors.grey.shade400))
+                        ? (borderColor)
                         : (isSelected
                               ? Theme.of(context).primaryColor
                               : Colors.grey.shade400),
                     width: 2,
                   ),
                   color: isStudyMode && state.isCurrentQuestionValidated
-                      ? Colors
-                            .transparent // Transparent in study mode to show colored icons
+                      ? Colors.transparent
                       : (isSelected ? Theme.of(context).primaryColor : null),
                 ),
                 child: () {
                   if (isStudyMode && state.isCurrentQuestionValidated) {
                     final isCorrect = state.currentQuestion.correctAnswers
                         .contains(index);
-                    if (isSelected) {
-                      return Icon(
-                        isCorrect ? Icons.check : Icons.close,
-                        size: 16,
-                        color: isCorrect ? Colors.green : Colors.red,
-                      );
-                    } else if (isCorrect) {
+                    if (isCorrect && isSelected) {
                       return const Icon(
                         Icons.check,
                         size: 16,
                         color: Colors.green,
+                      );
+                    } else if (isCorrect && !isSelected) {
+                      return const Icon(
+                        Icons.check,
+                        size: 16,
+                        color: Colors.orange,
+                      );
+                    } else if (!isCorrect && isSelected) {
+                      return const Icon(
+                        Icons.close,
+                        size: 16,
+                        color: Colors.red,
                       );
                     }
                   } else if (isSelected) {
@@ -220,6 +209,77 @@ class QuestionOptionTile extends StatelessWidget {
                   ),
                 ),
               ),
+              if (isStudyMode && state.isCurrentQuestionValidated) ...[
+                Builder(
+                  builder: (context) {
+                    final isCorrect = state.currentQuestion.correctAnswers
+                        .contains(index);
+
+                    if (isCorrect && isSelected) {
+                      return Container(
+                        margin: const EdgeInsets.only(left: 8),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 2,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          AppLocalizations.of(context)!.correctSelectedLabel,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      );
+                    } else if (isCorrect && !isSelected) {
+                      return Container(
+                        margin: const EdgeInsets.only(left: 8),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 2,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.orange,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          AppLocalizations.of(context)!.correctMissedLabel,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      );
+                    } else if (!isCorrect && isSelected) {
+                      return Container(
+                        margin: const EdgeInsets.only(left: 8),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 2,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          AppLocalizations.of(context)!.incorrectSelectedLabel,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  },
+                ),
+              ],
             ],
           ),
         ),
