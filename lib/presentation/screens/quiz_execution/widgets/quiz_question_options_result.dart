@@ -47,8 +47,7 @@ class QuizQuestionOptionsResult extends StatelessWidget {
 
           Color? backgroundColor;
           Color? borderColor;
-          IconData? icon;
-          Color? iconColor;
+          Icon? indicatorIcon;
           Color? textColor;
           FontWeight fontWeight = FontWeight.normal;
 
@@ -56,32 +55,43 @@ class QuizQuestionOptionsResult extends StatelessWidget {
             // Correct answer selected - Bright green
             backgroundColor = Colors.green.withValues(alpha: 0.15);
             borderColor = Colors.green;
-            icon = Icons.check_circle;
-            iconColor = Colors.green;
+            indicatorIcon = Icon(
+              result.question.type == QuestionType.multipleChoice
+                  ? Icons.square_rounded
+                  : Icons.circle,
+              size: 16,
+              color: Colors.green,
+            );
             textColor = Colors.green.shade800;
             fontWeight = FontWeight.w600;
           } else if (isCorrect && !wasSelected) {
-            // Correct answer NOT selected - Orange/Yellow (missed)
-            backgroundColor = Colors.orange.withValues(alpha: 0.1);
-            borderColor = Colors.orange;
-            icon = Icons.radio_button_unchecked;
-            iconColor = Colors.orange;
-            textColor = Colors.orange.shade800;
+            // Correct answer NOT selected
+            backgroundColor = Theme.of(
+              context,
+            ).colorScheme.onSurface.withValues(alpha: 0.05);
+            borderColor = Theme.of(context).colorScheme.onSurface;
+            indicatorIcon =
+                null; // We might want a check mark here based on previous changes, but let's stick to the container visually
+            textColor = Theme.of(context).colorScheme.onSurface;
             fontWeight = FontWeight.w500;
           } else if (!isCorrect && wasSelected) {
             // Incorrect answer selected - Red
             backgroundColor = Colors.red.withValues(alpha: 0.1);
             borderColor = Colors.red;
-            icon = Icons.cancel;
-            iconColor = Colors.red;
+            indicatorIcon = Icon(
+              result.question.type == QuestionType.multipleChoice
+                  ? Icons.square_rounded
+                  : Icons.circle,
+              size: 16,
+              color: Colors.red,
+            );
             textColor = Colors.red.shade800;
             fontWeight = FontWeight.w500;
           } else {
             // Answer not selected and incorrect - Neutral gray
             backgroundColor = null;
             borderColor = null;
-            icon = null;
-            iconColor = null;
+            indicatorIcon = null;
             textColor = Theme.of(context).colorScheme.onSurface;
           }
 
@@ -101,8 +111,28 @@ class QuizQuestionOptionsResult extends StatelessWidget {
             ),
             child: Row(
               children: [
-                if (icon != null) Icon(icon, size: 22, color: iconColor),
-                if (icon != null) const SizedBox(width: 12),
+                Container(
+                  width: 24,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    shape: result.question.type == QuestionType.multipleChoice
+                        ? BoxShape.rectangle
+                        : BoxShape.circle,
+                    borderRadius:
+                        result.question.type == QuestionType.multipleChoice
+                        ? BorderRadius.circular(6)
+                        : null,
+                    border: Border.all(
+                      color:
+                          borderColor ??
+                          Theme.of(context).colorScheme.onSurface,
+                      width: 2,
+                    ),
+                    color: Colors.transparent,
+                  ),
+                  child: indicatorIcon,
+                ),
+                const SizedBox(width: 12),
                 Expanded(
                   child: LaTeXText(
                     QuestionTranslationHelper.translateOption(
@@ -131,7 +161,7 @@ class QuizQuestionOptionsResult extends StatelessWidget {
                       AppLocalizations.of(context)!.correctSelectedLabel,
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 10,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -143,14 +173,14 @@ class QuizQuestionOptionsResult extends StatelessWidget {
                       vertical: 2,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.orange,
+                      color: Colors.green,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
                       AppLocalizations.of(context)!.correctMissedLabel,
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 10,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -169,7 +199,7 @@ class QuizQuestionOptionsResult extends StatelessWidget {
                       AppLocalizations.of(context)!.incorrectSelectedLabel,
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 10,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
