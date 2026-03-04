@@ -92,12 +92,7 @@ class GeminiService extends AIService {
               ],
             },
           ],
-          'generationConfig': {
-            'temperature': 0.2,
-            'topK': 5,
-            'topP': 0.95,
-            'maxOutputTokens': 8192,
-          },
+          'generationConfig': {'temperature': 0.2, 'topK': 5, 'topP': 0.95},
           'safetySettings': [
             {
               'category': 'HARM_CATEGORY_HARASSMENT',
@@ -187,12 +182,7 @@ class GeminiService extends AIService {
               ],
             },
           ],
-          'generationConfig': {
-            'temperature': 0.2,
-            'topK': 5,
-            'topP': 0.95,
-            'maxOutputTokens': 8192,
-          },
+          'generationConfig': {'temperature': 0.2, 'topK': 5, 'topP': 0.95},
           'safetySettings': [
             {
               'category': 'HARM_CATEGORY_HARASSMENT',
@@ -374,7 +364,6 @@ class GeminiService extends AIService {
             'temperature': 0.2,
             'topK': 5,
             'topP': 0.95,
-            'maxOutputTokens': 8192,
           },
           'safetySettings': [
             {
