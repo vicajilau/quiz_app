@@ -68,63 +68,77 @@ class QuestionOptionTile extends StatelessWidget {
       localizations,
     );
 
+    final isValidatedStudyMode =
+        isStudyMode && state.isCurrentQuestionValidated;
+    final isCorrect = isValidatedStudyMode
+        ? state.currentQuestion.correctAnswers.contains(index)
+        : false;
+
     FontWeight fontWeight = isSelected ? FontWeight.w600 : FontWeight.normal;
     Color borderColor = Theme.of(context).dividerColor.withValues(alpha: 0.5);
     Color backgroundColor = Theme.of(context).cardColor;
     Color? iconColor;
 
-    // Logic for Study Mode validation styling
-    if (isStudyMode && state.isCurrentQuestionValidated) {
-      final isCorrect = state.currentQuestion.correctAnswers.contains(index);
+    Icon? indicatorIcon;
+    Widget? statusBadge;
 
+    if (isValidatedStudyMode) {
       if (isCorrect && isSelected) {
         // Correct answer selected - Bright green
         backgroundColor = Colors.green.withValues(alpha: 0.15);
         borderColor = Colors.green;
         iconColor = Colors.green;
         fontWeight = FontWeight.w600;
+        indicatorIcon = const Icon(Icons.check, size: 16, color: Colors.green);
+        statusBadge = _buildStatusBadge(
+          localizations.correctSelectedLabel,
+          Colors.green,
+        );
       } else if (isCorrect && !isSelected) {
         // Correct answer NOT selected - Orange/Yellow (missed)
         backgroundColor = Colors.orange.withValues(alpha: 0.1);
         borderColor = Colors.orange;
         iconColor = Colors.orange;
         fontWeight = FontWeight.w500;
+        indicatorIcon = const Icon(Icons.check, size: 16, color: Colors.orange);
+        statusBadge = _buildStatusBadge(
+          localizations.correctMissedLabel,
+          Colors.orange,
+        );
       } else if (!isCorrect && isSelected) {
         // Incorrect answer selected - Red
         backgroundColor = Colors.red.withValues(alpha: 0.1);
         borderColor = Colors.red;
         iconColor = Colors.red;
         fontWeight = FontWeight.w500;
+        indicatorIcon = const Icon(Icons.close, size: 16, color: Colors.red);
+        statusBadge = _buildStatusBadge(
+          localizations.incorrectSelectedLabel,
+          Colors.red,
+        );
       }
-    }
-    // Logic for normal selection styling
-    else if (isSelected) {
+    } else if (isSelected) {
       borderColor = Theme.of(context).primaryColor;
       backgroundColor = Theme.of(context).primaryColor.withValues(alpha: 0.05);
       iconColor = Theme.of(context).primaryColor;
+      indicatorIcon = const Icon(Icons.check, size: 16, color: Colors.white);
     }
 
-    final optionTextStyle = TextStyle(fontSize: 16, fontWeight: fontWeight);
+    final optionTextStyle = TextStyle(
+      fontSize: 16,
+      fontWeight: fontWeight,
+      color: isSelected ? (iconColor ?? Theme.of(context).primaryColor) : null,
+      fontFamily: 'Inter',
+    );
 
     return Material(
       color: Colors.transparent,
       child: InkWell(
         onTap: () {
-          // Disable interaction if validated in study mode
-          if (isStudyMode && state.isCurrentQuestionValidated) return;
-
-          // Toggle for multiple choice
-          if (questionType == QuestionType.multipleChoice) {
-            context.read<QuizExecutionBloc>().add(
-              AnswerSelected(index, !isSelected),
-            );
-          }
-          // Select for single choice/others
-          else {
-            context.read<QuizExecutionBloc>().add(
-              AnswerSelected(index, !isSelected),
-            );
-          }
+          if (isValidatedStudyMode) return;
+          context.read<QuizExecutionBloc>().add(
+            AnswerSelected(index, !isSelected),
+          );
         },
         borderRadius: BorderRadius.circular(12),
         child: Container(
@@ -133,9 +147,7 @@ class QuestionOptionTile extends StatelessWidget {
             color: backgroundColor,
             border: Border.all(
               color: borderColor,
-              width: isStudyMode && state.isCurrentQuestionValidated
-                  ? 1.5
-                  : (isSelected ? 2 : 1),
+              width: isValidatedStudyMode ? 1.5 : (isSelected ? 2 : 1),
             ),
             borderRadius: BorderRadius.circular(12),
           ),
@@ -153,135 +165,45 @@ class QuestionOptionTile extends StatelessWidget {
                       ? BorderRadius.circular(6)
                       : null,
                   border: Border.all(
-                    color: isStudyMode && state.isCurrentQuestionValidated
-                        ? (borderColor)
+                    color: isValidatedStudyMode
+                        ? borderColor
                         : (isSelected
                               ? Theme.of(context).primaryColor
                               : Colors.grey.shade400),
                     width: 2,
                   ),
-                  color: isStudyMode && state.isCurrentQuestionValidated
+                  color: isValidatedStudyMode
                       ? Colors.transparent
                       : (isSelected ? Theme.of(context).primaryColor : null),
                 ),
-                child: () {
-                  if (isStudyMode && state.isCurrentQuestionValidated) {
-                    final isCorrect = state.currentQuestion.correctAnswers
-                        .contains(index);
-                    if (isCorrect && isSelected) {
-                      return const Icon(
-                        Icons.check,
-                        size: 16,
-                        color: Colors.green,
-                      );
-                    } else if (isCorrect && !isSelected) {
-                      return const Icon(
-                        Icons.check,
-                        size: 16,
-                        color: Colors.orange,
-                      );
-                    } else if (!isCorrect && isSelected) {
-                      return const Icon(
-                        Icons.close,
-                        size: 16,
-                        color: Colors.red,
-                      );
-                    }
-                  } else if (isSelected) {
-                    return const Icon(
-                      Icons.check,
-                      size: 16,
-                      color: Colors.white,
-                    );
-                  }
-                  return null;
-                }(),
+                child: indicatorIcon,
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: LaTeXText(
-                  translatedOption,
-                  style: optionTextStyle.copyWith(
-                    color: isSelected
-                        ? (iconColor ?? Theme.of(context).primaryColor)
-                        : null,
-                    fontFamily: 'Inter',
-                  ),
-                ),
+                child: LaTeXText(translatedOption, style: optionTextStyle),
               ),
-              if (isStudyMode && state.isCurrentQuestionValidated) ...[
-                Builder(
-                  builder: (context) {
-                    final isCorrect = state.currentQuestion.correctAnswers
-                        .contains(index);
-
-                    if (isCorrect && isSelected) {
-                      return Container(
-                        margin: const EdgeInsets.only(left: 8),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 2,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.green,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Text(
-                          AppLocalizations.of(context)!.correctSelectedLabel,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      );
-                    } else if (isCorrect && !isSelected) {
-                      return Container(
-                        margin: const EdgeInsets.only(left: 8),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 2,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.orange,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Text(
-                          AppLocalizations.of(context)!.correctMissedLabel,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      );
-                    } else if (!isCorrect && isSelected) {
-                      return Container(
-                        margin: const EdgeInsets.only(left: 8),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 2,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Text(
-                          AppLocalizations.of(context)!.incorrectSelectedLabel,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      );
-                    }
-                    return const SizedBox.shrink();
-                  },
-                ),
-              ],
+              if (statusBadge != null) statusBadge,
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStatusBadge(String text, Color color) {
+    return Container(
+      margin: const EdgeInsets.only(left: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Text(
+        text,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 10,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
