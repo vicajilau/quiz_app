@@ -123,12 +123,18 @@ class QuizQuestionOptionsResult extends StatelessWidget {
                     color: Colors.transparent,
                   ),
                   child: iconColor != null
-                      ? Icon(
-                          isMultipleChoice
-                              ? Icons.square_rounded
-                              : Icons.circle,
-                          size: 16,
-                          color: iconColor,
+                      ? Container(
+                          width: 14,
+                          height: 14,
+                          decoration: BoxDecoration(
+                            shape: isMultipleChoice
+                                ? BoxShape.rectangle
+                                : BoxShape.circle,
+                            borderRadius: isMultipleChoice
+                                ? BorderRadius.circular(4)
+                                : null,
+                            color: iconColor,
+                          ),
                         )
                       : null,
                 ),
