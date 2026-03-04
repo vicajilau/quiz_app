@@ -16,6 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizdy/core/extensions/string_extensions.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/data/services/ai/ai_service_selector.dart';
@@ -68,8 +69,9 @@ class _QuizQuestionEssayResultState extends State<QuizQuestionEssayResult> {
 
   /// Checks if AI services are enabled and available.
   Future<void> _checkAIAvailability() async {
-    final aiEnabled = await ConfigurationService.instance.getIsAiAvailable();
-    final availableServices = await AIServiceSelector.instance
+    final aiEnabled = await ServiceLocator.getIt<ConfigurationService>()
+        .getIsAiAvailable();
+    final availableServices = await ServiceLocator.getIt<AIServiceSelector>()
         .getAvailableServices();
 
     if (mounted) {

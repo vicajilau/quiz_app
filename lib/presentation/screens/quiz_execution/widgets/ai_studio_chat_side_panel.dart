@@ -16,6 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizdy/core/extensions/string_extensions.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/ai_assistant_theme.dart';
 import 'package:quizdy/core/extensions/focus_node_extension.dart';
@@ -130,7 +131,7 @@ class AiStudioChatSidePanelState extends State<AiStudioChatSidePanel> {
     _scrollToBottom();
 
     try {
-      final isAiEnabled = await ConfigurationService.instance
+      final isAiEnabled = await ServiceLocator.getIt<ConfigurationService>()
           .getIsAiAvailable();
       if (!isAiEnabled) {
         setState(() {

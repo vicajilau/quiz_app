@@ -18,6 +18,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mime/mime.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/data/services/ai/ai_service_selector.dart';
@@ -56,6 +57,8 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   // Question Count state
   int _questionCount = 5;
 
+  final configurationService = ServiceLocator.getIt<ConfigurationService>();
+
   List<String> get _supportedLanguages {
     return AppLocalizations.supportedLocales
         .map((locale) => locale.languageCode)
@@ -79,7 +82,8 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
     });
 
     try {
-      final services = await AIServiceSelector.instance.getAvailableServices();
+      final services = await ServiceLocator.getIt<AIServiceSelector>()
+          .getAvailableServices();
       if (mounted) {
         setState(() {
           _availableServices = services;
@@ -100,7 +104,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   }
 
   Future<void> _loadDraft() async {
-    final keepDraft = await ConfigurationService.instance.getAiKeepDraft();
+    final keepDraft = await configurationService.getAiKeepDraft();
     AIService? serviceToSet;
     String? modelToSet;
 
@@ -108,8 +112,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
     final services = _availableServices;
 
     if (keepDraft) {
-      final settings = await ConfigurationService.instance
-          .getAiGenerationSettings();
+      final settings = await configurationService.getAiGenerationSettings();
 
       if (mounted) {
         setState(() {
@@ -161,8 +164,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
       }
 
       if (serviceToSet == null && services.isNotEmpty) {
-        final defaultService = await ConfigurationService.instance
-            .getDefaultAIService();
+        final defaultService = await configurationService.getDefaultAIService();
         if (defaultService != null) {
           serviceToSet = services
               .where((s) => s.serviceName == defaultService)
@@ -179,8 +181,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
       }
 
       if (modelToSet == null && serviceToSet != null) {
-        final defaultModel = await ConfigurationService.instance
-            .getDefaultAIModel();
+        final defaultModel = await configurationService.getDefaultAIModel();
         if (defaultModel != null &&
             serviceToSet.availableModels.contains(defaultModel)) {
           modelToSet = defaultModel;
@@ -197,8 +198,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
             _questionCountController.text = '5';
           });
         }
-        final defaultService = await ConfigurationService.instance
-            .getDefaultAIService();
+        final defaultService = await configurationService.getDefaultAIService();
         if (defaultService != null) {
           serviceToSet = services
               .where((s) => s.serviceName == defaultService)
@@ -281,7 +281,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   }
 
   Future<void> _saveDraft() async {
-    final keepDraft = await ConfigurationService.instance.getAiKeepDraft();
+    final keepDraft = await configurationService.getAiKeepDraft();
     if (keepDraft) {
       String? persistentPath = _fileAttachment?.path;
       if (_fileAttachment != null) {
@@ -299,7 +299,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
         draftText: _textController.text.trim(),
         draftFilePath: persistentPath,
       );
-      await ConfigurationService.instance.saveAiGenerationSettings(settings);
+      await configurationService.saveAiGenerationSettings(settings);
     }
   }
 
@@ -340,7 +340,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
 
   Future<void> _pasteFromClipboard() async {
     final attachment =
-        await ClipboardImageHelper.getClipboardImageAsAttachment();
+        await ServiceLocator.getIt<ClipboardImageHelper>().getClipboardImageAsAttachment();
     if (!mounted) return;
     if (attachment != null) {
       setState(() {

@@ -14,7 +14,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/ai/ai_document_chunking_service.dart';
+import 'package:quizdy/data/services/ai/gemini_service.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/study.dart';
 import 'package:quizdy/domain/models/quiz/study_content.dart';
@@ -23,7 +25,6 @@ import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/quiz/source_reference.dart';
-import 'package:quizdy/data/services/ai/gemini_service.dart';
 
 /// Use case that configures the `.quiz` file with chunk boundaries identified by AI.
 class InitializeQuizChunksUseCase {
@@ -33,8 +34,8 @@ class InitializeQuizChunksUseCase {
   InitializeQuizChunksUseCase({
     AiDocumentChunkingService? chunkingService,
     AIService? aiService,
-  }) : _chunkingService = chunkingService ?? AiDocumentChunkingService.instance,
-       _aiService = aiService ?? GeminiService.instance;
+  }) : _chunkingService = chunkingService ?? ServiceLocator.getIt<AiDocumentChunkingService>(),
+       _aiService = aiService ?? ServiceLocator.getIt<GeminiService>();
 
   /// Executes the AI chunking and returns a new [QuizFile] updated with the `study` mapping.
   Future<QuizFile> execute(

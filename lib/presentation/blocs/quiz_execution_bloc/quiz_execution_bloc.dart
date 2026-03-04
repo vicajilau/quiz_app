@@ -30,7 +30,12 @@ import 'package:quizdy/core/extensions/string_extensions.dart';
 
 /// BLoC for managing quiz execution state and logic.
 class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
-  QuizExecutionBloc() : super(QuizExecutionInitial()) {
+  final AIServiceSelector aiServiceSelector;
+  final ConfigurationService configurationService;
+  QuizExecutionBloc({
+    required this.aiServiceSelector,
+    required this.configurationService,
+  }) : super(QuizExecutionInitial()) {
     // Handle quiz start
     on<QuizExecutionStarted>((event, emit) {
       emit(
@@ -254,8 +259,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
           _emitQuizCompleted(
             emit,
             currentState,
-            isAiAvailable: await ConfigurationService.instance
-                .getIsAiAvailable(),
+            isAiAvailable: await configurationService.getIsAiAvailable(),
           );
           return;
         }
@@ -415,8 +419,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
     }
 
     try {
-      final availableServices = await AIServiceSelector.instance
-          .getAvailableServices();
+      final availableServices = await aiServiceSelector.getAvailableServices();
       if (availableServices.isEmpty) {
         add(
           EssayAiEvaluationReceived(
@@ -429,10 +432,8 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
         return;
       }
 
-      final savedServiceName = await ConfigurationService.instance
-          .getDefaultAIService();
-      final savedModel = await ConfigurationService.instance
-          .getDefaultAIModel();
+      final savedServiceName = await configurationService.getDefaultAIService();
+      final savedModel = await configurationService.getDefaultAIModel();
 
       AIService? service;
       if (savedServiceName != null &&

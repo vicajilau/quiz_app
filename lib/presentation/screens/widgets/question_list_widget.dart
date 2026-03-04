@@ -16,6 +16,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:quizdy/core/context_extension.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/presentation/screens/dialogs/add_edit_question_dialog.dart';
@@ -58,7 +59,8 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
   }
 
   Future<void> _loadAISettings() async {
-    final aiEnabled = await ConfigurationService.instance.getIsAiAvailable();
+    final aiEnabled = await ServiceLocator.getIt<ConfigurationService>()
+        .getIsAiAvailable();
     setState(() {
       _aiAssistantEnabled = aiEnabled;
     });
@@ -240,8 +242,9 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
       onSelectionToggle: () => widget.onToggleSelection(index),
       onAiAssistant: (_aiAssistantEnabled && question.isEnabled)
           ? () async {
-              final isAiAvailable = await ConfigurationService.instance
-                  .getIsAiAvailable();
+              final isAiAvailable =
+                  await ServiceLocator.getIt<ConfigurationService>()
+                      .getIsAiAvailable();
 
               if (!mounted) return;
 

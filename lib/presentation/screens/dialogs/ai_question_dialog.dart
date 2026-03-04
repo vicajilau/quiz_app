@@ -16,6 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizdy/core/extensions/string_extensions.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
@@ -127,7 +128,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
 
     try {
       // Check if AI assistant is enabled
-      final isAiEnabled = await ConfigurationService.instance
+      final isAiEnabled = await ServiceLocator.getIt<ConfigurationService>()
           .getIsAiAvailable();
       if (!isAiEnabled) {
         setState(() {

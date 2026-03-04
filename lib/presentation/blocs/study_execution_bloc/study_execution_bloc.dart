@@ -15,11 +15,12 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
+import 'package:quizdy/data/services/ai/gemini_service.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
-import 'package:quizdy/data/services/ai/gemini_service.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
 
@@ -125,7 +126,7 @@ class StudyExecutionBloc
 
     if (fileUri == null && state.fileAttachment != null) {
       try {
-        fileUri = await GeminiService.instance.uploadFile(
+        fileUri = await ServiceLocator.getIt<GeminiService>().uploadFile(
           state.fileAttachment!,
           _localizations,
         );

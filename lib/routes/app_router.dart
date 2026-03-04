@@ -53,17 +53,16 @@ GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
     GoRoute(
       path: AppRoutes.fileLoadedScreen,
       builder: (context, state) => FileLoadedScreen(
-        fileBloc: ServiceLocator.instance.getIt<FileBloc>(),
-        checkFileChangesUseCase: ServiceLocator.instance
-            .getIt<CheckFileChangesUseCase>(),
-        quizFile: ServiceLocator.instance.getIt<QuizFile>(),
+        fileBloc: ServiceLocator.getIt<FileBloc>(),
+        checkFileChangesUseCase:
+            ServiceLocator.getIt<CheckFileChangesUseCase>(),
+        quizFile: ServiceLocator.getIt<QuizFile>(),
       ),
     ),
     GoRoute(
       path: AppRoutes.quizFileExecutionScreen,
-      builder: (context, state) => QuizFileExecutionScreen(
-        quizFile: ServiceLocator.instance.getIt<QuizFile>(),
-      ),
+      builder: (context, state) =>
+          QuizFileExecutionScreen(quizFile: ServiceLocator.getIt<QuizFile>()),
     ),
     GoRoute(
       path: AppRoutes.studyScreen,
@@ -99,7 +98,7 @@ late final GoRouter appRouter;
 
 /// Initializes the global [appRouter] by checking the onboarding status.
 Future<void> initAppRouter() async {
-  final completed = await ConfigurationService.instance
+  final completed = await ServiceLocator.getIt<ConfigurationService>()
       .getOnboardingCompleted();
   appRouter = buildAppRouter(showOnboarding: !completed);
 }

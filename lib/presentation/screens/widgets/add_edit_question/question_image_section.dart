@@ -21,6 +21,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/presentation/utils/clipboard_image_helper.dart';
 import 'package:quizdy/presentation/widgets/dialog_drop_zone.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
@@ -256,7 +257,7 @@ class _QuestionImageSectionState extends State<QuestionImageSection> {
   }
 
   Future<void> _pasteFromClipboard(BuildContext context) async {
-    final imageData = await ClipboardImageHelper.getClipboardImageAsBase64();
+    final imageData = await ServiceLocator.getIt<ClipboardImageHelper>().getClipboardImageAsBase64();
     if (!context.mounted) return;
     if (imageData != null) {
       widget.onImageChanged(imageData);

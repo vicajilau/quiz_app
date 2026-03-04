@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizdy/core/context_extension.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/file_service/document_text_extractor.dart';
 import 'package:quizdy/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 import 'package:quizdy/presentation/utils/dialog_drop_guard.dart';
@@ -103,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _generateQuestionsWithAI(BuildContext context) async {
     try {
-      final isAiAvailable = await ConfigurationService.instance
+      final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
           .getIsAiAvailable();
 
       if (!isAiAvailable) {
@@ -130,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
       try {
         // Generate questions with AI
-        final aiService = AiQuestionGenerationService();
+        final aiService = ServiceLocator.getIt<AiQuestionGenerationService>();
         if (!context.mounted) return;
         final localizations = AppLocalizations.of(context)!;
         final generatedQuestions = await aiService.generateQuestions(
@@ -189,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _startStudyModeWithAI(BuildContext context) async {
     try {
-      final isAiAvailable = await ConfigurationService.instance
+      final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
           .getIsAiAvailable();
 
       if (!isAiAvailable) {
@@ -269,7 +270,7 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         } else {
           // Fallback to text-based chunking for raw content
-          final chunkingService = AiDocumentChunkingService.instance;
+          final chunkingService = ServiceLocator.getIt<AiDocumentChunkingService>();
           final sourceReferences = await chunkingService.chunkDocument(
             documentText,
             documentId,
@@ -355,7 +356,7 @@ class _HomeScreenState extends State<HomeScreen> {
           return Scaffold(
             body: DropTarget(
               onDragDone: (details) {
-                if (DialogDropGuard.isActive) {
+                if (ServiceLocator.getIt<DialogDropGuard>().isActive) {
                   setState(() => _isDragging = false);
                   return;
                 }
@@ -377,7 +378,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 setState(() => _isDragging = false);
               },
               onDragEntered: (_) {
-                if (!DialogDropGuard.isActive) {
+                if (!ServiceLocator.getIt<DialogDropGuard>().isActive) {
                   setState(() => _isDragging = true);
                 }
               },

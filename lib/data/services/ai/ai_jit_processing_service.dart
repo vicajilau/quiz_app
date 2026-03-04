@@ -15,6 +15,7 @@
 
 import 'dart:convert';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/ai/gemini_service.dart';
 import 'package:quizdy/domain/models/quiz/slide.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
@@ -22,13 +23,7 @@ import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 
 /// Service responsible for Just-In-Time (JIT) processing of study chunks.
 class AiJitProcessingService {
-  static AiJitProcessingService? _instance;
-
-  /// Singleton instance
-  static AiJitProcessingService get instance =>
-      _instance ??= AiJitProcessingService._();
-
-  AiJitProcessingService._();
+  AiJitProcessingService();
 
   /// Processes a [StudyChunk] on-demand to generate its AI summary and UI slides.
   ///
@@ -57,7 +52,7 @@ class AiJitProcessingService {
     final prompt = _buildSystemPrompt(startPage, endPage, localizations);
 
     try {
-      final responseBody = await GeminiService.instance
+      final responseBody = await ServiceLocator.getIt<GeminiService>()
           .getChatResponseWithFileUri(
             prompt,
             localizations,

@@ -73,7 +73,8 @@ class _QuizInProgressViewState extends State<QuizInProgressView>
   }
 
   Future<void> _checkAiAvailability() async {
-    final isAvailable = await ConfigurationService.instance.getIsAiAvailable();
+    final isAvailable = await ServiceLocator.getIt<ConfigurationService>()
+        .getIsAiAvailable();
     if (mounted) {
       setState(() => _isAiAvailable = isAvailable);
     }
@@ -130,7 +131,7 @@ class _QuizInProgressViewState extends State<QuizInProgressView>
 
   @override
   Widget build(BuildContext context) {
-    final quizConfig = ServiceLocator.instance.getQuizConfig();
+    final quizConfig = ServiceLocator.getQuizConfig();
     final isStudyMode = quizConfig?.isStudyMode ?? false;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final colors = context.appColors;

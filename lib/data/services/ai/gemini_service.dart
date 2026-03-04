@@ -16,7 +16,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:dio/dio.dart';
-import 'package:quizdy/data/interceptors/ai_logging_interceptor.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
@@ -40,15 +39,10 @@ class GeminiService extends AIService {
     'gemini-2.5-flash-lite',
   ];
 
-  static GeminiService? _instance;
-  static GeminiService get instance => _instance ??= GeminiService._();
+  GeminiService({required this.dioClient, required this.configurationService});
 
-  late final Dio _dio;
-
-  GeminiService._() {
-    _dio = Dio();
-    _dio.interceptors.add(AiLoggingInterceptor());
-  }
+  final Dio dioClient;
+  final ConfigurationService configurationService;
 
   @override
   String get serviceName => 'Google Gemini';
@@ -61,7 +55,7 @@ class GeminiService extends AIService {
 
   @override
   Future<bool> isAvailable() async {
-    final apiKey = await ConfigurationService.instance.getGeminiApiKey();
+    final apiKey = await configurationService.getGeminiApiKey();
     return apiKey != null && apiKey.isNotEmpty;
   }
 
@@ -73,7 +67,7 @@ class GeminiService extends AIService {
     String? model,
     String? responseMimeType,
   }) async {
-    final apiKey = await ConfigurationService.instance.getGeminiApiKey();
+    final apiKey = await configurationService.getGeminiApiKey();
 
     if (apiKey == null || apiKey.isEmpty) {
       throw Exception(localizations.geminiApiKeyNotConfigured);
@@ -87,7 +81,7 @@ class GeminiService extends AIService {
     final url = '$baseUrl/models/$selectedModel:generateContent?key=$apiKey';
 
     try {
-      final response = await _dio.post(
+      final response = await dioClient.post(
         url,
         options: Options(headers: {'Content-Type': 'application/json'}),
         data: {
@@ -160,7 +154,7 @@ class GeminiService extends AIService {
     String? responseMimeType,
     required AiFileAttachment file,
   }) async {
-    final apiKey = await ConfigurationService.instance.getGeminiApiKey();
+    final apiKey = await configurationService.getGeminiApiKey();
 
     if (apiKey == null || apiKey.isEmpty) {
       throw Exception(localizations.geminiApiKeyNotConfigured);
@@ -176,7 +170,7 @@ class GeminiService extends AIService {
     final base64Data = base64Encode(file.bytes);
 
     try {
-      final response = await _dio.post(
+      final response = await dioClient.post(
         url,
         options: Options(headers: {'Content-Type': 'application/json'}),
         data: {
@@ -274,7 +268,7 @@ class GeminiService extends AIService {
     AiFileAttachment file,
     AppLocalizations localizations,
   ) async {
-    final apiKey = await ConfigurationService.instance.getGeminiApiKey();
+    final apiKey = await configurationService.getGeminiApiKey();
 
     if (apiKey == null || apiKey.isEmpty) {
       throw Exception(localizations.geminiApiKeyNotConfigured);
@@ -298,7 +292,7 @@ class GeminiService extends AIService {
 
       final body = Uint8List.fromList([...metadata, ...file.bytes, ...footer]);
 
-      final response = await _dio.post(
+      final response = await dioClient.post(
         url,
         options: Options(
           headers: {
@@ -347,7 +341,7 @@ class GeminiService extends AIService {
     required String fileUri,
     required String fileMimeType,
   }) async {
-    final apiKey = await ConfigurationService.instance.getGeminiApiKey();
+    final apiKey = await configurationService.getGeminiApiKey();
 
     if (apiKey == null || apiKey.isEmpty) {
       throw Exception(localizations.geminiApiKeyNotConfigured);
@@ -361,7 +355,7 @@ class GeminiService extends AIService {
     final url = '$baseUrl/models/$selectedModel:generateContent?key=$apiKey';
 
     try {
-      final response = await _dio.post(
+      final response = await dioClient.post(
         url,
         options: Options(headers: {'Content-Type': 'application/json'}),
         data: {

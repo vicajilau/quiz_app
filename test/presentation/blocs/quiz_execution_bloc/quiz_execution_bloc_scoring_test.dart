@@ -15,7 +15,8 @@
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:quizdy/data/services/ai/ai_service_selector.dart';
+import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
 import 'package:quizdy/domain/models/quiz/quiz_config.dart';
@@ -23,19 +24,28 @@ import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_blo
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 
+import '../../../helpers/test_service_locator.dart';
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('QuizExecutionBloc Scoring', () {
     late QuizExecutionBloc quizExecutionBloc;
+    late ConfigurationService configurationService;
+    late AIServiceSelector aiServiceSelector;
 
-    setUp(() {
-      SharedPreferences.setMockInitialValues({});
-      quizExecutionBloc = QuizExecutionBloc();
+    setUp(() async {
+      configurationService = await setUpTestServiceLocator();
+      aiServiceSelector = await createTestAIServiceSelector(configurationService);
+      quizExecutionBloc = QuizExecutionBloc(
+        aiServiceSelector: aiServiceSelector,
+        configurationService: configurationService,
+      );
     });
 
     tearDown(() {
       quizExecutionBloc.close();
+      tearDownTestServiceLocator();
     });
 
     final testQuestion = const Question(

@@ -41,7 +41,7 @@ void main() {
 
   setUp(() {
     mockLocalizations = MockAppLocalizations();
-    mockJitService = AiJitProcessingService.instance;
+    mockJitService = AiJitProcessingService();
   });
 
   group('StudyExecutionBloc Coverage Calculation', () {

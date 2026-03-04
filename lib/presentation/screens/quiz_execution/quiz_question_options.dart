@@ -15,6 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
@@ -70,7 +71,7 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
   }
 
   Future<void> _checkAiAvailability() async {
-    final isAiAvailable = await ConfigurationService.instance
+    final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
         .getIsAiAvailable();
 
     if (mounted) {

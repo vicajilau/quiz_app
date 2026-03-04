@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/extensions/ai_assistant_theme.dart';
@@ -80,13 +81,15 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
   Future<void> _loadAvailableServices() async {
     try {
       // Load saved preferences
-      final savedServiceName = await ConfigurationService.instance
-          .getDefaultAIService();
-      final savedModel = await ConfigurationService.instance
+      final savedServiceName =
+          await ServiceLocator.getIt<ConfigurationService>()
+              .getDefaultAIService();
+      final savedModel = await ServiceLocator.getIt<ConfigurationService>()
           .getDefaultAIModel();
 
       // Get available services
-      final services = await AIServiceSelector.instance.getAvailableServices();
+      final services = await ServiceLocator.getIt<AIServiceSelector>()
+          .getAvailableServices();
 
       if (mounted) {
         AIService? newService;
@@ -365,11 +368,15 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                                   widget.onServiceChanged?.call(service);
                                   widget.onModelChanged?.call(newModel);
                                   if (widget.saveToPreferences) {
-                                    await ConfigurationService.instance
+                                    final configurationService =
+                                        ServiceLocator.getIt<
+                                          ConfigurationService
+                                        >();
+                                    await configurationService
                                         .saveDefaultAIService(
                                           service.serviceName,
                                         );
-                                    await ConfigurationService.instance
+                                    await configurationService
                                         .saveDefaultAIModel(newModel);
                                   }
                                 }
@@ -402,7 +409,9 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                                     });
                                     widget.onModelChanged?.call(val);
                                     if (widget.saveToPreferences) {
-                                      await ConfigurationService.instance
+                                      await ServiceLocator.getIt<
+                                            ConfigurationService
+                                          >()
                                           .saveDefaultAIModel(val);
                                     }
                                   }

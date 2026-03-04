@@ -43,7 +43,7 @@ class QuizFileRepository {
   /// - Throws: An exception if there is an error loading the file.
   Future<QuizFile> loadQuizFile(String filePath) async {
     final quizFile = await _fileService.readQuizFile(filePath);
-    ServiceLocator.instance.registerQuizFile(quizFile);
+    ServiceLocator.registerQuizFile(quizFile);
     return quizFile;
   }
 
@@ -74,7 +74,7 @@ class QuizFileRepository {
       questions: questions ?? [], // Start with empty questions or provided ones
     );
 
-    ServiceLocator.instance.registerQuizFile(quizFile);
+    ServiceLocator.registerQuizFile(quizFile);
     return quizFile;
   }
 
@@ -96,7 +96,7 @@ class QuizFileRepository {
       fileName,
     );
     if (savedFile != null) {
-      ServiceLocator.instance.registerQuizFile(savedFile);
+      ServiceLocator.registerQuizFile(savedFile);
     }
     return savedFile;
   }
@@ -108,7 +108,7 @@ class QuizFileRepository {
   Future<QuizFile?> pickFile() async {
     final quizFile = await _fileService.pickFile();
     if (quizFile != null) {
-      ServiceLocator.instance.registerQuizFile(quizFile);
+      ServiceLocator.registerQuizFile(quizFile);
     }
     return quizFile;
   }
@@ -128,7 +128,7 @@ class QuizFileRepository {
 
   /// Registers a `QuizFile` as the active file in the system.
   void registerQuizFile(QuizFile quizFile) {
-    ServiceLocator.instance.registerQuizFile(quizFile);
+    ServiceLocator.registerQuizFile(quizFile);
     // Also update the originalFile in fileService to match this new file
     // This is crucial because readQuizFileContent doesn't update it.
     _fileService.originalFile = quizFile.deepCopy();
@@ -157,7 +157,7 @@ class QuizFileRepository {
   Future<QuizFile?> pickFileManually() async {
     final quizFile = await _fileService.pickFile();
     if (quizFile != null) {
-      ServiceLocator.instance.registerQuizFile(quizFile);
+      ServiceLocator.registerQuizFile(quizFile);
     }
     return quizFile;
   }

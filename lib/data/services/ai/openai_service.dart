@@ -14,7 +14,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:dio/dio.dart';
-import 'package:quizdy/data/interceptors/ai_logging_interceptor.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/openai_content_block.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
@@ -34,15 +33,10 @@ class OpenAIService extends AIService {
     'gpt-3.5-turbo',
   ];
 
-  static OpenAIService? _instance;
-  static OpenAIService get instance => _instance ??= OpenAIService._();
+  OpenAIService({required this.dioClient, required this.configurationService});
 
-  late final Dio _dio;
-
-  OpenAIService._() {
-    _dio = Dio();
-    _dio.interceptors.add(AiLoggingInterceptor());
-  }
+  final Dio dioClient;
+  final ConfigurationService configurationService;
 
   @override
   String get serviceName => 'OpenAI GPT';
@@ -55,7 +49,7 @@ class OpenAIService extends AIService {
 
   @override
   Future<bool> isAvailable() async {
-    final apiKey = await ConfigurationService.instance.getOpenAIApiKey();
+    final apiKey = await configurationService.getOpenAIApiKey();
     return apiKey != null && apiKey.isNotEmpty;
   }
 
@@ -67,7 +61,7 @@ class OpenAIService extends AIService {
     String? model,
     String? responseMimeType,
   }) async {
-    final apiKey = await ConfigurationService.instance.getOpenAIApiKey();
+    final apiKey = await configurationService.getOpenAIApiKey();
 
     if (apiKey == null || apiKey.isEmpty) {
       throw Exception(localizations.openaiApiKeyNotConfigured);
@@ -76,7 +70,7 @@ class OpenAIService extends AIService {
     final selectedModel = model ?? _defaultModel;
 
     try {
-      final response = await _dio.post(
+      final response = await dioClient.post(
         '$_baseUrl$_chatEndpoint',
         options: Options(
           headers: {
@@ -120,7 +114,7 @@ class OpenAIService extends AIService {
     String? responseMimeType,
     required AiFileAttachment file,
   }) async {
-    final apiKey = await ConfigurationService.instance.getOpenAIApiKey();
+    final apiKey = await configurationService.getOpenAIApiKey();
 
     if (apiKey == null || apiKey.isEmpty) {
       throw Exception(localizations.openaiApiKeyNotConfigured);
@@ -130,7 +124,7 @@ class OpenAIService extends AIService {
     final contentBlocks = OpenAIContentBlock.fromPromptAndFile(prompt, file);
 
     try {
-      final response = await _dio.post(
+      final response = await dioClient.post(
         '$_baseUrl$_chatEndpoint',
         options: Options(
           headers: {
