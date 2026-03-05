@@ -2718,6 +2718,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Completed'**
   String get studyScreenCompleted;
+
+  /// Title for the dialog that asks which mode to open when a file has both questions and study content
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Mode'**
+  String get chooseModeDialogTitle;
+
+  /// Message for the choose mode dialog
+  ///
+  /// In en, this message translates to:
+  /// **'This file contains both quiz questions and study content. Which mode would you like to open?'**
+  String get chooseModeDialogMessage;
+
+  /// Title for the dialog asking the user to re-attach the original file
+  ///
+  /// In en, this message translates to:
+  /// **'Original file required'**
+  String get reattachFileDialogTitle;
+
+  /// Message for the reattach file dialog
+  ///
+  /// In en, this message translates to:
+  /// **'To generate content for this section, please attach the original file used to create this study.'**
+  String get reattachFileDialogMessage;
+
+  /// Error message when the hash of the attached file does not match
+  ///
+  /// In en, this message translates to:
+  /// **'The selected file does not match the original file used to create this study.'**
+  String get fileHashMismatchError;
+
+  /// Label for expanding truncated text
+  ///
+  /// In en, this message translates to:
+  /// **'Show more'**
+  String get showMoreLabel;
+
+  /// Label for collapsing expanded text
+  ///
+  /// In en, this message translates to:
+  /// **'Show less'**
+  String get showLessLabel;
 }
 
 class _AppLocalizationsDelegate

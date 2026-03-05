@@ -2049,5 +2049,33 @@
   "studyScreenCompleted": "Completed",
   "@studyScreenCompleted": {
     "description": "Label for completed chunks counter in study index"
+  },
+  "chooseModeDialogTitle": "Choose Mode",
+  "@chooseModeDialogTitle": {
+    "description": "Title for the dialog that asks which mode to open when a file has both questions and study content"
+  },
+  "chooseModeDialogMessage": "This file contains both quiz questions and study content. Which mode would you like to open?",
+  "@chooseModeDialogMessage": {
+    "description": "Message for the choose mode dialog"
+  },
+  "reattachFileDialogTitle": "Original file required",
+  "@reattachFileDialogTitle": {
+    "description": "Title for the dialog asking the user to re-attach the original file"
+  },
+  "reattachFileDialogMessage": "To generate content for this section, please attach the original file used to create this study.",
+  "@reattachFileDialogMessage": {
+    "description": "Message for the reattach file dialog"
+  },
+  "fileHashMismatchError": "The selected file does not match the original file used to create this study.",
+  "@fileHashMismatchError": {
+    "description": "Error message when the hash of the attached file does not match"
+  },
+  "showMoreLabel": "Show more",
+  "@showMoreLabel": {
+    "description": "Label for expanding truncated text"
+  },
+  "showLessLabel": "Show less",
+  "@showLessLabel": {
+    "description": "Label for collapsing expanded text"
   }
 }

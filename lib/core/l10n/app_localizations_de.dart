@@ -1526,4 +1526,28 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'Abgeschlossen';
+
+  @override
+  String get chooseModeDialogTitle => 'Modus wählen';
+
+  @override
+  String get chooseModeDialogMessage =>
+      'Diese Datei enthält sowohl Quizfragen als auch Lerninhalte. Welchen Modus möchten Sie öffnen?';
+
+  @override
+  String get reattachFileDialogTitle => 'Originaldatei erforderlich';
+
+  @override
+  String get reattachFileDialogMessage =>
+      'Um Inhalte für diesen Abschnitt zu generieren, hängen Sie bitte die Originaldatei an, die zur Erstellung dieser Studie verwendet wurde.';
+
+  @override
+  String get fileHashMismatchError =>
+      'Die ausgewählte Datei stimmt nicht mit der Originaldatei überein, die zur Erstellung dieser Studie verwendet wurde.';
+
+  @override
+  String get showMoreLabel => 'Mehr anzeigen';
+
+  @override
+  String get showLessLabel => 'Weniger anzeigen';
 }

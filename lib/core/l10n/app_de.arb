@@ -1864,5 +1864,12 @@
       }
     }
   },
-  "studyScreenCompleted": "Abgeschlossen"
+  "studyScreenCompleted": "Abgeschlossen",
+  "chooseModeDialogTitle": "Modus wählen",
+  "chooseModeDialogMessage": "Diese Datei enthält sowohl Quizfragen als auch Lerninhalte. Welchen Modus möchten Sie öffnen?",
+  "reattachFileDialogTitle": "Originaldatei erforderlich",
+  "reattachFileDialogMessage": "Um Inhalte für diesen Abschnitt zu generieren, hängen Sie bitte die Originaldatei an, die zur Erstellung dieser Studie verwendet wurde.",
+  "fileHashMismatchError": "Die ausgewählte Datei stimmt nicht mit der Originaldatei überein, die zur Erstellung dieser Studie verwendet wurde.",
+  "showMoreLabel": "Mehr anzeigen",
+  "showLessLabel": "Weniger anzeigen"
 }
