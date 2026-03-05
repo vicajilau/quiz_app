@@ -880,6 +880,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get studyScreenRetry => 'إعادة المحاولة';
 
   @override
+  String get studyScreenOmit => 'تجاوز';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'لم يتم إنشاء شرائح.';
 
   @override

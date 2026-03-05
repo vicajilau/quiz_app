@@ -1142,6 +1142,10 @@
   "@studyScreenRetry": {
     "description": "Texto de reintento sobre seccion erronea."
   },
+  "studyScreenOmit": "Omitir",
+  "@studyScreenOmit": {
+    "description": "Texto botón omitir"
+  },
   "studyScreenNoSlidesGenerated": "No se generaron diapositivas.",
   "@studyScreenNoSlidesGenerated": {
     "description": "Texto cuando vienen diapositivas vacías tras la respuesta AI."

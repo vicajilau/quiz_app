@@ -1777,6 +1777,13 @@
   "studyScreenGenerating": "Generazione del materiale di studio...",
   "studyScreenError": "Si è verificato un errore durante la generazione del materiale di studio.",
   "studyScreenRetry": "Riprova",
+  "@studyScreenRetry": {
+    "description": "Testo di riprovo su sezione errata."
+  },
+  "studyScreenOmit": "Omettere",
+  "@studyScreenOmit": {
+    "description": "Testo del pulsante omettere"
+  },
   "studyScreenNoSlidesGenerated": "Nessuna diapositiva generata.",
   "studyScreenPreviousSection": "Pagina precedente",
   "studyScreenNextSection": "Pagina successiva",

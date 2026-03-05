@@ -48,11 +48,11 @@ class QuizFile {
   /// The URI of the uploaded file in the AI service (e.g. Gemini File API).
   final String? fileUri;
 
-  /// The AI generation mode used to create this quiz.
-  final AiGenerationMode? generationMode;
+  /// Get generationMode from study
+  AiGenerationMode? get generationMode => study?.generationMode;
 
-  /// The original text content drafted to generate this quiz.
-  final String? originalText;
+  /// Get originalText from study
+  String? get originalText => study?.originalText;
 
   /// Constructor for creating a `QuizFile` instance with metadata and questions.
   QuizFile({
@@ -63,8 +63,6 @@ class QuizFile {
     this.fileAttachment,
     this.fileContentHash,
     this.fileUri,
-    this.generationMode,
-    this.originalText,
   });
 
   /// Creates a `QuizFile` instance from a JSON map.
@@ -85,14 +83,6 @@ class QuizFile {
 
       final fileContentHash = json['fileContentHash'] as String?;
       final fileUri = json['fileUri'] as String?;
-      final generationModeStr = json['generationMode'] as String?;
-      final generationMode = generationModeStr != null
-          ? AiGenerationMode.values.firstWhere(
-              (e) => e.name == generationModeStr,
-              orElse: () => AiGenerationMode.text,
-            )
-          : null;
-      final originalText = json['originalText'] as String?;
 
       return QuizFile(
         metadata: metadata,
@@ -101,8 +91,6 @@ class QuizFile {
         filePath: filePath,
         fileContentHash: fileContentHash,
         fileUri: fileUri,
-        generationMode: generationMode,
-        originalText: originalText,
       );
     } catch (e) {
       throw BadQuizFileException(
@@ -122,8 +110,6 @@ class QuizFile {
       'questions': questions.map((question) => question.toJson()).toList(),
       if (fileContentHash != null) 'fileContentHash': fileContentHash,
       if (fileUri != null) 'fileUri': fileUri,
-      if (generationMode != null) 'generationMode': generationMode!.name,
-      if (originalText != null) 'originalText': originalText,
     };
   }
 
@@ -141,8 +127,7 @@ class QuizFile {
     AiFileAttachment? fileAttachment,
     String? fileContentHash,
     String? fileUri,
-    AiGenerationMode? generationMode,
-    String? originalText,
+    // Note: generationMode and originalText are now part of study
   }) {
     return QuizFile(
       metadata: metadata ?? this.metadata,
@@ -152,8 +137,6 @@ class QuizFile {
       fileAttachment: fileAttachment ?? this.fileAttachment,
       fileContentHash: fileContentHash ?? this.fileContentHash,
       fileUri: fileUri ?? this.fileUri,
-      generationMode: generationMode ?? this.generationMode,
-      originalText: originalText ?? this.originalText,
     );
   }
 
@@ -171,8 +154,6 @@ class QuizFile {
       filePath: filePath,
       fileContentHash: fileContentHash,
       fileUri: fileUri,
-      generationMode: generationMode,
-      originalText: originalText,
     );
   }
 
@@ -185,9 +166,7 @@ class QuizFile {
         other.study == study &&
         other.filePath == filePath &&
         other.fileContentHash == fileContentHash &&
-        other.fileUri == fileUri &&
-        other.generationMode == generationMode &&
-        other.originalText == originalText;
+        other.fileUri == fileUri;
   }
 
   @override
@@ -197,9 +176,7 @@ class QuizFile {
         study.hashCode ^
         filePath.hashCode ^
         fileContentHash.hashCode ^
-        fileUri.hashCode ^
-        generationMode.hashCode ^
-        originalText.hashCode;
+        fileUri.hashCode;
   }
 
   @override

@@ -895,6 +895,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get studyScreenRetry => 'Riprova';
 
   @override
+  String get studyScreenOmit => 'Omettere';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'Nessuna diapositiva generata.';
 
   @override

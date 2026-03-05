@@ -58,6 +58,7 @@ class StudyScreen extends StatelessWidget {
   final AiDifficultyLevel? difficultyLevel;
   final AiGenerationMode? generationMode;
   final String? originalText;
+  final String? language;
 
   const StudyScreen({
     super.key,
@@ -70,6 +71,7 @@ class StudyScreen extends StatelessWidget {
     this.difficultyLevel,
     this.generationMode,
     this.originalText,
+    this.language,
   });
 
   @override
@@ -85,9 +87,11 @@ class StudyScreen extends StatelessWidget {
         fileUri: quizFile?.fileUri,
         documentTitle: documentTitle,
         documentSummary: documentSummary ?? quizFile?.metadata.description,
-        isAutoDifficulty: isAutoDifficulty,
-        difficultyLevel: difficultyLevel,
-        originalText: originalText ?? quizFile?.originalText,
+        isAutoDifficulty: quizFile?.study?.isAutoDifficulty ?? isAutoDifficulty,
+        difficultyLevel: difficultyLevel ?? quizFile?.study?.difficultyLevel,
+        originalText: originalText ?? quizFile?.study?.originalText,
+        language: language ?? quizFile?.study?.language,
+        generationMode: generationMode ?? quizFile?.study?.generationMode,
         onProgressChanged: (progress, processedChunks, chunks, fileUri) {
           context.read<FileBloc>().add(
             StudyProgressUpdated(
@@ -166,11 +170,11 @@ class _StudyScreenViewState extends State<StudyScreenView> {
                 .length,
             cache: studyState.chunks,
           ),
+          generationMode: widget.generationMode,
+          originalText: widget.originalText,
         ),
         fileContentHash: studyState.fileAttachment?.contentHash,
         fileUri: studyState.fileUri,
-        generationMode: widget.generationMode,
-        originalText: widget.originalText,
       );
     }
 
@@ -220,7 +224,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(false),
-            child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
+            child: Text(localizations.studyScreenOmit),
           ),
           ElevatedButton(
             onPressed: () => Navigator.of(dialogContext).pop(true),
@@ -230,7 +234,12 @@ class _StudyScreenViewState extends State<StudyScreenView> {
       ),
     );
 
-    if (confirmed != true || !context.mounted) return;
+    if (confirmed != true || !context.mounted) {
+      if (context.mounted) {
+        context.read<StudyExecutionBloc>().add(FileReattachmentCancelled());
+      }
+      return;
+    }
 
     final result = await FilePicker.platform.pickFiles(
       type: FileType.any,

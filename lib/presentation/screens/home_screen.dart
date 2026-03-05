@@ -20,6 +20,7 @@ import 'package:go_router/go_router.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
+import 'package:quizdy/domain/models/quiz/study_content.dart';
 import 'package:quizdy/presentation/utils/dialog_drop_guard.dart';
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
@@ -44,6 +45,8 @@ import 'package:quizdy/presentation/screens/widgets/home/home_header_widget.dart
 import 'package:quizdy/presentation/screens/widgets/home/home_drop_zone_widget.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_footer_widget.dart';
 import 'package:quizdy/domain/use_cases/initialize_quiz_chunks_use_case.dart';
+import 'package:quizdy/data/repositories/quiz_file_repository.dart';
+import 'package:quizdy/domain/models/quiz/study.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -243,58 +246,86 @@ class _HomeScreenState extends State<HomeScreen> {
 
         final documentId = 'study_${DateTime.now().millisecondsSinceEpoch}';
 
+        final initializeUseCase = InitializeQuizChunksUseCase();
+        QuizFile? updatedQuizFile;
         List<StudyChunk> initialChunks = [];
         String? fileUri;
 
         if (config.hasFile) {
-          // Use AI-driven indexing for files
-          final initializeUseCase = InitializeQuizChunksUseCase();
-          final result = await initializeUseCase.generateChunksOnly(
+          final tempQuizFile = await ServiceLocator.getIt<QuizFileRepository>()
+              .createQuizFile(
+                title: documentTitle,
+                description: documentSummary ?? '',
+                version: '1.0.0',
+                author: '',
+              );
+
+          updatedQuizFile = await initializeUseCase.execute(
+            quizFile: tempQuizFile,
             file: config.file!,
             documentId: documentId,
             localizations: localizations,
-            extraContext: config.content,
+            generationMode: config.generationMode,
+            originalText: config.content,
+            language: config.language,
+            isAutoDifficulty: config.isAutoDifficulty,
+            difficultyLevel: config.difficultyLevel,
           );
-          initialChunks = result['chunks'] as List<StudyChunk>;
-          fileUri = result['fileUri'] as String?;
+
+          initialChunks = updatedQuizFile.study?.content.cache ?? [];
+          fileUri = updatedQuizFile.fileUri;
           // Use AI-generated title/description if available
-          final aiTitle = result['title'] as String?;
-          final aiDescription = result['description'] as String?;
-          if (aiTitle != null && aiTitle.isNotEmpty) {
-            documentTitle = aiTitle;
-          }
-          if (aiDescription != null && aiDescription.isNotEmpty) {
-            documentSummary = aiDescription;
-          }
+          documentTitle = updatedQuizFile.metadata.title;
+          documentSummary = updatedQuizFile.metadata.description;
         } else {
-          // AI-driven chunking for text/topics
-          final initializeUseCase = InitializeQuizChunksUseCase();
           final result = await initializeUseCase.generateChunksFromText(
             content: config.content,
             generationMode: config.generationMode,
             documentId: documentId,
             localizations: localizations,
           );
+
           initialChunks = result['chunks'] as List<StudyChunk>;
-          final aiTitle = result['title'] as String?;
-          final aiDescription = result['description'] as String?;
-          if (aiTitle != null && aiTitle.isNotEmpty) {
-            documentTitle = aiTitle;
-          }
-          if (aiDescription != null && aiDescription.isNotEmpty) {
-            documentSummary = aiDescription;
-          }
+          documentTitle = result['title'] ?? documentTitle;
+          documentSummary = result['description'] ?? documentSummary;
+
+          final tempQuizFile = await ServiceLocator.getIt<QuizFileRepository>()
+              .createQuizFile(
+                title: documentTitle,
+                description: documentSummary ?? '',
+                version: '1.0.0',
+                author: '',
+              );
+
+          updatedQuizFile = tempQuizFile.copyWith(
+            study: Study(
+              content: StudyContent(
+                progressPercentage: 0.0,
+                totalChunks: initialChunks.length,
+                processedChunks: 0,
+                cache: initialChunks,
+              ),
+              generationMode: config.generationMode,
+              originalText: config.content,
+              language: config.language,
+              isAutoDifficulty: config.isAutoDifficulty,
+              difficultyLevel: config.difficultyLevel,
+            ),
+          );
         }
 
         if (context.mounted) {
           setState(() => _isLoading = false);
+          // Register the updated file
+          ServiceLocator.registerQuizFile(updatedQuizFile);
+
           // 3. Navigate to Study screen
           context.push(
             AppRoutes.studyScreen,
             extra: {
               'initialChunks': initialChunks,
               'fileAttachment': config.file,
-              'fileUri': fileUri, // Pass the processed file URI
+              'fileUri': fileUri,
               'documentTitle': documentTitle,
               'documentSummary': documentSummary,
               'isAutoDifficulty': config.isAutoDifficulty,

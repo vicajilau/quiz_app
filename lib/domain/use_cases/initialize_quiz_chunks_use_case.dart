@@ -24,6 +24,7 @@ import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/quiz/source_reference.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
@@ -40,12 +41,17 @@ class InitializeQuizChunksUseCase {
        _aiService = aiService ?? ServiceLocator.getIt<GeminiService>();
 
   /// Executes the AI chunking and returns a new [QuizFile] updated with the `study` mapping.
-  Future<QuizFile> execute(
-    QuizFile quizFile,
-    AiFileAttachment file,
-    String documentId,
-    AppLocalizations localizations,
-  ) async {
+  Future<QuizFile> execute({
+    required QuizFile quizFile,
+    required AiFileAttachment file,
+    required String documentId,
+    required AppLocalizations localizations,
+    required AiGenerationMode generationMode,
+    String? originalText,
+    required String language,
+    bool isAutoDifficulty = true,
+    AiDifficultyLevel? difficultyLevel,
+  }) async {
     final result = await generateChunksOnly(
       file: file,
       documentId: documentId,
@@ -63,7 +69,14 @@ class InitializeQuizChunksUseCase {
       cache: chunks,
     );
 
-    final study = Study(content: studyContent);
+    final study = Study(
+      content: studyContent,
+      generationMode: generationMode,
+      originalText: originalText,
+      language: language,
+      isAutoDifficulty: isAutoDifficulty,
+      difficultyLevel: difficultyLevel,
+    );
 
     // Ensure the quizFile also stores the fileAttachment or at least its metadata
     // The UI should ideally pass the fileUri to the Bloc for JIT chunk generation.

@@ -887,6 +887,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get studyScreenRetry => 'पुनः प्रयास करें';
 
   @override
+  String get studyScreenOmit => 'छोड़ें';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'कोई स्लाइड नहीं बनाई गई।';
 
   @override

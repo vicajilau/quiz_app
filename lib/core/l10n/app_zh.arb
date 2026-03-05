@@ -1806,6 +1806,14 @@
   },
   "studyScreenAiSummaryTitle": "AI 总结",
   "studyScreenNoSummary": "没有可用的总结。",
+  "studyScreenRetry": "重试",
+  "@studyScreenRetry": {
+    "description": "错误部分的重试文本。"
+  },
+  "studyScreenOmit": "忽略",
+  "@studyScreenOmit": {
+    "description": "忽略按钮文本"
+  },
   "studyScreenCoverage": "覆盖率",
   "@studyScreenCoverage": {
     "description": "Label for the study coverage percentage"

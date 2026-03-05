@@ -22,8 +22,9 @@ abstract class StudyExecutionEvent {
 /// Dispatched when the study mode view is ready and wants to process the actual chunk.
 class StudyChunkRequested extends StudyExecutionEvent {
   final int chunkIndex;
+  final bool allowFallback;
 
-  const StudyChunkRequested(this.chunkIndex);
+  const StudyChunkRequested(this.chunkIndex, {this.allowFallback = false});
 }
 
 /// Dispatched to return to the index view.
@@ -41,3 +42,6 @@ class FileReattached extends StudyExecutionEvent {
 
   const FileReattached(this.file);
 }
+
+/// Dispatched when the user cancels the re-attachment dialog.
+class FileReattachmentCancelled extends StudyExecutionEvent {}

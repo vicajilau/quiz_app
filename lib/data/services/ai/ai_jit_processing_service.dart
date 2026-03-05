@@ -21,6 +21,7 @@ import 'package:quizdy/domain/models/quiz/slide.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
 /// Service responsible for Just-In-Time (JIT) processing of study chunks.
 class AiJitProcessingService {
@@ -41,8 +42,12 @@ class AiJitProcessingService {
     String? fileMimeType,
     String? originalText,
     required AppLocalizations localizations,
+    String? docTitle,
+    String? docSummary,
     bool isAutoDifficulty = true,
     AiDifficultyLevel? difficultyLevel,
+    String? language,
+    AiGenerationMode? generationMode,
   }) async {
     // We only process chunks that have not been successfully processed yet.
     if (chunk.status == StudyChunkState.completed) {
@@ -57,8 +62,13 @@ class AiJitProcessingService {
       startPage,
       endPage,
       localizations,
+      docTitle: docTitle,
+      docSummary: docSummary,
+      chunkTitle: chunk.title,
       isAutoDifficulty: isAutoDifficulty,
       difficultyLevel: difficultyLevel,
+      language: language,
+      generationMode: generationMode,
     );
 
     try {
@@ -81,9 +91,13 @@ class AiJitProcessingService {
               responseMimeType: 'application/json',
             );
       } else {
-        throw Exception(
-          'Neither fileUri nor originalText was provided for JIT processing.',
-        );
+        // Fallback: Generate content using only metadata
+        responseBody = await ServiceLocator.getIt<GeminiService>()
+            .getChatResponse(
+              '$prompt\n\nNo source text available. Generate based on metadata.',
+              localizations,
+              responseMimeType: 'application/json',
+            );
       }
 
       final cleanJsonString = _extractJsonFromResponse(responseBody);
@@ -114,9 +128,21 @@ class AiJitProcessingService {
     int startPage,
     int endPage,
     AppLocalizations localizations, {
+    String? docTitle,
+    String? docSummary,
+    String? chunkTitle,
     bool isAutoDifficulty = true,
     AiDifficultyLevel? difficultyLevel,
+    String? language,
+    AiGenerationMode? generationMode,
   }) {
+    final metadataContext =
+        (docTitle != null ? '\nDocument Title: $docTitle' : '') +
+        (docSummary != null ? '\nDocument Summary: $docSummary' : '') +
+        (chunkTitle != null ? '\nTarget Section Title: $chunkTitle' : '') +
+        (generationMode != null
+            ? '\nGeneration Source: ${generationMode.name}'
+            : '');
     String difficultyInstruction = '';
     if (!isAutoDifficulty && difficultyLevel != null) {
       final levelName = _getDifficultyName(difficultyLevel, localizations);
@@ -127,11 +153,15 @@ class AiJitProcessingService {
           '\nIMPORTANT: The generated content and study materials MUST be adapted to the SAME academic difficulty level, vocabulary, and depth as the provided document.';
     }
 
+    final targetLanguage = language ?? localizations.localeName;
+
     return '''
 You are an expert educational content generator. Your task is to analyze the provided pages of the document and generate study material for them.
 
+IMPORTANT: Metadata Context for this study material:$metadataContext
+
 IMPORTANT: Focus ONLY on the content found between pages $startPage and $endPage (inclusive).
-IMPORTANT: All generated content (ai_summary, slide texts, titles, paragraphs) MUST be written in the following language: ${localizations.localeName}. Do NOT use English unless the target language is English.$difficultyInstruction
+IMPORTANT: All generated content (ai_summary, slide texts, titles, paragraphs) MUST be written in the following language: $targetLanguage. Do NOT use English unless the target language is English.$difficultyInstruction
 
 Important Output Instructions:
 - If the provided text contains a Table of Contents (TOC), completely ignore it and do not generate study elements for the TOC itself.

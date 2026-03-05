@@ -262,7 +262,7 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get retry => 'Repetir';
+  String get retry => 'Reintentar';
 
   @override
   String get goBack => 'Acabar';
@@ -898,6 +898,9 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get studyScreenRetry => 'Reintenta';
+
+  @override
+  String get studyScreenOmit => 'Ometre';
 
   @override
   String get studyScreenNoSlidesGenerated => 'No s\'han generat diapositives.';

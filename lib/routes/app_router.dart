@@ -80,6 +80,7 @@ GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
           difficultyLevel: extra['difficultyLevel'] as AiDifficultyLevel?,
           generationMode: extra['generationMode'] as AiGenerationMode?,
           originalText: extra['originalText'] as String?,
+          language: extra['language'] as String?,
         );
       },
     ),

@@ -902,6 +902,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get studyScreenRetry => 'Δοκιμάστε ξανά';
 
   @override
+  String get studyScreenOmit => 'Παράλειψη';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'Δεν δημιουργήθηκαν διαφάνειες.';
 
   @override

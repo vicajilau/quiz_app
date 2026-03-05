@@ -309,6 +309,14 @@
   "@retry": {
     "description": "Texto do botón reintentar"
   },
+  "studyScreenRetry": "Tentar de novo",
+  "@studyScreenRetry": {
+    "description": "Texto de reintento sobre seccion erronea."
+  },
+  "studyScreenOmit": "Omitir",
+  "@studyScreenOmit": {
+    "description": "Texto botón omitir"
+  },
   "goBack": "Rematar",
   "@goBack": {
     "description": "Texto do botón volver atrás"

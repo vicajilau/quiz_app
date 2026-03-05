@@ -396,7 +396,7 @@
         "example": "8"
       },
       "total": {
-        "type": "int",
+    "type": "int",
         "example": "10"
       }
     }
@@ -404,6 +404,14 @@
   "retry": "Wiederholen",
   "@retry": {
     "description": "Wiederholen-Schaltflächentext"
+  },
+  "studyScreenRetry": "Wiederholen",
+  "@studyScreenRetry": {
+    "description": "Wiederholungstext für fehlerhaften Abschnitt."
+  },
+  "studyScreenOmit": "Auslassen",
+  "@studyScreenOmit": {
+    "description": "Text für Auslassen-Schaltfläche"
   },
   "goBack": "Beenden",
   "@goBack": {

@@ -305,6 +305,14 @@
   "@retry": {
     "description": "Berriro saiatu botoiaren testua"
   },
+  "studyScreenRetry": "Saiatu berriro",
+  "@studyScreenRetry": {
+    "description": "Berriro saiatzeko testua atal okerrean."
+  },
+  "studyScreenOmit": "Omititu",
+  "@studyScreenOmit": {
+    "description": "Omititu botoiaren testua"
+  },
   "goBack": "Amaitu",
   "@goBack": {
     "description": "Itzuli botoiaren testua"

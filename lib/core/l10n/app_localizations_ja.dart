@@ -846,6 +846,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get studyScreenRetry => '再試行';
 
   @override
+  String get studyScreenOmit => '省略';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'スライドが生成されていません。';
 
   @override

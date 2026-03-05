@@ -1628,6 +1628,12 @@ abstract class AppLocalizations {
   /// **'Retry'**
   String get studyScreenRetry;
 
+  /// Omit button text
+  ///
+  /// In en, this message translates to:
+  /// **'Omit'**
+  String get studyScreenOmit;
+
   /// Text displayed if AI returns back empty slides for the current view.
   ///
   /// In en, this message translates to:

@@ -842,6 +842,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get studyScreenRetry => '重试';
 
   @override
+  String get studyScreenOmit => '忽略';
+
+  @override
   String get studyScreenNoSlidesGenerated => '没有生成幻灯片。';
 
   @override

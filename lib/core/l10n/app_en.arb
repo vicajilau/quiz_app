@@ -1187,6 +1187,10 @@
   "@studyScreenRetry": {
     "description": "Button text to retry parsing a failed chunk."
   },
+  "studyScreenOmit": "Omit",
+  "@studyScreenOmit": {
+    "description": "Omit button text"
+  },
   "studyScreenNoSlidesGenerated": "No slides generated.",
   "@studyScreenNoSlidesGenerated": {
     "description": "Text displayed if AI returns back empty slides for the current view."

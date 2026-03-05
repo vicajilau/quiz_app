@@ -313,6 +313,14 @@
   "@retry": {
     "description": "再試行ボタン。"
   },
+  "studyScreenRetry": "再試行",
+  "@studyScreenRetry": {
+    "description": "エラーセクションの再試行テキスト。"
+  },
+  "studyScreenOmit": "省略",
+  "@studyScreenOmit": {
+    "description": "省略ボタンのテキスト"
+  },
   "goBack": "完了",
   "@goBack": {
     "description": "戻るボタン。"

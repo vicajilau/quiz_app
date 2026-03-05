@@ -1741,6 +1741,13 @@
   "studyScreenGenerating": "अध्ययन सामग्री तैयार की जा रही है...",
   "studyScreenError": "अध्ययन सामग्री तैयार करते समय एक त्रुटि हुई।",
   "studyScreenRetry": "पुनः प्रयास करें",
+  "@studyScreenRetry": {
+    "description": "गलत अनुभाग पर पुनः प्रयास टेक्स्ट।"
+  },
+  "studyScreenOmit": "छोड़ें",
+  "@studyScreenOmit": {
+    "description": "छोड़ें बटन टेक्स्ट"
+  },
   "studyScreenNoSlidesGenerated": "कोई स्लाइड नहीं बनाई गई।",
   "studyScreenPreviousSection": "पिछला पृष्ठ",
   "studyScreenNextSection": "अगला पृष्ठ",

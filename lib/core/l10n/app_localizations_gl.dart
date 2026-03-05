@@ -900,6 +900,9 @@ class AppLocalizationsGl extends AppLocalizations {
   String get studyScreenRetry => 'Tentar de novo';
 
   @override
+  String get studyScreenOmit => 'Omitir';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'Non se xeraron diapositivas.';
 
   @override

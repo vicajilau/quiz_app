@@ -696,6 +696,13 @@
   "studyScreenGenerating": "Δημιουργία υλικού μελέτης...",
   "studyScreenError": "Παρουσιάστηκε σφάλμα κατά τη δημιουργία του υλικού μελέτης.",
   "studyScreenRetry": "Δοκιμάστε ξανά",
+  "@studyScreenRetry": {
+    "description": "Κείμενο επανάληψης προσπάθειας σε εσφαλμένη ενότητα."
+  },
+  "studyScreenOmit": "Παράλειψη",
+  "@studyScreenOmit": {
+    "description": "Κείμενο κουμπιού παράλειψης"
+  },
   "studyScreenNoSlidesGenerated": "Δεν δημιουργήθηκαν διαφάνειες.",
   "studyScreenPreviousSection": "Προηγούμενη σελίδα",
   "studyScreenNextSection": "Επόμενη σελίδα",
