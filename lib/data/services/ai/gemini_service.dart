@@ -32,8 +32,8 @@ class GeminiService extends AIService {
 
   static const List<String> _models = [
     'gemini-flash-latest',
-    'gemini-3-pro-preview',
-    'gemini-3-flash-preview',
+    'gemini-3.1-pro-preview',
+    'gemini-3.1-flash-preview',
     'gemini-2.5-pro',
     'gemini-2.5-flash',
     'gemini-2.5-flash-lite',
@@ -75,7 +75,7 @@ class GeminiService extends AIService {
 
     final selectedModel = model ?? _defaultModel;
 
-    final baseUrl = selectedModel == 'gemini-3-pro-preview'
+    final baseUrl = selectedModel == 'gemini-3.1-pro-preview'
         ? _baseUrlAlpha
         : _baseUrlBeta;
     final url = '$baseUrl/models/$selectedModel:generateContent?key=$apiKey';
@@ -157,7 +157,7 @@ class GeminiService extends AIService {
 
     final selectedModel = model ?? _defaultModel;
 
-    final baseUrl = selectedModel == 'gemini-3-pro-preview'
+    final baseUrl = selectedModel == 'gemini-3.1-pro-preview'
         ? _baseUrlAlpha
         : _baseUrlBeta;
     final url = '$baseUrl/models/$selectedModel:generateContent?key=$apiKey';
@@ -339,7 +339,7 @@ class GeminiService extends AIService {
 
     final selectedModel = model ?? _defaultModel;
 
-    final baseUrl = selectedModel == 'gemini-3-pro-preview'
+    final baseUrl = selectedModel == 'gemini-3.1-pro-preview'
         ? _baseUrlAlpha
         : _baseUrlBeta;
     final url = '$baseUrl/models/$selectedModel:generateContent?key=$apiKey';
