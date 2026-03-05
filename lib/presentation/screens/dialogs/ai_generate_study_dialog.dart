@@ -15,6 +15,7 @@
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mime/mime.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
@@ -24,8 +25,8 @@ import 'package:quizdy/domain/models/ai/ai_study_generation_stored_settings.dart
 import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/data/services/ai/ai_service_selector.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
-import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_study_step1_widget.dart';
-import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_study_step2_widget.dart';
+import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step1_widget.dart';
+import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step2_widget.dart';
 import 'package:quizdy/presentation/utils/clipboard_image_helper.dart';
 
 class AiGenerateStudyDialog extends StatefulWidget {
@@ -273,8 +274,8 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
   }
 
   Future<void> _pasteFromClipboard() async {
-    final attachment =
-        await ServiceLocator.getIt<ClipboardImageHelper>().getClipboardImageAsAttachment();
+    final attachment = await ServiceLocator.getIt<ClipboardImageHelper>()
+        .getClipboardImageAsAttachment();
     if (!mounted) return;
     if (attachment != null) {
       setState(() {
@@ -288,7 +289,8 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
   @override
   Widget build(BuildContext context) {
     if (_currentStep == 0) {
-      return AiGenerateStudyStep1Widget(
+      return AiGenerateStep1Widget(
+        isStudyMode: true,
         isLoadingServices: _isLoadingServices,
         availableServices: _availableServices,
         selectedService: _selectedService,
@@ -318,7 +320,8 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
         },
       );
     } else {
-      return AiGenerateStudyStep2Widget(
+      return AiGenerateStep2Widget(
+        isStudyMode: true,
         textController: _textController,
         fileAttachment: _fileAttachment,
         selectedLanguage: _selectedLanguage,
@@ -344,6 +347,12 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
         getWordCountText: _getWordCountText,
         getWordCount: _getWordCount,
         getTopicCount: _getTopicCount,
+        onGenerate: (config) async {
+          await _saveDraft();
+          if (context.mounted) {
+            context.pop(config);
+          }
+        },
       );
     }
   }

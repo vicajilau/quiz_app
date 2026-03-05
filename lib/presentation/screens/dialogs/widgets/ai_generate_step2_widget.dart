@@ -26,16 +26,18 @@ import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
+import 'package:quizdy/domain/models/ai/ai_study_generation_config.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 import 'package:quizdy/presentation/widgets/dialog_drop_zone.dart';
 
 class AiGenerateStep2Widget extends StatefulWidget {
+  final bool isStudyMode;
   final TextEditingController textController;
-  final TextEditingController questionCountController;
-  final int questionCount;
+  final TextEditingController? questionCountController;
+  final int? questionCount;
   final AiFileAttachment? fileAttachment;
-  final Set<AiQuestionType> selectedQuestionTypes;
+  final Set<AiQuestionType>? selectedQuestionTypes;
   final String selectedLanguage;
   final AIService? selectedService;
   final String? selectedModel;
@@ -44,19 +46,20 @@ class AiGenerateStep2Widget extends StatefulWidget {
   final VoidCallback onPasteFromClipboard;
   final ValueChanged<AiFileAttachment> onFileDropped;
   final VoidCallback onBack;
-  final ValueChanged<int> onQuestionCountChanged;
+  final ValueChanged<int>? onQuestionCountChanged;
   final String Function() getWordCountText;
   final int Function() getWordCount;
   final int Function() getTopicCount;
-  final ValueChanged<AiQuestionGenerationConfig> onGenerate;
+  final ValueChanged<dynamic> onGenerate;
 
   const AiGenerateStep2Widget({
     super.key,
+    this.isStudyMode = false,
     required this.textController,
-    required this.questionCountController,
-    required this.questionCount,
+    this.questionCountController,
+    this.questionCount,
     required this.fileAttachment,
-    required this.selectedQuestionTypes,
+    this.selectedQuestionTypes,
     required this.selectedLanguage,
     required this.selectedService,
     required this.selectedModel,
@@ -65,7 +68,7 @@ class AiGenerateStep2Widget extends StatefulWidget {
     required this.onPasteFromClipboard,
     required this.onFileDropped,
     required this.onBack,
-    required this.onQuestionCountChanged,
+    this.onQuestionCountChanged,
     required this.getWordCountText,
     required this.getWordCount,
     required this.getTopicCount,
@@ -99,11 +102,15 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
 
   void _onFocusChange() {
     if (!_questionCountFocusNode.hasFocus) {
-      final text = widget.questionCountController.text;
+      if (widget.questionCountController == null ||
+          widget.questionCount == null) {
+        return;
+      }
+      final text = widget.questionCountController!.text;
       final count = int.tryParse(text);
       if (count == null || count < 1 || count > 50) {
         // Reset to current valid count
-        widget.questionCountController.text = widget.questionCount.toString();
+        widget.questionCountController!.text = widget.questionCount.toString();
       }
     }
   }
@@ -361,178 +368,184 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                           onPressed: widget.onPasteFromClipboard,
                         ),
                       ],
-                      const SizedBox(height: 24),
+                      if (!widget.isStudyMode) ...[
+                        const SizedBox(height: 24),
 
-                      // Content Mode (Category selection)
-                      Text(
-                        localizations.aiGenerationCategoryLabel,
-                        style: TextStyle(
-                          fontFamily: 'Inter',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: colors.subtitle,
+                        // Content Mode (Category selection)
+                        Text(
+                          localizations.aiGenerationCategoryLabel,
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: colors.subtitle,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 12),
-                      SizedBox(
-                        width: double.infinity,
-                        child: SegmentedButton<AiGenerationCategory>(
-                          segments: [
-                            ButtonSegment<AiGenerationCategory>(
-                              value: AiGenerationCategory.both,
-                              label: Text(
-                                localizations.aiGenerationCategoryBoth,
+                        const SizedBox(height: 12),
+                        SizedBox(
+                          width: double.infinity,
+                          child: SegmentedButton<AiGenerationCategory>(
+                            segments: [
+                              ButtonSegment<AiGenerationCategory>(
+                                value: AiGenerationCategory.both,
+                                label: Text(
+                                  localizations.aiGenerationCategoryBoth,
+                                ),
+                              ),
+                              ButtonSegment<AiGenerationCategory>(
+                                value: AiGenerationCategory.exercises,
+                                label: Text(
+                                  localizations.aiGenerationCategoryExercises,
+                                ),
+                              ),
+                              ButtonSegment<AiGenerationCategory>(
+                                value: AiGenerationCategory.theory,
+                                label: Text(
+                                  localizations.aiGenerationCategoryTheory,
+                                ),
+                              ),
+                            ],
+                            selected: <AiGenerationCategory>{_selectedCategory},
+                            onSelectionChanged:
+                                (Set<AiGenerationCategory> newSelection) {
+                                  setState(() {
+                                    _selectedCategory = newSelection.first;
+                                  });
+                                },
+                            showSelectedIcon: false,
+                            style: SegmentedButton.styleFrom(
+                              selectedBackgroundColor: Theme.of(
+                                context,
+                              ).primaryColor,
+                              selectedForegroundColor: Colors.white,
+                              backgroundColor: inputBg,
+                              side: BorderSide(color: attachStroke),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              textStyle: const TextStyle(
+                                fontFamily: 'Inter',
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-                            ButtonSegment<AiGenerationCategory>(
-                              value: AiGenerationCategory.exercises,
-                              label: Text(
-                                localizations.aiGenerationCategoryExercises,
+                          ),
+                        ),
+
+                        const SizedBox(height: 24),
+
+                        // Question Count
+                        Text(
+                          localizations.aiNumberQuestionsLabel,
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: colors.subtitle,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            // Minus
+                            GestureDetector(
+                              onTap: () {
+                                if (widget.questionCount != null &&
+                                    widget.questionCount! > 1) {
+                                  widget.onQuestionCountChanged?.call(
+                                    widget.questionCount! - 1,
+                                  );
+                                }
+                              },
+                              child: Container(
+                                width: 44,
+                                height: 44,
+                                decoration: BoxDecoration(
+                                  color: colors.border,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Icon(
+                                  LucideIcons.minus,
+                                  color: colors.title,
+                                  size: 18,
+                                ),
                               ),
                             ),
-                            ButtonSegment<AiGenerationCategory>(
-                              value: AiGenerationCategory.theory,
-                              label: Text(
-                                localizations.aiGenerationCategoryTheory,
+                            const SizedBox(width: 16),
+                            // Display
+                            Expanded(
+                              child: Container(
+                                height: 52,
+                                decoration: BoxDecoration(
+                                  color: colors.border,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                alignment: Alignment.center,
+                                child: TextField(
+                                  controller: widget.questionCountController,
+                                  focusNode: _questionCountFocusNode,
+                                  keyboardType: TextInputType.number,
+                                  textAlign: TextAlign.center,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                    LengthLimitingTextInputFormatter(2),
+                                  ],
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: colors.title,
+                                  ),
+                                  decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.zero,
+                                    isDense: true,
+                                  ),
+                                  onChanged: (value) {
+                                    if (value.isEmpty) return;
+                                    final count = int.tryParse(value);
+                                    if (count != null) {
+                                      if (count > 50) {
+                                        widget.onQuestionCountChanged?.call(50);
+                                      } else if (count > 0) {
+                                        widget.onQuestionCountChanged?.call(
+                                          count,
+                                        );
+                                      }
+                                    }
+                                  },
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            // Plus
+                            GestureDetector(
+                              onTap: () {
+                                if (widget.questionCount != null &&
+                                    widget.questionCount! < 50) {
+                                  widget.onQuestionCountChanged?.call(
+                                    widget.questionCount! + 1,
+                                  );
+                                }
+                              },
+                              child: Container(
+                                width: 44,
+                                height: 44,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).primaryColor,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: const Icon(
+                                  LucideIcons.plus,
+                                  color: Colors.white,
+                                  size: 18,
+                                ),
                               ),
                             ),
                           ],
-                          selected: <AiGenerationCategory>{_selectedCategory},
-                          onSelectionChanged:
-                              (Set<AiGenerationCategory> newSelection) {
-                                setState(() {
-                                  _selectedCategory = newSelection.first;
-                                });
-                              },
-                          showSelectedIcon: false,
-                          style: SegmentedButton.styleFrom(
-                            selectedBackgroundColor: Theme.of(
-                              context,
-                            ).primaryColor,
-                            selectedForegroundColor: Colors.white,
-                            backgroundColor: inputBg,
-                            side: BorderSide(color: attachStroke),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            textStyle: const TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 13,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
                         ),
-                      ),
-
-                      const SizedBox(height: 24),
-
-                      // Question Count
-                      Text(
-                        localizations.aiNumberQuestionsLabel,
-                        style: TextStyle(
-                          fontFamily: 'Inter',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: colors.subtitle,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // Minus
-                          GestureDetector(
-                            onTap: () {
-                              if (widget.questionCount > 1) {
-                                widget.onQuestionCountChanged(
-                                  widget.questionCount - 1,
-                                );
-                              }
-                            },
-                            child: Container(
-                              width: 44,
-                              height: 44,
-                              decoration: BoxDecoration(
-                                color: colors.border,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Icon(
-                                LucideIcons.minus,
-                                color: colors.title,
-                                size: 18,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 16),
-                          // Display
-                          Expanded(
-                            child: Container(
-                              height: 52,
-                              decoration: BoxDecoration(
-                                color: colors.border,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              alignment: Alignment.center,
-                              child: TextField(
-                                controller: widget.questionCountController,
-                                focusNode: _questionCountFocusNode,
-                                keyboardType: TextInputType.number,
-                                textAlign: TextAlign.center,
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly,
-                                  LengthLimitingTextInputFormatter(2),
-                                ],
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: colors.title,
-                                ),
-                                decoration: const InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: EdgeInsets.zero,
-                                  isDense: true,
-                                ),
-                                onChanged: (value) {
-                                  if (value.isEmpty) return;
-                                  final count = int.tryParse(value);
-                                  if (count != null) {
-                                    if (count > 50) {
-                                      widget.onQuestionCountChanged(50);
-                                    } else if (count > 0) {
-                                      widget.onQuestionCountChanged(count);
-                                    }
-                                  }
-                                },
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 16),
-                          // Plus
-                          GestureDetector(
-                            onTap: () {
-                              if (widget.questionCount < 50) {
-                                widget.onQuestionCountChanged(
-                                  widget.questionCount + 1,
-                                );
-                              }
-                            },
-                            child: Container(
-                              width: 44,
-                              height: 44,
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: const Icon(
-                                LucideIcons.plus,
-                                color: Colors.white,
-                                size: 18,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      ],
                     ],
                   ),
                 ),
@@ -562,20 +575,35 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                           (widget.textController.text.isNotEmpty ||
                               widget.fileAttachment != null)
                           ? () {
-                              final config = AiQuestionGenerationConfig(
-                                questionCount: widget.questionCount,
-                                questionTypes: widget.selectedQuestionTypes
-                                    .toList(),
-                                language: widget.selectedLanguage,
-                                content: widget.textController.text.trim(),
-                                preferredService: widget.selectedService,
-                                preferredModel: widget.selectedModel,
-                                file: widget.fileAttachment,
-                                isTopicMode:
-                                    widget.fileAttachment == null &&
-                                    widget.getTopicCount() <= 10,
-                                generationCategory: _selectedCategory,
-                              );
+                              final config = widget.isStudyMode
+                                  ? AiStudyGenerationConfig(
+                                      language: widget.selectedLanguage,
+                                      content: widget.textController.text
+                                          .trim(),
+                                      preferredService: widget.selectedService,
+                                      preferredModel: widget.selectedModel,
+                                      file: widget.fileAttachment,
+                                      isTopicMode:
+                                          widget.fileAttachment == null &&
+                                          widget.getTopicCount() <= 10,
+                                    )
+                                  : AiQuestionGenerationConfig(
+                                      questionCount: widget.questionCount ?? 5,
+                                      questionTypes:
+                                          widget.selectedQuestionTypes
+                                              ?.toList() ??
+                                          [],
+                                      language: widget.selectedLanguage,
+                                      content: widget.textController.text
+                                          .trim(),
+                                      preferredService: widget.selectedService,
+                                      preferredModel: widget.selectedModel,
+                                      file: widget.fileAttachment,
+                                      isTopicMode:
+                                          widget.fileAttachment == null &&
+                                          widget.getTopicCount() <= 10,
+                                      generationCategory: _selectedCategory,
+                                    );
                               widget.onGenerate(config);
                             }
                           : null,
