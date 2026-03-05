@@ -1525,39 +1525,39 @@ class AppLocalizationsEu extends AppLocalizations {
   String get studyScreenCompleted => 'Burututa';
 
   @override
-  String get aiDifficultyTitle => 'Difficulty Level';
+  String get aiDifficultyTitle => 'Zailtasun-maila';
 
   @override
-  String get aiDifficultyAutoTurnedOn => 'Same difficulty as the document';
+  String get aiDifficultyAutoTurnedOn => 'Dokumentuaren zailtasun bera';
 
   @override
-  String get aiDifficultyAutoTurnedOff => 'Manual difficulty mode';
+  String get aiDifficultyAutoTurnedOff => 'Eskuzko zailtasun modua';
 
   @override
-  String get aiDifficultyElementary => 'Elementary School';
+  String get aiDifficultyElementary => 'Lehen Hezkuntza';
 
   @override
-  String get aiDifficultyHighSchool => 'High School';
+  String get aiDifficultyHighSchool => 'Bigarren Hezkuntza';
 
   @override
-  String get aiDifficultyBachelors => 'Bachelor\'s Degree';
+  String get aiDifficultyBachelors => 'Gradua';
 
   @override
-  String get aiDifficultyUniversity => 'University Degree';
+  String get aiDifficultyUniversity => 'Unibertsitatea';
 
   @override
-  String get aiDifficultyMasters => 'Master\'s Degree';
+  String get aiDifficultyMasters => 'Masterra';
 
   @override
-  String get aiDifficultyDoctorate => 'Doctorate';
+  String get aiDifficultyDoctorate => 'Doktoretza';
 
   @override
   String get aiDifficultyAutoDescription =>
-      'The difficulty level will be adjusted automatically according to the uploaded document';
+      'Zailtasun maila automatikoki egokituko da kargatutako dokumentuaren arabera';
 
   @override
   String get aiDifficultyManualDescription =>
-      'Select the difficulty level manually that best fits the content';
+      'Hautatu eskuz edukirako ondoen egokitzen den zailtasun maila';
 
   @override
   String get chooseModeDialogTitle => 'Choose Mode';
