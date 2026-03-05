@@ -1554,6 +1554,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "生成配置",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin0GenericError": "至少 0",
   "validationMin1Error": "最少1分钟",
   "@validationMin1Error": {

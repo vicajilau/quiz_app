@@ -367,6 +367,9 @@ class AppLocalizationsEu extends AppLocalizations {
   String get examConfigurationTitle => 'Azterketaren konfigurazioa';
 
   @override
+  String get generationConfigurationTitle => 'Sorkuntza konfigurazioa';
+
+  @override
   String get examTimeLimitTitle => 'Azterketaren Denbora Muga';
 
   @override

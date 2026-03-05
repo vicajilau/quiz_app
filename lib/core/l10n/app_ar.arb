@@ -1614,6 +1614,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "إعدادات التوليد",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin1Error": "دقيقة واحدة كحد أدنى",
   "remainingTimeWithDays": "{days}ي {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}أ {days}ي {hours}:{minutes}:{seconds}",

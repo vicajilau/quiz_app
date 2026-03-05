@@ -1593,6 +1593,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "Configurazione della generazione",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin1Error": "Minimo 1 minuto",
   "remainingTimeWithDays": "{days}g {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}s {days}g {hours}:{minutes}:{seconds}",

@@ -1593,6 +1593,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "Configuração da geração",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin0GenericError": "Mínimo 0",
   "validationMin1Error": "Mínimo 1 minuto",
   "@validationMin1Error": {

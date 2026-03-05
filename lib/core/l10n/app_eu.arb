@@ -1554,6 +1554,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "Sorkuntza konfigurazioa",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin1Error": "Gutxienez minutu 1",
   "remainingTimeWithDays": "{days}e {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}a {days}e {hours}:{minutes}:{seconds}",

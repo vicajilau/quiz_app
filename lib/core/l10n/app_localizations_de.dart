@@ -367,6 +367,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get examConfigurationTitle => 'Prüfungskonfiguration';
 
   @override
+  String get generationConfigurationTitle => 'Generierungskonfiguration';
+
+  @override
   String get examTimeLimitTitle => 'Prüfungszeit-Limit';
 
   @override

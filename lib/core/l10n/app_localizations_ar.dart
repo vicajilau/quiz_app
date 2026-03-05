@@ -360,6 +360,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get examConfigurationTitle => 'إعدادات الامتحان';
 
   @override
+  String get generationConfigurationTitle => 'إعدادات التوليد';
+
+  @override
   String get examTimeLimitTitle => 'حد وقت الامتحان';
 
   @override

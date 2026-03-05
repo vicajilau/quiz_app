@@ -370,6 +370,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get examConfigurationTitle => 'Configuration de l\'examen';
 
   @override
+  String get generationConfigurationTitle => 'Configuration de la génération';
+
+  @override
   String get examTimeLimitTitle => 'Limite de temps d\'examen';
 
   @override

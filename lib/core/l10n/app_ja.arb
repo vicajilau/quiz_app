@@ -1557,6 +1557,10 @@
   "@examConfigurationTitle": {
     "description": "試験の設定セクションのタイトル"
   },
+  "generationConfigurationTitle": "生成設定",
+  "@generationConfigurationTitle": {
+    "description": "AIダイアログの生成設定セクションのタイトル"
+  },
   "validationMin1Error": "最小 1 分",
   "remainingTimeWithDays": "{days}日 {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}週 {days}日 {hours}:{minutes}:{seconds}",

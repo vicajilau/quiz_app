@@ -349,6 +349,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get examConfigurationTitle => '考试配置';
 
   @override
+  String get generationConfigurationTitle => '生成配置';
+
+  @override
   String get examTimeLimitTitle => '考试时间限制';
 
   @override

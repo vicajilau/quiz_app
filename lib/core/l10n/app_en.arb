@@ -483,6 +483,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "Generation Configuration",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "examTimeLimitTitle": "Exam Time Limit",
   "@examTimeLimitTitle": {
     "description": "Title for exam time limit section"

@@ -512,6 +512,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "Διαμόρφωση Παραγωγής",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin1Error": "Ελάχιστο 1 λεπτό",
   "remainingTimeWithDays": "{days}ημ {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}ε {days}ημ {hours}:{minutes}:{seconds}",

@@ -362,6 +362,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get examConfigurationTitle => 'परीक्षा कॉन्फ़िगरेशन';
 
   @override
+  String get generationConfigurationTitle => 'जेनरेशन कॉन्फ़िगरेशन';
+
+  @override
   String get examTimeLimitTitle => 'परीक्षा समय सीमा';
 
   @override

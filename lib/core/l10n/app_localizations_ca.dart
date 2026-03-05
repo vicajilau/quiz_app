@@ -369,6 +369,9 @@ class AppLocalizationsCa extends AppLocalizations {
   String get examConfigurationTitle => 'Configuració de l\'examen';
 
   @override
+  String get generationConfigurationTitle => 'Configuració de generació';
+
+  @override
   String get examTimeLimitTitle => 'Límit de temps de l\'examen';
 
   @override

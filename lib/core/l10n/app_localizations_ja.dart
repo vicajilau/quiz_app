@@ -349,6 +349,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get examConfigurationTitle => '試験の設定';
 
   @override
+  String get generationConfigurationTitle => '生成設定';
+
+  @override
   String get examTimeLimitTitle => '試験時間制限';
 
   @override

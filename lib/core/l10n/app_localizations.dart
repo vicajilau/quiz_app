@@ -740,6 +740,12 @@ abstract class AppLocalizations {
   /// **'Exam Configuration'**
   String get examConfigurationTitle;
 
+  /// Title for the generation configuration section in AI dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Generation Configuration'**
+  String get generationConfigurationTitle;
+
   /// Title for exam time limit section
   ///
   /// In en, this message translates to:

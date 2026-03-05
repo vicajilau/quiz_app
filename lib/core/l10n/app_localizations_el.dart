@@ -370,6 +370,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get examConfigurationTitle => 'Διαμόρφωση Εξέτασης';
 
   @override
+  String get generationConfigurationTitle => 'Διαμόρφωση Παραγωγής';
+
+  @override
   String get examTimeLimitTitle => 'Χρονικό Όριο Εξέτασης';
 
   @override

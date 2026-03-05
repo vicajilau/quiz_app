@@ -1557,6 +1557,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "जेनरेशन कॉन्फ़िगरेशन",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin1Error": "न्यूनतम 1 मिनट",
   "remainingTimeWithDays": "{days}दिन {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}सप्ताह {days}दिन {hours}:{minutes}:{seconds}",
