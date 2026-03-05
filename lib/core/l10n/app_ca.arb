@@ -1874,5 +1874,14 @@
       }
     }
   },
-  "studyScreenCompleted": "Completat"
+  "studyScreenCompleted": "Completat",
+  "aiDifficultyTitle": "Nivell de dificultat",
+  "aiDifficultyAutoTurnedOn": "Mateixa dificultat que el document",
+  "aiDifficultyAutoTurnedOff": "Mode de dificultat manual",
+  "aiDifficultyElementary": "Educació primària",
+  "aiDifficultyHighSchool": "Educació secundària",
+  "aiDifficultyBachelors": "Grao universitari",
+  "aiDifficultyUniversity": "Universitat",
+  "aiDifficultyMasters": "Màster",
+  "aiDifficultyDoctorate": "Doctorat"
 }

@@ -1832,5 +1832,14 @@
       }
     }
   },
-  "studyScreenCompleted": "مكتمل"
+  "studyScreenCompleted": "مكتمل",
+  "aiDifficultyTitle": "مستوى الصعوبة",
+  "aiDifficultyAutoTurnedOn": "نفس صعوبة المستند",
+  "aiDifficultyAutoTurnedOff": "وضع الصعوبة اليدوي",
+  "aiDifficultyElementary": "مدرسة ابتدائية",
+  "aiDifficultyHighSchool": "مدرسة ثانوية",
+  "aiDifficultyBachelors": "درجة البكالوريوس",
+  "aiDifficultyUniversity": "جامعة",
+  "aiDifficultyMasters": "درجة الماجستير",
+  "aiDifficultyDoctorate": "دكتوراه"
 }

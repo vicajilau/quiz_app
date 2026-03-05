@@ -2724,6 +2724,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Completed'**
   String get studyScreenCompleted;
+
+  /// Title for the difficulty level section
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty Level'**
+  String get aiDifficultyTitle;
+
+  /// Label when automatic difficulty is enabled
+  ///
+  /// In en, this message translates to:
+  /// **'Same difficulty as the document'**
+  String get aiDifficultyAutoTurnedOn;
+
+  /// Label when automatic difficulty is disabled
+  ///
+  /// In en, this message translates to:
+  /// **'Manual difficulty mode'**
+  String get aiDifficultyAutoTurnedOff;
+
+  /// Difficulty level: Elementary School
+  ///
+  /// In en, this message translates to:
+  /// **'Elementary School'**
+  String get aiDifficultyElementary;
+
+  /// Difficulty level: High School
+  ///
+  /// In en, this message translates to:
+  /// **'High School'**
+  String get aiDifficultyHighSchool;
+
+  /// Difficulty level: Bachelor's Degree
+  ///
+  /// In en, this message translates to:
+  /// **'Bachelor\'s Degree'**
+  String get aiDifficultyBachelors;
+
+  /// Difficulty level: University Degree
+  ///
+  /// In en, this message translates to:
+  /// **'University Degree'**
+  String get aiDifficultyUniversity;
+
+  /// Difficulty level: Master's Degree
+  ///
+  /// In en, this message translates to:
+  /// **'Master\'s Degree'**
+  String get aiDifficultyMasters;
+
+  /// Difficulty level: Doctorate
+  ///
+  /// In en, this message translates to:
+  /// **'Doctorate'**
+  String get aiDifficultyDoctorate;
 }
 
 class _AppLocalizationsDelegate

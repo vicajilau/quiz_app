@@ -1529,4 +1529,31 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'Concluído';
+
+  @override
+  String get aiDifficultyTitle => 'Nível de dificuldade';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'Mesma dificuldade do documento';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => 'Modo de dificuldade manual';
+
+  @override
+  String get aiDifficultyElementary => 'Ensino fundamental';
+
+  @override
+  String get aiDifficultyHighSchool => 'Ensino médio';
+
+  @override
+  String get aiDifficultyBachelors => 'Bacharelado';
+
+  @override
+  String get aiDifficultyUniversity => 'Universidade';
+
+  @override
+  String get aiDifficultyMasters => 'Mestrado';
+
+  @override
+  String get aiDifficultyDoctorate => 'Doutorado';
 }

@@ -1513,4 +1513,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'Completed';
+
+  @override
+  String get aiDifficultyTitle => 'Difficulty Level';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'Same difficulty as the document';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => 'Manual difficulty mode';
+
+  @override
+  String get aiDifficultyElementary => 'Elementary School';
+
+  @override
+  String get aiDifficultyHighSchool => 'High School';
+
+  @override
+  String get aiDifficultyBachelors => 'Bachelor\'s Degree';
+
+  @override
+  String get aiDifficultyUniversity => 'University Degree';
+
+  @override
+  String get aiDifficultyMasters => 'Master\'s Degree';
+
+  @override
+  String get aiDifficultyDoctorate => 'Doctorate';
 }

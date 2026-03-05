@@ -1523,4 +1523,31 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'Burututa';
+
+  @override
+  String get aiDifficultyTitle => 'Zailtasun-maila';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'Dokumentuaren zailtasun bera';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => 'Eskuzko zailtasun modua';
+
+  @override
+  String get aiDifficultyElementary => 'Lehen Hezkuntza';
+
+  @override
+  String get aiDifficultyHighSchool => 'Bigarren Hezkuntza';
+
+  @override
+  String get aiDifficultyBachelors => 'Gradua';
+
+  @override
+  String get aiDifficultyUniversity => 'Unibertsitatea';
+
+  @override
+  String get aiDifficultyMasters => 'Masterra';
+
+  @override
+  String get aiDifficultyDoctorate => 'Doktoretza';
 }

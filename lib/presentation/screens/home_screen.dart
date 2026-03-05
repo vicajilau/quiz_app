@@ -288,6 +288,8 @@ class _HomeScreenState extends State<HomeScreen> {
               'fileUri': fileUri, // Pass the processed file URI
               'documentTitle': documentTitle,
               'documentSummary': documentSummary,
+              'isAutoDifficulty': config.isAutoDifficulty,
+              'difficultyLevel': config.difficultyLevel,
             },
           );
         }

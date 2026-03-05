@@ -29,6 +29,7 @@ import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
 import 'package:quizdy/domain/models/ai/ai_study_generation_config.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/presentation/widgets/dialog_drop_zone.dart';
 
 class AiGenerateStep2Widget extends StatefulWidget {
@@ -83,10 +84,13 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
   late final FocusNode _questionCountFocusNode;
   AiGenerationCategory _selectedCategory = AiGenerationCategory.both;
   bool _isDragging = false;
+  late bool _isAutoDifficulty;
+  AiDifficultyLevel _selectedDifficulty = AiDifficultyLevel.university;
 
   @override
   void initState() {
     super.initState();
+    _isAutoDifficulty = widget.fileAttachment != null;
     widget.textController.addListener(_onTextChanged);
     _questionCountFocusNode = FocusNode();
     _questionCountFocusNode.addListener(_onFocusChange);
@@ -134,6 +138,9 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
         path: file.path,
       ),
     );
+    setState(() {
+      _isAutoDifficulty = true;
+    });
   }
 
   @override
@@ -344,7 +351,12 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                         right: 16.0,
                                       ),
                                       child: GestureDetector(
-                                        onTap: widget.onRemoveFile,
+                                        onTap: () {
+                                          widget.onRemoveFile();
+                                          setState(() {
+                                            _isAutoDifficulty = false;
+                                          });
+                                        },
                                         child: Icon(
                                           LucideIcons.x,
                                           color: colors.title,
@@ -557,6 +569,164 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                   ),
                                 ],
                               ),
+                              const SizedBox(height: 24),
+
+                              // Difficulty Level
+                              Text(
+                                localizations.aiDifficultyTitle,
+                                style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: colors.subtitle,
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: inputBg,
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(color: attachStroke),
+                                ),
+                                child: Column(
+                                  children: [
+                                    SwitchListTile(
+                                      title: Text(
+                                        _isAutoDifficulty
+                                            ? localizations
+                                                  .aiDifficultyAutoTurnedOn
+                                            : localizations
+                                                  .aiDifficultyAutoTurnedOff,
+                                        style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          color: colors.title,
+                                        ),
+                                      ),
+                                      value: _isAutoDifficulty,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _isAutoDifficulty = value;
+                                        });
+                                      },
+                                      activeThumbColor: Theme.of(
+                                        context,
+                                      ).primaryColor,
+                                    ),
+                                    if (!_isAutoDifficulty) ...[
+                                      Divider(height: 1, color: attachStroke),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 16,
+                                          vertical: 8,
+                                        ),
+                                        child: DropdownButtonHideUnderline(
+                                          child: DropdownButton<AiDifficultyLevel>(
+                                            value: _selectedDifficulty,
+                                            isExpanded: true,
+                                            icon: Icon(
+                                              LucideIcons.chevronDown,
+                                              color: colors.subtitle,
+                                              size: 16,
+                                            ),
+                                            dropdownColor: inputBg,
+                                            items: [
+                                              DropdownMenuItem(
+                                                value: AiDifficultyLevel
+                                                    .elementary,
+                                                child: Text(
+                                                  localizations
+                                                      .aiDifficultyElementary,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Inter',
+                                                    fontSize: 14,
+                                                    color: colors.title,
+                                                  ),
+                                                ),
+                                              ),
+                                              DropdownMenuItem(
+                                                value: AiDifficultyLevel
+                                                    .highSchool,
+                                                child: Text(
+                                                  localizations
+                                                      .aiDifficultyHighSchool,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Inter',
+                                                    fontSize: 14,
+                                                    color: colors.title,
+                                                  ),
+                                                ),
+                                              ),
+                                              DropdownMenuItem(
+                                                value:
+                                                    AiDifficultyLevel.bachelors,
+                                                child: Text(
+                                                  localizations
+                                                      .aiDifficultyBachelors,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Inter',
+                                                    fontSize: 14,
+                                                    color: colors.title,
+                                                  ),
+                                                ),
+                                              ),
+                                              DropdownMenuItem(
+                                                value: AiDifficultyLevel
+                                                    .university,
+                                                child: Text(
+                                                  localizations
+                                                      .aiDifficultyUniversity,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Inter',
+                                                    fontSize: 14,
+                                                    color: colors.title,
+                                                  ),
+                                                ),
+                                              ),
+                                              DropdownMenuItem(
+                                                value:
+                                                    AiDifficultyLevel.masters,
+                                                child: Text(
+                                                  localizations
+                                                      .aiDifficultyMasters,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Inter',
+                                                    fontSize: 14,
+                                                    color: colors.title,
+                                                  ),
+                                                ),
+                                              ),
+                                              DropdownMenuItem(
+                                                value:
+                                                    AiDifficultyLevel.doctorate,
+                                                child: Text(
+                                                  localizations
+                                                      .aiDifficultyDoctorate,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Inter',
+                                                    fontSize: 14,
+                                                    color: colors.title,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                            onChanged:
+                                                (AiDifficultyLevel? value) {
+                                                  if (value != null) {
+                                                    setState(() {
+                                                      _selectedDifficulty =
+                                                          value;
+                                                    });
+                                                  }
+                                                },
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -601,6 +771,10 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                       isTopicMode:
                                           widget.fileAttachment == null &&
                                           widget.getTopicCount() <= 10,
+                                      isAutoDifficulty: _isAutoDifficulty,
+                                      difficultyLevel: _isAutoDifficulty
+                                          ? null
+                                          : _selectedDifficulty,
                                     )
                                   : AiQuestionGenerationConfig(
                                       questionCount: widget.questionCount ?? 5,
@@ -618,6 +792,10 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                           widget.fileAttachment == null &&
                                           widget.getTopicCount() <= 10,
                                       generationCategory: _selectedCategory,
+                                      isAutoDifficulty: _isAutoDifficulty,
+                                      difficultyLevel: _isAutoDifficulty
+                                          ? null
+                                          : _selectedDifficulty,
                                     );
                               widget.onGenerate(config);
                             }

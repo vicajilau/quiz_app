@@ -2053,5 +2053,41 @@
   "studyScreenCompleted": "Completed",
   "@studyScreenCompleted": {
     "description": "Label for completed chunks counter in study index"
+  },
+  "aiDifficultyTitle": "Difficulty Level",
+  "@aiDifficultyTitle": {
+    "description": "Title for the difficulty level section"
+  },
+  "aiDifficultyAutoTurnedOn": "Same difficulty as the document",
+  "@aiDifficultyAutoTurnedOn": {
+    "description": "Label when automatic difficulty is enabled"
+  },
+  "aiDifficultyAutoTurnedOff": "Manual difficulty mode",
+  "@aiDifficultyAutoTurnedOff": {
+    "description": "Label when automatic difficulty is disabled"
+  },
+  "aiDifficultyElementary": "Elementary School",
+  "@aiDifficultyElementary": {
+    "description": "Difficulty level: Elementary School"
+  },
+  "aiDifficultyHighSchool": "High School",
+  "@aiDifficultyHighSchool": {
+    "description": "Difficulty level: High School"
+  },
+  "aiDifficultyBachelors": "Bachelor's Degree",
+  "@aiDifficultyBachelors": {
+    "description": "Difficulty level: Bachelor's Degree"
+  },
+  "aiDifficultyUniversity": "University Degree",
+  "@aiDifficultyUniversity": {
+    "description": "Difficulty level: University Degree"
+  },
+  "aiDifficultyMasters": "Master's Degree",
+  "@aiDifficultyMasters": {
+    "description": "Difficulty level: Master's Degree"
+  },
+  "aiDifficultyDoctorate": "Doctorate",
+  "@aiDifficultyDoctorate": {
+    "description": "Difficulty level: Doctorate"
   }
 }

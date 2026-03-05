@@ -1868,5 +1868,14 @@
       }
     }
   },
-  "studyScreenCompleted": "Abgeschlossen"
+  "studyScreenCompleted": "Abgeschlossen",
+  "aiDifficultyTitle": "Schwierigkeitsgrad",
+  "aiDifficultyAutoTurnedOn": "Gleiche Schwierigkeit wie das Dokument",
+  "aiDifficultyAutoTurnedOff": "Manueller Schwierigkeitsmodus",
+  "aiDifficultyElementary": "Grundschule",
+  "aiDifficultyHighSchool": "Gymnasium",
+  "aiDifficultyBachelors": "Bachelor-Abschluss",
+  "aiDifficultyUniversity": "Universität",
+  "aiDifficultyMasters": "Master-Abschluss",
+  "aiDifficultyDoctorate": "Doktortitel"
 }

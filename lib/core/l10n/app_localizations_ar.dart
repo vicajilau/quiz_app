@@ -1497,4 +1497,31 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'مكتمل';
+
+  @override
+  String get aiDifficultyTitle => 'مستوى الصعوبة';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'نفس صعوبة المستند';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => 'وضع الصعوبة اليدوي';
+
+  @override
+  String get aiDifficultyElementary => 'مدرسة ابتدائية';
+
+  @override
+  String get aiDifficultyHighSchool => 'مدرسة ثانوية';
+
+  @override
+  String get aiDifficultyBachelors => 'درجة البكالوريوس';
+
+  @override
+  String get aiDifficultyUniversity => 'جامعة';
+
+  @override
+  String get aiDifficultyMasters => 'درجة الماجستير';
+
+  @override
+  String get aiDifficultyDoctorate => 'دكتوراه';
 }

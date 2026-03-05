@@ -1817,5 +1817,14 @@
       }
     }
   },
-  "studyScreenCompleted": "Terminé"
+  "studyScreenCompleted": "Terminé",
+  "aiDifficultyTitle": "Niveau de difficulté",
+  "aiDifficultyAutoTurnedOn": "Même difficulté que le document",
+  "aiDifficultyAutoTurnedOff": "Mode de difficulté manuel",
+  "aiDifficultyElementary": "École primaire",
+  "aiDifficultyHighSchool": "Lycée",
+  "aiDifficultyBachelors": "Licence",
+  "aiDifficultyUniversity": "Université",
+  "aiDifficultyMasters": "Master",
+  "aiDifficultyDoctorate": "Doctorat"
 }

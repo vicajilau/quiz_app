@@ -1775,5 +1775,14 @@
       }
     }
   },
-  "studyScreenCompleted": "完了"
+  "studyScreenCompleted": "完了",
+  "aiDifficultyTitle": "難易度",
+  "aiDifficultyAutoTurnedOn": "ドキュメントと同じ難易度",
+  "aiDifficultyAutoTurnedOff": "手動難易度モード",
+  "aiDifficultyElementary": "小学校",
+  "aiDifficultyHighSchool": "高校",
+  "aiDifficultyBachelors": "学士号",
+  "aiDifficultyUniversity": "大学",
+  "aiDifficultyMasters": "修士号",
+  "aiDifficultyDoctorate": "博士号"
 }

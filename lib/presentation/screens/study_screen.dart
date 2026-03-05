@@ -24,6 +24,7 @@ import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
@@ -38,6 +39,8 @@ class StudyScreen extends StatelessWidget {
   final String documentTitle;
   final String? documentSummary;
   final QuizFile? quizFile;
+  final bool isAutoDifficulty;
+  final AiDifficultyLevel? difficultyLevel;
 
   const StudyScreen({
     super.key,
@@ -46,6 +49,8 @@ class StudyScreen extends StatelessWidget {
     required this.documentTitle,
     this.documentSummary,
     this.quizFile,
+    this.isAutoDifficulty = true,
+    this.difficultyLevel,
   });
 
   @override
@@ -60,6 +65,8 @@ class StudyScreen extends StatelessWidget {
         fileAttachment: fileAttachment ?? quizFile?.fileAttachment,
         documentTitle: documentTitle,
         documentSummary: documentSummary ?? quizFile?.metadata.description,
+        isAutoDifficulty: isAutoDifficulty,
+        difficultyLevel: difficultyLevel,
         onProgressChanged: (progress, processedChunks, chunks) {
           context.read<FileBloc>().add(
             StudyProgressUpdated(

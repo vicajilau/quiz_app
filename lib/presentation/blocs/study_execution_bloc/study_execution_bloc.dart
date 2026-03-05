@@ -23,6 +23,7 @@ import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 
 class StudyExecutionBloc
     extends Bloc<StudyExecutionEvent, StudyExecutionState> {
@@ -34,6 +35,8 @@ class StudyExecutionBloc
     List<StudyChunk> chunks,
   )?
   onProgressChanged;
+  final bool _isAutoDifficulty;
+  final AiDifficultyLevel? _difficultyLevel;
 
   StudyExecutionBloc({
     required AiJitProcessingService jitProcessingService,
@@ -43,9 +46,13 @@ class StudyExecutionBloc
     String? documentSummary,
     AiFileAttachment? fileAttachment,
     String? fileUri,
+    bool isAutoDifficulty = true,
+    AiDifficultyLevel? difficultyLevel,
     this.onProgressChanged,
   }) : _jitProcessingService = jitProcessingService,
        _localizations = localizations,
+       _isAutoDifficulty = isAutoDifficulty,
+       _difficultyLevel = difficultyLevel,
        super(
          _initialProgress(
            initialChunks,
@@ -159,6 +166,8 @@ class StudyExecutionBloc
       fileUri: fileUri,
       fileMimeType: fileMimeType ?? 'application/pdf',
       localizations: _localizations,
+      isAutoDifficulty: _isAutoDifficulty,
+      difficultyLevel: _difficultyLevel,
     );
 
     // Update the state with the finished chunk (either completed or error)

@@ -1772,5 +1772,14 @@
       }
     }
   },
-  "studyScreenCompleted": "Completado"
+  "studyScreenCompleted": "Completado",
+  "aiDifficultyTitle": "Nivel de dificultade",
+  "aiDifficultyAutoTurnedOn": "Mesma dificultade que o documento",
+  "aiDifficultyAutoTurnedOff": "Modo de dificultade manual",
+  "aiDifficultyElementary": "Educación primaria",
+  "aiDifficultyHighSchool": "Educación secundaria",
+  "aiDifficultyBachelors": "Grao universitario",
+  "aiDifficultyUniversity": "Universidade",
+  "aiDifficultyMasters": "Máster",
+  "aiDifficultyDoctorate": "Doutoramento"
 }

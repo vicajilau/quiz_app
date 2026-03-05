@@ -1531,4 +1531,31 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'Ολοκληρώθηκε';
+
+  @override
+  String get aiDifficultyTitle => 'Επίπεδο δυσκολίας';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'Ίδια δυσκολία με το έγγραφο';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => 'Χειροκίνητη λειτουργία δυσκολίας';
+
+  @override
+  String get aiDifficultyElementary => 'Δημοτικό Σχολείο';
+
+  @override
+  String get aiDifficultyHighSchool => 'Γυμνάσιο/Λύκειο';
+
+  @override
+  String get aiDifficultyBachelors => 'Πτυχίο';
+
+  @override
+  String get aiDifficultyUniversity => 'Πανεπιστήμιο';
+
+  @override
+  String get aiDifficultyMasters => 'Μεταπτυχιακό';
+
+  @override
+  String get aiDifficultyDoctorate => 'Διδακτορικό';
 }

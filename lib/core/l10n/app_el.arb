@@ -730,5 +730,14 @@
       }
     }
   },
-  "studyScreenCompleted": "Ολοκληρώθηκε"
+  "studyScreenCompleted": "Ολοκληρώθηκε",
+  "aiDifficultyTitle": "Επίπεδο δυσκολίας",
+  "aiDifficultyAutoTurnedOn": "Ίδια δυσκολία με το έγγραφο",
+  "aiDifficultyAutoTurnedOff": "Χειροκίνητη λειτουργία δυσκολίας",
+  "aiDifficultyElementary": "Δημοτικό Σχολείο",
+  "aiDifficultyHighSchool": "Γυμνάσιο/Λύκειο",
+  "aiDifficultyBachelors": "Πτυχίο",
+  "aiDifficultyUniversity": "Πανεπιστήμιο",
+  "aiDifficultyMasters": "Μεταπτυχιακό",
+  "aiDifficultyDoctorate": "Διδακτορικό"
 }

@@ -1438,4 +1438,31 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => '已完成';
+
+  @override
+  String get aiDifficultyTitle => '难度级别';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => '与文档难度相同';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => '手动难度模式';
+
+  @override
+  String get aiDifficultyElementary => '小学';
+
+  @override
+  String get aiDifficultyHighSchool => '高中';
+
+  @override
+  String get aiDifficultyBachelors => '学士学位';
+
+  @override
+  String get aiDifficultyUniversity => '大学';
+
+  @override
+  String get aiDifficultyMasters => '硕士学位';
+
+  @override
+  String get aiDifficultyDoctorate => '博士学位';
 }

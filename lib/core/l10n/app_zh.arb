@@ -1824,5 +1824,14 @@
       }
     }
   },
-  "studyScreenCompleted": "已完成"
+  "studyScreenCompleted": "已完成",
+  "aiDifficultyTitle": "难度级别",
+  "aiDifficultyAutoTurnedOn": "与文档难度相同",
+  "aiDifficultyAutoTurnedOff": "手动难度模式",
+  "aiDifficultyElementary": "小学",
+  "aiDifficultyHighSchool": "高中",
+  "aiDifficultyBachelors": "学士学位",
+  "aiDifficultyUniversity": "大学",
+  "aiDifficultyMasters": "硕士学位",
+  "aiDifficultyDoctorate": "博士学位"
 }

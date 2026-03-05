@@ -1873,5 +1873,14 @@
   "studyScreenStudyGuide": "Guía de estudio",
   "studyScreenSections": "Secciones",
   "studyScreenChaptersCount": "{count} capítulos",
-  "studyScreenCompleted": "Completados"
+  "studyScreenCompleted": "Completados",
+  "aiDifficultyTitle": "Grado de dificultad",
+  "aiDifficultyAutoTurnedOn": "Misma dificultad que el documento",
+  "aiDifficultyAutoTurnedOff": "Modo de dificultad manual",
+  "aiDifficultyElementary": "Primaria / Escuela",
+  "aiDifficultyHighSchool": "Secundaria / Instituto",
+  "aiDifficultyBachelors": "Bachillerato",
+  "aiDifficultyUniversity": "Universidad (Grado)",
+  "aiDifficultyMasters": "Máster",
+  "aiDifficultyDoctorate": "Doctorado"
 }

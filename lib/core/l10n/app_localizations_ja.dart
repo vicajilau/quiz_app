@@ -1448,4 +1448,31 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => '完了';
+
+  @override
+  String get aiDifficultyTitle => '難易度';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'ドキュメントと同じ難易度';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => '手動難易度モード';
+
+  @override
+  String get aiDifficultyElementary => '小学校';
+
+  @override
+  String get aiDifficultyHighSchool => '高校';
+
+  @override
+  String get aiDifficultyBachelors => '学士号';
+
+  @override
+  String get aiDifficultyUniversity => '大学';
+
+  @override
+  String get aiDifficultyMasters => '修士号';
+
+  @override
+  String get aiDifficultyDoctorate => '博士号';
 }

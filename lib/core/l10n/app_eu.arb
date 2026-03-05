@@ -1772,5 +1772,14 @@
       }
     }
   },
-  "studyScreenCompleted": "Burututa"
+  "studyScreenCompleted": "Burututa",
+  "aiDifficultyTitle": "Zailtasun-maila",
+  "aiDifficultyAutoTurnedOn": "Dokumentuaren zailtasun bera",
+  "aiDifficultyAutoTurnedOff": "Eskuzko zailtasun modua",
+  "aiDifficultyElementary": "Lehen Hezkuntza",
+  "aiDifficultyHighSchool": "Bigarren Hezkuntza",
+  "aiDifficultyBachelors": "Gradua",
+  "aiDifficultyUniversity": "Unibertsitatea",
+  "aiDifficultyMasters": "Masterra",
+  "aiDifficultyDoctorate": "Doktoretza"
 }
