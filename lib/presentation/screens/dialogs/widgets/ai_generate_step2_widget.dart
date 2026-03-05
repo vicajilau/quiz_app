@@ -604,12 +604,16 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                           color: colors.title,
                                         ),
                                       ),
-                                      value: _isAutoDifficulty,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          _isAutoDifficulty = value;
-                                        });
-                                      },
+                                      value:
+                                          widget.fileAttachment != null &&
+                                          _isAutoDifficulty,
+                                      onChanged: widget.fileAttachment == null
+                                          ? null
+                                          : (value) {
+                                              setState(() {
+                                                _isAutoDifficulty = value;
+                                              });
+                                            },
                                       activeThumbColor: Theme.of(
                                         context,
                                       ).primaryColor,
