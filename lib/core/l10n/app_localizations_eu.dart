@@ -1560,26 +1560,26 @@ class AppLocalizationsEu extends AppLocalizations {
       'Hautatu eskuz edukirako ondoen egokitzen den zailtasun maila';
 
   @override
-  String get chooseModeDialogTitle => 'Choose Mode';
+  String get chooseModeDialogTitle => 'Modua aukeratu';
 
   @override
   String get chooseModeDialogMessage =>
-      'This file contains both quiz questions and study content. Which mode would you like to open?';
+      'Fitxategi honek galdetegiko galderak eta ikasketa-edukia ditu. Zein modu ireki nahi duzu?';
 
   @override
-  String get reattachFileDialogTitle => 'Original file required';
+  String get reattachFileDialogTitle => 'Jatorrizko fitxategia behar da';
 
   @override
   String get reattachFileDialogMessage =>
-      'To generate content for this section, please attach the original file used to create this study.';
+      'Atal honetarako edukia sortzeko, kargatu ikasketa hau sortzeko erabili zen jatorrizko fitxategia.';
 
   @override
   String get fileHashMismatchError =>
-      'The selected file does not match the original file used to create this study.';
+      'Hautatutako fitxategia ez dator bat ikasketa hau sortzeko erabili zen jatorrizko fitxategiarekin.';
 
   @override
-  String get showMoreLabel => 'Show more';
+  String get showMoreLabel => 'Erakutsi gehiago';
 
   @override
-  String get showLessLabel => 'Show less';
+  String get showLessLabel => 'Erakutsi gutxiago';
 }
