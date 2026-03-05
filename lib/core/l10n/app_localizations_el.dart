@@ -1537,6 +1537,12 @@ class AppLocalizationsEl extends AppLocalizations {
       'Αυτό το αρχείο περιέχει τόσο ερωτήσεις κουίζ όσο και περιεχόμενο μελέτης. Ποια λειτουργία θα θέλατε να ανοίξετε;';
 
   @override
+  String get studyModeSubtitle => 'Review the material at your own pace';
+
+  @override
+  String get examModeSubtitle => 'Put your knowledge to the test';
+
+  @override
   String get reattachFileDialogTitle => 'Απαιτείται το πρωτότυπο αρχείο';
 
   @override

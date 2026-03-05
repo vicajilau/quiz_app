@@ -1443,6 +1443,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get chooseModeDialogMessage => '此文件包含测验问题和学习内容。您想打开哪种模式？';
 
   @override
+  String get studyModeSubtitle => 'Review the material at your own pace';
+
+  @override
+  String get examModeSubtitle => 'Put your knowledge to the test';
+
+  @override
   String get reattachFileDialogTitle => '需要原始文件';
 
   @override

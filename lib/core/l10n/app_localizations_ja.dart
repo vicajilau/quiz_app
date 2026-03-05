@@ -1454,6 +1454,12 @@ class AppLocalizationsJa extends AppLocalizations {
       'このファイルにはクイズの問題と学習内容の両方が含まれています。どちらのモードで開きますか？';
 
   @override
+  String get studyModeSubtitle => 'Review the material at your own pace';
+
+  @override
+  String get examModeSubtitle => 'Put your knowledge to the test';
+
+  @override
   String get reattachFileDialogTitle => '元のファイルが必要です';
 
   @override

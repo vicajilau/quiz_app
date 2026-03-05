@@ -1540,6 +1540,12 @@ class AppLocalizationsFr extends AppLocalizations {
       'Ce fichier contient à la fois des questions de quiz et du contenu d\'étude. Quel mode souhaitez-vous ouvrir ?';
 
   @override
+  String get studyModeSubtitle => 'Review the material at your own pace';
+
+  @override
+  String get examModeSubtitle => 'Put your knowledge to the test';
+
+  @override
   String get reattachFileDialogTitle => 'Fichier original requis';
 
   @override

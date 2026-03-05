@@ -1537,6 +1537,12 @@ class AppLocalizationsCa extends AppLocalizations {
       'Aquest fitxer conté tant preguntes de qüestionari com contingut d\'estudi. Quin mode t\'agradaria obrir?';
 
   @override
+  String get studyModeSubtitle => 'Review the material at your own pace';
+
+  @override
+  String get examModeSubtitle => 'Put your knowledge to the test';
+
+  @override
   String get reattachFileDialogTitle => 'Fitxer original requerit';
 
   @override

@@ -2058,6 +2058,14 @@
   "@chooseModeDialogMessage": {
     "description": "Message for the choose mode dialog"
   },
+  "studyModeSubtitle": "Review the material at your own pace",
+  "@studyModeSubtitle": {
+    "description": "Short subtitle for study mode in the mode selection dialog"
+  },
+  "examModeSubtitle": "Put your knowledge to the test",
+  "@examModeSubtitle": {
+    "description": "Short subtitle for exam/quiz mode in the mode selection dialog"
+  },
   "reattachFileDialogTitle": "Original file required",
   "@reattachFileDialogTitle": {
     "description": "Title for the dialog asking the user to re-attach the original file"

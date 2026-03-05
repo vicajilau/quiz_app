@@ -2731,6 +2731,18 @@ abstract class AppLocalizations {
   /// **'This file contains both quiz questions and study content. Which mode would you like to open?'**
   String get chooseModeDialogMessage;
 
+  /// Short subtitle for study mode in the mode selection dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Review the material at your own pace'**
+  String get studyModeSubtitle;
+
+  /// Short subtitle for exam/quiz mode in the mode selection dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Put your knowledge to the test'**
+  String get examModeSubtitle;
+
   /// Title for the dialog asking the user to re-attach the original file
   ///
   /// In en, this message translates to:

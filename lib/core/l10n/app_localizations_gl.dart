@@ -1536,6 +1536,12 @@ class AppLocalizationsGl extends AppLocalizations {
       'Este ficheiro contén tanto preguntas de quiz como contido de estudo. Que modo desexa abrir?';
 
   @override
+  String get studyModeSubtitle => 'Review the material at your own pace';
+
+  @override
+  String get examModeSubtitle => 'Put your knowledge to the test';
+
+  @override
   String get reattachFileDialogTitle => 'Requírese o ficheiro orixinal';
 
   @override

@@ -1529,6 +1529,12 @@ class AppLocalizationsEu extends AppLocalizations {
       'Fitxategi honek galdetegiko galderak eta ikasketa-edukia ditu. Zein modu ireki nahi duzu?';
 
   @override
+  String get studyModeSubtitle => 'Review the material at your own pace';
+
+  @override
+  String get examModeSubtitle => 'Put your knowledge to the test';
+
+  @override
   String get reattachFileDialogTitle => 'Jatorrizko fitxategia behar da';
 
   @override
