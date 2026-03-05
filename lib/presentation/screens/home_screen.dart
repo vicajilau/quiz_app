@@ -39,6 +39,7 @@ import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
+import 'package:quizdy/presentation/screens/dialogs/mode_selection_dialog.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/core/extensions/string_extensions.dart';
@@ -341,24 +342,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
           if (hasQuestions && hasStudy) {
             if (!context.mounted) return;
-            final localizations = AppLocalizations.of(context)!;
-            final choice = await showDialog<QuizMode>(
-              context: context,
-              builder: (dialogContext) => AlertDialog(
-                title: Text(localizations.chooseModeDialogTitle),
-                content: Text(localizations.chooseModeDialogMessage),
-                actions: [
-                  TextButton(
-                    onPressed: () => context.pop(QuizMode.study),
-                    child: Text(localizations.studyModeLabel),
-                  ),
-                  ElevatedButton(
-                    onPressed: () => context.pop(QuizMode.quiz),
-                    child: Text(localizations.quizModeTitle),
-                  ),
-                ],
-              ),
-            );
+            final choice = await ModeSelectionDialog.show(context);
             if (!context.mounted || choice == null) return;
             if (choice == QuizMode.study) {
               _navigateToStudy(context, quizFile);
