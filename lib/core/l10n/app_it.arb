@@ -1820,5 +1820,7 @@
   "aiDifficultyBachelors": "Laurea triennale",
   "aiDifficultyUniversity": "Università",
   "aiDifficultyMasters": "Laurea magistrale",
-  "aiDifficultyDoctorate": "Dottorato"
+  "aiDifficultyDoctorate": "Dottorato",
+  "aiDifficultyAutoDescription": "Il livello di difficoltà verrà regolato automaticamente in base al documento caricato",
+  "aiDifficultyManualDescription": "Seleziona manualmente il livello di difficoltà che meglio si adatta al contenuto"
 }

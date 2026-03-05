@@ -2778,6 +2778,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Doctorate'**
   String get aiDifficultyDoctorate;
+
+  /// No description provided for @aiDifficultyAutoDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The difficulty level will be adjusted automatically according to the uploaded document'**
+  String get aiDifficultyAutoDescription;
+
+  /// No description provided for @aiDifficultyManualDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Select the difficulty level manually that best fits the content'**
+  String get aiDifficultyManualDescription;
 }
 
 class _AppLocalizationsDelegate

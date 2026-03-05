@@ -1883,5 +1883,7 @@
   "aiDifficultyBachelors": "Grao universitari",
   "aiDifficultyUniversity": "Universitat",
   "aiDifficultyMasters": "Màster",
-  "aiDifficultyDoctorate": "Doctorat"
+  "aiDifficultyDoctorate": "Doctorat",
+  "aiDifficultyAutoDescription": "El nivell de dificultat s'ajustarà automàticament segons el document penjat",
+  "aiDifficultyManualDescription": "Selecciona manualment el nivell de dificultat que millor s'adapti al contingut"
 }

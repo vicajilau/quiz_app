@@ -1557,4 +1557,12 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get aiDifficultyDoctorate => 'Doutoramento';
+
+  @override
+  String get aiDifficultyAutoDescription =>
+      'O nivel de dificultade axustarase automaticamente segundo o documento subido';
+
+  @override
+  String get aiDifficultyManualDescription =>
+      'Selecciona manualmente o nivel de dificultade que mellor se adapte ao contido';
 }

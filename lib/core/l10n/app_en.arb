@@ -2089,5 +2089,7 @@
   "aiDifficultyDoctorate": "Doctorate",
   "@aiDifficultyDoctorate": {
     "description": "Difficulty level: Doctorate"
-  }
+  },
+  "aiDifficultyAutoDescription": "The difficulty level will be adjusted automatically according to the uploaded document",
+  "aiDifficultyManualDescription": "Select the difficulty level manually that best fits the content"
 }

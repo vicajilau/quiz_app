@@ -1557,4 +1557,12 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get aiDifficultyDoctorate => 'Doktortitel';
+
+  @override
+  String get aiDifficultyAutoDescription =>
+      'Der Schwierigkeitsgrad wird automatisch an das hochgeladene Dokument angepasst';
+
+  @override
+  String get aiDifficultyManualDescription =>
+      'Wählen Sie den Schwierigkeitsgrad manuell aus, der am besten zum Inhalt passt';
 }

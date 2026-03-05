@@ -1882,5 +1882,7 @@
   "aiDifficultyBachelors": "Bachillerato",
   "aiDifficultyUniversity": "Universidad (Grado)",
   "aiDifficultyMasters": "Máster",
-  "aiDifficultyDoctorate": "Doctorado"
+  "aiDifficultyDoctorate": "Doctorado",
+  "aiDifficultyAutoDescription": "El nivel de dificultad se ajustará automáticamente según el documento subido",
+  "aiDifficultyManualDescription": "Selecciona manualmente el nivel de dificultad que mejor se adapte al contenido"
 }

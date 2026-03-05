@@ -1465,4 +1465,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get aiDifficultyDoctorate => '博士学位';
+
+  @override
+  String get aiDifficultyAutoDescription => '难度级别将根据上传的文档自动调整';
+
+  @override
+  String get aiDifficultyManualDescription => '手动选择最适合内容的难度级别';
 }

@@ -1558,4 +1558,12 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get aiDifficultyDoctorate => 'Διδακτορικό';
+
+  @override
+  String get aiDifficultyAutoDescription =>
+      'Το επίπεδο δυσκολίας θα προσαρμοστεί αυτόματα σύμφωνα με το έγγραφο που ανέβηκε';
+
+  @override
+  String get aiDifficultyManualDescription =>
+      'Επιλέξτε χειροκίνητα το επίπεδο δυσκολίας που ταιριάζει καλύτερα στο περιεχόμενο';
 }

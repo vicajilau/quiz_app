@@ -1841,5 +1841,7 @@
   "aiDifficultyBachelors": "درجة البكالوريوس",
   "aiDifficultyUniversity": "جامعة",
   "aiDifficultyMasters": "درجة الماجستير",
-  "aiDifficultyDoctorate": "دكتوراه"
+  "aiDifficultyDoctorate": "دكتوراه",
+  "aiDifficultyAutoDescription": "سيتم تعديل مستوى الصعوبة تلقائيًا وفقًا للمستند الذي تم تحميله",
+  "aiDifficultyManualDescription": "حدد مستوى الصعوبة يدويًا الذي يناسب المحتوى بشكل أفضل"
 }

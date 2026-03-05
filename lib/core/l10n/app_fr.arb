@@ -1826,5 +1826,7 @@
   "aiDifficultyBachelors": "Licence",
   "aiDifficultyUniversity": "Université",
   "aiDifficultyMasters": "Master",
-  "aiDifficultyDoctorate": "Doctorat"
+  "aiDifficultyDoctorate": "Doctorat",
+  "aiDifficultyAutoDescription": "Le niveau de difficulté sera ajusté automatiquement en fonction du document téléchargé",
+  "aiDifficultyManualDescription": "Sélectionnez manuellement le niveau de difficulté qui correspond le mieux au contenu"
 }

@@ -1877,5 +1877,7 @@
   "aiDifficultyBachelors": "Bachelor-Abschluss",
   "aiDifficultyUniversity": "Universität",
   "aiDifficultyMasters": "Master-Abschluss",
-  "aiDifficultyDoctorate": "Doktortitel"
+  "aiDifficultyDoctorate": "Doktortitel",
+  "aiDifficultyAutoDescription": "Der Schwierigkeitsgrad wird automatisch an das hochgeladene Dokument angepasst",
+  "aiDifficultyManualDescription": "Wählen Sie den Schwierigkeitsgrad manuell aus, der am besten zum Inhalt passt"
 }

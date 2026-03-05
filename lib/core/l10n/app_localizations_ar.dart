@@ -1524,4 +1524,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get aiDifficultyDoctorate => 'دكتوراه';
+
+  @override
+  String get aiDifficultyAutoDescription =>
+      'سيتم تعديل مستوى الصعوبة تلقائيًا وفقًا للمستند الذي تم تحميله';
+
+  @override
+  String get aiDifficultyManualDescription =>
+      'حدد مستوى الصعوبة يدويًا الذي يناسب المحتوى بشكل أفضل';
 }

@@ -1781,5 +1781,7 @@
   "aiDifficultyBachelors": "Gradua",
   "aiDifficultyUniversity": "Unibertsitatea",
   "aiDifficultyMasters": "Masterra",
-  "aiDifficultyDoctorate": "Doktoretza"
+  "aiDifficultyDoctorate": "Doktoretza",
+  "aiDifficultyAutoDescription": "Zailtasun maila automatikoki egokituko da kargatutako dokumentuaren arabera",
+  "aiDifficultyManualDescription": "Hautatu eskuz edukirako ondoen egokitzen den zailtasun maila"
 }

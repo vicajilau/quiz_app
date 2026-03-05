@@ -739,5 +739,7 @@
   "aiDifficultyBachelors": "Πτυχίο",
   "aiDifficultyUniversity": "Πανεπιστήμιο",
   "aiDifficultyMasters": "Μεταπτυχιακό",
-  "aiDifficultyDoctorate": "Διδακτορικό"
+  "aiDifficultyDoctorate": "Διδακτορικό",
+  "aiDifficultyAutoDescription": "Το επίπεδο δυσκολίας θα προσαρμοστεί αυτόματα σύμφωνα με το έγγραφο που ανέβηκε",
+  "aiDifficultyManualDescription": "Επιλέξτε χειροκίνητα το επίπεδο δυσκολίας που ταιριάζει καλύτερα στο περιεχόμενο"
 }

@@ -1550,4 +1550,12 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get aiDifficultyDoctorate => 'Doktoretza';
+
+  @override
+  String get aiDifficultyAutoDescription =>
+      'Zailtasun maila automatikoki egokituko da kargatutako dokumentuaren arabera';
+
+  @override
+  String get aiDifficultyManualDescription =>
+      'Hautatu eskuz edukirako ondoen egokitzen den zailtasun maila';
 }

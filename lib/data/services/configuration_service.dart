@@ -18,6 +18,7 @@ import 'package:quizdy/domain/models/quiz/question_order.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_stored_settings.dart';
 import 'package:quizdy/domain/models/ai/ai_study_generation_stored_settings.dart';
 import 'package:quizdy/domain/models/quiz/quiz_config_stored_settings.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/core/security/encryption_service.dart';
 
 class ConfigurationService {
@@ -42,6 +43,10 @@ class ConfigurationService {
       'ai_generation_question_count';
   static const String _aiGenerationQuestionTypesKey =
       'ai_generation_question_types';
+  static const String _aiGenerationIsAutoDifficultyKey =
+      'ai_generation_is_auto_difficulty';
+  static const String _aiGenerationDifficultyLevelKey =
+      'ai_generation_difficulty_level';
 
   static const String _aiStudyKeepDraftKey = 'ai_study_keep_draft';
   static const String _aiStudyDraftTextKey = 'ai_study_draft_text';
@@ -50,6 +55,10 @@ class ConfigurationService {
   static const String _aiStudyGenerationModelKey = 'ai_study_generation_model';
   static const String _aiStudyGenerationLanguageKey =
       'ai_study_generation_language';
+  static const String _aiStudyGenerationIsAutoDifficultyKey =
+      'ai_study_generation_is_auto_difficulty';
+  static const String _aiStudyGenerationDifficultyLevelKey =
+      'ai_study_generation_difficulty_level';
 
   static const String _onboardingCompletedKey = 'onboarding_completed';
 
@@ -286,6 +295,19 @@ class ConfigurationService {
     } else {
       await prefs.remove(_aiDraftFilePathKey);
     }
+
+    if (settings.isAutoDifficulty != null) {
+      await prefs.setBool(
+        _aiGenerationIsAutoDifficultyKey,
+        settings.isAutoDifficulty!,
+      );
+    }
+    if (settings.difficultyLevel != null) {
+      await prefs.setString(
+        _aiGenerationDifficultyLevelKey,
+        settings.difficultyLevel!.name,
+      );
+    }
   }
 
   /// Gets the AI generation settings
@@ -300,6 +322,16 @@ class ConfigurationService {
       questionTypes: prefs.getStringList(_aiGenerationQuestionTypesKey),
       draftText: prefs.getString(_aiDraftTextKey),
       draftFilePath: prefs.getString(_aiDraftFilePathKey),
+      isAutoDifficulty: prefs.getBool(_aiGenerationIsAutoDifficultyKey),
+      difficultyLevel: () {
+        final name = prefs.getString(_aiGenerationDifficultyLevelKey);
+        if (name == null) return null;
+        try {
+          return AiDifficultyLevel.values.byName(name);
+        } catch (_) {
+          return null;
+        }
+      }(),
     );
   }
 
@@ -336,6 +368,19 @@ class ConfigurationService {
     if (settings.draftText != null) {
       await prefs.setString(_aiStudyDraftTextKey, settings.draftText!);
     }
+
+    if (settings.isAutoDifficulty != null) {
+      await prefs.setBool(
+        _aiStudyGenerationIsAutoDifficultyKey,
+        settings.isAutoDifficulty!,
+      );
+    }
+    if (settings.difficultyLevel != null) {
+      await prefs.setString(
+        _aiStudyGenerationDifficultyLevelKey,
+        settings.difficultyLevel!.name,
+      );
+    }
   }
 
   /// Gets the AI Study generation settings
@@ -347,6 +392,16 @@ class ConfigurationService {
       modelName: prefs.getString(_aiStudyGenerationModelKey),
       language: prefs.getString(_aiStudyGenerationLanguageKey),
       draftText: prefs.getString(_aiStudyDraftTextKey),
+      isAutoDifficulty: prefs.getBool(_aiStudyGenerationIsAutoDifficultyKey),
+      difficultyLevel: () {
+        final name = prefs.getString(_aiStudyGenerationDifficultyLevelKey);
+        if (name == null) return null;
+        try {
+          return AiDifficultyLevel.values.byName(name);
+        } catch (_) {
+          return null;
+        }
+      }(),
     );
   }
 

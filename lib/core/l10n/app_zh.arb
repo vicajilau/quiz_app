@@ -1833,5 +1833,7 @@
   "aiDifficultyBachelors": "学士学位",
   "aiDifficultyUniversity": "大学",
   "aiDifficultyMasters": "硕士学位",
-  "aiDifficultyDoctorate": "博士学位"
+  "aiDifficultyDoctorate": "博士学位",
+  "aiDifficultyAutoDescription": "难度级别将根据上传的文档自动调整",
+  "aiDifficultyManualDescription": "手动选择最适合内容的难度级别"
 }

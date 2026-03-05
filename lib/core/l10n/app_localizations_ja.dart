@@ -1475,4 +1475,10 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get aiDifficultyDoctorate => '博士号';
+
+  @override
+  String get aiDifficultyAutoDescription => '難易度はアップロードされたドキュメントに応じて自動的に調整されます';
+
+  @override
+  String get aiDifficultyManualDescription => 'コンテンツに最も適した難易度を手動で選択してください';
 }

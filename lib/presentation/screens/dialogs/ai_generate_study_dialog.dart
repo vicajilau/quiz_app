@@ -27,6 +27,7 @@ import 'package:quizdy/data/services/ai/ai_service_selector.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step1_widget.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step2_widget.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/presentation/utils/clipboard_image_helper.dart';
 
 class AiGenerateStudyDialog extends StatefulWidget {
@@ -48,6 +49,8 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
   bool _isLoadingServices = true;
 
   AiFileAttachment? _fileAttachment;
+  bool _isAutoDifficulty = true;
+  AiDifficultyLevel _selectedDifficulty = AiDifficultyLevel.university;
   final configurationService = ServiceLocator.getIt<ConfigurationService>();
 
   List<String> get _supportedLanguages {
@@ -113,6 +116,13 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
           if (settings.language != null &&
               _supportedLanguages.contains(settings.language)) {
             _selectedLanguage = settings.language!;
+          }
+
+          if (settings.isAutoDifficulty != null) {
+            _isAutoDifficulty = settings.isAutoDifficulty!;
+          }
+          if (settings.difficultyLevel != null) {
+            _selectedDifficulty = settings.difficultyLevel!;
           }
         });
       }
@@ -234,6 +244,8 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
         serviceName: _selectedService?.serviceName,
         modelName: _selectedModel,
         language: _selectedLanguage,
+        isAutoDifficulty: _isAutoDifficulty,
+        difficultyLevel: _selectedDifficulty,
         draftText: textToSave,
       ),
     );
@@ -347,6 +359,18 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
         getWordCountText: _getWordCountText,
         getWordCount: _getWordCount,
         getTopicCount: _getTopicCount,
+        isAutoDifficulty: _isAutoDifficulty,
+        selectedDifficulty: _selectedDifficulty,
+        onAutoDifficultyChanged: (value) {
+          setState(() {
+            _isAutoDifficulty = value;
+          });
+        },
+        onDifficultyChanged: (value) {
+          setState(() {
+            _selectedDifficulty = value;
+          });
+        },
         onGenerate: (config) async {
           await _saveDraft();
           if (context.mounted) {
