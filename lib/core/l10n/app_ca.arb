@@ -1885,5 +1885,12 @@
   "aiDifficultyMasters": "Màster",
   "aiDifficultyDoctorate": "Doctorat",
   "aiDifficultyAutoDescription": "El nivell de dificultat s'ajustarà automàticament segons el document penjat",
-  "aiDifficultyManualDescription": "Selecciona manualment el nivell de dificultat que millor s'adapti al contingut"
+  "aiDifficultyManualDescription": "Selecciona manualment el nivell de dificultat que millor s'adapti al contingut",
+  "chooseModeDialogTitle": "Triar mode",
+  "chooseModeDialogMessage": "Aquest fitxer conté tant preguntes de qüestionari com contingut d'estudi. Quin mode t'agradaria obrir?",
+  "reattachFileDialogTitle": "Fitxer original requerit",
+  "reattachFileDialogMessage": "Per a generar contingut per a aquesta secció, si us plau adjunta el fitxer original utilitzat per a crear aquest estudi.",
+  "fileHashMismatchError": "El fitxer seleccionat no coincideix amb el fitxer original utilitzat per a crear aquest estudi.",
+  "showMoreLabel": "Mostrar més",
+  "showLessLabel": "Mostrar menys"
 }

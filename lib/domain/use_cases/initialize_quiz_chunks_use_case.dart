@@ -66,7 +66,11 @@ class InitializeQuizChunksUseCase {
 
     // Ensure the quizFile also stores the fileAttachment or at least its metadata
     // The UI should ideally pass the fileUri to the Bloc for JIT chunk generation.
-    return quizFile.copyWith(study: study, fileAttachment: file);
+    return quizFile.copyWith(
+      study: study,
+      fileAttachment: file,
+      fileContentHash: file.contentHash,
+    );
   }
 
   /// Helper to generate chunks directly from a file without requiring a QuizFile.

@@ -33,6 +33,7 @@ class StudyExecutionBloc
     double progress,
     int processedChunks,
     List<StudyChunk> chunks,
+    String? fileUri,
   )?
   onProgressChanged;
   final bool _isAutoDifficulty;
@@ -66,6 +67,7 @@ class StudyExecutionBloc
     on<NextStudyChunkRequested>(_onNextStudyChunkRequested);
     on<PreviousStudyChunkRequested>(_onPreviousStudyChunkRequested);
     on<ReturnToIndexRequested>(_onReturnToIndexRequested);
+    on<FileReattached>(_onFileReattached);
   }
 
   static StudyExecutionState _initialProgress(
@@ -148,13 +150,14 @@ class StudyExecutionBloc
     }
 
     if (fileUri == null) {
-      final errorChunk = chunk.copyWith(status: StudyChunkState.error);
-      final chunksError = List<StudyChunk>.from(state.chunks);
-      chunksError[event.chunkIndex] = errorChunk;
+      // Revert chunk back to created — the user needs to re-attach the file
+      final revertedChunk = chunk.copyWith(status: StudyChunkState.created);
+      final chunksReverted = List<StudyChunk>.from(state.chunks);
+      chunksReverted[event.chunkIndex] = revertedChunk;
       emit(
         state.copyWith(
-          chunks: chunksError,
-          error: _localizations.aiErrorResponse,
+          chunks: chunksReverted,
+          needsFileReattachment: true,
         ),
       );
       return;
@@ -182,6 +185,7 @@ class StudyExecutionBloc
       newState.progressPercentage,
       newState.processedChunks,
       newState.chunks,
+      newState.fileUri,
     );
   }
 
@@ -224,5 +228,17 @@ class StudyExecutionBloc
     Emitter<StudyExecutionState> emit,
   ) {
     emit(state.copyWith(isIndexMode: true));
+  }
+
+  Future<void> _onFileReattached(
+    FileReattached event,
+    Emitter<StudyExecutionState> emit,
+  ) async {
+    emit(state.copyWith(
+      fileAttachment: event.file,
+      needsFileReattachment: false,
+    ));
+    // Re-trigger processing of the current chunk
+    add(StudyChunkRequested(state.currentChunkIndex));
   }
 }

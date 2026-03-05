@@ -15,6 +15,8 @@
 
 import 'dart:typed_data';
 
+import 'package:crypto/crypto.dart';
+
 /// Represents a file attached to an AI request.
 class AiFileAttachment {
   /// The raw byte content of the file.
@@ -39,4 +41,7 @@ class AiFileAttachment {
 
   /// Whether the attached file is an image.
   bool get isImage => mimeType.startsWith('image/');
+
+  /// SHA-256 hash of the file content bytes.
+  String get contentHash => sha256.convert(bytes).toString();
 }

@@ -1783,5 +1783,12 @@
   "aiDifficultyMasters": "Máster",
   "aiDifficultyDoctorate": "Doutoramento",
   "aiDifficultyAutoDescription": "O nivel de dificultade axustarase automaticamente segundo o documento subido",
-  "aiDifficultyManualDescription": "Selecciona manualmente o nivel de dificultade que mellor se adapte ao contido"
+  "aiDifficultyManualDescription": "Selecciona manualmente o nivel de dificultade que mellor se adapte ao contido",
+  "chooseModeDialogTitle": "Elixir modo",
+  "chooseModeDialogMessage": "Este ficheiro contén tanto preguntas de quiz como contido de estudo. Que modo desexa abrir?",
+  "reattachFileDialogTitle": "Requírese o ficheiro orixinal",
+  "reattachFileDialogMessage": "Para xerar contido para esta sección, por favor adxunte o ficheiro orixinal utilizado para crear este estudo.",
+  "fileHashMismatchError": "O ficheiro seleccionado no coincide co ficheiro orixinal utilizado para crear este estudo.",
+  "showMoreLabel": "Amosar máis",
+  "showLessLabel": "Amosar menos"
 }

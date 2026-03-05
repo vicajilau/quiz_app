@@ -1772,16 +1772,5 @@
       }
     }
   },
-  "studyScreenCompleted": "Burututa",
-  "aiDifficultyTitle": "Zailtasun-maila",
-  "aiDifficultyAutoTurnedOn": "Dokumentuaren zailtasun bera",
-  "aiDifficultyAutoTurnedOff": "Eskuzko zailtasun modua",
-  "aiDifficultyElementary": "Lehen Hezkuntza",
-  "aiDifficultyHighSchool": "Bigarren Hezkuntza",
-  "aiDifficultyBachelors": "Gradua",
-  "aiDifficultyUniversity": "Unibertsitatea",
-  "aiDifficultyMasters": "Masterra",
-  "aiDifficultyDoctorate": "Doktoretza",
-  "aiDifficultyAutoDescription": "Zailtasun maila automatikoki egokituko da kargatutako dokumentuaren arabera",
-  "aiDifficultyManualDescription": "Hautatu eskuz edukirako ondoen egokitzen den zailtasun maila"
+  "studyScreenCompleted": "Burututa"
 }

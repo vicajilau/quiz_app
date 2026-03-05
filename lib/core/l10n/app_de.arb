@@ -1879,5 +1879,12 @@
   "aiDifficultyMasters": "Master-Abschluss",
   "aiDifficultyDoctorate": "Doktortitel",
   "aiDifficultyAutoDescription": "Der Schwierigkeitsgrad wird automatisch an das hochgeladene Dokument angepasst",
-  "aiDifficultyManualDescription": "Wählen Sie den Schwierigkeitsgrad manuell aus, der am besten zum Inhalt passt"
+  "aiDifficultyManualDescription": "Wählen Sie den Schwierigkeitsgrad manuell aus, der am besten zum Inhalt passt",
+  "chooseModeDialogTitle": "Modus wählen",
+  "chooseModeDialogMessage": "Diese Datei enthält sowohl Quizfragen als auch Lerninhalte. Welchen Modus möchten Sie öffnen?",
+  "reattachFileDialogTitle": "Originaldatei erforderlich",
+  "reattachFileDialogMessage": "Um Inhalte für diesen Abschnitt zu generieren, hängen Sie bitte die Originaldatei an, die zur Erstellung dieser Studie verwendet wurde.",
+  "fileHashMismatchError": "Die ausgewählte Datei stimmt nicht mit der Originaldatei überein, die zur Erstellung dieser Studie verwendet wurde.",
+  "showMoreLabel": "Mehr anzeigen",
+  "showLessLabel": "Weniger anzeigen"
 }

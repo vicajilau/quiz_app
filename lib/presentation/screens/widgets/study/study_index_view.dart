@@ -15,9 +15,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/service_locator.dart';
+import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_chunk_card.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_hero_card.dart';
@@ -32,6 +36,29 @@ class StudyIndexView extends StatelessWidget {
     required this.state,
     required this.localizations,
   });
+
+  Future<void> _onChunkTap(BuildContext context, int index) async {
+    final chunk = state.chunks[index];
+    final isCompleted = chunk.status == StudyChunkState.completed;
+
+    if (!isCompleted) {
+      final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
+          .getIsAiAvailable();
+
+      if (!isAiAvailable) {
+        if (context.mounted) {
+          context.presentSnackBar(
+            AppLocalizations.of(context)!.aiApiKeyRequired,
+          );
+        }
+        return;
+      }
+    }
+
+    if (context.mounted) {
+      context.read<StudyExecutionBloc>().add(StudyChunkRequested(index));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,11 +93,7 @@ class StudyIndexView extends StatelessWidget {
               index: index,
               total: state.chunks.length,
               localizations: localizations,
-              onTap: () {
-                context.read<StudyExecutionBloc>().add(
-                  StudyChunkRequested(index),
-                );
-              },
+              onTap: () => _onChunkTap(context, index),
             ),
           );
         }),
@@ -117,11 +140,7 @@ class StudyIndexView extends StatelessWidget {
                               index: i,
                               total: state.chunks.length,
                               localizations: localizations,
-                              onTap: () {
-                                context.read<StudyExecutionBloc>().add(
-                                  StudyChunkRequested(i),
-                                );
-                              },
+                              onTap: () => _onChunkTap(context, i),
                             ),
                           ),
                       ],
@@ -140,11 +159,7 @@ class StudyIndexView extends StatelessWidget {
                               index: i,
                               total: state.chunks.length,
                               localizations: localizations,
-                              onTap: () {
-                                context.read<StudyExecutionBloc>().add(
-                                  StudyChunkRequested(i),
-                                );
-                              },
+                              onTap: () => _onChunkTap(context, i),
                             ),
                           ),
                       ],

@@ -34,6 +34,11 @@ import 'package:quizdy/presentation/screens/dialogs/ai_generate_questions_dialog
 import 'package:quizdy/presentation/screens/dialogs/ai_generate_study_dialog.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
 import 'package:quizdy/domain/models/ai/ai_study_generation_config.dart';
+<<<<<<< HEAD
+=======
+import 'package:quizdy/data/services/ai/ai_document_chunking_service.dart';
+import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+>>>>>>> origin/main
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
@@ -55,6 +60,20 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _isDragging = false;
   bool _isLoading = false;
   String? _loadingText;
+
+  void _navigateToStudy(BuildContext context, QuizFile quizFile) {
+    final study = quizFile.study!;
+    final chunks = study.content.cache;
+    context.push(
+      AppRoutes.studyScreen,
+      extra: {
+        'initialChunks': chunks,
+        'documentTitle': quizFile.metadata.title,
+        'documentSummary': quizFile.metadata.description,
+        'quizFile': quizFile,
+      },
+    );
+  }
 
   void _pickFile(BuildContext context) {
     if (_isLoading) return;
@@ -313,7 +332,42 @@ class _HomeScreenState extends State<HomeScreen> {
       listener: (context, state) async {
         if (state is FileLoaded) {
           setState(() => _isLoading = false);
-          context.go(AppRoutes.fileLoadedScreen);
+          if (context.currentRoute != AppRoutes.home) return;
+          final quizFile = state.quizFile;
+          final hasQuestions = quizFile.questions.isNotEmpty;
+          final hasStudy = quizFile.study != null;
+
+          if (hasQuestions && hasStudy) {
+            if (!context.mounted) return;
+            final localizations = AppLocalizations.of(context)!;
+            final choice = await showDialog<QuizMode>(
+              context: context,
+              builder: (dialogContext) => AlertDialog(
+                title: Text(localizations.chooseModeDialogTitle),
+                content: Text(localizations.chooseModeDialogMessage),
+                actions: [
+                  TextButton(
+                    onPressed: () => context.pop(QuizMode.study),
+                    child: Text(localizations.studyModeLabel),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => context.pop(QuizMode.quiz),
+                    child: Text(localizations.quizModeTitle),
+                  ),
+                ],
+              ),
+            );
+            if (!context.mounted || choice == null) return;
+            if (choice == QuizMode.study) {
+              _navigateToStudy(context, quizFile);
+            } else {
+              context.go(AppRoutes.fileLoadedScreen);
+            }
+          } else if (hasStudy) {
+            _navigateToStudy(context, quizFile);
+          } else {
+            context.go(AppRoutes.fileLoadedScreen);
+          }
         }
         if (state is FileError && context.mounted) {
           setState(() => _isLoading = false);

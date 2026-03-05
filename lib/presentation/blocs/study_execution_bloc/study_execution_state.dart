@@ -29,6 +29,7 @@ class StudyExecutionState {
   final double progressPercentage;
   final int processedChunks;
   final String? error;
+  final bool needsFileReattachment;
 
   const StudyExecutionState({
     this.chunks = const [],
@@ -42,6 +43,7 @@ class StudyExecutionState {
     this.progressPercentage = 0.0,
     this.processedChunks = 0,
     this.error,
+    this.needsFileReattachment = false,
   });
 
   StudyExecutionState copyWith({
@@ -56,6 +58,7 @@ class StudyExecutionState {
     double? progressPercentage,
     int? processedChunks,
     String? error,
+    bool? needsFileReattachment,
   }) {
     return StudyExecutionState(
       chunks: chunks ?? this.chunks,
@@ -69,6 +72,7 @@ class StudyExecutionState {
       progressPercentage: progressPercentage ?? this.progressPercentage,
       processedChunks: processedChunks ?? this.processedChunks,
       error: error, // Can be null to clear error
+      needsFileReattachment: needsFileReattachment ?? false,
     );
   }
 
@@ -104,7 +108,8 @@ class StudyExecutionState {
         other.isIndexMode == isIndexMode &&
         other.progressPercentage == progressPercentage &&
         other.processedChunks == processedChunks &&
-        other.error == error;
+        other.error == error &&
+        other.needsFileReattachment == needsFileReattachment;
   }
 
   @override
@@ -119,6 +124,7 @@ class StudyExecutionState {
         isIndexMode.hashCode ^
         progressPercentage.hashCode ^
         processedChunks.hashCode ^
-        error.hashCode;
+        error.hashCode ^
+        needsFileReattachment.hashCode;
   }
 }
