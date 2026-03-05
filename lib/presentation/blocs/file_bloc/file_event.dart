@@ -81,11 +81,13 @@ class StudyProgressUpdated extends FileEvent {
   final double progress;
   final int processedChunks;
   final List<StudyChunk> chunks;
+  final String? fileUri;
 
   StudyProgressUpdated({
     required this.progress,
     required this.processedChunks,
     required this.chunks,
+    this.fileUri,
   });
 }
 

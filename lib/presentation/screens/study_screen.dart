@@ -13,22 +13,36 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mime/mime.dart';
+import 'package:quizdy/core/context_extension.dart';
+import 'package:quizdy/core/extensions/string_extensions.dart';
+import 'package:quizdy/core/theme/extensions/file_loaded_theme.dart';
+import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+import 'package:quizdy/domain/models/quiz/quiz_metadata.dart';
+import 'package:quizdy/domain/models/quiz/study.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
+import 'package:quizdy/domain/models/quiz/study_content.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
+import 'package:quizdy/core/constants/quiz_metadata.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
+import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
+import 'package:quizdy/presentation/screens/widgets/request_file_name_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_view.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_sections_sidebar.dart';
 
@@ -58,14 +72,16 @@ class StudyScreen extends StatelessWidget {
         localizations: localizations,
         initialChunks: initialChunks,
         fileAttachment: fileAttachment ?? quizFile?.fileAttachment,
+        fileUri: quizFile?.fileUri,
         documentTitle: documentTitle,
         documentSummary: documentSummary ?? quizFile?.metadata.description,
-        onProgressChanged: (progress, processedChunks, chunks) {
+        onProgressChanged: (progress, processedChunks, chunks, fileUri) {
           context.read<FileBloc>().add(
             StudyProgressUpdated(
               progress: progress,
               processedChunks: processedChunks,
               chunks: chunks,
+              fileUri: fileUri,
             ),
           );
         },
@@ -75,10 +91,154 @@ class StudyScreen extends StatelessWidget {
   }
 }
 
-class StudyScreenView extends StatelessWidget {
+class StudyScreenView extends StatefulWidget {
   const StudyScreenView({super.key, required this.quizFile});
 
   final QuizFile? quizFile;
+
+  @override
+  State<StudyScreenView> createState() => _StudyScreenViewState();
+}
+
+class _StudyScreenViewState extends State<StudyScreenView> {
+  Future<void> _handleSave() async {
+    final localizations = AppLocalizations.of(context)!;
+    final fileState = context.read<FileBloc>().state;
+
+    final QuizFile fileToSave;
+
+    if (fileState is FileLoaded) {
+      final studyState = context.read<StudyExecutionBloc>().state;
+      fileToSave = fileState.quizFile.copyWith(
+        fileUri: studyState.fileUri,
+        fileContentHash:
+            fileState.quizFile.fileContentHash ??
+            studyState.fileAttachment?.contentHash,
+      );
+    } else if (fileState is FileSaved) {
+      final studyState = context.read<StudyExecutionBloc>().state;
+      fileToSave = fileState.quizFile.copyWith(
+        fileUri: studyState.fileUri,
+        fileContentHash:
+            fileState.quizFile.fileContentHash ??
+            studyState.fileAttachment?.contentHash,
+      );
+    } else {
+      final studyState = context.read<StudyExecutionBloc>().state;
+      fileToSave = QuizFile(
+        metadata: QuizMetadata(
+          title: studyState.documentTitle,
+          description: studyState.documentSummary ?? '',
+          version: QuizMetadataConstants.version,
+          author: '',
+        ),
+        questions: const [],
+        study: Study(
+          content: StudyContent(
+            progressPercentage: studyState.progressPercentage,
+            totalChunks: studyState.chunks.length,
+            processedChunks: studyState.chunks
+                .where((c) => c.status != StudyChunkState.created)
+                .length,
+            cache: studyState.chunks,
+          ),
+        ),
+        fileContentHash: studyState.fileAttachment?.contentHash,
+        fileUri: studyState.fileUri,
+      );
+    }
+
+    if (!mounted) return;
+
+    // Get existing filename from path, or generate one from title
+    var fileName = fileToSave.filePath?.split('/').last;
+
+    if (fileName == null || fileName.isEmpty) {
+      final sanitizedTitle = fileToSave.metadata.title.sanitizeFilename;
+      fileName = sanitizedTitle.isNotEmpty
+          ? '$sanitizedTitle.quiz'
+          : 'quiz.quiz';
+    }
+
+    // On Web, if existing filename is invalid, ask for name
+    if (kIsWeb &&
+        (fileName.isEmpty || !fileName.toLowerCase().endsWith('.quiz'))) {
+      if (!mounted) return;
+      final result = await showDialog<String>(
+        context: context,
+        builder: (context) => const RequestFileNameDialog(format: '.quiz'),
+      );
+
+      if (result != null && result.isNotEmpty) {
+        fileName = result;
+      } else {
+        return;
+      }
+    }
+
+    if (mounted) {
+      context.read<FileBloc>().add(
+        QuizFileSaveRequested(fileToSave, localizations.saveButton, fileName),
+      );
+    }
+  }
+
+  Future<void> _handleFileReattachment(BuildContext context) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(localizations.reattachFileDialogTitle),
+        content: Text(localizations.reattachFileDialogMessage),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: Text(localizations.aiAttachFile),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true || !context.mounted) return;
+
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.any,
+      withData: true,
+    );
+
+    if (result == null ||
+        result.files.isEmpty ||
+        result.files.first.bytes == null) {
+      return;
+    }
+
+    if (!context.mounted) return;
+
+    final pickedFile = result.files.first;
+    final file = AiFileAttachment(
+      bytes: pickedFile.bytes!,
+      mimeType:
+          lookupMimeType(pickedFile.name, headerBytes: pickedFile.bytes) ??
+          'application/octet-stream',
+      name: pickedFile.name,
+    );
+
+    // Check hash if we have the original hash stored
+    final expectedHash = widget.quizFile?.fileContentHash;
+    if (expectedHash != null && file.contentHash != expectedHash) {
+      if (!context.mounted) return;
+      context.presentSnackBar(localizations.fileHashMismatchError);
+      return;
+    }
+
+    if (!context.mounted) return;
+    context.read<StudyExecutionBloc>().add(FileReattached(file));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +253,36 @@ class StudyScreenView extends StatelessWidget {
             return Text(state.documentTitle);
           },
         ),
+        actions: [
+          Container(
+            width: 40,
+            height: 40,
+            margin: const EdgeInsets.only(right: 8),
+            decoration: BoxDecoration(
+              color: context.fileLoadedTheme.appBarIconBackgroundColor,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: IconButton(
+              padding: EdgeInsets.zero,
+              onPressed: () async => await showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (_) => const SettingsDialog(),
+              ),
+              icon: Icon(
+                LucideIcons.settings,
+                color: Theme.of(context).colorScheme.onPrimary,
+                size: 20,
+              ),
+              tooltip: AppLocalizations.of(context)!.questionOrderConfigTooltip,
+            ),
+          ),
+          IconButton(
+            icon: const Icon(LucideIcons.save),
+            tooltip: localizations.saveButton,
+            onPressed: _handleSave,
+          ),
+        ],
         leading: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
           builder: (context, state) {
             return IconButton(
@@ -104,6 +294,7 @@ class StudyScreenView extends StatelessWidget {
                   );
                   return;
                 }
+                context.read<FileBloc>().add(QuizFileReset());
                 context.pop();
               },
               tooltip: MaterialLocalizations.of(context).backButtonTooltip,
@@ -133,44 +324,56 @@ class StudyScreenView extends StatelessWidget {
           ),
         ),
       ),
-      body: BlocListener<StudyExecutionBloc, StudyExecutionState>(
-        listenWhen: (previous, current) {
-          final currentChunk = current.currentChunk;
-          final previousChunk = previous.currentChunk;
-          return currentChunk?.status == StudyChunkState.error &&
-              previousChunk?.status != StudyChunkState.error;
-        },
-        listener: (context, state) {
-          final currentChunk = state.currentChunk;
-          if (currentChunk == null) return;
+      body: MultiBlocListener(
+        listeners: [
+          BlocListener<StudyExecutionBloc, StudyExecutionState>(
+            listenWhen: (previous, current) =>
+                !previous.needsFileReattachment &&
+                current.needsFileReattachment,
+            listener: (context, state) {
+              _handleFileReattachment(context);
+            },
+          ),
+          BlocListener<StudyExecutionBloc, StudyExecutionState>(
+            listenWhen: (previous, current) {
+              final currentChunk = current.currentChunk;
+              final previousChunk = previous.currentChunk;
+              return currentChunk?.status == StudyChunkState.error &&
+                  previousChunk?.status != StudyChunkState.error;
+            },
+            listener: (context, state) {
+              final currentChunk = state.currentChunk;
+              if (currentChunk == null) return;
 
-          showDialog(
-            context: context,
-            builder: (dialogContext) => AlertDialog(
-              title: Text(localizations.studyScreenError),
-              content: Text(
-                currentChunk.errorMessage ?? localizations.studyScreenError,
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.of(dialogContext).pop(),
-                  child: Text(
-                    MaterialLocalizations.of(context).closeButtonLabel,
+              showDialog(
+                context: context,
+                builder: (dialogContext) => AlertDialog(
+                  title: Text(localizations.studyScreenError),
+                  content: Text(
+                    currentChunk.errorMessage ?? localizations.studyScreenError,
                   ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(dialogContext).pop(),
+                      child: Text(
+                        MaterialLocalizations.of(context).closeButtonLabel,
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(dialogContext).pop();
+                        context.read<StudyExecutionBloc>().add(
+                          StudyChunkRequested(state.currentChunkIndex),
+                        );
+                      },
+                      child: Text(localizations.studyScreenRetry),
+                    ),
+                  ],
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(dialogContext).pop();
-                    context.read<StudyExecutionBloc>().add(
-                      StudyChunkRequested(state.currentChunkIndex),
-                    );
-                  },
-                  child: Text(localizations.studyScreenRetry),
-                ),
-              ],
-            ),
-          );
-        },
+              );
+            },
+          ),
+        ],
         child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
           builder: (context, state) {
             if (state.chunks.isEmpty) {
