@@ -264,7 +264,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                       const SizedBox(height: 24),
                       CollapsibleGenerationConfig(
                         key: _configKey,
-                        isDark: isDark,
                         onExpand: () {
                           // Expansion is now immediate, so we scroll after the next frame
                           WidgetsBinding.instance.addPostFrameCallback((_) {

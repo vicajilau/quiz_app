@@ -177,3 +177,8 @@ class AiAssistantTheme extends ThemeExtension<AiAssistantTheme> {
     );
   }
 }
+
+extension AiAssistantThemeContext on BuildContext {
+  AiAssistantTheme get aiAssistantTheme =>
+      Theme.of(this).extension<AiAssistantTheme>()!;
+}
