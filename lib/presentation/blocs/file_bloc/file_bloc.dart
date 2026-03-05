@@ -229,7 +229,10 @@ class FileBloc extends Bloc<FileEvent, FileState> {
           ),
         );
 
-        final updatedFile = currentFile.copyWith(study: updatedStudy);
+        final updatedFile = currentFile.copyWith(
+          study: updatedStudy,
+          fileUri: event.fileUri,
+        );
 
         // Update repository/service locator
         _fileRepository.registerQuizFile(updatedFile);

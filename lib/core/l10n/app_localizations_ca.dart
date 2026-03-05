@@ -1528,4 +1528,28 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'Completat';
+
+  @override
+  String get chooseModeDialogTitle => 'Triar mode';
+
+  @override
+  String get chooseModeDialogMessage =>
+      'Aquest fitxer conté tant preguntes de qüestionari com contingut d\'estudi. Quin mode t\'agradaria obrir?';
+
+  @override
+  String get reattachFileDialogTitle => 'Fitxer original requerit';
+
+  @override
+  String get reattachFileDialogMessage =>
+      'Per a generar contingut per a aquesta secció, si us plau adjunta el fitxer original utilitzat per a crear aquest estudi.';
+
+  @override
+  String get fileHashMismatchError =>
+      'El fitxer seleccionat no coincideix amb el fitxer original utilitzat per a crear aquest estudi.';
+
+  @override
+  String get showMoreLabel => 'Mostrar més';
+
+  @override
+  String get showLessLabel => 'Mostrar menys';
 }

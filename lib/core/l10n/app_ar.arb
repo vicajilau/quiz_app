@@ -1828,5 +1828,12 @@
       }
     }
   },
-  "studyScreenCompleted": "مكتمل"
+  "studyScreenCompleted": "مكتمل",
+  "chooseModeDialogTitle": "اختر الوضع",
+  "chooseModeDialogMessage": "يحتوي هذا الملف على أسئلة اختبار ومحتوى دراسي. أي وضع ترغب في فتحه؟",
+  "reattachFileDialogTitle": "الملف الأصلي مطلوب",
+  "reattachFileDialogMessage": "لتوليد محتوى لهذا القسم، يرجى إرفاق الملف الأصلي المستخدم لإنشاء هذه الدراسة.",
+  "fileHashMismatchError": "الملف المحدد لا يتطابق مع الملف الأصلي المستخدم لإنشاء هذه الدراسة.",
+  "showMoreLabel": "عرض المزيد",
+  "showLessLabel": "عرض أقل"
 }

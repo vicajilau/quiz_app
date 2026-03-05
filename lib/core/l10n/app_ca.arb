@@ -1870,5 +1870,12 @@
       }
     }
   },
-  "studyScreenCompleted": "Completat"
+  "studyScreenCompleted": "Completat",
+  "chooseModeDialogTitle": "Triar mode",
+  "chooseModeDialogMessage": "Aquest fitxer conté tant preguntes de qüestionari com contingut d'estudi. Quin mode t'agradaria obrir?",
+  "reattachFileDialogTitle": "Fitxer original requerit",
+  "reattachFileDialogMessage": "Per a generar contingut per a aquesta secció, si us plau adjunta el fitxer original utilitzat per a crear aquest estudi.",
+  "fileHashMismatchError": "El fitxer seleccionat no coincideix amb el fitxer original utilitzat per a crear aquest estudi.",
+  "showMoreLabel": "Mostrar més",
+  "showLessLabel": "Mostrar menys"
 }

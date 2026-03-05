@@ -1520,4 +1520,28 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'Burututa';
+
+  @override
+  String get chooseModeDialogTitle => 'Modua aukeratu';
+
+  @override
+  String get chooseModeDialogMessage =>
+      'Fitxategi honek galdetegiko galderak eta ikasketa-edukia ditu. Zein modu ireki nahi duzu?';
+
+  @override
+  String get reattachFileDialogTitle => 'Jatorrizko fitxategia behar da';
+
+  @override
+  String get reattachFileDialogMessage =>
+      'Atal honetarako edukia sortzeko, kargatu ikasketa hau sortzeko erabili zen jatorrizko fitxategia.';
+
+  @override
+  String get fileHashMismatchError =>
+      'Hautatutako fitxategia ez dator bat ikasketa hau sortzeko erabili zen jatorrizko fitxategiarekin.';
+
+  @override
+  String get showMoreLabel => 'Erakutsi gehiago';
+
+  @override
+  String get showLessLabel => 'Erakutsi gutxiago';
 }

@@ -1859,5 +1859,12 @@
       }
     }
   },
-  "studyScreenCompleted": "Concluído"
+  "studyScreenCompleted": "Concluído",
+  "chooseModeDialogTitle": "Escolher modo",
+  "chooseModeDialogMessage": "Este arquivo contém tanto perguntas de quiz quanto conteúdo de estudo. Qual modo você gostaria de abrir?",
+  "reattachFileDialogTitle": "Arquivo original necessário",
+  "reattachFileDialogMessage": "Para gerar conteúdo para esta seção, anexe o arquivo original usado para criar este estudo.",
+  "fileHashMismatchError": "O arquivo selecionado não corresponde ao arquivo original usado para criar este estudo.",
+  "showMoreLabel": "Mostrar mais",
+  "showLessLabel": "Mostrar menos"
 }

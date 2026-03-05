@@ -1771,5 +1771,12 @@
       }
     }
   },
-  "studyScreenCompleted": "完了"
+  "studyScreenCompleted": "完了",
+  "chooseModeDialogTitle": "モードを選択",
+  "chooseModeDialogMessage": "このファイルにはクイズの問題と学習内容の両方が含まれています。どちらのモードで開きますか？",
+  "reattachFileDialogTitle": "元のファイルが必要です",
+  "reattachFileDialogMessage": "このセクションのコンテンツを生成するには、この学習の作成に使用した元のファイルを添付してください。",
+  "fileHashMismatchError": "選択されたファイルは、この学習の作成に使用された元のファイルと一致しません。",
+  "showMoreLabel": "もっと見る",
+  "showLessLabel": "少なく表示"
 }

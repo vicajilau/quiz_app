@@ -1768,5 +1768,12 @@
       }
     }
   },
-  "studyScreenCompleted": "Burututa"
+  "studyScreenCompleted": "Burututa",
+  "chooseModeDialogTitle": "Modua aukeratu",
+  "chooseModeDialogMessage": "Fitxategi honek galdetegiko galderak eta ikasketa-edukia ditu. Zein modu ireki nahi duzu?",
+  "reattachFileDialogTitle": "Jatorrizko fitxategia behar da",
+  "reattachFileDialogMessage": "Atal honetarako edukia sortzeko, kargatu ikasketa hau sortzeko erabili zen jatorrizko fitxategia.",
+  "fileHashMismatchError": "Hautatutako fitxategia ez dator bat ikasketa hau sortzeko erabili zen jatorrizko fitxategiarekin.",
+  "showMoreLabel": "Erakutsi gehiago",
+  "showLessLabel": "Erakutsi gutxiago"
 }

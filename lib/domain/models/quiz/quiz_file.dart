@@ -21,6 +21,8 @@ import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/study.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 
+enum QuizMode { study, quiz }
+
 /// The `QuizFile` class represents a Quiz file, which consists of metadata
 /// and a list of questions. This class provides methods for deserialization,
 /// validation, and modification of the Quiz file's contents.
@@ -39,6 +41,12 @@ class QuizFile {
   /// The original file associated with this quiz (in-memory only).
   final AiFileAttachment? fileAttachment;
 
+  /// SHA-256 hash of the original file content, persisted in the `.quiz` file.
+  final String? fileContentHash;
+
+  /// The URI of the uploaded file in the AI service (e.g. Gemini File API).
+  final String? fileUri;
+
   /// Constructor for creating a `QuizFile` instance with metadata and questions.
   QuizFile({
     required this.metadata,
@@ -46,6 +54,8 @@ class QuizFile {
     this.study,
     this.filePath,
     this.fileAttachment,
+    this.fileContentHash,
+    this.fileUri,
   });
 
   /// Creates a `QuizFile` instance from a JSON map.
@@ -64,11 +74,16 @@ class QuizFile {
           .map((questionJson) => Question.fromJson(questionJson))
           .toList();
 
+      final fileContentHash = json['fileContentHash'] as String?;
+      final fileUri = json['fileUri'] as String?;
+
       return QuizFile(
         metadata: metadata,
         questions: questions,
         study: study,
         filePath: filePath,
+        fileContentHash: fileContentHash,
+        fileUri: fileUri,
       );
     } catch (e) {
       throw BadQuizFileException(
@@ -86,6 +101,8 @@ class QuizFile {
       'metadata': metadata.toJson(),
       if (study != null) 'study': study!.toJson(),
       'questions': questions.map((question) => question.toJson()).toList(),
+      if (fileContentHash != null) 'fileContentHash': fileContentHash,
+      if (fileUri != null) 'fileUri': fileUri,
     };
   }
 
@@ -101,6 +118,8 @@ class QuizFile {
     Study? study,
     String? filePath,
     AiFileAttachment? fileAttachment,
+    String? fileContentHash,
+    String? fileUri,
   }) {
     return QuizFile(
       metadata: metadata ?? this.metadata,
@@ -108,6 +127,8 @@ class QuizFile {
       study: study ?? this.study,
       filePath: filePath ?? this.filePath,
       fileAttachment: fileAttachment ?? this.fileAttachment,
+      fileContentHash: fileContentHash ?? this.fileContentHash,
+      fileUri: fileUri ?? this.fileUri,
     );
   }
 
@@ -123,6 +144,8 @@ class QuizFile {
       questions: questions.map((q) => q.copyWith()).toList(),
       study: study?.copyWith(),
       filePath: filePath,
+      fileContentHash: fileContentHash,
+      fileUri: fileUri,
     );
   }
 
@@ -133,7 +156,9 @@ class QuizFile {
         other.metadata == metadata &&
         listEquals(other.questions, questions) &&
         other.study == study &&
-        other.filePath == filePath;
+        other.filePath == filePath &&
+        other.fileContentHash == fileContentHash &&
+        other.fileUri == fileUri;
   }
 
   @override
@@ -141,7 +166,9 @@ class QuizFile {
     return metadata.hashCode ^
         Object.hashAll(questions) ^
         study.hashCode ^
-        filePath.hashCode;
+        filePath.hashCode ^
+        fileContentHash.hashCode ^
+        fileUri.hashCode;
   }
 
   @override
