@@ -1557,6 +1557,10 @@
   "@examConfigurationTitle": {
     "description": "試験の設定セクションのタイトル"
   },
+  "generationConfigurationTitle": "生成設定",
+  "@generationConfigurationTitle": {
+    "description": "AIダイアログの生成設定セクションのタイトル"
+  },
   "validationMin1Error": "最小 1 分",
   "remainingTimeWithDays": "{days}日 {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}週 {days}日 {hours}:{minutes}:{seconds}",
@@ -1772,6 +1776,17 @@
     }
   },
   "studyScreenCompleted": "完了",
+  "aiDifficultyTitle": "難易度",
+  "aiDifficultyAutoTurnedOn": "ドキュメントと同じ難易度",
+  "aiDifficultyAutoTurnedOff": "手動難易度モード",
+  "aiDifficultyElementary": "小学校",
+  "aiDifficultyHighSchool": "高校",
+  "aiDifficultyBachelors": "学士号",
+  "aiDifficultyUniversity": "大学",
+  "aiDifficultyMasters": "修士号",
+  "aiDifficultyDoctorate": "博士号",
+  "aiDifficultyAutoDescription": "難易度はアップロードされたドキュメントに応じて自動的に調整されます",
+  "aiDifficultyManualDescription": "コンテンツに最も適した難易度を手動で選択してください",
   "chooseModeDialogTitle": "モードを選択",
   "chooseModeDialogMessage": "このファイルにはクイズの問題と学習内容の両方が含まれています。どちらのモードで開きますか？",
   "reattachFileDialogTitle": "元のファイルが必要です",

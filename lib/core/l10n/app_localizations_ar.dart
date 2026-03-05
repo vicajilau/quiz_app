@@ -360,6 +360,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get examConfigurationTitle => 'إعدادات الامتحان';
 
   @override
+  String get generationConfigurationTitle => 'إعدادات التوليد';
+
+  @override
   String get examTimeLimitTitle => 'حد وقت الامتحان';
 
   @override
@@ -1494,6 +1497,41 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'مكتمل';
+
+  @override
+  String get aiDifficultyTitle => 'مستوى الصعوبة';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'نفس صعوبة المستند';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => 'وضع الصعوبة اليدوي';
+
+  @override
+  String get aiDifficultyElementary => 'مدرسة ابتدائية';
+
+  @override
+  String get aiDifficultyHighSchool => 'مدرسة ثانوية';
+
+  @override
+  String get aiDifficultyBachelors => 'درجة البكالوريوس';
+
+  @override
+  String get aiDifficultyUniversity => 'جامعة';
+
+  @override
+  String get aiDifficultyMasters => 'درجة الماجستير';
+
+  @override
+  String get aiDifficultyDoctorate => 'دكتوراه';
+
+  @override
+  String get aiDifficultyAutoDescription =>
+      'سيتم تعديل مستوى الصعوبة تلقائيًا وفقًا للمستند الذي تم تحميله';
+
+  @override
+  String get aiDifficultyManualDescription =>
+      'حدد مستوى الصعوبة يدويًا الذي يناسب المحتوى بشكل أفضل';
 
   @override
   String get chooseModeDialogTitle => 'اختر الوضع';

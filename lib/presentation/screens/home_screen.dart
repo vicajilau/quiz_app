@@ -34,10 +34,8 @@ import 'package:quizdy/presentation/screens/dialogs/ai_generate_questions_dialog
 import 'package:quizdy/presentation/screens/dialogs/ai_generate_study_dialog.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
 import 'package:quizdy/domain/models/ai/ai_study_generation_config.dart';
-import 'package:quizdy/data/services/ai/ai_document_chunking_service.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
-import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
@@ -236,11 +234,9 @@ class _HomeScreenState extends State<HomeScreen> {
         if (!context.mounted) return;
         final localizations = AppLocalizations.of(context)!;
 
-        String documentText = '';
         String documentTitle = '';
         String? documentSummary;
 
-        documentText = config.content;
         documentTitle = localizations.studyModeLabel; // Generic title
 
         final documentId = 'study_${DateTime.now().millisecondsSinceEpoch}';
@@ -255,6 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
             file: config.file!,
             documentId: documentId,
             localizations: localizations,
+            extraContext: config.content,
           );
           initialChunks = result['chunks'] as List<StudyChunk>;
           fileUri = result['fileUri'] as String?;
@@ -268,28 +265,23 @@ class _HomeScreenState extends State<HomeScreen> {
             documentSummary = aiDescription;
           }
         } else {
-          // Fallback to text-based chunking for raw content
-          final chunkingService =
-              ServiceLocator.getIt<AiDocumentChunkingService>();
-          final sourceReferences = await chunkingService.chunkDocument(
-            documentText,
-            documentId,
-            localizations,
+          // AI-driven chunking for text/topics
+          final initializeUseCase = InitializeQuizChunksUseCase();
+          final result = await initializeUseCase.generateChunksFromText(
+            content: config.content,
+            isTopicMode: config.isTopicMode,
+            documentId: documentId,
+            localizations: localizations,
           );
-
-          if (sourceReferences.isEmpty) {
-            throw Exception(localizations.aiGenerationFailed);
+          initialChunks = result['chunks'] as List<StudyChunk>;
+          final aiTitle = result['title'] as String?;
+          final aiDescription = result['description'] as String?;
+          if (aiTitle != null && aiTitle.isNotEmpty) {
+            documentTitle = aiTitle;
           }
-
-          initialChunks = sourceReferences.asMap().entries.map((entry) {
-            return StudyChunk(
-              chunkIndex: entry.key,
-              status: StudyChunkState.created,
-              sourceReference: entry.value,
-              aiSummary: null,
-              slides: null,
-            );
-          }).toList();
+          if (aiDescription != null && aiDescription.isNotEmpty) {
+            documentSummary = aiDescription;
+          }
         }
 
         if (context.mounted) {
@@ -303,6 +295,8 @@ class _HomeScreenState extends State<HomeScreen> {
               'fileUri': fileUri, // Pass the processed file URI
               'documentTitle': documentTitle,
               'documentSummary': documentSummary,
+              'isAutoDifficulty': config.isAutoDifficulty,
+              'difficultyLevel': config.difficultyLevel,
             },
           );
         }

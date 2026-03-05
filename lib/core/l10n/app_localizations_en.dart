@@ -363,6 +363,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get examConfigurationTitle => 'Exam Configuration';
 
   @override
+  String get generationConfigurationTitle => 'Generation Configuration';
+
+  @override
   String get examTimeLimitTitle => 'Exam Time Limit';
 
   @override
@@ -1510,6 +1513,41 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'Completed';
+
+  @override
+  String get aiDifficultyTitle => 'Difficulty Level';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'Same difficulty as the document';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => 'Manual difficulty mode';
+
+  @override
+  String get aiDifficultyElementary => 'Elementary School';
+
+  @override
+  String get aiDifficultyHighSchool => 'High School';
+
+  @override
+  String get aiDifficultyBachelors => 'Bachelor\'s Degree';
+
+  @override
+  String get aiDifficultyUniversity => 'University Degree';
+
+  @override
+  String get aiDifficultyMasters => 'Master\'s Degree';
+
+  @override
+  String get aiDifficultyDoctorate => 'Doctorate';
+
+  @override
+  String get aiDifficultyAutoDescription =>
+      'The difficulty level will be adjusted automatically according to the uploaded document';
+
+  @override
+  String get aiDifficultyManualDescription =>
+      'Select the difficulty level manually that best fits the content';
 
   @override
   String get chooseModeDialogTitle => 'Choose Mode';

@@ -420,10 +420,16 @@ class GeminiService extends AIService {
     AppLocalizations localizations, {
     required String fileUri,
     required String fileMimeType,
+    String? extraContext,
   }) async {
+    final commentsSection =
+        extraContext != null && extraContext.trim().isNotEmpty
+        ? '\nADDITIONAL INSTRUCTIONS/CONTEXT FROM THE USER:\n$extraContext\n'
+        : '';
+
     final prompt =
         '''
-Act as an expert academic educator. Analyze the provided document and generate a structured study guide with a Table of Contents for a personalized study plan.
+Act as an expert academic educator. Analyze the provided document $commentsSection and generate a structured study guide with a Table of Contents for a personalized study plan.
 
 Rules:
 1. Generate a concise title that summarizes the subject matter of the syllabus. Do NOT reference the document itself (e.g. avoid "Document about...", "This PDF covers..."). Just state the topic directly.
@@ -457,6 +463,50 @@ Current Language: ${localizations.localeName}
       responseMimeType: 'application/json',
       fileUri: fileUri,
       fileMimeType: fileMimeType,
+    );
+  }
+
+  @override
+  Future<String> generateStudyIndexFromText(
+    AppLocalizations localizations, {
+    required String content,
+    required bool isTopicMode,
+  }) async {
+    final header = isTopicMode
+        ? 'The user wants a personalized study plan about the following topic/s: $content'
+        : 'The user has provided the following text for creating a study plan:\n\n$content';
+
+    final prompt =
+        '''
+Act as an expert academic educator. $header
+
+Analyze the content and generate a structured study guide with a Table of Contents for a personalized study plan.
+
+Rules:
+1. Generate a concise title that summarizes the subject matter.
+2. Generate a brief description (2-3 sentences) explaining the syllabus content and its key learning objectives.
+3. Divide the content into logical "Themes" or "Chapters" (chunks).
+4. Each theme should be granular enough to be studied in a single session.
+5. Themes should be logically treated as the main units of study.
+6. Output ONLY a valid JSON object with this structure:
+{
+  "title": "Subject Title",
+  "description": "Brief 2-3 sentence description of the syllabus and learning objectives.",
+  "chapters": [
+    {
+      "title": "Theme Title",
+      "summary": "Brief 1-sentence description of the topic covered."
+    }
+  ]
+}
+
+Current Language: ${localizations.localeName}
+''';
+
+    return getChatResponse(
+      prompt,
+      localizations,
+      responseMimeType: 'application/json',
     );
   }
 }

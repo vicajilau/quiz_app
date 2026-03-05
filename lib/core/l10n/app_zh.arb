@@ -1554,6 +1554,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "生成配置",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin0GenericError": "至少 0",
   "validationMin1Error": "最少1分钟",
   "@validationMin1Error": {
@@ -1821,6 +1825,17 @@
     }
   },
   "studyScreenCompleted": "已完成",
+  "aiDifficultyTitle": "难度级别",
+  "aiDifficultyAutoTurnedOn": "与文档难度相同",
+  "aiDifficultyAutoTurnedOff": "手动难度模式",
+  "aiDifficultyElementary": "小学",
+  "aiDifficultyHighSchool": "高中",
+  "aiDifficultyBachelors": "学士学位",
+  "aiDifficultyUniversity": "大学",
+  "aiDifficultyMasters": "硕士学位",
+  "aiDifficultyDoctorate": "博士学位",
+  "aiDifficultyAutoDescription": "难度级别将根据上传的文档自动调整",
+  "aiDifficultyManualDescription": "手动选择最适合内容的难度级别",
   "chooseModeDialogTitle": "选择模式",
   "chooseModeDialogMessage": "此文件包含测验问题和学习内容。您想打开哪种模式？",
   "reattachFileDialogTitle": "需要原始文件",

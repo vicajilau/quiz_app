@@ -188,7 +188,19 @@ class OpenAIService extends AIService {
     AppLocalizations localizations, {
     required String fileUri,
     required String fileMimeType,
+    String? extraContext,
   }) async {
     throw UnimplementedError('OpenAI File API not implemented yet');
+  }
+
+  @override
+  Future<String> generateStudyIndexFromText(
+    AppLocalizations localizations, {
+    required String content,
+    required bool isTopicMode,
+  }) async {
+    throw UnimplementedError(
+      'OpenAI Study Index from Text not implemented yet',
+    );
   }
 }

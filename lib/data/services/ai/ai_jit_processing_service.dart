@@ -20,6 +20,7 @@ import 'package:quizdy/data/services/ai/gemini_service.dart';
 import 'package:quizdy/domain/models/quiz/slide.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 
 /// Service responsible for Just-In-Time (JIT) processing of study chunks.
 class AiJitProcessingService {
@@ -39,6 +40,8 @@ class AiJitProcessingService {
     required String fileUri,
     required String fileMimeType,
     required AppLocalizations localizations,
+    bool isAutoDifficulty = true,
+    AiDifficultyLevel? difficultyLevel,
   }) async {
     // We only process chunks that have not been successfully processed yet.
     if (chunk.status == StudyChunkState.completed) {
@@ -49,7 +52,13 @@ class AiJitProcessingService {
     final startPage = chunk.sourceReference.startPage;
     final endPage = chunk.sourceReference.endPage;
 
-    final prompt = _buildSystemPrompt(startPage, endPage, localizations);
+    final prompt = _buildSystemPrompt(
+      startPage,
+      endPage,
+      localizations,
+      isAutoDifficulty: isAutoDifficulty,
+      difficultyLevel: difficultyLevel,
+    );
 
     try {
       final responseBody = await ServiceLocator.getIt<GeminiService>()
@@ -88,13 +97,25 @@ class AiJitProcessingService {
   String _buildSystemPrompt(
     int startPage,
     int endPage,
-    AppLocalizations localizations,
-  ) {
+    AppLocalizations localizations, {
+    bool isAutoDifficulty = true,
+    AiDifficultyLevel? difficultyLevel,
+  }) {
+    String difficultyInstruction = '';
+    if (!isAutoDifficulty && difficultyLevel != null) {
+      final levelName = _getDifficultyName(difficultyLevel, localizations);
+      difficultyInstruction =
+          '\nIMPORTANT: The generated content and study materials MUST be adapted to a $levelName difficulty level. Explain concepts, use vocabulary, and provide examples appropriate for this academic level.';
+    } else if (isAutoDifficulty) {
+      difficultyInstruction =
+          '\nIMPORTANT: The generated content and study materials MUST be adapted to the SAME academic difficulty level, vocabulary, and depth as the provided document.';
+    }
+
     return '''
 You are an expert educational content generator. Your task is to analyze the provided pages of the document and generate study material for them.
 
 IMPORTANT: Focus ONLY on the content found between pages $startPage and $endPage (inclusive).
-IMPORTANT: All generated content (ai_summary, slide texts, titles, paragraphs) MUST be written in the following language: ${localizations.localeName}. Do NOT use English unless the target language is English.
+IMPORTANT: All generated content (ai_summary, slide texts, titles, paragraphs) MUST be written in the following language: ${localizations.localeName}. Do NOT use English unless the target language is English.$difficultyInstruction
 
 Important Output Instructions:
 - If the provided text contains a Table of Contents (TOC), completely ignore it and do not generate study elements for the TOC itself.
@@ -170,6 +191,26 @@ Analyzing document range: Pages $startPage to $endPage.
       throw FormatException(
         'Failed to parse AI JSON response: $e\nResponse String: $jsonString',
       );
+    }
+  }
+
+  String _getDifficultyName(
+    AiDifficultyLevel difficulty,
+    AppLocalizations localizations,
+  ) {
+    switch (difficulty) {
+      case AiDifficultyLevel.elementary:
+        return localizations.aiDifficultyElementary;
+      case AiDifficultyLevel.highSchool:
+        return localizations.aiDifficultyHighSchool;
+      case AiDifficultyLevel.bachelors:
+        return localizations.aiDifficultyBachelors;
+      case AiDifficultyLevel.university:
+        return localizations.aiDifficultyUniversity;
+      case AiDifficultyLevel.masters:
+        return localizations.aiDifficultyMasters;
+      case AiDifficultyLevel.doctorate:
+        return localizations.aiDifficultyDoctorate;
     }
   }
 }

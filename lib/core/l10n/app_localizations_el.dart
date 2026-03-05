@@ -370,6 +370,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get examConfigurationTitle => 'Διαμόρφωση Εξέτασης';
 
   @override
+  String get generationConfigurationTitle => 'Διαμόρφωση Παραγωγής';
+
+  @override
   String get examTimeLimitTitle => 'Χρονικό Όριο Εξέτασης';
 
   @override
@@ -1528,6 +1531,41 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'Ολοκληρώθηκε';
+
+  @override
+  String get aiDifficultyTitle => 'Επίπεδο δυσκολίας';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'Ίδια δυσκολία με το έγγραφο';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => 'Χειροκίνητη λειτουργία δυσκολίας';
+
+  @override
+  String get aiDifficultyElementary => 'Δημοτικό Σχολείο';
+
+  @override
+  String get aiDifficultyHighSchool => 'Γυμνάσιο/Λύκειο';
+
+  @override
+  String get aiDifficultyBachelors => 'Πτυχίο';
+
+  @override
+  String get aiDifficultyUniversity => 'Πανεπιστήμιο';
+
+  @override
+  String get aiDifficultyMasters => 'Μεταπτυχιακό';
+
+  @override
+  String get aiDifficultyDoctorate => 'Διδακτορικό';
+
+  @override
+  String get aiDifficultyAutoDescription =>
+      'Το επίπεδο δυσκολίας θα προσαρμοστεί αυτόματα σύμφωνα με το έγγραφο που ανέβηκε';
+
+  @override
+  String get aiDifficultyManualDescription =>
+      'Επιλέξτε χειροκίνητα το επίπεδο δυσκολίας που ταιριάζει καλύτερα στο περιεχόμενο';
 
   @override
   String get chooseModeDialogTitle => 'Επιλογή Λειτουργίας';

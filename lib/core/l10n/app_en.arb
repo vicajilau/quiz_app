@@ -483,6 +483,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "Generation Configuration",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "examTimeLimitTitle": "Exam Time Limit",
   "@examTimeLimitTitle": {
     "description": "Title for exam time limit section"
@@ -2050,6 +2054,44 @@
   "@studyScreenCompleted": {
     "description": "Label for completed chunks counter in study index"
   },
+  "aiDifficultyTitle": "Difficulty Level",
+  "@aiDifficultyTitle": {
+    "description": "Title for the difficulty level section"
+  },
+  "aiDifficultyAutoTurnedOn": "Same difficulty as the document",
+  "@aiDifficultyAutoTurnedOn": {
+    "description": "Label when automatic difficulty is enabled"
+  },
+  "aiDifficultyAutoTurnedOff": "Manual difficulty mode",
+  "@aiDifficultyAutoTurnedOff": {
+    "description": "Label when automatic difficulty is disabled"
+  },
+  "aiDifficultyElementary": "Elementary School",
+  "@aiDifficultyElementary": {
+    "description": "Difficulty level: Elementary School"
+  },
+  "aiDifficultyHighSchool": "High School",
+  "@aiDifficultyHighSchool": {
+    "description": "Difficulty level: High School"
+  },
+  "aiDifficultyBachelors": "Bachelor's Degree",
+  "@aiDifficultyBachelors": {
+    "description": "Difficulty level: Bachelor's Degree"
+  },
+  "aiDifficultyUniversity": "University Degree",
+  "@aiDifficultyUniversity": {
+    "description": "Difficulty level: University Degree"
+  },
+  "aiDifficultyMasters": "Master's Degree",
+  "@aiDifficultyMasters": {
+    "description": "Difficulty level: Master's Degree"
+  },
+  "aiDifficultyDoctorate": "Doctorate",
+  "@aiDifficultyDoctorate": {
+    "description": "Difficulty level: Doctorate"
+  },
+  "aiDifficultyAutoDescription": "The difficulty level will be adjusted automatically according to the uploaded document",
+  "aiDifficultyManualDescription": "Select the difficulty level manually that best fits the content",
   "chooseModeDialogTitle": "Choose Mode",
   "@chooseModeDialogTitle": {
     "description": "Title for the dialog that asks which mode to open when a file has both questions and study content"

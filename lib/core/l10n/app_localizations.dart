@@ -740,6 +740,12 @@ abstract class AppLocalizations {
   /// **'Exam Configuration'**
   String get examConfigurationTitle;
 
+  /// Title for the generation configuration section in AI dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Generation Configuration'**
+  String get generationConfigurationTitle;
+
   /// Title for exam time limit section
   ///
   /// In en, this message translates to:
@@ -2718,6 +2724,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Completed'**
   String get studyScreenCompleted;
+
+  /// Title for the difficulty level section
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty Level'**
+  String get aiDifficultyTitle;
+
+  /// Label when automatic difficulty is enabled
+  ///
+  /// In en, this message translates to:
+  /// **'Same difficulty as the document'**
+  String get aiDifficultyAutoTurnedOn;
+
+  /// Label when automatic difficulty is disabled
+  ///
+  /// In en, this message translates to:
+  /// **'Manual difficulty mode'**
+  String get aiDifficultyAutoTurnedOff;
+
+  /// Difficulty level: Elementary School
+  ///
+  /// In en, this message translates to:
+  /// **'Elementary School'**
+  String get aiDifficultyElementary;
+
+  /// Difficulty level: High School
+  ///
+  /// In en, this message translates to:
+  /// **'High School'**
+  String get aiDifficultyHighSchool;
+
+  /// Difficulty level: Bachelor's Degree
+  ///
+  /// In en, this message translates to:
+  /// **'Bachelor\'s Degree'**
+  String get aiDifficultyBachelors;
+
+  /// Difficulty level: University Degree
+  ///
+  /// In en, this message translates to:
+  /// **'University Degree'**
+  String get aiDifficultyUniversity;
+
+  /// Difficulty level: Master's Degree
+  ///
+  /// In en, this message translates to:
+  /// **'Master\'s Degree'**
+  String get aiDifficultyMasters;
+
+  /// Difficulty level: Doctorate
+  ///
+  /// In en, this message translates to:
+  /// **'Doctorate'**
+  String get aiDifficultyDoctorate;
+
+  /// No description provided for @aiDifficultyAutoDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The difficulty level will be adjusted automatically according to the uploaded document'**
+  String get aiDifficultyAutoDescription;
+
+  /// No description provided for @aiDifficultyManualDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Select the difficulty level manually that best fits the content'**
+  String get aiDifficultyManualDescription;
 
   /// Title for the dialog that asks which mode to open when a file has both questions and study content
   ///

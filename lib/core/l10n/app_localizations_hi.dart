@@ -362,6 +362,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get examConfigurationTitle => 'परीक्षा कॉन्फ़िगरेशन';
 
   @override
+  String get generationConfigurationTitle => 'जेनरेशन कॉन्फ़िगरेशन';
+
+  @override
   String get examTimeLimitTitle => 'परीक्षा समय सीमा';
 
   @override
@@ -1509,6 +1512,41 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'पूर्ण';
+
+  @override
+  String get aiDifficultyTitle => 'कठिनाई स्तर';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'दस्तावेज़ के समान कठिनाई';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => 'मैन्युअल कठिनाई मोड';
+
+  @override
+  String get aiDifficultyElementary => 'प्राथमिक विद्यालय';
+
+  @override
+  String get aiDifficultyHighSchool => 'उच्च विद्यालय';
+
+  @override
+  String get aiDifficultyBachelors => 'स्नातक की डिग्री';
+
+  @override
+  String get aiDifficultyUniversity => 'विश्वविद्यालय';
+
+  @override
+  String get aiDifficultyMasters => 'मास्टर डिग्री';
+
+  @override
+  String get aiDifficultyDoctorate => 'डॉक्टरेट';
+
+  @override
+  String get aiDifficultyAutoDescription =>
+      'अपलोड किए गए दस्तावेज़ के अनुसार कठिनाई स्तर स्वचालित रूप से समायोजित किया जाएगा';
+
+  @override
+  String get aiDifficultyManualDescription =>
+      'कठिनाई स्तर को मैन्युअल रूप से चुनें जो सामग्री के लिए सबसे उपयुक्त हो';
 
   @override
   String get chooseModeDialogTitle => 'मोड चुनें';

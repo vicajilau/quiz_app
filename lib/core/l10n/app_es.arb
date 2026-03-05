@@ -1711,6 +1711,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "Configuración de generación",
+  "@generationConfigurationTitle": {
+    "description": "Título para la sección de configuración de generación en el diálogo de IA"
+  },
   "validationMin1Error": "Mínimo 1 minuto",
   "remainingTimeWithDays": "{days}d {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}s {days}d {hours}:{minutes}:{seconds}",
@@ -1870,6 +1874,17 @@
   "studyScreenSections": "Secciones",
   "studyScreenChaptersCount": "{count} capítulos",
   "studyScreenCompleted": "Completados",
+  "aiDifficultyTitle": "Grado de dificultad",
+  "aiDifficultyAutoTurnedOn": "Misma dificultad que el documento",
+  "aiDifficultyAutoTurnedOff": "Modo de dificultad manual",
+  "aiDifficultyElementary": "Primaria / Escuela",
+  "aiDifficultyHighSchool": "Secundaria / Instituto",
+  "aiDifficultyBachelors": "Bachillerato",
+  "aiDifficultyUniversity": "Universidad (Grado)",
+  "aiDifficultyMasters": "Máster",
+  "aiDifficultyDoctorate": "Doctorado",
+  "aiDifficultyAutoDescription": "El nivel de dificultad se ajustará automáticamente según el documento subido",
+  "aiDifficultyManualDescription": "Selecciona manualmente el nivel de dificultad que mejor se adapte al contenido",
   "chooseModeDialogTitle": "Elegir modo",
   "chooseModeDialogMessage": "Este archivo contiene tanto preguntas como contenido de estudio. ¿Qué modo deseas abrir?",
   "reattachFileDialogTitle": "Archivo original requerido",

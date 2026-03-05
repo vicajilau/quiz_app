@@ -369,6 +369,9 @@ class AppLocalizationsCa extends AppLocalizations {
   String get examConfigurationTitle => 'Configuració de l\'examen';
 
   @override
+  String get generationConfigurationTitle => 'Configuració de generació';
+
+  @override
   String get examTimeLimitTitle => 'Límit de temps de l\'examen';
 
   @override
@@ -1528,6 +1531,41 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'Completat';
+
+  @override
+  String get aiDifficultyTitle => 'Nivell de dificultat';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'Mateixa dificultat que el document';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => 'Mode de dificultat manual';
+
+  @override
+  String get aiDifficultyElementary => 'Educació primària';
+
+  @override
+  String get aiDifficultyHighSchool => 'Educació secundària';
+
+  @override
+  String get aiDifficultyBachelors => 'Grao universitari';
+
+  @override
+  String get aiDifficultyUniversity => 'Universitat';
+
+  @override
+  String get aiDifficultyMasters => 'Màster';
+
+  @override
+  String get aiDifficultyDoctorate => 'Doctorat';
+
+  @override
+  String get aiDifficultyAutoDescription =>
+      'El nivell de dificultat s\'ajustarà automàticament segons el document penjat';
+
+  @override
+  String get aiDifficultyManualDescription =>
+      'Selecciona manualment el nivell de dificultat que millor s\'adapti al contingut';
 
   @override
   String get chooseModeDialogTitle => 'Triar mode';

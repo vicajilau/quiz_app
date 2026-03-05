@@ -369,6 +369,9 @@ class AppLocalizationsGl extends AppLocalizations {
   String get examConfigurationTitle => 'Configuración do exame';
 
   @override
+  String get generationConfigurationTitle => 'Configuración da xeración';
+
+  @override
   String get examTimeLimitTitle => 'Límite de tempo do exame';
 
   @override
@@ -1527,6 +1530,41 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'Completado';
+
+  @override
+  String get aiDifficultyTitle => 'Nivel de dificultade';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'Mesma dificultade que o documento';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => 'Modo de dificultade manual';
+
+  @override
+  String get aiDifficultyElementary => 'Educación primaria';
+
+  @override
+  String get aiDifficultyHighSchool => 'Educación secundaria';
+
+  @override
+  String get aiDifficultyBachelors => 'Grao universitario';
+
+  @override
+  String get aiDifficultyUniversity => 'Universidade';
+
+  @override
+  String get aiDifficultyMasters => 'Máster';
+
+  @override
+  String get aiDifficultyDoctorate => 'Doutoramento';
+
+  @override
+  String get aiDifficultyAutoDescription =>
+      'O nivel de dificultade axustarase automaticamente segundo o documento subido';
+
+  @override
+  String get aiDifficultyManualDescription =>
+      'Selecciona manualmente o nivel de dificultade que mellor se adapte ao contido';
 
   @override
   String get chooseModeDialogTitle => 'Elixir modo';

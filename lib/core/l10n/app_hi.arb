@@ -1557,6 +1557,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "जेनरेशन कॉन्फ़िगरेशन",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin1Error": "न्यूनतम 1 मिनट",
   "remainingTimeWithDays": "{days}दिन {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}सप्ताह {days}दिन {hours}:{minutes}:{seconds}",
@@ -1772,6 +1776,17 @@
     }
   },
   "studyScreenCompleted": "पूर्ण",
+  "aiDifficultyTitle": "कठिनाई स्तर",
+  "aiDifficultyAutoTurnedOn": "दस्तावेज़ के समान कठिनाई",
+  "aiDifficultyAutoTurnedOff": "मैन्युअल कठिनाई मोड",
+  "aiDifficultyElementary": "प्राथमिक विद्यालय",
+  "aiDifficultyHighSchool": "उच्च विद्यालय",
+  "aiDifficultyBachelors": "स्नातक की डिग्री",
+  "aiDifficultyUniversity": "विश्वविद्यालय",
+  "aiDifficultyMasters": "मास्टर डिग्री",
+  "aiDifficultyDoctorate": "डॉक्टरेट",
+  "aiDifficultyAutoDescription": "अपलोड किए गए दस्तावेज़ के अनुसार कठिनाई स्तर स्वचालित रूप से समायोजित किया जाएगा",
+  "aiDifficultyManualDescription": "कठिनाई स्तर को मैन्युअल रूप से चुनें जो सामग्री के लिए सबसे उपयुक्त हो",
   "chooseModeDialogTitle": "मोड चुनें",
   "chooseModeDialogMessage": "इस फ़ाइल में प्रश्नोत्तरी और अध्ययन सामग्री दोनों हैं। आप कौन सा मोड खोलना चाहेंगे?",
   "reattachFileDialogTitle": "मूल फ़ाइल आवश्यक है",

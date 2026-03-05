@@ -1614,6 +1614,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "إعدادات التوليد",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin1Error": "دقيقة واحدة كحد أدنى",
   "remainingTimeWithDays": "{days}ي {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}أ {days}ي {hours}:{minutes}:{seconds}",
@@ -1829,6 +1833,17 @@
     }
   },
   "studyScreenCompleted": "مكتمل",
+  "aiDifficultyTitle": "مستوى الصعوبة",
+  "aiDifficultyAutoTurnedOn": "نفس صعوبة المستند",
+  "aiDifficultyAutoTurnedOff": "وضع الصعوبة اليدوي",
+  "aiDifficultyElementary": "مدرسة ابتدائية",
+  "aiDifficultyHighSchool": "مدرسة ثانوية",
+  "aiDifficultyBachelors": "درجة البكالوريوس",
+  "aiDifficultyUniversity": "جامعة",
+  "aiDifficultyMasters": "درجة الماجستير",
+  "aiDifficultyDoctorate": "دكتوراه",
+  "aiDifficultyAutoDescription": "سيتم تعديل مستوى الصعوبة تلقائيًا وفقًا للمستند الذي تم تحميله",
+  "aiDifficultyManualDescription": "حدد مستوى الصعوبة يدويًا الذي يناسب المحتوى بشكل أفضل",
   "chooseModeDialogTitle": "اختر الوضع",
   "chooseModeDialogMessage": "يحتوي هذا الملف على أسئلة اختبار ومحتوى دراسي. أي وضع ترغب في فتحه؟",
   "reattachFileDialogTitle": "الملف الأصلي مطلوب",

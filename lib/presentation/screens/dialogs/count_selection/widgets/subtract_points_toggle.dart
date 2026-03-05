@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:quizdy/core/theme/app_theme.dart';
+import 'package:quizdy/presentation/widgets/quizdy_switch.dart';
 
 class SubtractPointsToggle extends StatelessWidget {
   final bool isDark;
@@ -76,14 +76,10 @@ class SubtractPointsToggle extends StatelessWidget {
               ],
             ),
           ),
-          Switch(
+          QuizdySwitch(
             value: subtractPoints,
             onChanged: onSubtractPointsChanged,
             activeTrackColor: primaryColor,
-            activeThumbColor: Colors.white,
-            inactiveThumbColor: Colors.white,
-            inactiveTrackColor: isDark ? AppTheme.zinc600 : AppTheme.zinc300,
-            trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
           ),
         ],
       ),

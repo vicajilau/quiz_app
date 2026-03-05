@@ -34,7 +34,8 @@ class InitializeQuizChunksUseCase {
   InitializeQuizChunksUseCase({
     AiDocumentChunkingService? chunkingService,
     AIService? aiService,
-  }) : _chunkingService = chunkingService ?? ServiceLocator.getIt<AiDocumentChunkingService>(),
+  }) : _chunkingService =
+           chunkingService ?? ServiceLocator.getIt<AiDocumentChunkingService>(),
        _aiService = aiService ?? ServiceLocator.getIt<GeminiService>();
 
   /// Executes the AI chunking and returns a new [QuizFile] updated with the `study` mapping.
@@ -48,6 +49,9 @@ class InitializeQuizChunksUseCase {
       file: file,
       documentId: documentId,
       localizations: localizations,
+      extraContext: quizFile
+          .metadata
+          .description, // Use description as context if available
     );
     final chunks = result['chunks'] as List<StudyChunk>;
 
@@ -74,6 +78,7 @@ class InitializeQuizChunksUseCase {
     required AiFileAttachment file,
     required String documentId,
     required AppLocalizations localizations,
+    String? extraContext,
   }) async {
     // 1. Upload the file to the AI service to get a URI (Gemini File API)
     final fileUri = await _aiService.uploadFile(file, localizations);
@@ -83,6 +88,41 @@ class InitializeQuizChunksUseCase {
       aiService: _aiService,
       fileUri: fileUri,
       fileMimeType: file.mimeType,
+      documentId: documentId,
+      localizations: localizations,
+      extraContext: extraContext,
+    );
+
+    final references = indexResult['references'] as List<SourceReference>;
+    final chunks = references.asMap().entries.map((entry) {
+      return StudyChunk(
+        chunkIndex: entry.key,
+        status: StudyChunkState.created,
+        sourceReference: entry.value,
+        aiSummary: null,
+        slides: null,
+      );
+    }).toList();
+
+    return {
+      'chunks': chunks,
+      'fileUri': fileUri,
+      'title': indexResult['title'] as String?,
+      'description': indexResult['description'] as String?,
+    };
+  }
+
+  /// Helper to generate chunks directly from text content or topics without requiring a file.
+  Future<Map<String, dynamic>> generateChunksFromText({
+    required String content,
+    required bool isTopicMode,
+    required String documentId,
+    required AppLocalizations localizations,
+  }) async {
+    final indexResult = await _chunkingService.generateIndexFromTextWithAi(
+      aiService: _aiService,
+      content: content,
+      isTopicMode: isTopicMode,
       documentId: documentId,
       localizations: localizations,
     );
@@ -100,7 +140,6 @@ class InitializeQuizChunksUseCase {
 
     return {
       'chunks': chunks,
-      'fileUri': fileUri,
       'title': indexResult['title'] as String?,
       'description': indexResult['description'] as String?,
     };

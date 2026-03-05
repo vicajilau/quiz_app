@@ -17,8 +17,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
+import 'package:quizdy/presentation/widgets/quizdy_switch.dart';
 import 'package:quizdy/domain/models/quiz/question_order.dart';
 
 class QuestionSettingsSection extends StatefulWidget {
@@ -274,7 +274,6 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
     required bool value,
     required ValueChanged<bool> onChanged,
   }) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     final colors = context.appColors;
 
     return Container(
@@ -313,15 +312,7 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
               ],
             ),
           ),
-          Switch(
-            value: value,
-            onChanged: onChanged,
-            activeThumbColor: Colors.white,
-            activeTrackColor: Theme.of(context).primaryColor,
-            inactiveThumbColor: Colors.white,
-            inactiveTrackColor: isDark ? AppTheme.zinc600 : AppTheme.zinc300,
-            trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
-          ),
+          QuizdySwitch(value: value, onChanged: onChanged),
         ],
       ),
     );

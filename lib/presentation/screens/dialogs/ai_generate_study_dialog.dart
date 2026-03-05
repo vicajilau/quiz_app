@@ -15,6 +15,7 @@
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mime/mime.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
@@ -24,8 +25,9 @@ import 'package:quizdy/domain/models/ai/ai_study_generation_stored_settings.dart
 import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/data/services/ai/ai_service_selector.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
-import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_study_step1_widget.dart';
-import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_study_step2_widget.dart';
+import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step1_widget.dart';
+import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step2_widget.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/presentation/utils/clipboard_image_helper.dart';
 
 class AiGenerateStudyDialog extends StatefulWidget {
@@ -47,6 +49,8 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
   bool _isLoadingServices = true;
 
   AiFileAttachment? _fileAttachment;
+  bool _isAutoDifficulty = true;
+  AiDifficultyLevel _selectedDifficulty = AiDifficultyLevel.university;
   final configurationService = ServiceLocator.getIt<ConfigurationService>();
 
   List<String> get _supportedLanguages {
@@ -112,6 +116,13 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
           if (settings.language != null &&
               _supportedLanguages.contains(settings.language)) {
             _selectedLanguage = settings.language!;
+          }
+
+          if (settings.isAutoDifficulty != null) {
+            _isAutoDifficulty = settings.isAutoDifficulty!;
+          }
+          if (settings.difficultyLevel != null) {
+            _selectedDifficulty = settings.difficultyLevel!;
           }
         });
       }
@@ -233,6 +244,8 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
         serviceName: _selectedService?.serviceName,
         modelName: _selectedModel,
         language: _selectedLanguage,
+        isAutoDifficulty: _isAutoDifficulty,
+        difficultyLevel: _selectedDifficulty,
         draftText: textToSave,
       ),
     );
@@ -273,8 +286,8 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
   }
 
   Future<void> _pasteFromClipboard() async {
-    final attachment =
-        await ServiceLocator.getIt<ClipboardImageHelper>().getClipboardImageAsAttachment();
+    final attachment = await ServiceLocator.getIt<ClipboardImageHelper>()
+        .getClipboardImageAsAttachment();
     if (!mounted) return;
     if (attachment != null) {
       setState(() {
@@ -288,7 +301,8 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
   @override
   Widget build(BuildContext context) {
     if (_currentStep == 0) {
-      return AiGenerateStudyStep1Widget(
+      return AiGenerateStep1Widget(
+        isStudyMode: true,
         isLoadingServices: _isLoadingServices,
         availableServices: _availableServices,
         selectedService: _selectedService,
@@ -318,7 +332,8 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
         },
       );
     } else {
-      return AiGenerateStudyStep2Widget(
+      return AiGenerateStep2Widget(
+        isStudyMode: true,
         textController: _textController,
         fileAttachment: _fileAttachment,
         selectedLanguage: _selectedLanguage,
@@ -344,6 +359,24 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
         getWordCountText: _getWordCountText,
         getWordCount: _getWordCount,
         getTopicCount: _getTopicCount,
+        isAutoDifficulty: _isAutoDifficulty,
+        selectedDifficulty: _selectedDifficulty,
+        onAutoDifficultyChanged: (value) {
+          setState(() {
+            _isAutoDifficulty = value;
+          });
+        },
+        onDifficultyChanged: (value) {
+          setState(() {
+            _selectedDifficulty = value;
+          });
+        },
+        onGenerate: (config) async {
+          await _saveDraft();
+          if (context.mounted) {
+            context.pop(config);
+          }
+        },
       );
     }
   }

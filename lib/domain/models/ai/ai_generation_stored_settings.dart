@@ -13,6 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
+
 /// DTO representing the saved settings for AI question generation.
 class AiGenerationStoredSettings {
   /// The name of the selected AI service (e.g., 'Google Gemini', 'OpenAI').
@@ -36,6 +38,12 @@ class AiGenerationStoredSettings {
   /// The attached file path.
   final String? draftFilePath;
 
+  /// Whether automatic difficulty is enabled.
+  final bool? isAutoDifficulty;
+
+  /// The selected manual difficulty level.
+  final AiDifficultyLevel? difficultyLevel;
+
   /// Creates a new instance of [AiGenerationStoredSettings].
   const AiGenerationStoredSettings({
     this.serviceName,
@@ -45,5 +53,7 @@ class AiGenerationStoredSettings {
     this.questionTypes,
     this.draftText,
     this.draftFilePath,
+    this.isAutoDifficulty,
+    this.difficultyLevel,
   });
 }

@@ -1599,6 +1599,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "Configuration de la génération",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin1Error": "Minimum 1 minute",
   "remainingTimeWithDays": "{days}j {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}s {days}j {hours}:{minutes}:{seconds}",
@@ -1814,6 +1818,17 @@
     }
   },
   "studyScreenCompleted": "Terminé",
+  "aiDifficultyTitle": "Niveau de difficulté",
+  "aiDifficultyAutoTurnedOn": "Même difficulté que le document",
+  "aiDifficultyAutoTurnedOff": "Mode de difficulté manuel",
+  "aiDifficultyElementary": "École primaire",
+  "aiDifficultyHighSchool": "Lycée",
+  "aiDifficultyBachelors": "Licence",
+  "aiDifficultyUniversity": "Université",
+  "aiDifficultyMasters": "Master",
+  "aiDifficultyDoctorate": "Doctorat",
+  "aiDifficultyAutoDescription": "Le niveau de difficulté sera ajusté automatiquement en fonction du document téléchargé",
+  "aiDifficultyManualDescription": "Sélectionnez manuellement le niveau de difficulté qui correspond le mieux au contenu",
   "chooseModeDialogTitle": "Choisir le mode",
   "chooseModeDialogMessage": "Ce fichier contient à la fois des questions de quiz et du contenu d'étude. Quel mode souhaitez-vous ouvrir ?",
   "reattachFileDialogTitle": "Fichier original requis",

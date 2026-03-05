@@ -1656,6 +1656,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "Configuració de generació",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin1Error": "Mínim 1 minut",
   "remainingTimeWithDays": "{days}d {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}s {days}d {hours}:{minutes}:{seconds}",
@@ -1871,6 +1875,17 @@
     }
   },
   "studyScreenCompleted": "Completat",
+  "aiDifficultyTitle": "Nivell de dificultat",
+  "aiDifficultyAutoTurnedOn": "Mateixa dificultat que el document",
+  "aiDifficultyAutoTurnedOff": "Mode de dificultat manual",
+  "aiDifficultyElementary": "Educació primària",
+  "aiDifficultyHighSchool": "Educació secundària",
+  "aiDifficultyBachelors": "Grao universitari",
+  "aiDifficultyUniversity": "Universitat",
+  "aiDifficultyMasters": "Màster",
+  "aiDifficultyDoctorate": "Doctorat",
+  "aiDifficultyAutoDescription": "El nivell de dificultat s'ajustarà automàticament segons el document penjat",
+  "aiDifficultyManualDescription": "Selecciona manualment el nivell de dificultat que millor s'adapti al contingut",
   "chooseModeDialogTitle": "Triar mode",
   "chooseModeDialogMessage": "Aquest fitxer conté tant preguntes de qüestionari com contingut d'estudi. Quin mode t'agradaria obrir?",
   "reattachFileDialogTitle": "Fitxer original requerit",

@@ -1554,6 +1554,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "Sorkuntza konfigurazioa",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin1Error": "Gutxienez minutu 1",
   "remainingTimeWithDays": "{days}e {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}a {days}e {hours}:{minutes}:{seconds}",
@@ -1775,5 +1779,16 @@
   "reattachFileDialogMessage": "Atal honetarako edukia sortzeko, kargatu ikasketa hau sortzeko erabili zen jatorrizko fitxategia.",
   "fileHashMismatchError": "Hautatutako fitxategia ez dator bat ikasketa hau sortzeko erabili zen jatorrizko fitxategiarekin.",
   "showMoreLabel": "Erakutsi gehiago",
-  "showLessLabel": "Erakutsi gutxiago"
+  "showLessLabel": "Erakutsi gutxiago",
+  "aiDifficultyTitle": "Zailtasun-maila",
+  "aiDifficultyAutoTurnedOn": "Dokumentuaren zailtasun bera",
+  "aiDifficultyAutoTurnedOff": "Eskuzko zailtasun modua",
+  "aiDifficultyElementary": "Lehen Hezkuntza",
+  "aiDifficultyHighSchool": "Bigarren Hezkuntza",
+  "aiDifficultyBachelors": "Gradua",
+  "aiDifficultyUniversity": "Unibertsitatea",
+  "aiDifficultyMasters": "Masterra",
+  "aiDifficultyDoctorate": "Doktoretza",
+  "aiDifficultyAutoDescription": "Zailtasun maila automatikoki egokituko da kargatutako dokumentuaren arabera",
+  "aiDifficultyManualDescription": "Hautatu eskuz edukirako ondoen egokitzen den zailtasun maila"
 }
