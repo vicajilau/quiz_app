@@ -117,6 +117,15 @@ class AiLoggingInterceptor extends Interceptor {
         (match) => '"data": "${match.group(1)}... [TRUNCATED BASE64]"',
       );
 
+      // Optimally hide huge thought signatures (from Gemini models with Thinking enabled)
+      prettyString = prettyString.replaceAllMapped(
+        RegExp(
+          r'"(thoughtSignature|thought_signature)":\s*"([^"]{50})([^"]+)"',
+        ),
+        (match) =>
+            '"${match.group(1)}": "${match.group(2)}... [TRUNCATED SIGNATURE]"',
+      );
+
       // Split by line to avoid debugPrint truncation issues and for better readability
       final lines = prettyString.split('\n');
       const maxLines = 100;
