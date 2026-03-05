@@ -106,6 +106,40 @@ class AiLoggingInterceptor extends Interceptor {
         } catch (_) {
           // Keep as string if not valid JSON
         }
+      } else {
+        try {
+          // Deep copy to avoid mutating actual request data
+          jsonObject = jsonDecode(jsonEncode(data));
+        } catch (_) {}
+      }
+
+      // Hide huge inline_data payload from logs
+      if (jsonObject is Map<String, dynamic>) {
+        try {
+          final contents = jsonObject['contents'];
+          if (contents is List) {
+            for (var content in contents) {
+              if (content is Map) {
+                final parts = content['parts'];
+                if (parts is List) {
+                  for (var part in parts) {
+                    if (part is Map && part.containsKey('inline_data')) {
+                      final inlineData = part['inline_data'];
+                      if (inlineData is Map && inlineData.containsKey('data')) {
+                        final String originalData = inlineData['data']
+                            .toString();
+                        if (originalData.length > 50) {
+                          inlineData['data'] =
+                              '${originalData.substring(0, 50)}... [TRUNCATED BASE64]';
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        } catch (_) {}
       }
 
       const encoder = JsonEncoder.withIndent('  ');
