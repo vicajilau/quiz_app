@@ -19,7 +19,7 @@ import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 
-class StudyIndexChunkCard extends StatelessWidget {
+class StudyIndexChunkCard extends StatefulWidget {
   final StudyChunk chunk;
   final int index;
   final int total;
@@ -36,7 +36,19 @@ class StudyIndexChunkCard extends StatelessWidget {
   });
 
   @override
+  State<StudyIndexChunkCard> createState() => _StudyIndexChunkCardState();
+}
+
+class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
+  bool _expanded = false;
+
+  @override
   Widget build(BuildContext context) {
+    final chunk = widget.chunk;
+    final index = widget.index;
+    final total = widget.total;
+    final localizations = widget.localizations;
+    final onTap = widget.onTap;
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     final isCompleted = chunk.status == StudyChunkState.completed;
@@ -146,8 +158,22 @@ class StudyIndexChunkCard extends StatelessWidget {
                   color: summaryColor,
                   height: 1.45,
                 ),
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
+                maxLines: _expanded ? null : 3,
+                overflow: _expanded ? null : TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 4),
+              GestureDetector(
+                onTap: () => setState(() => _expanded = !_expanded),
+                child: Text(
+                  _expanded
+                      ? localizations.showLessLabel
+                      : localizations.showMoreLabel,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: AppTheme.primaryColor,
+                  ),
+                ),
               ),
             ],
           ],
