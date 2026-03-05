@@ -13,6 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
+
 abstract class StudyExecutionEvent {
   const StudyExecutionEvent();
 }
@@ -32,3 +34,10 @@ class NextStudyChunkRequested extends StudyExecutionEvent {}
 
 /// Dispatched to move to the previous chunk.
 class PreviousStudyChunkRequested extends StudyExecutionEvent {}
+
+/// Dispatched when the user re-attaches the original file.
+class FileReattached extends StudyExecutionEvent {
+  final AiFileAttachment file;
+
+  const FileReattached(this.file);
+}
