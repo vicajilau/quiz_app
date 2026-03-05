@@ -25,6 +25,7 @@ import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/quiz/source_reference.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
 /// Use case that configures the `.quiz` file with chunk boundaries identified by AI.
 class InitializeQuizChunksUseCase {
@@ -115,14 +116,14 @@ class InitializeQuizChunksUseCase {
   /// Helper to generate chunks directly from text content or topics without requiring a file.
   Future<Map<String, dynamic>> generateChunksFromText({
     required String content,
-    required bool isTopicMode,
+    required AiGenerationMode generationMode,
     required String documentId,
     required AppLocalizations localizations,
   }) async {
     final indexResult = await _chunkingService.generateIndexFromTextWithAi(
       aiService: _aiService,
       content: content,
-      isTopicMode: isTopicMode,
+      generationMode: generationMode,
       documentId: documentId,
       localizations: localizations,
     );

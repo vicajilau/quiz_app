@@ -899,6 +899,9 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get aiContextMode => '上下文模式';
+
+  @override
   String get aiGenerationCategoryLabel => '内容模式';
 
   @override

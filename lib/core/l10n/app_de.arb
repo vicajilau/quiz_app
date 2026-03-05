@@ -111,6 +111,10 @@
       }
     }
   },
+  "aiContextMode": "Kontextmodus",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  },
   "load": "Laden",
   "@load": {
     "description": "Beschriftung für die Schaltfläche Quiz-Datei laden in der AppBar."

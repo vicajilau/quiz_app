@@ -92,6 +92,8 @@ class FileBloc extends Bloc<FileEvent, FileState> {
           version: event.version,
           author: event.author,
           description: event.description,
+          generationMode: event.generationMode,
+          originalText: event.originalText,
         );
         emit(FileLoaded(quizFile)); // Emit the loaded file state after creation
       } catch (e) {
@@ -111,6 +113,8 @@ class FileBloc extends Bloc<FileEvent, FileState> {
           author: event.author,
           description: event.description,
           questions: event.questions,
+          generationMode: event.generationMode,
+          originalText: event.originalText,
         );
         emit(FileLoaded(quizFile)); // Emit the loaded file state
       } catch (e) {

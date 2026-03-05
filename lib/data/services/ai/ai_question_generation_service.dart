@@ -28,6 +28,7 @@ import 'package:quizdy/domain/models/quiz/question_type.dart';
 
 import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
 class AiQuestionGenerationService {
   static const String _openaiApiUrl =
@@ -238,7 +239,7 @@ class AiQuestionGenerationService {
           '''
           Based on the attached file, generate $questionCountText quiz questions $questionTypesText in $languageText.
           $commentsSection''';
-    } else if (config.isTopicMode) {
+    } else if (config.generationMode == AiGenerationMode.topic) {
       header =
           '''
           The user wants quiz questions about the following topic/s: ${config.content}
@@ -258,7 +259,7 @@ class AiQuestionGenerationService {
 
     final sourceReference = config.hasFile
         ? 'the content of the attached file'
-        : config.isTopicMode
+        : config.generationMode == AiGenerationMode.topic
         ? 'the provided topics'
         : 'the provided content';
 

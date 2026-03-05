@@ -21,6 +21,7 @@ import 'package:quizdy/presentation/screens/file_loaded_screen.dart';
 import 'package:quizdy/presentation/screens/quiz_file_execution_screen.dart';
 import 'package:quizdy/presentation/screens/study_screen.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
 import 'package:quizdy/core/service_locator.dart';
 
@@ -77,6 +78,8 @@ GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
           quizFile: extra['quizFile'] as QuizFile?,
           isAutoDifficulty: extra['isAutoDifficulty'] as bool? ?? true,
           difficultyLevel: extra['difficultyLevel'] as AiDifficultyLevel?,
+          generationMode: extra['generationMode'] as AiGenerationMode?,
+          originalText: extra['originalText'] as String?,
         );
       },
     ),

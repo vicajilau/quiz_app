@@ -38,6 +38,7 @@ class StudyExecutionBloc
   onProgressChanged;
   final bool _isAutoDifficulty;
   final AiDifficultyLevel? _difficultyLevel;
+  final String? _originalText;
 
   StudyExecutionBloc({
     required AiJitProcessingService jitProcessingService,
@@ -49,11 +50,13 @@ class StudyExecutionBloc
     String? fileUri,
     bool isAutoDifficulty = true,
     AiDifficultyLevel? difficultyLevel,
+    String? originalText,
     this.onProgressChanged,
   }) : _jitProcessingService = jitProcessingService,
        _localizations = localizations,
        _isAutoDifficulty = isAutoDifficulty,
        _difficultyLevel = difficultyLevel,
+       _originalText = originalText,
        super(
          _initialProgress(
            initialChunks,
@@ -149,17 +152,12 @@ class StudyExecutionBloc
       }
     }
 
-    if (fileUri == null) {
+    if (fileUri == null && _originalText == null) {
       // Revert chunk back to created — the user needs to re-attach the file
       final revertedChunk = chunk.copyWith(status: StudyChunkState.created);
       final chunksReverted = List<StudyChunk>.from(state.chunks);
       chunksReverted[event.chunkIndex] = revertedChunk;
-      emit(
-        state.copyWith(
-          chunks: chunksReverted,
-          needsFileReattachment: true,
-        ),
-      );
+      emit(state.copyWith(chunks: chunksReverted, needsFileReattachment: true));
       return;
     }
 
@@ -167,7 +165,8 @@ class StudyExecutionBloc
     final processedChunk = await _jitProcessingService.processChunk(
       chunk: processingChunk,
       fileUri: fileUri,
-      fileMimeType: fileMimeType ?? 'application/pdf',
+      fileMimeType: fileMimeType,
+      originalText: _originalText,
       localizations: _localizations,
       isAutoDifficulty: _isAutoDifficulty,
       difficultyLevel: _difficultyLevel,
@@ -234,10 +233,9 @@ class StudyExecutionBloc
     FileReattached event,
     Emitter<StudyExecutionState> emit,
   ) async {
-    emit(state.copyWith(
-      fileAttachment: event.file,
-      needsFileReattachment: false,
-    ));
+    emit(
+      state.copyWith(fileAttachment: event.file, needsFileReattachment: false),
+    );
     // Re-trigger processing of the current chunk
     add(StudyChunkRequested(state.currentChunkIndex));
   }

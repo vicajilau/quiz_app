@@ -1277,6 +1277,10 @@
       }
     }
   },
+  "aiContextMode": "Context Mode",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  },
   "aiGenerationCategoryLabel": "Content Mode",
   "@aiGenerationCategoryLabel": {
     "description": "Label for AI generation category selector"

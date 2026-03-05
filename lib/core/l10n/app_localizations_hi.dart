@@ -946,6 +946,9 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
+  String get aiContextMode => 'संदर्भ मोड';
+
+  @override
   String get aiGenerationCategoryLabel => 'सामग्री मोड';
 
   @override

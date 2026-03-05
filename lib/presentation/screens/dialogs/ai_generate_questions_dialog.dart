@@ -274,8 +274,11 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   /// Returns the counter label: topic count when in topic mode (≤10 topics),
   /// word count when in content mode (>10 topics).
   String _getWordCountText() {
-    final topicCount = _getTopicCount();
     final localizations = AppLocalizations.of(context)!;
+    if (_fileAttachment != null) {
+      return localizations.aiContextMode;
+    }
+    final topicCount = _getTopicCount();
     if (topicCount <= 10) {
       return localizations.aiTopicModeCount(topicCount);
     } else {

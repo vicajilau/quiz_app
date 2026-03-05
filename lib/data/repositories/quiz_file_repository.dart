@@ -20,6 +20,7 @@ import 'package:quizdy/data/services/file_service/i_file_service.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/quiz_metadata.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
 /// The `QuizFileRepository` class manages file-related operations such as loading, saving,
 /// and selecting quiz files. It delegates these tasks to an instance of `FileService`.
@@ -61,6 +62,8 @@ class QuizFileRepository {
     required String version,
     required String author,
     List<Question>? questions,
+    AiGenerationMode? generationMode,
+    String? originalText,
   }) async {
     final metadata = QuizMetadata(
       title: title,
@@ -72,6 +75,8 @@ class QuizFileRepository {
     final quizFile = QuizFile(
       metadata: metadata,
       questions: questions ?? [], // Start with empty questions or provided ones
+      generationMode: generationMode,
+      originalText: originalText,
     );
 
     ServiceLocator.registerQuizFile(quizFile);

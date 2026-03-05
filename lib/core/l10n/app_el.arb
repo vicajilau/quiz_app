@@ -748,5 +748,9 @@
   "reattachFileDialogMessage": "Για να δημιουργήσετε περιεχόμενο για αυτήν την ενότητα, επισυνάψτε το πρωτότυπο αρχείο που χρησιμοποιήθηκε για τη δημιουργία αυτής της μελέτης.",
   "fileHashMismatchError": "Το επιλεγμένο αρχείο δεν ταιριάζει με το πρωτότυπο αρχείο που χρησιμοποιήθηκε για τη δημιουργία αυτής της μελέτης.",
   "showMoreLabel": "Εμφάνιση περισσότερων",
-  "showLessLabel": "Εμφάνιση λιγότερων"
+  "showLessLabel": "Εμφάνιση λιγότερων",
+  "aiContextMode": "Λειτουργία πλαισίου",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  }
 }

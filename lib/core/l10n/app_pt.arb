@@ -1881,5 +1881,9 @@
   "reattachFileDialogMessage": "Para gerar conteúdo para esta seção, anexe o arquivo original usado para criar este estudo.",
   "fileHashMismatchError": "O arquivo selecionado não corresponde ao arquivo original usado para criar este estudo.",
   "showMoreLabel": "Mostrar mais",
-  "showLessLabel": "Mostrar menos"
+  "showLessLabel": "Mostrar menos",
+  "aiContextMode": "Modo Contexto",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  }
 }

@@ -23,6 +23,7 @@ import 'package:mime/mime.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/extensions/string_extensions.dart';
 import 'package:quizdy/core/theme/extensions/file_loaded_theme.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
@@ -55,6 +56,8 @@ class StudyScreen extends StatelessWidget {
   final QuizFile? quizFile;
   final bool isAutoDifficulty;
   final AiDifficultyLevel? difficultyLevel;
+  final AiGenerationMode? generationMode;
+  final String? originalText;
 
   const StudyScreen({
     super.key,
@@ -65,6 +68,8 @@ class StudyScreen extends StatelessWidget {
     this.quizFile,
     this.isAutoDifficulty = true,
     this.difficultyLevel,
+    this.generationMode,
+    this.originalText,
   });
 
   @override
@@ -82,6 +87,7 @@ class StudyScreen extends StatelessWidget {
         documentSummary: documentSummary ?? quizFile?.metadata.description,
         isAutoDifficulty: isAutoDifficulty,
         difficultyLevel: difficultyLevel,
+        originalText: originalText ?? quizFile?.originalText,
         onProgressChanged: (progress, processedChunks, chunks, fileUri) {
           context.read<FileBloc>().add(
             StudyProgressUpdated(
@@ -93,15 +99,26 @@ class StudyScreen extends StatelessWidget {
           );
         },
       ),
-      child: StudyScreenView(quizFile: quizFile),
+      child: StudyScreenView(
+        quizFile: quizFile,
+        generationMode: generationMode,
+        originalText: originalText,
+      ),
     );
   }
 }
 
 class StudyScreenView extends StatefulWidget {
-  const StudyScreenView({super.key, required this.quizFile});
+  const StudyScreenView({
+    super.key,
+    required this.quizFile,
+    this.generationMode,
+    this.originalText,
+  });
 
   final QuizFile? quizFile;
+  final AiGenerationMode? generationMode;
+  final String? originalText;
 
   @override
   State<StudyScreenView> createState() => _StudyScreenViewState();
@@ -152,6 +169,8 @@ class _StudyScreenViewState extends State<StudyScreenView> {
         ),
         fileContentHash: studyState.fileAttachment?.contentHash,
         fileUri: studyState.fileUri,
+        generationMode: widget.generationMode,
+        originalText: widget.originalText,
       );
     }
 

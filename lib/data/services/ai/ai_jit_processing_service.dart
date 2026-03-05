@@ -37,8 +37,9 @@ class AiJitProcessingService {
   /// - Returns: A future resolving to a populated or failed `StudyChunk`.
   Future<StudyChunk> processChunk({
     required StudyChunk chunk,
-    required String fileUri,
-    required String fileMimeType,
+    String? fileUri,
+    String? fileMimeType,
+    String? originalText,
     required AppLocalizations localizations,
     bool isAutoDifficulty = true,
     AiDifficultyLevel? difficultyLevel,
@@ -61,14 +62,29 @@ class AiJitProcessingService {
     );
 
     try {
-      final responseBody = await ServiceLocator.getIt<GeminiService>()
-          .getChatResponseWithFileUri(
-            prompt,
-            localizations,
-            fileUri: fileUri,
-            fileMimeType: fileMimeType,
-            responseMimeType: 'application/json',
-          );
+      final String responseBody;
+      if (fileUri != null && fileMimeType != null) {
+        responseBody = await ServiceLocator.getIt<GeminiService>()
+            .getChatResponseWithFileUri(
+              prompt,
+              localizations,
+              fileUri: fileUri,
+              fileMimeType: fileMimeType,
+              responseMimeType: 'application/json',
+            );
+      } else if (originalText != null) {
+        final textPrompt = '$prompt\n\nSource text:\n$originalText';
+        responseBody = await ServiceLocator.getIt<GeminiService>()
+            .getChatResponse(
+              textPrompt,
+              localizations,
+              responseMimeType: 'application/json',
+            );
+      } else {
+        throw Exception(
+          'Neither fileUri nor originalText was provided for JIT processing.',
+        );
+      }
 
       final cleanJsonString = _extractJsonFromResponse(responseBody);
       final parsedData = _parseJsonResponse(cleanJsonString);

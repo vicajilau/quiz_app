@@ -175,6 +175,8 @@ class _HomeScreenState extends State<HomeScreen> {
               description: unknownValue,
               author: unknownValue,
               questions: generatedQuestions,
+              generationMode: config.generationMode,
+              originalText: config.content,
             ),
           );
         }
@@ -269,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
           final initializeUseCase = InitializeQuizChunksUseCase();
           final result = await initializeUseCase.generateChunksFromText(
             content: config.content,
-            isTopicMode: config.isTopicMode,
+            generationMode: config.generationMode,
             documentId: documentId,
             localizations: localizations,
           );
@@ -297,6 +299,8 @@ class _HomeScreenState extends State<HomeScreen> {
               'documentSummary': documentSummary,
               'isAutoDifficulty': config.isAutoDifficulty,
               'difficultyLevel': config.difficultyLevel,
+              'generationMode': config.generationMode,
+              'originalText': config.content,
             },
           );
         }

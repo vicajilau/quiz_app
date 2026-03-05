@@ -956,6 +956,9 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
+  String get aiContextMode => 'Testuinguru Modua';
+
+  @override
   String get aiGenerationCategoryLabel => 'Eduki Modua';
 
   @override

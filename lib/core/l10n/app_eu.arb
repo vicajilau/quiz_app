@@ -1790,5 +1790,9 @@
   "aiDifficultyMasters": "Masterra",
   "aiDifficultyDoctorate": "Doktoretza",
   "aiDifficultyAutoDescription": "Zailtasun maila automatikoki egokituko da kargatutako dokumentuaren arabera",
-  "aiDifficultyManualDescription": "Hautatu eskuz edukirako ondoen egokitzen den zailtasun maila"
+  "aiDifficultyManualDescription": "Hautatu eskuz edukirako ondoen egokitzen den zailtasun maila",
+  "aiContextMode": "Testuinguru Modua",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  }
 }

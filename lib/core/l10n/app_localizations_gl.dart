@@ -959,6 +959,9 @@ class AppLocalizationsGl extends AppLocalizations {
   }
 
   @override
+  String get aiContextMode => 'Modo Contexto';
+
+  @override
   String get aiGenerationCategoryLabel => 'Modo de Contido';
 
   @override

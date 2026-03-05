@@ -1829,5 +1829,9 @@
   "reattachFileDialogMessage": "Per generare contenuti per questa sezione, allega il file originale utilizzato per creare questo studio.",
   "fileHashMismatchError": "Il file selezionato non corrisponde al file originale utilizzato per creare questo studio.",
   "showMoreLabel": "Mostra altro",
-  "showLessLabel": "Mostra meno"
+  "showLessLabel": "Mostra meno",
+  "aiContextMode": "Modalità Contesto",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  }
 }

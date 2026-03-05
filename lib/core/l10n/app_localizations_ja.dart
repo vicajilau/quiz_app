@@ -904,6 +904,9 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get aiContextMode => 'コンテキストモード';
+
+  @override
   String get aiGenerationCategoryLabel => 'コンテンツモード';
 
   @override

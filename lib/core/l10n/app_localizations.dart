@@ -1730,6 +1730,12 @@ abstract class AppLocalizations {
   /// **'Text Mode ({count} words)'**
   String aiTextModeCount(int count);
 
+  /// Label for context mode when a file is uploaded
+  ///
+  /// In en, this message translates to:
+  /// **'Context Mode'**
+  String get aiContextMode;
+
   /// Label for AI generation category selector
   ///
   /// In en, this message translates to:

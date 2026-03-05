@@ -961,6 +961,9 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get aiContextMode => 'Mode Contexte';
+
+  @override
   String get aiGenerationCategoryLabel => 'Mode de Contenu';
 
   @override

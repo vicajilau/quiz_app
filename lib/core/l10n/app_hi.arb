@@ -1793,5 +1793,9 @@
   "reattachFileDialogMessage": "इस अनुभाग के लिए सामग्री बनाने के लिए, कृपया इस अध्ययन को बनाने के लिए उपयोग की गई मूल फ़ाइल को संलग्न करें।",
   "fileHashMismatchError": "चयनित फ़ाइल उस मूल फ़ाइल से मेल नहीं खाती जिसका उपयोग इस अध्ययन को बनाने के लिए किया गया था।",
   "showMoreLabel": "और दिखाएं",
-  "showLessLabel": "कम दिखाएं"
+  "showLessLabel": "कम दिखाएं",
+  "aiContextMode": "संदर्भ मोड",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  }
 }

@@ -939,6 +939,9 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String get aiContextMode => 'وضع السياق';
+
+  @override
   String get aiGenerationCategoryLabel => 'وضع المحتوى';
 
   @override

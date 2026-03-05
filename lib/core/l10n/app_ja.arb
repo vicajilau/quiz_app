@@ -1793,5 +1793,9 @@
   "reattachFileDialogMessage": "このセクションのコンテンツを生成するには、この学習の作成に使用した元のファイルを添付してください。",
   "fileHashMismatchError": "選択されたファイルは、この学習の作成に使用された元のファイルと一致しません。",
   "showMoreLabel": "もっと見る",
-  "showLessLabel": "少なく表示"
+  "showLessLabel": "少なく表示",
+  "aiContextMode": "コンテキストモード",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  }
 }

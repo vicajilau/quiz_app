@@ -1790,5 +1790,9 @@
   "reattachFileDialogMessage": "Para xerar contido para esta sección, por favor adxunte o ficheiro orixinal utilizado para crear este estudo.",
   "fileHashMismatchError": "O ficheiro seleccionado no coincide co ficheiro orixinal utilizado para crear este estudo.",
   "showMoreLabel": "Amosar máis",
-  "showLessLabel": "Amosar menos"
+  "showLessLabel": "Amosar menos",
+  "aiContextMode": "Modo Contexto",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  }
 }

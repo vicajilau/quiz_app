@@ -958,6 +958,9 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get aiContextMode => 'Kontextmodus';
+
+  @override
   String get aiGenerationCategoryLabel => 'Inhaltsmodus';
 
   @override

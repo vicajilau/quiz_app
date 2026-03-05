@@ -948,6 +948,9 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get aiContextMode => 'Context Mode';
+
+  @override
   String get aiGenerationCategoryLabel => 'Content Mode';
 
   @override

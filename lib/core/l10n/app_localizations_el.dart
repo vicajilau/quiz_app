@@ -961,6 +961,9 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
+  String get aiContextMode => 'Λειτουργία πλαισίου';
+
+  @override
   String get aiGenerationCategoryLabel => 'Λειτουργία Περιεχομένου';
 
   @override

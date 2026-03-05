@@ -111,6 +111,10 @@
       }
     }
   },
+  "aiContextMode": "Mode Context",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  },
   "load": "Carregar",
   "@load": {
     "description": "Etiqueta pel botó Carregar fitxer Quiz a l'AppBar."
