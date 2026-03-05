@@ -1547,4 +1547,28 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get aiDifficultyManualDescription =>
       'कठिनाई स्तर को मैन्युअल रूप से चुनें जो सामग्री के लिए सबसे उपयुक्त हो';
+
+  @override
+  String get chooseModeDialogTitle => 'मोड चुनें';
+
+  @override
+  String get chooseModeDialogMessage =>
+      'इस फ़ाइल में प्रश्नोत्तरी और अध्ययन सामग्री दोनों हैं। आप कौन सा मोड खोलना चाहेंगे?';
+
+  @override
+  String get reattachFileDialogTitle => 'मूल फ़ाइल आवश्यक है';
+
+  @override
+  String get reattachFileDialogMessage =>
+      'इस अनुभाग के लिए सामग्री बनाने के लिए, कृपया इस अध्ययन को बनाने के लिए उपयोग की गई मूल फ़ाइल को संलग्न करें।';
+
+  @override
+  String get fileHashMismatchError =>
+      'चयनित फ़ाइल उस मूल फ़ाइल से मेल नहीं खाती जिसका उपयोग इस अध्ययन को बनाने के लिए किया गया था।';
+
+  @override
+  String get showMoreLabel => 'और दिखाएं';
+
+  @override
+  String get showLessLabel => 'कम दिखाएं';
 }

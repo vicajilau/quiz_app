@@ -1566,4 +1566,28 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get aiDifficultyManualDescription =>
       'Επιλέξτε χειροκίνητα το επίπεδο δυσκολίας που ταιριάζει καλύτερα στο περιεχόμενο';
+
+  @override
+  String get chooseModeDialogTitle => 'Επιλογή Λειτουργίας';
+
+  @override
+  String get chooseModeDialogMessage =>
+      'Αυτό το αρχείο περιέχει τόσο ερωτήσεις κουίζ όσο και περιεχόμενο μελέτης. Ποια λειτουργία θα θέλατε να ανοίξετε;';
+
+  @override
+  String get reattachFileDialogTitle => 'Απαιτείται το πρωτότυπο αρχείο';
+
+  @override
+  String get reattachFileDialogMessage =>
+      'Για να δημιουργήσετε περιεχόμενο για αυτήν την ενότητα, επισυνάψτε το πρωτότυπο αρχείο που χρησιμοποιήθηκε για τη δημιουργία αυτής της μελέτης.';
+
+  @override
+  String get fileHashMismatchError =>
+      'Το επιλεγμένο αρχείο δεν ταιριάζει με το πρωτότυπο αρχείο που χρησιμοποιήθηκε για τη δημιουργία αυτής της μελέτης.';
+
+  @override
+  String get showMoreLabel => 'Εμφάνιση περισσότερων';
+
+  @override
+  String get showLessLabel => 'Εμφάνιση λιγότερων';
 }

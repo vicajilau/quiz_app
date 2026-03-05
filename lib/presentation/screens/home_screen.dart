@@ -34,11 +34,7 @@ import 'package:quizdy/presentation/screens/dialogs/ai_generate_questions_dialog
 import 'package:quizdy/presentation/screens/dialogs/ai_generate_study_dialog.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
 import 'package:quizdy/domain/models/ai/ai_study_generation_config.dart';
-<<<<<<< HEAD
-=======
-import 'package:quizdy/data/services/ai/ai_document_chunking_service.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
->>>>>>> origin/main
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quizdy/data/services/configuration_service.dart';

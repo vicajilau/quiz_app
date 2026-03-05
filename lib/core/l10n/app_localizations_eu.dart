@@ -1525,37 +1525,61 @@ class AppLocalizationsEu extends AppLocalizations {
   String get studyScreenCompleted => 'Burututa';
 
   @override
-  String get aiDifficultyTitle => 'Zailtasun-maila';
+  String get aiDifficultyTitle => 'Difficulty Level';
 
   @override
-  String get aiDifficultyAutoTurnedOn => 'Dokumentuaren zailtasun bera';
+  String get aiDifficultyAutoTurnedOn => 'Same difficulty as the document';
 
   @override
-  String get aiDifficultyAutoTurnedOff => 'Eskuzko zailtasun modua';
+  String get aiDifficultyAutoTurnedOff => 'Manual difficulty mode';
 
   @override
-  String get aiDifficultyElementary => 'Lehen Hezkuntza';
+  String get aiDifficultyElementary => 'Elementary School';
 
   @override
-  String get aiDifficultyHighSchool => 'Bigarren Hezkuntza';
+  String get aiDifficultyHighSchool => 'High School';
 
   @override
-  String get aiDifficultyBachelors => 'Gradua';
+  String get aiDifficultyBachelors => 'Bachelor\'s Degree';
 
   @override
-  String get aiDifficultyUniversity => 'Unibertsitatea';
+  String get aiDifficultyUniversity => 'University Degree';
 
   @override
-  String get aiDifficultyMasters => 'Masterra';
+  String get aiDifficultyMasters => 'Master\'s Degree';
 
   @override
-  String get aiDifficultyDoctorate => 'Doktoretza';
+  String get aiDifficultyDoctorate => 'Doctorate';
 
   @override
   String get aiDifficultyAutoDescription =>
-      'Zailtasun maila automatikoki egokituko da kargatutako dokumentuaren arabera';
+      'The difficulty level will be adjusted automatically according to the uploaded document';
 
   @override
   String get aiDifficultyManualDescription =>
-      'Hautatu eskuz edukirako ondoen egokitzen den zailtasun maila';
+      'Select the difficulty level manually that best fits the content';
+
+  @override
+  String get chooseModeDialogTitle => 'Choose Mode';
+
+  @override
+  String get chooseModeDialogMessage =>
+      'This file contains both quiz questions and study content. Which mode would you like to open?';
+
+  @override
+  String get reattachFileDialogTitle => 'Original file required';
+
+  @override
+  String get reattachFileDialogMessage =>
+      'To generate content for this section, please attach the original file used to create this study.';
+
+  @override
+  String get fileHashMismatchError =>
+      'The selected file does not match the original file used to create this study.';
+
+  @override
+  String get showMoreLabel => 'Show more';
+
+  @override
+  String get showLessLabel => 'Show less';
 }

@@ -1471,4 +1471,25 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get aiDifficultyManualDescription => '手动选择最适合内容的难度级别';
+
+  @override
+  String get chooseModeDialogTitle => '选择模式';
+
+  @override
+  String get chooseModeDialogMessage => '此文件包含测验问题和学习内容。您想打开哪种模式？';
+
+  @override
+  String get reattachFileDialogTitle => '需要原始文件';
+
+  @override
+  String get reattachFileDialogMessage => '要为此部分生成内容，请附上用于创建此学习内容的原始文件。';
+
+  @override
+  String get fileHashMismatchError => '选择的文件与用于创建此学习内容的原始文件不匹配。';
+
+  @override
+  String get showMoreLabel => '显示更多';
+
+  @override
+  String get showLessLabel => '显示更少';
 }

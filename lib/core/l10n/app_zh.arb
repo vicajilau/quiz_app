@@ -1825,7 +1825,6 @@
     }
   },
   "studyScreenCompleted": "已完成",
-<<<<<<< HEAD
   "aiDifficultyTitle": "难度级别",
   "aiDifficultyAutoTurnedOn": "与文档难度相同",
   "aiDifficultyAutoTurnedOff": "手动难度模式",
@@ -1836,8 +1835,7 @@
   "aiDifficultyMasters": "硕士学位",
   "aiDifficultyDoctorate": "博士学位",
   "aiDifficultyAutoDescription": "难度级别将根据上传的文档自动调整",
-  "aiDifficultyManualDescription": "手动选择最适合内容的难度级别"
-=======
+  "aiDifficultyManualDescription": "手动选择最适合内容的难度级别",
   "chooseModeDialogTitle": "选择模式",
   "chooseModeDialogMessage": "此文件包含测验问题和学习内容。您想打开哪种模式？",
   "reattachFileDialogTitle": "需要原始文件",
@@ -1845,5 +1843,4 @@
   "fileHashMismatchError": "选择的文件与用于创建此学习内容的原始文件不匹配。",
   "showMoreLabel": "显示更多",
   "showLessLabel": "显示更少"
->>>>>>> origin/main
 }

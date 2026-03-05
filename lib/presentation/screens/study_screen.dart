@@ -35,11 +35,8 @@ import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/models/quiz/study_content.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
-<<<<<<< HEAD
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
-=======
 import 'package:quizdy/core/constants/quiz_metadata.dart';
->>>>>>> origin/main
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
@@ -83,13 +80,9 @@ class StudyScreen extends StatelessWidget {
         fileUri: quizFile?.fileUri,
         documentTitle: documentTitle,
         documentSummary: documentSummary ?? quizFile?.metadata.description,
-<<<<<<< HEAD
         isAutoDifficulty: isAutoDifficulty,
         difficultyLevel: difficultyLevel,
-        onProgressChanged: (progress, processedChunks, chunks) {
-=======
         onProgressChanged: (progress, processedChunks, chunks, fileUri) {
->>>>>>> origin/main
           context.read<FileBloc>().add(
             StudyProgressUpdated(
               progress: progress,

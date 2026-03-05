@@ -1555,4 +1555,28 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get aiDifficultyManualDescription =>
       'Seleziona manualmente il livello di difficoltà che meglio si adatta al contenuto';
+
+  @override
+  String get chooseModeDialogTitle => 'Scegli modalità';
+
+  @override
+  String get chooseModeDialogMessage =>
+      'Questo file contiene sia domande del quiz che contenuti di studio. Quale modalità desideri aprire?';
+
+  @override
+  String get reattachFileDialogTitle => 'File originale richiesto';
+
+  @override
+  String get reattachFileDialogMessage =>
+      'Per generare contenuti per questa sezione, allega il file originale utilizzato per creare questo studio.';
+
+  @override
+  String get fileHashMismatchError =>
+      'Il file selezionato non corrisponde al file originale utilizzato per creare questo studio.';
+
+  @override
+  String get showMoreLabel => 'Mostra altro';
+
+  @override
+  String get showLessLabel => 'Mostra meno';
 }

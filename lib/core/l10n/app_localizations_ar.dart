@@ -1532,4 +1532,28 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get aiDifficultyManualDescription =>
       'حدد مستوى الصعوبة يدويًا الذي يناسب المحتوى بشكل أفضل';
+
+  @override
+  String get chooseModeDialogTitle => 'اختر الوضع';
+
+  @override
+  String get chooseModeDialogMessage =>
+      'يحتوي هذا الملف على أسئلة اختبار ومحتوى دراسي. أي وضع ترغب في فتحه؟';
+
+  @override
+  String get reattachFileDialogTitle => 'الملف الأصلي مطلوب';
+
+  @override
+  String get reattachFileDialogMessage =>
+      'لتوليد محتوى لهذا القسم، يرجى إرفاق الملف الأصلي المستخدم لإنشاء هذه الدراسة.';
+
+  @override
+  String get fileHashMismatchError =>
+      'الملف المحدد لا يتطابق مع الملف الأصلي المستخدم لإنشاء هذه الدراسة.';
+
+  @override
+  String get showMoreLabel => 'عرض المزيد';
+
+  @override
+  String get showLessLabel => 'عرض أقل';
 }

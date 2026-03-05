@@ -1565,4 +1565,28 @@ class AppLocalizationsGl extends AppLocalizations {
   @override
   String get aiDifficultyManualDescription =>
       'Selecciona manualmente o nivel de dificultade que mellor se adapte ao contido';
+
+  @override
+  String get chooseModeDialogTitle => 'Elixir modo';
+
+  @override
+  String get chooseModeDialogMessage =>
+      'Este ficheiro contén tanto preguntas de quiz como contido de estudo. Que modo desexa abrir?';
+
+  @override
+  String get reattachFileDialogTitle => 'Requírese o ficheiro orixinal';
+
+  @override
+  String get reattachFileDialogMessage =>
+      'Para xerar contido para esta sección, por favor adxunte o ficheiro orixinal utilizado para crear este estudo.';
+
+  @override
+  String get fileHashMismatchError =>
+      'O ficheiro seleccionado no coincide co ficheiro orixinal utilizado para crear este estudo.';
+
+  @override
+  String get showMoreLabel => 'Amosar máis';
+
+  @override
+  String get showLessLabel => 'Amosar menos';
 }
