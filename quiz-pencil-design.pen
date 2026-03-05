@@ -36423,6 +36423,1016 @@
           ]
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "UL8dT",
+      "x": 0,
+      "y": 23375,
+      "name": "Mode Selection Dialog - Light",
+      "width": 420,
+      "height": 900,
+      "fill": "#FAFAFA",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "9LBff",
+          "x": 0,
+          "y": 0,
+          "name": "dimOverlay",
+          "fill": "#00000066",
+          "width": 420,
+          "height": 900
+        },
+        {
+          "type": "frame",
+          "id": "0Z1xE",
+          "x": 40,
+          "y": 270,
+          "name": "DialogCard",
+          "width": 340,
+          "fill": "#FFFFFF",
+          "cornerRadius": 24,
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            32,
+            24,
+            24,
+            24
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "qcXmE",
+              "name": "dialogTitle",
+              "fill": "#18181B",
+              "content": "Open Quiz File",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 22,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "NV0oA",
+              "name": "dialogSubtitle",
+              "fill": "#71717A",
+              "content": "Choose how you want to open this file",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "e7KuS",
+              "name": "optionsRow",
+              "width": "fill_container",
+              "height": "fit_content(172)",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "3Z6TX",
+                  "name": "studyModeCard",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "#F3F0FF",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#8B5CF6"
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "X7WOW",
+                      "name": "studyIcon",
+                      "width": 36,
+                      "height": 36,
+                      "iconFontName": "book-open",
+                      "iconFontFamily": "lucide",
+                      "fill": "#8B5CF6"
+                    },
+                    {
+                      "type": "text",
+                      "id": "w0do7",
+                      "name": "studyLabel",
+                      "fill": "#8B5CF6",
+                      "content": "Study Mode",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "GBVQ4",
+                      "name": "studyDesc",
+                      "fill": "#71717A",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Review cards at your own pace",
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "s2sC6",
+                  "name": "quizModeCard",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "#FFF8EB",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#F59E0B"
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "2f9m2",
+                      "name": "quizIcon",
+                      "width": 36,
+                      "height": 36,
+                      "iconFontName": "trophy",
+                      "iconFontFamily": "lucide",
+                      "fill": "#F59E0B"
+                    },
+                    {
+                      "type": "text",
+                      "id": "lsHJ3",
+                      "name": "quizLabel",
+                      "fill": "#F59E0B",
+                      "content": "Quiz Mode",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "5sjYj",
+                      "name": "quizDesc",
+                      "fill": "#71717A",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Test yourself with timed questions",
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ko76Q",
+              "name": "cancelBtn",
+              "width": "fill_container",
+              "height": 44,
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "AdsU7",
+                  "name": "cancelText",
+                  "fill": "#71717A",
+                  "content": "Cancel",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "xiAuo",
+      "x": 520,
+      "y": 23375,
+      "name": "Mode Selection Dialog - Dark",
+      "width": 420,
+      "height": 900,
+      "fill": "#18181B",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "Z4t4d",
+          "x": 0,
+          "y": 0,
+          "name": "dimOverlay",
+          "fill": "#00000088",
+          "width": 420,
+          "height": 900
+        },
+        {
+          "type": "frame",
+          "id": "pHDsO",
+          "x": 40,
+          "y": 270,
+          "name": "DialogCard",
+          "width": 340,
+          "fill": "#27272A",
+          "cornerRadius": 24,
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            32,
+            24,
+            24,
+            24
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "FB4XM",
+              "name": "dialogTitle",
+              "fill": "#FAFAFA",
+              "content": "Open Quiz File",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 22,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "pawCY",
+              "name": "dialogSubtitle",
+              "fill": "#A1A1AA",
+              "content": "Choose how you want to open this file",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "XdizV",
+              "name": "optionsRow",
+              "width": "fill_container",
+              "height": "fit_content(172)",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tnd2n",
+                  "name": "studyModeCard",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "#2D2247",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#8B5CF6"
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "NnmAI",
+                      "name": "studyIcon",
+                      "width": 36,
+                      "height": 36,
+                      "iconFontName": "book-open",
+                      "iconFontFamily": "lucide",
+                      "fill": "#8B5CF6"
+                    },
+                    {
+                      "type": "text",
+                      "id": "lz3lv",
+                      "name": "studyLabel",
+                      "fill": "#A78BFA",
+                      "content": "Study Mode",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "xQIiP",
+                      "name": "studyDesc",
+                      "fill": "#A1A1AA",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Review cards at your own pace",
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "D8VkI",
+                  "name": "quizModeCard",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "#2A2318",
+                  "cornerRadius": 16,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#F59E0B"
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "DaASP",
+                      "name": "quizIcon",
+                      "width": 36,
+                      "height": 36,
+                      "iconFontName": "trophy",
+                      "iconFontFamily": "lucide",
+                      "fill": "#FBBF24"
+                    },
+                    {
+                      "type": "text",
+                      "id": "bETpf",
+                      "name": "quizLabel",
+                      "fill": "#FBBF24",
+                      "content": "Quiz Mode",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "viXJe",
+                      "name": "quizDesc",
+                      "fill": "#A1A1AA",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Test yourself with timed questions",
+                      "textAlign": "center",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "aIw8K",
+              "name": "cancelBtn",
+              "width": "fill_container",
+              "height": 44,
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "c2yiT",
+                  "name": "cancelText",
+                  "fill": "#A1A1AA",
+                  "content": "Cancel",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "jZNLD",
+      "x": 1040,
+      "y": 23375,
+      "name": "Drag Overlay Mobile - Light",
+      "clip": true,
+      "width": 420,
+      "height": 900,
+      "fill": "#FAFAFA",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "l4YXk",
+          "name": "StudyModeZone",
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 180,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#8B5CF666",
+                "position": 0
+              },
+              {
+                "color": "#8B5CF618",
+                "position": 1
+              }
+            ]
+          },
+          "layout": "vertical",
+          "gap": 12,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "84LXa",
+              "name": "studyIcon",
+              "width": 48,
+              "height": 48,
+              "iconFontName": "book-open",
+              "iconFontFamily": "lucide",
+              "fill": "#8B5CF6"
+            },
+            {
+              "type": "text",
+              "id": "m6ydH",
+              "name": "studyLabel",
+              "fill": "#8B5CF6",
+              "content": "Study Mode",
+              "fontFamily": "Inter",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "bCM38",
+              "name": "studyHint",
+              "fill": "#71717A",
+              "content": "Drop here to study",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "v9LUC",
+          "name": "divider",
+          "fill": "#E4E4E7",
+          "width": "fill_container",
+          "height": 2
+        },
+        {
+          "type": "frame",
+          "id": "51Pcg",
+          "name": "QuizModeZone",
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#F59E0B66",
+                "position": 0
+              },
+              {
+                "color": "#F59E0B18",
+                "position": 1
+              }
+            ]
+          },
+          "layout": "vertical",
+          "gap": 12,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "s2yiw",
+              "name": "quizIcon",
+              "width": 48,
+              "height": 48,
+              "iconFontName": "trophy",
+              "iconFontFamily": "lucide",
+              "fill": "#F59E0B"
+            },
+            {
+              "type": "text",
+              "id": "q76O0",
+              "name": "quizLabel",
+              "fill": "#F59E0B",
+              "content": "Quiz Mode",
+              "fontFamily": "Inter",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "ux5hY",
+              "name": "quizHint",
+              "fill": "#71717A",
+              "content": "Drop here to quiz",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "yUxLw",
+      "x": 1560,
+      "y": 23375,
+      "name": "Drag Overlay Mobile - Dark",
+      "clip": true,
+      "width": 420,
+      "height": 900,
+      "fill": "#18181B",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "dtVvS",
+          "name": "StudyModeZone",
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 180,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#8B5CF644",
+                "position": 0
+              },
+              {
+                "color": "#8B5CF611",
+                "position": 1
+              }
+            ]
+          },
+          "layout": "vertical",
+          "gap": 12,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "0YDy4",
+              "name": "studyIcon",
+              "width": 48,
+              "height": 48,
+              "iconFontName": "book-open",
+              "iconFontFamily": "lucide",
+              "fill": "#A78BFA"
+            },
+            {
+              "type": "text",
+              "id": "iaD03",
+              "name": "studyLabel",
+              "fill": "#A78BFA",
+              "content": "Study Mode",
+              "fontFamily": "Inter",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "lPPdm",
+              "name": "studyHint",
+              "fill": "#A1A1AA",
+              "content": "Drop here to study",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "l252w",
+          "name": "divider",
+          "fill": "#3F3F46",
+          "width": "fill_container",
+          "height": 2
+        },
+        {
+          "type": "frame",
+          "id": "fsOht",
+          "name": "QuizModeZone",
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#F59E0B44",
+                "position": 0
+              },
+              {
+                "color": "#F59E0B11",
+                "position": 1
+              }
+            ]
+          },
+          "layout": "vertical",
+          "gap": 12,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "h2YU4",
+              "name": "quizIcon",
+              "width": 48,
+              "height": 48,
+              "iconFontName": "trophy",
+              "iconFontFamily": "lucide",
+              "fill": "#FBBF24"
+            },
+            {
+              "type": "text",
+              "id": "rpCkW",
+              "name": "quizLabel",
+              "fill": "#FBBF24",
+              "content": "Quiz Mode",
+              "fontFamily": "Inter",
+              "fontSize": 20,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "HQWql",
+              "name": "quizHint",
+              "fill": "#A1A1AA",
+              "content": "Drop here to quiz",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "bgyws",
+      "x": 2080,
+      "y": 23375,
+      "name": "Drag Overlay Desktop - Light",
+      "clip": true,
+      "width": 800,
+      "height": 500,
+      "fill": "#FAFAFA",
+      "children": [
+        {
+          "type": "frame",
+          "id": "VTXDM",
+          "name": "StudyModeZone",
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 90,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#8B5CF666",
+                "position": 0
+              },
+              {
+                "color": "#8B5CF618",
+                "position": 1
+              }
+            ]
+          },
+          "layout": "vertical",
+          "gap": 12,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "S4HcJ",
+              "name": "studyIcon",
+              "width": 56,
+              "height": 56,
+              "iconFontName": "book-open",
+              "iconFontFamily": "lucide",
+              "fill": "#8B5CF6"
+            },
+            {
+              "type": "text",
+              "id": "mELjv",
+              "name": "studyLabel",
+              "fill": "#8B5CF6",
+              "content": "Study Mode",
+              "fontFamily": "Inter",
+              "fontSize": 22,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "TtbDC",
+              "name": "studyHint",
+              "fill": "#71717A",
+              "content": "Drop here to study",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "t7ccz",
+          "name": "divider",
+          "fill": "#E4E4E7",
+          "width": 2,
+          "height": "fill_container"
+        },
+        {
+          "type": "frame",
+          "id": "bELMH",
+          "name": "QuizModeZone",
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 270,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#F59E0B66",
+                "position": 0
+              },
+              {
+                "color": "#F59E0B18",
+                "position": 1
+              }
+            ]
+          },
+          "layout": "vertical",
+          "gap": 12,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "Sv3Qu",
+              "name": "quizIcon",
+              "width": 56,
+              "height": 56,
+              "iconFontName": "trophy",
+              "iconFontFamily": "lucide",
+              "fill": "#F59E0B"
+            },
+            {
+              "type": "text",
+              "id": "rkN2K",
+              "name": "quizLabel",
+              "fill": "#F59E0B",
+              "content": "Quiz Mode",
+              "fontFamily": "Inter",
+              "fontSize": 22,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "rtPKn",
+              "name": "quizHint",
+              "fill": "#71717A",
+              "content": "Drop here to quiz",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "YBPpE",
+      "x": 2980,
+      "y": 23375,
+      "name": "Drag Overlay Desktop - Dark",
+      "clip": true,
+      "width": 800,
+      "height": 500,
+      "fill": "#18181B",
+      "children": [
+        {
+          "type": "frame",
+          "id": "YzNFh",
+          "name": "StudyModeZone",
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 90,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#8B5CF644",
+                "position": 0
+              },
+              {
+                "color": "#8B5CF611",
+                "position": 1
+              }
+            ]
+          },
+          "layout": "vertical",
+          "gap": 12,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "hNfSg",
+              "name": "studyIcon",
+              "width": 56,
+              "height": 56,
+              "iconFontName": "book-open",
+              "iconFontFamily": "lucide",
+              "fill": "#A78BFA"
+            },
+            {
+              "type": "text",
+              "id": "oeVld",
+              "name": "studyLabel",
+              "fill": "#A78BFA",
+              "content": "Study Mode",
+              "fontFamily": "Inter",
+              "fontSize": 22,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "rWwwc",
+              "name": "studyHint",
+              "fill": "#A1A1AA",
+              "content": "Drop here to study",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "1WHdc",
+          "name": "divider",
+          "fill": "#3F3F46",
+          "width": 2,
+          "height": "fill_container"
+        },
+        {
+          "type": "frame",
+          "id": "sUePo",
+          "name": "QuizModeZone",
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 270,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#F59E0B44",
+                "position": 0
+              },
+              {
+                "color": "#F59E0B11",
+                "position": 1
+              }
+            ]
+          },
+          "layout": "vertical",
+          "gap": 12,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "k6qtE",
+              "name": "quizIcon",
+              "width": 56,
+              "height": 56,
+              "iconFontName": "trophy",
+              "iconFontFamily": "lucide",
+              "fill": "#FBBF24"
+            },
+            {
+              "type": "text",
+              "id": "bu328",
+              "name": "quizLabel",
+              "fill": "#FBBF24",
+              "content": "Quiz Mode",
+              "fontFamily": "Inter",
+              "fontSize": 22,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "Ysroa",
+              "name": "quizHint",
+              "fill": "#A1A1AA",
+              "content": "Drop here to quiz",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "id": "LRmEG",
+      "x": 0,
+      "y": 24325,
+      "name": "Dialog Interaction Notes",
+      "width": 940,
+      "height": 200,
+      "content": "MODE SELECTION DIALOG\n\n• Triggered on: file picker load, drag & drop, deeplink open\n• Study Mode card: opens quiz in review/flashcard mode (no timer, no scoring)\n• Quiz Mode card: opens quiz in test mode (timed, scored)\n• Cancel: dismisses dialog, file is not opened\n• Selected card gets purple highlight border; unselected stays neutral\n• On mobile: dialog appears as bottom sheet or centered modal"
+    },
+    {
+      "type": "note",
+      "id": "AlzuU",
+      "x": 1040,
+      "y": 24325,
+      "name": "Drag Overlay Interaction Notes",
+      "width": 1940,
+      "height": 200,
+      "content": "DRAG OVERLAY ON HOMESCREEN\n\n• Appears when .quiz file is dragged over the HomeScreen\n• Mobile: Top half = Study Mode, Bottom half = Quiz Mode\n• Desktop: Left half = Study Mode, Right half = Quiz Mode\n• Hover effect: when cursor enters a zone, that zone brightens (glow/scale effect)\n• Dropping in a zone bypasses the dialog and opens directly in that mode\n• Purple = Study (calm, learning), Amber/Gold = Quiz (challenge, competition)\n• Divider line separates the two zones clearly"
     }
   ]
 }
