@@ -15,7 +15,6 @@
 
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:mime/mime.dart';
@@ -31,7 +30,10 @@ import 'package:quizdy/domain/models/ai/ai_question_type.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/presentation/widgets/dialog_drop_zone.dart';
-import 'package:quizdy/presentation/widgets/quizdy_switch.dart';
+import 'package:quizdy/presentation/widgets/components/ai_content_input_zone.dart';
+import 'package:quizdy/presentation/widgets/components/ai_file_upload_zone.dart';
+import 'package:quizdy/presentation/widgets/components/ai_generation_config_section.dart';
+import 'package:quizdy/presentation/widgets/components/collapsible_generation_config.dart';
 
 class AiGenerateStep2Widget extends StatefulWidget {
   final bool isStudyMode;
@@ -157,8 +159,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final colors = context.appColors;
     final borderColor = isDark ? Colors.transparent : AppTheme.borderColor;
-    final inputBg = isDark ? AppTheme.borderColorDark : AppTheme.cardColorLight;
-    final attachStroke = isDark ? AppTheme.zinc600 : AppTheme.zinc300;
 
     return DialogDropZone(
       onFilesDropped: _handleDroppedFile,
@@ -231,151 +231,20 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Input Area
-                      Container(
-                        height: 200,
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: inputBg,
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: TextField(
-                                controller: widget.textController,
-                                maxLines: null,
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 14,
-                                  color: colors.title,
-                                ),
-                                decoration: InputDecoration.collapsed(
-                                  hintText: localizations.aiContentFieldHint,
-                                  hintStyle: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: 14,
-                                    color: colors.surface,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            Container(
-                              width: double.infinity,
-                              alignment: Alignment.centerRight,
-                              child: Text(
-                                widget.getWordCountText(),
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 12,
-                                  color: widget.getTopicCount() > 10
-                                      ? Theme.of(context).primaryColor
-                                      : colors.subtitle,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                      AiContentInputZone(
+                        controller: widget.textController,
+                        wordCountText: widget.getWordCountText(),
+                        isTopicMode: widget.getTopicCount() > 10,
                       ),
                       const SizedBox(height: 12),
 
                       // Attach File
-                      GestureDetector(
-                        onTap: widget.onPickFile,
-                        child: Container(
-                          height: 64,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: _isDragging
-                                ? Theme.of(
-                                    context,
-                                  ).primaryColor.withValues(alpha: 0.05)
-                                : Colors.transparent,
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: _isDragging
-                                  ? Theme.of(context).primaryColor
-                                  : attachStroke,
-                              width: 2,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              alignment: Alignment.centerLeft,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    _isDragging
-                                        ? LucideIcons.download
-                                        : LucideIcons.paperclip,
-                                    color: _isDragging
-                                        ? Theme.of(context).primaryColor
-                                        : colors.subtitle,
-                                    size: 20,
-                                  ),
-                                  const SizedBox(width: 12),
-                                  if (_isDragging)
-                                    Text(
-                                      localizations.dropAttachmentHere,
-                                      style: TextStyle(
-                                        fontFamily: 'Inter',
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                      overflow: TextOverflow.ellipsis,
-                                    )
-                                  else if (widget.fileAttachment != null)
-                                    Text(
-                                      widget.fileAttachment!.name,
-                                      style: TextStyle(
-                                        fontFamily: 'Inter',
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: colors.title,
-                                      ),
-                                      overflow: TextOverflow.ellipsis,
-                                    )
-                                  else
-                                    Text(
-                                      localizations.aiAttachFileHint,
-                                      style: TextStyle(
-                                        fontFamily: 'Inter',
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: colors.subtitle,
-                                      ),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  if (widget.fileAttachment != null &&
-                                      !_isDragging)
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                        left: 12.0,
-                                        right: 16.0,
-                                      ),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          widget.onRemoveFile();
-                                          widget.onAutoDifficultyChanged(false);
-                                        },
-                                        child: Icon(
-                                          LucideIcons.x,
-                                          color: colors.title,
-                                          size: 16,
-                                        ),
-                                      ),
-                                    ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                      AiFileUploadZone(
+                        onPickFile: widget.onPickFile,
+                        onRemoveFile: widget.onRemoveFile,
+                        onAutoDifficultyChanged: widget.onAutoDifficultyChanged,
+                        fileAttachment: widget.fileAttachment,
+                        isDragging: _isDragging,
                       ),
                       if (widget.fileAttachment == null) ...[
                         const SizedBox(height: 8),
@@ -388,7 +257,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                         ),
                       ],
                       const SizedBox(height: 24),
-                      _CollapsibleGenerationConfig(
+                      CollapsibleGenerationConfig(
                         key: _configKey,
                         isDark: isDark,
                         onExpand: () {
@@ -404,400 +273,30 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                             }
                           });
                         },
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            if (!widget.isStudyMode) ...[
-                              // Content Mode (Category selection)
-                              Text(
-                                localizations.aiGenerationCategoryLabel,
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: colors.subtitle,
-                                ),
-                              ),
-                              const SizedBox(height: 12),
-                              SizedBox(
-                                width: double.infinity,
-                                child: SegmentedButton<AiGenerationCategory>(
-                                  segments: [
-                                    ButtonSegment<AiGenerationCategory>(
-                                      value: AiGenerationCategory.both,
-                                      label: Text(
-                                        localizations.aiGenerationCategoryBoth,
-                                      ),
-                                    ),
-                                    ButtonSegment<AiGenerationCategory>(
-                                      value: AiGenerationCategory.exercises,
-                                      label: Text(
-                                        localizations
-                                            .aiGenerationCategoryExercises,
-                                      ),
-                                    ),
-                                    ButtonSegment<AiGenerationCategory>(
-                                      value: AiGenerationCategory.theory,
-                                      label: Text(
-                                        localizations
-                                            .aiGenerationCategoryTheory,
-                                      ),
-                                    ),
-                                  ],
-                                  selected: <AiGenerationCategory>{
-                                    _selectedCategory,
-                                  },
-                                  onSelectionChanged:
-                                      (Set<AiGenerationCategory> newSelection) {
-                                        setState(() {
-                                          _selectedCategory =
-                                              newSelection.first;
-                                        });
-                                      },
-                                  showSelectedIcon: false,
-                                  style: SegmentedButton.styleFrom(
-                                    selectedBackgroundColor: Theme.of(
-                                      context,
-                                    ).primaryColor,
-                                    selectedForegroundColor: Colors.white,
-                                    backgroundColor: inputBg,
-                                    side: BorderSide(color: attachStroke),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    textStyle: const TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                              ),
-
-                              const SizedBox(height: 24),
-
-                              // Question Count
-                              Text(
-                                localizations.aiNumberQuestionsLabel,
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: colors.subtitle,
-                                ),
-                              ),
-                              const SizedBox(height: 12),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  // Minus
-                                  GestureDetector(
-                                    onTap: () {
-                                      if (widget.questionCount != null &&
-                                          widget.questionCount! > 1) {
-                                        widget.onQuestionCountChanged?.call(
-                                          widget.questionCount! - 1,
-                                        );
-                                      }
-                                    },
-                                    child: Container(
-                                      width: 44,
-                                      height: 44,
-                                      decoration: BoxDecoration(
-                                        color: colors.border,
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                      child: Icon(
-                                        LucideIcons.minus,
-                                        color: colors.title,
-                                        size: 18,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 16),
-                                  // Display
-                                  Expanded(
-                                    child: Container(
-                                      height: 52,
-                                      decoration: BoxDecoration(
-                                        color: colors.border,
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                      alignment: Alignment.center,
-                                      child: TextField(
-                                        controller:
-                                            widget.questionCountController,
-                                        focusNode: _questionCountFocusNode,
-                                        keyboardType: TextInputType.number,
-                                        textAlign: TextAlign.center,
-                                        inputFormatters: [
-                                          FilteringTextInputFormatter
-                                              .digitsOnly,
-                                          LengthLimitingTextInputFormatter(2),
-                                        ],
-                                        style: TextStyle(
-                                          fontFamily: 'Inter',
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                          color: colors.title,
-                                        ),
-                                        decoration: const InputDecoration(
-                                          border: InputBorder.none,
-                                          contentPadding: EdgeInsets.zero,
-                                          isDense: true,
-                                        ),
-                                        onChanged: (value) {
-                                          if (value.isEmpty) return;
-                                          final count = int.tryParse(value);
-                                          if (count != null) {
-                                            if (count > 50) {
-                                              widget.onQuestionCountChanged
-                                                  ?.call(50);
-                                            } else if (count > 0) {
-                                              widget.onQuestionCountChanged
-                                                  ?.call(count);
-                                            }
-                                          }
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 16),
-                                  // Plus
-                                  GestureDetector(
-                                    onTap: () {
-                                      if (widget.questionCount != null &&
-                                          widget.questionCount! < 50) {
-                                        widget.onQuestionCountChanged?.call(
-                                          widget.questionCount! + 1,
-                                        );
-                                      }
-                                    },
-                                    child: Container(
-                                      width: 44,
-                                      height: 44,
-                                      decoration: BoxDecoration(
-                                        color: Theme.of(context).primaryColor,
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                      child: const Icon(
-                                        LucideIcons.plus,
-                                        color: Colors.white,
-                                        size: 18,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 24),
-                            ],
-
-                            // Difficulty Level
-                            Text(
-                              localizations.aiDifficultyTitle,
-                              style: TextStyle(
-                                fontFamily: 'Inter',
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: colors.subtitle,
-                              ),
-                            ),
-                            const SizedBox(height: 12),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: inputBg,
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(color: attachStroke),
-                              ),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 16,
-                                      vertical: 12,
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                widget.isAutoDifficulty
-                                                    ? localizations
-                                                          .aiDifficultyAutoTurnedOn
-                                                    : localizations
-                                                          .aiDifficultyAutoTurnedOff,
-                                                style: TextStyle(
-                                                  fontFamily: 'Inter',
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: colors.title,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 2),
-                                              Text(
-                                                widget.isAutoDifficulty
-                                                    ? localizations
-                                                          .aiDifficultyAutoDescription
-                                                    : localizations
-                                                          .aiDifficultyManualDescription,
-                                                style: TextStyle(
-                                                  fontFamily: 'Inter',
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: colors.subtitle,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        QuizdySwitch(
-                                          value:
-                                              widget.fileAttachment != null &&
-                                              widget.isAutoDifficulty,
-                                          onChanged:
-                                              widget.fileAttachment == null
-                                              ? null
-                                              : (value) {
-                                                  widget
-                                                      .onAutoDifficultyChanged(
-                                                        value,
-                                                      );
-                                                },
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  if (!widget.isAutoDifficulty) ...[
-                                    Divider(height: 1, color: attachStroke),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 16,
-                                        vertical: 8,
-                                      ),
-                                      child: DropdownButtonHideUnderline(
-                                        child:
-                                            DropdownButton<AiDifficultyLevel>(
-                                              value: widget.selectedDifficulty,
-                                              isExpanded: true,
-                                              icon: Icon(
-                                                LucideIcons.chevronDown,
-                                                color: colors.subtitle,
-                                                size: 16,
-                                              ),
-                                              dropdownColor: inputBg,
-                                              items: [
-                                                DropdownMenuItem(
-                                                  value: AiDifficultyLevel
-                                                      .elementary,
-                                                  child: Text(
-                                                    localizations
-                                                        .aiDifficultyElementary,
-                                                    style: TextStyle(
-                                                      fontFamily: 'Inter',
-                                                      fontSize: 14,
-                                                      color: colors.title,
-                                                    ),
-                                                  ),
-                                                ),
-                                                DropdownMenuItem(
-                                                  value: AiDifficultyLevel
-                                                      .highSchool,
-                                                  child: Text(
-                                                    localizations
-                                                        .aiDifficultyHighSchool,
-                                                    style: TextStyle(
-                                                      fontFamily: 'Inter',
-                                                      fontSize: 14,
-                                                      color: colors.title,
-                                                    ),
-                                                  ),
-                                                ),
-                                                DropdownMenuItem(
-                                                  value: AiDifficultyLevel
-                                                      .bachelors,
-                                                  child: Text(
-                                                    localizations
-                                                        .aiDifficultyBachelors,
-                                                    style: TextStyle(
-                                                      fontFamily: 'Inter',
-                                                      fontSize: 14,
-                                                      color: colors.title,
-                                                    ),
-                                                  ),
-                                                ),
-                                                DropdownMenuItem(
-                                                  value: AiDifficultyLevel
-                                                      .university,
-                                                  child: Text(
-                                                    localizations
-                                                        .aiDifficultyUniversity,
-                                                    style: TextStyle(
-                                                      fontFamily: 'Inter',
-                                                      fontSize: 14,
-                                                      color: colors.title,
-                                                    ),
-                                                  ),
-                                                ),
-                                                DropdownMenuItem(
-                                                  value:
-                                                      AiDifficultyLevel.masters,
-                                                  child: Text(
-                                                    localizations
-                                                        .aiDifficultyMasters,
-                                                    style: TextStyle(
-                                                      fontFamily: 'Inter',
-                                                      fontSize: 14,
-                                                      color: colors.title,
-                                                    ),
-                                                  ),
-                                                ),
-                                                DropdownMenuItem(
-                                                  value: AiDifficultyLevel
-                                                      .doctorate,
-                                                  child: Text(
-                                                    localizations
-                                                        .aiDifficultyDoctorate,
-                                                    style: TextStyle(
-                                                      fontFamily: 'Inter',
-                                                      fontSize: 14,
-                                                      color: colors.title,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                              onChanged:
-                                                  (AiDifficultyLevel? value) {
-                                                    if (value != null) {
-                                                      widget
-                                                          .onDifficultyChanged(
-                                                            value,
-                                                          );
-                                                    }
-                                                  },
-                                            ),
-                                      ),
-                                    ),
-                                  ],
-                                ],
-                              ),
-                            ),
-                          ],
+                        child: AiGenerationConfigSection(
+                          isStudyMode: widget.isStudyMode,
+                          selectedCategory: _selectedCategory,
+                          onCategoryChanged: (category) =>
+                              setState(() => _selectedCategory = category),
+                          questionCount: widget.questionCount,
+                          questionCountController:
+                              widget.questionCountController,
+                          questionCountFocusNode: _questionCountFocusNode,
+                          onQuestionCountChanged: (count) =>
+                              widget.onQuestionCountChanged?.call(count),
+                          isAutoDifficulty: widget.isAutoDifficulty,
+                          hasFile: widget.fileAttachment != null,
+                          onAutoDifficultyChanged:
+                              widget.onAutoDifficultyChanged,
+                          selectedDifficulty: widget.selectedDifficulty,
+                          onDifficultyChanged: widget.onDifficultyChanged,
                         ),
                       ),
+                      const SizedBox(height: 32),
                     ],
                   ),
                 ),
               ),
-
-              const SizedBox(height: 32),
 
               // Footer (Action Buttons)
               Row(
@@ -869,114 +368,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _CollapsibleGenerationConfig extends StatefulWidget {
-  final bool isDark;
-  final Widget child;
-  final VoidCallback? onExpand;
-
-  const _CollapsibleGenerationConfig({
-    super.key,
-    required this.isDark,
-    required this.child,
-    this.onExpand,
-  });
-
-  @override
-  State<_CollapsibleGenerationConfig> createState() =>
-      _CollapsibleGenerationConfigState();
-}
-
-class _CollapsibleGenerationConfigState
-    extends State<_CollapsibleGenerationConfig> {
-  bool _isExpanded = false;
-
-  @override
-  Widget build(BuildContext context) {
-    final borderColor = widget.isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFE4E4E7);
-    final headerBgColor = widget.isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFF4F4F5);
-    final bodyBgColor = widget.isDark
-        ? const Color(0xFF1E1E22)
-        : const Color(0xFFFAFAFA);
-    final iconColor = widget.isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
-    final titleColor = widget.isDark ? Colors.white : const Color(0xFF18181B);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        GestureDetector(
-          onTap: () {
-            setState(() {
-              _isExpanded = !_isExpanded;
-              if (_isExpanded) {
-                widget.onExpand?.call();
-              }
-            });
-          },
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-            decoration: BoxDecoration(
-              color: headerBgColor,
-              borderRadius: _isExpanded
-                  ? const BorderRadius.vertical(top: Radius.circular(12))
-                  : BorderRadius.circular(12),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Icon(LucideIcons.sparkles, size: 18, color: iconColor),
-                    const SizedBox(width: 8),
-                    Text(
-                      AppLocalizations.of(
-                        context,
-                      )!.generationConfigurationTitle,
-                      style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: titleColor,
-                      ),
-                    ),
-                  ],
-                ),
-                Icon(
-                  _isExpanded ? LucideIcons.chevronUp : LucideIcons.chevronDown,
-                  size: 18,
-                  color: iconColor,
-                ),
-              ],
-            ),
-          ),
-        ),
-        _isExpanded
-            ? Container(
-                padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
-                decoration: BoxDecoration(
-                  color: bodyBgColor,
-                  borderRadius: const BorderRadius.vertical(
-                    bottom: Radius.circular(12),
-                  ),
-                  border: Border(
-                    left: BorderSide(color: borderColor),
-                    right: BorderSide(color: borderColor),
-                    bottom: BorderSide(color: borderColor),
-                  ),
-                ),
-                child: widget.child,
-              )
-            : const SizedBox(width: double.infinity),
-      ],
     );
   }
 }
