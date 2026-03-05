@@ -91,12 +91,14 @@ class AiDocumentChunkingService {
     required String fileMimeType,
     required String documentId,
     required AppLocalizations localizations,
+    String? extraContext,
   }) async {
     try {
       final jsonResponse = await aiService.generateStudyIndex(
         localizations,
         fileUri: fileUri,
         fileMimeType: fileMimeType,
+        extraContext: extraContext,
       );
 
       // Clean the response if it contains markdown code blocks
@@ -162,6 +164,68 @@ class AiDocumentChunkingService {
         'description': null,
       };
       */
+    }
+  }
+
+  /// Generates logical chunks from text content using AI.
+  Future<Map<String, dynamic>> generateIndexFromTextWithAi({
+    required AIService aiService,
+    required String content,
+    required bool isTopicMode,
+    required String documentId,
+    required AppLocalizations localizations,
+  }) async {
+    try {
+      final jsonResponse = await aiService.generateStudyIndexFromText(
+        localizations,
+        content: content,
+        isTopicMode: isTopicMode,
+      );
+
+      // Clean the response if it contains markdown code blocks
+      String cleanedJson = jsonResponse.trim();
+      if (cleanedJson.startsWith('```json')) {
+        cleanedJson = cleanedJson.substring(7, cleanedJson.length - 3).trim();
+      } else if (cleanedJson.startsWith('```')) {
+        cleanedJson = cleanedJson.substring(3, cleanedJson.length - 3).trim();
+      }
+
+      final decoded = jsonDecode(cleanedJson);
+
+      final String? title;
+      final String? description;
+      final List<dynamic> chapters;
+
+      if (decoded is Map<String, dynamic>) {
+        title = decoded['title'] as String?;
+        description = decoded['description'] as String?;
+        chapters = decoded['chapters'] as List<dynamic>? ?? [];
+      } else if (decoded is List) {
+        title = null;
+        description = null;
+        chapters = decoded;
+      } else {
+        throw const FormatException('Unexpected JSON format');
+      }
+
+      final references = chapters.map((item) {
+        return SourceReference(
+          documentId: documentId,
+          startPage: 1,
+          endPage: 1,
+          startOffset: 0,
+          endOffset: 0,
+          blockType: item['title'] ?? 'Generic Section',
+        );
+      }).toList();
+
+      return {
+        'references': references,
+        'title': title,
+        'description': description,
+      };
+    } catch (e) {
+      rethrow;
     }
   }
 
