@@ -2845,6 +2845,36 @@ abstract class AppLocalizations {
   /// **'This file contains both quiz questions and study content. Which mode would you like to open?'**
   String get chooseModeDialogMessage;
 
+  /// Short subtitle for study mode in the mode selection dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Review the material at your own pace'**
+  String get studyModeSubtitle;
+
+  /// Short subtitle for exam/quiz mode in the mode selection dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Put your knowledge to the test'**
+  String get examModeSubtitle;
+
+  /// Hint shown on the study zone of the drag overlay
+  ///
+  /// In en, this message translates to:
+  /// **'Drop here to study the material at your own pace'**
+  String get dropHereToStudy;
+
+  /// Hint shown on the quiz zone of the drag overlay
+  ///
+  /// In en, this message translates to:
+  /// **'Drop here to put your knowledge to the test'**
+  String get dropHereToQuiz;
+
+  /// Title for the AI study generation dialog
+  ///
+  /// In en, this message translates to:
+  /// **'AI Study Generation'**
+  String get aiStudyGenerationTitle;
+
   /// Title for the dialog asking the user to re-attach the original file
   ///
   /// In en, this message translates to:

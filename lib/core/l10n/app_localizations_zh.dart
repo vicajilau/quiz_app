@@ -1500,6 +1500,21 @@ class AppLocalizationsZh extends AppLocalizations {
   String get chooseModeDialogMessage => '此文件包含测验问题和学习内容。您想打开哪种模式？';
 
   @override
+  String get studyModeSubtitle => '按照您自己的节奏复习材料';
+
+  @override
+  String get examModeSubtitle => '测试您的知识';
+
+  @override
+  String get dropHereToStudy => '将文件拖到此处，按照您自己的节奏复习材料';
+
+  @override
+  String get dropHereToQuiz => '将文件拖到此处测试您的知识';
+
+  @override
+  String get aiStudyGenerationTitle => 'AI 学习生成';
+
+  @override
   String get reattachFileDialogTitle => '需要原始文件';
 
   @override

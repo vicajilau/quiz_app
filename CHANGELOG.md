@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.8.2]
 
+- feat: Added mode selection dialog (Study/Quiz) when opening .quiz files, with dual-zone drag & drop overlay and deeplink support.
 - fix: Migrated deprecated `gemini-3-pro-preview` and `gemini-3-flash-preview` models to their respective `3.1` updates to ensure uninterrupted service.
 - ui: Updated option indicator icons to use distinct visual shapes (e.g. rounded square for multiple-choice) instead of generic checkmarks.
 - feat: Unified Answer Option styling in Study Mode with Quiz Completed summary, bringing color-coded visual feedback for instant result clarification.
