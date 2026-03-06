@@ -148,149 +148,236 @@ class _StudyIndexFooterWidgetState extends State<StudyIndexFooterWidget> {
                   progressPercentage: widget.progressPercentage,
                 ),
               ),
-              // Action Buttons Row (Scrollable with Shadows)
-              Stack(
-                children: [
-                  ScrollConfiguration(
-                    behavior: ScrollConfiguration.of(context).copyWith(
-                      dragDevices: {
-                        PointerDeviceKind.touch,
-                        PointerDeviceKind.mouse,
-                      },
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  const gap = 12.0;
+                  final availableWidth = constraints.maxWidth;
+
+                  final buttonData = [
+                    if (widget.selectedChunkCount > 0)
+                      (
+                        button: QuizdyButton(
+                          type: QuizdyButtonType.warning,
+                          icon: LucideIcons.trash2,
+                          expanded: true,
+                          title:
+                              '${widget.localizations.deleteButton} (${widget.selectedChunkCount})',
+                          onPressed: widget.onDelete,
+                        ),
+                        flex: 2,
+                      ),
+                    if (widget.showSaveButton)
+                      (
+                        button: QuizdyButton(
+                          type: QuizdyButtonType.secondary,
+                          icon: LucideIcons.save,
+                          expanded: true,
+                          title: widget.localizations.saveButton,
+                          onPressed: widget.onSave,
+                        ),
+                        flex: 2,
+                      ),
+                    (
+                      button: QuizdyButton(
+                        type: QuizdyButtonType.secondary,
+                        icon: LucideIcons.plus,
+                        expanded: true,
+                        title: widget.localizations.addSection,
+                        onPressed: widget.onAddChunk,
+                      ),
+                      flex: 2,
                     ),
-                    child: NotificationListener<ScrollMetricsNotification>(
-                      onNotification: (notification) {
-                        _updateShadows();
-                        return true;
-                      },
-                      child: SingleChildScrollView(
-                        controller: _scrollController,
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            // Delete Action Button
-                            if (widget.selectedChunkCount > 0)
-                              Padding(
-                                padding: const EdgeInsetsGeometry.only(
-                                  right: 12,
+                    (
+                      button: QuizdyButton(
+                        backgroundColor: AppTheme.secondaryColor,
+                        icon: LucideIcons.sparkles,
+                        expanded: true,
+                        title: widget.hasChunks
+                            ? widget.localizations.addSectionsWithAI
+                            : widget.localizations.generateSectionsWithAI,
+                        onPressed: widget.onGenerateAI,
+                      ),
+                      flex: 3, // More space for AI
+                    ),
+                    (
+                      button: QuizdyButton(
+                        type: QuizdyButtonType.secondary,
+                        icon: LucideIcons.upload,
+                        expanded: true,
+                        title: widget.localizations.importButton,
+                        onPressed: widget.onImport,
+                      ),
+                      flex: 2,
+                    ),
+                  ];
+
+                  final buttonCount = buttonData.length;
+                  final totalFlex = buttonData.fold<int>(
+                    0,
+                    (sum, item) => sum + item.flex,
+                  );
+
+                  // Use a 'safe' width that avoids truncation for most labels
+                  const safeFlexUnitWidth = 120.0;
+
+                  final idealWidth =
+                      (safeFlexUnitWidth * totalFlex) +
+                      (gap * (buttonCount - 1));
+
+                  final isScrollable = idealWidth > availableWidth;
+
+                  // This width will be shared by both rows
+                  final effectiveWidth = isScrollable
+                      ? availableWidth
+                      : idealWidth;
+
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Top Action Row
+                      Align(
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          width: effectiveWidth,
+                          child: !isScrollable
+                              ? Row(
+                                  children: [
+                                    for (
+                                      int i = 0;
+                                      i < buttonData.length;
+                                      i++
+                                    ) ...[
+                                      Expanded(
+                                        flex: buttonData[i].flex,
+                                        child: buttonData[i].button,
+                                      ),
+                                      if (i < buttonData.length - 1)
+                                        const SizedBox(width: gap),
+                                    ],
+                                  ],
+                                )
+                              : Stack(
+                                  children: [
+                                    ScrollConfiguration(
+                                      behavior: ScrollConfiguration.of(context)
+                                          .copyWith(
+                                            dragDevices: {
+                                              PointerDeviceKind.touch,
+                                              PointerDeviceKind.mouse,
+                                            },
+                                          ),
+                                      child:
+                                          NotificationListener<
+                                            ScrollMetricsNotification
+                                          >(
+                                            onNotification: (notification) {
+                                              _updateShadows();
+                                              return true;
+                                            },
+                                            child: SingleChildScrollView(
+                                              controller: _scrollController,
+                                              scrollDirection: Axis.horizontal,
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  for (
+                                                    int i = 0;
+                                                    i < buttonData.length;
+                                                    i++
+                                                  ) ...[
+                                                    SizedBox(
+                                                      width:
+                                                          safeFlexUnitWidth *
+                                                          buttonData[i].flex,
+                                                      child:
+                                                          buttonData[i].button,
+                                                    ),
+                                                    if (i <
+                                                        buttonData.length - 1)
+                                                      const SizedBox(
+                                                        width: gap,
+                                                      ),
+                                                  ],
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                    ),
+
+                                    // Left Shadow Indicator
+                                    if (_showLeftShadow)
+                                      Positioned(
+                                        left: -1,
+                                        top: 0,
+                                        bottom: 0,
+                                        width: 40,
+                                        child: IgnorePointer(
+                                          child: DecoratedBox(
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                begin: Alignment.centerLeft,
+                                                end: Alignment.centerRight,
+                                                colors: [
+                                                  backgroundColor,
+                                                  backgroundColor.withValues(
+                                                    alpha: 0.0,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+
+                                    // Right Shadow Indicator
+                                    if (_showRightShadow)
+                                      Positioned(
+                                        right: -1,
+                                        top: 0,
+                                        bottom: 0,
+                                        width: 40,
+                                        child: IgnorePointer(
+                                          child: DecoratedBox(
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                begin: Alignment.centerRight,
+                                                end: Alignment.centerLeft,
+                                                colors: [
+                                                  backgroundColor,
+                                                  backgroundColor.withValues(
+                                                    alpha: 0.0,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
                                 ),
-                                child: QuizdyButton(
-                                  type: QuizdyButtonType.warning,
-                                  icon: LucideIcons.trash2,
-                                  title:
-                                      '${widget.localizations.deleteButton} (${widget.selectedChunkCount})',
-                                  onPressed: widget.onDelete,
-                                ),
-                              ),
-                            // Save Action Button
-                            if (widget.showSaveButton)
-                              Padding(
-                                padding: const EdgeInsetsGeometry.only(
-                                  right: 12,
-                                ),
-                                child: QuizdyButton(
-                                  type: QuizdyButtonType.secondary,
-                                  icon: LucideIcons.save,
-                                  title: widget.localizations.saveButton,
-                                  onPressed: widget.onSave,
-                                ),
-                              ),
-                            // Add Action Button
-                            Padding(
-                              padding: const EdgeInsetsGeometry.only(right: 12),
-                              child: QuizdyButton(
-                                type: QuizdyButtonType.secondary,
-                                icon: LucideIcons.plus,
-                                title: widget.localizations.addSection,
-                                onPressed: widget.onAddChunk,
-                              ),
-                            ),
-                            // Generate Sections Action Button
-                            Padding(
-                              padding: const EdgeInsetsGeometry.only(right: 12),
-                              child: QuizdyButton(
-                                backgroundColor: AppTheme.secondaryColor,
-                                icon: LucideIcons.sparkles,
-                                title: widget.hasChunks
-                                    ? widget.localizations.addSectionsWithAI
-                                    : widget
-                                          .localizations
-                                          .generateSectionsWithAI,
-                                onPressed: widget.onGenerateAI,
-                              ),
-                            ),
-                            // Upload Action Button
-                            QuizdyButton(
-                              type: QuizdyButtonType.secondary,
-                              icon: LucideIcons.upload,
-                              title: widget.localizations.importButton,
-                              onPressed: widget.onImport,
-                            ),
-                          ],
                         ),
                       ),
-                    ),
-                  ),
 
-                  // Left Shadow Indicator
-                  if (_showLeftShadow)
-                    Positioned(
-                      left: -1,
-                      top: 0,
-                      bottom: 0,
-                      width: 40,
-                      child: IgnorePointer(
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              colors: [
-                                backgroundColor,
-                                backgroundColor.withValues(alpha: 0.0),
-                              ],
-                            ),
+                      const SizedBox(height: 16),
+
+                      // Bottom Action Button
+                      Align(
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          width: effectiveWidth,
+                          child: QuizdyButton(
+                            title: widget.localizations.startQuizFromStudy,
+                            icon: LucideIcons.play,
+                            expanded: true,
+                            onPressed: widget.isStartQuizEnabled
+                                ? widget.onStartQuiz
+                                : null,
                           ),
                         ),
                       ),
-                    ),
-
-                  // Right Shadow Indicator
-                  if (_showRightShadow)
-                    Positioned(
-                      right: -1,
-                      top: 0,
-                      bottom: 0,
-                      width: 40,
-                      child: IgnorePointer(
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.centerRight,
-                              end: Alignment.centerLeft,
-                              colors: [
-                                backgroundColor,
-                                backgroundColor.withValues(alpha: 0.0),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-
-              const SizedBox(height: 12),
-
-              // Start Quiz Button
-              QuizdyButton(
-                title: widget.localizations.startQuizFromStudy,
-                icon: LucideIcons.play,
-                expanded: true,
-                onPressed: widget.isStartQuizEnabled
-                    ? widget.onStartQuiz
-                    : null,
+                    ],
+                  );
+                },
               ),
             ],
           ),
