@@ -46,7 +46,7 @@ class AiJitProcessingService {
     String? docSummary,
     bool isAutoDifficulty = true,
     AiDifficultyLevel? difficultyLevel,
-    String? language,
+    required String language,
     AiGenerationMode? generationMode,
   }) async {
     // We only process chunks that have not been successfully processed yet.
@@ -156,10 +156,12 @@ class AiJitProcessingService {
     return '''
 You are an expert educational content generator. Your task is to analyze the provided pages of the document and generate study material for them.
 
+IMPORTANT GLOBAL RULE:
+ALL generated content (ai_summary, slide texts, titles, paragraphs, components) MUST be written strictly in the following language: $targetLanguage.
+
 IMPORTANT: Metadata Context for this study material:$metadataContext
 
-IMPORTANT: Focus ONLY on the content found between pages $startPage and $endPage (inclusive).
-IMPORTANT: All generated content (ai_summary, slide texts, titles, paragraphs) MUST be written in the following language: $targetLanguage. Do NOT use English unless the target language is English.$difficultyInstruction
+IMPORTANT: Focus ONLY on the content found between pages $startPage and $endPage (inclusive).$difficultyInstruction
 
 Important Output Instructions:
 - If the provided text contains a Table of Contents (TOC), completely ignore it and do not generate study elements for the TOC itself.

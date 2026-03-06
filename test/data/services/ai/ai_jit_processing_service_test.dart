@@ -62,6 +62,7 @@ void main() {
         fileUri: 'https://gemini.api/file/123',
         fileMimeType: 'application/pdf',
         localizations: mockLocalizations,
+        language: 'en',
       );
 
       expect(result.status, StudyChunkState.completed);
@@ -92,6 +93,7 @@ void main() {
         fileUri: 'https://gemini.api/file/123',
         fileMimeType: 'application/pdf',
         localizations: mockLocalizations,
+        language: 'en',
       );
 
       expect(result.status, isNot(StudyChunkState.processing));

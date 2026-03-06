@@ -234,8 +234,8 @@ class FileBloc extends Bloc<FileEvent, FileState> {
           fileUri: event.fileUri,
         );
 
-        // Update repository/service locator
-        _fileRepository.registerQuizFile(updatedFile);
+        // Update repository/service locator without dropping the original unmodified cache state
+        _fileRepository.updateActiveQuizFile(updatedFile);
 
         // Emit new state to keep UI in sync
         if (state is FileLoaded) {

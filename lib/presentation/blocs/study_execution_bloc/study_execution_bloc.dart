@@ -186,7 +186,7 @@ class StudyExecutionBloc
       docSummary: state.documentSummary,
       isAutoDifficulty: _isAutoDifficulty,
       difficultyLevel: _difficultyLevel,
-      language: _language,
+      language: _language ?? _localizations.localeName,
       generationMode: _generationMode,
     );
 

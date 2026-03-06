@@ -59,6 +59,7 @@ class InitializeQuizChunksUseCase {
       extraContext: quizFile
           .metadata
           .description, // Use description as context if available
+      language: language,
     );
     final chunks = result['chunks'] as List<StudyChunk>;
 
@@ -93,6 +94,7 @@ class InitializeQuizChunksUseCase {
     required String documentId,
     required AppLocalizations localizations,
     String? extraContext,
+    required String language,
   }) async {
     // 1. Upload the file to the AI service to get a URI (Gemini File API)
     final fileUri = await _aiService.uploadFile(file, localizations);
@@ -105,6 +107,7 @@ class InitializeQuizChunksUseCase {
       documentId: documentId,
       localizations: localizations,
       extraContext: extraContext,
+      language: language,
     );
 
     final references = indexResult['references'] as List<SourceReference>;
@@ -114,7 +117,6 @@ class InitializeQuizChunksUseCase {
         status: StudyChunkState.created,
         sourceReference: entry.value,
         aiSummary: null,
-        slides: null,
       );
     }).toList();
 
@@ -132,6 +134,7 @@ class InitializeQuizChunksUseCase {
     required AiGenerationMode generationMode,
     required String documentId,
     required AppLocalizations localizations,
+    required String language,
   }) async {
     final indexResult = await _chunkingService.generateIndexFromTextWithAi(
       aiService: _aiService,
@@ -139,6 +142,7 @@ class InitializeQuizChunksUseCase {
       generationMode: generationMode,
       documentId: documentId,
       localizations: localizations,
+      language: language,
     );
 
     final references = indexResult['references'] as List<SourceReference>;
@@ -148,7 +152,6 @@ class InitializeQuizChunksUseCase {
         status: StudyChunkState.created,
         sourceReference: entry.value,
         aiSummary: null,
-        slides: null,
       );
     }).toList();
 
