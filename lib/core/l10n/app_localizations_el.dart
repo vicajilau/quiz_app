@@ -1596,20 +1596,20 @@ class AppLocalizationsEl extends AppLocalizations {
       'Αυτό το αρχείο περιέχει τόσο ερωτήσεις κουίζ όσο και περιεχόμενο μελέτης. Ποια λειτουργία θα θέλατε να ανοίξετε;';
 
   @override
-  String get studyModeSubtitle => 'Review the material at your own pace';
+  String get studyModeSubtitle => 'Μελετήστε την ύλη με τον δικό σας ρυθμό';
 
   @override
-  String get examModeSubtitle => 'Put your knowledge to the test';
+  String get examModeSubtitle => 'Δοκιμάστε τις γνώσεις σας';
 
   @override
   String get dropHereToStudy =>
-      'Drop here to study the material at your own pace';
+      'Σύρετε εδώ για να μελετήσετε την ύλη με τον δικό σας ρυθμό';
 
   @override
-  String get dropHereToQuiz => 'Drop here to put your knowledge to the test';
+  String get dropHereToQuiz => 'Σύρετε εδώ για να δοκιμάσετε τις γνώσεις σας';
 
   @override
-  String get aiStudyGenerationTitle => 'AI Study Generation';
+  String get aiStudyGenerationTitle => 'Δημιουργία μελέτης μέσω AI';
 
   @override
   String get reattachFileDialogTitle => 'Απαιτείται το πρωτότυπο αρχείο';

@@ -1588,20 +1588,20 @@ class AppLocalizationsEu extends AppLocalizations {
       'Fitxategi honek galdetegiko galderak eta ikasketa-edukia ditu. Zein modu ireki nahi duzu?';
 
   @override
-  String get studyModeSubtitle => 'Review the material at your own pace';
+  String get studyModeSubtitle => 'Berrikusi materiala zure ritmora';
 
   @override
-  String get examModeSubtitle => 'Put your knowledge to the test';
+  String get examModeSubtitle => 'Jarri zure ezagutzak proban';
 
   @override
   String get dropHereToStudy =>
-      'Drop here to study the material at your own pace';
+      'Jarri hemen materiala zure ritmora berrikusteko';
 
   @override
-  String get dropHereToQuiz => 'Drop here to put your knowledge to the test';
+  String get dropHereToQuiz => 'Jarri hemen zure ezagutzak proban jartzeko';
 
   @override
-  String get aiStudyGenerationTitle => 'AI Study Generation';
+  String get aiStudyGenerationTitle => 'IA Ikasketa Sorkuntza';
 
   @override
   String get reattachFileDialogTitle => 'Jatorrizko fitxategia behar da';

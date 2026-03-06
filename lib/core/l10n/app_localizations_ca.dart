@@ -1596,20 +1596,21 @@ class AppLocalizationsCa extends AppLocalizations {
       'Aquest fitxer conté tant preguntes de qüestionari com contingut d\'estudi. Quin mode t\'agradaria obrir?';
 
   @override
-  String get studyModeSubtitle => 'Review the material at your own pace';
+  String get studyModeSubtitle => 'Repassa el temari al teu ritme';
 
   @override
-  String get examModeSubtitle => 'Put your knowledge to the test';
+  String get examModeSubtitle => 'Posa a prova els teus coneixements';
 
   @override
   String get dropHereToStudy =>
-      'Drop here to study the material at your own pace';
+      'Deixa anar aquí per repassar el temari al teu ritme';
 
   @override
-  String get dropHereToQuiz => 'Drop here to put your knowledge to the test';
+  String get dropHereToQuiz =>
+      'Deixa anar aquí per posar a prova els teus coneixements';
 
   @override
-  String get aiStudyGenerationTitle => 'AI Study Generation';
+  String get aiStudyGenerationTitle => 'Generació d\'estudi per IA';
 
   @override
   String get reattachFileDialogTitle => 'Fitxer original requerit';

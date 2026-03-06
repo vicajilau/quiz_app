@@ -1562,20 +1562,19 @@ class AppLocalizationsAr extends AppLocalizations {
       'يحتوي هذا الملف على أسئلة اختبار ومحتوى دراسي. أي وضع ترغب في فتحه؟';
 
   @override
-  String get studyModeSubtitle => 'Review the material at your own pace';
+  String get studyModeSubtitle => 'راجع المادة بالسرعة التي تناسبك';
 
   @override
-  String get examModeSubtitle => 'Put your knowledge to the test';
+  String get examModeSubtitle => 'اختبر معلوماتك';
 
   @override
-  String get dropHereToStudy =>
-      'Drop here to study the material at your own pace';
+  String get dropHereToStudy => 'اترك هنا لمراجعة المادة بالسرعة التي تناسبك';
 
   @override
-  String get dropHereToQuiz => 'Drop here to put your knowledge to the test';
+  String get dropHereToQuiz => 'اترك هنا لاختبار معلوماتك';
 
   @override
-  String get aiStudyGenerationTitle => 'AI Study Generation';
+  String get aiStudyGenerationTitle => 'توليد الدراسة بالذكاء الاصطناعي';
 
   @override
   String get reattachFileDialogTitle => 'الملف الأصلي مطلوب';

@@ -1585,20 +1585,21 @@ class AppLocalizationsIt extends AppLocalizations {
       'Questo file contiene sia domande del quiz che contenuti di studio. Quale modalità desideri aprire?';
 
   @override
-  String get studyModeSubtitle => 'Review the material at your own pace';
+  String get studyModeSubtitle => 'Ripassa il materiale con i tuoi ritmi';
 
   @override
-  String get examModeSubtitle => 'Put your knowledge to the test';
+  String get examModeSubtitle => 'Metti alla prova le tue conoscenze';
 
   @override
   String get dropHereToStudy =>
-      'Drop here to study the material at your own pace';
+      'Rilascia qui per ripassare il materiale con i tuoi ritmi';
 
   @override
-  String get dropHereToQuiz => 'Drop here to put your knowledge to the test';
+  String get dropHereToQuiz =>
+      'Rilascia qui per mettere alla prova le tue conoscenze';
 
   @override
-  String get aiStudyGenerationTitle => 'AI Study Generation';
+  String get aiStudyGenerationTitle => 'Generazione di studio tramite IA';
 
   @override
   String get reattachFileDialogTitle => 'File originale richiesto';
