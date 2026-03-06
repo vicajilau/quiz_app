@@ -191,10 +191,13 @@ Follow the standard Dart import grouping, in this order:
 
 ## License Headers
 
-**Every `.dart` file** you create (except generated localization files) **must** begin with a GPL-3.0 license header. This is enforced by CI. The header looks like:
+> [!CAUTION]
+> **CRITICAL RULE FOR AI AGENTS:** Every SINGLE `.dart` file you create (except generated localization files) **MUST** begin with the GPL-3.0 license header. Do not skip this under any circumstances. If you create a new file, the very first lines must be this exact header. This is enforced by CI.
+
+The header looks like exactly like this:
 
 ```dart
-// Copyright (C) 2026 Victor Carreras
+// Copyright (C) 2026 Víctor Carreras
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -209,6 +212,7 @@ Follow the standard Dart import grouping, in this order:
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
+
 
 ---
 
