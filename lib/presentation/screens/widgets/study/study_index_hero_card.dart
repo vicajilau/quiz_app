@@ -74,34 +74,37 @@ class StudyIndexHeroCard extends StatelessWidget {
           ),
         ],
         const SizedBox(height: 24),
-        Row(
-          children: [
-            _buildStatCard(
-              context,
-              value: '${state.chunks.length}',
-              label: localizations.studyScreenSections,
-              cardBg: statCardBg,
-              labelColor: statLabelColor,
-            ),
-            const SizedBox(width: 12),
-            _buildStatCard(
-              context,
-              value: '${state.progressPercentage.toStringAsFixed(0)}%',
-              label: localizations.studyScreenCoverage,
-              valueColor: AppTheme.primaryColor,
-              cardBg: statCardBg,
-              labelColor: statLabelColor,
-            ),
-            const SizedBox(width: 12),
-            _buildStatCard(
-              context,
-              value: '${state.processedChunks}/${state.chunks.length}',
-              label: localizations.studyScreenCompleted,
-              valueColor: completedValueColor,
-              cardBg: statCardBg,
-              labelColor: statLabelColor,
-            ),
-          ],
+        IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _buildStatCard(
+                context,
+                value: '${state.chunks.length}',
+                label: localizations.studyScreenSections,
+                cardBg: statCardBg,
+                labelColor: statLabelColor,
+              ),
+              const SizedBox(width: 12),
+              _buildStatCard(
+                context,
+                value: '${state.progressPercentage.toStringAsFixed(0)}%',
+                label: localizations.studyScreenCoverage,
+                valueColor: AppTheme.primaryColor,
+                cardBg: statCardBg,
+                labelColor: statLabelColor,
+              ),
+              const SizedBox(width: 12),
+              _buildStatCard(
+                context,
+                value: '${state.processedChunks}/${state.chunks.length}',
+                label: localizations.studyScreenCompleted,
+                valueColor: completedValueColor,
+                cardBg: statCardBg,
+                labelColor: statLabelColor,
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -118,12 +121,13 @@ class StudyIndexHeroCard extends StatelessWidget {
     final theme = Theme.of(context);
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: cardBg,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               value,
@@ -135,6 +139,7 @@ class StudyIndexHeroCard extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               label,
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w500,

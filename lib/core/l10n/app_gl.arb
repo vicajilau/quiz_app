@@ -1761,7 +1761,7 @@
   },
   "studyScreenAiSummaryTitle": "Resumo da IA",
   "studyScreenNoSummary": "Non hai resumo dispoñible.",
-  "studyScreenCoverage": "Cobertura",
+  "studyScreenCoverage": "Contido Xerado",
   "@studyScreenCoverage": {
     "description": "Label for the study coverage percentage"
   },

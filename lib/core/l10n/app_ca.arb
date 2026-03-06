@@ -1867,7 +1867,7 @@
   },
   "studyScreenAiSummaryTitle": "Resum d'IA",
   "studyScreenNoSummary": "No hi ha cap resum disponible.",
-  "studyScreenCoverage": "Cobertura",
+  "studyScreenCoverage": "Contingut Generat",
   "@studyScreenCoverage": {
     "description": "Label for the study coverage percentage"
   },

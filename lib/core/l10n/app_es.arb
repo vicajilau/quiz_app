@@ -1893,7 +1893,7 @@
   "@documentTooLongForProcessing": {
     "description": "Error message when AI document processing fails due to document length"
   },
-  "studyScreenCoverage": "Cobertura",
+  "studyScreenCoverage": "Contenido Generado",
   "aiStudyLanguageLabel": "Idioma del estudio",
   "@aiStudyLanguageLabel": {
     "description": "Label for the language selector in study generation"

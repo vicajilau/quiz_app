@@ -74,7 +74,12 @@ class _StudySectionsSidebarState extends State<StudySectionsSidebar> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(16, 16, 8, 12),
+          padding: EdgeInsets.fromLTRB(
+            16,
+            MediaQuery.of(context).padding.top + 10,
+            8,
+            12,
+          ),
           child: Row(
             children: [
               const Icon(Icons.list, size: 18, color: AppTheme.primaryColor),
@@ -119,7 +124,7 @@ class _StudySectionsSidebarState extends State<StudySectionsSidebar> {
         ),
         Expanded(
           child: ListView.builder(
-            padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+            padding: const EdgeInsets.fromLTRB(12, 0, 12, 120),
             itemCount: widget.chunks.length,
             itemBuilder: (context, index) {
               final chunk = widget.chunks[index];

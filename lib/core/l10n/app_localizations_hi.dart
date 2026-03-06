@@ -1515,7 +1515,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'सकता है कि दस्तावेज़ इस MVP में एक ही पास में संसाधित करने के लिए बहुत लंबा हो।';
 
   @override
-  String get studyScreenCoverage => 'कवरेज';
+  String get studyScreenCoverage => 'जनरेट की गई सामग्री';
 
   @override
   String get aiStudyLanguageLabel => 'अध्ययन भाषा';

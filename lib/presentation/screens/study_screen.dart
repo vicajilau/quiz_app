@@ -322,6 +322,8 @@ class _StudyScreenViewState extends State<StudyScreenView> {
       },
       child: Scaffold(
         backgroundColor: isDark ? AppTheme.zinc900 : AppTheme.zinc50,
+        extendBodyBehindAppBar: true,
+        extendBody: true,
         bottomNavigationBar: BlocBuilder<FileBloc, FileState>(
           builder: (context, fileState) {
             return BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
@@ -337,6 +339,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
                 if (state.isIndexMode) {
                   return StudyIndexFooterWidget(
                     localizations: localizations,
+                    progressPercentage: state.progressPercentage,
                     hasChunks: state.chunks.isNotEmpty,
                     onStartQuiz: () {
                       context.go(AppRoutes.fileLoadedScreen);
@@ -386,129 +389,112 @@ class _StudyScreenViewState extends State<StudyScreenView> {
         ),
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(72),
-          child: AppBar(
-            backgroundColor: Theme.of(context).primaryColor,
-            elevation: 0,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
-            ),
-            toolbarHeight: 72,
-            leadingWidth: 72,
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 24),
-              child: Center(
-                child: Container(
+          child: Container(
+            color: Colors.transparent,
+            child: AppBar(
+              backgroundColor: Theme.of(context).primaryColor,
+              elevation: 0,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(24),
+                ),
+              ),
+              toolbarHeight: 72,
+              leadingWidth: 72,
+              leading: Padding(
+                padding: const EdgeInsets.only(left: 24),
+                child: Center(
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: context.fileLoadedTheme.appBarIconBackgroundColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+                      builder: (context, state) {
+                        return IconButton(
+                          padding: EdgeInsets.zero,
+                          icon: Icon(
+                            LucideIcons.arrowLeft,
+                            color: Theme.of(context).colorScheme.onPrimary,
+                            size: 20,
+                          ),
+                          tooltip: localizations.backSemanticLabel,
+                          onPressed: () async {
+                            if (!state.isIndexMode) {
+                              context.read<StudyExecutionBloc>().add(
+                                ReturnToIndexRequested(),
+                              );
+                              return;
+                            }
+                            final shouldExit = await _confirmExit();
+                            if (shouldExit && context.mounted) {
+                              context.read<FileBloc>().add(QuizFileReset());
+                              context.pop();
+                            }
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              title: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+                          builder: (context, state) {
+                            return Text(
+                              state.documentTitle,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'Plus Jakarta Sans',
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              actions: [
+                Container(
                   width: 40,
                   height: 40,
+                  margin: const EdgeInsets.only(right: 24),
                   decoration: BoxDecoration(
                     color: context.fileLoadedTheme.appBarIconBackgroundColor,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-                    builder: (context, state) {
-                      return IconButton(
-                        padding: EdgeInsets.zero,
-                        icon: Icon(
-                          LucideIcons.arrowLeft,
-                          color: Theme.of(context).colorScheme.onPrimary,
-                          size: 20,
-                        ),
-                        tooltip: localizations.backSemanticLabel,
-                        onPressed: () async {
-                          if (!state.isIndexMode) {
-                            context.read<StudyExecutionBloc>().add(
-                              ReturnToIndexRequested(),
-                            );
-                            return;
-                          }
-                          final shouldExit = await _confirmExit();
-                          if (shouldExit && context.mounted) {
-                            context.read<FileBloc>().add(QuizFileReset());
-                            context.pop();
-                          }
-                        },
-                      );
-                    },
-                  ),
-                ),
-              ),
-            ),
-            title: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Flexible(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-                        builder: (context, state) {
-                          return Text(
-                            state.documentTitle,
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onPrimary,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'Plus Jakarta Sans',
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          );
-                        },
-                      ),
-                    ],
+                  child: IconButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () async => await showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (_) => const SettingsDialog(),
+                    ),
+                    icon: Icon(
+                      LucideIcons.settings,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      size: 20,
+                    ),
+                    tooltip: AppLocalizations.of(
+                      context,
+                    )!.questionOrderConfigTooltip,
                   ),
                 ),
               ],
-            ),
-            actions: [
-              Container(
-                width: 40,
-                height: 40,
-                margin: const EdgeInsets.only(right: 24),
-                decoration: BoxDecoration(
-                  color: context.fileLoadedTheme.appBarIconBackgroundColor,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: IconButton(
-                  padding: EdgeInsets.zero,
-                  onPressed: () async => await showDialog(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (_) => const SettingsDialog(),
-                  ),
-                  icon: Icon(
-                    LucideIcons.settings,
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    size: 20,
-                  ),
-                  tooltip: AppLocalizations.of(
-                    context,
-                  )!.questionOrderConfigTooltip,
-                ),
-              ),
-            ],
-            bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(6.0),
-              child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-                buildWhen: (previous, current) =>
-                    previous.progressPercentage != current.progressPercentage,
-                builder: (context, state) {
-                  return Tooltip(
-                    message: '${state.progressPercentage.toStringAsFixed(1)}%',
-                    child: LinearProgressIndicator(
-                      value: state.progressPercentage / 100,
-                      backgroundColor: Theme.of(
-                        context,
-                      ).colorScheme.surfaceContainerHighest,
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        Theme.of(context).colorScheme.onPrimary,
-                      ),
-                      minHeight: 6,
-                    ),
-                  );
-                },
-              ),
             ),
           ),
         ),
@@ -563,145 +549,154 @@ class _StudyScreenViewState extends State<StudyScreenView> {
               },
             ),
           ],
-          child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-            builder: (context, state) {
-              if (state.chunks.isEmpty) {
-                return const Center(child: CircularProgressIndicator());
-              }
+          child: Padding(
+            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+            child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+              builder: (context, state) {
+                if (state.chunks.isEmpty) {
+                  return const Center(child: CircularProgressIndicator());
+                }
 
-              if (state.isIndexMode) {
-                return StudyIndexView(
-                  state: state,
-                  localizations: localizations,
-                  onAddChunk: () async {
-                    final result = await showDialog<Map<String, String>>(
-                      context: context,
-                      builder: (context) =>
-                          AddEditChunkDialog(localizations: localizations),
-                    );
-
-                    if (result != null && context.mounted) {
-                      context.read<StudyExecutionBloc>().add(
-                        AddStudyChunkRequested(
-                          title: result['title'] ?? '',
-                          content: result['text'] ?? '',
-                        ),
-                      );
-                    }
-                  },
-                  onSave: _handleSave,
-                  onImport: () => _handleFileReattachment(context),
-                );
-              }
-
-              final currentChunk = state.currentChunk;
-              if (currentChunk == null) {
-                return Center(
-                  child: Text(localizations.studyScreenNoSlidesAvailable),
-                );
-              }
-
-              if (currentChunk.status == StudyChunkState.processing) {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const CircularProgressIndicator(),
-                      const SizedBox(height: 16),
-                      Text(localizations.studyScreenGenerating),
-                    ],
-                  ),
-                );
-              }
-
-              return Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  StudySectionsSidebar(
-                    chunks: state.chunks,
-                    currentChunkIndex: state.currentChunkIndex,
+                if (state.isIndexMode) {
+                  return StudyIndexView(
+                    state: state,
                     localizations: localizations,
-                    onChunkSelected: (index) {
-                      context.read<StudyExecutionBloc>().add(
-                        StudyChunkRequested(index),
+                    onAddChunk: () async {
+                      final result = await showDialog<Map<String, String>>(
+                        context: context,
+                        builder: (context) =>
+                            AddEditChunkDialog(localizations: localizations),
                       );
+
+                      if (result != null && context.mounted) {
+                        context.read<StudyExecutionBloc>().add(
+                          AddStudyChunkRequested(
+                            title: result['title'] ?? '',
+                            content: result['text'] ?? '',
+                          ),
+                        );
+                      }
                     },
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: currentChunk.status == StudyChunkState.error
-                                ? const SizedBox.shrink()
-                                : (currentChunk.slides.isNotEmpty
-                                      ? ListView.builder(
-                                          itemCount: currentChunk.slides.length,
-                                          itemBuilder: (context, index) {
-                                            final slide =
-                                                currentChunk.slides[index];
-                                            return Card(
-                                              margin: const EdgeInsets.only(
-                                                bottom: 16,
-                                              ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(
-                                                  16,
+                    onSave: _handleSave,
+                    onImport: () => _handleFileReattachment(context),
+                  );
+                }
+
+                final currentChunk = state.currentChunk;
+                if (currentChunk == null) {
+                  return Center(
+                    child: Text(localizations.studyScreenNoSlidesAvailable),
+                  );
+                }
+
+                if (currentChunk.status == StudyChunkState.processing) {
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const CircularProgressIndicator(),
+                        const SizedBox(height: 16),
+                        Text(localizations.studyScreenGenerating),
+                      ],
+                    ),
+                  );
+                }
+
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    StudySectionsSidebar(
+                      chunks: state.chunks,
+                      currentChunkIndex: state.currentChunkIndex,
+                      localizations: localizations,
+                      onChunkSelected: (index) {
+                        context.read<StudyExecutionBloc>().add(
+                          StudyChunkRequested(index),
+                        );
+                      },
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child:
+                                  currentChunk.status == StudyChunkState.error
+                                  ? const SizedBox.shrink()
+                                  : (currentChunk.slides.isNotEmpty
+                                        ? ListView.builder(
+                                            itemCount:
+                                                currentChunk.slides.length,
+                                            itemBuilder: (context, index) {
+                                              final slide =
+                                                  currentChunk.slides[index];
+                                              return Card(
+                                                margin: const EdgeInsets.only(
+                                                  bottom: 16,
                                                 ),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: slide.uiElements.map((
-                                                    element,
-                                                  ) {
-                                                    final text =
-                                                        element.props['text']
-                                                            ?.toString() ??
-                                                        '';
-                                                    if (element.componentType ==
-                                                        'Title') {
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                    16,
+                                                  ),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: slide.uiElements.map((
+                                                      element,
+                                                    ) {
+                                                      final text =
+                                                          element.props['text']
+                                                              ?.toString() ??
+                                                          '';
+                                                      if (element
+                                                              .componentType ==
+                                                          'Title') {
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsets.only(
+                                                                bottom: 8.0,
+                                                              ),
+                                                          child: Text(
+                                                            text,
+                                                            style:
+                                                                Theme.of(
+                                                                      context,
+                                                                    )
+                                                                    .textTheme
+                                                                    .titleLarge,
+                                                          ),
+                                                        );
+                                                      }
                                                       return Padding(
                                                         padding:
                                                             const EdgeInsets.only(
                                                               bottom: 8.0,
                                                             ),
-                                                        child: Text(
-                                                          text,
-                                                          style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .titleLarge,
-                                                        ),
+                                                        child: Text(text),
                                                       );
-                                                    }
-                                                    return Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                            bottom: 8.0,
-                                                          ),
-                                                      child: Text(text),
-                                                    );
-                                                  }).toList(),
+                                                    }).toList(),
+                                                  ),
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                        )
-                                      : Center(
-                                          child: Text(
-                                            localizations
-                                                .studyScreenNoSlidesGenerated,
-                                          ),
-                                        )),
-                          ),
-                        ],
+                                              );
+                                            },
+                                          )
+                                        : Center(
+                                            child: Text(
+                                              localizations
+                                                  .studyScreenNoSlidesGenerated,
+                                            ),
+                                          )),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              );
-            },
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),

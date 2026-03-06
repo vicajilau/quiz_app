@@ -1825,7 +1825,7 @@
   },
   "studyScreenAiSummaryTitle": "ملخص الذكاء الاصطناعي",
   "studyScreenNoSummary": "لا يوجد ملخص متاح.",
-  "studyScreenCoverage": "تغطية",
+  "studyScreenCoverage": "المحتوى المُنشأ",
   "@studyScreenCoverage": {
     "description": "Label for the study coverage percentage"
   },

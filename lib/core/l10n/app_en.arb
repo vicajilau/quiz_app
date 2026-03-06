@@ -2053,9 +2053,9 @@
   "@documentTooLongForProcessing": {
     "description": "Error message when AI document processing fails due to document length"
   },
-  "studyScreenCoverage": "Coverage",
+  "studyScreenCoverage": "Generated Content",
   "@studyScreenCoverage": {
-    "description": "Label for the study coverage percentage"
+    "description": "Label for the study generated content"
   },
   "aiStudyLanguageLabel": "Study Language",
   "@aiStudyLanguageLabel": {

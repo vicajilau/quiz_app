@@ -69,14 +69,20 @@ class StudyIndexView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final isWide = constraints.maxWidth >= 800;
-        if (isWide) {
-          return _buildDesktopLayout(context);
-        }
-        return _buildMobileLayout(context);
-      },
+    return Padding(
+      padding: EdgeInsetsGeometry.only(
+        top: MediaQuery.of(context).padding.top,
+        bottom: MediaQuery.of(context).padding.bottom,
+      ),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final isWide = constraints.maxWidth >= 800;
+          if (isWide) {
+            return _buildDesktopLayout(context);
+          }
+          return _buildMobileLayout(context);
+        },
+      ),
     );
   }
 

@@ -1532,7 +1532,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Das Dokument ist möglicherweise zu lang, um in diesem MVP in einem Durchgang verarbeitet zu werden.';
 
   @override
-  String get studyScreenCoverage => 'Abdeckung';
+  String get studyScreenCoverage => 'Generierter Inhalt';
 
   @override
   String get aiStudyLanguageLabel => 'Studiensprache';

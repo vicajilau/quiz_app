@@ -18,6 +18,7 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:quizdy/presentation/screens/widgets/study/study_progress_bar.dart';
 
 class StudyExecutionBottomBar extends StatelessWidget {
   final VoidCallback? onPrevious;
@@ -62,47 +63,56 @@ class StudyExecutionBottomBar extends StatelessWidget {
           ],
         ),
         child: SafeArea(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Flexible(
-                child: QuizdyButton(
-                  title: localizations.studyScreenPreviousSection,
-                  icon: LucideIcons.chevronLeft,
-                  type: QuizdyButtonType.secondary,
-                  onPressed: onPrevious,
-                ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: StudyProgressBar(progressPercentage: progressPercentage),
               ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      localizations.studyScreenSectionIndicator(
-                        currentIndex + 1,
-                        totalCount,
-                      ),
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    child: QuizdyButton(
+                      title: localizations.studyScreenPreviousSection,
+                      icon: LucideIcons.chevronLeft,
+                      type: QuizdyButtonType.secondary,
+                      onPressed: onPrevious,
                     ),
-                    Text(
-                      '${progressPercentage.toStringAsFixed(0)}% ${localizations.studyScreenCoverage}',
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: isDark ? AppTheme.zinc500 : AppTheme.zinc400,
-                      ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          localizations.studyScreenSectionIndicator(
+                            currentIndex + 1,
+                            totalCount,
+                          ),
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          '${progressPercentage.toStringAsFixed(0)}% ${localizations.studyScreenCoverage}',
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: isDark ? AppTheme.zinc500 : AppTheme.zinc400,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 8),
-              Flexible(
-                child: QuizdyButton(
-                  title: localizations.studyScreenNextSection,
-                  icon: LucideIcons.chevronRight,
-                  onPressed: onNext,
-                ),
+                  ),
+                  const SizedBox(width: 8),
+                  Flexible(
+                    child: QuizdyButton(
+                      title: localizations.studyScreenNextSection,
+                      icon: LucideIcons.chevronRight,
+                      onPressed: onNext,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

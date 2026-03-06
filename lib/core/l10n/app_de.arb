@@ -1861,7 +1861,7 @@
   },
   "studyScreenAiSummaryTitle": "KI-Zusammenfassung",
   "studyScreenNoSummary": "Keine Zusammenfassung verfügbar.",
-  "studyScreenCoverage": "Abdeckung",
+  "studyScreenCoverage": "Generierter Inhalt",
   "@studyScreenCoverage": {
     "description": "Label for the study coverage percentage"
   },

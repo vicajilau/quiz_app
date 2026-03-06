@@ -18,11 +18,13 @@ import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
+import 'package:quizdy/presentation/screens/widgets/study/study_progress_bar.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 
 class StudyIndexFooterWidget extends StatefulWidget {
   final AppLocalizations localizations;
 
+  final double progressPercentage;
   final VoidCallback? onAddChunk;
   final VoidCallback? onGenerateAI;
   final VoidCallback? onImport;
@@ -37,6 +39,7 @@ class StudyIndexFooterWidget extends StatefulWidget {
   const StudyIndexFooterWidget({
     super.key,
     required this.localizations,
+    this.progressPercentage = 0,
     this.onAddChunk,
     this.onGenerateAI,
     this.onImport,
@@ -138,6 +141,13 @@ class _StudyIndexFooterWidgetState extends State<StudyIndexFooterWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              // Progress Bar
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: StudyProgressBar(
+                  progressPercentage: widget.progressPercentage,
+                ),
+              ),
               // Action Buttons Row (Scrollable with Shadows)
               Stack(
                 children: [

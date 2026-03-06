@@ -1764,7 +1764,7 @@
   },
   "studyScreenAiSummaryTitle": "AI सारांश",
   "studyScreenNoSummary": "कोई सारांश उपलब्ध नहीं है।",
-  "studyScreenCoverage": "कवरेज",
+  "studyScreenCoverage": "जनरेट की गई सामग्री",
   "@studyScreenCoverage": {
     "description": "Label for the study coverage percentage"
   },
