@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:quizdy/core/quizdy_bloc_observer.dart';
 import 'package:quizdy/routes/app_router.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 
@@ -32,6 +33,8 @@ void main() async {
   setUrlStrategy(null);
   await ServiceLocator.setup();
   await initAppRouter();
+
+  Bloc.observer = QuizdyBlocObserver();
 
   runApp(const QuizApplication());
 }

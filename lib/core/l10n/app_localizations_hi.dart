@@ -1577,6 +1577,21 @@ class AppLocalizationsHi extends AppLocalizations {
       'इस फ़ाइल में प्रश्नोत्तरी और अध्ययन सामग्री दोनों हैं। आप कौन सा मोड खोलना चाहेंगे?';
 
   @override
+  String get studyModeSubtitle => 'अपनी गति से सामग्री की समीक्षा करें';
+
+  @override
+  String get examModeSubtitle => 'अपने ज्ञान का परीक्षण करें';
+
+  @override
+  String get dropHereToStudy => 'अपनी गति से अध्ययन करने के लिए यहाँ छोड़ें';
+
+  @override
+  String get dropHereToQuiz => 'अपने ज्ञान का परीक्षण करने के लिए यहाँ छोड़ें';
+
+  @override
+  String get aiStudyGenerationTitle => 'AI अध्ययन निर्माण';
+
+  @override
   String get reattachFileDialogTitle => 'मूल फ़ाइल आवश्यक है';
 
   @override
