@@ -27,7 +27,11 @@ This workflow standardizes the creation of GitHub issues and pull requests via t
    )"
    ```
 
-3. **Add labels** if applicable with `--label "bug"`, `--label "enhancement"`, etc.
+3. **Add labels** — use only the project's available labels:
+   - `bug` — something isn't working
+   - `dependencies` — dependency updates
+   - `documentation` — documentation changes
+   - `enhancement` — new feature or improvement
 
 4. **Return the issue URL** to the user.
 
@@ -43,11 +47,15 @@ This workflow standardizes the creation of GitHub issues and pull requests via t
    - Body: structured summary of **all** commits in the branch, not just the latest one.
 
 3. **Create the PR**:
+   If an issue was created earlier in the same conversation, link it by adding `Closes #<number>` at the end of the body.
+
    ```bash
    gh pr create --title "Short descriptive title" --body "$(cat <<'EOF'
    ## Summary
    - Bullet point describing change 1
    - Bullet point describing change 2
+
+   Closes #123
    EOF
    )"
    ```
