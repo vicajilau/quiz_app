@@ -93,6 +93,7 @@ class AiDocumentChunkingService {
     required String documentId,
     required AppLocalizations localizations,
     String? extraContext,
+    required String language,
   }) async {
     try {
       final jsonResponse = await aiService.generateStudyIndex(
@@ -100,6 +101,7 @@ class AiDocumentChunkingService {
         fileUri: fileUri,
         fileMimeType: fileMimeType,
         extraContext: extraContext,
+        language: language,
       );
 
       // Clean the response if it contains markdown code blocks
@@ -175,12 +177,14 @@ class AiDocumentChunkingService {
     required AiGenerationMode generationMode,
     required String documentId,
     required AppLocalizations localizations,
+    required String language,
   }) async {
     try {
       final jsonResponse = await aiService.generateStudyIndexFromText(
         localizations,
         content: content,
         generationMode: generationMode,
+        language: language,
       );
 
       // Clean the response if it contains markdown code blocks

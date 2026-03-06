@@ -101,7 +101,6 @@ class StudyExecutionBottomBar extends StatelessWidget {
                 child: QuizdyButton(
                   title: localizations.studyScreenNextSection,
                   icon: LucideIcons.chevronRight,
-                  iconOnRight: true,
                   onPressed: onNext,
                 ),
               ),

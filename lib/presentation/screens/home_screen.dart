@@ -283,6 +283,7 @@ class _HomeScreenState extends State<HomeScreen> {
             generationMode: config.generationMode,
             documentId: documentId,
             localizations: localizations,
+            language: config.language,
           );
 
           initialChunks = result['chunks'] as List<StudyChunk>;
@@ -332,6 +333,7 @@ class _HomeScreenState extends State<HomeScreen> {
               'difficultyLevel': config.difficultyLevel,
               'generationMode': config.generationMode,
               'originalText': config.content,
+              'language': config.language,
             },
           );
         }

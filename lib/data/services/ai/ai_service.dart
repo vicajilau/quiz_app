@@ -57,6 +57,7 @@ abstract class AIService {
     required String fileUri,
     required String fileMimeType,
     String? extraContext,
+    required String language,
   });
 
   /// Generates a structured syllabus/index directly from text content or topics without a file.
@@ -64,6 +65,7 @@ abstract class AIService {
     AppLocalizations localizations, {
     required String content,
     required AiGenerationMode generationMode,
+    required String language,
   });
 
   /// Verifica si el servicio está disponible (tiene API key configurada)

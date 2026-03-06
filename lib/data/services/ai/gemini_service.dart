@@ -422,15 +422,21 @@ class GeminiService extends AIService {
     required String fileUri,
     required String fileMimeType,
     String? extraContext,
+    required String language,
   }) async {
     final commentsSection =
         extraContext != null && extraContext.trim().isNotEmpty
         ? '\nADDITIONAL INSTRUCTIONS/CONTEXT FROM THE USER:\n$extraContext\n'
         : '';
 
+    final targetLanguage = language;
+
     final prompt =
         '''
 Act as an expert academic educator. Analyze the provided document $commentsSection and generate a structured study guide with a Table of Contents for a personalized study plan.
+
+IMPORTANT GLOBAL RULE:
+ALL fields in the JSON output (title, description, chapter titles, summaries) MUST be written strictly in the following language: $targetLanguage.
 
 Rules:
 1. Generate a concise title that summarizes the subject matter of the syllabus. Do NOT reference the document itself (e.g. avoid "Document about...", "This PDF covers..."). Just state the topic directly.
@@ -454,8 +460,6 @@ Rules:
     }
   ]
 }
-
-Current Language: ${localizations.localeName}
 ''';
 
     return getChatResponseWithFileUri(
@@ -472,16 +476,22 @@ Current Language: ${localizations.localeName}
     AppLocalizations localizations, {
     required String content,
     required AiGenerationMode generationMode,
+    required String language,
   }) async {
     final header = generationMode == AiGenerationMode.topic
         ? 'The user wants a personalized study plan about the following topic/s: $content'
         : 'The user has provided the following text for creating a study plan:\n\n$content';
+
+    final targetLanguage = language;
 
     final prompt =
         '''
 Act as an expert academic educator. $header
 
 Analyze the content and generate a structured study guide with a Table of Contents for a personalized study plan.
+
+IMPORTANT GLOBAL RULE:
+ALL fields in the JSON output (title, description, chapter titles, summaries) MUST be written strictly in the following language: $targetLanguage.
 
 Rules:
 1. Generate a concise title that summarizes the subject matter.
@@ -500,8 +510,6 @@ Rules:
     }
   ]
 }
-
-Current Language: ${localizations.localeName}
 ''';
 
     return getChatResponse(

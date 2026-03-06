@@ -39,7 +39,7 @@ class StudyChunk {
   final String? aiSummary;
 
   /// The UI views to present to the user representing this chunk.
-  final List<Slide>? slides;
+  final List<Slide> slides;
 
   /// An optional error message if the chunk generation failed.
   final String? errorMessage;
@@ -50,7 +50,7 @@ class StudyChunk {
     required this.status,
     required this.sourceReference,
     this.aiSummary,
-    this.slides,
+    this.slides = const [],
     this.errorMessage,
   });
 
@@ -59,7 +59,7 @@ class StudyChunk {
   /// - [json]: The JSON map containing the study chunk data.
   /// - Returns: A populated `StudyChunk` instance.
   factory StudyChunk.fromJson(Map<String, dynamic> json) {
-    List<Slide>? parsedSlides;
+    List<Slide> parsedSlides = [];
     if (json['slides'] != null) {
       final slidesJson = json['slides'] as List<dynamic>;
       parsedSlides = slidesJson
@@ -90,8 +90,7 @@ class StudyChunk {
       'status': status.toJson(),
       'source_reference': sourceReference.toJson(),
       if (aiSummary != null) 'ai_summary': aiSummary,
-      if (slides != null)
-        'slides': slides!.map((slide) => slide.toJson()).toList(),
+      'slides': slides.map((slide) => slide.toJson()).toList(),
       if (errorMessage != null) 'error_message': errorMessage,
     };
   }
@@ -110,7 +109,7 @@ class StudyChunk {
       status: status ?? this.status,
       sourceReference: sourceReference ?? this.sourceReference.copyWith(),
       aiSummary: aiSummary ?? this.aiSummary,
-      slides: slides ?? this.slides?.map((s) => s.copyWith()).toList(),
+      slides: slides ?? this.slides.map((s) => s.copyWith()).toList(),
       errorMessage: errorMessage ?? this.errorMessage,
     );
   }
@@ -134,11 +133,11 @@ class StudyChunk {
         status.hashCode ^
         sourceReference.hashCode ^
         aiSummary.hashCode ^
-        (slides == null ? 0 : Object.hashAll(slides!));
+        Object.hashAll(slides);
   }
 
   @override
   String toString() {
-    return 'StudyChunk(chunkIndex: $chunkIndex, status: ${status.name}, slides: ${slides?.length ?? 0})';
+    return 'StudyChunk(chunkIndex: $chunkIndex, status: ${status.name}, slides: ${slides.length})';
   }
 }

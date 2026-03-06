@@ -322,8 +322,9 @@ class _StudyScreenViewState extends State<StudyScreenView> {
       },
       child: Scaffold(
         backgroundColor: isDark ? AppTheme.zinc900 : AppTheme.zinc50,
-        bottomNavigationBar:
-            BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+        bottomNavigationBar: BlocBuilder<FileBloc, FileState>(
+          builder: (context, fileState) {
+            return BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
               builder: (context, state) {
                 if (state.chunks.isEmpty) return const SizedBox.shrink();
 
@@ -380,7 +381,9 @@ class _StudyScreenViewState extends State<StudyScreenView> {
                       : null,
                 );
               },
-            ),
+            );
+          },
+        ),
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(72),
           child: AppBar(
@@ -632,14 +635,12 @@ class _StudyScreenViewState extends State<StudyScreenView> {
                           Expanded(
                             child: currentChunk.status == StudyChunkState.error
                                 ? const SizedBox.shrink()
-                                : (currentChunk.slides != null &&
-                                          currentChunk.slides!.isNotEmpty
+                                : (currentChunk.slides.isNotEmpty
                                       ? ListView.builder(
-                                          itemCount:
-                                              currentChunk.slides!.length,
+                                          itemCount: currentChunk.slides.length,
                                           itemBuilder: (context, index) {
                                             final slide =
-                                                currentChunk.slides![index];
+                                                currentChunk.slides[index];
                                             return Card(
                                               margin: const EdgeInsets.only(
                                                 bottom: 16,

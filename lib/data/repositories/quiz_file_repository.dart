@@ -134,6 +134,12 @@ class QuizFileRepository {
     _fileService.originalFile = quizFile.deepCopy();
   }
 
+  /// Updates the active `QuizFile` in the system without modifying the original file cache.
+  /// Use this when progress is made but the user hasn't saved the file yet.
+  void updateActiveQuizFile(QuizFile quizFile) {
+    ServiceLocator.registerQuizFile(quizFile);
+  }
+
   /// Picks a file manually using the file picker dialog WITHOUT registering it.
   ///
   /// - Returns: A `Future<QuizFile?>` containing the selected `QuizFile`, or `null`.
@@ -176,9 +182,53 @@ class QuizFileRepository {
     if (originalFile == null) return true;
 
     final hasChanged = originalFile != cachedQuizFile;
-    printInDebug(
-      'File changed: $hasChanged (Original questions: ${originalFile.questions.length}, Cached questions: ${cachedQuizFile.questions.length})',
-    );
+
+    if (!hasChanged) {
+      printInDebug(
+        'File changed: false. Reason: originalFile == cachedQuizFile evaluate to TRUE!',
+      );
+      // Let's verify each field
+      printInDebug(
+        'Metadata match: ${originalFile.metadata == cachedQuizFile.metadata}',
+      );
+      printInDebug(
+        'Questions match: ${originalFile.questions.length == cachedQuizFile.questions.length}',
+      );
+      printInDebug(
+        'Study match: ${originalFile.study == cachedQuizFile.study}',
+      );
+      printInDebug(
+        'FilePath match: ${originalFile.filePath == cachedQuizFile.filePath}',
+      );
+      printInDebug(
+        'FileContentHash match: ${originalFile.fileContentHash == cachedQuizFile.fileContentHash}',
+      );
+      printInDebug(
+        'FileUri match: ${originalFile.fileUri == cachedQuizFile.fileUri}',
+      );
+
+      if (originalFile.study != null && cachedQuizFile.study != null) {
+        printInDebug(
+          'Study content match: ${originalFile.study!.content == cachedQuizFile.study!.content}',
+        );
+        printInDebug(
+          'Study chunk length match: ${originalFile.study!.content.cache.length == cachedQuizFile.study!.content.cache.length}',
+        );
+        for (int i = 0; i < originalFile.study!.content.cache.length; i++) {
+          final ogChunk = originalFile.study!.content.cache[i];
+          final cChunk = cachedQuizFile.study!.content.cache[i];
+          if (ogChunk != cChunk) {
+            printInDebug(
+              'CHUNK $i DIFFERS! ogStatus: ${ogChunk.status.name}, cStatus: ${cChunk.status.name}',
+            );
+          }
+        }
+      }
+    } else {
+      printInDebug(
+        'File changed: true (Original questions: ${originalFile.questions.length}, Cached questions: ${cachedQuizFile.questions.length})',
+      );
+    }
 
     return hasChanged;
   }
