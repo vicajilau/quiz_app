@@ -1523,7 +1523,7 @@ class AppLocalizationsIt extends AppLocalizations {
       'Il documento potrebbe essere troppo lungo per essere elaborato in un solo passaggio in questo MVP.';
 
   @override
-  String get studyScreenCoverage => 'Copertura';
+  String get studyScreenCoverage => 'Contenuto Generato';
 
   @override
   String get aiStudyLanguageLabel => 'Lingua di studio';

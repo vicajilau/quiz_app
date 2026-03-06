@@ -1813,7 +1813,7 @@
   "@studyScreenOmit": {
     "description": "忽略按钮文本"
   },
-  "studyScreenCoverage": "覆盖率",
+  "studyScreenCoverage": "生成的内容",
   "@studyScreenCoverage": {
     "description": "Label for the study coverage percentage"
   },

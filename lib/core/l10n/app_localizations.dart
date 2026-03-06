@@ -2731,10 +2731,10 @@ abstract class AppLocalizations {
   /// **'The document might be too long to process in a single pass in this MVP.'**
   String get documentTooLongForProcessing;
 
-  /// Label for the study coverage percentage
+  /// Label for the study generated content
   ///
   /// In en, this message translates to:
-  /// **'Coverage'**
+  /// **'Generated Content'**
   String get studyScreenCoverage;
 
   /// Label for the language selector in study generation

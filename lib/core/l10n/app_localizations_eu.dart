@@ -1526,7 +1526,7 @@ class AppLocalizationsEu extends AppLocalizations {
       'Dokumentua luzeegia izan daiteke MVP honetan pasaldi batean prozesatzeko.';
 
   @override
-  String get studyScreenCoverage => 'Estaldura';
+  String get studyScreenCoverage => 'Sortutako edukia';
 
   @override
   String get aiStudyLanguageLabel => 'Ikasketa hizkuntza';

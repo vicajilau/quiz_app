@@ -1516,7 +1516,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'The document might be too long to process in a single pass in this MVP.';
 
   @override
-  String get studyScreenCoverage => 'Coverage';
+  String get studyScreenCoverage => 'Generated Content';
 
   @override
   String get aiStudyLanguageLabel => 'Study Language';

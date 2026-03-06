@@ -1532,7 +1532,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'O documento pode ser muito longo para ser processado de uma só vez neste MVP.';
 
   @override
-  String get studyScreenCoverage => 'Cobertura';
+  String get studyScreenCoverage => 'Conteúdo Gerado';
 
   @override
   String get aiStudyLanguageLabel => 'Idioma de estudo';

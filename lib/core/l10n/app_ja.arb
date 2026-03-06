@@ -1764,7 +1764,7 @@
   },
   "studyScreenAiSummaryTitle": "AIの要約",
   "studyScreenNoSummary": "利用可能な要約はありません。",
-  "studyScreenCoverage": "網羅率",
+  "studyScreenCoverage": "生成されたコンテンツ",
   "@studyScreenCoverage": {
     "description": "Label for the study coverage percentage"
   },

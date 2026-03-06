@@ -1534,7 +1534,7 @@ class AppLocalizationsEl extends AppLocalizations {
       'Το έγγραφο ενδέχεται να είναι πολύ μεγάλο για να επεξεργαστεί με ένα μόνο πέρασμα σε αυτό το MVP.';
 
   @override
-  String get studyScreenCoverage => 'Κάλυψη';
+  String get studyScreenCoverage => 'Περιεχόμενο που δημιουργήθηκε';
 
   @override
   String get aiStudyLanguageLabel => 'Γλώσσα Μελέτης';

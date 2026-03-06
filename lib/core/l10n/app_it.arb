@@ -1820,7 +1820,7 @@
   },
   "studyScreenAiSummaryTitle": "Riepilogo IA",
   "studyScreenNoSummary": "Nessun riepilogo disponibile.",
-  "studyScreenCoverage": "Copertura",
+  "studyScreenCoverage": "Contenuto Generato",
   "@studyScreenCoverage": {
     "description": "Label for the study coverage percentage"
   },

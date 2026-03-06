@@ -1852,7 +1852,7 @@
   },
   "studyScreenAiSummaryTitle": "Resumo da IA",
   "studyScreenNoSummary": "Nenhum resumo disponível.",
-  "studyScreenCoverage": "Cobertura",
+  "studyScreenCoverage": "Conteúdo Gerado",
   "@studyScreenCoverage": {
     "description": "Label for the study coverage percentage"
   },

@@ -1451,7 +1451,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'ドキュメントが長すぎて、このMVPでは1回のパスで処理できない可能性があります。';
 
   @override
-  String get studyScreenCoverage => '網羅率';
+  String get studyScreenCoverage => '生成されたコンテンツ';
 
   @override
   String get aiStudyLanguageLabel => '学習言語';

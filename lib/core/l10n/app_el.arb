@@ -719,7 +719,7 @@
   },
   "studyScreenAiSummaryTitle": "Σύνοψη τεχνητής νοημοσύνης",
   "studyScreenNoSummary": "Δεν υπάρχει διαθέσιμη σύνοψη.",
-  "studyScreenCoverage": "Κάλυψη",
+  "studyScreenCoverage": "Περιεχόμενο που δημιουργήθηκε",
   "@studyScreenCoverage": {
     "description": "Label for the study coverage percentage"
   },

@@ -1534,7 +1534,7 @@ class AppLocalizationsCa extends AppLocalizations {
       'El document pot ser massa llarg per processar-lo d\'una vegada en aquest MVP.';
 
   @override
-  String get studyScreenCoverage => 'Cobertura';
+  String get studyScreenCoverage => 'Contingut Generat';
 
   @override
   String get aiStudyLanguageLabel => 'Idioma de l\'estudi';
