@@ -9,6 +9,7 @@ This workflow standardizes the creation of GitHub issues and pull requests via t
 1. **Determine issue type**: bug report, feature request, or task.
 
 2. **Create the issue**:
+
    ```bash
    gh issue create --title "Short, descriptive title" --body "$(cat <<'EOF'
    ## Description
@@ -47,7 +48,7 @@ This workflow standardizes the creation of GitHub issues and pull requests via t
    - Body: structured summary of **all** commits in the branch, not just the latest one.
 
 3. **Create the PR**:
-   If an issue was created earlier in the same conversation, link it by adding `Closes #<number>` at the end of the body.
+   If an issue was created earlier in the same conversation, link it.
 
    ```bash
    gh pr create --title "Short descriptive title" --body "$(cat <<'EOF'
@@ -55,7 +56,7 @@ This workflow standardizes the creation of GitHub issues and pull requests via t
    - Bullet point describing change 1
    - Bullet point describing change 2
 
-   Closes #123
+   Fixes #123
    EOF
    )"
    ```
