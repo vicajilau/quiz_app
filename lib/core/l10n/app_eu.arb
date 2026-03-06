@@ -1745,7 +1745,6 @@
   "studyScreenNoSlidesAvailable": "Ez dago ikasketa atalik erabilgarri.",
   "studyScreenGenerating": "Ikasketa materiala sortzen...",
   "studyScreenError": "Errore bat gertatu da ikasketa materiala sortzean.",
-  "studyScreenRetry": "Saiatu berriro",
   "studyScreenNoSlidesGenerated": "Ez da diapositibarik sortu.",
   "studyScreenPreviousSection": "Aurreko orria",
   "studyScreenNextSection": "Hurrengo orria",
@@ -1802,5 +1801,10 @@
   "aiContextMode": "Testuinguru Modua",
   "@aiContextMode": {
     "description": "Label for context mode when a file is uploaded"
-  }
+  },
+  "startQuizFromStudy": "Probatu zure ezagutzak",
+  "studyScreenCustomChapter": "Kapitulu pertsonalizatua",
+  "addSection": "Gehitu atala",
+  "generateSectionsWithAI": "Sortu atalak AIarekin",
+  "addSectionsWithAI": "Gehitu atalak AIarekin"
 }

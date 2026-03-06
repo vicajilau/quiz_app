@@ -1806,7 +1806,6 @@
   },
   "studyScreenAiSummaryTitle": "AI 总结",
   "studyScreenNoSummary": "没有可用的总结。",
-  "studyScreenRetry": "重试",
   "@studyScreenRetry": {
     "description": "错误部分的重试文本。"
   },
@@ -1854,5 +1853,10 @@
   "aiContextMode": "上下文模式",
   "@aiContextMode": {
     "description": "Label for context mode when a file is uploaded"
-  }
+  },
+  "startQuizFromStudy": "测试你的知识",
+  "studyScreenCustomChapter": "自定义章节",
+  "addSection": "添加章节",
+  "generateSectionsWithAI": "使用 AI 生成章节",
+  "addSectionsWithAI": "使用 AI 添加章节"
 }

@@ -36,6 +36,14 @@ class NextStudyChunkRequested extends StudyExecutionEvent {}
 /// Dispatched to move to the previous chunk.
 class PreviousStudyChunkRequested extends StudyExecutionEvent {}
 
+/// Dispatched to add a new empty study chunk at the end.
+class AddStudyChunkRequested extends StudyExecutionEvent {
+  final String title;
+  final String content;
+
+  AddStudyChunkRequested({required this.title, required this.content});
+}
+
 /// Dispatched when the user re-attaches the original file.
 class FileReattached extends StudyExecutionEvent {
   final AiFileAttachment file;

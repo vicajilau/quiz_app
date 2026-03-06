@@ -1804,5 +1804,10 @@
   "aiContextMode": "संदर्भ मोड",
   "@aiContextMode": {
     "description": "Label for context mode when a file is uploaded"
-  }
+  },
+  "startQuizFromStudy": "अपने ज्ञान का परीक्षण करें",
+  "studyScreenCustomChapter": "कस्टम अध्याय",
+  "addSection": "अनुभाग जोड़ें",
+  "generateSectionsWithAI": "AI के साथ अनुभाग उत्पन्न करें",
+  "addSectionsWithAI": "AI के साथ अनुभाग जोड़ें"
 }

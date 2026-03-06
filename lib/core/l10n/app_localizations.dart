@@ -602,6 +602,18 @@ abstract class AppLocalizations {
   /// **'Start Quiz'**
   String get startQuiz;
 
+  /// Button text to start the quiz from the study screen
+  ///
+  /// In en, this message translates to:
+  /// **'Test your knowledge'**
+  String get startQuizFromStudy;
+
+  /// Label for a manually added study chunk
+  ///
+  /// In en, this message translates to:
+  /// **'Custom Chapter'**
+  String get studyScreenCustomChapter;
+
   /// Label for the toggle to limit incorrect answers
   ///
   /// In en, this message translates to:
@@ -1225,6 +1237,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add Question'**
   String get addQuestion;
+
+  /// Title for adding a new section manually
+  ///
+  /// In en, this message translates to:
+  /// **'Add Section'**
+  String get addSection;
 
   /// Title for editing an existing question dialog
   ///
@@ -1915,6 +1933,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add questions with AI'**
   String get addQuestionsWithAI;
+
+  /// Tooltip for the generate sections with AI button.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate sections with AI'**
+  String get generateSectionsWithAI;
+
+  /// Label for the button to add more sections using AI when some already exist.
+  ///
+  /// In en, this message translates to:
+  /// **'Add sections with AI'**
+  String get addSectionsWithAI;
 
   /// Description of AI service limits with both word and character limits.
   ///

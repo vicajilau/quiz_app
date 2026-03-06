@@ -370,6 +370,14 @@
   "@startQuiz": {
     "description": "Texto del botón para iniciar el quiz"
   },
+  "startQuizFromStudy": "Pon a prueba tu conocimiento",
+  "@startQuizFromStudy": {
+    "description": "Texto del botón para iniciar el quiz desde la pantalla de estudio"
+  },
+  "studyScreenCustomChapter": "Capítulo Personalizado",
+  "@studyScreenCustomChapter": {
+    "description": "Label for a manually added study chunk"
+  },
   "maxIncorrectAnswersLabel": "Limitar respuestas incorrectas",
   "@maxIncorrectAnswersLabel": {
     "description": "Etiqueta para el interruptor de limitar respuestas incorrectas"
@@ -799,6 +807,10 @@
   "addQuestion": "Agregar pregunta",
   "@addQuestion": {
     "description": "Título para el diálogo de agregar nueva pregunta"
+  },
+  "addSection": "Añadir Sección",
+  "@addSection": {
+    "description": "Título para el diálogo de agregar nueva sección"
   },
   "editQuestion": "Editar pregunta",
   "@editQuestion": {
@@ -1355,6 +1367,14 @@
   "addQuestionsWithAI": "Añadir preguntas con IA",
   "@addQuestionsWithAI": {
     "description": "Etiqueta para el botón de añadir más preguntas usando IA cuando ya existen algunas."
+  },
+  "generateSectionsWithAI": "Generar secciones con IA",
+  "@generateSectionsWithAI": {
+    "description": "Tooltip para el botón de generar secciones con IA."
+  },
+  "addSectionsWithAI": "Añadir secciones con IA",
+  "@addSectionsWithAI": {
+    "description": "Etiqueta para el botón de añadir más secciones usando IA cuando ya existen algunas."
   },
   "aiServiceLimitsWithChars": "Límite: {words} palabras o {chars} caracteres",
   "@aiServiceLimitsWithChars": {

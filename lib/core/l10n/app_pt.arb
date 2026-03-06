@@ -1892,5 +1892,10 @@
   "aiContextMode": "Modo Contexto",
   "@aiContextMode": {
     "description": "Label for context mode when a file is uploaded"
-  }
+  },
+  "startQuizFromStudy": "Teste seus conhecimentos",
+  "studyScreenCustomChapter": "Capítulo personalizado",
+  "addSection": "Adicionar seção",
+  "generateSectionsWithAI": "Gerar seções com IA",
+  "addSectionsWithAI": "Adicionar seções com IA"
 }

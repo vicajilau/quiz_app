@@ -1790,7 +1790,6 @@
   "studyScreenNoSlidesAvailable": "Aucune section d'étude disponible.",
   "studyScreenGenerating": "Création du matériel d'étude...",
   "studyScreenError": "Une erreur s'est produite lors de la création du matériel d'étude.",
-  "studyScreenRetry": "Réessayer",
   "studyScreenNoSlidesGenerated": "Aucune diapositive générée.",
   "studyScreenPreviousSection": "Page précédente",
   "studyScreenNextSection": "Page suivante",
@@ -1847,5 +1846,10 @@
   "aiContextMode": "Mode Contexte",
   "@aiContextMode": {
     "description": "Label for context mode when a file is uploaded"
-  }
+  },
+  "startQuizFromStudy": "Testez vos connaissances",
+  "studyScreenCustomChapter": "Chapitre personnalisé",
+  "addSection": "Ajouter une section",
+  "generateSectionsWithAI": "Générer des sections avec l'IA",
+  "addSectionsWithAI": "Ajouter des sections avec l'IA"
 }

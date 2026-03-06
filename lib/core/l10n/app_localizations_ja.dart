@@ -280,6 +280,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get startQuiz => 'クイズ開始';
 
   @override
+  String get startQuizFromStudy => '知識をテストする';
+
+  @override
+  String get studyScreenCustomChapter => 'カスタムチャプター';
+
+  @override
   String get maxIncorrectAnswersLabel => '不正解数を制限する';
 
   @override
@@ -620,6 +626,9 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get addQuestion => '問題を追加';
+
+  @override
+  String get addSection => 'セクションを追加';
 
   @override
   String get editQuestion => '問題を編集';
@@ -995,6 +1004,12 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get addQuestionsWithAI => 'AIで質問を追加';
+
+  @override
+  String get generateSectionsWithAI => 'AIでセクションを生成';
+
+  @override
+  String get addSectionsWithAI => 'AIでセクションを追加';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {

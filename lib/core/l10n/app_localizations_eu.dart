@@ -290,6 +290,12 @@ class AppLocalizationsEu extends AppLocalizations {
   String get startQuiz => 'Quiz Hasi';
 
   @override
+  String get startQuizFromStudy => 'Probatu zure ezagutzak';
+
+  @override
+  String get studyScreenCustomChapter => 'Kapitulu pertsonalizatua';
+
+  @override
   String get maxIncorrectAnswersLabel => 'Errore muga';
 
   @override
@@ -652,6 +658,9 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get addQuestion => 'Galdera Gehitu';
+
+  @override
+  String get addSection => 'Gehitu atala';
 
   @override
   String get editQuestion => 'Galdera Editatu';
@@ -1050,6 +1059,12 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get addQuestionsWithAI => 'Gehitu galderak AI bidez';
+
+  @override
+  String get generateSectionsWithAI => 'Sortu atalak AIarekin';
+
+  @override
+  String get addSectionsWithAI => 'Gehitu atalak AIarekin';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {

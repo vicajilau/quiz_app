@@ -257,7 +257,8 @@ class _QuestionImageSectionState extends State<QuestionImageSection> {
   }
 
   Future<void> _pasteFromClipboard(BuildContext context) async {
-    final imageData = await ServiceLocator.getIt<ClipboardImageHelper>().getClipboardImageAsBase64();
+    final imageData = await ServiceLocator.getIt<ClipboardImageHelper>()
+        .getClipboardImageAsBase64();
     if (!context.mounted) return;
     if (imageData != null) {
       widget.onImageChanged(imageData);

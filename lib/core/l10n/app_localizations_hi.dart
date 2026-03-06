@@ -288,6 +288,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get startQuiz => 'क्विज़ शुरू करें';
 
   @override
+  String get startQuizFromStudy => 'अपने ज्ञान का परीक्षण करें';
+
+  @override
+  String get studyScreenCustomChapter => 'कस्टम अध्याय';
+
+  @override
   String get maxIncorrectAnswersLabel => 'गलत उत्तरों को सीमित करें';
 
   @override
@@ -646,6 +652,9 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get addQuestion => 'प्रश्न जोड़ें';
+
+  @override
+  String get addSection => 'अनुभाग जोड़ें';
 
   @override
   String get editQuestion => 'प्रश्न संपादित करें';
@@ -1039,6 +1048,12 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get addQuestionsWithAI => 'AI के साथ प्रश्न जोड़ें';
+
+  @override
+  String get generateSectionsWithAI => 'AI के साथ अनुभाग उत्पन्न करें';
+
+  @override
+  String get addSectionsWithAI => 'AI के साथ अनुभाग जोड़ें';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {
