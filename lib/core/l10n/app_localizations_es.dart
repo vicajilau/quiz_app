@@ -1595,6 +1595,17 @@ class AppLocalizationsEs extends AppLocalizations {
   String get examModeSubtitle => 'Pon a prueba tus conocimientos';
 
   @override
+  String get dropHereToStudy =>
+      'Suelta aquí para repasar el temario a tu ritmo';
+
+  @override
+  String get dropHereToQuiz =>
+      'Suelta aquí para poner a prueba tus conocimientos';
+
+  @override
+  String get aiStudyGenerationTitle => 'Generación de estudio por IA';
+
+  @override
   String get reattachFileDialogTitle => 'Archivo original requerido';
 
   @override

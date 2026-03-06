@@ -2857,6 +2857,24 @@ abstract class AppLocalizations {
   /// **'Put your knowledge to the test'**
   String get examModeSubtitle;
 
+  /// Hint shown on the study zone of the drag overlay
+  ///
+  /// In en, this message translates to:
+  /// **'Drop here to study the material at your own pace'**
+  String get dropHereToStudy;
+
+  /// Hint shown on the quiz zone of the drag overlay
+  ///
+  /// In en, this message translates to:
+  /// **'Drop here to put your knowledge to the test'**
+  String get dropHereToQuiz;
+
+  /// Title for the AI study generation dialog
+  ///
+  /// In en, this message translates to:
+  /// **'AI Study Generation'**
+  String get aiStudyGenerationTitle;
+
   /// Title for the dialog asking the user to re-attach the original file
   ///
   /// In en, this message translates to:

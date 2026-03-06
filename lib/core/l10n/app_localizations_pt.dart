@@ -1600,6 +1600,16 @@ class AppLocalizationsPt extends AppLocalizations {
   String get examModeSubtitle => 'Put your knowledge to the test';
 
   @override
+  String get dropHereToStudy =>
+      'Drop here to study the material at your own pace';
+
+  @override
+  String get dropHereToQuiz => 'Drop here to put your knowledge to the test';
+
+  @override
+  String get aiStudyGenerationTitle => 'AI Study Generation';
+
+  @override
   String get reattachFileDialogTitle => 'Arquivo original necessário';
 
   @override

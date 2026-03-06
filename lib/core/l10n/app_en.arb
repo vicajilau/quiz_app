@@ -2136,6 +2136,18 @@
   "@examModeSubtitle": {
     "description": "Short subtitle for exam/quiz mode in the mode selection dialog"
   },
+  "dropHereToStudy": "Drop here to study the material at your own pace",
+  "@dropHereToStudy": {
+    "description": "Hint shown on the study zone of the drag overlay"
+  },
+  "dropHereToQuiz": "Drop here to put your knowledge to the test",
+  "@dropHereToQuiz": {
+    "description": "Hint shown on the quiz zone of the drag overlay"
+  },
+  "aiStudyGenerationTitle": "AI Study Generation",
+  "@aiStudyGenerationTitle": {
+    "description": "Title for the AI study generation dialog"
+  },
   "reattachFileDialogTitle": "Original file required",
   "@reattachFileDialogTitle": {
     "description": "Title for the dialog asking the user to re-attach the original file"
