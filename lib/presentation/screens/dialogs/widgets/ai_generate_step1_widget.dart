@@ -24,34 +24,37 @@ import 'package:quizdy/presentation/screens/dialogs/widgets/ai_question_type_chi
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
+import 'package:quizdy/presentation/widgets/ai_service_model_selector.dart';
 
 class AiGenerateStep1Widget extends StatelessWidget {
+  final bool isStudyMode;
   final bool isLoadingServices;
   final List<AIService> availableServices;
   final AIService? selectedService;
   final String? selectedModel;
   final String selectedLanguage;
-  final Set<AiQuestionType> selectedQuestionTypes;
+  final Set<AiQuestionType>? selectedQuestionTypes;
   final List<String> supportedLanguages;
   final ValueChanged<AIService> onServiceChanged;
   final ValueChanged<String?> onModelChanged;
   final ValueChanged<String> onLanguageChanged;
-  final ValueChanged<AiQuestionType> onQuestionTypeToggled;
+  final ValueChanged<AiQuestionType>? onQuestionTypeToggled;
   final VoidCallback onNext;
 
   const AiGenerateStep1Widget({
     super.key,
+    this.isStudyMode = false,
     required this.isLoadingServices,
     required this.availableServices,
     required this.selectedService,
     required this.selectedModel,
     required this.selectedLanguage,
-    required this.selectedQuestionTypes,
+    this.selectedQuestionTypes,
     required this.supportedLanguages,
     required this.onServiceChanged,
     required this.onModelChanged,
     required this.onLanguageChanged,
-    required this.onQuestionTypeToggled,
+    this.onQuestionTypeToggled,
     required this.onNext,
   });
 
@@ -61,32 +64,6 @@ class AiGenerateStep1Widget extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final colors = context.appColors;
     final borderColor = isDark ? Colors.transparent : AppTheme.borderColor;
-
-    final isGeminiSelected =
-        selectedService?.serviceName.toLowerCase().contains('gemini') ?? false;
-    final isOpenAiSelected =
-        selectedService?.serviceName.toLowerCase().contains('openai') ?? false;
-
-    final isGeminiAvailable = availableServices.any(
-      (s) => s.serviceName.toLowerCase().contains('gemini'),
-    );
-    final isOpenAiAvailable = availableServices.any(
-      (s) => s.serviceName.toLowerCase().contains('openai'),
-    );
-
-    final geminiBgColor = isGeminiSelected
-        ? Theme.of(context).primaryColor
-        : (isDark ? AppTheme.borderColorDark : AppTheme.cardColorLight);
-    final geminiContentColor = isGeminiSelected
-        ? AppTheme.zinc50
-        : (isDark ? AppTheme.zinc400 : AppTheme.textSecondaryColor);
-
-    final openAiBgColor = isOpenAiSelected
-        ? (isDark ? AppTheme.zinc50 : AppTheme.zinc900)
-        : (isDark ? AppTheme.borderColorDark : AppTheme.cardColorLight);
-    final openAiContentColor = isOpenAiSelected
-        ? (isDark ? AppTheme.zinc900 : AppTheme.zinc50)
-        : (isDark ? AppTheme.zinc400 : AppTheme.textSecondaryColor);
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -113,7 +90,9 @@ class AiGenerateStep1Widget extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    AppLocalizations.of(context)!.generateQuestionsWithAI,
+                    isStudyMode
+                        ? localizations.studyModeLabel
+                        : localizations.generateQuestionsWithAI,
                     style: TextStyle(
                       fontFamily: 'Inter',
                       fontSize: 24,
@@ -142,228 +121,54 @@ class AiGenerateStep1Widget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // AI Service Label
-                    Text(
-                      localizations.aiServiceLabel.replaceAll(':', ''),
-                      style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: colors.subtitle,
-                      ),
+                    AiServiceModelSelector(
+                      initialService: selectedService?.serviceName,
+                      initialModel: selectedModel,
+                      onServiceChanged: (service) {
+                        if (service != null) {
+                          onServiceChanged(service);
+                        }
+                      },
+                      onModelChanged: onModelChanged,
+                      saveToPreferences: false,
                     ),
-                    const SizedBox(height: 12),
 
-                    // Service Options
-                    if (isLoadingServices)
-                      const Center(child: CircularProgressIndicator())
-                    else
-                      Row(
-                        children: [
-                          // Gemini Button
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: isGeminiAvailable
-                                  ? () {
-                                      final service = availableServices
-                                          .firstWhere(
-                                            (s) => s.serviceName
-                                                .toLowerCase()
-                                                .contains('gemini'),
-                                          );
-                                      onServiceChanged(service);
-                                    }
-                                  : null,
-                              child: Opacity(
-                                opacity: isGeminiAvailable ? 1.0 : 0.5,
-                                child: Container(
-                                  height: 48,
-                                  decoration: BoxDecoration(
-                                    color: geminiBgColor,
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: LayoutBuilder(
-                                    builder: (context, constraints) {
-                                      final showText =
-                                          constraints.maxWidth > 90;
-                                      return Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            LucideIcons.sparkles,
-                                            color: geminiContentColor,
-                                            size: 18,
-                                          ),
-                                          if (showText) ...[
-                                            const SizedBox(width: 8),
-                                            Flexible(
-                                              child: Text(
-                                                'Gemini',
-                                                style: TextStyle(
-                                                  fontFamily: 'Inter',
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: geminiContentColor,
-                                                ),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                          ],
-                                        ],
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          // OpenAI Button
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: isOpenAiAvailable
-                                  ? () {
-                                      final service = availableServices
-                                          .firstWhere(
-                                            (s) => s.serviceName
-                                                .toLowerCase()
-                                                .contains('openai'),
-                                          );
-                                      onServiceChanged(service);
-                                    }
-                                  : null,
-                              child: Opacity(
-                                opacity: isOpenAiAvailable ? 1.0 : 0.5,
-                                child: Container(
-                                  height: 48,
-                                  decoration: BoxDecoration(
-                                    color: openAiBgColor,
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: LayoutBuilder(
-                                    builder: (context, constraints) {
-                                      final showText =
-                                          constraints.maxWidth > 90;
-                                      return Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            LucideIcons.bot,
-                                            color: openAiContentColor,
-                                            size: 18,
-                                          ),
-                                          if (showText) ...[
-                                            const SizedBox(width: 8),
-                                            Flexible(
-                                              child: Text(
-                                                'OpenAI',
-                                                style: TextStyle(
-                                                  fontFamily: 'Inter',
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: openAiContentColor,
-                                                ),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                          ],
-                                        ],
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                    if (!isStudyMode) ...[
+                      const SizedBox(height: 24),
 
-                    const SizedBox(height: 24),
-
-                    // Model Selection
-                    Text(
-                      AppLocalizations.of(
-                        context,
-                      )!.aiModelLabel.replaceAll(':', ''),
-                      style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: colors.subtitle,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Container(
-                      height: 52,
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      decoration: BoxDecoration(
-                        color: colors.border,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton<String>(
-                          value: selectedModel,
-                          isExpanded: true,
-                          icon: Icon(
-                            LucideIcons.chevronDown,
-                            color: colors.subtitle,
-                            size: 18,
-                          ),
-                          dropdownColor: colors.border,
-                          style: TextStyle(
-                            fontFamily: 'Inter',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: colors.title,
-                          ),
-                          items:
-                              selectedService?.availableModels
-                                  .map(
-                                    (model) => DropdownMenuItem(
-                                      value: model,
-                                      child: Text(model),
-                                    ),
-                                  )
-                                  .toList() ??
-                              [],
-                          onChanged: onModelChanged,
+                      // Question Types
+                      Text(
+                        AppLocalizations.of(context)!.questionType,
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: colors.subtitle,
                         ),
                       ),
-                    ),
-
-                    const SizedBox(height: 24),
-
-                    // Question Types
-                    Text(
-                      AppLocalizations.of(context)!.questionType,
-                      style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: colors.subtitle,
+                      const SizedBox(height: 12),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: AiQuestionType.values.map((type) {
+                          return AiQuestionTypeChip(
+                            type: type,
+                            isSelected:
+                                selectedQuestionTypes?.contains(type) ?? false,
+                            onTap: () => onQuestionTypeToggled?.call(type),
+                            isDark: isDark,
+                          );
+                        }).toList(),
                       ),
-                    ),
-                    const SizedBox(height: 12),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: AiQuestionType.values.map((type) {
-                        return AiQuestionTypeChip(
-                          type: type,
-                          isSelected: selectedQuestionTypes.contains(type),
-                          onTap: () => onQuestionTypeToggled(type),
-                          isDark: isDark,
-                        );
-                      }).toList(),
-                    ),
+                    ],
 
                     const SizedBox(height: 24),
 
                     // Language
                     Text(
-                      AppLocalizations.of(context)!.aiLanguageLabel,
+                      isStudyMode
+                          ? localizations.aiStudyLanguageLabel
+                          : localizations.aiLanguageLabel,
                       style: TextStyle(
                         fontFamily: 'Inter',
                         fontSize: 14,

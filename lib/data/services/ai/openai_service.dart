@@ -19,6 +19,7 @@ import 'package:quizdy/domain/models/ai/openai_content_block.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
 class OpenAIService extends AIService {
   static const String _baseUrl = 'https://api.openai.com/v1';
@@ -188,7 +189,19 @@ class OpenAIService extends AIService {
     AppLocalizations localizations, {
     required String fileUri,
     required String fileMimeType,
+    String? extraContext,
   }) async {
     throw UnimplementedError('OpenAI File API not implemented yet');
+  }
+
+  @override
+  Future<String> generateStudyIndexFromText(
+    AppLocalizations localizations, {
+    required String content,
+    required AiGenerationMode generationMode,
+  }) async {
+    throw UnimplementedError(
+      'OpenAI Study Index from Text not implemented yet',
+    );
   }
 }

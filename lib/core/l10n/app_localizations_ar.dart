@@ -286,6 +286,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get startQuiz => 'بدء الاختبار';
 
   @override
+  String get startQuizFromStudy => 'اختبر معرفتك';
+
+  @override
+  String get studyScreenCustomChapter => 'فصل مخصص';
+
+  @override
   String get maxIncorrectAnswersLabel => 'تقييد الإجابات الخاطئة';
 
   @override
@@ -358,6 +364,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get examConfigurationTitle => 'إعدادات الامتحان';
+
+  @override
+  String get generationConfigurationTitle => 'إعدادات التوليد';
 
   @override
   String get examTimeLimitTitle => 'حد وقت الامتحان';
@@ -640,6 +649,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get addQuestion => 'إضافة سؤال';
 
   @override
+  String get addSection => 'إضافة قسم';
+
+  @override
   String get editQuestion => 'تحرير السؤال';
 
   @override
@@ -877,6 +889,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get studyScreenRetry => 'إعادة المحاولة';
 
   @override
+  String get studyScreenOmit => 'تجاوز';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'لم يتم إنشاء شرائح.';
 
   @override
@@ -934,6 +949,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String aiTextModeCount(int count) {
     return 'وضع النص ($count كلمات)';
   }
+
+  @override
+  String get aiContextMode => 'وضع السياق';
 
   @override
   String get aiGenerationCategoryLabel => 'وضع المحتوى';
@@ -1023,6 +1041,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get addQuestionsWithAI => 'إضافة أسئلة باستخدام الذكاء الاصطناعي';
+
+  @override
+  String get generateSectionsWithAI => 'إنشاء أقسام باستخدام الذكاء الاصطناعي';
+
+  @override
+  String get addSectionsWithAI => 'إضافة أقسام باستخدام الذكاء الاصطناعي';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {
@@ -1494,6 +1518,41 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'مكتمل';
+
+  @override
+  String get aiDifficultyTitle => 'مستوى الصعوبة';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'نفس صعوبة المستند';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => 'وضع الصعوبة اليدوي';
+
+  @override
+  String get aiDifficultyElementary => 'مدرسة ابتدائية';
+
+  @override
+  String get aiDifficultyHighSchool => 'مدرسة ثانوية';
+
+  @override
+  String get aiDifficultyBachelors => 'درجة البكالوريوس';
+
+  @override
+  String get aiDifficultyUniversity => 'جامعة';
+
+  @override
+  String get aiDifficultyMasters => 'درجة الماجستير';
+
+  @override
+  String get aiDifficultyDoctorate => 'دكتوراه';
+
+  @override
+  String get aiDifficultyAutoDescription =>
+      'سيتم تعديل مستوى الصعوبة تلقائيًا وفقًا للمستند الذي تم تحميله';
+
+  @override
+  String get aiDifficultyManualDescription =>
+      'حدد مستوى الصعوبة يدويًا الذي يناسب المحتوى بشكل أفضل';
 
   @override
   String get chooseModeDialogTitle => 'اختر الوضع';

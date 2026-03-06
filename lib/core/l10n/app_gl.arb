@@ -309,6 +309,14 @@
   "@retry": {
     "description": "Texto do botón reintentar"
   },
+  "studyScreenRetry": "Tentar de novo",
+  "@studyScreenRetry": {
+    "description": "Texto de reintento sobre seccion erronea."
+  },
+  "studyScreenOmit": "Omitir",
+  "@studyScreenOmit": {
+    "description": "Texto botón omitir"
+  },
   "goBack": "Rematar",
   "@goBack": {
     "description": "Texto do botón volver atrás"
@@ -1554,6 +1562,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "Configuración da xeración",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin1Error": "Mínimo 1 minuto",
   "remainingTimeWithDays": "{days}d {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}s {days}d {hours}:{minutes}:{seconds}",
@@ -1733,7 +1745,6 @@
   "studyScreenNoSlidesAvailable": "Non hai seccións de estudo dispoñibles.",
   "studyScreenGenerating": "Xerando materiais de estudo...",
   "studyScreenError": "Produciuse un erro ao xerar o material de estudo.",
-  "studyScreenRetry": "Tentar de novo",
   "studyScreenNoSlidesGenerated": "Non se xeraron diapositivas.",
   "studyScreenPreviousSection": "Páxina anterior",
   "studyScreenNextSection": "Páxina seguinte",
@@ -1769,11 +1780,31 @@
     }
   },
   "studyScreenCompleted": "Completado",
+  "aiDifficultyTitle": "Nivel de dificultade",
+  "aiDifficultyAutoTurnedOn": "Mesma dificultade que o documento",
+  "aiDifficultyAutoTurnedOff": "Modo de dificultade manual",
+  "aiDifficultyElementary": "Educación primaria",
+  "aiDifficultyHighSchool": "Educación secundaria",
+  "aiDifficultyBachelors": "Grao universitario",
+  "aiDifficultyUniversity": "Universidade",
+  "aiDifficultyMasters": "Máster",
+  "aiDifficultyDoctorate": "Doutoramento",
+  "aiDifficultyAutoDescription": "O nivel de dificultade axustarase automaticamente segundo o documento subido",
+  "aiDifficultyManualDescription": "Selecciona manualmente o nivel de dificultade que mellor se adapte ao contido",
   "chooseModeDialogTitle": "Elixir modo",
   "chooseModeDialogMessage": "Este ficheiro contén tanto preguntas de quiz como contido de estudo. Que modo desexa abrir?",
   "reattachFileDialogTitle": "Requírese o ficheiro orixinal",
   "reattachFileDialogMessage": "Para xerar contido para esta sección, por favor adxunte o ficheiro orixinal utilizado para crear este estudo.",
   "fileHashMismatchError": "O ficheiro seleccionado no coincide co ficheiro orixinal utilizado para crear este estudo.",
   "showMoreLabel": "Amosar máis",
-  "showLessLabel": "Amosar menos"
+  "showLessLabel": "Amosar menos",
+  "aiContextMode": "Modo Contexto",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  },
+  "startQuizFromStudy": "Proba os teus coñecementos",
+  "studyScreenCustomChapter": "Capítulo personalizado",
+  "addSection": "Engadir sección",
+  "generateSectionsWithAI": "Xerar seccións con IA",
+  "addSectionsWithAI": "Engadir seccións con IA"
 }

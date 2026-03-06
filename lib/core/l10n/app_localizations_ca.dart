@@ -262,7 +262,7 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get retry => 'Repetir';
+  String get retry => 'Reintentar';
 
   @override
   String get goBack => 'Acabar';
@@ -289,6 +289,12 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get startQuiz => 'Començar quiz';
+
+  @override
+  String get startQuizFromStudy => 'Posa a prova els teus coneixements';
+
+  @override
+  String get studyScreenCustomChapter => 'Capítol personalitzat';
 
   @override
   String get maxIncorrectAnswersLabel => 'Límit d\'errors';
@@ -367,6 +373,9 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get examConfigurationTitle => 'Configuració de l\'examen';
+
+  @override
+  String get generationConfigurationTitle => 'Configuració de generació';
 
   @override
   String get examTimeLimitTitle => 'Límit de temps de l\'examen';
@@ -655,6 +664,9 @@ class AppLocalizationsCa extends AppLocalizations {
   String get addQuestion => 'Afegir pregunta';
 
   @override
+  String get addSection => 'Afegir secció';
+
+  @override
   String get editQuestion => 'Editar pregunta';
 
   @override
@@ -897,6 +909,9 @@ class AppLocalizationsCa extends AppLocalizations {
   String get studyScreenRetry => 'Reintenta';
 
   @override
+  String get studyScreenOmit => 'Ometre';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'No s\'han generat diapositives.';
 
   @override
@@ -954,6 +969,9 @@ class AppLocalizationsCa extends AppLocalizations {
   String aiTextModeCount(int count) {
     return 'Mode Text ($count paraules)';
   }
+
+  @override
+  String get aiContextMode => 'Mode Context';
 
   @override
   String get aiGenerationCategoryLabel => 'Modo de Contingut';
@@ -1044,6 +1062,12 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get addQuestionsWithAI => 'Afegir preguntes amb IA';
+
+  @override
+  String get generateSectionsWithAI => 'Generar seccions amb IA';
+
+  @override
+  String get addSectionsWithAI => 'Afegir seccions amb IA';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {
@@ -1528,6 +1552,41 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'Completat';
+
+  @override
+  String get aiDifficultyTitle => 'Nivell de dificultat';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'Mateixa dificultat que el document';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => 'Mode de dificultat manual';
+
+  @override
+  String get aiDifficultyElementary => 'Educació primària';
+
+  @override
+  String get aiDifficultyHighSchool => 'Educació secundària';
+
+  @override
+  String get aiDifficultyBachelors => 'Grao universitari';
+
+  @override
+  String get aiDifficultyUniversity => 'Universitat';
+
+  @override
+  String get aiDifficultyMasters => 'Màster';
+
+  @override
+  String get aiDifficultyDoctorate => 'Doctorat';
+
+  @override
+  String get aiDifficultyAutoDescription =>
+      'El nivell de dificultat s\'ajustarà automàticament segons el document penjat';
+
+  @override
+  String get aiDifficultyManualDescription =>
+      'Selecciona manualment el nivell de dificultat que millor s\'adapti al contingut';
 
   @override
   String get chooseModeDialogTitle => 'Triar mode';

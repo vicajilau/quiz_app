@@ -1593,6 +1593,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "Configuração da geração",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin0GenericError": "Mínimo 0",
   "validationMin1Error": "Mínimo 1 minuto",
   "@validationMin1Error": {
@@ -1825,6 +1829,13 @@
   "studyScreenGenerating": "Gerando material de estudo...",
   "studyScreenError": "Ocorreu um erro ao gerar o material de estudo.",
   "studyScreenRetry": "Tentar novamente",
+  "@studyScreenRetry": {
+    "description": "Texto de reintento sobre seccion erronea."
+  },
+  "studyScreenOmit": "Omitir",
+  "@studyScreenOmit": {
+    "description": "Texto botón omitir"
+  },
   "studyScreenNoSlidesGenerated": "Nenhum slide gerado.",
   "studyScreenPreviousSection": "Página anterior",
   "studyScreenNextSection": "Próxima página",
@@ -1860,11 +1871,31 @@
     }
   },
   "studyScreenCompleted": "Concluído",
+  "aiDifficultyTitle": "Nível de dificuldade",
+  "aiDifficultyAutoTurnedOn": "Mesma dificuldade do documento",
+  "aiDifficultyAutoTurnedOff": "Modo de dificuldade manual",
+  "aiDifficultyElementary": "Ensino fundamental",
+  "aiDifficultyHighSchool": "Ensino médio",
+  "aiDifficultyBachelors": "Bacharelado",
+  "aiDifficultyUniversity": "Universidade",
+  "aiDifficultyMasters": "Mestrado",
+  "aiDifficultyDoctorate": "Doutorado",
+  "aiDifficultyAutoDescription": "O nível de dificuldade será ajustado automaticamente de acordo com o documento carregado",
+  "aiDifficultyManualDescription": "Selecione manualmente o nível de dificuldade que melhor se adapta ao conteúdo",
   "chooseModeDialogTitle": "Escolher modo",
   "chooseModeDialogMessage": "Este arquivo contém tanto perguntas de quiz quanto conteúdo de estudo. Qual modo você gostaria de abrir?",
   "reattachFileDialogTitle": "Arquivo original necessário",
   "reattachFileDialogMessage": "Para gerar conteúdo para esta seção, anexe o arquivo original usado para criar este estudo.",
   "fileHashMismatchError": "O arquivo selecionado não corresponde ao arquivo original usado para criar este estudo.",
   "showMoreLabel": "Mostrar mais",
-  "showLessLabel": "Mostrar menos"
+  "showLessLabel": "Mostrar menos",
+  "aiContextMode": "Modo Contexto",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  },
+  "startQuizFromStudy": "Teste seus conhecimentos",
+  "studyScreenCustomChapter": "Capítulo personalizado",
+  "addSection": "Adicionar seção",
+  "generateSectionsWithAI": "Gerar seções com IA",
+  "addSectionsWithAI": "Adicionar seções com IA"
 }

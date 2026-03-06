@@ -111,6 +111,10 @@
       }
     }
   },
+  "aiContextMode": "Mode Context",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  },
   "load": "Carregar",
   "@load": {
     "description": "Etiqueta pel botó Carregar fitxer Quiz a l'AppBar."
@@ -401,9 +405,17 @@
       }
     }
   },
-  "retry": "Repetir",
+  "retry": "Reintentar",
   "@retry": {
-    "description": "Text del botó repetir"
+    "description": "Retry button text"
+  },
+  "studyScreenRetry": "Reintenta",
+  "@studyScreenRetry": {
+    "description": "Text de reintent sobre secció errònia."
+  },
+  "studyScreenOmit": "Ometre",
+  "@studyScreenOmit": {
+    "description": "Text del botó ometre"
   },
   "goBack": "Acabar",
   "@goBack": {
@@ -1656,6 +1668,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "Configuració de generació",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin1Error": "Mínim 1 minut",
   "remainingTimeWithDays": "{days}d {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}s {days}d {hours}:{minutes}:{seconds}",
@@ -1835,7 +1851,6 @@
   "studyScreenNoSlidesAvailable": "No hi ha seccions d'estudi disponibles.",
   "studyScreenGenerating": "Generant materials d'estudi...",
   "studyScreenError": "S'ha produït un error en generar el material d'estudi.",
-  "studyScreenRetry": "Reintenta",
   "studyScreenNoSlidesGenerated": "No s'han generat diapositives.",
   "studyScreenPreviousSection": "Pàgina anterior",
   "studyScreenNextSection": "Pàgina següent",
@@ -1871,11 +1886,27 @@
     }
   },
   "studyScreenCompleted": "Completat",
+  "aiDifficultyTitle": "Nivell de dificultat",
+  "aiDifficultyAutoTurnedOn": "Mateixa dificultat que el document",
+  "aiDifficultyAutoTurnedOff": "Mode de dificultat manual",
+  "aiDifficultyElementary": "Educació primària",
+  "aiDifficultyHighSchool": "Educació secundària",
+  "aiDifficultyBachelors": "Grao universitari",
+  "aiDifficultyUniversity": "Universitat",
+  "aiDifficultyMasters": "Màster",
+  "aiDifficultyDoctorate": "Doctorat",
+  "aiDifficultyAutoDescription": "El nivell de dificultat s'ajustarà automàticament segons el document penjat",
+  "aiDifficultyManualDescription": "Selecciona manualment el nivell de dificultat que millor s'adapti al contingut",
   "chooseModeDialogTitle": "Triar mode",
   "chooseModeDialogMessage": "Aquest fitxer conté tant preguntes de qüestionari com contingut d'estudi. Quin mode t'agradaria obrir?",
   "reattachFileDialogTitle": "Fitxer original requerit",
   "reattachFileDialogMessage": "Per a generar contingut per a aquesta secció, si us plau adjunta el fitxer original utilitzat per a crear aquest estudi.",
   "fileHashMismatchError": "El fitxer seleccionat no coincideix amb el fitxer original utilitzat per a crear aquest estudi.",
   "showMoreLabel": "Mostrar més",
-  "showLessLabel": "Mostrar menys"
+  "showLessLabel": "Mostrar menys",
+  "startQuizFromStudy": "Posa a prova els teus coneixements",
+  "studyScreenCustomChapter": "Capítol personalitzat",
+  "addSection": "Afegir secció",
+  "generateSectionsWithAI": "Generar seccions amb IA",
+  "addSectionsWithAI": "Afegir seccions amb IA"
 }

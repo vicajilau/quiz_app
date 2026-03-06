@@ -305,6 +305,14 @@
   "@retry": {
     "description": "Berriro saiatu botoiaren testua"
   },
+  "studyScreenRetry": "Saiatu berriro",
+  "@studyScreenRetry": {
+    "description": "Berriro saiatzeko testua atal okerrean."
+  },
+  "studyScreenOmit": "Omititu",
+  "@studyScreenOmit": {
+    "description": "Omititu botoiaren testua"
+  },
   "goBack": "Amaitu",
   "@goBack": {
     "description": "Itzuli botoiaren testua"
@@ -1554,6 +1562,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "Sorkuntza konfigurazioa",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin1Error": "Gutxienez minutu 1",
   "remainingTimeWithDays": "{days}e {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}a {days}e {hours}:{minutes}:{seconds}",
@@ -1733,7 +1745,6 @@
   "studyScreenNoSlidesAvailable": "Ez dago ikasketa atalik erabilgarri.",
   "studyScreenGenerating": "Ikasketa materiala sortzen...",
   "studyScreenError": "Errore bat gertatu da ikasketa materiala sortzean.",
-  "studyScreenRetry": "Saiatu berriro",
   "studyScreenNoSlidesGenerated": "Ez da diapositibarik sortu.",
   "studyScreenPreviousSection": "Aurreko orria",
   "studyScreenNextSection": "Hurrengo orria",
@@ -1775,5 +1786,25 @@
   "reattachFileDialogMessage": "Atal honetarako edukia sortzeko, kargatu ikasketa hau sortzeko erabili zen jatorrizko fitxategia.",
   "fileHashMismatchError": "Hautatutako fitxategia ez dator bat ikasketa hau sortzeko erabili zen jatorrizko fitxategiarekin.",
   "showMoreLabel": "Erakutsi gehiago",
-  "showLessLabel": "Erakutsi gutxiago"
+  "showLessLabel": "Erakutsi gutxiago",
+  "aiDifficultyTitle": "Zailtasun-maila",
+  "aiDifficultyAutoTurnedOn": "Dokumentuaren zailtasun bera",
+  "aiDifficultyAutoTurnedOff": "Eskuzko zailtasun modua",
+  "aiDifficultyElementary": "Lehen Hezkuntza",
+  "aiDifficultyHighSchool": "Bigarren Hezkuntza",
+  "aiDifficultyBachelors": "Gradua",
+  "aiDifficultyUniversity": "Unibertsitatea",
+  "aiDifficultyMasters": "Masterra",
+  "aiDifficultyDoctorate": "Doktoretza",
+  "aiDifficultyAutoDescription": "Zailtasun maila automatikoki egokituko da kargatutako dokumentuaren arabera",
+  "aiDifficultyManualDescription": "Hautatu eskuz edukirako ondoen egokitzen den zailtasun maila",
+  "aiContextMode": "Testuinguru Modua",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  },
+  "startQuizFromStudy": "Probatu zure ezagutzak",
+  "studyScreenCustomChapter": "Kapitulu pertsonalizatua",
+  "addSection": "Gehitu atala",
+  "generateSectionsWithAI": "Sortu atalak AIarekin",
+  "addSectionsWithAI": "Gehitu atalak AIarekin"
 }

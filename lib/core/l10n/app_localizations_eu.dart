@@ -290,6 +290,12 @@ class AppLocalizationsEu extends AppLocalizations {
   String get startQuiz => 'Quiz Hasi';
 
   @override
+  String get startQuizFromStudy => 'Probatu zure ezagutzak';
+
+  @override
+  String get studyScreenCustomChapter => 'Kapitulu pertsonalizatua';
+
+  @override
   String get maxIncorrectAnswersLabel => 'Errore muga';
 
   @override
@@ -365,6 +371,9 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get examConfigurationTitle => 'Azterketaren konfigurazioa';
+
+  @override
+  String get generationConfigurationTitle => 'Sorkuntza konfigurazioa';
 
   @override
   String get examTimeLimitTitle => 'Azterketaren Denbora Muga';
@@ -651,6 +660,9 @@ class AppLocalizationsEu extends AppLocalizations {
   String get addQuestion => 'Galdera Gehitu';
 
   @override
+  String get addSection => 'Gehitu atala';
+
+  @override
   String get editQuestion => 'Galdera Editatu';
 
   @override
@@ -894,6 +906,9 @@ class AppLocalizationsEu extends AppLocalizations {
   String get studyScreenRetry => 'Saiatu berriro';
 
   @override
+  String get studyScreenOmit => 'Omititu';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'Ez da diapositibarik sortu.';
 
   @override
@@ -951,6 +966,9 @@ class AppLocalizationsEu extends AppLocalizations {
   String aiTextModeCount(int count) {
     return 'Testu modua ($count hitz)';
   }
+
+  @override
+  String get aiContextMode => 'Testuinguru Modua';
 
   @override
   String get aiGenerationCategoryLabel => 'Eduki Modua';
@@ -1041,6 +1059,12 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get addQuestionsWithAI => 'Gehitu galderak AI bidez';
+
+  @override
+  String get generateSectionsWithAI => 'Sortu atalak AIarekin';
+
+  @override
+  String get addSectionsWithAI => 'Gehitu atalak AIarekin';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {
@@ -1520,6 +1544,41 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'Burututa';
+
+  @override
+  String get aiDifficultyTitle => 'Zailtasun-maila';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'Dokumentuaren zailtasun bera';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => 'Eskuzko zailtasun modua';
+
+  @override
+  String get aiDifficultyElementary => 'Lehen Hezkuntza';
+
+  @override
+  String get aiDifficultyHighSchool => 'Bigarren Hezkuntza';
+
+  @override
+  String get aiDifficultyBachelors => 'Gradua';
+
+  @override
+  String get aiDifficultyUniversity => 'Unibertsitatea';
+
+  @override
+  String get aiDifficultyMasters => 'Masterra';
+
+  @override
+  String get aiDifficultyDoctorate => 'Doktoretza';
+
+  @override
+  String get aiDifficultyAutoDescription =>
+      'Zailtasun maila automatikoki egokituko da kargatutako dokumentuaren arabera';
+
+  @override
+  String get aiDifficultyManualDescription =>
+      'Hautatu eskuz edukirako ondoen egokitzen den zailtasun maila';
 
   @override
   String get chooseModeDialogTitle => 'Modua aukeratu';

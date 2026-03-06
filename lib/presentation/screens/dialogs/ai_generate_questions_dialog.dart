@@ -27,6 +27,7 @@ import 'package:quizdy/domain/models/ai/ai_generation_stored_settings.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step1_widget.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step2_widget.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/presentation/utils/clipboard_image_helper.dart';
 import 'package:quizdy/presentation/utils/ai_file_helper.dart';
 import 'package:file_picker/file_picker.dart';
@@ -53,6 +54,8 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   bool _isLoadingServices = true;
 
   AiFileAttachment? _fileAttachment;
+  bool _isAutoDifficulty = true;
+  AiDifficultyLevel _selectedDifficulty = AiDifficultyLevel.university;
 
   // Question Count state
   int _questionCount = 5;
@@ -128,6 +131,13 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
           if (settings.language != null &&
               _supportedLanguages.contains(settings.language)) {
             _selectedLanguage = settings.language!;
+          }
+
+          if (settings.isAutoDifficulty != null) {
+            _isAutoDifficulty = settings.isAutoDifficulty!;
+          }
+          if (settings.difficultyLevel != null) {
+            _selectedDifficulty = settings.difficultyLevel!;
           }
 
           if (settings.questionTypes != null &&
@@ -264,8 +274,11 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   /// Returns the counter label: topic count when in topic mode (≤10 topics),
   /// word count when in content mode (>10 topics).
   String _getWordCountText() {
-    final topicCount = _getTopicCount();
     final localizations = AppLocalizations.of(context)!;
+    if (_fileAttachment != null) {
+      return localizations.aiContextMode;
+    }
+    final topicCount = _getTopicCount();
     if (topicCount <= 10) {
       return localizations.aiTopicModeCount(topicCount);
     } else {
@@ -296,6 +309,8 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
         language: _selectedLanguage,
         questionCount: _questionCount,
         questionTypes: _selectedQuestionTypes.map((t) => t.toString()).toList(),
+        isAutoDifficulty: _isAutoDifficulty,
+        difficultyLevel: _selectedDifficulty,
         draftText: _textController.text.trim(),
         draftFilePath: persistentPath,
       );
@@ -339,8 +354,8 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   }
 
   Future<void> _pasteFromClipboard() async {
-    final attachment =
-        await ServiceLocator.getIt<ClipboardImageHelper>().getClipboardImageAsAttachment();
+    final attachment = await ServiceLocator.getIt<ClipboardImageHelper>()
+        .getClipboardImageAsAttachment();
     if (!mounted) return;
     if (attachment != null) {
       setState(() {
@@ -458,6 +473,18 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
         getWordCountText: _getWordCountText,
         getWordCount: _getWordCount,
         getTopicCount: _getTopicCount,
+        isAutoDifficulty: _isAutoDifficulty,
+        selectedDifficulty: _selectedDifficulty,
+        onAutoDifficultyChanged: (value) {
+          setState(() {
+            _isAutoDifficulty = value;
+          });
+        },
+        onDifficultyChanged: (value) {
+          setState(() {
+            _selectedDifficulty = value;
+          });
+        },
         onGenerate: (config) async {
           await _saveDraft();
           if (context.mounted) {

@@ -512,6 +512,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "Διαμόρφωση Παραγωγής",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin1Error": "Ελάχιστο 1 λεπτό",
   "remainingTimeWithDays": "{days}ημ {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}ε {days}ημ {hours}:{minutes}:{seconds}",
@@ -692,6 +696,13 @@
   "studyScreenGenerating": "Δημιουργία υλικού μελέτης...",
   "studyScreenError": "Παρουσιάστηκε σφάλμα κατά τη δημιουργία του υλικού μελέτης.",
   "studyScreenRetry": "Δοκιμάστε ξανά",
+  "@studyScreenRetry": {
+    "description": "Κείμενο επανάληψης προσπάθειας σε εσφαλμένη ενότητα."
+  },
+  "studyScreenOmit": "Παράλειψη",
+  "@studyScreenOmit": {
+    "description": "Κείμενο κουμπιού παράλειψης"
+  },
   "studyScreenNoSlidesGenerated": "Δεν δημιουργήθηκαν διαφάνειες.",
   "studyScreenPreviousSection": "Προηγούμενη σελίδα",
   "studyScreenNextSection": "Επόμενη σελίδα",
@@ -727,11 +738,31 @@
     }
   },
   "studyScreenCompleted": "Ολοκληρώθηκε",
+  "aiDifficultyTitle": "Επίπεδο δυσκολίας",
+  "aiDifficultyAutoTurnedOn": "Ίδια δυσκολία με το έγγραφο",
+  "aiDifficultyAutoTurnedOff": "Χειροκίνητη λειτουργία δυσκολίας",
+  "aiDifficultyElementary": "Δημοτικό Σχολείο",
+  "aiDifficultyHighSchool": "Γυμνάσιο/Λύκειο",
+  "aiDifficultyBachelors": "Πτυχίο",
+  "aiDifficultyUniversity": "Πανεπιστήμιο",
+  "aiDifficultyMasters": "Μεταπτυχιακό",
+  "aiDifficultyDoctorate": "Διδακτορικό",
+  "aiDifficultyAutoDescription": "Το επίπεδο δυσκολίας θα προσαρμοστεί αυτόματα σύμφωνα με το έγγραφο που ανέβηκε",
+  "aiDifficultyManualDescription": "Επιλέξτε χειροκίνητα το επίπεδο δυσκολίας που ταιριάζει καλύτερα στο περιεχόμενο",
   "chooseModeDialogTitle": "Επιλογή Λειτουργίας",
   "chooseModeDialogMessage": "Αυτό το αρχείο περιέχει τόσο ερωτήσεις κουίζ όσο και περιεχόμενο μελέτης. Ποια λειτουργία θα θέλατε να ανοίξετε;",
   "reattachFileDialogTitle": "Απαιτείται το πρωτότυπο αρχείο",
   "reattachFileDialogMessage": "Για να δημιουργήσετε περιεχόμενο για αυτήν την ενότητα, επισυνάψτε το πρωτότυπο αρχείο που χρησιμοποιήθηκε για τη δημιουργία αυτής της μελέτης.",
   "fileHashMismatchError": "Το επιλεγμένο αρχείο δεν ταιριάζει με το πρωτότυπο αρχείο που χρησιμοποιήθηκε για τη δημιουργία αυτής της μελέτης.",
   "showMoreLabel": "Εμφάνιση περισσότερων",
-  "showLessLabel": "Εμφάνιση λιγότερων"
+  "showLessLabel": "Εμφάνιση λιγότερων",
+  "aiContextMode": "Λειτουργία πλαισίου",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  },
+  "startQuizFromStudy": "Δοκιμάστε τις γνώσεις σας",
+  "studyScreenCustomChapter": "Προσαρμοσμένο κεφάλαιο",
+  "addSection": "Προσθήκη ενότητας",
+  "generateSectionsWithAI": "Δημιουργία ενοτήτων με AI",
+  "addSectionsWithAI": "Προσθήκη ενοτήτων με AI"
 }

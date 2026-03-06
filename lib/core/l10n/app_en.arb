@@ -391,6 +391,14 @@
   "@startQuiz": {
     "description": "Button text to start the quiz"
   },
+  "startQuizFromStudy": "Test your knowledge",
+  "@startQuizFromStudy": {
+    "description": "Button text to start the quiz from the study screen"
+  },
+  "studyScreenCustomChapter": "Custom Chapter",
+  "@studyScreenCustomChapter": {
+    "description": "Label for a manually added study chunk"
+  },
   "maxIncorrectAnswersLabel": "Limit incorrect answers",
   "@maxIncorrectAnswersLabel": {
     "description": "Label for the toggle to limit incorrect answers"
@@ -482,6 +490,10 @@
   "examConfigurationTitle": "Exam Configuration",
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
+  },
+  "generationConfigurationTitle": "Generation Configuration",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
   },
   "examTimeLimitTitle": "Exam Time Limit",
   "@examTimeLimitTitle": {
@@ -841,6 +853,10 @@
   "@addQuestion": {
     "description": "Title for adding a new question dialog"
   },
+  "addSection": "Add Section",
+  "@addSection": {
+    "description": "Title for adding a new section manually"
+  },
   "editQuestion": "Edit Question",
   "@editQuestion": {
     "description": "Title for editing an existing question dialog"
@@ -1183,6 +1199,10 @@
   "@studyScreenRetry": {
     "description": "Button text to retry parsing a failed chunk."
   },
+  "studyScreenOmit": "Omit",
+  "@studyScreenOmit": {
+    "description": "Omit button text"
+  },
   "studyScreenNoSlidesGenerated": "No slides generated.",
   "@studyScreenNoSlidesGenerated": {
     "description": "Text displayed if AI returns back empty slides for the current view."
@@ -1272,6 +1292,10 @@
         "example": "150"
       }
     }
+  },
+  "aiContextMode": "Context Mode",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
   },
   "aiGenerationCategoryLabel": "Content Mode",
   "@aiGenerationCategoryLabel": {
@@ -1388,6 +1412,14 @@
   "addQuestionsWithAI": "Add questions with AI",
   "@addQuestionsWithAI": {
     "description": "Label for the button to add more questions using AI when some already exist."
+  },
+  "generateSectionsWithAI": "Generate sections with AI",
+  "@generateSectionsWithAI": {
+    "description": "Tooltip for the generate sections with AI button."
+  },
+  "addSectionsWithAI": "Add sections with AI",
+  "@addSectionsWithAI": {
+    "description": "Label for the button to add more sections using AI when some already exist."
   },
   "aiServiceLimitsWithChars": "Limit: {words} words or {chars} characters",
   "@aiServiceLimitsWithChars": {
@@ -2050,6 +2082,44 @@
   "@studyScreenCompleted": {
     "description": "Label for completed chunks counter in study index"
   },
+  "aiDifficultyTitle": "Difficulty Level",
+  "@aiDifficultyTitle": {
+    "description": "Title for the difficulty level section"
+  },
+  "aiDifficultyAutoTurnedOn": "Same difficulty as the document",
+  "@aiDifficultyAutoTurnedOn": {
+    "description": "Label when automatic difficulty is enabled"
+  },
+  "aiDifficultyAutoTurnedOff": "Manual difficulty mode",
+  "@aiDifficultyAutoTurnedOff": {
+    "description": "Label when automatic difficulty is disabled"
+  },
+  "aiDifficultyElementary": "Elementary School",
+  "@aiDifficultyElementary": {
+    "description": "Difficulty level: Elementary School"
+  },
+  "aiDifficultyHighSchool": "High School",
+  "@aiDifficultyHighSchool": {
+    "description": "Difficulty level: High School"
+  },
+  "aiDifficultyBachelors": "Bachelor's Degree",
+  "@aiDifficultyBachelors": {
+    "description": "Difficulty level: Bachelor's Degree"
+  },
+  "aiDifficultyUniversity": "University Degree",
+  "@aiDifficultyUniversity": {
+    "description": "Difficulty level: University Degree"
+  },
+  "aiDifficultyMasters": "Master's Degree",
+  "@aiDifficultyMasters": {
+    "description": "Difficulty level: Master's Degree"
+  },
+  "aiDifficultyDoctorate": "Doctorate",
+  "@aiDifficultyDoctorate": {
+    "description": "Difficulty level: Doctorate"
+  },
+  "aiDifficultyAutoDescription": "The difficulty level will be adjusted automatically according to the uploaded document",
+  "aiDifficultyManualDescription": "Select the difficulty level manually that best fits the content",
   "chooseModeDialogTitle": "Choose Mode",
   "@chooseModeDialogTitle": {
     "description": "Title for the dialog that asks which mode to open when a file has both questions and study content"

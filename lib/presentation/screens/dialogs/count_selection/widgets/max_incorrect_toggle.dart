@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:quizdy/core/theme/app_theme.dart';
+import 'package:quizdy/presentation/widgets/quizdy_switch.dart';
 
 class MaxIncorrectToggle extends StatelessWidget {
   final bool isDark;
@@ -78,14 +78,10 @@ class MaxIncorrectToggle extends StatelessWidget {
               ],
             ),
           ),
-          Switch(
+          QuizdySwitch(
             value: enableMaxIncorrectAnswers,
             onChanged: onEnableMaxIncorrectAnswersChanged,
             activeTrackColor: primaryColor,
-            activeThumbColor: Colors.white,
-            inactiveThumbColor: Colors.white,
-            inactiveTrackColor: isDark ? AppTheme.zinc600 : AppTheme.zinc300,
-            trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
           ),
         ],
       ),

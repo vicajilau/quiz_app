@@ -1557,6 +1557,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "जेनरेशन कॉन्फ़िगरेशन",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin1Error": "न्यूनतम 1 मिनट",
   "remainingTimeWithDays": "{days}दिन {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}सप्ताह {days}दिन {hours}:{minutes}:{seconds}",
@@ -1737,6 +1741,13 @@
   "studyScreenGenerating": "अध्ययन सामग्री तैयार की जा रही है...",
   "studyScreenError": "अध्ययन सामग्री तैयार करते समय एक त्रुटि हुई।",
   "studyScreenRetry": "पुनः प्रयास करें",
+  "@studyScreenRetry": {
+    "description": "गलत अनुभाग पर पुनः प्रयास टेक्स्ट।"
+  },
+  "studyScreenOmit": "छोड़ें",
+  "@studyScreenOmit": {
+    "description": "छोड़ें बटन टेक्स्ट"
+  },
   "studyScreenNoSlidesGenerated": "कोई स्लाइड नहीं बनाई गई।",
   "studyScreenPreviousSection": "पिछला पृष्ठ",
   "studyScreenNextSection": "अगला पृष्ठ",
@@ -1772,11 +1783,31 @@
     }
   },
   "studyScreenCompleted": "पूर्ण",
+  "aiDifficultyTitle": "कठिनाई स्तर",
+  "aiDifficultyAutoTurnedOn": "दस्तावेज़ के समान कठिनाई",
+  "aiDifficultyAutoTurnedOff": "मैन्युअल कठिनाई मोड",
+  "aiDifficultyElementary": "प्राथमिक विद्यालय",
+  "aiDifficultyHighSchool": "उच्च विद्यालय",
+  "aiDifficultyBachelors": "स्नातक की डिग्री",
+  "aiDifficultyUniversity": "विश्वविद्यालय",
+  "aiDifficultyMasters": "मास्टर डिग्री",
+  "aiDifficultyDoctorate": "डॉक्टरेट",
+  "aiDifficultyAutoDescription": "अपलोड किए गए दस्तावेज़ के अनुसार कठिनाई स्तर स्वचालित रूप से समायोजित किया जाएगा",
+  "aiDifficultyManualDescription": "कठिनाई स्तर को मैन्युअल रूप से चुनें जो सामग्री के लिए सबसे उपयुक्त हो",
   "chooseModeDialogTitle": "मोड चुनें",
   "chooseModeDialogMessage": "इस फ़ाइल में प्रश्नोत्तरी और अध्ययन सामग्री दोनों हैं। आप कौन सा मोड खोलना चाहेंगे?",
   "reattachFileDialogTitle": "मूल फ़ाइल आवश्यक है",
   "reattachFileDialogMessage": "इस अनुभाग के लिए सामग्री बनाने के लिए, कृपया इस अध्ययन को बनाने के लिए उपयोग की गई मूल फ़ाइल को संलग्न करें।",
   "fileHashMismatchError": "चयनित फ़ाइल उस मूल फ़ाइल से मेल नहीं खाती जिसका उपयोग इस अध्ययन को बनाने के लिए किया गया था।",
   "showMoreLabel": "और दिखाएं",
-  "showLessLabel": "कम दिखाएं"
+  "showLessLabel": "कम दिखाएं",
+  "aiContextMode": "संदर्भ मोड",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  },
+  "startQuizFromStudy": "अपने ज्ञान का परीक्षण करें",
+  "studyScreenCustomChapter": "कस्टम अध्याय",
+  "addSection": "अनुभाग जोड़ें",
+  "generateSectionsWithAI": "AI के साथ अनुभाग उत्पन्न करें",
+  "addSectionsWithAI": "AI के साथ अनुभाग जोड़ें"
 }

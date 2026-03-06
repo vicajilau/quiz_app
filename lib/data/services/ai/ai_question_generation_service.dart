@@ -16,17 +16,19 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:quizdy/core/service_locator.dart';
-import 'package:quizdy/data/services/ai/gemini_service.dart';
-import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
+import 'package:quizdy/data/services/ai/gemini_service.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/ai/openai_content_block.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
 
 import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';
-import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
 class AiQuestionGenerationService {
   static const String _openaiApiUrl =
@@ -100,7 +102,7 @@ class AiQuestionGenerationService {
     AIService aiService,
     AppLocalizations localizations,
   ) async {
-    final prompt = _buildPrompt(config);
+    final prompt = _buildPrompt(config, localizations);
 
     try {
       final String response;
@@ -131,7 +133,7 @@ class AiQuestionGenerationService {
     String apiKey,
     AppLocalizations localizations,
   ) async {
-    final prompt = _buildPrompt(config);
+    final prompt = _buildPrompt(config, localizations);
 
     final Map<String, Object> userMessage;
     if (config.hasFile) {
@@ -184,7 +186,7 @@ class AiQuestionGenerationService {
     String apiKey,
     AppLocalizations localizations,
   ) async {
-    final prompt = _buildPrompt(config);
+    final prompt = _buildPrompt(config, localizations);
     final systemInstruction =
         'You are an expert in education who creates high-quality quiz questions. Respond ONLY with the requested JSON, without additional text.';
     final fullPrompt = '$systemInstruction\n\n$prompt';
@@ -216,7 +218,10 @@ class AiQuestionGenerationService {
   }
 
   /// Builds the prompt for the AI
-  String _buildPrompt(AiQuestionGenerationConfig config) {
+  String _buildPrompt(
+    AiQuestionGenerationConfig config,
+    AppLocalizations localizations,
+  ) {
     final questionCountText = config.questionCount != null
         ? 'exactly ${config.questionCount}'
         : 'between 3 and 8';
@@ -234,7 +239,7 @@ class AiQuestionGenerationService {
           '''
           Based on the attached file, generate $questionCountText quiz questions $questionTypesText in $languageText.
           $commentsSection''';
-    } else if (config.isTopicMode) {
+    } else if (config.generationMode == AiGenerationMode.topic) {
       header =
           '''
           The user wants quiz questions about the following topic/s: ${config.content}
@@ -254,7 +259,7 @@ class AiQuestionGenerationService {
 
     final sourceReference = config.hasFile
         ? 'the content of the attached file'
-        : config.isTopicMode
+        : config.generationMode == AiGenerationMode.topic
         ? 'the provided topics'
         : 'the provided content';
 
@@ -274,6 +279,19 @@ class AiQuestionGenerationService {
         break;
     }
 
+    String difficultyInstruction = '';
+    if (!config.isAutoDifficulty && config.difficultyLevel != null) {
+      final levelName = _getDifficultyName(
+        config.difficultyLevel!,
+        localizations,
+      );
+      difficultyInstruction =
+          '\n8. DIFFICULTY LEVEL: The generated questions MUST be adapted to a $levelName difficulty level. Explain concepts, use vocabulary, and provide examples appropriate for this academic level.';
+    } else if (config.isAutoDifficulty) {
+      difficultyInstruction =
+          '\n8. DIFFICULTY LEVEL: The generated questions MUST be adapted to the SAME academic difficulty level, vocabulary, and depth as the provided content.';
+    }
+
     return '''
 $header
 INSTRUCTIONS:
@@ -283,7 +301,7 @@ INSTRUCTIONS:
 4. Make sure incorrect answers are plausible but clearly wrong
 5. Explanations should be educational and help understand why the answer is correct
 6. SELF-CONTAINED QUESTIONS: All questions must be fully self-contained so they can be answered without looking at the original source material. If you reuse an existing exercise, make sure to include all necessary context (text, variables, or descriptions) within the question itself. DO NOT reference specific exercise numbers or labels from the source text (e.g., instead of 'In exercise 17...', say 'Given the following scenario...').
-$categoryInstructions
+$categoryInstructions$difficultyInstruction
 
 RESPONSE FORMAT (JSON):
 Respond ONLY with a valid JSON array in this exact format:
@@ -547,5 +565,25 @@ IMPORTANT: Respond strictly in the same language as the student's answer.
 ''';
 
     return prompt;
+  }
+
+  String _getDifficultyName(
+    AiDifficultyLevel difficulty,
+    AppLocalizations localizations,
+  ) {
+    switch (difficulty) {
+      case AiDifficultyLevel.elementary:
+        return localizations.aiDifficultyElementary;
+      case AiDifficultyLevel.highSchool:
+        return localizations.aiDifficultyHighSchool;
+      case AiDifficultyLevel.bachelors:
+        return localizations.aiDifficultyBachelors;
+      case AiDifficultyLevel.university:
+        return localizations.aiDifficultyUniversity;
+      case AiDifficultyLevel.masters:
+        return localizations.aiDifficultyMasters;
+      case AiDifficultyLevel.doctorate:
+        return localizations.aiDifficultyDoctorate;
+    }
   }
 }

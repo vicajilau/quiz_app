@@ -15,6 +15,9 @@
 
 import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
+
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
 /// Configuration settings for AI-powered interactive Study Mode generation.
 class AiStudyGenerationConfig {
@@ -33,8 +36,14 @@ class AiStudyGenerationConfig {
   /// Optional file attachment containing source material.
   final AiFileAttachment? file;
 
-  /// Whether the [content] should be treated as a list of topics rather than direct text.
-  final bool isTopicMode;
+  /// The modality of AI generation.
+  final AiGenerationMode generationMode;
+
+  /// Whether the difficulty should automatically adapt to the provided content.
+  final bool isAutoDifficulty;
+
+  /// The specific academic difficulty level when manual mode is selected.
+  final AiDifficultyLevel? difficultyLevel;
 
   /// Returns true if a file is attached to this configuration.
   bool get hasFile => file != null;
@@ -45,6 +54,8 @@ class AiStudyGenerationConfig {
     this.preferredService,
     this.preferredModel,
     this.file,
-    this.isTopicMode = false,
+    this.generationMode = AiGenerationMode.text,
+    this.isAutoDifficulty = true,
+    this.difficultyLevel,
   });
 }

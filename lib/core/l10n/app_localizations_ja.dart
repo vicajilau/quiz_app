@@ -280,6 +280,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get startQuiz => 'クイズ開始';
 
   @override
+  String get startQuizFromStudy => '知識をテストする';
+
+  @override
+  String get studyScreenCustomChapter => 'カスタムチャプター';
+
+  @override
   String get maxIncorrectAnswersLabel => '不正解数を制限する';
 
   @override
@@ -347,6 +353,9 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get examConfigurationTitle => '試験の設定';
+
+  @override
+  String get generationConfigurationTitle => '生成設定';
 
   @override
   String get examTimeLimitTitle => '試験時間制限';
@@ -619,6 +628,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get addQuestion => '問題を追加';
 
   @override
+  String get addSection => 'セクションを追加';
+
+  @override
   String get editQuestion => '問題を編集';
 
   @override
@@ -843,6 +855,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get studyScreenRetry => '再試行';
 
   @override
+  String get studyScreenOmit => '省略';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'スライドが生成されていません。';
 
   @override
@@ -899,6 +914,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String aiTextModeCount(int count) {
     return 'テキストモード ($count 語)';
   }
+
+  @override
+  String get aiContextMode => 'コンテキストモード';
 
   @override
   String get aiGenerationCategoryLabel => 'コンテンツモード';
@@ -986,6 +1004,12 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get addQuestionsWithAI => 'AIで質問を追加';
+
+  @override
+  String get generateSectionsWithAI => 'AIでセクションを生成';
+
+  @override
+  String get addSectionsWithAI => 'AIでセクションを追加';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {
@@ -1445,6 +1469,39 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => '完了';
+
+  @override
+  String get aiDifficultyTitle => '難易度';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'ドキュメントと同じ難易度';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => '手動難易度モード';
+
+  @override
+  String get aiDifficultyElementary => '小学校';
+
+  @override
+  String get aiDifficultyHighSchool => '高校';
+
+  @override
+  String get aiDifficultyBachelors => '学士号';
+
+  @override
+  String get aiDifficultyUniversity => '大学';
+
+  @override
+  String get aiDifficultyMasters => '修士号';
+
+  @override
+  String get aiDifficultyDoctorate => '博士号';
+
+  @override
+  String get aiDifficultyAutoDescription => '難易度はアップロードされたドキュメントに応じて自動的に調整されます';
+
+  @override
+  String get aiDifficultyManualDescription => 'コンテンツに最も適した難易度を手動で選択してください';
 
   @override
   String get chooseModeDialogTitle => 'モードを選択';

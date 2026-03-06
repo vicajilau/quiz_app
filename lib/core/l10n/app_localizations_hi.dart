@@ -288,6 +288,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get startQuiz => 'क्विज़ शुरू करें';
 
   @override
+  String get startQuizFromStudy => 'अपने ज्ञान का परीक्षण करें';
+
+  @override
+  String get studyScreenCustomChapter => 'कस्टम अध्याय';
+
+  @override
   String get maxIncorrectAnswersLabel => 'गलत उत्तरों को सीमित करें';
 
   @override
@@ -360,6 +366,9 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get examConfigurationTitle => 'परीक्षा कॉन्फ़िगरेशन';
+
+  @override
+  String get generationConfigurationTitle => 'जेनरेशन कॉन्फ़िगरेशन';
 
   @override
   String get examTimeLimitTitle => 'परीक्षा समय सीमा';
@@ -645,6 +654,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get addQuestion => 'प्रश्न जोड़ें';
 
   @override
+  String get addSection => 'अनुभाग जोड़ें';
+
+  @override
   String get editQuestion => 'प्रश्न संपादित करें';
 
   @override
@@ -884,6 +896,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get studyScreenRetry => 'पुनः प्रयास करें';
 
   @override
+  String get studyScreenOmit => 'छोड़ें';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'कोई स्लाइड नहीं बनाई गई।';
 
   @override
@@ -941,6 +956,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String aiTextModeCount(int count) {
     return 'पाठ मोड ($count शब्द)';
   }
+
+  @override
+  String get aiContextMode => 'संदर्भ मोड';
 
   @override
   String get aiGenerationCategoryLabel => 'सामग्री मोड';
@@ -1030,6 +1048,12 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get addQuestionsWithAI => 'AI के साथ प्रश्न जोड़ें';
+
+  @override
+  String get generateSectionsWithAI => 'AI के साथ अनुभाग उत्पन्न करें';
+
+  @override
+  String get addSectionsWithAI => 'AI के साथ अनुभाग जोड़ें';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {
@@ -1509,6 +1533,41 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'पूर्ण';
+
+  @override
+  String get aiDifficultyTitle => 'कठिनाई स्तर';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'दस्तावेज़ के समान कठिनाई';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => 'मैन्युअल कठिनाई मोड';
+
+  @override
+  String get aiDifficultyElementary => 'प्राथमिक विद्यालय';
+
+  @override
+  String get aiDifficultyHighSchool => 'उच्च विद्यालय';
+
+  @override
+  String get aiDifficultyBachelors => 'स्नातक की डिग्री';
+
+  @override
+  String get aiDifficultyUniversity => 'विश्वविद्यालय';
+
+  @override
+  String get aiDifficultyMasters => 'मास्टर डिग्री';
+
+  @override
+  String get aiDifficultyDoctorate => 'डॉक्टरेट';
+
+  @override
+  String get aiDifficultyAutoDescription =>
+      'अपलोड किए गए दस्तावेज़ के अनुसार कठिनाई स्तर स्वचालित रूप से समायोजित किया जाएगा';
+
+  @override
+  String get aiDifficultyManualDescription =>
+      'कठिनाई स्तर को मैन्युअल रूप से चुनें जो सामग्री के लिए सबसे उपयुक्त हो';
 
   @override
   String get chooseModeDialogTitle => 'मोड चुनें';

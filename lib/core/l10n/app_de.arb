@@ -111,6 +111,10 @@
       }
     }
   },
+  "aiContextMode": "Kontextmodus",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  },
   "load": "Laden",
   "@load": {
     "description": "Beschriftung für die Schaltfläche Quiz-Datei laden in der AppBar."
@@ -400,6 +404,14 @@
   "retry": "Wiederholen",
   "@retry": {
     "description": "Wiederholen-Schaltflächentext"
+  },
+  "studyScreenRetry": "Wiederholen",
+  "@studyScreenRetry": {
+    "description": "Wiederholungstext für fehlerhaften Abschnitt."
+  },
+  "studyScreenOmit": "Auslassen",
+  "@studyScreenOmit": {
+    "description": "Text für Auslassen-Schaltfläche"
   },
   "goBack": "Beenden",
   "@goBack": {
@@ -1650,6 +1662,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "Generierungskonfiguration",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin1Error": "Mindestens 1 Minute",
   "remainingTimeWithDays": "{days}T {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}W {days}T {hours}:{minutes}:{seconds}",
@@ -1829,7 +1845,6 @@
   "studyScreenNoSlidesAvailable": "Keine Lernabschnitte verfügbar.",
   "studyScreenGenerating": "Lernmaterialien werden erstellt...",
   "studyScreenError": "Beim Erstellen des Lernmaterials ist ein Fehler aufgetreten.",
-  "studyScreenRetry": "Wiederholen",
   "studyScreenNoSlidesGenerated": "Keine Folien erstellt.",
   "studyScreenPreviousSection": "Vorherige Seite",
   "studyScreenNextSection": "Nächste Seite",
@@ -1865,11 +1880,27 @@
     }
   },
   "studyScreenCompleted": "Abgeschlossen",
+  "aiDifficultyTitle": "Schwierigkeitsgrad",
+  "aiDifficultyAutoTurnedOn": "Gleiche Schwierigkeit wie das Dokument",
+  "aiDifficultyAutoTurnedOff": "Manueller Schwierigkeitsmodus",
+  "aiDifficultyElementary": "Grundschule",
+  "aiDifficultyHighSchool": "Gymnasium",
+  "aiDifficultyBachelors": "Bachelor-Abschluss",
+  "aiDifficultyUniversity": "Universität",
+  "aiDifficultyMasters": "Master-Abschluss",
+  "aiDifficultyDoctorate": "Doktortitel",
+  "aiDifficultyAutoDescription": "Der Schwierigkeitsgrad wird automatisch an das hochgeladene Dokument angepasst",
+  "aiDifficultyManualDescription": "Wählen Sie den Schwierigkeitsgrad manuell aus, der am besten zum Inhalt passt",
   "chooseModeDialogTitle": "Modus wählen",
   "chooseModeDialogMessage": "Diese Datei enthält sowohl Quizfragen als auch Lerninhalte. Welchen Modus möchten Sie öffnen?",
   "reattachFileDialogTitle": "Originaldatei erforderlich",
   "reattachFileDialogMessage": "Um Inhalte für diesen Abschnitt zu generieren, hängen Sie bitte die Originaldatei an, die zur Erstellung dieser Studie verwendet wurde.",
   "fileHashMismatchError": "Die ausgewählte Datei stimmt nicht mit der Originaldatei überein, die zur Erstellung dieser Studie verwendet wurde.",
   "showMoreLabel": "Mehr anzeigen",
-  "showLessLabel": "Weniger anzeigen"
+  "showLessLabel": "Weniger anzeigen",
+  "startQuizFromStudy": "Testen Sie Ihr Wissen",
+  "studyScreenCustomChapter": "Benutzerdefiniertes Kapitel",
+  "addSection": "Abschnitt hinzufügen",
+  "generateSectionsWithAI": "Abschnitte mit KI generieren",
+  "addSectionsWithAI": "Abschnitte mit KI hinzufügen"
 }

@@ -17,6 +17,9 @@ import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
+
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
 /// Configuration settings for AI-powered quiz question generation.
 class AiQuestionGenerationConfig {
@@ -41,11 +44,17 @@ class AiQuestionGenerationConfig {
   /// Optional file attachment containing source material.
   final AiFileAttachment? file;
 
-  /// Whether the [content] should be treated as a list of topics rather than direct text.
-  final bool isTopicMode;
+  /// The modality of AI generation.
+  final AiGenerationMode generationMode;
 
   /// The content focus category (Theory, Exercises, or Mixed).
   final AiGenerationCategory generationCategory;
+
+  /// Whether the difficulty should automatically adapt to the provided content.
+  final bool isAutoDifficulty;
+
+  /// The specific academic difficulty level when manual mode is selected.
+  final AiDifficultyLevel? difficultyLevel;
 
   /// Returns true if a file is attached to this configuration.
   bool get hasFile => file != null;
@@ -58,8 +67,10 @@ class AiQuestionGenerationConfig {
     this.preferredService,
     this.preferredModel,
     this.file,
-    this.isTopicMode = false,
+    this.generationMode = AiGenerationMode.text,
     this.generationCategory = AiGenerationCategory.both,
+    this.isAutoDifficulty = true,
+    this.difficultyLevel,
   });
 
   /// Creates a copy of this config but with the given fields replaced with the new values.
@@ -71,8 +82,10 @@ class AiQuestionGenerationConfig {
     AIService? preferredService,
     String? preferredModel,
     AiFileAttachment? file,
-    bool? isTopicMode,
+    AiGenerationMode? generationMode,
     AiGenerationCategory? generationCategory,
+    bool? isAutoDifficulty,
+    AiDifficultyLevel? difficultyLevel,
   }) {
     return AiQuestionGenerationConfig(
       questionCount: questionCount ?? this.questionCount,
@@ -82,8 +95,10 @@ class AiQuestionGenerationConfig {
       preferredService: preferredService ?? this.preferredService,
       preferredModel: preferredModel ?? this.preferredModel,
       file: file ?? this.file,
-      isTopicMode: isTopicMode ?? this.isTopicMode,
+      generationMode: generationMode ?? this.generationMode,
       generationCategory: generationCategory ?? this.generationCategory,
+      isAutoDifficulty: isAutoDifficulty ?? this.isAutoDifficulty,
+      difficultyLevel: difficultyLevel ?? this.difficultyLevel,
     );
   }
 }

@@ -24,7 +24,9 @@ import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/quiz/source_reference.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
 /// Use case that configures the `.quiz` file with chunk boundaries identified by AI.
 class InitializeQuizChunksUseCase {
@@ -34,20 +36,29 @@ class InitializeQuizChunksUseCase {
   InitializeQuizChunksUseCase({
     AiDocumentChunkingService? chunkingService,
     AIService? aiService,
-  }) : _chunkingService = chunkingService ?? ServiceLocator.getIt<AiDocumentChunkingService>(),
+  }) : _chunkingService =
+           chunkingService ?? ServiceLocator.getIt<AiDocumentChunkingService>(),
        _aiService = aiService ?? ServiceLocator.getIt<GeminiService>();
 
   /// Executes the AI chunking and returns a new [QuizFile] updated with the `study` mapping.
-  Future<QuizFile> execute(
-    QuizFile quizFile,
-    AiFileAttachment file,
-    String documentId,
-    AppLocalizations localizations,
-  ) async {
+  Future<QuizFile> execute({
+    required QuizFile quizFile,
+    required AiFileAttachment file,
+    required String documentId,
+    required AppLocalizations localizations,
+    required AiGenerationMode generationMode,
+    String? originalText,
+    required String language,
+    bool isAutoDifficulty = true,
+    AiDifficultyLevel? difficultyLevel,
+  }) async {
     final result = await generateChunksOnly(
       file: file,
       documentId: documentId,
       localizations: localizations,
+      extraContext: quizFile
+          .metadata
+          .description, // Use description as context if available
     );
     final chunks = result['chunks'] as List<StudyChunk>;
 
@@ -58,7 +69,14 @@ class InitializeQuizChunksUseCase {
       cache: chunks,
     );
 
-    final study = Study(content: studyContent);
+    final study = Study(
+      content: studyContent,
+      generationMode: generationMode,
+      originalText: originalText,
+      language: language,
+      isAutoDifficulty: isAutoDifficulty,
+      difficultyLevel: difficultyLevel,
+    );
 
     // Ensure the quizFile also stores the fileAttachment or at least its metadata
     // The UI should ideally pass the fileUri to the Bloc for JIT chunk generation.
@@ -74,6 +92,7 @@ class InitializeQuizChunksUseCase {
     required AiFileAttachment file,
     required String documentId,
     required AppLocalizations localizations,
+    String? extraContext,
   }) async {
     // 1. Upload the file to the AI service to get a URI (Gemini File API)
     final fileUri = await _aiService.uploadFile(file, localizations);
@@ -83,6 +102,41 @@ class InitializeQuizChunksUseCase {
       aiService: _aiService,
       fileUri: fileUri,
       fileMimeType: file.mimeType,
+      documentId: documentId,
+      localizations: localizations,
+      extraContext: extraContext,
+    );
+
+    final references = indexResult['references'] as List<SourceReference>;
+    final chunks = references.asMap().entries.map((entry) {
+      return StudyChunk(
+        chunkIndex: entry.key,
+        status: StudyChunkState.created,
+        sourceReference: entry.value,
+        aiSummary: null,
+        slides: null,
+      );
+    }).toList();
+
+    return {
+      'chunks': chunks,
+      'fileUri': fileUri,
+      'title': indexResult['title'] as String?,
+      'description': indexResult['description'] as String?,
+    };
+  }
+
+  /// Helper to generate chunks directly from text content or topics without requiring a file.
+  Future<Map<String, dynamic>> generateChunksFromText({
+    required String content,
+    required AiGenerationMode generationMode,
+    required String documentId,
+    required AppLocalizations localizations,
+  }) async {
+    final indexResult = await _chunkingService.generateIndexFromTextWithAi(
+      aiService: _aiService,
+      content: content,
+      generationMode: generationMode,
       documentId: documentId,
       localizations: localizations,
     );
@@ -100,7 +154,6 @@ class InitializeQuizChunksUseCase {
 
     return {
       'chunks': chunks,
-      'fileUri': fileUri,
       'title': indexResult['title'] as String?,
       'description': indexResult['description'] as String?,
     };

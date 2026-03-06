@@ -292,6 +292,12 @@ class AppLocalizationsEl extends AppLocalizations {
   String get startQuiz => 'Έναρξη Κουίζ';
 
   @override
+  String get startQuizFromStudy => 'Δοκιμάστε τις γνώσεις σας';
+
+  @override
+  String get studyScreenCustomChapter => 'Προσαρμοσμένο κεφάλαιο';
+
+  @override
   String get maxIncorrectAnswersLabel => 'Περιορισμός λανθασμένων απαντήσεων';
 
   @override
@@ -368,6 +374,9 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get examConfigurationTitle => 'Διαμόρφωση Εξέτασης';
+
+  @override
+  String get generationConfigurationTitle => 'Διαμόρφωση Παραγωγής';
 
   @override
   String get examTimeLimitTitle => 'Χρονικό Όριο Εξέτασης';
@@ -655,6 +664,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get addQuestion => 'Προσθήκη Ερώτησης';
 
   @override
+  String get addSection => 'Προσθήκη ενότητας';
+
+  @override
   String get editQuestion => 'Επεξεργασία Ερώτησης';
 
   @override
@@ -899,6 +911,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get studyScreenRetry => 'Δοκιμάστε ξανά';
 
   @override
+  String get studyScreenOmit => 'Παράλειψη';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'Δεν δημιουργήθηκαν διαφάνειες.';
 
   @override
@@ -956,6 +971,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String aiTextModeCount(int count) {
     return 'Λειτουργία κειμένου ($count λέξεις)';
   }
+
+  @override
+  String get aiContextMode => 'Λειτουργία πλαισίου';
 
   @override
   String get aiGenerationCategoryLabel => 'Λειτουργία Περιεχομένου';
@@ -1046,6 +1064,12 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get addQuestionsWithAI => 'Προσθήκη ερωτήσεων με AI';
+
+  @override
+  String get generateSectionsWithAI => 'Δημιουργία ενοτήτων με AI';
+
+  @override
+  String get addSectionsWithAI => 'Προσθήκη ενοτήτων με AI';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {
@@ -1528,6 +1552,41 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'Ολοκληρώθηκε';
+
+  @override
+  String get aiDifficultyTitle => 'Επίπεδο δυσκολίας';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'Ίδια δυσκολία με το έγγραφο';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => 'Χειροκίνητη λειτουργία δυσκολίας';
+
+  @override
+  String get aiDifficultyElementary => 'Δημοτικό Σχολείο';
+
+  @override
+  String get aiDifficultyHighSchool => 'Γυμνάσιο/Λύκειο';
+
+  @override
+  String get aiDifficultyBachelors => 'Πτυχίο';
+
+  @override
+  String get aiDifficultyUniversity => 'Πανεπιστήμιο';
+
+  @override
+  String get aiDifficultyMasters => 'Μεταπτυχιακό';
+
+  @override
+  String get aiDifficultyDoctorate => 'Διδακτορικό';
+
+  @override
+  String get aiDifficultyAutoDescription =>
+      'Το επίπεδο δυσκολίας θα προσαρμοστεί αυτόματα σύμφωνα με το έγγραφο που ανέβηκε';
+
+  @override
+  String get aiDifficultyManualDescription =>
+      'Επιλέξτε χειροκίνητα το επίπεδο δυσκολίας που ταιριάζει καλύτερα στο περιεχόμενο';
 
   @override
   String get chooseModeDialogTitle => 'Επιλογή Λειτουργίας';

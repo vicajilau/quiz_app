@@ -15,6 +15,7 @@
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
 abstract class AIService {
   /// Obtiene una respuesta del servicio de IA basado en el prompt proporcionado
@@ -55,6 +56,14 @@ abstract class AIService {
     AppLocalizations localizations, {
     required String fileUri,
     required String fileMimeType,
+    String? extraContext,
+  });
+
+  /// Generates a structured syllabus/index directly from text content or topics without a file.
+  Future<String> generateStudyIndexFromText(
+    AppLocalizations localizations, {
+    required String content,
+    required AiGenerationMode generationMode,
   });
 
   /// Verifica si el servicio está disponible (tiene API key configurada)

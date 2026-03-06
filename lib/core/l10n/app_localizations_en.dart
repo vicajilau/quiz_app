@@ -288,6 +288,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get startQuiz => 'Start Quiz';
 
   @override
+  String get startQuizFromStudy => 'Test your knowledge';
+
+  @override
+  String get studyScreenCustomChapter => 'Custom Chapter';
+
+  @override
   String get maxIncorrectAnswersLabel => 'Limit incorrect answers';
 
   @override
@@ -361,6 +367,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get examConfigurationTitle => 'Exam Configuration';
+
+  @override
+  String get generationConfigurationTitle => 'Generation Configuration';
 
   @override
   String get examTimeLimitTitle => 'Exam Time Limit';
@@ -646,6 +655,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addQuestion => 'Add Question';
 
   @override
+  String get addSection => 'Add Section';
+
+  @override
   String get editQuestion => 'Edit Question';
 
   @override
@@ -886,6 +898,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get studyScreenRetry => 'Retry';
 
   @override
+  String get studyScreenOmit => 'Omit';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'No slides generated.';
 
   @override
@@ -943,6 +958,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String aiTextModeCount(int count) {
     return 'Text Mode ($count words)';
   }
+
+  @override
+  String get aiContextMode => 'Context Mode';
 
   @override
   String get aiGenerationCategoryLabel => 'Content Mode';
@@ -1032,6 +1050,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get addQuestionsWithAI => 'Add questions with AI';
+
+  @override
+  String get generateSectionsWithAI => 'Generate sections with AI';
+
+  @override
+  String get addSectionsWithAI => 'Add sections with AI';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {
@@ -1510,6 +1534,41 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => 'Completed';
+
+  @override
+  String get aiDifficultyTitle => 'Difficulty Level';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => 'Same difficulty as the document';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => 'Manual difficulty mode';
+
+  @override
+  String get aiDifficultyElementary => 'Elementary School';
+
+  @override
+  String get aiDifficultyHighSchool => 'High School';
+
+  @override
+  String get aiDifficultyBachelors => 'Bachelor\'s Degree';
+
+  @override
+  String get aiDifficultyUniversity => 'University Degree';
+
+  @override
+  String get aiDifficultyMasters => 'Master\'s Degree';
+
+  @override
+  String get aiDifficultyDoctorate => 'Doctorate';
+
+  @override
+  String get aiDifficultyAutoDescription =>
+      'The difficulty level will be adjusted automatically according to the uploaded document';
+
+  @override
+  String get aiDifficultyManualDescription =>
+      'Select the difficulty level manually that best fits the content';
 
   @override
   String get chooseModeDialogTitle => 'Choose Mode';

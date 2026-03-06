@@ -13,22 +13,14 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
+/// The modality of AI generation.
+enum AiGenerationMode {
+  /// The user has provided an attached file to be used as context.
+  context,
 
-class AiStudyGenerationStoredSettings {
-  final String? serviceName;
-  final String? modelName;
-  final String? language;
-  final String? draftText;
-  final bool? isAutoDifficulty;
-  final AiDifficultyLevel? difficultyLevel;
+  /// The user has provided a comma-separated list of topics explicitly.
+  topic,
 
-  const AiStudyGenerationStoredSettings({
-    this.serviceName,
-    this.modelName,
-    this.language,
-    this.draftText,
-    this.isAutoDifficulty,
-    this.difficultyLevel,
-  });
+  /// The user has provided a free-form text chunk directly.
+  text,
 }

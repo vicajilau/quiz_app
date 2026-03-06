@@ -349,6 +349,14 @@
   "@startQuiz": {
     "description": "Testo del pulsante per iniziare il quiz"
   },
+  "startQuizFromStudy": "Mettiti alla prova",
+  "@startQuizFromStudy": {
+    "description": "Testo del pulsante per avviare il quiz dalla schermata di studio"
+  },
+  "studyScreenCustomChapter": "Capitolo Personalizzato",
+  "@studyScreenCustomChapter": {
+    "description": "Label for a manually added study chunk"
+  },
   "maxIncorrectAnswersLabel": "Limita risposte errate",
   "@maxIncorrectAnswersLabel": {
     "description": "Etichetta per l'interruttore di limitazione delle risposte errate"
@@ -745,6 +753,10 @@
   "@addQuestion": {
     "description": "Titolo per la finestra di dialogo aggiunta nuova domanda"
   },
+  "addSection": "Aggiungi Sezione",
+  "@addSection": {
+    "description": "Titolo per la finestra di dialogo aggiunta nuova sezione"
+  },
   "editQuestion": "Modifica domanda",
   "@editQuestion": {
     "description": "Titolo per la finestra di dialogo modifica domanda esistente"
@@ -976,6 +988,14 @@
   "addQuestionsWithAI": "Aggiungi domande con l'IA",
   "@addQuestionsWithAI": {
     "description": "Label for the button to add more questions using AI when some already exist."
+  },
+  "generateSectionsWithAI": "Genera sezioni con l'IA",
+  "@generateSectionsWithAI": {
+    "description": "Tooltip per il pulsante di generazione sezioni con IA."
+  },
+  "addSectionsWithAI": "Aggiungi sezioni con l'IA",
+  "@addSectionsWithAI": {
+    "description": "Etichetta per il pulsante per aggiungere altre sezioni usando IA quando ne esistono già alcune."
   },
   "aiGenerateDialogTitle": "Genera domande con IA",
   "@aiGenerateDialogTitle": {
@@ -1593,6 +1613,10 @@
   "@examConfigurationTitle": {
     "description": "Title for the advanced settings / exam configuration section"
   },
+  "generationConfigurationTitle": "Configurazione della generazione",
+  "@generationConfigurationTitle": {
+    "description": "Title for the generation configuration section in AI dialog"
+  },
   "validationMin1Error": "Minimo 1 minuto",
   "remainingTimeWithDays": "{days}g {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}s {days}g {hours}:{minutes}:{seconds}",
@@ -1773,6 +1797,13 @@
   "studyScreenGenerating": "Generazione del materiale di studio...",
   "studyScreenError": "Si è verificato un errore durante la generazione del materiale di studio.",
   "studyScreenRetry": "Riprova",
+  "@studyScreenRetry": {
+    "description": "Testo di riprovo su sezione errata."
+  },
+  "studyScreenOmit": "Omettere",
+  "@studyScreenOmit": {
+    "description": "Testo del pulsante omettere"
+  },
   "studyScreenNoSlidesGenerated": "Nessuna diapositiva generata.",
   "studyScreenPreviousSection": "Pagina precedente",
   "studyScreenNextSection": "Pagina successiva",
@@ -1808,11 +1839,26 @@
     }
   },
   "studyScreenCompleted": "Completato",
+  "aiDifficultyTitle": "Livello di difficoltà",
+  "aiDifficultyAutoTurnedOn": "Stessa difficoltà del documento",
+  "aiDifficultyAutoTurnedOff": "Modalità di difficoltà manuale",
+  "aiDifficultyElementary": "Scuola elementare",
+  "aiDifficultyHighSchool": "Scuola superiore",
+  "aiDifficultyBachelors": "Laurea triennale",
+  "aiDifficultyUniversity": "Università",
+  "aiDifficultyMasters": "Laurea magistrale",
+  "aiDifficultyDoctorate": "Dottorato",
+  "aiDifficultyAutoDescription": "Il livello di difficoltà verrà regolato automaticamente in base al documento caricato",
+  "aiDifficultyManualDescription": "Seleziona manualmente il livello di difficoltà che meglio si adatta al contenuto",
   "chooseModeDialogTitle": "Scegli modalità",
   "chooseModeDialogMessage": "Questo file contiene sia domande del quiz che contenuti di studio. Quale modalità desideri aprire?",
   "reattachFileDialogTitle": "File originale richiesto",
   "reattachFileDialogMessage": "Per generare contenuti per questa sezione, allega il file originale utilizzato per creare questo studio.",
   "fileHashMismatchError": "Il file selezionato non corrisponde al file originale utilizzato per creare questo studio.",
   "showMoreLabel": "Mostra altro",
-  "showLessLabel": "Mostra meno"
+  "showLessLabel": "Mostra meno",
+  "aiContextMode": "Modalità Contesto",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  }
 }

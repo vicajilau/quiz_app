@@ -280,6 +280,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get startQuiz => '开始测验';
 
   @override
+  String get startQuizFromStudy => '测试你的知识';
+
+  @override
+  String get studyScreenCustomChapter => '自定义章节';
+
+  @override
   String get maxIncorrectAnswersLabel => '限制错误答案';
 
   @override
@@ -347,6 +353,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get examConfigurationTitle => '考试配置';
+
+  @override
+  String get generationConfigurationTitle => '生成配置';
 
   @override
   String get examTimeLimitTitle => '考试时间限制';
@@ -615,6 +624,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get addQuestion => '添加问题';
 
   @override
+  String get addSection => '添加章节';
+
+  @override
   String get editQuestion => '编辑问题';
 
   @override
@@ -839,6 +851,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get studyScreenRetry => '重试';
 
   @override
+  String get studyScreenOmit => '忽略';
+
+  @override
   String get studyScreenNoSlidesGenerated => '没有生成幻灯片。';
 
   @override
@@ -894,6 +909,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String aiTextModeCount(int count) {
     return '文本模式 ($count 字)';
   }
+
+  @override
+  String get aiContextMode => '上下文模式';
 
   @override
   String get aiGenerationCategoryLabel => '内容模式';
@@ -981,6 +999,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get addQuestionsWithAI => '使用 AI 添加问题';
+
+  @override
+  String get generateSectionsWithAI => '使用 AI 生成章节';
+
+  @override
+  String get addSectionsWithAI => '使用 AI 添加章节';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {
@@ -1435,6 +1459,39 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get studyScreenCompleted => '已完成';
+
+  @override
+  String get aiDifficultyTitle => '难度级别';
+
+  @override
+  String get aiDifficultyAutoTurnedOn => '与文档难度相同';
+
+  @override
+  String get aiDifficultyAutoTurnedOff => '手动难度模式';
+
+  @override
+  String get aiDifficultyElementary => '小学';
+
+  @override
+  String get aiDifficultyHighSchool => '高中';
+
+  @override
+  String get aiDifficultyBachelors => '学士学位';
+
+  @override
+  String get aiDifficultyUniversity => '大学';
+
+  @override
+  String get aiDifficultyMasters => '硕士学位';
+
+  @override
+  String get aiDifficultyDoctorate => '博士学位';
+
+  @override
+  String get aiDifficultyAutoDescription => '难度级别将根据上传的文档自动调整';
+
+  @override
+  String get aiDifficultyManualDescription => '手动选择最适合内容的难度级别';
 
   @override
   String get chooseModeDialogTitle => '选择模式';

@@ -36,7 +36,9 @@ void main() {
 
     setUp(() async {
       configurationService = await setUpTestServiceLocator();
-      aiServiceSelector = await createTestAIServiceSelector(configurationService);
+      aiServiceSelector = await createTestAIServiceSelector(
+        configurationService,
+      );
       quizExecutionBloc = QuizExecutionBloc(
         aiServiceSelector: aiServiceSelector,
         configurationService: configurationService,

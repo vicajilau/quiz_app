@@ -8,7 +8,6 @@
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
@@ -20,10 +19,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mime/mime.dart';
+import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/extensions/string_extensions.dart';
 import 'package:quizdy/core/theme/extensions/file_loaded_theme.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
+import 'package:quizdy/presentation/screens/dialogs/exit_confirmation_dialog.dart';
+import 'package:quizdy/presentation/screens/widgets/study/add_edit_chunk_dialog.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
@@ -35,6 +38,7 @@ import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/models/quiz/study_content.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/core/constants/quiz_metadata.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
@@ -45,6 +49,9 @@ import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_s
 import 'package:quizdy/presentation/screens/widgets/request_file_name_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_view.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_sections_sidebar.dart';
+import 'package:quizdy/presentation/screens/widgets/study/study_index_footer_widget.dart';
+import 'package:quizdy/presentation/screens/widgets/study/study_execution_bottom_bar.dart';
+import 'package:quizdy/routes/app_router.dart';
 
 class StudyScreen extends StatelessWidget {
   final List<StudyChunk> initialChunks;
@@ -52,6 +59,11 @@ class StudyScreen extends StatelessWidget {
   final String documentTitle;
   final String? documentSummary;
   final QuizFile? quizFile;
+  final bool isAutoDifficulty;
+  final AiDifficultyLevel? difficultyLevel;
+  final AiGenerationMode? generationMode;
+  final String? originalText;
+  final String? language;
 
   const StudyScreen({
     super.key,
@@ -60,6 +72,11 @@ class StudyScreen extends StatelessWidget {
     required this.documentTitle,
     this.documentSummary,
     this.quizFile,
+    this.isAutoDifficulty = true,
+    this.difficultyLevel,
+    this.generationMode,
+    this.originalText,
+    this.language,
   });
 
   @override
@@ -75,6 +92,11 @@ class StudyScreen extends StatelessWidget {
         fileUri: quizFile?.fileUri,
         documentTitle: documentTitle,
         documentSummary: documentSummary ?? quizFile?.metadata.description,
+        isAutoDifficulty: quizFile?.study?.isAutoDifficulty ?? isAutoDifficulty,
+        difficultyLevel: difficultyLevel ?? quizFile?.study?.difficultyLevel,
+        originalText: originalText ?? quizFile?.study?.originalText,
+        language: language ?? quizFile?.study?.language,
+        generationMode: generationMode ?? quizFile?.study?.generationMode,
         onProgressChanged: (progress, processedChunks, chunks, fileUri) {
           context.read<FileBloc>().add(
             StudyProgressUpdated(
@@ -86,46 +108,80 @@ class StudyScreen extends StatelessWidget {
           );
         },
       ),
-      child: StudyScreenView(quizFile: quizFile),
+      child: StudyScreenView(
+        quizFile: quizFile,
+        generationMode: generationMode,
+        originalText: originalText,
+      ),
     );
   }
 }
 
 class StudyScreenView extends StatefulWidget {
-  const StudyScreenView({super.key, required this.quizFile});
+  const StudyScreenView({
+    super.key,
+    required this.quizFile,
+    this.generationMode,
+    this.originalText,
+  });
 
   final QuizFile? quizFile;
+  final AiGenerationMode? generationMode;
+  final String? originalText;
 
   @override
   State<StudyScreenView> createState() => _StudyScreenViewState();
 }
 
 class _StudyScreenViewState extends State<StudyScreenView> {
-  Future<void> _handleSave() async {
-    final localizations = AppLocalizations.of(context)!;
+  Future<bool> _confirmExit() async {
+    final studyState = context.read<StudyExecutionBloc>().state;
+    final fileToSave = _getCurrentQuizFile(studyState);
+    final checkChanges = ServiceLocator.getIt<CheckFileChangesUseCase>();
+    if (checkChanges.execute(fileToSave)) {
+      return await showDialog<bool>(
+            context: context,
+            builder: (context) => const ExitConfirmationDialog(),
+          ) ??
+          false;
+    }
+    return true;
+  }
+
+  QuizFile _getCurrentQuizFile(StudyExecutionState studyState) {
     final fileState = context.read<FileBloc>().state;
 
-    final QuizFile fileToSave;
+    QuizFile updatedQuizFile(QuizFile qf) {
+      final processedChunks = studyState.chunks
+          .where((c) => c.status != StudyChunkState.created)
+          .length;
+      final studyContent = StudyContent(
+        progressPercentage: studyState.progressPercentage,
+        totalChunks: studyState.chunks.length,
+        processedChunks: processedChunks,
+        cache: studyState.chunks,
+      );
+
+      return qf.copyWith(
+        fileUri: studyState.fileUri,
+        fileContentHash:
+            qf.fileContentHash ?? studyState.fileAttachment?.contentHash,
+        study:
+            qf.study?.copyWith(content: studyContent) ??
+            Study(
+              content: studyContent,
+              generationMode: widget.generationMode,
+              originalText: widget.originalText,
+            ),
+      );
+    }
 
     if (fileState is FileLoaded) {
-      final studyState = context.read<StudyExecutionBloc>().state;
-      fileToSave = fileState.quizFile.copyWith(
-        fileUri: studyState.fileUri,
-        fileContentHash:
-            fileState.quizFile.fileContentHash ??
-            studyState.fileAttachment?.contentHash,
-      );
+      return updatedQuizFile(fileState.quizFile);
     } else if (fileState is FileSaved) {
-      final studyState = context.read<StudyExecutionBloc>().state;
-      fileToSave = fileState.quizFile.copyWith(
-        fileUri: studyState.fileUri,
-        fileContentHash:
-            fileState.quizFile.fileContentHash ??
-            studyState.fileAttachment?.contentHash,
-      );
+      return updatedQuizFile(fileState.quizFile);
     } else {
-      final studyState = context.read<StudyExecutionBloc>().state;
-      fileToSave = QuizFile(
+      return QuizFile(
         metadata: QuizMetadata(
           title: studyState.documentTitle,
           description: studyState.documentSummary ?? '',
@@ -142,11 +198,19 @@ class _StudyScreenViewState extends State<StudyScreenView> {
                 .length,
             cache: studyState.chunks,
           ),
+          generationMode: widget.generationMode,
+          originalText: widget.originalText,
         ),
         fileContentHash: studyState.fileAttachment?.contentHash,
         fileUri: studyState.fileUri,
       );
     }
+  }
+
+  Future<void> _handleSave() async {
+    final localizations = AppLocalizations.of(context)!;
+    final studyState = context.read<StudyExecutionBloc>().state;
+    final fileToSave = _getCurrentQuizFile(studyState);
 
     if (!mounted) return;
 
@@ -194,7 +258,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(false),
-            child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
+            child: Text(localizations.studyScreenOmit),
           ),
           ElevatedButton(
             onPressed: () => Navigator.of(dialogContext).pop(true),
@@ -204,7 +268,12 @@ class _StudyScreenViewState extends State<StudyScreenView> {
       ),
     );
 
-    if (confirmed != true || !context.mounted) return;
+    if (confirmed != true || !context.mounted) {
+      if (context.mounted) {
+        context.read<StudyExecutionBloc>().add(FileReattachmentCancelled());
+      }
+      return;
+    }
 
     final result = await FilePicker.platform.pickFiles(
       type: FileType.any,
@@ -245,305 +314,394 @@ class _StudyScreenViewState extends State<StudyScreenView> {
     final localizations = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return Scaffold(
-      backgroundColor: isDark ? AppTheme.zinc900 : AppTheme.zinc50,
-      appBar: AppBar(
-        title: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-          builder: (context, state) {
-            return Text(state.documentTitle);
-          },
-        ),
-        actions: [
-          Container(
-            width: 40,
-            height: 40,
-            margin: const EdgeInsets.only(right: 8),
-            decoration: BoxDecoration(
-              color: context.fileLoadedTheme.appBarIconBackgroundColor,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: IconButton(
-              padding: EdgeInsets.zero,
-              onPressed: () async => await showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: (_) => const SettingsDialog(),
-              ),
-              icon: Icon(
-                LucideIcons.settings,
-                color: Theme.of(context).colorScheme.onPrimary,
-                size: 20,
-              ),
-              tooltip: AppLocalizations.of(context)!.questionOrderConfigTooltip,
-            ),
-          ),
-          IconButton(
-            icon: const Icon(LucideIcons.save),
-            tooltip: localizations.saveButton,
-            onPressed: _handleSave,
-          ),
-        ],
-        leading: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-          builder: (context, state) {
-            return IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                if (!state.isIndexMode) {
-                  context.read<StudyExecutionBloc>().add(
-                    ReturnToIndexRequested(),
-                  );
-                  return;
-                }
-                context.read<FileBloc>().add(QuizFileReset());
-                context.pop();
-              },
-              tooltip: MaterialLocalizations.of(context).backButtonTooltip,
-            );
-          },
-        ),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(6.0),
-          child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-            buildWhen: (previous, current) =>
-                previous.progressPercentage != current.progressPercentage,
-            builder: (context, state) {
-              return Tooltip(
-                message: '${state.progressPercentage.toStringAsFixed(1)}%',
-                child: LinearProgressIndicator(
-                  value: state.progressPercentage / 100,
-                  backgroundColor: Theme.of(
-                    context,
-                  ).colorScheme.surfaceContainerHighest,
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    Theme.of(context).colorScheme.primary,
-                  ),
-                  minHeight: 6,
-                ),
-              );
-            },
-          ),
-        ),
-      ),
-      body: MultiBlocListener(
-        listeners: [
-          BlocListener<StudyExecutionBloc, StudyExecutionState>(
-            listenWhen: (previous, current) =>
-                !previous.needsFileReattachment &&
-                current.needsFileReattachment,
-            listener: (context, state) {
-              _handleFileReattachment(context);
-            },
-          ),
-          BlocListener<StudyExecutionBloc, StudyExecutionState>(
-            listenWhen: (previous, current) {
-              final currentChunk = current.currentChunk;
-              final previousChunk = previous.currentChunk;
-              return currentChunk?.status == StudyChunkState.error &&
-                  previousChunk?.status != StudyChunkState.error;
-            },
-            listener: (context, state) {
-              final currentChunk = state.currentChunk;
-              if (currentChunk == null) return;
+    // ignore: deprecated_member_use
+    return WillPopScope(
+      onWillPop: () async {
+        final shouldExit = await _confirmExit();
+        return shouldExit;
+      },
+      child: Scaffold(
+        backgroundColor: isDark ? AppTheme.zinc900 : AppTheme.zinc50,
+        bottomNavigationBar:
+            BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+              builder: (context, state) {
+                if (state.chunks.isEmpty) return const SizedBox.shrink();
 
-              showDialog(
-                context: context,
-                builder: (dialogContext) => AlertDialog(
-                  title: Text(localizations.studyScreenError),
-                  content: Text(
-                    currentChunk.errorMessage ?? localizations.studyScreenError,
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.of(dialogContext).pop(),
-                      child: Text(
-                        MaterialLocalizations.of(context).closeButtonLabel,
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(dialogContext).pop();
-                        context.read<StudyExecutionBloc>().add(
-                          StudyChunkRequested(state.currentChunkIndex),
-                        );
-                      },
-                      child: Text(localizations.studyScreenRetry),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-        ],
-        child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-          builder: (context, state) {
-            if (state.chunks.isEmpty) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            if (state.isIndexMode) {
-              return StudyIndexView(state: state, localizations: localizations);
-            }
-
-            final currentChunk = state.currentChunk;
-            if (currentChunk == null) {
-              return Center(
-                child: Text(localizations.studyScreenNoSlidesAvailable),
-              );
-            }
-
-            if (currentChunk.status == StudyChunkState.processing) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const CircularProgressIndicator(),
-                    const SizedBox(height: 16),
-                    Text(localizations.studyScreenGenerating),
-                  ],
-                ),
-              );
-            }
-
-            return Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                StudySectionsSidebar(
-                  chunks: state.chunks,
-                  currentChunkIndex: state.currentChunkIndex,
-                  localizations: localizations,
-                  onChunkSelected: (index) {
-                    context.read<StudyExecutionBloc>().add(
-                      StudyChunkRequested(index),
+                final currentQuizFile = _getCurrentQuizFile(state);
+                final hasChanges =
+                    ServiceLocator.getIt<CheckFileChangesUseCase>().execute(
+                      currentQuizFile,
                     );
-                  },
+
+                if (state.isIndexMode) {
+                  return StudyIndexFooterWidget(
+                    localizations: localizations,
+                    hasChunks: state.chunks.isNotEmpty,
+                    onStartQuiz: () {
+                      context.go(AppRoutes.fileLoadedScreen);
+                    },
+                    onAddChunk: () async {
+                      final result = await showDialog<Map<String, String>>(
+                        context: context,
+                        builder: (context) =>
+                            AddEditChunkDialog(localizations: localizations),
+                      );
+
+                      if (result != null && context.mounted) {
+                        context.read<StudyExecutionBloc>().add(
+                          AddStudyChunkRequested(
+                            title: result['title'] ?? '',
+                            content: result['text'] ?? '',
+                          ),
+                        );
+                      }
+                    },
+                    onGenerateAI: null, // TODO: Implement generate AI
+                    onImport: null, // TODO: Implement import questions
+                    onSave: _handleSave,
+                    showSaveButton: hasChanges,
+                  );
+                }
+
+                return StudyExecutionBottomBar(
+                  currentIndex: state.currentChunkIndex,
+                  totalCount: state.chunks.length,
+                  progressPercentage: state.progressPercentage,
+                  localizations: localizations,
+                  onPrevious: state.hasPrevious
+                      ? () => context.read<StudyExecutionBloc>().add(
+                          PreviousStudyChunkRequested(),
+                        )
+                      : null,
+                  onNext: state.hasNext
+                      ? () => context.read<StudyExecutionBloc>().add(
+                          NextStudyChunkRequested(),
+                        )
+                      : null,
+                );
+              },
+            ),
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(72),
+          child: AppBar(
+            backgroundColor: Theme.of(context).primaryColor,
+            elevation: 0,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
+            ),
+            toolbarHeight: 72,
+            leadingWidth: 72,
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 24),
+              child: Center(
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: context.fileLoadedTheme.appBarIconBackgroundColor,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+                    builder: (context, state) {
+                      return IconButton(
+                        padding: EdgeInsets.zero,
+                        icon: Icon(
+                          LucideIcons.arrowLeft,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                          size: 20,
+                        ),
+                        tooltip: localizations.backSemanticLabel,
+                        onPressed: () async {
+                          if (!state.isIndexMode) {
+                            context.read<StudyExecutionBloc>().add(
+                              ReturnToIndexRequested(),
+                            );
+                            return;
+                          }
+                          final shouldExit = await _confirmExit();
+                          if (shouldExit && context.mounted) {
+                            context.read<FileBloc>().add(QuizFileReset());
+                            context.pop();
+                          }
+                        },
+                      );
+                    },
+                  ),
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: currentChunk.status == StudyChunkState.error
-                              ? const SizedBox.shrink()
-                              : (currentChunk.slides != null &&
-                                        currentChunk.slides!.isNotEmpty
-                                    ? ListView.builder(
-                                        itemCount: currentChunk.slides!.length,
-                                        itemBuilder: (context, index) {
-                                          final slide =
-                                              currentChunk.slides![index];
-                                          return Card(
-                                            margin: const EdgeInsets.only(
-                                              bottom: 16,
-                                            ),
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(16),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: slide.uiElements.map((
-                                                  element,
-                                                ) {
-                                                  final text =
-                                                      element.props['text']
-                                                          ?.toString() ??
-                                                      '';
-                                                  if (element.componentType ==
-                                                      'Title') {
+              ),
+            ),
+            title: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+                        builder: (context, state) {
+                          return Text(
+                            state.documentTitle,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: 'Plus Jakarta Sans',
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            actions: [
+              Container(
+                width: 40,
+                height: 40,
+                margin: const EdgeInsets.only(right: 24),
+                decoration: BoxDecoration(
+                  color: context.fileLoadedTheme.appBarIconBackgroundColor,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () async => await showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (_) => const SettingsDialog(),
+                  ),
+                  icon: Icon(
+                    LucideIcons.settings,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    size: 20,
+                  ),
+                  tooltip: AppLocalizations.of(
+                    context,
+                  )!.questionOrderConfigTooltip,
+                ),
+              ),
+            ],
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(6.0),
+              child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+                buildWhen: (previous, current) =>
+                    previous.progressPercentage != current.progressPercentage,
+                builder: (context, state) {
+                  return Tooltip(
+                    message: '${state.progressPercentage.toStringAsFixed(1)}%',
+                    child: LinearProgressIndicator(
+                      value: state.progressPercentage / 100,
+                      backgroundColor: Theme.of(
+                        context,
+                      ).colorScheme.surfaceContainerHighest,
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        Theme.of(context).colorScheme.onPrimary,
+                      ),
+                      minHeight: 6,
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
+        body: MultiBlocListener(
+          listeners: [
+            BlocListener<StudyExecutionBloc, StudyExecutionState>(
+              listenWhen: (previous, current) =>
+                  !previous.needsFileReattachment &&
+                  current.needsFileReattachment,
+              listener: (context, state) {
+                _handleFileReattachment(context);
+              },
+            ),
+            BlocListener<StudyExecutionBloc, StudyExecutionState>(
+              listenWhen: (previous, current) {
+                final currentChunk = current.currentChunk;
+                final previousChunk = previous.currentChunk;
+                return currentChunk?.status == StudyChunkState.error &&
+                    previousChunk?.status != StudyChunkState.error;
+              },
+              listener: (context, state) {
+                final currentChunk = state.currentChunk;
+                if (currentChunk == null) return;
+
+                showDialog(
+                  context: context,
+                  builder: (dialogContext) => AlertDialog(
+                    title: Text(localizations.studyScreenError),
+                    content: Text(
+                      currentChunk.errorMessage ??
+                          localizations.studyScreenError,
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(dialogContext).pop(),
+                        child: Text(
+                          MaterialLocalizations.of(context).closeButtonLabel,
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(dialogContext).pop();
+                          context.read<StudyExecutionBloc>().add(
+                            StudyChunkRequested(state.currentChunkIndex),
+                          );
+                        },
+                        child: Text(localizations.studyScreenRetry),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
+          child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+            builder: (context, state) {
+              if (state.chunks.isEmpty) {
+                return const Center(child: CircularProgressIndicator());
+              }
+
+              if (state.isIndexMode) {
+                return StudyIndexView(
+                  state: state,
+                  localizations: localizations,
+                  onAddChunk: () async {
+                    final result = await showDialog<Map<String, String>>(
+                      context: context,
+                      builder: (context) =>
+                          AddEditChunkDialog(localizations: localizations),
+                    );
+
+                    if (result != null && context.mounted) {
+                      context.read<StudyExecutionBloc>().add(
+                        AddStudyChunkRequested(
+                          title: result['title'] ?? '',
+                          content: result['text'] ?? '',
+                        ),
+                      );
+                    }
+                  },
+                  onSave: _handleSave,
+                  onImport: () => _handleFileReattachment(context),
+                );
+              }
+
+              final currentChunk = state.currentChunk;
+              if (currentChunk == null) {
+                return Center(
+                  child: Text(localizations.studyScreenNoSlidesAvailable),
+                );
+              }
+
+              if (currentChunk.status == StudyChunkState.processing) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const CircularProgressIndicator(),
+                      const SizedBox(height: 16),
+                      Text(localizations.studyScreenGenerating),
+                    ],
+                  ),
+                );
+              }
+
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  StudySectionsSidebar(
+                    chunks: state.chunks,
+                    currentChunkIndex: state.currentChunkIndex,
+                    localizations: localizations,
+                    onChunkSelected: (index) {
+                      context.read<StudyExecutionBloc>().add(
+                        StudyChunkRequested(index),
+                      );
+                    },
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: currentChunk.status == StudyChunkState.error
+                                ? const SizedBox.shrink()
+                                : (currentChunk.slides != null &&
+                                          currentChunk.slides!.isNotEmpty
+                                      ? ListView.builder(
+                                          itemCount:
+                                              currentChunk.slides!.length,
+                                          itemBuilder: (context, index) {
+                                            final slide =
+                                                currentChunk.slides![index];
+                                            return Card(
+                                              margin: const EdgeInsets.only(
+                                                bottom: 16,
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(
+                                                  16,
+                                                ),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: slide.uiElements.map((
+                                                    element,
+                                                  ) {
+                                                    final text =
+                                                        element.props['text']
+                                                            ?.toString() ??
+                                                        '';
+                                                    if (element.componentType ==
+                                                        'Title') {
+                                                      return Padding(
+                                                        padding:
+                                                            const EdgeInsets.only(
+                                                              bottom: 8.0,
+                                                            ),
+                                                        child: Text(
+                                                          text,
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .titleLarge,
+                                                        ),
+                                                      );
+                                                    }
                                                     return Padding(
                                                       padding:
                                                           const EdgeInsets.only(
                                                             bottom: 8.0,
                                                           ),
-                                                      child: Text(
-                                                        text,
-                                                        style: Theme.of(
-                                                          context,
-                                                        ).textTheme.titleLarge,
-                                                      ),
+                                                      child: Text(text),
                                                     );
-                                                  }
-                                                  return Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                          bottom: 8.0,
-                                                        ),
-                                                    child: Text(text),
-                                                  );
-                                                }).toList(),
+                                                  }).toList(),
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        },
-                                      )
-                                    : Center(
-                                        child: Text(
-                                          localizations
-                                              .studyScreenNoSlidesGenerated,
-                                        ),
-                                      )),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Flexible(
-                              child: ElevatedButton(
-                                onPressed: state.hasPrevious
-                                    ? () => context
-                                          .read<StudyExecutionBloc>()
-                                          .add(PreviousStudyChunkRequested())
-                                    : null,
-                                child: Text(
-                                  localizations.studyScreenPreviousSection,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    localizations.studyScreenSectionIndicator(
-                                      state.currentChunkIndex + 1,
-                                      state.chunks.length,
-                                    ),
-                                  ),
-                                  Text(
-                                    '${state.progressPercentage.toStringAsFixed(0)}% ${localizations.studyScreenCoverage}',
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.bodySmall,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Flexible(
-                              child: ElevatedButton(
-                                onPressed: state.hasNext
-                                    ? () => context
-                                          .read<StudyExecutionBloc>()
-                                          .add(NextStudyChunkRequested())
-                                    : null,
-                                child: Text(
-                                  localizations.studyScreenNextSection,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                                            );
+                                          },
+                                        )
+                                      : Center(
+                                          child: Text(
+                                            localizations
+                                                .studyScreenNoSlidesGenerated,
+                                          ),
+                                        )),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
-            );
-          },
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
