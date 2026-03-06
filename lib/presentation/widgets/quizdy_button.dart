@@ -98,6 +98,7 @@ class QuizdyButton extends StatelessWidget {
   final bool expanded;
   final IconData? icon;
   final Color? backgroundColor;
+  final bool iconOnRight;
 
   static const double _maxWidth = 620;
 
@@ -111,6 +112,7 @@ class QuizdyButton extends StatelessWidget {
     this.expanded = false,
     this.icon,
     this.backgroundColor,
+    this.iconOnRight = false,
   });
 
   @override
@@ -157,7 +159,7 @@ class QuizdyButton extends StatelessWidget {
         mainAxisSize: expanded ? MainAxisSize.max : MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          if (icon != null) ...[
+          if (icon != null && !iconOnRight) ...[
             Icon(icon, color: textColor, size: 20),
             const SizedBox(width: 8),
           ],
@@ -168,6 +170,10 @@ class QuizdyButton extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
           ),
+          if (icon != null && iconOnRight) ...[
+            const SizedBox(width: 8),
+            Icon(icon, color: textColor, size: 20),
+          ],
         ],
       ),
     );

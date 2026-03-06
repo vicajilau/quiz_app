@@ -396,7 +396,7 @@
         "example": "8"
       },
       "total": {
-    "type": "int",
+        "type": "int",
         "example": "10"
       }
     }
@@ -1845,7 +1845,6 @@
   "studyScreenNoSlidesAvailable": "Keine Lernabschnitte verfügbar.",
   "studyScreenGenerating": "Lernmaterialien werden erstellt...",
   "studyScreenError": "Beim Erstellen des Lernmaterials ist ein Fehler aufgetreten.",
-  "studyScreenRetry": "Wiederholen",
   "studyScreenNoSlidesGenerated": "Keine Folien erstellt.",
   "studyScreenPreviousSection": "Vorherige Seite",
   "studyScreenNextSection": "Nächste Seite",
@@ -1898,5 +1897,10 @@
   "reattachFileDialogMessage": "Um Inhalte für diesen Abschnitt zu generieren, hängen Sie bitte die Originaldatei an, die zur Erstellung dieser Studie verwendet wurde.",
   "fileHashMismatchError": "Die ausgewählte Datei stimmt nicht mit der Originaldatei überein, die zur Erstellung dieser Studie verwendet wurde.",
   "showMoreLabel": "Mehr anzeigen",
-  "showLessLabel": "Weniger anzeigen"
+  "showLessLabel": "Weniger anzeigen",
+  "startQuizFromStudy": "Testen Sie Ihr Wissen",
+  "studyScreenCustomChapter": "Benutzerdefiniertes Kapitel",
+  "addSection": "Abschnitt hinzufügen",
+  "generateSectionsWithAI": "Abschnitte mit KI generieren",
+  "addSectionsWithAI": "Abschnitte mit KI hinzufügen"
 }

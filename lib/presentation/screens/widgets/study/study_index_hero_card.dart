@@ -35,89 +35,75 @@ class StudyIndexHeroCard extends StatelessWidget {
     final summaryColor = isDark ? AppTheme.zinc400 : AppTheme.zinc500;
     final statCardBg = isDark ? const Color(0xFF1F1F23) : AppTheme.zinc100;
     final statLabelColor = isDark ? AppTheme.zinc500 : AppTheme.zinc400;
-    final completedValueColor =
-        isDark ? const Color(0xFF5EEAD4) : AppTheme.secondaryColor;
+    final completedValueColor = isDark
+        ? const Color(0xFF5EEAD4)
+        : AppTheme.secondaryColor;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: isDark ? AppTheme.cardColorDark : Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: isDark
-            ? null
-            : Border.all(color: AppTheme.borderColor, width: 1),
-      ),
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              const Icon(
-                Icons.menu_book_rounded,
-                size: 18,
-                color: AppTheme.primaryColor,
-              ),
-              const SizedBox(width: 8),
-              Text(
-                localizations.studyScreenStudyGuide,
-                style: theme.textTheme.labelMedium?.copyWith(
-                  color: AppTheme.primaryColor,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 0.5,
-                ),
-              ),
-            ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          localizations.studyScreenStudyGuide.toUpperCase(),
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontFamily: 'Inter',
+            color: Colors.grey[600],
+            fontWeight: FontWeight.w600,
           ),
-          const SizedBox(height: 12),
-          Text(
+        ),
+        const SizedBox(height: 8),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
             state.documentTitle,
-            style: theme.textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.w700,
+            style: theme.textTheme.headlineSmall?.copyWith(
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.bold,
+              height: 1.3,
             ),
           ),
-          if (state.documentSummary != null &&
-              state.documentSummary!.isNotEmpty) ...[
-            const SizedBox(height: 8),
-            Text(
-              state.documentSummary!,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: summaryColor,
-                height: 1.5,
-              ),
-            ),
-          ],
+        ),
+        if (state.documentSummary != null &&
+            state.documentSummary!.isNotEmpty) ...[
           const SizedBox(height: 16),
-          Row(
-            children: [
-              _buildStatCard(
-                context,
-                value: '${state.chunks.length}',
-                label: localizations.studyScreenSections,
-                cardBg: statCardBg,
-                labelColor: statLabelColor,
-              ),
-              const SizedBox(width: 12),
-              _buildStatCard(
-                context,
-                value: '${state.progressPercentage.toStringAsFixed(0)}%',
-                label: localizations.studyScreenCoverage,
-                valueColor: AppTheme.primaryColor,
-                cardBg: statCardBg,
-                labelColor: statLabelColor,
-              ),
-              const SizedBox(width: 12),
-              _buildStatCard(
-                context,
-                value: '${state.processedChunks}/${state.chunks.length}',
-                label: localizations.studyScreenCompleted,
-                valueColor: completedValueColor,
-                cardBg: statCardBg,
-                labelColor: statLabelColor,
-              ),
-            ],
+          Text(
+            state.documentSummary!,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: summaryColor,
+              height: 1.5,
+            ),
           ),
         ],
-      ),
+        const SizedBox(height: 24),
+        Row(
+          children: [
+            _buildStatCard(
+              context,
+              value: '${state.chunks.length}',
+              label: localizations.studyScreenSections,
+              cardBg: statCardBg,
+              labelColor: statLabelColor,
+            ),
+            const SizedBox(width: 12),
+            _buildStatCard(
+              context,
+              value: '${state.progressPercentage.toStringAsFixed(0)}%',
+              label: localizations.studyScreenCoverage,
+              valueColor: AppTheme.primaryColor,
+              cardBg: statCardBg,
+              labelColor: statLabelColor,
+            ),
+            const SizedBox(width: 12),
+            _buildStatCard(
+              context,
+              value: '${state.processedChunks}/${state.chunks.length}',
+              label: localizations.studyScreenCompleted,
+              valueColor: completedValueColor,
+              cardBg: statCardBg,
+              labelColor: statLabelColor,
+            ),
+          ],
+        ),
+      ],
     );
   }
 

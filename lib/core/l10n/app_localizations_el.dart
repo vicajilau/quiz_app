@@ -292,6 +292,12 @@ class AppLocalizationsEl extends AppLocalizations {
   String get startQuiz => 'Έναρξη Κουίζ';
 
   @override
+  String get startQuizFromStudy => 'Δοκιμάστε τις γνώσεις σας';
+
+  @override
+  String get studyScreenCustomChapter => 'Προσαρμοσμένο κεφάλαιο';
+
+  @override
   String get maxIncorrectAnswersLabel => 'Περιορισμός λανθασμένων απαντήσεων';
 
   @override
@@ -656,6 +662,9 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get addQuestion => 'Προσθήκη Ερώτησης';
+
+  @override
+  String get addSection => 'Προσθήκη ενότητας';
 
   @override
   String get editQuestion => 'Επεξεργασία Ερώτησης';
@@ -1055,6 +1064,12 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get addQuestionsWithAI => 'Προσθήκη ερωτήσεων με AI';
+
+  @override
+  String get generateSectionsWithAI => 'Δημιουργία ενοτήτων με AI';
+
+  @override
+  String get addSectionsWithAI => 'Προσθήκη ενοτήτων με AI';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {

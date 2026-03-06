@@ -280,6 +280,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get startQuiz => '开始测验';
 
   @override
+  String get startQuizFromStudy => '测试你的知识';
+
+  @override
+  String get studyScreenCustomChapter => '自定义章节';
+
+  @override
   String get maxIncorrectAnswersLabel => '限制错误答案';
 
   @override
@@ -616,6 +622,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get addQuestion => '添加问题';
+
+  @override
+  String get addSection => '添加章节';
 
   @override
   String get editQuestion => '编辑问题';
@@ -990,6 +999,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get addQuestionsWithAI => '使用 AI 添加问题';
+
+  @override
+  String get generateSectionsWithAI => '使用 AI 生成章节';
+
+  @override
+  String get addSectionsWithAI => '使用 AI 添加章节';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {

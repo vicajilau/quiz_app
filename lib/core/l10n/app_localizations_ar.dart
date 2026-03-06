@@ -286,6 +286,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get startQuiz => 'بدء الاختبار';
 
   @override
+  String get startQuizFromStudy => 'اختبر معرفتك';
+
+  @override
+  String get studyScreenCustomChapter => 'فصل مخصص';
+
+  @override
   String get maxIncorrectAnswersLabel => 'تقييد الإجابات الخاطئة';
 
   @override
@@ -641,6 +647,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get addQuestion => 'إضافة سؤال';
+
+  @override
+  String get addSection => 'إضافة قسم';
 
   @override
   String get editQuestion => 'تحرير السؤال';
@@ -1032,6 +1041,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get addQuestionsWithAI => 'إضافة أسئلة باستخدام الذكاء الاصطناعي';
+
+  @override
+  String get generateSectionsWithAI => 'إنشاء أقسام باستخدام الذكاء الاصطناعي';
+
+  @override
+  String get addSectionsWithAI => 'إضافة أقسام باستخدام الذكاء الاصطناعي';
 
   @override
   String aiServiceLimitsWithChars(int words, int chars) {

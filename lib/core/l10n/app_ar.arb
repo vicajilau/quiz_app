@@ -1861,5 +1861,10 @@
   "reattachFileDialogMessage": "لتوليد محتوى لهذا القسم، يرجى إرفاق الملف الأصلي المستخدم لإنشاء هذه الدراسة.",
   "fileHashMismatchError": "الملف المحدد لا يتطابق مع الملف الأصلي المستخدم لإنشاء هذه الدراسة.",
   "showMoreLabel": "عرض المزيد",
-  "showLessLabel": "عرض أقل"
+  "showLessLabel": "عرض أقل",
+  "startQuizFromStudy": "اختبر معرفتك",
+  "studyScreenCustomChapter": "فصل مخصص",
+  "addSection": "إضافة قسم",
+  "generateSectionsWithAI": "إنشاء أقسام باستخدام الذكاء الاصطناعي",
+  "addSectionsWithAI": "إضافة أقسام باستخدام الذكاء الاصطناعي"
 }

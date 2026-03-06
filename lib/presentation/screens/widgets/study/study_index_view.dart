@@ -15,6 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
@@ -30,11 +31,17 @@ import 'package:quizdy/presentation/screens/widgets/study/study_index_sections_h
 class StudyIndexView extends StatelessWidget {
   final StudyExecutionState state;
   final AppLocalizations localizations;
+  final VoidCallback? onAddChunk;
+  final VoidCallback? onSave;
+  final VoidCallback? onImport;
 
   const StudyIndexView({
     super.key,
     required this.state,
     required this.localizations,
+    this.onAddChunk,
+    this.onSave,
+    this.onImport,
   });
 
   Future<void> _onChunkTap(BuildContext context, int index) async {

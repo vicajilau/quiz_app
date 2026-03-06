@@ -1851,7 +1851,6 @@
   "studyScreenNoSlidesAvailable": "No hi ha seccions d'estudi disponibles.",
   "studyScreenGenerating": "Generant materials d'estudi...",
   "studyScreenError": "S'ha produït un error en generar el material d'estudi.",
-  "studyScreenRetry": "Reintenta",
   "studyScreenNoSlidesGenerated": "No s'han generat diapositives.",
   "studyScreenPreviousSection": "Pàgina anterior",
   "studyScreenNextSection": "Pàgina següent",
@@ -1904,5 +1903,10 @@
   "reattachFileDialogMessage": "Per a generar contingut per a aquesta secció, si us plau adjunta el fitxer original utilitzat per a crear aquest estudi.",
   "fileHashMismatchError": "El fitxer seleccionat no coincideix amb el fitxer original utilitzat per a crear aquest estudi.",
   "showMoreLabel": "Mostrar més",
-  "showLessLabel": "Mostrar menys"
+  "showLessLabel": "Mostrar menys",
+  "startQuizFromStudy": "Posa a prova els teus coneixements",
+  "studyScreenCustomChapter": "Capítol personalitzat",
+  "addSection": "Afegir secció",
+  "generateSectionsWithAI": "Generar seccions amb IA",
+  "addSectionsWithAI": "Afegir seccions amb IA"
 }

@@ -51,18 +51,20 @@ class AiFileHelper {
   /// Copies the attachment to a temporary directory so that it can be read
   /// reliably on next app launch.
   static Future<String?> saveAttachmentForDraft(
-      AiFileAttachment attachment) async {
+    AiFileAttachment attachment,
+  ) async {
     if (kIsWeb) return attachment.path;
 
     try {
       final tempDir = await getTemporaryDirectory();
       final draftDirPath = '${tempDir.path}/ai_drafts';
-      
+
       final xFile = XFile.fromData(attachment.bytes, name: attachment.name);
-      
+
       // Enure trailing slash is removed from dir path
-      final newPath = '$draftDirPath/${DateTime.now().millisecondsSinceEpoch}_${attachment.name}';
-      
+      final newPath =
+          '$draftDirPath/${DateTime.now().millisecondsSinceEpoch}_${attachment.name}';
+
       await xFile.saveTo(newPath);
       return newPath;
     } catch (e) {

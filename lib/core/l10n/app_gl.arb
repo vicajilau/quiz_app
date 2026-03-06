@@ -1745,7 +1745,6 @@
   "studyScreenNoSlidesAvailable": "Non hai seccións de estudo dispoñibles.",
   "studyScreenGenerating": "Xerando materiais de estudo...",
   "studyScreenError": "Produciuse un erro ao xerar o material de estudo.",
-  "studyScreenRetry": "Tentar de novo",
   "studyScreenNoSlidesGenerated": "Non se xeraron diapositivas.",
   "studyScreenPreviousSection": "Páxina anterior",
   "studyScreenNextSection": "Páxina seguinte",
@@ -1802,5 +1801,10 @@
   "aiContextMode": "Modo Contexto",
   "@aiContextMode": {
     "description": "Label for context mode when a file is uploaded"
-  }
+  },
+  "startQuizFromStudy": "Proba os teus coñecementos",
+  "studyScreenCustomChapter": "Capítulo personalizado",
+  "addSection": "Engadir sección",
+  "generateSectionsWithAI": "Xerar seccións con IA",
+  "addSectionsWithAI": "Engadir seccións con IA"
 }

@@ -349,6 +349,14 @@
   "@startQuiz": {
     "description": "Testo del pulsante per iniziare il quiz"
   },
+  "startQuizFromStudy": "Mettiti alla prova",
+  "@startQuizFromStudy": {
+    "description": "Testo del pulsante per avviare il quiz dalla schermata di studio"
+  },
+  "studyScreenCustomChapter": "Capitolo Personalizzato",
+  "@studyScreenCustomChapter": {
+    "description": "Label for a manually added study chunk"
+  },
   "maxIncorrectAnswersLabel": "Limita risposte errate",
   "@maxIncorrectAnswersLabel": {
     "description": "Etichetta per l'interruttore di limitazione delle risposte errate"
@@ -745,6 +753,10 @@
   "@addQuestion": {
     "description": "Titolo per la finestra di dialogo aggiunta nuova domanda"
   },
+  "addSection": "Aggiungi Sezione",
+  "@addSection": {
+    "description": "Titolo per la finestra di dialogo aggiunta nuova sezione"
+  },
   "editQuestion": "Modifica domanda",
   "@editQuestion": {
     "description": "Titolo per la finestra di dialogo modifica domanda esistente"
@@ -976,6 +988,14 @@
   "addQuestionsWithAI": "Aggiungi domande con l'IA",
   "@addQuestionsWithAI": {
     "description": "Label for the button to add more questions using AI when some already exist."
+  },
+  "generateSectionsWithAI": "Genera sezioni con l'IA",
+  "@generateSectionsWithAI": {
+    "description": "Tooltip per il pulsante di generazione sezioni con IA."
+  },
+  "addSectionsWithAI": "Aggiungi sezioni con l'IA",
+  "@addSectionsWithAI": {
+    "description": "Etichetta per il pulsante per aggiungere altre sezioni usando IA quando ne esistono già alcune."
   },
   "aiGenerateDialogTitle": "Genera domande con IA",
   "@aiGenerateDialogTitle": {

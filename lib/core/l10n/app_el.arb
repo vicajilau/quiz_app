@@ -759,5 +759,10 @@
   "aiContextMode": "Λειτουργία πλαισίου",
   "@aiContextMode": {
     "description": "Label for context mode when a file is uploaded"
-  }
+  },
+  "startQuizFromStudy": "Δοκιμάστε τις γνώσεις σας",
+  "studyScreenCustomChapter": "Προσαρμοσμένο κεφάλαιο",
+  "addSection": "Προσθήκη ενότητας",
+  "generateSectionsWithAI": "Δημιουργία ενοτήτων με AI",
+  "addSectionsWithAI": "Προσθήκη ενοτήτων με AI"
 }

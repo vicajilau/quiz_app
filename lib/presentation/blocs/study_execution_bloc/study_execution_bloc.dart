@@ -20,6 +20,7 @@ import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
 import 'package:quizdy/data/services/ai/gemini_service.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
+import 'package:quizdy/domain/models/quiz/source_reference.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
@@ -76,6 +77,7 @@ class StudyExecutionBloc
     on<StudyChunkRequested>(_onStudyChunkRequested);
     on<NextStudyChunkRequested>(_onNextStudyChunkRequested);
     on<PreviousStudyChunkRequested>(_onPreviousStudyChunkRequested);
+    on<AddStudyChunkRequested>(_onAddStudyChunkRequested);
     on<ReturnToIndexRequested>(_onReturnToIndexRequested);
     on<FileReattached>(_onFileReattached);
     on<FileReattachmentCancelled>(_onFileReattachmentCancelled);
@@ -236,6 +238,40 @@ class StudyExecutionBloc
     if (state.hasPrevious) {
       add(StudyChunkRequested(state.currentChunkIndex - 1));
     }
+  }
+
+  void _onAddStudyChunkRequested(
+    AddStudyChunkRequested event,
+    Emitter<StudyExecutionState> emit,
+  ) {
+    final int newIndex = state.chunks.length;
+    final newChunk = StudyChunk(
+      chunkIndex: newIndex,
+      status: StudyChunkState.created,
+      aiSummary: event.content.isNotEmpty ? event.content : null,
+      sourceReference: SourceReference(
+        documentId: 'custom',
+        startPage: 0,
+        endPage: 0,
+        startOffset: 0,
+        endOffset: 0,
+        blockType: event.title.isNotEmpty
+            ? event.title
+            : _localizations.studyScreenCustomChapter,
+      ),
+    );
+
+    final modifiedChunks = List<StudyChunk>.from(state.chunks)..add(newChunk);
+
+    final newState = _updateProgress(state.copyWith(chunks: modifiedChunks));
+    emit(newState);
+
+    onProgressChanged?.call(
+      newState.progressPercentage,
+      newState.processedChunks,
+      newState.chunks,
+      newState.fileUri,
+    );
   }
 
   void _onReturnToIndexRequested(
