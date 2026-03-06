@@ -216,7 +216,7 @@ class QuizFileRepository {
                 final cChunk = cachedQuizFile.study!.content.cache[i];
                 if (ogChunk != cChunk) {
                   printInDebug(
-                    'CHUNK $i DIFFERS! ogStatus: ${ogChunk.status.name}, cStatus: ${cChunk.status.name}, ogSlides: ${ogChunk.slides.length}, cSlides: ${cChunk.slides.length}',
+                    'CHUNK $i DIFFERS! ogStatus: ${ogChunk.status.name}, cStatus: ${cChunk.status.name}, ogPages: ${ogChunk.pages.length}, cPages: ${cChunk.pages.length}',
                   );
                 }
               }

@@ -49,7 +49,7 @@ void main() {
 
       final firstChunk = studyContent.cache.first;
       expect(firstChunk.status, StudyChunkState.completed);
-      expect(firstChunk.slides.length, 2);
+      expect(firstChunk.pages.length, 2);
     });
 
     test('should serialize maintaining study property', () {

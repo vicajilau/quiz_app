@@ -18,10 +18,7 @@ import 'package:flutter/material.dart';
 class StudyProgressBar extends StatelessWidget {
   final double progressPercentage;
 
-  const StudyProgressBar({
-    super.key,
-    required this.progressPercentage,
-  });
+  const StudyProgressBar({super.key, required this.progressPercentage});
 
   @override
   Widget build(BuildContext context) {

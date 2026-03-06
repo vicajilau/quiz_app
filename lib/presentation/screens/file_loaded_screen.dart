@@ -684,7 +684,9 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                       return;
                     }
                     setState(() => _isDragging = false);
-                    if (ServiceLocator.getIt<DialogDropGuard>().isActive) return;
+                    if (ServiceLocator.getIt<DialogDropGuard>().isActive) {
+                      return;
+                    }
                     if (details.files.isNotEmpty) {
                       final firstFile = details.files.first;
                       if (firstFile.path.isNotEmpty) {

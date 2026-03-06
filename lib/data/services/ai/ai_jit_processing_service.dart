@@ -17,7 +17,7 @@ import 'dart:convert';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/ai/gemini_service.dart';
-import 'package:quizdy/domain/models/quiz/slide.dart';
+import 'package:quizdy/domain/models/quiz/page.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
@@ -27,7 +27,7 @@ import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 class AiJitProcessingService {
   AiJitProcessingService();
 
-  /// Processes a [StudyChunk] on-demand to generate its AI summary and UI slides.
+  /// Processes a [StudyChunk] on-demand to generate its AI summary and UI pages.
   ///
   /// It returns a new immutable [StudyChunk] with the resulting state.
   ///
@@ -104,7 +104,7 @@ class AiJitProcessingService {
       return chunk.copyWith(
         status: StudyChunkState.completed,
         aiSummary: parsedData['aiSummary'] as String?,
-        slides: parsedData['slides'] as List<Slide>?,
+        pages: parsedData['pages'] as List<Page>?,
       );
     } catch (e) {
       if (e is FormatException) {
@@ -157,7 +157,7 @@ class AiJitProcessingService {
 You are an expert educational content generator. Your task is to analyze the provided pages of the document and generate study material for them.
 
 IMPORTANT GLOBAL RULE:
-ALL generated content (ai_summary, slide texts, titles, paragraphs, components) MUST be written strictly in the following language: $targetLanguage.
+ALL generated content (ai_summary, page texts, titles, paragraphs, components) MUST be written strictly in the following language: $targetLanguage.
 
 IMPORTANT: Metadata Context for this study material:$metadataContext
 
@@ -171,22 +171,30 @@ You must return the result ONLY as a valid JSON object. Do not include any other
 
 The output MUST be a JSON object with two fields:
 1. "ai_summary": A string containing a concise and clear summary of the provided text.
-2. "slides": A JSON array of "Slide" objects designed for an interactive learning UI.
+2. "pages": A JSON array of "Page" objects designed for an interactive learning UI.
 
-Each Slide object in the "slides" array must have the following schema:
+Each Page object in the "pages" array must have the following schema:
 {
-  "ui_elements": [
-    {
-      "component_type": <string, the type of UI component, e.g., "Title", "Paragraph", "Highlight">,
-      "props": {
-        // Key-value pairs of properties for this element, e.g.,
-        "text": <string, the content to display>
-      }
-    }
+  "components": [
+    // Array of component objects. Each object MUST have a "type" field and its specific required fields.
+    // Allowed values for "type" and their required structures are:
+    // 1. { "type": "section_title", "title": "Main topic", "subtitle": "Optional context" }
+    // 2. { "type": "paragraph", "title": "Optional heading", "body": "Main text block" }
+    // 3. { "type": "key_definition", "term": "Vocabulary word/concept", "body": "Clear definition" }
+    // 4. { "type": "numbered_list", "title": "Optional heading", "items": [{"title": "Step 1", "description": "Details for step 1"}] }
+    // 5. { "type": "comparison_table", "title": "Optional", "columns": ["Feature", "A", "B"], "rows": [{"label": "Row 1", "values": ["A's val", "B's val"]}] }
+    // 6. { "type": "quote", "body": "The quote text", "author": "Optional source" }
+    // 7. { "type": "warning", "body": "Important caveat or common misconception" }
+    // 8. { "type": "formula", "title": "Optional", "equation": "E = mc^2", "equation_label": "Optional name", "body": "Explanation" }
+    // 9. { "type": "timeline", "title": "Optional", "items": [{"date": "1990", "title": "Event", "description": "Optional details"}] }
+    // 10. { "type": "pros_cons", "items": {"pros": ["Advantage 1"], "cons": ["Disadvantage 1"]} }
+    // 11. { "type": "key_concepts", "title": "Optional", "items": ["Concept 1", "Concept 2"] }
+    // 12. { "type": "reminder", "body": "A quick tip or study reminder" }
+    // 13. { "type": "icon_cards", "title": "Optional", "items": [{"title": "Card title", "description": "Card details"}] }
   ]
 }
 
-Ensure the structure of the JSON is exactly as specified so it can be parsed programmatically.
+Ensure the structure of the JSON is exactly as specified so it can be parsed programmatically. You must only use the 13 component types listed above. Do not invent new types.
 
 Text Portion to Analyze:
 """
@@ -214,7 +222,7 @@ Analyzing document range: Pages $startPage to $endPage.
     return response.trim();
   }
 
-  /// Parses the raw JSON object string into the summary and slides mapping.
+  /// Parses the raw JSON object string into the summary and pages mapping.
   Map<String, dynamic> _parseJsonResponse(String jsonString) {
     try {
       final decoded = jsonDecode(jsonString);
@@ -223,16 +231,18 @@ Analyzing document range: Pages $startPage to $endPage.
       }
 
       final summary = decoded['ai_summary'] as String?;
-      List<Slide>? slides;
+      List<Page>? pages;
 
-      if (decoded['slides'] != null && decoded['slides'] is List) {
-        final slidesList = decoded['slides'] as List<dynamic>;
-        slides = slidesList
-            .map((s) => Slide.fromJson(s as Map<String, dynamic>))
+      // Check both pages (issue #221) and slides (legacy)
+      final pagesList =
+          (decoded['pages'] ?? decoded['slides']) as List<dynamic>?;
+      if (pagesList != null) {
+        pages = pagesList
+            .map((s) => Page.fromJson(s as Map<String, dynamic>))
             .toList();
       }
 
-      return {'aiSummary': summary, 'slides': slides};
+      return {'aiSummary': summary, 'pages': pages};
     } catch (e) {
       throw FormatException(
         'Failed to parse AI JSON response: $e\nResponse String: $jsonString',
