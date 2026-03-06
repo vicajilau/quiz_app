@@ -72,32 +72,30 @@ class AiJitProcessingService {
     );
 
     try {
+      final geminiService = ServiceLocator.getIt<GeminiService>();
       final String responseBody;
       if (fileUri != null && fileMimeType != null) {
-        responseBody = await ServiceLocator.getIt<GeminiService>()
-            .getChatResponseWithFileUri(
-              prompt,
-              localizations,
-              fileUri: fileUri,
-              fileMimeType: fileMimeType,
-              responseMimeType: 'application/json',
-            );
+        responseBody = await geminiService.getChatResponseWithFileUri(
+          prompt,
+          localizations,
+          fileUri: fileUri,
+          fileMimeType: fileMimeType,
+          responseMimeType: 'application/json',
+        );
       } else if (originalText != null) {
         final textPrompt = '$prompt\n\nSource text:\n$originalText';
-        responseBody = await ServiceLocator.getIt<GeminiService>()
-            .getChatResponse(
-              textPrompt,
-              localizations,
-              responseMimeType: 'application/json',
-            );
+        responseBody = await geminiService.getChatResponse(
+          textPrompt,
+          localizations,
+          responseMimeType: 'application/json',
+        );
       } else {
         // Fallback: Generate content using only metadata
-        responseBody = await ServiceLocator.getIt<GeminiService>()
-            .getChatResponse(
-              '$prompt\n\nNo source text available. Generate based on metadata.',
-              localizations,
-              responseMimeType: 'application/json',
-            );
+        responseBody = await geminiService.getChatResponse(
+          '$prompt\n\nNo source text available. Generate based on metadata.',
+          localizations,
+          responseMimeType: 'application/json',
+        );
       }
 
       final cleanJsonString = _extractJsonFromResponse(responseBody);
