@@ -111,6 +111,10 @@
       }
     }
   },
+  "aiContextMode": "Kontextmodus",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  },
   "load": "Laden",
   "@load": {
     "description": "Beschriftung für die Schaltfläche Quiz-Datei laden in der AppBar."
@@ -392,7 +396,7 @@
         "example": "8"
       },
       "total": {
-        "type": "int",
+    "type": "int",
         "example": "10"
       }
     }
@@ -400,6 +404,14 @@
   "retry": "Wiederholen",
   "@retry": {
     "description": "Wiederholen-Schaltflächentext"
+  },
+  "studyScreenRetry": "Wiederholen",
+  "@studyScreenRetry": {
+    "description": "Wiederholungstext für fehlerhaften Abschnitt."
+  },
+  "studyScreenOmit": "Auslassen",
+  "@studyScreenOmit": {
+    "description": "Text für Auslassen-Schaltfläche"
   },
   "goBack": "Beenden",
   "@goBack": {

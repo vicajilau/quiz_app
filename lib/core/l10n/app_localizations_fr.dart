@@ -902,6 +902,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get studyScreenRetry => 'Réessayer';
 
   @override
+  String get studyScreenOmit => 'Omettre';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'Aucune diapositive générée.';
 
   @override
@@ -959,6 +962,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String aiTextModeCount(int count) {
     return 'Mode Texte ($count mots)';
   }
+
+  @override
+  String get aiContextMode => 'Mode Contexte';
 
   @override
   String get aiGenerationCategoryLabel => 'Mode de Contenu';

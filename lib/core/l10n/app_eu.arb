@@ -305,6 +305,14 @@
   "@retry": {
     "description": "Berriro saiatu botoiaren testua"
   },
+  "studyScreenRetry": "Saiatu berriro",
+  "@studyScreenRetry": {
+    "description": "Berriro saiatzeko testua atal okerrean."
+  },
+  "studyScreenOmit": "Omititu",
+  "@studyScreenOmit": {
+    "description": "Omititu botoiaren testua"
+  },
   "goBack": "Amaitu",
   "@goBack": {
     "description": "Itzuli botoiaren testua"
@@ -1790,5 +1798,9 @@
   "aiDifficultyMasters": "Masterra",
   "aiDifficultyDoctorate": "Doktoretza",
   "aiDifficultyAutoDescription": "Zailtasun maila automatikoki egokituko da kargatutako dokumentuaren arabera",
-  "aiDifficultyManualDescription": "Hautatu eskuz edukirako ondoen egokitzen den zailtasun maila"
+  "aiDifficultyManualDescription": "Hautatu eskuz edukirako ondoen egokitzen den zailtasun maila",
+  "aiContextMode": "Testuinguru Modua",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  }
 }

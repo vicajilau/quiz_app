@@ -902,6 +902,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get studyScreenRetry => 'Δοκιμάστε ξανά';
 
   @override
+  String get studyScreenOmit => 'Παράλειψη';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'Δεν δημιουργήθηκαν διαφάνειες.';
 
   @override
@@ -959,6 +962,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String aiTextModeCount(int count) {
     return 'Λειτουργία κειμένου ($count λέξεις)';
   }
+
+  @override
+  String get aiContextMode => 'Λειτουργία πλαισίου';
 
   @override
   String get aiGenerationCategoryLabel => 'Λειτουργία Περιεχομένου';

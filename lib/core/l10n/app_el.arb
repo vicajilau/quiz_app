@@ -696,6 +696,13 @@
   "studyScreenGenerating": "Δημιουργία υλικού μελέτης...",
   "studyScreenError": "Παρουσιάστηκε σφάλμα κατά τη δημιουργία του υλικού μελέτης.",
   "studyScreenRetry": "Δοκιμάστε ξανά",
+  "@studyScreenRetry": {
+    "description": "Κείμενο επανάληψης προσπάθειας σε εσφαλμένη ενότητα."
+  },
+  "studyScreenOmit": "Παράλειψη",
+  "@studyScreenOmit": {
+    "description": "Κείμενο κουμπιού παράλειψης"
+  },
   "studyScreenNoSlidesGenerated": "Δεν δημιουργήθηκαν διαφάνειες.",
   "studyScreenPreviousSection": "Προηγούμενη σελίδα",
   "studyScreenNextSection": "Επόμενη σελίδα",
@@ -748,5 +755,9 @@
   "reattachFileDialogMessage": "Για να δημιουργήσετε περιεχόμενο για αυτήν την ενότητα, επισυνάψτε το πρωτότυπο αρχείο που χρησιμοποιήθηκε για τη δημιουργία αυτής της μελέτης.",
   "fileHashMismatchError": "Το επιλεγμένο αρχείο δεν ταιριάζει με το πρωτότυπο αρχείο που χρησιμοποιήθηκε για τη δημιουργία αυτής της μελέτης.",
   "showMoreLabel": "Εμφάνιση περισσότερων",
-  "showLessLabel": "Εμφάνιση λιγότερων"
+  "showLessLabel": "Εμφάνιση λιγότερων",
+  "aiContextMode": "Λειτουργία πλαισίου",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  }
 }

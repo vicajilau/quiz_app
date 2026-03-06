@@ -20,6 +20,7 @@ import 'package:quizdy/domain/models/quiz/quiz_metadata.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/study.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
 enum QuizMode { study, quiz }
 
@@ -46,6 +47,12 @@ class QuizFile {
 
   /// The URI of the uploaded file in the AI service (e.g. Gemini File API).
   final String? fileUri;
+
+  /// Get generationMode from study
+  AiGenerationMode? get generationMode => study?.generationMode;
+
+  /// Get originalText from study
+  String? get originalText => study?.originalText;
 
   /// Constructor for creating a `QuizFile` instance with metadata and questions.
   QuizFile({
@@ -120,6 +127,7 @@ class QuizFile {
     AiFileAttachment? fileAttachment,
     String? fileContentHash,
     String? fileUri,
+    // Note: generationMode and originalText are now part of study
   }) {
     return QuizFile(
       metadata: metadata ?? this.metadata,
@@ -173,6 +181,6 @@ class QuizFile {
 
   @override
   String toString() {
-    return 'QuizFile(metadata: $metadata, questions: ${questions.length}, study: ${study != null ? "Present" : "None"}, filePath: $filePath)';
+    return 'QuizFile(metadata: $metadata, questions: ${questions.length}, study: ${study != null ? "Present" : "None"}, filePath: $filePath, generationMode: $generationMode)';
   }
 }

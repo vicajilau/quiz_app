@@ -24,6 +24,7 @@ import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
 class StudyExecutionBloc
     extends Bloc<StudyExecutionEvent, StudyExecutionState> {
@@ -38,6 +39,9 @@ class StudyExecutionBloc
   onProgressChanged;
   final bool _isAutoDifficulty;
   final AiDifficultyLevel? _difficultyLevel;
+  final String? _originalText;
+  final String? _language;
+  final AiGenerationMode? _generationMode;
 
   StudyExecutionBloc({
     required AiJitProcessingService jitProcessingService,
@@ -49,11 +53,17 @@ class StudyExecutionBloc
     String? fileUri,
     bool isAutoDifficulty = true,
     AiDifficultyLevel? difficultyLevel,
+    String? originalText,
+    String? language,
+    AiGenerationMode? generationMode,
     this.onProgressChanged,
   }) : _jitProcessingService = jitProcessingService,
        _localizations = localizations,
        _isAutoDifficulty = isAutoDifficulty,
        _difficultyLevel = difficultyLevel,
+       _originalText = originalText,
+       _language = language,
+       _generationMode = generationMode,
        super(
          _initialProgress(
            initialChunks,
@@ -68,6 +78,7 @@ class StudyExecutionBloc
     on<PreviousStudyChunkRequested>(_onPreviousStudyChunkRequested);
     on<ReturnToIndexRequested>(_onReturnToIndexRequested);
     on<FileReattached>(_onFileReattached);
+    on<FileReattachmentCancelled>(_onFileReattachmentCancelled);
   }
 
   static StudyExecutionState _initialProgress(
@@ -149,28 +160,32 @@ class StudyExecutionBloc
       }
     }
 
-    if (fileUri == null) {
-      // Revert chunk back to created — the user needs to re-attach the file
-      final revertedChunk = chunk.copyWith(status: StudyChunkState.created);
-      final chunksReverted = List<StudyChunk>.from(state.chunks);
-      chunksReverted[event.chunkIndex] = revertedChunk;
-      emit(
-        state.copyWith(
-          chunks: chunksReverted,
-          needsFileReattachment: true,
-        ),
-      );
-      return;
+    if (fileUri == null && _originalText == null && !event.allowFallback) {
+      if (state.fileAttachment != null) {
+        // Revert chunk back to created — the user needs to re-attach the file
+        final revertedChunk = chunk.copyWith(status: StudyChunkState.created);
+        final chunksReverted = List<StudyChunk>.from(state.chunks);
+        chunksReverted[event.chunkIndex] = revertedChunk;
+        emit(
+          state.copyWith(chunks: chunksReverted, needsFileReattachment: true),
+        );
+        return;
+      }
     }
 
     // Wait for the JIT Processing Service
     final processedChunk = await _jitProcessingService.processChunk(
       chunk: processingChunk,
       fileUri: fileUri,
-      fileMimeType: fileMimeType ?? 'application/pdf',
+      fileMimeType: fileMimeType,
+      originalText: _originalText,
       localizations: _localizations,
+      docTitle: state.documentTitle,
+      docSummary: state.documentSummary,
       isAutoDifficulty: _isAutoDifficulty,
       difficultyLevel: _difficultyLevel,
+      language: _language,
+      generationMode: _generationMode,
     );
 
     // Update the state with the finished chunk (either completed or error)
@@ -234,11 +249,19 @@ class StudyExecutionBloc
     FileReattached event,
     Emitter<StudyExecutionState> emit,
   ) async {
-    emit(state.copyWith(
-      fileAttachment: event.file,
-      needsFileReattachment: false,
-    ));
+    emit(
+      state.copyWith(fileAttachment: event.file, needsFileReattachment: false),
+    );
     // Re-trigger processing of the current chunk
     add(StudyChunkRequested(state.currentChunkIndex));
+  }
+
+  void _onFileReattachmentCancelled(
+    FileReattachmentCancelled event,
+    Emitter<StudyExecutionState> emit,
+  ) {
+    emit(state.copyWith(needsFileReattachment: false));
+    // Trigger processing with fallback allowed
+    add(StudyChunkRequested(state.currentChunkIndex, allowFallback: true));
   }
 }

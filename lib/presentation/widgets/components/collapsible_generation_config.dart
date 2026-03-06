@@ -16,15 +16,14 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/theme/extensions/ai_assistant_theme.dart';
 
 class CollapsibleGenerationConfig extends StatefulWidget {
-  final bool isDark;
   final Widget child;
   final VoidCallback? onExpand;
 
   const CollapsibleGenerationConfig({
     super.key,
-    required this.isDark,
     required this.child,
     this.onExpand,
   });
@@ -40,19 +39,13 @@ class _CollapsibleGenerationConfigState
 
   @override
   Widget build(BuildContext context) {
-    final borderColor = widget.isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFE4E4E7);
-    final headerBgColor = widget.isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFF4F4F5);
-    final bodyBgColor = widget.isDark
-        ? const Color(0xFF1E1E22)
-        : const Color(0xFFFAFAFA);
-    final iconColor = widget.isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
-    final titleColor = widget.isDark ? Colors.white : const Color(0xFF18181B);
+    final aiTheme = context.aiAssistantTheme;
+
+    final borderColor = aiTheme.selectorBorderColor;
+    final headerBgColor = aiTheme.selectorHeaderBg;
+    final bodyBgColor = aiTheme.selectorContentBg;
+    final iconColor = aiTheme.selectorLabelColor;
+    final titleColor = aiTheme.selectorTextColor;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

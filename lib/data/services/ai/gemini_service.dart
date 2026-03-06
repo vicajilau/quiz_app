@@ -20,6 +20,7 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
 class GeminiService extends AIService {
   static const String _baseUrlBeta =
@@ -470,9 +471,9 @@ Current Language: ${localizations.localeName}
   Future<String> generateStudyIndexFromText(
     AppLocalizations localizations, {
     required String content,
-    required bool isTopicMode,
+    required AiGenerationMode generationMode,
   }) async {
-    final header = isTopicMode
+    final header = generationMode == AiGenerationMode.topic
         ? 'The user wants a personalized study plan about the following topic/s: $content'
         : 'The user has provided the following text for creating a study plan:\n\n$content';
 

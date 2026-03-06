@@ -1777,6 +1777,13 @@
   "studyScreenGenerating": "Generazione del materiale di studio...",
   "studyScreenError": "Si è verificato un errore durante la generazione del materiale di studio.",
   "studyScreenRetry": "Riprova",
+  "@studyScreenRetry": {
+    "description": "Testo di riprovo su sezione errata."
+  },
+  "studyScreenOmit": "Omettere",
+  "@studyScreenOmit": {
+    "description": "Testo del pulsante omettere"
+  },
   "studyScreenNoSlidesGenerated": "Nessuna diapositiva generata.",
   "studyScreenPreviousSection": "Pagina precedente",
   "studyScreenNextSection": "Pagina successiva",
@@ -1829,5 +1836,9 @@
   "reattachFileDialogMessage": "Per generare contenuti per questa sezione, allega il file originale utilizzato per creare questo studio.",
   "fileHashMismatchError": "Il file selezionato non corrisponde al file originale utilizzato per creare questo studio.",
   "showMoreLabel": "Mostra altro",
-  "showLessLabel": "Mostra meno"
+  "showLessLabel": "Mostra meno",
+  "aiContextMode": "Modalità Contesto",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  }
 }

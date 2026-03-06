@@ -14,24 +14,69 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:quizdy/domain/models/quiz/study_content.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 
 /// Wraps the overall study section mapped to the JSON schema.
 class Study {
-  /// Contains the core interactive generative learning state mapped under 'content'.
+  /// The interactive study sequence content associated with the Quiz file.
   final StudyContent content;
 
+  /// The AI generation mode used to create this study.
+  final AiGenerationMode? generationMode;
+
+  /// The original text content drafted to generate this study.
+  final String? originalText;
+
+  /// The target language for the study material.
+  final String? language;
+
+  /// Whether the difficulty should automatically adapt to the provided content.
+  final bool isAutoDifficulty;
+
+  /// The academic difficulty level for this study.
+  final AiDifficultyLevel? difficultyLevel;
+
   /// Constructor for a `Study`.
-  const Study({required this.content});
+  const Study({
+    required this.content,
+    this.generationMode,
+    this.originalText,
+    this.language,
+    this.isAutoDifficulty = true,
+    this.difficultyLevel,
+  });
 
   /// Creates a `Study` instance from a JSON map.
   ///
   /// - [json]: The JSON map containing the study block data.
   /// - Returns: A populated `Study` instance.
   factory Study.fromJson(Map<String, dynamic> json) {
+    final generationModeStr = json['generationMode'] as String?;
+    final generationMode = generationModeStr != null
+        ? AiGenerationMode.values.firstWhere(
+            (e) => e.name == generationModeStr,
+            orElse: () => AiGenerationMode.text,
+          )
+        : null;
+
+    final difficultyLevelStr = json['difficultyLevel'] as String?;
+    final difficultyLevel = difficultyLevelStr != null
+        ? AiDifficultyLevel.values.firstWhere(
+            (e) => e.name == difficultyLevelStr,
+            orElse: () => AiDifficultyLevel.university,
+          )
+        : null;
+
     return Study(
       content: StudyContent.fromJson(
         json['content'] as Map<String, dynamic>? ?? {},
       ),
+      generationMode: generationMode,
+      originalText: json['originalText'] as String?,
+      language: json['language'] as String?,
+      isAutoDifficulty: json['isAutoDifficulty'] as bool? ?? true,
+      difficultyLevel: difficultyLevel,
     );
   }
 
@@ -39,24 +84,58 @@ class Study {
   ///
   /// - Returns: A JSON map representation.
   Map<String, dynamic> toJson() {
-    return {'content': content.toJson()};
+    return {
+      'content': content.toJson(),
+      if (generationMode != null) 'generationMode': generationMode!.name,
+      if (originalText != null) 'originalText': originalText,
+      if (language != null) 'language': language,
+      'isAutoDifficulty': isAutoDifficulty,
+      if (difficultyLevel != null) 'difficultyLevel': difficultyLevel!.name,
+    };
   }
 
   /// Creates a copy of the `Study` with optional parameter modifications.
-  Study copyWith({StudyContent? content}) {
-    return Study(content: content ?? this.content.copyWith());
+  Study copyWith({
+    StudyContent? content,
+    AiGenerationMode? generationMode,
+    String? originalText,
+    String? language,
+    bool? isAutoDifficulty,
+    AiDifficultyLevel? difficultyLevel,
+  }) {
+    return Study(
+      content: content ?? this.content.copyWith(),
+      generationMode: generationMode ?? this.generationMode,
+      originalText: originalText ?? this.originalText,
+      language: language ?? this.language,
+      isAutoDifficulty: isAutoDifficulty ?? this.isAutoDifficulty,
+      difficultyLevel: difficultyLevel ?? this.difficultyLevel,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Study && other.content == content;
+    return other is Study &&
+        other.content == content &&
+        other.generationMode == generationMode &&
+        other.originalText == originalText &&
+        other.language == language &&
+        other.isAutoDifficulty == isAutoDifficulty &&
+        other.difficultyLevel == difficultyLevel;
   }
 
   @override
-  int get hashCode => content.hashCode;
+  int get hashCode =>
+      content.hashCode ^
+      generationMode.hashCode ^
+      originalText.hashCode ^
+      language.hashCode ^
+      isAutoDifficulty.hashCode ^
+      difficultyLevel.hashCode;
 
   @override
-  String toString() => 'Study(content: $content)';
+  String toString() =>
+      'Study(content: $content, generationMode: $generationMode, originalText: $originalText, language: $language, isAutoDifficulty: $isAutoDifficulty, difficultyLevel: $difficultyLevel)';
 }

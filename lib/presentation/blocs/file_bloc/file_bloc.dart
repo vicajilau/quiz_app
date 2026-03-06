@@ -89,9 +89,9 @@ class FileBloc extends Bloc<FileEvent, FileState> {
       try {
         final quizFile = await _fileRepository.createQuizFile(
           title: event.name,
+          description: event.description,
           version: event.version,
           author: event.author,
-          description: event.description,
         );
         emit(FileLoaded(quizFile)); // Emit the loaded file state after creation
       } catch (e) {

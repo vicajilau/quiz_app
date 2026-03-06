@@ -111,6 +111,10 @@
       }
     }
   },
+  "aiContextMode": "وضع السياق",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  },
   "load": "تحميل",
   "@load": {
     "description": "Label for the Load Quiz file button in the AppBar."
@@ -1798,6 +1802,13 @@
   "studyScreenGenerating": "جاري إنشاء مواد دراسية...",
   "studyScreenError": "حدث خطأ أثناء إنشاء مواد دراسية.",
   "studyScreenRetry": "إعادة المحاولة",
+  "@studyScreenRetry": {
+    "description": "نص إعادة المحاولة في حالة وجود خطأ في القسم."
+  },
+  "studyScreenOmit": "تجاوز",
+  "@studyScreenOmit": {
+    "description": "نص زر التجاوز"
+  },
   "studyScreenNoSlidesGenerated": "لم يتم إنشاء شرائح.",
   "studyScreenPreviousSection": "الصفحة السابقة",
   "studyScreenNextSection": "الصفحة التالية",

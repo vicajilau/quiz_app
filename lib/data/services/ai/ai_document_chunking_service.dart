@@ -17,6 +17,7 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'dart:convert';
 import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/quiz/source_reference.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
 class _TextBatch {
   final String text;
@@ -171,7 +172,7 @@ class AiDocumentChunkingService {
   Future<Map<String, dynamic>> generateIndexFromTextWithAi({
     required AIService aiService,
     required String content,
-    required bool isTopicMode,
+    required AiGenerationMode generationMode,
     required String documentId,
     required AppLocalizations localizations,
   }) async {
@@ -179,7 +180,7 @@ class AiDocumentChunkingService {
       final jsonResponse = await aiService.generateStudyIndexFromText(
         localizations,
         content: content,
-        isTopicMode: isTopicMode,
+        generationMode: generationMode,
       );
 
       // Clean the response if it contains markdown code blocks

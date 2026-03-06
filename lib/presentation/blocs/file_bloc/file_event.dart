@@ -16,6 +16,7 @@
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
 /// Abstract class representing the base event for file operations.
 abstract class FileEvent {}
@@ -45,11 +46,15 @@ class CreateQuizMetadata extends FileEvent {
   final String version;
   final String description;
   final String author;
+  final AiGenerationMode? generationMode;
+  final String? originalText;
   CreateQuizMetadata({
     required this.name,
     required this.version,
     required this.description,
     required this.author,
+    this.generationMode,
+    this.originalText,
   });
 }
 
@@ -60,6 +65,8 @@ class CreateQuizWithQuestions extends FileEvent {
   final String description;
   final String author;
   final List<Question> questions;
+  final AiGenerationMode? generationMode;
+  final String? originalText;
 
   CreateQuizWithQuestions({
     required this.name,
@@ -67,6 +74,8 @@ class CreateQuizWithQuestions extends FileEvent {
     required this.description,
     required this.author,
     required this.questions,
+    this.generationMode,
+    this.originalText,
   });
 }
 

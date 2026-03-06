@@ -111,6 +111,10 @@
       }
     }
   },
+  "aiContextMode": "Mode Context",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  },
   "load": "Carregar",
   "@load": {
     "description": "Etiqueta pel botó Carregar fitxer Quiz a l'AppBar."
@@ -401,9 +405,17 @@
       }
     }
   },
-  "retry": "Repetir",
+  "retry": "Reintentar",
   "@retry": {
-    "description": "Text del botó repetir"
+    "description": "Retry button text"
+  },
+  "studyScreenRetry": "Reintenta",
+  "@studyScreenRetry": {
+    "description": "Text de reintent sobre secció errònia."
+  },
+  "studyScreenOmit": "Ometre",
+  "@studyScreenOmit": {
+    "description": "Text del botó ometre"
   },
   "goBack": "Acabar",
   "@goBack": {

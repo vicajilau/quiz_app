@@ -28,6 +28,7 @@ import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
 import 'package:quizdy/domain/models/ai/ai_study_generation_config.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/presentation/widgets/dialog_drop_zone.dart';
 import 'package:quizdy/presentation/widgets/components/ai_content_input_zone.dart';
@@ -234,7 +235,11 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                       AiContentInputZone(
                         controller: widget.textController,
                         wordCountText: widget.getWordCountText(),
-                        isTopicMode: widget.getTopicCount() > 10,
+                        generationMode: widget.fileAttachment != null
+                            ? AiGenerationMode.context
+                            : (widget.getTopicCount() > 10
+                                  ? AiGenerationMode.topic
+                                  : AiGenerationMode.text),
                       ),
                       const SizedBox(height: 12),
 
@@ -259,7 +264,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                       const SizedBox(height: 24),
                       CollapsibleGenerationConfig(
                         key: _configKey,
-                        isDark: isDark,
                         onExpand: () {
                           // Expansion is now immediate, so we scroll after the next frame
                           WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -320,6 +324,12 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                           (widget.textController.text.isNotEmpty ||
                               widget.fileAttachment != null)
                           ? () {
+                              final mode = widget.fileAttachment != null
+                                  ? AiGenerationMode.context
+                                  : (widget.getTopicCount() <= 10
+                                        ? AiGenerationMode.topic
+                                        : AiGenerationMode.text);
+
                               final config = widget.isStudyMode
                                   ? AiStudyGenerationConfig(
                                       language: widget.selectedLanguage,
@@ -328,9 +338,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                       preferredService: widget.selectedService,
                                       preferredModel: widget.selectedModel,
                                       file: widget.fileAttachment,
-                                      isTopicMode:
-                                          widget.fileAttachment == null &&
-                                          widget.getTopicCount() <= 10,
+                                      generationMode: mode,
                                       isAutoDifficulty: widget.isAutoDifficulty,
                                       difficultyLevel: widget.isAutoDifficulty
                                           ? null
@@ -348,9 +356,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                       preferredService: widget.selectedService,
                                       preferredModel: widget.selectedModel,
                                       file: widget.fileAttachment,
-                                      isTopicMode:
-                                          widget.fileAttachment == null &&
-                                          widget.getTopicCount() <= 10,
+                                      generationMode: mode,
                                       generationCategory: _selectedCategory,
                                       isAutoDifficulty: widget.isAutoDifficulty,
                                       difficultyLevel: widget.isAutoDifficulty

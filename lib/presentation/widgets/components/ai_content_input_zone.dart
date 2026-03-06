@@ -17,17 +17,19 @@ import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 
 class AiContentInputZone extends StatelessWidget {
   final TextEditingController controller;
   final String wordCountText;
-  final bool isTopicMode;
+  final AiGenerationMode generationMode;
 
   const AiContentInputZone({
     super.key,
     required this.controller,
     required this.wordCountText,
-    required this.isTopicMode,
+    required this.generationMode,
   });
 
   @override
@@ -35,6 +37,7 @@ class AiContentInputZone extends StatelessWidget {
     final localizations = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final colors = context.appColors;
+    final customColors = Theme.of(context).extension<CustomColors>()!;
     final inputBg = isDark ? AppTheme.borderColorDark : AppTheme.cardColorLight;
 
     return Container(
@@ -75,9 +78,11 @@ class AiContentInputZone extends StatelessWidget {
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontSize: 12,
-                color: isTopicMode
+                color: generationMode == AiGenerationMode.topic
                     ? Theme.of(context).primaryColor
-                    : colors.subtitle,
+                    : (generationMode == AiGenerationMode.context
+                          ? customColors.success
+                          : colors.subtitle),
                 fontWeight: FontWeight.w500,
               ),
             ),

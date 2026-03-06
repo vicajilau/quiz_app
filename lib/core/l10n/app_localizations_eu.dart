@@ -897,6 +897,9 @@ class AppLocalizationsEu extends AppLocalizations {
   String get studyScreenRetry => 'Saiatu berriro';
 
   @override
+  String get studyScreenOmit => 'Omititu';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'Ez da diapositibarik sortu.';
 
   @override
@@ -954,6 +957,9 @@ class AppLocalizationsEu extends AppLocalizations {
   String aiTextModeCount(int count) {
     return 'Testu modua ($count hitz)';
   }
+
+  @override
+  String get aiContextMode => 'Testuinguru Modua';
 
   @override
   String get aiGenerationCategoryLabel => 'Eduki Modua';

@@ -1628,6 +1628,12 @@ abstract class AppLocalizations {
   /// **'Retry'**
   String get studyScreenRetry;
 
+  /// Omit button text
+  ///
+  /// In en, this message translates to:
+  /// **'Omit'**
+  String get studyScreenOmit;
+
   /// Text displayed if AI returns back empty slides for the current view.
   ///
   /// In en, this message translates to:
@@ -1729,6 +1735,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Text Mode ({count} words)'**
   String aiTextModeCount(int count);
+
+  /// Label for context mode when a file is uploaded
+  ///
+  /// In en, this message translates to:
+  /// **'Context Mode'**
+  String get aiContextMode;
 
   /// Label for AI generation category selector
   ///

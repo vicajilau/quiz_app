@@ -842,6 +842,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get studyScreenRetry => '重试';
 
   @override
+  String get studyScreenOmit => '忽略';
+
+  @override
   String get studyScreenNoSlidesGenerated => '没有生成幻灯片。';
 
   @override
@@ -897,6 +900,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String aiTextModeCount(int count) {
     return '文本模式 ($count 字)';
   }
+
+  @override
+  String get aiContextMode => '上下文模式';
 
   @override
   String get aiGenerationCategoryLabel => '内容模式';

@@ -309,6 +309,14 @@
   "@retry": {
     "description": "Texte du bouton répéter"
   },
+  "studyScreenRetry": "Réessayer",
+  "@studyScreenRetry": {
+    "description": "Texte de réessai sur une section erronée."
+  },
+  "studyScreenOmit": "Omettre",
+  "@studyScreenOmit": {
+    "description": "Texte du bouton omettre"
+  },
   "goBack": "Terminer",
   "@goBack": {
     "description": "Texte du bouton retour"
@@ -1835,5 +1843,9 @@
   "reattachFileDialogMessage": "Pour générer du contenu pour cette section, veuillez joindre le fichier original utilisé pour créer cette étude.",
   "fileHashMismatchError": "Le fichier sélectionné ne correspond pas au fichier original utilisé pour créer cette étude.",
   "showMoreLabel": "Afficher plus",
-  "showLessLabel": "Afficher moins"
+  "showLessLabel": "Afficher moins",
+  "aiContextMode": "Mode Contexte",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
+  }
 }

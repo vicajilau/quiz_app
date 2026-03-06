@@ -1187,6 +1187,10 @@
   "@studyScreenRetry": {
     "description": "Button text to retry parsing a failed chunk."
   },
+  "studyScreenOmit": "Omit",
+  "@studyScreenOmit": {
+    "description": "Omit button text"
+  },
   "studyScreenNoSlidesGenerated": "No slides generated.",
   "@studyScreenNoSlidesGenerated": {
     "description": "Text displayed if AI returns back empty slides for the current view."
@@ -1276,6 +1280,10 @@
         "example": "150"
       }
     }
+  },
+  "aiContextMode": "Context Mode",
+  "@aiContextMode": {
+    "description": "Label for context mode when a file is uploaded"
   },
   "aiGenerationCategoryLabel": "Content Mode",
   "@aiGenerationCategoryLabel": {

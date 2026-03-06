@@ -262,7 +262,7 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get retry => 'Repetir';
+  String get retry => 'Reintentar';
 
   @override
   String get goBack => 'Acabar';
@@ -900,6 +900,9 @@ class AppLocalizationsCa extends AppLocalizations {
   String get studyScreenRetry => 'Reintenta';
 
   @override
+  String get studyScreenOmit => 'Ometre';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'No s\'han generat diapositives.';
 
   @override
@@ -957,6 +960,9 @@ class AppLocalizationsCa extends AppLocalizations {
   String aiTextModeCount(int count) {
     return 'Mode Text ($count paraules)';
   }
+
+  @override
+  String get aiContextMode => 'Mode Context';
 
   @override
   String get aiGenerationCategoryLabel => 'Modo de Contingut';

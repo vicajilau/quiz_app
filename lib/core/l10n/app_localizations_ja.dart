@@ -846,6 +846,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get studyScreenRetry => '再試行';
 
   @override
+  String get studyScreenOmit => '省略';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'スライドが生成されていません。';
 
   @override
@@ -902,6 +905,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String aiTextModeCount(int count) {
     return 'テキストモード ($count 語)';
   }
+
+  @override
+  String get aiContextMode => 'コンテキストモード';
 
   @override
   String get aiGenerationCategoryLabel => 'コンテンツモード';

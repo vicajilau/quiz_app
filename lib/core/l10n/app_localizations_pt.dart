@@ -896,6 +896,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get studyScreenRetry => 'Tentar novamente';
 
   @override
+  String get studyScreenOmit => 'Omitir';
+
+  @override
   String get studyScreenNoSlidesGenerated => 'Nenhum slide gerado.';
 
   @override
@@ -953,6 +956,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String aiTextModeCount(int count) {
     return 'Modo Texto ($count palavras)';
   }
+
+  @override
+  String get aiContextMode => 'Modo Contexto';
 
   @override
   String get aiGenerationCategoryLabel => 'Modo de Conteúdo';

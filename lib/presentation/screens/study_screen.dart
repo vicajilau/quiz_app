@@ -23,6 +23,7 @@ import 'package:mime/mime.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/extensions/string_extensions.dart';
 import 'package:quizdy/core/theme/extensions/file_loaded_theme.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
@@ -55,6 +56,9 @@ class StudyScreen extends StatelessWidget {
   final QuizFile? quizFile;
   final bool isAutoDifficulty;
   final AiDifficultyLevel? difficultyLevel;
+  final AiGenerationMode? generationMode;
+  final String? originalText;
+  final String? language;
 
   const StudyScreen({
     super.key,
@@ -65,6 +69,9 @@ class StudyScreen extends StatelessWidget {
     this.quizFile,
     this.isAutoDifficulty = true,
     this.difficultyLevel,
+    this.generationMode,
+    this.originalText,
+    this.language,
   });
 
   @override
@@ -80,8 +87,11 @@ class StudyScreen extends StatelessWidget {
         fileUri: quizFile?.fileUri,
         documentTitle: documentTitle,
         documentSummary: documentSummary ?? quizFile?.metadata.description,
-        isAutoDifficulty: isAutoDifficulty,
-        difficultyLevel: difficultyLevel,
+        isAutoDifficulty: quizFile?.study?.isAutoDifficulty ?? isAutoDifficulty,
+        difficultyLevel: difficultyLevel ?? quizFile?.study?.difficultyLevel,
+        originalText: originalText ?? quizFile?.study?.originalText,
+        language: language ?? quizFile?.study?.language,
+        generationMode: generationMode ?? quizFile?.study?.generationMode,
         onProgressChanged: (progress, processedChunks, chunks, fileUri) {
           context.read<FileBloc>().add(
             StudyProgressUpdated(
@@ -93,15 +103,26 @@ class StudyScreen extends StatelessWidget {
           );
         },
       ),
-      child: StudyScreenView(quizFile: quizFile),
+      child: StudyScreenView(
+        quizFile: quizFile,
+        generationMode: generationMode,
+        originalText: originalText,
+      ),
     );
   }
 }
 
 class StudyScreenView extends StatefulWidget {
-  const StudyScreenView({super.key, required this.quizFile});
+  const StudyScreenView({
+    super.key,
+    required this.quizFile,
+    this.generationMode,
+    this.originalText,
+  });
 
   final QuizFile? quizFile;
+  final AiGenerationMode? generationMode;
+  final String? originalText;
 
   @override
   State<StudyScreenView> createState() => _StudyScreenViewState();
@@ -149,6 +170,8 @@ class _StudyScreenViewState extends State<StudyScreenView> {
                 .length,
             cache: studyState.chunks,
           ),
+          generationMode: widget.generationMode,
+          originalText: widget.originalText,
         ),
         fileContentHash: studyState.fileAttachment?.contentHash,
         fileUri: studyState.fileUri,
@@ -201,7 +224,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(false),
-            child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
+            child: Text(localizations.studyScreenOmit),
           ),
           ElevatedButton(
             onPressed: () => Navigator.of(dialogContext).pop(true),
@@ -211,7 +234,12 @@ class _StudyScreenViewState extends State<StudyScreenView> {
       ),
     );
 
-    if (confirmed != true || !context.mounted) return;
+    if (confirmed != true || !context.mounted) {
+      if (context.mounted) {
+        context.read<StudyExecutionBloc>().add(FileReattachmentCancelled());
+      }
+      return;
+    }
 
     final result = await FilePicker.platform.pickFiles(
       type: FileType.any,
