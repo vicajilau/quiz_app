@@ -91,10 +91,9 @@ class AiGenerateStep1Widget extends StatelessWidget {
                 Expanded(
                   child: Text(
                     isStudyMode
-                        ? localizations.studyModeLabel
+                        ? localizations.aiStudyGenerationTitle
                         : localizations.generateQuestionsWithAI,
                     style: TextStyle(
-                      fontFamily: 'Inter',
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
                       color: colors.title,
