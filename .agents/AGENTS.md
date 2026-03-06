@@ -59,6 +59,16 @@ The CI pipeline runs: `flutter pub get` → `flutter analyze` → `flutter test`
 
 ---
 
+## Workflow & Commits
+
+- **Never commit any change without explicit user review and approval.**
+- Before committing, always present a summary of the changes and, if requested, the full diff to the user. Note: all commit messages and descriptions must be in **English**.
+- Ensure all tests pass (`flutter test`) and the analyzer is clean (`flutter analyze`) before proposing a commit.
+- Follow the commit message convention: `type(scope): description` (e.g., `feat(ui): add difficulty toggle`).
+- Do not push to remote or create PRs without explicit user approval (see `create-github-issue-or-pr` workflow).
+
+---
+
 ## Architecture
 
 The project follows **Clean Architecture** with these layers:

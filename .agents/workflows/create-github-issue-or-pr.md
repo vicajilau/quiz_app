@@ -69,5 +69,6 @@ This workflow standardizes the creation of GitHub issues and pull requests via t
 
 - All text in issues and PRs must be in **English**.
 - Use imperative mood for titles: "Add feature X", "Fix crash when Y", not "Added" or "Fixes".
+- **Never commit any change without explicit user review and approval.**
 - Do not push to remote or create PRs without explicit user approval.
 - When creating a PR, always review the full diff against the base branch, not just the last commit.
