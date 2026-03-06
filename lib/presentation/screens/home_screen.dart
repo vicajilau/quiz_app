@@ -45,6 +45,7 @@ import 'package:quizdy/core/extensions/string_extensions.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_header_widget.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_drop_zone_widget.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_footer_widget.dart';
+import 'package:quizdy/presentation/screens/widgets/home/home_drag_mode_overlay.dart';
 import 'package:quizdy/domain/use_cases/initialize_quiz_chunks_use_case.dart';
 import 'package:quizdy/data/repositories/quiz_file_repository.dart';
 import 'package:quizdy/domain/models/quiz/study.dart';
@@ -60,6 +61,30 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _isDragging = false;
   bool _isLoading = false;
   String? _loadingText;
+  QuizMode? _hoveredDropMode;
+  QuizMode? _pendingDropMode;
+
+  void _navigateByMode(BuildContext context, QuizMode mode, QuizFile quizFile) {
+    if (mode == QuizMode.study) {
+      if (quizFile.study != null) {
+        _navigateToStudy(context, quizFile);
+      } else {
+        _startStudyModeWithAI(context);
+      }
+    } else {
+      context.go(AppRoutes.fileLoadedScreen);
+    }
+  }
+
+  QuizMode _modeFromPosition(Offset localPosition, Size size) {
+    final isMobile = size.width < 600;
+    if (isMobile) {
+      return localPosition.dy < size.height / 2
+          ? QuizMode.study
+          : QuizMode.quiz;
+    }
+    return localPosition.dx < size.width / 2 ? QuizMode.study : QuizMode.quiz;
+  }
 
   void _navigateToStudy(BuildContext context, QuizFile quizFile) {
     final study = quizFile.study!;
@@ -366,22 +391,17 @@ class _HomeScreenState extends State<HomeScreen> {
           setState(() => _isLoading = false);
           if (context.currentRoute != AppRoutes.home) return;
           final quizFile = state.quizFile;
-          final hasQuestions = quizFile.questions.isNotEmpty;
-          final hasStudy = quizFile.study != null;
 
-          if (hasQuestions && hasStudy) {
-            if (!context.mounted) return;
-            final choice = await ModeSelectionDialog.show(context);
-            if (!context.mounted || choice == null) return;
-            if (choice == QuizMode.study) {
-              _navigateToStudy(context, quizFile);
-            } else {
-              context.go(AppRoutes.fileLoadedScreen);
-            }
-          } else if (hasStudy) {
-            _navigateToStudy(context, quizFile);
-          } else {
-            context.go(AppRoutes.fileLoadedScreen);
+          final dropMode = _pendingDropMode;
+          _pendingDropMode = null;
+
+          final choice = dropMode ?? await ModeSelectionDialog.show(context);
+          if (!context.mounted || choice == null) return;
+          _navigateByMode(context, choice, quizFile);
+        }
+        if (state is FileReplacementRequest) {
+          if (context.currentRoute == AppRoutes.home) {
+            context.read<FileBloc>().add(ConfirmFileReplacement());
           }
         }
         if (state is FileError && context.mounted) {
@@ -399,124 +419,153 @@ class _HomeScreenState extends State<HomeScreen> {
           setState(() => _isLoading = false);
         }
       },
-      child: Builder(
-        builder: (context) {
-          return Scaffold(
-            body: DropTarget(
-              onDragDone: (details) {
-                if (ServiceLocator.getIt<DialogDropGuard>().isActive) {
-                  setState(() => _isDragging = false);
+      child: Scaffold(
+        body: DropTarget(
+          onDragDone: (details) {
+            if (ServiceLocator.getIt<DialogDropGuard>().isActive) {
+              setState(() {
+                _isDragging = false;
+                _hoveredDropMode = null;
+              });
+              return;
+            }
+            if (details.files.isNotEmpty && !_isLoading) {
+              if (context.currentRoute != AppRoutes.home) return;
+
+              final firstFile = details.files.first;
+              if (firstFile.path.isNotEmpty) {
+                if (!firstFile.name.toLowerCase().endsWith('.quiz')) {
+                  context.presentSnackBar(
+                    AppLocalizations.of(context)!.errorInvalidFile,
+                  );
+                  setState(() {
+                    _isDragging = false;
+                    _hoveredDropMode = null;
+                  });
                   return;
                 }
-                if (details.files.isNotEmpty && !_isLoading) {
-                  if (context.currentRoute != AppRoutes.home) return;
+                final renderBox = context.findRenderObject() as RenderBox;
+                _pendingDropMode = _modeFromPosition(
+                  details.localPosition,
+                  renderBox.size,
+                );
+                context.read<FileBloc>().add(QuizFileReset());
+                context.read<FileBloc>().add(FileDropped(firstFile.path));
+              }
+            }
+            setState(() {
+              _isDragging = false;
+              _hoveredDropMode = null;
+            });
+          },
+          onDragEntered: (_) {
+            if (!ServiceLocator.getIt<DialogDropGuard>().isActive) {
+              setState(() => _isDragging = true);
+            }
+          },
+          onDragUpdated: (details) {
+            if (!_isDragging) return;
+            final renderBox = context.findRenderObject() as RenderBox;
+            final mode = _modeFromPosition(
+              details.localPosition,
+              renderBox.size,
+            );
+            if (mode != _hoveredDropMode) {
+              setState(() => _hoveredDropMode = mode);
+            }
+          },
+          onDragExited: (_) => setState(() {
+            _isDragging = false;
+            _hoveredDropMode = null;
+          }),
+          child: Stack(
+            children: [
+              SafeArea(
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    final isMobile = constraints.maxWidth < 600;
+                    // Calculate the visual top margin:
+                    // SafeArea (padding.top) + Header centering offset ((72 - 48) / 2 = 12)
+                    final topPadding = MediaQuery.of(context).padding.top;
+                    final visualTopMargin = topPadding + 12.0;
 
-                  final firstFile = details.files.first;
-                  if (firstFile.path.isNotEmpty) {
-                    if (!firstFile.name.toLowerCase().endsWith('.quiz')) {
-                      context.presentSnackBar(
-                        AppLocalizations.of(context)!.errorInvalidFile,
-                      );
-                      return;
-                    }
-                    context.read<FileBloc>().add(QuizFileReset());
-                    context.read<FileBloc>().add(FileDropped(firstFile.path));
-                  }
-                }
-                setState(() => _isDragging = false);
-              },
-              onDragEntered: (_) {
-                if (!ServiceLocator.getIt<DialogDropGuard>().isActive) {
-                  setState(() => _isDragging = true);
-                }
-              },
-              onDragExited: (_) => setState(() => _isDragging = false),
-              child: Stack(
-                children: [
-                  SafeArea(
-                    child: LayoutBuilder(
-                      builder: (context, constraints) {
-                        final isMobile = constraints.maxWidth < 600;
-                        // Calculate the visual top margin:
-                        // SafeArea (padding.top) + Header centering offset ((72 - 48) / 2 = 12)
-                        final topPadding = MediaQuery.of(context).padding.top;
-                        final visualTopMargin = topPadding + 12.0;
-
-                        return SingleChildScrollView(
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(
-                              minHeight: constraints.maxHeight,
+                    return SingleChildScrollView(
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minHeight: constraints.maxHeight,
+                        ),
+                        child: IntrinsicHeight(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: isMobile ? visualTopMargin : 48.0,
                             ),
-                            child: IntrinsicHeight(
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: isMobile ? visualTopMargin : 48.0,
+                            child: Column(
+                              children: [
+                                HomeHeaderWidget(
+                                  isLoading: _isLoading,
+                                  onSettingsTap: () =>
+                                      _showSettingsDialog(context),
                                 ),
-                                child: Column(
-                                  children: [
-                                    HomeHeaderWidget(
-                                      isLoading: _isLoading,
-                                      onSettingsTap: () =>
-                                          _showSettingsDialog(context),
-                                    ),
-                                    Expanded(
-                                      child: HomeDropZoneWidget(
-                                        isDragging: _isDragging,
-                                        onTap: () => _pickFile(context),
-                                      ),
-                                    ),
-                                    HomeFooterWidget(
-                                      isLoading: _isLoading,
-                                      onCreateTap: () =>
-                                          _showCreateQuizFileDialog(context),
-                                      onGenerateAITap: () =>
-                                          _generateQuestionsWithAI(context),
-                                      onStudyModeTap: () =>
-                                          _startStudyModeWithAI(context),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  if (_isLoading)
-                    Positioned.fill(
-                      child: Container(
-                        color: Colors.black.withValues(alpha: 0.3),
-                        child: Center(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const CircularProgressIndicator(),
-                              if (_loadingText != null) ...[
-                                const SizedBox(height: 16),
-                                Material(
-                                  color: Colors.transparent,
-                                  child: Text(
-                                    _loadingText!,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    textAlign: TextAlign.center,
+                                Expanded(
+                                  child: HomeDropZoneWidget(
+                                    isDragging: _isDragging,
+                                    onTap: () => _pickFile(context),
                                   ),
                                 ),
+                                HomeFooterWidget(
+                                  isLoading: _isLoading,
+                                  onCreateTap: () =>
+                                      _showCreateQuizFileDialog(context),
+                                  onGenerateAITap: () =>
+                                      _generateQuestionsWithAI(context),
+                                  onStudyModeTap: () =>
+                                      _startStudyModeWithAI(context),
+                                ),
                               ],
-                            ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                ],
+                    );
+                  },
+                ),
               ),
-            ),
-          );
-        },
+              if (_isDragging)
+                Positioned.fill(
+                  child: HomeDragModeOverlay(hoveredMode: _hoveredDropMode),
+                ),
+              if (_isLoading)
+                Positioned.fill(
+                  child: Container(
+                    color: Colors.black.withValues(alpha: 0.3),
+                    child: Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const CircularProgressIndicator(),
+                          if (_loadingText != null) ...[
+                            const SizedBox(height: 16),
+                            Material(
+                              color: Colors.transparent,
+                              child: Text(
+                                _loadingText!,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
       ),
     );
   }
