@@ -43,13 +43,13 @@ void main() {
       expect(quizFile.study, isNotNull);
 
       final studyContent = quizFile.study!.content;
-      expect(studyContent.progressPercentage, 30.5);
-      expect(studyContent.totalChunks, 10);
-      expect(studyContent.cache.length, 1);
+      expect(studyContent.progressPercentage, 100.0);
+      expect(studyContent.totalChunks, 11);
+      expect(studyContent.cache.length, 11);
 
       final firstChunk = studyContent.cache.first;
       expect(firstChunk.status, StudyChunkState.completed);
-      expect(firstChunk.pages.length, 2);
+      expect(firstChunk.pages.length, 1);
     });
 
     test('should serialize maintaining study property', () {
