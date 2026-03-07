@@ -1388,6 +1388,10 @@
     "description": "ファイルピッカーが失敗したときのエラーメッセージ"
   },
   "studyModeLabel": "学習モード",
+  "practiceModeLabel": "練習モード",
+  "@practiceModeLabel": {
+    "description": "Label for practice mode option in start quiz"
+  },
   "studyModeDescription": "AIアシスタンス利用可能。回答直後のインスタント・フィードバック、時間制限や減点はありません。",
   "examModeLabel": "試験モード",
   "examModeDescription": "AIアシスタンスなし。時間制限や不正解による減点が適用される場合があります。",

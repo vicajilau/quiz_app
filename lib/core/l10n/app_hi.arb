@@ -1380,6 +1380,10 @@
     "description": "Error message when file picker fails"
   },
   "studyModeLabel": "अध्ययन मोड",
+  "practiceModeLabel": "अभ्यास मोड",
+  "@practiceModeLabel": {
+    "description": "Label for practice mode option in start quiz"
+  },
   "studyModeDescription": "AI सहायता उपलब्ध है। समय सीमा या दंड के बिना प्रत्येक उत्तर के बाद त्वरित प्रतिक्रिया।",
   "examModeLabel": "परीक्षा मोड",
   "examModeDescription": "कोई AI सहायता नहीं। समय सीमा और गलत उत्तरों के लिए जुर्माना लागू हो सकता है।",

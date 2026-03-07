@@ -2204,6 +2204,12 @@ abstract class AppLocalizations {
   /// **'Study Mode'**
   String get studyModeLabel;
 
+  /// Label for practice mode option in start quiz
+  ///
+  /// In en, this message translates to:
+  /// **'Practice Mode'**
+  String get practiceModeLabel;
+
   /// Description for study mode
   ///
   /// In en, this message translates to:

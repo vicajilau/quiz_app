@@ -371,6 +371,10 @@
   "aiCommentsHelperText": "Προαιρετικά προσθέστε οδηγίες σχετικά με τον τρόπο δημιουργίας ερωτήσεων από το αρχείο",
   "aiFilePickerError": "Δεν ήταν δυνατή η φόρτωση του επιλεγμένου αρχείου",
   "studyModeLabel": "Λειτουργία Μελέτης",
+  "practiceModeLabel": "Λειτουργία Πρακτικής",
+  "@practiceModeLabel": {
+    "description": "Label for practice mode option in start quiz"
+  },
   "studyModeDescription": "Διαθέσιμη βοήθεια AI. Άμεση ανατροφοδότηση μετά από κάθε απάντηση, χωρίς χρονικά όρια ή ποινές.",
   "examModeLabel": "Λειτουργία Εξέτασης",
   "examModeDescription": "Χωρίς βοήθεια AI. Ενδέχεται να ισχύουν χρονικά όρια και ποινές για λανθασμένες απαντήσεις.",

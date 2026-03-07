@@ -69,7 +69,7 @@ class QuizModeSelection extends StatelessWidget {
             Expanded(
               child: _buildModeOption(
                 context: context,
-                title: AppLocalizations.of(context)!.studyModeLabel,
+                title: AppLocalizations.of(context)!.practiceModeLabel,
                 icon: LucideIcons.bookOpen,
                 isSelected: isStudyMode,
                 onTap: () => onModeChanged(true),
