@@ -232,6 +232,7 @@ class FileBloc extends Bloc<FileEvent, FileState> {
         final updatedFile = currentFile.copyWith(
           study: updatedStudy,
           fileUri: event.fileUri,
+          fileExpirationTime: event.fileExpirationTime,
         );
 
         // Update repository/service locator without dropping the original unmodified cache state

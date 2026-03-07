@@ -36,6 +36,7 @@ class StudyExecutionBloc
     int processedChunks,
     List<StudyChunk> chunks,
     String? fileUri,
+    DateTime? fileExpirationTime,
   )?
   onProgressChanged;
   final bool _isAutoDifficulty;
@@ -57,6 +58,7 @@ class StudyExecutionBloc
     String? originalText,
     String? language,
     AiGenerationMode? generationMode,
+    DateTime? fileExpirationTime,
     this.onProgressChanged,
   }) : _jitProcessingService = jitProcessingService,
        _localizations = localizations,
@@ -72,6 +74,7 @@ class StudyExecutionBloc
            documentSummary,
            fileAttachment: fileAttachment,
            fileUri: fileUri,
+           fileExpirationTime: fileExpirationTime,
          ),
        ) {
     on<StudyChunkRequested>(_onStudyChunkRequested);
@@ -89,11 +92,13 @@ class StudyExecutionBloc
     String? documentSummary, {
     AiFileAttachment? fileAttachment,
     String? fileUri,
+    DateTime? fileExpirationTime,
   }) {
     var state = StudyExecutionState(
       chunks: chunks,
       fileAttachment: fileAttachment,
       fileUri: fileUri,
+      fileExpirationTime: fileExpirationTime,
       documentTitle: documentTitle,
       documentSummary: documentSummary,
     );
@@ -142,17 +147,29 @@ class StudyExecutionBloc
     chunksProcessing[event.chunkIndex] = processingChunk;
     emit(state.copyWith(chunks: chunksProcessing));
 
-    // Ensure we have a fileUri (multimodal File API upload)
     String? fileUri = state.fileUri;
+    DateTime? fileExpirationTime = state.fileExpirationTime;
     String? fileMimeType = state.fileAttachment?.mimeType;
 
-    if (fileUri == null && state.fileAttachment != null) {
-      try {
-        fileUri = await ServiceLocator.getIt<GeminiService>().uploadFile(
-          state.fileAttachment!,
-          _localizations,
+    // Check if file is expired (with 10-minute buffer)
+    final bool isExpired =
+        fileExpirationTime != null &&
+        DateTime.now().add(const Duration(minutes: 10)).isAfter(
+          fileExpirationTime,
         );
-        emit(state.copyWith(fileUri: fileUri));
+
+    if ((fileUri == null || isExpired) && state.fileAttachment != null) {
+      try {
+        final uploadResult = await ServiceLocator.getIt<GeminiService>()
+            .uploadFile(state.fileAttachment!, _localizations);
+        fileUri = uploadResult.fileUri;
+        fileExpirationTime = uploadResult.expirationTime;
+        emit(
+          state.copyWith(
+            fileUri: fileUri,
+            fileExpirationTime: fileExpirationTime,
+          ),
+        );
       } catch (e) {
         final errorChunk = chunk.copyWith(status: StudyChunkState.error);
         final chunksError = List<StudyChunk>.from(state.chunks);
@@ -162,7 +179,9 @@ class StudyExecutionBloc
       }
     }
 
-    if (fileUri == null && _originalText == null && !event.allowFallback) {
+    if ((fileUri == null || isExpired) &&
+        _originalText == null &&
+        !event.allowFallback) {
       if (state.fileAttachment != null) {
         // Revert chunk back to created — the user needs to re-attach the file
         final revertedChunk = chunk.copyWith(status: StudyChunkState.created);
@@ -203,6 +222,7 @@ class StudyExecutionBloc
       newState.processedChunks,
       newState.chunks,
       newState.fileUri,
+      newState.fileExpirationTime,
     );
   }
 
@@ -271,6 +291,7 @@ class StudyExecutionBloc
       newState.processedChunks,
       newState.chunks,
       newState.fileUri,
+      newState.fileExpirationTime,
     );
   }
 

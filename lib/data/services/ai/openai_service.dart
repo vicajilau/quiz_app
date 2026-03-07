@@ -165,7 +165,7 @@ class OpenAIService extends AIService {
   }
 
   @override
-  Future<String> uploadFile(
+  Future<FileUploadResult> uploadFile(
     AiFileAttachment file,
     AppLocalizations localizations,
   ) async {
