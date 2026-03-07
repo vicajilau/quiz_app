@@ -1909,5 +1909,6 @@
   "generateSectionsWithAI": "Abschnitte mit KI generieren",
   "addSectionsWithAI": "Abschnitte mit KI hinzufügen",
   "studyScreenReminder": "Erinnerung",
-  "studyScreenKeyDefinition": "Schlüsselbegriff"
+  "studyScreenKeyDefinition": "Schlüsselbegriff",
+  "studyScreenImportant": "Wichtig"
 }

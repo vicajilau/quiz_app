@@ -1546,4 +1546,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get studyScreenKeyDefinition => '重要な定義';
+
+  @override
+  String get studyScreenImportant => '重要';
 }

@@ -1816,5 +1816,6 @@
   "generateSectionsWithAI": "AIでセクションを生成",
   "addSectionsWithAI": "AIでセクションを追加",
   "studyScreenReminder": "リマインダー",
-  "studyScreenKeyDefinition": "重要な定義"
+  "studyScreenKeyDefinition": "重要な定義",
+  "studyScreenImportant": "重要"
 }

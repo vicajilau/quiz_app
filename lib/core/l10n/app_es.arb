@@ -1926,5 +1926,6 @@
   "showMoreLabel": "Mostrar más",
   "showLessLabel": "Mostrar menos",
   "studyScreenReminder": "Recordatorio",
-  "studyScreenKeyDefinition": "Definición Clave"
+  "studyScreenKeyDefinition": "Definición Clave",
+  "studyScreenImportant": "Importante"
 }

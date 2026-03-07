@@ -1625,4 +1625,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get studyScreenKeyDefinition => 'Funtsezko Definizioa';
+
+  @override
+  String get studyScreenImportant => 'Garrantzitsua';
 }

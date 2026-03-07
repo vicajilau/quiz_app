@@ -1633,4 +1633,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get studyScreenKeyDefinition => 'Βασικός Ορισμός';
+
+  @override
+  String get studyScreenImportant => 'Σημαντικό';
 }

@@ -1858,5 +1858,6 @@
   "generateSectionsWithAI": "Générer des sections avec l'IA",
   "addSectionsWithAI": "Ajouter des sections avec l'IA",
   "studyScreenReminder": "Rappel",
-  "studyScreenKeyDefinition": "Définition Clé"
+  "studyScreenKeyDefinition": "Définition Clé",
+  "studyScreenImportant": "Important"
 }

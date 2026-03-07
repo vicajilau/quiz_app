@@ -1633,4 +1633,7 @@ class AppLocalizationsGl extends AppLocalizations {
 
   @override
   String get studyScreenKeyDefinition => 'Definición Clave';
+
+  @override
+  String get studyScreenImportant => 'Importante';
 }

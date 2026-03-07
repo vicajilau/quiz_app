@@ -1534,4 +1534,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get studyScreenKeyDefinition => '关键定义';
+
+  @override
+  String get studyScreenImportant => '重要';
 }

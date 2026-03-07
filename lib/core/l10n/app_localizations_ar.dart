@@ -1598,4 +1598,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get studyScreenKeyDefinition => 'تعريف رئيسي';
+
+  @override
+  String get studyScreenImportant => 'هام';
 }

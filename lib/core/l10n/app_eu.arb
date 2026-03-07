@@ -1813,5 +1813,6 @@
   "generateSectionsWithAI": "Sortu atalak AIarekin",
   "addSectionsWithAI": "Gehitu atalak AIarekin",
   "studyScreenReminder": "Oroigarria",
-  "studyScreenKeyDefinition": "Funtsezko Definizioa"
+  "studyScreenKeyDefinition": "Funtsezko Definizioa",
+  "studyScreenImportant": "Garrantzitsua"
 }

@@ -771,5 +771,6 @@
   "generateSectionsWithAI": "Δημιουργία ενοτήτων με AI",
   "addSectionsWithAI": "Προσθήκη ενοτήτων με AI",
   "studyScreenReminder": "Υπενθύμιση",
-  "studyScreenKeyDefinition": "Βασικός Ορισμός"
+  "studyScreenKeyDefinition": "Βασικός Ορισμός",
+  "studyScreenImportant": "Σημαντικό"
 }

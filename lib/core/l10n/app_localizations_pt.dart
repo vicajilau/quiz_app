@@ -1631,4 +1631,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get studyScreenKeyDefinition => 'Definição Chave';
+
+  @override
+  String get studyScreenImportant => 'Importante';
 }

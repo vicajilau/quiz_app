@@ -2916,6 +2916,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Key Definition'**
   String get studyScreenKeyDefinition;
+
+  /// Label for the warning/important component in the study screen
+  ///
+  /// In en, this message translates to:
+  /// **'Important'**
+  String get studyScreenImportant;
 }
 
 class _AppLocalizationsDelegate

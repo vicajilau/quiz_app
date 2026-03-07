@@ -1915,5 +1915,6 @@
   "generateSectionsWithAI": "Generar seccions amb IA",
   "addSectionsWithAI": "Afegir seccions amb IA",
   "studyScreenReminder": "Recordatori",
-  "studyScreenKeyDefinition": "Definició Clau"
+  "studyScreenKeyDefinition": "Definició Clau",
+  "studyScreenImportant": "Important"
 }

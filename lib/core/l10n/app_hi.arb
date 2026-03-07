@@ -1816,5 +1816,6 @@
   "generateSectionsWithAI": "AI के साथ अनुभाग उत्पन्न करें",
   "addSectionsWithAI": "AI के साथ अनुभाग जोड़ें",
   "studyScreenReminder": "अनुस्मारक",
-  "studyScreenKeyDefinition": "मुख्य परिभाषा"
+  "studyScreenKeyDefinition": "मुख्य परिभाषा",
+  "studyScreenImportant": "महत्वपूर्ण"
 }

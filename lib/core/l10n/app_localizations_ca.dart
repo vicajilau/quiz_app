@@ -1634,4 +1634,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get studyScreenKeyDefinition => 'Definició Clau';
+
+  @override
+  String get studyScreenImportant => 'Important';
 }

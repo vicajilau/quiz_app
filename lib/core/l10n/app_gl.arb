@@ -1813,5 +1813,6 @@
   "generateSectionsWithAI": "Xerar seccións con IA",
   "addSectionsWithAI": "Engadir seccións con IA",
   "studyScreenReminder": "Recordatorio",
-  "studyScreenKeyDefinition": "Definición Clave"
+  "studyScreenKeyDefinition": "Definición Clave",
+  "studyScreenImportant": "Importante"
 }

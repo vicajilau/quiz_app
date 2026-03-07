@@ -1873,5 +1873,6 @@
   "generateSectionsWithAI": "إنشاء أقسام باستخدام الذكاء الاصطناعي",
   "addSectionsWithAI": "إضافة أقسام باستخدام الذكاء الاصطناعي",
   "studyScreenReminder": "تذكير",
-  "studyScreenKeyDefinition": "تعريف رئيسي"
+  "studyScreenKeyDefinition": "تعريف رئيسي",
+  "studyScreenImportant": "هام"
 }

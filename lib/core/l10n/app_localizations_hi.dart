@@ -1613,4 +1613,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get studyScreenKeyDefinition => 'मुख्य परिभाषा';
+
+  @override
+  String get studyScreenImportant => 'महत्वपूर्ण';
 }
