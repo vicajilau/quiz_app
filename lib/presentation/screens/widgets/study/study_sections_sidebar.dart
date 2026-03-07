@@ -20,11 +20,13 @@ import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 
-class StudySectionsSidebar extends StatefulWidget {
+class StudySectionsSidebar extends StatelessWidget {
   final List<StudyChunk> chunks;
   final int currentChunkIndex;
   final AppLocalizations localizations;
   final ValueChanged<int> onChunkSelected;
+  final VoidCallback onClose;
+  final bool isFullScreen;
 
   const StudySectionsSidebar({
     super.key,
@@ -32,130 +34,102 @@ class StudySectionsSidebar extends StatefulWidget {
     required this.currentChunkIndex,
     required this.localizations,
     required this.onChunkSelected,
+    required this.onClose,
+    this.isFullScreen = false,
   });
-
-  @override
-  State<StudySectionsSidebar> createState() => _StudySectionsSidebarState();
-}
-
-class _StudySectionsSidebarState extends State<StudySectionsSidebar> {
-  bool _expanded = true;
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 250),
-      curve: Curves.easeInOut,
-      width: _expanded ? 280 : 48,
+    return Container(
       decoration: BoxDecoration(
         color: isDark ? AppTheme.zinc800 : Colors.white,
-        border: Border(
-          right: BorderSide(
-            color: isDark ? AppTheme.zinc700 : AppTheme.borderColor,
-          ),
-        ),
+        border: isFullScreen
+            ? null
+            : Border(
+                right: BorderSide(
+                  color: isDark ? AppTheme.zinc700 : AppTheme.borderColor,
+                ),
+              ),
       ),
-      clipBehavior: Clip.hardEdge,
-      child: OverflowBox(
-        maxWidth: 280,
-        minWidth: 280,
-        alignment: AlignmentDirectional.centerStart,
-        child: SizedBox(
-          width: 280,
-          child: _expanded ? _buildExpanded(isDark) : _buildCollapsed(isDark),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildExpanded(bool isDark) {
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.fromLTRB(
-            16,
-            MediaQuery.of(context).padding.top + 10,
-            8,
-            12,
-          ),
-          child: Row(
-            children: [
-              const Icon(Icons.list, size: 18, color: AppTheme.primaryColor),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text(
-                  widget.localizations.studyScreenSections,
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w700,
-                    color: isDark ? Colors.white : AppTheme.zinc900,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                ),
+      child: SafeArea(
+        right: false,
+        left: isFullScreen,
+        bottom: true,
+        top: isFullScreen,
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                16,
+                isFullScreen ? 10 : MediaQuery.of(context).padding.top + 10,
+                8,
+                12,
               ),
-              const SizedBox(width: 4),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                decoration: BoxDecoration(
-                  color: AppTheme.primaryColor.withValues(
-                    alpha: isDark ? 0.125 : 0.063,
+              child: Row(
+                children: [
+                  const Icon(Icons.list, size: 18, color: AppTheme.primaryColor),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      localizations.studyScreenSections,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: isDark ? Colors.white : AppTheme.zinc900,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text(
-                  '${widget.chunks.length}',
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w700,
-                    color: isDark ? AppTheme.zinc300 : AppTheme.primaryColor,
+                  const SizedBox(width: 4),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: AppTheme.primaryColor.withValues(
+                        alpha: isDark ? 0.125 : 0.063,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      '${chunks.length}',
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w700,
+                        color: isDark ? AppTheme.zinc300 : AppTheme.primaryColor,
+                      ),
+                    ),
                   ),
-                ),
+                  const SizedBox(width: 4),
+                  _SidebarToggleButton(
+                    isDark: isDark,
+                    onTap: onClose,
+                  ),
+                ],
               ),
-              const SizedBox(width: 4),
-              _SidebarToggleButton(
-                expanded: true,
-                isDark: isDark,
-                onTap: () => setState(() => _expanded = false),
+            ),
+            Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.fromLTRB(12, 0, 12, 120),
+                itemCount: chunks.length,
+                itemBuilder: (context, index) {
+                  final chunk = chunks[index];
+                  final isSelected = index == currentChunkIndex;
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 4),
+                    child: _SidebarChunkItem(
+                      chunk: chunk,
+                      index: index,
+                      total: chunks.length,
+                      isSelected: isSelected,
+                      localizations: localizations,
+                      onTap: () => onChunkSelected(index),
+                    ),
+                  );
+                },
               ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: ListView.builder(
-            padding: const EdgeInsets.fromLTRB(12, 0, 12, 120),
-            itemCount: widget.chunks.length,
-            itemBuilder: (context, index) {
-              final chunk = widget.chunks[index];
-              final isSelected = index == widget.currentChunkIndex;
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 4),
-                child: _SidebarChunkItem(
-                  chunk: chunk,
-                  index: index,
-                  total: widget.chunks.length,
-                  isSelected: isSelected,
-                  localizations: widget.localizations,
-                  onTap: () => widget.onChunkSelected(index),
-                ),
-              );
-            },
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildCollapsed(bool isDark) {
-    return Align(
-      alignment: Alignment.topLeft,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 12, left: 6),
-        child: _SidebarToggleButton(
-          expanded: false,
-          isDark: isDark,
-          onTap: () => setState(() => _expanded = true),
+            ),
+          ],
         ),
       ),
     );
@@ -163,12 +137,10 @@ class _StudySectionsSidebarState extends State<StudySectionsSidebar> {
 }
 
 class _SidebarToggleButton extends StatelessWidget {
-  final bool expanded;
   final bool isDark;
   final VoidCallback onTap;
 
   const _SidebarToggleButton({
-    required this.expanded,
     required this.isDark,
     required this.onTap,
   });
@@ -186,7 +158,7 @@ class _SidebarToggleButton extends StatelessWidget {
         ),
         alignment: Alignment.center,
         child: Icon(
-          expanded ? LucideIcons.panelRightOpen : LucideIcons.panelRightClose,
+          LucideIcons.panelRightOpen,
           size: 18,
           color: isDark ? AppTheme.zinc400 : AppTheme.zinc500,
         ),
