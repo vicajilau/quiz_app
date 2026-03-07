@@ -7,60 +7,715 @@
   },
   "study": {
     "content": {
-      "coverage_percentage": 30.5,
-      "total_chunks": 10,
-      "processed_chunks": 3,
+      "progress_percentage": 100,
+      "total_chunks": 11,
+      "processed_chunks": 11,
       "cache": [
         {
           "chunk_index": 0,
           "status": "completed",
           "source_reference": {
-            "document_id": "doc_12345",
+            "document_id": "sample-doc-1",
             "start_page": 1,
             "end_page": 1,
-            "start_offset": 1024,
-            "end_offset": 1500,
-            "block_type": "formula_summary"
+            "start_offset": 0,
+            "end_offset": 100,
+            "block_type": "Prime Numbers"
           },
-          "ai_summary": "Resumen generado por Gemini...",
-          "slides": [
+          "pages": [
             {
-              "ui_elements": [
+              "components": [
                 {
-                  "component_type": "ConceptHighlight",
-                  "props": {
-                    "concept": "Neuroplasticity",
-                    "definition": "The brain's ability to reorganize itself..."
-                  }
+                  "type": "section_title",
+                  "title": "Understanding Prime Numbers",
+                  "subtitle": "The Building Blocks of Arithmetic"
                 },
                 {
-                  "component_type": "SummaryList",
-                  "props": {
-                    "items": [
-                      "Point 1",
-                      "Point 2"
-                    ]
-                  }
-                }
-              ]
-            },
-            {
-              "ui_elements": [
+                  "type": "paragraph",
+                  "title": "Introduction",
+                  "body": "Prime numbers are numbers greater than 1 that have only two factors: 1 and themselves. They are foundational to number theory and cryptography."
+                },
                 {
-                  "component_type": "SummaryList",
-                  "props": {
-                    "items": [
-                      "Point 1",
-                      "Point 2"
-                    ]
-                  }
+                  "type": "key_definition",
+                  "term": "Prime Number",
+                  "body": "A whole number greater than 1 whose only divisors are 1 and itself."
+                },
+                {
+                  "type": "key_concepts",
+                  "title": "Rules of Primes",
+                  "items": [
+                    "Must be greater than 1",
+                    "Has exactly two divisors",
+                    "2 is the only even prime",
+                    "1 is not prime"
+                  ]
+                },
+                {
+                  "type": "reminder",
+                  "body": "Remember, the number 1 is neither prime nor composite!"
                 }
               ]
             }
-          ]
+          ],
+          "ai_summary": "A concise overview of prime numbers, their foundational rules, and practical examples."
+        },
+        {
+          "chunk_index": 1,
+          "status": "completed",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 1,
+            "end_page": 2,
+            "start_offset": 101,
+            "end_offset": 200,
+            "block_type": "Neuroplasticity"
+          },
+          "pages": [
+            {
+              "components": [
+                {
+                  "type": "section_title",
+                  "title": "Neuroplasticity and Learning",
+                  "subtitle": "How the brain rewires itself"
+                },
+                {
+                  "type": "paragraph",
+                  "title": "Long-Term Potentiation",
+                  "body": "Long-term potentiation (LTP) is a persistent strengthening of synapses based on recent patterns of activity. It is widely considered one of the major cellular mechanisms that underlies learning and memory."
+                },
+                {
+                  "type": "key_definition",
+                  "term": "Hebbian Learning",
+                  "body": "A neuroscientific theory claiming that an increase in synaptic efficacy arises from a presynaptic cell's repeated and persistent stimulation of a postsynaptic cell. Often summarized as 'Cells that fire together, wire together.'"
+                },
+                {
+                  "type": "pros_cons",
+                  "title": "Impact of High Cognitive Demand",
+                  "advantages": [
+                    "Increased synaptic density",
+                    "Better memory retention",
+                    "Enhanced cognitive flexibility"
+                  ],
+                  "limitations": [
+                    "High energy expenditure",
+                    "Potential for cognitive fatigue",
+                    "Slower initial processing during intense learning"
+                  ]
+                },
+                {
+                  "type": "quote",
+                  "author": "Donald Hebb",
+                  "body": "Neurons that fire together wire together."
+                }
+              ]
+            }
+          ],
+          "ai_summary": "An explanation of Long-Term Potentiation (LTP) and Hebbian learning in the context of neuroplasticity."
+        },
+        {
+          "chunk_index": 2,
+          "status": "completed",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 2,
+            "end_page": 2,
+            "start_offset": 201,
+            "end_offset": 300,
+            "block_type": "Geography: France"
+          },
+          "pages": [
+            {
+              "components": [
+                {
+                  "type": "section_title",
+                  "title": "Geography: France",
+                  "subtitle": "The heart of Western Europe"
+                },
+                {
+                  "type": "paragraph",
+                  "title": "Paris",
+                  "body": "Paris is the capital and most populous city of France. Since the 17th century, Paris has been one of Europe's major centers of finance, diplomacy, commerce, fashion, gastronomy, and science."
+                },
+                {
+                  "type": "comparison_table",
+                  "title": "Major European Capitals",
+                  "columns": [
+                    "City",
+                    "Country",
+                    "Approx. Population"
+                  ],
+                  "rows": [
+                    {
+                      "label": "Paris",
+                      "values": [
+                        "France",
+                        "2.1 million"
+                      ]
+                    },
+                    {
+                      "label": "London",
+                      "values": [
+                        "United Kingdom",
+                        "8.9 million"
+                      ]
+                    },
+                    {
+                      "label": "Berlin",
+                      "values": [
+                        "Germany",
+                        "3.6 million"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "icon_cards",
+                  "title": "Famous Landmarks in Paris",
+                  "items": [
+                    {
+                      "title": "Eiffel Tower",
+                      "description": "Wrought-iron lattice tower on the Champ de Mars."
+                    },
+                    {
+                      "title": "Louvre Museum",
+                      "description": "The world's most-visited museum, home to the Mona Lisa."
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "ai_summary": "Key demographic and historical facts about Paris, including major landmarks and comparisons with other European capitals."
+        },
+        {
+          "chunk_index": 3,
+          "status": "completed",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 3,
+            "end_page": 3,
+            "start_offset": 301,
+            "end_offset": 400,
+            "block_type": "Paris Agreement"
+          },
+          "pages": [
+            {
+              "components": [
+                {
+                  "type": "section_title",
+                  "title": "Climate Change Treaties",
+                  "subtitle": "Global efforts for mitigation"
+                },
+                {
+                  "type": "paragraph",
+                  "title": "The Paris Agreement",
+                  "body": "Adopted in 2015 at COP 21, the Paris Agreement aims to limit global warming to well below 2 degrees Celsius above pre-industrial levels, aiming for 1.5 degrees."
+                },
+                {
+                  "type": "timeline",
+                  "title": "Key Climate Agreements",
+                  "items": [
+                    {
+                      "date": "1997",
+                      "title": "Kyoto Protocol",
+                      "description": "Focused on reducing greenhouse gas emissions in developed countries."
+                    },
+                    {
+                      "date": "2009",
+                      "title": "Copenhagen Accord",
+                      "description": "Recognized the scientific view that the increase in global temperature should be below 2°C."
+                    },
+                    {
+                      "date": "2015",
+                      "title": "Paris Agreement",
+                      "description": "Legally binding international treaty adopted by 196 Parties."
+                    }
+                  ]
+                },
+                {
+                  "type": "warning",
+                  "body": "The Montreal Protocol (1987) is often confused with climate change treaties, but it was specifically designed to protect the ozone layer, not directly limit warming."
+                },
+                {
+                  "type": "key_concepts",
+                  "title": "Paris Agreement Core Elements",
+                  "items": [
+                    "Limit temp increase to 1.5°C",
+                    "Nationally Determined Contributions (NDCs)",
+                    "Global Stocktake every 5 years"
+                  ]
+                }
+              ]
+            }
+          ],
+          "ai_summary": "A historical timeline and core details of the 2015 Paris Agreement on climate change mitigation."
+        },
+        {
+          "chunk_index": 4,
+          "status": "completed",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 3,
+            "end_page": 4,
+            "start_offset": 401,
+            "end_offset": 500,
+            "block_type": "Boiling Point of Water"
+          },
+          "pages": [
+            {
+              "components": [
+                {
+                  "type": "section_title",
+                  "title": "Thermodynamics of Water",
+                  "subtitle": "Phase transitions"
+                },
+                {
+                  "type": "paragraph",
+                  "title": "Boiling Point",
+                  "body": "The boiling point of a substance is the temperature at which the vapor pressure of a liquid equals the pressure surrounding the liquid, and the liquid changes into a vapor."
+                },
+                {
+                  "type": "comparison_table",
+                  "title": "Water Phase Temperatures (Sea Level)",
+                  "columns": [
+                    "Phase Change",
+                    "Celsius (°C)",
+                    "Fahrenheit (°F)",
+                    "Kelvin (K)"
+                  ],
+                  "rows": [
+                    {
+                      "label": "Freezing/Melting",
+                      "values": [
+                        "0",
+                        "32",
+                        "273.15"
+                      ]
+                    },
+                    {
+                      "label": "Boiling",
+                      "values": [
+                        "100",
+                        "212",
+                        "373.15"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "reminder",
+                  "body": "Water's boiling point decreases approximately 1°C for every 285 meters of elevation!"
+                },
+                {
+                  "type": "warning",
+                  "body": "Boiling water is extremely dangerous. Severe burns can occur in seconds."
+                }
+              ]
+            }
+          ],
+          "ai_summary": "A thermodynamic analysis of water's boiling point, including how elevation and pressure affect phase changes."
+        },
+        {
+          "chunk_index": 5,
+          "status": "completed",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 4,
+            "end_page": 5,
+            "start_offset": 501,
+            "end_offset": 600,
+            "block_type": "Invention of Lightbulb"
+          },
+          "pages": [
+            {
+              "components": [
+                {
+                  "type": "section_title",
+                  "title": "History of Artificial Light",
+                  "subtitle": "A cumulative process"
+                },
+                {
+                  "type": "paragraph",
+                  "title": "The Process of Invention",
+                  "body": "The invention of the lightbulb was not the work of a single sudden spark of genius by Thomas Edison, but rather the cumulative effort of numerous scientists over several decades."
+                },
+                {
+                  "type": "timeline",
+                  "title": "Evolution of the Lightbulb",
+                  "items": [
+                    {
+                      "date": "1802",
+                      "title": "Humphry Davy",
+                      "description": "Created the first incandescent light by passing electric current through a thin strip of platinum."
+                    },
+                    {
+                      "date": "1860s",
+                      "title": "Joseph Swan",
+                      "description": "Developed a working lighting device using carbonized paper filaments."
+                    },
+                    {
+                      "date": "1879",
+                      "title": "Thomas Edison",
+                      "description": "Patented the first commercially viable incandescent lightbulb using a carbonized bamboo filament."
+                    }
+                  ]
+                },
+                {
+                  "type": "quote",
+                  "author": "Thomas Edison",
+                  "body": "Genius is one percent inspiration and ninety-nine percent perspiration."
+                },
+                {
+                  "type": "pros_cons",
+                  "title": "Incandescent Bulbs vs. Modern LEDs",
+                  "advantages": [
+                    "Inexpensive to produce (Incandescent)",
+                    "Warm color temperature (Incandescent)",
+                    "Highly energy efficient (LED)",
+                    "Long lifespan (LED)"
+                  ],
+                  "limitations": [
+                    "90% of energy wasted as heat (Incandescent)",
+                    "Short lifespan (Incandescent)",
+                    "Higher initial cost (LED)"
+                  ]
+                }
+              ]
+            }
+          ],
+          "ai_summary": "The cumulative history behind the invention of the incandescent lightbulb, featuring contributions from Davy, Swan, and Edison."
+        },
+        {
+          "chunk_index": 6,
+          "status": "completed",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 5,
+            "end_page": 6,
+            "start_offset": 601,
+            "end_offset": 700,
+            "block_type": "Photosynthesis"
+          },
+          "pages": [
+            {
+              "components": [
+                {
+                  "type": "section_title",
+                  "title": "Biology: Plant Anatomy & Function",
+                  "subtitle": "The source of Earth's energy"
+                },
+                {
+                  "type": "paragraph",
+                  "title": "Photosynthesis",
+                  "body": "Photosynthesis is the process used by plants, algae and certain bacteria to harness energy from sunlight and turn it into chemical energy."
+                },
+                {
+                  "type": "key_definition",
+                  "term": "Chloroplasts",
+                  "body": "The organelles within plant cells where photosynthesis takes place, containing the green pigment chlorophyll."
+                },
+                {
+                  "type": "numbered_list",
+                  "title": "Essential Inputs for Photosynthesis",
+                  "items": [
+                    {
+                      "title": "Sunlight",
+                      "description": "Provides the energy necessary to drive the chemical reactions."
+                    },
+                    {
+                      "title": "Carbon Dioxide",
+                      "description": "Absorbed from the air through stoma in the leaves."
+                    },
+                    {
+                      "title": "Water",
+                      "description": "Absorbed by the roots and transported to the leaves."
+                    }
+                  ]
+                },
+                {
+                  "type": "formula",
+                  "title": "Photosynthesis Equation",
+                  "equation": "6CO_2 + 6H_2O + light \\rightarrow C_6H_{12}O_6 + 6O_2",
+                  "equation_label": "Chemical reaction",
+                  "body": "Carbon dioxide and water yield glucose and oxygen."
+                }
+              ]
+            }
+          ],
+          "ai_summary": "A biological breakdown of photosynthesis, detailing the necessary inputs, the role of chloroplasts, and the chemical equation."
+        },
+        {
+          "chunk_index": 7,
+          "status": "completed",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 6,
+            "end_page": 7,
+            "start_offset": 701,
+            "end_offset": 800,
+            "block_type": "Industrial Revolution"
+          },
+          "pages": [
+            {
+              "components": [
+                {
+                  "type": "section_title",
+                  "title": "The Industrial Revolution",
+                  "subtitle": "Societal Transformation in 19th Century Europe"
+                },
+                {
+                  "type": "paragraph",
+                  "title": "Overview",
+                  "body": "The Industrial Revolution was the transition to new manufacturing processes in Europe and the United States, in the period from about 1760 to sometime between 1820 and 1840."
+                },
+                {
+                  "type": "numbered_list",
+                  "title": "Major Socio-Economic Impacts",
+                  "items": [
+                    {
+                      "title": "Urbanization",
+                      "description": "Massive migration from rural areas to cities seeking factory work."
+                    },
+                    {
+                      "title": "Working Class Emergence",
+                      "description": "Creation of the industrial working class (proletariat) and industrial middle class."
+                    },
+                    {
+                      "title": "Living Conditions",
+                      "description": "Initially overcrowded and unsanitary living conditions in urban centers."
+                    }
+                  ]
+                },
+                {
+                  "type": "pros_cons",
+                  "title": "Industrialization Effects",
+                  "advantages": [
+                    "Increased production capability",
+                    "Technological advancements",
+                    "Rise of the middle class"
+                  ],
+                  "limitations": [
+                    "Poor initial working conditions",
+                    "Child labor",
+                    "Significant environmental pollution"
+                  ]
+                },
+                {
+                  "type": "quote",
+                  "author": "Arnold Toynbee",
+                  "body": "The essence of the Industrial Revolution is the substitution of competition for the medieval regulations which had previously controlled the production and distribution of wealth."
+                }
+              ]
+            }
+          ],
+          "ai_summary": "An overview of the Industrial Revolution, focusing on its socio-economic impacts, urbanization, and shift in labor."
+        },
+        {
+          "chunk_index": 8,
+          "status": "completed",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 7,
+            "end_page": 7,
+            "start_offset": 801,
+            "end_offset": 900,
+            "block_type": "Quadratic Equation"
+          },
+          "pages": [
+            {
+              "components": [
+                {
+                  "type": "section_title",
+                  "title": "Algebra: Quadratic Equations",
+                  "subtitle": "Solving for x"
+                },
+                {
+                  "type": "paragraph",
+                  "title": "Definition",
+                  "body": "A quadratic equation is any equation that can be rearranged in standard form as $ax^2 + bx + c = 0$ where x represents an unknown, and a, b, and c represent known numbers, where a ≠ 0."
+                },
+                {
+                  "type": "formula",
+                  "title": "The Quadratic Formula",
+                  "equation": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+                  "equation_label": "Identifies the roots of the equation"
+                },
+                {
+                  "type": "numbered_list",
+                  "title": "Steps to use the formula",
+                  "items": [
+                    {
+                      "title": "Standard Form",
+                      "description": "Ensure the equation is in $ax^2 + bx + c = 0$ format."
+                    },
+                    {
+                      "title": "Identify Coefficients",
+                      "description": "Determine the values of a, b, and c."
+                    },
+                    {
+                      "title": "Calculate Discriminant",
+                      "description": "Find the value of $b^2 - 4ac$."
+                    },
+                    {
+                      "title": "Solve",
+                      "description": "Apply the rest of the formula to find x."
+                    }
+                  ]
+                },
+                {
+                  "type": "reminder",
+                  "body": "If the discriminant ($b^2 - 4ac$) is negative, the equation has no real solutions, only complex/imaginary ones!"
+                }
+              ]
+            }
+          ],
+          "ai_summary": "A step-by-step guide to understanding and solving equations using the quadratic formula."
+        },
+        {
+          "chunk_index": 9,
+          "status": "completed",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 8,
+            "end_page": 8,
+            "start_offset": 901,
+            "end_offset": 1000,
+            "block_type": "Area of a Circle"
+          },
+          "pages": [
+            {
+              "components": [
+                {
+                  "type": "section_title",
+                  "title": "Geometry: Circles",
+                  "subtitle": "Properties and Calculations"
+                },
+                {
+                  "type": "paragraph",
+                  "title": "The Area",
+                  "body": "The area of a circle is the space occupied by the circle in a two-dimensional plane. It is proportional to the square of its radius."
+                },
+                {
+                  "type": "formula",
+                  "title": "Area Formula",
+                  "equation": "A = \\pi r^2",
+                  "equation_label": "A = Area, r = radius"
+                },
+                {
+                  "type": "warning",
+                  "body": "Do not confuse the radius with the diameter! The diameter is twice the radius ($d = 2r$). If given the diameter, divide by 2 first."
+                },
+                {
+                  "type": "icon_cards",
+                  "title": "Key Circle Components",
+                  "items": [
+                    {
+                      "title": "Radius (r)",
+                      "description": "Distance from the center to any point on the circumference."
+                    },
+                    {
+                      "title": "Diameter (d)",
+                      "description": "A straight line segment that passes through the center of the circle and whose endpoints lie on the circle."
+                    },
+                    {
+                      "title": "Circumference (C)",
+                      "description": "The perimeter of the circle, calculated as $C = 2\\pi r$."
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "ai_summary": "An explanation of the properties of a circle and how to correctly calculate its area using the radius."
+        },
+        {
+          "chunk_index": 10,
+          "status": "completed",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 9,
+            "end_page": 9,
+            "start_offset": 1001,
+            "end_offset": 1100,
+            "block_type": "The Solar System"
+          },
+          "pages": [
+            {
+              "components": [
+                {
+                  "type": "section_title",
+                  "title": "The Solar System",
+                  "subtitle": "Our cosmic neighborhood"
+                },
+                {
+                  "type": "paragraph",
+                  "title": "Gas Giants",
+                  "body": "The outer solar system contains the gas giants, massive planets composed primarily of hydrogen and helium."
+                },
+                {
+                  "type": "comparison_table",
+                  "title": "Gas Giants Comparison",
+                  "columns": [
+                    "Planet",
+                    "Radius (Earths)",
+                    "Mass (Earths)"
+                  ],
+                  "rows": [
+                    {
+                      "label": "Jupiter",
+                      "values": [
+                        "11.2",
+                        "317.8"
+                      ]
+                    },
+                    {
+                      "label": "Saturn",
+                      "values": [
+                        "9.4",
+                        "95.1"
+                      ]
+                    },
+                    {
+                      "label": "Uranus",
+                      "values": [
+                        "4.0",
+                        "14.5"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "icon_cards",
+                  "title": "Jupiter Facts",
+                  "items": [
+                    {
+                      "title": "Size",
+                      "description": "Jupiter is the largest planet in our solar system."
+                    },
+                    {
+                      "title": "Great Red Spot",
+                      "description": "A giant storm that has been raging for hundreds of years."
+                    },
+                    {
+                      "title": "Moons",
+                      "description": "Jupiter has at least 79 known moons, including Ganymede."
+                    }
+                  ]
+                },
+                {
+                  "type": "reminder",
+                  "body": "Jupiter is so large that all the other planets in the solar system could fit inside it."
+                }
+              ]
+            }
+          ],
+          "ai_summary": "A comparative overview of gas giants in our solar system, with a specific focus on Jupiter's size and characteristics."
         }
       ]
-    }
+    },
+    "generationMode": "text",
+    "isAutoDifficulty": true,
+    "difficultyLevel": "university"
   },
   "questions": [
     {

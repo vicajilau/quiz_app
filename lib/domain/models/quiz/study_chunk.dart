@@ -15,13 +15,13 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:quizdy/domain/models/quiz/source_reference.dart';
-import 'package:quizdy/domain/models/quiz/slide.dart';
+import 'package:quizdy/domain/models/quiz/page.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 
 /// Represents a distinct chunk of study material, often derived from a source document.
 ///
 /// It holds the semantic essence of a specific section (via `aiSummary`) and
-/// provides UI-ready sequences (`slides`) for the user to consume interactively.
+/// provides UI-ready sequences (`pages`) for the user to consume interactively.
 class StudyChunk {
   /// The sequential index or ordering of this chunk.
   final int chunkIndex;
@@ -39,7 +39,7 @@ class StudyChunk {
   final String? aiSummary;
 
   /// The UI views to present to the user representing this chunk.
-  final List<Slide> slides;
+  final List<Page> pages;
 
   /// An optional error message if the chunk generation failed.
   final String? errorMessage;
@@ -50,7 +50,7 @@ class StudyChunk {
     required this.status,
     required this.sourceReference,
     this.aiSummary,
-    this.slides = const [],
+    this.pages = const [],
     this.errorMessage,
   });
 
@@ -59,11 +59,12 @@ class StudyChunk {
   /// - [json]: The JSON map containing the study chunk data.
   /// - Returns: A populated `StudyChunk` instance.
   factory StudyChunk.fromJson(Map<String, dynamic> json) {
-    List<Slide> parsedSlides = [];
-    if (json['slides'] != null) {
-      final slidesJson = json['slides'] as List<dynamic>;
-      parsedSlides = slidesJson
-          .map((slideJson) => Slide.fromJson(slideJson as Map<String, dynamic>))
+    List<Page> parsedPages = [];
+    // Check both pages (issue #221) and slides (legacy)
+    final pagesJson = (json['pages'] ?? json['slides']) as List<dynamic>?;
+    if (pagesJson != null) {
+      parsedPages = pagesJson
+          .map((pageJson) => Page.fromJson(pageJson as Map<String, dynamic>))
           .toList();
     }
 
@@ -76,7 +77,7 @@ class StudyChunk {
         json['source_reference'] as Map<String, dynamic>? ?? {},
       ),
       aiSummary: json['ai_summary'] as String?,
-      slides: parsedSlides,
+      pages: parsedPages,
       errorMessage: json['error_message'] as String?,
     );
   }
@@ -90,7 +91,7 @@ class StudyChunk {
       'status': status.toJson(),
       'source_reference': sourceReference.toJson(),
       if (aiSummary != null) 'ai_summary': aiSummary,
-      'slides': slides.map((slide) => slide.toJson()).toList(),
+      'pages': pages.map((page) => page.toJson()).toList(),
       if (errorMessage != null) 'error_message': errorMessage,
     };
   }
@@ -101,7 +102,7 @@ class StudyChunk {
     StudyChunkState? status,
     SourceReference? sourceReference,
     String? aiSummary,
-    List<Slide>? slides,
+    List<Page>? pages,
     String? errorMessage,
   }) {
     return StudyChunk(
@@ -109,7 +110,7 @@ class StudyChunk {
       status: status ?? this.status,
       sourceReference: sourceReference ?? this.sourceReference.copyWith(),
       aiSummary: aiSummary ?? this.aiSummary,
-      slides: slides ?? this.slides.map((s) => s.copyWith()).toList(),
+      pages: pages ?? this.pages.map((s) => s.copyWith()).toList(),
       errorMessage: errorMessage ?? this.errorMessage,
     );
   }
@@ -124,7 +125,7 @@ class StudyChunk {
         other.sourceReference == sourceReference &&
         other.aiSummary == aiSummary &&
         other.errorMessage == errorMessage &&
-        listEquals(other.slides, slides);
+        listEquals(other.pages, pages);
   }
 
   @override
@@ -133,11 +134,11 @@ class StudyChunk {
         status.hashCode ^
         sourceReference.hashCode ^
         aiSummary.hashCode ^
-        Object.hashAll(slides);
+        Object.hashAll(pages);
   }
 
   @override
   String toString() {
-    return 'StudyChunk(chunkIndex: $chunkIndex, status: ${status.name}, slides: ${slides.length})';
+    return 'StudyChunk(chunkIndex: $chunkIndex, status: ${status.name}, pages: ${pages.length})';
   }
 }

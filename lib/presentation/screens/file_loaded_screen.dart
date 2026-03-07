@@ -621,57 +621,57 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                             onTap: () {
                               _toggleSelectionMode();
                             },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 10,
-                              ),
-                              child: LayoutBuilder(
-                                builder: (context, constraints) {
-                                  final showText =
-                                      MediaQuery.of(context).size.width > 500;
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 10,
+                                ),
+                                child: Builder(
+                                  builder: (context) {
+                                    final showText =
+                                        MediaQuery.of(context).size.width > 500;
 
-                                  return Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        _isSelectionMode
-                                            ? LucideIcons.checkSquare
-                                            : LucideIcons.mousePointer2,
-                                        color: Theme.of(
-                                          context,
-                                        ).colorScheme.onPrimary,
-                                        size: 18,
-                                      ),
-                                      if (showText) ...[
-                                        const SizedBox(width: 8),
-                                        Flexible(
-                                          child: Text(
-                                            _isSelectionMode
-                                                ? AppLocalizations.of(
-                                                    context,
-                                                  )!.done
-                                                : AppLocalizations.of(
-                                                    context,
-                                                  )!.select,
-                                            style: TextStyle(
-                                              color: Theme.of(
-                                                context,
-                                              ).colorScheme.onPrimary,
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w600,
-                                              fontFamily: 'Inter',
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
+                                    return Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          _isSelectionMode
+                                              ? LucideIcons.checkSquare
+                                              : LucideIcons.mousePointer2,
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.onPrimary,
+                                          size: 18,
                                         ),
+                                        if (showText) ...[
+                                          const SizedBox(width: 8),
+                                          Flexible(
+                                            child: Text(
+                                              _isSelectionMode
+                                                  ? AppLocalizations.of(
+                                                      context,
+                                                    )!.done
+                                                  : AppLocalizations.of(
+                                                      context,
+                                                    )!.select,
+                                              style: TextStyle(
+                                                color: Theme.of(
+                                                  context,
+                                                ).colorScheme.onPrimary,
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w600,
+                                                fontFamily: 'Inter',
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ],
                                       ],
-                                    ],
-                                  );
-                                },
+                                    );
+                                  },
+                                ),
                               ),
-                            ),
                           ),
                         ),
                       ),
@@ -684,7 +684,9 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                       return;
                     }
                     setState(() => _isDragging = false);
-                    if (ServiceLocator.getIt<DialogDropGuard>().isActive) return;
+                    if (ServiceLocator.getIt<DialogDropGuard>().isActive) {
+                      return;
+                    }
                     if (details.files.isNotEmpty) {
                       final firstFile = details.files.first;
                       if (firstFile.path.isNotEmpty) {

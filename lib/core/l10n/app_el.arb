@@ -769,5 +769,11 @@
   "studyScreenCustomChapter": "Προσαρμοσμένο κεφάλαιο",
   "addSection": "Προσθήκη ενότητας",
   "generateSectionsWithAI": "Δημιουργία ενοτήτων με AI",
-  "addSectionsWithAI": "Προσθήκη ενοτήτων με AI"
+  "addSectionsWithAI": "Προσθήκη ενοτήτων με AI",
+  "studyScreenReminder": "Υπενθύμιση",
+  "studyScreenKeyDefinition": "Βασικός Ορισμός",
+  "studyScreenImportant": "Σημαντικό",
+  "studyComponentNoItems": "Δεν υπάρχουν στοιχεία",
+  "studyComponentAdvantages": "Πλεονεκτήματα",
+  "studyComponentLimitations": "Περιορισμοί"
 }

@@ -1625,4 +1625,22 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get showLessLabel => 'Mostrar menos';
+
+  @override
+  String get studyScreenReminder => 'Lembrete';
+
+  @override
+  String get studyScreenKeyDefinition => 'Definição Chave';
+
+  @override
+  String get studyScreenImportant => 'Importante';
+
+  @override
+  String get studyComponentNoItems => 'Sem itens';
+
+  @override
+  String get studyComponentAdvantages => 'Vantagens';
+
+  @override
+  String get studyComponentLimitations => 'Limitações';
 }

@@ -126,15 +126,18 @@ class _LaTeXRichText extends StatelessWidget {
           spans.add(
             WidgetSpan(
               alignment: PlaceholderAlignment.middle,
-              child: Math.tex(
-                mathExpression,
-                textStyle: effectiveStyle,
-                onErrorFallback: (error) {
-                  return Text(
-                    '\$$mathExpression\$',
-                    style: effectiveStyle.copyWith(color: Colors.red),
-                  );
-                },
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Math.tex(
+                  mathExpression,
+                  textStyle: effectiveStyle,
+                  onErrorFallback: (error) {
+                    return Text(
+                      '\$$mathExpression\$',
+                      style: effectiveStyle.copyWith(color: Colors.red),
+                    );
+                  },
+                ),
               ),
             ),
           );

@@ -2167,5 +2167,20 @@
   "showLessLabel": "Show less",
   "@showLessLabel": {
     "description": "Label for collapsing expanded text"
-  }
+  },
+  "studyScreenReminder": "Reminder",
+  "@studyScreenReminder": {
+    "description": "Title label for the reminder component in the study screen"
+  },
+  "studyScreenKeyDefinition": "Key Definition",
+  "@studyScreenKeyDefinition": {
+    "description": "Title label for the key definition component in the study screen"
+  },
+  "studyScreenImportant": "Important",
+  "@studyScreenImportant": {
+    "description": "Label for the warning/important component in the study screen"
+  },
+  "studyComponentNoItems": "No items",
+  "studyComponentAdvantages": "Advantages",
+  "studyComponentLimitations": "Limitations"
 }

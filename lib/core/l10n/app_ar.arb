@@ -1871,5 +1871,11 @@
   "studyScreenCustomChapter": "فصل مخصص",
   "addSection": "إضافة قسم",
   "generateSectionsWithAI": "إنشاء أقسام باستخدام الذكاء الاصطناعي",
-  "addSectionsWithAI": "إضافة أقسام باستخدام الذكاء الاصطناعي"
+  "addSectionsWithAI": "إضافة أقسام باستخدام الذكاء الاصطناعي",
+  "studyScreenReminder": "تذكير",
+  "studyScreenKeyDefinition": "تعريف رئيسي",
+  "studyScreenImportant": "هام",
+  "studyComponentNoItems": "لا توجد عناصر",
+  "studyComponentAdvantages": "المزايا",
+  "studyComponentLimitations": "القيود"
 }

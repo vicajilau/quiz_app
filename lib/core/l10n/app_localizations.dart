@@ -2904,6 +2904,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show less'**
   String get showLessLabel;
+
+  /// Title label for the reminder component in the study screen
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder'**
+  String get studyScreenReminder;
+
+  /// Title label for the key definition component in the study screen
+  ///
+  /// In en, this message translates to:
+  /// **'Key Definition'**
+  String get studyScreenKeyDefinition;
+
+  /// Label for the warning/important component in the study screen
+  ///
+  /// In en, this message translates to:
+  /// **'Important'**
+  String get studyScreenImportant;
+
+  /// No description provided for @studyComponentNoItems.
+  ///
+  /// In en, this message translates to:
+  /// **'No items'**
+  String get studyComponentNoItems;
+
+  /// No description provided for @studyComponentAdvantages.
+  ///
+  /// In en, this message translates to:
+  /// **'Advantages'**
+  String get studyComponentAdvantages;
+
+  /// No description provided for @studyComponentLimitations.
+  ///
+  /// In en, this message translates to:
+  /// **'Limitations'**
+  String get studyComponentLimitations;
 }
 
 class _AppLocalizationsDelegate

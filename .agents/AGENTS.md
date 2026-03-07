@@ -1,13 +1,22 @@
-# AGENTS.md — Quizdy
-
-Guidelines for agentic coding agents working in this repository.
-
----
-
 ## Project Overview
 
 **Quizdy** is a Flutter/Dart cross-platform interactive quiz application (Android, iOS, macOS, Windows, Linux, Web).
-It uses Material Design 3, BLoC state management, GoRouter navigation, Clean Architecture, and integrates AI-powered question generation via OpenAI and Gemini APIs.
+It uses Material Design 3, BLoC/Cubit state management, GoRouter navigation, Clean Architecture, and integrates AI-powered question generation.
+
+---
+
+## Agent Strategy
+
+As an AI agent, your primary mission is to maintain the architectural integrity of the project while delivering feature updates.
+
+### 1. Research First
+Always use `find_by_name` or `grep_search` to find existing patterns before creating something new. The project likely already has a pattern for what you are doing.
+
+### 2. Follow Workflows
+Before performing an action, check `.agents/workflows/`. If a workflow exists for your task (e.g., `check-theme-compliance`), you **MUST** follow it rigorously.
+
+### 3. Proactive Static Analysis
+Never consider a task "done" without running `flutter analyze`. Fix all warnings immediately.
 
 ---
 
@@ -96,21 +105,16 @@ lib/
 │   │   └── custom_exceptions/
 │   └── use_cases/     # CheckFileChangesUseCase, InitializeQuizChunksUseCase, ValidateQuestionUseCase
 ├── presentation/      # BLoC/Cubits, screens, and widgets
-│   ├── blocs/
-│   │   ├── file_bloc/             # Full BLoC: quiz file loading, saving, editing lifecycle
-│   │   ├── quiz_execution_bloc/   # Full BLoC: quiz execution (exam mode)
-│   │   ├── study_execution_bloc/  # Full BLoC: study mode execution with AI
-│   │   ├── locale_cubit/          # Cubit: active locale
-│   │   └── onboarding_cubit/      # Cubit: onboarding flow state
-│   ├── screens/
-│   │   ├── dialogs/       # Settings, question editing, AI generation dialogs
-│   │   ├── quiz_execution/ # Quiz execution screen + widgets
-│   │   ├── onboarding/    # Onboarding flow
-│   │   └── widgets/       # Reusable screen-level widgets (home, study, question preview, add/edit question)
-│   ├── widgets/
-│   │   └── components/    # Shared UI components (AI config sections, file upload zones, etc.)
-│   └── utils/             # Clipboard helpers, dialog utilities
-└── routes/            # GoRouter definition and AppRoutes constants
+│   ├── blocs/         # Logic layer (Events/States)
+│   ├── screens/       # Main navigation targets
+│   │   ├── widgets/   # Screen-specific widgets
+│   │   └── ...
+│   ├── widgets/       # Global/Reusable widgets
+│   │   ├── common/    # Base generic widgets
+│   │   ├── study/     # Components for Study Mode
+│   │   └── ...
+│   └── utils/         # UI-only utilities
+└── routes/            # GoRouter definition
 ```
 
 ---
@@ -168,9 +172,11 @@ Follow the standard Dart import grouping, in this order:
 - Routes: `/` (home), `/onboarding`, `/file_loaded_screen`, `/quiz_file_execution_screen`, `/study_screen`.
 
 ### Theme & Colors
-- Never hardcode colors. Use semantic tokens from `ThemeExtension`: `context.appColors`.
+- **ZERO TOLERANCE for hardcoded colors.** Never use hexadecimal codes (`0xFF...`) or standard `Colors.xxx` constants directly in widgets.
+- **Always use `ThemeExtension`**. If a UI component needs specific colors not available in the standard `ColorScheme`, you **MUST** create a new `ThemeExtension` or update an existing one (e.g., `StudyThemeExtension`).
+- **Use semantic tokens**: Access colors via context helper extensions like `context.appColors` or `context.studyTheme`.
 - The color palette uses Zinc/violet naming (matching Tailwind CSS conventions) defined in `AppTheme`.
-- Multiple `ThemeExtension`s: `CustomColors`, `HomeTheme`, `FileLoadedTheme`, `QuestionDialogTheme`, `ExamTimerTheme`, `AiAssistantTheme`, `ConfirmDialogColorsExtension`.
+- Existing `ThemeExtension`s: `CustomColors`, `HomeTheme`, `FileLoadedTheme`, `QuestionDialogTheme`, `ExamTimerTheme`, `AiAssistantTheme`, `ConfirmDialogColorsExtension`, `StudyThemeExtension`.
 - Theme-aware widgets must respond to both light and dark `ThemeData`.
 - Typography: uses `google_fonts` (Inter).
 
@@ -187,14 +193,24 @@ Follow the standard Dart import grouping, in this order:
 - Debug logging: use `printInDebug(...)` (project utility in `lib/core/debug_print.dart`).
 - UI error surfacing: use `SnackBar` triggered by `BlocListener`.
 
+### Common Agent Pitfalls (AVOID THESE)
+- **Hardcoding Hex Colors**: Use `StudyThemeExtension` or `CustomColors` instead. Run `/check-theme-compliance` to verify.
+- **Missing License Headers**: Check `Phase 5` of any implementation plan to ensure headers are added.
+- **Inconsistent Imports**: Always order them: Dart -> Flutter -> Packages -> Project.
+- **Large Widget Methods**: Split `build` methods into private sub-widgets (`_MySubPart`).
+- **Ignoring Analysis**: `flutter analyze` is your source of truth for code quality.
+
 ---
 
 ## License Headers
 
-**Every `.dart` file** you create (except generated localization files) **must** begin with a GPL-3.0 license header. This is enforced by CI. The header looks like:
+> [!CAUTION]
+> **CRITICAL RULE FOR AI AGENTS:** Every SINGLE `.dart` file you create (except generated localization files) **MUST** begin with the GPL-3.0 license header. Do not skip this under any circumstances. If you create a new file, the very first lines must be this exact header. This is enforced by CI.
+
+The header looks like exactly like this:
 
 ```dart
-// Copyright (C) 2026 Victor Carreras
+// Copyright (C) 2026 Víctor Carreras
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -209,6 +225,7 @@ Follow the standard Dart import grouping, in this order:
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
+
 
 ---
 

@@ -29,6 +29,7 @@ import 'package:quizdy/presentation/screens/dialogs/exit_confirmation_dialog.dar
 import 'package:quizdy/presentation/screens/widgets/study/add_edit_chunk_dialog.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
+import 'package:quizdy/presentation/screens/widgets/study/components/study_component_builder.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
@@ -624,13 +625,13 @@ class _StudyScreenViewState extends State<StudyScreenView> {
                               child:
                                   currentChunk.status == StudyChunkState.error
                                   ? const SizedBox.shrink()
-                                  : (currentChunk.slides.isNotEmpty
+                                  : (currentChunk.pages.isNotEmpty
                                         ? ListView.builder(
                                             itemCount:
-                                                currentChunk.slides.length,
+                                                currentChunk.pages.length,
                                             itemBuilder: (context, index) {
-                                              final slide =
-                                                  currentChunk.slides[index];
+                                              final page =
+                                                  currentChunk.pages[index];
                                               return Card(
                                                 margin: const EdgeInsets.only(
                                                   bottom: 16,
@@ -643,38 +644,11 @@ class _StudyScreenViewState extends State<StudyScreenView> {
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
                                                             .start,
-                                                    children: slide.uiElements.map((
+                                                    children: page.uiElements.map((
                                                       element,
                                                     ) {
-                                                      final text =
-                                                          element.props['text']
-                                                              ?.toString() ??
-                                                          '';
-                                                      if (element
-                                                              .componentType ==
-                                                          'Title') {
-                                                        return Padding(
-                                                          padding:
-                                                              const EdgeInsets.only(
-                                                                bottom: 8.0,
-                                                              ),
-                                                          child: Text(
-                                                            text,
-                                                            style:
-                                                                Theme.of(
-                                                                      context,
-                                                                    )
-                                                                    .textTheme
-                                                                    .titleLarge,
-                                                          ),
-                                                        );
-                                                      }
-                                                      return Padding(
-                                                        padding:
-                                                            const EdgeInsets.only(
-                                                              bottom: 8.0,
-                                                            ),
-                                                        child: Text(text),
+                                                      return StudyComponentBuilder(
+                                                        element: element,
                                                       );
                                                     }).toList(),
                                                   ),

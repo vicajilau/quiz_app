@@ -34,19 +34,38 @@ class UiElement {
   /// - [json]: The JSON map containing the dynamic layout data.
   /// - Returns: A populated `UiElement` instance.
   factory UiElement.fromJson(Map<String, dynamic> json) {
-    return UiElement(
-      componentType: json['component_type'] as String? ?? 'Unknown',
-      props: json['props'] != null
-          ? Map<String, dynamic>.from(json['props'])
-          : {},
-    );
+    // Determine the type: check both the new issue #221 'type' and legacy 'component_type'
+    final String type =
+        json['type'] as String? ??
+        json['component_type'] as String? ??
+        'Unknown';
+
+    // Collect all properties dynamically.
+    // In legacy format, properties were inside 'props'.
+    // In the new format (issue #221), properties like 'title', 'subtitle', 'body' are placed at the root level of the component object.
+    Map<String, dynamic> extractedProps = {};
+    if (json.containsKey('props')) {
+      extractedProps = Map<String, dynamic>.from(json['props']);
+    }
+
+    // Extract all other keys (excluding 'type' and 'props') into props
+    json.forEach((key, value) {
+      if (key != 'type' && key != 'component_type' && key != 'props') {
+        extractedProps[key] = value;
+      }
+    });
+
+    return UiElement(componentType: type, props: extractedProps);
   }
 
   /// Converts the `UiElement` instance to a JSON map.
   ///
   /// - Returns: A JSON map representation.
   Map<String, dynamic> toJson() {
-    return {'component_type': componentType, 'props': props};
+    // When serializing, we output the new format.
+    final json = <String, dynamic>{'type': componentType};
+    json.addAll(props);
+    return json;
   }
 
   /// Creates a copy of the `UiElement` with optional parameter modifications.

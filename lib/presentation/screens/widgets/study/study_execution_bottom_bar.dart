@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
@@ -43,6 +44,8 @@ class StudyExecutionBottomBar extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final theme = Theme.of(context);
     final backgroundColor = theme.cardColor;
+
+    final isMobile = context.isMobile;
 
     return Container(
       color: Colors.transparent,
@@ -75,7 +78,7 @@ class StudyExecutionBottomBar extends StatelessWidget {
                 children: [
                   Flexible(
                     child: QuizdyButton(
-                      title: localizations.studyScreenPreviousSection,
+                      title: isMobile ? '' : localizations.studyScreenPreviousSection,
                       icon: LucideIcons.chevronLeft,
                       type: QuizdyButtonType.secondary,
                       onPressed: onPrevious,
@@ -107,7 +110,7 @@ class StudyExecutionBottomBar extends StatelessWidget {
                   const SizedBox(width: 8),
                   Flexible(
                     child: QuizdyButton(
-                      title: localizations.studyScreenNextSection,
+                      title: isMobile ? '' : localizations.studyScreenNextSection,
                       icon: LucideIcons.chevronRight,
                       onPressed: onNext,
                     ),

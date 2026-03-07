@@ -1631,4 +1631,22 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get showLessLabel => 'Afficher moins';
+
+  @override
+  String get studyScreenReminder => 'Rappel';
+
+  @override
+  String get studyScreenKeyDefinition => 'Définition Clé';
+
+  @override
+  String get studyScreenImportant => 'Important';
+
+  @override
+  String get studyComponentNoItems => 'Aucun élément';
+
+  @override
+  String get studyComponentAdvantages => 'Avantages';
+
+  @override
+  String get studyComponentLimitations => 'Limites';
 }

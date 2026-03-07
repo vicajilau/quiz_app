@@ -1814,5 +1814,11 @@
   "studyScreenCustomChapter": "कस्टम अध्याय",
   "addSection": "अनुभाग जोड़ें",
   "generateSectionsWithAI": "AI के साथ अनुभाग उत्पन्न करें",
-  "addSectionsWithAI": "AI के साथ अनुभाग जोड़ें"
+  "addSectionsWithAI": "AI के साथ अनुभाग जोड़ें",
+  "studyScreenReminder": "अनुस्मारक",
+  "studyScreenKeyDefinition": "मुख्य परिभाषा",
+  "studyScreenImportant": "महत्वपूर्ण",
+  "studyComponentNoItems": "कोई आइटम नहीं",
+  "studyComponentAdvantages": "लाभ",
+  "studyComponentLimitations": "सीमाएं"
 }

@@ -1913,5 +1913,11 @@
   "studyScreenCustomChapter": "Capítol personalitzat",
   "addSection": "Afegir secció",
   "generateSectionsWithAI": "Generar seccions amb IA",
-  "addSectionsWithAI": "Afegir seccions amb IA"
+  "addSectionsWithAI": "Afegir seccions amb IA",
+  "studyScreenReminder": "Recordatori",
+  "studyScreenKeyDefinition": "Definició Clau",
+  "studyScreenImportant": "Important",
+  "studyComponentNoItems": "Sense elements",
+  "studyComponentAdvantages": "Avantatges",
+  "studyComponentLimitations": "Limitacions"
 }

@@ -196,27 +196,27 @@ class _ModeCardState extends State<_ModeCard> {
                   : [],
             ),
             child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(widget.icon, size: 36, color: widget.accentColor),
-              const SizedBox(height: 16),
-              Text(
-                widget.label,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  color: widget.accentColor,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(widget.icon, size: 36, color: widget.accentColor),
+                const SizedBox(height: 16),
+                Text(
+                  widget.label,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: widget.accentColor,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                widget.description,
-                style: TextStyle(fontSize: 12, color: colors.subtitle),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
+                const SizedBox(height: 8),
+                Text(
+                  widget.description,
+                  style: TextStyle(fontSize: 12, color: colors.subtitle),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
         ),
       ),

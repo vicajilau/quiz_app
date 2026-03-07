@@ -1856,5 +1856,11 @@
   "studyScreenCustomChapter": "Chapitre personnalisé",
   "addSection": "Ajouter une section",
   "generateSectionsWithAI": "Générer des sections avec l'IA",
-  "addSectionsWithAI": "Ajouter des sections avec l'IA"
+  "addSectionsWithAI": "Ajouter des sections avec l'IA",
+  "studyScreenReminder": "Rappel",
+  "studyScreenKeyDefinition": "Définition Clé",
+  "studyScreenImportant": "Important",
+  "studyComponentNoItems": "Aucun élément",
+  "studyComponentAdvantages": "Avantages",
+  "studyComponentLimitations": "Limites"
 }

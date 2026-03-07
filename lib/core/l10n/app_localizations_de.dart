@@ -1628,4 +1628,22 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get showLessLabel => 'Weniger anzeigen';
+
+  @override
+  String get studyScreenReminder => 'Erinnerung';
+
+  @override
+  String get studyScreenKeyDefinition => 'Schlüsselbegriff';
+
+  @override
+  String get studyScreenImportant => 'Wichtig';
+
+  @override
+  String get studyComponentNoItems => 'Keine Elemente';
+
+  @override
+  String get studyComponentAdvantages => 'Vorteile';
+
+  @override
+  String get studyComponentLimitations => 'Einschränkungen';
 }

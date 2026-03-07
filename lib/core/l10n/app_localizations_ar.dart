@@ -1592,4 +1592,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get showLessLabel => 'عرض أقل';
+
+  @override
+  String get studyScreenReminder => 'تذكير';
+
+  @override
+  String get studyScreenKeyDefinition => 'تعريف رئيسي';
+
+  @override
+  String get studyScreenImportant => 'هام';
+
+  @override
+  String get studyComponentNoItems => 'لا توجد عناصر';
+
+  @override
+  String get studyComponentAdvantages => 'المزايا';
+
+  @override
+  String get studyComponentLimitations => 'القيود';
 }
