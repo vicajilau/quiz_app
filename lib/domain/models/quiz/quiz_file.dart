@@ -48,6 +48,9 @@ class QuizFile {
   /// The URI of the uploaded file in the AI service (e.g. Gemini File API).
   final String? fileUri;
 
+  /// The expiration time of the uploaded file in the AI service.
+  final DateTime? fileExpirationTime;
+
   /// Get generationMode from study
   AiGenerationMode? get generationMode => study?.generationMode;
 
@@ -63,6 +66,7 @@ class QuizFile {
     this.fileAttachment,
     this.fileContentHash,
     this.fileUri,
+    this.fileExpirationTime,
   });
 
   /// Creates a `QuizFile` instance from a JSON map.
@@ -83,6 +87,10 @@ class QuizFile {
 
       final fileContentHash = json['fileContentHash'] as String?;
       final fileUri = json['fileUri'] as String?;
+      final fileExpirationTimeStr = json['fileExpirationTime'] as String?;
+      final fileExpirationTime = fileExpirationTimeStr != null
+          ? DateTime.parse(fileExpirationTimeStr)
+          : null;
 
       return QuizFile(
         metadata: metadata,
@@ -91,6 +99,7 @@ class QuizFile {
         filePath: filePath,
         fileContentHash: fileContentHash,
         fileUri: fileUri,
+        fileExpirationTime: fileExpirationTime,
       );
     } catch (e) {
       throw BadQuizFileException(
@@ -110,6 +119,8 @@ class QuizFile {
       'questions': questions.map((question) => question.toJson()).toList(),
       if (fileContentHash != null) 'fileContentHash': fileContentHash,
       if (fileUri != null) 'fileUri': fileUri,
+      if (fileExpirationTime != null)
+        'fileExpirationTime': fileExpirationTime!.toIso8601String(),
     };
   }
 
@@ -127,6 +138,7 @@ class QuizFile {
     AiFileAttachment? fileAttachment,
     String? fileContentHash,
     String? fileUri,
+    DateTime? fileExpirationTime,
     // Note: generationMode and originalText are now part of study
   }) {
     return QuizFile(
@@ -137,8 +149,9 @@ class QuizFile {
       fileAttachment: fileAttachment ?? this.fileAttachment,
       fileContentHash: fileContentHash ?? this.fileContentHash,
       fileUri: fileUri ?? this.fileUri,
+      fileExpirationTime: fileExpirationTime ?? this.fileExpirationTime,
     );
-  }
+}
 
   /// Creates a deep copy of the `QuizFile` with all nested objects copied.
   ///
@@ -154,6 +167,7 @@ class QuizFile {
       filePath: filePath,
       fileContentHash: fileContentHash,
       fileUri: fileUri,
+      fileExpirationTime: fileExpirationTime,
     );
   }
 
@@ -166,7 +180,8 @@ class QuizFile {
         other.study == study &&
         other.filePath == filePath &&
         other.fileContentHash == fileContentHash &&
-        other.fileUri == fileUri;
+        other.fileUri == fileUri &&
+        other.fileExpirationTime == fileExpirationTime;
   }
 
   @override
@@ -176,7 +191,8 @@ class QuizFile {
         study.hashCode ^
         filePath.hashCode ^
         fileContentHash.hashCode ^
-        fileUri.hashCode;
+        fileUri.hashCode ^
+        fileExpirationTime.hashCode;
   }
 
   @override

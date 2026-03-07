@@ -85,6 +85,8 @@ class InitializeQuizChunksUseCase {
       study: study,
       fileAttachment: file,
       fileContentHash: file.contentHash,
+      fileUri: result['fileUri'] as String?,
+      fileExpirationTime: result['fileExpirationTime'] as DateTime?,
     );
   }
 
@@ -97,7 +99,9 @@ class InitializeQuizChunksUseCase {
     required String language,
   }) async {
     // 1. Upload the file to the AI service to get a URI (Gemini File API)
-    final fileUri = await _aiService.uploadFile(file, localizations);
+    final uploadResult = await _aiService.uploadFile(file, localizations);
+    final fileUri = uploadResult.fileUri;
+    final fileExpirationTime = uploadResult.expirationTime;
 
     // 2. Generate logical chunks using AI analysis of the uploaded file
     final indexResult = await _chunkingService.generateIndexWithAi(
@@ -123,6 +127,7 @@ class InitializeQuizChunksUseCase {
     return {
       'chunks': chunks,
       'fileUri': fileUri,
+      'fileExpirationTime': fileExpirationTime,
       'title': indexResult['title'] as String?,
       'description': indexResult['description'] as String?,
     };

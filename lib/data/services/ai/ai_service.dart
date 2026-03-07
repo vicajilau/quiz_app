@@ -17,6 +17,13 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
+class FileUploadResult {
+  final String fileUri;
+  final DateTime expirationTime;
+
+  FileUploadResult({required this.fileUri, required this.expirationTime});
+}
+
 abstract class AIService {
   /// Obtiene una respuesta del servicio de IA basado en el prompt proporcionado
   Future<String> getChatResponse(
@@ -35,8 +42,8 @@ abstract class AIService {
     required AiFileAttachment file,
   });
 
-  /// Sube un archivo al servicio de IA y devuelve su URI o identificador
-  Future<String> uploadFile(
+  /// Sube un archivo al servicio de IA y devuelve su URI y fecha de expiración
+  Future<FileUploadResult> uploadFile(
     AiFileAttachment file,
     AppLocalizations localizations,
   );

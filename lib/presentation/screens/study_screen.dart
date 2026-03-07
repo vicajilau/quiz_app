@@ -91,6 +91,7 @@ class StudyScreen extends StatelessWidget {
         initialChunks: initialChunks,
         fileAttachment: fileAttachment ?? quizFile?.fileAttachment,
         fileUri: quizFile?.fileUri,
+        fileExpirationTime: quizFile?.fileExpirationTime,
         documentTitle: documentTitle,
         documentSummary: documentSummary ?? quizFile?.metadata.description,
         isAutoDifficulty: quizFile?.study?.isAutoDifficulty ?? isAutoDifficulty,
@@ -98,13 +99,15 @@ class StudyScreen extends StatelessWidget {
         originalText: originalText ?? quizFile?.study?.originalText,
         language: language ?? quizFile?.study?.language,
         generationMode: generationMode ?? quizFile?.study?.generationMode,
-        onProgressChanged: (progress, processedChunks, chunks, fileUri) {
+        onProgressChanged:
+            (progress, processedChunks, chunks, fileUri, expirationTime) {
           context.read<FileBloc>().add(
             StudyProgressUpdated(
               progress: progress,
               processedChunks: processedChunks,
               chunks: chunks,
               fileUri: fileUri,
+              fileExpirationTime: expirationTime,
             ),
           );
         },
@@ -214,6 +217,7 @@ class _StudyScreenViewState extends State<StudyScreenView>
 
       return qf.copyWith(
         fileUri: studyState.fileUri,
+        fileExpirationTime: studyState.fileExpirationTime,
         fileContentHash:
             qf.fileContentHash ?? studyState.fileAttachment?.contentHash,
         study:
@@ -253,6 +257,7 @@ class _StudyScreenViewState extends State<StudyScreenView>
         ),
         fileContentHash: studyState.fileAttachment?.contentHash,
         fileUri: studyState.fileUri,
+        fileExpirationTime: studyState.fileExpirationTime,
       );
     }
   }

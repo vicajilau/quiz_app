@@ -22,6 +22,7 @@ class StudyExecutionState {
   final int currentChunkIndex;
   final AiFileAttachment? fileAttachment;
   final String? fileUri;
+  final DateTime? fileExpirationTime;
   final String documentTitle;
   final String? documentSummary;
   final bool isLoading;
@@ -36,6 +37,7 @@ class StudyExecutionState {
     this.currentChunkIndex = 0,
     this.fileAttachment,
     this.fileUri,
+    this.fileExpirationTime,
     this.documentTitle = '',
     this.documentSummary,
     this.isLoading = false,
@@ -51,6 +53,7 @@ class StudyExecutionState {
     int? currentChunkIndex,
     AiFileAttachment? fileAttachment,
     String? fileUri,
+    DateTime? fileExpirationTime,
     String? documentTitle,
     String? documentSummary,
     bool? isLoading,
@@ -65,6 +68,7 @@ class StudyExecutionState {
       currentChunkIndex: currentChunkIndex ?? this.currentChunkIndex,
       fileAttachment: fileAttachment ?? this.fileAttachment,
       fileUri: fileUri ?? this.fileUri,
+      fileExpirationTime: fileExpirationTime ?? this.fileExpirationTime,
       documentTitle: documentTitle ?? this.documentTitle,
       documentSummary: documentSummary ?? this.documentSummary,
       isLoading: isLoading ?? this.isLoading,
@@ -102,6 +106,7 @@ class StudyExecutionState {
         other.currentChunkIndex == currentChunkIndex &&
         other.fileAttachment == fileAttachment &&
         other.fileUri == fileUri &&
+        other.fileExpirationTime == fileExpirationTime &&
         other.documentTitle == documentTitle &&
         other.documentSummary == documentSummary &&
         other.isLoading == isLoading &&
@@ -118,6 +123,7 @@ class StudyExecutionState {
         currentChunkIndex.hashCode ^
         fileAttachment.hashCode ^
         fileUri.hashCode ^
+        fileExpirationTime.hashCode ^
         documentTitle.hashCode ^
         documentSummary.hashCode ^
         isLoading.hashCode ^

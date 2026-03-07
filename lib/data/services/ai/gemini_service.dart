@@ -255,7 +255,7 @@ class GeminiService extends AIService {
   }
 
   @override
-  Future<String> uploadFile(
+  Future<FileUploadResult> uploadFile(
     AiFileAttachment file,
     AppLocalizations localizations,
   ) async {
@@ -297,9 +297,13 @@ class GeminiService extends AIService {
 
       final jsonResponse = response.data;
       final fileUri = jsonResponse['file']?['uri'] as String?;
+      final expirationTimeStr = jsonResponse['file']?['expirationTime'] as String?;
 
-      if (fileUri != null) {
-        return fileUri;
+      if (fileUri != null && expirationTimeStr != null) {
+        return FileUploadResult(
+          fileUri: fileUri,
+          expirationTime: DateTime.parse(expirationTimeStr),
+        );
       } else {
         throw Exception(localizations.noResponseReceived);
       }
