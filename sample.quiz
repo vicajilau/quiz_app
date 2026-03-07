@@ -7,60 +7,177 @@
   },
   "study": {
     "content": {
-      "coverage_percentage": 30.5,
-      "total_chunks": 10,
-      "processed_chunks": 3,
+      "progress_percentage": 100,
+      "total_chunks": 1,
+      "processed_chunks": 1,
       "cache": [
         {
           "chunk_index": 0,
-          "status": "completed",
-          "source_reference": {
-            "document_id": "doc_12345",
-            "start_page": 1,
-            "end_page": 1,
-            "start_offset": 1024,
-            "end_offset": 1500,
-            "block_type": "formula_summary"
-          },
-          "ai_summary": "Resumen generado por Gemini...",
-          "slides": [
+          "status": "ready",
+          "pages": [
             {
-              "ui_elements": [
+              "components": [
                 {
-                  "component_type": "ConceptHighlight",
-                  "props": {
-                    "concept": "Neuroplasticity",
-                    "definition": "The brain's ability to reorganize itself..."
-                  }
+                  "type": "section_title",
+                  "title": "Comprehensive General Knowledge Guide",
+                  "subtitle": "Connecting Mathematics, Biology, History, and Physics"
                 },
                 {
-                  "component_type": "SummaryList",
-                  "props": {
-                    "items": [
-                      "Point 1",
-                      "Point 2"
-                    ]
-                  }
-                }
-              ]
-            },
-            {
-              "ui_elements": [
+                  "type": "paragraph",
+                  "title": "Introduction to the Core Themes",
+                  "body": "Our world is governed by a fascinating interplay of scientific principles and historical events. From the strict, undeniable laws of prime numbers and quadratic equations to the biological wonders of neuroplasticity and the historical impact of the Industrial Revolution, understanding these concepts requires a multifaceted approach."
+                },
                 {
-                  "component_type": "SummaryList",
-                  "props": {
-                    "items": [
-                      "Point 1",
-                      "Point 2"
-                    ]
-                  }
+                  "type": "key_definition",
+                  "term": "Photosynthesis",
+                  "body": "The metabolic process by which green plants and some other organisms use sunlight to synthesize nutrients from carbon dioxide and water. It is the foundation of most terrestrial life."
+                },
+                {
+                  "type": "key_definition",
+                  "term": "Neuroplasticity",
+                  "body": "The brain's incredible ability to reorganize itself by forming new neural connections throughout life, fundamentally changing based on multifaceted, multidimensional stimuli."
+                },
+                {
+                  "type": "warning",
+                  "body": "Do not confuse the **Paris Agreement (2015)** on climate change mitigation with other historical treaties signed in the capital of France, such as the Treaty of Paris (1783)."
+                },
+                {
+                  "type": "numbered_list",
+                  "title": "Steps to solve any quadratic equation",
+                  "items": [
+                    {
+                      "title": "Identify coefficients",
+                      "description": "Determine the values of $a$, $b$, and $c$ in the standard form $ax^2 + bx + c = 0$."
+                    },
+                    {
+                      "title": "Apply the formula",
+                      "description": "Substitute the coefficients into the quadratic formula."
+                    },
+                    {
+                      "title": "Calculate the roots",
+                      "description": "Solve for the two possible values of $x$ using both the plus and minus variants."
+                    }
+                  ]
+                },
+                {
+                  "type": "formula",
+                  "title": "The Quadratic Formula",
+                  "equation": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+                  "equation_label": "Roots of a quadratic equation",
+                  "body": "This formula allows you to find the roots of any polynomial equation of the second degree."
+                },
+                {
+                  "type": "formula",
+                  "title": "Area of a Circle",
+                  "equation": "A = \\pi r^2",
+                  "equation_label": "Where r is the radius of the circle"
+                },
+                {
+                  "type": "quote",
+                  "body": "I have not failed. I've just found 10,000 ways that won't work. True innovation is built upon cumulative knowledge.",
+                  "author": "Thomas Edison (on the lightbulb)"
+                },
+                {
+                  "type": "comparison_table",
+                  "title": "Temperature Scales at Standard Atmospheric Pressure",
+                  "columns": [
+                    "State of Water",
+                    "Celsius (°C)",
+                    "Fahrenheit (°F)"
+                  ],
+                  "rows": [
+                    {
+                      "label": "Freezing Point",
+                      "values": [
+                        "0",
+                        "32"
+                      ]
+                    },
+                    {
+                      "label": "Boiling Point (Sea level)",
+                      "values": [
+                        "100",
+                        "212"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "timeline",
+                  "title": "From Industry to Environmental Action",
+                  "items": [
+                    {
+                      "date": "18th-19th Century",
+                      "title": "Industrial Revolution",
+                      "description": "Shift from agrarian societies to industrial urban centers in Europe, deeply impacting the environment."
+                    },
+                    {
+                      "date": "Late 19th Century",
+                      "title": "Electric Lighting",
+                      "description": "Cumulative development of the lightbulb by Humphry Davy, Swan, and Edison revolutionizes modern living."
+                    },
+                    {
+                      "date": "2015",
+                      "title": "Paris Agreement",
+                      "description": "International treaty aiming to limit global warming to well below 2 degrees Celsius to mitigate climate change consequences."
+                    }
+                  ]
+                },
+                {
+                  "type": "pros_cons",
+                  "title": "Impacts of the Industrial Revolution",
+                  "pros": [
+                    "Unprecedented technological advancement",
+                    "Massive increase in production and economic output",
+                    "Development of modern transportation and medicine"
+                  ],
+                  "cons": [
+                    "Deterioration of living conditions and overcrowding",
+                    "Severe environmental pollution and resource depletion",
+                    "Emergence of a vulnerable working class"
+                  ]
+                },
+                {
+                  "type": "key_concepts",
+                  "title": "Rules of Prime Numbers",
+                  "items": [
+                    "A prime number must be greater than 1",
+                    "It has exactly two distinct positive divisors: 1 and itself",
+                    "The number 2 is the only even prime number",
+                    "The numbers 2 and 5 are prime, while 1 and 4 are not"
+                  ]
+                },
+                {
+                  "type": "icon_cards",
+                  "title": "The Solar System Overview",
+                  "items": [
+                    {
+                      "title": "Jupiter",
+                      "description": "The largest planet in our solar system."
+                    },
+                    {
+                      "title": "Mars",
+                      "description": "Often called the Red Planet, a common target for future exploration."
+                    },
+                    {
+                      "title": "Earth",
+                      "description": "The only known planet supporting biological life and neuroplasticity."
+                    }
+                  ]
+                },
+                {
+                  "type": "reminder",
+                  "body": "Remember that the boiling point of water ($100°C$) decreases as you go higher in altitude above sea level!"
                 }
               ]
             }
           ]
         }
       ]
-    }
+    },
+    "generationMode": "text",
+    "isAutoDifficulty": true,
+    "difficultyLevel": "university"
   },
   "questions": [
     {
