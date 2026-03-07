@@ -28,8 +28,9 @@ class ProsConsComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final prosList = element.props['advantages'] as List<dynamic>? ?? [];
-    final consList = element.props['limitations'] as List<dynamic>? ?? [];
+    final items = element.props['items'] as Map<String, dynamic>?;
+    final prosList = items?['pros'] as List<dynamic>? ?? [];
+    final consList = items?['cons'] as List<dynamic>? ?? [];
 
     final pros = prosList.map((e) => e.toString()).toList();
     final cons = consList.map((e) => e.toString()).toList();
