@@ -1158,6 +1158,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get studyModeLabel => '学习模式';
 
   @override
+  String get practiceModeLabel => '练习模式';
+
+  @override
   String get studyModeDescription => '提供 AI 辅助。每题回答后提供即时反馈，无时间限制或扣分。';
 
   @override

@@ -1420,6 +1420,10 @@
     "description": "Error message when file picker fails"
   },
   "studyModeLabel": "Modo estudo",
+  "practiceModeLabel": "Modo práctica",
+  "@practiceModeLabel": {
+    "description": "Label for practice mode option in start quiz"
+  },
   "studyModeDescription": "Asistencia de IA dispoñible. Feedback instantáneo tras cada resposta, sen límites de tiempo nin penalizacións.",
   "examModeLabel": "Modo exame",
   "examModeDescription": "Sen asistencia de IA. Poden aplicarse límites de tempo e penalizacións por respostas incorrectas.",

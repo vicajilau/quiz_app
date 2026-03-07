@@ -1,8 +1,17 @@
 {
   "@@locale": "en",
   "abortQuizTitle": "Abort Quiz?",
+  "@abortQuizTitle": {
+    "description": "Title for the abort quiz confirmation dialog"
+  },
   "abortQuizMessage": "Opening a new file will stop the current quiz.",
+  "@abortQuizMessage": {
+    "description": "Message for the abort quiz confirmation dialog"
+  },
   "stopAndOpenButton": "Stop & Open",
+  "@stopAndOpenButton": {
+    "description": "Label for the button that stops current quiz and opens a new file"
+  },
   "titleAppBar": "Quiz - Exam Simulator",
   "@titleAppBar": {
     "description": "Title of the application displayed in the AppBar."
@@ -1663,6 +1672,10 @@
   "@studyModeLabel": {
     "description": "Label for study mode option"
   },
+  "practiceModeLabel": "Practice Mode",
+  "@practiceModeLabel": {
+    "description": "Label for practice mode option in start quiz"
+  },
   "studyModeDescription": "AI assistance available. Instant feedback after each answer with no time limits or penalties.",
   "@studyModeDescription": {
     "description": "Description for study mode"
@@ -1766,14 +1779,26 @@
     "description": "Encouraging message for lower quiz scores"
   },
   "tryAgain": "Try Again",
+  "@tryAgain": {
+    "description": "Label for try again button in results screen"
+  },
   "review": "Review",
+  "@review": {
+    "description": "Label for review button"
+  },
   "home": "Home",
+  "@home": {
+    "description": "Label for home button"
+  },
   "allLabel": "All",
   "@allLabel": {
     "description": "Label for the option to select all questions"
   },
   "subtractPointsLabel": "Subtract points for wrong answer",
   "subtractPointsDescription": "Subtract points for each incorrect answer.",
+  "@subtractPointsDescription": {
+    "description": "Description for the subtract points for incorrect answers setting when enabled"
+  },
   "@subtractPointsLabel": {
     "description": "Label for the checkbox to subtract points for incorrect answers"
   },
@@ -2119,7 +2144,13 @@
     "description": "Difficulty level: Doctorate"
   },
   "aiDifficultyAutoDescription": "The difficulty level will be adjusted automatically according to the uploaded document",
+  "@aiDifficultyAutoDescription": {
+    "description": "Description for automatic difficulty mode"
+  },
   "aiDifficultyManualDescription": "Select the difficulty level manually that best fits the content",
+  "@aiDifficultyManualDescription": {
+    "description": "Description for manual difficulty mode"
+  },
   "chooseModeDialogTitle": "Choose Mode",
   "@chooseModeDialogTitle": {
     "description": "Title for the dialog that asks which mode to open when a file has both questions and study content"
@@ -2181,6 +2212,15 @@
     "description": "Label for the warning/important component in the study screen"
   },
   "studyComponentNoItems": "No items",
+  "@studyComponentNoItems": {
+    "description": "Label shown when there are no items in a study component"
+  },
   "studyComponentAdvantages": "Advantages",
-  "studyComponentLimitations": "Limitations"
+  "@studyComponentAdvantages": {
+    "description": "Header for the advantages section in a study component"
+  },
+  "studyComponentLimitations": "Limitations",
+  "@studyComponentLimitations": {
+    "description": "Header for the limitations section in a study component"
+  }
 }

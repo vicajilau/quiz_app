@@ -122,19 +122,19 @@ abstract class AppLocalizations {
     Locale('zh'),
   ];
 
-  /// No description provided for @abortQuizTitle.
+  /// Title for the abort quiz confirmation dialog
   ///
   /// In en, this message translates to:
   /// **'Abort Quiz?'**
   String get abortQuizTitle;
 
-  /// No description provided for @abortQuizMessage.
+  /// Message for the abort quiz confirmation dialog
   ///
   /// In en, this message translates to:
   /// **'Opening a new file will stop the current quiz.'**
   String get abortQuizMessage;
 
-  /// No description provided for @stopAndOpenButton.
+  /// Label for the button that stops current quiz and opens a new file
   ///
   /// In en, this message translates to:
   /// **'Stop & Open'**
@@ -2204,6 +2204,12 @@ abstract class AppLocalizations {
   /// **'Study Mode'**
   String get studyModeLabel;
 
+  /// Label for practice mode option in start quiz
+  ///
+  /// In en, this message translates to:
+  /// **'Practice Mode'**
+  String get practiceModeLabel;
+
   /// Description for study mode
   ///
   /// In en, this message translates to:
@@ -2348,19 +2354,19 @@ abstract class AppLocalizations {
   /// **'Keep practicing to improve!'**
   String get keepPracticing;
 
-  /// No description provided for @tryAgain.
+  /// Label for try again button in results screen
   ///
   /// In en, this message translates to:
   /// **'Try Again'**
   String get tryAgain;
 
-  /// No description provided for @review.
+  /// Label for review button
   ///
   /// In en, this message translates to:
   /// **'Review'**
   String get review;
 
-  /// No description provided for @home.
+  /// Label for home button
   ///
   /// In en, this message translates to:
   /// **'Home'**
@@ -2378,7 +2384,7 @@ abstract class AppLocalizations {
   /// **'Subtract points for wrong answer'**
   String get subtractPointsLabel;
 
-  /// No description provided for @subtractPointsDescription.
+  /// Description for the subtract points for incorrect answers setting when enabled
   ///
   /// In en, this message translates to:
   /// **'Subtract points for each incorrect answer.'**
@@ -2821,13 +2827,13 @@ abstract class AppLocalizations {
   /// **'Doctorate'**
   String get aiDifficultyDoctorate;
 
-  /// No description provided for @aiDifficultyAutoDescription.
+  /// Description for automatic difficulty mode
   ///
   /// In en, this message translates to:
   /// **'The difficulty level will be adjusted automatically according to the uploaded document'**
   String get aiDifficultyAutoDescription;
 
-  /// No description provided for @aiDifficultyManualDescription.
+  /// Description for manual difficulty mode
   ///
   /// In en, this message translates to:
   /// **'Select the difficulty level manually that best fits the content'**
@@ -2923,19 +2929,19 @@ abstract class AppLocalizations {
   /// **'Important'**
   String get studyScreenImportant;
 
-  /// No description provided for @studyComponentNoItems.
+  /// Label shown when there are no items in a study component
   ///
   /// In en, this message translates to:
   /// **'No items'**
   String get studyComponentNoItems;
 
-  /// No description provided for @studyComponentAdvantages.
+  /// Header for the advantages section in a study component
   ///
   /// In en, this message translates to:
   /// **'Advantages'**
   String get studyComponentAdvantages;
 
-  /// No description provided for @studyComponentLimitations.
+  /// Header for the limitations section in a study component
   ///
   /// In en, this message translates to:
   /// **'Limitations'**
