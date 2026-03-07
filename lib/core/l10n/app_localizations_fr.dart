@@ -1642,11 +1642,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get studyScreenImportant => 'Important';
 
   @override
-  String get studyComponentNoItems => 'No items';
+  String get studyComponentNoItems => 'Aucun élément';
 
   @override
-  String get studyComponentAdvantages => 'Advantages';
+  String get studyComponentAdvantages => 'Avantages';
 
   @override
-  String get studyComponentLimitations => 'Limitations';
+  String get studyComponentLimitations => 'Limites';
 }

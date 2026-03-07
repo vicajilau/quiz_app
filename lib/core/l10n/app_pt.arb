@@ -1905,5 +1905,8 @@
   "addSectionsWithAI": "Adicionar seções com IA",
   "studyScreenReminder": "Lembrete",
   "studyScreenKeyDefinition": "Definição Chave",
-  "studyScreenImportant": "Importante"
+  "studyScreenImportant": "Importante",
+  "studyComponentNoItems": "Sem itens",
+  "studyComponentAdvantages": "Vantagens",
+  "studyComponentLimitations": "Limitações"
 }

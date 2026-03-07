@@ -1638,11 +1638,11 @@ class AppLocalizationsGl extends AppLocalizations {
   String get studyScreenImportant => 'Importante';
 
   @override
-  String get studyComponentNoItems => 'No items';
+  String get studyComponentNoItems => 'Sen elementos';
 
   @override
-  String get studyComponentAdvantages => 'Advantages';
+  String get studyComponentAdvantages => 'Vantaxes';
 
   @override
-  String get studyComponentLimitations => 'Limitations';
+  String get studyComponentLimitations => 'Limitacións';
 }

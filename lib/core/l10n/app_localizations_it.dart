@@ -1628,11 +1628,11 @@ class AppLocalizationsIt extends AppLocalizations {
   String get studyScreenImportant => 'Importante';
 
   @override
-  String get studyComponentNoItems => 'No items';
+  String get studyComponentNoItems => 'Nessun elemento';
 
   @override
-  String get studyComponentAdvantages => 'Advantages';
+  String get studyComponentAdvantages => 'Vantaggi';
 
   @override
-  String get studyComponentLimitations => 'Limitations';
+  String get studyComponentLimitations => 'Limitazioni';
 }

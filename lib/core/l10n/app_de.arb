@@ -1910,5 +1910,8 @@
   "addSectionsWithAI": "Abschnitte mit KI hinzufügen",
   "studyScreenReminder": "Erinnerung",
   "studyScreenKeyDefinition": "Schlüsselbegriff",
-  "studyScreenImportant": "Wichtig"
+  "studyScreenImportant": "Wichtig",
+  "studyComponentNoItems": "Keine Elemente",
+  "studyComponentAdvantages": "Vorteile",
+  "studyComponentLimitations": "Einschränkungen"
 }

@@ -1814,5 +1814,8 @@
   "addSectionsWithAI": "Gehitu atalak AIarekin",
   "studyScreenReminder": "Oroigarria",
   "studyScreenKeyDefinition": "Funtsezko Definizioa",
-  "studyScreenImportant": "Garrantzitsua"
+  "studyScreenImportant": "Garrantzitsua",
+  "studyComponentNoItems": "Elementurik ez",
+  "studyComponentAdvantages": "Abantailak",
+  "studyComponentLimitations": "Mugak"
 }

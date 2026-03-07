@@ -1639,11 +1639,11 @@ class AppLocalizationsCa extends AppLocalizations {
   String get studyScreenImportant => 'Important';
 
   @override
-  String get studyComponentNoItems => 'No items';
+  String get studyComponentNoItems => 'Sense elements';
 
   @override
-  String get studyComponentAdvantages => 'Advantages';
+  String get studyComponentAdvantages => 'Avantatges';
 
   @override
-  String get studyComponentLimitations => 'Limitations';
+  String get studyComponentLimitations => 'Limitacions';
 }

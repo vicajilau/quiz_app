@@ -1636,11 +1636,11 @@ class AppLocalizationsPt extends AppLocalizations {
   String get studyScreenImportant => 'Importante';
 
   @override
-  String get studyComponentNoItems => 'No items';
+  String get studyComponentNoItems => 'Sem itens';
 
   @override
-  String get studyComponentAdvantages => 'Advantages';
+  String get studyComponentAdvantages => 'Vantagens';
 
   @override
-  String get studyComponentLimitations => 'Limitations';
+  String get studyComponentLimitations => 'Limitações';
 }

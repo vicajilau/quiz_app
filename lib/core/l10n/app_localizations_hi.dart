@@ -1618,11 +1618,11 @@ class AppLocalizationsHi extends AppLocalizations {
   String get studyScreenImportant => 'महत्वपूर्ण';
 
   @override
-  String get studyComponentNoItems => 'No items';
+  String get studyComponentNoItems => 'कोई आइटम नहीं';
 
   @override
-  String get studyComponentAdvantages => 'Advantages';
+  String get studyComponentAdvantages => 'लाभ';
 
   @override
-  String get studyComponentLimitations => 'Limitations';
+  String get studyComponentLimitations => 'सीमाएं';
 }

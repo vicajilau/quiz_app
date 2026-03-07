@@ -1630,11 +1630,11 @@ class AppLocalizationsEu extends AppLocalizations {
   String get studyScreenImportant => 'Garrantzitsua';
 
   @override
-  String get studyComponentNoItems => 'No items';
+  String get studyComponentNoItems => 'Elementurik ez';
 
   @override
-  String get studyComponentAdvantages => 'Advantages';
+  String get studyComponentAdvantages => 'Abantailak';
 
   @override
-  String get studyComponentLimitations => 'Limitations';
+  String get studyComponentLimitations => 'Mugak';
 }

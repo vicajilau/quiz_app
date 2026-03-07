@@ -1603,11 +1603,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get studyScreenImportant => 'هام';
 
   @override
-  String get studyComponentNoItems => 'No items';
+  String get studyComponentNoItems => 'لا توجد عناصر';
 
   @override
-  String get studyComponentAdvantages => 'Advantages';
+  String get studyComponentAdvantages => 'المزايا';
 
   @override
-  String get studyComponentLimitations => 'Limitations';
+  String get studyComponentLimitations => 'القيود';
 }

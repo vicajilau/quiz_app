@@ -1551,11 +1551,11 @@ class AppLocalizationsJa extends AppLocalizations {
   String get studyScreenImportant => '重要';
 
   @override
-  String get studyComponentNoItems => 'No items';
+  String get studyComponentNoItems => 'アイテムなし';
 
   @override
-  String get studyComponentAdvantages => 'Advantages';
+  String get studyComponentAdvantages => '利点';
 
   @override
-  String get studyComponentLimitations => 'Limitations';
+  String get studyComponentLimitations => '制限事項';
 }

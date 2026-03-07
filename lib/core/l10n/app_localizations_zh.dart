@@ -1539,11 +1539,11 @@ class AppLocalizationsZh extends AppLocalizations {
   String get studyScreenImportant => '重要';
 
   @override
-  String get studyComponentNoItems => 'No items';
+  String get studyComponentNoItems => '没有项目';
 
   @override
-  String get studyComponentAdvantages => 'Advantages';
+  String get studyComponentAdvantages => '优势';
 
   @override
-  String get studyComponentLimitations => 'Limitations';
+  String get studyComponentLimitations => '局限性';
 }

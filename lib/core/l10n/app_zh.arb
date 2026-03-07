@@ -1866,5 +1866,8 @@
   "addSectionsWithAI": "使用 AI 添加章节",
   "studyScreenReminder": "提醒",
   "studyScreenKeyDefinition": "关键定义",
-  "studyScreenImportant": "重要"
+  "studyScreenImportant": "重要",
+  "studyComponentNoItems": "没有项目",
+  "studyComponentAdvantages": "优势",
+  "studyComponentLimitations": "局限性"
 }

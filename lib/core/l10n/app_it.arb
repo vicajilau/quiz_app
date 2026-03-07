@@ -1868,5 +1868,8 @@
   },
   "studyScreenReminder": "Promemoria",
   "studyScreenKeyDefinition": "Definizione Chiave",
-  "studyScreenImportant": "Importante"
+  "studyScreenImportant": "Importante",
+  "studyComponentNoItems": "Nessun elemento",
+  "studyComponentAdvantages": "Vantaggi",
+  "studyComponentLimitations": "Limitazioni"
 }

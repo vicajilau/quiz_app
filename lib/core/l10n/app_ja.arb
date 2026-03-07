@@ -1817,5 +1817,8 @@
   "addSectionsWithAI": "AIでセクションを追加",
   "studyScreenReminder": "リマインダー",
   "studyScreenKeyDefinition": "重要な定義",
-  "studyScreenImportant": "重要"
+  "studyScreenImportant": "重要",
+  "studyComponentNoItems": "アイテムなし",
+  "studyComponentAdvantages": "利点",
+  "studyComponentLimitations": "制限事項"
 }

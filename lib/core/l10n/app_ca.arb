@@ -1916,5 +1916,8 @@
   "addSectionsWithAI": "Afegir seccions amb IA",
   "studyScreenReminder": "Recordatori",
   "studyScreenKeyDefinition": "Definició Clau",
-  "studyScreenImportant": "Important"
+  "studyScreenImportant": "Important",
+  "studyComponentNoItems": "Sense elements",
+  "studyComponentAdvantages": "Avantatges",
+  "studyComponentLimitations": "Limitacions"
 }

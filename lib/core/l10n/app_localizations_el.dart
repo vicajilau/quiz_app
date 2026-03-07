@@ -1638,11 +1638,11 @@ class AppLocalizationsEl extends AppLocalizations {
   String get studyScreenImportant => 'Σημαντικό';
 
   @override
-  String get studyComponentNoItems => 'No items';
+  String get studyComponentNoItems => 'Δεν υπάρχουν στοιχεία';
 
   @override
-  String get studyComponentAdvantages => 'Advantages';
+  String get studyComponentAdvantages => 'Πλεονεκτήματα';
 
   @override
-  String get studyComponentLimitations => 'Limitations';
+  String get studyComponentLimitations => 'Περιορισμοί';
 }
