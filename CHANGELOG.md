@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix: Expanded click area to include the question title for expanding and collapsing the `QuestionPreviewCard`.
 - feat: Added "Paste" button to API key text fields in settings for quicker setup.
 - fix: AI Generation dialog now properly saves and restores attached file paths across sessions.
+- feat: Enhanced Study Mode with just-in-time AI content generation, lazy loading of chapters, and robust handling of large PDF/document files for a seamless learning experience.
 
 ## [1.8.1] - 2026-02-26
 
