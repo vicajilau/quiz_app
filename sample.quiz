@@ -7,13 +7,21 @@
   },
   "study": {
     "content": {
-      "progress_percentage": 0,
+      "progress_percentage": 100,
       "total_chunks": 11,
       "processed_chunks": 11,
       "cache": [
         {
           "chunk_index": 0,
           "status": "ready",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 1,
+            "end_page": 1,
+            "start_offset": 0,
+            "end_offset": 100,
+            "block_type": "Prime Numbers"
+          },
           "pages": [
             {
               "components": [
@@ -53,6 +61,14 @@
         {
           "chunk_index": 1,
           "status": "ready",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 1,
+            "end_page": 2,
+            "start_offset": 101,
+            "end_offset": 200,
+            "block_type": "Neuroplasticity"
+          },
           "pages": [
             {
               "components": [
@@ -97,6 +113,14 @@
         {
           "chunk_index": 2,
           "status": "ready",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 2,
+            "end_page": 2,
+            "start_offset": 201,
+            "end_offset": 300,
+            "block_type": "Geography: France"
+          },
           "pages": [
             {
               "components": [
@@ -163,6 +187,14 @@
         {
           "chunk_index": 3,
           "status": "ready",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 3,
+            "end_page": 3,
+            "start_offset": 301,
+            "end_offset": 400,
+            "block_type": "Paris Agreement"
+          },
           "pages": [
             {
               "components": [
@@ -217,6 +249,14 @@
         {
           "chunk_index": 4,
           "status": "ready",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 3,
+            "end_page": 4,
+            "start_offset": 401,
+            "end_offset": 500,
+            "block_type": "Boiling Point of Water"
+          },
           "pages": [
             {
               "components": [
@@ -273,6 +313,14 @@
         {
           "chunk_index": 5,
           "status": "ready",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 4,
+            "end_page": 5,
+            "start_offset": 501,
+            "end_offset": 600,
+            "block_type": "Invention of Lightbulb"
+          },
           "pages": [
             {
               "components": [
@@ -334,6 +382,14 @@
         {
           "chunk_index": 6,
           "status": "ready",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 5,
+            "end_page": 6,
+            "start_offset": 601,
+            "end_offset": 700,
+            "block_type": "Photosynthesis"
+          },
           "pages": [
             {
               "components": [
@@ -384,6 +440,14 @@
         {
           "chunk_index": 7,
           "status": "ready",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 6,
+            "end_page": 7,
+            "start_offset": 701,
+            "end_offset": 800,
+            "block_type": "Industrial Revolution"
+          },
           "pages": [
             {
               "components": [
@@ -441,6 +505,14 @@
         {
           "chunk_index": 8,
           "status": "ready",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 7,
+            "end_page": 7,
+            "start_offset": 801,
+            "end_offset": 900,
+            "block_type": "Quadratic Equation"
+          },
           "pages": [
             {
               "components": [
@@ -493,6 +565,14 @@
         {
           "chunk_index": 9,
           "status": "ready",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 8,
+            "end_page": 8,
+            "start_offset": 901,
+            "end_offset": 1000,
+            "block_type": "Area of a Circle"
+          },
           "pages": [
             {
               "components": [
@@ -541,6 +621,14 @@
         {
           "chunk_index": 10,
           "status": "ready",
+          "source_reference": {
+            "document_id": "sample-doc-1",
+            "start_page": 9,
+            "end_page": 9,
+            "start_offset": 1001,
+            "end_offset": 1100,
+            "block_type": "The Solar System"
+          },
           "pages": [
             {
               "components": [
