@@ -44,6 +44,8 @@ class StudyExecutionBottomBar extends StatelessWidget {
     final theme = Theme.of(context);
     final backgroundColor = theme.cardColor;
 
+    final isMobile = MediaQuery.of(context).size.width < 600;
+
     return Container(
       color: Colors.transparent,
       child: Container(
@@ -75,7 +77,7 @@ class StudyExecutionBottomBar extends StatelessWidget {
                 children: [
                   Flexible(
                     child: QuizdyButton(
-                      title: localizations.studyScreenPreviousSection,
+                      title: isMobile ? '' : localizations.studyScreenPreviousSection,
                       icon: LucideIcons.chevronLeft,
                       type: QuizdyButtonType.secondary,
                       onPressed: onPrevious,
@@ -107,7 +109,7 @@ class StudyExecutionBottomBar extends StatelessWidget {
                   const SizedBox(width: 8),
                   Flexible(
                     child: QuizdyButton(
-                      title: localizations.studyScreenNextSection,
+                      title: isMobile ? '' : localizations.studyScreenNextSection,
                       icon: LucideIcons.chevronRight,
                       onPressed: onNext,
                     ),

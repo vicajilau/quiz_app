@@ -159,7 +159,7 @@ class QuizdyButton extends StatelessWidget {
         children: [
           if (icon != null) ...[
             Icon(icon, color: textColor, size: 20),
-            const SizedBox(width: 8),
+            if (title.isNotEmpty) const SizedBox(width: 8),
           ],
           Flexible(
             child: Text(
