@@ -1277,7 +1277,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get importButton => 'Importar';
 
   @override
-  String get reorderButton => 'Reorder';
+  String get reorderButton => 'Reordenar';
 
   @override
   String get startQuizButton => 'Comenzar Quiz';
