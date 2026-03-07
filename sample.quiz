@@ -13,7 +13,7 @@
       "cache": [
         {
           "chunk_index": 0,
-          "status": "ready",
+          "status": "completed",
           "source_reference": {
             "document_id": "sample-doc-1",
             "start_page": 1,
@@ -56,11 +56,12 @@
                 }
               ]
             }
-          ]
+          ],
+          "ai_summary": "A concise overview of prime numbers, their foundational rules, and practical examples."
         },
         {
           "chunk_index": 1,
-          "status": "ready",
+          "status": "completed",
           "source_reference": {
             "document_id": "sample-doc-1",
             "start_page": 1,
@@ -108,11 +109,12 @@
                 }
               ]
             }
-          ]
+          ],
+          "ai_summary": "An explanation of Long-Term Potentiation (LTP) and Hebbian learning in the context of neuroplasticity."
         },
         {
           "chunk_index": 2,
-          "status": "ready",
+          "status": "completed",
           "source_reference": {
             "document_id": "sample-doc-1",
             "start_page": 2,
@@ -182,11 +184,12 @@
                 }
               ]
             }
-          ]
+          ],
+          "ai_summary": "Key demographic and historical facts about Paris, including major landmarks and comparisons with other European capitals."
         },
         {
           "chunk_index": 3,
-          "status": "ready",
+          "status": "completed",
           "source_reference": {
             "document_id": "sample-doc-1",
             "start_page": 3,
@@ -244,11 +247,12 @@
                 }
               ]
             }
-          ]
+          ],
+          "ai_summary": "A historical timeline and core details of the 2015 Paris Agreement on climate change mitigation."
         },
         {
           "chunk_index": 4,
-          "status": "ready",
+          "status": "completed",
           "source_reference": {
             "document_id": "sample-doc-1",
             "start_page": 3,
@@ -308,11 +312,12 @@
                 }
               ]
             }
-          ]
+          ],
+          "ai_summary": "A thermodynamic analysis of water's boiling point, including how elevation and pressure affect phase changes."
         },
         {
           "chunk_index": 5,
-          "status": "ready",
+          "status": "completed",
           "source_reference": {
             "document_id": "sample-doc-1",
             "start_page": 4,
@@ -377,11 +382,12 @@
                 }
               ]
             }
-          ]
+          ],
+          "ai_summary": "The cumulative history behind the invention of the incandescent lightbulb, featuring contributions from Davy, Swan, and Edison."
         },
         {
           "chunk_index": 6,
-          "status": "ready",
+          "status": "completed",
           "source_reference": {
             "document_id": "sample-doc-1",
             "start_page": 5,
@@ -435,11 +441,12 @@
                 }
               ]
             }
-          ]
+          ],
+          "ai_summary": "A biological breakdown of photosynthesis, detailing the necessary inputs, the role of chloroplasts, and the chemical equation."
         },
         {
           "chunk_index": 7,
-          "status": "ready",
+          "status": "completed",
           "source_reference": {
             "document_id": "sample-doc-1",
             "start_page": 6,
@@ -500,11 +507,12 @@
                 }
               ]
             }
-          ]
+          ],
+          "ai_summary": "An overview of the Industrial Revolution, focusing on its socio-economic impacts, urbanization, and shift in labor."
         },
         {
           "chunk_index": 8,
-          "status": "ready",
+          "status": "completed",
           "source_reference": {
             "document_id": "sample-doc-1",
             "start_page": 7,
@@ -560,11 +568,12 @@
                 }
               ]
             }
-          ]
+          ],
+          "ai_summary": "A step-by-step guide to understanding and solving equations using the quadratic formula."
         },
         {
           "chunk_index": 9,
-          "status": "ready",
+          "status": "completed",
           "source_reference": {
             "document_id": "sample-doc-1",
             "start_page": 8,
@@ -616,11 +625,12 @@
                 }
               ]
             }
-          ]
+          ],
+          "ai_summary": "An explanation of the properties of a circle and how to correctly calculate its area using the radius."
         },
         {
           "chunk_index": 10,
-          "status": "ready",
+          "status": "completed",
           "source_reference": {
             "document_id": "sample-doc-1",
             "start_page": 9,
@@ -698,7 +708,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "ai_summary": "A comparative overview of gas giants in our solar system, with a specific focus on Jupiter's size and characteristics."
         }
       ]
     },
