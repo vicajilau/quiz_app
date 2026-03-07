@@ -22,6 +22,7 @@ import 'package:quizdy/core/theme/extensions/home_theme.dart';
 import 'package:quizdy/core/theme/extensions/file_loaded_theme.dart';
 import 'package:quizdy/core/theme/extensions/question_dialog_theme.dart';
 import 'package:quizdy/core/theme/extensions/ai_assistant_theme.dart';
+import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class AppTheme {
   // Define main application colors
@@ -210,6 +211,31 @@ class AppTheme {
         errorBubbleBg: Color(0xFFFEE2E2), // Red 100
         errorBubbleBorderColor: Color(0xFFFECACA), // Red 200
       ),
+      StudyThemeExtension(
+        cardBackground: zinc100,
+        cardBorder: zinc200,
+        cardTitle: zinc900,
+        cardSubtitle: zinc600,
+        cardDivider: zinc200,
+        tableHeaderBackground: Colors.white,
+        warningBackground: const Color(0xFFFEF3C7),
+        warningBorder: const Color(0xFFFDE68A),
+        warningIcon: const Color(0xFFD97706),
+        reminderBackground: const Color(0xFFF0FDFA),
+        reminderBorder: const Color(0xFF99F6E4),
+        reminderIcon: const Color(0xFF0D9488),
+        prosBackground: const Color(0xFFECFDF5),
+        prosBorder: const Color(0xFFA7F3D0),
+        prosIcon: const Color(0xFF059669),
+        consBackground: const Color(0xFFFEF2F2),
+        consBorder: const Color(0xFFFECACA),
+        consIcon: const Color(0xFFDC2626),
+        formulaBackground: zinc100,
+        formulaText: const Color(0xFF2563EB),
+        formulaLabel: zinc600,
+        timelineIndicator: primaryColor,
+        timelineLine: primaryColor.withValues(alpha: 0.3),
+      ),
     ],
   );
 
@@ -377,6 +403,31 @@ class AppTheme {
         aiAssistantLabelColor: primaryColor,
         errorBubbleBg: const Color(0xFF450A0A), // Red 950
         errorBubbleBorderColor: const Color(0xFF7F1D1D), // Red 900
+      ),
+      StudyThemeExtension(
+        cardBackground: zinc800,
+        cardBorder: zinc700,
+        cardTitle: zinc100,
+        cardSubtitle: zinc400,
+        cardDivider: zinc700,
+        tableHeaderBackground: zinc900,
+        warningBackground: const Color(0xFF452003),
+        warningBorder: const Color(0xFF78350F),
+        warningIcon: const Color(0xFFFBBF24),
+        reminderBackground: const Color(0xFF134E4A),
+        reminderBorder: const Color(0xFF0F766E),
+        reminderIcon: const Color(0xFF2DD4BF),
+        prosBackground: const Color(0xFF064E3B).withValues(alpha: 0.3),
+        prosBorder: const Color(0xFF065F46),
+        prosIcon: const Color(0xFF34D399),
+        consBackground: const Color(0xFF7F1D1D).withValues(alpha: 0.3),
+        consBorder: const Color(0xFF991B1B),
+        consIcon: const Color(0xFFF87171),
+        formulaBackground: zinc800,
+        formulaText: const Color(0xFF60A5FA),
+        formulaLabel: zinc400,
+        timelineIndicator: primaryColor,
+        timelineLine: primaryColor.withValues(alpha: 0.3),
       ),
     ],
   );

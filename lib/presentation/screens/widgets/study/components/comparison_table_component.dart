@@ -18,6 +18,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/widgets/latex_text.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
+import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class ComparisonTableComponent extends StatelessWidget {
   final UiElement element;
@@ -27,14 +28,29 @@ class ComparisonTableComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final title = element.props['title']?.toString();
-    final columnsList = element.props['columns'] as List<dynamic>? ?? [];
-    final rowsList = element.props['rows'] as List<dynamic>? ?? [];
+    final rawRows = (element.props['rows'] as List<dynamic>? ?? []);
+    final rawColumns = (element.props['columns'] as List<dynamic>? ?? [])
+        .map((e) => e.toString())
+        .toList();
 
-    final columns = columnsList.map((e) => e.toString()).toList();
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    // Determine if the first column header should be used for the label column.
+    // This happens if number of columns equals (values in row + 1 for the label).
+    bool useFirstColumnAsLabel = false;
+    if (rawRows.isNotEmpty && rawColumns.isNotEmpty) {
+      final firstRow = rawRows.first;
+      if (firstRow is Map<String, dynamic>) {
+        final values = firstRow['values'] as List<dynamic>? ?? [];
+        if (rawColumns.length == values.length + 1) {
+          useFirstColumnAsLabel = true;
+        }
+      }
+    }
+
+    final columns = rawColumns;
+    final studyTheme = context.studyTheme;
 
     // Parse rows correctly
-    final rows = rowsList.map((row) {
+    final rows = rawRows.map((row) {
       if (row is Map<String, dynamic>) {
         final label = row['label']?.toString() ?? '';
         final values = (row['values'] as List<dynamic>? ?? [])
@@ -49,10 +65,10 @@ class ComparisonTableComponent extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 24.0),
       padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF27272A) : const Color(0xFFF4F4F5),
+        color: studyTheme.cardBackground,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isDark ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
+          color: studyTheme.cardBorder,
           width: 1,
         ),
       ),
@@ -73,9 +89,7 @@ class ComparisonTableComponent extends StatelessWidget {
                     title,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: isDark
-                          ? const Color(0xFFF4F4F5)
-                          : const Color(0xFF18181B),
+                      color: studyTheme.cardTitle,
                     ),
                   ),
                 ),
@@ -83,7 +97,7 @@ class ComparisonTableComponent extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Divider(
-              color: isDark ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
+              color: studyTheme.cardDivider,
             ),
             const SizedBox(height: 16),
           ],
@@ -91,9 +105,7 @@ class ComparisonTableComponent extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: isDark
-                      ? const Color(0xFF3F3F46)
-                      : const Color(0xFFE4E4E7),
+                  color: studyTheme.cardBorder,
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
@@ -103,16 +115,15 @@ class ComparisonTableComponent extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   child: DataTable(
                     headingRowColor: WidgetStateProperty.resolveWith(
-                      (states) => isDark
-                          ? const Color(0xFF18181B)
-                          : const Color(0xFFFFFFFF),
+                      (states) => studyTheme.tableHeaderBackground,
                     ),
                     dataRowColor: WidgetStateProperty.resolveWith((states) {
                       return Colors.transparent;
                     }),
                     dividerThickness: 1,
                     columns: [
-                      const DataColumn(label: Text('')), // Empty corner
+                      if (!useFirstColumnAsLabel)
+                        const DataColumn(label: Text('')), // Empty corner
                       ...columns.map(
                         (col) => DataColumn(
                           label: Expanded(
@@ -137,17 +148,11 @@ class ComparisonTableComponent extends StatelessWidget {
                               label,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: isDark
-                                    ? const Color(0xFFF4F4F5)
-                                    : const Color(0xFF18181B),
+                                color: studyTheme.cardTitle,
                               ),
                             ),
                           ),
-                          ...columns.asMap().entries.map((entry) {
-                            final idx = entry.key;
-                            final val = idx < values.length ? values[idx] : '';
-                            return DataCell(MarkdownWidget(data: val));
-                          }),
+                          ...values.map((val) => DataCell(MarkdownWidget(data: val))),
                         ],
                       );
                     }).toList(),

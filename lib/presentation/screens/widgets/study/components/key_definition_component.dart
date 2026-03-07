@@ -18,6 +18,7 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
+import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class KeyDefinitionComponent extends StatelessWidget {
   final UiElement element;
@@ -28,16 +29,16 @@ class KeyDefinitionComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     final term = element.props['term']?.toString() ?? '';
     final body = element.props['body']?.toString() ?? '';
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final studyTheme = context.studyTheme;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 24.0),
       padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF27272A) : const Color(0xFFF4F4F5),
+        color: studyTheme.cardBackground,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isDark ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
+          color: studyTheme.cardBorder,
           width: 1,
         ),
       ),
@@ -67,7 +68,7 @@ class KeyDefinitionComponent extends StatelessWidget {
             term,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
-              color: isDark ? const Color(0xFFF4F4F5) : const Color(0xFF18181B),
+              color: studyTheme.cardTitle,
             ),
           ),
           const SizedBox(height: 8),

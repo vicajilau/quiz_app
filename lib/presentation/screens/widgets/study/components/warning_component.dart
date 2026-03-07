@@ -18,6 +18,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
+import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class WarningComponent extends StatelessWidget {
   final UiElement element;
@@ -27,18 +28,11 @@ class WarningComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final body = element.props['body']?.toString() ?? '';
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final studyTheme = context.studyTheme;
 
-    // Design: faint amber tint + amber 600 text
-    final backgroundColor = isDark
-        ? const Color(0xFF452003) // Deep amber brown
-        : const Color(0xFFFEF3C7); // Amber 50
-    final borderColor = isDark
-        ? const Color(0xFF78350F)
-        : const Color(0xFFFDE68A);
-    final iconColor = isDark
-        ? const Color(0xFFFBBF24)
-        : const Color(0xFFD97706);
+    final backgroundColor = studyTheme.warningBackground;
+    final borderColor = studyTheme.warningBorder;
+    final iconColor = studyTheme.warningIcon;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 24.0),

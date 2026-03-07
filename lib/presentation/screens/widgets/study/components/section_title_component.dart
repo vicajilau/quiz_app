@@ -16,6 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
+import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class SectionTitleComponent extends StatelessWidget {
   final UiElement element;
@@ -26,7 +27,7 @@ class SectionTitleComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     final title = element.props['title']?.toString() ?? '';
     final subtitle = element.props['subtitle']?.toString();
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final studyTheme = context.studyTheme;
 
     return Padding(
       padding: const EdgeInsets.only(top: 32.0, bottom: 24.0),
@@ -54,9 +55,7 @@ class SectionTitleComponent extends StatelessWidget {
                       style: Theme.of(context).textTheme.headlineSmall
                           ?.copyWith(
                             fontWeight: FontWeight.bold,
-                            color: isDark
-                                ? const Color(0xFFF4F4F5)
-                                : const Color(0xFF18181B),
+                            color: studyTheme.cardTitle,
                           ),
                     ),
                     if (subtitle != null && subtitle.isNotEmpty) ...[
@@ -64,9 +63,7 @@ class SectionTitleComponent extends StatelessWidget {
                       Text(
                         subtitle,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: isDark
-                              ? const Color(0xFFA1A1AA)
-                              : const Color(0xFF52525B), // Zinc 400 or Zinc 600
+                          color: studyTheme.cardSubtitle,
                         ),
                       ),
                     ],
@@ -77,7 +74,7 @@ class SectionTitleComponent extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Divider(
-            color: isDark ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
+            color: studyTheme.cardDivider,
           ),
         ],
       ),

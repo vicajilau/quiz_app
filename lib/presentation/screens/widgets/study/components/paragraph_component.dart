@@ -16,6 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
+import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class ParagraphComponent extends StatelessWidget {
   final UiElement element;
@@ -26,7 +27,7 @@ class ParagraphComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     final title = element.props['title']?.toString();
     final body = element.props['body']?.toString() ?? '';
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final studyTheme = context.studyTheme;
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 24.0),
@@ -38,9 +39,7 @@ class ParagraphComponent extends StatelessWidget {
               title,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w600,
-                color: isDark
-                    ? const Color(0xFFF4F4F5)
-                    : const Color(0xFF18181B),
+                color: studyTheme.cardTitle,
               ),
             ),
             const SizedBox(height: 12),

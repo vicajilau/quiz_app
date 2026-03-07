@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/widgets/latex_text.dart';
+import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class QuoteComponent extends StatelessWidget {
   final UiElement element;
@@ -27,16 +28,16 @@ class QuoteComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     final body = element.props['body']?.toString() ?? '';
     final author = element.props['author']?.toString();
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final studyTheme = context.studyTheme;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 24.0),
       padding: const EdgeInsets.all(24.0),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF27272A) : const Color(0xFFF4F4F5),
+        color: studyTheme.cardBackground,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isDark ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
+          color: studyTheme.cardBorder,
           width: 1,
         ),
       ),
@@ -55,7 +56,7 @@ class QuoteComponent extends StatelessWidget {
               fontStyle: FontStyle.italic,
               fontSize: 16,
               height: 1.5,
-              color: isDark ? const Color(0xFFD4D4D8) : const Color(0xFF3F3F46),
+              color: studyTheme.cardSubtitle,
             ),
           ),
           if (author != null && author.isNotEmpty) ...[
@@ -66,9 +67,7 @@ class QuoteComponent extends StatelessWidget {
                 '— $author',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: isDark
-                      ? const Color(0xFFA1A1AA)
-                      : const Color(0xFF71717A),
+                  color: studyTheme.cardSubtitle,
                 ),
               ),
             ),

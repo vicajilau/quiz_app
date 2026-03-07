@@ -18,6 +18,7 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
+import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class ReminderComponent extends StatelessWidget {
   final UiElement element;
@@ -27,17 +28,11 @@ class ReminderComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final body = element.props['body']?.toString() ?? '';
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final studyTheme = context.studyTheme;
 
-    final backgroundColor = isDark
-        ? const Color(0xFF134E4A) // Deep teal
-        : const Color(0xFFF0FDFA); // Teal 50
-    final borderColor = isDark
-        ? const Color(0xFF0F766E)
-        : const Color(0xFF99F6E4);
-    final iconColor = isDark
-        ? const Color(0xFF2DD4BF)
-        : const Color(0xFF0D9488);
+    final backgroundColor = studyTheme.reminderBackground;
+    final borderColor = studyTheme.reminderBorder;
+    final iconColor = studyTheme.reminderIcon;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 24.0),

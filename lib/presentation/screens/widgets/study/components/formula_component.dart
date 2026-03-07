@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
 import 'package:quizdy/presentation/widgets/latex_text.dart';
+import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class FormulaComponent extends StatelessWidget {
   final UiElement element;
@@ -29,7 +30,7 @@ class FormulaComponent extends StatelessWidget {
     final equation = element.props['equation']?.toString() ?? '';
     final equationLabel = element.props['equation_label']?.toString();
     final body = element.props['body']?.toString();
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final studyTheme = context.studyTheme;
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
@@ -52,7 +53,7 @@ class FormulaComponent extends StatelessWidget {
               horizontal: 16.0,
             ),
             decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF27272A) : const Color(0xFFF4F4F5),
+              color: studyTheme.formulaBackground,
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(
@@ -64,9 +65,7 @@ class FormulaComponent extends StatelessWidget {
                         ? equation
                         : '\$$equation\$',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: isDark
-                          ? const Color(0xFF60A5FA)
-                          : const Color(0xFF2563EB),
+                      color: studyTheme.formulaText,
                     ),
                   ),
                 ),
@@ -76,9 +75,7 @@ class FormulaComponent extends StatelessWidget {
                     equationLabel,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: isDark
-                          ? const Color(0xFFA1A1AA)
-                          : const Color(0xFF52525B),
+                      color: studyTheme.formulaLabel,
                     ),
                   ),
                 ],
