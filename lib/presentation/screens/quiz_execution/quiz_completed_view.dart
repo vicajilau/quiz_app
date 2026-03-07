@@ -15,6 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/extensions/double_extensions.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
@@ -375,7 +376,6 @@ class _QuizCompletedViewState extends State<QuizCompletedView> {
           ),
           child: LayoutBuilder(
             builder: (context, constraints) {
-              final isMobile = constraints.maxWidth < 600;
               final hasIncorrect = _hasIncorrectAnswers();
 
               // Define buttons
@@ -387,7 +387,7 @@ class _QuizCompletedViewState extends State<QuizCompletedView> {
               final homeBtn = QuizHomeButton(isDarkMode: isDarkMode);
 
               // Mobile AND has incorrect answers (3 buttons total) -> Vertical stack
-              if (isMobile && hasIncorrect) {
+              if (context.isMobile && hasIncorrect) {
                 return Column(
                   spacing: 12,
                   children: [

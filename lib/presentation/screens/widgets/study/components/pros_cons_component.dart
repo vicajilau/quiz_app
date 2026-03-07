@@ -15,6 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
@@ -38,7 +39,7 @@ class ProsConsComponent extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraints) {
           // If narrow, stack them vertically. If wide enough, side-by-side.
-          if (constraints.maxWidth < 600) {
+          if (context.isMobile) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [

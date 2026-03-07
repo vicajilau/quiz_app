@@ -17,6 +17,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';
@@ -29,7 +30,6 @@ class HomeDragModeOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = MediaQuery.of(context).size.width < 600;
     final localizations = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final customColors = Theme.of(context).extension<CustomColors>()!;
@@ -63,7 +63,7 @@ class HomeDragModeOverlay extends StatelessWidget {
 
     final dividerColor = isDark ? AppTheme.zinc700 : AppTheme.zinc200;
 
-    if (isMobile) {
+    if (context.isMobile) {
       return Column(
         children: [
           Expanded(child: studyZone),

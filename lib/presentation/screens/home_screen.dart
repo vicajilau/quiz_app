@@ -77,8 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   QuizMode _modeFromPosition(Offset localPosition, Size size) {
-    final isMobile = size.width < 600;
-    if (isMobile) {
+    if (context.isMobile) {
       return localPosition.dy < size.height / 2
           ? QuizMode.study
           : QuizMode.quiz;
@@ -485,7 +484,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SafeArea(
                 child: LayoutBuilder(
                   builder: (context, constraints) {
-                    final isMobile = constraints.maxWidth < 600;
+                    final isMobile = context.isMobile;
                     // Calculate the visual top margin:
                     // SafeArea (padding.top) + Header centering offset ((72 - 48) / 2 = 12)
                     final topPadding = MediaQuery.of(context).padding.top;

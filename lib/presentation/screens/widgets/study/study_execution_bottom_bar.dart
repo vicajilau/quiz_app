@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
@@ -44,7 +45,7 @@ class StudyExecutionBottomBar extends StatelessWidget {
     final theme = Theme.of(context);
     final backgroundColor = theme.cardColor;
 
-    final isMobile = MediaQuery.of(context).size.width < 600;
+    final isMobile = context.isMobile;
 
     return Container(
       color: Colors.transparent,
