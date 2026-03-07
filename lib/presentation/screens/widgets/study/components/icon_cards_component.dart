@@ -16,6 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
+import 'package:quizdy/presentation/widgets/latex_text.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
 
 class IconCardsComponent extends StatelessWidget {
@@ -100,7 +101,7 @@ class IconCardsComponent extends StatelessWidget {
                               ),
                               const SizedBox(width: 8),
                               Expanded(
-                                child: Text(
+                                child: LaTeXText(
                                   itemTitle,
                                   style: Theme.of(context).textTheme.titleSmall
                                       ?.copyWith(

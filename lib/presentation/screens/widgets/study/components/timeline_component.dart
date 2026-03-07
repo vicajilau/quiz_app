@@ -16,6 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
+import 'package:quizdy/presentation/widgets/latex_text.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
 
 class TimelineComponent extends StatelessWidget {
@@ -131,7 +132,7 @@ class TimelineComponent extends StatelessWidget {
                                 ).primaryColor.withValues(alpha: 0.1),
                                 borderRadius: BorderRadius.circular(16),
                               ),
-                              child: Text(
+                              child: LaTeXText(
                                 item['date'] as String,
                                 style: Theme.of(context).textTheme.bodySmall
                                     ?.copyWith(
@@ -142,7 +143,7 @@ class TimelineComponent extends StatelessWidget {
                             ),
                           if ((item['title'] as String).isNotEmpty) ...[
                             const SizedBox(height: 8),
-                            Text(
+                            LaTeXText(
                               item['title'] as String,
                               style: Theme.of(context).textTheme.titleSmall
                                   ?.copyWith(

@@ -2179,5 +2179,8 @@
   "studyScreenImportant": "Important",
   "@studyScreenImportant": {
     "description": "Label for the warning/important component in the study screen"
-  }
+  },
+  "studyComponentNoItems": "No items",
+  "studyComponentAdvantages": "Advantages",
+  "studyComponentLimitations": "Limitations"
 }

@@ -91,12 +91,12 @@
                 {
                   "type": "pros_cons",
                   "title": "Impact of High Cognitive Demand",
-                  "pros": [
+                  "advantages": [
                     "Increased synaptic density",
                     "Better memory retention",
                     "Enhanced cognitive flexibility"
                   ],
-                  "cons": [
+                  "limitations": [
                     "High energy expenditure",
                     "Potential for cognitive fatigue",
                     "Slower initial processing during intense learning"
@@ -368,13 +368,13 @@
                 {
                   "type": "pros_cons",
                   "title": "Incandescent Bulbs vs. Modern LEDs",
-                  "pros": [
+                  "advantages": [
                     "Inexpensive to produce (Incandescent)",
                     "Warm color temperature (Incandescent)",
                     "Highly energy efficient (LED)",
                     "Long lifespan (LED)"
                   ],
-                  "cons": [
+                  "limitations": [
                     "90% of energy wasted as heat (Incandescent)",
                     "Short lifespan (Incandescent)",
                     "Higher initial cost (LED)"
@@ -489,12 +489,12 @@
                 {
                   "type": "pros_cons",
                   "title": "Industrialization Effects",
-                  "pros": [
+                  "advantages": [
                     "Increased production capability",
                     "Technological advancements",
                     "Rise of the middle class"
                   ],
-                  "cons": [
+                  "limitations": [
                     "Poor initial working conditions",
                     "Child labor",
                     "Significant environmental pollution"

@@ -1927,5 +1927,8 @@
   "showLessLabel": "Mostrar menos",
   "studyScreenReminder": "Recordatorio",
   "studyScreenKeyDefinition": "Definición Clave",
-  "studyScreenImportant": "Importante"
+  "studyScreenImportant": "Importante",
+  "studyComponentNoItems": "Sin elementos",
+  "studyComponentAdvantages": "Ventajas",
+  "studyComponentLimitations": "Limitaciones"
 }

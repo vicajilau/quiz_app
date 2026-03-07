@@ -16,6 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
+import 'package:quizdy/presentation/widgets/latex_text.dart';
 
 class QuoteComponent extends StatelessWidget {
   final UiElement element;
@@ -48,7 +49,7 @@ class QuoteComponent extends StatelessWidget {
             size: 32,
           ),
           const SizedBox(height: 12),
-          Text(
+          LaTeXText(
             '"$body"',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               fontStyle: FontStyle.italic,

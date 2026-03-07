@@ -15,6 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:gpt_markdown/gpt_markdown.dart';
+import 'package:flutter_math_fork/flutter_math.dart';
 
 class MarkdownWidget extends StatelessWidget {
   final String data;
@@ -25,7 +26,39 @@ class MarkdownWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final defaultStyle = Theme.of(context).textTheme.bodyMedium;
+    final effectiveStyle = style ?? defaultStyle;
 
-    return GptMarkdown(data, style: style ?? defaultStyle);
+    // Preprocess data to convert LaTeX dollar signs to brackets
+    // since GptMarkdown only natively supports \( \) and \[ \]
+    String preprocessedData = data;
+
+    // Replace block math $$...$$ with \[...\]
+    preprocessedData = preprocessedData.replaceAllMapped(
+      RegExp(r'\$\$(.*?)\$\$', dotAll: true),
+      (match) => '\\[${match.group(1)}\\]',
+    );
+
+    // Replace inline math $...$ with \(...\)
+    preprocessedData = preprocessedData.replaceAllMapped(
+      RegExp(r'(?<!\\)\$((?:\\.|[^$])+?)(?<!\\)\$'),
+      (match) => '\\(${match.group(1)}\\)',
+    );
+
+    return GptMarkdown(
+      preprocessedData,
+      style: effectiveStyle,
+      latexBuilder: (context, latex, latexStyle, inline) {
+        return Math.tex(
+          latex,
+          textStyle: latexStyle,
+          onErrorFallback: (error) {
+            return Text(
+              '\$$latex\$',
+              style: latexStyle.copyWith(color: Colors.red),
+            );
+          },
+        );
+      },
+    );
   }
 }

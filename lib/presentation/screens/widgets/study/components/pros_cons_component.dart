@@ -15,6 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
 
@@ -25,9 +26,8 @@ class ProsConsComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final itemsMap = element.props['items'] as Map<String, dynamic>? ?? {};
-    final prosList = itemsMap['pros'] as List<dynamic>? ?? [];
-    final consList = itemsMap['cons'] as List<dynamic>? ?? [];
+    final prosList = element.props['advantages'] as List<dynamic>? ?? [];
+    final consList = element.props['limitations'] as List<dynamic>? ?? [];
 
     final pros = prosList.map((e) => e.toString()).toList();
     final cons = consList.map((e) => e.toString()).toList();
@@ -41,19 +41,19 @@ class ProsConsComponent extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                _buildList(context, 'Advantages', pros, true),
+                _buildList(context, AppLocalizations.of(context)!.studyComponentAdvantages, pros, true),
                 const SizedBox(height: 16),
-                _buildList(context, 'Limitations', cons, false),
+                _buildList(context, AppLocalizations.of(context)!.studyComponentLimitations, cons, false),
               ],
             );
           } else {
             return Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(child: _buildList(context, 'Advantages', pros, true)),
+                Expanded(child: _buildList(context, AppLocalizations.of(context)!.studyComponentAdvantages, pros, true)),
                 const SizedBox(width: 16),
                 Expanded(
-                  child: _buildList(context, 'Limitations', cons, false),
+                  child: _buildList(context, AppLocalizations.of(context)!.studyComponentLimitations, cons, false),
                 ),
               ],
             );
@@ -109,7 +109,7 @@ class ProsConsComponent extends StatelessWidget {
           const SizedBox(height: 16),
           if (items.isEmpty)
             Text(
-              'No items',
+              AppLocalizations.of(context)!.studyComponentNoItems,
               style: TextStyle(
                 color: isDark
                     ? const Color(0xFFA1A1AA)

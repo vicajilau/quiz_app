@@ -62,7 +62,7 @@ class FormulaComponent extends StatelessWidget {
                   child: LaTeXText(
                     equation.trim().startsWith('\$')
                         ? equation
-                        : '\$\$$equation\$\$',
+                        : '\$$equation\$',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: isDark
                           ? const Color(0xFF60A5FA)
