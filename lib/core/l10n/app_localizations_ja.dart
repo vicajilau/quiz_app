@@ -1540,4 +1540,10 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get showLessLabel => '少なく表示';
+
+  @override
+  String get studyScreenReminder => 'リマインダー';
+
+  @override
+  String get studyScreenKeyDefinition => '重要な定義';
 }

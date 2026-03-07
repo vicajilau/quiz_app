@@ -1863,5 +1863,7 @@
   "studyScreenCustomChapter": "自定义章节",
   "addSection": "添加章节",
   "generateSectionsWithAI": "使用 AI 生成章节",
-  "addSectionsWithAI": "使用 AI 添加章节"
+  "addSectionsWithAI": "使用 AI 添加章节",
+  "studyScreenReminder": "提醒",
+  "studyScreenKeyDefinition": "关键定义"
 }

@@ -1628,4 +1628,10 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get showLessLabel => 'Mostrar menys';
+
+  @override
+  String get studyScreenReminder => 'Recordatori';
+
+  @override
+  String get studyScreenKeyDefinition => 'Definició Clau';
 }

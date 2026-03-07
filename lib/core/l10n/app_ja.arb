@@ -1814,5 +1814,7 @@
   "studyScreenCustomChapter": "カスタムチャプター",
   "addSection": "セクションを追加",
   "generateSectionsWithAI": "AIでセクションを生成",
-  "addSectionsWithAI": "AIでセクションを追加"
+  "addSectionsWithAI": "AIでセクションを追加",
+  "studyScreenReminder": "リマインダー",
+  "studyScreenKeyDefinition": "重要な定義"
 }

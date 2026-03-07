@@ -1907,5 +1907,7 @@
   "studyScreenCustomChapter": "Benutzerdefiniertes Kapitel",
   "addSection": "Abschnitt hinzufügen",
   "generateSectionsWithAI": "Abschnitte mit KI generieren",
-  "addSectionsWithAI": "Abschnitte mit KI hinzufügen"
+  "addSectionsWithAI": "Abschnitte mit KI hinzufügen",
+  "studyScreenReminder": "Erinnerung",
+  "studyScreenKeyDefinition": "Schlüsselbegriff"
 }

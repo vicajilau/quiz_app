@@ -1811,5 +1811,7 @@
   "studyScreenCustomChapter": "Capítulo personalizado",
   "addSection": "Engadir sección",
   "generateSectionsWithAI": "Xerar seccións con IA",
-  "addSectionsWithAI": "Engadir seccións con IA"
+  "addSectionsWithAI": "Engadir seccións con IA",
+  "studyScreenReminder": "Recordatorio",
+  "studyScreenKeyDefinition": "Definición Clave"
 }

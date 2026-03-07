@@ -1607,4 +1607,10 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get showLessLabel => 'कम दिखाएं';
+
+  @override
+  String get studyScreenReminder => 'अनुस्मारक';
+
+  @override
+  String get studyScreenKeyDefinition => 'मुख्य परिभाषा';
 }

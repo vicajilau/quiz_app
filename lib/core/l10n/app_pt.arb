@@ -1902,5 +1902,7 @@
   "studyScreenCustomChapter": "Capítulo personalizado",
   "addSection": "Adicionar seção",
   "generateSectionsWithAI": "Gerar seções com IA",
-  "addSectionsWithAI": "Adicionar seções com IA"
+  "addSectionsWithAI": "Adicionar seções com IA",
+  "studyScreenReminder": "Lembrete",
+  "studyScreenKeyDefinition": "Definição Chave"
 }

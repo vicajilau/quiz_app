@@ -1865,5 +1865,7 @@
   "aiContextMode": "Modalità Contesto",
   "@aiContextMode": {
     "description": "Label for context mode when a file is uploaded"
-  }
+  },
+  "studyScreenReminder": "Promemoria",
+  "studyScreenKeyDefinition": "Definizione Chiave"
 }

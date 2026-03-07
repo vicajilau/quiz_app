@@ -1811,5 +1811,7 @@
   "studyScreenCustomChapter": "Kapitulu pertsonalizatua",
   "addSection": "Gehitu atala",
   "generateSectionsWithAI": "Sortu atalak AIarekin",
-  "addSectionsWithAI": "Gehitu atalak AIarekin"
+  "addSectionsWithAI": "Gehitu atalak AIarekin",
+  "studyScreenReminder": "Oroigarria",
+  "studyScreenKeyDefinition": "Funtsezko Definizioa"
 }

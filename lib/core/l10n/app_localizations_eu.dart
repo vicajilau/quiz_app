@@ -1619,4 +1619,10 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get showLessLabel => 'Erakutsi gutxiago';
+
+  @override
+  String get studyScreenReminder => 'Oroigarria';
+
+  @override
+  String get studyScreenKeyDefinition => 'Funtsezko Definizioa';
 }

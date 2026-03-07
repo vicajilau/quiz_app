@@ -2904,6 +2904,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show less'**
   String get showLessLabel;
+
+  /// Title label for the reminder component in the study screen
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder'**
+  String get studyScreenReminder;
+
+  /// Title label for the key definition component in the study screen
+  ///
+  /// In en, this message translates to:
+  /// **'Key Definition'**
+  String get studyScreenKeyDefinition;
 }
 
 class _AppLocalizationsDelegate

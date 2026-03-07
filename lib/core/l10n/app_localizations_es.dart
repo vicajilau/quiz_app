@@ -1621,4 +1621,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get showLessLabel => 'Mostrar menos';
+
+  @override
+  String get studyScreenReminder => 'Recordatorio';
+
+  @override
+  String get studyScreenKeyDefinition => 'Definición Clave';
 }

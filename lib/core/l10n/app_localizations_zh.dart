@@ -1528,4 +1528,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get showLessLabel => '显示更少';
+
+  @override
+  String get studyScreenReminder => '提醒';
+
+  @override
+  String get studyScreenKeyDefinition => '关键定义';
 }

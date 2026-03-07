@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
@@ -52,7 +53,7 @@ class KeyDefinitionComponent extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                'Key Definition', // TODO: Localize this string later if necessary, but according to design it is fixed or the title. Actually the design said "Key Definition".
+                AppLocalizations.of(context)!.studyScreenKeyDefinition,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.2,

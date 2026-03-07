@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
@@ -54,7 +55,7 @@ class ReminderComponent extends StatelessWidget {
               Icon(LucideIcons.lightbulb, color: iconColor, size: 16),
               const SizedBox(width: 8),
               Text(
-                'Reminder', // TODO: Localize if desired
+                AppLocalizations.of(context)!.studyScreenReminder,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.2,

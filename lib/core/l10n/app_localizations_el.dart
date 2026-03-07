@@ -1627,4 +1627,10 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get showLessLabel => 'Εμφάνιση λιγότερων';
+
+  @override
+  String get studyScreenReminder => 'Υπενθύμιση';
+
+  @override
+  String get studyScreenKeyDefinition => 'Βασικός Ορισμός';
 }
