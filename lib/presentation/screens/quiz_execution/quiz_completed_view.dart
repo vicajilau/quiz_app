@@ -374,8 +374,8 @@ class _QuizCompletedViewState extends State<QuizCompletedView> {
               top: BorderSide(color: theme.dividerColor.withValues(alpha: 0.1)),
             ),
           ),
-          child: LayoutBuilder(
-            builder: (context, constraints) {
+          child: Builder(
+            builder: (context) {
               final hasIncorrect = _hasIncorrectAnswers();
 
               // Define buttons

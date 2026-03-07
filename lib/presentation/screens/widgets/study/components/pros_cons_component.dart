@@ -36,20 +36,16 @@ class ProsConsComponent extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 24.0),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          // If narrow, stack them vertically. If wide enough, side-by-side.
-          if (context.isMobile) {
-            return Column(
+      child: context.isMobile
+          ? Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 _buildList(context, AppLocalizations.of(context)!.studyComponentAdvantages, pros, true),
                 const SizedBox(height: 16),
                 _buildList(context, AppLocalizations.of(context)!.studyComponentLimitations, cons, false),
               ],
-            );
-          } else {
-            return Row(
+            )
+          : Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(child: _buildList(context, AppLocalizations.of(context)!.studyComponentAdvantages, pros, true)),
@@ -58,10 +54,7 @@ class ProsConsComponent extends StatelessWidget {
                   child: _buildList(context, AppLocalizations.of(context)!.studyComponentLimitations, cons, false),
                 ),
               ],
-            );
-          }
-        },
-      ),
+            ),
     );
   }
 

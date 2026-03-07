@@ -15,6 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/widgets/latex_text.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
@@ -68,7 +69,7 @@ class IconCardsComponent extends StatelessWidget {
                 builder: (context, constraints) {
                   // Make cards take about half width on larger screens, full width on small screens
                   double width = constraints.maxWidth;
-                  if (width > 600) {
+                  if (!context.isMobile) {
                     width = (width / 2) - 8; // -8 for spacing
                   }
 
