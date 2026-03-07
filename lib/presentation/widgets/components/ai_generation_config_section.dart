@@ -62,6 +62,8 @@ class AiGenerationConfigSection extends StatelessWidget {
         ? const Color(0xFF3F3F46)
         : const Color(0xFFE4E4E7);
 
+    final isEffectivelyAuto = hasFile && isAutoDifficulty;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -259,7 +261,7 @@ class AiGenerationConfigSection extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            isAutoDifficulty
+                            isEffectivelyAuto
                                 ? localizations.aiDifficultyAutoTurnedOn
                                 : localizations.aiDifficultyAutoTurnedOff,
                             style: TextStyle(
@@ -271,7 +273,7 @@ class AiGenerationConfigSection extends StatelessWidget {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            isAutoDifficulty
+                            isEffectivelyAuto
                                 ? localizations.aiDifficultyAutoDescription
                                 : localizations.aiDifficultyManualDescription,
                             style: TextStyle(
@@ -285,7 +287,7 @@ class AiGenerationConfigSection extends StatelessWidget {
                       ),
                     ),
                     QuizdySwitch(
-                      value: hasFile && isAutoDifficulty,
+                      value: isEffectivelyAuto,
                       onChanged: !hasFile
                           ? null
                           : (value) {
@@ -295,7 +297,7 @@ class AiGenerationConfigSection extends StatelessWidget {
                   ],
                 ),
               ),
-              if (!isAutoDifficulty) ...[
+              if (!isEffectivelyAuto) ...[
                 Divider(height: 1, color: attachStroke),
                 Padding(
                   padding: const EdgeInsets.symmetric(
