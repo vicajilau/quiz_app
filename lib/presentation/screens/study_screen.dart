@@ -134,7 +134,56 @@ class StudyScreenView extends StatefulWidget {
   State<StudyScreenView> createState() => _StudyScreenViewState();
 }
 
-class _StudyScreenViewState extends State<StudyScreenView> {
+class _StudyScreenViewState extends State<StudyScreenView>
+    with SingleTickerProviderStateMixin {
+  bool _isSidebarOpen = true;
+  bool _isSidebarMounted = true;
+
+  late final AnimationController _mobileSidebarAnimController;
+  late final Animation<Offset> _mobileSidebarSlide;
+
+  @override
+  void initState() {
+    super.initState();
+    _mobileSidebarAnimController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
+    _mobileSidebarSlide =
+        Tween<Offset>(begin: const Offset(-1, 0), end: Offset.zero).animate(
+          CurvedAnimation(
+            parent: _mobileSidebarAnimController,
+            curve: Curves.linear,
+          ),
+        );
+  }
+
+  @override
+  void dispose() {
+    _mobileSidebarAnimController.dispose();
+    super.dispose();
+  }
+
+  void _openSidebar() {
+    setState(() {
+      _isSidebarOpen = true;
+      _isSidebarMounted = true;
+    });
+    if (context.isMobile) {
+      _mobileSidebarAnimController.forward();
+    }
+  }
+
+  void _closeSidebar() {
+    if (!context.isMobile) {
+      setState(() => _isSidebarOpen = false);
+    } else {
+      _mobileSidebarAnimController.reverse().then((_) {
+        if (mounted) setState(() => _isSidebarOpen = false);
+      });
+    }
+  }
+
   Future<bool> _confirmExit() async {
     final studyState = context.read<StudyExecutionBloc>().state;
     final fileToSave = _getCurrentQuizFile(studyState);
@@ -603,75 +652,176 @@ class _StudyScreenViewState extends State<StudyScreenView> {
                   );
                 }
 
-                return Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    StudySectionsSidebar(
+                return LayoutBuilder(
+                  builder: (context, constraints) {
+                    final isMobile = context.isMobile;
+
+                    // Sync mobile animation state on resize
+                    if (!isMobile && _isSidebarOpen) {
+                      _mobileSidebarAnimController.value = 0.0;
+                    } else if (isMobile && _isSidebarOpen) {
+                      _mobileSidebarAnimController.value = 1.0;
+                    }
+
+                    final sidebarPanel = StudySectionsSidebar(
                       chunks: state.chunks,
                       currentChunkIndex: state.currentChunkIndex,
                       localizations: localizations,
+                      isFullScreen: isMobile,
+                      onClose: _closeSidebar,
                       onChunkSelected: (index) {
                         context.read<StudyExecutionBloc>().add(
                           StudyChunkRequested(index),
                         );
+                        if (isMobile) _closeSidebar();
                       },
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child:
-                                  currentChunk.status == StudyChunkState.error
-                                  ? const SizedBox.shrink()
-                                  : (currentChunk.pages.isNotEmpty
-                                        ? ListView.builder(
-                                            itemCount:
-                                                currentChunk.pages.length,
-                                            itemBuilder: (context, index) {
-                                              final page =
-                                                  currentChunk.pages[index];
-                                              return Card(
-                                                margin: const EdgeInsets.only(
-                                                  bottom: 16,
-                                                ),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(
-                                                    16,
+                    );
+
+                    final mainContent = Stack(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(
+                            _isSidebarOpen ? 16.0 : 56.0,
+                            16.0,
+                            16.0,
+                            16.0,
+                          ),
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child:
+                                    currentChunk.status == StudyChunkState.error
+                                    ? const SizedBox.shrink()
+                                    : (currentChunk.pages.isNotEmpty
+                                          ? ListView.builder(
+                                              itemCount:
+                                                  currentChunk.pages.length,
+                                              itemBuilder: (context, index) {
+                                                final page =
+                                                    currentChunk.pages[index];
+                                                return Card(
+                                                  margin: const EdgeInsets.only(
+                                                    bottom: 16,
                                                   ),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: page.uiElements.map((
-                                                      element,
-                                                    ) {
-                                                      return StudyComponentBuilder(
-                                                        element: element,
-                                                      );
-                                                    }).toList(),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                          16,
+                                                        ),
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: page.uiElements
+                                                          .map((element) {
+                                                            return StudyComponentBuilder(
+                                                              element: element,
+                                                            );
+                                                          })
+                                                          .toList(),
+                                                    ),
                                                   ),
-                                                ),
-                                              );
-                                            },
-                                          )
-                                        : Center(
-                                            child: Text(
-                                              localizations
-                                                  .studyScreenNoSlidesGenerated,
-                                            ),
-                                          )),
-                            ),
-                          ],
+                                                );
+                                              },
+                                            )
+                                          : Center(
+                                              child: Text(
+                                                localizations
+                                                    .studyScreenNoSlidesGenerated,
+                                              ),
+                                            )),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ],
+                        if (!_isSidebarOpen)
+                          Positioned(
+                            top: 80,
+                            left: 12,
+                            child: _SidebarOpenButton(
+                              isDark: isDark,
+                              onTap: _openSidebar,
+                            ),
+                          ),
+                      ],
+                    );
+
+                    if (!isMobile) {
+                      return Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          AnimatedContainer(
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.linear,
+                            width: _isSidebarOpen ? 280 : 0,
+                            clipBehavior: Clip.hardEdge,
+                            decoration: const BoxDecoration(),
+                            child: OverflowBox(
+                              alignment: Alignment.topRight,
+                              minWidth: 280,
+                              maxWidth: 280,
+                              child: sidebarPanel,
+                            ),
+                          ),
+                          Expanded(child: mainContent),
+                        ],
+                      );
+                    }
+
+                    // Narrow layout: Stack with slide overlay
+                    return Stack(
+                      children: [
+                        mainContent,
+                        if (_isSidebarMounted)
+                          Positioned.fill(
+                            child: IgnorePointer(
+                              ignoring: !_isSidebarOpen,
+                              child: SlideTransition(
+                                position: _mobileSidebarSlide,
+                                child: Material(
+                                  color: isDark
+                                      ? AppTheme.zinc800
+                                      : Colors.white,
+                                  child: sidebarPanel,
+                                ),
+                              ),
+                            ),
+                          ),
+                      ],
+                    );
+                  },
                 );
               },
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SidebarOpenButton extends StatelessWidget {
+  final bool isDark;
+  final VoidCallback onTap;
+
+  const _SidebarOpenButton({required this.isDark, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 32,
+        height: 32,
+        decoration: BoxDecoration(
+          color: isDark ? AppTheme.zinc700 : AppTheme.zinc100,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        alignment: Alignment.center,
+        child: Icon(
+          LucideIcons.panelRightClose,
+          size: 18,
+          color: isDark ? AppTheme.zinc400 : AppTheme.zinc500,
         ),
       ),
     );
