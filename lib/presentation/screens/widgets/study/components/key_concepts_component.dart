@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 
 class KeyConceptsComponent extends StatelessWidget {
@@ -27,29 +28,58 @@ class KeyConceptsComponent extends StatelessWidget {
     final itemsList = element.props['items'] as List<dynamic>? ?? [];
 
     final items = itemsList.map((e) => e.toString()).toList();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 24.0),
+      padding: const EdgeInsets.all(20.0),
+      decoration: BoxDecoration(
+        color: isDark ? const Color(0xFF27272A) : const Color(0xFFF4F4F5),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: isDark ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
+          width: 1,
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (title != null && title.isNotEmpty) ...[
-            Text(
-              title,
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            Row(
+              children: [
+                Icon(
+                  LucideIcons.tags,
+                  color: Theme.of(context).primaryColor,
+                  size: 20,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: isDark
+                          ? const Color(0xFFF4F4F5)
+                          : const Color(0xFF18181B),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 16),
+            Divider(
+              color: isDark ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
+            ),
+            const SizedBox(height: 16),
           ],
           if (items.isNotEmpty)
             Wrap(
               spacing: 8.0,
-              runSpacing: 8.0,
+              runSpacing: 12.0,
               children: items.map((concept) {
                 return Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 12.0,
+                    horizontal: 14.0,
                     vertical: 8.0,
                   ),
                   decoration: BoxDecoration(
@@ -68,6 +98,7 @@ class KeyConceptsComponent extends StatelessWidget {
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontWeight: FontWeight.w600,
+                      fontSize: 14,
                     ),
                   ),
                 );

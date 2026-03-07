@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 
 class SectionTitleComponent extends StatelessWidget {
@@ -25,47 +26,59 @@ class SectionTitleComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     final title = element.props['title']?.toString() ?? '';
     final subtitle = element.props['subtitle']?.toString();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Padding(
-      padding: const EdgeInsets.only(top: 24.0, bottom: 16.0),
+      padding: const EdgeInsets.only(top: 32.0, bottom: 24.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: 4,
-                height: 24,
-                decoration: BoxDecoration(
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: Icon(
+                  LucideIcons.bookOpen,
                   color: Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(2),
+                  size: 24,
                 ),
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: Text(
-                  title,
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: Theme.of(context).textTheme.headlineSmall
+                          ?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: isDark
+                                ? const Color(0xFFF4F4F5)
+                                : const Color(0xFF18181B),
+                          ),
+                    ),
+                    if (subtitle != null && subtitle.isNotEmpty) ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        subtitle,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: isDark
+                              ? const Color(0xFFA1A1AA)
+                              : const Color(0xFF52525B), // Zinc 400 or Zinc 600
+                        ),
+                      ),
+                    ],
+                  ],
                 ),
               ),
             ],
           ),
-          if (subtitle != null && subtitle.isNotEmpty) ...[
-            const SizedBox(height: 8),
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0),
-              child: Text(
-                subtitle,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Theme.of(context).textTheme.bodySmall?.color,
-                ),
-              ),
-            ),
-          ],
-          const SizedBox(height: 8),
-          const Divider(),
+          const SizedBox(height: 16),
+          Divider(
+            color: isDark ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
+          ),
         ],
       ),
     );

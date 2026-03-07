@@ -14,9 +14,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
+import 'package:quizdy/presentation/widgets/latex_text.dart';
 
 class FormulaComponent extends StatelessWidget {
   final UiElement element;
@@ -52,37 +52,33 @@ class FormulaComponent extends StatelessWidget {
               horizontal: 16.0,
             ),
             decoration: BoxDecoration(
-              color: isDark ? Colors.grey[850] : Colors.grey[100],
+              color: isDark ? const Color(0xFF27272A) : const Color(0xFFF4F4F5),
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: isDark ? Colors.grey[700]! : Colors.grey[300]!,
-                width: 1,
-              ),
             ),
             child: Column(
               children: [
-                Icon(
-                  LucideIcons.sigma,
-                  color: Theme.of(context).primaryColor.withValues(alpha: 0.5),
-                  size: 32,
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  equation,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontFamily: 'monospace',
-                    fontWeight: FontWeight.w600,
+                Align(
+                  alignment: Alignment.center,
+                  child: LaTeXText(
+                    equation.trim().startsWith('\$')
+                        ? equation
+                        : '\$\$$equation\$\$',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      color: isDark
+                          ? const Color(0xFF60A5FA)
+                          : const Color(0xFF2563EB),
+                    ),
                   ),
                 ),
                 if (equationLabel != null && equationLabel.isNotEmpty) ...[
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 16),
                   Text(
                     equationLabel,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontStyle: FontStyle.italic,
-                      color: isDark ? Colors.grey[400] : Colors.grey[600],
+                      color: isDark
+                          ? const Color(0xFFA1A1AA)
+                          : const Color(0xFF52525B),
                     ),
                   ),
                 ],

@@ -28,26 +28,44 @@ class WarningComponent extends StatelessWidget {
     final body = element.props['body']?.toString() ?? '';
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
+    // Design: faint amber tint + amber 600 text
     final backgroundColor = isDark
-        ? Colors.orange[900]?.withValues(alpha: 0.2)
-        : Colors.orange[50];
-    final borderColor = isDark ? Colors.orange[700]! : Colors.orange[300]!;
-    final iconColor = isDark ? Colors.orange[400] : Colors.orange[800];
+        ? const Color(0xFF452003) // Deep amber brown
+        : const Color(0xFFFEF3C7); // Amber 50
+    final borderColor = isDark
+        ? const Color(0xFF78350F)
+        : const Color(0xFFFDE68A);
+    final iconColor = isDark
+        ? const Color(0xFFFBBF24)
+        : const Color(0xFFD97706);
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 16.0),
-      padding: const EdgeInsets.all(16.0),
+      margin: const EdgeInsets.only(bottom: 24.0),
+      padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: borderColor, width: 1),
       ),
-      child: Row(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(LucideIcons.alertTriangle, color: iconColor, size: 24),
-          const SizedBox(width: 12),
-          Expanded(child: MarkdownWidget(data: body)),
+          Row(
+            children: [
+              Icon(LucideIcons.alertTriangle, color: iconColor, size: 16),
+              const SizedBox(width: 8),
+              Text(
+                'Important', // TODO: Localize if desired
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
+                  color: iconColor,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          MarkdownWidget(data: body),
         ],
       ),
     );

@@ -26,20 +26,24 @@ class ParagraphComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     final title = element.props['title']?.toString();
     final body = element.props['body']?.toString() ?? '';
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
+      padding: const EdgeInsets.only(bottom: 24.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (title != null && title.isNotEmpty) ...[
             Text(
               title,
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w600,
+                color: isDark
+                    ? const Color(0xFFF4F4F5)
+                    : const Color(0xFF18181B),
+              ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
           ],
           MarkdownWidget(data: body),
         ],

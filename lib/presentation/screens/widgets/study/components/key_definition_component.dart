@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
 
@@ -29,24 +30,43 @@ class KeyDefinitionComponent extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 16.0),
-      padding: const EdgeInsets.all(16.0),
+      margin: const EdgeInsets.only(bottom: 24.0),
+      padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
-        color: isDark ? Colors.grey[850] : Colors.grey[100],
+        color: isDark ? const Color(0xFF27272A) : const Color(0xFFF4F4F5),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isDark ? Colors.grey[700]! : Colors.grey[300]!,
+          color: isDark ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
           width: 1,
         ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Row(
+            children: [
+              Icon(
+                LucideIcons.key,
+                color: Theme.of(context).primaryColor,
+                size: 16,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                'Key Definition', // TODO: Localize this string later if necessary, but according to design it is fixed or the title. Actually the design said "Key Definition".
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
           Text(
             term,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).primaryColor,
+              color: isDark ? const Color(0xFFF4F4F5) : const Color(0xFF18181B),
             ),
           ),
           const SizedBox(height: 8),

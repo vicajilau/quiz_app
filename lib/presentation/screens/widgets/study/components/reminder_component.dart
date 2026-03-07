@@ -29,25 +29,42 @@ class ReminderComponent extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     final backgroundColor = isDark
-        ? Colors.blue[900]?.withValues(alpha: 0.2)
-        : Colors.blue[50];
-    final borderColor = isDark ? Colors.blue[700]! : Colors.blue[300]!;
-    final iconColor = isDark ? Colors.blue[400] : Colors.blue[800];
+        ? const Color(0xFF134E4A) // Deep teal
+        : const Color(0xFFF0FDFA); // Teal 50
+    final borderColor = isDark
+        ? const Color(0xFF0F766E)
+        : const Color(0xFF99F6E4);
+    final iconColor = isDark
+        ? const Color(0xFF2DD4BF)
+        : const Color(0xFF0D9488);
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 16.0),
-      padding: const EdgeInsets.all(16.0),
+      margin: const EdgeInsets.only(bottom: 24.0),
+      padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: borderColor, width: 1),
       ),
-      child: Row(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(LucideIcons.lightbulb, color: iconColor, size: 24),
-          const SizedBox(width: 12),
-          Expanded(child: MarkdownWidget(data: body)),
+          Row(
+            children: [
+              Icon(LucideIcons.lightbulb, color: iconColor, size: 16),
+              const SizedBox(width: 8),
+              Text(
+                'Reminder', // TODO: Localize if desired
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
+                  color: iconColor,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          MarkdownWidget(data: body),
         ],
       ),
     );

@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
 
@@ -26,6 +27,7 @@ class TimelineComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     final title = element.props['title']?.toString();
     final itemsList = element.props['items'] as List<dynamic>? ?? [];
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     final items = itemsList.map((item) {
       if (item is Map<String, dynamic>) {
@@ -38,17 +40,45 @@ class TimelineComponent extends StatelessWidget {
       return {'date': '', 'title': item.toString(), 'description': ''};
     }).toList();
 
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 24.0),
+      padding: const EdgeInsets.all(20.0),
+      decoration: BoxDecoration(
+        color: isDark ? const Color(0xFF27272A) : const Color(0xFFF4F4F5),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: isDark ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
+          width: 1,
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (title != null && title.isNotEmpty) ...[
-            Text(
-              title,
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            Row(
+              children: [
+                Icon(
+                  LucideIcons.clock,
+                  color: Theme.of(context).primaryColor,
+                  size: 20,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: isDark
+                          ? const Color(0xFFF4F4F5)
+                          : const Color(0xFF18181B),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Divider(
+              color: isDark ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
             ),
             const SizedBox(height: 16),
           ],
@@ -71,7 +101,7 @@ class TimelineComponent extends StatelessWidget {
                           shape: BoxShape.circle,
                         ),
                       ),
-                      if (!isLast)
+                      if (!isLast) // Use full depth line if not last
                         Expanded(
                           child: Container(
                             width: 2,
@@ -90,20 +120,37 @@ class TimelineComponent extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if ((item['date'] as String).isNotEmpty)
-                            Text(
-                              item['date'] as String,
-                              style: Theme.of(context).textTheme.bodySmall
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: Theme.of(context).primaryColor,
-                                  ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Theme.of(
+                                  context,
+                                ).primaryColor.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Text(
+                                item['date'] as String,
+                                style: Theme.of(context).textTheme.bodySmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                              ),
                             ),
                           if ((item['title'] as String).isNotEmpty) ...[
-                            const SizedBox(height: 4),
+                            const SizedBox(height: 8),
                             Text(
                               item['title'] as String,
                               style: Theme.of(context).textTheme.titleSmall
-                                  ?.copyWith(fontWeight: FontWeight.bold),
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: isDark
+                                        ? const Color(0xFFF4F4F5)
+                                        : const Color(0xFF18181B),
+                                  ),
                             ),
                           ],
                           if ((item['description'] as String).isNotEmpty) ...[

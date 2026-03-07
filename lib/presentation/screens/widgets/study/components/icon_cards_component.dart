@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
 
@@ -26,6 +27,7 @@ class IconCardsComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     final title = element.props['title']?.toString();
     final itemsList = element.props['items'] as List<dynamic>? ?? [];
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     final items = itemsList.map((item) {
       if (item is Map<String, dynamic>) {
@@ -38,16 +40,19 @@ class IconCardsComponent extends StatelessWidget {
     }).toList();
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
+      padding: const EdgeInsets.only(bottom: 24.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (title != null && title.isNotEmpty) ...[
             Text(
               title,
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: isDark
+                    ? const Color(0xFFF4F4F5)
+                    : const Color(0xFF18181B),
+              ),
             ),
             const SizedBox(height: 16),
           ],
@@ -63,36 +68,53 @@ class IconCardsComponent extends StatelessWidget {
                 builder: (context, constraints) {
                   // Make cards take about half width on larger screens, full width on small screens
                   double width = constraints.maxWidth;
-                  if (width > 500) {
+                  if (width > 600) {
                     width = (width / 2) - 8; // -8 for spacing
                   }
 
                   return Container(
                     width: width,
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(20.0),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surface,
+                      color: isDark
+                          ? const Color(0xFF27272A)
+                          : const Color(0xFFF4F4F5),
                       borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Theme.of(context).dividerColor),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.05),
-                          blurRadius: 4,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
+                      border: Border.all(
+                        color: isDark
+                            ? const Color(0xFF3F3F46)
+                            : const Color(0xFFE4E4E7),
+                        width: 1,
+                      ),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         if (itemTitle.isNotEmpty)
-                          Text(
-                            itemTitle,
-                            style: Theme.of(context).textTheme.titleSmall
-                                ?.copyWith(fontWeight: FontWeight.bold),
+                          Row(
+                            children: [
+                              Icon(
+                                LucideIcons.chevronRightSquare,
+                                color: Theme.of(context).primaryColor,
+                                size: 18,
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  itemTitle,
+                                  style: Theme.of(context).textTheme.titleSmall
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: isDark
+                                            ? const Color(0xFFF4F4F5)
+                                            : const Color(0xFF18181B),
+                                      ),
+                                ),
+                              ),
+                            ],
                           ),
                         if (itemTitle.isNotEmpty && itemDesc.isNotEmpty)
-                          const SizedBox(height: 8),
+                          const SizedBox(height: 12),
                         if (itemDesc.isNotEmpty) MarkdownWidget(data: itemDesc),
                       ],
                     ),

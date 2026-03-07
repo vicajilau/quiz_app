@@ -33,26 +33,28 @@ class ProsConsComponent extends StatelessWidget {
     final cons = consList.map((e) => e.toString()).toList();
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
+      padding: const EdgeInsets.only(bottom: 24.0),
       child: LayoutBuilder(
         builder: (context, constraints) {
           // If narrow, stack them vertically. If wide enough, side-by-side.
-          if (constraints.maxWidth < 400) {
+          if (constraints.maxWidth < 600) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                _buildList(context, 'Pros', pros, true),
+                _buildList(context, 'Advantages', pros, true),
                 const SizedBox(height: 16),
-                _buildList(context, 'Cons', cons, false),
+                _buildList(context, 'Limitations', cons, false),
               ],
             );
           } else {
             return Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(child: _buildList(context, 'Pros', pros, true)),
+                Expanded(child: _buildList(context, 'Advantages', pros, true)),
                 const SizedBox(width: 16),
-                Expanded(child: _buildList(context, 'Cons', cons, false)),
+                Expanded(
+                  child: _buildList(context, 'Limitations', cons, false),
+                ),
               ],
             );
           }
@@ -69,16 +71,20 @@ class ProsConsComponent extends StatelessWidget {
   ) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    final color = isPros ? Colors.green : Colors.red;
     final backgroundColor = isDark
-        ? color[900]?.withValues(alpha: 0.1)
-        : color[50];
-    final borderColor = isDark ? color[800]! : color[200]!;
-    final iconColor = isDark ? color[400] : color[600];
+        ? (isPros ? const Color(0xFF064E3B) : const Color(0xFF7F1D1D))
+              .withValues(alpha: 0.3)
+        : (isPros ? const Color(0xFFECFDF5) : const Color(0xFFFEF2F2));
+    final borderColor = isDark
+        ? (isPros ? const Color(0xFF065F46) : const Color(0xFF991B1B))
+        : (isPros ? const Color(0xFFA7F3D0) : const Color(0xFFFECACA));
+    final iconColor = isDark
+        ? (isPros ? const Color(0xFF34D399) : const Color(0xFFF87171))
+        : (isPros ? const Color(0xFF059669) : const Color(0xFFDC2626));
     final icon = isPros ? LucideIcons.checkCircle2 : LucideIcons.xCircle;
 
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(12),
@@ -100,18 +106,20 @@ class ProsConsComponent extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 16),
           if (items.isEmpty)
             Text(
               'No items',
               style: TextStyle(
-                color: isDark ? Colors.grey[500] : Colors.grey[400],
+                color: isDark
+                    ? const Color(0xFFA1A1AA)
+                    : const Color(0xFF71717A),
               ),
             )
           else
             ...items.map(
               (item) => Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
+                padding: const EdgeInsets.only(bottom: 12.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

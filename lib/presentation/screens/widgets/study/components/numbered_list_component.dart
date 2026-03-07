@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
 
@@ -26,6 +27,7 @@ class NumberedListComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     final title = element.props['title']?.toString();
     final itemsList = element.props['items'] as List<dynamic>? ?? [];
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     // Parse items into a structured format
     final items = itemsList.map((item) {
@@ -38,19 +40,47 @@ class NumberedListComponent extends StatelessWidget {
       return {'title': item.toString(), 'description': ''};
     }).toList();
 
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 24.0),
+      padding: const EdgeInsets.all(20.0),
+      decoration: BoxDecoration(
+        color: isDark ? const Color(0xFF27272A) : const Color(0xFFF4F4F5),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: isDark ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
+          width: 1,
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (title != null && title.isNotEmpty) ...[
-            Text(
-              title,
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            Row(
+              children: [
+                Icon(
+                  LucideIcons.listOrdered,
+                  color: Theme.of(context).primaryColor,
+                  size: 20,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: isDark
+                          ? const Color(0xFFF4F4F5)
+                          : const Color(0xFF18181B),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 16),
+            Divider(
+              color: isDark ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
+            ),
+            const SizedBox(height: 16),
           ],
           ...items.asMap().entries.map((entry) {
             final index = entry.key + 1;
@@ -59,7 +89,7 @@ class NumberedListComponent extends StatelessWidget {
             final itemDesc = item['description'] as String;
 
             return Padding(
-              padding: const EdgeInsets.only(bottom: 12.0),
+              padding: const EdgeInsets.only(bottom: 16.0),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -68,16 +98,15 @@ class NumberedListComponent extends StatelessWidget {
                     height: 28,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: Theme.of(
-                        context,
-                      ).primaryColor.withValues(alpha: 0.1),
+                      color: Theme.of(context).primaryColor,
                       shape: BoxShape.circle,
                     ),
                     child: Text(
                       '$index',
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
+                      style: const TextStyle(
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
+                        fontSize: 14,
                       ),
                     ),
                   ),
@@ -87,9 +116,17 @@ class NumberedListComponent extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         if (itemTitle.isNotEmpty)
-                          Text(
-                            itemTitle,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 4.0),
+                            child: Text(
+                              itemTitle,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: isDark
+                                    ? const Color(0xFFF4F4F5)
+                                    : const Color(0xFF18181B),
+                              ),
+                            ),
                           ),
                         if (itemDesc.isNotEmpty) ...[
                           if (itemTitle.isNotEmpty) const SizedBox(height: 4),

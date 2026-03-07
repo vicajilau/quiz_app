@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/ui_element.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
 
@@ -29,6 +30,7 @@ class ComparisonTableComponent extends StatelessWidget {
     final rowsList = element.props['rows'] as List<dynamic>? ?? [];
 
     final columns = columnsList.map((e) => e.toString()).toList();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     // Parse rows correctly
     final rows = rowsList.map((row) {
@@ -42,24 +44,56 @@ class ComparisonTableComponent extends StatelessWidget {
       return {'label': '', 'values': <String>[]};
     }).toList();
 
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 24.0),
+      padding: const EdgeInsets.all(20.0),
+      decoration: BoxDecoration(
+        color: isDark ? const Color(0xFF27272A) : const Color(0xFFF4F4F5),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: isDark ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
+          width: 1,
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (title != null && title.isNotEmpty) ...[
-            Text(
-              title,
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            Row(
+              children: [
+                Icon(
+                  LucideIcons.gitCompare,
+                  color: Theme.of(context).primaryColor,
+                  size: 20,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: isDark
+                          ? const Color(0xFFF4F4F5)
+                          : const Color(0xFF18181B),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 16),
+            Divider(
+              color: isDark ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7),
+            ),
+            const SizedBox(height: 16),
           ],
           if (columns.isNotEmpty && rows.isNotEmpty)
             Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Theme.of(context).dividerColor),
+                border: Border.all(
+                  color: isDark
+                      ? const Color(0xFF3F3F46)
+                      : const Color(0xFFE4E4E7),
+                ),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: ClipRRect(
@@ -68,9 +102,14 @@ class ComparisonTableComponent extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   child: DataTable(
                     headingRowColor: WidgetStateProperty.resolveWith(
-                      (states) =>
-                          Theme.of(context).colorScheme.surfaceContainerHighest,
+                      (states) => isDark
+                          ? const Color(0xFF18181B)
+                          : const Color(0xFFFFFFFF),
                     ),
+                    dataRowColor: WidgetStateProperty.resolveWith((states) {
+                      return Colors.transparent;
+                    }),
+                    dividerThickness: 1,
                     columns: [
                       const DataColumn(label: Text('')), // Empty corner
                       ...columns.map(
@@ -78,8 +117,9 @@ class ComparisonTableComponent extends StatelessWidget {
                           label: Expanded(
                             child: Text(
                               col,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.bold,
+                                color: Theme.of(context).primaryColor,
                               ),
                             ),
                           ),
@@ -94,8 +134,11 @@ class ComparisonTableComponent extends StatelessWidget {
                           DataCell(
                             Text(
                               label,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.bold,
+                                color: isDark
+                                    ? const Color(0xFFF4F4F5)
+                                    : const Color(0xFF18181B),
                               ),
                             ),
                           ),
