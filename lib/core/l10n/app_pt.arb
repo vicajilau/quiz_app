@@ -1382,6 +1382,10 @@
     "description": "Error message when file picker fails"
   },
   "studyModeLabel": "Modo estudo",
+  "practiceModeLabel": "Modo Prática",
+  "@practiceModeLabel": {
+    "description": "Label for practice mode option in start quiz"
+  },
   "@studyModeLabel": {
     "description": "Label for study mode option"
   },

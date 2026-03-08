@@ -1230,6 +1230,9 @@ class AppLocalizationsGl extends AppLocalizations {
   String get studyModeLabel => 'Modo estudo';
 
   @override
+  String get practiceModeLabel => 'Modo práctica';
+
+  @override
   String get studyModeDescription =>
       'Asistencia de IA dispoñible. Feedback instantáneo tras cada resposta, sen límites de tiempo nin penalizacións.';
 

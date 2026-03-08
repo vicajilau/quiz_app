@@ -1233,6 +1233,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get studyModeLabel => 'Λειτουργία Μελέτης';
 
   @override
+  String get practiceModeLabel => 'Λειτουργία Πρακτικής';
+
+  @override
   String get studyModeDescription =>
       'Διαθέσιμη βοήθεια AI. Άμεση ανατροφοδότηση μετά από κάθε απάντηση, χωρίς χρονικά όρια ή ποινές.';
 

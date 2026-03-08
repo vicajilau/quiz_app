@@ -1,8 +1,17 @@
 {
   "@@locale": "ar",
   "abortQuizTitle": "إلغاء Quiz؟",
+  "@abortQuizTitle": {
+    "description": "Title for the abort quiz confirmation dialog"
+  },
   "abortQuizMessage": "سيؤدي فتح ملف جديد إلى إيقاف الاختبار الحالي.",
+  "@abortQuizMessage": {
+    "description": "Message for the abort quiz confirmation dialog"
+  },
   "stopAndOpenButton": "إيقاف وفتح",
+  "@stopAndOpenButton": {
+    "description": "Label for the button that stops current quiz and opens a new file"
+  },
   "titleAppBar": "اختبار - محاكي الامتحان",
   "@titleAppBar": {
     "description": "Title of the application displayed in the AppBar."
@@ -86,6 +95,15 @@
     }
   },
   "aiTextModeCount": "وضع النص ({count} كلمات)",
+  "@aiTextModeCount": {
+    "description": "Text mode with word count",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "150"
+      }
+    }
+  },
   "aiGenerationCategoryLabel": "وضع المحتوى",
   "@aiGenerationCategoryLabel": {
     "description": "Label for AI generation category selector"
@@ -101,15 +119,6 @@
   "aiGenerationCategoryBoth": "مختلط",
   "@aiGenerationCategoryBoth": {
     "description": "Label for mixed category"
-  },
-  "@aiTextModeCount": {
-    "description": "Text mode with word count",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "150"
-      }
-    }
   },
   "aiContextMode": "وضع السياق",
   "@aiContextMode": {
@@ -140,7 +149,7 @@
     }
   },
   "dropFileHere": "انقر فوق الشعار أو اسحب ملف .quiz إلى الشاشة",
-  "errorOpeningFile": "خطأ في فتح الملف",
+    "errorOpeningFile": "خطأ في فتح الملف",
   "@errorOpeningFile": {
     "description": "Generic error message when opening a file fails."
   },
@@ -1480,34 +1489,116 @@
     "description": "Error message when file picker fails"
   },
   "studyModeLabel": "وضع الدراسة",
+  "@studyModeLabel": {
+    "description": "Label for study mode option in start quiz"
+  },
+  "practiceModeLabel": "وضع التدريب",
+  "@practiceModeLabel": {
+    "description": "Label for practice mode option in start quiz"
+  },
   "studyModeDescription": "مساعدة الذكاء الاصطناعي متاحة. تعليقات فورية بعد كل إجابة بدون حدود زمنية أو عقوبات.",
+  "@studyModeDescription": {
+    "description": "Description for the study mode"
+  },
   "examModeLabel": "وضع الاختبار",
+  "@examModeLabel": {
+    "description": "Label for the exam mode option"
+  },
   "examModeDescription": "بدون مساعدة الذكاء الاصطناعي. قد يتم تطبيق حدود زمنية وعقوبات على الإجابات غير الصحيحة.",
+  "@examModeDescription": {
+    "description": "Description for the exam mode"
+  },
   "checkAnswer": "تحقق",
+  "@checkAnswer": {
+    "description": "Label for the check answer button in study mode"
+  },
   "quizModeTitle": "وضع الاختبار",
+  "@quizModeTitle": {
+    "description": "Title for the quiz mode selection screen"
+  },
   "askAiAssistant": "اسأل مساعد الذكاء الاصطناعي",
+  "@askAiAssistant": {
+    "description": "Label for the button to ask AI about a question"
+  },
   "askAiAboutQuestion": "اسأل الذكاء الاصطناعي عن هذا السؤال",
+  "@askAiAboutQuestion": {
+    "description": "Title for the AI chat dialog"
+  },
   "aiHelpWithQuestion": "ساعدني في فهم هذا السؤال",
+  "@aiHelpWithQuestion": {
+    "description": "Suggestion chip for AI chat"
+  },
   "evaluateWithAI": "تقييم بالذكاء الاصطناعي",
+  "@evaluateWithAI": {
+    "description": "Label for the button to evaluate an essay with AI"
+  },
   "aiEvaluation": "تقييم الذكاء الاصطناعي",
+  "@aiEvaluation": {
+    "description": "Label for the AI evaluation section in results"
+  },
   "edit": "تعديل",
+  "@edit": {
+    "description": "Generic edit button text"
+  },
   "enable": "تفعيل",
+  "@enable": {
+    "description": "Generic enable button text"
+  },
   "disable": "تعطيل",
+  "@disable": {
+    "description": "Generic disable button text"
+  },
   "reorderQuestionsTooltip": "إعادة ترتيب الأسئلة",
   "@reorderQuestionsTooltip": {
     "description": "Tooltip for the reorder questions button"
   },
   "quizPreviewTitle": "معاينة الاختبار",
+  "@quizPreviewTitle": {
+    "description": "Title for the quiz preview screen"
+  },
   "select": "تحديد",
+  "@select": {
+    "description": "Generic select button text"
+  },
   "done": "تم",
+  "@done": {
+    "description": "Generic done button text"
+  },
   "importButton": "استيراد",
+  "@importButton": {
+    "description": "Generic import button text"
+  },
   "reorderButton": "إعادة ترتيب",
+  "@reorderButton": {
+    "description": "Generic reorder button text"
+  },
   "startQuizButton": "بدء الاختبار",
+  "@startQuizButton": {
+    "description": "Label for the button that starts the quiz"
+  },
   "deleteConfirmation": "هل أنت متأكد أنك تريد حذف هذا الاختبار؟",
+  "@deleteConfirmation": {
+    "description": "Message for the quiz deletion confirmation dialog"
+  },
   "saveSuccess": "تم حفظ الملف بنجاح",
+  "@saveSuccess": {
+    "description": "Success message when a file is saved"
+  },
   "errorSavingFile": "خطأ في حفظ الملف",
+  "@errorSavingFile": {
+    "description": "Error message when a file cannot be saved"
+  },
   "deleteSingleQuestionConfirmation": "هل أنت متأكد أنك تريد حذف هذا السؤال؟",
+  "@deleteSingleQuestionConfirmation": {
+    "description": "Message for single question deletion confirmation"
+  },
   "deleteMultipleQuestionsConfirmation": "هل أنت متأكد أنك تريد حذف {count} أسئلة؟",
+  "@deleteMultipleQuestionsConfirmation": {
+    "description": "Message for multiple questions deletion confirmation",
+    "placeholders": {
+      "count": { "type": "int", "example": "3" }
+    }
+  },
   "missingExplanation": "شرح مفقود",
   "@missingExplanation": {
     "description": "Label indicating that a question is missing an explanation"
@@ -1527,10 +1618,25 @@
     }
   },
   "settingsTitle": "الإعدادات",
+  "@settingsTitle": {
+    "description": "Title for the settings screen"
+  },
   "keepPracticing": "استمر في التدريب للتحسن!",
+  "@keepPracticing": {
+    "description": "Encouragement message in the results screen"
+  },
   "tryAgain": "إعادة المحاولة",
+  "@tryAgain": {
+    "description": "Generic try again button text"
+  },
   "review": "مراجعة",
+  "@review": {
+    "description": "Label for the review answers button"
+  },
   "home": "الرئيسية",
+  "@home": {
+    "description": "Label for the home/dashboard navigation item"
+  },
   "allLabel": "الكل",
   "@allLabel": {
     "description": "تسمية لخيار اختيار جميع الأسئلة"
@@ -1547,6 +1653,9 @@
   },
   "subtractPointsLabel": "خصم نقاط للإجابة الخاطئة",
   "subtractPointsDescription": "خصم نقاط عن كل إجابة خاطئة.",
+  "@subtractPointsDescription": {
+    "description": "Description for the subtract points for incorrect answers setting"
+  },
   "@subtractPointsLabel": {
     "description": "Label for the checkbox to subtract points for incorrect answers"
   },
@@ -1562,20 +1671,44 @@
   "@penaltyPointsLabel": {
     "description": "Label showing the points deducted per mistake",
     "placeholders": {
-      "amount": {
-        "type": "String",
-        "example": "0.50"
-      }
+      "amount": { "type": "String", "example": "0.50" }
     }
   },
   "allQuestionsLabel": "جميع الأسئلة",
+  "@allQuestionsLabel": {
+    "description": "Label for the option to select all questions"
+  },
   "startWithSelectedQuestions": "ابدأ بـ {count} محددة",
+  "@startWithSelectedQuestions": {
+    "description": "Label for the button that starts the quiz with only selected questions",
+    "placeholders": {
+      "count": { "type": "int", "example": "5" }
+    }
+  },
   "advancedSettingsTitle": "إعدادات متقدمة (تصحيح الأخطاء)",
+  "@advancedSettingsTitle": {
+    "description": "Title for the advanced settings section"
+  },
   "appLanguageLabel": "لغة التطبيق",
+  "@appLanguageLabel": {
+    "description": "Label for the app language selection"
+  },
   "appLanguageDescription": "تجاوز لغة التطبيق للاختبار",
+  "@appLanguageDescription": {
+    "description": "Description for the app language override setting"
+  },
   "pasteFromClipboard": "لصق من الحافظة",
+  "@pasteFromClipboard": {
+    "description": "Generic paste from clipboard button text"
+  },
   "pasteImage": "لصق",
+  "@pasteImage": {
+    "description": "Label for the button to paste an image"
+  },
   "clipboardNoImage": "لم يتم العثور على صورة في الحافظة",
+  "@clipboardNoImage": {
+    "description": "Error message when trying to paste an image but the clipboard is empty or has non-image content"
+  },
   "maxIncorrectAnswersLabel": "تقييد الإجابات الخاطئة",
   "@maxIncorrectAnswersLabel": {
     "description": "Label for the toggle to limit incorrect answers"
@@ -1593,7 +1726,13 @@
     "description": "Label for the input field of maximum incorrect answers"
   },
   "examFailedStatus": "اختبار لم يجتز",
+  "@examFailedStatus": {
+    "description": "Status label for an exam that was not passed based on incorrect answers limit"
+  },
   "examPassedStatus": "اختبار اجتيز",
+  "@examPassedStatus": {
+    "description": "Status label for an exam that was passed based on incorrect answers limit"
+  },
   "quizFailedLimitReached": "انتهى الاختبار: تم تجاوز الحد الأقصى للأخطاء المسموح بها",
   "@quizFailedLimitReached": {
     "description": "Title for the results screen when the error limit is reached"
@@ -1623,11 +1762,42 @@
     "description": "Title for the generation configuration section in AI dialog"
   },
   "validationMin1Error": "دقيقة واحدة كحد أدنى",
+  "@validationMin1Error": {
+    "description": "Error message for invalid duration (less than 1 minute)"
+  },
   "remainingTimeWithDays": "{days}ي {hours}:{minutes}:{seconds}",
+  "@remainingTimeWithDays": {
+    "description": "Format for remaining time display when it exceeds 24 hours",
+    "placeholders": {
+      "days": { "type": "String", "example": "2" },
+      "hours": { "type": "String", "example": "03" },
+      "minutes": { "type": "String", "example": "45" },
+      "seconds": { "type": "String", "example": "30" }
+    }
+  },
   "remainingTimeWithWeeks": "{weeks}أ {days}ي {hours}:{minutes}:{seconds}",
+  "@remainingTimeWithWeeks": {
+    "description": "Format for remaining time display when it exceeds 7 days",
+    "placeholders": {
+      "weeks": { "type": "String", "example": "1" },
+      "days": { "type": "String", "example": "2" },
+      "hours": { "type": "String", "example": "03" },
+      "minutes": { "type": "String", "example": "45" },
+      "seconds": { "type": "String", "example": "30" }
+    }
+  },
   "validationMax30DaysError": "كحد أقصى 30 يومًا",
+  "@validationMax30DaysError": {
+    "description": "Error message for invalid duration (more than 30 days)"
+  },
   "validationMin0GenericError": "بحد أدنى 0",
+  "@validationMin0GenericError": {
+    "description": "Error message for fields that must be at least 0"
+  },
   "errorStatus": "خطأ",
+  "@errorStatus": {
+    "description": "Status label for generic errors or failed processes"
+  },
   "evaluatingResponses": "جاري تقييم الردود...",
   "@evaluatingResponses": {
     "description": "النص المعروض في شاشة النتائج عندما تكون تقييمات الذكاء الاصطناعي قيد الانتظار"
@@ -1799,8 +1969,17 @@
     "description": "Error message when AI document processing fails due to document length"
   },
   "studyScreenNoSlidesAvailable": "لا توجد أقسام دراسية متاحة.",
+  "@studyScreenNoSlidesAvailable": {
+    "description": "Message shown when no study slides are available"
+  },
   "studyScreenGenerating": "جاري إنشاء مواد دراسية...",
+  "@studyScreenGenerating": {
+    "description": "Loading message while AI generates study material"
+  },
   "studyScreenError": "حدث خطأ أثناء إنشاء مواد دراسية.",
+  "@studyScreenError": {
+    "description": "Error message when study material generation fails"
+  },
   "studyScreenRetry": "إعادة المحاولة",
   "@studyScreenRetry": {
     "description": "نص إعادة المحاولة في حالة وجود خطأ في القسم."
@@ -1810,21 +1989,33 @@
     "description": "نص زر التجاوز"
   },
   "studyScreenNoSlidesGenerated": "لم يتم إنشاء شرائح.",
+  "@studyScreenNoSlidesGenerated": {
+    "description": "Message shown when the AI fails to generate any slides"
+  },
   "studyScreenPreviousSection": "الصفحة السابقة",
+  "@studyScreenPreviousSection": {
+    "description": "Label for the previous section button in study screen"
+  },
   "studyScreenNextSection": "الصفحة التالية",
+  "@studyScreenNextSection": {
+    "description": "Label for the next section button in study screen"
+  },
   "studyScreenSectionIndicator": "صفحة {current} من {total}",
   "@studyScreenSectionIndicator": {
+    "description": "Indicator of current page vs total pages in study material",
     "placeholders": {
-      "current": {
-        "type": "int"
-      },
-      "total": {
-        "type": "int"
-      }
+      "current": { "type": "int", "example": "1" },
+      "total": { "type": "int", "example": "10" }
     }
   },
   "studyScreenAiSummaryTitle": "ملخص الذكاء الاصطناعي",
+  "@studyScreenAiSummaryTitle": {
+    "description": "Title for the AI-generated summary section"
+  },
   "studyScreenNoSummary": "لا يوجد ملخص متاح.",
+  "@studyScreenNoSummary": {
+    "description": "Message shown when no AI summary is available"
+  },
   "studyScreenCoverage": "المحتوى المُنشأ",
   "@studyScreenCoverage": {
     "description": "Label for the study coverage percentage"
@@ -1834,48 +2025,158 @@
     "description": "Label for the language selector in study generation"
   },
   "studyScreenStudyGuide": "دليل الدراسة",
+  "@studyScreenStudyGuide": {
+    "description": "Label for the study guide/summary button in the study screen"
+  },
   "studyScreenSections": "الأقسام",
+  "@studyScreenSections": {
+    "description": "Label for the sections list in the study screen"
+  },
   "studyScreenChaptersCount": "{count} فصول",
   "@studyScreenChaptersCount": {
+    "description": "Label showing the number of chapters in the study material",
     "placeholders": {
-      "count": {
-        "type": "int"
-      }
+      "count": { "type": "int", "example": "12" }
     }
   },
   "studyScreenCompleted": "مكتمل",
+  "@studyScreenCompleted": {
+    "description": "Label for the completed sections section"
+  },
   "aiDifficultyTitle": "مستوى الصعوبة",
+  "@aiDifficultyTitle": {
+    "description": "Title for the difficulty selection section"
+  },
   "aiDifficultyAutoTurnedOn": "نفس صعوبة المستند",
+  "@aiDifficultyAutoTurnedOn": {
+    "description": "Toggle label for automatic difficulty (on)"
+  },
   "aiDifficultyAutoTurnedOff": "وضع الصعوبة اليدوي",
+  "@aiDifficultyAutoTurnedOff": {
+    "description": "Toggle label for automatic difficulty (off/manual)"
+  },
   "aiDifficultyElementary": "مدرسة ابتدائية",
+  "@aiDifficultyElementary": {
+    "description": "Difficulty level: Elementary/School"
+  },
   "aiDifficultyHighSchool": "مدرسة ثانوية",
+  "@aiDifficultyHighSchool": {
+    "description": "Difficulty level: High School"
+  },
   "aiDifficultyBachelors": "درجة البكالوريوس",
+  "@aiDifficultyBachelors": {
+    "description": "Difficulty level: Bachelor's degree (pre-university)"
+  },
   "aiDifficultyUniversity": "جامعة",
+  "@aiDifficultyUniversity": {
+    "description": "Difficulty level: University degree"
+  },
   "aiDifficultyMasters": "درجة الماجستير",
+  "@aiDifficultyMasters": {
+    "description": "Difficulty level: Master's degree"
+  },
   "aiDifficultyDoctorate": "دكتوراه",
+  "@aiDifficultyDoctorate": {
+    "description": "Difficulty level: Doctorate"
+  },
   "aiDifficultyAutoDescription": "سيتم تعديل مستوى الصعوبة تلقائيًا وفقًا للمستند الذي تم تحميله",
+  "@aiDifficultyAutoDescription": {
+    "description": "Description for automatic difficulty mode"
+  },
   "aiDifficultyManualDescription": "حدد مستوى الصعوبة يدويًا الذي يناسب المحتوى بشكل أفضل",
+  "@aiDifficultyManualDescription": {
+    "description": "Description for manual difficulty mode"
+  },
   "chooseModeDialogTitle": "اختر الوضع",
+  "@chooseModeDialogTitle": {
+    "description": "Title for the dialog that asks which mode to open when a file has both questions and study content"
+  },
   "chooseModeDialogMessage": "يحتوي هذا الملف على أسئلة اختبار ومحتوى دراسي. أي وضع ترغب في فتحه؟",
+  "@chooseModeDialogMessage": {
+    "description": "Message for the mode selection dialog"
+  },
   "studyModeSubtitle": "راجع المادة بالسرعة التي تناسبك",
+  "@studyModeSubtitle": {
+    "description": "Subtitle for the study mode option"
+  },
   "examModeSubtitle": "اختبر معلوماتك",
+  "@examModeSubtitle": {
+    "description": "Subtitle for the exam mode option"
+  },
   "dropHereToStudy": "اترك هنا لمراجعة المادة بالسرعة التي تناسبك",
+  "@dropHereToStudy": {
+    "description": "Text shown in the drop zone when dragging over the study mode option"
+  },
   "dropHereToQuiz": "اترك هنا لاختبار معلوماتك",
+  "@dropHereToQuiz": {
+    "description": "Text shown in the drop zone when dragging over the exam mode option"
+  },
   "aiStudyGenerationTitle": "توليد الدراسة بالذكاء الاصطناعي",
+  "@aiStudyGenerationTitle": {
+    "description": "Title for the study generation configuration dialog"
+  },
   "reattachFileDialogTitle": "الملف الأصلي مطلوب",
+  "@reattachFileDialogTitle": {
+    "description": "Title for the reattach file dialog"
+  },
   "reattachFileDialogMessage": "لتوليد محتوى لهذا القسم، يرجى إرفاق الملف الأصلي المستخدم لإنشاء هذه الدراسة.",
+  "@reattachFileDialogMessage": {
+    "description": "Message for the reattach file dialog"
+  },
   "fileHashMismatchError": "الملف المحدد لا يتطابق مع الملف الأصلي المستخدم لإنشاء هذه الدراسة.",
+  "@fileHashMismatchError": {
+    "description": "Error message when the reattached file is different from the original"
+  },
   "showMoreLabel": "عرض المزيد",
+  "@showMoreLabel": {
+    "description": "Label for the button to expand content"
+  },
   "showLessLabel": "عرض أقل",
+  "@showLessLabel": {
+    "description": "Label for the button to collapse content"
+  },
   "startQuizFromStudy": "اختبر معرفتك",
+  "@startQuizFromStudy": {
+    "description": "Label for the button to start a quiz based on study material"
+  },
   "studyScreenCustomChapter": "فصل مخصص",
+  "@studyScreenCustomChapter": {
+    "description": "Label for a study chapter created manually"
+  },
   "addSection": "إضافة قسم",
+  "@addSection": {
+    "description": "Generic add section button text"
+  },
   "generateSectionsWithAI": "إنشاء أقسام باستخدام الذكاء الاصطناعي",
+  "@generateSectionsWithAI": {
+    "description": "Tooltip for generating sections from scratch with AI"
+  },
   "addSectionsWithAI": "إضافة أقسام باستخدام الذكاء الاصطناعي",
+  "@addSectionsWithAI": {
+    "description": "Label for adding more sections using AI"
+  },
   "studyScreenReminder": "تذكير",
+  "@studyScreenReminder": {
+    "description": "Label for the reminder/tip component in the study screen"
+  },
   "studyScreenKeyDefinition": "تعريف رئيسي",
+  "@studyScreenKeyDefinition": {
+    "description": "Label for the key definition component in the study screen"
+  },
   "studyScreenImportant": "هام",
+  "@studyScreenImportant": {
+    "description": "Label for the warning/important component in the study screen"
+  },
   "studyComponentNoItems": "لا توجد عناصر",
+  "@studyComponentNoItems": {
+    "description": "Label shown when there are no items in a study component"
+  },
   "studyComponentAdvantages": "المزايا",
-  "studyComponentLimitations": "القيود"
+  "@studyComponentAdvantages": {
+    "description": "Header for the advantages section in a study component"
+  },
+  "studyComponentLimitations": "القيود",
+  "@studyComponentLimitations": {
+    "description": "Header for the limitations section in a study component"
+  }
 }

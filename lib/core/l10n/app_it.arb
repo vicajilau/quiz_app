@@ -1414,6 +1414,10 @@
     "description": "Error message when file picker fails"
   },
   "studyModeLabel": "Modalità studio",
+  "practiceModeLabel": "Modalità Pratica",
+  "@practiceModeLabel": {
+    "description": "Label for practice mode option in start quiz"
+  },
   "@studyModeLabel": {
     "description": "Label for study mode option"
   },
@@ -1682,7 +1686,7 @@
     "description": "Sottotitolo per la prima pagina del benvenuto nel layout desktop"
   },
   "onboardingStartQuizTitle": "Inizia un Quiz",
-  "@onboardingStart QuizTitle": {
+  "@onboardingStartQuizTitle": {
     "description": "Titolo per la seconda pagina del benvenuto"
   },
   "onboardingStartQuizDescription": "Carica un file .quiz esistente o creane uno nuovo da zero. Trascina e rilascia i file direttamente o usa il selettore di file.",

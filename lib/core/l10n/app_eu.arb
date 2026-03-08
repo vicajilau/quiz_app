@@ -1398,6 +1398,10 @@
     "description": "Error message when file picker fails"
   },
   "studyModeLabel": "Ikasteko Modua",
+  "practiceModeLabel": "Praktika Modua",
+  "@practiceModeLabel": {
+    "description": "Label for practice mode option in start quiz"
+  },
   "studyModeDescription": "AI laguntza eskuragarri. Erantzun bakoitzaren ondoren feedbacka berehala, denbora-mugarik eta zigorrrik gabe.",
   "examModeLabel": "Azterketa Modua",
   "examModeDescription": "AI laguntzarik gabe. Denbora-mugak eta erantzun okerrengatiko zigorrak aplika daitezke.",

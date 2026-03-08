@@ -1,8 +1,17 @@
 {
   "@@locale": "es",
   "abortQuizTitle": "¿Abortar Quiz?",
+  "@abortQuizTitle": {
+    "description": "Title for the abort quiz confirmation dialog"
+  },
   "abortQuizMessage": "Abrir un nuevo archivo detendrá el cuestionario actual.",
+  "@abortQuizMessage": {
+    "description": "Message for the abort quiz confirmation dialog"
+  },
   "stopAndOpenButton": "Detener y Abrir",
+  "@stopAndOpenButton": {
+    "description": "Label for the button that stops current quiz and opens a new file"
+  },
   "titleAppBar": "Quiz - Simulador de exámenes",
   "@titleAppBar": {
     "description": "Título de la aplicación mostrado en la AppBar."
@@ -364,8 +373,23 @@
     }
   },
   "selectQuestionCountTitle": "Seleccionar número de preguntas",
+  "@selectQuestionCountTitle": {
+    "description": "Title for the dialog to select number of questions for the quiz"
+  },
   "selectQuestionCountMessage": "¿Cuántas preguntas te gustaría responder en este quiz?",
+  "@selectQuestionCountMessage": {
+    "description": "Message explaining the question count selection"
+  },
   "allQuestions": "Todas las preguntas ({count})",
+  "@allQuestions": {
+    "description": "Option to select all available questions",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
   "startQuiz": "Iniciar Quiz",
   "@startQuiz": {
     "description": "Texto del botón para iniciar el quiz"
@@ -407,9 +431,21 @@
     "description": "Título para la pantalla de resultados cuando se alcanza el límite de errores"
   },
   "errorInvalidNumber": "Por favor ingresa un número válido",
+  "@errorInvalidNumber": {
+    "description": "Error message for invalid number input"
+  },
   "errorNumberMustBePositive": "El número debe ser mayor que 0",
+  "@errorNumberMustBePositive": {
+    "description": "Error message when number is zero or negative"
+  },
   "customNumberLabel": "O introduce un número personalizado:",
+  "@customNumberLabel": {
+    "description": "Label for custom number input field"
+  },
   "numberInputLabel": "Número de preguntas",
+  "@numberInputLabel": {
+    "description": "Label for the number input field"
+  },
   "questionOrderConfigTitle": "Configuración del Orden de Preguntas",
   "@questionOrderConfigTitle": {
     "description": "Título para el diálogo de configuración del orden de preguntas"
@@ -1618,6 +1654,10 @@
   "@studyModeLabel": {
     "description": "Label for study mode option"
   },
+  "practiceModeLabel": "Modo Práctica",
+  "@practiceModeLabel": {
+    "description": "Label for practice mode option in start quiz"
+  },
   "studyModeDescription": "Asistencia de IA disponible. Feedback instantáneo tras cada respuesta, sin límites de tiempo ni penalizaciones.",
   "@studyModeDescription": {
     "description": "Description for study mode"
@@ -1643,7 +1683,13 @@
     "description": "Button label to open AI assistant for current question"
   },
   "askAiAboutQuestion": "Preguntar a la IA sobre esta pregunta",
+  "@askAiAboutQuestion": {
+    "description": "Button label in quiz to open AI chat sidebar for the current question"
+  },
   "aiHelpWithQuestion": "Ayúdame a entender esta pregunta",
+  "@aiHelpWithQuestion": {
+    "description": "Auto-filled text in AI chat when user clicks ask AI about question button"
+  },
   "edit": "Editar",
   "@edit": {
     "description": "Button label to edit a question"
@@ -1661,15 +1707,45 @@
     "description": "Tooltip for the reorder questions button"
   },
   "quizPreviewTitle": "Vista Previa del Quiz",
+  "@quizPreviewTitle": {
+    "description": "Title for the Quiz Preview screen"
+  },
   "select": "Seleccionar",
+  "@select": {
+    "description": "Label for select button"
+  },
   "done": "Listo",
+  "@done": {
+    "description": "Label for done button"
+  },
   "importButton": "Importar",
+  "@importButton": {
+    "description": "Label for import button"
+  },
   "reorderButton": "Reordenar",
+  "@reorderButton": {
+    "description": "Label for reorder button"
+  },
   "startQuizButton": "Comenzar Quiz",
+  "@startQuizButton": {
+    "description": "Label for start quiz button"
+  },
   "deleteConfirmation": "¿Seguro que quieres eliminar este quiz?",
+  "@deleteConfirmation": {
+    "description": "Confirmation message for deleting a quiz"
+  },
   "saveSuccess": "Archivo guardado exitosamente",
+  "@saveSuccess": {
+    "description": "Message displayed when file is saved successfully"
+  },
   "errorSavingFile": "Error al guardar el archivo",
+  "@errorSavingFile": {
+    "description": "Message displayed when saving file fails"
+  },
   "deleteSingleQuestionConfirmation": "¿Estás seguro de que quieres eliminar esta pregunta?",
+  "@deleteSingleQuestionConfirmation": {
+    "description": "Confirmation message for deleting a single question"
+  },
   "deleteMultipleQuestionsConfirmation": "¿Estás seguro de que quieres eliminar {count} preguntas?",
   "settingsTitle": "Ajustes",
   "keepPracticing": "¡Sigue practicando para mejorar!",
@@ -1677,14 +1753,26 @@
     "description": "Mensaje de aliento para puntuaciones bajas en el quiz"
   },
   "tryAgain": "Intentar de nuevo",
+  "@tryAgain": {
+    "description": "Label for try again button in results screen"
+  },
   "review": "Repasar",
+  "@review": {
+    "description": "Label for review button"
+  },
   "home": "Inicio",
+  "@home": {
+    "description": "Label for home button"
+  },
   "allLabel": "Todas",
   "@allLabel": {
     "description": "Etiqueta para la opción de seleccionar todas las preguntas"
   },
   "subtractPointsLabel": "Restar puntos por respuesta incorrecta",
   "subtractPointsDescription": "Resta puntos por cada respuesta incorrecta.",
+  "@subtractPointsDescription": {
+    "description": "Description for the subtract points for incorrect answers setting when enabled"
+  },
   "@subtractPointsLabel": {
     "description": "Label for the checkbox to subtract points for incorrect answers"
   },
@@ -1707,6 +1795,9 @@
     }
   },
   "allQuestionsLabel": "Todas las preguntas",
+  "@allQuestionsLabel": {
+    "description": "Label for the toggle to select all questions"
+  },
   "startWithSelectedQuestions": "Iniciar con {count} seleccionadas",
   "@startWithSelectedQuestions": {
     "description": "Button text to start the quiz with only the selected questions",
@@ -1718,11 +1809,29 @@
     }
   },
   "advancedSettingsTitle": "Ajustes Avanzados (Debug)",
+  "@advancedSettingsTitle": {
+    "description": "Title for the advanced settings section shown in debug mode"
+  },
   "appLanguageLabel": "Idioma de la aplicación",
+  "@appLanguageLabel": {
+    "description": "Label for the application language override setting"
+  },
   "appLanguageDescription": "Sobrescribir el idioma de la aplicación para pruebas",
+  "@appLanguageDescription": {
+    "description": "Description for the application language override setting"
+  },
   "pasteFromClipboard": "Pegar desde portapapeles",
+  "@pasteFromClipboard": {
+    "description": "Label for the paste from clipboard button"
+  },
   "pasteImage": "Pegar",
+  "@pasteImage": {
+    "description": "Short label for paste button when image is already present"
+  },
   "clipboardNoImage": "No se encontró imagen en el portapapeles",
+  "@clipboardNoImage": {
+    "description": "Error message when no image is found in the clipboard"
+  },
   "close": "Cerrar",
   "@close": {
     "description": "Close button text"
@@ -1744,11 +1853,42 @@
     "description": "Título para la sección de configuración de generación en el diálogo de IA"
   },
   "validationMin1Error": "Mínimo 1 minuto",
+  "@validationMin1Error": {
+    "description": "Validation error when time limit is less than 1 minute"
+  },
   "remainingTimeWithDays": "{days}d {hours}:{minutes}:{seconds}",
+  "@remainingTimeWithDays": {
+    "description": "Format for showing remaining time including days",
+    "placeholders": {
+      "days": { "type": "String" },
+      "hours": { "type": "String" },
+      "minutes": { "type": "String" },
+      "seconds": { "type": "String" }
+    }
+  },
   "remainingTimeWithWeeks": "{weeks}s {days}d {hours}:{minutes}:{seconds}",
+  "@remainingTimeWithWeeks": {
+    "description": "Format for showing remaining time including weeks",
+    "placeholders": {
+      "weeks": { "type": "String" },
+      "days": { "type": "String" },
+      "hours": { "type": "String" },
+      "minutes": { "type": "String" },
+      "seconds": { "type": "String" }
+    }
+  },
   "validationMax30DaysError": "Máximo 30 días",
+  "@validationMax30DaysError": {
+    "description": "Validation error when time limit exceeds 30 days"
+  },
   "validationMin0GenericError": "Mínimo 0",
+  "@validationMin0GenericError": {
+    "description": "Generic validation error for minimum value of 0"
+  },
   "errorStatus": "Error",
+  "@errorStatus": {
+    "description": "Generic error status label"
+  },
   "featureComingSoon": "¡Próximamente disponible! Mantente al tanto de las novedades.",
   "@featureComingSoon": {
     "description": "Mensaje para funcionalidades que aún no están disponibles"
@@ -1894,41 +2034,146 @@
     "description": "Error message when AI document processing fails due to document length"
   },
   "studyScreenCoverage": "Contenido Generado",
+  "@studyScreenCoverage": {
+    "description": "Label for the content coverage indicator in the study screen"
+  },
   "aiStudyLanguageLabel": "Idioma del estudio",
   "@aiStudyLanguageLabel": {
     "description": "Label for the language selector in study generation"
   },
   "studyScreenStudyGuide": "Guía de estudio",
+  "@studyScreenStudyGuide": {
+    "description": "Label for the study guide/summary button in the study screen"
+  },
   "studyScreenSections": "Secciones",
+  "@studyScreenSections": {
+    "description": "Label for the sections list in the study screen"
+  },
   "studyScreenChaptersCount": "{count} capítulos",
+  "@studyScreenChaptersCount": {
+    "description": "Label showing the number of chapters in the study material",
+    "placeholders": {
+      "count": { "type": "int", "example": "12" }
+    }
+  },
   "studyScreenCompleted": "Completados",
+  "@studyScreenCompleted": {
+    "description": "Label for the completed sections section"
+  },
   "aiDifficultyTitle": "Grado de dificultad",
+  "@aiDifficultyTitle": {
+    "description": "Title for the difficulty selection section"
+  },
   "aiDifficultyAutoTurnedOn": "Misma dificultad que el documento",
+  "@aiDifficultyAutoTurnedOn": {
+    "description": "Toggle label for automatic difficulty (on)"
+  },
   "aiDifficultyAutoTurnedOff": "Modo de dificultad manual",
+  "@aiDifficultyAutoTurnedOff": {
+    "description": "Toggle label for automatic difficulty (off/manual)"
+  },
   "aiDifficultyElementary": "Primaria / Escuela",
+  "@aiDifficultyElementary": {
+    "description": "Difficulty level: Elementary/School"
+  },
   "aiDifficultyHighSchool": "Secundaria / Instituto",
+  "@aiDifficultyHighSchool": {
+    "description": "Difficulty level: High School"
+  },
   "aiDifficultyBachelors": "Bachillerato",
+  "@aiDifficultyBachelors": {
+    "description": "Difficulty level: Bachelor's degree (pre-university)"
+  },
   "aiDifficultyUniversity": "Universidad (Grado)",
+  "@aiDifficultyUniversity": {
+    "description": "Difficulty level: University degree"
+  },
   "aiDifficultyMasters": "Máster",
+  "@aiDifficultyMasters": {
+    "description": "Difficulty level: Master's degree"
+  },
   "aiDifficultyDoctorate": "Doctorado",
+  "@aiDifficultyDoctorate": {
+    "description": "Difficulty level: Doctorate"
+  },
   "aiDifficultyAutoDescription": "El nivel de dificultad se ajustará automáticamente según el documento subido",
+  "@aiDifficultyAutoDescription": {
+    "description": "Description for automatic difficulty mode"
+  },
   "aiDifficultyManualDescription": "Selecciona manualmente el nivel de dificultad que mejor se adapte al contenido",
+  "@aiDifficultyManualDescription": {
+    "description": "Description for manual difficulty mode"
+  },
   "chooseModeDialogTitle": "Elegir modo",
+  "@chooseModeDialogTitle": {
+    "description": "Title for the dialog that asks which mode to open when a file has both questions and study content"
+  },
   "chooseModeDialogMessage": "Este archivo contiene tanto preguntas como contenido de estudio. ¿Qué modo deseas abrir?",
+  "@chooseModeDialogMessage": {
+    "description": "Message for the mode selection dialog"
+  },
   "studyModeSubtitle": "Repasa el temario a tu ritmo",
+  "@studyModeSubtitle": {
+    "description": "Subtitle for the study mode option"
+  },
   "examModeSubtitle": "Pon a prueba tus conocimientos",
+  "@examModeSubtitle": {
+    "description": "Subtitle for the exam mode option"
+  },
   "dropHereToStudy": "Suelta aquí para repasar el temario a tu ritmo",
+  "@dropHereToStudy": {
+    "description": "Text shown in the drop zone when dragging over the study mode option"
+  },
   "dropHereToQuiz": "Suelta aquí para poner a prueba tus conocimientos",
+  "@dropHereToQuiz": {
+    "description": "Text shown in the drop zone when dragging over the exam mode option"
+  },
   "aiStudyGenerationTitle": "Generación de estudio por IA",
+  "@aiStudyGenerationTitle": {
+    "description": "Title for the study generation configuration dialog"
+  },
   "reattachFileDialogTitle": "Archivo original requerido",
+  "@reattachFileDialogTitle": {
+    "description": "Title for the reattach file dialog"
+  },
   "reattachFileDialogMessage": "Para generar el contenido de esta sección, adjunta el archivo original utilizado para crear este estudio.",
+  "@reattachFileDialogMessage": {
+    "description": "Message for the reattach file dialog"
+  },
   "fileHashMismatchError": "El archivo seleccionado no coincide con el archivo original utilizado para crear este estudio.",
+  "@fileHashMismatchError": {
+    "description": "Error message when the reattached file is different from the original"
+  },
   "showMoreLabel": "Mostrar más",
+  "@showMoreLabel": {
+    "description": "Label for the button to expand content"
+  },
   "showLessLabel": "Mostrar menos",
+  "@showLessLabel": {
+    "description": "Label for the button to collapse content"
+  },
   "studyScreenReminder": "Recordatorio",
+  "@studyScreenReminder": {
+    "description": "Label for the reminder/tip component in the study screen"
+  },
   "studyScreenKeyDefinition": "Definición Clave",
+  "@studyScreenKeyDefinition": {
+    "description": "Label for the key definition component in the study screen"
+  },
   "studyScreenImportant": "Importante",
+  "@studyScreenImportant": {
+    "description": "Label for the warning/important component in the study screen"
+  },
   "studyComponentNoItems": "Sin elementos",
+  "@studyComponentNoItems": {
+    "description": "Label shown when there are no items in a study component"
+  },
   "studyComponentAdvantages": "Ventajas",
-  "studyComponentLimitations": "Limitaciones"
+  "@studyComponentAdvantages": {
+    "description": "Header for the advantages section in a study component"
+  },
+  "studyComponentLimitations": "Limitaciones",
+  "@studyComponentLimitations": {
+    "description": "Header for the limitations section in a study component"
+  }
 }

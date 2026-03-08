@@ -1230,6 +1230,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get studyModeLabel => 'Lernmodus';
 
   @override
+  String get practiceModeLabel => 'Übungsmodus';
+
+  @override
   String get studyModeDescription =>
       'KI-Unterstützung verfügbar. Sofortiges Feedback nach jeder Antwort, ohne Zeitlimits oder Punktabzüge.';
 

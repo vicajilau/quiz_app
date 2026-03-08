@@ -1204,6 +1204,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get studyModeLabel => 'وضع الدراسة';
 
   @override
+  String get practiceModeLabel => 'وضع التدريب';
+
+  @override
   String get studyModeDescription =>
       'مساعدة الذكاء الاصطناعي متاحة. تعليقات فورية بعد كل إجابة بدون حدود زمنية أو عقوبات.';
 
