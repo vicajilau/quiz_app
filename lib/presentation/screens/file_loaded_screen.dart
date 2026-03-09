@@ -32,7 +32,7 @@ import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quizdy/routes/app_router.dart';
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:quizdy/core/extensions/string_extensions.dart';
+import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';

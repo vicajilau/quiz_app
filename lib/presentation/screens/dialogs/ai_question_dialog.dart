@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quizdy/core/extensions/string_extensions.dart';
+import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';

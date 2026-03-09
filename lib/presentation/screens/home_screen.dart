@@ -41,7 +41,7 @@ import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quizdy/presentation/screens/dialogs/mode_selection_dialog.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
-import 'package:quizdy/core/extensions/string_extensions.dart';
+import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_header_widget.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_drop_zone_widget.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_footer_widget.dart';

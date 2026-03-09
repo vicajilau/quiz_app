@@ -1382,6 +1382,22 @@
   "@languageJapanese": {
     "description": "Japanese language name."
   },
+  "languageRussian": "Русский",
+  "@languageRussian": {
+    "description": "Russian language name."
+  },
+  "languageGeorgian": "ქართული",
+  "@languageGeorgian": {
+    "description": "Georgian language name."
+  },
+  "languageUkrainian": "Українська",
+  "@languageUkrainian": {
+    "description": "Ukrainian language name."
+  },
+  "languageKorean": "한국어",
+  "@languageKorean": {
+    "description": "Korean language name."
+  },
   "aiServicesLoading": "Loading AI services...",
   "@aiServicesLoading": {
     "description": "Message shown while loading available AI services."
