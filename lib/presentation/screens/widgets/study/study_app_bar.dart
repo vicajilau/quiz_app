@@ -52,7 +52,7 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: context.fileLoadedTheme.appBarIconBackgroundColor,
+              color: context.quizLoadedTheme.appBarIconBackgroundColor,
               borderRadius: BorderRadius.circular(20),
             ),
             child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
@@ -181,7 +181,7 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                     height: 40,
                     margin: const EdgeInsets.only(right: 24),
                     decoration: BoxDecoration(
-                      color: context.fileLoadedTheme.appBarIconBackgroundColor,
+                      color: context.quizLoadedTheme.appBarIconBackgroundColor,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: IconButton(

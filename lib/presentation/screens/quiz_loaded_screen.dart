@@ -53,12 +53,12 @@ import 'package:quizdy/presentation/screens/dialogs/quiz_metadata_dialog.dart';
 import 'package:quizdy/core/theme/extensions/file_loaded_theme.dart';
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 
-class FileLoadedScreen extends StatefulWidget {
+class QuizLoadedScreen extends StatefulWidget {
   final FileBloc fileBloc;
   final CheckFileChangesUseCase checkFileChangesUseCase;
   final QuizFile quizFile;
 
-  const FileLoadedScreen({
+  const QuizLoadedScreen({
     super.key,
     required this.fileBloc,
     required this.checkFileChangesUseCase,
@@ -66,10 +66,10 @@ class FileLoadedScreen extends StatefulWidget {
   });
 
   @override
-  State<FileLoadedScreen> createState() => _FileLoadedScreenState();
+  State<QuizLoadedScreen> createState() => _QuizLoadedScreenState();
 }
 
-class _FileLoadedScreenState extends State<FileLoadedScreen> {
+class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
   late QuizFile cachedQuizFile;
   bool _isSelectionMode = false;
   final Set<int> _selectedQuestions = {};
@@ -489,7 +489,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                           height: 40,
                           decoration: BoxDecoration(
                             color: context
-                                .fileLoadedTheme
+                                .quizLoadedTheme
                                 .appBarIconBackgroundColor,
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -506,10 +506,11 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                             onPressed: () async {
                               final shouldExit = await _confirmExit();
                               if (shouldExit && context.mounted) {
-                                // Since we navigate here using `go` from home
-                                // we should use `go` to return home to ensure we don't
-                                // try to pop an empty stack.
-                                context.go(AppRoutes.home);
+                                if (context.canPop()) {
+                                  context.pop();
+                                } else {
+                                  context.go(AppRoutes.home);
+                                }
                               }
                             },
                           ),
@@ -592,7 +593,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                         margin: const EdgeInsets.only(right: 8),
                         decoration: BoxDecoration(
                           color:
-                              context.fileLoadedTheme.appBarIconBackgroundColor,
+                              context.quizLoadedTheme.appBarIconBackgroundColor,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: IconButton(
@@ -613,7 +614,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                         constraints: const BoxConstraints(minWidth: 40),
                         child: Material(
                           color: context
-                              .fileLoadedTheme
+                              .quizLoadedTheme
                               .selectionInactiveBackgroundColor,
                           borderRadius: BorderRadius.circular(12),
                           child: InkWell(
@@ -729,7 +730,7 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                       if (_isDragging)
                         Positioned.fill(
                           child: Container(
-                            color: context.fileLoadedTheme.dragOverlayColor,
+                            color: context.quizLoadedTheme.dragOverlayColor,
                             child: Center(
                               child: Container(
                                 padding: const EdgeInsets.all(32),
@@ -738,14 +739,14 @@ class _FileLoadedScreenState extends State<FileLoadedScreen> {
                                   borderRadius: BorderRadius.circular(24),
                                   border: Border.all(
                                     color: context
-                                        .fileLoadedTheme
+                                        .quizLoadedTheme
                                         .dragOverlayBorderColor,
                                     width: 3,
                                   ),
                                   boxShadow: [
                                     BoxShadow(
                                       color: context
-                                          .fileLoadedTheme
+                                          .quizLoadedTheme
                                           .dragOverlayShadowColor,
                                       blurRadius: 20,
                                       offset: const Offset(0, 10),

@@ -38,6 +38,7 @@ class StudyBottomNavigation extends StatelessWidget {
   final VoidCallback onImport;
   final VoidCallback onAddChunk;
   final VoidCallback onGenerateAI;
+  final bool hideStartQuizButton;
 
   const StudyBottomNavigation({
     super.key,
@@ -48,6 +49,7 @@ class StudyBottomNavigation extends StatelessWidget {
     required this.onImport,
     required this.onAddChunk,
     required this.onGenerateAI,
+    this.hideStartQuizButton = false,
   });
 
   @override
@@ -80,14 +82,18 @@ class StudyBottomNavigation extends StatelessWidget {
                     progressPercentage: state.progressPercentage,
                     hasChunks: state.chunks.isNotEmpty,
                     selectedChunkCount: state.selectedIndices.length,
-                    isStartQuizEnabled: state.chunks.isNotEmpty,
+                    isStartQuizEnabled:
+                        !hideStartQuizButton && state.chunks.isNotEmpty,
                     onDelete: () {
                       context.read<StudyExecutionBloc>().add(
                         const DeleteSelectedChunksRequested(),
                       );
                     },
                     onStartQuiz: () {
-                      context.go(AppRoutes.fileLoadedScreen);
+                      if (quizFile != null) {
+                        ServiceLocator.registerQuizFile(quizFile!);
+                      }
+                      context.push(AppRoutes.fileLoadedScreen);
                     },
                     onAddChunk: onAddChunk,
                     onGenerateAI: onGenerateAI,

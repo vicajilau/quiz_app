@@ -165,7 +165,7 @@ class AppTheme {
           0x1A8B5CF6,
         ), // primaryColor.withValues(alpha: 0.1)
       ),
-      const FileLoadedTheme(
+      const QuizLoadedTheme(
         deleteDialogBackgroundColor: Color(0xFF27272A), // Zinc 800
         deleteDialogTextColor: Colors.white,
         deleteDialogSubTextColor: Colors.white70,
@@ -356,7 +356,7 @@ class AppTheme {
           0x1A8B5CF6,
         ), // primaryColor.withValues(alpha: 0.1)
       ),
-      const FileLoadedTheme(
+      const QuizLoadedTheme(
         deleteDialogBackgroundColor: Color(0xFF27272A), // Zinc 800
         deleteDialogTextColor: Colors.white,
         deleteDialogSubTextColor: Colors.white70,

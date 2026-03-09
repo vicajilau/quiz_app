@@ -15,12 +15,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
+import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
@@ -32,6 +34,7 @@ import 'package:quizdy/presentation/screens/quiz_execution/widgets/ai_studio_cha
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/presentation/screens/dialogs/back_press_handler.dart';
 import 'package:quizdy/presentation/widgets/exam_timer.dart';
+import 'package:quizdy/routes/app_router.dart';
 
 class QuizInProgressView extends StatefulWidget {
   final QuizExecutionInProgress state;
@@ -141,6 +144,12 @@ class _QuizInProgressViewState extends State<QuizInProgressView>
     final showTimer = !isStudyMode && (quizConfig?.enableTimeLimit ?? false);
     final showAi = isStudyMode && _isAiAvailable;
 
+    QuizFile? quizFileWithStudy;
+    if (ServiceLocator.getIt.isRegistered<QuizFile>()) {
+      final qf = ServiceLocator.getIt<QuizFile>();
+      if (qf.study != null) quizFileWithStudy = qf;
+    }
+
     return BlocListener<QuizExecutionBloc, QuizExecutionState>(
       listener: (context, state) {
         if (state is QuizExecutionInProgress && isStudyMode) {
@@ -182,62 +191,118 @@ class _QuizInProgressViewState extends State<QuizInProgressView>
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(child: QuizProgressIndicator(state: widget.state)),
-                    if (showTimer) ...[
-                      const SizedBox(width: 8),
-                      ExamTimerWidget(
-                        initialDurationMinutes:
-                            quizConfig?.timeLimitMinutes ?? 0,
-                        onTimeExpired: () {
-                          context.read<QuizExecutionBloc>().add(
-                            QuizSubmitted(),
-                          );
-                        },
-                      ),
-                    ],
-                    const SizedBox(width: 16),
-                    IconButton(
-                      onPressed: () => BackPressHandler.handle(
-                        context,
-                        context.read<QuizExecutionBloc>(),
-                      ),
-                      style: IconButton.styleFrom(
-                        backgroundColor: colors.card,
-                        fixedSize: const Size(48, 48),
-                        padding: EdgeInsets.zero,
-                        shape: CircleBorder(
-                          side: closeBtnBorder == Colors.transparent
-                              ? BorderSide.none
-                              : BorderSide(color: closeBtnBorder),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ConstrainedBox(
+                          constraints: const BoxConstraints(maxWidth: 300),
+                          child: QuizProgressIndicator(state: widget.state),
                         ),
-                      ),
-                      icon: Icon(Icons.close, color: colors.subtitle, size: 24),
-                    ),
-                    if (isStudyMode && !_isChatOpen) ...[
-                      const SizedBox(width: 8),
-                      IconButton(
-                        onPressed: _isAiAvailable
-                            ? openAiChat
-                            : () => context.presentSnackBar(
-                                AppLocalizations.of(context)!.aiApiKeyRequired,
+                        const SizedBox(width: 16),
+                        if (quizFileWithStudy != null && isStudyMode) ...[
+                          IconButton(
+                            onPressed: () => context.push(
+                              AppRoutes.studyScreen,
+                              extra: {
+                                'initialChunks':
+                                    quizFileWithStudy!.study!.content.cache,
+                                'documentTitle':
+                                    quizFileWithStudy.metadata.title,
+                                'documentSummary':
+                                    quizFileWithStudy.metadata.description,
+                                'quizFile': quizFileWithStudy,
+                                'hideStartQuizButton': true,
+                              },
+                            ),
+                            style: IconButton.styleFrom(
+                              backgroundColor: colors.card,
+                              fixedSize: const Size(48, 48),
+                              padding: EdgeInsets.zero,
+                              shape: CircleBorder(
+                                side: closeBtnBorder == Colors.transparent
+                                    ? BorderSide.none
+                                    : BorderSide(color: closeBtnBorder),
                               ),
-                        style: IconButton.styleFrom(
-                          backgroundColor: colors.card,
-                          fixedSize: const Size(48, 48),
-                          padding: EdgeInsets.zero,
-                          shape: CircleBorder(
-                            side: closeBtnBorder == Colors.transparent
-                                ? BorderSide.none
-                                : BorderSide(color: closeBtnBorder),
+                            ),
+                            tooltip: AppLocalizations.of(
+                              context,
+                            )!.studyModeLabel,
+                            icon: Icon(
+                              LucideIcons.bookOpen,
+                              color: Theme.of(context).primaryColor,
+                              size: 22,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                        ],
+                      ],
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (showTimer) ...[
+                          ExamTimerWidget(
+                            initialDurationMinutes:
+                                quizConfig?.timeLimitMinutes ?? 0,
+                            onTimeExpired: () {
+                              context.read<QuizExecutionBloc>().add(
+                                QuizSubmitted(),
+                              );
+                            },
+                          ),
+                          const SizedBox(width: 8),
+                        ],
+
+                        IconButton(
+                          onPressed: () => BackPressHandler.handle(
+                            context,
+                            context.read<QuizExecutionBloc>(),
+                          ),
+                          style: IconButton.styleFrom(
+                            backgroundColor: colors.card,
+                            fixedSize: const Size(48, 48),
+                            padding: EdgeInsets.zero,
+                            shape: CircleBorder(
+                              side: closeBtnBorder == Colors.transparent
+                                  ? BorderSide.none
+                                  : BorderSide(color: closeBtnBorder),
+                            ),
+                          ),
+                          icon: Icon(
+                            Icons.close,
+                            color: colors.subtitle,
+                            size: 24,
                           ),
                         ),
-                        icon: Icon(
-                          LucideIcons.sparkles,
-                          color: Theme.of(context).primaryColor,
-                          size: 24,
-                        ),
-                      ),
-                    ],
+                        if (isStudyMode && !_isChatOpen) ...[
+                          const SizedBox(width: 8),
+                          IconButton(
+                            onPressed: _isAiAvailable
+                                ? openAiChat
+                                : () => context.presentSnackBar(
+                                    AppLocalizations.of(
+                                      context,
+                                    )!.aiApiKeyRequired,
+                                  ),
+                            style: IconButton.styleFrom(
+                              backgroundColor: colors.card,
+                              fixedSize: const Size(48, 48),
+                              padding: EdgeInsets.zero,
+                              shape: CircleBorder(
+                                side: closeBtnBorder == Colors.transparent
+                                    ? BorderSide.none
+                                    : BorderSide(color: closeBtnBorder),
+                              ),
+                            ),
+                            icon: Icon(
+                              LucideIcons.sparkles,
+                              color: Theme.of(context).primaryColor,
+                              size: 24,
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
                   ],
                 ),
               ),
