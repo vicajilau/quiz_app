@@ -14,45 +14,35 @@
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mime/mime.dart';
-import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/extensions/string_extensions.dart';
-import 'package:quizdy/core/theme/extensions/file_loaded_theme.dart';
-import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
-import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
-import 'package:quizdy/presentation/screens/dialogs/exit_confirmation_dialog.dart';
-import 'package:quizdy/presentation/screens/widgets/study/add_edit_chunk_dialog.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
-import 'package:quizdy/presentation/screens/widgets/study/components/study_component_builder.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
-import 'package:quizdy/domain/models/quiz/quiz_file.dart';
-import 'package:quizdy/domain/models/quiz/quiz_metadata.dart';
-import 'package:quizdy/domain/models/quiz/study.dart';
-import 'package:quizdy/domain/models/quiz/study_chunk.dart';
-import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
-import 'package:quizdy/domain/models/quiz/study_content.dart';
-import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
-import 'package:quizdy/core/constants/quiz_metadata.dart';
+import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
+import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
-import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
+import 'package:quizdy/presentation/screens/dialogs/ai_generate_study_dialog.dart';
+import 'package:quizdy/presentation/screens/dialogs/exit_confirmation_dialog.dart';
+import 'package:quizdy/domain/models/ai/ai_study_generation_config.dart';
 import 'package:quizdy/presentation/screens/widgets/request_file_name_dialog.dart';
-import 'package:quizdy/presentation/screens/widgets/study/study_index_view.dart';
-import 'package:quizdy/presentation/screens/widgets/study/study_sections_sidebar.dart';
-import 'package:quizdy/presentation/screens/widgets/study/study_index_footer_widget.dart';
-import 'package:quizdy/presentation/screens/widgets/study/study_execution_bottom_bar.dart';
-import 'package:quizdy/routes/app_router.dart';
+import 'package:quizdy/presentation/screens/widgets/study/add_edit_chunk_dialog.dart';
+import 'package:quizdy/presentation/screens/widgets/study/study_app_bar.dart';
+import 'package:quizdy/presentation/screens/widgets/study/study_bottom_navigation.dart';
+import 'package:quizdy/presentation/screens/widgets/study/study_body.dart';
+import 'package:quizdy/presentation/screens/widgets/study/utils/study_quiz_file_helper.dart';
 
 class StudyScreen extends StatelessWidget {
   final List<StudyChunk> initialChunks;
@@ -101,16 +91,16 @@ class StudyScreen extends StatelessWidget {
         generationMode: generationMode ?? quizFile?.study?.generationMode,
         onProgressChanged:
             (progress, processedChunks, chunks, fileUri, expirationTime) {
-          context.read<FileBloc>().add(
-            StudyProgressUpdated(
-              progress: progress,
-              processedChunks: processedChunks,
-              chunks: chunks,
-              fileUri: fileUri,
-              fileExpirationTime: expirationTime,
-            ),
-          );
-        },
+              context.read<FileBloc>().add(
+                StudyProgressUpdated(
+                  progress: progress,
+                  processedChunks: processedChunks,
+                  chunks: chunks,
+                  fileUri: fileUri,
+                  fileExpirationTime: expirationTime,
+                ),
+              );
+            },
       ),
       child: StudyScreenView(
         quizFile: quizFile,
@@ -137,55 +127,7 @@ class StudyScreenView extends StatefulWidget {
   State<StudyScreenView> createState() => _StudyScreenViewState();
 }
 
-class _StudyScreenViewState extends State<StudyScreenView>
-    with SingleTickerProviderStateMixin {
-  bool _isSidebarOpen = true;
-  bool _isSidebarMounted = true;
-
-  late final AnimationController _mobileSidebarAnimController;
-  late final Animation<Offset> _mobileSidebarSlide;
-
-  @override
-  void initState() {
-    super.initState();
-    _mobileSidebarAnimController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 300),
-    );
-    _mobileSidebarSlide =
-        Tween<Offset>(begin: const Offset(-1, 0), end: Offset.zero).animate(
-          CurvedAnimation(
-            parent: _mobileSidebarAnimController,
-            curve: Curves.linear,
-          ),
-        );
-  }
-
-  @override
-  void dispose() {
-    _mobileSidebarAnimController.dispose();
-    super.dispose();
-  }
-
-  void _openSidebar() {
-    setState(() {
-      _isSidebarOpen = true;
-      _isSidebarMounted = true;
-    });
-    if (context.isMobile) {
-      _mobileSidebarAnimController.forward();
-    }
-  }
-
-  void _closeSidebar() {
-    if (!context.isMobile) {
-      setState(() => _isSidebarOpen = false);
-    } else {
-      _mobileSidebarAnimController.reverse().then((_) {
-        if (mounted) setState(() => _isSidebarOpen = false);
-      });
-    }
-  }
+class _StudyScreenViewState extends State<StudyScreenView> {
 
   Future<bool> _confirmExit() async {
     final studyState = context.read<StudyExecutionBloc>().state;
@@ -203,63 +145,13 @@ class _StudyScreenViewState extends State<StudyScreenView>
 
   QuizFile _getCurrentQuizFile(StudyExecutionState studyState) {
     final fileState = context.read<FileBloc>().state;
-
-    QuizFile updatedQuizFile(QuizFile qf) {
-      final processedChunks = studyState.chunks
-          .where((c) => c.status != StudyChunkState.created)
-          .length;
-      final studyContent = StudyContent(
-        progressPercentage: studyState.progressPercentage,
-        totalChunks: studyState.chunks.length,
-        processedChunks: processedChunks,
-        cache: studyState.chunks,
-      );
-
-      return qf.copyWith(
-        fileUri: studyState.fileUri,
-        fileExpirationTime: studyState.fileExpirationTime,
-        fileContentHash:
-            qf.fileContentHash ?? studyState.fileAttachment?.contentHash,
-        study:
-            qf.study?.copyWith(content: studyContent) ??
-            Study(
-              content: studyContent,
-              generationMode: widget.generationMode,
-              originalText: widget.originalText,
-            ),
-      );
-    }
-
-    if (fileState is FileLoaded) {
-      return updatedQuizFile(fileState.quizFile);
-    } else if (fileState is FileSaved) {
-      return updatedQuizFile(fileState.quizFile);
-    } else {
-      return QuizFile(
-        metadata: QuizMetadata(
-          title: studyState.documentTitle,
-          description: studyState.documentSummary ?? '',
-          version: QuizMetadataConstants.version,
-          author: '',
-        ),
-        questions: const [],
-        study: Study(
-          content: StudyContent(
-            progressPercentage: studyState.progressPercentage,
-            totalChunks: studyState.chunks.length,
-            processedChunks: studyState.chunks
-                .where((c) => c.status != StudyChunkState.created)
-                .length,
-            cache: studyState.chunks,
-          ),
-          generationMode: widget.generationMode,
-          originalText: widget.originalText,
-        ),
-        fileContentHash: studyState.fileAttachment?.contentHash,
-        fileUri: studyState.fileUri,
-        fileExpirationTime: studyState.fileExpirationTime,
-      );
-    }
+    return StudyQuizFileHelper.getCurrentQuizFile(
+      studyState: studyState,
+      fileState: fileState,
+      initialQuizFile: widget.quizFile,
+      generationMode: widget.generationMode,
+      originalText: widget.originalText,
+    );
   }
 
   Future<void> _handleSave() async {
@@ -325,7 +217,9 @@ class _StudyScreenViewState extends State<StudyScreenView>
 
     if (confirmed != true || !context.mounted) {
       if (context.mounted) {
-        context.read<StudyExecutionBloc>().add(FileReattachmentCancelled());
+        context.read<StudyExecutionBloc>().add(
+          const FileReattachmentCancelled(),
+        );
       }
       return;
     }
@@ -366,467 +260,64 @@ class _StudyScreenViewState extends State<StudyScreenView>
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     // ignore: deprecated_member_use
     return WillPopScope(
-      onWillPop: () async {
-        final shouldExit = await _confirmExit();
-        return shouldExit;
-      },
+      onWillPop: _confirmExit,
       child: Scaffold(
         backgroundColor: isDark ? AppTheme.zinc900 : AppTheme.zinc50,
         extendBodyBehindAppBar: true,
         extendBody: true,
-        bottomNavigationBar: BlocBuilder<FileBloc, FileState>(
-          builder: (context, fileState) {
-            return BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-              builder: (context, state) {
-                if (state.chunks.isEmpty) return const SizedBox.shrink();
-
-                final currentQuizFile = _getCurrentQuizFile(state);
-                final hasChanges =
-                    ServiceLocator.getIt<CheckFileChangesUseCase>().execute(
-                      currentQuizFile,
-                    );
-
-                if (state.isIndexMode) {
-                  return StudyIndexFooterWidget(
-                    localizations: localizations,
-                    progressPercentage: state.progressPercentage,
-                    hasChunks: state.chunks.isNotEmpty,
-                    onStartQuiz: () {
-                      context.go(AppRoutes.fileLoadedScreen);
-                    },
-                    onAddChunk: () async {
-                      final result = await showDialog<Map<String, String>>(
-                        context: context,
-                        builder: (context) =>
-                            AddEditChunkDialog(localizations: localizations),
-                      );
-
-                      if (result != null && context.mounted) {
-                        context.read<StudyExecutionBloc>().add(
-                          AddStudyChunkRequested(
-                            title: result['title'] ?? '',
-                            content: result['text'] ?? '',
-                          ),
-                        );
-                      }
-                    },
-                    onGenerateAI: null, // TODO: Implement generate AI
-                    onImport: null, // TODO: Implement import questions
-                    onSave: _handleSave,
-                    showSaveButton: hasChanges,
-                  );
-                }
-
-                return StudyExecutionBottomBar(
-                  currentIndex: state.currentChunkIndex,
-                  totalCount: state.chunks.length,
-                  progressPercentage: state.progressPercentage,
-                  localizations: localizations,
-                  onPrevious: state.hasPrevious
-                      ? () => context.read<StudyExecutionBloc>().add(
-                          PreviousStudyChunkRequested(),
-                        )
-                      : null,
-                  onNext: state.hasNext
-                      ? () => context.read<StudyExecutionBloc>().add(
-                          NextStudyChunkRequested(),
-                        )
-                      : null,
-                );
-              },
+        bottomNavigationBar: StudyBottomNavigation(
+          quizFile: widget.quizFile,
+          generationMode: widget.generationMode,
+          originalText: widget.originalText,
+          onSave: _handleSave,
+          onImport: () => _handleFileReattachment(context),
+          onAddChunk: () async {
+            final localizations = AppLocalizations.of(context)!;
+            final result = await showDialog<Map<String, String>>(
+              context: context,
+              builder: (context) => AddEditChunkDialog(
+                localizations: localizations,
+              ),
             );
+
+            if (result != null && context.mounted) {
+              context.read<StudyExecutionBloc>().add(
+                AddStudyChunkRequested(
+                  title: result['title'] ?? '',
+                  content: result['text'] ?? '',
+                ),
+              );
+            }
+          },
+          onGenerateAI: () async {
+            final config = await showDialog<AiStudyGenerationConfig>(
+              context: context,
+              barrierDismissible: false,
+              builder: (context) => const AiGenerateStudyDialog(),
+            );
+
+            if (config != null && context.mounted) {
+              final studyState = context.read<StudyExecutionBloc>().state;
+              final quizFile = _getCurrentQuizFile(studyState);
+              context.read<StudyExecutionBloc>().add(
+                GenerateAiStudyChunksRequested(
+                  config: config,
+                  quizContext: quizFile.toAIPromptContext(),
+                ),
+              );
+            }
           },
         ),
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(72),
-          child: Container(
-            color: Colors.transparent,
-            child: AppBar(
-              backgroundColor: Theme.of(context).primaryColor,
-              elevation: 0,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(24),
-                ),
-              ),
-              toolbarHeight: 72,
-              leadingWidth: 72,
-              leading: Padding(
-                padding: const EdgeInsets.only(left: 24),
-                child: Center(
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: context.fileLoadedTheme.appBarIconBackgroundColor,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-                      builder: (context, state) {
-                        return IconButton(
-                          padding: EdgeInsets.zero,
-                          icon: Icon(
-                            LucideIcons.arrowLeft,
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            size: 20,
-                          ),
-                          tooltip: localizations.backSemanticLabel,
-                          onPressed: () async {
-                            if (!state.isIndexMode) {
-                              context.read<StudyExecutionBloc>().add(
-                                ReturnToIndexRequested(),
-                              );
-                              return;
-                            }
-                            final shouldExit = await _confirmExit();
-                            if (shouldExit && context.mounted) {
-                              context.read<FileBloc>().add(QuizFileReset());
-                              context.pop();
-                            }
-                          },
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ),
-              title: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Flexible(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-                          builder: (context, state) {
-                            return Text(
-                              state.documentTitle,
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.onPrimary,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700,
-                                fontFamily: 'Plus Jakarta Sans',
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              actions: [
-                Container(
-                  width: 40,
-                  height: 40,
-                  margin: const EdgeInsets.only(right: 24),
-                  decoration: BoxDecoration(
-                    color: context.fileLoadedTheme.appBarIconBackgroundColor,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () async => await showDialog(
-                      context: context,
-                      barrierDismissible: false,
-                      builder: (_) => const SettingsDialog(),
-                    ),
-                    icon: Icon(
-                      LucideIcons.settings,
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      size: 20,
-                    ),
-                    tooltip: AppLocalizations.of(
-                      context,
-                    )!.questionOrderConfigTooltip,
-                  ),
-                ),
-              ],
-            ),
-          ),
+        appBar: StudyAppBar(
+          onConfirmExit: _confirmExit,
         ),
-        body: MultiBlocListener(
-          listeners: [
-            BlocListener<StudyExecutionBloc, StudyExecutionState>(
-              listenWhen: (previous, current) =>
-                  !previous.needsFileReattachment &&
-                  current.needsFileReattachment,
-              listener: (context, state) {
-                _handleFileReattachment(context);
-              },
-            ),
-            BlocListener<StudyExecutionBloc, StudyExecutionState>(
-              listenWhen: (previous, current) {
-                final currentChunk = current.currentChunk;
-                final previousChunk = previous.currentChunk;
-                return currentChunk?.status == StudyChunkState.error &&
-                    previousChunk?.status != StudyChunkState.error;
-              },
-              listener: (context, state) {
-                final currentChunk = state.currentChunk;
-                if (currentChunk == null) return;
-
-                showDialog(
-                  context: context,
-                  builder: (dialogContext) => AlertDialog(
-                    title: Text(localizations.studyScreenError),
-                    content: Text(
-                      currentChunk.errorMessage ??
-                          localizations.studyScreenError,
-                    ),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.of(dialogContext).pop(),
-                        child: Text(
-                          MaterialLocalizations.of(context).closeButtonLabel,
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(dialogContext).pop();
-                          context.read<StudyExecutionBloc>().add(
-                            StudyChunkRequested(state.currentChunkIndex),
-                          );
-                        },
-                        child: Text(localizations.studyScreenRetry),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ],
-          child: Padding(
-            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-            child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-              builder: (context, state) {
-                if (state.chunks.isEmpty) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-
-                if (state.isIndexMode) {
-                  return StudyIndexView(
-                    state: state,
-                    localizations: localizations,
-                    onAddChunk: () async {
-                      final result = await showDialog<Map<String, String>>(
-                        context: context,
-                        builder: (context) =>
-                            AddEditChunkDialog(localizations: localizations),
-                      );
-
-                      if (result != null && context.mounted) {
-                        context.read<StudyExecutionBloc>().add(
-                          AddStudyChunkRequested(
-                            title: result['title'] ?? '',
-                            content: result['text'] ?? '',
-                          ),
-                        );
-                      }
-                    },
-                    onSave: _handleSave,
-                    onImport: () => _handleFileReattachment(context),
-                  );
-                }
-
-                final currentChunk = state.currentChunk;
-                if (currentChunk == null) {
-                  return Center(
-                    child: Text(localizations.studyScreenNoSlidesAvailable),
-                  );
-                }
-
-                if (currentChunk.status == StudyChunkState.processing) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const CircularProgressIndicator(),
-                        const SizedBox(height: 16),
-                        Text(localizations.studyScreenGenerating),
-                      ],
-                    ),
-                  );
-                }
-
-                return LayoutBuilder(
-                  builder: (context, constraints) {
-                    final isMobile = context.isMobile;
-
-                    // Sync mobile animation state on resize
-                    if (!isMobile && _isSidebarOpen) {
-                      _mobileSidebarAnimController.value = 0.0;
-                    } else if (isMobile && _isSidebarOpen) {
-                      _mobileSidebarAnimController.value = 1.0;
-                    }
-
-                    final sidebarPanel = StudySectionsSidebar(
-                      chunks: state.chunks,
-                      currentChunkIndex: state.currentChunkIndex,
-                      localizations: localizations,
-                      isFullScreen: isMobile,
-                      onClose: _closeSidebar,
-                      onChunkSelected: (index) {
-                        context.read<StudyExecutionBloc>().add(
-                          StudyChunkRequested(index),
-                        );
-                        if (isMobile) _closeSidebar();
-                      },
-                    );
-
-                    final mainContent = Stack(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(
-                            _isSidebarOpen ? 16.0 : 56.0,
-                            16.0,
-                            16.0,
-                            16.0,
-                          ),
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child:
-                                    currentChunk.status == StudyChunkState.error
-                                    ? const SizedBox.shrink()
-                                    : (currentChunk.pages.isNotEmpty
-                                          ? ListView.builder(
-                                              itemCount:
-                                                  currentChunk.pages.length,
-                                              itemBuilder: (context, index) {
-                                                final page =
-                                                    currentChunk.pages[index];
-                                                return Card(
-                                                  margin: const EdgeInsets.only(
-                                                    bottom: 16,
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                          16,
-                                                        ),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: page.uiElements
-                                                          .map((element) {
-                                                            return StudyComponentBuilder(
-                                                              element: element,
-                                                            );
-                                                          })
-                                                          .toList(),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            )
-                                          : Center(
-                                              child: Text(
-                                                localizations
-                                                    .studyScreenNoSlidesGenerated,
-                                              ),
-                                            )),
-                              ),
-                            ],
-                          ),
-                        ),
-                        if (!_isSidebarOpen)
-                          Positioned(
-                            top: 80,
-                            left: 12,
-                            child: _SidebarOpenButton(
-                              isDark: isDark,
-                              onTap: _openSidebar,
-                            ),
-                          ),
-                      ],
-                    );
-
-                    if (!isMobile) {
-                      return Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          AnimatedContainer(
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.linear,
-                            width: _isSidebarOpen ? 280 : 0,
-                            clipBehavior: Clip.hardEdge,
-                            decoration: const BoxDecoration(),
-                            child: OverflowBox(
-                              alignment: Alignment.topRight,
-                              minWidth: 280,
-                              maxWidth: 280,
-                              child: sidebarPanel,
-                            ),
-                          ),
-                          Expanded(child: mainContent),
-                        ],
-                      );
-                    }
-
-                    // Narrow layout: Stack with slide overlay
-                    return Stack(
-                      children: [
-                        mainContent,
-                        if (_isSidebarMounted)
-                          Positioned.fill(
-                            child: IgnorePointer(
-                              ignoring: !_isSidebarOpen,
-                              child: SlideTransition(
-                                position: _mobileSidebarSlide,
-                                child: Material(
-                                  color: isDark
-                                      ? AppTheme.zinc800
-                                      : Colors.white,
-                                  child: sidebarPanel,
-                                ),
-                              ),
-                            ),
-                          ),
-                      ],
-                    );
-                  },
-                );
-              },
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _SidebarOpenButton extends StatelessWidget {
-  final bool isDark;
-  final VoidCallback onTap;
-
-  const _SidebarOpenButton({required this.isDark, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 32,
-        height: 32,
-        decoration: BoxDecoration(
-          color: isDark ? AppTheme.zinc700 : AppTheme.zinc100,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        alignment: Alignment.center,
-        child: Icon(
-          LucideIcons.panelRightClose,
-          size: 18,
-          color: isDark ? AppTheme.zinc400 : AppTheme.zinc500,
+        body: StudyBody(
+          onHandleFileReattachment: _handleFileReattachment,
+          onSave: _handleSave,
         ),
       ),
     );

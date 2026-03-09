@@ -63,7 +63,9 @@ class StudySectionsSidebar extends StatelessWidget {
             Padding(
               padding: EdgeInsets.fromLTRB(
                 16,
-                isFullScreen ? 10 : MediaQuery.of(context).padding.top + 10,
+                isFullScreen
+                    ? 10
+                    : MediaQuery.of(context).padding.top + 72 + 10,
                 8,
                 12,
               ),

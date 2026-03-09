@@ -31,6 +31,8 @@ class StudyExecutionState {
   final int processedChunks;
   final String? error;
   final bool needsFileReattachment;
+  final bool isSelectionMode;
+  final Set<int> selectedIndices;
 
   const StudyExecutionState({
     this.chunks = const [],
@@ -46,6 +48,8 @@ class StudyExecutionState {
     this.processedChunks = 0,
     this.error,
     this.needsFileReattachment = false,
+    this.isSelectionMode = false,
+    this.selectedIndices = const {},
   });
 
   StudyExecutionState copyWith({
@@ -62,6 +66,8 @@ class StudyExecutionState {
     int? processedChunks,
     String? error,
     bool? needsFileReattachment,
+    bool? isSelectionMode,
+    Set<int>? selectedIndices,
   }) {
     return StudyExecutionState(
       chunks: chunks ?? this.chunks,
@@ -77,6 +83,8 @@ class StudyExecutionState {
       processedChunks: processedChunks ?? this.processedChunks,
       error: error, // Can be null to clear error
       needsFileReattachment: needsFileReattachment ?? false,
+      isSelectionMode: isSelectionMode ?? this.isSelectionMode,
+      selectedIndices: selectedIndices ?? this.selectedIndices,
     );
   }
 
@@ -114,7 +122,9 @@ class StudyExecutionState {
         other.progressPercentage == progressPercentage &&
         other.processedChunks == processedChunks &&
         other.error == error &&
-        other.needsFileReattachment == needsFileReattachment;
+        other.needsFileReattachment == needsFileReattachment &&
+        other.isSelectionMode == isSelectionMode &&
+        listEquals(other.selectedIndices, selectedIndices);
   }
 
   @override
@@ -131,6 +141,8 @@ class StudyExecutionState {
         progressPercentage.hashCode ^
         processedChunks.hashCode ^
         error.hashCode ^
-        needsFileReattachment.hashCode;
+        needsFileReattachment.hashCode ^
+        isSelectionMode.hashCode ^
+        selectedIndices.hashCode;
   }
 }

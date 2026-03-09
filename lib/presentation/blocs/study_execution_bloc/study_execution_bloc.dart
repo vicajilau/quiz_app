@@ -26,6 +26,7 @@ import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_e
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/domain/use_cases/initialize_quiz_chunks_use_case.dart';
 
 class StudyExecutionBloc
     extends Bloc<StudyExecutionEvent, StudyExecutionState> {
@@ -84,6 +85,12 @@ class StudyExecutionBloc
     on<ReturnToIndexRequested>(_onReturnToIndexRequested);
     on<FileReattached>(_onFileReattached);
     on<FileReattachmentCancelled>(_onFileReattachmentCancelled);
+    on<ReorderStudyChunks>(_onReorderStudyChunks);
+    on<ToggleStudySelectionMode>(_onToggleStudySelectionMode);
+    on<ToggleChunkSelection>(_onToggleChunkSelection);
+    on<ClearSelectionRequested>(_onClearSelectionRequested);
+    on<GenerateAiStudyChunksRequested>(_onGenerateAiStudyChunksRequested);
+    on<DeleteSelectedChunksRequested>(_onDeleteSelectedChunksRequested);
   }
 
   static StudyExecutionState _initialProgress(
@@ -154,9 +161,9 @@ class StudyExecutionBloc
     // Check if file is expired (with 10-minute buffer)
     final bool isExpired =
         fileExpirationTime != null &&
-        DateTime.now().add(const Duration(minutes: 10)).isAfter(
-          fileExpirationTime,
-        );
+        DateTime.now()
+            .add(const Duration(minutes: 10))
+            .isAfter(fileExpirationTime);
 
     if ((fileUri == null || isExpired) && state.fileAttachment != null) {
       try {
@@ -227,7 +234,12 @@ class StudyExecutionBloc
   }
 
   StudyExecutionState _updateProgress(StudyExecutionState currentState) {
-    if (currentState.chunks.isEmpty) return currentState;
+    if (currentState.chunks.isEmpty) {
+      return currentState.copyWith(
+        progressPercentage: 0.0,
+        processedChunks: 0,
+      );
+    }
 
     int processedChunksCount = currentState.chunks
         .where((c) => c.status == StudyChunkState.completed)
@@ -320,5 +332,240 @@ class StudyExecutionBloc
     emit(state.copyWith(needsFileReattachment: false));
     // Trigger processing with fallback allowed
     add(StudyChunkRequested(state.currentChunkIndex, allowFallback: true));
+  }
+
+  void _onReorderStudyChunks(
+    ReorderStudyChunks event,
+    Emitter<StudyExecutionState> emit,
+  ) {
+    if (event.oldIndex == event.newIndex) return;
+
+    final List<StudyChunk> newChunks = List.from(state.chunks);
+    final Set<int> selectedIndices = state.selectedIndices;
+
+    // Batch Reorder: If the dragged item is selected, move ALL selected items together.
+    if (selectedIndices.contains(event.oldIndex)) {
+      // 1. Collect all selected items in their original order
+      final List<MapEntry<int, StudyChunk>> itemsToMove = [];
+      final List<int> sortedOldIndices = selectedIndices.toList()..sort();
+
+      // 2. Remove all selected items from the list (from end to start to maintain indices)
+      for (final idx in sortedOldIndices.reversed) {
+        itemsToMove.insert(0, MapEntry(idx, newChunks.removeAt(idx)));
+      }
+
+      // 3. Calculate the new insertion index after removals
+      // event.newIndex is the position in the ORIGINAL list.
+      // We need to count how many selected items were BEFORE the original newIndex.
+      int insertionIndex = event.newIndex;
+      int selectedBeforeNewIndex = 0;
+      for (final idx in sortedOldIndices) {
+        if (idx < event.newIndex) {
+          selectedBeforeNewIndex++;
+        }
+      }
+      insertionIndex -= selectedBeforeNewIndex;
+
+      // Ensure index is within bounds
+      if (insertionIndex < 0) insertionIndex = 0;
+      if (insertionIndex > newChunks.length) insertionIndex = newChunks.length;
+
+      // 4. Insert all selected items at the new position
+      for (int i = 0; i < itemsToMove.length; i++) {
+        newChunks.insert(insertionIndex + i, itemsToMove[i].value);
+      }
+
+      // 5. Update selection indices to the new consecutive range
+      final Set<int> newSelectedIndices = {};
+      for (int i = 0; i < itemsToMove.length; i++) {
+        newSelectedIndices.add(insertionIndex + i);
+      }
+
+      emit(
+        state.copyWith(
+          chunks: _reindexChunks(newChunks),
+          selectedIndices: newSelectedIndices,
+        ),
+      );
+      return;
+    }
+
+    // Single Reorder: Standard behavior when dragging an unselected item
+    int newIdx = event.newIndex;
+    if (event.oldIndex < event.newIndex) {
+      newIdx -= 1;
+    }
+    final chunk = newChunks.removeAt(event.oldIndex);
+    newChunks.insert(newIdx, chunk);
+
+    // Update selected indices (none of which are the moved item)
+    final Set<int> newSelectedIndices = {};
+    for (final index in state.selectedIndices) {
+      if (index > event.oldIndex && index <= newIdx) {
+        newSelectedIndices.add(index - 1);
+      } else if (index < event.oldIndex && index >= newIdx) {
+        newSelectedIndices.add(index + 1);
+      } else {
+        newSelectedIndices.add(index);
+      }
+    }
+
+    emit(
+      state.copyWith(
+        chunks: _reindexChunks(newChunks),
+        selectedIndices: newSelectedIndices,
+      ),
+    );
+  }
+
+  List<StudyChunk> _reindexChunks(List<StudyChunk> chunks) {
+    final List<StudyChunk> reindexed = [];
+    for (int i = 0; i < chunks.length; i++) {
+      reindexed.add(chunks[i].copyWith(chunkIndex: i));
+    }
+    return reindexed;
+  }
+
+  void _onToggleStudySelectionMode(
+    ToggleStudySelectionMode event,
+    Emitter<StudyExecutionState> emit,
+  ) {
+    if (state.isSelectionMode) {
+      // If turning off, clear selection
+      emit(state.copyWith(isSelectionMode: false, selectedIndices: {}));
+    } else {
+      // If turning on, clear reordering
+      emit(state.copyWith(isSelectionMode: true, selectedIndices: {}));
+    }
+  }
+
+  void _onToggleChunkSelection(
+    ToggleChunkSelection event,
+    Emitter<StudyExecutionState> emit,
+  ) {
+    final newSelectedIndices = Set<int>.from(state.selectedIndices);
+    if (newSelectedIndices.contains(event.index)) {
+      newSelectedIndices.remove(event.index);
+    } else {
+      newSelectedIndices.add(event.index);
+    }
+
+    emit(state.copyWith(selectedIndices: newSelectedIndices));
+  }
+
+  void _onClearSelectionRequested(
+    ClearSelectionRequested event,
+    Emitter<StudyExecutionState> emit,
+  ) {
+    emit(state.copyWith(isSelectionMode: false, selectedIndices: {}));
+  }
+
+  Future<void> _onGenerateAiStudyChunksRequested(
+    GenerateAiStudyChunksRequested event,
+    Emitter<StudyExecutionState> emit,
+  ) async {
+    emit(state.copyWith(isLoading: true, error: null));
+
+    try {
+      final initializeUseCase = InitializeQuizChunksUseCase(
+        aiService: event.config.preferredService,
+      );
+      final documentId = 'study_${DateTime.now().millisecondsSinceEpoch}';
+
+      List<StudyChunk> generatedChunks = [];
+
+      if (event.config.hasFile) {
+        final result = await initializeUseCase.generateChunksOnly(
+          file: event.config.file!,
+          documentId: documentId,
+          localizations: _localizations,
+          extraContext:
+              '${event.quizContext}\n\nAdditional Instructions: ${event.config.content}',
+          language: event.config.language,
+        );
+        generatedChunks = result['chunks'] as List<StudyChunk>;
+      } else {
+        final result = await initializeUseCase.generateChunksFromText(
+          content:
+              '${event.quizContext}\n\nUser Prompt: ${event.config.content}',
+          generationMode: event.config.generationMode,
+          documentId: documentId,
+          localizations: _localizations,
+          language: event.config.language,
+        );
+        generatedChunks = result['chunks'] as List<StudyChunk>;
+      }
+
+      // Append and re-index
+      final int startIndex = state.chunks.length;
+      final List<StudyChunk> appendedChunks = List.from(state.chunks);
+      for (int i = 0; i < generatedChunks.length; i++) {
+        appendedChunks.add(
+          generatedChunks[i].copyWith(chunkIndex: startIndex + i),
+        );
+      }
+
+      final newState = _updateProgress(
+        state.copyWith(chunks: appendedChunks, isLoading: false),
+      );
+      emit(newState);
+
+      onProgressChanged?.call(
+        newState.progressPercentage,
+        newState.processedChunks,
+        newState.chunks,
+        newState.fileUri,
+        newState.fileExpirationTime,
+      );
+    } catch (e) {
+      emit(state.copyWith(isLoading: false, error: e.toString()));
+    }
+  }
+
+  void _onDeleteSelectedChunksRequested(
+    DeleteSelectedChunksRequested event,
+    Emitter<StudyExecutionState> emit,
+  ) {
+    if (state.selectedIndices.isEmpty) return;
+
+    final updatedChunks = List<StudyChunk>.from(state.chunks);
+    final indicesToDelete = state.selectedIndices.toList()
+      ..sort((a, b) => b.compareTo(a));
+
+    for (final index in indicesToDelete) {
+      updatedChunks.removeAt(index);
+    }
+
+    // Re-index remaining chunks
+    for (int i = 0; i < updatedChunks.length; i++) {
+      updatedChunks[i] = updatedChunks[i].copyWith(chunkIndex: i);
+    }
+
+    // Adjust currentChunkIndex if needed
+    int newCurrentIndex = state.currentChunkIndex;
+    if (updatedChunks.isEmpty) {
+      newCurrentIndex = 0;
+    } else if (newCurrentIndex >= updatedChunks.length) {
+      newCurrentIndex = updatedChunks.length - 1;
+    }
+
+    final newState = _updateProgress(
+      state.copyWith(
+        chunks: updatedChunks,
+        currentChunkIndex: newCurrentIndex,
+        isSelectionMode: updatedChunks.isNotEmpty,
+        selectedIndices: {},
+      ),
+    );
+    emit(newState);
+
+    // Notify progress change for persistence
+    onProgressChanged?.call(
+      newState.progressPercentage,
+      newState.processedChunks,
+      newState.chunks,
+      newState.fileUri,
+      newState.fileExpirationTime,
+    );
   }
 }
