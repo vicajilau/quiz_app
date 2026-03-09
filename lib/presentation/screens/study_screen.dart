@@ -55,6 +55,7 @@ class StudyScreen extends StatelessWidget {
   final AiGenerationMode? generationMode;
   final String? originalText;
   final String? language;
+  final bool hideStartQuizButton;
 
   const StudyScreen({
     super.key,
@@ -68,6 +69,7 @@ class StudyScreen extends StatelessWidget {
     this.generationMode,
     this.originalText,
     this.language,
+    this.hideStartQuizButton = false,
   });
 
   @override
@@ -106,6 +108,7 @@ class StudyScreen extends StatelessWidget {
         quizFile: quizFile,
         generationMode: generationMode,
         originalText: originalText,
+        hideStartQuizButton: hideStartQuizButton,
       ),
     );
   }
@@ -117,11 +120,13 @@ class StudyScreenView extends StatefulWidget {
     required this.quizFile,
     this.generationMode,
     this.originalText,
+    this.hideStartQuizButton = false,
   });
 
   final QuizFile? quizFile;
   final AiGenerationMode? generationMode;
   final String? originalText;
+  final bool hideStartQuizButton;
 
   @override
   State<StudyScreenView> createState() => _StudyScreenViewState();
@@ -272,6 +277,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
           quizFile: widget.quizFile,
           generationMode: widget.generationMode,
           originalText: widget.originalText,
+          hideStartQuizButton: widget.hideStartQuizButton,
           onSave: _handleSave,
           onImport: () => _handleFileReattachment(context),
           onAddChunk: () async {
