@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 
 /// Extensions for String manipulation and formatting
-extension StringExtensions on String {
+extension StringExtension on String {
   /// Capitalizes the first character of the string and makes the rest lowercase
   String capitalize() {
     if (isEmpty) return this;
