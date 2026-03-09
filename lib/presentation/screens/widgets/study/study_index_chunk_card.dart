@@ -49,6 +49,7 @@ class StudyIndexChunkCard extends StatefulWidget {
 
 class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
   bool _expanded = false;
+  bool _exceedsMaxLines = false;
 
   @override
   Widget build(BuildContext context) {
@@ -186,31 +187,61 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
                 chunk.aiSummary != null &&
                 chunk.aiSummary!.isNotEmpty) ...[
               const SizedBox(height: 10),
-              Text(
-                chunk.aiSummary!,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.normal,
-                  color: summaryColor,
-                  height: 1.45,
-                ),
-                maxLines: _expanded ? null : 3,
-                overflow: _expanded ? null : TextOverflow.ellipsis,
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final textSpan = TextSpan(
+                    text: chunk.aiSummary!,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.normal,
+                      color: summaryColor,
+                      height: 1.45,
+                    ),
+                  );
+                  final tp = TextPainter(
+                    text: textSpan,
+                    maxLines: 3,
+                    textDirection: TextDirection.ltr,
+                  )..layout(maxWidth: constraints.maxWidth);
+                  final exceedsMaxLines = tp.didExceedMaxLines;
+
+                  if (exceedsMaxLines != _exceedsMaxLines) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      if (mounted) {
+                        setState(() => _exceedsMaxLines = exceedsMaxLines);
+                      }
+                    });
+                  }
+
+                  return Text(
+                    chunk.aiSummary!,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.normal,
+                      color: summaryColor,
+                      height: 1.45,
+                    ),
+                    maxLines: _expanded ? null : 3,
+                    overflow: _expanded ? null : TextOverflow.ellipsis,
+                  );
+                },
               ),
-              const SizedBox(height: 4),
-              GestureDetector(
-                onTap: () => setState(() => _expanded = !_expanded),
-                child: Text(
-                  _expanded
-                      ? localizations.showLessLabel
-                      : localizations.showMoreLabel,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: AppTheme.primaryColor,
+              if (_exceedsMaxLines) ...[
+                const SizedBox(height: 4),
+                GestureDetector(
+                  onTap: () => setState(() => _expanded = !_expanded),
+                  child: Text(
+                    _expanded
+                        ? localizations.showLessLabel
+                        : localizations.showMoreLabel,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: AppTheme.primaryColor,
+                    ),
                   ),
                 ),
-              ),
+              ],
             ],
           ],
         ),
