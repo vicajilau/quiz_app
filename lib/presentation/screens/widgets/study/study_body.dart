@@ -17,7 +17,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
+import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
@@ -221,6 +223,24 @@ class _StudyBodyState extends State<StudyBody>
                       );
                       if (isMobile) _closeSidebar();
                     },
+                    onChunkDownload: (index) async {
+                      final isAiAvailable =
+                          await ServiceLocator.getIt<ConfigurationService>()
+                              .getIsAiAvailable();
+                      if (!isAiAvailable) {
+                        if (context.mounted) {
+                          context.presentSnackBar(
+                            AppLocalizations.of(context)!.aiApiKeyRequired,
+                          );
+                        }
+                        return;
+                      }
+                      if (context.mounted) {
+                        context.read<StudyExecutionBloc>().add(
+                          DownloadStudyChunkRequested(index),
+                        );
+                      }
+                    },
                   );
 
                   final mainContent = Stack(
@@ -278,7 +298,7 @@ class _StudyBodyState extends State<StudyBody>
                       ),
                       if (!_isSidebarOpen)
                         Positioned(
-                          top: 16,
+                          top: MediaQuery.of(context).padding.top + 12,
                           left: 12,
                           child: _SidebarOpenButton(
                             isDark: isDark,
