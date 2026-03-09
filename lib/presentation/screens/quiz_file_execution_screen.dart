@@ -50,11 +50,13 @@ class QuizFileExecutionScreen extends StatefulWidget {
 class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
   bool _randomizeAnswers = false;
   bool _isReplacing = false;
+  Future<List<Question>>? _questionsFuture;
 
   @override
   void initState() {
     super.initState();
     _loadQuizSettings();
+    _questionsFuture = _prepareQuizQuestions();
   }
 
   Future<void> _loadQuizSettings() async {
@@ -79,7 +81,7 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return FutureBuilder(
-      future: _prepareQuizQuestions(),
+      future: _questionsFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(
