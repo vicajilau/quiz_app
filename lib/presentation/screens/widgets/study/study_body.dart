@@ -41,7 +41,8 @@ class StudyBody extends StatefulWidget {
   State<StudyBody> createState() => _StudyBodyState();
 }
 
-class _StudyBodyState extends State<StudyBody> with SingleTickerProviderStateMixin {
+class _StudyBodyState extends State<StudyBody>
+    with SingleTickerProviderStateMixin {
   bool _isSidebarOpen = true;
   bool _isSidebarMounted = true;
 
@@ -99,8 +100,7 @@ class _StudyBodyState extends State<StudyBody> with SingleTickerProviderStateMix
       listeners: [
         BlocListener<StudyExecutionBloc, StudyExecutionState>(
           listenWhen: (previous, current) =>
-              !previous.needsFileReattachment &&
-              current.needsFileReattachment,
+              !previous.needsFileReattachment && current.needsFileReattachment,
           listener: (context, state) {
             widget.onHandleFileReattachment(context);
           },
@@ -121,8 +121,7 @@ class _StudyBodyState extends State<StudyBody> with SingleTickerProviderStateMix
               builder: (dialogContext) => AlertDialog(
                 title: Text(localizations.studyScreenError),
                 content: Text(
-                  currentChunk.errorMessage ??
-                      localizations.studyScreenError,
+                  currentChunk.errorMessage ?? localizations.studyScreenError,
                 ),
                 actions: [
                   TextButton(
@@ -149,201 +148,191 @@ class _StudyBodyState extends State<StudyBody> with SingleTickerProviderStateMix
       child: Stack(
         children: [
           BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-              builder: (context, state) {
-                if (state.isLoading && state.chunks.isEmpty) {
-                  return const Center(child: CircularProgressIndicator());
-                }
+            builder: (context, state) {
+              if (state.isLoading && state.chunks.isEmpty) {
+                return const Center(child: CircularProgressIndicator());
+              }
 
-                if (state.isIndexMode) {
-                  return StudyIndexView(
-                    state: state,
-                    localizations: localizations,
-                    onAddChunk: () async {
-                      final result = await showDialog<Map<String, String>>(
-                        context: context,
-                        builder: (context) => AddEditChunkDialog(
-                          localizations: localizations,
+              if (state.isIndexMode) {
+                return StudyIndexView(
+                  state: state,
+                  localizations: localizations,
+                  onAddChunk: () async {
+                    final result = await showDialog<Map<String, String>>(
+                      context: context,
+                      builder: (context) =>
+                          AddEditChunkDialog(localizations: localizations),
+                    );
+
+                    if (result != null && context.mounted) {
+                      context.read<StudyExecutionBloc>().add(
+                        AddStudyChunkRequested(
+                          title: result['title'] ?? '',
+                          content: result['text'] ?? '',
                         ),
                       );
-
-                      if (result != null && context.mounted) {
-                        context.read<StudyExecutionBloc>().add(
-                          AddStudyChunkRequested(
-                            title: result['title'] ?? '',
-                            content: result['text'] ?? '',
-                          ),
-                        );
-                      }
-                    },
-                    onSave: widget.onSave,
-                    onImport: () => widget.onHandleFileReattachment(context),
-                  );
-                }
-
-                final currentChunk = state.currentChunk;
-                if (currentChunk == null) {
-                  return Center(
-                    child: Text(localizations.studyScreenNoSlidesAvailable),
-                  );
-                }
-
-                if (currentChunk.status == StudyChunkState.processing) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const CircularProgressIndicator(),
-                        const SizedBox(height: 16),
-                        Text(localizations.studyScreenGenerating),
-                      ],
-                    ),
-                  );
-                }
-
-                return LayoutBuilder(
-                  builder: (context, constraints) {
-                    final isMobile = context.isMobile;
-
-                    // Sync mobile animation state on resize
-                    if (!isMobile && _isSidebarOpen) {
-                      _mobileSidebarAnimController.value = 0.0;
-                    } else if (isMobile && _isSidebarOpen) {
-                      _mobileSidebarAnimController.value = 1.0;
                     }
-
-                    final sidebarPanel = StudySectionsSidebar(
-                      chunks: state.chunks,
-                      currentChunkIndex: state.currentChunkIndex,
-                      localizations: localizations,
-                      isFullScreen: isMobile,
-                      onClose: _closeSidebar,
-                      onChunkSelected: (index) {
-                        context.read<StudyExecutionBloc>().add(
-                          StudyChunkRequested(index),
-                        );
-                        if (isMobile) _closeSidebar();
-                      },
-                    );
-
-                    final mainContent = Stack(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(
-                            _isSidebarOpen ? 16.0 : 56.0,
-                            MediaQuery.of(context).padding.top + 72 + 16.0,
-                            16.0,
-                            16.0,
-                          ),
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child:
-                                    currentChunk.status ==
-                                        StudyChunkState.error
-                                    ? const SizedBox.shrink()
-                                    : (currentChunk.pages.isNotEmpty
-                                          ? ListView.builder(
-                                              itemCount:
-                                                  currentChunk.pages.length,
-                                              itemBuilder: (context, index) {
-                                                final page = currentChunk
-                                                    .pages[index];
-                                                return Card(
-                                                  margin:
-                                                      const EdgeInsets.only(
-                                                        bottom: 16,
-                                                      ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                          16,
-                                                        ),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: page
-                                                          .uiElements
-                                                          .map((element) {
-                                                            return StudyComponentBuilder(
-                                                              element:
-                                                                  element,
-                                                            );
-                                                          })
-                                                          .toList(),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            )
-                                          : Center(
-                                              child: Text(
-                                                localizations
-                                                    .studyScreenNoSlidesGenerated,
-                                              ),
-                                            )),
-                              ),
-                            ],
-                          ),
-                        ),
-                          Positioned(
-                            top: MediaQuery.of(context).padding.top + 72 + 12,
-                            left: 12,
-                            child: _SidebarOpenButton(
-                              isDark: isDark,
-                              onTap: _openSidebar,
-                            ),
-                          ),
-                      ],
-                    );
-
-                    if (!isMobile) {
-                      return Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          AnimatedContainer(
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.linear,
-                            width: _isSidebarOpen ? 280 : 0,
-                            clipBehavior: Clip.hardEdge,
-                            decoration: const BoxDecoration(),
-                            child: OverflowBox(
-                              alignment: Alignment.topRight,
-                              minWidth: 280,
-                              maxWidth: 280,
-                              child: sidebarPanel,
-                            ),
-                          ),
-                          Expanded(child: mainContent),
-                        ],
-                      );
-                    }
-
-                    // Narrow layout: Stack with slide overlay
-                    return Stack(
-                      children: [
-                        mainContent,
-                        if (_isSidebarMounted)
-                          Positioned.fill(
-                            child: IgnorePointer(
-                              ignoring: !_isSidebarOpen,
-                              child: SlideTransition(
-                                position: _mobileSidebarSlide,
-                                child: Material(
-                                  color: isDark
-                                      ? AppTheme.zinc800
-                                      : Colors.white,
-                                  child: sidebarPanel,
-                                ),
-                              ),
-                            ),
-                          ),
-                      ],
-                    );
                   },
+                  onSave: widget.onSave,
+                  onImport: () => widget.onHandleFileReattachment(context),
                 );
-              },
-            ),
+              }
+
+              final currentChunk = state.currentChunk;
+              if (currentChunk == null) {
+                return Center(
+                  child: Text(localizations.studyScreenNoSlidesAvailable),
+                );
+              }
+
+              if (currentChunk.status == StudyChunkState.processing) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const CircularProgressIndicator(),
+                      const SizedBox(height: 16),
+                      Text(localizations.studyScreenGenerating),
+                    ],
+                  ),
+                );
+              }
+
+              return LayoutBuilder(
+                builder: (context, constraints) {
+                  final isMobile = context.isMobile;
+
+                  // Sync mobile animation state on resize
+                  if (!isMobile && _isSidebarOpen) {
+                    _mobileSidebarAnimController.value = 0.0;
+                  } else if (isMobile && _isSidebarOpen) {
+                    _mobileSidebarAnimController.value = 1.0;
+                  }
+
+                  final sidebarPanel = StudySectionsSidebar(
+                    chunks: state.chunks,
+                    currentChunkIndex: state.currentChunkIndex,
+                    localizations: localizations,
+                    isFullScreen: isMobile,
+                    onClose: _closeSidebar,
+                    onChunkSelected: (index) {
+                      context.read<StudyExecutionBloc>().add(
+                        StudyChunkRequested(index),
+                      );
+                      if (isMobile) _closeSidebar();
+                    },
+                  );
+
+                  final mainContent = Stack(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: _isSidebarOpen ? 16.0 : 56.0,
+                        ),
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child:
+                                  currentChunk.status == StudyChunkState.error
+                                  ? const SizedBox.shrink()
+                                  : (currentChunk.pages.isNotEmpty
+                                        ? ListView.builder(
+                                            itemCount:
+                                                currentChunk.pages.length,
+                                            itemBuilder: (context, index) {
+                                              final page =
+                                                  currentChunk.pages[index];
+                                              return Card(
+                                                margin: const EdgeInsets.only(
+                                                  bottom: 16,
+                                                ),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                    16,
+                                                  ),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: page.uiElements.map((
+                                                      element,
+                                                    ) {
+                                                      return StudyComponentBuilder(
+                                                        element: element,
+                                                      );
+                                                    }).toList(),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          )
+                                        : Center(
+                                            child: Text(
+                                              localizations
+                                                  .studyScreenNoSlidesGenerated,
+                                            ),
+                                          )),
+                            ),
+                          ],
+                        ),
+                      ),
+                      if (!_isSidebarOpen)
+                        Positioned(
+                          top: 16,
+                          left: 12,
+                          child: _SidebarOpenButton(
+                            isDark: isDark,
+                            onTap: _openSidebar,
+                          ),
+                        ),
+                    ],
+                  );
+
+                  if (!isMobile) {
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.linear,
+                          width: _isSidebarOpen ? 280 : 0,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: const BoxDecoration(),
+                          child: OverflowBox(
+                            alignment: Alignment.topRight,
+                            minWidth: 280,
+                            maxWidth: 280,
+                            child: sidebarPanel,
+                          ),
+                        ),
+                        Expanded(child: mainContent),
+                      ],
+                    );
+                  }
+
+                  // Narrow layout: Stack with slide overlay
+                  return Stack(
+                    children: [
+                      mainContent,
+                      if (_isSidebarMounted)
+                        Positioned.fill(
+                          child: IgnorePointer(
+                            ignoring: !_isSidebarOpen,
+                            child: SlideTransition(
+                              position: _mobileSidebarSlide,
+                              child: Material(
+                                color: isDark ? AppTheme.zinc800 : Colors.white,
+                                child: sidebarPanel,
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  );
+                },
+              );
+            },
+          ),
           BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
             builder: (context, state) {
               if (!state.isLoading || state.chunks.isEmpty) {

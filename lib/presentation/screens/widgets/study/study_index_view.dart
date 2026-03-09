@@ -71,7 +71,7 @@ class StudyIndexView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        top: MediaQuery.of(context).padding.top + 72,
+        top: MediaQuery.of(context).padding.top,
         bottom: MediaQuery.of(context).padding.bottom,
       ),
       child: LayoutBuilder(
@@ -119,25 +119,25 @@ class StudyIndexView extends StatelessWidget {
               supportsReordering: true,
               onTap: () {
                 if (state.isSelectionMode) {
-                  context
-                      .read<StudyExecutionBloc>()
-                      .add(ToggleChunkSelection(index));
+                  context.read<StudyExecutionBloc>().add(
+                    ToggleChunkSelection(index),
+                  );
                 } else {
                   _onChunkTap(context, index);
                 }
               },
               onLongPress: () {
-                context
-                    .read<StudyExecutionBloc>()
-                    .add(ToggleChunkSelection(index));
+                context.read<StudyExecutionBloc>().add(
+                  ToggleChunkSelection(index),
+                );
               },
             ),
           );
         },
         onReorder: (oldIndex, newIndex) {
           context.read<StudyExecutionBloc>().add(
-                ReorderStudyChunks(oldIndex, newIndex),
-              );
+            ReorderStudyChunks(oldIndex, newIndex),
+          );
         },
       );
     }
@@ -168,9 +168,9 @@ class StudyIndexView extends StatelessWidget {
                   Text(
                     localizations.studyScreenNoSlidesAvailable,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: Colors.grey,
-                        ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyLarge?.copyWith(color: Colors.grey),
                   ),
                 ],
               ),
@@ -192,17 +192,17 @@ class StudyIndexView extends StatelessWidget {
                 supportsReordering: false, // In standard ListView branch
                 onTap: () {
                   if (state.isSelectionMode) {
-                    context
-                        .read<StudyExecutionBloc>()
-                        .add(ToggleChunkSelection(index));
+                    context.read<StudyExecutionBloc>().add(
+                      ToggleChunkSelection(index),
+                    );
                   } else {
                     _onChunkTap(context, index);
                   }
                 },
                 onLongPress: () {
-                  context
-                      .read<StudyExecutionBloc>()
-                      .add(ToggleChunkSelection(index));
+                  context.read<StudyExecutionBloc>().add(
+                    ToggleChunkSelection(index),
+                  );
                 },
               ),
             );
@@ -256,10 +256,8 @@ class StudyIndexView extends StatelessWidget {
                         Text(
                           localizations.studyScreenNoSlidesAvailable,
                           textAlign: TextAlign.center,
-                          style:
-                              Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                    color: Colors.grey,
-                                  ),
+                          style: Theme.of(context).textTheme.headlineSmall
+                              ?.copyWith(color: Colors.grey),
                         ),
                       ],
                     ),
@@ -287,17 +285,17 @@ class StudyIndexView extends StatelessWidget {
                                     false, // Desktop doesn't support reorder yet
                                 onTap: () {
                                   if (state.isSelectionMode) {
-                                    context
-                                        .read<StudyExecutionBloc>()
-                                        .add(ToggleChunkSelection(i));
+                                    context.read<StudyExecutionBloc>().add(
+                                      ToggleChunkSelection(i),
+                                    );
                                   } else {
                                     _onChunkTap(context, i);
                                   }
                                 },
                                 onLongPress: () {
-                                  context
-                                      .read<StudyExecutionBloc>()
-                                      .add(ToggleChunkSelection(i));
+                                  context.read<StudyExecutionBloc>().add(
+                                    ToggleChunkSelection(i),
+                                  );
                                 },
                               ),
                             ),
@@ -323,17 +321,17 @@ class StudyIndexView extends StatelessWidget {
                                     false, // Desktop doesn't support reorder yet
                                 onTap: () {
                                   if (state.isSelectionMode) {
-                                    context
-                                        .read<StudyExecutionBloc>()
-                                        .add(ToggleChunkSelection(i));
+                                    context.read<StudyExecutionBloc>().add(
+                                      ToggleChunkSelection(i),
+                                    );
                                   } else {
                                     _onChunkTap(context, i);
                                   }
                                 },
                                 onLongPress: () {
-                                  context
-                                      .read<StudyExecutionBloc>()
-                                      .add(ToggleChunkSelection(i));
+                                  context.read<StudyExecutionBloc>().add(
+                                    ToggleChunkSelection(i),
+                                  );
                                 },
                               ),
                             ),

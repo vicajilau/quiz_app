@@ -63,15 +63,17 @@ class StudySectionsSidebar extends StatelessWidget {
             Padding(
               padding: EdgeInsets.fromLTRB(
                 16,
-                isFullScreen
-                    ? 10
-                    : MediaQuery.of(context).padding.top + 72 + 10,
+                isFullScreen ? 10 : MediaQuery.of(context).padding.top + 10,
                 8,
                 12,
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.list, size: 18, color: AppTheme.primaryColor),
+                  const Icon(
+                    Icons.list,
+                    size: 18,
+                    color: AppTheme.primaryColor,
+                  ),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
@@ -86,7 +88,10 @@ class StudySectionsSidebar extends StatelessWidget {
                   ),
                   const SizedBox(width: 4),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 2,
+                    ),
                     decoration: BoxDecoration(
                       color: AppTheme.primaryColor.withValues(
                         alpha: isDark ? 0.125 : 0.063,
@@ -98,21 +103,20 @@ class StudySectionsSidebar extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w700,
-                        color: isDark ? AppTheme.zinc300 : AppTheme.primaryColor,
+                        color: isDark
+                            ? AppTheme.zinc300
+                            : AppTheme.primaryColor,
                       ),
                     ),
                   ),
                   const SizedBox(width: 4),
-                  _SidebarToggleButton(
-                    isDark: isDark,
-                    onTap: onClose,
-                  ),
+                  _SidebarToggleButton(isDark: isDark, onTap: onClose),
                 ],
               ),
             ),
             Expanded(
               child: ListView.builder(
-                padding: const EdgeInsets.fromLTRB(12, 0, 12, 120),
+                padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
                 itemCount: chunks.length,
                 itemBuilder: (context, index) {
                   final chunk = chunks[index];
@@ -142,10 +146,7 @@ class _SidebarToggleButton extends StatelessWidget {
   final bool isDark;
   final VoidCallback onTap;
 
-  const _SidebarToggleButton({
-    required this.isDark,
-    required this.onTap,
-  });
+  const _SidebarToggleButton({required this.isDark, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
