@@ -1166,61 +1166,77 @@
   "@aiGenerateButton": {
     "description": "Text for the generate questions button."
   },
-  "languageSpanish": "Español",
+  "languageSpanish": "الإسبانية",
   "@languageSpanish": {
-    "description": "Spanish language name."
+    "description": "اسم اللغة الإسبانية."
   },
-  "languageEnglish": "English",
+  "languageEnglish": "الإنجليزية",
   "@languageEnglish": {
-    "description": "English language name."
+    "description": "اسم اللغة الإنجليزية."
   },
-  "languageFrench": "Français",
+  "languageFrench": "الفرنسية",
   "@languageFrench": {
-    "description": "French language name."
+    "description": "اسم اللغة الفرنسية."
   },
-  "languageGerman": "Deutsch",
+  "languageGerman": "الألمانية",
   "@languageGerman": {
-    "description": "German language name."
+    "description": "اسم اللغة الألمانية."
   },
-  "languageGreek": "Ελληνικά",
+  "languageGreek": "اليونانية",
   "@languageGreek": {
-    "description": "Greek language name."
+    "description": "اسم اللغة اليونانية."
   },
-  "languageItalian": "Italiano",
+  "languageItalian": "الإيطالية",
   "@languageItalian": {
-    "description": "Italian language name."
+    "description": "اسم اللغة الإيطالية."
   },
-  "languagePortuguese": "Português",
+  "languagePortuguese": "البرتغالية",
   "@languagePortuguese": {
-    "description": "Portuguese language name."
+    "description": "اسم اللغة البرتغالية."
   },
-  "languageCatalan": "Català",
+  "languageCatalan": "الكتالونية",
   "@languageCatalan": {
-    "description": "Catalan language name."
+    "description": "اسم اللغة الكتالونية."
   },
-  "languageBasque": "Euskera",
+  "languageBasque": "الباسكية",
   "@languageBasque": {
-    "description": "Basque language name."
+    "description": "اسم اللغة الباسكية."
   },
-  "languageGalician": "Galego",
+  "languageGalician": "الغاليكية",
   "@languageGalician": {
-    "description": "Galician language name."
+    "description": "اسم اللغة الغاليكية."
   },
-  "languageHindi": "हिन्दी",
+  "languageHindi": "الهندية",
   "@languageHindi": {
-    "description": "Hindi language name."
+    "description": "اسم اللغة الهندية."
   },
-  "languageChinese": "中文",
+  "languageChinese": "الصينية",
   "@languageChinese": {
-    "description": "Chinese language name."
+    "description": "اسم اللغة الصينية."
   },
   "languageArabic": "العربية",
   "@languageArabic": {
-    "description": "Arabic language name."
+    "description": "اسم اللغة العربية."
   },
-  "languageJapanese": "日本語",
+  "languageJapanese": "اليابانية",
   "@languageJapanese": {
     "description": "اسم اللغة اليابانية."
+  },
+  "languageRussian": "الروسية",
+  "@languageRussian": {
+    "description": "اسم اللغة الروسية."
+  },
+  "languageGeorgian": "الجورجية",
+  "@languageGeorgian": {
+    "description": "اسم اللغة الجورجية."
+  },
+  "languageUkrainian": "الأوكرانية",
+  "@languageUkrainian": {
+    "description": "اسم اللغة الأوكرانية."
+  },
+  "languageKorean": "الكورية",
+  "@languageKorean": {
+    "description": "اسم اللغة الكورية."
   },
   "aiServicesLoading": "جاري تحميل خدمات الذكاء الاصطناعي...",
   "@aiServicesLoading": {
@@ -2179,5 +2195,9 @@
   "@studyComponentLimitations": {
     "description": "Header for the limitations section in a study component"
   },
-  "studyScreenDownloadChunk": "تنزيل"
+  "studyScreenDownloadChunk": "تنزيل",
+  "languageRussian": "Русский",
+  "languageGeorgian": "ქართული",
+  "languageUkrainian": "Українська",
+  "languageKorean": "한국어"
 }

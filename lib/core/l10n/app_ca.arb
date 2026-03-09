@@ -1185,31 +1185,31 @@
   "@aiGenerateButton": {
     "description": "Text pel botó generar preguntes."
   },
-  "languageSpanish": "Español",
+  "languageSpanish": "Castellà",
   "@languageSpanish": {
-    "description": "Nom de la llengua espanyola."
+    "description": "Nom de la llengua castellana."
   },
-  "languageEnglish": "English",
+  "languageEnglish": "Anglès",
   "@languageEnglish": {
     "description": "Nom de la llengua anglesa."
   },
-  "languageFrench": "Français",
+  "languageFrench": "Francès",
   "@languageFrench": {
     "description": "Nom de la llengua francesa."
   },
-  "languageGerman": "Deutsch",
+  "languageGerman": "Alemany",
   "@languageGerman": {
     "description": "Nom de la llengua alemanya."
   },
-  "languageGreek": "Ελληνικά",
+  "languageGreek": "Grec",
   "@languageGreek": {
     "description": "Nom de la llengua grega."
   },
-  "languageItalian": "Italiano",
+  "languageItalian": "Italià",
   "@languageItalian": {
     "description": "Nom de la llengua italiana."
   },
-  "languagePortuguese": "Português",
+  "languagePortuguese": "Portuguès",
   "@languagePortuguese": {
     "description": "Nom de la llengua portuguesa."
   },
@@ -1217,29 +1217,45 @@
   "@languageCatalan": {
     "description": "Nom de la llengua catalana."
   },
-  "languageBasque": "Euskera",
+  "languageBasque": "Èuscar",
   "@languageBasque": {
     "description": "Nom de la llengua basca."
   },
-  "languageGalician": "Galego",
+  "languageGalician": "Gallec",
   "@languageGalician": {
     "description": "Nom de la llengua gallega."
   },
-  "languageHindi": "हिन्दी",
+  "languageHindi": "Hindi",
   "@languageHindi": {
     "description": "Nom de la llengua hindi."
   },
-  "languageChinese": "中文",
+  "languageChinese": "Xinès",
   "@languageChinese": {
     "description": "Nom de la llengua xinesa."
   },
-  "languageArabic": "العربية",
+  "languageArabic": "Àrab",
   "@languageArabic": {
     "description": "Nom de la llengua àrab."
   },
-  "languageJapanese": "日本語",
+  "languageJapanese": "Japonès",
   "@languageJapanese": {
     "description": "Nom de la llengua japonesa."
+  },
+  "languageRussian": "Rus",
+  "@languageRussian": {
+    "description": "Nom de la llengua russa."
+  },
+  "languageGeorgian": "Georgià",
+  "@languageGeorgian": {
+    "description": "Nom de la llengua georgiana."
+  },
+  "languageUkrainian": "Ucraïnès",
+  "@languageUkrainian": {
+    "description": "Nom de la llengua ucraïnesa."
+  },
+  "languageKorean": "Coreà",
+  "@languageKorean": {
+    "description": "Nom de la llengua coreana."
   },
   "aiServicesLoading": "Carregant serveis IA...",
   "@aiServicesLoading": {
@@ -1924,5 +1940,9 @@
   "studyComponentNoItems": "Sense elements",
   "studyComponentAdvantages": "Avantatges",
   "studyComponentLimitations": "Limitacions",
-  "studyScreenDownloadChunk": "Descarregar"
+  "studyScreenDownloadChunk": "Descarregar",
+  "languageRussian": "Русский",
+  "languageGeorgian": "ქართული",
+  "languageUkrainian": "Українська",
+  "languageKorean": "한국어"
 }

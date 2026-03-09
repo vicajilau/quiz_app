@@ -1101,19 +1101,19 @@
   "@languageSpanish": {
     "description": "Nome da lingua española."
   },
-  "languageEnglish": "English",
+  "languageEnglish": "Inglés",
   "@languageEnglish": {
     "description": "Nome da lingua inglesa."
   },
-  "languageFrench": "Français",
+  "languageFrench": "Francés",
   "@languageFrench": {
     "description": "Nome da lingua francesa."
   },
-  "languageGerman": "Deutsch",
+  "languageGerman": "Alemán",
   "@languageGerman": {
     "description": "Nome da lingua alemá."
   },
-  "languageGreek": "Ελληνικά",
+  "languageGreek": "Grego",
   "@languageGreek": {
     "description": "Nome da lingua grega."
   },
@@ -1121,37 +1121,53 @@
   "@languageItalian": {
     "description": "Nome da lingua italiana."
   },
-  "languagePortuguese": "Português",
+  "languagePortuguese": "Portugués",
   "@languagePortuguese": {
     "description": "Nome da lingua portuguesa."
   },
-  "languageCatalan": "Català",
+  "languageCatalan": "Catalán",
   "@languageCatalan": {
     "description": "Nome da lingua catalá."
   },
-  "languageBasque": "Euskera",
+  "languageBasque": "Éuscaro",
   "@languageBasque": {
-    "description": "Nome da lingua basca."
+    "description": "Nome da lingua vasca."
   },
   "languageGalician": "Galego",
   "@languageGalician": {
     "description": "Nome da lingua galega."
   },
-  "languageHindi": "हिन्दी",
+  "languageHindi": "Hindi",
   "@languageHindi": {
     "description": "Nome da lingua hindi."
   },
-  "languageChinese": "中文",
+  "languageChinese": "Chinés",
   "@languageChinese": {
     "description": "Nome da lingua chinesa."
   },
-  "languageArabic": "العربية",
+  "languageArabic": "Árabe",
   "@languageArabic": {
     "description": "Nome da lingua árabe."
   },
-  "languageJapanese": "日本語",
+  "languageJapanese": "Xaponés",
   "@languageJapanese": {
     "description": "Nome da lingua xaponesa."
+  },
+  "languageRussian": "Ruso",
+  "@languageRussian": {
+    "description": "Nome da lingua rusa."
+  },
+  "languageGeorgian": "Xeorxiano",
+  "@languageGeorgian": {
+    "description": "Nome da lingua xeorxiana."
+  },
+  "languageUkrainian": "Ucraíno",
+  "@languageUkrainian": {
+    "description": "Nome da lingua ucraína."
+  },
+  "languageKorean": "Coreano",
+  "@languageKorean": {
+    "description": "Nome da lingua coreana."
   },
   "aiServicesLoading": "Cargando servizos IA...",
   "@aiServicesLoading": {
@@ -1822,5 +1838,9 @@
   "studyComponentNoItems": "Sen elementos",
   "studyComponentAdvantages": "Vantaxes",
   "studyComponentLimitations": "Limitacións",
-  "studyScreenDownloadChunk": "Descargar"
+  "studyScreenDownloadChunk": "Descargar",
+  "languageRussian": "Русский",
+  "languageGeorgian": "ქართული",
+  "languageUkrainian": "Українська",
+  "languageKorean": "한국어"
 }

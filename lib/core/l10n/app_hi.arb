@@ -1057,61 +1057,77 @@
   "@aiGenerateButton": {
     "description": "Text for the generate questions button."
   },
-  "languageSpanish": "Español",
+  "languageSpanish": "स्पेनिश",
   "@languageSpanish": {
-    "description": "Spanish language name."
+    "description": "स्पेनिश भाषा का नाम।"
   },
-  "languageEnglish": "English",
+  "languageEnglish": "अंग्रेज़ी",
   "@languageEnglish": {
-    "description": "English language name."
+    "description": "अंग्रेज़ी भाषा का नाम।"
   },
-  "languageFrench": "Français",
+  "languageFrench": "फ़्रेंच",
   "@languageFrench": {
-    "description": "French language name."
+    "description": "फ़्रेंच भाषा का नाम।"
   },
-  "languageGerman": "Deutsch",
+  "languageGerman": "जर्मन",
   "@languageGerman": {
-    "description": "German language name."
+    "description": "जर्मन भाषा का नाम।"
   },
-  "languageGreek": "Ελληνικά",
+  "languageGreek": "ग्रीक",
   "@languageGreek": {
-    "description": "Greek language name."
+    "description": "ग्रीक भाषा का नाम।"
   },
-  "languageItalian": "Italiano",
+  "languageItalian": "इतालवी",
   "@languageItalian": {
-    "description": "Italian language name."
+    "description": "इतालवी भाषा का नाम।"
   },
-  "languagePortuguese": "Português",
+  "languagePortuguese": "पुर्तगाली",
   "@languagePortuguese": {
-    "description": "Portuguese language name."
+    "description": "पुर्तगाली भाषा का नाम।"
   },
-  "languageCatalan": "Català",
+  "languageCatalan": "कैटलन",
   "@languageCatalan": {
-    "description": "Catalan language name."
+    "description": "कैटलन भाषा का नाम।"
   },
-  "languageBasque": "Euskera",
+  "languageBasque": "बास्क",
   "@languageBasque": {
-    "description": "Basque language name."
+    "description": "बास्क भाषा का नाम।"
   },
-  "languageGalician": "Galego",
+  "languageGalician": "गैलिशियाई",
   "@languageGalician": {
-    "description": "Galician language name."
+    "description": "गैलिशियाई भाषा का नाम।"
   },
   "languageHindi": "हिन्दी",
   "@languageHindi": {
-    "description": "Hindi language name."
+    "description": "हिन्दी भाषा का नाम।"
   },
-  "languageChinese": "中文",
+  "languageChinese": "चीनी",
   "@languageChinese": {
     "description": "चीनी भाषा का नाम।"
   },
-  "languageArabic": "العربية",
+  "languageArabic": "अरबी",
   "@languageArabic": {
     "description": "अरबी भाषा का नाम।"
   },
-  "languageJapanese": "日本語",
+  "languageJapanese": "जापानी",
   "@languageJapanese": {
     "description": "जापानी भाषा का नाम।"
+  },
+  "languageRussian": "रूसी",
+  "@languageRussian": {
+    "description": "रूसी भाषा का नाम।"
+  },
+  "languageGeorgian": "जॉर्जियाई",
+  "@languageGeorgian": {
+    "description": "जॉर्जियाई भाषा का नाम।"
+  },
+  "languageUkrainian": "यूक्रेनी",
+  "@languageUkrainian": {
+    "description": "यूक्रेनी भाषा का नाम।"
+  },
+  "languageKorean": "कोरियाई",
+  "@languageKorean": {
+    "description": "कोरियाई भाषा का नाम।"
   },
   "aiServicesLoading": "AI सेवाएं लोड हो रही हैं...",
   "@aiServicesLoading": {
@@ -1825,5 +1841,9 @@
   "studyComponentNoItems": "कोई आइटम नहीं",
   "studyComponentAdvantages": "लाभ",
   "studyComponentLimitations": "सीमाएं",
-  "studyScreenDownloadChunk": "डाउनलोड"
+  "studyScreenDownloadChunk": "डाउनलोड",
+  "languageRussian": "Русский",
+  "languageGeorgian": "ქართული",
+  "languageUkrainian": "Українська",
+  "languageKorean": "한국어"
 }
