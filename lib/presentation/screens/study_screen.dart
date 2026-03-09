@@ -128,7 +128,6 @@ class StudyScreenView extends StatefulWidget {
 }
 
 class _StudyScreenViewState extends State<StudyScreenView> {
-
   Future<bool> _confirmExit() async {
     final studyState = context.read<StudyExecutionBloc>().state;
     final fileToSave = _getCurrentQuizFile(studyState);
@@ -279,9 +278,8 @@ class _StudyScreenViewState extends State<StudyScreenView> {
             final localizations = AppLocalizations.of(context)!;
             final result = await showDialog<Map<String, String>>(
               context: context,
-              builder: (context) => AddEditChunkDialog(
-                localizations: localizations,
-              ),
+              builder: (context) =>
+                  AddEditChunkDialog(localizations: localizations),
             );
 
             if (result != null && context.mounted) {
@@ -312,9 +310,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
             }
           },
         ),
-        appBar: StudyAppBar(
-          onConfirmExit: _confirmExit,
-        ),
+        appBar: StudyAppBar(onConfirmExit: _confirmExit),
         body: StudyBody(
           onHandleFileReattachment: _handleFileReattachment,
           onSave: _handleSave,
