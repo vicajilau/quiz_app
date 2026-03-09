@@ -134,6 +134,7 @@ class StudyScreenView extends StatefulWidget {
 
 class _StudyScreenViewState extends State<StudyScreenView> {
   Future<bool> _confirmExit() async {
+    if (widget.hideStartQuizButton) return true;
     final studyState = context.read<StudyExecutionBloc>().state;
     final fileToSave = _getCurrentQuizFile(studyState);
     final checkChanges = ServiceLocator.getIt<CheckFileChangesUseCase>();
