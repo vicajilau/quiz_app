@@ -298,19 +298,77 @@
   "aiInfoDescription": "• Το AI θα αναλύσει το περιεχόμενο και θα δημιουργήσει σχετικές ερωτήσεις\n• Εάν γράψεις λιγότερες από 10 λέξεις, θα μπεις στη λειτουργία Θέμα όπου θα γίνουν ερωτήσεις για αυτά τα συγκεκριμένα θέματα\n• Με περισσότερες από 10 λέξεις, θα μπεις στη λειτουργία Περιεχόμενο που θα κάνει ερωτήσεις για το ίδιο κείμενο (περισσότερες λέξεις = μεγαλύτερη ακρίβεια)\n• Μπορείτε να συμπεριλάβετε κείμενο, ορισμούς, εξηγήσεις ή οποιοδήποτε εκπαιδευτικό υλικό\n• Οι ερωτήσεις θα περιλαμβάνουν επιλογές απάντησης και εξηγήσεις\n• Η διαδικασία μπορεί να διαρκέσει μερικά δευτερόλεπτα",
   "aiGenerateButton": "Δημιουργία Ερωτήσεων",
   "languageSpanish": "Ισπανικά",
+  "@languageSpanish": {
+    "description": "Όνομα ισπανικής γλώσσας."
+  },
   "languageEnglish": "Αγγλικά",
+  "@languageEnglish": {
+    "description": "Όνομα αγγλικής γλώσσας."
+  },
   "languageFrench": "Γαλλικά",
+  "@languageFrench": {
+    "description": "Όνομα γαλλικής γλώσσας."
+  },
   "languageGerman": "Γερμανικά",
+  "@languageGerman": {
+    "description": "Όνομα γερμανικής γλώσσας."
+  },
   "languageGreek": "Ελληνικά",
+  "@languageGreek": {
+    "description": "Όνομα ελληνικής γλώσσας."
+  },
   "languageItalian": "Ιταλικά",
+  "@languageItalian": {
+    "description": "Όνομα ιταλικής γλώσσας."
+  },
   "languagePortuguese": "Πορτογαλικά",
+  "@languagePortuguese": {
+    "description": "Όνομα πορτογαλικής γλώσσας."
+  },
   "languageCatalan": "Καταλανικά",
+  "@languageCatalan": {
+    "description": "Όνομα καταλανικής γλώσσας."
+  },
   "languageBasque": "Βασκικά",
+  "@languageBasque": {
+    "description": "Όνομα βασκικής γλώσσας."
+  },
   "languageGalician": "Γαλικιανά",
+  "@languageGalician": {
+    "description": "Όνομα γαλικιανής γλώσσας."
+  },
   "languageHindi": "Χίντι",
+  "@languageHindi": {
+    "description": "Όνομα ινδικής γλώσσας."
+  },
   "languageChinese": "Κινεζικά",
+  "@languageChinese": {
+    "description": "Όνομα κινεζικής γλώσσας."
+  },
   "languageArabic": "Αραβικά",
+  "@languageArabic": {
+    "description": "Όνομα αραβικής γλώσσας."
+  },
   "languageJapanese": "Ιαπωνικά",
+  "@languageJapanese": {
+    "description": "Όνομα ιαπωνικής γλώσσας."
+  },
+  "languageRussian": "Ρωσικά",
+  "@languageRussian": {
+    "description": "Όνομα ρωσικής γλώσσας."
+  },
+  "languageGeorgian": "Γεωργιανά",
+  "@languageGeorgian": {
+    "description": "Όνομα γεωργιανής γλώσσας."
+  },
+  "languageUkrainian": "Ουκρανικά",
+  "@languageUkrainian": {
+    "description": "Όνομα ουκρανικής γλώσσας."
+  },
+  "languageKorean": "Κορεατικά",
+  "@languageKorean": {
+    "description": "Όνομα κορεατικής γλώσσας."
+  },
   "aiServicesLoading": "Φόρτωση υπηρεσιών AI...",
   "aiServicesNotConfigured": "Δεν έχουν ρυθμιστεί υπηρεσίες AI",
   "aiGeneratedQuestions": "Δημιουργήθηκε από AI",
@@ -780,5 +838,9 @@
   "studyComponentNoItems": "Δεν υπάρχουν στοιχεία",
   "studyComponentAdvantages": "Πλεονεκτήματα",
   "studyComponentLimitations": "Περιορισμοί",
-  "studyScreenDownloadChunk": "Λήψη"
+  "studyScreenDownloadChunk": "Λήψη",
+  "languageRussian": "Русский",
+  "languageGeorgian": "ქართული",
+  "languageUkrainian": "Українська",
+  "languageKorean": "한국어"
 }

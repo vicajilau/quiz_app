@@ -1059,23 +1059,23 @@
   "@aiGenerateButton": {
     "description": "Texto para o botão gerar perguntas."
   },
-  "languageSpanish": "Español",
+  "languageSpanish": "Espanhol",
   "@languageSpanish": {
     "description": "Nome da língua espanhola."
   },
-  "languageEnglish": "English",
+  "languageEnglish": "Inglês",
   "@languageEnglish": {
     "description": "Nome da língua inglesa."
   },
-  "languageFrench": "Français",
+  "languageFrench": "Francês",
   "@languageFrench": {
     "description": "Nome da língua francesa."
   },
-  "languageGerman": "Deutsch",
+  "languageGerman": "Alemão",
   "@languageGerman": {
     "description": "Nome da língua alemã."
   },
-  "languageGreek": "Ελληνικά",
+  "languageGreek": "Grego",
   "@languageGreek": {
     "description": "Nome da língua grega."
   },
@@ -1087,11 +1087,11 @@
   "@languagePortuguese": {
     "description": "Nome da língua portuguesa."
   },
-  "languageCatalan": "Català",
+  "languageCatalan": "Catalão",
   "@languageCatalan": {
     "description": "Nome da língua catalã."
   },
-  "languageBasque": "Euskera",
+  "languageBasque": "Basco",
   "@languageBasque": {
     "description": "Nome da língua basca."
   },
@@ -1099,21 +1099,37 @@
   "@languageGalician": {
     "description": "Nome da língua galega."
   },
-  "languageHindi": "हिन्दी",
+  "languageHindi": "Hindi",
   "@languageHindi": {
     "description": "Nome da língua hindi."
   },
-  "languageChinese": "中文",
+  "languageChinese": "Chinês",
   "@languageChinese": {
     "description": "Nome da língua chinesa."
   },
-  "languageArabic": "العربية",
+  "languageArabic": "Árabe",
   "@languageArabic": {
     "description": "Nome da língua árabe."
   },
-  "languageJapanese": "日本語",
+  "languageJapanese": "Japonês",
   "@languageJapanese": {
     "description": "Nome da língua japonesa."
+  },
+  "languageRussian": "Russo",
+  "@languageRussian": {
+    "description": "Nome da língua russa."
+  },
+  "languageGeorgian": "Georgiano",
+  "@languageGeorgian": {
+    "description": "Nome da língua georgiana."
+  },
+  "languageUkrainian": "Ucraniano",
+  "@languageUkrainian": {
+    "description": "Nome da língua ucraniana."
+  },
+  "languageKorean": "Coreano",
+  "@languageKorean": {
+    "description": "Nome da língua coreana."
   },
   "aiServicesLoading": "Carregando serviços IA...",
   "@aiServicesLoading": {
@@ -1913,5 +1929,9 @@
   "studyComponentNoItems": "Sem itens",
   "studyComponentAdvantages": "Vantagens",
   "studyComponentLimitations": "Limitações",
-  "studyScreenDownloadChunk": "Baixar"
+  "studyScreenDownloadChunk": "Baixar",
+  "languageRussian": "Русский",
+  "languageGeorgian": "ქართული",
+  "languageUkrainian": "Українська",
+  "languageKorean": "한국어"
 }

@@ -1065,61 +1065,77 @@
   "@aiGenerateButton": {
     "description": "問題を生成するボタンのテキスト"
   },
-  "languageSpanish": "Español",
+  "languageSpanish": "スペイン語",
   "@languageSpanish": {
     "description": "スペイン語の言語名"
   },
-  "languageEnglish": "English",
+  "languageEnglish": "英語",
   "@languageEnglish": {
     "description": "英語の言語名"
   },
-  "languageFrench": "Français",
+  "languageFrench": "フランス語",
   "@languageFrench": {
     "description": "フランス語の言語名"
   },
-  "languageGerman": "Deutsch",
+  "languageGerman": "ドイツ語",
   "@languageGerman": {
     "description": "ドイツ語の言語名"
   },
-  "languageGreek": "Ελληνικά",
+  "languageGreek": "ギリシャ語",
   "@languageGreek": {
     "description": "ギリシャ語の言語名"
   },
-  "languageItalian": "Italiano",
+  "languageItalian": "イタリア語",
   "@languageItalian": {
     "description": "イタリア語の言語名"
   },
-  "languagePortuguese": "Português",
+  "languagePortuguese": "ポルトガル語",
   "@languagePortuguese": {
     "description": "ポルトガル語の言語名"
   },
-  "languageCatalan": "Català",
+  "languageCatalan": "カタルーニャ語",
   "@languageCatalan": {
     "description": "カタルーニャ語の言語名"
   },
-  "languageBasque": "Euskera",
+  "languageBasque": "バスク語",
   "@languageBasque": {
     "description": "バスク語の言語名"
   },
-  "languageGalician": "Galego",
+  "languageGalician": "ガリシア語",
   "@languageGalician": {
     "description": "ガリシア語の言語名"
   },
-  "languageHindi": "हिन्दी",
+  "languageHindi": "ヒンディー語",
   "@languageHindi": {
     "description": "ヒンディー語の言語名"
   },
-  "languageChinese": "中文",
+  "languageChinese": "中国語",
   "@languageChinese": {
     "description": "中国語の言語名"
   },
-  "languageArabic": "العربية",
+  "languageArabic": "アラビア語",
   "@languageArabic": {
     "description": "アラビア語の言語名"
   },
   "languageJapanese": "日本語",
   "@languageJapanese": {
     "description": "日本語の言語名"
+  },
+  "languageRussian": "ロシア語",
+  "@languageRussian": {
+    "description": "ロシア語の言語名"
+  },
+  "languageGeorgian": "ジョージア語",
+  "@languageGeorgian": {
+    "description": "ジョージア語の言語名"
+  },
+  "languageUkrainian": "ウクライナ語",
+  "@languageUkrainian": {
+    "description": "ウクライナ語の言語名"
+  },
+  "languageKorean": "韓国語",
+  "@languageKorean": {
+    "description": "韓国語の言語名"
   },
   "aiServicesLoading": "AIサービスを読み込み中...",
   "@aiServicesLoading": {
@@ -1825,5 +1841,9 @@
   "studyComponentNoItems": "アイテムなし",
   "studyComponentAdvantages": "利点",
   "studyComponentLimitations": "制限事項",
-  "studyScreenDownloadChunk": "ダウンロード"
+  "studyScreenDownloadChunk": "ダウンロード",
+  "languageRussian": "Русский",
+  "languageGeorgian": "ქართული",
+  "languageUkrainian": "Українська",
+  "languageKorean": "한국어"
 }

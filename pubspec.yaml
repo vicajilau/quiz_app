@@ -164,7 +164,7 @@ msix_config:
   publisher: CN=B0585DC6-ACE7-4F2B-956B-CDC4AFBAFCCF
   publisher_display_name: vicajilau
   logo_path: .\images\pictorial_mark.png
-  languages: ar-sa, ca-es, de-de, en-GB, es-ES, eu-ES, fr-fr, gl-es, hi-in, it-it, ja-jp, pt-br, zh-cn
+  languages: ar-sa, ca-es, de-de, el-gr, en-GB, es-ES, eu-ES, fr-fr, gl-es, hi-in, it-it, ja-jp, ka-ge, ko-kr, pt-br, ru-ru, uk-ua, zh-cn
   capabilities: internetClient
   file_extension: .quiz
   store: true

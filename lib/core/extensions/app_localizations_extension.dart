@@ -54,8 +54,14 @@ extension AppLocalizationsExtension on AppLocalizations {
         return languageArabic;
       case 'ja':
         return languageJapanese;
+      case 'ru':
+        return languageRussian;
+      case 'ka':
+        return languageGeorgian;
+      case 'uk':
+        return languageUkrainian;
       case 'ko':
-        return '한국어'; // Need to add to ARB if not present, but keeping fallback for now matching existing logic where possible or defaulting
+        return languageKorean;
       default:
         return code.toUpperCase();
     }

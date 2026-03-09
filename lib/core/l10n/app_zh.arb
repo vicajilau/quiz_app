@@ -1037,61 +1037,77 @@
   "@aiGenerateButton": {
     "description": "Text for the generate questions button."
   },
-  "languageSpanish": "Español",
+  "languageSpanish": "西班牙语",
   "@languageSpanish": {
-    "description": "Spanish language name."
+    "description": "西班牙语语言名称。"
   },
-  "languageEnglish": "English",
+  "languageEnglish": "英语",
   "@languageEnglish": {
-    "description": "English language name."
+    "description": "英语语言名称。"
   },
-  "languageFrench": "Français",
+  "languageFrench": "法语",
   "@languageFrench": {
-    "description": "French language name."
+    "description": "法语语言名称。"
   },
-  "languageGerman": "Deutsch",
+  "languageGerman": "德语",
   "@languageGerman": {
-    "description": "German language name."
+    "description": "德语语言名称。"
   },
-  "languageGreek": "Ελληνικά",
+  "languageGreek": "希腊语",
   "@languageGreek": {
-    "description": "Greek language name."
+    "description": "希腊语语言名称。"
   },
-  "languageItalian": "Italiano",
+  "languageItalian": "意大利语",
   "@languageItalian": {
-    "description": "Italian language name."
+    "description": "意大利语语言名称。"
   },
-  "languagePortuguese": "Português",
+  "languagePortuguese": "葡萄牙语",
   "@languagePortuguese": {
-    "description": "Portuguese language name."
+    "description": "葡萄牙语语言名称。"
   },
-  "languageCatalan": "Català",
+  "languageCatalan": "加泰罗尼亚语",
   "@languageCatalan": {
-    "description": "Catalan language name."
+    "description": "加泰罗尼亚语语言名称。"
   },
-  "languageBasque": "Euskera",
+  "languageBasque": "巴斯克语",
   "@languageBasque": {
-    "description": "Basque language name."
+    "description": "巴斯克语语言名称。"
   },
-  "languageGalician": "Galego",
+  "languageGalician": "加利西亚语",
   "@languageGalician": {
-    "description": "Galician language name."
+    "description": "加利西亚语语言名称。"
   },
-  "languageHindi": "हिन्दी",
+  "languageHindi": "印地语",
   "@languageHindi": {
-    "description": "Hindi language name."
+    "description": "印地语语言名称。"
   },
   "languageChinese": "中文",
   "@languageChinese": {
-    "description": "Chinese language name."
+    "description": "中文语言名称。"
   },
-  "languageArabic": "العربية",
+  "languageArabic": "阿拉伯语",
   "@languageArabic": {
     "description": "阿拉伯语语言名称。"
   },
-  "languageJapanese": "日本語",
+  "languageJapanese": "日语",
   "@languageJapanese": {
     "description": "日语语言名称。"
+  },
+  "languageRussian": "俄语",
+  "@languageRussian": {
+    "description": "俄语语言名称。"
+  },
+  "languageGeorgian": "格鲁吉亚语",
+  "@languageGeorgian": {
+    "description": "格鲁吉亚语语言名称。"
+  },
+  "languageUkrainian": "乌克兰语",
+  "@languageUkrainian": {
+    "description": "乌克兰语语言名称。"
+  },
+  "languageKorean": "韩语",
+  "@languageKorean": {
+    "description": "韩语语言名称。"
   },
   "aiServicesLoading": "正在加载AI服务...",
   "@aiServicesLoading": {
@@ -1874,5 +1890,9 @@
   "studyComponentNoItems": "没有项目",
   "studyComponentAdvantages": "优势",
   "studyComponentLimitations": "局限性",
-  "studyScreenDownloadChunk": "下载"
+  "studyScreenDownloadChunk": "下载",
+  "languageRussian": "Русский",
+  "languageGeorgian": "ქართული",
+  "languageUkrainian": "Українська",
+  "languageKorean": "한국어"
 }

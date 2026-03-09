@@ -68,7 +68,7 @@ When you choose to use AI-powered question generation features, you may connect 
 Since Quizdy operates entirely on your device:
 - No data crosses international borders through our systems
 - AI service usage follows the data handling policies of OpenAI and Google respectively
-- The app supports 13 languages with full localization
+- The app supports 18 languages with full localization
 
 ## Children's Privacy
 

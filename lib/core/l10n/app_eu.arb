@@ -1075,61 +1075,77 @@
   "@aiGenerateButton": {
     "description": "Galderak sortu botoiaren testua."
   },
-  "languageSpanish": "Español",
+  "languageSpanish": "Gaztelania",
   "@languageSpanish": {
-    "description": "Gaztelera hizkuntzaren izena."
+    "description": "Gaztelania hizkuntzaren izena."
   },
-  "languageEnglish": "English",
+  "languageEnglish": "Ingelesa",
   "@languageEnglish": {
     "description": "Ingelesa hizkuntzaren izena."
   },
-  "languageFrench": "Français",
+  "languageFrench": "Frantsesa",
   "@languageFrench": {
     "description": "Frantsesa hizkuntzaren izena."
   },
-  "languageGerman": "Deutsch",
+  "languageGerman": "Alemana",
   "@languageGerman": {
     "description": "Alemana hizkuntzaren izena."
   },
-  "languageGreek": "Ελληνικά",
+  "languageGreek": "Greziera",
   "@languageGreek": {
     "description": "Greziera hizkuntzaren izena."
   },
-  "languageItalian": "Italiano",
+  "languageItalian": "Italiera",
   "@languageItalian": {
     "description": "Italiera hizkuntzaren izena."
   },
-  "languagePortuguese": "Português",
+  "languagePortuguese": "Portugesa",
   "@languagePortuguese": {
     "description": "Portugesa hizkuntzaren izena."
   },
-  "languageCatalan": "Català",
+  "languageCatalan": "Katalana",
   "@languageCatalan": {
     "description": "Katalana hizkuntzaren izena."
   },
-  "languageBasque": "Euskera",
+  "languageBasque": "Euskara",
   "@languageBasque": {
-    "description": "Euskera hizkuntzaren izena."
+    "description": "Euskara hizkuntzaren izena."
   },
-  "languageGalician": "Galego",
+  "languageGalician": "Galiziera",
   "@languageGalician": {
     "description": "Galiziera hizkuntzaren izena."
   },
-  "languageHindi": "हिन्दी",
+  "languageHindi": "Hindi",
   "@languageHindi": {
     "description": "Hindi hizkuntzaren izena."
   },
-  "languageChinese": "中文",
+  "languageChinese": "Txinera",
   "@languageChinese": {
     "description": "Txinera hizkuntzaren izena."
   },
-  "languageArabic": "العربية",
+  "languageArabic": "Arabiera",
   "@languageArabic": {
     "description": "Arabiera hizkuntzaren izena."
   },
-  "languageJapanese": "日本語",
+  "languageJapanese": "Japoniera",
   "@languageJapanese": {
     "description": "Japoniera hizkuntzaren izena."
+  },
+  "languageRussian": "Er روسیera",
+  "@languageRussian": {
+    "description": "Errusiera hizkuntzaren izena."
+  },
+  "languageGeorgian": "Georgiera",
+  "@languageGeorgian": {
+    "description": "Georgiera hizkuntzaren izena."
+  },
+  "languageUkrainian": "Ukrainera",
+  "@languageUkrainian": {
+    "description": "Ukrainera hizkuntzaren izena."
+  },
+  "languageKorean": "Koreera",
+  "@languageKorean": {
+    "description": "Koreera hizkuntzaren izena."
   },
   "aiServicesLoading": "AI zerbitzuak kargatzen...",
   "@aiServicesLoading": {
@@ -1822,5 +1838,9 @@
   "studyComponentNoItems": "Elementurik ez",
   "studyComponentAdvantages": "Abantailak",
   "studyComponentLimitations": "Mugak",
-  "studyScreenDownloadChunk": "Deskargatu"
+  "studyScreenDownloadChunk": "Deskargatu",
+  "languageRussian": "Русский",
+  "languageGeorgian": "ქართული",
+  "languageUkrainian": "Українська",
+  "languageKorean": "한국어"
 }

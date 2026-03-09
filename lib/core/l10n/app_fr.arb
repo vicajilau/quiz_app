@@ -1089,11 +1089,11 @@
   "@aiGenerateButton": {
     "description": "Texte pour le bouton de génération de questions."
   },
-  "languageSpanish": "Español",
+  "languageSpanish": "Espagnol",
   "@languageSpanish": {
     "description": "Nom de la langue espagnole."
   },
-  "languageEnglish": "English",
+  "languageEnglish": "Anglais",
   "@languageEnglish": {
     "description": "Nom de la langue anglaise."
   },
@@ -1101,49 +1101,65 @@
   "@languageFrench": {
     "description": "Nom de la langue française."
   },
-  "languageGerman": "Deutsch",
+  "languageGerman": "Allemand",
   "@languageGerman": {
     "description": "Nom de la langue allemande."
   },
-  "languageGreek": "Ελληνικά",
+  "languageGreek": "Grec",
   "@languageGreek": {
     "description": "Nom de la langue grecque."
   },
-  "languageItalian": "Italiano",
+  "languageItalian": "Italien",
   "@languageItalian": {
     "description": "Nom de la langue italienne."
   },
-  "languagePortuguese": "Português",
+  "languagePortuguese": "Portugais",
   "@languagePortuguese": {
     "description": "Nom de la langue portugaise."
   },
-  "languageCatalan": "Català",
+  "languageCatalan": "Catalan",
   "@languageCatalan": {
     "description": "Nom de la langue catalane."
   },
-  "languageBasque": "Euskera",
+  "languageBasque": "Basque",
   "@languageBasque": {
     "description": "Nom de la langue basque."
   },
-  "languageGalician": "Galego",
+  "languageGalician": "Galicien",
   "@languageGalician": {
     "description": "Nom de la langue galicienne."
   },
-  "languageHindi": "हिन्दी",
+  "languageHindi": "Hindi",
   "@languageHindi": {
     "description": "Nom de la langue hindi."
   },
-  "languageChinese": "中文",
+  "languageChinese": "Chinois",
   "@languageChinese": {
     "description": "Nom de la langue chinoise."
   },
-  "languageArabic": "العربية",
+  "languageArabic": "Arabe",
   "@languageArabic": {
     "description": "Nom de la langue arabe."
   },
-  "languageJapanese": "日本語",
+  "languageJapanese": "Japonais",
   "@languageJapanese": {
     "description": "Nom de la langue japonaise."
+  },
+  "languageRussian": "Russe",
+  "@languageRussian": {
+    "description": "Nom de la langue russe."
+  },
+  "languageGeorgian": "Géorgien",
+  "@languageGeorgian": {
+    "description": "Nom de la langue géorgienne."
+  },
+  "languageUkrainian": "Ukrainien",
+  "@languageUkrainian": {
+    "description": "Nom de la langue ukrainienne."
+  },
+  "languageKorean": "Coréen",
+  "@languageKorean": {
+    "description": "Nom de la langue coréenne."
   },
   "aiServicesLoading": "Chargement des services IA...",
   "@aiServicesLoading": {
@@ -1867,5 +1883,9 @@
   "studyComponentNoItems": "Aucun élément",
   "studyComponentAdvantages": "Avantages",
   "studyComponentLimitations": "Limites",
-  "studyScreenDownloadChunk": "Télécharger"
+  "studyScreenDownloadChunk": "Télécharger",
+  "languageRussian": "Русский",
+  "languageGeorgian": "ქართული",
+  "languageUkrainian": "Українська",
+  "languageKorean": "한국어"
 }

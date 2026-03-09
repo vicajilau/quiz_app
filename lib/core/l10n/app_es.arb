@@ -1308,19 +1308,19 @@
   "@languageSpanish": {
     "description": "Nombre del idioma español."
   },
-  "languageEnglish": "English",
+  "languageEnglish": "Inglés",
   "@languageEnglish": {
     "description": "Nombre del idioma inglés."
   },
-  "languageFrench": "Français",
+  "languageFrench": "Francés",
   "@languageFrench": {
     "description": "Nombre del idioma francés."
   },
-  "languageGerman": "Deutsch",
+  "languageGerman": "Alemán",
   "@languageGerman": {
     "description": "Nombre del idioma alemán."
   },
-  "languageGreek": "Ελληνικά",
+  "languageGreek": "Griego",
   "@languageGreek": {
     "description": "Nombre del idioma griego."
   },
@@ -1328,11 +1328,11 @@
   "@languageItalian": {
     "description": "Nombre del idioma italiano."
   },
-  "languagePortuguese": "Português",
+  "languagePortuguese": "Portugués",
   "@languagePortuguese": {
     "description": "Nombre del idioma portugués."
   },
-  "languageCatalan": "Català",
+  "languageCatalan": "Catalán",
   "@languageCatalan": {
     "description": "Nombre del idioma catalán."
   },
@@ -1340,25 +1340,41 @@
   "@languageBasque": {
     "description": "Nombre del idioma euskera."
   },
-  "languageGalician": "Galego",
+  "languageGalician": "Gallego",
   "@languageGalician": {
     "description": "Nombre del idioma gallego."
   },
-  "languageHindi": "हिन्दी",
+  "languageHindi": "Hindi",
   "@languageHindi": {
     "description": "Nombre del idioma hindi."
   },
-  "languageChinese": "中文",
+  "languageChinese": "Chino",
   "@languageChinese": {
     "description": "Nombre del idioma chino."
   },
-  "languageArabic": "العربية",
+  "languageArabic": "Árabe",
   "@languageArabic": {
     "description": "Nombre del idioma árabe."
   },
-  "languageJapanese": "日本語",
+  "languageJapanese": "Japonés",
   "@languageJapanese": {
     "description": "Nombre del idioma japonés."
+  },
+  "languageRussian": "Ruso",
+  "@languageRussian": {
+    "description": "Nombre del idioma ruso."
+  },
+  "languageGeorgian": "Georgiano",
+  "@languageGeorgian": {
+    "description": "Nombre del idioma georgiano."
+  },
+  "languageUkrainian": "Ucraniano",
+  "@languageUkrainian": {
+    "description": "Nombre del idioma ucraniano."
+  },
+  "languageKorean": "Coreano",
+  "@languageKorean": {
+    "description": "Nombre del idioma coreano."
   },
   "aiServicesLoading": "Cargando servicios de IA...",
   "@aiServicesLoading": {
@@ -2176,5 +2192,9 @@
   "@studyComponentLimitations": {
     "description": "Header for the limitations section in a study component"
   },
-  "studyScreenDownloadChunk": "Descargar"
+  "studyScreenDownloadChunk": "Descargar",
+  "languageRussian": "Русский",
+  "languageGeorgian": "ქართული",
+  "languageUkrainian": "Українська",
+  "languageKorean": "한국어"
 }

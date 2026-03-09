@@ -26,7 +26,7 @@ import 'package:quizdy/data/services/ai/ai_service_selector.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
-import 'package:quizdy/core/extensions/string_extensions.dart';
+import 'package:quizdy/core/extensions/string_extension.dart';
 
 /// BLoC for managing quiz execution state and logic.
 class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {

@@ -1326,7 +1326,7 @@
   "@aiGenerationCategoryBoth": {
     "description": "Label for mixed category"
   },
-  "languageSpanish": "Español",
+  "languageSpanish": "Spanish",
   "@languageSpanish": {
     "description": "Spanish language name."
   },
@@ -1334,53 +1334,69 @@
   "@languageEnglish": {
     "description": "English language name."
   },
-  "languageFrench": "Français",
+  "languageFrench": "French",
   "@languageFrench": {
     "description": "French language name."
   },
-  "languageGerman": "Deutsch",
+  "languageGerman": "German",
   "@languageGerman": {
     "description": "German language name."
   },
-  "languageGreek": "Ελληνικά",
+  "languageGreek": "Greek",
   "@languageGreek": {
     "description": "Greek language name."
   },
-  "languageItalian": "Italiano",
+  "languageItalian": "Italian",
   "@languageItalian": {
     "description": "Italian language name."
   },
-  "languagePortuguese": "Português",
+  "languagePortuguese": "Portuguese",
   "@languagePortuguese": {
     "description": "Portuguese language name."
   },
-  "languageCatalan": "Català",
+  "languageCatalan": "Catalan",
   "@languageCatalan": {
     "description": "Catalan language name."
   },
-  "languageBasque": "Euskera",
+  "languageBasque": "Basque",
   "@languageBasque": {
     "description": "Basque language name."
   },
-  "languageGalician": "Galego",
+  "languageGalician": "Galician",
   "@languageGalician": {
     "description": "Galician language name."
   },
-  "languageHindi": "हिन्दी",
+  "languageHindi": "Hindi",
   "@languageHindi": {
     "description": "Hindi language name."
   },
-  "languageChinese": "中文",
+  "languageChinese": "Chinese",
   "@languageChinese": {
     "description": "Chinese language name."
   },
-  "languageArabic": "العربية",
+  "languageArabic": "Arabic",
   "@languageArabic": {
     "description": "Arabic language name."
   },
-  "languageJapanese": "日本語",
+  "languageJapanese": "Japanese",
   "@languageJapanese": {
     "description": "Japanese language name."
+  },
+  "languageRussian": "Russian",
+  "@languageRussian": {
+    "description": "Russian language name."
+  },
+  "languageGeorgian": "Georgian",
+  "@languageGeorgian": {
+    "description": "Georgian language name."
+  },
+  "languageUkrainian": "Ukrainian",
+  "@languageUkrainian": {
+    "description": "Ukrainian language name."
+  },
+  "languageKorean": "Korean",
+  "@languageKorean": {
+    "description": "Korean language name."
   },
   "aiServicesLoading": "Loading AI services...",
   "@aiServicesLoading": {
@@ -1825,6 +1841,10 @@
     }
   },
   "allQuestionsLabel": "All Questions",
+  "languageRussian": "Русский",
+  "languageGeorgian": "ქართული",
+  "languageUkrainian": "Українська",
+  "languageKorean": "한국어",
   "@allQuestionsLabel": {
     "description": "Label for the toggle to select all questions"
   },
@@ -2224,6 +2244,10 @@
     "description": "Header for the advantages section in a study component"
   },
   "studyComponentLimitations": "Limitations",
+  "languageRussian": "Русский",
+  "languageGeorgian": "ქართული",
+  "languageUkrainian": "Українська",
+  "languageKorean": "한국어",
   "@studyComponentLimitations": {
     "description": "Header for the limitations section in a study component"
   }
