@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 
-class FileLoadedTheme extends ThemeExtension<FileLoadedTheme> {
+class QuizLoadedTheme extends ThemeExtension<QuizLoadedTheme> {
   final Color deleteDialogBackgroundColor;
   final Color deleteDialogTextColor;
   final Color deleteDialogSubTextColor;
@@ -25,7 +25,7 @@ class FileLoadedTheme extends ThemeExtension<FileLoadedTheme> {
   final Color dragOverlayBorderColor;
   final Color dragOverlayShadowColor;
 
-  const FileLoadedTheme({
+  const QuizLoadedTheme({
     required this.deleteDialogBackgroundColor,
     required this.deleteDialogTextColor,
     required this.deleteDialogSubTextColor,
@@ -37,7 +37,7 @@ class FileLoadedTheme extends ThemeExtension<FileLoadedTheme> {
   });
 
   @override
-  FileLoadedTheme copyWith({
+  QuizLoadedTheme copyWith({
     Color? deleteDialogBackgroundColor,
     Color? deleteDialogTextColor,
     Color? deleteDialogSubTextColor,
@@ -47,7 +47,7 @@ class FileLoadedTheme extends ThemeExtension<FileLoadedTheme> {
     Color? dragOverlayBorderColor,
     Color? dragOverlayShadowColor,
   }) {
-    return FileLoadedTheme(
+    return QuizLoadedTheme(
       deleteDialogBackgroundColor:
           deleteDialogBackgroundColor ?? this.deleteDialogBackgroundColor,
       deleteDialogTextColor:
@@ -68,11 +68,11 @@ class FileLoadedTheme extends ThemeExtension<FileLoadedTheme> {
   }
 
   @override
-  FileLoadedTheme lerp(ThemeExtension<FileLoadedTheme>? other, double t) {
-    if (other is! FileLoadedTheme) {
+  QuizLoadedTheme lerp(ThemeExtension<QuizLoadedTheme>? other, double t) {
+    if (other is! QuizLoadedTheme) {
       return this;
     }
-    return FileLoadedTheme(
+    return QuizLoadedTheme(
       deleteDialogBackgroundColor: Color.lerp(
         deleteDialogBackgroundColor,
         other.deleteDialogBackgroundColor,
@@ -117,7 +117,7 @@ class FileLoadedTheme extends ThemeExtension<FileLoadedTheme> {
   }
 }
 
-extension FileLoadedThemeContext on BuildContext {
-  FileLoadedTheme get fileLoadedTheme =>
-      Theme.of(this).extension<FileLoadedTheme>()!;
+extension QuizLoadedThemeContext on BuildContext {
+  QuizLoadedTheme get quizLoadedTheme =>
+      Theme.of(this).extension<QuizLoadedTheme>()!;
 }
