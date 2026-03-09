@@ -124,6 +124,24 @@ class QuizFile {
     };
   }
 
+  /// Generates a string representation of the quiz content for AI context.
+  String toAIPromptContext() {
+    final sb = StringBuffer();
+    sb.writeln('Quiz Title: ${metadata.title}');
+    if (metadata.description.isNotEmpty) {
+      sb.writeln('Quiz Description: ${metadata.description}');
+    }
+    sb.writeln('\nExisting Questions and Concepts:');
+    for (var i = 0; i < questions.length; i++) {
+      final q = questions[i];
+      sb.writeln('${i + 1}. ${q.text}');
+      if (q.explanation.isNotEmpty) {
+        sb.writeln('   Context/Explanation: ${q.explanation}');
+      }
+    }
+    return sb.toString();
+  }
+
   /// Creates a copy of the `QuizFile` with optional parameter modifications.
   ///
   /// - [metadata]: New metadata to replace the current one.

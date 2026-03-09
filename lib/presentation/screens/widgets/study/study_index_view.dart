@@ -70,7 +70,7 @@ class StudyIndexView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsGeometry.only(
+      padding: EdgeInsets.only(
         top: MediaQuery.of(context).padding.top,
         bottom: MediaQuery.of(context).padding.bottom,
       ),
@@ -87,6 +87,61 @@ class StudyIndexView extends StatelessWidget {
   }
 
   Widget _buildMobileLayout(BuildContext context) {
+    if (state.isSelectionMode) {
+      return ReorderableListView.builder(
+        padding: const EdgeInsets.all(20),
+        buildDefaultDragHandles: false,
+        itemCount: state.chunks.length,
+        header: Column(
+          children: [
+            StudyIndexHeroCard(state: state, localizations: localizations),
+            const SizedBox(height: 24),
+            StudyIndexSectionsHeader(
+              chunksCount: state.chunks.length,
+              localizations: localizations,
+            ),
+            const SizedBox(height: 12),
+          ],
+        ),
+        itemBuilder: (context, index) {
+          final chunk = state.chunks[index];
+          final isSelected = state.selectedIndices.contains(index);
+          return Padding(
+            key: ValueKey('chunk_${chunk.chunkIndex}'),
+            padding: const EdgeInsets.only(bottom: 10),
+            child: StudyIndexChunkCard(
+              chunk: chunk,
+              index: index,
+              total: state.chunks.length,
+              localizations: localizations,
+              isSelectionMode: state.isSelectionMode,
+              isSelected: isSelected,
+              supportsReordering: true,
+              onTap: () {
+                if (state.isSelectionMode) {
+                  context.read<StudyExecutionBloc>().add(
+                    ToggleChunkSelection(index),
+                  );
+                } else {
+                  _onChunkTap(context, index);
+                }
+              },
+              onLongPress: () {
+                context.read<StudyExecutionBloc>().add(
+                  ToggleChunkSelection(index),
+                );
+              },
+            ),
+          );
+        },
+        onReorder: (oldIndex, newIndex) {
+          context.read<StudyExecutionBloc>().add(
+            ReorderStudyChunks(oldIndex, newIndex),
+          );
+        },
+      );
+    }
+
     return ListView(
       padding: const EdgeInsets.all(20),
       children: [
@@ -97,24 +152,71 @@ class StudyIndexView extends StatelessWidget {
           localizations: localizations,
         ),
         const SizedBox(height: 12),
-        ...List.generate(state.chunks.length, (index) {
-          final chunk = state.chunks[index];
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: StudyIndexChunkCard(
-              chunk: chunk,
-              index: index,
-              total: state.chunks.length,
-              localizations: localizations,
-              onTap: () => _onChunkTap(context, index),
+        if (state.chunks.isEmpty)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 48),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.library_books_outlined,
+                    size: 64,
+                    color: Colors.grey.withValues(alpha: 0.5),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    localizations.studyScreenNoSlidesAvailable,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyLarge?.copyWith(color: Colors.grey),
+                  ),
+                ],
+              ),
             ),
-          );
-        }),
+          )
+        else
+          ...List.generate(state.chunks.length, (index) {
+            final chunk = state.chunks[index];
+            final isSelected = state.selectedIndices.contains(index);
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: StudyIndexChunkCard(
+                chunk: chunk,
+                index: index,
+                total: state.chunks.length,
+                localizations: localizations,
+                isSelectionMode: state.isSelectionMode,
+                isSelected: isSelected,
+                supportsReordering: false, // In standard ListView branch
+                onTap: () {
+                  if (state.isSelectionMode) {
+                    context.read<StudyExecutionBloc>().add(
+                      ToggleChunkSelection(index),
+                    );
+                  } else {
+                    _onChunkTap(context, index);
+                  }
+                },
+                onLongPress: () {
+                  context.read<StudyExecutionBloc>().add(
+                    ToggleChunkSelection(index),
+                  );
+                },
+              ),
+            );
+          }),
       ],
     );
   }
 
   Widget _buildDesktopLayout(BuildContext context) {
+    if (state.isSelectionMode) {
+      // Use single column ReorderableListView even on desktop for functional reordering
+      return _buildMobileLayout(context);
+    }
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -138,48 +240,106 @@ class StudyIndexView extends StatelessWidget {
                 localizations: localizations,
               ),
               const SizedBox(height: 16),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Left column (even indices: 0, 2, 4...)
-                  Expanded(
+              if (state.chunks.isEmpty)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 64),
+                  child: Center(
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        for (int i = 0; i < state.chunks.length; i += 2)
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 12),
-                            child: StudyIndexChunkCard(
-                              chunk: state.chunks[i],
-                              index: i,
-                              total: state.chunks.length,
-                              localizations: localizations,
-                              onTap: () => _onChunkTap(context, i),
-                            ),
-                          ),
+                        Icon(
+                          Icons.library_books_outlined,
+                          size: 80,
+                          color: Colors.grey.withValues(alpha: 0.5),
+                        ),
+                        const SizedBox(height: 24),
+                        Text(
+                          localizations.studyScreenNoSlidesAvailable,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.headlineSmall
+                              ?.copyWith(color: Colors.grey),
+                        ),
                       ],
                     ),
                   ),
-                  const SizedBox(width: 12),
-                  // Right column (odd indices: 1, 3, 5...)
-                  Expanded(
-                    child: Column(
-                      children: [
-                        for (int i = 1; i < state.chunks.length; i += 2)
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 12),
-                            child: StudyIndexChunkCard(
-                              chunk: state.chunks[i],
-                              index: i,
-                              total: state.chunks.length,
-                              localizations: localizations,
-                              onTap: () => _onChunkTap(context, i),
+                )
+              else
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Left column (even indices: 0, 2, 4...)
+                    Expanded(
+                      child: Column(
+                        children: [
+                          for (int i = 0; i < state.chunks.length; i += 2)
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 12),
+                              child: StudyIndexChunkCard(
+                                chunk: state.chunks[i],
+                                index: i,
+                                total: state.chunks.length,
+                                localizations: localizations,
+                                isSelectionMode: state.isSelectionMode,
+                                isSelected: state.selectedIndices.contains(i),
+                                supportsReordering:
+                                    false, // Desktop doesn't support reorder yet
+                                onTap: () {
+                                  if (state.isSelectionMode) {
+                                    context.read<StudyExecutionBloc>().add(
+                                      ToggleChunkSelection(i),
+                                    );
+                                  } else {
+                                    _onChunkTap(context, i);
+                                  }
+                                },
+                                onLongPress: () {
+                                  context.read<StudyExecutionBloc>().add(
+                                    ToggleChunkSelection(i),
+                                  );
+                                },
+                              ),
                             ),
-                          ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                    const SizedBox(width: 12),
+                    // Right column (odd indices: 1, 3, 5...)
+                    Expanded(
+                      child: Column(
+                        children: [
+                          for (int i = 1; i < state.chunks.length; i += 2)
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 12),
+                              child: StudyIndexChunkCard(
+                                chunk: state.chunks[i],
+                                index: i,
+                                total: state.chunks.length,
+                                localizations: localizations,
+                                isSelectionMode: state.isSelectionMode,
+                                isSelected: state.selectedIndices.contains(i),
+                                supportsReordering:
+                                    false, // Desktop doesn't support reorder yet
+                                onTap: () {
+                                  if (state.isSelectionMode) {
+                                    context.read<StudyExecutionBloc>().add(
+                                      ToggleChunkSelection(i),
+                                    );
+                                  } else {
+                                    _onChunkTap(context, i);
+                                  }
+                                },
+                                onLongPress: () {
+                                  context.read<StudyExecutionBloc>().add(
+                                    ToggleChunkSelection(i),
+                                  );
+                                },
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
             ],
           ),
         ),
