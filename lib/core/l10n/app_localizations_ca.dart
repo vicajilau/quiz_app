@@ -909,6 +909,9 @@ class AppLocalizationsCa extends AppLocalizations {
   String get studyScreenRetry => 'Reintenta';
 
   @override
+  String get studyScreenDownloadChunk => 'Descarregar';
+
+  @override
   String get studyScreenOmit => 'Ometre';
 
   @override

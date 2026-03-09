@@ -911,6 +911,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get studyScreenRetry => 'Réessayer';
 
   @override
+  String get studyScreenDownloadChunk => 'Télécharger';
+
+  @override
   String get studyScreenOmit => 'Omettre';
 
   @override

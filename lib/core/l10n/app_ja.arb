@@ -1824,5 +1824,6 @@
   "studyScreenImportant": "重要",
   "studyComponentNoItems": "アイテムなし",
   "studyComponentAdvantages": "利点",
-  "studyComponentLimitations": "制限事項"
+  "studyComponentLimitations": "制限事項",
+  "studyScreenDownloadChunk": "ダウンロード"
 }

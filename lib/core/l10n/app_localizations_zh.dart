@@ -851,6 +851,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get studyScreenRetry => '重试';
 
   @override
+  String get studyScreenDownloadChunk => '下载';
+
+  @override
   String get studyScreenOmit => '忽略';
 
   @override

@@ -2178,5 +2178,6 @@
   "studyComponentLimitations": "القيود",
   "@studyComponentLimitations": {
     "description": "Header for the limitations section in a study component"
-  }
+  },
+  "studyScreenDownloadChunk": "تنزيل"
 }

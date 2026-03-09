@@ -896,6 +896,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get studyScreenRetry => 'पुनः प्रयास करें';
 
   @override
+  String get studyScreenDownloadChunk => 'डाउनलोड';
+
+  @override
   String get studyScreenOmit => 'छोड़ें';
 
   @override

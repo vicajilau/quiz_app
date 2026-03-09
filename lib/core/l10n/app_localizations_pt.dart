@@ -905,6 +905,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get studyScreenRetry => 'Tentar novamente';
 
   @override
+  String get studyScreenDownloadChunk => 'Baixar';
+
+  @override
   String get studyScreenOmit => 'Omitir';
 
   @override

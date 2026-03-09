@@ -1646,6 +1646,12 @@ abstract class AppLocalizations {
   /// **'Retry'**
   String get studyScreenRetry;
 
+  /// Button text to download (JIT-process) a study chunk from the index.
+  ///
+  /// In en, this message translates to:
+  /// **'Download'**
+  String get studyScreenDownloadChunk;
+
   /// Omit button text
   ///
   /// In en, this message translates to:

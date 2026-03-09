@@ -1923,5 +1923,6 @@
   "studyScreenImportant": "Important",
   "studyComponentNoItems": "Sense elements",
   "studyComponentAdvantages": "Avantatges",
-  "studyComponentLimitations": "Limitacions"
+  "studyComponentLimitations": "Limitacions",
+  "studyScreenDownloadChunk": "Descarregar"
 }

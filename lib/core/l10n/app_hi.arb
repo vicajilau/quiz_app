@@ -1824,5 +1824,6 @@
   "studyScreenImportant": "महत्वपूर्ण",
   "studyComponentNoItems": "कोई आइटम नहीं",
   "studyComponentAdvantages": "लाभ",
-  "studyComponentLimitations": "सीमाएं"
+  "studyComponentLimitations": "सीमाएं",
+  "studyScreenDownloadChunk": "डाउनलोड"
 }
