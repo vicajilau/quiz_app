@@ -24,8 +24,6 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter analyze
-      - name: Generate localizations
-        run: flutter gen-l10n
       - name: Check for untranslated messages
         run: |
           content=$(cat untranslated_messages.json)
