@@ -297,7 +297,8 @@ class GeminiService extends AIService {
 
       final jsonResponse = response.data;
       final fileUri = jsonResponse['file']?['uri'] as String?;
-      final expirationTimeStr = jsonResponse['file']?['expirationTime'] as String?;
+      final expirationTimeStr =
+          jsonResponse['file']?['expirationTime'] as String?;
 
       if (fileUri != null && expirationTimeStr != null) {
         return FileUploadResult(

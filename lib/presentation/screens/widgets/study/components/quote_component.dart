@@ -36,10 +36,7 @@ class QuoteComponent extends StatelessWidget {
       decoration: BoxDecoration(
         color: studyTheme.cardBackground,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: studyTheme.cardBorder,
-          width: 1,
-        ),
+        border: Border.all(color: studyTheme.cardBorder, width: 1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

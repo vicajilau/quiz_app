@@ -18,6 +18,7 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
+import 'package:quizdy/presentation/screens/widgets/study/study_index_chunk_download_button.dart';
 
 class StudyIndexChunkCard extends StatefulWidget {
   final StudyChunk chunk;
@@ -25,6 +26,7 @@ class StudyIndexChunkCard extends StatefulWidget {
   final int total;
   final AppLocalizations localizations;
   final VoidCallback onTap;
+  final VoidCallback? onDownload;
   final VoidCallback? onLongPress;
   final bool isSelected;
   final bool isSelectionMode;
@@ -37,6 +39,7 @@ class StudyIndexChunkCard extends StatefulWidget {
     required this.total,
     required this.localizations,
     required this.onTap,
+    this.onDownload,
     this.onLongPress,
     this.isSelected = false,
     this.isSelectionMode = false,
@@ -65,9 +68,13 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     final isCompleted = chunk.status == StudyChunkState.completed;
+    final isDownloaded = chunk.status == StudyChunkState.downloaded;
+    final isProcessing = chunk.status == StudyChunkState.processing;
+    final isError = chunk.status == StudyChunkState.error;
+    final hasContent = isCompleted || isDownloaded;
+    final needsDownload = !hasContent && !isProcessing;
 
     final cardBg = isDark ? AppTheme.cardColorDark : Colors.white;
-
     final pendingBadgeBg = isDark ? AppTheme.zinc700 : AppTheme.zinc100;
     final pendingBadgeText = isDark ? AppTheme.zinc400 : AppTheme.zinc500;
     final titleColor = isDark ? AppTheme.zinc300 : AppTheme.zinc700;
@@ -76,8 +83,8 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
     final summaryColor = isDark ? AppTheme.zinc400 : AppTheme.zinc500;
 
     return GestureDetector(
-      onTap: onTap,
-      onLongPress: onLongPress,
+      onTap: hasContent ? onTap : null,
+      onLongPress: hasContent ? onLongPress : null,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         decoration: BoxDecoration(
@@ -86,13 +93,13 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
           border: isSelected
               ? Border.all(color: AppTheme.primaryColor, width: 2)
               : (isCompleted
-                  ? Border.all(
-                      color: AppTheme.primaryColor.withValues(alpha: 0.25),
-                      width: 1.5,
-                    )
-                  : (isDark
-                      ? Border.all(color: Colors.transparent, width: 1)
-                      : Border.all(color: AppTheme.borderColor, width: 1))),
+                    ? Border.all(
+                        color: AppTheme.primaryColor.withValues(alpha: 0.25),
+                        width: 1.5,
+                      )
+                    : (isDark
+                          ? Border.all(color: Colors.transparent, width: 1)
+                          : Border.all(color: AppTheme.borderColor, width: 1))),
         ),
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -112,14 +119,14 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
                     ),
                   )
                 else
-                  // Number badge (rounded rect, cornerRadius 14)
                   Container(
                     width: 28,
                     height: 28,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(14),
-                      color:
-                          isCompleted ? AppTheme.primaryColor : pendingBadgeBg,
+                      color: isCompleted
+                          ? AppTheme.primaryColor
+                          : pendingBadgeBg,
                     ),
                     alignment: Alignment.center,
                     child: Text(
@@ -132,7 +139,6 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
                     ),
                   ),
                 const SizedBox(width: 10),
-                // Title and subtitle
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -162,28 +168,29 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
                     ],
                   ),
                 ),
-                // Status icon or drag handle
                 if (isSelectionMode && widget.supportsReordering)
                   ReorderableDragStartListener(
                     index: index,
                     child: Icon(Icons.drag_handle, color: arrowColor, size: 20),
                   )
                 else if (isSelectionMode)
-                  // Show handle but not draggable if not supported by current view
-                  Icon(Icons.drag_handle,
-                      color: arrowColor.withValues(alpha: 0.3), size: 20)
+                  Icon(
+                    Icons.drag_handle,
+                    color: arrowColor.withValues(alpha: 0.3),
+                    size: 20,
+                  )
                 else if (isCompleted)
                   const Icon(
                     Icons.check_circle,
                     size: 20,
                     color: AppTheme.primaryColor,
                   )
-                else
+                else if (isDownloaded)
                   Icon(Icons.chevron_right, size: 18, color: arrowColor),
               ],
             ),
-            // AI Summary for completed chunks
-            if (isCompleted &&
+            // AI Summary for completed or downloaded chunks
+            if (hasContent &&
                 chunk.aiSummary != null &&
                 chunk.aiSummary!.isNotEmpty) ...[
               const SizedBox(height: 10),
@@ -242,6 +249,40 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
                   ),
                 ),
               ],
+            ],
+            // Download button for created/error chunks
+            if (!isSelectionMode && needsDownload) ...[
+              const SizedBox(height: 12),
+              StudyIndexChunkDownloadButton(
+                isError: isError,
+                onDownload: widget.onDownload,
+                localizations: localizations,
+              ),
+            ],
+            // Loading indicator while processing
+            if (!isSelectionMode && isProcessing) ...[
+              const SizedBox(height: 12),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 14,
+                    height: 14,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: AppTheme.primaryColor.withValues(alpha: 0.7),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    localizations.studyScreenGenerating,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: subtitleColor,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
             ],
           ],
         ),

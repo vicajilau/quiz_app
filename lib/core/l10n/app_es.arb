@@ -2175,5 +2175,6 @@
   "studyComponentLimitations": "Limitaciones",
   "@studyComponentLimitations": {
     "description": "Header for the limitations section in a study component"
-  }
+  },
+  "studyScreenDownloadChunk": "Descargar"
 }

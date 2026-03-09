@@ -1821,5 +1821,6 @@
   "studyScreenImportant": "Garrantzitsua",
   "studyComponentNoItems": "Elementurik ez",
   "studyComponentAdvantages": "Abantailak",
-  "studyComponentLimitations": "Mugak"
+  "studyComponentLimitations": "Mugak",
+  "studyScreenDownloadChunk": "Deskargatu"
 }

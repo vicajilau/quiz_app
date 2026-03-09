@@ -169,7 +169,7 @@ class QuizFile {
       fileUri: fileUri ?? this.fileUri,
       fileExpirationTime: fileExpirationTime ?? this.fileExpirationTime,
     );
-}
+  }
 
   /// Creates a deep copy of the `QuizFile` with all nested objects copied.
   ///

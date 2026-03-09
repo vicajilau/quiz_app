@@ -73,9 +73,7 @@ class SectionTitleComponent extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 16),
-          Divider(
-            color: studyTheme.cardDivider,
-          ),
+          Divider(color: studyTheme.cardDivider),
         ],
       ),
     );

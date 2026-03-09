@@ -28,10 +28,7 @@ import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
 class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Future<bool> Function() onConfirmExit;
 
-  const StudyAppBar({
-    super.key,
-    required this.onConfirmExit,
-  });
+  const StudyAppBar({super.key, required this.onConfirmExit});
 
   @override
   Size get preferredSize => const Size.fromHeight(72);
@@ -44,171 +41,170 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Theme.of(context).primaryColor,
       elevation: 0,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(24),
-        ),
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
       ),
       toolbarHeight: 72,
-          leadingWidth: 72,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 24),
-            child: Center(
-              child: Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: context.fileLoadedTheme.appBarIconBackgroundColor,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-                  builder: (context, state) {
-                    return AbsorbPointer(
-                      absorbing: state.isLoading,
-                      child: IconButton(
-                        padding: EdgeInsets.zero,
-                        icon: Icon(
-                          LucideIcons.arrowLeft,
-                          color: Theme.of(context).colorScheme.onPrimary,
-                          size: 20,
-                        ),
-                        tooltip: localizations.backSemanticLabel,
-                        onPressed: () async {
-                          if (state.isSelectionMode) {
-                            context.read<StudyExecutionBloc>().add(
-                              const ClearSelectionRequested(),
-                            );
-                            return;
-                          }
-                          if (!state.isIndexMode) {
-                            context.read<StudyExecutionBloc>().add(
-                              const ReturnToIndexRequested(),
-                            );
-                            return;
-                          }
-                          final shouldExit = await onConfirmExit();
-                          if (shouldExit && context.mounted) {
-                            context.read<FileBloc>().add(QuizFileReset());
-                            context.pop();
-                          }
-                        },
-                      ),
-                    );
-                  },
-                ),
-              ),
+      leadingWidth: 72,
+      leading: Padding(
+        padding: const EdgeInsets.only(left: 24),
+        child: Center(
+          child: Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: context.fileLoadedTheme.appBarIconBackgroundColor,
+              borderRadius: BorderRadius.circular(20),
             ),
-          ),
-          title: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-                      builder: (context, state) {
-                        return Text(
-                          state.documentTitle,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: 'Plus Jakarta Sans',
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          actions: [
-            BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+            child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
               builder: (context, state) {
                 return AbsorbPointer(
                   absorbing: state.isLoading,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (state.isIndexMode)
-                        Container(
-                          margin: const EdgeInsets.only(right: 8),
-                          child: Material(
-                            color: Colors.transparent,
-                            child: InkWell(
-                              borderRadius: BorderRadius.circular(12),
-                              onTap: () {
-                                context.read<StudyExecutionBloc>().add(
-                                  const ToggleStudySelectionMode(),
-                                );
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                  vertical: 8,
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(
-                                      state.isSelectionMode
-                                          ? LucideIcons.checkSquare
-                                          : LucideIcons.mousePointer2,
-                                      color:
-                                          Theme.of(context).colorScheme.onPrimary,
-                                      size: 18,
-                                    ),
-                                    const SizedBox(width: 8),
-                                    Text(
-                                      state.isSelectionMode
-                                          ? localizations.done
-                                          : localizations.select,
-                                      style: TextStyle(
-                                        color: Theme.of(
-                                          context,
-                                        ).colorScheme.onPrimary,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      Container(
-                        width: 40,
-                        height: 40,
-                        margin: const EdgeInsets.only(right: 24),
-                        decoration: BoxDecoration(
-                          color: context.fileLoadedTheme.appBarIconBackgroundColor,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: IconButton(
-                          padding: EdgeInsets.zero,
-                          onPressed: () async => await showDialog(
-                            context: context,
-                            barrierDismissible: false,
-                            builder: (_) => const SettingsDialog(),
-                          ),
-                          icon: Icon(
-                            LucideIcons.settings,
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            size: 20,
-                          ),
-                          tooltip: localizations.questionOrderConfigTooltip,
-                        ),
-                      ),
-                    ],
+                  child: IconButton(
+                    padding: EdgeInsets.zero,
+                    icon: Icon(
+                      LucideIcons.arrowLeft,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      size: 20,
+                    ),
+                    tooltip: localizations.backSemanticLabel,
+                    onPressed: () async {
+                      if (state.isSelectionMode) {
+                        context.read<StudyExecutionBloc>().add(
+                          const ClearSelectionRequested(),
+                        );
+                        return;
+                      }
+                      if (!state.isIndexMode) {
+                        context.read<StudyExecutionBloc>().add(
+                          const ReturnToIndexRequested(),
+                        );
+                        return;
+                      }
+                      final shouldExit = await onConfirmExit();
+                      if (shouldExit && context.mounted) {
+                        context.read<FileBloc>().add(QuizFileReset());
+                        context.pop();
+                      }
+                    },
                   ),
                 );
               },
             ),
-          ],
+          ),
+        ),
+      ),
+      title: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+                  builder: (context, state) {
+                    return Text(
+                      state.documentTitle,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'Plus Jakarta Sans',
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+      actions: [
+        BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+          builder: (context, state) {
+            return AbsorbPointer(
+              absorbing: state.isLoading,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (state.isIndexMode)
+                    Container(
+                      margin: const EdgeInsets.only(right: 8),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(12),
+                          onTap: () {
+                            context.read<StudyExecutionBloc>().add(
+                              const ToggleStudySelectionMode(),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 8,
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  state.isSelectionMode
+                                      ? LucideIcons.checkSquare
+                                      : LucideIcons.mousePointer2,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onPrimary,
+                                  size: 18,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  state.isSelectionMode
+                                      ? localizations.done
+                                      : localizations.select,
+                                  style: TextStyle(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onPrimary,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  Container(
+                    width: 40,
+                    height: 40,
+                    margin: const EdgeInsets.only(right: 24),
+                    decoration: BoxDecoration(
+                      color: context.fileLoadedTheme.appBarIconBackgroundColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () async => await showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (_) => const SettingsDialog(),
+                      ),
+                      icon: Icon(
+                        LucideIcons.settings,
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        size: 20,
+                      ),
+                      tooltip: localizations.questionOrderConfigTooltip,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 }
