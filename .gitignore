@@ -46,6 +46,7 @@ app.*.map.json
 
 # Generated localization files
 untranslated_messages.json
+lib/core/l10n/app_localizations*.dart
 
 # Copilot instructions (local configuration)
 .github/copilot-instructions.md
