@@ -22,7 +22,6 @@ import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
-import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_chunk_card.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_hero_card.dart';
@@ -44,26 +43,27 @@ class StudyIndexView extends StatelessWidget {
     this.onImport,
   });
 
-  Future<void> _onChunkTap(BuildContext context, int index) async {
-    final chunk = state.chunks[index];
-    final isCompleted = chunk.status == StudyChunkState.completed;
+  void _onChunkTap(BuildContext context, int index) {
+    context.read<StudyExecutionBloc>().add(StudyChunkRequested(index));
+  }
 
-    if (!isCompleted) {
-      final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
-          .getIsAiAvailable();
+  Future<void> _onChunkDownload(BuildContext context, int index) async {
+    final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
+        .getIsAiAvailable();
 
-      if (!isAiAvailable) {
-        if (context.mounted) {
-          context.presentSnackBar(
-            AppLocalizations.of(context)!.aiApiKeyRequired,
-          );
-        }
-        return;
+    if (!isAiAvailable) {
+      if (context.mounted) {
+        context.presentSnackBar(
+          AppLocalizations.of(context)!.aiApiKeyRequired,
+        );
       }
+      return;
     }
 
     if (context.mounted) {
-      context.read<StudyExecutionBloc>().add(StudyChunkRequested(index));
+      context
+          .read<StudyExecutionBloc>()
+          .add(DownloadStudyChunkRequested(index));
     }
   }
 
@@ -126,6 +126,7 @@ class StudyIndexView extends StatelessWidget {
                   _onChunkTap(context, index);
                 }
               },
+              onDownload: () => _onChunkDownload(context, index),
               onLongPress: () {
                 context.read<StudyExecutionBloc>().add(
                   ToggleChunkSelection(index),
@@ -199,6 +200,7 @@ class StudyIndexView extends StatelessWidget {
                     _onChunkTap(context, index);
                   }
                 },
+                onDownload: () => _onChunkDownload(context, index),
                 onLongPress: () {
                   context.read<StudyExecutionBloc>().add(
                     ToggleChunkSelection(index),
@@ -292,6 +294,8 @@ class StudyIndexView extends StatelessWidget {
                                     _onChunkTap(context, i);
                                   }
                                 },
+                                onDownload: () =>
+                                    _onChunkDownload(context, i),
                                 onLongPress: () {
                                   context.read<StudyExecutionBloc>().add(
                                     ToggleChunkSelection(i),
@@ -328,6 +332,8 @@ class StudyIndexView extends StatelessWidget {
                                     _onChunkTap(context, i);
                                   }
                                 },
+                                onDownload: () =>
+                                    _onChunkDownload(context, i),
                                 onLongPress: () {
                                   context.read<StudyExecutionBloc>().add(
                                     ToggleChunkSelection(i),

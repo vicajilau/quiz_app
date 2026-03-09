@@ -25,6 +25,7 @@ class StudySectionsSidebar extends StatelessWidget {
   final int currentChunkIndex;
   final AppLocalizations localizations;
   final ValueChanged<int> onChunkSelected;
+  final ValueChanged<int> onChunkDownload;
   final VoidCallback onClose;
   final bool isFullScreen;
 
@@ -34,6 +35,7 @@ class StudySectionsSidebar extends StatelessWidget {
     required this.currentChunkIndex,
     required this.localizations,
     required this.onChunkSelected,
+    required this.onChunkDownload,
     required this.onClose,
     this.isFullScreen = false,
   });
@@ -130,6 +132,7 @@ class StudySectionsSidebar extends StatelessWidget {
                       isSelected: isSelected,
                       localizations: localizations,
                       onTap: () => onChunkSelected(index),
+                      onDownload: () => onChunkDownload(index),
                     ),
                   );
                 },
@@ -177,6 +180,7 @@ class _SidebarChunkItem extends StatelessWidget {
   final bool isSelected;
   final AppLocalizations localizations;
   final VoidCallback onTap;
+  final VoidCallback onDownload;
 
   const _SidebarChunkItem({
     required this.chunk,
@@ -185,12 +189,18 @@ class _SidebarChunkItem extends StatelessWidget {
     required this.isSelected,
     required this.localizations,
     required this.onTap,
+    required this.onDownload,
   });
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isCompleted = chunk.status == StudyChunkState.completed;
+    final isDownloaded = chunk.status == StudyChunkState.downloaded;
+    final isProcessing = chunk.status == StudyChunkState.processing;
+    final isError = chunk.status == StudyChunkState.error;
+    final hasContent = isCompleted || isDownloaded;
+    final needsDownload = !hasContent && !isProcessing;
 
     final Color bgColor;
     if (isSelected) {
@@ -202,7 +212,7 @@ class _SidebarChunkItem extends StatelessWidget {
     }
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: hasContent ? onTap : null,
       child: Container(
         decoration: BoxDecoration(
           color: bgColor,
@@ -214,80 +224,155 @@ class _SidebarChunkItem extends StatelessWidget {
               : null,
         ),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 26,
-              height: 26,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: isCompleted || isSelected
-                    ? AppTheme.primaryColor.withValues(alpha: 0.25)
-                    : (isDark ? AppTheme.zinc700 : AppTheme.zinc100),
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                '${index + 1}',
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w700,
-                  color: isCompleted || isSelected
-                      ? (isDark ? AppTheme.zinc300 : AppTheme.primaryColor)
-                      : (isDark ? AppTheme.zinc500 : AppTheme.zinc400),
-                ),
-              ),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    chunk.title,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: isCompleted || isSelected
-                          ? FontWeight.w600
-                          : FontWeight.w500,
-                      color: isCompleted || isSelected
-                          ? (isDark ? Colors.white : AppTheme.zinc900)
-                          : (isDark ? AppTheme.zinc400 : AppTheme.zinc500),
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+            Row(
+              children: [
+                Container(
+                  width: 26,
+                  height: 26,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: isCompleted || isSelected
+                        ? AppTheme.primaryColor.withValues(alpha: 0.25)
+                        : (isDark ? AppTheme.zinc700 : AppTheme.zinc100),
                   ),
-                  const SizedBox(height: 2),
-                  Text(
-                    localizations.studyScreenSectionIndicator(index + 1, total),
+                  alignment: Alignment.center,
+                  child: Text(
+                    '${index + 1}',
                     style: TextStyle(
                       fontSize: 11,
-                      color: isSelected
-                          ? AppTheme.primaryColor
-                          : (isDark ? AppTheme.zinc600 : AppTheme.zinc400),
+                      fontWeight: FontWeight.w700,
+                      color: isCompleted || isSelected
+                          ? (isDark ? AppTheme.zinc300 : AppTheme.primaryColor)
+                          : (isDark ? AppTheme.zinc500 : AppTheme.zinc400),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        chunk.title,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: isCompleted || isSelected
+                              ? FontWeight.w600
+                              : FontWeight.w500,
+                          color: isCompleted || isSelected
+                              ? (isDark ? Colors.white : AppTheme.zinc900)
+                              : (isDark ? AppTheme.zinc400 : AppTheme.zinc500),
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        localizations.studyScreenSectionIndicator(
+                          index + 1,
+                          total,
+                        ),
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: isSelected
+                              ? AppTheme.primaryColor
+                              : (isDark ? AppTheme.zinc600 : AppTheme.zinc400),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 4),
+                if (isCompleted)
+                  const Icon(
+                    Icons.check_circle,
+                    size: 16,
+                    color: AppTheme.primaryColor,
+                  )
+                else if (isSelected)
+                  const Icon(
+                    Icons.play_arrow,
+                    size: 16,
+                    color: AppTheme.primaryColor,
+                  )
+                else if (isDownloaded)
+                  Icon(
+                    Icons.chevron_right,
+                    size: 14,
+                    color: isDark ? AppTheme.zinc600 : AppTheme.zinc400,
+                  ),
+              ],
+            ),
+            if (needsDownload) ...[
+              const SizedBox(height: 8),
+              GestureDetector(
+                onTap: onDownload,
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 6,
+                    horizontal: 10,
+                  ),
+                  decoration: BoxDecoration(
+                    color: isError
+                        ? (isDark ? AppTheme.zinc800 : AppTheme.zinc100)
+                        : AppTheme.primaryColor.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        isError ? Icons.refresh : Icons.download_outlined,
+                        size: 13,
+                        color: isError
+                            ? AppTheme.zinc500
+                            : AppTheme.primaryColor,
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        isError
+                            ? localizations.studyScreenRetry
+                            : localizations.studyScreenDownloadChunk,
+                        style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w600,
+                          color: isError
+                              ? AppTheme.zinc500
+                              : AppTheme.primaryColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+            if (isProcessing) ...[
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 12,
+                    height: 12,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 1.5,
+                      color: AppTheme.primaryColor.withValues(alpha: 0.7),
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  Text(
+                    localizations.studyScreenGenerating,
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: isDark ? AppTheme.zinc500 : AppTheme.zinc400,
                     ),
                   ),
                 ],
               ),
-            ),
-            const SizedBox(width: 4),
-            if (isCompleted)
-              Icon(
-                Icons.check_circle,
-                size: 16,
-                color: isDark ? AppTheme.secondaryColor : AppTheme.primaryColor,
-              )
-            else if (isSelected)
-              const Icon(
-                Icons.play_arrow,
-                size: 16,
-                color: AppTheme.primaryColor,
-              )
-            else
-              Icon(
-                Icons.chevron_right,
-                size: 14,
-                color: isDark ? AppTheme.zinc600 : AppTheme.zinc400,
-              ),
+            ],
           ],
         ),
       ),
