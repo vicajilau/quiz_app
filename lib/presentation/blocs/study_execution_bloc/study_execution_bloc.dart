@@ -332,10 +332,7 @@ class StudyExecutionBloc
 
   StudyExecutionState _updateProgress(StudyExecutionState currentState) {
     if (currentState.chunks.isEmpty) {
-      return currentState.copyWith(
-        progressPercentage: 0.0,
-        processedChunks: 0,
-      );
+      return currentState.copyWith(progressPercentage: 0.0, processedChunks: 0);
     }
 
     int processedChunksCount = currentState.chunks

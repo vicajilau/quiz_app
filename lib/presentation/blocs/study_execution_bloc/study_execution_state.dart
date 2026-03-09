@@ -89,9 +89,9 @@ class StudyExecutionState {
     );
   }
 
-  /// Number of chunks with status [StudyChunkState.downloaded].
-  int get downloadedChunks =>
-      chunks.where((c) => c.status == StudyChunkState.downloaded).length;
+  /// Number of chunks with status [StudyChunkState.completed].
+  int get completedChunks =>
+      chunks.where((c) => c.status == StudyChunkState.completed).length;
 
   /// Helper to get the currently active chunk
   StudyChunk? get currentChunk {

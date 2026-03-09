@@ -38,10 +38,7 @@ class KeyConceptsComponent extends StatelessWidget {
       decoration: BoxDecoration(
         color: studyTheme.cardBackground,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: studyTheme.cardBorder,
-          width: 1,
-        ),
+        border: Border.all(color: studyTheme.cardBorder, width: 1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,9 +64,7 @@ class KeyConceptsComponent extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16),
-            Divider(
-              color: studyTheme.cardDivider,
-            ),
+            Divider(color: studyTheme.cardDivider),
             const SizedBox(height: 16),
           ],
           if (items.isNotEmpty)

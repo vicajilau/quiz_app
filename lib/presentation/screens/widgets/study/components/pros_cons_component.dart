@@ -41,18 +41,40 @@ class ProsConsComponent extends StatelessWidget {
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                _buildList(context, AppLocalizations.of(context)!.studyComponentAdvantages, pros, true),
+                _buildList(
+                  context,
+                  AppLocalizations.of(context)!.studyComponentAdvantages,
+                  pros,
+                  true,
+                ),
                 const SizedBox(height: 16),
-                _buildList(context, AppLocalizations.of(context)!.studyComponentLimitations, cons, false),
+                _buildList(
+                  context,
+                  AppLocalizations.of(context)!.studyComponentLimitations,
+                  cons,
+                  false,
+                ),
               ],
             )
           : Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(child: _buildList(context, AppLocalizations.of(context)!.studyComponentAdvantages, pros, true)),
+                Expanded(
+                  child: _buildList(
+                    context,
+                    AppLocalizations.of(context)!.studyComponentAdvantages,
+                    pros,
+                    true,
+                  ),
+                ),
                 const SizedBox(width: 16),
                 Expanded(
-                  child: _buildList(context, AppLocalizations.of(context)!.studyComponentLimitations, cons, false),
+                  child: _buildList(
+                    context,
+                    AppLocalizations.of(context)!.studyComponentLimitations,
+                    cons,
+                    false,
+                  ),
                 ),
               ],
             ),
@@ -67,7 +89,9 @@ class ProsConsComponent extends StatelessWidget {
   ) {
     final studyTheme = context.studyTheme;
 
-    final backgroundColor = isPros ? studyTheme.prosBackground : studyTheme.consBackground;
+    final backgroundColor = isPros
+        ? studyTheme.prosBackground
+        : studyTheme.consBackground;
     final borderColor = isPros ? studyTheme.prosBorder : studyTheme.consBorder;
     final iconColor = isPros ? studyTheme.prosIcon : studyTheme.consIcon;
     final icon = isPros ? LucideIcons.checkCircle2 : LucideIcons.xCircle;
@@ -99,9 +123,7 @@ class ProsConsComponent extends StatelessWidget {
           if (items.isEmpty)
             Text(
               AppLocalizations.of(context)!.studyComponentNoItems,
-              style: TextStyle(
-                color: studyTheme.cardSubtitle,
-              ),
+              style: TextStyle(color: studyTheme.cardSubtitle),
             )
           else
             ...items.map(

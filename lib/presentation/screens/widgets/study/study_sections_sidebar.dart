@@ -46,7 +46,7 @@ class StudySectionsSidebar extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? AppTheme.zinc800 : Colors.white,
+        color: isDark ? AppTheme.zinc800 : AppTheme.backgroundColor,
         border: isFullScreen
             ? null
             : Border(
@@ -83,7 +83,9 @@ class StudySectionsSidebar extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
-                        color: isDark ? Colors.white : AppTheme.zinc900,
+                        color: isDark
+                            ? AppTheme.backgroundColor
+                            : AppTheme.zinc900,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -208,7 +210,7 @@ class _SidebarChunkItem extends StatelessWidget {
     } else if (isCompleted) {
       bgColor = AppTheme.primaryColor.withValues(alpha: isDark ? 0.125 : 0.063);
     } else {
-      bgColor = Colors.transparent;
+      bgColor = AppTheme.transparent;
     }
 
     return GestureDetector(
@@ -263,7 +265,9 @@ class _SidebarChunkItem extends StatelessWidget {
                               ? FontWeight.w600
                               : FontWeight.w500,
                           color: isCompleted || isSelected
-                              ? (isDark ? Colors.white : AppTheme.zinc900)
+                              ? (isDark
+                                    ? AppTheme.backgroundColor
+                                    : AppTheme.zinc900)
                               : (isDark ? AppTheme.zinc400 : AppTheme.zinc500),
                         ),
                         maxLines: 2,

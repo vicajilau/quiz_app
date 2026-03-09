@@ -53,17 +53,15 @@ class StudyIndexView extends StatelessWidget {
 
     if (!isAiAvailable) {
       if (context.mounted) {
-        context.presentSnackBar(
-          AppLocalizations.of(context)!.aiApiKeyRequired,
-        );
+        context.presentSnackBar(AppLocalizations.of(context)!.aiApiKeyRequired);
       }
       return;
     }
 
     if (context.mounted) {
-      context
-          .read<StudyExecutionBloc>()
-          .add(DownloadStudyChunkRequested(index));
+      context.read<StudyExecutionBloc>().add(
+        DownloadStudyChunkRequested(index),
+      );
     }
   }
 
@@ -163,15 +161,15 @@ class StudyIndexView extends StatelessWidget {
                   Icon(
                     Icons.library_books_outlined,
                     size: 64,
-                    color: Colors.grey.withValues(alpha: 0.5),
+                    color: Theme.of(context).hintColor.withValues(alpha: 0.5),
                   ),
                   const SizedBox(height: 16),
                   Text(
                     localizations.studyScreenNoSlidesAvailable,
                     textAlign: TextAlign.center,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyLarge?.copyWith(color: Colors.grey),
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Theme.of(context).hintColor,
+                    ),
                   ),
                 ],
               ),
@@ -252,14 +250,16 @@ class StudyIndexView extends StatelessWidget {
                         Icon(
                           Icons.library_books_outlined,
                           size: 80,
-                          color: Colors.grey.withValues(alpha: 0.5),
+                          color: Theme.of(
+                            context,
+                          ).hintColor.withValues(alpha: 0.5),
                         ),
                         const SizedBox(height: 24),
                         Text(
                           localizations.studyScreenNoSlidesAvailable,
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.headlineSmall
-                              ?.copyWith(color: Colors.grey),
+                              ?.copyWith(color: Theme.of(context).hintColor),
                         ),
                       ],
                     ),
@@ -294,8 +294,7 @@ class StudyIndexView extends StatelessWidget {
                                     _onChunkTap(context, i);
                                   }
                                 },
-                                onDownload: () =>
-                                    _onChunkDownload(context, i),
+                                onDownload: () => _onChunkDownload(context, i),
                                 onLongPress: () {
                                   context.read<StudyExecutionBloc>().add(
                                     ToggleChunkSelection(i),
@@ -332,8 +331,7 @@ class StudyIndexView extends StatelessWidget {
                                     _onChunkTap(context, i);
                                   }
                                 },
-                                onDownload: () =>
-                                    _onChunkDownload(context, i),
+                                onDownload: () => _onChunkDownload(context, i),
                                 onLongPress: () {
                                   context.read<StudyExecutionBloc>().add(
                                     ToggleChunkSelection(i),
