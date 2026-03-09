@@ -17,7 +17,7 @@ import 'package:go_router/go_router.dart';
 import 'package:quizdy/core/debug_print.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
-import 'package:quizdy/presentation/screens/file_loaded_screen.dart';
+import 'package:quizdy/presentation/screens/quiz_loaded_screen.dart';
 import 'package:quizdy/presentation/screens/quiz_file_execution_screen.dart';
 import 'package:quizdy/presentation/screens/study_screen.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
@@ -54,7 +54,7 @@ GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
     ),
     GoRoute(
       path: AppRoutes.fileLoadedScreen,
-      builder: (context, state) => FileLoadedScreen(
+      builder: (context, state) => QuizLoadedScreen(
         fileBloc: ServiceLocator.getIt<FileBloc>(),
         checkFileChangesUseCase:
             ServiceLocator.getIt<CheckFileChangesUseCase>(),
@@ -76,6 +76,7 @@ GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
           documentTitle: extra['documentTitle'] ?? '',
           documentSummary: extra['documentSummary'] as String?,
           quizFile: extra['quizFile'] as QuizFile?,
+          hideStartQuizButton: extra['hideStartQuizButton'] as bool? ?? false,
           isAutoDifficulty: extra['isAutoDifficulty'] as bool? ?? true,
           difficultyLevel: extra['difficultyLevel'] as AiDifficultyLevel?,
           generationMode: extra['generationMode'] as AiGenerationMode?,
