@@ -89,6 +89,7 @@ class StudyExecutionBloc
     on<ToggleStudySelectionMode>(_onToggleStudySelectionMode);
     on<ToggleChunkSelection>(_onToggleChunkSelection);
     on<ClearSelectionRequested>(_onClearSelectionRequested);
+    on<DownloadStudyChunkRequested>(_onDownloadStudyChunkRequested);
     on<GenerateAiStudyChunksRequested>(_onGenerateAiStudyChunksRequested);
     on<DeleteSelectedChunksRequested>(_onDeleteSelectedChunksRequested);
   }
@@ -113,7 +114,11 @@ class StudyExecutionBloc
     if (chunks.isEmpty) return state;
 
     int processedChunksCount = chunks
-        .where((c) => c.status == StudyChunkState.completed)
+        .where(
+          (c) =>
+              c.status == StudyChunkState.completed ||
+              c.status == StudyChunkState.downloaded,
+        )
         .length;
 
     final progress = (processedChunksCount / chunks.length * 100).clamp(
@@ -141,6 +146,15 @@ class StudyExecutionBloc
     );
 
     final chunk = state.chunks[event.chunkIndex];
+
+    // If content is already available but not yet marked as visited, mark it as completed now.
+    if (chunk.status == StudyChunkState.downloaded) {
+      final visitedChunk = chunk.copyWith(status: StudyChunkState.completed);
+      final chunksVisited = List<StudyChunk>.from(state.chunks);
+      chunksVisited[event.chunkIndex] = visitedChunk;
+      emit(_updateProgress(state.copyWith(chunks: chunksVisited)));
+      return;
+    }
 
     // Only process if it's created or encountered an error. If it's already completed or processing, do nothing.
     if (chunk.status == StudyChunkState.completed ||
@@ -233,6 +247,89 @@ class StudyExecutionBloc
     );
   }
 
+  Future<void> _onDownloadStudyChunkRequested(
+    DownloadStudyChunkRequested event,
+    Emitter<StudyExecutionState> emit,
+  ) async {
+    if (event.chunkIndex < 0 || event.chunkIndex >= state.chunks.length) {
+      return;
+    }
+
+    final chunk = state.chunks[event.chunkIndex];
+
+    // Only download chunks that need processing.
+    if (chunk.status == StudyChunkState.completed ||
+        chunk.status == StudyChunkState.downloaded ||
+        chunk.status == StudyChunkState.processing) {
+      return;
+    }
+
+    // Mark as processing (stays in index mode).
+    final processingChunk = chunk.copyWith(status: StudyChunkState.processing);
+    final chunksProcessing = List<StudyChunk>.from(state.chunks);
+    chunksProcessing[event.chunkIndex] = processingChunk;
+    emit(state.copyWith(chunks: chunksProcessing));
+
+    String? fileUri = state.fileUri;
+    DateTime? fileExpirationTime = state.fileExpirationTime;
+    final String? fileMimeType = state.fileAttachment?.mimeType;
+
+    final bool isExpired =
+        fileExpirationTime != null &&
+        DateTime.now()
+            .add(const Duration(minutes: 10))
+            .isAfter(fileExpirationTime);
+
+    if ((fileUri == null || isExpired) && state.fileAttachment != null) {
+      try {
+        final uploadResult = await ServiceLocator.getIt<GeminiService>()
+            .uploadFile(state.fileAttachment!, _localizations);
+        fileUri = uploadResult.fileUri;
+        fileExpirationTime = uploadResult.expirationTime;
+        emit(
+          state.copyWith(
+            fileUri: fileUri,
+            fileExpirationTime: fileExpirationTime,
+          ),
+        );
+      } catch (e) {
+        final errorChunk = chunk.copyWith(status: StudyChunkState.error);
+        final chunksError = List<StudyChunk>.from(state.chunks);
+        chunksError[event.chunkIndex] = errorChunk;
+        emit(state.copyWith(chunks: chunksError, error: e.toString()));
+        return;
+      }
+    }
+
+    final processedChunk = await _jitProcessingService.processChunk(
+      chunk: processingChunk,
+      fileUri: fileUri,
+      fileMimeType: fileMimeType,
+      originalText: _originalText,
+      localizations: _localizations,
+      docTitle: state.documentTitle,
+      docSummary: state.documentSummary,
+      isAutoDifficulty: _isAutoDifficulty,
+      difficultyLevel: _difficultyLevel,
+      language: _language ?? _localizations.localeName,
+      generationMode: _generationMode,
+    );
+
+    final chunksFinished = List<StudyChunk>.from(state.chunks);
+    chunksFinished[event.chunkIndex] = processedChunk;
+
+    final newState = _updateProgress(state.copyWith(chunks: chunksFinished));
+    emit(newState);
+
+    onProgressChanged?.call(
+      newState.progressPercentage,
+      newState.processedChunks,
+      newState.chunks,
+      newState.fileUri,
+      newState.fileExpirationTime,
+    );
+  }
+
   StudyExecutionState _updateProgress(StudyExecutionState currentState) {
     if (currentState.chunks.isEmpty) {
       return currentState.copyWith(
@@ -242,7 +339,11 @@ class StudyExecutionBloc
     }
 
     int processedChunksCount = currentState.chunks
-        .where((c) => c.status == StudyChunkState.completed)
+        .where(
+          (c) =>
+              c.status == StudyChunkState.completed ||
+              c.status == StudyChunkState.downloaded,
+        )
         .length;
 
     final progress = (processedChunksCount / currentState.chunks.length * 100)
