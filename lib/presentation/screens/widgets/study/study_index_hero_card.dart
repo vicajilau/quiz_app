@@ -97,7 +97,7 @@ class StudyIndexHeroCard extends StatelessWidget {
               const SizedBox(width: 12),
               _buildStatCard(
                 context,
-                value: '${state.processedChunks}/${state.chunks.length}',
+                value: '${state.completedChunks}/${state.chunks.length}',
                 label: localizations.studyScreenCompleted,
                 valueColor: completedValueColor,
                 cardBg: statCardBg,

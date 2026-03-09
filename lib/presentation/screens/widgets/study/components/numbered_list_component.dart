@@ -47,10 +47,7 @@ class NumberedListComponent extends StatelessWidget {
       decoration: BoxDecoration(
         color: studyTheme.cardBackground,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: studyTheme.cardBorder,
-          width: 1,
-        ),
+        border: Border.all(color: studyTheme.cardBorder, width: 1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,9 +73,7 @@ class NumberedListComponent extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16),
-            Divider(
-              color: studyTheme.cardDivider,
-            ),
+            Divider(color: studyTheme.cardDivider),
             const SizedBox(height: 16),
           ],
           ...items.asMap().entries.map((entry) {

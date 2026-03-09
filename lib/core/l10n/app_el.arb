@@ -779,5 +779,6 @@
   "studyScreenImportant": "Σημαντικό",
   "studyComponentNoItems": "Δεν υπάρχουν στοιχεία",
   "studyComponentAdvantages": "Πλεονεκτήματα",
-  "studyComponentLimitations": "Περιορισμοί"
+  "studyComponentLimitations": "Περιορισμοί",
+  "studyScreenDownloadChunk": "Λήψη"
 }

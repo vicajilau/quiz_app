@@ -855,6 +855,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get studyScreenRetry => '再試行';
 
   @override
+  String get studyScreenDownloadChunk => 'ダウンロード';
+
+  @override
   String get studyScreenOmit => '省略';
 
   @override

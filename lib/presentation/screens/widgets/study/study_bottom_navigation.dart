@@ -62,15 +62,18 @@ class StudyBottomNavigation extends StatelessWidget {
               absorbing: state.isLoading,
               child: () {
                 if (state.isIndexMode) {
-                  final currentQuizFile = StudyQuizFileHelper.getCurrentQuizFile(
-                    studyState: state,
-                    fileState: fileState,
-                    initialQuizFile: quizFile,
-                    generationMode: generationMode,
-                    originalText: originalText,
-                  );
-                  final hasChanges = ServiceLocator.getIt<CheckFileChangesUseCase>()
-                      .execute(currentQuizFile);
+                  final currentQuizFile =
+                      StudyQuizFileHelper.getCurrentQuizFile(
+                        studyState: state,
+                        fileState: fileState,
+                        initialQuizFile: quizFile,
+                        generationMode: generationMode,
+                        originalText: originalText,
+                      );
+                  final hasChanges =
+                      ServiceLocator.getIt<CheckFileChangesUseCase>().execute(
+                        currentQuizFile,
+                      );
 
                   return StudyIndexFooterWidget(
                     localizations: localizations,

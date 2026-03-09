@@ -1866,5 +1866,6 @@
   "studyScreenImportant": "Important",
   "studyComponentNoItems": "Aucun élément",
   "studyComponentAdvantages": "Avantages",
-  "studyComponentLimitations": "Limites"
+  "studyComponentLimitations": "Limites",
+  "studyScreenDownloadChunk": "Télécharger"
 }

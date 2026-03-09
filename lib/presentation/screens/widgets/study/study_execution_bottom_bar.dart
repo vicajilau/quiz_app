@@ -78,7 +78,9 @@ class StudyExecutionBottomBar extends StatelessWidget {
                 children: [
                   Flexible(
                     child: QuizdyButton(
-                      title: isMobile ? '' : localizations.studyScreenPreviousSection,
+                      title: isMobile
+                          ? ''
+                          : localizations.studyScreenPreviousSection,
                       icon: LucideIcons.chevronLeft,
                       type: QuizdyButtonType.secondary,
                       onPressed: onPrevious,
@@ -110,7 +112,9 @@ class StudyExecutionBottomBar extends StatelessWidget {
                   const SizedBox(width: 8),
                   Flexible(
                     child: QuizdyButton(
-                      title: isMobile ? '' : localizations.studyScreenNextSection,
+                      title: isMobile
+                          ? ''
+                          : localizations.studyScreenNextSection,
                       icon: LucideIcons.chevronRight,
                       onPressed: onNext,
                     ),

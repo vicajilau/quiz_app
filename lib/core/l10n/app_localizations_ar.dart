@@ -889,6 +889,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get studyScreenRetry => 'إعادة المحاولة';
 
   @override
+  String get studyScreenDownloadChunk => 'تنزيل';
+
+  @override
   String get studyScreenOmit => 'تجاوز';
 
   @override

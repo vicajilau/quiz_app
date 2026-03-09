@@ -24,6 +24,9 @@ enum StudyChunkState {
   /// The chunk has been successfully processed.
   completed,
 
+  /// The chunk content has been received from the AI response and is ready to display.
+  downloaded,
+
   /// An error occurred while processing the chunk.
   error;
 
@@ -39,6 +42,8 @@ enum StudyChunkState {
         return StudyChunkState.processing;
       case 'completed':
         return StudyChunkState.completed;
+      case 'downloaded':
+        return StudyChunkState.downloaded;
       case 'error':
         return StudyChunkState.error;
       default:

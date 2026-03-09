@@ -93,6 +93,13 @@ class DeleteSelectedChunksRequested extends StudyExecutionEvent {
   const DeleteSelectedChunksRequested();
 }
 
+/// Dispatched to download (JIT-process) a chunk from the index view without navigating away.
+class DownloadStudyChunkRequested extends StudyExecutionEvent {
+  final int chunkIndex;
+
+  const DownloadStudyChunkRequested(this.chunkIndex);
+}
+
 /// Dispatched to generate new study sections using AI.
 class GenerateAiStudyChunksRequested extends StudyExecutionEvent {
   final AiStudyGenerationConfig config;

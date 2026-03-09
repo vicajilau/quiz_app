@@ -50,7 +50,8 @@ class AiJitProcessingService {
     AiGenerationMode? generationMode,
   }) async {
     // We only process chunks that have not been successfully processed yet.
-    if (chunk.status == StudyChunkState.completed) {
+    if (chunk.status == StudyChunkState.completed ||
+        chunk.status == StudyChunkState.downloaded) {
       return chunk;
     }
 
@@ -102,7 +103,7 @@ class AiJitProcessingService {
       final parsedData = _parseJsonResponse(cleanJsonString);
 
       return chunk.copyWith(
-        status: StudyChunkState.completed,
+        status: StudyChunkState.downloaded,
         aiSummary: parsedData['aiSummary'] as String?,
         pages: parsedData['pages'] as List<Page>?,
       );

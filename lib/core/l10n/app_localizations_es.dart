@@ -904,6 +904,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get studyScreenRetry => 'Reintentar';
 
   @override
+  String get studyScreenDownloadChunk => 'Descargar';
+
+  @override
   String get studyScreenOmit => 'Omitir';
 
   @override

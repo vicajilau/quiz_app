@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:collection/collection.dart';
 
@@ -87,6 +88,10 @@ class StudyExecutionState {
       selectedIndices: selectedIndices ?? this.selectedIndices,
     );
   }
+
+  /// Number of chunks with status [StudyChunkState.completed].
+  int get completedChunks =>
+      chunks.where((c) => c.status == StudyChunkState.completed).length;
 
   /// Helper to get the currently active chunk
   StudyChunk? get currentChunk {

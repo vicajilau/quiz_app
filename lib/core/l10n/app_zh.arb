@@ -1873,5 +1873,6 @@
   "studyScreenImportant": "重要",
   "studyComponentNoItems": "没有项目",
   "studyComponentAdvantages": "优势",
-  "studyComponentLimitations": "局限性"
+  "studyComponentLimitations": "局限性",
+  "studyScreenDownloadChunk": "下载"
 }

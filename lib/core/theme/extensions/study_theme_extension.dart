@@ -149,12 +149,23 @@ class StudyThemeExtension extends ThemeExtension<StudyThemeExtension> {
       cardTitle: Color.lerp(cardTitle, other.cardTitle, t)!,
       cardSubtitle: Color.lerp(cardSubtitle, other.cardSubtitle, t)!,
       cardDivider: Color.lerp(cardDivider, other.cardDivider, t)!,
-      tableHeaderBackground:
-          Color.lerp(tableHeaderBackground, other.tableHeaderBackground, t)!,
-      warningBackground: Color.lerp(warningBackground, other.warningBackground, t)!,
+      tableHeaderBackground: Color.lerp(
+        tableHeaderBackground,
+        other.tableHeaderBackground,
+        t,
+      )!,
+      warningBackground: Color.lerp(
+        warningBackground,
+        other.warningBackground,
+        t,
+      )!,
       warningBorder: Color.lerp(warningBorder, other.warningBorder, t)!,
       warningIcon: Color.lerp(warningIcon, other.warningIcon, t)!,
-      reminderBackground: Color.lerp(reminderBackground, other.reminderBackground, t)!,
+      reminderBackground: Color.lerp(
+        reminderBackground,
+        other.reminderBackground,
+        t,
+      )!,
       reminderBorder: Color.lerp(reminderBorder, other.reminderBorder, t)!,
       reminderIcon: Color.lerp(reminderIcon, other.reminderIcon, t)!,
       prosBackground: Color.lerp(prosBackground, other.prosBackground, t)!,
@@ -163,10 +174,18 @@ class StudyThemeExtension extends ThemeExtension<StudyThemeExtension> {
       consBackground: Color.lerp(consBackground, other.consBackground, t)!,
       consBorder: Color.lerp(consBorder, other.consBorder, t)!,
       consIcon: Color.lerp(consIcon, other.consIcon, t)!,
-      formulaBackground: Color.lerp(formulaBackground, other.formulaBackground, t)!,
+      formulaBackground: Color.lerp(
+        formulaBackground,
+        other.formulaBackground,
+        t,
+      )!,
       formulaText: Color.lerp(formulaText, other.formulaText, t)!,
       formulaLabel: Color.lerp(formulaLabel, other.formulaLabel, t)!,
-      timelineIndicator: Color.lerp(timelineIndicator, other.timelineIndicator, t)!,
+      timelineIndicator: Color.lerp(
+        timelineIndicator,
+        other.timelineIndicator,
+        t,
+      )!,
       timelineLine: Color.lerp(timelineLine, other.timelineLine, t)!,
     );
   }

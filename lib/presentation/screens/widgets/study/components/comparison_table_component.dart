@@ -67,10 +67,7 @@ class ComparisonTableComponent extends StatelessWidget {
       decoration: BoxDecoration(
         color: studyTheme.cardBackground,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: studyTheme.cardBorder,
-          width: 1,
-        ),
+        border: Border.all(color: studyTheme.cardBorder, width: 1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,17 +93,13 @@ class ComparisonTableComponent extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16),
-            Divider(
-              color: studyTheme.cardDivider,
-            ),
+            Divider(color: studyTheme.cardDivider),
             const SizedBox(height: 16),
           ],
           if (columns.isNotEmpty && rows.isNotEmpty)
             Container(
               decoration: BoxDecoration(
-                border: Border.all(
-                  color: studyTheme.cardBorder,
-                ),
+                border: Border.all(color: studyTheme.cardBorder),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: ClipRRect(
@@ -152,7 +145,9 @@ class ComparisonTableComponent extends StatelessWidget {
                               ),
                             ),
                           ),
-                          ...values.map((val) => DataCell(MarkdownWidget(data: val))),
+                          ...values.map(
+                            (val) => DataCell(MarkdownWidget(data: val)),
+                          ),
                         ],
                       );
                     }).toList(),

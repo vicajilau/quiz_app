@@ -906,6 +906,9 @@ class AppLocalizationsEu extends AppLocalizations {
   String get studyScreenRetry => 'Saiatu berriro';
 
   @override
+  String get studyScreenDownloadChunk => 'Deskargatu';
+
+  @override
   String get studyScreenOmit => 'Omititu';
 
   @override
