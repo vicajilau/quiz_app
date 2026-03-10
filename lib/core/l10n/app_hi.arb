@@ -1885,5 +1885,17 @@
   "studyComponentNoItems": "कोई आइटम नहीं",
   "studyComponentAdvantages": "लाभ",
   "studyComponentLimitations": "सीमाएं",
-  "studyScreenDownloadChunk": "डाउनलोड"
+  "studyScreenDownloadChunk": "डाउनलोड",
+  "aiStudyChapterSystemPrompt": "आप एक AI अध्ययन सहायक हैं जो एक छात्र को अध्ययन अध्याय की सामग्री को समझने में मदद कर रहे हैं। अवधारणाओं को गहराई से समझाएं, उदाहरण प्रदान करें और प्रासंगिक होने पर अध्ययन सामग्री के अन्य भागों से संबंध बनाएं। उसी भाषा में उत्तर दें जिसमें आपसे पूछा गया है।",
+  "@aiStudyChapterSystemPrompt": {
+    "description": "System prompt for the AI study assistant when chatting about a study chapter"
+  },
+  "aiStudyChapterGuardrail": "प्रदान की गई अध्याय सामग्री और अध्ययन सामग्री पर ध्यान केंद्रित रखें। यदि छात्र का प्रश्न किसी अन्य अध्याय से संबंधित है, तो संबंधित अध्याय शीर्षक का उल्लेख करें।",
+  "@aiStudyChapterGuardrail": {
+    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
+  },
+  "askAIStudyTooltip": "इस अध्याय के बारे में AI से पूछें",
+  "@askAIStudyTooltip": {
+    "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  }
 }

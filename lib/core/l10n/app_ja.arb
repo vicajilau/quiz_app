@@ -1885,5 +1885,17 @@
   "studyComponentNoItems": "アイテムなし",
   "studyComponentAdvantages": "利点",
   "studyComponentLimitations": "制限事項",
-  "studyScreenDownloadChunk": "ダウンロード"
+  "studyScreenDownloadChunk": "ダウンロード",
+  "aiStudyChapterSystemPrompt": "あなたは、学生が学習章の内容を理解するのを助けるAI学習アシスタントです。概念を深く説明し、例を示し、関連がある場合は学習教材の他の部分との関連付けを行ってください。質問されたのと同じ言語で回答してください。",
+  "@aiStudyChapterSystemPrompt": {
+    "description": "System prompt for the AI study assistant when chatting about a study chapter"
+  },
+  "aiStudyChapterGuardrail": "提供された章の内容と学習教材に集中してください。学生の質問が別の章に関連している場合は、関連する章のタイトルに言及してください。",
+  "@aiStudyChapterGuardrail": {
+    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
+  },
+  "askAIStudyTooltip": "この章についてAIに質問する",
+  "@askAIStudyTooltip": {
+    "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  }
 }

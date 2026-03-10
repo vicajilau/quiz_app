@@ -1978,5 +1978,17 @@
   "studyComponentNoItems": "Keine Elemente",
   "studyComponentAdvantages": "Vorteile",
   "studyComponentLimitations": "Einschränkungen",
-  "studyScreenDownloadChunk": "Herunterladen"
+  "studyScreenDownloadChunk": "Herunterladen",
+  "aiStudyChapterSystemPrompt": "Du bist ein KI-Lernassistent, der einem Studenten hilft, den Inhalt eines Lernkapitels zu verstehen. Erkläre Konzepte ausführliche, nenne Beispiele und stelle bei Bedarf Verbindungen zu anderen Teilen des Lernmaterials her. Antworte in derselben Sprache, in der du gefragt wirst.",
+  "@aiStudyChapterSystemPrompt": {
+    "description": "System prompt for the AI study assistant when chatting about a study chapter"
+  },
+  "aiStudyChapterGuardrail": "Konzentriere dich auf den bereitgestellten Kapitelinhalt und das Lernmaterial. Wenn sich die Frage des Studenten auf ein anderes Kapitel bezieht, nenne den entsprechenden Kapiteltitel.",
+  "@aiStudyChapterGuardrail": {
+    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
+  },
+  "askAIStudyTooltip": "KI zu diesem Kapitel fragen",
+  "@askAIStudyTooltip": {
+    "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  }
 }

@@ -354,7 +354,7 @@
   "importAtBeginning": "На початок",
   "importAtEnd": "В кінець",
   "questionsImportedSuccess": "Успішно імпортовано {count} питань",
-    "importChunksTitle": "Імпорт розділів",
+  "importChunksTitle": "Імпорт розділів",
   "@importChunksTitle": {
     "description": "Title for the import chunks dialog."
   },
@@ -390,7 +390,7 @@
   "@noChunksInFile": {
     "description": "Error message when the imported file has no study sections."
   },
-"importQuestionsTooltip": "Імпортувати питання з іншого файлу квізу",
+  "importQuestionsTooltip": "Імпортувати питання з іншого файлу квізу",
   "dragDropHintText": "Ви також можете перетягнути сюди файли .quiz для імпорту питань",
   "randomizeQuestionsTitle": "Випадковий порядок питань",
   "randomizeQuestionsDescription": "Перемішувати порядок питань під час квізу",
@@ -607,5 +607,17 @@
   "studyScreenImportant": "Важливо",
   "studyComponentNoItems": "Немає елементів",
   "studyComponentAdvantages": "Переваги",
-  "studyComponentLimitations": "Обмеження"
+  "studyComponentLimitations": "Обмеження",
+  "aiStudyChapterSystemPrompt": "Ви — ШІ-помічник у навчанні, який допомагає студенту зрозуміти зміст навчального розділу. Глибоко пояснюйте концепції, наводьте приклади та встановлюйте зв'язки з іншими частинами навчального матеріалу, коли це доречно. Відповідайте тією ж мовою, якою вас запитали.",
+  "@aiStudyChapterSystemPrompt": {
+    "description": "System prompt for the AI study assistant when chatting about a study chapter"
+  },
+  "aiStudyChapterGuardrail": "Зосередьтеся на змісті наданого розділу та навчальних матеріалах. Якщо запитання студента стосується іншого розділу, вкажіть назву відповідного розділу.",
+  "@aiStudyChapterGuardrail": {
+    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
+  },
+  "askAIStudyTooltip": "Запитати ШІ про цей розділ",
+  "@askAIStudyTooltip": {
+    "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  }
 }

@@ -2236,5 +2236,17 @@
   "@studyComponentLimitations": {
     "description": "Header for the limitations section in a study component"
   },
-  "studyScreenDownloadChunk": "Descargar"
+  "studyScreenDownloadChunk": "Descargar",
+  "aiStudyChapterSystemPrompt": "Eres un asistente de estudio por IA que ayuda a un estudiante a comprender el contenido de un capítulo de estudio. Explica los conceptos en profundidad, proporciona ejemplos y establece conexiones con otras partes del material de estudio cuando sea pertinente. Responde en el mismo idioma en el que se te pregunte.",
+  "@aiStudyChapterSystemPrompt": {
+    "description": "System prompt for the AI study assistant when chatting about a study chapter"
+  },
+  "aiStudyChapterGuardrail": "Mantente centrado en el contenido del capítulo proporcionado y en el material de estudio. Si la pregunta del estudiante se refiere a otro capítulo, menciona el título del capítulo correspondiente.",
+  "@aiStudyChapterGuardrail": {
+    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
+  },
+  "askAIStudyTooltip": "Preguntar a la IA sobre este capítulo",
+  "@askAIStudyTooltip": {
+    "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  }
 }

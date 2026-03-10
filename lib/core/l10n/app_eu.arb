@@ -1882,5 +1882,17 @@
   "studyComponentNoItems": "Elementurik ez",
   "studyComponentAdvantages": "Abantailak",
   "studyComponentLimitations": "Mugak",
-  "studyScreenDownloadChunk": "Deskargatu"
+  "studyScreenDownloadChunk": "Deskargatu",
+  "aiStudyChapterSystemPrompt": "Ikasketarako AI laguntzailea zara, ikasle bati ikasketa-kapitulu baten edukia ulertzen laguntzen diona. Azaldu kontzeptuak sakon, eman adibideak eta egin loturak ikasmaterialaren beste atal batzuekin hala dagokionean. Erantzun galdetu dizun hizkuntza berean.",
+  "@aiStudyChapterSystemPrompt": {
+    "description": "System prompt for the AI study assistant when chatting about a study chapter"
+  },
+  "aiStudyChapterGuardrail": "Mantendu arreta emandako kapituluaren edukian eta ikasmaterialean. Ikaslearen galderak beste kapitulu bati buruzkoa bada, aipatu dagokion kapituluaren izenburua.",
+  "@aiStudyChapterGuardrail": {
+    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
+  },
+  "askAIStudyTooltip": "Galdeiozu AIari kapitulu honi buruz",
+  "@askAIStudyTooltip": {
+    "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  }
 }

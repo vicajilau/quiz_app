@@ -2286,5 +2286,17 @@
   "studyComponentLimitations": "Limitations",
   "@studyComponentLimitations": {
     "description": "Header for the limitations section in a study component"
+  },
+  "aiStudyChapterSystemPrompt": "You are an AI study assistant helping a student understand the content of a study chapter. Explain concepts in depth, provide examples, and make connections to other parts of the study material when relevant. Respond in the same language you are asked in.",
+  "@aiStudyChapterSystemPrompt": {
+    "description": "System prompt for the AI study assistant when chatting about a study chapter"
+  },
+  "aiStudyChapterGuardrail": "Stay focused on the provided chapter content and study material. If the student's question relates to another chapter, mention the relevant chapter title.",
+  "@aiStudyChapterGuardrail": {
+    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
+  },
+  "askAIStudyTooltip": "Ask AI about this chapter",
+  "@askAIStudyTooltip": {
+    "description": "Tooltip for the Ask AI button shown in the study chapter view"
   }
 }
