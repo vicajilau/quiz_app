@@ -21,6 +21,8 @@ import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
+import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
+import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
@@ -170,6 +172,12 @@ class _StudyBodyState extends State<StudyBody>
 
     return MultiBlocListener(
       listeners: [
+        BlocListener<FileBloc, FileState>(
+          listenWhen: (_, current) => current is FileSaved,
+          listener: (context, _) {
+            context.read<StudyExecutionBloc>().add(const StudyFileSaved());
+          },
+        ),
         BlocListener<StudyExecutionBloc, StudyExecutionState>(
           listenWhen: (previous, current) =>
               !previous.needsFileReattachment && current.needsFileReattachment,
