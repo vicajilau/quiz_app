@@ -285,6 +285,7 @@
   "selectCorrectAnswers": "정답 선택",
   "emptyOptionsError": "옵션 {optionNumbers}번이 비어 있습니다. 텍스트를 추가하거나 제거하십시오.",
   "emptyOptionError": "옵션 {optionNumber}번이 비어 있습니다. 텍스트를 추가하거나 제거하십시오.",
+  "errorDuplicatedOption": "옵션은 중복될 수 없습니다.",
   "optionEmptyError": "옵션은 비워둘 수 없습니다",
   "hasImage": "이미지",
   "hasExplanation": "설명",

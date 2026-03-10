@@ -285,6 +285,7 @@
   "selectCorrectAnswers": "აირჩიეთ სწორი პასუხები",
   "emptyOptionsError": "ვარიანტები {optionNumbers} ცარიელია. გთხოვთ დაამატოთ ტექსტი ან წაშალოთ ისინი.",
   "emptyOptionError": "ვარიანტი {optionNumber} ცარიელია. გთხოვთ დაამატოთ ტექსტი ან წაშალოთ ის.",
+  "errorDuplicatedOption": "პარამეტრები არ შეიძლება იყოს დუბლირებული.",
   "optionEmptyError": "ეს ვარიანტი ვერ იქნება ცარიელი",
   "hasImage": "სურათი",
   "hasExplanation": "განმარტება",

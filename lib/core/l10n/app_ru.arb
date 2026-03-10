@@ -304,6 +304,7 @@
   "selectCorrectAnswers": "Выбрать правильные ответы",
   "emptyOptionsError": "Варианты {optionNumbers} пусты. Пожалуйста, добавьте в них текст или удалите их.",
   "emptyOptionError": "Вариант {optionNumber} пуст. Пожалуйста, добавьте в него текст или удалите его.",
+  "errorDuplicatedOption": "Опции не могут быть дублированы.",
   "optionEmptyError": "Этот вариант не может быть пустым",
   "hasImage": "Изображение",
   "hasExplanation": "Объяснение",

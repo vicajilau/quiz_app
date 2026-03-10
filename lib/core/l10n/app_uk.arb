@@ -339,6 +339,7 @@
   "selectCorrectAnswers": "Вибрати правильні відповіді",
   "emptyOptionsError": "Варіанти {optionNumbers} порожні. Будь ласка, додайте до них текст або видаліть їх.",
   "emptyOptionError": "Варіант {optionNumber} порожній. Будь ласка, додайте до нього текст або видаліть його.",
+  "errorDuplicatedOption": "Опції не можна дублювати.",
   "optionEmptyError": "Цей варіант не може бути порожнім",
   "hasImage": "Зображення",
   "hasExplanation": "Пояснення",

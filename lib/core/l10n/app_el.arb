@@ -252,6 +252,7 @@
   "selectCorrectAnswers": "Επιλογή σωστών απαντήσεων",
   "emptyOptionsError": "Οι επιλογές {optionNumbers} είναι κενές. Παρακαλώ προσθέστε κείμενο ή αφαιρέστε τις.",
   "emptyOptionError": "Η επιλογή {optionNumber} είναι κενή. Παρακαλώ προσθέστε κείμενο ή αφαιρέστε την.",
+  "errorDuplicatedOption": "Οι επιλογές δεν μπορούν να διπλοτυπωθούν.",
   "optionEmptyError": "Αυτή η επιλογή δεν μπορεί να είναι κενή",
   "hasImage": "Εικόνα",
   "hasExplanation": "Εξήγηση",
