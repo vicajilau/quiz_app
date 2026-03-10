@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
@@ -21,6 +22,7 @@ import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
+import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 
 class StudySectionsSidebar extends StatelessWidget {
   final List<StudyChunk> chunks;
@@ -54,6 +56,9 @@ class StudySectionsSidebar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Watch FileBloc to trigger rebuild (and re-evaluate tags) when file is saved
+    context.watch<FileBloc>();
+    
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(

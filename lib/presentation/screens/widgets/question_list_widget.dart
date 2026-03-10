@@ -14,12 +14,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
+import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/screens/dialogs/add_edit_question_dialog.dart';
 import 'package:quizdy/presentation/screens/dialogs/ai_question_dialog.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
@@ -69,6 +71,9 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
 
   @override
   Widget build(BuildContext context) {
+    // Watch FileBloc to trigger rebuild (and re-evaluate tags) when file is saved
+    context.watch<FileBloc>();
+
     return ReorderableListView.builder(
       onReorder: _onReorder,
       padding: const EdgeInsets.symmetric(horizontal: 8.0).copyWith(top: 24),
