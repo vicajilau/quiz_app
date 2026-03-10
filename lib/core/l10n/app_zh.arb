@@ -885,7 +885,43 @@
       }
     }
   },
-  "importQuestionsTooltip": "从另一个测验文件导入问题",
+    "importChunksTitle": "导入章节",
+  "@importChunksTitle": {
+    "description": "Title for the import chunks dialog."
+  },
+  "importChunksMessage": "在\"{fileName}\"中找到{count}个章节。您想将其导入到哪里？",
+  "@importChunksMessage": {
+    "description": "Message asking where to import sections from another file.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      },
+      "fileName": {
+        "type": "String",
+        "example": "study.quiz"
+      }
+    }
+  },
+  "importChunksPositionQuestion": "您想将这些章节添加到哪里？",
+  "@importChunksPositionQuestion": {
+    "description": "Question asking about import position for chunks."
+  },
+  "chunksImportedSuccess": "成功导入{count}个章节",
+  "@chunksImportedSuccess": {
+    "description": "Success message when chunks are imported.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "noChunksInFile": "导入的文件中没有找到章节",
+  "@noChunksInFile": {
+    "description": "Error message when the imported file has no study sections."
+  },
+"importQuestionsTooltip": "从另一个测验文件导入问题",
   "@importQuestionsTooltip": {
     "description": "Tooltip for the import questions button."
   },

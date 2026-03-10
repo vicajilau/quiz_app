@@ -901,7 +901,43 @@
       }
     }
   },
-  "importQuestionsTooltip": "別のクイズファイルから問題をインポート",
+    "importChunksTitle": "セクションをインポート",
+  "@importChunksTitle": {
+    "description": "Title for the import chunks dialog."
+  },
+  "importChunksMessage": "\"{fileName}\"に{count}セクションが見つかりました。どこにインポートしますか？",
+  "@importChunksMessage": {
+    "description": "Message asking where to import sections from another file.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      },
+      "fileName": {
+        "type": "String",
+        "example": "study.quiz"
+      }
+    }
+  },
+  "importChunksPositionQuestion": "これらのセクションをどこに追加しますか？",
+  "@importChunksPositionQuestion": {
+    "description": "Question asking about import position for chunks."
+  },
+  "chunksImportedSuccess": "{count}セクションを正常にインポートしました",
+  "@chunksImportedSuccess": {
+    "description": "Success message when chunks are imported.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "noChunksInFile": "インポートされたファイルにセクションが見つかりません",
+  "@noChunksInFile": {
+    "description": "Error message when the imported file has no study sections."
+  },
+"importQuestionsTooltip": "別のクイズファイルから問題をインポート",
   "@importQuestionsTooltip": {
     "description": "インポートする問題ボタンのツールチップ"
   },

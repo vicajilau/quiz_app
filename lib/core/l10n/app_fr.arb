@@ -921,7 +921,43 @@
       }
     }
   },
-  "importQuestionsTooltip": "Importer des questions depuis un autre fichier quiz",
+    "importChunksTitle": "Importer des sections",
+  "@importChunksTitle": {
+    "description": "Title for the import chunks dialog."
+  },
+  "importChunksMessage": "{count} sections trouvées dans \"{fileName}\". Où voulez-vous les importer ?",
+  "@importChunksMessage": {
+    "description": "Message asking where to import sections from another file.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      },
+      "fileName": {
+        "type": "String",
+        "example": "study.quiz"
+      }
+    }
+  },
+  "importChunksPositionQuestion": "Où voulez-vous ajouter ces sections ?",
+  "@importChunksPositionQuestion": {
+    "description": "Question asking about import position for chunks."
+  },
+  "chunksImportedSuccess": "{count} sections importées avec succès",
+  "@chunksImportedSuccess": {
+    "description": "Success message when chunks are imported.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "noChunksInFile": "Aucune section trouvée dans le fichier importé",
+  "@noChunksInFile": {
+    "description": "Error message when the imported file has no study sections."
+  },
+"importQuestionsTooltip": "Importer des questions depuis un autre fichier quiz",
   "@importQuestionsTooltip": {
     "description": "Info-bulle pour le bouton d'importation de questions."
   },

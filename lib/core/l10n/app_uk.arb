@@ -346,7 +346,43 @@
   "importAtBeginning": "На початок",
   "importAtEnd": "В кінець",
   "questionsImportedSuccess": "Успішно імпортовано {count} питань",
-  "importQuestionsTooltip": "Імпортувати питання з іншого файлу квізу",
+    "importChunksTitle": "Імпорт розділів",
+  "@importChunksTitle": {
+    "description": "Title for the import chunks dialog."
+  },
+  "importChunksMessage": "У файлі \"{fileName}\" знайдено {count} розділів. Куди ви хочете їх імпортувати?",
+  "@importChunksMessage": {
+    "description": "Message asking where to import sections from another file.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      },
+      "fileName": {
+        "type": "String",
+        "example": "study.quiz"
+      }
+    }
+  },
+  "importChunksPositionQuestion": "Куди ви хочете додати ці розділи?",
+  "@importChunksPositionQuestion": {
+    "description": "Question asking about import position for chunks."
+  },
+  "chunksImportedSuccess": "{count} розділів успішно імпортовано",
+  "@chunksImportedSuccess": {
+    "description": "Success message when chunks are imported.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "noChunksInFile": "У імпортованому файлі не знайдено розділів",
+  "@noChunksInFile": {
+    "description": "Error message when the imported file has no study sections."
+  },
+"importQuestionsTooltip": "Імпортувати питання з іншого файлу квізу",
   "dragDropHintText": "Ви також можете перетягнути сюди файли .quiz для імпорту питань",
   "randomizeQuestionsTitle": "Випадковий порядок питань",
   "randomizeQuestionsDescription": "Перемішувати порядок питань під час квізу",

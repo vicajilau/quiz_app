@@ -292,7 +292,43 @@
   "importAtBeginning": "목록 시작 부분",
   "importAtEnd": "목록 끝 부분",
   "questionsImportedSuccess": "{count}개의 질문을 성공적으로 가져왔습니다",
-  "importQuestionsTooltip": "다른 퀴즈 파일에서 질문 가져오기",
+    "importChunksTitle": "섹션 가져오기",
+  "@importChunksTitle": {
+    "description": "Title for the import chunks dialog."
+  },
+  "importChunksMessage": "\"{fileName}\"에서 {count}개의 섹션을 찾았습니다. 어디에 가져오시겠습니까?",
+  "@importChunksMessage": {
+    "description": "Message asking where to import sections from another file.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      },
+      "fileName": {
+        "type": "String",
+        "example": "study.quiz"
+      }
+    }
+  },
+  "importChunksPositionQuestion": "이 섹션들을 어디에 추가하시겠습니까?",
+  "@importChunksPositionQuestion": {
+    "description": "Question asking about import position for chunks."
+  },
+  "chunksImportedSuccess": "{count}개의 섹션을 성공적으로 가져왔습니다",
+  "@chunksImportedSuccess": {
+    "description": "Success message when chunks are imported.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "noChunksInFile": "가져온 파일에서 섹션을 찾을 수 없습니다",
+  "@noChunksInFile": {
+    "description": "Error message when the imported file has no study sections."
+  },
+"importQuestionsTooltip": "다른 퀴즈 파일에서 질문 가져오기",
   "dragDropHintText": ".quiz 파일을 여기로 드래그 앤 드롭하여 질문을 가져올 수도 있습니다",
   "randomizeQuestionsTitle": "질문 순서 무작위",
   "randomizeQuestionsDescription": "퀴즈 실행 중에 질문의 순서를 섞습니다",

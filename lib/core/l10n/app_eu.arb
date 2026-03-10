@@ -915,7 +915,43 @@
       }
     }
   },
-  "importQuestionsTooltip": "Beste quiz fitxategi batetik galderak inportatu",
+    "importChunksTitle": "Atalak inportatu",
+  "@importChunksTitle": {
+    "description": "Title for the import chunks dialog."
+  },
+  "importChunksMessage": "{count} atal aurkitu dira \"{fileName}\" fitxategian. Non inportatu nahi dituzu?",
+  "@importChunksMessage": {
+    "description": "Message asking where to import sections from another file.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      },
+      "fileName": {
+        "type": "String",
+        "example": "study.quiz"
+      }
+    }
+  },
+  "importChunksPositionQuestion": "Non gehitu nahi dituzu atal hauek?",
+  "@importChunksPositionQuestion": {
+    "description": "Question asking about import position for chunks."
+  },
+  "chunksImportedSuccess": "{count} atal arrakastaz inportatu dira",
+  "@chunksImportedSuccess": {
+    "description": "Success message when chunks are imported.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "noChunksInFile": "Ez da atalik aurkitu inportatutako fitxategian",
+  "@noChunksInFile": {
+    "description": "Error message when the imported file has no study sections."
+  },
+"importQuestionsTooltip": "Beste quiz fitxategi batetik galderak inportatu",
   "@importQuestionsTooltip": {
     "description": "Galderak inportatu botoiarentzako tooltip-a."
   },
