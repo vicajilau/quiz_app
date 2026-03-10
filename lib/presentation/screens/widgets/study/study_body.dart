@@ -24,6 +24,7 @@ import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
+import 'package:quizdy/presentation/screens/quiz_execution/widgets/ai_studio_chat_side_panel.dart';
 import 'package:quizdy/presentation/screens/widgets/study/components/study_component_builder.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_view.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_sections_sidebar.dart';
@@ -44,12 +45,22 @@ class StudyBody extends StatefulWidget {
 }
 
 class _StudyBodyState extends State<StudyBody>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin, WidgetsBindingObserver {
   bool _isSidebarOpen = true;
   bool _isSidebarMounted = true;
 
+  bool _isChatOpen = false;
+  bool _isChatMounted = false;
+  bool _isAiAvailable = false;
+
   late final AnimationController _mobileSidebarAnimController;
   late final Animation<Offset> _mobileSidebarSlide;
+
+  late final AnimationController _mobileChatAnimController;
+  late final Animation<Offset> _mobileChatSlide;
+
+  final GlobalKey<AiStudioChatSidePanelState> _chatPanelKey =
+      GlobalKey<AiStudioChatSidePanelState>();
 
   @override
   void initState() {
@@ -65,11 +76,43 @@ class _StudyBodyState extends State<StudyBody>
             curve: Curves.linear,
           ),
         );
+
+    _mobileChatAnimController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
+    _mobileChatSlide =
+        Tween<Offset>(begin: const Offset(1, 0), end: Offset.zero).animate(
+          CurvedAnimation(
+            parent: _mobileChatAnimController,
+            curve: Curves.linear,
+          ),
+        );
+
+    _checkAiAvailability();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      _checkAiAvailability();
+    }
+  }
+
+  Future<void> _checkAiAvailability() async {
+    final isAvailable = await ServiceLocator.getIt<ConfigurationService>()
+        .getIsAiAvailable();
+    if (mounted) {
+      setState(() => _isAiAvailable = isAvailable);
+    }
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _mobileSidebarAnimController.dispose();
+    _mobileChatAnimController.dispose();
     super.dispose();
   }
 
@@ -89,6 +132,33 @@ class _StudyBodyState extends State<StudyBody>
     } else {
       _mobileSidebarAnimController.reverse().then((_) {
         if (mounted) setState(() => _isSidebarOpen = false);
+      });
+    }
+  }
+
+  Future<void> _openChat() async {
+    // Re-check availability every time so stale state is never shown to the user.
+    await _checkAiAvailability();
+    if (!mounted) return;
+    if (!_isAiAvailable) {
+      context.presentSnackBar(AppLocalizations.of(context)!.aiApiKeyRequired);
+      return;
+    }
+    setState(() {
+      _isChatOpen = true;
+      _isChatMounted = true;
+    });
+    if (context.isMobile) {
+      _mobileChatAnimController.forward();
+    }
+  }
+
+  void _closeChat() {
+    if (!context.isMobile) {
+      setState(() => _isChatOpen = false);
+    } else {
+      _mobileChatAnimController.reverse().then((_) {
+        if (mounted) setState(() => _isChatOpen = false);
       });
     }
   }
@@ -200,6 +270,28 @@ class _StudyBodyState extends State<StudyBody>
                 );
               }
 
+              final isChunkReady =
+                  currentChunk.status == StudyChunkState.completed ||
+                  currentChunk.status == StudyChunkState.downloaded;
+
+              // Chat panel — single instance, never rebuilt across layouts
+              final chatPanel = isChunkReady
+                  ? Padding(
+                      padding: EdgeInsetsGeometry.only(
+                        top: !context.isMobile
+                            ? MediaQuery.of(context).padding.top
+                            : 0,
+                      ),
+                      child: AiStudioChatSidePanel(
+                        key: _chatPanelKey,
+                        studyChunk: currentChunk,
+                        allStudyChunks: state.chunks,
+                        isFullScreen: context.isMobile,
+                        onClose: _closeChat,
+                      ),
+                    )
+                  : null;
+
               return LayoutBuilder(
                 builder: (context, constraints) {
                   final isMobile = context.isMobile;
@@ -209,6 +301,12 @@ class _StudyBodyState extends State<StudyBody>
                     _mobileSidebarAnimController.value = 0.0;
                   } else if (isMobile && _isSidebarOpen) {
                     _mobileSidebarAnimController.value = 1.0;
+                  }
+
+                  if (!isMobile && _isChatOpen) {
+                    _mobileChatAnimController.value = 0.0;
+                  } else if (isMobile && _isChatOpen) {
+                    _mobileChatAnimController.value = 1.0;
                   }
 
                   final sidebarPanel = StudySectionsSidebar(
@@ -246,9 +344,7 @@ class _StudyBodyState extends State<StudyBody>
                   final mainContent = Stack(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(
-                          left: _isSidebarOpen ? 16.0 : 56.0,
-                        ),
+                        padding: const EdgeInsets.only(left: 16.0),
                         child: Column(
                           children: [
                             Expanded(
@@ -305,6 +401,17 @@ class _StudyBodyState extends State<StudyBody>
                             onTap: _openSidebar,
                           ),
                         ),
+                      if (isChunkReady && !_isChatOpen)
+                        Positioned(
+                          top: MediaQuery.of(context).padding.top + 12,
+                          right: 12,
+                          child: _AskAiButton(
+                            isDark: isDark,
+                            isAiAvailable: _isAiAvailable,
+                            tooltip: localizations.askAIStudyTooltip,
+                            onTap: _openChat,
+                          ),
+                        ),
                     ],
                   );
 
@@ -326,11 +433,25 @@ class _StudyBodyState extends State<StudyBody>
                           ),
                         ),
                         Expanded(child: mainContent),
+                        if (chatPanel != null)
+                          AnimatedContainer(
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.linear,
+                            width: _isChatOpen ? 400 : 0,
+                            clipBehavior: Clip.hardEdge,
+                            decoration: const BoxDecoration(),
+                            child: OverflowBox(
+                              alignment: Alignment.topLeft,
+                              minWidth: 400,
+                              maxWidth: 400,
+                              child: chatPanel,
+                            ),
+                          ),
                       ],
                     );
                   }
 
-                  // Narrow layout: Stack with slide overlay
+                  // Narrow layout: Stack with slide overlays
                   return Stack(
                     children: [
                       mainContent,
@@ -343,6 +464,19 @@ class _StudyBodyState extends State<StudyBody>
                               child: Material(
                                 color: isDark ? AppTheme.zinc800 : Colors.white,
                                 child: sidebarPanel,
+                              ),
+                            ),
+                          ),
+                        ),
+                      if (_isChatMounted && chatPanel != null)
+                        Positioned.fill(
+                          child: IgnorePointer(
+                            ignoring: !_isChatOpen,
+                            child: SlideTransition(
+                              position: _mobileChatSlide,
+                              child: Material(
+                                color: isDark ? AppTheme.zinc800 : Colors.white,
+                                child: chatPanel,
                               ),
                             ),
                           ),
@@ -395,6 +529,44 @@ class _SidebarOpenButton extends StatelessWidget {
           LucideIcons.panelRightClose,
           size: 18,
           color: isDark ? AppTheme.zinc400 : AppTheme.zinc500,
+        ),
+      ),
+    );
+  }
+}
+
+class _AskAiButton extends StatelessWidget {
+  final bool isDark;
+  final bool isAiAvailable;
+  final String tooltip;
+  final VoidCallback onTap;
+
+  const _AskAiButton({
+    required this.isDark,
+    required this.isAiAvailable,
+    required this.tooltip,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: tooltip,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          width: 36,
+          height: 36,
+          decoration: BoxDecoration(
+            color: isDark ? AppTheme.zinc700 : AppTheme.zinc100,
+            borderRadius: BorderRadius.circular(18),
+          ),
+          alignment: Alignment.center,
+          child: Icon(
+            LucideIcons.sparkles,
+            size: 18,
+            color: Theme.of(context).primaryColor,
+          ),
         ),
       ),
     );
