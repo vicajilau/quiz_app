@@ -11,13 +11,31 @@
   "optionsLabel": "Варіанти",
   "optionLabel": "Варіант",
   "delete": "Видалити",
+  "@delete": {
+    "description": "Generic delete button text"
+  },
   "edit": "Редагувати",
   "save": "Зберегти",
   "cancel": "Скасувати",
+  "@cancel": {
+    "description": "Generic cancel button text"
+  },
   "confirm": "Підтвердити",
+  "@confirm": {
+    "description": "Generic confirm button text"
+  },
   "ok": "ОК",
+  "@ok": {
+    "description": "Generic OK button text"
+  },
   "error": "Помилка",
+  "@error": {
+    "description": "Generic error text"
+  },
   "loading": "Завантаження...",
+  "@loading": {
+    "description": "Generic loading text"
+  },
   "settingsTitle": "Налаштування",
   "appLanguageLabel": "Мова додатка",
   "appLanguageDescription": "Змінити мову додатка для тестування",
@@ -96,9 +114,18 @@
   "startQuizButton": "Почати вікторину",
   "quizPreviewTitle": "Предпросмотр вікторини",
   "resultsTitle": "Результати",
+  "@resultsTitle": {
+    "description": "Title for the results screen"
+  },
   "scoreLabel": "Рахунок",
+  "@scoreLabel": {
+    "description": "Label for the score display"
+  },
   "correctAnswers": "Правильні відповіді",
   "incorrectAnswers": "Неправильні відповіді",
+  "@incorrectAnswers": {
+    "description": "Label for incorrect answers count"
+  },
   "tryAgain": "Спробувати знову",
   "home": "Головна",
   "done": "Готово",

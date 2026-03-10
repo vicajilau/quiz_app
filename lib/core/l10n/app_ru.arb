@@ -11,13 +11,31 @@
   "optionsLabel": "Варианты",
   "optionLabel": "Вариант",
   "delete": "Удалить",
+  "@delete": {
+    "description": "Generic delete button text"
+  },
   "edit": "Редактировать",
   "save": "Сохранить",
   "cancel": "Отмена",
+  "@cancel": {
+    "description": "Generic cancel button text"
+  },
   "confirm": "Подтвердить",
+  "@confirm": {
+    "description": "Generic confirm button text"
+  },
   "ok": "ОК",
+  "@ok": {
+    "description": "Generic OK button text"
+  },
   "error": "Ошибка",
+  "@error": {
+    "description": "Generic error text"
+  },
   "loading": "Загрузка...",
+  "@loading": {
+    "description": "Generic loading text"
+  },
   "settingsTitle": "Настройки",
   "appLanguageLabel": "Язык приложения",
   "appLanguageDescription": "Переопределить язык приложения для тестирования",
@@ -76,9 +94,18 @@
     "description": "Название японского языка."
   },
   "resultsTitle": "Результаты",
+  "@resultsTitle": {
+    "description": "Title for the results screen"
+  },
   "scoreLabel": "Счет",
+  "@scoreLabel": {
+    "description": "Label for the score display"
+  },
   "correctAnswers": "Правильные ответы",
   "incorrectAnswers": "Неправильные ответы",
+  "@incorrectAnswers": {
+    "description": "Label for incorrect answers count"
+  },
   "explanationTitle": "Объяснение",
   "stopAndOpenButton": "Остановить и открыть",
   "titleAppBar": "Quizdy - Симулятор экзаменов",
