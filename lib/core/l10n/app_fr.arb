@@ -1883,9 +1883,5 @@
   "studyComponentNoItems": "Aucun élément",
   "studyComponentAdvantages": "Avantages",
   "studyComponentLimitations": "Limites",
-  "studyScreenDownloadChunk": "Télécharger",
-  "languageRussian": "Русский",
-  "languageGeorgian": "ქართული",
-  "languageUkrainian": "Українська",
-  "languageKorean": "한국어"
+  "studyScreenDownloadChunk": "Télécharger"
 }

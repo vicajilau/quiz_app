@@ -838,9 +838,5 @@
   "studyComponentNoItems": "Δεν υπάρχουν στοιχεία",
   "studyComponentAdvantages": "Πλεονεκτήματα",
   "studyComponentLimitations": "Περιορισμοί",
-  "studyScreenDownloadChunk": "Λήψη",
-  "languageRussian": "Русский",
-  "languageGeorgian": "ქართული",
-  "languageUkrainian": "Українська",
-  "languageKorean": "한국어"
+  "studyScreenDownloadChunk": "Λήψη"
 }

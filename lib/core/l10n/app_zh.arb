@@ -1890,9 +1890,5 @@
   "studyComponentNoItems": "没有项目",
   "studyComponentAdvantages": "优势",
   "studyComponentLimitations": "局限性",
-  "studyScreenDownloadChunk": "下载",
-  "languageRussian": "Русский",
-  "languageGeorgian": "ქართული",
-  "languageUkrainian": "Українська",
-  "languageKorean": "한국어"
+  "studyScreenDownloadChunk": "下载"
 }

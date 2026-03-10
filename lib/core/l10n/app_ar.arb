@@ -2195,9 +2195,5 @@
   "@studyComponentLimitations": {
     "description": "Header for the limitations section in a study component"
   },
-  "studyScreenDownloadChunk": "تنزيل",
-  "languageRussian": "Русский",
-  "languageGeorgian": "ქართული",
-  "languageUkrainian": "Українська",
-  "languageKorean": "한국어"
+  "studyScreenDownloadChunk": "تنزيل"
 }

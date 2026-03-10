@@ -1841,10 +1841,6 @@
     }
   },
   "allQuestionsLabel": "All Questions",
-  "languageRussian": "Русский",
-  "languageGeorgian": "ქართული",
-  "languageUkrainian": "Українська",
-  "languageKorean": "한국어",
   "@allQuestionsLabel": {
     "description": "Label for the toggle to select all questions"
   },
@@ -2244,10 +2240,6 @@
     "description": "Header for the advantages section in a study component"
   },
   "studyComponentLimitations": "Limitations",
-  "languageRussian": "Русский",
-  "languageGeorgian": "ქართული",
-  "languageUkrainian": "Українська",
-  "languageKorean": "한국어",
   "@studyComponentLimitations": {
     "description": "Header for the limitations section in a study component"
   }

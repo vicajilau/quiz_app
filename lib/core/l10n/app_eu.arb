@@ -1838,9 +1838,5 @@
   "studyComponentNoItems": "Elementurik ez",
   "studyComponentAdvantages": "Abantailak",
   "studyComponentLimitations": "Mugak",
-  "studyScreenDownloadChunk": "Deskargatu",
-  "languageRussian": "Русский",
-  "languageGeorgian": "ქართული",
-  "languageUkrainian": "Українська",
-  "languageKorean": "한국어"
+  "studyScreenDownloadChunk": "Deskargatu"
 }

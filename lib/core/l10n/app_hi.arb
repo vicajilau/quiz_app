@@ -1841,9 +1841,5 @@
   "studyComponentNoItems": "कोई आइटम नहीं",
   "studyComponentAdvantages": "लाभ",
   "studyComponentLimitations": "सीमाएं",
-  "studyScreenDownloadChunk": "डाउनलोड",
-  "languageRussian": "Русский",
-  "languageGeorgian": "ქართული",
-  "languageUkrainian": "Українська",
-  "languageKorean": "한국어"
+  "studyScreenDownloadChunk": "डाउनलोड"
 }
