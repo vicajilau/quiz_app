@@ -20,6 +20,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/presentation/widgets/latex_text.dart';
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';
@@ -505,7 +506,9 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
               ? AppLocalizations.of(context)!.newTag.toUpperCase()
               : AppLocalizations.of(context)!.modifiedTag.toUpperCase(),
           location: BannerLocation.topStart,
-          color: Theme.of(context).extension<CustomColors>()!.aiIconColor!,
+          color: widget.isModified
+              ? Theme.of(context).extension<CustomColors>()!.aiIconColor!
+              : AppTheme.secondaryColor,
           textStyle: const TextStyle(
             fontSize: 7,
             fontWeight: FontWeight.w900,

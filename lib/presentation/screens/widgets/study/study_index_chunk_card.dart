@@ -16,6 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
+import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_chunk_download_button.dart';
@@ -93,13 +94,13 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
         border: isSelected
             ? Border.all(color: AppTheme.primaryColor, width: 2)
             : (isCompleted
-                ? Border.all(
-                    color: AppTheme.primaryColor.withValues(alpha: 0.25),
-                    width: 1.5,
-                  )
-                : (isDark
-                    ? Border.all(color: Colors.transparent, width: 1)
-                    : Border.all(color: AppTheme.borderColor, width: 1))),
+                  ? Border.all(
+                      color: AppTheme.primaryColor.withValues(alpha: 0.25),
+                      width: 1.5,
+                    )
+                  : (isDark
+                        ? Border.all(color: Colors.transparent, width: 1)
+                        : Border.all(color: AppTheme.borderColor, width: 1))),
       ),
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -111,7 +112,9 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
                 Padding(
                   padding: const EdgeInsets.only(right: 12),
                   child: Icon(
-                    isSelected ? Icons.check_box : Icons.check_box_outline_blank,
+                    isSelected
+                        ? Icons.check_box
+                        : Icons.check_box_outline_blank,
                     color: isSelected ? AppTheme.primaryColor : arrowColor,
                     size: 22,
                   ),
@@ -298,7 +301,9 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
               ? localizations.newTag.toUpperCase()
               : localizations.modifiedTag.toUpperCase(),
           location: BannerLocation.topStart,
-          color: AppTheme.primaryColor,
+          color: widget.isModified
+              ? Theme.of(context).extension<CustomColors>()!.aiIconColor!
+              : AppTheme.secondaryColor,
           textStyle: const TextStyle(
             fontSize: 7,
             fontWeight: FontWeight.w900,
@@ -311,10 +316,9 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
     }
 
     return GestureDetector(
-      onTap: hasContent ? onTap : null,
-      onLongPress: hasContent ? onLongPress : null,
+      onTap: (hasContent || isSelectionMode) ? onTap : null,
+      onLongPress: onLongPress,
       child: cardContent,
     );
   }
 }
-
