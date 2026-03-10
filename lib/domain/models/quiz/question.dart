@@ -148,6 +148,16 @@ class Question {
     );
   }
 
+  /// Hash based on structural fields (excluding [text])
+  int get identityHash => Object.hash(
+    type,
+    Object.hashAll(options),
+    Object.hashAll(correctAnswers),
+    explanation,
+    image,
+    isEnabled,
+  );
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
