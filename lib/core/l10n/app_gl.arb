@@ -1882,5 +1882,17 @@
   "studyComponentNoItems": "Sen elementos",
   "studyComponentAdvantages": "Vantaxes",
   "studyComponentLimitations": "Limitacións",
-  "studyScreenDownloadChunk": "Descargar"
+  "studyScreenDownloadChunk": "Descargar",
+  "aiStudyChapterSystemPrompt": "Es un asistente de estudo por IA que axuda a un estudante a comprender o contido dun capítulo de estudo. Explica os conceptos en profundidade, proporciona exemplos e establece conexións con outras partes do material de estudo cando sexa pertinente. Responde no mesmo idioma no que se te pregunte.",
+  "@aiStudyChapterSystemPrompt": {
+    "description": "System prompt for the AI study assistant when chatting about a study chapter"
+  },
+  "aiStudyChapterGuardrail": "Mantente centrado no contido do capítulo proporcionado e no material de estudo. Se a pregunta do estudante se refire a outro capítulo, menciona o título do capítulo correspondente.",
+  "@aiStudyChapterGuardrail": {
+    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
+  },
+  "askAIStudyTooltip": "Preguntar á IA sobre este capítulo",
+  "@askAIStudyTooltip": {
+    "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  }
 }

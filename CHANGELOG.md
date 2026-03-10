@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.9.0]
 
+- feat: Added AI Chat panel to Study Mode, allowing users to ask the AI about the current chapter's content via a sidebar (desktop) or full-screen overlay (mobile).
 - feat: Added section import from .quiz files in Study Mode index view, with position selection dialog (beginning/end) and drag & drop support.
 - ui: Implemented "New" and "Modified" banner ribbon tags for questions and study sections to visually indicate unsaved changes with a premium aesthetic.
 - i18n: Added 5 new languages (Russian, Ukrainian, Georgian, Korean, and Greek) to the supported list, bringing the total to 18.

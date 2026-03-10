@@ -590,4 +590,17 @@
   "studyComponentNoItems": "Нет элементов",
   "studyComponentAdvantages": "Преимущества",
   "studyComponentLimitations": "Ограничения"
+,
+  "aiStudyChapterSystemPrompt": "Вы — ИИ-помощник в учебе, помогающий студенту понять содержание учебной главы. Глубоко объясняйте концепции, приводите примеры и устанавливайте связи с другими частями учебного материала, когда это уместно. Отвечайте на том же языке, на котором вам задали вопрос.",
+  "@aiStudyChapterSystemPrompt": {
+    "description": "System prompt for the AI study assistant when chatting about a study chapter"
+  },
+  "aiStudyChapterGuardrail": "Сосредоточьтесь на содержании предоставленной главы и учебных материалах. Если вопрос студента относится к другой главе, укажите название соответствующей главы.",
+  "@aiStudyChapterGuardrail": {
+    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
+  },
+  "askAIStudyTooltip": "Спросить ИИ об этой главе",
+  "@askAIStudyTooltip": {
+    "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  }
 }

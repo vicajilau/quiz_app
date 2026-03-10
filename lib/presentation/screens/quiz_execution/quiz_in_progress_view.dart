@@ -195,7 +195,7 @@ class _QuizInProgressViewState extends State<QuizInProgressView>
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ConstrainedBox(
-                          constraints: const BoxConstraints(maxWidth: 300),
+                          constraints: const BoxConstraints(maxWidth: 150),
                           child: QuizProgressIndicator(state: widget.state),
                         ),
                         const SizedBox(width: 16),

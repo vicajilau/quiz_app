@@ -574,5 +574,17 @@
   "studyScreenImportant": "მნიშვნელოვანი",
   "studyComponentNoItems": "ელემენტები არ არის",
   "studyComponentAdvantages": "უპირატესობები",
-  "studyComponentLimitations": "შეზღუდვები"
+  "studyComponentLimitations": "შეზღუდვები",
+  "aiStudyChapterSystemPrompt": "თქვენ ხართ AI სასწავლო ასისტენტი, რომელიც ეხმარება სტუდენტს სასწავლო თავის შინაარსის გაგებაში. სიღრმისეულად განმარტეთ ცნებები, მოიტანეთ მაგალითები და დაამყარეთ კავშირები სასწავლო მასალის სხვა ნაწილებთან, როდესაც ეს რელევανტურია. უპასუხეთ იმავε ენაზე, რომელზეც დაგისვეს კითხვა.",
+  "@aiStudyChapterSystemPrompt": {
+    "description": "System prompt for the AI study assistant when chatting about a study chapter"
+  },
+  "aiStudyChapterGuardrail": "დარჩით ფოკუსირებული მოცემული თავის შინაარსსა და სასწავლო მასალაზე. თუ სტუდენტის კითხვა ეხება სხვა თავს, მიუთითეთ შესაბამისი თავის სათაური.",
+  "@aiStudyChapterGuardrail": {
+    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
+  },
+  "askAIStudyTooltip": "ჰკითხეთ AI-ს ამ თავის შესახებ",
+  "@askAIStudyTooltip": {
+    "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  }
 }

@@ -25,6 +25,8 @@ import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
+import 'package:quizdy/domain/models/quiz/ui_element.dart';
 
 import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';
@@ -512,6 +514,92 @@ IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
     prompt += '\n${localizations.studentComment}: "$userQuestion"';
 
     return prompt;
+  }
+
+  /// Builds a prompt for the AI chat assistant when a student asks about a study chapter.
+  static String buildStudyChatPrompt({
+    required StudyChunk chunk,
+    required List<StudyChunk> allChunks,
+    required String userQuestion,
+    required AppLocalizations localizations,
+  }) {
+    final buffer = StringBuffer();
+    buffer.write(localizations.aiStudyChapterSystemPrompt);
+    buffer.write('\n\n');
+    buffer.write('${localizations.aiStudyChapterGuardrail}\n\n');
+
+    buffer.write('Current Chapter: ${chunk.title}\n');
+    buffer.write(
+      'Pages: ${chunk.sourceReference.startPage} - ${chunk.sourceReference.endPage}\n',
+    );
+
+    if (chunk.aiSummary != null && chunk.aiSummary!.isNotEmpty) {
+      buffer.write('\nChapter Summary:\n${chunk.aiSummary}\n');
+    }
+
+    if (chunk.pages.isNotEmpty) {
+      buffer.write('\nChapter Content:\n');
+      for (final page in chunk.pages) {
+        for (final element in page.uiElements) {
+          final text = _extractTextFromUiElement(element);
+          if (text.isNotEmpty) {
+            buffer.write('$text\n');
+          }
+        }
+      }
+    }
+
+    final otherChunks =
+        allChunks.where((c) => c.chunkIndex != chunk.chunkIndex).toList();
+    if (otherChunks.isNotEmpty) {
+      buffer.write('\nOther chapters in the study material:\n');
+      for (final other in otherChunks) {
+        buffer.write('- Chapter ${other.chunkIndex + 1}: ${other.title}');
+        if (other.aiSummary != null && other.aiSummary!.isNotEmpty) {
+          final summary = other.aiSummary!.length > 200
+              ? '${other.aiSummary!.substring(0, 200)}...'
+              : other.aiSummary!;
+          buffer.write(' — $summary');
+        }
+        buffer.write('\n');
+      }
+    }
+
+    buffer.write('\n${localizations.studentComment}: "$userQuestion"');
+
+    return buffer.toString();
+  }
+
+  static String _extractTextFromUiElement(UiElement element) {
+    final props = element.props;
+    final parts = <String>[];
+
+    for (final key in const [
+      'title',
+      'subtitle',
+      'body',
+      'content',
+      'text',
+      'definition',
+      'explanation',
+    ]) {
+      if (props[key] is String && (props[key] as String).isNotEmpty) {
+        parts.add(props[key] as String);
+      }
+    }
+
+    if (props['items'] is List) {
+      for (final item in props['items'] as List) {
+        if (item is String) {
+          parts.add('• $item');
+        } else if (item is Map) {
+          final itemText = item['text'] ?? item['title'] ?? item['label'];
+          if (itemText != null) parts.add('• $itemText');
+        }
+      }
+    }
+
+    return parts.join('\n');
   }
 
   static String buildEvaluationPrompt(

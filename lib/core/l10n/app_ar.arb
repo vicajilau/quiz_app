@@ -2239,5 +2239,17 @@
   "@studyComponentLimitations": {
     "description": "Header for the limitations section in a study component"
   },
-  "studyScreenDownloadChunk": "تنزيل"
+  "studyScreenDownloadChunk": "تنزيل",
+  "aiStudyChapterSystemPrompt": "أنت مساعد دراسة بالذكاء الاصطناعي تساعد الطالب على فهم محتوى فصل دراسي. اشرح المفاهيم بعمق، وقدم أمثلة، واذكر الروابط مع الأجزاء الأخرى من المادة الدراسية عندما يكون ذلك مناسباً. أجب بنفس اللغة التي سُئلت بها.",
+  "@aiStudyChapterSystemPrompt": {
+    "description": "System prompt for the AI study assistant when chatting about a study chapter"
+  },
+  "aiStudyChapterGuardrail": "ابقَ مركزاً على محتوى الفصل المقدم والمادة الدراسية. إذا كان سؤال الطالب يتعلق بفصل آخر، فاذكر عنوان الفصل ذي الصلة.",
+  "@aiStudyChapterGuardrail": {
+    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
+  },
+  "askAIStudyTooltip": "اسأل الذكاء الاصطناعي عن هذا الفصل",
+  "@askAIStudyTooltip": {
+    "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  }
 }

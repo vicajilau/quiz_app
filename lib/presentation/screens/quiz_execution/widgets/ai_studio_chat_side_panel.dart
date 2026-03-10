@@ -25,22 +25,30 @@ import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/ai/chat_message.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_chat_bubble.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/question_context_widget.dart';
 import 'package:quizdy/presentation/widgets/ai_service_model_selector.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
 class AiStudioChatSidePanel extends StatefulWidget {
-  final Question question;
+  final Question? question;
+  final StudyChunk? studyChunk;
+  final List<StudyChunk>? allStudyChunks;
   final VoidCallback onClose;
   final bool isFullScreen;
 
   const AiStudioChatSidePanel({
     super.key,
-    required this.question,
+    this.question,
+    this.studyChunk,
+    this.allStudyChunks,
     required this.onClose,
     this.isFullScreen = false,
-  });
+  }) : assert(
+         (question != null) != (studyChunk != null),
+         'Exactly one of question or studyChunk must be provided.',
+       );
 
   @override
   State<AiStudioChatSidePanel> createState() => AiStudioChatSidePanelState();
@@ -94,8 +102,16 @@ class AiStudioChatSidePanelState extends State<AiStudioChatSidePanel> {
 
   String _buildPrompt(String userQuestion) {
     final localizations = AppLocalizations.of(context)!;
+    if (widget.studyChunk != null) {
+      return AiQuestionGenerationService.buildStudyChatPrompt(
+        chunk: widget.studyChunk!,
+        allChunks: widget.allStudyChunks ?? [],
+        userQuestion: userQuestion,
+        localizations: localizations,
+      );
+    }
     return AiQuestionGenerationService.buildChatPrompt(
-      question: widget.question,
+      question: widget.question!,
       userQuestion: userQuestion,
       localizations: localizations,
     );

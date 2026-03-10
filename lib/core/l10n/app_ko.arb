@@ -574,5 +574,17 @@
   "studyScreenImportant": "중요",
   "studyComponentNoItems": "항목 없음",
   "studyComponentAdvantages": "장점",
-  "studyComponentLimitations": "한계"
+  "studyComponentLimitations": "한계",
+  "aiStudyChapterSystemPrompt": "당신은 학생이 학습 챕터의 내용을 이해하도록 돕는 AI 학습 비서입니다. 개념을 심층적으로 설명하고, 예를 제공하며, 관련이 있는 경우 학습 자료의 다른 부분과 연결하십시오. 질문을 받은 언어와 동일한 언어로 답변하십시오.",
+  "@aiStudyChapterSystemPrompt": {
+    "description": "System prompt for the AI study assistant when chatting about a study chapter"
+  },
+  "aiStudyChapterGuardrail": "제공된 챕터 내용과 학습 자료에 집중하세요. 학생의 질문이 다른 챕터와 관련된 경우 관련 챕터 제목을 언급하세요.",
+  "@aiStudyChapterGuardrail": {
+    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
+  },
+  "askAIStudyTooltip": "이 챕터에 대해 AI에게 물어보기",
+  "@askAIStudyTooltip": {
+    "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  }
 }
