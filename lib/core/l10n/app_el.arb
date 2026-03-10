@@ -252,6 +252,7 @@
   "selectCorrectAnswers": "Επιλογή σωστών απαντήσεων",
   "emptyOptionsError": "Οι επιλογές {optionNumbers} είναι κενές. Παρακαλώ προσθέστε κείμενο ή αφαιρέστε τις.",
   "emptyOptionError": "Η επιλογή {optionNumber} είναι κενή. Παρακαλώ προσθέστε κείμενο ή αφαιρέστε την.",
+  "errorDuplicatedOption": "Οι επιλογές δεν μπορούν να διπλοτυπωθούν.",
   "optionEmptyError": "Αυτή η επιλογή δεν μπορεί να είναι κενή",
   "hasImage": "Εικόνα",
   "hasExplanation": "Εξήγηση",
@@ -267,7 +268,7 @@
   "importAtBeginning": "Στην Αρχή",
   "importAtEnd": "Στο Τέλος",
   "questionsImportedSuccess": "Εισήχθησαν επιτυχώς {count} ερωτήσεις",
-    "importChunksTitle": "Εισαγωγή ενοτήτων",
+  "importChunksTitle": "Εισαγωγή ενοτήτων",
   "@importChunksTitle": {
     "description": "Title for the import chunks dialog."
   },
@@ -303,7 +304,7 @@
   "@noChunksInFile": {
     "description": "Error message when the imported file has no study sections."
   },
-"importQuestionsTooltip": "Εισαγωγή ερωτήσεων από άλλο αρχείο quiz",
+  "importQuestionsTooltip": "Εισαγωγή ερωτήσεων από άλλο αρχείο quiz",
   "dragDropHintText": "Μπορείτε επίσης να σύρετε και να αποθέσετε αρχεία .quiz εδώ για εισαγωγή ερωτήσεων",
   "randomizeQuestionsTitle": "Τυχαία Σειρά Ερωτήσεων",
   "randomizeQuestionsDescription": "Ανακάτεμα της σειράς των ερωτήσεων κατά την εκτέλεση του κουίζ",

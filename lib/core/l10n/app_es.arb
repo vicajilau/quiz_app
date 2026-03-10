@@ -928,6 +928,10 @@
       }
     }
   },
+  "errorDuplicatedOption": "Las opciones no pueden estar duplicadas.",
+  "@errorDuplicatedOption": {
+    "description": "Mensaje de error cuando alguna opción tiene texto duplicado"
+  },
   "optionEmptyError": "Esta opción no puede estar vacía",
   "@optionEmptyError": {
     "description": "Mensaje de error para campo de opción individual vacío"

@@ -799,6 +799,10 @@
       }
     }
   },
+  "errorDuplicatedOption": "选项不能重复。",
+  "@errorDuplicatedOption": {
+    "description": "Error message when options have duplicate text"
+  },
   "optionEmptyError": "此选项不能为空",
   "@optionEmptyError": {
     "description": "Error message for individual empty option field"
@@ -893,7 +897,7 @@
       }
     }
   },
-    "importChunksTitle": "导入章节",
+  "importChunksTitle": "导入章节",
   "@importChunksTitle": {
     "description": "Title for the import chunks dialog."
   },
@@ -929,7 +933,7 @@
   "@noChunksInFile": {
     "description": "Error message when the imported file has no study sections."
   },
-"importQuestionsTooltip": "从另一个测验文件导入问题",
+  "importQuestionsTooltip": "从另一个测验文件导入问题",
   "@importQuestionsTooltip": {
     "description": "Tooltip for the import questions button."
   },
@@ -1934,8 +1938,7 @@
   "studyComponentNoItems": "没有项目",
   "studyComponentAdvantages": "优势",
   "studyComponentLimitations": "局限性",
-  "studyScreenDownloadChunk": "下载"
-,
+  "studyScreenDownloadChunk": "下载",
   "aiStudyChapterSystemPrompt": "你是一位 AI 学习助手，正在帮助学生理解学习章节的内容。请深入解释概念，提供示例，并在相关时通过学习材料的其他部分建立联系。请使用学生提问的同种语言进行回答。",
   "@aiStudyChapterSystemPrompt": {
     "description": "System prompt for the AI study assistant when chatting about a study chapter"

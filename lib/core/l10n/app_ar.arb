@@ -149,7 +149,7 @@
     }
   },
   "dropFileHere": "انقر فوق الشعار أو اسحب ملف .quiz إلى الشاشة",
-    "errorOpeningFile": "خطأ في فتح الملف",
+  "errorOpeningFile": "خطأ في فتح الملف",
   "@errorOpeningFile": {
     "description": "Generic error message when opening a file fails."
   },
@@ -916,6 +916,10 @@
       }
     }
   },
+  "errorDuplicatedOption": "لا يمكن تكرار الخيارات.",
+  "@errorDuplicatedOption": {
+    "description": "رسالة خطأ عندما تحتوي الخيارات على نص مكرر"
+  },
   "optionEmptyError": "هذا الخيار لا يمكن أن يكون فارغاً",
   "@optionEmptyError": {
     "description": "Error message for individual empty option field"
@@ -1010,7 +1014,7 @@
       }
     }
   },
-    "importChunksTitle": "استيراد الأقسام",
+  "importChunksTitle": "استيراد الأقسام",
   "@importChunksTitle": {
     "description": "Title for the import chunks dialog."
   },
@@ -1046,7 +1050,7 @@
   "@noChunksInFile": {
     "description": "Error message when the imported file has no study sections."
   },
-"importQuestionsTooltip": "استيراد أسئلة من ملف اختبار آخر",
+  "importQuestionsTooltip": "استيراد أسئلة من ملف اختبار آخر",
   "@importQuestionsTooltip": {
     "description": "Tooltip for the import questions button."
   },
@@ -1656,7 +1660,10 @@
   "@deleteMultipleQuestionsConfirmation": {
     "description": "Message for multiple questions deletion confirmation",
     "placeholders": {
-      "count": { "type": "int", "example": "3" }
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
     }
   },
   "missingExplanation": "شرح مفقود",
@@ -1731,7 +1738,10 @@
   "@penaltyPointsLabel": {
     "description": "Label showing the points deducted per mistake",
     "placeholders": {
-      "amount": { "type": "String", "example": "0.50" }
+      "amount": {
+        "type": "String",
+        "example": "0.50"
+      }
     }
   },
   "allQuestionsLabel": "جميع الأسئلة",
@@ -1742,7 +1752,10 @@
   "@startWithSelectedQuestions": {
     "description": "Label for the button that starts the quiz with only selected questions",
     "placeholders": {
-      "count": { "type": "int", "example": "5" }
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
     }
   },
   "advancedSettingsTitle": "إعدادات متقدمة (تصحيح الأخطاء)",
@@ -1829,21 +1842,48 @@
   "@remainingTimeWithDays": {
     "description": "Format for remaining time display when it exceeds 24 hours",
     "placeholders": {
-      "days": { "type": "String", "example": "2" },
-      "hours": { "type": "String", "example": "03" },
-      "minutes": { "type": "String", "example": "45" },
-      "seconds": { "type": "String", "example": "30" }
+      "days": {
+        "type": "String",
+        "example": "2"
+      },
+      "hours": {
+        "type": "String",
+        "example": "03"
+      },
+      "minutes": {
+        "type": "String",
+        "example": "45"
+      },
+      "seconds": {
+        "type": "String",
+        "example": "30"
+      }
     }
   },
   "remainingTimeWithWeeks": "{weeks}أ {days}ي {hours}:{minutes}:{seconds}",
   "@remainingTimeWithWeeks": {
     "description": "Format for remaining time display when it exceeds 7 days",
     "placeholders": {
-      "weeks": { "type": "String", "example": "1" },
-      "days": { "type": "String", "example": "2" },
-      "hours": { "type": "String", "example": "03" },
-      "minutes": { "type": "String", "example": "45" },
-      "seconds": { "type": "String", "example": "30" }
+      "weeks": {
+        "type": "String",
+        "example": "1"
+      },
+      "days": {
+        "type": "String",
+        "example": "2"
+      },
+      "hours": {
+        "type": "String",
+        "example": "03"
+      },
+      "minutes": {
+        "type": "String",
+        "example": "45"
+      },
+      "seconds": {
+        "type": "String",
+        "example": "30"
+      }
     }
   },
   "validationMax30DaysError": "كحد أقصى 30 يومًا",
@@ -2064,8 +2104,14 @@
   "@studyScreenSectionIndicator": {
     "description": "Indicator of current page vs total pages in study material",
     "placeholders": {
-      "current": { "type": "int", "example": "1" },
-      "total": { "type": "int", "example": "10" }
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
     }
   },
   "studyScreenAiSummaryTitle": "ملخص الذكاء الاصطناعي",
@@ -2096,7 +2142,10 @@
   "@studyScreenChaptersCount": {
     "description": "Label showing the number of chapters in the study material",
     "placeholders": {
-      "count": { "type": "int", "example": "12" }
+      "count": {
+        "type": "int",
+        "example": "12"
+      }
     }
   },
   "studyScreenCompleted": "مكتمل",

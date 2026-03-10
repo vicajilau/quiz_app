@@ -815,6 +815,10 @@
       }
     }
   },
+  "errorDuplicatedOption": "オプションを重複させることはできません。",
+  "@errorDuplicatedOption": {
+    "description": "Error message when options have duplicate text"
+  },
   "optionEmptyError": "この選択肢を空にすることはできません",
   "@optionEmptyError": {
     "description": "個々の空の選択肢フィールドのエラーメッセージ"
@@ -909,7 +913,7 @@
       }
     }
   },
-    "importChunksTitle": "セクションをインポート",
+  "importChunksTitle": "セクションをインポート",
   "@importChunksTitle": {
     "description": "Title for the import chunks dialog."
   },
@@ -945,7 +949,7 @@
   "@noChunksInFile": {
     "description": "Error message when the imported file has no study sections."
   },
-"importQuestionsTooltip": "別のクイズファイルから問題をインポート",
+  "importQuestionsTooltip": "別のクイズファイルから問題をインポート",
   "@importQuestionsTooltip": {
     "description": "インポートする問題ボタンのツールチップ"
   },

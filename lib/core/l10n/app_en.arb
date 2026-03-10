@@ -946,6 +946,10 @@
       }
     }
   },
+  "errorDuplicatedOption": "Options cannot be duplicated.",
+  "@errorDuplicatedOption": {
+    "description": "Error message when options have duplicate text"
+  },
   "optionEmptyError": "This option cannot be empty",
   "@optionEmptyError": {
     "description": "Error message for individual empty option field"

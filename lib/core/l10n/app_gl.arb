@@ -847,6 +847,10 @@
       }
     }
   },
+  "errorDuplicatedOption": "As opcións non poden estar duplicadas.",
+  "@errorDuplicatedOption": {
+    "description": "Error message when options have duplicate text"
+  },
   "optionEmptyError": "Esta opción non pode estar baleira",
   "@optionEmptyError": {
     "description": "Mensaxe de erro para campo opción individual baleiro"
@@ -941,7 +945,7 @@
       }
     }
   },
-    "importChunksTitle": "Importar Seccións",
+  "importChunksTitle": "Importar Seccións",
   "@importChunksTitle": {
     "description": "Title for the import chunks dialog."
   },
@@ -977,7 +981,7 @@
   "@noChunksInFile": {
     "description": "Error message when the imported file has no study sections."
   },
-"importQuestionsTooltip": "Importar preguntas doutro ficheiro quiz",
+  "importQuestionsTooltip": "Importar preguntas doutro ficheiro quiz",
   "@importQuestionsTooltip": {
     "description": "Tooltip para o botón importar preguntas."
   },

@@ -29,4 +29,7 @@ enum QuestionErrorType {
 
   /// One or more option texts are empty.
   emptyOption,
+
+  /// One or more option texts are identical.
+  duplicatedOption,
 }

@@ -807,6 +807,10 @@
       }
     }
   },
+  "errorDuplicatedOption": "विकल्प दोहराए नहीं जा सकते।",
+  "@errorDuplicatedOption": {
+    "description": "Error message when options have duplicate text"
+  },
   "optionEmptyError": "यह विकल्प खाली नहीं हो सकता",
   "@optionEmptyError": {
     "description": "Error message for individual empty option field"
@@ -901,7 +905,7 @@
       }
     }
   },
-    "importChunksTitle": "अनुभाग आयात करें",
+  "importChunksTitle": "अनुभाग आयात करें",
   "@importChunksTitle": {
     "description": "Title for the import chunks dialog."
   },
@@ -937,7 +941,7 @@
   "@noChunksInFile": {
     "description": "Error message when the imported file has no study sections."
   },
-"importQuestionsTooltip": "दूसरी क्विज़ फ़ाइल से प्रश्न आयात करें",
+  "importQuestionsTooltip": "दूसरी क्विज़ फ़ाइल से प्रश्न आयात करें",
   "@importQuestionsTooltip": {
     "description": "Tooltip for the import questions button."
   },

@@ -64,6 +64,18 @@ class ValidateQuestionUseCase {
       }
     }
 
+    // Check for duplicate options (case-insensitive)
+    final seenOptions = <String>{};
+    for (int i = 0; i < options.length; i++) {
+      final normalizedOption = options[i].trim().toLowerCase();
+      if (seenOptions.contains(normalizedOption)) {
+        return QuestionError(
+          errorType: QuestionErrorType.duplicatedOption,
+        );
+      }
+      seenOptions.add(normalizedOption);
+    }
+
     // Validate correct answers
     if (correctAnswers.isEmpty ||
         correctAnswers.any((index) => index < 0 || index >= options.length)) {
