@@ -21,7 +21,6 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
-import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
@@ -69,9 +68,6 @@ class StudyIndexView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Watch FileBloc to trigger rebuild (and re-evaluate tags) when file is saved
-    context.watch<FileBloc>();
-
     return Padding(
       padding: EdgeInsets.only(
         top: MediaQuery.of(context).padding.top,

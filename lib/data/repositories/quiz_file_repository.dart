@@ -75,7 +75,7 @@ class QuizFileRepository {
       questions: questions ?? [], // Start with empty questions or provided ones
     );
 
-    registerQuizFile(quizFile);
+    ServiceLocator.registerQuizFile(quizFile);
     return quizFile;
   }
 
