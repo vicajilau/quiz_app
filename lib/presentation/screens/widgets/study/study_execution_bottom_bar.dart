@@ -102,6 +102,7 @@ class StudyExecutionBottomBar extends StatelessWidget {
                         ),
                         Text(
                           '${progressPercentage.toStringAsFixed(0)}% ${localizations.studyScreenCoverage}',
+                          textAlign: TextAlign.center,
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: isDark ? AppTheme.zinc500 : AppTheme.zinc400,
                           ),
