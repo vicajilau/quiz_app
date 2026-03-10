@@ -195,6 +195,14 @@
   "@saveButton": {
     "description": "Speichern-Schaltfläche."
   },
+  "newTag": "Neu",
+  "@newTag": {
+    "description": "Tag, um ein neues oder geändertes Element anzuzeigen"
+  },
+  "modifiedTag": "Geändert",
+  "@modifiedTag": {
+    "description": "Tag, um anzuzeigen, dass ein Element geändert wurde"
+  },
   "confirmDeleteTitle": "Löschung bestätigen",
   "@confirmDeleteTitle": {
     "description": "Titel für den Bestätigungsdialog beim Löschen eines Prozesses."

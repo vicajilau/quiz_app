@@ -95,6 +95,14 @@
   "@saveButton": {
     "description": "Pulsante Salva."
   },
+  "newTag": "Nuovo",
+  "@newTag": {
+    "description": "Etichetta per indicare un elemento nuovo o modificato"
+  },
+  "modifiedTag": "Modificato",
+  "@modifiedTag": {
+    "description": "Etichetta per indicare che un elemento è stato modificato"
+  },
   "confirmDeleteTitle": "Conferma eliminazione",
   "@confirmDeleteTitle": {
     "description": "Titolo per la finestra di dialogo di conferma durante l'eliminazione di un processo."

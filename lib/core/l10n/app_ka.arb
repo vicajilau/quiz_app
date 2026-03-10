@@ -98,6 +98,14 @@
   "errorExportingFile": "ფაილის ექსპორტის შეცდომა: {error}",
   "cancelButton": "გაუქმება",
   "saveButton": "შენახვა",
+  "newTag": "ახალი",
+  "@newTag": {
+    "description": "ახალი ან შეცვლილი ელემენტის აღნიშვნის თეგი"
+  },
+  "modifiedTag": "შეცვლილი",
+  "@modifiedTag": {
+    "description": "თეგი რომელიც მიუთითებს რომ ელემენტი შეიცვალა"
+  },
   "save": "შენახვა",
   "@save": {
     "description": "Label for the save button"

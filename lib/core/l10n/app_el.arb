@@ -74,6 +74,14 @@
   "errorExportingFile": "Σφάλμα κατά την εξαγωγή του αρχείου: {error}",
   "cancelButton": "Ακύρωση",
   "saveButton": "Αποθήκευση",
+  "newTag": "Νέο",
+  "@newTag": {
+    "description": "Tag to indicate a new or modified item"
+  },
+  "modifiedTag": "Τροποποιημένο",
+  "@modifiedTag": {
+    "description": "Tag to indicate an item has been modified"
+  },
   "confirmDeleteTitle": "Επιβεβαίωση Διαγραφής",
   "confirmDeleteMessage": "Είστε σίγουροι ότι θέλετε να διαγράψετε τη διαδικασία `{processName}`;",
   "deleteButton": "Διαγραφή",

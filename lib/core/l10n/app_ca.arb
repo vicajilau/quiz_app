@@ -195,6 +195,14 @@
   "@saveButton": {
     "description": "Botó Desar."
   },
+  "newTag": "Nou",
+  "@newTag": {
+    "description": "Etiqueta per indicar un element nou o modificat"
+  },
+  "modifiedTag": "Modificat",
+  "@modifiedTag": {
+    "description": "Etiqueta per indicar que un element ha estat modificat"
+  },
   "confirmDeleteTitle": "Confirmar eliminació",
   "@confirmDeleteTitle": {
     "description": "Títol per al diàleg de confirmació en eliminar un procés."
