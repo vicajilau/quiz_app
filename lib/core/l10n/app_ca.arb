@@ -1996,5 +1996,9 @@
   "askAIStudyTooltip": "Preguntar a la IA sobre aquest capítol",
   "@askAIStudyTooltip": {
     "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  },
+  "studyScreenPendingSections": "Algunes seccions encara no s'han generat",
+  "@studyScreenPendingSections": {
+    "description": "Advertiment que es mostra a l'índex d'estudi quan alguns fragments encara no s'han generat"
   }
 }

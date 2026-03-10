@@ -2251,5 +2251,9 @@
   "askAIStudyTooltip": "اسأل الذكاء الاصطناعي عن هذا الفصل",
   "@askAIStudyTooltip": {
     "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  },
+  "studyScreenPendingSections": "بعض الأقسام لم يتم إنشاؤها بعد",
+  "@studyScreenPendingSections": {
+    "description": "تحذير يظهر في فهرس الدراسة عندما لا تكون بعض الأجزاء قد تم إنشاؤها بعد"
   }
 }

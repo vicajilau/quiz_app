@@ -1897,5 +1897,9 @@
   "askAIStudyTooltip": "इस अध्याय के बारे में AI से पूछें",
   "@askAIStudyTooltip": {
     "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  },
+  "studyScreenPendingSections": "कुछ अनुभाग अभी तक जेनरेट नहीं हुए हैं",
+  "@studyScreenPendingSections": {
+    "description": "अध्ययन सूचकांक में दिखाई देने वाली चेतावनी जब कुछ हिस्से अभी तक जेनरेट नहीं हुए हैं"
   }
 }

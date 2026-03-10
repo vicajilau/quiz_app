@@ -619,5 +619,9 @@
   "askAIStudyTooltip": "Запитати ШІ про цей розділ",
   "@askAIStudyTooltip": {
     "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  },
+  "studyScreenPendingSections": "Деякі розділи ще не створені",
+  "@studyScreenPendingSections": {
+    "description": "Попередження, що відображається в навчальному покажчику, коли деякі частини ще не створені"
   }
 }

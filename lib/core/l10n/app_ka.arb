@@ -586,5 +586,9 @@
   "askAIStudyTooltip": "ჰკითხეთ AI-ს ამ თავის შესახებ",
   "@askAIStudyTooltip": {
     "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  },
+  "studyScreenPendingSections": "ზოგიერთი სექცია ჯერ არ არის გენერირებული",
+  "@studyScreenPendingSections": {
+    "description": "გაფრთხილება, რომელიც ჩანს სასწავლო ინდექსში, როდესაც ზოგიერთი ნაწილი ჯერ არ არის გენერირებული"
   }
 }

@@ -602,5 +602,9 @@
   "askAIStudyTooltip": "Спросить ИИ об этой главе",
   "@askAIStudyTooltip": {
     "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  },
+  "studyScreenPendingSections": "Некоторые разделы еще не созданы",
+  "@studyScreenPendingSections": {
+    "description": "Предупреждение, отображаемое в указателе обучения, когда некоторые части еще не созданы"
   }
 }

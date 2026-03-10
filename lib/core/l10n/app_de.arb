@@ -1990,5 +1990,9 @@
   "askAIStudyTooltip": "KI zu diesem Kapitel fragen",
   "@askAIStudyTooltip": {
     "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  },
+  "studyScreenPendingSections": "Einige Abschnitte wurden noch nicht generiert",
+  "@studyScreenPendingSections": {
+    "description": "Warnung im Studienindex, wenn einige Teile noch nicht generiert wurden"
   }
 }
