@@ -75,6 +75,10 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
   final Set<int> _selectedQuestions = {};
   bool _isDragging = false;
 
+  void _syncQuizFileToBloc() {
+    context.read<FileBloc>().add(QuizFileUpdated(cachedQuizFile));
+  }
+
   Future<bool> _confirmExit() async {
     if (widget.checkFileChangesUseCase.execute(cachedQuizFile)) {
       return await showDialog<bool>(
@@ -403,6 +407,7 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
         cachedQuizFile = cachedQuizFile.copyWith(questions: updatedQuestions);
         _selectedQuestions.clear();
       });
+      _syncQuizFileToBloc();
     }
   }
 
@@ -562,6 +567,7 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                                                   ),
                                             );
                                       });
+                                      _syncQuizFileToBloc();
                                     }
                                   },
                                   child: Text(
@@ -715,7 +721,10 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                         padding: const EdgeInsets.symmetric(horizontal: 24.0),
                         child: QuestionListWidget(
                           quizFile: cachedQuizFile,
-                          onFileChange: () => setState(() {}),
+                          onFileChange: () {
+                            setState(() {});
+                            _syncQuizFileToBloc();
+                          },
                           isSelectionMode: _isSelectionMode,
                           selectedQuestions: _selectedQuestions,
                           onToggleSelection: _toggleQuestionSelection,

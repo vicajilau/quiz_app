@@ -246,5 +246,13 @@ class FileBloc extends Bloc<FileEvent, FileState> {
         }
       }
     });
+    on<QuizFileUpdated>((event, emit) {
+      _fileRepository.updateActiveQuizFile(event.quizFile);
+      if (state is FileLoaded) {
+        emit(FileLoaded(event.quizFile));
+      } else if (state is FileSaved) {
+        emit(FileSaved(event.quizFile));
+      }
+    });
   }
 }
