@@ -15,6 +15,7 @@
 
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_study_generation_config.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 
 abstract class StudyExecutionEvent {
   const StudyExecutionEvent();
@@ -98,6 +99,17 @@ class DownloadStudyChunkRequested extends StudyExecutionEvent {
   final int chunkIndex;
 
   const DownloadStudyChunkRequested(this.chunkIndex);
+}
+
+/// Dispatched to import a list of existing chunks from another quiz file.
+class ImportStudyChunksRequested extends StudyExecutionEvent {
+  final List<StudyChunk> chunks;
+  final bool insertAtBeginning;
+
+  const ImportStudyChunksRequested({
+    required this.chunks,
+    required this.insertAtBeginning,
+  });
 }
 
 /// Dispatched to generate new study sections using AI.
