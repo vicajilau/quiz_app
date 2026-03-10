@@ -1841,9 +1841,5 @@
   "studyComponentNoItems": "アイテムなし",
   "studyComponentAdvantages": "利点",
   "studyComponentLimitations": "制限事項",
-  "studyScreenDownloadChunk": "ダウンロード",
-  "languageRussian": "Русский",
-  "languageGeorgian": "ქართული",
-  "languageUkrainian": "Українська",
-  "languageKorean": "한국어"
+  "studyScreenDownloadChunk": "ダウンロード"
 }

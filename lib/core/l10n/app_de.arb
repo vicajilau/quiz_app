@@ -1934,9 +1934,5 @@
   "studyComponentNoItems": "Keine Elemente",
   "studyComponentAdvantages": "Vorteile",
   "studyComponentLimitations": "Einschränkungen",
-  "studyScreenDownloadChunk": "Herunterladen",
-  "languageRussian": "Русский",
-  "languageGeorgian": "ქართული",
-  "languageUkrainian": "Українська",
-  "languageKorean": "한국어"
+  "studyScreenDownloadChunk": "Herunterladen"
 }

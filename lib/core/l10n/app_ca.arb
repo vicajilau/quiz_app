@@ -1940,9 +1940,5 @@
   "studyComponentNoItems": "Sense elements",
   "studyComponentAdvantages": "Avantatges",
   "studyComponentLimitations": "Limitacions",
-  "studyScreenDownloadChunk": "Descarregar",
-  "languageRussian": "Русский",
-  "languageGeorgian": "ქართული",
-  "languageUkrainian": "Українська",
-  "languageKorean": "한국어"
+  "studyScreenDownloadChunk": "Descarregar"
 }
