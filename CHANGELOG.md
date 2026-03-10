@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.8.2]
+## [1.9.0]
 
 - feat: Added section import from .quiz files in Study Mode index view, with position selection dialog (beginning/end) and drag & drop support.
 - i18n: Added 5 new languages (Russian, Ukrainian, Georgian, Korean, and Greek) to the supported list, bringing the total to 18.
@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat: Added "Paste" button to API key text fields in settings for quicker setup.
 - fix: AI Generation dialog now properly saves and restores attached file paths across sessions.
 - feat: Enhanced Study Mode with just-in-time AI content generation, lazy loading of chapters, and robust handling of large PDF/document files for a seamless learning experience.
+- fix: Allow saving settings even when the AI Assistant is disabled and no API keys are provided.
 - feat: Seamless cross-mode navigation between Quiz and Study screens, preserving the back-stack so pressing Back returns to the previous mode.
 
 ## [1.8.1] - 2026-02-26

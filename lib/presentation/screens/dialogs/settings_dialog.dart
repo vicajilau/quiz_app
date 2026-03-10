@@ -101,7 +101,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
     final hasValidOpenAI = apiKey.isValidOpenAIApiKey;
     final hasValidGemini = geminiApiKey.isValidGeminiApiKey;
 
-    if (!hasValidOpenAI && !hasValidGemini) {
+    if (_aiAssistantEnabled && !hasValidOpenAI && !hasValidGemini) {
       setState(() {
         _apiKeyErrorMessage = AppLocalizations.of(
           context,
