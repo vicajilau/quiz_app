@@ -95,6 +95,14 @@
   "@saveButton": {
     "description": "Save button."
   },
+  "newTag": "新建",
+  "@newTag": {
+    "description": "用于指示新项目或已修改项目的标签"
+  },
+  "modifiedTag": "已修改",
+  "@modifiedTag": {
+    "description": "用于指示项目已修改的标签"
+  },
   "confirmDeleteTitle": "确认删除",
   "@confirmDeleteTitle": {
     "description": "Title for the confirmation dialog when deleting a process."

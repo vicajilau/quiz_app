@@ -19,6 +19,7 @@ import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/presentation/screens/dialogs/add_edit_question_dialog.dart';
 import 'package:quizdy/presentation/screens/dialogs/ai_question_dialog.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
@@ -239,6 +240,15 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
       onToggle: () => _toggleQuestionEnabled(index),
       isSelectionMode: widget.isSelectionMode,
       isSelected: widget.selectedQuestions.contains(index),
+      isNew: ServiceLocator.getIt<CheckFileChangesUseCase>().isQuestionNew(
+        index,
+        question,
+      ),
+      isModified:
+          ServiceLocator.getIt<CheckFileChangesUseCase>().isQuestionModified(
+            index,
+            question,
+          ),
       onSelectionToggle: () => widget.onToggleSelection(index),
       onAiAssistant: (_aiAssistantEnabled && question.isEnabled)
           ? () async {

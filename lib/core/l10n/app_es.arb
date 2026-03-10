@@ -140,6 +140,14 @@
   "@saveButton": {
     "description": "Botón de guardar."
   },
+  "newTag": "Nuevo",
+  "@newTag": {
+    "description": "Etiqueta para indicar un elemento nuevo o modificado"
+  },
+  "modifiedTag": "Modificado",
+  "@modifiedTag": {
+    "description": "Etiqueta para indicar que un elemento ha sido modificado"
+  },
   "confirmDeleteTitle": "Confirmar eliminación",
   "@confirmDeleteTitle": {
     "description": "Título para el diálogo de confirmación al eliminar un proceso."

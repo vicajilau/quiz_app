@@ -15,6 +15,8 @@
 
 import 'package:quizdy/data/repositories/quiz_file_repository.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+import 'package:quizdy/domain/models/quiz/question.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 
 /// Use case for checking if a QuizFile has changed.
 class CheckFileChangesUseCase {
@@ -32,5 +34,25 @@ class CheckFileChangesUseCase {
   bool execute(QuizFile cachedFile) {
     // Calls the repository to check if the file has changed
     return _fileRepository.hasQuizFileChanged(cachedFile);
+  }
+
+  /// Checks if a question at a specific index is new.
+  bool isQuestionNew(int index, Question question) {
+    return _fileRepository.isQuestionNew(index, question);
+  }
+
+  /// Checks if a question at a specific index was modified.
+  bool isQuestionModified(int index, Question question) {
+    return _fileRepository.isQuestionModified(index, question);
+  }
+
+  /// Checks if a study chunk at a specific index is new.
+  bool isStudyChunkNew(int index, StudyChunk chunk) {
+    return _fileRepository.isStudyChunkNew(index, chunk);
+  }
+
+  /// Checks if a study chunk at a specific index was modified.
+  bool isStudyChunkModified(int index, StudyChunk chunk) {
+    return _fileRepository.isStudyChunkModified(index, chunk);
   }
 }

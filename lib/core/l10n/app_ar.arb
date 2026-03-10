@@ -204,6 +204,14 @@
   "@saveButton": {
     "description": "Save button."
   },
+  "newTag": "جديد",
+  "@newTag": {
+    "description": "Tag to indicate a new or modified item"
+  },
+  "modifiedTag": "معدل",
+  "@modifiedTag": {
+    "description": "Tag to indicate an item has been modified"
+  },
   "confirmDeleteTitle": "تأكيد الحذف",
   "@confirmDeleteTitle": {
     "description": "Title for the confirmation dialog when deleting a process."

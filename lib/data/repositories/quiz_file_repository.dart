@@ -20,6 +20,7 @@ import 'package:quizdy/data/services/file_service/i_file_service.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/quiz_metadata.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 
 /// The `QuizFileRepository` class manages file-related operations such as loading, saving,
 /// and selecting quiz files. It delegates these tasks to an instance of `FileService`.
@@ -227,5 +228,35 @@ class QuizFileRepository {
     }
 
     return hasChanged;
+  }
+
+  bool isQuestionNew(int index, Question question) {
+    final originalFile = _fileService.originalFile;
+    if (originalFile == null) return true;
+    return index >= originalFile.questions.length;
+  }
+
+  bool isQuestionModified(int index, Question question) {
+    final originalFile = _fileService.originalFile;
+    if (originalFile == null) return false;
+    if (index >= originalFile.questions.length) return false;
+    return originalFile.questions[index] != question;
+  }
+
+  bool isStudyChunkNew(int index, StudyChunk chunk) {
+    final originalFile = _fileService.originalFile;
+    if (originalFile == null) return true;
+    final originalStudy = originalFile.study;
+    if (originalStudy == null) return true;
+    return index >= originalStudy.content.cache.length;
+  }
+
+  bool isStudyChunkModified(int index, StudyChunk chunk) {
+    final originalFile = _fileService.originalFile;
+    if (originalFile == null) return false;
+    final originalStudy = originalFile.study;
+    if (originalStudy == null) return false;
+    if (index >= originalStudy.content.cache.length) return false;
+    return originalStudy.content.cache[index] != chunk;
   }
 }

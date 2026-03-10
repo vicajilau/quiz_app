@@ -95,6 +95,14 @@
   "@saveButton": {
     "description": "Gorde botoia."
   },
+  "newTag": "Berria",
+  "@newTag": {
+    "description": "Elementu berri edo aldatu bat adierazteko etiketa"
+  },
+  "modifiedTag": "Aldatuta",
+  "@modifiedTag": {
+    "description": "Elementu bat aldatu dela adierazteko etiketa"
+  },
   "confirmDeleteTitle": "Ezabaketa Berretsi",
   "@confirmDeleteTitle": {
     "description": "Prozesua ezabatzeko berrespen elkarrizketaren izenburua."

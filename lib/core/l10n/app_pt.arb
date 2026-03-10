@@ -95,6 +95,14 @@
   "@saveButton": {
     "description": "Botão Salvar."
   },
+  "newTag": "Novo",
+  "@newTag": {
+    "description": "Etiqueta para indicar um item novo ou modificado"
+  },
+  "modifiedTag": "Modificado",
+  "@modifiedTag": {
+    "description": "Etiqueta para indicar que um item foi modificado"
+  },
   "confirmDeleteTitle": "Confirmar exclusão",
   "@confirmDeleteTitle": {
     "description": "Título para a caixa de diálogo de confirmação ao excluir um processo."

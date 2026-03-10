@@ -98,6 +98,14 @@
   "errorExportingFile": "파일 내보내기 오류: {error}",
   "cancelButton": "취소",
   "saveButton": "저장",
+  "newTag": "새 항목",
+  "@newTag": {
+    "description": "새 항목 또는 수정된 항목을 나타내는 태그"
+  },
+  "modifiedTag": "수정됨",
+  "@modifiedTag": {
+    "description": "항목이 수정되었음을 나타내는 태그"
+  },
   "save": "저장",
   "@save": {
     "description": "Label for the save button"

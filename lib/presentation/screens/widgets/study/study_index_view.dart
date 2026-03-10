@@ -20,6 +20,7 @@ import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
+import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
@@ -115,6 +116,10 @@ class StudyIndexView extends StatelessWidget {
               isSelectionMode: state.isSelectionMode,
               isSelected: isSelected,
               supportsReordering: true,
+              isNew: ServiceLocator.getIt<CheckFileChangesUseCase>()
+                  .isStudyChunkNew(index, chunk),
+              isModified: ServiceLocator.getIt<CheckFileChangesUseCase>()
+                  .isStudyChunkModified(index, chunk),
               onTap: () {
                 if (state.isSelectionMode) {
                   context.read<StudyExecutionBloc>().add(
@@ -189,6 +194,10 @@ class StudyIndexView extends StatelessWidget {
                 isSelectionMode: state.isSelectionMode,
                 isSelected: isSelected,
                 supportsReordering: false, // In standard ListView branch
+                isNew: ServiceLocator.getIt<CheckFileChangesUseCase>()
+                    .isStudyChunkNew(index, chunk),
+                isModified: ServiceLocator.getIt<CheckFileChangesUseCase>()
+                    .isStudyChunkModified(index, chunk),
                 onTap: () {
                   if (state.isSelectionMode) {
                     context.read<StudyExecutionBloc>().add(
@@ -285,6 +294,10 @@ class StudyIndexView extends StatelessWidget {
                                 isSelected: state.selectedIndices.contains(i),
                                 supportsReordering:
                                     false, // Desktop doesn't support reorder yet
+                                isNew: ServiceLocator.getIt<CheckFileChangesUseCase>()
+                                    .isStudyChunkNew(i, state.chunks[i]),
+                                isModified: ServiceLocator.getIt<CheckFileChangesUseCase>()
+                                    .isStudyChunkModified(i, state.chunks[i]),
                                 onTap: () {
                                   if (state.isSelectionMode) {
                                     context.read<StudyExecutionBloc>().add(
@@ -322,6 +335,19 @@ class StudyIndexView extends StatelessWidget {
                                 isSelected: state.selectedIndices.contains(i),
                                 supportsReordering:
                                     false, // Desktop doesn't support reorder yet
+                                isNew:
+                                    ServiceLocator.getIt<
+                                          CheckFileChangesUseCase
+                                        >()
+                                        .isStudyChunkNew(i, state.chunks[i]),
+                                isModified:
+                                    ServiceLocator.getIt<
+                                          CheckFileChangesUseCase
+                                        >()
+                                        .isStudyChunkModified(
+                                          i,
+                                          state.chunks[i],
+                                        ),
                                 onTap: () {
                                   if (state.isSelectionMode) {
                                     context.read<StudyExecutionBloc>().add(

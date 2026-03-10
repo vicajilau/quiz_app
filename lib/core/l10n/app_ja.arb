@@ -95,6 +95,14 @@
   "@saveButton": {
     "description": "保存ボタン。"
   },
+  "newTag": "新規",
+  "@newTag": {
+    "description": "新規または変更されたアイテムを示すタグ"
+  },
+  "modifiedTag": "変更済み",
+  "@modifiedTag": {
+    "description": "アイテムが変更されたことを示すタグ"
+  },
   "confirmDeleteTitle": "削除の確認",
   "@confirmDeleteTitle": {
     "description": "プロセスを削除するための確認ダイアログのタイトル。"

@@ -16,9 +16,11 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
+import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 
 class StudySectionsSidebar extends StatelessWidget {
   final List<StudyChunk> chunks;
@@ -39,6 +41,16 @@ class StudySectionsSidebar extends StatelessWidget {
     required this.onClose,
     this.isFullScreen = false,
   });
+
+  bool _isNew(int index, StudyChunk chunk) {
+    final checker = ServiceLocator.getIt<CheckFileChangesUseCase>();
+    return checker.isStudyChunkNew(index, chunk);
+  }
+
+  bool _isModified(int index, StudyChunk chunk) {
+    final checker = ServiceLocator.getIt<CheckFileChangesUseCase>();
+    return checker.isStudyChunkModified(index, chunk);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,15 +139,17 @@ class StudySectionsSidebar extends StatelessWidget {
                   final isSelected = index == currentChunkIndex;
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 4),
-                    child: _SidebarChunkItem(
-                      chunk: chunk,
-                      index: index,
-                      total: chunks.length,
-                      isSelected: isSelected,
-                      localizations: localizations,
-                      onTap: () => onChunkSelected(index),
-                      onDownload: () => onChunkDownload(index),
-                    ),
+                      child: _SidebarChunkItem(
+                        chunk: chunk,
+                        index: index,
+                        total: chunks.length,
+                        isSelected: isSelected,
+                        isNew: _isNew(index, chunk),
+                        isModified: _isModified(index, chunk),
+                        localizations: localizations,
+                        onTap: () => onChunkSelected(index),
+                        onDownload: () => onChunkDownload(index),
+                      ),
                   );
                 },
               ),
@@ -180,6 +194,8 @@ class _SidebarChunkItem extends StatelessWidget {
   final int index;
   final int total;
   final bool isSelected;
+  final bool isNew;
+  final bool isModified;
   final AppLocalizations localizations;
   final VoidCallback onTap;
   final VoidCallback onDownload;
@@ -189,6 +205,8 @@ class _SidebarChunkItem extends StatelessWidget {
     required this.index,
     required this.total,
     required this.isSelected,
+    required this.isNew,
+    required this.isModified,
     required this.localizations,
     required this.onTap,
     required this.onDownload,
@@ -257,21 +275,52 @@ class _SidebarChunkItem extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        chunk.title,
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: isCompleted || isSelected
-                              ? FontWeight.w600
-                              : FontWeight.w500,
-                          color: isCompleted || isSelected
-                              ? (isDark
-                                    ? AppTheme.backgroundColor
-                                    : AppTheme.zinc900)
-                              : (isDark ? AppTheme.zinc400 : AppTheme.zinc500),
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              chunk.title,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: isCompleted || isSelected
+                                    ? FontWeight.w600
+                                    : FontWeight.w500,
+                                color: isCompleted || isSelected
+                                    ? (isDark
+                                          ? AppTheme.backgroundColor
+                                          : AppTheme.zinc900)
+                                    : (isDark ? AppTheme.zinc400 : AppTheme.zinc500),
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          if (isNew || isModified) ...[
+                            const SizedBox(width: 6),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 6,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppTheme.primaryColor.withValues(
+                                  alpha: 0.2,
+                                ),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: Text(
+                                isNew
+                                    ? localizations.newTag
+                                    : localizations.modifiedTag,
+                                style: const TextStyle(
+                                  fontSize: 9,
+                                  fontWeight: FontWeight.w800,
+                                  color: AppTheme.primaryColor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ],
                       ),
                       const SizedBox(height: 2),
                       Text(

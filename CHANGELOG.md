@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.9.0]
 
 - feat: Added section import from .quiz files in Study Mode index view, with position selection dialog (beginning/end) and drag & drop support.
+- ui: Implemented "New" and "Modified" banner ribbon tags for questions and study sections to visually indicate unsaved changes with a premium aesthetic.
 - i18n: Added 5 new languages (Russian, Ukrainian, Georgian, Korean, and Greek) to the supported list, bringing the total to 18.
 - feat: Added mode selection dialog (Study/Quiz) when opening .quiz files, with dual-zone drag & drop overlay and deeplink support.
 - fix: Migrated deprecated `gemini-3-pro-preview` and `gemini-3-flash-preview` models to their respective `3.1` updates to ensure uninterrupted service.

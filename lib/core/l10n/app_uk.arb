@@ -166,6 +166,14 @@
   "errorExportingFile": "Помилка експорту файлу: {error}",
   "cancelButton": "Скасувати",
   "saveButton": "Зберегти",
+  "newTag": "Новий",
+  "@newTag": {
+    "description": "Тег для позначення нового або зміненого елемента"
+  },
+  "modifiedTag": "Змінено",
+  "@modifiedTag": {
+    "description": "Тег для позначення того, що елемент було змінено"
+  },
   "confirmDeleteTitle": "Підтвердження видалення",
   "confirmDeleteMessage": "Ви впевнені, що хочете видалити процес `{processName}`?",
   "deleteButton": "Видалити",

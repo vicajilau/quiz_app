@@ -35,6 +35,8 @@ class QuestionPreviewCard extends StatefulWidget {
   final VoidCallback? onAiAssistant;
   final bool isSelectionMode;
   final bool isSelected;
+  final bool isNew;
+  final bool isModified;
   final VoidCallback? onSelectionToggle;
 
   const QuestionPreviewCard({
@@ -47,6 +49,8 @@ class QuestionPreviewCard extends StatefulWidget {
     this.onAiAssistant,
     this.isSelectionMode = false,
     this.isSelected = false,
+    this.isNew = false,
+    this.isModified = false,
     this.onSelectionToggle,
   });
 
@@ -77,7 +81,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
   Widget build(BuildContext context) {
     final isDisabled = !widget.question.isEnabled;
 
-    return Container(
+    Widget cardContent = Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
@@ -493,6 +497,27 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
         ],
       ),
     );
+
+    if (widget.isNew || widget.isModified) {
+      cardContent = ClipRect(
+        child: Banner(
+          message: widget.isNew
+              ? AppLocalizations.of(context)!.newTag.toUpperCase()
+              : AppLocalizations.of(context)!.modifiedTag.toUpperCase(),
+          location: BannerLocation.topStart,
+          color: Theme.of(context).extension<CustomColors>()!.aiIconColor!,
+          textStyle: const TextStyle(
+            fontSize: 7,
+            fontWeight: FontWeight.w900,
+            color: Colors.white,
+            letterSpacing: 0.5,
+          ),
+          child: cardContent,
+        ),
+      );
+    }
+
+    return cardContent;
   }
 
   Widget _buildIconButton({

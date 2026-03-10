@@ -95,6 +95,14 @@
   "@saveButton": {
     "description": "Bouton Sauvegarder."
   },
+  "newTag": "Nouveau",
+  "@newTag": {
+    "description": "Étiquette pour indiquer un nouvel élément ou un élément modifié"
+  },
+  "modifiedTag": "Modifié",
+  "@modifiedTag": {
+    "description": "Étiquette pour indiquer qu'un élément a été modifié"
+  },
   "confirmDeleteTitle": "Confirmer la suppression",
   "@confirmDeleteTitle": {
     "description": "Titre de la boîte de dialogue de confirmation lors de la suppression d'un processus."
