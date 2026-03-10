@@ -21,6 +21,7 @@ import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/quiz_metadata.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 
 /// The `QuizFileRepository` class manages file-related operations such as loading, saving,
 /// and selecting quiz files. It delegates these tasks to an instance of `FileService`.
@@ -233,14 +234,19 @@ class QuizFileRepository {
   bool isQuestionNew(int index, Question question) {
     final originalFile = _fileService.originalFile;
     if (originalFile == null) return true;
-    return index >= originalFile.questions.length;
+    return !originalFile.questions.any(
+      (q) => q.identityHash == question.identityHash,
+    );
   }
 
   bool isQuestionModified(int index, Question question) {
     final originalFile = _fileService.originalFile;
     if (originalFile == null) return false;
-    if (index >= originalFile.questions.length) return false;
-    return originalFile.questions[index] != question;
+    final originals = originalFile.questions.where(
+      (q) => q.identityHash == question.identityHash,
+    );
+    if (originals.isEmpty) return false;
+    return originals.first != question;
   }
 
   bool isStudyChunkNew(int index, StudyChunk chunk) {
@@ -248,15 +254,24 @@ class QuizFileRepository {
     if (originalFile == null) return true;
     final originalStudy = originalFile.study;
     if (originalStudy == null) return true;
-    return index >= originalStudy.content.cache.length;
+    return !originalStudy.content.cache.any(
+      (original) => original.sourceReference == chunk.sourceReference,
+    );
   }
 
   bool isStudyChunkModified(int index, StudyChunk chunk) {
+    if (chunk.status == StudyChunkState.error) return false;
     final originalFile = _fileService.originalFile;
     if (originalFile == null) return false;
     final originalStudy = originalFile.study;
     if (originalStudy == null) return false;
-    if (index >= originalStudy.content.cache.length) return false;
-    return originalStudy.content.cache[index] != chunk;
+    final originals = originalStudy.content.cache.where(
+      (o) => o.sourceReference == chunk.sourceReference,
+    );
+    if (originals.isEmpty) return false;
+    final original = originals.first;
+    // Compare ignoring chunkIndex (changes on reorder) and status (changes on download/process)
+    return original.copyWith(chunkIndex: 0, status: StudyChunkState.created) !=
+        chunk.copyWith(chunkIndex: 0, status: StudyChunkState.created);
   }
 }
