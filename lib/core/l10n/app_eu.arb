@@ -1894,5 +1894,9 @@
   "askAIStudyTooltip": "Galdeiozu AIari kapitulu honi buruz",
   "@askAIStudyTooltip": {
     "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  },
+  "studyScreenPendingSections": "Sekzio batzuk oraindik ez dira sortu",
+  "@studyScreenPendingSections": {
+    "description": "Ikasketa aurkibidean agertzen den oharra zati batzuk oraindik sortu ez direnean"
   }
 }

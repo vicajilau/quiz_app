@@ -14,8 +14,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
+import 'package:quizdy/core/theme/extensions/custom_colors.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
 
 class StudyIndexHeroCard extends StatelessWidget {
@@ -106,6 +109,45 @@ class StudyIndexHeroCard extends StatelessWidget {
             ],
           ),
         ),
+        if (state.chunks.any(
+          (c) =>
+              c.status != StudyChunkState.completed &&
+              c.status != StudyChunkState.downloaded,
+        )) ...[
+          const SizedBox(height: 16),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            decoration: BoxDecoration(
+              color: Theme.of(
+                context,
+              ).extension<CustomColors>()!.warningContainer,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  LucideIcons.alertTriangle,
+                  size: 16,
+                  color: Theme.of(
+                    context,
+                  ).extension<CustomColors>()!.onWarningContainer,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  localizations.studyScreenPendingSections,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(
+                      context,
+                    ).extension<CustomColors>()!.onWarningContainer,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ],
     );
   }

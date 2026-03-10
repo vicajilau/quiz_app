@@ -93,6 +93,9 @@ class StudyExecutionBloc
     on<GenerateAiStudyChunksRequested>(_onGenerateAiStudyChunksRequested);
     on<DeleteSelectedChunksRequested>(_onDeleteSelectedChunksRequested);
     on<ImportStudyChunksRequested>(_onImportStudyChunksRequested);
+    on<StudyFileSaved>(
+      (_, emit) => emit(state.copyWith(savedVersion: state.savedVersion + 1)),
+    );
   }
 
   static StudyExecutionState _initialProgress(

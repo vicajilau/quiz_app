@@ -1939,5 +1939,9 @@
   "askAIStudyTooltip": "Demander à l'IA à propos de ce chapitre",
   "@askAIStudyTooltip": {
     "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  },
+  "studyScreenPendingSections": "Certaines sections ne sont pas encore générées",
+  "@studyScreenPendingSections": {
+    "description": "Avertissement affiché dans l'index d'étude quand certains tronçons ne sont pas encore générés"
   }
 }

@@ -139,17 +139,17 @@ class StudySectionsSidebar extends StatelessWidget {
                   final isSelected = index == currentChunkIndex;
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 4),
-                      child: _SidebarChunkItem(
-                        chunk: chunk,
-                        index: index,
-                        total: chunks.length,
-                        isSelected: isSelected,
-                        isNew: _isNew(index, chunk),
-                        isModified: _isModified(index, chunk),
-                        localizations: localizations,
-                        onTap: () => onChunkSelected(index),
-                        onDownload: () => onChunkDownload(index),
-                      ),
+                    child: _SidebarChunkItem(
+                      chunk: chunk,
+                      index: index,
+                      total: chunks.length,
+                      isSelected: isSelected,
+                      isNew: _isNew(index, chunk),
+                      isModified: _isModified(index, chunk),
+                      localizations: localizations,
+                      onTap: () => onChunkSelected(index),
+                      onDownload: () => onChunkDownload(index),
+                    ),
                   );
                 },
               ),
@@ -289,7 +289,9 @@ class _SidebarChunkItem extends StatelessWidget {
                                     ? (isDark
                                           ? AppTheme.backgroundColor
                                           : AppTheme.zinc900)
-                                    : (isDark ? AppTheme.zinc400 : AppTheme.zinc500),
+                                    : (isDark
+                                          ? AppTheme.zinc400
+                                          : AppTheme.zinc500),
                               ),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -303,7 +305,7 @@ class _SidebarChunkItem extends StatelessWidget {
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: AppTheme.primaryColor.withValues(
+                                color: AppTheme.secondaryColor.withValues(
                                   alpha: 0.2,
                                 ),
                                 borderRadius: BorderRadius.circular(4),
@@ -315,7 +317,7 @@ class _SidebarChunkItem extends StatelessWidget {
                                 style: const TextStyle(
                                   fontSize: 9,
                                   fontWeight: FontWeight.w800,
-                                  color: AppTheme.primaryColor,
+                                  color: AppTheme.secondaryColor,
                                 ),
                               ),
                             ),

@@ -894,5 +894,9 @@
   "askAIStudyTooltip": "Ρωτήστε το AI για αυτό το κεφάλαιο",
   "@askAIStudyTooltip": {
     "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  },
+  "studyScreenPendingSections": "Ορισμένες ενότητες δεν έχουν δημιουργηθεί ακόμη",
+  "@studyScreenPendingSections": {
+    "description": "Προειδοποίηση που εμφανίζεται στο ευρετήριο μελέτης όταν ορισμένα τμήματα δεν έχουν δημιουργηθεί ακόμη"
   }
 }

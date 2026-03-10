@@ -2120,6 +2120,10 @@
   "@studyScreenCompleted": {
     "description": "Label for the completed sections section"
   },
+  "studyScreenPendingSections": "Algunas secciones aún no están generadas",
+  "@studyScreenPendingSections": {
+    "description": "Warning shown in study index when some chunks are not yet generated"
+  },
   "aiDifficultyTitle": "Grado de dificultad",
   "@aiDifficultyTitle": {
     "description": "Title for the difficulty selection section"

@@ -292,12 +292,20 @@ class StudyIndexView extends StatelessWidget {
                                 localizations: localizations,
                                 isSelectionMode: state.isSelectionMode,
                                 isSelected: state.selectedIndices.contains(i),
-                                supportsReordering:
-                                    false, // Desktop doesn't support reorder yet
-                                isNew: ServiceLocator.getIt<CheckFileChangesUseCase>()
-                                    .isStudyChunkNew(i, state.chunks[i]),
-                                isModified: ServiceLocator.getIt<CheckFileChangesUseCase>()
-                                    .isStudyChunkModified(i, state.chunks[i]),
+                                supportsReordering: true,
+                                isNew:
+                                    ServiceLocator.getIt<
+                                          CheckFileChangesUseCase
+                                        >()
+                                        .isStudyChunkNew(i, state.chunks[i]),
+                                isModified:
+                                    ServiceLocator.getIt<
+                                          CheckFileChangesUseCase
+                                        >()
+                                        .isStudyChunkModified(
+                                          i,
+                                          state.chunks[i],
+                                        ),
                                 onTap: () {
                                   if (state.isSelectionMode) {
                                     context.read<StudyExecutionBloc>().add(

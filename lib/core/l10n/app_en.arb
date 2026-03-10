@@ -2171,6 +2171,10 @@
   "@studyScreenCompleted": {
     "description": "Label for completed chunks counter in study index"
   },
+  "studyScreenPendingSections": "Some sections are not yet generated",
+  "@studyScreenPendingSections": {
+    "description": "Warning shown in study index when some chunks are not yet generated"
+  },
   "aiDifficultyTitle": "Difficulty Level",
   "@aiDifficultyTitle": {
     "description": "Title for the difficulty level section"

@@ -1947,6 +1947,9 @@
   "askAIStudyTooltip": "向 AI 咨询本章节内容",
   "@askAIStudyTooltip": {
     "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  },
+  "studyScreenPendingSections": "部分章节尚未生成",
+  "@studyScreenPendingSections": {
+    "description": "当某些部分尚未生成时在学习索引中显示的警告"
   }
 }
-
