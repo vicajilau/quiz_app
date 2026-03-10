@@ -34,6 +34,7 @@ class StudyExecutionState {
   final bool needsFileReattachment;
   final bool isSelectionMode;
   final Set<int> selectedIndices;
+  final int savedVersion;
 
   const StudyExecutionState({
     this.chunks = const [],
@@ -51,6 +52,7 @@ class StudyExecutionState {
     this.needsFileReattachment = false,
     this.isSelectionMode = false,
     this.selectedIndices = const {},
+    this.savedVersion = 0,
   });
 
   StudyExecutionState copyWith({
@@ -69,6 +71,7 @@ class StudyExecutionState {
     bool? needsFileReattachment,
     bool? isSelectionMode,
     Set<int>? selectedIndices,
+    int? savedVersion,
   }) {
     return StudyExecutionState(
       chunks: chunks ?? this.chunks,
@@ -86,6 +89,7 @@ class StudyExecutionState {
       needsFileReattachment: needsFileReattachment ?? false,
       isSelectionMode: isSelectionMode ?? this.isSelectionMode,
       selectedIndices: selectedIndices ?? this.selectedIndices,
+      savedVersion: savedVersion ?? this.savedVersion,
     );
   }
 
@@ -129,7 +133,8 @@ class StudyExecutionState {
         other.error == error &&
         other.needsFileReattachment == needsFileReattachment &&
         other.isSelectionMode == isSelectionMode &&
-        listEquals(other.selectedIndices, selectedIndices);
+        listEquals(other.selectedIndices, selectedIndices) &&
+        other.savedVersion == savedVersion;
   }
 
   @override
@@ -148,6 +153,7 @@ class StudyExecutionState {
         error.hashCode ^
         needsFileReattachment.hashCode ^
         isSelectionMode.hashCode ^
-        selectedIndices.hashCode;
+        selectedIndices.hashCode ^
+        savedVersion.hashCode;
   }
 }

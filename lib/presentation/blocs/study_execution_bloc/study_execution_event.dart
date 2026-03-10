@@ -112,6 +112,11 @@ class ImportStudyChunksRequested extends StudyExecutionEvent {
   });
 }
 
+/// Dispatched after the file is saved so the index refreshes isNew/isModified badges.
+class StudyFileSaved extends StudyExecutionEvent {
+  const StudyFileSaved();
+}
+
 /// Dispatched to generate new study sections using AI.
 class GenerateAiStudyChunksRequested extends StudyExecutionEvent {
   final AiStudyGenerationConfig config;
