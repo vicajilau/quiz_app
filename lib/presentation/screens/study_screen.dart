@@ -12,20 +12,25 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:desktop_drop/desktop_drop.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:mime/mime.dart';
 import 'package:quizdy/core/context_extension.dart';
+import 'package:quizdy/presentation/utils/dialog_drop_guard.dart';
 import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
+import 'package:quizdy/data/repositories/quiz_file_repository.dart';
 import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
@@ -37,6 +42,8 @@ import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_s
 import 'package:quizdy/presentation/screens/dialogs/ai_generate_study_dialog.dart';
 import 'package:quizdy/presentation/screens/dialogs/exit_confirmation_dialog.dart';
 import 'package:quizdy/domain/models/ai/ai_study_generation_config.dart';
+import 'package:quizdy/presentation/screens/dialogs/import_chunks_dialog.dart';
+import 'package:quizdy/presentation/screens/dialogs/import_questions_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/request_file_name_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/study/add_edit_chunk_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_app_bar.dart';
@@ -133,6 +140,8 @@ class StudyScreenView extends StatefulWidget {
 }
 
 class _StudyScreenViewState extends State<StudyScreenView> {
+  bool _isDragging = false;
+
   Future<bool> _confirmExit() async {
     if (widget.hideStartQuizButton) return true;
     final studyState = context.read<StudyExecutionBloc>().state;
@@ -196,6 +205,92 @@ class _StudyScreenViewState extends State<StudyScreenView> {
       context.read<FileBloc>().add(
         QuizFileSaveRequested(fileToSave, localizations.saveButton, fileName),
       );
+    }
+  }
+
+  Future<void> _handleChunkImport() async {
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['quiz'],
+      );
+
+      if (result != null && result.files.single.path != null) {
+        await _importChunksFromFile(result.files.single.path!);
+      }
+    } catch (e) {
+      if (mounted) {
+        context.presentSnackBar(
+          AppLocalizations.of(context)!.errorLoadingFile(e.toString()),
+        );
+      }
+    }
+  }
+
+  Future<void> _importChunksFromFile(String filePath) async {
+    try {
+      final repository = ServiceLocator.getIt<QuizFileRepository>();
+      final importedQuizFile = await repository.loadQuizFileContent(filePath);
+      final chunks = importedQuizFile.study?.content.cache ?? [];
+
+      if (chunks.isEmpty) {
+        if (mounted) {
+          context.presentSnackBar(
+            AppLocalizations.of(context)!.noChunksInFile,
+          );
+        }
+        return;
+      }
+
+      if (!mounted) return;
+      final currentChunks = context.read<StudyExecutionBloc>().state.chunks;
+
+      if (currentChunks.isEmpty) {
+        if (mounted) {
+          context.read<StudyExecutionBloc>().add(
+            ImportStudyChunksRequested(
+              chunks: chunks,
+              insertAtBeginning: true,
+            ),
+          );
+          context.presentSnackBar(
+            AppLocalizations.of(context)!.chunksImportedSuccess(chunks.length),
+          );
+        }
+        return;
+      }
+
+      if (!mounted) return;
+      final position = await showDialog<QuestionsPosition>(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => ImportChunksDialog(
+          chunkCount: chunks.length,
+          fileName: filePath.split('/').last,
+        ),
+      );
+
+      if (position != null && mounted) {
+        context.read<StudyExecutionBloc>().add(
+          ImportStudyChunksRequested(
+            chunks: chunks,
+            insertAtBeginning: position == QuestionsPosition.beginning,
+          ),
+        );
+        context.presentSnackBar(
+          AppLocalizations.of(context)!.chunksImportedSuccess(chunks.length),
+        );
+      }
+    } on BadQuizFileException catch (e) {
+      if (mounted) {
+        context.presentSnackBar(e.toString());
+      }
+    } catch (e) {
+      if (mounted) {
+        context.presentSnackBar(
+          AppLocalizations.of(context)!.errorLoadingFile(e.toString()),
+        );
+      }
     }
   }
 
@@ -280,7 +375,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
           originalText: widget.originalText,
           hideStartQuizButton: widget.hideStartQuizButton,
           onSave: _handleSave,
-          onImport: () => _handleFileReattachment(context),
+          onImport: _handleChunkImport,
           onAddChunk: () async {
             final localizations = AppLocalizations.of(context)!;
             final result = await showDialog<Map<String, String>>(
@@ -318,9 +413,100 @@ class _StudyScreenViewState extends State<StudyScreenView> {
           },
         ),
         appBar: StudyAppBar(onConfirmExit: _confirmExit),
-        body: StudyBody(
-          onHandleFileReattachment: _handleFileReattachment,
-          onSave: _handleSave,
+        body: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+          buildWhen: (previous, current) =>
+              previous.isIndexMode != current.isIndexMode,
+          builder: (context, state) {
+            final body = StudyBody(
+              onHandleFileReattachment: _handleFileReattachment,
+              onSave: _handleSave,
+            );
+
+            if (!state.isIndexMode) return body;
+
+            return DropTarget(
+              onDragDone: (details) {
+                if (ModalRoute.of(context)?.isCurrent != true) return;
+                setState(() => _isDragging = false);
+                if (ServiceLocator.getIt<DialogDropGuard>().isActive) return;
+                if (details.files.isNotEmpty) {
+                  final firstFile = details.files.first;
+                  if (firstFile.path.isNotEmpty) {
+                    if (!firstFile.name.toLowerCase().endsWith('.quiz')) {
+                      if (mounted) {
+                        context.presentSnackBar(
+                          AppLocalizations.of(context)!.errorInvalidFile,
+                        );
+                      }
+                      return;
+                    }
+                    _importChunksFromFile(firstFile.path);
+                  }
+                }
+              },
+              onDragEntered: (_) {
+                if (!ServiceLocator.getIt<DialogDropGuard>().isActive) {
+                  setState(() => _isDragging = true);
+                }
+              },
+              onDragExited: (_) => setState(() => _isDragging = false),
+              child: Stack(
+                children: [
+                  body,
+                  if (_isDragging)
+                    Positioned.fill(
+                      child: Container(
+                        color: Theme.of(
+                          context,
+                        ).primaryColor.withValues(alpha: 0.15),
+                        child: Center(
+                          child: Container(
+                            padding: const EdgeInsets.all(32),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(24),
+                              border: Border.all(
+                                color: Theme.of(context).primaryColor,
+                                width: 3,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Theme.of(
+                                    context,
+                                  ).primaryColor.withValues(alpha: 0.2),
+                                  blurRadius: 20,
+                                  offset: const Offset(0, 10),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  LucideIcons.upload,
+                                  size: 48,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                const SizedBox(height: 16),
+                                Text(
+                                  AppLocalizations.of(context)!.dropFileHere,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium
+                                      ?.copyWith(
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );
