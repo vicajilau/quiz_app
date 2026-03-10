@@ -71,6 +71,19 @@ mixin ValidationMixin<T extends StatefulWidget> on State<T> {
       return false;
     }
 
+    // Check for duplicate options
+    final seenOptions = <String>{};
+    for (int i = 0; i < optionControllers.length; i++) {
+      final normalizedOption = optionControllers[i].text.trim().toLowerCase();
+      if (normalizedOption.isNotEmpty) {
+        if (seenOptions.contains(normalizedOption)) {
+          optionsErrorNotifier.value = localizations.errorDuplicatedOption;
+          return false;
+        }
+        seenOptions.add(normalizedOption);
+      }
+    }
+
     // Check if at least one correct answer is selected
     bool hasCorrectAnswer = correctAnswers.any((answer) => answer);
     if (!hasCorrectAnswer) {

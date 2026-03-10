@@ -935,6 +935,10 @@
       }
     }
   },
+  "errorDuplicatedOption": "Les opcions no poden estar duplicades.",
+  "@errorDuplicatedOption": {
+    "description": "Error message when options have duplicate text"
+  },
   "optionEmptyError": "Aquesta opció no pot estar buida",
   "@optionEmptyError": {
     "description": "Missatge d'error per camp opció individual buit"
@@ -1029,7 +1033,7 @@
       }
     }
   },
-    "importChunksTitle": "Importar Seccions",
+  "importChunksTitle": "Importar Seccions",
   "@importChunksTitle": {
     "description": "Title for the import chunks dialog."
   },
@@ -1065,7 +1069,7 @@
   "@noChunksInFile": {
     "description": "Error message when the imported file has no study sections."
   },
-"importQuestionsTooltip": "Importar preguntes d'un altre fitxer quiz",
+  "importQuestionsTooltip": "Importar preguntes d'un altre fitxer quiz",
   "@importQuestionsTooltip": {
     "description": "Tooltip pel botó importar preguntes."
   },

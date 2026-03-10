@@ -829,6 +829,10 @@
       }
     }
   },
+  "errorDuplicatedOption": "Aukerak ezin dira bikoiztu.",
+  "@errorDuplicatedOption": {
+    "description": "Error message when options have duplicate text"
+  },
   "optionEmptyError": "Aukera hau ezin da hutsik egon",
   "@optionEmptyError": {
     "description": "Aukera eremu indibidual hutsa den errore mezua"
@@ -923,7 +927,7 @@
       }
     }
   },
-    "importChunksTitle": "Atalak inportatu",
+  "importChunksTitle": "Atalak inportatu",
   "@importChunksTitle": {
     "description": "Title for the import chunks dialog."
   },
@@ -959,7 +963,7 @@
   "@noChunksInFile": {
     "description": "Error message when the imported file has no study sections."
   },
-"importQuestionsTooltip": "Beste quiz fitxategi batetik galderak inportatu",
+  "importQuestionsTooltip": "Beste quiz fitxategi batetik galderak inportatu",
   "@importQuestionsTooltip": {
     "description": "Galderak inportatu botoiarentzako tooltip-a."
   },

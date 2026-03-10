@@ -300,7 +300,7 @@
   "importAtBeginning": "დასაწყისში",
   "importAtEnd": "ბოლოში",
   "questionsImportedSuccess": "წარმატებით დაიმპორტირდა {count} კითხვა",
-    "importChunksTitle": "განყოფილებების იმპორტი",
+  "importChunksTitle": "განყოფილებების იმპორტი",
   "@importChunksTitle": {
     "description": "Title for the import chunks dialog."
   },
@@ -336,7 +336,7 @@
   "@noChunksInFile": {
     "description": "Error message when the imported file has no study sections."
   },
-"importQuestionsTooltip": "კითხვების იმპორტი სხვა ქვიზ ფაილიდან",
+  "importQuestionsTooltip": "კითხვების იმპორტი სხვა ქვიზ ფაილიდან",
   "dragDropHintText": "თქვენ ასევე შეგიძლიათ გადმოიტანოთ .quiz ფაილები აქ კითხვების იმპორტისთვის",
   "randomizeQuestionsTitle": "კითხვების არევა",
   "randomizeQuestionsDescription": "კითხვების რიგითობის არევა ქვიზის შესრულებისას",

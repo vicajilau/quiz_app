@@ -60,6 +60,8 @@ class QuestionError implements ProcessError {
         return 'Invalid correct answer indices';
       case QuestionErrorType.emptyOption:
         return 'Option text cannot be empty';
+      case QuestionErrorType.duplicatedOption:
+        return 'Options cannot be duplicated';
     }
   }
 

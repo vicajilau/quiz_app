@@ -319,7 +319,7 @@
   "importAtBeginning": "В начало",
   "importAtEnd": "В конец",
   "questionsImportedSuccess": "Успешно импортировано {count} вопросов",
-    "importChunksTitle": "Импорт разделов",
+  "importChunksTitle": "Импорт разделов",
   "@importChunksTitle": {
     "description": "Title for the import chunks dialog."
   },
@@ -355,7 +355,7 @@
   "@noChunksInFile": {
     "description": "Error message when the imported file has no study sections."
   },
-"importQuestionsTooltip": "Импортировать вопросы из другого файла квиза",
+  "importQuestionsTooltip": "Импортировать вопросы из другого файла квиза",
   "dragDropHintText": "Вы также можете перетащить сюда файлы .quiz для импорта вопросов",
   "randomizeQuestionsTitle": "Случайный порядок вопросов",
   "randomizeQuestionsDescription": "Перемешивать порядок вопросов во время квиза",
@@ -589,8 +589,7 @@
   "studyScreenImportant": "Важно",
   "studyComponentNoItems": "Нет элементов",
   "studyComponentAdvantages": "Преимущества",
-  "studyComponentLimitations": "Ограничения"
-,
+  "studyComponentLimitations": "Ограничения",
   "aiStudyChapterSystemPrompt": "Вы — ИИ-помощник в учебе, помогающий студенту понять содержание учебной главы. Глубоко объясняйте концепции, приводите примеры и устанавливайте связи с другими частями учебного материала, когда это уместно. Отвечайте на том же языке, на котором вам задали вопрос.",
   "@aiStudyChapterSystemPrompt": {
     "description": "System prompt for the AI study assistant when chatting about a study chapter"
