@@ -292,7 +292,43 @@
   "importAtBeginning": "დასაწყისში",
   "importAtEnd": "ბოლოში",
   "questionsImportedSuccess": "წარმატებით დაიმპორტირდა {count} კითხვა",
-  "importQuestionsTooltip": "კითხვების იმპორტი სხვა ქვიზ ფაილიდან",
+    "importChunksTitle": "განყოფილებების იმპორტი",
+  "@importChunksTitle": {
+    "description": "Title for the import chunks dialog."
+  },
+  "importChunksMessage": "\"{fileName}\" ფაილში ნაპოვნია {count} განყოფილება. სად გსურთ მათი იმპორტი?",
+  "@importChunksMessage": {
+    "description": "Message asking where to import sections from another file.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      },
+      "fileName": {
+        "type": "String",
+        "example": "study.quiz"
+      }
+    }
+  },
+  "importChunksPositionQuestion": "სად გსურთ ამ განყოფილებების დამატება?",
+  "@importChunksPositionQuestion": {
+    "description": "Question asking about import position for chunks."
+  },
+  "chunksImportedSuccess": "{count} განყოფილება წარმატებით იმპორტირებულია",
+  "@chunksImportedSuccess": {
+    "description": "Success message when chunks are imported.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "noChunksInFile": "იმპორტირებულ ფაილში განყოფილებები ვერ მოიძებნა",
+  "@noChunksInFile": {
+    "description": "Error message when the imported file has no study sections."
+  },
+"importQuestionsTooltip": "კითხვების იმპორტი სხვა ქვიზ ფაილიდან",
   "dragDropHintText": "თქვენ ასევე შეგიძლიათ გადმოიტანოთ .quiz ფაილები აქ კითხვების იმპორტისთვის",
   "randomizeQuestionsTitle": "კითხვების არევა",
   "randomizeQuestionsDescription": "კითხვების რიგითობის არევა ქვიზის შესრულებისას",

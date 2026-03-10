@@ -893,7 +893,43 @@
       }
     }
   },
-  "importQuestionsTooltip": "दूसरी क्विज़ फ़ाइल से प्रश्न आयात करें",
+    "importChunksTitle": "अनुभाग आयात करें",
+  "@importChunksTitle": {
+    "description": "Title for the import chunks dialog."
+  },
+  "importChunksMessage": "\"{fileName}\" में {count} अनुभाग मिले। आप उन्हें कहाँ आयात करना चाहते हैं?",
+  "@importChunksMessage": {
+    "description": "Message asking where to import sections from another file.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      },
+      "fileName": {
+        "type": "String",
+        "example": "study.quiz"
+      }
+    }
+  },
+  "importChunksPositionQuestion": "आप इन अनुभागों को कहाँ जोड़ना चाहते हैं?",
+  "@importChunksPositionQuestion": {
+    "description": "Question asking about import position for chunks."
+  },
+  "chunksImportedSuccess": "{count} अनुभाग सफलतापूर्वक आयात किए गए",
+  "@chunksImportedSuccess": {
+    "description": "Success message when chunks are imported.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "noChunksInFile": "आयात की गई फ़ाइल में कोई अनुभाग नहीं मिला",
+  "@noChunksInFile": {
+    "description": "Error message when the imported file has no study sections."
+  },
+"importQuestionsTooltip": "दूसरी क्विज़ फ़ाइल से प्रश्न आयात करें",
   "@importQuestionsTooltip": {
     "description": "Tooltip for the import questions button."
   },

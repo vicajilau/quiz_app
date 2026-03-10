@@ -1002,7 +1002,43 @@
       }
     }
   },
-  "importQuestionsTooltip": "استيراد أسئلة من ملف اختبار آخر",
+    "importChunksTitle": "استيراد الأقسام",
+  "@importChunksTitle": {
+    "description": "Title for the import chunks dialog."
+  },
+  "importChunksMessage": "تم العثور على {count} أقسام في \"{fileName}\". أين تريد استيرادها؟",
+  "@importChunksMessage": {
+    "description": "Message asking where to import sections from another file.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      },
+      "fileName": {
+        "type": "String",
+        "example": "study.quiz"
+      }
+    }
+  },
+  "importChunksPositionQuestion": "أين تريد إضافة هذه الأقسام؟",
+  "@importChunksPositionQuestion": {
+    "description": "Question asking about import position for chunks."
+  },
+  "chunksImportedSuccess": "تم استيراد {count} أقسام بنجاح",
+  "@chunksImportedSuccess": {
+    "description": "Success message when chunks are imported.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "noChunksInFile": "لم يتم العثور على أقسام في الملف المستورد",
+  "@noChunksInFile": {
+    "description": "Error message when the imported file has no study sections."
+  },
+"importQuestionsTooltip": "استيراد أسئلة من ملف اختبار آخر",
   "@importQuestionsTooltip": {
     "description": "Tooltip for the import questions button."
   },

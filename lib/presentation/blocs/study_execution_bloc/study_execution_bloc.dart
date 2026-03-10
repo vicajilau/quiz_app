@@ -92,6 +92,7 @@ class StudyExecutionBloc
     on<DownloadStudyChunkRequested>(_onDownloadStudyChunkRequested);
     on<GenerateAiStudyChunksRequested>(_onGenerateAiStudyChunksRequested);
     on<DeleteSelectedChunksRequested>(_onDeleteSelectedChunksRequested);
+    on<ImportStudyChunksRequested>(_onImportStudyChunksRequested);
   }
 
   static StudyExecutionState _initialProgress(
@@ -658,6 +659,34 @@ class StudyExecutionBloc
     emit(newState);
 
     // Notify progress change for persistence
+    onProgressChanged?.call(
+      newState.progressPercentage,
+      newState.processedChunks,
+      newState.chunks,
+      newState.fileUri,
+      newState.fileExpirationTime,
+    );
+  }
+
+  void _onImportStudyChunksRequested(
+    ImportStudyChunksRequested event,
+    Emitter<StudyExecutionState> emit,
+  ) {
+    final currentChunks = List<StudyChunk>.from(state.chunks);
+    final List<StudyChunk> mergedChunks = event.insertAtBeginning
+        ? [...event.chunks, ...currentChunks]
+        : [...currentChunks, ...event.chunks];
+
+    // Re-index all chunks
+    final reindexed = mergedChunks
+        .asMap()
+        .entries
+        .map((e) => e.value.copyWith(chunkIndex: e.key))
+        .toList();
+
+    final newState = _updateProgress(state.copyWith(chunks: reindexed));
+    emit(newState);
+
     onProgressChanged?.call(
       newState.progressPercentage,
       newState.processedChunks,

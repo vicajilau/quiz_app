@@ -259,7 +259,43 @@
   "importAtBeginning": "Στην Αρχή",
   "importAtEnd": "Στο Τέλος",
   "questionsImportedSuccess": "Εισήχθησαν επιτυχώς {count} ερωτήσεις",
-  "importQuestionsTooltip": "Εισαγωγή ερωτήσεων από άλλο αρχείο quiz",
+    "importChunksTitle": "Εισαγωγή ενοτήτων",
+  "@importChunksTitle": {
+    "description": "Title for the import chunks dialog."
+  },
+  "importChunksMessage": "Βρέθηκαν {count} ενότητες στο \"{fileName}\". Πού θέλετε να τις εισάγετε;",
+  "@importChunksMessage": {
+    "description": "Message asking where to import sections from another file.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      },
+      "fileName": {
+        "type": "String",
+        "example": "study.quiz"
+      }
+    }
+  },
+  "importChunksPositionQuestion": "Πού θέλετε να προσθέσετε αυτές τις ενότητες;",
+  "@importChunksPositionQuestion": {
+    "description": "Question asking about import position for chunks."
+  },
+  "chunksImportedSuccess": "{count} ενότητες εισήχθησαν επιτυχώς",
+  "@chunksImportedSuccess": {
+    "description": "Success message when chunks are imported.",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "noChunksInFile": "Δεν βρέθηκαν ενότητες στο εισαγόμενο αρχείο",
+  "@noChunksInFile": {
+    "description": "Error message when the imported file has no study sections."
+  },
+"importQuestionsTooltip": "Εισαγωγή ερωτήσεων από άλλο αρχείο quiz",
   "dragDropHintText": "Μπορείτε επίσης να σύρετε και να αποθέσετε αρχεία .quiz εδώ για εισαγωγή ερωτήσεων",
   "randomizeQuestionsTitle": "Τυχαία Σειρά Ερωτήσεων",
   "randomizeQuestionsDescription": "Ανακάτεμα της σειράς των ερωτήσεων κατά την εκτέλεση του κουίζ",
