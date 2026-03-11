@@ -21,6 +21,7 @@ import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/domain/models/custom_exceptions/connectivity_exception.dart';
 
 class GeminiService extends AIService {
   static const String _baseUrlBeta =
@@ -53,6 +54,44 @@ class GeminiService extends AIService {
 
   @override
   List<String> get availableModels => _models;
+
+  String _extractErrorDetail(DioException e, AppLocalizations localizations) {
+    final data = e.response?.data;
+    if (data != null &&
+        data['error'] != null &&
+        data['error']['message'] != null) {
+      return '${localizations.aiErrorResponse} ${data['error']['message']}';
+    }
+    final statusCode = e.response?.statusCode;
+    if (statusCode == null) {
+      return localizations.aiErrorResponse;
+    }
+    return '${localizations.aiErrorResponse} ($statusCode)';
+  }
+
+  Exception _buildDioException(DioException e, AppLocalizations localizations) {
+    if (e.error is ConnectivityException) {
+      final ce = e.error as ConnectivityException;
+      return Exception(
+        ce.type == ConnectivityExceptionType.connectionAborted
+            ? localizations.aiErrorConnectionAborted
+            : localizations.noInternetConnection,
+      );
+    }
+
+    if (e.response?.statusCode == 302) {
+      final location = e.response?.headers['location']?.first;
+      return Exception(localizations.aiErrorRedirect(location ?? ''));
+    } else if (e.response?.statusCode == 400) {
+      return Exception(_extractErrorDetail(e, localizations));
+    } else if (e.response?.statusCode == 403) {
+      return Exception(localizations.invalidApiKeyError);
+    } else if (e.response?.statusCode == 429) {
+      return Exception(localizations.rateLimitError);
+    } else {
+      return Exception(_extractErrorDetail(e, localizations));
+    }
+  }
 
   @override
   Future<bool> isAvailable() async {
@@ -125,18 +164,7 @@ class GeminiService extends AIService {
         return localizations.noResponseReceived;
       }
     } on DioException catch (e) {
-      if (e.response?.statusCode == 302) {
-        final location = e.response?.headers['location']?.first;
-        throw Exception('Redirected (302) to: $location');
-      } else if (e.response?.statusCode == 400) {
-        throw Exception(localizations.aiErrorResponse);
-      } else if (e.response?.statusCode == 403) {
-        throw Exception(localizations.invalidApiKeyError);
-      } else if (e.response?.statusCode == 429) {
-        throw Exception(localizations.rateLimitError);
-      } else {
-        throw Exception(localizations.networkErrorGemini);
-      }
+      throw _buildDioException(e, localizations);
     } catch (e) {
       throw Exception(localizations.networkErrorGemini);
     }
@@ -150,108 +178,16 @@ class GeminiService extends AIService {
     String? responseMimeType,
     required AiFileAttachment file,
   }) async {
-    final apiKey = await configurationService.getGeminiApiKey();
+    final uploadResult = await uploadFile(file, localizations);
 
-    if (apiKey == null || apiKey.isEmpty) {
-      throw Exception(localizations.geminiApiKeyNotConfigured);
-    }
-
-    final selectedModel = model ?? _defaultModel;
-
-    final baseUrl = selectedModel == 'gemini-3.1-pro-preview'
-        ? _baseUrlAlpha
-        : _baseUrlBeta;
-    final url = '$baseUrl/models/$selectedModel:generateContent?key=$apiKey';
-
-    final base64Data = base64Encode(file.bytes);
-
-    try {
-      final response = await dioClient.post(
-        url,
-        options: Options(headers: {'Content-Type': 'application/json'}),
-        data: {
-          'contents': [
-            {
-              'parts': [
-                {'text': prompt},
-                {
-                  'inline_data': {
-                    'mime_type': file.mimeType,
-                    'data': base64Data,
-                  },
-                },
-              ],
-            },
-          ],
-          'generationConfig': {'temperature': 0.2, 'topK': 5, 'topP': 0.95},
-          'safetySettings': [
-            {
-              'category': 'HARM_CATEGORY_HARASSMENT',
-              'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
-            },
-            {
-              'category': 'HARM_CATEGORY_HATE_SPEECH',
-              'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
-            },
-            {
-              'category': 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
-              'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
-            },
-            {
-              'category': 'HARM_CATEGORY_DANGEROUS_CONTENT',
-              'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
-            },
-          ],
-        },
-      );
-
-      final jsonResponse = response.data;
-      final candidates = jsonResponse['candidates'] as List?;
-
-      if (candidates != null && candidates.isNotEmpty) {
-        final content = candidates[0]['content']['parts'][0]['text'];
-        return content?.toString().trim() ?? localizations.noResponseReceived;
-      } else {
-        return localizations.noResponseReceived;
-      }
-    } on DioException catch (e) {
-      if (e.response?.statusCode == 302) {
-        final location = e.response?.headers['location']?.first;
-        throw Exception('Redirected (302) to: $location');
-      } else if (e.response?.statusCode == 400) {
-        String errorMessage = localizations.aiErrorResponse;
-        try {
-          final data = e.response?.data;
-          if (data != null &&
-              data['error'] != null &&
-              data['error']['message'] != null) {
-            errorMessage += ': ${data['error']['message']}';
-          }
-        } catch (_) {}
-        throw Exception(errorMessage);
-      } else if (e.response?.statusCode == 403) {
-        throw Exception(localizations.invalidApiKeyError);
-      } else if (e.response?.statusCode == 429) {
-        throw Exception(localizations.rateLimitError);
-      } else {
-        String errorMessage = localizations.aiErrorResponse;
-        try {
-          final data = e.response?.data;
-          if (data != null &&
-              data['error'] != null &&
-              data['error']['message'] != null) {
-            errorMessage += ': ${data['error']['message']}';
-          } else {
-            errorMessage += ' (${e.response?.statusCode})';
-          }
-        } catch (_) {
-          errorMessage += ' (${e.response?.statusCode})';
-        }
-        throw Exception(errorMessage);
-      }
-    } catch (e) {
-      throw Exception(localizations.networkErrorGemini);
-    }
+    return getChatResponseWithFileUri(
+      prompt,
+      localizations,
+      model: model,
+      responseMimeType: responseMimeType,
+      fileUri: uploadResult.fileUri,
+      fileMimeType: file.mimeType,
+    );
   }
 
   @override
@@ -309,20 +245,7 @@ class GeminiService extends AIService {
         throw Exception(localizations.noResponseReceived);
       }
     } on DioException catch (e) {
-      String errorMessage = localizations.aiErrorResponse;
-      try {
-        final data = e.response?.data;
-        if (data != null &&
-            data['error'] != null &&
-            data['error']['message'] != null) {
-          errorMessage += ': ${data['error']['message']}';
-        } else {
-          errorMessage += ': ${e.message}';
-        }
-      } catch (_) {
-        errorMessage += ': ${e.message}';
-      }
-      throw Exception(errorMessage);
+      throw _buildDioException(e, localizations);
     } catch (e) {
       throw Exception(localizations.networkErrorGemini);
     }
@@ -402,20 +325,7 @@ class GeminiService extends AIService {
         return localizations.noResponseReceived;
       }
     } on DioException catch (e) {
-      String errorMessage = localizations.aiErrorResponse;
-      try {
-        final data = e.response?.data;
-        if (data != null &&
-            data['error'] != null &&
-            data['error']['message'] != null) {
-          errorMessage += ': ${data['error']['message']}';
-        } else {
-          errorMessage += ': ${e.message}';
-        }
-      } catch (_) {
-        errorMessage += ': ${e.message}';
-      }
-      throw Exception(errorMessage);
+      throw _buildDioException(e, localizations);
     } catch (e) {
       throw Exception(localizations.networkErrorGemini);
     }

@@ -1956,5 +1956,23 @@
   "studyScreenPendingSections": "Alcune sezioni non sono ancora state generate",
   "@studyScreenPendingSections": {
     "description": "Avviso mostrato nell'indice di studio quando alcune parti non sono ancora state generate"
+  },
+  "aiErrorRedirect": "Reindirizzato (302) a: {location}",
+  "@aiErrorRedirect": {
+    "description": "Messaggio di errore quando si verifica un reindirizzamento 302 durante una richiesta IA",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
+  },
+  "aiErrorConnectionAborted": "La richiesta è stata interrotta perché l'applicazione è stata inviata in background. Si prega di tenere l'applicazione aperta durante la generazione del contenuto.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "Nessuna connessione internet. Controlla le impostazioni di rete e riprova.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

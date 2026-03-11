@@ -591,5 +591,26 @@
   "studyScreenPendingSections": "일부 섹션이 아직 생성되지 않았습니다",
   "@studyScreenPendingSections": {
     "description": "일부 청크가 아직 생성되지 않았을 때 학습 색인에 표시되는 경고"
+  },
+  "@aiErrorResponse": {
+    "description": "Error message when AI request fails"
+  },
+  "aiErrorRedirect": "{location}(으)로 리다이렉트(302)됨",
+  "@aiErrorRedirect": {
+    "description": "AI 요청 중 302 리다이렉트가 발생했을 때의 에러 메시지",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
+  },
+  "aiErrorConnectionAborted": "애플리케이션이 백그라운드로 전환되어 요청이 중단되었습니다. 콘텐츠가 생성되는 동안 애플리케이션을 열어 두십시오.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "인터넷 연결이 없습니다. 네트워크 설정을 확인하고 다시 시도하십시오.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

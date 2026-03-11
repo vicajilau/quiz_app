@@ -1993,5 +1993,24 @@
   "studyScreenPendingSections": "Algumas seções ainda não foram geradas",
   "@studyScreenPendingSections": {
     "description": "Aviso mostrado no índice de estudo quando alguns fragmentos ainda não foram gerados"
+  },
+  "aiErrorRedirect": "Redirecionado (302) para: {location}",
+  "@aiErrorRedirect": {
+    "description": "Mensagem de erro quando ocorre um redirecionamento 302 durante uma solicitação de IA",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
+  }
+  ,
+  "aiErrorConnectionAborted": "O pedido foi interrompido porque a aplicação foi enviada para segundo plano. Por favor, mantenha a aplicação aberta enquanto o conteúdo está a ser gerado.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "Sem ligação à internet. Por favor, verifique as suas definições de rede e tente novamente.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

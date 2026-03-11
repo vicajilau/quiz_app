@@ -591,5 +591,26 @@
   "studyScreenPendingSections": "ზოგიერთი სექცია ჯერ არ არის გენერირებული",
   "@studyScreenPendingSections": {
     "description": "გაფრთხილება, რომელიც ჩანს სასწავლო ინდექსში, როდესაც ზოგიერთი ნაწილი ჯერ არ არის გენერირებული"
+  },
+  "@aiErrorResponse": {
+    "description": "Error message when AI request fails"
+  },
+  "aiErrorRedirect": "გადამისამართდა (302): {location}",
+  "@aiErrorRedirect": {
+    "description": "შეცდომის შეტყობინება, როდესაც ხდება 302 გადამისამართება AI მოთხოვნისას",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
+  },
+  "aiErrorConnectionAborted": "მოთხოვნა შეწყდა, რადგან აპლიკაცია გადავიდა ფონურ რეჟიმში. გთხოვთ, შეინარჩუნოთ აპლიკაცია ღია კონტენტის გენერირებისას.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "ინტერნეტთან კავშირი არ არის. გთხოვთ, შემოწმოთ ქსელის პარამეტრები და სცადოთ ხელახლა.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

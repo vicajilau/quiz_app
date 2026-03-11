@@ -1954,5 +1954,24 @@
   "studyScreenPendingSections": "部分章节尚未生成",
   "@studyScreenPendingSections": {
     "description": "当某些部分尚未生成时在学习索引中显示的警告"
+  },
+  "aiErrorRedirect": "重定向 (302) 至：{location}",
+  "@aiErrorRedirect": {
+    "description": "AI 请求期间发生 302 重定向时的错误消息",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
+  }
+  ,
+  "aiErrorConnectionAborted": "由于应用程序进入后台，请求已中断。生成内容时，请保持应用程序处于打开状态。",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "无网络连接。请检查您的网络设置并重试。",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

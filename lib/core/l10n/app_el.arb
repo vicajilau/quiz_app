@@ -899,5 +899,26 @@
   "studyScreenPendingSections": "Ορισμένες ενότητες δεν έχουν δημιουργηθεί ακόμη",
   "@studyScreenPendingSections": {
     "description": "Προειδοποίηση που εμφανίζεται στο ευρετήριο μελέτης όταν ορισμένα τμήματα δεν έχουν δημιουργηθεί ακόμη"
+  },
+  "@aiErrorResponse": {
+    "description": "Error message when AI request fails"
+  },
+  "aiErrorRedirect": "Ανακατεύθυνση (302) σε: {location}",
+  "@aiErrorRedirect": {
+    "description": "Μήνυμα σφάλματος όταν συμβαίνει ανακατεύθυνση 302 κατά τη διάρκεια αιτήματος IA",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
+  },
+  "aiErrorConnectionAborted": "Το αίτημα διακόπηκε επειδή η εφαρμογή στάλθηκε στο υπόβαθρο. Παρακαλούμε κρατήστε την εφαρμογή ανοιχτή κατά τη δημιουργία περιεχομένου.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "Δεν υπάρχει σύνδεση στο διαδίκτυο. Ελέγξτε τις ρυθμίσεις δικτύου σας και δοκιμάστε ξανά.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

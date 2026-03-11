@@ -606,5 +606,27 @@
   "studyScreenPendingSections": "Некоторые разделы еще не созданы",
   "@studyScreenPendingSections": {
     "description": "Предупреждение, отображаемое в указателе обучения, когда некоторые части еще не созданы"
+  },
+  "@aiErrorResponse": {
+    "description": "Error message when AI request fails"
+  },
+  "aiErrorRedirect": "Перенаправлено (302) на: {location}",
+  "@aiErrorRedirect": {
+    "description": "Сообщение об ошибке при возникновении перенаправления 302 во время запроса ИИ",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
+  }
+  ,
+  "aiErrorConnectionAborted": "Запрос был прерван, так как приложение было переведено в фоновый режим. Пожалуйста, не закрывайте приложение во время генерации контента.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "Нет подключения к интернету. Пожалуйста, проверьте настройки сети и попробуйте снова.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

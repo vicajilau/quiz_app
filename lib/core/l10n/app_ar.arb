@@ -2304,5 +2304,24 @@
   "studyScreenPendingSections": "بعض الأقسام لم يتم إنشاؤها بعد",
   "@studyScreenPendingSections": {
     "description": "تحذير يظهر في فهرس الدراسة عندما لا تكون بعض الأجزاء قد تم إنشاؤها بعد"
+  },
+  "aiErrorRedirect": "إعادة توجيه (302) إلى: {location}",
+  "@aiErrorRedirect": {
+    "description": "رسالة خطأ عند حدوث إعادة توجيه 302 أثناء طلب الذكاء الاصطناعي",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
+  }
+,
+  "aiErrorConnectionAborted": "انقطع الطلب لأن التطبيق انتقل إلى الخلفية. يرجى إبقاء التطبيق مفتوحاً أثناء إنشاء المحتوى.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "لا يوجد اتصال بالإنترنت. يرجى التحقق من إعدادات الشبكة والمحاولة مرة أخرى.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

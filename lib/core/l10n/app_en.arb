@@ -666,6 +666,16 @@
   "@aiErrorResponse": {
     "description": "Error message when AI request fails"
   },
+  "aiErrorRedirect": "Redirected (302) to: {location}",
+  "@aiErrorRedirect": {
+    "description": "Error message when a 302 redirect occurs during an AI request",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
+  },
   "evaluatingResponses": "Evaluating responses...",
   "@evaluatingResponses": {
     "description": "Text shown in the results screen when AI evaluations are pending"
@@ -2306,5 +2316,13 @@
   "askAIStudyTooltip": "Ask AI about this chapter",
   "@askAIStudyTooltip": {
     "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  },
+  "aiErrorConnectionAborted": "The request was interrupted because the application was sent to the background. Please keep the application open while content is being generated.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "No internet connection. Please check your network settings and try again.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

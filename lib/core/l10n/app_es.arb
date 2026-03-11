@@ -646,7 +646,17 @@
   },
   "aiErrorResponse": "Lo siento, hubo un error al procesar tu pregunta. Por favor, inténtalo de nuevo.",
   "@aiErrorResponse": {
-    "description": "Mensaje de error cuando falla la petición a IA"
+    "description": "Mensaje de error cuando falla la petición de IA"
+  },
+  "aiErrorRedirect": "Redirigido (302) a: {location}",
+  "@aiErrorRedirect": {
+    "description": "Mensaje de error cuando ocurre una redirección 302 durante una petición de IA",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
   },
   "evaluatingResponses": "Evaluando respuestas...",
   "@evaluatingResponses": {
@@ -2256,5 +2266,13 @@
   "askAIStudyTooltip": "Preguntar a la IA sobre este capítulo",
   "@askAIStudyTooltip": {
     "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  },
+  "aiErrorConnectionAborted": "La petición se interrumpió porque la aplicación pasó a segundo plano. Por favor, mantén la aplicación abierta mientras se genera el contenido.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "Sin conexión a internet. Por favor, comprueba tu configuración de red e inténtalo de nuevo.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

@@ -54,6 +54,41 @@ class OpenAIService extends AIService {
     return apiKey != null && apiKey.isNotEmpty;
   }
 
+  String _extractErrorDetail(DioException e, AppLocalizations localizations) {
+    final data = e.response?.data;
+    if (data != null &&
+        data['error'] != null &&
+        data['error']['message'] != null) {
+      return '${localizations.aiErrorResponse} ${data['error']['message']}';
+    }
+    final statusCode = e.response?.statusCode;
+    if (statusCode == null) {
+      return localizations.aiErrorResponse;
+    }
+    return '${localizations.aiErrorResponse} ($statusCode)';
+  }
+
+  Exception _buildDioException(DioException e, AppLocalizations localizations) {
+    if (e.type == DioExceptionType.connectionError ||
+        e.type == DioExceptionType.unknown) {
+      final errorStr = e.error.toString();
+      if (errorStr.contains('Software caused connection abort') ||
+          errorStr.contains('Connection closed')) {
+        return Exception(localizations.aiErrorConnectionAborted);
+      }
+    }
+
+    if (e.response?.statusCode == 401) {
+      return Exception(localizations.invalidApiKeyError);
+    } else if (e.response?.statusCode == 429) {
+      return Exception(localizations.rateLimitError);
+    } else if (e.response?.statusCode == 404) {
+      return Exception(localizations.modelNotFoundError);
+    } else {
+      return Exception(_extractErrorDetail(e, localizations));
+    }
+  }
+
   /// Realiza una petición a la API de ChatGPT
   @override
   Future<String> getChatResponse(
@@ -93,15 +128,7 @@ class OpenAIService extends AIService {
       final content = jsonResponse['choices'][0]['message']['content'];
       return content?.toString().trim() ?? localizations.noResponseReceived;
     } on DioException catch (e) {
-      if (e.response?.statusCode == 401) {
-        throw Exception(localizations.invalidApiKeyError);
-      } else if (e.response?.statusCode == 429) {
-        throw Exception(localizations.rateLimitError);
-      } else if (e.response?.statusCode == 404) {
-        throw Exception(localizations.modelNotFoundError);
-      } else {
-        throw Exception(localizations.aiErrorResponse);
-      }
+      throw _buildDioException(e, localizations);
     } catch (e) {
       throw Exception(localizations.networkErrorOpenAI);
     }
@@ -150,15 +177,7 @@ class OpenAIService extends AIService {
       final content = jsonResponse['choices'][0]['message']['content'];
       return content?.toString().trim() ?? localizations.noResponseReceived;
     } on DioException catch (e) {
-      if (e.response?.statusCode == 401) {
-        throw Exception(localizations.invalidApiKeyError);
-      } else if (e.response?.statusCode == 429) {
-        throw Exception(localizations.rateLimitError);
-      } else if (e.response?.statusCode == 404) {
-        throw Exception(localizations.modelNotFoundError);
-      } else {
-        throw Exception(localizations.aiErrorResponse);
-      }
+      throw _buildDioException(e, localizations);
     } catch (e) {
       throw Exception(localizations.networkErrorOpenAI);
     }
