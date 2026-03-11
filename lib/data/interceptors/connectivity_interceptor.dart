@@ -13,9 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'dart:io';
-
 import 'package:dio/dio.dart';
+import 'package:quizdy/data/utils/connectivity_error_helper.dart';
 import 'package:quizdy/domain/models/custom_exceptions/connectivity_exception.dart';
 
 /// Global Dio interceptor that converts connectivity-related [DioException]s
@@ -29,25 +28,20 @@ class ConnectivityInterceptor extends Interceptor {
     DioExceptionType.receiveTimeout,
   };
 
-  static const _abortedMessages = [
-    'Software caused connection abort',
-    'Connection closed',
-  ];
-
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     final errorStr = err.error?.toString() ?? '';
-    final isConnectivityError =
-        _connectivityTypes.contains(err.type) ||
-        (err.type == DioExceptionType.unknown && err.error is SocketException) ||
-        _abortedMessages.any(errorStr.contains);
+    final isAborted = isAbortedError(errorStr);
+
+    final isConnectivityError = _connectivityTypes.contains(err.type) ||
+        (err.type == DioExceptionType.unknown && isSocketException(err.error)) ||
+        isAborted;
 
     if (!isConnectivityError) {
       super.onError(err, handler);
       return;
     }
 
-    final isAborted = _abortedMessages.any(errorStr.contains);
     final type = isAborted
         ? ConnectivityExceptionType.connectionAborted
         : ConnectivityExceptionType.noInternet;
