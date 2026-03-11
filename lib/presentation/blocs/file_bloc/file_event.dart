@@ -102,6 +102,11 @@ class StudyProgressUpdated extends FileEvent {
   });
 }
 
+/// Event triggered to update the active quiz file without saving to disk.
+class QuizFileUpdated extends FileEvent {
+  final QuizFile quizFile;
+  QuizFileUpdated(this.quizFile);
+}
+
 /// Event triggered to reset the file state.
-/// This event can be used to clear any file-related data or state.
 class QuizFileReset extends FileEvent {}

@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizdy/core/debug_print.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
@@ -31,6 +32,8 @@ import 'package:quizdy/presentation/screens/home_screen.dart';
 import 'package:quizdy/presentation/screens/onboarding/onboarding_screen.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 
+final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
+
 class AppRoutes {
   static const String home = '/';
   static const String onboarding = '/onboarding';
@@ -40,6 +43,7 @@ class AppRoutes {
 }
 
 GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
+  navigatorKey: rootNavigatorKey,
   initialLocation: showOnboarding ? AppRoutes.onboarding : AppRoutes.home,
   routes: [
     GoRoute(

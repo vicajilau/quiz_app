@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:quizdy/core/quizdy_bloc_observer.dart';
 import 'package:quizdy/routes/app_router.dart';
@@ -22,11 +23,15 @@ import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/file_handler.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
+import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
+import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/blocs/locale_cubit/locale_cubit.dart';
 import 'package:quizdy/presentation/blocs/locale_cubit/locale_state.dart';
+import 'package:quizdy/presentation/screens/dialogs/exit_confirmation_dialog.dart';
+import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,16 +51,59 @@ class QuizApplication extends StatefulWidget {
   State<QuizApplication> createState() => _QuizApplicationState();
 }
 
-class _QuizApplicationState extends State<QuizApplication> {
+class _QuizApplicationState extends State<QuizApplication> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     FileHandler.initialize((filePath) {
       if (mounted) {
         final fileBloc = ServiceLocator.getIt<FileBloc>();
         fileBloc.add(FileDropped(filePath));
       }
     });
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  Future<AppExitResponse> didRequestAppExit() async {
+    final fileBloc = ServiceLocator.getIt<FileBloc>();
+    final state = fileBloc.state;
+
+    QuizFile? currentFile;
+    if (state is FileLoaded) {
+      currentFile = state.quizFile;
+    } else if (state is FileSaved) {
+      currentFile = state.quizFile;
+    }
+
+    if (currentFile != null) {
+      final checkFileChangesUseCase =
+          ServiceLocator.getIt<CheckFileChangesUseCase>();
+      final hasChanges = checkFileChangesUseCase.execute(currentFile);
+
+      if (hasChanges) {
+        // Find the navigator context to show the dialog
+        final context = rootNavigatorKey.currentContext;
+        if (context != null) {
+          final shouldExit = await showDialog<bool>(
+            context: context,
+            builder: (context) => const ExitConfirmationDialog(),
+          );
+
+          if (shouldExit != true) {
+            return AppExitResponse.cancel;
+          }
+        }
+      }
+    }
+
+    return AppExitResponse.exit;
   }
 
   @override
