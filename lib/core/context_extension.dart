@@ -17,7 +17,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-extension SnackbarExtension on BuildContext {
+extension BuildContextExtension on BuildContext {
   /// Displays a snack bar with the given text message.
   ///
   /// This method uses the `ScaffoldMessenger` to show a `SnackBar`
@@ -48,6 +48,13 @@ extension SnackbarExtension on BuildContext {
         );
       },
     );
+  }
+
+  void hideKeyboard() {
+    final currentFocus = FocusScope.of(this);
+    if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+      FocusManager.instance.primaryFocus?.unfocus();
+    }
   }
 }
 
