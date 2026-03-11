@@ -19,6 +19,7 @@ import 'package:quizdy/domain/models/ai/ai_generation_stored_settings.dart';
 import 'package:quizdy/domain/models/ai/ai_study_generation_stored_settings.dart';
 import 'package:quizdy/domain/models/quiz/quiz_config_stored_settings.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 import 'package:quizdy/core/security/encryption_service.dart';
 
 class ConfigurationService {
@@ -47,6 +48,7 @@ class ConfigurationService {
       'ai_generation_is_auto_difficulty';
   static const String _aiGenerationDifficultyLevelKey =
       'ai_generation_difficulty_level';
+  static const String _aiGenerationCategoryKey = 'ai_generation_category';
 
   static const String _aiStudyKeepDraftKey = 'ai_study_keep_draft';
   static const String _aiStudyDraftTextKey = 'ai_study_draft_text';
@@ -308,6 +310,12 @@ class ConfigurationService {
         settings.difficultyLevel!.name,
       );
     }
+    if (settings.category != null) {
+      await prefs.setString(
+        _aiGenerationCategoryKey,
+        settings.category!.name,
+      );
+    }
   }
 
   /// Gets the AI generation settings
@@ -328,6 +336,15 @@ class ConfigurationService {
         if (name == null) return null;
         try {
           return AiDifficultyLevel.values.byName(name);
+        } catch (_) {
+          return null;
+        }
+      }(),
+      category: () {
+        final name = prefs.getString(_aiGenerationCategoryKey);
+        if (name == null) return null;
+        try {
+          return AiGenerationCategory.values.byName(name);
         } catch (_) {
           return null;
         }

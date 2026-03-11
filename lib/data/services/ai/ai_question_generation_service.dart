@@ -269,15 +269,15 @@ class AiQuestionGenerationService {
     switch (config.generationCategory) {
       case AiGenerationCategory.theory:
         categoryInstructions =
-            '7. CONCEPTUAL FOCUS: Questions must be strictly about theory, concepts, definitions, and facts. AVOID any calculations, code-writing exercises, or practical development tasks. If the content contains existing exercises, use them ONLY to understand what knowledge is being tested, but DO NOT ask questions about the exercises themselves.';
+            '8. CONCEPTUAL FOCUS: Questions must be strictly about theory, concepts, definitions, and facts. AVOID any calculations, code-writing exercises, or practical development tasks. If the content contains existing exercises, use them ONLY to understand what knowledge is being tested, but DO NOT ask questions about the exercises themselves.';
         break;
       case AiGenerationCategory.exercises:
         categoryInstructions =
-            '7. PRACTICAL FOCUS: Questions should be practical exercises, problem-solving tasks, or implementation questions. You MAY reuse or adapt existing exercises found in the content, or generate NEW ones that follow a similar pattern and difficulty level.';
+            '8. PRACTICAL FOCUS: Questions should be practical exercises, problem-solving tasks, or implementation questions. You MAY reuse or adapt existing exercises found in the content, or generate NEW ones that follow a similar pattern and difficulty level.';
         break;
       case AiGenerationCategory.both:
         categoryInstructions =
-            '7. MIXED FOCUS: Provide a balanced mix of theoretical concepts (theory, concepts, definitions, and facts) and practical exercises (practical exercises, problem-solving tasks, or implementation questions). Theoretical questions should focus on facts and definitions, while practical questions can be reused from the content or newly generated following the same style and difficulty.';
+            '8. MIXED FOCUS: Provide a balanced mix of theoretical concepts (theory, concepts, definitions, and facts) and practical exercises (practical exercises, problem-solving tasks, or implementation questions). Theoretical questions should focus on facts and definitions, while practical questions can be reused from the content or newly generated following the same style and difficulty.';
         break;
     }
 
@@ -288,10 +288,10 @@ class AiQuestionGenerationService {
         localizations,
       );
       difficultyInstruction =
-          '\n8. DIFFICULTY LEVEL: The generated questions MUST be adapted to a $levelName difficulty level. Explain concepts, use vocabulary, and provide examples appropriate for this academic level.';
+          '\n9. DIFFICULTY LEVEL: The generated questions MUST be adapted to a $levelName difficulty level. Explain concepts, use vocabulary, and provide examples appropriate for this academic level.';
     } else if (config.isAutoDifficulty) {
       difficultyInstruction =
-          '\n8. DIFFICULTY LEVEL: The generated questions MUST be adapted to the SAME academic difficulty level, vocabulary, and depth as the provided content.';
+          '\n9. DIFFICULTY LEVEL: The generated questions MUST be adapted to the SAME academic difficulty level, vocabulary, and depth as the provided content.';
     }
 
     return '''
@@ -303,6 +303,7 @@ INSTRUCTIONS:
 4. Make sure incorrect answers are plausible but clearly wrong
 5. Explanations should be educational and help understand why the answer is correct
 6. SELF-CONTAINED QUESTIONS: All questions must be fully self-contained so they can be answered without looking at the original source material. If you reuse an existing exercise, make sure to include all necessary context (text, variables, or descriptions) within the question itself. DO NOT reference specific exercise numbers or labels from the source text (e.g., instead of 'In exercise 17...', say 'Given the following scenario...').
+7. MATH AND FORMULAS: Any mathematical equations, formulas, fractions, or symbols MUST be formatted using standard LaTeX syntax. For example, use \\sqrt{16/9} instead of sqrt(16/9) and \\frac{1}{2} instead of 1/2. DO NOT use plain text representations for math.
 $categoryInstructions$difficultyInstruction
 
 RESPONSE FORMAT (JSON):

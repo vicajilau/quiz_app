@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 
 /// DTO representing the saved settings for AI question generation.
 class AiGenerationStoredSettings {
@@ -44,6 +45,9 @@ class AiGenerationStoredSettings {
   /// The selected manual difficulty level.
   final AiDifficultyLevel? difficultyLevel;
 
+  /// The saved content mode (category).
+  final AiGenerationCategory? category;
+
   /// Creates a new instance of [AiGenerationStoredSettings].
   const AiGenerationStoredSettings({
     this.serviceName,
@@ -55,5 +59,6 @@ class AiGenerationStoredSettings {
     this.draftFilePath,
     this.isAutoDifficulty,
     this.difficultyLevel,
+    this.category,
   });
 }
