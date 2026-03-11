@@ -28,6 +28,7 @@ import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step1_widget.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step2_widget.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 import 'package:quizdy/presentation/utils/clipboard_image_helper.dart';
 
 class AiGenerateStudyDialog extends StatefulWidget {
@@ -364,6 +365,8 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
         getTopicCount: _getTopicCount,
         isAutoDifficulty: _isAutoDifficulty,
         selectedDifficulty: _selectedDifficulty,
+        selectedCategory: AiGenerationCategory.both,
+        onCategoryChanged: (_) {},
         onAutoDifficultyChanged: (value) {
           setState(() {
             _isAutoDifficulty = value;

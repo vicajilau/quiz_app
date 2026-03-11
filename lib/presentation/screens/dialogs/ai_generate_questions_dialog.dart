@@ -28,6 +28,7 @@ import 'package:quizdy/domain/models/ai/ai_question_type.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step1_widget.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step2_widget.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 import 'package:quizdy/presentation/utils/clipboard_image_helper.dart';
 import 'package:quizdy/presentation/utils/ai_file_helper.dart';
 import 'package:file_picker/file_picker.dart';
@@ -56,6 +57,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   AiFileAttachment? _fileAttachment;
   bool _isAutoDifficulty = true;
   AiDifficultyLevel _selectedDifficulty = AiDifficultyLevel.university;
+  AiGenerationCategory _selectedCategory = AiGenerationCategory.both;
 
   // Question Count state
   int _questionCount = 5;
@@ -138,6 +140,10 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
           }
           if (settings.difficultyLevel != null) {
             _selectedDifficulty = settings.difficultyLevel!;
+          }
+
+          if (settings.category != null) {
+            _selectedCategory = settings.category!;
           }
 
           if (settings.questionTypes != null &&
@@ -311,6 +317,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
         questionTypes: _selectedQuestionTypes.map((t) => t.toString()).toList(),
         isAutoDifficulty: _isAutoDifficulty,
         difficultyLevel: _selectedDifficulty,
+        category: _selectedCategory,
         draftText: _textController.text.trim(),
         draftFilePath: persistentPath,
       );
@@ -475,6 +482,12 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
         getTopicCount: _getTopicCount,
         isAutoDifficulty: _isAutoDifficulty,
         selectedDifficulty: _selectedDifficulty,
+        selectedCategory: _selectedCategory,
+        onCategoryChanged: (category) {
+          setState(() {
+            _selectedCategory = category;
+          });
+        },
         onAutoDifficultyChanged: (value) {
           setState(() {
             _isAutoDifficulty = value;

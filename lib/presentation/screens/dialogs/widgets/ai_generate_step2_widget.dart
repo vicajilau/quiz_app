@@ -59,6 +59,8 @@ class AiGenerateStep2Widget extends StatefulWidget {
   final AiDifficultyLevel selectedDifficulty;
   final ValueChanged<bool> onAutoDifficultyChanged;
   final ValueChanged<AiDifficultyLevel> onDifficultyChanged;
+  final AiGenerationCategory selectedCategory;
+  final ValueChanged<AiGenerationCategory> onCategoryChanged;
   final ValueChanged<dynamic> onGenerate;
 
   const AiGenerateStep2Widget({
@@ -85,6 +87,8 @@ class AiGenerateStep2Widget extends StatefulWidget {
     required this.selectedDifficulty,
     required this.onAutoDifficultyChanged,
     required this.onDifficultyChanged,
+    required this.selectedCategory,
+    required this.onCategoryChanged,
     required this.onGenerate,
   });
 
@@ -96,7 +100,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
   late final FocusNode _questionCountFocusNode;
   late final ScrollController _scrollController;
   final GlobalKey _configKey = GlobalKey();
-  AiGenerationCategory _selectedCategory = AiGenerationCategory.both;
   bool _isDragging = false;
 
   @override
@@ -279,9 +282,8 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                         },
                         child: AiGenerationConfigSection(
                           isStudyMode: widget.isStudyMode,
-                          selectedCategory: _selectedCategory,
-                          onCategoryChanged: (category) =>
-                              setState(() => _selectedCategory = category),
+                          selectedCategory: widget.selectedCategory,
+                          onCategoryChanged: widget.onCategoryChanged,
                           questionCount: widget.questionCount,
                           questionCountController:
                               widget.questionCountController,
@@ -357,7 +359,8 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                       preferredModel: widget.selectedModel,
                                       file: widget.fileAttachment,
                                       generationMode: mode,
-                                      generationCategory: _selectedCategory,
+                                      generationCategory:
+                                          widget.selectedCategory,
                                       isAutoDifficulty: widget.isAutoDifficulty,
                                       difficultyLevel: widget.isAutoDifficulty
                                           ? null
