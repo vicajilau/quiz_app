@@ -21,6 +21,7 @@ import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/domain/models/custom_exceptions/connectivity_exception.dart';
 
 class GeminiService extends AIService {
   static const String _baseUrlBeta =
@@ -69,13 +70,13 @@ class GeminiService extends AIService {
   }
 
   Exception _buildDioException(DioException e, AppLocalizations localizations) {
-    if (e.type == DioExceptionType.connectionError ||
-        e.type == DioExceptionType.unknown) {
-      final errorStr = e.error.toString();
-      if (errorStr.contains('Software caused connection abort') ||
-          errorStr.contains('Connection closed')) {
-        return Exception(localizations.aiErrorConnectionAborted);
-      }
+    if (e.error is ConnectivityException) {
+      final ce = e.error as ConnectivityException;
+      return Exception(
+        ce.type == ConnectivityExceptionType.connectionAborted
+            ? localizations.aiErrorConnectionAborted
+            : localizations.noInternetConnection,
+      );
     }
 
     if (e.response?.statusCode == 302) {
