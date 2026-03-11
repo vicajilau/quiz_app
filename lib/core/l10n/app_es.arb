@@ -2266,5 +2266,13 @@
   "askAIStudyTooltip": "Preguntar a la IA sobre este capítulo",
   "@askAIStudyTooltip": {
     "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  },
+  "aiErrorConnectionAborted": "La petición se interrumpió porque la aplicación pasó a segundo plano. Por favor, mantén la aplicación abierta mientras se genera el contenido.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "Sin conexión a internet. Por favor, comprueba tu configuración de red e inténtalo de nuevo.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

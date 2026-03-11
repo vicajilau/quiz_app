@@ -2315,4 +2315,13 @@
       }
     }
   }
+,
+  "aiErrorConnectionAborted": "انقطع الطلب لأن التطبيق انتقل إلى الخلفية. يرجى إبقاء التطبيق مفتوحاً أثناء إنشاء المحتوى.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "لا يوجد اتصال بالإنترنت. يرجى التحقق من إعدادات الشبكة والمحاولة مرة أخرى.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
+  }
 }

@@ -2008,5 +2008,13 @@
         "example": "https://example.com"
       }
     }
+  },
+  "aiErrorConnectionAborted": "Die Anfrage wurde unterbrochen, da die Anwendung in den Hintergrund verschoben wurde. Bitte lassen Sie die Anwendung geöffnet, während der Inhalt generiert wird.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "Keine Internetverbindung. Bitte überprüfen Sie Ihre Netzwerkeinstellungen und versuchen Sie es erneut.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

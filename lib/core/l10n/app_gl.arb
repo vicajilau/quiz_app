@@ -1912,5 +1912,13 @@
         "example": "https://example.com"
       }
     }
+  },
+  "aiErrorConnectionAborted": "A petición interrompeuse porque a aplicación pasou a segundo plano. Por favor, mantén a aplicación aberta mentres se xera o contido.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "Sen conexión a internet. Por favor, comprove a súa configuración de rede e ténteo de novo.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

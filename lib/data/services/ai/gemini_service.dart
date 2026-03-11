@@ -62,10 +62,22 @@ class GeminiService extends AIService {
       return '${localizations.aiErrorResponse} ${data['error']['message']}';
     }
     final statusCode = e.response?.statusCode;
-    return '${localizations.aiErrorResponse} ${statusCode ?? ({e.response?.statusCode})}';
+    if (statusCode == null) {
+      return localizations.aiErrorResponse;
+    }
+    return '${localizations.aiErrorResponse} ($statusCode)';
   }
 
   Exception _buildDioException(DioException e, AppLocalizations localizations) {
+    if (e.type == DioExceptionType.connectionError ||
+        e.type == DioExceptionType.unknown) {
+      final errorStr = e.error.toString();
+      if (errorStr.contains('Software caused connection abort') ||
+          errorStr.contains('Connection closed')) {
+        return Exception(localizations.aiErrorConnectionAborted);
+      }
+    }
+
     if (e.response?.statusCode == 302) {
       final location = e.response?.headers['location']?.first;
       return Exception(localizations.aiErrorRedirect(location ?? ''));

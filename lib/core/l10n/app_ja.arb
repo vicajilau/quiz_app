@@ -1915,5 +1915,13 @@
         "example": "https://example.com"
       }
     }
+  },
+  "aiErrorConnectionAborted": "アプリがバックグラウンドに移動したため、リクエストが中断されました。コンテンツの生成中はアプリを開いたままにしてください。",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "インターネット接続がありません。ネットワーク設定を確認して、もう一度やり直してください。",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

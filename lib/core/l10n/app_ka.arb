@@ -604,5 +604,13 @@
         "example": "https://example.com"
       }
     }
+  },
+  "aiErrorConnectionAborted": "მოთხოვნა შეწყდა, რადგან აპლიკაცია გადავიდა ფონურ რეჟიმში. გთხოვთ, შეინარჩუნოთ აპლიკაცია ღია კონტენტის გენერირებისას.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "ინტერნეტთან კავშირი არ არის. გთხოვთ, შემოწმოთ ქსელის პარამეტრები და სცადოთ ხელახლა.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

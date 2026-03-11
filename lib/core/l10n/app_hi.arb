@@ -1915,5 +1915,13 @@
         "example": "https://example.com"
       }
     }
+  },
+  "aiErrorConnectionAborted": "अनुरोध बीच में ही रुक गया क्योंकि एप्लिकेशन बैकग्राउंड में चला गया था। कृपया सामग्री जेनरेट होने तक एप्लिकेशन को खुला रखें।",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "कोई इंटरनेट कनेक्शन नहीं है। कृपया अपनी नेटवर्क सेटिंग्स जांचें और फिर से प्रयास करें।",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

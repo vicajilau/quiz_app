@@ -2316,5 +2316,13 @@
   "askAIStudyTooltip": "Ask AI about this chapter",
   "@askAIStudyTooltip": {
     "description": "Tooltip for the Ask AI button shown in the study chapter view"
+  },
+  "aiErrorConnectionAborted": "The request was interrupted because the application was sent to the background. Please keep the application open while content is being generated.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "No internet connection. Please check your network settings and try again.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

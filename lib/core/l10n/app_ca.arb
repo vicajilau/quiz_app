@@ -2014,5 +2014,13 @@
         "example": "https://example.com"
       }
     }
+  },
+  "aiErrorConnectionAborted": "La petició s'ha interromput perquè l'aplicació s'ha enviat a segon pla. Si us plau, mantingueu l'aplicació oberta mentre es genera el contingut.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "Sense connexió a internet. Si us plau, comproveu la configuració de red i torneu-ho a intentar.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

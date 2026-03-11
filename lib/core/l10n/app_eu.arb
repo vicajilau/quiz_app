@@ -1912,5 +1912,13 @@
         "example": "https://example.com"
       }
     }
+  },
+  "aiErrorConnectionAborted": "Eskaera eten egin da aplikazioa atzeko planora pasatu delako. Mesedez, mantendu aplikazioa irekita edukia sortzen den bitartean.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "Interneterako konexiorik gabe. Mesedez, egiaztatu zure sareko ezarpenak eta saiatu berriro.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
   }
 }

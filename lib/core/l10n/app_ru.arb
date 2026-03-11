@@ -620,4 +620,13 @@
       }
     }
   }
+  ,
+  "aiErrorConnectionAborted": "Запрос был прерван, так как приложение было переведено в фоновый режим. Пожалуйста, не закрывайте приложение во время генерации контента.",
+  "@aiErrorConnectionAborted": {
+    "description": "Error message when a request is aborted because the app is minimized."
+  },
+  "noInternetConnection": "Нет подключения к интернету. Пожалуйста, проверьте настройки сети и попробуйте снова.",
+  "@noInternetConnection": {
+    "description": "Error message shown when the device has no internet connection."
+  }
 }
