@@ -287,7 +287,8 @@ class _StudyBodyState extends State<StudyBody>
                   ? Padding(
                       padding: EdgeInsetsGeometry.only(
                         top: !context.isMobile
-                            ? MediaQuery.of(context).padding.top
+                            ? MediaQuery.of(context).padding.top -
+                                  15 // In order to align the top of the chat panel
                             : 0,
                       ),
                       child: AiStudioChatSidePanel(

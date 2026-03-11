@@ -15,6 +15,7 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/quizdy_bloc_observer.dart';
 import 'package:quizdy/routes/app_router.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
@@ -51,7 +52,8 @@ class QuizApplication extends StatefulWidget {
   State<QuizApplication> createState() => _QuizApplicationState();
 }
 
-class _QuizApplicationState extends State<QuizApplication> with WidgetsBindingObserver {
+class _QuizApplicationState extends State<QuizApplication>
+    with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
@@ -115,44 +117,48 @@ class _QuizApplicationState extends State<QuizApplication> with WidgetsBindingOb
       ],
       child: BlocBuilder<LocaleCubit, LocaleState>(
         builder: (context, state) {
-          return MaterialApp.router(
-            routerConfig: appRouter,
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            locale: state.locale,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-            localeResolutionCallback: (locale, supportedLocales) {
-              if (locale == null) {
-                return supportedLocales.first;
-              }
-
-              // Check if the current device locale is supported
-              for (final supportedLocale in supportedLocales) {
-                if (supportedLocale.languageCode == locale.languageCode &&
-                    supportedLocale.countryCode == locale.countryCode) {
-                  return supportedLocale;
+          return GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () => context.hideKeyboard(),
+            child: MaterialApp.router(
+              routerConfig: appRouter,
+              theme: AppTheme.lightTheme,
+              darkTheme: AppTheme.darkTheme,
+              locale: state.locale,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              localeResolutionCallback: (locale, supportedLocales) {
+                if (locale == null) {
+                  return supportedLocales.first;
                 }
-              }
 
-              // If not supported, check if the language code is supported
-              for (final supportedLocale in supportedLocales) {
-                if (supportedLocale.languageCode == locale.languageCode) {
-                  return supportedLocale;
+                // Check if the current device locale is supported
+                for (final supportedLocale in supportedLocales) {
+                  if (supportedLocale.languageCode == locale.languageCode &&
+                      supportedLocale.countryCode == locale.countryCode) {
+                    return supportedLocale;
+                  }
                 }
-              }
 
-              // If the locale is not supported, check if we have a fallback for this language
-              // ignoring country code
-              try {
-                return supportedLocales.firstWhere(
-                  (l) => l.languageCode == locale.languageCode,
-                  orElse: () => const Locale('en'),
-                );
-              } catch (e) {
-                return const Locale('en');
-              }
-            },
+                // If not supported, check if the language code is supported
+                for (final supportedLocale in supportedLocales) {
+                  if (supportedLocale.languageCode == locale.languageCode) {
+                    return supportedLocale;
+                  }
+                }
+
+                // If the locale is not supported, check if we have a fallback for this language
+                // ignoring country code
+                try {
+                  return supportedLocales.firstWhere(
+                    (l) => l.languageCode == locale.languageCode,
+                    orElse: () => const Locale('en'),
+                  );
+                } catch (e) {
+                  return const Locale('en');
+                }
+              },
+            ),
           );
         },
       ),
