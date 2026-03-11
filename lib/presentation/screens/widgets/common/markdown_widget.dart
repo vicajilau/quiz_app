@@ -50,6 +50,8 @@ class MarkdownWidget extends StatelessWidget {
       latexBuilder: (context, latex, latexStyle, inline) {
         return Math.tex(
           latex,
+          mathStyle: inline ? MathStyle.text : MathStyle.display,
+          textScaleFactor: inline ? 0.9 : 1.0,
           textStyle: latexStyle,
           onErrorFallback: (error) {
             return Text(
