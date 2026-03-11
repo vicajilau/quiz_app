@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 
 enum QuizdyButtonType { primary, secondary, tertiary, warning }
@@ -25,6 +26,13 @@ extension on QuizdyButtonSize {
     QuizdyButtonSize.normal => const EdgeInsets.symmetric(
       vertical: 20.0,
       horizontal: 28.0,
+    ),
+  };
+
+  EdgeInsets get mobilePadding => switch (this) {
+    QuizdyButtonSize.normal => const EdgeInsets.symmetric(
+      vertical: 14.0,
+      horizontal: 20.0,
     ),
   };
 }
@@ -136,7 +144,7 @@ class QuizdyButton extends StatelessWidget {
       onPressed: isLoading ? () {} : onPressed,
       style: ElevatedButton.styleFrom(
         minimumSize: Size(expanded ? double.maxFinite : 0, 0),
-        padding: size.padding,
+        padding: context.isMobile ? size.mobilePadding : size.padding,
         backgroundColor: bgColor,
         disabledBackgroundColor:
             backgroundColor?.withValues(alpha: 0.5) ??

@@ -39,7 +39,7 @@ class HomeFooterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 48, top: 32),
+      padding: const EdgeInsets.symmetric(vertical: 32),
       child: Column(
         spacing: 12,
         children: [
