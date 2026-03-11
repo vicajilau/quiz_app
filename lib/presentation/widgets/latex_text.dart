@@ -43,8 +43,12 @@ class LaTeXText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Check if text contains LaTeX expressions
-    if (!text.contains('\$')) {
+    // Check if text contains at least one potentially valid LaTeX expression
+    // using either $...$ or $$...$$
+    final hasInline =
+        text.contains('\$') && text.indexOf('\$', text.indexOf('\$') + 1) != -1;
+
+    if (!hasInline) {
       return Text(text, style: style, maxLines: maxLines, overflow: overflow);
     }
 
@@ -96,7 +100,7 @@ class _LaTeXRichText extends StatelessWidget {
 
   /// Parses text to extract LaTeX expressions and plain text
   /// Returns a list of InlineSpans that can be rendered as RichText
-  /// Supports only inline math mode: $...$
+  /// Supports both inline math mode ($...$) and display mode math ($$...$$)
   List<InlineSpan> _parseLatexExpression(
     String input,
     TextStyle effectiveStyle,
@@ -105,54 +109,64 @@ class _LaTeXRichText extends StatelessWidget {
     int currentIndex = 0;
 
     while (currentIndex < input.length) {
-      // Look for inline math ($...$)
-      final inlineStart = input.indexOf('\$', currentIndex);
+      // Look for the next dollar sign
+      final nextDollar = input.indexOf('\$', currentIndex);
 
-      if (inlineStart != -1) {
-        // Add plain text before the LaTeX
-        if (inlineStart > currentIndex) {
-          spans.add(
-            TextSpan(
-              text: input.substring(currentIndex, inlineStart),
-              style: effectiveStyle,
-            ),
-          );
-        }
-
-        final inlineEnd = input.indexOf('\$', inlineStart + 1);
-        if (inlineEnd != -1 && inlineEnd > inlineStart + 1) {
-          // Extract and render inline math
-          final mathExpression = input.substring(inlineStart + 1, inlineEnd);
-          spans.add(
-            WidgetSpan(
-              alignment: PlaceholderAlignment.middle,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Math.tex(
-                  mathExpression,
-                  textStyle: effectiveStyle,
-                  onErrorFallback: (error) {
-                    return Text(
-                      '\$$mathExpression\$',
-                      style: effectiveStyle.copyWith(color: Colors.red),
-                    );
-                  },
-                ),
-              ),
-            ),
-          );
-          currentIndex = inlineEnd + 1;
-        } else {
-          // No closing $, treat as plain text
-          spans.add(
-            TextSpan(text: input.substring(inlineStart), style: effectiveStyle),
-          );
-          break;
-        }
-      } else {
-        // No more LaTeX expressions, add remaining text
+      if (nextDollar == -1) {
+        // No more LaTeX, add remaining text
         spans.add(
           TextSpan(text: input.substring(currentIndex), style: effectiveStyle),
+        );
+        break;
+      }
+
+      // Add plain text before the dollar sign
+      if (nextDollar > currentIndex) {
+        spans.add(
+          TextSpan(
+            text: input.substring(currentIndex, nextDollar),
+            style: effectiveStyle,
+          ),
+        );
+      }
+
+      // Check if it's double dollar sign ($$)
+      final isDisplayMode =
+          nextDollar + 1 < input.length && input[nextDollar + 1] == '\$';
+      final delimiter = isDisplayMode ? '\$\$' : '\$';
+      final startPos = nextDollar + delimiter.length;
+
+      // Look for the closing delimiter
+      final endPos = input.indexOf(delimiter, startPos);
+
+      if (endPos != -1) {
+        // Extract and render math
+        final mathExpression = input.substring(startPos, endPos);
+        spans.add(
+          WidgetSpan(
+            alignment: PlaceholderAlignment.middle,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Math.tex(
+                mathExpression,
+                textStyle: effectiveStyle,
+                mathStyle:
+                    isDisplayMode ? MathStyle.display : MathStyle.text,
+                onErrorFallback: (error) {
+                  return Text(
+                    '$delimiter$mathExpression$delimiter',
+                    style: effectiveStyle.copyWith(color: Colors.red),
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+        currentIndex = endPos + delimiter.length;
+      } else {
+        // No closing delimiter, treat as plain text
+        spans.add(
+          TextSpan(text: input.substring(nextDollar), style: effectiveStyle),
         );
         break;
       }

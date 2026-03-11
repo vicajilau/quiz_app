@@ -15,6 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:quizdy/presentation/widgets/latex_text.dart';
 
 void main() {
@@ -82,5 +83,57 @@ void main() {
       reason:
           'Height should be greater than single line height for mixed content',
     );
+  });
+
+  testWidgets('LaTeXText supports double dollar sign (\$\$) display mode', (
+    WidgetTester tester,
+  ) async {
+    const textWithDisplayMath = r'Formula in display mode: $$\frac{a}{b}$$';
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Center(
+          child: LaTeXText(textWithDisplayMath, style: TextStyle(fontSize: 20)),
+        ),
+      ),
+    );
+
+    expect(find.byType(LaTeXText), findsOneWidget);
+    // Math.tex is used internally
+    expect(find.byType(Math), findsOneWidget);
+  });
+
+  testWidgets('LaTeXText handles multiple math expressions in one string', (
+    WidgetTester tester,
+  ) async {
+    const mixedMath =
+        r'Inline $a^2$ and display $$\sqrt{x}$$ and another inline $y=2$.';
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Center(
+          child: LaTeXText(mixedMath, style: TextStyle(fontSize: 20)),
+        ),
+      ),
+    );
+
+    expect(find.byType(LaTeXText), findsOneWidget);
+    expect(find.byType(Math), findsNWidgets(3));
+  });
+
+  testWidgets('LaTeXText handles unclosed dollar signs gracefully', (
+    WidgetTester tester,
+  ) async {
+    const unclosed = r'This has an unclosed $ dollar sign.';
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Center(
+          child: LaTeXText(unclosed, style: TextStyle(fontSize: 20)),
+        ),
+      ),
+    );
+
+    expect(find.text(unclosed), findsOneWidget);
   });
 }
