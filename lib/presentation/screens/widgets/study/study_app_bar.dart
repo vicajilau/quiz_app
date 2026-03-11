@@ -129,11 +129,43 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  // Settings Button
+                  Container(
+                    width: 40,
+                    height: 40,
+                    margin: const EdgeInsets.only(right: 8),
+                    decoration: BoxDecoration(
+                      color: context.quizLoadedTheme.appBarIconBackgroundColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed:
+                          () async => await showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (_) => const SettingsDialog(),
+                          ),
+                      icon: Icon(
+                        LucideIcons.settings,
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        size: 20,
+                      ),
+                      tooltip: localizations.questionOrderConfigTooltip,
+                    ),
+                  ),
+
+                  // Selection Mode Toggle Button
                   if (state.isIndexMode)
                     Container(
-                      margin: const EdgeInsets.only(right: 8),
+                      margin: const EdgeInsets.only(right: 24),
+                      constraints: const BoxConstraints(minWidth: 40),
                       child: Material(
-                        color: Colors.transparent,
+                        color:
+                            context
+                                .quizLoadedTheme
+                                .selectionInactiveBackgroundColor,
+                        borderRadius: BorderRadius.circular(12),
                         child: InkWell(
                           borderRadius: BorderRadius.circular(12),
                           onTap: () {
@@ -144,61 +176,55 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 12,
-                              vertical: 8,
+                              vertical: 10,
                             ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  state.isSelectionMode
-                                      ? LucideIcons.checkSquare
-                                      : LucideIcons.mousePointer2,
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onPrimary,
-                                  size: 18,
-                                ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  state.isSelectionMode
-                                      ? localizations.done
-                                      : localizations.select,
-                                  style: TextStyle(
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.onPrimary,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
+                            child: Builder(
+                              builder: (context) {
+                                final showText =
+                                    MediaQuery.of(context).size.width > 500;
+
+                                return Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      state.isSelectionMode
+                                          ? LucideIcons.checkSquare
+                                          : LucideIcons.mousePointer2,
+                                      color:
+                                          Theme.of(
+                                            context,
+                                          ).colorScheme.onPrimary,
+                                      size: 18,
+                                    ),
+                                    if (showText) ...[
+                                      const SizedBox(width: 8),
+                                      Flexible(
+                                        child: Text(
+                                          state.isSelectionMode
+                                              ? localizations.done
+                                              : localizations.select,
+                                          style: TextStyle(
+                                            color:
+                                                Theme.of(
+                                                  context,
+                                                ).colorScheme.onPrimary,
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w600,
+                                            fontFamily: 'Inter',
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ],
+                                );
+                              },
                             ),
                           ),
                         ),
                       ),
                     ),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    margin: const EdgeInsets.only(right: 24),
-                    decoration: BoxDecoration(
-                      color: context.quizLoadedTheme.appBarIconBackgroundColor,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: IconButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () async => await showDialog(
-                        context: context,
-                        barrierDismissible: false,
-                        builder: (_) => const SettingsDialog(),
-                      ),
-                      icon: Icon(
-                        LucideIcons.settings,
-                        color: Theme.of(context).colorScheme.onPrimary,
-                        size: 20,
-                      ),
-                      tooltip: localizations.questionOrderConfigTooltip,
-                    ),
-                  ),
                 ],
               ),
             );
