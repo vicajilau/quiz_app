@@ -50,6 +50,7 @@ class _StudyBodyState extends State<StudyBody>
     with TickerProviderStateMixin, WidgetsBindingObserver {
   bool _isSidebarOpen = true;
   bool _isSidebarMounted = true;
+  bool _didInitSidebarState = false;
 
   bool _isChatOpen = false;
   bool _isChatMounted = false;
@@ -93,6 +94,17 @@ class _StudyBodyState extends State<StudyBody>
 
     _checkAiAvailability();
     WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_didInitSidebarState) {
+      _didInitSidebarState = true;
+      if (context.isMobile) {
+        _isSidebarOpen = false;
+      }
+    }
   }
 
   @override
