@@ -36,16 +36,17 @@ class ConnectivityInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
+    final errorStr = err.error?.toString() ?? '';
     final isConnectivityError =
         _connectivityTypes.contains(err.type) ||
-        (err.type == DioExceptionType.unknown && err.error is SocketException);
+        (err.type == DioExceptionType.unknown && err.error is SocketException) ||
+        _abortedMessages.any(errorStr.contains);
 
     if (!isConnectivityError) {
       super.onError(err, handler);
       return;
     }
 
-    final errorStr = err.error?.toString() ?? '';
     final isAborted = _abortedMessages.any(errorStr.contains);
     final type = isAborted
         ? ConnectivityExceptionType.connectionAborted
