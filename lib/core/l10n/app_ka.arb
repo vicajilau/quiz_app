@@ -591,5 +591,18 @@
   "studyScreenPendingSections": "ზოგიერთი სექცია ჯერ არ არის გენერირებული",
   "@studyScreenPendingSections": {
     "description": "გაფრთხილება, რომელიც ჩანს სასწავლო ინდექსში, როდესაც ზოგიერთი ნაწილი ჯერ არ არის გენერირებული"
+  },
+  "@aiErrorResponse": {
+    "description": "Error message when AI request fails"
+  },
+  "aiErrorRedirect": "გადამისამართდა (302): {location}",
+  "@aiErrorRedirect": {
+    "description": "შეცდომის შეტყობინება, როდესაც ხდება 302 გადამისამართება AI მოთხოვნისას",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
   }
 }

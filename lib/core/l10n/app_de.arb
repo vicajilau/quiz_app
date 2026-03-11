@@ -1998,5 +1998,15 @@
   "studyScreenPendingSections": "Einige Abschnitte wurden noch nicht generiert",
   "@studyScreenPendingSections": {
     "description": "Warnung im Studienindex, wenn einige Teile noch nicht generiert wurden"
+  },
+  "aiErrorRedirect": "Weitergeleitet (302) zu: {location}",
+  "@aiErrorRedirect": {
+    "description": "Fehlermeldung, wenn während einer KI-Anfrage eine 302-Weiterleitung erfolgt",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
   }
 }

@@ -899,5 +899,18 @@
   "studyScreenPendingSections": "Ορισμένες ενότητες δεν έχουν δημιουργηθεί ακόμη",
   "@studyScreenPendingSections": {
     "description": "Προειδοποίηση που εμφανίζεται στο ευρετήριο μελέτης όταν ορισμένα τμήματα δεν έχουν δημιουργηθεί ακόμη"
+  },
+  "@aiErrorResponse": {
+    "description": "Error message when AI request fails"
+  },
+  "aiErrorRedirect": "Ανακατεύθυνση (302) σε: {location}",
+  "@aiErrorRedirect": {
+    "description": "Μήνυμα σφάλματος όταν συμβαίνει ανακατεύθυνση 302 κατά τη διάρκεια αιτήματος IA",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
   }
 }

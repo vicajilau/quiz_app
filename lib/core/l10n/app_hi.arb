@@ -1905,5 +1905,15 @@
   "studyScreenPendingSections": "कुछ अनुभाग अभी तक जेनरेट नहीं हुए हैं",
   "@studyScreenPendingSections": {
     "description": "अध्ययन सूचकांक में दिखाई देने वाली चेतावनी जब कुछ हिस्से अभी तक जेनरेट नहीं हुए हैं"
+  },
+  "aiErrorRedirect": "{location} पर पुनः निर्देशित (302)",
+  "@aiErrorRedirect": {
+    "description": "एआई अनुरोध के दौरान 302 रीडायरेक्ट होने पर त्रुटि संदेश",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
   }
 }

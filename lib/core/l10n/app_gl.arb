@@ -1902,5 +1902,15 @@
   "studyScreenPendingSections": "Algunhas seccións aínda non se xeraron",
   "@studyScreenPendingSections": {
     "description": "Aviso que se mostra no índice de estudo cando algúns fragmentos aínda non se xeraron"
+  },
+  "aiErrorRedirect": "Redirixido (302) a: {location}",
+  "@aiErrorRedirect": {
+    "description": "Mensaxe de erro cando ocorre unha redirección 302 durante unha petición de IA",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
   }
 }

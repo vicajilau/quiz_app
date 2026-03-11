@@ -1905,5 +1905,15 @@
   "studyScreenPendingSections": "一部のセクションはまだ生成されていません",
   "@studyScreenPendingSections": {
     "description": "一部のチャンクがまだ生成されていないときに学習インデックスに表示される警告"
+  },
+  "aiErrorRedirect": "{location} にリダイレクト (302) されました",
+  "@aiErrorRedirect": {
+    "description": "AIリクエスト中に302リダイレクトが発生した際のエラーメッセージ",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
   }
 }

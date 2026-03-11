@@ -606,5 +606,18 @@
   "studyScreenPendingSections": "Некоторые разделы еще не созданы",
   "@studyScreenPendingSections": {
     "description": "Предупреждение, отображаемое в указателе обучения, когда некоторые части еще не созданы"
+  },
+  "@aiErrorResponse": {
+    "description": "Error message when AI request fails"
+  },
+  "aiErrorRedirect": "Перенаправлено (302) на: {location}",
+  "@aiErrorRedirect": {
+    "description": "Сообщение об ошибке при возникновении перенаправления 302 во время запроса ИИ",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
   }
 }

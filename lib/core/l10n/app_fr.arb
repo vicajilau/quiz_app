@@ -1947,5 +1947,15 @@
   "studyScreenPendingSections": "Certaines sections ne sont pas encore générées",
   "@studyScreenPendingSections": {
     "description": "Avertissement affiché dans l'index d'étude quand certains tronçons ne sont pas encore générés"
+  },
+  "aiErrorRedirect": "Redirigé (302) vers : {location}",
+  "@aiErrorRedirect": {
+    "description": "Message d erreur lorsqu une redirection 302 se produit lors d une demande d IA",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
   }
 }

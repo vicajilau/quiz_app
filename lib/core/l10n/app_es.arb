@@ -646,7 +646,17 @@
   },
   "aiErrorResponse": "Lo siento, hubo un error al procesar tu pregunta. Por favor, inténtalo de nuevo.",
   "@aiErrorResponse": {
-    "description": "Mensaje de error cuando falla la petición a IA"
+    "description": "Mensaje de error cuando falla la petición de IA"
+  },
+  "aiErrorRedirect": "Redirigido (302) a: {location}",
+  "@aiErrorRedirect": {
+    "description": "Mensaje de error cuando ocurre una redirección 302 durante una petición de IA",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
   },
   "evaluatingResponses": "Evaluando respuestas...",
   "@evaluatingResponses": {

@@ -666,6 +666,16 @@
   "@aiErrorResponse": {
     "description": "Error message when AI request fails"
   },
+  "aiErrorRedirect": "Redirected (302) to: {location}",
+  "@aiErrorRedirect": {
+    "description": "Error message when a 302 redirect occurs during an AI request",
+    "placeholders": {
+      "location": {
+        "type": "String",
+        "example": "https://example.com"
+      }
+    }
+  },
   "evaluatingResponses": "Evaluating responses...",
   "@evaluatingResponses": {
     "description": "Text shown in the results screen when AI evaluations are pending"
