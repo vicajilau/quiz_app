@@ -303,7 +303,7 @@ INSTRUCTIONS:
 4. Make sure incorrect answers are plausible but clearly wrong
 5. Explanations should be educational and help understand why the answer is correct
 6. SELF-CONTAINED QUESTIONS: All questions must be fully self-contained so they can be answered without looking at the original source material. If you reuse an existing exercise, make sure to include all necessary context (text, variables, or descriptions) within the question itself. DO NOT reference specific exercise numbers or labels from the source text (e.g., instead of 'In exercise 17...', say 'Given the following scenario...').
-7. MATH AND FORMULAS: Any mathematical equations, formulas, fractions, or symbols MUST be formatted using standard LaTeX syntax wrapped in single dollar signs `\$ ... \$`. For example, use `\$\sqrt{16/9}\$` instead of sqrt(16/9) and `\$\frac{1}{2}\$` instead of 1/2. DO NOT use plain text representations for math.
+7. MATH AND FORMULAS: Any mathematical equations, formulas, fractions, or symbols MUST be formatted using standard LaTeX syntax wrapped in single dollar signs `\$ ... \$`. For example, use `\$sqrt{16/9}\$` instead of sqrt(16/9) and `\$frac{1}{2}\$` instead of 1/2. DO NOT use plain text representations for math.
 8. INLINE LAYOUT: You MUST keep all formulas and fractions inline within the text flow. DO NOT insert newlines (`\n`) before or after formulas. Avoid using double dollar signs `\$\$ .. \$\$` as they force a block layout.
 $categoryInstructions$difficultyInstruction
 
