@@ -196,6 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
           final unknownValue = AppLocalizations.of(
             context,
           )!.questionTypeUnknown;
+          setState(() => _pendingDropMode = QuizMode.quiz);
           context.read<FileBloc>().add(
             CreateQuizWithQuestions(
               name: unknownValue,
