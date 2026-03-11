@@ -54,6 +54,32 @@ class GeminiService extends AIService {
   @override
   List<String> get availableModels => _models;
 
+  String _extractErrorDetail(DioException e, AppLocalizations localizations) {
+    final data = e.response?.data;
+    if (data != null &&
+        data['error'] != null &&
+        data['error']['message'] != null) {
+      return '${localizations.aiErrorResponse} ${data['error']['message']}';
+    }
+    final statusCode = e.response?.statusCode;
+    return '${localizations.aiErrorResponse} ${statusCode ?? ({e.response?.statusCode})}';
+  }
+
+  Exception _buildDioException(DioException e, AppLocalizations localizations) {
+    if (e.response?.statusCode == 302) {
+      final location = e.response?.headers['location']?.first;
+      return Exception(localizations.aiErrorRedirect(location ?? ''));
+    } else if (e.response?.statusCode == 400) {
+      return Exception(_extractErrorDetail(e, localizations));
+    } else if (e.response?.statusCode == 403) {
+      return Exception(localizations.invalidApiKeyError);
+    } else if (e.response?.statusCode == 429) {
+      return Exception(localizations.rateLimitError);
+    } else {
+      return Exception(_extractErrorDetail(e, localizations));
+    }
+  }
+
   @override
   Future<bool> isAvailable() async {
     final apiKey = await configurationService.getGeminiApiKey();
@@ -125,18 +151,7 @@ class GeminiService extends AIService {
         return localizations.noResponseReceived;
       }
     } on DioException catch (e) {
-      if (e.response?.statusCode == 302) {
-        final location = e.response?.headers['location']?.first;
-        throw Exception('Redirected (302) to: $location');
-      } else if (e.response?.statusCode == 400) {
-        throw Exception(localizations.aiErrorResponse);
-      } else if (e.response?.statusCode == 403) {
-        throw Exception(localizations.invalidApiKeyError);
-      } else if (e.response?.statusCode == 429) {
-        throw Exception(localizations.rateLimitError);
-      } else {
-        throw Exception(localizations.networkErrorGemini);
-      }
+      throw _buildDioException(e, localizations);
     } catch (e) {
       throw Exception(localizations.networkErrorGemini);
     }
@@ -215,40 +230,7 @@ class GeminiService extends AIService {
         return localizations.noResponseReceived;
       }
     } on DioException catch (e) {
-      if (e.response?.statusCode == 302) {
-        final location = e.response?.headers['location']?.first;
-        throw Exception('Redirected (302) to: $location');
-      } else if (e.response?.statusCode == 400) {
-        String errorMessage = localizations.aiErrorResponse;
-        try {
-          final data = e.response?.data;
-          if (data != null &&
-              data['error'] != null &&
-              data['error']['message'] != null) {
-            errorMessage += ': ${data['error']['message']}';
-          }
-        } catch (_) {}
-        throw Exception(errorMessage);
-      } else if (e.response?.statusCode == 403) {
-        throw Exception(localizations.invalidApiKeyError);
-      } else if (e.response?.statusCode == 429) {
-        throw Exception(localizations.rateLimitError);
-      } else {
-        String errorMessage = localizations.aiErrorResponse;
-        try {
-          final data = e.response?.data;
-          if (data != null &&
-              data['error'] != null &&
-              data['error']['message'] != null) {
-            errorMessage += ': ${data['error']['message']}';
-          } else {
-            errorMessage += ' (${e.response?.statusCode})';
-          }
-        } catch (_) {
-          errorMessage += ' (${e.response?.statusCode})';
-        }
-        throw Exception(errorMessage);
-      }
+      throw _buildDioException(e, localizations);
     } catch (e) {
       throw Exception(localizations.networkErrorGemini);
     }
@@ -309,20 +291,7 @@ class GeminiService extends AIService {
         throw Exception(localizations.noResponseReceived);
       }
     } on DioException catch (e) {
-      String errorMessage = localizations.aiErrorResponse;
-      try {
-        final data = e.response?.data;
-        if (data != null &&
-            data['error'] != null &&
-            data['error']['message'] != null) {
-          errorMessage += ': ${data['error']['message']}';
-        } else {
-          errorMessage += ': ${e.message}';
-        }
-      } catch (_) {
-        errorMessage += ': ${e.message}';
-      }
-      throw Exception(errorMessage);
+      throw _buildDioException(e, localizations);
     } catch (e) {
       throw Exception(localizations.networkErrorGemini);
     }
@@ -402,20 +371,7 @@ class GeminiService extends AIService {
         return localizations.noResponseReceived;
       }
     } on DioException catch (e) {
-      String errorMessage = localizations.aiErrorResponse;
-      try {
-        final data = e.response?.data;
-        if (data != null &&
-            data['error'] != null &&
-            data['error']['message'] != null) {
-          errorMessage += ': ${data['error']['message']}';
-        } else {
-          errorMessage += ': ${e.message}';
-        }
-      } catch (_) {
-        errorMessage += ': ${e.message}';
-      }
-      throw Exception(errorMessage);
+      throw _buildDioException(e, localizations);
     } catch (e) {
       throw Exception(localizations.networkErrorGemini);
     }
