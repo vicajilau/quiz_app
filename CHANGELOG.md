@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.9.0]
 
+- ui: Redesigned import dialogs (questions and chunks) for mobile — replaced overflowing horizontal actions with a vertical column layout and added directional arrow icons.
 - fix: Collapse sidebar by default on mobile when entering a study section.
 - feat: Added AI Chat panel to Study Mode, allowing users to ask the AI about the current chapter's content via a sidebar (desktop) or full-screen overlay (mobile).
 - feat: Added section import from .quiz files in Study Mode index view, with position selection dialog (beginning/end) and drag & drop support.
