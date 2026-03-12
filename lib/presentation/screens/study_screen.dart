@@ -26,6 +26,7 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/data/repositories/quiz_file_repository.dart';
+import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
@@ -235,9 +236,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
 
       if (chunks.isEmpty) {
         if (mounted) {
-          context.presentSnackBar(
-            AppLocalizations.of(context)!.noChunksInFile,
-          );
+          context.presentSnackBar(AppLocalizations.of(context)!.noChunksInFile);
         }
         return;
       }
@@ -248,10 +247,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
       if (currentChunks.isEmpty) {
         if (mounted) {
           context.read<StudyExecutionBloc>().add(
-            ImportStudyChunksRequested(
-              chunks: chunks,
-              insertAtBeginning: true,
-            ),
+            ImportStudyChunksRequested(chunks: chunks, insertAtBeginning: true),
           );
           context.presentSnackBar(
             AppLocalizations.of(context)!.chunksImportedSuccess(chunks.length),
@@ -394,6 +390,20 @@ class _StudyScreenViewState extends State<StudyScreenView> {
             }
           },
           onGenerateAI: () async {
+            final isAiAvailable =
+                await ServiceLocator.getIt<ConfigurationService>()
+                    .getIsAiAvailable();
+
+            if (!isAiAvailable) {
+              if (context.mounted) {
+                context.presentSnackBar(
+                  AppLocalizations.of(context)!.aiApiKeyRequired,
+                );
+              }
+              return;
+            }
+
+            if (!context.mounted) return;
             final config = await showDialog<AiStudyGenerationConfig>(
               context: context,
               barrierDismissible: false,

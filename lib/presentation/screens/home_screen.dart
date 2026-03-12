@@ -66,11 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _navigateByMode(BuildContext context, QuizMode mode, QuizFile quizFile) {
     if (mode == QuizMode.study) {
-      if (quizFile.study != null) {
-        _navigateToStudy(context, quizFile);
-      } else {
-        _startStudyModeWithAI(context);
-      }
+      _navigateToStudy(context, quizFile);
     } else {
       context.go(AppRoutes.fileLoadedScreen);
     }
@@ -86,8 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _navigateToStudy(BuildContext context, QuizFile quizFile) {
-    final study = quizFile.study!;
-    final chunks = study.content.cache;
+    final study = quizFile.study;
+    final chunks = study?.content.cache ?? [];
     context.push(
       AppRoutes.studyScreen,
       extra: {
