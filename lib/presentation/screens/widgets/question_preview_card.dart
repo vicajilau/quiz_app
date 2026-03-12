@@ -38,6 +38,7 @@ class QuestionPreviewCard extends StatefulWidget {
   final bool isSelected;
   final bool isNew;
   final bool isModified;
+  final bool isDuplicated;
   final VoidCallback? onSelectionToggle;
 
   const QuestionPreviewCard({
@@ -52,6 +53,7 @@ class QuestionPreviewCard extends StatefulWidget {
     this.isSelected = false,
     this.isNew = false,
     this.isModified = false,
+    this.isDuplicated = false,
     this.onSelectionToggle,
   });
 
@@ -499,16 +501,20 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
       ),
     );
 
-    if (widget.isNew || widget.isModified) {
+    if (widget.isDuplicated || widget.isNew || widget.isModified) {
       cardContent = ClipRect(
         child: Banner(
-          message: widget.isNew
-              ? AppLocalizations.of(context)!.newTag.toUpperCase()
-              : AppLocalizations.of(context)!.modifiedTag.toUpperCase(),
+          message: widget.isDuplicated
+              ? AppLocalizations.of(context)!.duplicatedTag.toUpperCase()
+              : (widget.isNew
+                    ? AppLocalizations.of(context)!.newTag.toUpperCase()
+                    : AppLocalizations.of(context)!.modifiedTag.toUpperCase()),
           location: BannerLocation.topStart,
-          color: widget.isModified
-              ? Theme.of(context).extension<CustomColors>()!.aiIconColor!
-              : AppTheme.secondaryColor,
+          color: widget.isDuplicated
+              ? AppTheme.errorColor
+              : (widget.isModified
+                    ? Theme.of(context).extension<CustomColors>()!.aiIconColor!
+                    : AppTheme.secondaryColor),
           textStyle: const TextStyle(
             fontSize: 7,
             fontWeight: FontWeight.w900,

@@ -52,9 +52,36 @@ class StudySectionsSidebar extends StatelessWidget {
     return checker.isStudyChunkModified(index, chunk);
   }
 
+  Map<String, int> _buildChunkDuplicateCounts() {
+    final counts = <String, int>{};
+    for (final chunk in chunks) {
+      final key = _normalizeChunkKey(chunk);
+      counts[key] = (counts[key] ?? 0) + 1;
+    }
+    return counts;
+  }
+
+  bool _isDuplicated(StudyChunk chunk, Map<String, int> duplicateCounts) {
+    final key = _normalizeChunkKey(chunk);
+    return (duplicateCounts[key] ?? 0) > 1;
+  }
+
+  String _normalizeChunkKey(StudyChunk chunk) {
+    final source = chunk.sourceReference;
+    return [
+      source.documentId.trim().toLowerCase(),
+      source.startPage,
+      source.endPage,
+      source.startOffset,
+      source.endOffset,
+      source.blockType.trim().toLowerCase(),
+    ].join('|');
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final duplicateChunkCounts = _buildChunkDuplicateCounts();
 
     return Container(
       decoration: BoxDecoration(
@@ -146,6 +173,7 @@ class StudySectionsSidebar extends StatelessWidget {
                       isSelected: isSelected,
                       isNew: _isNew(index, chunk),
                       isModified: _isModified(index, chunk),
+                      isDuplicated: _isDuplicated(chunk, duplicateChunkCounts),
                       localizations: localizations,
                       onTap: () => onChunkSelected(index),
                       onDownload: () => onChunkDownload(index),
@@ -196,6 +224,7 @@ class _SidebarChunkItem extends StatelessWidget {
   final bool isSelected;
   final bool isNew;
   final bool isModified;
+  final bool isDuplicated;
   final AppLocalizations localizations;
   final VoidCallback onTap;
   final VoidCallback onDownload;
@@ -207,6 +236,7 @@ class _SidebarChunkItem extends StatelessWidget {
     required this.isSelected,
     required this.isNew,
     required this.isModified,
+    required this.isDuplicated,
     required this.localizations,
     required this.onTap,
     required this.onDownload,
@@ -297,7 +327,7 @@ class _SidebarChunkItem extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          if (isNew || isModified) ...[
+                          if (isDuplicated || isNew || isModified) ...[
                             const SizedBox(width: 6),
                             Container(
                               padding: const EdgeInsets.symmetric(
@@ -305,19 +335,25 @@ class _SidebarChunkItem extends StatelessWidget {
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: AppTheme.secondaryColor.withValues(
-                                  alpha: 0.2,
-                                ),
+                                color:
+                                    (isDuplicated
+                                            ? AppTheme.errorColor
+                                            : AppTheme.secondaryColor)
+                                        .withValues(alpha: 0.2),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Text(
-                                isNew
-                                    ? localizations.newTag
-                                    : localizations.modifiedTag,
-                                style: const TextStyle(
+                                isDuplicated
+                                    ? localizations.duplicatedTag
+                                    : (isNew
+                                          ? localizations.newTag
+                                          : localizations.modifiedTag),
+                                style: TextStyle(
                                   fontSize: 9,
                                   fontWeight: FontWeight.w800,
-                                  color: AppTheme.secondaryColor,
+                                  color: isDuplicated
+                                      ? AppTheme.errorColor
+                                      : AppTheme.secondaryColor,
                                 ),
                               ),
                             ),

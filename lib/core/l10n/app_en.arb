@@ -136,6 +136,10 @@
   "@modifiedTag": {
     "description": "Tag to indicate an item has been modified"
   },
+  "duplicatedTag": "Duplicated",
+  "@duplicatedTag": {
+    "description": "Tag to indicate an item is duplicated"
+  },
   "confirmDeleteTitle": "Confirm Deletion",
   "@confirmDeleteTitle": {
     "description": "Title for the confirmation dialog when deleting a process."

@@ -148,6 +148,10 @@
   "@modifiedTag": {
     "description": "Etiqueta para indicar que un elemento ha sido modificado"
   },
+  "duplicatedTag": "Duplicado",
+  "@duplicatedTag": {
+    "description": "Etiqueta para indicar que un elemento está duplicado"
+  },
   "confirmDeleteTitle": "Confirmar eliminación",
   "@confirmDeleteTitle": {
     "description": "Título para el diálogo de confirmación al eliminar un proceso."

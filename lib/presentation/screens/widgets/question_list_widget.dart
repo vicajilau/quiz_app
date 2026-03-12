@@ -69,6 +69,14 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final normalizedQuestionCounts = <String, int>{};
+    for (final question in widget.quizFile.questions) {
+      final normalizedText = _normalizeQuestionText(question.text);
+      if (normalizedText.isEmpty) continue;
+      normalizedQuestionCounts[normalizedText] =
+          (normalizedQuestionCounts[normalizedText] ?? 0) + 1;
+    }
+
     return ReorderableListView.builder(
       onReorder: _onReorder,
       padding: const EdgeInsets.symmetric(horizontal: 8.0).copyWith(top: 24),
@@ -76,7 +84,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
       buildDefaultDragHandles: false, // We use custom drag handles
       itemBuilder: (constext, index) {
         final question = widget.quizFile.questions[index];
-        return _buildQuestionCard(question, index);
+        return _buildQuestionCard(question, index, normalizedQuestionCounts);
       },
       // ProxyDecorator is optional but good for visual feedback
       proxyDecorator: (child, index, animation) {
@@ -230,7 +238,16 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
     _loadAISettings();
   }
 
-  Widget _buildQuestionCard(Question question, int index) {
+  Widget _buildQuestionCard(
+    Question question,
+    int index,
+    Map<String, int> normalizedQuestionCounts,
+  ) {
+    final normalizedText = _normalizeQuestionText(question.text);
+    final isDuplicated =
+        normalizedText.isNotEmpty &&
+        (normalizedQuestionCounts[normalizedText] ?? 0) > 1;
+
     return QuestionPreviewCard(
       key: ValueKey('${question.text}_${question.type}_$index'),
       question: question,
@@ -244,11 +261,9 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
         index,
         question,
       ),
-      isModified:
-          ServiceLocator.getIt<CheckFileChangesUseCase>().isQuestionModified(
-            index,
-            question,
-          ),
+      isModified: ServiceLocator.getIt<CheckFileChangesUseCase>()
+          .isQuestionModified(index, question),
+      isDuplicated: isDuplicated,
       onSelectionToggle: () => widget.onToggleSelection(index),
       onAiAssistant: (_aiAssistantEnabled && question.isEnabled)
           ? () async {
@@ -272,6 +287,10 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
             }
           : null,
     );
+  }
+
+  String _normalizeQuestionText(String text) {
+    return text.trim().toLowerCase();
   }
 
   /// Deletes a question after user confirmation.
