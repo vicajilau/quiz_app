@@ -62,6 +62,8 @@ class _StudyBodyState extends State<StudyBody>
   late final AnimationController _mobileChatAnimController;
   late final Animation<Offset> _mobileChatSlide;
 
+  bool? _wasMobile;
+
   final GlobalKey<AiStudioChatSidePanelState> _chatPanelKey =
       GlobalKey<AiStudioChatSidePanelState>();
 
@@ -141,12 +143,9 @@ class _StudyBodyState extends State<StudyBody>
   }
 
   void _closeSidebar() {
-    if (!context.isMobile) {
-      setState(() => _isSidebarOpen = false);
-    } else {
-      _mobileSidebarAnimController.reverse().then((_) {
-        if (mounted) setState(() => _isSidebarOpen = false);
-      });
+    setState(() => _isSidebarOpen = false);
+    if (context.isMobile) {
+      _mobileSidebarAnimController.reverse();
     }
   }
 
@@ -168,12 +167,9 @@ class _StudyBodyState extends State<StudyBody>
   }
 
   void _closeChat() {
-    if (!context.isMobile) {
-      setState(() => _isChatOpen = false);
-    } else {
-      _mobileChatAnimController.reverse().then((_) {
-        if (mounted) setState(() => _isChatOpen = false);
-      });
+    setState(() => _isChatOpen = false);
+    if (context.isMobile) {
+      _mobileChatAnimController.reverse();
     }
   }
 
@@ -188,6 +184,16 @@ class _StudyBodyState extends State<StudyBody>
           listenWhen: (_, current) => current is FileSaved,
           listener: (context, _) {
             context.read<StudyExecutionBloc>().add(const StudyFileSaved());
+          },
+        ),
+        BlocListener<StudyExecutionBloc, StudyExecutionState>(
+          listenWhen: (previous, current) =>
+              previous.currentChunkIndex != current.currentChunkIndex ||
+              (previous.isIndexMode && !current.isIndexMode),
+          listener: (context, state) {
+            if (context.isMobile && _isSidebarOpen) {
+              _closeSidebar();
+            }
           },
         ),
         BlocListener<StudyExecutionBloc, StudyExecutionState>(
@@ -316,19 +322,24 @@ class _StudyBodyState extends State<StudyBody>
               return LayoutBuilder(
                 builder: (context, constraints) {
                   final isMobile = context.isMobile;
+                  final justResized = _wasMobile != null && _wasMobile != isMobile;
 
-                  // Sync mobile animation state on resize
-                  if (!isMobile && _isSidebarOpen) {
-                    _mobileSidebarAnimController.value = 0.0;
-                  } else if (isMobile && _isSidebarOpen) {
-                    _mobileSidebarAnimController.value = 1.0;
-                  }
+                  // Sync mobile animation state ONLY on resize
+                  if (justResized) {
+                    if (!isMobile && _isSidebarOpen) {
+                      _mobileSidebarAnimController.value = 0.0;
+                    } else if (isMobile && _isSidebarOpen) {
+                      _mobileSidebarAnimController.value = 1.0;
+                    }
 
-                  if (!isMobile && _isChatOpen) {
-                    _mobileChatAnimController.value = 0.0;
-                  } else if (isMobile && _isChatOpen) {
-                    _mobileChatAnimController.value = 1.0;
+                    if (!isMobile && _isChatOpen) {
+                      _mobileChatAnimController.value = 0.0;
+                    } else if (isMobile && _isChatOpen) {
+                      _mobileChatAnimController.value = 1.0;
+                    }
                   }
+                  
+                  _wasMobile = isMobile;
 
                   final sidebarPanel = StudySectionsSidebar(
                     chunks: state.chunks,
@@ -336,7 +347,23 @@ class _StudyBodyState extends State<StudyBody>
                     localizations: localizations,
                     isFullScreen: isMobile,
                     onClose: _closeSidebar,
-                    onChunkSelected: (index) {
+                    onChunkSelected: (index) async {
+                      final targetChunk = state.chunks[index];
+                      if (targetChunk.status != StudyChunkState.completed &&
+                          targetChunk.status != StudyChunkState.downloaded) {
+                        final isAiAvailable =
+                            await ServiceLocator.getIt<ConfigurationService>()
+                                .getIsAiAvailable();
+                        if (!isAiAvailable) {
+                          if (context.mounted) {
+                            context.presentSnackBar(
+                              AppLocalizations.of(context)!.aiApiKeyRequired,
+                            );
+                          }
+                          return;
+                        }
+                      }
+                      if (!context.mounted) return;
                       context.read<StudyExecutionBloc>().add(
                         StudyChunkRequested(index),
                       );

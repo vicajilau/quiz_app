@@ -15,11 +15,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
+import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
@@ -109,14 +112,46 @@ class StudyBottomNavigation extends StatelessWidget {
                   progressPercentage: state.progressPercentage,
                   localizations: localizations,
                   onPrevious: state.hasPrevious
-                      ? () => context.read<StudyExecutionBloc>().add(
-                          const PreviousStudyChunkRequested(),
-                        )
+                      ? () async {
+                          final targetChunk = state.chunks[state.currentChunkIndex - 1];
+                          if (targetChunk.status != StudyChunkState.completed &&
+                              targetChunk.status != StudyChunkState.downloaded) {
+                            final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
+                                .getIsAiAvailable();
+                            if (!isAiAvailable) {
+                              if (context.mounted) {
+                                context.presentSnackBar(localizations.aiApiKeyRequired);
+                              }
+                              return;
+                            }
+                          }
+                          if (context.mounted) {
+                            context.read<StudyExecutionBloc>().add(
+                              const PreviousStudyChunkRequested(),
+                            );
+                          }
+                        }
                       : null,
                   onNext: state.hasNext
-                      ? () => context.read<StudyExecutionBloc>().add(
-                          const NextStudyChunkRequested(),
-                        )
+                      ? () async {
+                          final targetChunk = state.chunks[state.currentChunkIndex + 1];
+                          if (targetChunk.status != StudyChunkState.completed &&
+                              targetChunk.status != StudyChunkState.downloaded) {
+                            final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
+                                .getIsAiAvailable();
+                            if (!isAiAvailable) {
+                              if (context.mounted) {
+                                context.presentSnackBar(localizations.aiApiKeyRequired);
+                              }
+                              return;
+                            }
+                          }
+                          if (context.mounted) {
+                            context.read<StudyExecutionBloc>().add(
+                              const NextStudyChunkRequested(),
+                            );
+                          }
+                        }
                       : null,
                 );
               }(),
