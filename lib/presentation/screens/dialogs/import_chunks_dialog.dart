@@ -14,11 +14,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/presentation/screens/dialogs/import_questions_dialog.dart';
-import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 
 /// Dialog to confirm importing chunks from another quiz file
 class ImportChunksDialog extends StatelessWidget {
@@ -35,38 +33,13 @@ class ImportChunksDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
 
-    return AlertDialog(
-      title: Text(localizations.importChunksTitle),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            localizations.importChunksMessage(chunkCount, fileName),
-            style: const TextStyle(fontSize: 16),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            localizations.importChunksPositionQuestion,
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-          ),
-        ],
-      ),
-      actions: [
-        QuizdyButton(
-          type: QuizdyButtonType.tertiary,
-          title: localizations.cancelButton,
-          onPressed: () => context.pop(null),
-        ),
-        QuizdyButton(
-          title: localizations.importAtBeginning,
-          onPressed: () => context.pop(QuestionsPosition.beginning),
-        ),
-        QuizdyButton(
-          title: localizations.importAtEnd,
-          onPressed: () => context.pop(QuestionsPosition.end),
-        ),
-      ],
+    return ImportPositionDialog(
+      title: localizations.importChunksTitle,
+      message: localizations.importChunksMessage(chunkCount, fileName),
+      positionQuestion: localizations.importChunksPositionQuestion,
+      importAtBeginning: localizations.importAtBeginning,
+      importAtEnd: localizations.importAtEnd,
+      cancelButton: localizations.cancelButton,
     );
   }
 }
