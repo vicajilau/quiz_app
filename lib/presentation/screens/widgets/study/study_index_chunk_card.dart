@@ -34,6 +34,7 @@ class StudyIndexChunkCard extends StatefulWidget {
   final bool supportsReordering;
   final bool isNew;
   final bool isModified;
+  final bool isDuplicated;
 
   const StudyIndexChunkCard({
     super.key,
@@ -49,6 +50,7 @@ class StudyIndexChunkCard extends StatefulWidget {
     this.supportsReordering = false,
     this.isNew = false,
     this.isModified = false,
+    this.isDuplicated = false,
   });
 
   @override
@@ -294,16 +296,20 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
       ),
     );
 
-    if (widget.isNew || widget.isModified) {
+    if (widget.isDuplicated || widget.isNew || widget.isModified) {
       cardContent = ClipRect(
         child: Banner(
-          message: widget.isNew
-              ? localizations.newTag.toUpperCase()
-              : localizations.modifiedTag.toUpperCase(),
+          message: widget.isDuplicated
+              ? localizations.duplicatedTag.toUpperCase()
+              : (widget.isNew
+                    ? localizations.newTag.toUpperCase()
+                    : localizations.modifiedTag.toUpperCase()),
           location: BannerLocation.topStart,
-          color: widget.isModified
-              ? Theme.of(context).extension<CustomColors>()!.aiIconColor!
-              : AppTheme.secondaryColor,
+          color: widget.isDuplicated
+              ? Theme.of(context).extension<CustomColors>()!.onWarningContainer!
+              : (widget.isModified
+                    ? Theme.of(context).extension<CustomColors>()!.aiIconColor!
+                    : AppTheme.secondaryColor),
           textStyle: const TextStyle(
             fontSize: 7,
             fontWeight: FontWeight.w900,

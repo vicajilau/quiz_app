@@ -234,6 +234,9 @@ class QuizFileRepository {
   bool isQuestionNew(int index, Question question) {
     final originalFile = _fileService.originalFile;
     if (originalFile == null) return true;
+    if (originalFile.questions.any((q) => q == question)) {
+      return false;
+    }
     return !originalFile.questions.any(
       (q) => q.identityHash == question.identityHash,
     );
@@ -246,7 +249,7 @@ class QuizFileRepository {
       (q) => q.identityHash == question.identityHash,
     );
     if (originals.isEmpty) return false;
-    return originals.first != question;
+    return !originals.any((original) => original == question);
   }
 
   bool isStudyChunkNew(int index, StudyChunk chunk) {

@@ -1974,4 +1974,8 @@
   "@noInternetConnection": {
     "description": "Error message shown when the device has no internet connection."
   }
+  ,"duplicatedTag": "重复",
+  "@duplicatedTag": {
+    "description": "Tag to indicate an item is duplicated"
+  }
 }

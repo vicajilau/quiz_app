@@ -20,6 +20,7 @@ import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
@@ -49,10 +50,13 @@ class StudyIndexView extends StatelessWidget {
     final targetChunk = state.chunks[index];
     if (targetChunk.status != StudyChunkState.completed &&
         targetChunk.status != StudyChunkState.downloaded) {
-      final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>().getIsAiAvailable();
+      final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
+          .getIsAiAvailable();
       if (!isAiAvailable) {
         if (context.mounted) {
-          context.presentSnackBar(AppLocalizations.of(context)!.aiApiKeyRequired);
+          context.presentSnackBar(
+            AppLocalizations.of(context)!.aiApiKeyRequired,
+          );
         }
         return;
       }
@@ -82,6 +86,8 @@ class StudyIndexView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final duplicateChunkCounts = _buildChunkDuplicateCounts(state.chunks);
+
     return Padding(
       padding: EdgeInsets.only(
         top: MediaQuery.of(context).padding.top,
@@ -91,15 +97,44 @@ class StudyIndexView extends StatelessWidget {
         builder: (context, constraints) {
           final isWide = constraints.maxWidth >= 800;
           if (isWide) {
-            return _buildDesktopLayout(context);
+            return _buildDesktopLayout(context, duplicateChunkCounts);
           }
-          return _buildMobileLayout(context);
+          return _buildMobileLayout(context, duplicateChunkCounts);
         },
       ),
     );
   }
 
-  Widget _buildMobileLayout(BuildContext context) {
+  Map<String, int> _buildChunkDuplicateCounts(List<StudyChunk> chunks) {
+    final counts = <String, int>{};
+    for (final chunk in chunks) {
+      final key = _normalizeChunkKey(chunk);
+      counts[key] = (counts[key] ?? 0) + 1;
+    }
+    return counts;
+  }
+
+  bool _isChunkDuplicated(StudyChunk chunk, Map<String, int> counts) {
+    final key = _normalizeChunkKey(chunk);
+    return (counts[key] ?? 0) > 1;
+  }
+
+  String _normalizeChunkKey(StudyChunk chunk) {
+    final source = chunk.sourceReference;
+    return [
+      source.documentId.trim().toLowerCase(),
+      source.startPage,
+      source.endPage,
+      source.startOffset,
+      source.endOffset,
+      source.blockType.trim().toLowerCase(),
+    ].join('|');
+  }
+
+  Widget _buildMobileLayout(
+    BuildContext context,
+    Map<String, int> duplicateChunkCounts,
+  ) {
     if (state.isSelectionMode) {
       return ReorderableListView.builder(
         padding: const EdgeInsets.all(20),
@@ -134,6 +169,7 @@ class StudyIndexView extends StatelessWidget {
                   .isStudyChunkNew(index, chunk),
               isModified: ServiceLocator.getIt<CheckFileChangesUseCase>()
                   .isStudyChunkModified(index, chunk),
+              isDuplicated: _isChunkDuplicated(chunk, duplicateChunkCounts),
               onTap: () {
                 if (state.isSelectionMode) {
                   context.read<StudyExecutionBloc>().add(
@@ -212,6 +248,7 @@ class StudyIndexView extends StatelessWidget {
                     .isStudyChunkNew(index, chunk),
                 isModified: ServiceLocator.getIt<CheckFileChangesUseCase>()
                     .isStudyChunkModified(index, chunk),
+                isDuplicated: _isChunkDuplicated(chunk, duplicateChunkCounts),
                 onTap: () {
                   if (state.isSelectionMode) {
                     context.read<StudyExecutionBloc>().add(
@@ -234,10 +271,13 @@ class StudyIndexView extends StatelessWidget {
     );
   }
 
-  Widget _buildDesktopLayout(BuildContext context) {
+  Widget _buildDesktopLayout(
+    BuildContext context,
+    Map<String, int> duplicateChunkCounts,
+  ) {
     if (state.isSelectionMode) {
       // Use single column ReorderableListView even on desktop for functional reordering
-      return _buildMobileLayout(context);
+      return _buildMobileLayout(context, duplicateChunkCounts);
     }
 
     return Row(
@@ -320,6 +360,10 @@ class StudyIndexView extends StatelessWidget {
                                           i,
                                           state.chunks[i],
                                         ),
+                                isDuplicated: _isChunkDuplicated(
+                                  state.chunks[i],
+                                  duplicateChunkCounts,
+                                ),
                                 onTap: () {
                                   if (state.isSelectionMode) {
                                     context.read<StudyExecutionBloc>().add(
@@ -370,6 +414,10 @@ class StudyIndexView extends StatelessWidget {
                                           i,
                                           state.chunks[i],
                                         ),
+                                isDuplicated: _isChunkDuplicated(
+                                  state.chunks[i],
+                                  duplicateChunkCounts,
+                                ),
                                 onTap: () {
                                   if (state.isSelectionMode) {
                                     context.read<StudyExecutionBloc>().add(

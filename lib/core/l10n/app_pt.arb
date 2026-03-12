@@ -2013,4 +2013,8 @@
   "@noInternetConnection": {
     "description": "Error message shown when the device has no internet connection."
   }
+  ,"duplicatedTag": "Duplicado",
+  "@duplicatedTag": {
+    "description": "Tag to indicate an item is duplicated"
+  }
 }
