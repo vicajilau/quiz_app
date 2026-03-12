@@ -511,8 +511,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                     : AppLocalizations.of(context)!.modifiedTag.toUpperCase()),
           location: BannerLocation.topStart,
           color: widget.isDuplicated
-              ? (Theme.of(context).extension<CustomColors>()?.warning ??
-                    AppTheme.secondaryColor)
+              ? Theme.of(context).extension<CustomColors>()!.onWarningContainer!
               : (widget.isModified
                     ? Theme.of(context).extension<CustomColors>()!.aiIconColor!
                     : AppTheme.secondaryColor),
