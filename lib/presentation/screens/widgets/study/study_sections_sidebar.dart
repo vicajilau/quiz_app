@@ -18,6 +18,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
+import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
@@ -337,7 +338,10 @@ class _SidebarChunkItem extends StatelessWidget {
                               decoration: BoxDecoration(
                                 color:
                                     (isDuplicated
-                                            ? AppTheme.errorColor
+                                            ? (Theme.of(context)
+                                                      .extension<CustomColors>()
+                                                      ?.warning ??
+                                                  AppTheme.secondaryColor)
                                             : AppTheme.secondaryColor)
                                         .withValues(alpha: 0.2),
                                 borderRadius: BorderRadius.circular(4),
@@ -352,7 +356,10 @@ class _SidebarChunkItem extends StatelessWidget {
                                   fontSize: 9,
                                   fontWeight: FontWeight.w800,
                                   color: isDuplicated
-                                      ? AppTheme.errorColor
+                                      ? (Theme.of(context)
+                                                .extension<CustomColors>()
+                                                ?.warning ??
+                                            AppTheme.secondaryColor)
                                       : AppTheme.secondaryColor,
                                 ),
                               ),
