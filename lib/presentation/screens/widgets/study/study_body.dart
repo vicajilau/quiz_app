@@ -336,7 +336,19 @@ class _StudyBodyState extends State<StudyBody>
                     localizations: localizations,
                     isFullScreen: isMobile,
                     onClose: _closeSidebar,
-                    onChunkSelected: (index) {
+                    onChunkSelected: (index) async {
+                      final targetChunk = state.chunks[index];
+                      if (targetChunk.status != StudyChunkState.completed &&
+                          targetChunk.status != StudyChunkState.downloaded) {
+                        final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>().getIsAiAvailable();
+                        if (!isAiAvailable) {
+                          if (context.mounted) {
+                            context.presentSnackBar(AppLocalizations.of(context)!.aiApiKeyRequired);
+                          }
+                          return;
+                        }
+                      }
+                      if (!context.mounted) return;
                       context.read<StudyExecutionBloc>().add(
                         StudyChunkRequested(index),
                       );

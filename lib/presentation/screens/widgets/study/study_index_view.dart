@@ -20,6 +20,7 @@ import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
@@ -44,8 +45,21 @@ class StudyIndexView extends StatelessWidget {
     this.onImport,
   });
 
-  void _onChunkTap(BuildContext context, int index) {
-    context.read<StudyExecutionBloc>().add(StudyChunkRequested(index));
+  Future<void> _onChunkTap(BuildContext context, int index) async {
+    final targetChunk = state.chunks[index];
+    if (targetChunk.status != StudyChunkState.completed &&
+        targetChunk.status != StudyChunkState.downloaded) {
+      final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>().getIsAiAvailable();
+      if (!isAiAvailable) {
+        if (context.mounted) {
+          context.presentSnackBar(AppLocalizations.of(context)!.aiApiKeyRequired);
+        }
+        return;
+      }
+    }
+    if (context.mounted) {
+      context.read<StudyExecutionBloc>().add(StudyChunkRequested(index));
+    }
   }
 
   Future<void> _onChunkDownload(BuildContext context, int index) async {
