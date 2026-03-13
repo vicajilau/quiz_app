@@ -2027,4 +2027,12 @@
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
   }
+  ,"supportLabel": "Suport",
+  "@supportLabel": {
+    "description": "Label for the support action in settings"
+  },
+  "supportDescription": "Obre incidències de GitHub amb detalls de l'aplicació i la plataforma",
+  "@supportDescription": {
+    "description": "Description for the support action in settings"
+  }
 }

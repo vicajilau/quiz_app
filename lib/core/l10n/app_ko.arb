@@ -617,4 +617,12 @@
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
   }
+  ,"supportLabel": "지원",
+  "@supportLabel": {
+    "description": "Label for the support action in settings"
+  },
+  "supportDescription": "앱 및 플랫폼 세부정보와 함께 GitHub Issues 열기",
+  "@supportDescription": {
+    "description": "Description for the support action in settings"
+  }
 }

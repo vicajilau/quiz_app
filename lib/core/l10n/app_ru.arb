@@ -633,4 +633,12 @@
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
   }
+  ,"supportLabel": "Поддержка",
+  "@supportLabel": {
+    "description": "Label for the support action in settings"
+  },
+  "supportDescription": "Открыть GitHub Issues с данными приложения и платформы",
+  "@supportDescription": {
+    "description": "Description for the support action in settings"
+  }
 }

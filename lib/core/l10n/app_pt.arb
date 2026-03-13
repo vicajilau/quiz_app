@@ -2017,4 +2017,12 @@
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
   }
+  ,"supportLabel": "Suporte",
+  "@supportLabel": {
+    "description": "Label for the support action in settings"
+  },
+  "supportDescription": "Abrir issues no GitHub com detalhes da aplicação e da plataforma",
+  "@supportDescription": {
+    "description": "Description for the support action in settings"
+  }
 }
