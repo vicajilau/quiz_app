@@ -232,7 +232,15 @@ class AiQuestionGenerationService {
     final languageText = _getLanguageName(config.language);
 
     String header;
-    if (config.hasFile) {
+    if (config.hasChunks) {
+      final chunksContent = _buildChunksContent(config.selectedChunks!);
+      header =
+          '''
+          Based on the following selected document sections, generate $questionCountText quiz questions $questionTypesText in $languageText.
+
+          $chunksContent
+          ''';
+    } else if (config.hasFile) {
       final userComments = config.content.trim();
       final commentsSection = userComments.isNotEmpty
           ? '\nADDITIONAL INSTRUCTIONS FROM THE USER:\n$userComments\n'
@@ -259,7 +267,9 @@ class AiQuestionGenerationService {
           ''';
     }
 
-    final sourceReference = config.hasFile
+    final sourceReference = config.hasChunks
+        ? 'the selected document sections'
+        : config.hasFile
         ? 'the content of the attached file'
         : config.generationMode == AiGenerationMode.topic
         ? 'the provided topics'
@@ -572,6 +582,28 @@ IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
 
     buffer.write('\n${localizations.studentComment}: "$userQuestion"');
 
+    return buffer.toString();
+  }
+
+  /// Builds a rich text representation of the selected chunks for the prompt.
+  static String _buildChunksContent(List<StudyChunk> chunks) {
+    final buffer = StringBuffer();
+    for (final chunk in chunks) {
+      buffer.writeln('--- ${chunk.title} ---');
+      if (chunk.aiSummary != null && chunk.aiSummary!.isNotEmpty) {
+        buffer.writeln('Summary: ${chunk.aiSummary}');
+      }
+      if (chunk.pages.isNotEmpty) {
+        buffer.writeln('Content:');
+        for (final page in chunk.pages) {
+          for (final element in page.uiElements) {
+            final text = _extractTextFromUiElement(element);
+            if (text.isNotEmpty) buffer.writeln(text);
+          }
+        }
+      }
+      buffer.writeln();
+    }
     return buffer.toString();
   }
 
