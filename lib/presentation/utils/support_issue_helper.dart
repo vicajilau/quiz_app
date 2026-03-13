@@ -17,10 +17,8 @@ import 'package:platform_detail/platform_detail.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SupportIssueHelper {
-  static Future<Uri> buildIssueUri({
-    required String appVersion,
-    required String appBuildNumber,
-  }) async {
+  static Future<Uri> buildIssueUri() async {
+    final versionDetails = await PlatformDetail.versionDetails();
     final details = await PlatformDetail.environmentDetails();
     final body = StringBuffer()
       ..writeln('## Summary')
@@ -38,8 +36,9 @@ class SupportIssueHelper {
       ..writeln('What actually happened?')
       ..writeln()
       ..writeln('## Environment')
-      ..writeln('- App version: $appVersion')
-      ..writeln('- App build number: $appBuildNumber')
+      ..writeln('- App version: ${versionDetails.version}')
+      ..writeln('- App build number: ${versionDetails.buildNumber}')
+      ..writeln('- App package: ${versionDetails.packageName}')
       ..writeln('- Platform: ${details.platform}')
       ..writeln('- Device model: ${details.deviceModel}')
       ..writeln('- Locale: ${details.locale}')

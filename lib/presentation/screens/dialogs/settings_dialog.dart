@@ -17,7 +17,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:package_info_plus/package_info_plus.dart';
+import 'package:platform_detail/platform_detail.dart';
+import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
@@ -39,7 +40,6 @@ class SettingsDialog extends StatefulWidget {
 class _SettingsDialogState extends State<SettingsDialog> {
   bool _isLoading = true;
   String _appVersion = '-';
-  String _appBuildNumber = '-';
   bool _aiAssistantEnabled = true;
   bool _keepAiDraft = true;
   final TextEditingController _openAiApiKeyController = TextEditingController();
@@ -68,18 +68,16 @@ class _SettingsDialogState extends State<SettingsDialog> {
       _keepAiDraft = await configurationService.getAiKeepDraft();
       _defaultAIModel = await configurationService.getDefaultAIModel();
       _aiAssistantEnabled = await configurationService.getIsAiAvailable();
-
-      final packageInfo = await PackageInfo.fromPlatform();
+      final versionDetails = await PlatformDetail.versionDetails();
       final versionLabel = kReleaseMode
-          ? packageInfo.version
-          : '${packageInfo.version}-debug';
+          ? versionDetails.version
+          : '${versionDetails.version}-debug';
 
       if (mounted) {
         setState(() {
           _openAiApiKeyController.text = apiKey ?? '';
           _geminiApiKeyController.text = geminiApiKey ?? '';
           _appVersion = versionLabel;
-          _appBuildNumber = packageInfo.buildNumber;
           _isLoading = false; // Important: set as finished
         });
       }
@@ -88,13 +86,8 @@ class _SettingsDialogState extends State<SettingsDialog> {
         setState(() {
           _isLoading = false; // Also set in case of error
         });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              AppLocalizations.of(context)!.errorLoadingSettings(e.toString()),
-            ),
-            backgroundColor: Theme.of(context).colorScheme.error,
-          ),
+        context.presentSnackBar(
+          AppLocalizations.of(context)!.errorLoadingSettings(e.toString()),
         );
       }
     }
@@ -170,20 +163,12 @@ class _SettingsDialogState extends State<SettingsDialog> {
   }
 
   Future<void> _openSupportIssueUrl() async {
-    final url = await SupportIssueHelper.buildIssueUri(
-      appVersion: _appVersion,
-      appBuildNumber: _appBuildNumber,
-    );
+    final url = await SupportIssueHelper.buildIssueUri();
     final launched = await SupportIssueHelper.openIssueUrl(url);
 
     if (!launched && mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            AppLocalizations.of(context)!.couldNotOpenUrl(url.toString()),
-          ),
-          backgroundColor: Theme.of(context).colorScheme.error,
-        ),
+      context.presentSnackBar(
+        AppLocalizations.of(context)!.couldNotOpenUrl(url.toString()),
       );
     }
   }
