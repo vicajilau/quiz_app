@@ -57,6 +57,7 @@ dependencies:
   google_fonts: ^8.0.2
   lucide_icons: ^0.257.0
   path_provider: ^2.1.5
+  package_info_plus: ^8.3.0
   collection: ^1.19.1
   pasteboard: ^0.5.0
   dio: ^5.9.2

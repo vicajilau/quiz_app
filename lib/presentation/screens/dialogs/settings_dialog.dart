@@ -13,18 +13,19 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
-import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
-import 'package:quizdy/presentation/widgets/quizdy_button.dart';
+import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_widgets/ai_settings_section.dart';
-import 'package:flutter/foundation.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_widgets/advanced_settings_section.dart';
+import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 import 'package:quizdy/routes/app_router.dart';
 
 class SettingsDialog extends StatefulWidget {
@@ -36,6 +37,7 @@ class SettingsDialog extends StatefulWidget {
 
 class _SettingsDialogState extends State<SettingsDialog> {
   bool _isLoading = true;
+  String _appVersion = '-';
   bool _aiAssistantEnabled = true;
   bool _keepAiDraft = true;
   final TextEditingController _openAiApiKeyController = TextEditingController();
@@ -65,10 +67,17 @@ class _SettingsDialogState extends State<SettingsDialog> {
       _defaultAIModel = await configurationService.getDefaultAIModel();
       _aiAssistantEnabled = await configurationService.getIsAiAvailable();
 
+      final packageInfo = await PackageInfo.fromPlatform();
+      final versionLabel =
+          kReleaseMode
+              ? packageInfo.version
+              : '${packageInfo.version}-debug';
+
       if (mounted) {
         setState(() {
           _openAiApiKeyController.text = apiKey ?? '';
           _geminiApiKeyController.text = geminiApiKey ?? '';
+          _appVersion = versionLabel;
           _isLoading = false; // Important: set as finished
         });
       }
@@ -300,6 +309,11 @@ class _SettingsDialogState extends State<SettingsDialog> {
                           Divider(color: colors.border),
                           const SizedBox(height: 16),
                           _OnboardingRow(colors: colors),
+                          const SizedBox(height: 8),
+                          _VersionRow(
+                            colors: colors,
+                            version: _appVersion,
+                          ),
                         ],
                       ),
                     ),
@@ -382,6 +396,58 @@ class _OnboardingRow extends StatelessWidget {
             Icon(LucideIcons.chevronRight, size: 18, color: colors.subtitle),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _VersionRow extends StatelessWidget {
+  final ConfirmingDialogColorsExtension colors;
+  final String version;
+
+  const _VersionRow({required this.colors, required this.version});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        children: [
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: colors.surface,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Icon(LucideIcons.info, size: 20, color: colors.subtitle),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.versionLabel,
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: colors.title,
+                  ),
+                ),
+                Text(
+                  version,
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 12,
+                    color: colors.subtitle,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
