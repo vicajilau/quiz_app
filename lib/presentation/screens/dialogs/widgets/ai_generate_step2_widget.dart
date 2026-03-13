@@ -30,6 +30,8 @@ import 'package:quizdy/domain/models/ai/ai_question_type.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
+import 'package:quizdy/presentation/screens/dialogs/widgets/ai_chunk_selector_widget.dart';
 import 'package:quizdy/presentation/widgets/dialog_drop_zone.dart';
 import 'package:quizdy/presentation/widgets/components/ai_content_input_zone.dart';
 import 'package:quizdy/presentation/widgets/components/ai_file_upload_zone.dart';
@@ -38,6 +40,7 @@ import 'package:quizdy/presentation/widgets/components/collapsible_generation_co
 
 class AiGenerateStep2Widget extends StatefulWidget {
   final bool isStudyMode;
+  final List<StudyChunk>? chunks;
   final TextEditingController textController;
   final TextEditingController? questionCountController;
   final int? questionCount;
@@ -66,6 +69,7 @@ class AiGenerateStep2Widget extends StatefulWidget {
   const AiGenerateStep2Widget({
     super.key,
     this.isStudyMode = false,
+    this.chunks,
     required this.textController,
     this.questionCountController,
     this.questionCount,
@@ -101,6 +105,8 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
   late final ScrollController _scrollController;
   final GlobalKey _configKey = GlobalKey();
   bool _isDragging = false;
+  bool _chunkSelectorEnabled = false;
+  late Set<int> _selectedChunkIndices;
 
   @override
   void initState() {
@@ -109,6 +115,12 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
     _questionCountFocusNode = FocusNode();
     _questionCountFocusNode.addListener(_onFocusChange);
     _scrollController = ScrollController();
+    final chunks = widget.chunks;
+    if (chunks != null && chunks.isNotEmpty) {
+      _selectedChunkIndices = chunks.map((c) => c.chunkIndex).toSet();
+    } else {
+      _selectedChunkIndices = {};
+    }
   }
 
   @override
@@ -155,6 +167,14 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
       ),
     );
     widget.onAutoDifficultyChanged(true);
+  }
+
+  bool _isGenerateEnabled() {
+    if (_chunkSelectorEnabled) {
+      return _selectedChunkIndices.isNotEmpty;
+    }
+    return widget.textController.text.isNotEmpty ||
+        widget.fileAttachment != null;
   }
 
   @override
@@ -225,6 +245,28 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                   color: colors.subtitle,
                 ),
               ),
+              if (widget.chunks != null && widget.chunks!.isNotEmpty) ...[
+                const SizedBox(height: 16),
+                AiChunkSelectorWidget(
+                  chunks: widget.chunks!,
+                  enabled: _chunkSelectorEnabled,
+                  selectedIndices: _selectedChunkIndices,
+                  onToggle: (value) {
+                    setState(() {
+                      _chunkSelectorEnabled = value;
+                    });
+                  },
+                  onChunkToggled: (index) {
+                    setState(() {
+                      if (_selectedChunkIndices.contains(index)) {
+                        _selectedChunkIndices.remove(index);
+                      } else {
+                        _selectedChunkIndices.add(index);
+                      }
+                    });
+                  },
+                ),
+              ],
               const SizedBox(height: 24),
 
               // Scrollable Content
@@ -234,37 +276,40 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Input Area
-                      AiContentInputZone(
-                        controller: widget.textController,
-                        wordCountText: widget.getWordCountText(),
-                        generationMode: widget.fileAttachment != null
-                            ? AiGenerationMode.context
-                            : (widget.getTopicCount() > 10
-                                  ? AiGenerationMode.topic
-                                  : AiGenerationMode.text),
-                      ),
-                      const SizedBox(height: 12),
-
-                      // Attach File
-                      AiFileUploadZone(
-                        onPickFile: widget.onPickFile,
-                        onRemoveFile: widget.onRemoveFile,
-                        onAutoDifficultyChanged: widget.onAutoDifficultyChanged,
-                        fileAttachment: widget.fileAttachment,
-                        isDragging: _isDragging,
-                      ),
-                      if (widget.fileAttachment == null) ...[
-                        const SizedBox(height: 8),
-                        QuizdyButton(
-                          type: QuizdyButtonType.secondary,
-                          title: localizations.pasteFromClipboard,
-                          icon: LucideIcons.clipboardPaste,
-                          expanded: true,
-                          onPressed: widget.onPasteFromClipboard,
+                      if (!_chunkSelectorEnabled) ...[
+                        // Input Area
+                        AiContentInputZone(
+                          controller: widget.textController,
+                          wordCountText: widget.getWordCountText(),
+                          generationMode: widget.fileAttachment != null
+                              ? AiGenerationMode.context
+                              : (widget.getTopicCount() > 10
+                                    ? AiGenerationMode.topic
+                                    : AiGenerationMode.text),
                         ),
+                        const SizedBox(height: 12),
+
+                        // Attach File
+                        AiFileUploadZone(
+                          onPickFile: widget.onPickFile,
+                          onRemoveFile: widget.onRemoveFile,
+                          onAutoDifficultyChanged:
+                              widget.onAutoDifficultyChanged,
+                          fileAttachment: widget.fileAttachment,
+                          isDragging: _isDragging,
+                        ),
+                        if (widget.fileAttachment == null) ...[
+                          const SizedBox(height: 8),
+                          QuizdyButton(
+                            type: QuizdyButtonType.secondary,
+                            title: localizations.pasteFromClipboard,
+                            icon: LucideIcons.clipboardPaste,
+                            expanded: true,
+                            onPressed: widget.onPasteFromClipboard,
+                          ),
+                        ],
+                        const SizedBox(height: 24),
                       ],
-                      const SizedBox(height: 24),
                       CollapsibleGenerationConfig(
                         key: _configKey,
                         onExpand: () {
@@ -322,51 +367,94 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                       title: localizations.generateButton,
                       icon: LucideIcons.sparkles,
                       expanded: true,
-                      onPressed:
-                          (widget.textController.text.isNotEmpty ||
-                              widget.fileAttachment != null)
+                      onPressed: _isGenerateEnabled()
                           ? () {
-                              final mode = widget.fileAttachment != null
-                                  ? AiGenerationMode.context
-                                  : (widget.getTopicCount() <= 10
-                                        ? AiGenerationMode.topic
-                                        : AiGenerationMode.text);
-
-                              final config = widget.isStudyMode
-                                  ? AiStudyGenerationConfig(
-                                      language: widget.selectedLanguage,
-                                      content: widget.textController.text
-                                          .trim(),
-                                      preferredService: widget.selectedService,
-                                      preferredModel: widget.selectedModel,
-                                      file: widget.fileAttachment,
-                                      generationMode: mode,
-                                      isAutoDifficulty: widget.isAutoDifficulty,
-                                      difficultyLevel: widget.isAutoDifficulty
-                                          ? null
-                                          : widget.selectedDifficulty,
+                              if (_chunkSelectorEnabled &&
+                                  widget.chunks != null) {
+                                final selectedChunks = widget.chunks!
+                                    .where(
+                                      (c) => _selectedChunkIndices.contains(
+                                        c.chunkIndex,
+                                      ),
                                     )
-                                  : AiQuestionGenerationConfig(
-                                      questionCount: widget.questionCount ?? 5,
-                                      questionTypes:
-                                          widget.selectedQuestionTypes
-                                              ?.toList() ??
-                                          [],
-                                      language: widget.selectedLanguage,
-                                      content: widget.textController.text
-                                          .trim(),
-                                      preferredService: widget.selectedService,
-                                      preferredModel: widget.selectedModel,
-                                      file: widget.fileAttachment,
-                                      generationMode: mode,
-                                      generationCategory:
-                                          widget.selectedCategory,
-                                      isAutoDifficulty: widget.isAutoDifficulty,
-                                      difficultyLevel: widget.isAutoDifficulty
-                                          ? null
-                                          : widget.selectedDifficulty,
-                                    );
-                              widget.onGenerate(config);
+                                    .toList();
+                                final config = widget.isStudyMode
+                                    ? AiStudyGenerationConfig(
+                                        language: widget.selectedLanguage,
+                                        content: '',
+                                        preferredService: widget.selectedService,
+                                        preferredModel: widget.selectedModel,
+                                        file: null,
+                                        generationMode: AiGenerationMode.text,
+                                        isAutoDifficulty: widget.isAutoDifficulty,
+                                        difficultyLevel: widget.isAutoDifficulty
+                                            ? null
+                                            : widget.selectedDifficulty,
+                                      )
+                                    : AiQuestionGenerationConfig(
+                                        questionCount: widget.questionCount ?? 5,
+                                        questionTypes:
+                                            widget.selectedQuestionTypes
+                                                ?.toList() ??
+                                            [],
+                                        language: widget.selectedLanguage,
+                                        content: '',
+                                        preferredService: widget.selectedService,
+                                        preferredModel: widget.selectedModel,
+                                        file: null,
+                                        generationMode: AiGenerationMode.text,
+                                        generationCategory:
+                                            widget.selectedCategory,
+                                        isAutoDifficulty: widget.isAutoDifficulty,
+                                        difficultyLevel: widget.isAutoDifficulty
+                                            ? null
+                                            : widget.selectedDifficulty,
+                                        selectedChunks: selectedChunks,
+                                      );
+                                widget.onGenerate(config);
+                              } else {
+                                final mode = widget.fileAttachment != null
+                                    ? AiGenerationMode.context
+                                    : (widget.getTopicCount() <= 10
+                                          ? AiGenerationMode.topic
+                                          : AiGenerationMode.text);
+
+                                final config = widget.isStudyMode
+                                    ? AiStudyGenerationConfig(
+                                        language: widget.selectedLanguage,
+                                        content: widget.textController.text
+                                            .trim(),
+                                        preferredService: widget.selectedService,
+                                        preferredModel: widget.selectedModel,
+                                        file: widget.fileAttachment,
+                                        generationMode: mode,
+                                        isAutoDifficulty: widget.isAutoDifficulty,
+                                        difficultyLevel: widget.isAutoDifficulty
+                                            ? null
+                                            : widget.selectedDifficulty,
+                                      )
+                                    : AiQuestionGenerationConfig(
+                                        questionCount: widget.questionCount ?? 5,
+                                        questionTypes:
+                                            widget.selectedQuestionTypes
+                                                ?.toList() ??
+                                            [],
+                                        language: widget.selectedLanguage,
+                                        content: widget.textController.text
+                                            .trim(),
+                                        preferredService: widget.selectedService,
+                                        preferredModel: widget.selectedModel,
+                                        file: widget.fileAttachment,
+                                        generationMode: mode,
+                                        generationCategory:
+                                            widget.selectedCategory,
+                                        isAutoDifficulty: widget.isAutoDifficulty,
+                                        difficultyLevel: widget.isAutoDifficulty
+                                            ? null
+                                            : widget.selectedDifficulty,
+                                      );
+                                widget.onGenerate(config);
+                              }
                             }
                           : null,
                     ),
