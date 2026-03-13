@@ -933,4 +933,12 @@
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   }
+  ,"supportLabel": "Υποστήριξη",
+  "@supportLabel": {
+    "description": "Label for the support action in settings"
+  },
+  "supportDescription": "Άνοιγμα θεμάτων GitHub με λεπτομέρειες εφαρμογής και πλατφόρμας",
+  "@supportDescription": {
+    "description": "Description for the support action in settings"
+  }
 }

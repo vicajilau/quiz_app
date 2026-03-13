@@ -658,4 +658,12 @@
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   }
+  ,"supportLabel": "Підтримка",
+  "@supportLabel": {
+    "description": "Label for the support action in settings"
+  },
+  "supportDescription": "Відкрити GitHub Issues з даними застосунку та платформи",
+  "@supportDescription": {
+    "description": "Description for the support action in settings"
+  }
 }

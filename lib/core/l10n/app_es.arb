@@ -1997,6 +1997,14 @@
   "@showOnboardingDescription": {
     "description": "Descripción del botón para volver a abrir el onboarding"
   },
+  "supportLabel": "Soporte",
+  "@supportLabel": {
+    "description": "Etiqueta para la acción de soporte en ajustes"
+  },
+  "supportDescription": "Abrir GitHub Issues con detalles de versión y plataforma",
+  "@supportDescription": {
+    "description": "Descripción para la acción de soporte en ajustes"
+  },
   "onboardingBack": "Atrás",
   "@onboardingBack": {
     "description": "Botón atrás en la navegación del onboarding"

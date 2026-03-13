@@ -2036,6 +2036,14 @@
   "@showOnboardingDescription": {
     "description": "Description for the button to re-open the onboarding flow"
   },
+  "supportLabel": "Support",
+  "@supportLabel": {
+    "description": "Label for the support action in settings"
+  },
+  "supportDescription": "Open GitHub Issues with app and platform details",
+  "@supportDescription": {
+    "description": "Description for the support action in settings"
+  },
   "onboardingBack": "Back",
   "@onboardingBack": {
     "description": "Back button in onboarding navigation"

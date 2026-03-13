@@ -1985,4 +1985,12 @@
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   }
+  ,"supportLabel": "支持",
+  "@supportLabel": {
+    "description": "Label for the support action in settings"
+  },
+  "supportDescription": "使用应用和平台详细信息打开 GitHub Issues",
+  "@supportDescription": {
+    "description": "Description for the support action in settings"
+  }
 }
