@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.9.1]
 
 - feat: Added app version display in Settings appending `-debug` to the version label in non-release builds.
+- feat: Added support action in Settings to open GitHub Issues prefilled with app version and platform details.
 
 ## [1.9.0] - 2026-03-12
 
