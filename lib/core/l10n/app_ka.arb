@@ -624,6 +624,42 @@
   "aiSelectSectionsSubtitle": "ჩართეთ დოკუმენტის იმ სექციების ასარჩევად, საიდანაც შეიქმნება კითხვები",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
+  },
+  "onboardingStudyContentTitle": "შეისწავლეთ თქვენი კონტენტი",
+  "@onboardingStudyContentTitle": {
+    "description": "Title of the study content onboarding page"
+  },
+  "onboardingStudyContentDescription": "მოაწყვეთ თქვენი მასალა სასწავლო სექციებად. შემოიტანეთ ფაილები, დაამატეთ ხელით, ან მიეცით ხელოვნურ ინტელექტს კონტენტის გენერირების უფლება.",
+  "@onboardingStudyContentDescription": {
+    "description": "Description of the study content onboarding page"
+  },
+  "onboardingStudyContentSubtitle": "მოაწყვეთ, შექმენით და ისწავლეთ",
+  "@onboardingStudyContentSubtitle": {
+    "description": "Subtitle of the study content onboarding page"
+  },
+  "onboardingStudyStepAddTitle": "მასალის დამატება",
+  "@onboardingStudyStepAddTitle": {
+    "description": "Step 1 title in study content onboarding page"
+  },
+  "onboardingStudyStepAddDescription": "დაწერეთ სექციები ან შემოიტანეთ .quiz ფაილებიდან",
+  "@onboardingStudyStepAddDescription": {
+    "description": "Step 1 description in study content onboarding page"
+  },
+  "onboardingStudyStepGenerateTitle": "ხელოვნური ინტელექტის გენერირება",
+  "@onboardingStudyStepGenerateTitle": {
+    "description": "Step 2 title in study content onboarding page"
+  },
+  "onboardingStudyStepGenerateDescription": "ხელოვნური ინტელექტი ქმნის სასწავლო სექციებს თქვენი დოკუმენტებიდან",
+  "@onboardingStudyStepGenerateDescription": {
+    "description": "Step 2 description in study content onboarding page"
+  },
+  "onboardingStudyStepStudyTitle": "შექმნილი სექციების შესწავლა",
+  "@onboardingStudyStepStudyTitle": {
+    "description": "Step 3 title in study content onboarding page"
+  },
+  "onboardingStudyStepStudyDescription": "ნავიგაცია გაუკეთეთ თითოეულ სექციას და გაიუმჯობესეთ სწავლა",
+  "@onboardingStudyStepStudyDescription": {
+    "description": "Step 3 description in study content onboarding page"
   }
   ,"supportLabel": "მხარდაჭერა",
   "@supportLabel": {

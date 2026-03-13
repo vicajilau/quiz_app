@@ -17,7 +17,7 @@ class OnboardingState {
   final int currentPage;
   final int totalPages;
 
-  const OnboardingState({this.currentPage = 0, this.totalPages = 4});
+  const OnboardingState({this.currentPage = 0, this.totalPages = 5});
 
   bool get isFirstPage => currentPage == 0;
   bool get isLastPage => currentPage == totalPages - 1;

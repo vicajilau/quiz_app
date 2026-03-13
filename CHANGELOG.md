@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - feat: Added app version display in Settings appending `-debug` to the version label in non-release builds.
 - feat: Added support action in Settings to open GitHub Issues prefilled with app version and platform details.
+- ui: Added "Study Your Content" onboarding page (position 2) explaining study sections, AI generation, and material import, with responsive mobile and desktop layouts.
 
 ## [1.9.0] - 2026-03-12
 
