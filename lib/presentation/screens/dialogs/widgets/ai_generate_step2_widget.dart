@@ -245,28 +245,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                   color: colors.subtitle,
                 ),
               ),
-              if (widget.chunks != null && widget.chunks!.isNotEmpty) ...[
-                const SizedBox(height: 16),
-                AiChunkSelectorWidget(
-                  chunks: widget.chunks!,
-                  enabled: _chunkSelectorEnabled,
-                  selectedIndices: _selectedChunkIndices,
-                  onToggle: (value) {
-                    setState(() {
-                      _chunkSelectorEnabled = value;
-                    });
-                  },
-                  onChunkToggled: (index) {
-                    setState(() {
-                      if (_selectedChunkIndices.contains(index)) {
-                        _selectedChunkIndices.remove(index);
-                      } else {
-                        _selectedChunkIndices.add(index);
-                      }
-                    });
-                  },
-                ),
-              ],
               const SizedBox(height: 24),
 
               // Scrollable Content
@@ -276,6 +254,28 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      if (widget.chunks != null && widget.chunks!.isNotEmpty) ...[
+                        AiChunkSelectorWidget(
+                          chunks: widget.chunks!,
+                          enabled: _chunkSelectorEnabled,
+                          selectedIndices: _selectedChunkIndices,
+                          onToggle: (value) {
+                            setState(() {
+                              _chunkSelectorEnabled = value;
+                            });
+                          },
+                          onChunkToggled: (index) {
+                            setState(() {
+                              if (_selectedChunkIndices.contains(index)) {
+                                _selectedChunkIndices.remove(index);
+                              } else {
+                                _selectedChunkIndices.add(index);
+                              }
+                            });
+                          },
+                        ),
+                        const SizedBox(height: 24),
+                      ],
                       if (!_chunkSelectorEnabled) ...[
                         // Input Area
                         AiContentInputZone(
