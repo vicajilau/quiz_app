@@ -637,8 +637,7 @@
         "example": "https://example.com"
       }
     }
-  }
-  ,
+  },
   "aiErrorConnectionAborted": "Запит було перервано, оскільки програму було переведено у фоновий режим. Будь ласка, тримайте програму відкритою під час генерації вмісту.",
   "@aiErrorConnectionAborted": {
     "description": "Error message when a request is aborted because the app is minimized."
@@ -646,9 +645,17 @@
   "noInternetConnection": "Немає підключення до інтернету. Будь ласка, перевірте налаштування мережі та спробуйте ще раз.",
   "@noInternetConnection": {
     "description": "Error message shown when the device has no internet connection."
-  }
-  ,"duplicatedTag": "Дублікат",
+  },
+  "duplicatedTag": "Дублікат",
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
+  },
+  "aiSelectSectionsTitle": "Вибрати розділи",
+  "@aiSelectSectionsTitle": {
+    "description": "Title for the chunk section selector in AI content step"
+  },
+  "aiSelectSectionsSubtitle": "Увімкніть, щоб вибрати, з яких розділів документа створювати питання",
+  "@aiSelectSectionsSubtitle": {
+    "description": "Subtitle explaining what the section selector does"
   }
 }

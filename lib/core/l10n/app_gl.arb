@@ -1920,9 +1920,17 @@
   "noInternetConnection": "Sen conexión a internet. Por favor, comprove a súa configuración de rede e ténteo de novo.",
   "@noInternetConnection": {
     "description": "Error message shown when the device has no internet connection."
-  }
-  ,"duplicatedTag": "Duplicado",
+  },
+  "duplicatedTag": "Duplicado",
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
+  },
+  "aiSelectSectionsTitle": "Seleccionar seccións",
+  "@aiSelectSectionsTitle": {
+    "description": "Title for the chunk section selector in AI content step"
+  },
+  "aiSelectSectionsSubtitle": "Activar para escoller de que seccións do documento se xerarán as preguntas",
+  "@aiSelectSectionsSubtitle": {
+    "description": "Subtitle explaining what the section selector does"
   }
 }

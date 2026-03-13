@@ -1974,9 +1974,17 @@
   "noInternetConnection": "Nessuna connessione internet. Controlla le impostazioni di rete e riprova.",
   "@noInternetConnection": {
     "description": "Error message shown when the device has no internet connection."
-  }
-  ,"duplicatedTag": "Duplicato",
+  },
+  "duplicatedTag": "Duplicato",
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
+  },
+  "aiSelectSectionsTitle": "Seleziona sezioni",
+  "@aiSelectSectionsTitle": {
+    "description": "Title for the chunk section selector in AI content step"
+  },
+  "aiSelectSectionsSubtitle": "Abilita per scegliere da quali sezioni del documento generare le domande",
+  "@aiSelectSectionsSubtitle": {
+    "description": "Subtitle explaining what the section selector does"
   }
 }

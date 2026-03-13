@@ -2314,8 +2314,7 @@
         "example": "https://example.com"
       }
     }
-  }
-,
+  },
   "aiErrorConnectionAborted": "انقطع الطلب لأن التطبيق انتقل إلى الخلفية. يرجى إبقاء التطبيق مفتوحاً أثناء إنشاء المحتوى.",
   "@aiErrorConnectionAborted": {
     "description": "Error message when a request is aborted because the app is minimized."
@@ -2323,9 +2322,17 @@
   "noInternetConnection": "لا يوجد اتصال بالإنترنت. يرجى التحقق من إعدادات الشبكة والمحاولة مرة أخرى.",
   "@noInternetConnection": {
     "description": "Error message shown when the device has no internet connection."
-  }
-  ,"duplicatedTag": "مكرر",
+  },
+  "duplicatedTag": "مكرر",
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
+  },
+  "aiSelectSectionsTitle": "تحديد الأقسام",
+  "@aiSelectSectionsTitle": {
+    "description": "Title for the chunk section selector in AI content step"
+  },
+  "aiSelectSectionsSubtitle": "قم بتمكينه لاختيار أقسام المستند التي سيتم إنشاء الأسئلة منها",
+  "@aiSelectSectionsSubtitle": {
+    "description": "Subtitle explaining what the section selector does"
   }
 }

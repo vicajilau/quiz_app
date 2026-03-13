@@ -920,9 +920,17 @@
   "noInternetConnection": "Δεν υπάρχει σύνδεση στο διαδίκτυο. Ελέγξτε τις ρυθμίσεις δικτύου σας και δοκιμάστε ξανά.",
   "@noInternetConnection": {
     "description": "Error message shown when the device has no internet connection."
-  }
-  ,"duplicatedTag": "Διπλότυπο",
+  },
+  "duplicatedTag": "Διπλότυπο",
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
+  },
+  "aiSelectSectionsTitle": "Επιλογή Ενοτήτων",
+  "@aiSelectSectionsTitle": {
+    "description": "Title for the chunk section selector in AI content step"
+  },
+  "aiSelectSectionsSubtitle": "Ενεργοποιήστε για να επιλέξετε από ποιες ενότητες του εγγράφου θα δημιουργηθούν ερωτήσεις",
+  "@aiSelectSectionsSubtitle": {
+    "description": "Subtitle explaining what the section selector does"
   }
 }

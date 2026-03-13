@@ -1957,8 +1957,7 @@
         "example": "https://example.com"
       }
     }
-  }
-  ,
+  },
   "aiErrorConnectionAborted": "La demande a été interrompue car l'application a été envoyée en arrière-plan. Veuillez garder l'application ouverte pendant la génération du contenu.",
   "@aiErrorConnectionAborted": {
     "description": "Error message when a request is aborted because the app is minimized."
@@ -1966,9 +1965,17 @@
   "noInternetConnection": "Pas de connexion internet. Veuillez vérifier vos paramètres réseau et réessayer.",
   "@noInternetConnection": {
     "description": "Error message shown when the device has no internet connection."
-  }
-  ,"duplicatedTag": "Doublon",
+  },
+  "duplicatedTag": "Doublon",
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
+  },
+  "aiSelectSectionsTitle": "Sélectionner des sections",
+  "@aiSelectSectionsTitle": {
+    "description": "Title for the chunk section selector in AI content step"
+  },
+  "aiSelectSectionsSubtitle": "Activer pour choisir à partir de quelles sections du document générer des questions",
+  "@aiSelectSectionsSubtitle": {
+    "description": "Subtitle explaining what the section selector does"
   }
 }

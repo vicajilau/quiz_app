@@ -1040,7 +1040,7 @@
       }
     }
   },
-    "importChunksTitle": "Importar Secciones",
+  "importChunksTitle": "Importar Secciones",
   "@importChunksTitle": {
     "description": "Title for the import chunks dialog."
   },
@@ -1076,7 +1076,7 @@
   "@noChunksInFile": {
     "description": "Error message when the imported file has no study sections."
   },
-"importQuestionsTooltip": "Importar preguntas desde otro archivo de quiz",
+  "importQuestionsTooltip": "Importar preguntas desde otro archivo de quiz",
   "@importQuestionsTooltip": {
     "description": "Tooltip para el botón de importar preguntas."
   },
@@ -1938,21 +1938,39 @@
   "@remainingTimeWithDays": {
     "description": "Format for showing remaining time including days",
     "placeholders": {
-      "days": { "type": "String" },
-      "hours": { "type": "String" },
-      "minutes": { "type": "String" },
-      "seconds": { "type": "String" }
+      "days": {
+        "type": "String"
+      },
+      "hours": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "String"
+      },
+      "seconds": {
+        "type": "String"
+      }
     }
   },
   "remainingTimeWithWeeks": "{weeks}s {days}d {hours}:{minutes}:{seconds}",
   "@remainingTimeWithWeeks": {
     "description": "Format for showing remaining time including weeks",
     "placeholders": {
-      "weeks": { "type": "String" },
-      "days": { "type": "String" },
-      "hours": { "type": "String" },
-      "minutes": { "type": "String" },
-      "seconds": { "type": "String" }
+      "weeks": {
+        "type": "String"
+      },
+      "days": {
+        "type": "String"
+      },
+      "hours": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "String"
+      },
+      "seconds": {
+        "type": "String"
+      }
     }
   },
   "validationMax30DaysError": "Máximo 30 días",
@@ -2131,7 +2149,10 @@
   "@studyScreenChaptersCount": {
     "description": "Label showing the number of chapters in the study material",
     "placeholders": {
-      "count": { "type": "int", "example": "12" }
+      "count": {
+        "type": "int",
+        "example": "12"
+      }
     }
   },
   "studyScreenCompleted": "Completados",
@@ -2278,5 +2299,13 @@
   "noInternetConnection": "Sin conexión a internet. Por favor, comprueba tu configuración de red e inténtalo de nuevo.",
   "@noInternetConnection": {
     "description": "Error message shown when the device has no internet connection."
+  },
+  "aiSelectSectionsTitle": "Seleccionar secciones",
+  "@aiSelectSectionsTitle": {
+    "description": "Title for the chunk section selector in AI content step"
+  },
+  "aiSelectSectionsSubtitle": "Activar para elegir de qué secciones del documento se generarán las preguntas",
+  "@aiSelectSectionsSubtitle": {
+    "description": "Subtitle explaining what the section selector does"
   }
 }

@@ -619,8 +619,7 @@
         "example": "https://example.com"
       }
     }
-  }
-  ,
+  },
   "aiErrorConnectionAborted": "Запрос был прерван, так как приложение было переведено в фоновый режим. Пожалуйста, не закрывайте приложение во время генерации контента.",
   "@aiErrorConnectionAborted": {
     "description": "Error message when a request is aborted because the app is minimized."
@@ -628,9 +627,17 @@
   "noInternetConnection": "Нет подключения к интернету. Пожалуйста, проверьте настройки сети и попробуйте снова.",
   "@noInternetConnection": {
     "description": "Error message shown when the device has no internet connection."
-  }
-  ,"duplicatedTag": "Дубликат",
+  },
+  "duplicatedTag": "Дубликат",
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
+  },
+  "aiSelectSectionsTitle": "Выбрать разделы",
+  "@aiSelectSectionsTitle": {
+    "description": "Title for the chunk section selector in AI content step"
+  },
+  "aiSelectSectionsSubtitle": "Включите, чтобы выбрать, из каких разделов документа создавать вопросы",
+  "@aiSelectSectionsSubtitle": {
+    "description": "Subtitle explaining what the section selector does"
   }
 }

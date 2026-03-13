@@ -2022,9 +2022,17 @@
   "noInternetConnection": "Sense connexió a internet. Si us plau, comproveu la configuració de red i torneu-ho a intentar.",
   "@noInternetConnection": {
     "description": "Error message shown when the device has no internet connection."
-  }
-  ,"duplicatedTag": "Duplicat",
+  },
+  "duplicatedTag": "Duplicat",
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
+  },
+  "aiSelectSectionsTitle": "Seleccionar seccions",
+  "@aiSelectSectionsTitle": {
+    "description": "Title for the chunk section selector in AI content step"
+  },
+  "aiSelectSectionsSubtitle": "Activa-ho per triar de quines seccions del document vols generar preguntes",
+  "@aiSelectSectionsSubtitle": {
+    "description": "Subtitle explaining what the section selector does"
   }
 }
