@@ -612,10 +612,18 @@
   "noInternetConnection": "인터넷 연결이 없습니다. 네트워크 설정을 확인하고 다시 시도하십시오.",
   "@noInternetConnection": {
     "description": "Error message shown when the device has no internet connection."
-  }
-  ,"duplicatedTag": "중복됨",
+  },
+  "duplicatedTag": "중복됨",
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
+  },
+  "aiSelectSectionsTitle": "섹션 선택",
+  "@aiSelectSectionsTitle": {
+    "description": "Title for the chunk section selector in AI content step"
+  },
+  "aiSelectSectionsSubtitle": "문서의 어느 섹션에서 질문을 생성할지 선택하려면 활성화하세요",
+  "@aiSelectSectionsSubtitle": {
+    "description": "Subtitle explaining what the section selector does"
   }
   ,"supportLabel": "지원",
   "@supportLabel": {

@@ -1320,6 +1320,14 @@
   "@aiEnterContentDescription": {
     "description": "Description telling the user to enter text or attach files"
   },
+  "aiSelectSectionsTitle": "Select Sections",
+  "@aiSelectSectionsTitle": {
+    "description": "Title for the chunk section selector in AI content step"
+  },
+  "aiSelectSectionsSubtitle": "Enable to choose which sections of the document to generate questions from",
+  "@aiSelectSectionsSubtitle": {
+    "description": "Subtitle explaining what the section selector does"
+  },
   "aiContentFieldHint": "Enter a topic like \"World War II history\" or paste text content here...",
   "@aiContentFieldHint": {
     "description": "Hint text for the content input field"

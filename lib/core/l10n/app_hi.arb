@@ -1923,10 +1923,18 @@
   "noInternetConnection": "कोई इंटरनेट कनेक्शन नहीं है। कृपया अपनी नेटवर्क सेटिंग्स जांचें और फिर से प्रयास करें।",
   "@noInternetConnection": {
     "description": "Error message shown when the device has no internet connection."
-  }
-  ,"duplicatedTag": "डुप्लिकेट",
+  },
+  "duplicatedTag": "डुप्लिकेट",
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
+  },
+  "aiSelectSectionsTitle": "अनुभाग चुनें",
+  "@aiSelectSectionsTitle": {
+    "description": "Title for the chunk section selector in AI content step"
+  },
+  "aiSelectSectionsSubtitle": "दस्तावेज़ के किन अनुभागों से प्रश्न बनाने हैं, यह चुनने के लिए सक्षम करें",
+  "@aiSelectSectionsSubtitle": {
+    "description": "Subtitle explaining what the section selector does"
   }
   ,"supportLabel": "सहायता",
   "@supportLabel": {

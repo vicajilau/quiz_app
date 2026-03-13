@@ -612,10 +612,18 @@
   "noInternetConnection": "ინტერნეტთან კავშირი არ არის. გთხოვთ, შემოწმოთ ქსელის პარამეტრები და სცადოთ ხელახლა.",
   "@noInternetConnection": {
     "description": "Error message shown when the device has no internet connection."
-  }
-  ,"duplicatedTag": "დუბლირებული",
+  },
+  "duplicatedTag": "დუბლირებული",
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
+  },
+  "aiSelectSectionsTitle": "სექციების არჩევა",
+  "@aiSelectSectionsTitle": {
+    "description": "Title for the chunk section selector in AI content step"
+  },
+  "aiSelectSectionsSubtitle": "ჩართეთ დოკუმენტის იმ სექციების ასარჩევად, საიდანაც შეიქმნება კითხვები",
+  "@aiSelectSectionsSubtitle": {
+    "description": "Subtitle explaining what the section selector does"
   }
   ,"supportLabel": "მხარდაჭერა",
   "@supportLabel": {

@@ -25,6 +25,7 @@ import 'package:quizdy/data/services/ai/ai_service_selector.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_stored_settings.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step1_widget.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step2_widget.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
@@ -34,7 +35,9 @@ import 'package:quizdy/presentation/utils/ai_file_helper.dart';
 import 'package:file_picker/file_picker.dart';
 
 class AiGenerateQuestionsDialog extends StatefulWidget {
-  const AiGenerateQuestionsDialog({super.key});
+  final List<StudyChunk>? chunks;
+
+  const AiGenerateQuestionsDialog({super.key, this.chunks});
 
   @override
   State<AiGenerateQuestionsDialog> createState() =>
@@ -444,6 +447,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
       );
     } else {
       return AiGenerateStep2Widget(
+        chunks: widget.chunks,
         textController: _textController,
         questionCountController: _questionCountController,
         questionCount: _questionCount,

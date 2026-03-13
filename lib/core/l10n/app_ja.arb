@@ -1923,10 +1923,18 @@
   "noInternetConnection": "インターネット接続がありません。ネットワーク設定を確認して、もう一度やり直してください。",
   "@noInternetConnection": {
     "description": "Error message shown when the device has no internet connection."
-  }
-  ,"duplicatedTag": "重複",
+  },
+  "duplicatedTag": "重複",
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
+  },
+  "aiSelectSectionsTitle": "セクションの選択",
+  "@aiSelectSectionsTitle": {
+    "description": "Title for the chunk section selector in AI content step"
+  },
+  "aiSelectSectionsSubtitle": "ドキュメントのどのセクションから質問を生成するかを選択できるようにする",
+  "@aiSelectSectionsSubtitle": {
+    "description": "Subtitle explaining what the section selector does"
   }
   ,"supportLabel": "サポート",
   "@supportLabel": {

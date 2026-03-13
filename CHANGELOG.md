@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.9.0] - 2026-03-12
 
+- feat: Added section selector in AI generation dialog to generate questions from specific study chunks.
 - ui: Redesigned import dialogs (questions and chunks) for mobile — replaced overflowing horizontal actions with a vertical column layout and added directional arrow icons.
 - fix: Collapse sidebar by default on mobile when entering a study section.
 - feat: Added AI Chat panel to Study Mode, allowing users to ask the AI about the current chapter's content via a sidebar (desktop) or full-screen overlay (mobile).

@@ -18,8 +18,8 @@ import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
-
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 
 /// Configuration settings for AI-powered quiz question generation.
 class AiQuestionGenerationConfig {
@@ -56,8 +56,15 @@ class AiQuestionGenerationConfig {
   /// The specific academic difficulty level when manual mode is selected.
   final AiDifficultyLevel? difficultyLevel;
 
+  /// The selected study chunks to generate questions from.
+  final List<StudyChunk>? selectedChunks;
+
   /// Returns true if a file is attached to this configuration.
   bool get hasFile => file != null;
+
+  /// Returns true if specific study chunks are selected as source.
+  bool get hasChunks =>
+      selectedChunks != null && selectedChunks!.isNotEmpty;
 
   const AiQuestionGenerationConfig({
     this.questionCount,
@@ -71,6 +78,7 @@ class AiQuestionGenerationConfig {
     this.generationCategory = AiGenerationCategory.both,
     this.isAutoDifficulty = true,
     this.difficultyLevel,
+    this.selectedChunks,
   });
 
   /// Creates a copy of this config but with the given fields replaced with the new values.
@@ -86,6 +94,7 @@ class AiQuestionGenerationConfig {
     AiGenerationCategory? generationCategory,
     bool? isAutoDifficulty,
     AiDifficultyLevel? difficultyLevel,
+    List<StudyChunk>? selectedChunks,
   }) {
     return AiQuestionGenerationConfig(
       questionCount: questionCount ?? this.questionCount,
@@ -99,6 +108,7 @@ class AiQuestionGenerationConfig {
       generationCategory: generationCategory ?? this.generationCategory,
       isAutoDifficulty: isAutoDifficulty ?? this.isAutoDifficulty,
       difficultyLevel: difficultyLevel ?? this.difficultyLevel,
+      selectedChunks: selectedChunks ?? this.selectedChunks,
     );
   }
 }
