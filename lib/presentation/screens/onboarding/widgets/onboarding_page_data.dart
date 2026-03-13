@@ -46,6 +46,13 @@ List<OnboardingPageData> buildOnboardingPages(BuildContext context) {
       contentBuilder: (context) => _buildFeatureList(context),
     ),
     OnboardingPageData(
+      icon: LucideIcons.bookOpen,
+      title: localizations.onboardingStudyContentTitle,
+      description: localizations.onboardingStudyContentDescription,
+      subtitle: localizations.onboardingStudyContentSubtitle,
+      contentBuilder: (context) => _buildStudySections(context),
+    ),
+    OnboardingPageData(
       icon: LucideIcons.play,
       title: localizations.onboardingStartQuizTitle,
       description: localizations.onboardingStartQuizDescription,
@@ -129,6 +136,90 @@ Widget _buildFeatureList(BuildContext context) {
                   ),
                 ),
               ],
+            ),
+          ),
+        )
+        .toList(),
+  );
+}
+
+Widget _buildStudySections(BuildContext context) {
+  final theme = Theme.of(context);
+  final localizations = AppLocalizations.of(context)!;
+  final steps = [
+    (
+      '1',
+      localizations.onboardingStudyStepAddTitle,
+      localizations.onboardingStudyStepAddDescription,
+    ),
+    (
+      '2',
+      localizations.onboardingStudyStepGenerateTitle,
+      localizations.onboardingStudyStepGenerateDescription,
+    ),
+    (
+      '3',
+      localizations.onboardingStudyStepStudyTitle,
+      localizations.onboardingStudyStepStudyDescription,
+    ),
+  ];
+
+  return Column(
+    children: steps
+        .map(
+          (s) => Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              decoration: BoxDecoration(
+                color: theme.cardColor,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: theme.dividerColor),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    width: 36,
+                    height: 36,
+                    decoration: BoxDecoration(
+                      color: theme.primaryColor,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Center(
+                      child: Text(
+                        s.$1,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          s.$2,
+                          style: theme.textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          s.$3,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            fontSize: 13,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         )
