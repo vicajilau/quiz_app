@@ -271,7 +271,9 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
       final config = await showDialog<AiQuestionGenerationConfig>(
         context: context,
         barrierDismissible: false,
-        builder: (context) => const AiGenerateQuestionsDialog(),
+        builder: (context) => AiGenerateQuestionsDialog(
+          chunks: cachedQuizFile.study?.content.cache,
+        ),
       );
 
       if (config == null || !mounted) return;
