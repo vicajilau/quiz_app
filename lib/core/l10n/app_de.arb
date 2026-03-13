@@ -2021,4 +2021,12 @@
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
   }
+  ,"supportLabel": "Support",
+  "@supportLabel": {
+    "description": "Label for the support action in settings"
+  },
+  "supportDescription": "GitHub-Issues mit App- und Plattformdetails öffnen",
+  "@supportDescription": {
+    "description": "Description for the support action in settings"
+  }
 }

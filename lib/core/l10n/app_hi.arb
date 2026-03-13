@@ -1928,4 +1928,12 @@
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
   }
+  ,"supportLabel": "सहायता",
+  "@supportLabel": {
+    "description": "Label for the support action in settings"
+  },
+  "supportDescription": "ऐप और प्लेटफ़ॉर्म विवरण के साथ GitHub Issues खोलें",
+  "@supportDescription": {
+    "description": "Description for the support action in settings"
+  }
 }

@@ -2328,4 +2328,12 @@
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
   }
+  ,"supportLabel": "الدعم",
+  "@supportLabel": {
+    "description": "Label for the support action in settings"
+  },
+  "supportDescription": "فتح مشكلات GitHub مع تفاصيل التطبيق والمنصة",
+  "@supportDescription": {
+    "description": "Description for the support action in settings"
+  }
 }

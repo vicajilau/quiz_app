@@ -25,6 +25,7 @@ import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dar
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_widgets/ai_settings_section.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_widgets/advanced_settings_section.dart';
+import 'package:quizdy/presentation/utils/support_issue_helper.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 import 'package:quizdy/routes/app_router.dart';
 
@@ -38,6 +39,7 @@ class SettingsDialog extends StatefulWidget {
 class _SettingsDialogState extends State<SettingsDialog> {
   bool _isLoading = true;
   String _appVersion = '-';
+  String _appBuildNumber = '-';
   bool _aiAssistantEnabled = true;
   bool _keepAiDraft = true;
   final TextEditingController _openAiApiKeyController = TextEditingController();
@@ -68,16 +70,16 @@ class _SettingsDialogState extends State<SettingsDialog> {
       _aiAssistantEnabled = await configurationService.getIsAiAvailable();
 
       final packageInfo = await PackageInfo.fromPlatform();
-      final versionLabel =
-          kReleaseMode
-              ? packageInfo.version
-              : '${packageInfo.version}-debug';
+      final versionLabel = kReleaseMode
+          ? packageInfo.version
+          : '${packageInfo.version}-debug';
 
       if (mounted) {
         setState(() {
           _openAiApiKeyController.text = apiKey ?? '';
           _geminiApiKeyController.text = geminiApiKey ?? '';
           _appVersion = versionLabel;
+          _appBuildNumber = packageInfo.buildNumber;
           _isLoading = false; // Important: set as finished
         });
       }
@@ -164,6 +166,25 @@ class _SettingsDialogState extends State<SettingsDialog> {
       setState(() {
         _apiKeyErrorMessage = null;
       });
+    }
+  }
+
+  Future<void> _openSupportIssueUrl() async {
+    final url = await SupportIssueHelper.buildIssueUri(
+      appVersion: _appVersion,
+      appBuildNumber: _appBuildNumber,
+    );
+    final launched = await SupportIssueHelper.openIssueUrl(url);
+
+    if (!launched && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            AppLocalizations.of(context)!.couldNotOpenUrl(url.toString()),
+          ),
+          backgroundColor: Theme.of(context).colorScheme.error,
+        ),
+      );
     }
   }
 
@@ -310,10 +331,12 @@ class _SettingsDialogState extends State<SettingsDialog> {
                           const SizedBox(height: 16),
                           _OnboardingRow(colors: colors),
                           const SizedBox(height: 8),
-                          _VersionRow(
+                          _SupportRow(
                             colors: colors,
-                            version: _appVersion,
+                            onTap: _openSupportIssueUrl,
                           ),
+                          const SizedBox(height: 8),
+                          _VersionRow(colors: colors, version: _appVersion),
                         ],
                       ),
                     ),
@@ -448,6 +471,67 @@ class _VersionRow extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _SupportRow extends StatelessWidget {
+  final ConfirmingDialogColorsExtension colors;
+  final VoidCallback onTap;
+
+  const _SupportRow({required this.colors, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(12),
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Row(
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: colors.surface,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(
+                LucideIcons.lifeBuoy,
+                size: 20,
+                color: colors.subtitle,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.supportLabel,
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: colors.title,
+                    ),
+                  ),
+                  Text(
+                    AppLocalizations.of(context)!.supportDescription,
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 12,
+                      color: colors.subtitle,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(LucideIcons.chevronRight, size: 18, color: colors.subtitle),
+          ],
+        ),
       ),
     );
   }

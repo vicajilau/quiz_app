@@ -1979,4 +1979,12 @@
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
   }
+  ,"supportLabel": "Supporto",
+  "@supportLabel": {
+    "description": "Label for the support action in settings"
+  },
+  "supportDescription": "Apri issue su GitHub con i dettagli dell'app e della piattaforma",
+  "@supportDescription": {
+    "description": "Description for the support action in settings"
+  }
 }

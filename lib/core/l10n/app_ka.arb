@@ -617,4 +617,12 @@
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
   }
+  ,"supportLabel": "მხარდაჭერა",
+  "@supportLabel": {
+    "description": "Label for the support action in settings"
+  },
+  "supportDescription": "გახსენით GitHub Issues აპისა და პლატფორმის დეტალებით",
+  "@supportDescription": {
+    "description": "Description for the support action in settings"
+  }
 }

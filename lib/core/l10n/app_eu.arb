@@ -1925,4 +1925,12 @@
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
   }
+  ,"supportLabel": "Laguntza",
+  "@supportLabel": {
+    "description": "Label for the support action in settings"
+  },
+  "supportDescription": "Ireki GitHub arazoak aplikazioaren eta plataformaren xehetasunekin",
+  "@supportDescription": {
+    "description": "Description for the support action in settings"
+  }
 }

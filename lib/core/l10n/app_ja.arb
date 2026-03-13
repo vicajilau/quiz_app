@@ -1928,4 +1928,12 @@
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
   }
+  ,"supportLabel": "サポート",
+  "@supportLabel": {
+    "description": "Label for the support action in settings"
+  },
+  "supportDescription": "アプリとプラットフォームの詳細を含めて GitHub Issues を開く",
+  "@supportDescription": {
+    "description": "Description for the support action in settings"
+  }
 }
