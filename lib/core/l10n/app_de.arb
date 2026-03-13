@@ -2028,6 +2028,42 @@
   "aiSelectSectionsSubtitle": "Aktivieren, um auszuwählen, aus welchen Abschnitten des Dokuments Fragen generiert werden sollen",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
+  },
+  "onboardingStudyContentTitle": "Lerne deine Inhalte",
+  "@onboardingStudyContentTitle": {
+    "description": "Title of the study content onboarding page"
+  },
+  "onboardingStudyContentDescription": "Organisiere dein Material in Lerneinheiten. Importiere Dateien, füge sie manuell hinzu oder lass die KI den Inhalt generieren.",
+  "@onboardingStudyContentDescription": {
+    "description": "Description of the study content onboarding page"
+  },
+  "onboardingStudyContentSubtitle": "Organisieren, generieren und lernen",
+  "@onboardingStudyContentSubtitle": {
+    "description": "Subtitle of the study content onboarding page"
+  },
+  "onboardingStudyStepAddTitle": "Material hinzufügen",
+  "@onboardingStudyStepAddTitle": {
+    "description": "Step 1 title in study content onboarding page"
+  },
+  "onboardingStudyStepAddDescription": "Schreibe Abschnitte oder importiere aus .quiz-Dateien",
+  "@onboardingStudyStepAddDescription": {
+    "description": "Step 1 description in study content onboarding page"
+  },
+  "onboardingStudyStepGenerateTitle": "KI-Generierung",
+  "@onboardingStudyStepGenerateTitle": {
+    "description": "Step 2 title in study content onboarding page"
+  },
+  "onboardingStudyStepGenerateDescription": "KI erstellt Lernabschnitte aus deinen Dokumenten",
+  "@onboardingStudyStepGenerateDescription": {
+    "description": "Step 2 description in study content onboarding page"
+  },
+  "onboardingStudyStepStudyTitle": "Generierte Abschnitte lernen",
+  "@onboardingStudyStepStudyTitle": {
+    "description": "Step 3 title in study content onboarding page"
+  },
+  "onboardingStudyStepStudyDescription": "Navigiere durch jeden Abschnitt und festige dein Wissen",
+  "@onboardingStudyStepStudyDescription": {
+    "description": "Step 3 description in study content onboarding page"
   }
   ,"supportLabel": "Support",
   "@supportLabel": {

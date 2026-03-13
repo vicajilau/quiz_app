@@ -2334,6 +2334,42 @@
   "aiSelectSectionsSubtitle": "قم بتمكينه لاختيار أقسام المستند التي سيتم إنشاء الأسئلة منها",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
+  },
+  "onboardingStudyContentTitle": "ادرس المحتوى الخاص بك",
+  "@onboardingStudyContentTitle": {
+    "description": "Title of the study content onboarding page"
+  },
+  "onboardingStudyContentDescription": "نظّم موادك في أقسام دراسية. استورد الملفات، أو أضفها يدويًا، أو دع الذكاء الاصطناعي يولد المحتوى.",
+  "@onboardingStudyContentDescription": {
+    "description": "Description of the study content onboarding page"
+  },
+  "onboardingStudyContentSubtitle": "نظم، وولد، وادرس",
+  "@onboardingStudyContentSubtitle": {
+    "description": "Subtitle of the study content onboarding page"
+  },
+  "onboardingStudyStepAddTitle": "أضف مادة",
+  "@onboardingStudyStepAddTitle": {
+    "description": "Step 1 title in study content onboarding page"
+  },
+  "onboardingStudyStepAddDescription": "اكتب أقسامًا أو استورد من ملفات .quiz",
+  "@onboardingStudyStepAddDescription": {
+    "description": "Step 1 description in study content onboarding page"
+  },
+  "onboardingStudyStepGenerateTitle": "توليد بواسطة الذكاء الاصطناعي",
+  "@onboardingStudyStepGenerateTitle": {
+    "description": "Step 2 title in study content onboarding page"
+  },
+  "onboardingStudyStepGenerateDescription": "الذكاء الاصطناعي ينشئ أقسامًا دراسية من مستنداتك",
+  "@onboardingStudyStepGenerateDescription": {
+    "description": "Step 2 description in study content onboarding page"
+  },
+  "onboardingStudyStepStudyTitle": "ادرس الأقسام التي تم إنشاؤها",
+  "@onboardingStudyStepStudyTitle": {
+    "description": "Step 3 title in study content onboarding page"
+  },
+  "onboardingStudyStepStudyDescription": "تصفح كل قسم وعزز تعلمك",
+  "@onboardingStudyStepStudyDescription": {
+    "description": "Step 3 description in study content onboarding page"
   }
   ,"supportLabel": "الدعم",
   "@supportLabel": {

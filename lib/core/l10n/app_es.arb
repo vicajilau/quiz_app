@@ -2315,5 +2315,41 @@
   "aiSelectSectionsSubtitle": "Activar para elegir de qué secciones del documento se generarán las preguntas",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
+  },
+  "onboardingStudyContentTitle": "Estudia tu Contenido",
+  "@onboardingStudyContentTitle": {
+    "description": "Title of the study content onboarding page"
+  },
+  "onboardingStudyContentDescription": "Organiza tu material en secciones de estudio. Importa archivos, añádelos manualmente o deja que la IA genere el contenido.",
+  "@onboardingStudyContentDescription": {
+    "description": "Description of the study content onboarding page"
+  },
+  "onboardingStudyContentSubtitle": "Organiza, genera y estudia",
+  "@onboardingStudyContentSubtitle": {
+    "description": "Subtitle of the study content onboarding page"
+  },
+  "onboardingStudyStepAddTitle": "Añadir Material",
+  "@onboardingStudyStepAddTitle": {
+    "description": "Step 1 title in study content onboarding page"
+  },
+  "onboardingStudyStepAddDescription": "Escribe secciones o impórtalas desde archivos .quiz",
+  "@onboardingStudyStepAddDescription": {
+    "description": "Step 1 description in study content onboarding page"
+  },
+  "onboardingStudyStepGenerateTitle": "Generar con IA",
+  "@onboardingStudyStepGenerateTitle": {
+    "description": "Step 2 title in study content onboarding page"
+  },
+  "onboardingStudyStepGenerateDescription": "La IA crea secciones de estudio a partir de tus documentos",
+  "@onboardingStudyStepGenerateDescription": {
+    "description": "Step 2 description in study content onboarding page"
+  },
+  "onboardingStudyStepStudyTitle": "Estudia las Secciones Generadas",
+  "@onboardingStudyStepStudyTitle": {
+    "description": "Step 3 title in study content onboarding page"
+  },
+  "onboardingStudyStepStudyDescription": "Navega por cada sección y refuerza tu aprendizaje",
+  "@onboardingStudyStepStudyDescription": {
+    "description": "Step 3 description in study content onboarding page"
   }
 }

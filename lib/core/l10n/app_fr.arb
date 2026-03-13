@@ -1977,6 +1977,42 @@
   "aiSelectSectionsSubtitle": "Activer pour choisir à partir de quelles sections du document générer des questions",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
+  },
+  "onboardingStudyContentTitle": "Étudiez votre contenu",
+  "@onboardingStudyContentTitle": {
+    "description": "Title of the study content onboarding page"
+  },
+  "onboardingStudyContentDescription": "Organisez votre matériel en sections d'étude. Importez des fichiers, ajoutez-les manuellement ou laissez l'IA générer le contenu.",
+  "@onboardingStudyContentDescription": {
+    "description": "Description of the study content onboarding page"
+  },
+  "onboardingStudyContentSubtitle": "Organisez, générez et étudiez",
+  "@onboardingStudyContentSubtitle": {
+    "description": "Subtitle of the study content onboarding page"
+  },
+  "onboardingStudyStepAddTitle": "Ajouter du matériel",
+  "@onboardingStudyStepAddTitle": {
+    "description": "Step 1 title in study content onboarding page"
+  },
+  "onboardingStudyStepAddDescription": "Rédigez des sections ou importez depuis des fichiers .quiz",
+  "@onboardingStudyStepAddDescription": {
+    "description": "Step 1 description in study content onboarding page"
+  },
+  "onboardingStudyStepGenerateTitle": "Génération par IA",
+  "@onboardingStudyStepGenerateTitle": {
+    "description": "Step 2 title in study content onboarding page"
+  },
+  "onboardingStudyStepGenerateDescription": "L'IA crée des sections d'étude à partir de vos documents",
+  "@onboardingStudyStepGenerateDescription": {
+    "description": "Step 2 description in study content onboarding page"
+  },
+  "onboardingStudyStepStudyTitle": "Étudiez les sections générées",
+  "@onboardingStudyStepStudyTitle": {
+    "description": "Step 3 title in study content onboarding page"
+  },
+  "onboardingStudyStepStudyDescription": "Naviguez dans chaque section et renforcez votre apprentissage",
+  "@onboardingStudyStepStudyDescription": {
+    "description": "Step 3 description in study content onboarding page"
   }
   ,"supportLabel": "Support",
   "@supportLabel": {

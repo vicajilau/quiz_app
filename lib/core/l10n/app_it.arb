@@ -1986,6 +1986,42 @@
   "aiSelectSectionsSubtitle": "Abilita per scegliere da quali sezioni del documento generare le domande",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
+  },
+  "onboardingStudyContentTitle": "Studia il tuo contenuto",
+  "@onboardingStudyContentTitle": {
+    "description": "Title of the study content onboarding page"
+  },
+  "onboardingStudyContentDescription": "Organizza il tuo materiale in sezioni di studio. Importa file, aggiungili manualmente o lascia che l'IA generi il contenuto.",
+  "@onboardingStudyContentDescription": {
+    "description": "Description of the study content onboarding page"
+  },
+  "onboardingStudyContentSubtitle": "Organizza, genera e studia",
+  "@onboardingStudyContentSubtitle": {
+    "description": "Subtitle of the study content onboarding page"
+  },
+  "onboardingStudyStepAddTitle": "Aggiungi materiale",
+  "@onboardingStudyStepAddTitle": {
+    "description": "Step 1 title in study content onboarding page"
+  },
+  "onboardingStudyStepAddDescription": "Scrivi sezioni o importa da file .quiz",
+  "@onboardingStudyStepAddDescription": {
+    "description": "Step 1 description in study content onboarding page"
+  },
+  "onboardingStudyStepGenerateTitle": "Generazione IA",
+  "@onboardingStudyStepGenerateTitle": {
+    "description": "Step 2 title in study content onboarding page"
+  },
+  "onboardingStudyStepGenerateDescription": "L'IA crea sezioni di studio dai tuoi documenti",
+  "@onboardingStudyStepGenerateDescription": {
+    "description": "Step 2 description in study content onboarding page"
+  },
+  "onboardingStudyStepStudyTitle": "Studia le sezioni generate",
+  "@onboardingStudyStepStudyTitle": {
+    "description": "Step 3 title in study content onboarding page"
+  },
+  "onboardingStudyStepStudyDescription": "Naviga in ogni sezione e rafforza il tuo apprendimento",
+  "@onboardingStudyStepStudyDescription": {
+    "description": "Step 3 description in study content onboarding page"
   }
   ,"supportLabel": "Supporto",
   "@supportLabel": {

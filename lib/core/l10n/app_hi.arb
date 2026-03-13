@@ -1935,6 +1935,42 @@
   "aiSelectSectionsSubtitle": "दस्तावेज़ के किन अनुभागों से प्रश्न बनाने हैं, यह चुनने के लिए सक्षम करें",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
+  },
+  "onboardingStudyContentTitle": "अपनी सामग्री का अध्ययन करें",
+  "@onboardingStudyContentTitle": {
+    "description": "Title of the study content onboarding page"
+  },
+  "onboardingStudyContentDescription": "अपनी सामग्री को अध्ययन अनुभागों में व्यवस्थित करें। फ़ाइलें आयात करें, मैन्युअल रूप से जोड़ें, या एआई को सामग्री उत्पन्न करने दें।",
+  "@onboardingStudyContentDescription": {
+    "description": "Description of the study content onboarding page"
+  },
+  "onboardingStudyContentSubtitle": "व्यवस्थित करें, उत्पन्न करें और अध्ययन करें",
+  "@onboardingStudyContentSubtitle": {
+    "description": "Subtitle of the study content onboarding page"
+  },
+  "onboardingStudyStepAddTitle": "सामग्री जोड़ें",
+  "@onboardingStudyStepAddTitle": {
+    "description": "Step 1 title in study content onboarding page"
+  },
+  "onboardingStudyStepAddDescription": "अनुभाग लिखें या .quiz फ़ाइलों से आयात करें",
+  "@onboardingStudyStepAddDescription": {
+    "description": "Step 1 description in study content onboarding page"
+  },
+  "onboardingStudyStepGenerateTitle": "एआई उत्पन्न करें",
+  "@onboardingStudyStepGenerateTitle": {
+    "description": "Step 2 title in study content onboarding page"
+  },
+  "onboardingStudyStepGenerateDescription": "एआई आपके दस्तावेज़ों से अध्ययन अनुभाग बनाता है",
+  "@onboardingStudyStepGenerateDescription": {
+    "description": "Step 2 description in study content onboarding page"
+  },
+  "onboardingStudyStepStudyTitle": "उत्पन्न अनुभागों का अध्ययन करें",
+  "@onboardingStudyStepStudyTitle": {
+    "description": "Step 3 title in study content onboarding page"
+  },
+  "onboardingStudyStepStudyDescription": "प्रत्येक अनुभाग को नेविगेट करें और अपनी शिक्षा को सुदृढ़ करें",
+  "@onboardingStudyStepStudyDescription": {
+    "description": "Step 3 description in study content onboarding page"
   }
   ,"supportLabel": "सहायता",
   "@supportLabel": {

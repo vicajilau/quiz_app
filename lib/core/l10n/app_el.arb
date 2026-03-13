@@ -932,6 +932,42 @@
   "aiSelectSectionsSubtitle": "Ενεργοποιήστε για να επιλέξετε από ποιες ενότητες του εγγράφου θα δημιουργηθούν ερωτήσεις",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
+  },
+  "onboardingStudyContentTitle": "Μελετήστε το Περιεχόμενό σας",
+  "@onboardingStudyContentTitle": {
+    "description": "Title of the study content onboarding page"
+  },
+  "onboardingStudyContentDescription": "Οργανώστε το υλικό σας σε ενότητες μελέτης. Εισάγετε αρχεία, προσθέστε χειροκίνητα ή αφήστε την Τεχνητή Νοημοσύνη να δημιουργήσει το περιεχόμενο.",
+  "@onboardingStudyContentDescription": {
+    "description": "Description of the study content onboarding page"
+  },
+  "onboardingStudyContentSubtitle": "Οργανώστε, δημιουργήστε και μελετήστε",
+  "@onboardingStudyContentSubtitle": {
+    "description": "Subtitle of the study content onboarding page"
+  },
+  "onboardingStudyStepAddTitle": "Προσθήκη Υλικού",
+  "@onboardingStudyStepAddTitle": {
+    "description": "Step 1 title in study content onboarding page"
+  },
+  "onboardingStudyStepAddDescription": "Γράψτε ενότητες ή εισάγετε από αρχεία .quiz",
+  "@onboardingStudyStepAddDescription": {
+    "description": "Step 1 description in study content onboarding page"
+  },
+  "onboardingStudyStepGenerateTitle": "Δημιουργία με Τεχνητή Νοημοσύνη",
+  "@onboardingStudyStepGenerateTitle": {
+    "description": "Step 2 title in study content onboarding page"
+  },
+  "onboardingStudyStepGenerateDescription": "Η Τεχνητή Νοημοσύνη δημιουργεί ενότητες μελέτης από τα έγγραφά σας",
+  "@onboardingStudyStepGenerateDescription": {
+    "description": "Step 2 description in study content onboarding page"
+  },
+  "onboardingStudyStepStudyTitle": "Μελετήστε τις Δημιουργημένες Ενότητες",
+  "@onboardingStudyStepStudyTitle": {
+    "description": "Step 3 title in study content onboarding page"
+  },
+  "onboardingStudyStepStudyDescription": "Πλοηγηθείτε σε κάθε ενότητα και ενισχύστε τη μάθησή σας",
+  "@onboardingStudyStepStudyDescription": {
+    "description": "Step 3 description in study content onboarding page"
   }
   ,"supportLabel": "Υποστήριξη",
   "@supportLabel": {
