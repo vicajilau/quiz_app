@@ -54,18 +54,10 @@ class AiContentInputZone extends StatelessWidget {
             child: TextField(
               controller: controller,
               maxLines: null,
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 14,
-                color: colors.title,
-              ),
+              style: TextStyle(fontSize: 14, color: colors.title),
               decoration: InputDecoration.collapsed(
                 hintText: localizations.aiContentFieldHint,
-                hintStyle: TextStyle(
-                  fontFamily: 'Inter',
-                  fontSize: 14,
-                  color: colors.surface,
-                ),
+                hintStyle: TextStyle(fontSize: 14, color: colors.surface),
               ),
             ),
           ),
@@ -76,7 +68,6 @@ class AiContentInputZone extends StatelessWidget {
             child: Text(
               wordCountText,
               style: TextStyle(
-                fontFamily: 'Inter',
                 fontSize: 12,
                 color: generationMode == AiGenerationMode.topic
                     ? Theme.of(context).primaryColor

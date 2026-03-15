@@ -401,7 +401,6 @@ class _QuestionCountSelectionDialogState
                   child: Text(
                     AppLocalizations.of(context)!.startQuiz,
                     style: TextStyle(
-                      fontFamily: 'Inter',
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
                       color: textColor,
@@ -454,7 +453,6 @@ class _QuestionCountSelectionDialogState
                                 Text(
                                   l10n.allQuestionsLabel,
                                   style: TextStyle(
-                                    fontFamily: 'Inter',
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500,
                                     color: textColor,
@@ -511,7 +509,6 @@ class _QuestionCountSelectionDialogState
                             Text(
                               l10n.numberInputLabel,
                               style: TextStyle(
-                                fontFamily: 'Inter',
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
                                 color: subTextColor,
@@ -551,7 +548,6 @@ class _QuestionCountSelectionDialogState
                                         contentPadding: EdgeInsets.zero,
                                       ),
                                       style: TextStyle(
-                                        fontFamily: 'Inter',
                                         fontSize: 24,
                                         fontWeight: FontWeight.w700,
                                         color: textColor,
@@ -854,7 +850,6 @@ class _CollapsibleExamConfigState extends State<_CollapsibleExamConfig> {
                     Text(
                       AppLocalizations.of(context)!.examConfigurationTitle,
                       style: TextStyle(
-                        fontFamily: 'Inter',
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color: titleColor,

@@ -53,7 +53,6 @@ class SubtractPointsToggle extends StatelessWidget {
                 Text(
                   AppLocalizations.of(context)!.subtractPointsLabel,
                   style: TextStyle(
-                    fontFamily: 'Inter',
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
                     color: textColor,
@@ -67,7 +66,6 @@ class SubtractPointsToggle extends StatelessWidget {
                           context,
                         )!.subtractPointsOffDescription,
                   style: TextStyle(
-                    fontFamily: 'Inter',
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
                     color: subTextColor,

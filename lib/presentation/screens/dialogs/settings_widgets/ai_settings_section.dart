@@ -133,7 +133,6 @@ class AiSettingsSection extends StatelessWidget {
                               context,
                             )!.aiAssistantSettingsTitle,
                             style: TextStyle(
-                              fontFamily: 'Inter',
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
                               color: colors.title,
@@ -148,7 +147,6 @@ class AiSettingsSection extends StatelessWidget {
                         context,
                       )!.aiAssistantSettingsDescription,
                       style: TextStyle(
-                        fontFamily: 'Inter',
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
                         color: colors.subtitle,
@@ -182,7 +180,6 @@ class AiSettingsSection extends StatelessWidget {
                       Text(
                         AppLocalizations.of(context)!.aiKeepDraftTitle,
                         style: TextStyle(
-                          fontFamily: 'Inter',
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
                           color: colors.title,
@@ -192,7 +189,6 @@ class AiSettingsSection extends StatelessWidget {
                       Text(
                         AppLocalizations.of(context)!.aiKeepDraftDescription,
                         style: TextStyle(
-                          fontFamily: 'Inter',
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
                           color: colors.subtitle,
@@ -259,7 +255,6 @@ class AiSettingsSection extends StatelessWidget {
                     child: Text(
                       errorMessage!,
                       style: TextStyle(
-                        fontFamily: 'Inter',
                         fontSize: 12,
                         color: Theme.of(context).colorScheme.onErrorContainer,
                       ),

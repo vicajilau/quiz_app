@@ -159,7 +159,6 @@ class _ExamTimerWidgetState extends State<ExamTimerWidget>
                 Text(
                   AppLocalizations.of(context)!.examTimeExpiredTitle,
                   style: TextStyle(
-                    fontFamily: 'Inter',
                     fontSize: 24,
                     fontWeight: FontWeight.w700,
                     color: theme.dialogTextColor,
@@ -173,7 +172,6 @@ class _ExamTimerWidgetState extends State<ExamTimerWidget>
                 Text(
                   AppLocalizations.of(context)!.examTimeExpiredMessage,
                   style: TextStyle(
-                    fontFamily: 'Inter',
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                     color: theme.dialogSubTextColor,
@@ -264,7 +262,6 @@ class _ExamTimerWidgetState extends State<ExamTimerWidget>
           Text(
             timeText,
             style: TextStyle(
-              fontFamily: 'Inter',
               fontWeight: FontWeight.w600,
               fontSize: 14,
               color: color,

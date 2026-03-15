@@ -284,7 +284,6 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                     Text(
                       localizations.questionType,
                       style: TextStyle(
-                        fontFamily: 'Inter',
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                         color: theme.closeIconColor,
@@ -371,7 +370,6 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                         Text(
                           localizations.questionText,
                           style: TextStyle(
-                            fontFamily: 'Inter',
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                             color: theme.closeIconColor,
@@ -499,7 +497,6 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                         Text(
                           AppLocalizations.of(context)!.explanationLabel,
                           style: TextStyle(
-                            fontFamily: 'Inter',
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                             color: theme.closeIconColor,

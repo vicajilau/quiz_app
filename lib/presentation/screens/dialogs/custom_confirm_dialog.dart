@@ -98,7 +98,6 @@ class CustomConfirmDialog extends StatelessWidget {
                   child: Text(
                     title,
                     style: TextStyle(
-                      fontFamily: 'Inter',
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
                       color: colors.title,
@@ -139,7 +138,6 @@ class CustomConfirmDialog extends StatelessWidget {
                 child: Text(
                   message,
                   style: TextStyle(
-                    fontFamily: 'Inter',
                     fontSize: 14,
                     height: 1.5,
                     color: colors.subtitle,

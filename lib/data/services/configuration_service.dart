@@ -311,10 +311,7 @@ class ConfigurationService {
       );
     }
     if (settings.category != null) {
-      await prefs.setString(
-        _aiGenerationCategoryKey,
-        settings.category!.name,
-      );
+      await prefs.setString(_aiGenerationCategoryKey, settings.category!.name);
     }
   }
 

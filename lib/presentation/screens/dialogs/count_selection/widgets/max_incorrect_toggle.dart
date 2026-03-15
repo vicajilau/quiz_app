@@ -53,7 +53,6 @@ class MaxIncorrectToggle extends StatelessWidget {
                 Text(
                   AppLocalizations.of(context)!.maxIncorrectAnswersLabel,
                   style: TextStyle(
-                    fontFamily: 'Inter',
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
                     color: textColor,
@@ -69,7 +68,6 @@ class MaxIncorrectToggle extends StatelessWidget {
                           context,
                         )!.maxIncorrectAnswersOffDescription,
                   style: TextStyle(
-                    fontFamily: 'Inter',
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
                     color: subTextColor,

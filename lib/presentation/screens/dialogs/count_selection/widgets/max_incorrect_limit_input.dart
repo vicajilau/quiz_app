@@ -80,7 +80,6 @@ class _MaxIncorrectLimitInputState extends State<MaxIncorrectLimitInput> {
         Text(
           AppLocalizations.of(context)!.maxIncorrectAnswersLimitLabel,
           style: TextStyle(
-            fontFamily: 'Inter',
             fontSize: 14,
             fontWeight: FontWeight.w500,
             color: widget.subTextColor,
@@ -121,7 +120,6 @@ class _MaxIncorrectLimitInputState extends State<MaxIncorrectLimitInput> {
                       keyboardType: TextInputType.number,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       style: TextStyle(
-                        fontFamily: 'Inter',
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                         color: widget.textColor,
@@ -175,11 +173,7 @@ class _MaxIncorrectLimitInputState extends State<MaxIncorrectLimitInput> {
             padding: const EdgeInsets.only(left: 12),
             child: Text(
               AppLocalizations.of(context)!.validationMin0GenericError,
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 12,
-                color: errorColor,
-              ),
+              style: TextStyle(fontSize: 12, color: errorColor),
             ),
           ),
         ],

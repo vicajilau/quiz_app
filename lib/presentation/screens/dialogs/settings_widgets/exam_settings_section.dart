@@ -60,7 +60,6 @@ class ExamSettingsSection extends StatelessWidget {
                     Text(
                       AppLocalizations.of(context)!.examTimeLimitTitle,
                       style: TextStyle(
-                        fontFamily: 'Inter',
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
                         color: colors.title,
@@ -70,7 +69,6 @@ class ExamSettingsSection extends StatelessWidget {
                     Text(
                       AppLocalizations.of(context)!.examTimeLimitDescription,
                       style: TextStyle(
-                        fontFamily: 'Inter',
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
                         color: colors.subtitle,
@@ -89,10 +87,7 @@ class ExamSettingsSection extends StatelessWidget {
             initialValue: minutes.toString(),
             decoration: InputDecoration(
               labelText: AppLocalizations.of(context)!.timeLimitMinutes,
-              labelStyle: TextStyle(
-                fontFamily: 'Inter',
-                color: colors.subtitle,
-              ),
+              labelStyle: TextStyle(color: colors.subtitle),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
@@ -115,7 +110,7 @@ class ExamSettingsSection extends StatelessWidget {
               ),
               suffixText: AppLocalizations.of(context)!.minutesAbbreviation,
             ),
-            style: TextStyle(fontFamily: 'Inter', color: colors.title),
+            style: TextStyle(color: colors.title),
             keyboardType: TextInputType.number,
             onChanged: (value) {
               final newMinutes = int.tryParse(value);

@@ -112,7 +112,6 @@ class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
                       color: Colors.white,
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'Inter',
                     ),
                   ),
                 ),
@@ -140,17 +139,12 @@ class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
                     color: Colors.white.withValues(alpha: 0.7),
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    fontFamily: 'Inter',
                   ),
                 ),
                 const SizedBox(height: 8),
                 TextFormField(
                   controller: _controller,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'Inter',
-                    fontSize: 16,
-                  ),
+                  style: const TextStyle(color: Colors.white, fontSize: 16),
                   cursorColor: Theme.of(context).primaryColor,
                   decoration: InputDecoration(
                     filled: true,
@@ -158,7 +152,6 @@ class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
                     hintText: 'quiz_name',
                     hintStyle: TextStyle(
                       color: Colors.white.withValues(alpha: 0.3),
-                      fontFamily: 'Inter',
                     ),
                     contentPadding: const EdgeInsets.symmetric(
                       horizontal: 16,
@@ -175,15 +168,12 @@ class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        color: Theme.of(context).primaryColor, // Violet 500
+                        color: Theme.of(context).primaryColor,
                         width: 2,
                       ),
                     ),
                     errorText: _errorMessage,
-                    errorStyle: const TextStyle(
-                      color: AppTheme.errorColor, // Red 500
-                      fontFamily: 'Inter',
-                    ),
+                    errorStyle: const TextStyle(color: AppTheme.errorColor),
                   ),
                   onFieldSubmitted: (_) => _submit(),
                   onChanged: (value) {

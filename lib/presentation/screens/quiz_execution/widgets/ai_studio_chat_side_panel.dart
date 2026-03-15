@@ -334,7 +334,6 @@ class AiStudioChatSidePanelState extends State<AiStudioChatSidePanel> {
                           child: Text(
                             localizations.aiAssistantTitle,
                             style: TextStyle(
-                              fontFamily: 'Inter',
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
                               color: aiTheme.chatTitleColor,
@@ -402,20 +401,14 @@ class AiStudioChatSidePanelState extends State<AiStudioChatSidePanel> {
                         focusNode: _focusNode,
                         decoration: InputDecoration(
                           hintText: localizations.askAIHint,
-                          hintStyle: TextStyle(
-                            color: aiTheme.inputHintColor,
-                            fontFamily: 'Inter',
-                          ),
+                          hintStyle: TextStyle(color: aiTheme.inputHintColor),
                           border: InputBorder.none,
                           contentPadding: const EdgeInsets.symmetric(
                             horizontal: 20,
                             vertical: 12,
                           ),
                         ),
-                        style: TextStyle(
-                          color: aiTheme.chatTitleColor,
-                          fontFamily: 'Inter',
-                        ),
+                        style: TextStyle(color: aiTheme.chatTitleColor),
                         maxLines: 3,
                         minLines: 1,
                         textInputAction: TextInputAction.newline,

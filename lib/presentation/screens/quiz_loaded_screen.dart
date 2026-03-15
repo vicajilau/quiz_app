@@ -670,7 +670,6 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                                               ).colorScheme.onPrimary,
                                               fontSize: 13,
                                               fontWeight: FontWeight.w600,
-                                              fontFamily: 'Inter',
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                           ),

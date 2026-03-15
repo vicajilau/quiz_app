@@ -150,8 +150,7 @@ class _LaTeXRichText extends StatelessWidget {
               child: Math.tex(
                 mathExpression,
                 textStyle: effectiveStyle,
-                mathStyle:
-                    isDisplayMode ? MathStyle.display : MathStyle.text,
+                mathStyle: isDisplayMode ? MathStyle.display : MathStyle.text,
                 onErrorFallback: (error) {
                   return Text(
                     '$delimiter$mathExpression$delimiter',

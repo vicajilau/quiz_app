@@ -79,7 +79,6 @@ class AiFileUploadZone extends StatelessWidget {
                   Text(
                     localizations.dropAttachmentHere,
                     style: TextStyle(
-                      fontFamily: 'Inter',
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                       color: Theme.of(context).primaryColor,
@@ -90,7 +89,6 @@ class AiFileUploadZone extends StatelessWidget {
                   Text(
                     fileAttachment!.name,
                     style: TextStyle(
-                      fontFamily: 'Inter',
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                       color: colors.title,
@@ -101,7 +99,6 @@ class AiFileUploadZone extends StatelessWidget {
                   Text(
                     localizations.aiAttachFileHint,
                     style: TextStyle(
-                      fontFamily: 'Inter',
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                       color: colors.subtitle,

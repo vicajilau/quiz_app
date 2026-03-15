@@ -233,7 +233,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                     child: Text(
                       localizations.aiEnterContentTitle,
                       style: TextStyle(
-                        fontFamily: 'Inter',
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
                         color: colors.title,
@@ -257,7 +256,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
               Text(
                 localizations.aiEnterContentDescription,
                 style: TextStyle(
-                  fontFamily: 'Inter',
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
                   color: colors.subtitle,

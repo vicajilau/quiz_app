@@ -139,7 +139,6 @@ class AiGenerateStep1Widget extends StatelessWidget {
                       Text(
                         AppLocalizations.of(context)!.questionType,
                         style: TextStyle(
-                          fontFamily: 'Inter',
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                           color: colors.subtitle,
@@ -169,7 +168,6 @@ class AiGenerateStep1Widget extends StatelessWidget {
                           ? localizations.aiStudyLanguageLabel
                           : localizations.aiLanguageLabel,
                       style: TextStyle(
-                        fontFamily: 'Inter',
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                         color: colors.subtitle,
@@ -196,7 +194,6 @@ class AiGenerateStep1Widget extends StatelessWidget {
                               ? AppTheme.borderColorDark
                               : AppTheme.zinc100,
                           style: TextStyle(
-                            fontFamily: 'Inter',
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                             color: colors.title,

@@ -96,7 +96,6 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
         Text(
           AppLocalizations.of(context)!.questionOrderConfigDescription,
           style: TextStyle(
-            fontFamily: 'Inter',
             fontSize: 14,
             fontWeight: FontWeight.w500,
             color: colors.subtitle,
@@ -257,7 +256,6 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
         child: Text(
           label,
           style: TextStyle(
-            fontFamily: 'Inter',
             fontSize: 14,
             fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
             color: isSelected ? activeText : colors.subtitle,
@@ -293,7 +291,6 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
                 Text(
                   title,
                   style: TextStyle(
-                    fontFamily: 'Inter',
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
                     color: colors.title,
@@ -303,7 +300,6 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
                 Text(
                   subtitle,
                   style: TextStyle(
-                    fontFamily: 'Inter',
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
                     color: colors.subtitle,

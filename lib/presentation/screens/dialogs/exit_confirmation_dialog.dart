@@ -57,7 +57,6 @@ class ExitConfirmationDialog extends StatelessWidget {
                   child: Text(
                     AppLocalizations.of(context)!.confirmExitTitle,
                     style: TextStyle(
-                      fontFamily: 'Inter',
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
                       color: colors.title,
@@ -83,7 +82,6 @@ class ExitConfirmationDialog extends StatelessWidget {
             Text(
               AppLocalizations.of(context)!.confirmExitMessage,
               style: TextStyle(
-                fontFamily: 'Inter',
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
                 color: colors.subtitle,

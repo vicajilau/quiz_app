@@ -63,8 +63,7 @@ class AiQuestionGenerationConfig {
   bool get hasFile => file != null;
 
   /// Returns true if specific study chunks are selected as source.
-  bool get hasChunks =>
-      selectedChunks != null && selectedChunks!.isNotEmpty;
+  bool get hasChunks => selectedChunks != null && selectedChunks!.isNotEmpty;
 
   const AiQuestionGenerationConfig({
     this.questionCount,
