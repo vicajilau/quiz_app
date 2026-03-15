@@ -1328,6 +1328,14 @@
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiSelectQuestionsTitle": "Select Questions",
+  "@aiSelectQuestionsTitle": {
+    "description": "Title for the question selector in AI study generation"
+  },
+  "aiSelectQuestionsSubtitle": "Enable to choose which quiz questions to use as context for generating study sections",
+  "@aiSelectQuestionsSubtitle": {
+    "description": "Subtitle explaining what the question selector does"
+  },
   "aiContentFieldHint": "Enter a topic like \"World War II history\" or paste text content here...",
   "@aiContentFieldHint": {
     "description": "Hint text for the content input field"

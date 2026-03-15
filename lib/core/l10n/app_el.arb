@@ -933,6 +933,14 @@
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiSelectQuestionsTitle": "Επιλογή Ερωτήσεων",
+  "@aiSelectQuestionsTitle": {
+    "description": "Title for the question selector in AI study generation"
+  },
+  "aiSelectQuestionsSubtitle": "Ενεργοποιήστε για να επιλέξετε ποιες ερωτήσεις του κουίζ θα χρησιμοποιηθούν ως πλαίσιο για τη δημιουργία ενοτήτων μελέτης",
+  "@aiSelectQuestionsSubtitle": {
+    "description": "Subtitle explaining what the question selector does"
+  },
   "onboardingStudyContentTitle": "Μελετήστε το Περιεχόμενό σας",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"

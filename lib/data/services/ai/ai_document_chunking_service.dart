@@ -18,6 +18,7 @@ import 'dart:convert';
 import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/quiz/source_reference.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/domain/models/quiz/question.dart';
 
 class _TextBatch {
   final String text;
@@ -178,6 +179,7 @@ class AiDocumentChunkingService {
     required String documentId,
     required AppLocalizations localizations,
     required String language,
+    List<Question>? selectedQuestions,
   }) async {
     try {
       final jsonResponse = await aiService.generateStudyIndexFromText(
@@ -185,6 +187,7 @@ class AiDocumentChunkingService {
         content: content,
         generationMode: generationMode,
         language: language,
+        selectedQuestions: selectedQuestions,
       );
 
       // Clean the response if it contains markdown code blocks
