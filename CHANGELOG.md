@@ -5,8 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.9.1]
+## [1.10.0]
 
+- feat: Added support for generating study sections from selected quiz questions in the AI study generation flow, including a dedicated question selector and localized UI text in all supported languages.
+- fix: Show AI study generation errors in a persistent confirmation dialog instead of a transient snackbar so network and service errors remain readable.
 - feat: Added app version display in Settings appending `-debug` to the version label in non-release builds.
 - feat: Added support action in Settings to open GitHub Issues prefilled with app version and platform details.
 - ui: Added "Study Your Content" onboarding page (position 2) explaining study sections, AI generation, and material import, with responsive mobile and desktop layouts.
