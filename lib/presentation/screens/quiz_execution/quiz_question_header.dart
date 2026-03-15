@@ -48,7 +48,6 @@ class QuizQuestionHeader extends StatelessWidget {
             context,
           )!.questionNumber(state.currentQuestionIndex + 1),
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontFamily: 'Inter',
             color: Colors.grey[600],
             fontWeight: FontWeight.w600,
           ),
@@ -59,7 +58,6 @@ class QuizQuestionHeader extends StatelessWidget {
           child: LaTeXText(
             state.currentQuestion.text,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              fontFamily: 'Inter',
               fontWeight: FontWeight.bold,
               height: 1.3,
             ),

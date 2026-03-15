@@ -625,6 +625,14 @@
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiSelectQuestionsTitle": "კითხვების არჩევა",
+  "@aiSelectQuestionsTitle": {
+    "description": "Title for the question selector in AI study generation"
+  },
+  "aiSelectQuestionsSubtitle": "ჩართეთ, რომ აირჩიოთ, რომელი ვიქტორინის კითხვები გამოყენდეს სასწავლო სექციების გენერაციის კონტექსტად",
+  "@aiSelectQuestionsSubtitle": {
+    "description": "Subtitle explaining what the question selector does"
+  },
   "onboardingStudyContentTitle": "შეისწავლეთ თქვენი კონტენტი",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"

@@ -564,8 +564,9 @@ IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
       }
     }
 
-    final otherChunks =
-        allChunks.where((c) => c.chunkIndex != chunk.chunkIndex).toList();
+    final otherChunks = allChunks
+        .where((c) => c.chunkIndex != chunk.chunkIndex)
+        .toList();
     if (otherChunks.isNotEmpty) {
       buffer.write('\nOther chapters in the study material:\n');
       for (final other in otherChunks) {

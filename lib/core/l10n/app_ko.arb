@@ -625,6 +625,14 @@
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiSelectQuestionsTitle": "질문 선택",
+  "@aiSelectQuestionsTitle": {
+    "description": "Title for the question selector in AI study generation"
+  },
+  "aiSelectQuestionsSubtitle": "학습 섹션 생성에 사용할 컨텍스트로 어떤 퀴즈 질문을 사용할지 선택하려면 활성화하세요",
+  "@aiSelectQuestionsSubtitle": {
+    "description": "Subtitle explaining what the question selector does"
+  },
   "onboardingStudyContentTitle": "콘텐츠를 학습하세요",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"

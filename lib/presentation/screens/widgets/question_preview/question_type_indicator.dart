@@ -68,7 +68,6 @@ class QuestionTypeIndicator extends StatelessWidget {
         color: Theme.of(context).colorScheme.onSurface,
         fontSize: 11,
         fontWeight: FontWeight.w500,
-        fontFamily: 'Inter',
       ),
     );
   }

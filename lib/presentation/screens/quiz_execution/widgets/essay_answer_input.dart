@@ -155,10 +155,7 @@ class _EssayAnswerInputState extends State<EssayAnswerInput> {
               decoration: InputDecoration(
                 hintText: AppLocalizations.of(context)!.explanationHint,
                 border: InputBorder.none,
-                hintStyle: TextStyle(
-                  color: Theme.of(context).hintColor,
-                  fontFamily: 'Inter',
-                ),
+                hintStyle: TextStyle(color: Theme.of(context).hintColor),
                 contentPadding: const EdgeInsets.all(16),
               ),
               readOnly:

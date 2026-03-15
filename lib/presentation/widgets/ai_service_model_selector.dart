@@ -177,7 +177,6 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
           Text(
             label,
             style: TextStyle(
-              fontFamily: 'Inter',
               fontSize: 12,
               fontWeight: FontWeight.w500,
               color: labelColor,
@@ -196,7 +195,6 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                 ? Text(
                     loadingText ?? 'Loading...',
                     style: TextStyle(
-                      fontFamily: 'Inter',
                       fontSize: 13,
                       fontWeight: FontWeight.w500,
                       color: textColor,
@@ -206,7 +204,6 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                 ? Text(
                     emptyText,
                     style: TextStyle(
-                      fontFamily: 'Inter',
                       fontSize: 13,
                       fontWeight: FontWeight.w500,
                       color: textColor,
@@ -229,7 +226,6 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                             child: Text(
                               item.value ?? '',
                               style: TextStyle(
-                                fontFamily: 'Inter',
                                 fontSize: 13,
                                 fontWeight: FontWeight.w500,
                                 color: textColor,
@@ -245,7 +241,6 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                           child: Text(
                             item.value ?? '',
                             style: TextStyle(
-                              fontFamily: 'Inter',
                               fontSize: 13,
                               fontWeight: FontWeight.w500,
                               color: textColor,
@@ -282,7 +277,6 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
             Text(
               localizations.aiDefaultModelTitle,
               style: TextStyle(
-                fontFamily: 'Inter',
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
                 color: textColor,

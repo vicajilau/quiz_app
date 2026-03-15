@@ -48,7 +48,6 @@ class StudyIndexHeroCard extends StatelessWidget {
         Text(
           localizations.studyScreenStudyGuide.toUpperCase(),
           style: theme.textTheme.titleMedium?.copyWith(
-            fontFamily: 'Inter',
             color: Colors.grey[600],
             fontWeight: FontWeight.w600,
           ),
@@ -59,7 +58,6 @@ class StudyIndexHeroCard extends StatelessWidget {
           child: Text(
             state.documentTitle,
             style: theme.textTheme.headlineSmall?.copyWith(
-              fontFamily: 'Inter',
               fontWeight: FontWeight.bold,
               height: 1.3,
             ),

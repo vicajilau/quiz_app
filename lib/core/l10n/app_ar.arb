@@ -2335,6 +2335,14 @@
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiSelectQuestionsTitle": "تحديد الأسئلة",
+  "@aiSelectQuestionsTitle": {
+    "description": "Title for the question selector in AI study generation"
+  },
+  "aiSelectQuestionsSubtitle": "قم بالتمكين لاختيار أسئلة الاختبار التي ستُستخدم كسياق لإنشاء أقسام الدراسة",
+  "@aiSelectQuestionsSubtitle": {
+    "description": "Subtitle explaining what the question selector does"
+  },
   "onboardingStudyContentTitle": "ادرس المحتوى الخاص بك",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"

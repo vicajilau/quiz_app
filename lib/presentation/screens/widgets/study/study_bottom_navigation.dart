@@ -113,14 +113,21 @@ class StudyBottomNavigation extends StatelessWidget {
                   localizations: localizations,
                   onPrevious: state.hasPrevious
                       ? () async {
-                          final targetChunk = state.chunks[state.currentChunkIndex - 1];
+                          final targetChunk =
+                              state.chunks[state.currentChunkIndex - 1];
                           if (targetChunk.status != StudyChunkState.completed &&
-                              targetChunk.status != StudyChunkState.downloaded) {
-                            final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
-                                .getIsAiAvailable();
+                              targetChunk.status !=
+                                  StudyChunkState.downloaded) {
+                            final isAiAvailable =
+                                await ServiceLocator.getIt<
+                                      ConfigurationService
+                                    >()
+                                    .getIsAiAvailable();
                             if (!isAiAvailable) {
                               if (context.mounted) {
-                                context.presentSnackBar(localizations.aiApiKeyRequired);
+                                context.presentSnackBar(
+                                  localizations.aiApiKeyRequired,
+                                );
                               }
                               return;
                             }
@@ -134,14 +141,21 @@ class StudyBottomNavigation extends StatelessWidget {
                       : null,
                   onNext: state.hasNext
                       ? () async {
-                          final targetChunk = state.chunks[state.currentChunkIndex + 1];
+                          final targetChunk =
+                              state.chunks[state.currentChunkIndex + 1];
                           if (targetChunk.status != StudyChunkState.completed &&
-                              targetChunk.status != StudyChunkState.downloaded) {
-                            final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
-                                .getIsAiAvailable();
+                              targetChunk.status !=
+                                  StudyChunkState.downloaded) {
+                            final isAiAvailable =
+                                await ServiceLocator.getIt<
+                                      ConfigurationService
+                                    >()
+                                    .getIsAiAvailable();
                             if (!isAiAvailable) {
                               if (context.mounted) {
-                                context.presentSnackBar(localizations.aiApiKeyRequired);
+                                context.presentSnackBar(
+                                  localizations.aiApiKeyRequired,
+                                );
                               }
                               return;
                             }

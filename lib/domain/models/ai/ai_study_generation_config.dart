@@ -16,6 +16,7 @@
 import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
+import 'package:quizdy/domain/models/quiz/question.dart';
 
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
@@ -45,8 +46,15 @@ class AiStudyGenerationConfig {
   /// The specific academic difficulty level when manual mode is selected.
   final AiDifficultyLevel? difficultyLevel;
 
+  /// Optional subset of quiz questions selected as generation context.
+  final List<Question>? selectedQuestions;
+
   /// Returns true if a file is attached to this configuration.
   bool get hasFile => file != null;
+
+  /// Returns true if specific quiz questions are selected as source.
+  bool get hasSelectedQuestions =>
+      selectedQuestions != null && selectedQuestions!.isNotEmpty;
 
   const AiStudyGenerationConfig({
     required this.language,
@@ -57,5 +65,6 @@ class AiStudyGenerationConfig {
     this.generationMode = AiGenerationMode.text,
     this.isAutoDifficulty = true,
     this.difficultyLevel,
+    this.selectedQuestions,
   });
 }

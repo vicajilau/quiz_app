@@ -2035,6 +2035,14 @@
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiSelectQuestionsTitle": "Seleccionar preguntes",
+  "@aiSelectQuestionsTitle": {
+    "description": "Title for the question selector in AI study generation"
+  },
+  "aiSelectQuestionsSubtitle": "Activa-ho per triar quines preguntes del qüestionari s'utilitzaran com a context per generar seccions d'estudi",
+  "@aiSelectQuestionsSubtitle": {
+    "description": "Subtitle explaining what the question selector does"
+  },
   "onboardingStudyContentTitle": "Estudia el teu contingut",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"

@@ -573,6 +573,7 @@ class StudyExecutionBloc
         aiService: event.config.preferredService,
       );
       final documentId = 'study_${DateTime.now().millisecondsSinceEpoch}';
+      final effectiveQuizContext = event.quizContext;
 
       List<StudyChunk> generatedChunks = [];
 
@@ -582,18 +583,19 @@ class StudyExecutionBloc
           documentId: documentId,
           localizations: _localizations,
           extraContext:
-              '${event.quizContext}\n\nAdditional Instructions: ${event.config.content}',
+              '$effectiveQuizContext\n\nAdditional Instructions: ${event.config.content}',
           language: event.config.language,
         );
         generatedChunks = result['chunks'] as List<StudyChunk>;
       } else {
         final result = await initializeUseCase.generateChunksFromText(
           content:
-              '${event.quizContext}\n\nUser Prompt: ${event.config.content}',
+              '$effectiveQuizContext\n\nUser Prompt: ${event.config.content}',
           generationMode: event.config.generationMode,
           documentId: documentId,
           localizations: _localizations,
           language: event.config.language,
+          selectedQuestions: event.config.selectedQuestions,
         );
         generatedChunks = result['chunks'] as List<StudyChunk>;
       }

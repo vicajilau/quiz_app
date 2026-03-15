@@ -43,7 +43,6 @@ class AdvancedSettingsSection extends StatelessWidget {
             Text(
               AppLocalizations.of(context)!.advancedSettingsTitle,
               style: TextStyle(
-                fontFamily: 'Inter',
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
                 color: colors.title,
@@ -71,7 +70,6 @@ class AdvancedSettingsSection extends StatelessWidget {
                         Text(
                           AppLocalizations.of(context)!.appLanguageLabel,
                           style: TextStyle(
-                            fontFamily: 'Inter',
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                             color: colors.title,
@@ -81,7 +79,6 @@ class AdvancedSettingsSection extends StatelessWidget {
                         Text(
                           AppLocalizations.of(context)!.appLanguageDescription,
                           style: TextStyle(
-                            fontFamily: 'Inter',
                             fontSize: 14,
                             color: colors.subtitle,
                           ),
@@ -110,11 +107,7 @@ class AdvancedSettingsSection extends StatelessWidget {
                               size: 16,
                               color: colors.subtitle,
                             ),
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 14,
-                              color: colors.title,
-                            ),
+                            style: TextStyle(fontSize: 14, color: colors.title),
                             dropdownColor: colors.card,
                             borderRadius: BorderRadius.circular(8),
                             items: AppLocalizations.supportedLocales.map((

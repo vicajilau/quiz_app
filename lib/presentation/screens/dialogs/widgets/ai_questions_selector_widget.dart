@@ -18,23 +18,23 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
-import 'package:quizdy/domain/models/quiz/study_chunk.dart';
+import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/presentation/widgets/quizdy_switch.dart';
 
-class AiChunkSelectorWidget extends StatelessWidget {
-  final List<StudyChunk> chunks;
+class AiQuestionsSelectorWidget extends StatelessWidget {
+  final List<Question> questions;
   final bool enabled;
   final Set<int> selectedIndices;
   final ValueChanged<bool> onToggle;
-  final ValueChanged<int> onChunkToggled;
+  final ValueChanged<int> onQuestionToggled;
 
-  const AiChunkSelectorWidget({
+  const AiQuestionsSelectorWidget({
     super.key,
-    required this.chunks,
+    required this.questions,
     required this.enabled,
     required this.selectedIndices,
     required this.onToggle,
-    required this.onChunkToggled,
+    required this.onQuestionToggled,
   });
 
   @override
@@ -49,7 +49,7 @@ class AiChunkSelectorWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              localizations.aiSelectSectionsTitle,
+              localizations.aiSelectQuestionsTitle,
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
@@ -61,7 +61,7 @@ class AiChunkSelectorWidget extends StatelessWidget {
         ),
         const SizedBox(height: 2),
         Text(
-          localizations.aiSelectSectionsSubtitle,
+          localizations.aiSelectQuestionsSubtitle,
           style: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.normal,
@@ -81,16 +81,14 @@ class AiChunkSelectorWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: SingleChildScrollView(
                 child: Column(
-                  children: List.generate(chunks.length, (i) {
-                    final chunk = chunks[i];
-                    final isSelected = selectedIndices.contains(
-                      chunk.chunkIndex,
-                    );
-                    return _ChunkItem(
-                      chunk: chunk,
+                  children: List.generate(questions.length, (i) {
+                    final question = questions[i];
+                    final isSelected = selectedIndices.contains(i);
+                    return _QuestionItem(
+                      question: question,
                       isSelected: isSelected,
-                      onTap: () => onChunkToggled(chunk.chunkIndex),
-                      isLast: i == chunks.length - 1,
+                      onTap: () => onQuestionToggled(i),
+                      isLast: i == questions.length - 1,
                     );
                   }),
                 ),
@@ -103,14 +101,14 @@ class AiChunkSelectorWidget extends StatelessWidget {
   }
 }
 
-class _ChunkItem extends StatelessWidget {
-  final StudyChunk chunk;
+class _QuestionItem extends StatelessWidget {
+  final Question question;
   final bool isSelected;
   final VoidCallback onTap;
   final bool isLast;
 
-  const _ChunkItem({
-    required this.chunk,
+  const _QuestionItem({
+    required this.question,
     required this.isSelected,
     required this.onTap,
     required this.isLast,
@@ -160,16 +158,20 @@ class _ChunkItem extends StatelessWidget {
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: Text(
-                    chunk.title,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: isSelected
-                          ? FontWeight.w500
-                          : FontWeight.normal,
-                      color: isSelected ? colors.title : colors.subtitle,
+                  child: Tooltip(
+                    message: question.text,
+                    waitDuration: const Duration(milliseconds: 400),
+                    child: Text(
+                      question.text,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: isSelected
+                            ? FontWeight.w500
+                            : FontWeight.normal,
+                        color: isSelected ? colors.title : colors.subtitle,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],

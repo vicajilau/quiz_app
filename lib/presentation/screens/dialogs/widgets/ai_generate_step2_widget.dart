@@ -31,7 +31,9 @@ import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
+import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_chunk_selector_widget.dart';
+import 'package:quizdy/presentation/screens/dialogs/widgets/ai_questions_selector_widget.dart';
 import 'package:quizdy/presentation/widgets/dialog_drop_zone.dart';
 import 'package:quizdy/presentation/widgets/components/ai_content_input_zone.dart';
 import 'package:quizdy/presentation/widgets/components/ai_file_upload_zone.dart';
@@ -41,6 +43,7 @@ import 'package:quizdy/presentation/widgets/components/collapsible_generation_co
 class AiGenerateStep2Widget extends StatefulWidget {
   final bool isStudyMode;
   final List<StudyChunk>? chunks;
+  final List<Question>? questions;
   final TextEditingController textController;
   final TextEditingController? questionCountController;
   final int? questionCount;
@@ -70,6 +73,7 @@ class AiGenerateStep2Widget extends StatefulWidget {
     super.key,
     this.isStudyMode = false,
     this.chunks,
+    this.questions,
     required this.textController,
     this.questionCountController,
     this.questionCount,
@@ -106,7 +110,9 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
   final GlobalKey _configKey = GlobalKey();
   bool _isDragging = false;
   bool _chunkSelectorEnabled = false;
+  bool _questionSelectorEnabled = false;
   late Set<int> _selectedChunkIndices;
+  late Set<int> _selectedQuestionIndices;
 
   @override
   void initState() {
@@ -120,6 +126,15 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
       _selectedChunkIndices = chunks.map((c) => c.chunkIndex).toSet();
     } else {
       _selectedChunkIndices = {};
+    }
+
+    final questions = widget.questions;
+    if (questions != null && questions.isNotEmpty) {
+      _selectedQuestionIndices = Set<int>.from(
+        List.generate(questions.length, (index) => index),
+      );
+    } else {
+      _selectedQuestionIndices = {};
     }
   }
 
@@ -170,6 +185,9 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
   }
 
   bool _isGenerateEnabled() {
+    if (_questionSelectorEnabled) {
+      return _selectedQuestionIndices.isNotEmpty;
+    }
     if (_chunkSelectorEnabled) {
       return _selectedChunkIndices.isNotEmpty;
     }
@@ -215,7 +233,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                     child: Text(
                       localizations.aiEnterContentTitle,
                       style: TextStyle(
-                        fontFamily: 'Inter',
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
                         color: colors.title,
@@ -239,7 +256,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
               Text(
                 localizations.aiEnterContentDescription,
                 style: TextStyle(
-                  fontFamily: 'Inter',
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
                   color: colors.subtitle,
@@ -254,7 +270,8 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if (widget.chunks != null && widget.chunks!.isNotEmpty) ...[
+                      if (widget.chunks != null &&
+                          widget.chunks!.isNotEmpty) ...[
                         AiChunkSelectorWidget(
                           chunks: widget.chunks!,
                           enabled: _chunkSelectorEnabled,
@@ -262,6 +279,9 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                           onToggle: (value) {
                             setState(() {
                               _chunkSelectorEnabled = value;
+                              if (value) {
+                                _questionSelectorEnabled = false;
+                              }
                             });
                           },
                           onChunkToggled: (index) {
@@ -276,7 +296,35 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                         ),
                         const SizedBox(height: 24),
                       ],
-                      if (!_chunkSelectorEnabled) ...[
+                      if (widget.isStudyMode &&
+                          widget.questions != null &&
+                          widget.questions!.isNotEmpty) ...[
+                        AiQuestionsSelectorWidget(
+                          questions: widget.questions!,
+                          enabled: _questionSelectorEnabled,
+                          selectedIndices: _selectedQuestionIndices,
+                          onToggle: (value) {
+                            setState(() {
+                              _questionSelectorEnabled = value;
+                              if (value) {
+                                _chunkSelectorEnabled = false;
+                              }
+                            });
+                          },
+                          onQuestionToggled: (index) {
+                            setState(() {
+                              if (_selectedQuestionIndices.contains(index)) {
+                                _selectedQuestionIndices.remove(index);
+                              } else {
+                                _selectedQuestionIndices.add(index);
+                              }
+                            });
+                          },
+                        ),
+                        const SizedBox(height: 24),
+                      ],
+                      if (!_chunkSelectorEnabled &&
+                          !_questionSelectorEnabled) ...[
                         // Input Area
                         AiContentInputZone(
                           controller: widget.textController,
@@ -382,35 +430,66 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                     ? AiStudyGenerationConfig(
                                         language: widget.selectedLanguage,
                                         content: '',
-                                        preferredService: widget.selectedService,
+                                        preferredService:
+                                            widget.selectedService,
                                         preferredModel: widget.selectedModel,
                                         file: null,
                                         generationMode: AiGenerationMode.text,
-                                        isAutoDifficulty: widget.isAutoDifficulty,
+                                        isAutoDifficulty:
+                                            widget.isAutoDifficulty,
                                         difficultyLevel: widget.isAutoDifficulty
                                             ? null
                                             : widget.selectedDifficulty,
                                       )
                                     : AiQuestionGenerationConfig(
-                                        questionCount: widget.questionCount ?? 5,
+                                        questionCount:
+                                            widget.questionCount ?? 5,
                                         questionTypes:
                                             widget.selectedQuestionTypes
                                                 ?.toList() ??
                                             [],
                                         language: widget.selectedLanguage,
                                         content: '',
-                                        preferredService: widget.selectedService,
+                                        preferredService:
+                                            widget.selectedService,
                                         preferredModel: widget.selectedModel,
                                         file: null,
                                         generationMode: AiGenerationMode.text,
                                         generationCategory:
                                             widget.selectedCategory,
-                                        isAutoDifficulty: widget.isAutoDifficulty,
+                                        isAutoDifficulty:
+                                            widget.isAutoDifficulty,
                                         difficultyLevel: widget.isAutoDifficulty
                                             ? null
                                             : widget.selectedDifficulty,
                                         selectedChunks: selectedChunks,
                                       );
+                                widget.onGenerate(config);
+                              } else if (_questionSelectorEnabled &&
+                                  widget.questions != null) {
+                                final selectedQuestions = widget.questions!
+                                    .asMap()
+                                    .entries
+                                    .where(
+                                      (entry) => _selectedQuestionIndices
+                                          .contains(entry.key),
+                                    )
+                                    .map((entry) => entry.value)
+                                    .toList();
+
+                                final config = AiStudyGenerationConfig(
+                                  language: widget.selectedLanguage,
+                                  content: '',
+                                  preferredService: widget.selectedService,
+                                  preferredModel: widget.selectedModel,
+                                  file: null,
+                                  generationMode: AiGenerationMode.text,
+                                  isAutoDifficulty: widget.isAutoDifficulty,
+                                  difficultyLevel: widget.isAutoDifficulty
+                                      ? null
+                                      : widget.selectedDifficulty,
+                                  selectedQuestions: selectedQuestions,
+                                );
                                 widget.onGenerate(config);
                               } else {
                                 final mode = widget.fileAttachment != null
@@ -424,17 +503,20 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                         language: widget.selectedLanguage,
                                         content: widget.textController.text
                                             .trim(),
-                                        preferredService: widget.selectedService,
+                                        preferredService:
+                                            widget.selectedService,
                                         preferredModel: widget.selectedModel,
                                         file: widget.fileAttachment,
                                         generationMode: mode,
-                                        isAutoDifficulty: widget.isAutoDifficulty,
+                                        isAutoDifficulty:
+                                            widget.isAutoDifficulty,
                                         difficultyLevel: widget.isAutoDifficulty
                                             ? null
                                             : widget.selectedDifficulty,
                                       )
                                     : AiQuestionGenerationConfig(
-                                        questionCount: widget.questionCount ?? 5,
+                                        questionCount:
+                                            widget.questionCount ?? 5,
                                         questionTypes:
                                             widget.selectedQuestionTypes
                                                 ?.toList() ??
@@ -442,13 +524,15 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                         language: widget.selectedLanguage,
                                         content: widget.textController.text
                                             .trim(),
-                                        preferredService: widget.selectedService,
+                                        preferredService:
+                                            widget.selectedService,
                                         preferredModel: widget.selectedModel,
                                         file: widget.fileAttachment,
                                         generationMode: mode,
                                         generationCategory:
                                             widget.selectedCategory,
-                                        isAutoDifficulty: widget.isAutoDifficulty,
+                                        isAutoDifficulty:
+                                            widget.isAutoDifficulty,
                                         difficultyLevel: widget.isAutoDifficulty
                                             ? null
                                             : widget.selectedDifficulty,

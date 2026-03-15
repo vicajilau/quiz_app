@@ -186,7 +186,6 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                           ).colorScheme.onSurface,
                                           fontSize: 12,
                                           fontWeight: FontWeight.w600,
-                                          fontFamily: 'Inter',
                                         ),
                                       ),
                                     ),
@@ -282,7 +281,6 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                                             Brightness.dark
                                                         ? FontWeight.w500
                                                         : FontWeight.w600,
-                                                    fontFamily: 'Inter',
                                                   ),
                                                 ),
                                               ],
@@ -382,7 +380,6 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                       color: Theme.of(context).colorScheme.onSurface,
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
-                      fontFamily: 'Inter',
                       decoration: isDisabled
                           ? TextDecoration.lineThrough
                           : null,
@@ -473,7 +470,6 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                         ).extension<CustomColors>()!.warning,
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600,
-                                        fontFamily: 'Inter',
                                       ),
                                     ),
                                   ],
@@ -484,7 +480,6 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                   style: TextStyle(
                                     color: Theme.of(context).hintColor,
                                     fontSize: 14,
-                                    fontFamily: 'Inter',
                                     height: 1.5,
                                   ),
                                 ),

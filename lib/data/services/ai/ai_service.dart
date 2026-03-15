@@ -16,6 +16,7 @@
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/domain/models/quiz/question.dart';
 
 class FileUploadResult {
   final String fileUri;
@@ -73,6 +74,7 @@ abstract class AIService {
     required String content,
     required AiGenerationMode generationMode,
     required String language,
+    List<Question>? selectedQuestions,
   });
 
   /// Verifica si el servicio está disponible (tiene API key configurada)

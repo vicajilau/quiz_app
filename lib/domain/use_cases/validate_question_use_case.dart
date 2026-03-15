@@ -69,9 +69,7 @@ class ValidateQuestionUseCase {
     for (int i = 0; i < options.length; i++) {
       final normalizedOption = options[i].trim().toLowerCase();
       if (seenOptions.contains(normalizedOption)) {
-        return QuestionError(
-          errorType: QuestionErrorType.duplicatedOption,
-        );
+        return QuestionError(errorType: QuestionErrorType.duplicatedOption);
       }
       seenOptions.add(normalizedOption);
     }

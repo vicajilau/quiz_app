@@ -658,6 +658,14 @@
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiSelectQuestionsTitle": "Вибрати питання",
+  "@aiSelectQuestionsTitle": {
+    "description": "Title for the question selector in AI study generation"
+  },
+  "aiSelectQuestionsSubtitle": "Увімкніть, щоб вибрати, які питання вікторини використовувати як контекст для створення навчальних розділів",
+  "@aiSelectQuestionsSubtitle": {
+    "description": "Subtitle explaining what the question selector does"
+  },
   "onboardingStudyContentTitle": "Вивчайте свій контент",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"

@@ -118,7 +118,6 @@ class _AutoDismissDialogState extends State<_AutoDismissDialog> {
               color: Theme.of(context).colorScheme.onSurface,
               fontSize: 14,
               fontWeight: FontWeight.w500,
-              fontFamily: 'Inter',
             ),
             textAlign: TextAlign.center,
           ),

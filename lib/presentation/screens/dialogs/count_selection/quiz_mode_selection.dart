@@ -42,7 +42,6 @@ class QuizModeSelection extends StatelessWidget {
         Text(
           AppLocalizations.of(context)!.quizModeTitle,
           style: TextStyle(
-            fontFamily: 'Inter',
             fontSize: 14,
             fontWeight: FontWeight.w500,
             color: subTextColor,
@@ -88,7 +87,6 @@ class QuizModeSelection extends StatelessWidget {
               ? AppLocalizations.of(context)!.studyModeDescription
               : AppLocalizations.of(context)!.examModeDescription,
           style: TextStyle(
-            fontFamily: 'Inter',
             fontSize: 14,
             fontWeight: FontWeight.w500,
             color: subTextColor,
@@ -133,7 +131,6 @@ class QuizModeSelection extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                fontFamily: 'Inter',
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
                 color: isSelected ? Colors.white : defaultTextColor,

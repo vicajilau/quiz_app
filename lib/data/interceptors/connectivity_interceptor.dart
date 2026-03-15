@@ -33,8 +33,10 @@ class ConnectivityInterceptor extends Interceptor {
     final errorStr = err.error?.toString() ?? '';
     final isAborted = isAbortedError(errorStr);
 
-    final isConnectivityError = _connectivityTypes.contains(err.type) ||
-        (err.type == DioExceptionType.unknown && isSocketException(err.error)) ||
+    final isConnectivityError =
+        _connectivityTypes.contains(err.type) ||
+        (err.type == DioExceptionType.unknown &&
+            isSocketException(err.error)) ||
         isAborted;
 
     if (!isConnectivityError) {

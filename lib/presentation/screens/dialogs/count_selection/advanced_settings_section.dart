@@ -269,7 +269,6 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
               Text(
                 title,
                 style: TextStyle(
-                  fontFamily: 'Inter',
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
                   color: widget.textColor,
@@ -279,7 +278,6 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
               Text(
                 subtitle,
                 style: TextStyle(
-                  fontFamily: 'Inter',
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                   color: widget.subTextColor,
@@ -310,7 +308,6 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
         Text(
           AppLocalizations.of(context)!.timeLimitMinutes,
           style: TextStyle(
-            fontFamily: 'Inter',
             fontSize: 12,
             fontWeight: FontWeight.w400,
             color: widget.subTextColor,
@@ -341,7 +338,7 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
               vertical: 12,
             ),
           ),
-          style: TextStyle(fontFamily: 'Inter', color: widget.textColor),
+          style: TextStyle(color: widget.textColor),
           keyboardType: TextInputType.number,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           onChanged: (value) {
