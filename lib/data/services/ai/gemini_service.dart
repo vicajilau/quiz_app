@@ -21,6 +21,7 @@ import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/custom_exceptions/connectivity_exception.dart';
 
 class GeminiService extends AIService {
@@ -392,8 +393,17 @@ Rules:
     required String content,
     required AiGenerationMode generationMode,
     required String language,
+    List<Question>? selectedQuestions,
   }) async {
-    final header = generationMode == AiGenerationMode.topic
+    final header = selectedQuestions != null && selectedQuestions.isNotEmpty
+        ? '''
+The user wants a personalized study plan based on the following selected quiz questions:
+
+${_buildSelectedQuestionsContent(selectedQuestions)}
+
+Use these questions to infer the concepts, topics, skills, and knowledge areas that should be covered in the study plan.
+'''
+        : generationMode == AiGenerationMode.topic
         ? 'The user wants a personalized study plan about the following topic/s: $content'
         : 'The user has provided the following text for creating a study plan:\n\n$content';
 
@@ -432,5 +442,29 @@ Rules:
       localizations,
       responseMimeType: 'application/json',
     );
+  }
+
+  String _buildSelectedQuestionsContent(List<Question> questions) {
+    final buffer = StringBuffer();
+
+    for (var i = 0; i < questions.length; i++) {
+      final question = questions[i];
+      buffer.writeln('Question ${i + 1}: ${question.text}');
+
+      if (question.options.isNotEmpty) {
+        buffer.writeln('Options:');
+        for (final option in question.options) {
+          buffer.writeln('- $option');
+        }
+      }
+
+      if (question.explanation.isNotEmpty) {
+        buffer.writeln('Explanation: ${question.explanation}');
+      }
+
+      buffer.writeln();
+    }
+
+    return buffer.toString().trim();
   }
 }

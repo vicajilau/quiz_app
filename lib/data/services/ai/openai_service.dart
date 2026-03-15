@@ -20,6 +20,7 @@ import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/domain/models/quiz/question.dart';
 
 class OpenAIService extends AIService {
   static const String _baseUrl = 'https://api.openai.com/v1';
@@ -220,6 +221,7 @@ class OpenAIService extends AIService {
     required String content,
     required AiGenerationMode generationMode,
     required String language,
+    List<Question>? selectedQuestions,
   }) async {
     throw UnimplementedError(
       'OpenAI Study Index from Text not implemented yet',

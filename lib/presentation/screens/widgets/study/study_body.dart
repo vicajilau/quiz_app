@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/context_extension.dart';
+import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
@@ -26,6 +27,7 @@ import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
+import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quizdy/presentation/screens/quiz_execution/widgets/ai_studio_chat_side_panel.dart';
 import 'package:quizdy/presentation/screens/widgets/study/components/study_component_builder.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_view.dart';
@@ -204,6 +206,21 @@ class _StudyBodyState extends State<StudyBody>
           },
         ),
         BlocListener<StudyExecutionBloc, StudyExecutionState>(
+          listenWhen: (previous, current) =>
+              previous.error != current.error && current.error != null,
+          listener: (context, state) {
+            showDialog(
+              context: context,
+              builder: (context) => CustomConfirmDialog(
+                title: AppLocalizations.of(context)!.aiGenerationErrorTitle,
+                message: state.error!.cleanExceptionPrefix(),
+                confirmText: AppLocalizations.of(context)!.acceptButton,
+                showCloseButton: false,
+              ),
+            );
+          },
+        ),
+        BlocListener<StudyExecutionBloc, StudyExecutionState>(
           listenWhen: (previous, current) {
             final currentChunk = current.currentChunk;
             final previousChunk = previous.currentChunk;
@@ -322,7 +339,8 @@ class _StudyBodyState extends State<StudyBody>
               return LayoutBuilder(
                 builder: (context, constraints) {
                   final isMobile = context.isMobile;
-                  final justResized = _wasMobile != null && _wasMobile != isMobile;
+                  final justResized =
+                      _wasMobile != null && _wasMobile != isMobile;
 
                   // Sync mobile animation state ONLY on resize
                   if (justResized) {
@@ -338,7 +356,7 @@ class _StudyBodyState extends State<StudyBody>
                       _mobileChatAnimController.value = 1.0;
                     }
                   }
-                  
+
                   _wasMobile = isMobile;
 
                   final sidebarPanel = StudySectionsSidebar(

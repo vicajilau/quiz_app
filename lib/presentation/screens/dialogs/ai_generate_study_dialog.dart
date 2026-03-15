@@ -29,10 +29,13 @@ import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step1_wi
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step2_widget.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
+import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/presentation/utils/clipboard_image_helper.dart';
 
 class AiGenerateStudyDialog extends StatefulWidget {
-  const AiGenerateStudyDialog({super.key});
+  final List<Question>? questions;
+
+  const AiGenerateStudyDialog({super.key, this.questions});
 
   @override
   State<AiGenerateStudyDialog> createState() => _AiGenerateStudyDialogState();
@@ -338,6 +341,7 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
     } else {
       return AiGenerateStep2Widget(
         isStudyMode: true,
+        questions: widget.questions,
         textController: _textController,
         fileAttachment: _fileAttachment,
         selectedLanguage: _selectedLanguage,

@@ -1936,6 +1936,14 @@
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiSelectQuestionsTitle": "問題を選択",
+  "@aiSelectQuestionsTitle": {
+    "description": "Title for the question selector in AI study generation"
+  },
+  "aiSelectQuestionsSubtitle": "学習セクションを生成する際のコンテキストとして使用するクイズ問題を選択するには有効にしてください",
+  "@aiSelectQuestionsSubtitle": {
+    "description": "Subtitle explaining what the question selector does"
+  },
   "onboardingStudyContentTitle": "コンテンツを学習",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"
