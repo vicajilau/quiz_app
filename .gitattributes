@@ -1,0 +1,2 @@
+# Keep generated Flutter plugin registrant stable across platforms
+macos/Flutter/GeneratedPluginRegistrant.swift text eol=lf
