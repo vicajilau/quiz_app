@@ -60,6 +60,8 @@ class StudyQuizFileHelper {
       return updatedQuizFile(fileState.quizFile);
     } else if (fileState is FileSaved) {
       return updatedQuizFile(fileState.quizFile);
+    } else if (initialQuizFile != null) {
+      return updatedQuizFile(initialQuizFile);
     } else {
       return QuizFile(
         metadata: QuizMetadata(
