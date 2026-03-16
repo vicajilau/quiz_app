@@ -27,6 +27,7 @@ import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/quiz/source_reference.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/domain/models/quiz/question.dart';
 
 /// Use case that configures the `.quiz` file with chunk boundaries identified by AI.
 class InitializeQuizChunksUseCase {
@@ -140,6 +141,7 @@ class InitializeQuizChunksUseCase {
     required String documentId,
     required AppLocalizations localizations,
     required String language,
+    List<Question>? selectedQuestions,
   }) async {
     final indexResult = await _chunkingService.generateIndexFromTextWithAi(
       aiService: _aiService,
@@ -148,6 +150,7 @@ class InitializeQuizChunksUseCase {
       documentId: documentId,
       localizations: localizations,
       language: language,
+      selectedQuestions: selectedQuestions,
     );
 
     final references = indexResult['references'] as List<SourceReference>;

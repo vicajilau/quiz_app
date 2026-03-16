@@ -1936,6 +1936,14 @@
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiSelectQuestionsTitle": "प्रश्न चुनें",
+  "@aiSelectQuestionsTitle": {
+    "description": "Title for the question selector in AI study generation"
+  },
+  "aiSelectQuestionsSubtitle": "अध्ययन अनुभाग बनाने के लिए किन क्विज़ प्रश्नों को संदर्भ के रूप में उपयोग करना है, यह चुनने हेतु सक्षम करें",
+  "@aiSelectQuestionsSubtitle": {
+    "description": "Subtitle explaining what the question selector does"
+  },
   "onboardingStudyContentTitle": "अपनी सामग्री का अध्ययन करें",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"

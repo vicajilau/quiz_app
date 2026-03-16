@@ -1933,6 +1933,14 @@
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiSelectQuestionsTitle": "Hautatu galderak",
+  "@aiSelectQuestionsTitle": {
+    "description": "Title for the question selector in AI study generation"
+  },
+  "aiSelectQuestionsSubtitle": "Gaitu ikasketa-atalak sortzeko testuinguru gisa zein galdetegi-galdera erabiliko diren aukeratzeko",
+  "@aiSelectQuestionsSubtitle": {
+    "description": "Subtitle explaining what the question selector does"
+  },
   "onboardingStudyContentTitle": "Ikasi zure edukia",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"

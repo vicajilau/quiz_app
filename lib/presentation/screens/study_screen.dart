@@ -407,7 +407,8 @@ class _StudyScreenViewState extends State<StudyScreenView> {
             final config = await showDialog<AiStudyGenerationConfig>(
               context: context,
               barrierDismissible: false,
-              builder: (context) => const AiGenerateStudyDialog(),
+              builder: (context) =>
+                  AiGenerateStudyDialog(questions: widget.quizFile?.questions),
             );
 
             if (config != null && context.mounted) {
