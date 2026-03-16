@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.10.0]
 
+- feat: Added "Study Mode" button to the Quiz Preview header for direct navigation to Study Mode from the quiz editor.
 - ui: Improved dialog footer layout with consistent padding, theme-aware colors, and text overflow handling across multiple dialogs.
 - feat: Added support for generating study sections from selected quiz questions in the AI study generation flow, including a dedicated question selector and localized UI text in all supported languages.
 - fix: Show AI study generation errors in a persistent confirmation dialog instead of a transient snackbar so network and service errors remain readable.
