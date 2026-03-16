@@ -10,12 +10,15 @@ It uses Material Design 3, BLoC/Cubit state management, GoRouter navigation, Cle
 As an AI agent, your primary mission is to maintain the architectural integrity of the project while delivering feature updates.
 
 ### 1. Research First
+
 Always use `find_by_name` or `grep_search` to find existing patterns before creating something new. The project likely already has a pattern for what you are doing.
 
 ### 2. Follow Workflows
+
 Before performing an action, check `.agents/workflows/`. If a workflow exists for your task (e.g., `check-theme-compliance`, `implement-pencil-design`), you **MUST** follow it rigorously.
 
 ### 3. Proactive Static Analysis
+
 Never consider a task "done" without running `flutter analyze`. Fix all warnings immediately.
 
 ---
@@ -25,23 +28,27 @@ Never consider a task "done" without running `flutter analyze`. Fix all warnings
 All commands use the standard `flutter` CLI — there is no npm/yarn/package.json.
 
 ### Dependencies
+
 ```bash
 flutter pub get          # install / restore dependencies
 flutter pub upgrade      # upgrade packages
 ```
 
 ### Development
+
 ```bash
 flutter run              # run in debug mode with hot reload
 flutter run --release    # run in release mode
 ```
 
 ### Lint & Static Analysis
+
 ```bash
 flutter analyze          # run the Dart analyzer (analogous to eslint)
 ```
 
 ### Tests
+
 ```bash
 flutter test                                  # run all tests
 flutter test test/widget_test.dart            # run a single test file
@@ -50,6 +57,7 @@ flutter test --tags smoke                     # run tests with a specific tag
 ```
 
 ### Build
+
 ```bash
 flutter build apk        # Android
 flutter build ios         # iOS
@@ -60,6 +68,7 @@ flutter build web         # Web
 ```
 
 ### Localizations (code generation)
+
 ```bash
 flutter gen-l10n         # regenerate lib/core/l10n/app_localizations*.dart from ARB files
 ```
@@ -122,13 +131,17 @@ lib/
 ## Code Style
 
 ### Dart Formatting
+
 Dart formatting is handled by `dart format` (opinionated, not configurable). Run it before committing.
+
 ```bash
 dart format lib/ test/
 ```
 
 ### Import Order
+
 Follow the standard Dart import grouping, in this order:
+
 1. `dart:` core libraries (`dart:math`, `dart:convert`, etc.)
 2. `package:flutter/` framework imports
 3. Third-party packages (`package:flutter_bloc/`, `package:go_router/`, etc.)
@@ -148,12 +161,14 @@ Follow the standard Dart import grouping, in this order:
 | Route path constants | `static const String` in `AppRoutes` class | `AppRoutes.home = '/'` |
 
 ### Widget Patterns
+
 - Prefer `StatelessWidget`. Use `StatefulWidget` only when local widget lifecycle is needed (e.g., `AnimationController`, `TextEditingController`).
 - Always use `const` constructors where possible: `const HomeScreen({super.key})`.
 - Split large widgets into **private sub-widgets** within the same file using `_ClassName` naming.
 - Use immutable models with `copyWith`.
 
 ### State Management (BLoC)
+
 - **Prefer `Cubit` over full `Bloc`** when creating new state managers. Use `Bloc` (events + states) only when the added traceability of discrete events is genuinely needed (e.g., complex async flows, event debouncing/throttling, or event-to-event transformations). For straightforward state changes, `Cubit` is simpler and sufficient.
 - `context.read<Bloc>()` for one-shot reads / dispatching events.
 - `BlocBuilder` for reactive UI rebuilds.
@@ -162,16 +177,19 @@ Follow the standard Dart import grouping, in this order:
 - BLoCs/Cubits are provided at the top of the widget tree via `MultiBlocProvider` in `main.dart`.
 
 ### Dependency Injection
+
 - Uses `get_it` via the `ServiceLocator` wrapper class (`lib/core/service_locator.dart`).
 - Access services with `ServiceLocator.getIt<ServiceType>()`.
 - Platform-specific services (e.g., file service) are resolved at compile time via conditional imports.
 
 ### Routing
+
 - Use `context.go(AppRoutes.xxx)` (GoRouter's `BuildContext` extension).
 - All route path strings live in `AppRoutes` static constants (`lib/routes/app_router.dart`).
-- Routes: `/` (home), `/onboarding`, `/file_loaded_screen`, `/quiz_file_execution_screen`, `/study_screen`.
+- Routes: `/` (home), `/onboarding`, `/quiz_loaded_screen`, `/quiz_file_execution_screen`, `/study_screen`.
 
 ### Theme & Colors
+
 - **ZERO TOLERANCE for hardcoded colors.** Never use hexadecimal codes (`0xFF...`) or standard `Colors.xxx` constants directly in widgets.
 - **Always use `ThemeExtension`**. If a UI component needs specific colors not available in the standard `ColorScheme`, you **MUST** create a new `ThemeExtension` or update an existing one (e.g., `StudyThemeExtension`).
 - **Use semantic tokens**: Access colors via context helper extensions like `context.appColors` or `context.studyTheme`.
@@ -181,6 +199,7 @@ Follow the standard Dart import grouping, in this order:
 - Typography: uses `google_fonts` (Inter).
 
 ### Localization
+
 - All user-visible strings must use `AppLocalizations.of(context)!.someKey`.
 - Never hardcode UI strings in widget code.
 - Add new strings to `lib/core/l10n/app_en.arb` (the template), then run `flutter gen-l10n`.
@@ -188,12 +207,14 @@ Follow the standard Dart import grouping, in this order:
 - Supported locales: ar, ca, de, el, en, es, eu, fr, gl, hi, it, ja, pt, zh.
 
 ### Error Handling
+
 - BLoC event handlers: wrap in `try/catch` and emit an error state on failure.
 - Storage operations: return `bool` or nullable types (`Future<T?>`) rather than throwing.
 - Debug logging: use `printInDebug(...)` (project utility in `lib/core/debug_print.dart`).
 - UI error surfacing: use `SnackBar` triggered by `BlocListener`.
 
 ### Common Agent Pitfalls (AVOID THESE)
+
 - **Hardcoding Hex Colors**: Use `StudyThemeExtension` or `CustomColors` instead. Run `/check-theme-compliance` to verify.
 - **Hardcoding Font Families in Widgets**: Do not add `fontFamily: 'Inter'` directly in UI widgets. Use `Theme.of(context).textTheme` (or theme extensions) and keep typography theme-driven.
 - **Missing License Headers**: Check `Phase 5` of any implementation plan to ensure headers are added.
@@ -202,6 +223,7 @@ Follow the standard Dart import grouping, in this order:
 - **Ignoring Analysis**: `flutter analyze` is your source of truth for code quality.
 
 ### Pencil Design Implementation Rule
+
 - For any implementation derived from `.pen` files, run the `implement-pencil-design` workflow first.
 - If the design includes both light and dark variants, both variants must be implemented in the same change.
 
@@ -230,7 +252,6 @@ The header looks like exactly like this:
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
-
 
 ---
 
@@ -275,6 +296,7 @@ The header looks like exactly like this:
 ## Custom File Format
 
 Quizdy uses a custom `.quiz` file format for saving and loading quiz data. The app registers as a handler for `.quiz` files on all platforms, supporting:
+
 - File picker import
 - Drag & drop (via `desktop_drop`)
 - Deeplink / file association opening
@@ -284,6 +306,7 @@ Quizdy uses a custom `.quiz` file format for saving and loading quiz data. The a
 ## AI Integration
 
 The app integrates with **OpenAI** and **Google Gemini** APIs for:
+
 - Automatic question generation from documents
 - Document chunking and processing
 - Study content generation with configurable difficulty levels and generation modes

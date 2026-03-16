@@ -19,7 +19,7 @@ import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dar
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 import 'package:quizdy/core/theme/extensions/exam_timer_theme.dart';
 import 'package:quizdy/core/theme/extensions/home_theme.dart';
-import 'package:quizdy/core/theme/extensions/file_loaded_theme.dart';
+import 'package:quizdy/core/theme/extensions/quiz_loaded_theme.dart';
 import 'package:quizdy/core/theme/extensions/question_dialog_theme.dart';
 import 'package:quizdy/core/theme/extensions/ai_assistant_theme.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
