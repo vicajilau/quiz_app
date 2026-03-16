@@ -40,12 +40,15 @@ class AdvancedSettingsSection extends StatelessWidget {
               color: Theme.of(context).primaryColor,
             ),
             const SizedBox(width: 8),
-            Text(
-              AppLocalizations.of(context)!.advancedSettingsTitle,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: colors.title,
+            Expanded(
+              child: Text(
+                AppLocalizations.of(context)!.advancedSettingsTitle,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: colors.title,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],

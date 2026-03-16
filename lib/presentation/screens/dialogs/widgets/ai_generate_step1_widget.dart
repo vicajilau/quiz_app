@@ -74,7 +74,6 @@ class AiGenerateStep1Widget extends StatelessWidget {
         constraints: BoxConstraints(
           maxHeight: MediaQuery.of(context).size.height * 0.85,
         ),
-        padding: const EdgeInsets.all(32),
         decoration: BoxDecoration(
           color: colors.card,
           borderRadius: BorderRadius.circular(24),
@@ -85,38 +84,41 @@ class AiGenerateStep1Widget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(
-                    isStudyMode
-                        ? localizations.aiStudyGenerationTitle
-                        : localizations.generateQuestionsWithAI,
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
-                      color: colors.title,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(32, 32, 32, 24),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      isStudyMode
+                          ? localizations.aiStudyGenerationTitle
+                          : localizations.generateQuestionsWithAI,
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        color: colors.title,
+                      ),
                     ),
                   ),
-                ),
-                IconButton(
-                  onPressed: () => context.pop(),
-                  style: IconButton.styleFrom(
-                    backgroundColor: colors.surface,
-                    fixedSize: const Size(40, 40),
-                    padding: EdgeInsets.zero,
-                    shape: const CircleBorder(),
+                  IconButton(
+                    onPressed: () => context.pop(),
+                    style: IconButton.styleFrom(
+                      backgroundColor: colors.surface,
+                      fixedSize: const Size(40, 40),
+                      padding: EdgeInsets.zero,
+                      shape: const CircleBorder(),
+                    ),
+                    icon: Icon(LucideIcons.x, color: colors.subtitle, size: 20),
                   ),
-                  icon: Icon(LucideIcons.x, color: colors.subtitle, size: 20),
-                ),
-              ],
+                ],
+              ),
             ),
-            const SizedBox(height: 24),
 
             // Scrollable Content
             Flexible(
               child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(32, 0, 32, 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -221,14 +223,21 @@ class AiGenerateStep1Widget extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 24),
-
             // Footer (Fixed Next Button)
-            QuizdyButton(
-              title: AppLocalizations.of(context)!.next,
-              icon: LucideIcons.arrowRight,
-              expanded: true,
-              onPressed: selectedService != null ? onNext : null,
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Divider(height: 1, thickness: 1, color: colors.border),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(32, 24, 32, 32),
+                  child: QuizdyButton(
+                    title: AppLocalizations.of(context)!.next,
+                    icon: LucideIcons.arrowRight,
+                    expanded: true,
+                    onPressed: selectedService != null ? onNext : null,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

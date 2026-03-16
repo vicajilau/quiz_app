@@ -304,7 +304,7 @@ class AiSettingsSection extends StatelessWidget {
           decoration: InputDecoration(
             labelText: label,
             hintText: hint,
-            hintMaxLines: 3,
+            hintMaxLines: 1,
             border: OutlineInputBorder(
               borderSide: BorderSide(
                 color: isValid

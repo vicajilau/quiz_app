@@ -85,56 +85,58 @@ class CustomConfirmDialog extends StatelessWidget {
             ),
           ],
         ),
-        padding: const EdgeInsets.all(32),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header with Icon and X button
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
-                      color: colors.title,
-                    ),
-                  ),
-                ),
-                if (showCloseButton)
-                  Container(
-                    width: 40,
-                    height: 40,
-                    margin: const EdgeInsets.only(left: 16),
-                    decoration: BoxDecoration(
-                      color: colors.surface,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: IconButton(
-                      icon: Icon(
-                        LucideIcons.x,
-                        color: colors.subtitle,
-                        size: 20,
-                      ),
-                      onPressed: () => context.pop(false),
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(),
-                      style: IconButton.styleFrom(
-                        backgroundColor: colors.surface,
-                        shape: const CircleBorder(),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(32, 32, 32, 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        color: colors.title,
                       ),
                     ),
                   ),
-              ],
+                  if (showCloseButton)
+                    Container(
+                      width: 40,
+                      height: 40,
+                      margin: const EdgeInsets.only(left: 16),
+                      decoration: BoxDecoration(
+                        color: colors.surface,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: IconButton(
+                        icon: Icon(
+                          LucideIcons.x,
+                          color: colors.subtitle,
+                          size: 20,
+                        ),
+                        onPressed: () => context.pop(false),
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                        style: IconButton.styleFrom(
+                          backgroundColor: colors.surface,
+                          shape: const CircleBorder(),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
             ),
-            const SizedBox(height: 16),
 
             // Message (Scrollable)
             Flexible(
               child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(32, 0, 32, 24),
                 child: Text(
                   message,
                   style: TextStyle(
@@ -145,19 +147,27 @@ class CustomConfirmDialog extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 32),
 
             // Actions
-            QuizdyButton(
-              type: isDestructive
-                  ? QuizdyButtonType.warning
-                  : QuizdyButtonType.primary,
-              title: confirmText,
-              expanded: true,
-              onPressed: () {
-                onConfirm?.call();
-                context.pop(true);
-              },
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Divider(height: 1, thickness: 1, color: colors.border),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(32, 24, 32, 32),
+                  child: QuizdyButton(
+                    type: isDestructive
+                        ? QuizdyButtonType.warning
+                        : QuizdyButtonType.primary,
+                    title: confirmText,
+                    expanded: true,
+                    onPressed: () {
+                      onConfirm?.call();
+                      context.pop(true);
+                    },
+                  ),
+                ),
+              ],
             ),
           ],
         ),
