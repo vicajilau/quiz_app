@@ -594,6 +594,75 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                       ],
                     ),
                     actions: [
+                      // Study Mode Button
+                      Container(
+                        margin: const EdgeInsets.only(right: 8),
+                        constraints: const BoxConstraints(minWidth: 40),
+                        child: Material(
+                          color:
+                              context.quizLoadedTheme.appBarIconBackgroundColor,
+                          borderRadius: BorderRadius.circular(20),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(20),
+                            onTap: () {
+                              context.push(
+                                AppRoutes.studyScreen,
+                                extra: {
+                                  'initialChunks':
+                                      widget.quizFile.study!.content.cache,
+                                  'documentTitle':
+                                      widget.quizFile.metadata.title,
+                                  'documentSummary':
+                                      widget.quizFile.metadata.description,
+                                  'quizFile': widget.quizFile,
+                                  'hideStartQuizButton': true,
+                                },
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 10,
+                              ),
+                              child: Builder(
+                                builder: (context) {
+                                  final showText =
+                                      MediaQuery.of(context).size.width > 500;
+                                  return Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        LucideIcons.bookOpen,
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onPrimary,
+                                        size: 18,
+                                      ),
+                                      if (showText) ...[
+                                        const SizedBox(width: 6),
+                                        Text(
+                                          AppLocalizations.of(
+                                            context,
+                                          )!.studyModeLabel,
+                                          style: TextStyle(
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.onPrimary,
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ],
+                                    ],
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                       // Settings Button
                       Container(
                         width: 40,
