@@ -70,21 +70,26 @@ class _CollapsibleGenerationConfigState
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Icon(LucideIcons.sparkles, size: 18, color: iconColor),
-                    const SizedBox(width: 8),
-                    Text(
-                      AppLocalizations.of(
-                        context,
-                      )!.generationConfigurationTitle,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: titleColor,
+                Expanded(
+                  child: Row(
+                    children: [
+                      Icon(LucideIcons.sparkles, size: 18, color: iconColor),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          AppLocalizations.of(
+                            context,
+                          )!.generationConfigurationTitle,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: titleColor,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Icon(
                   _isExpanded ? LucideIcons.chevronUp : LucideIcons.chevronDown,

@@ -307,7 +307,7 @@ quiz_app/
 │   ├── presentation/                # UI layer
 │   │   ├── screens/                 # Main application screens
 │   │   │   ├── home_screen.dart
-│   │   │   ├── file_loaded_screen.dart
+│   │   │   ├── quiz_loaded_screen.dart
 │   │   │   ├── quiz_file_execution_screen.dart
 │   │   │   └── dialogs/             # Dialog components
 │   │   │       ├── ai_generate_questions_dialog.dart

@@ -37,7 +37,7 @@ final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 class AppRoutes {
   static const String home = '/';
   static const String onboarding = '/onboarding';
-  static const String fileLoadedScreen = '/file_loaded_screen';
+  static const String fileLoadedScreen = '/quiz_loaded_screen';
   static const String quizFileExecutionScreen = '/quiz_file_execution_screen';
   static const String studyScreen = '/study_screen';
 }

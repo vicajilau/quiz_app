@@ -325,14 +325,20 @@ class _SettingsDialogState extends State<SettingsDialog> {
                       ),
                     ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
-              child: QuizdyButton(
-                title: AppLocalizations.of(context)!.saveButton,
-                expanded: true,
-                isLoading: _isLoading,
-                onPressed: _isLoading ? null : _saveSettings,
-              ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Divider(height: 1, thickness: 1, color: colors.border),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(32, 24, 32, 32),
+                  child: QuizdyButton(
+                    title: AppLocalizations.of(context)!.saveButton,
+                    expanded: true,
+                    isLoading: _isLoading,
+                    onPressed: _isLoading ? null : _saveSettings,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

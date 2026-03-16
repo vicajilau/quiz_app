@@ -20,7 +20,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 
-class FileLoadedBottomBar extends StatefulWidget {
+class QuizLoadedBottomBar extends StatefulWidget {
   final VoidCallback onAddQuestion;
   final VoidCallback onGenerateAI;
   final VoidCallback onImport;
@@ -32,7 +32,7 @@ class FileLoadedBottomBar extends StatefulWidget {
   final bool showSaveButton;
   final bool hasQuestions;
 
-  const FileLoadedBottomBar({
+  const QuizLoadedBottomBar({
     super.key,
     required this.onAddQuestion,
     required this.onGenerateAI,
@@ -47,10 +47,10 @@ class FileLoadedBottomBar extends StatefulWidget {
   });
 
   @override
-  State<FileLoadedBottomBar> createState() => _FileLoadedBottomBarState();
+  State<QuizLoadedBottomBar> createState() => _QuizLoadedBottomBarState();
 }
 
-class _FileLoadedBottomBarState extends State<FileLoadedBottomBar> {
+class _QuizLoadedBottomBarState extends State<QuizLoadedBottomBar> {
   late final ScrollController _scrollController;
   bool _showLeftShadow = false;
   bool _showRightShadow = false;
@@ -71,7 +71,7 @@ class _FileLoadedBottomBarState extends State<FileLoadedBottomBar> {
   }
 
   @override
-  void didUpdateWidget(FileLoadedBottomBar oldWidget) {
+  void didUpdateWidget(QuizLoadedBottomBar oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.selectedQuestionCount != widget.selectedQuestionCount ||
         oldWidget.showSaveButton != widget.showSaveButton) {

@@ -45,12 +45,12 @@ import 'package:quizdy/presentation/screens/dialogs/question_count_selection_dia
 import 'package:quizdy/presentation/screens/dialogs/import_questions_dialog.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
 import 'package:quizdy/presentation/screens/dialogs/ai_generate_questions_dialog.dart';
-import 'package:quizdy/presentation/screens/widgets/file_loaded_bottom_bar.dart';
+import 'package:quizdy/presentation/screens/widgets/quiz_loaded_bottom_bar.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/request_file_name_dialog.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/presentation/screens/dialogs/quiz_metadata_dialog.dart';
-import 'package:quizdy/core/theme/extensions/file_loaded_theme.dart';
+import 'package:quizdy/core/theme/extensions/quiz_loaded_theme.dart';
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 
 class QuizLoadedScreen extends StatefulWidget {
@@ -795,7 +795,7 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                   ),
                 ),
 
-                bottomNavigationBar: FileLoadedBottomBar(
+                bottomNavigationBar: QuizLoadedBottomBar(
                   onAddQuestion: () async {
                     final createdQuestion = await showDialog<Question>(
                       context: context,

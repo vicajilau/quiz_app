@@ -215,7 +215,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
           constraints: BoxConstraints(
             maxHeight: MediaQuery.of(context).size.height * 0.85,
           ),
-          padding: const EdgeInsets.all(32),
           decoration: BoxDecoration(
             color: colors.card,
             borderRadius: BorderRadius.circular(24),
@@ -226,47 +225,52 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Text(
-                      localizations.aiEnterContentTitle,
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                        color: colors.title,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(32, 32, 32, 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        localizations.aiEnterContentTitle,
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w700,
+                          color: colors.title,
+                        ),
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                  IconButton(
-                    onPressed: () => context.pop(),
-                    style: IconButton.styleFrom(
-                      backgroundColor: colors.surface,
-                      fixedSize: const Size(40, 40),
-                      padding: EdgeInsets.zero,
-                      shape: const CircleBorder(),
+                    IconButton(
+                      onPressed: () => context.pop(),
+                      style: IconButton.styleFrom(
+                        backgroundColor: colors.surface,
+                        fixedSize: const Size(40, 40),
+                        padding: EdgeInsets.zero,
+                        shape: const CircleBorder(),
+                      ),
+                      icon: Icon(LucideIcons.x, color: colors.subtitle, size: 20),
                     ),
-                    icon: Icon(LucideIcons.x, color: colors.subtitle, size: 20),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Text(
-                localizations.aiEnterContentDescription,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal,
-                  color: colors.subtitle,
+                  ],
                 ),
               ),
-              const SizedBox(height: 24),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(32, 0, 32, 24),
+                child: Text(
+                  localizations.aiEnterContentDescription,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                    color: colors.subtitle,
+                  ),
+                ),
+              ),
 
               // Scrollable Content
               Flexible(
                 child: SingleChildScrollView(
                   controller: _scrollController,
+                  padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -398,149 +402,167 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
               ),
 
               // Footer (Action Buttons)
-              Row(
+              Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Expanded(
-                    child: QuizdyButton(
-                      type: QuizdyButtonType.secondary,
-                      title: localizations.backButton,
-                      icon: LucideIcons.arrowLeft,
-                      expanded: true,
-                      onPressed: widget.onBack,
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: QuizdyButton(
-                      title: localizations.generateButton,
-                      icon: LucideIcons.sparkles,
-                      expanded: true,
-                      onPressed: _isGenerateEnabled()
-                          ? () {
-                              if (_chunkSelectorEnabled &&
-                                  widget.chunks != null) {
-                                final selectedChunks = widget.chunks!
-                                    .where(
-                                      (c) => _selectedChunkIndices.contains(
-                                        c.chunkIndex,
-                                      ),
-                                    )
-                                    .toList();
-                                final config = widget.isStudyMode
-                                    ? AiStudyGenerationConfig(
+                  Divider(height: 1, thickness: 1, color: colors.border),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(32, 24, 32, 32),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: QuizdyButton(
+                            type: QuizdyButtonType.secondary,
+                            title: localizations.backButton,
+                            icon: LucideIcons.arrowLeft,
+                            expanded: true,
+                            onPressed: widget.onBack,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: QuizdyButton(
+                            title: localizations.generateButton,
+                            icon: LucideIcons.sparkles,
+                            expanded: true,
+                            onPressed: _isGenerateEnabled()
+                                ? () {
+                                    if (_chunkSelectorEnabled &&
+                                        widget.chunks != null) {
+                                      final selectedChunks = widget.chunks!
+                                          .where(
+                                            (c) => _selectedChunkIndices
+                                                .contains(c.chunkIndex),
+                                          )
+                                          .toList();
+                                      final config = widget.isStudyMode
+                                          ? AiStudyGenerationConfig(
+                                              language: widget.selectedLanguage,
+                                              content: '',
+                                              preferredService:
+                                                  widget.selectedService,
+                                              preferredModel:
+                                                  widget.selectedModel,
+                                              file: null,
+                                              generationMode:
+                                                  AiGenerationMode.text,
+                                              isAutoDifficulty:
+                                                  widget.isAutoDifficulty,
+                                              difficultyLevel:
+                                                  widget.isAutoDifficulty
+                                                  ? null
+                                                  : widget.selectedDifficulty,
+                                            )
+                                          : AiQuestionGenerationConfig(
+                                              questionCount:
+                                                  widget.questionCount ?? 5,
+                                              questionTypes:
+                                                  widget.selectedQuestionTypes
+                                                      ?.toList() ??
+                                                  [],
+                                              language: widget.selectedLanguage,
+                                              content: '',
+                                              preferredService:
+                                                  widget.selectedService,
+                                              preferredModel:
+                                                  widget.selectedModel,
+                                              file: null,
+                                              generationMode:
+                                                  AiGenerationMode.text,
+                                              generationCategory:
+                                                  widget.selectedCategory,
+                                              isAutoDifficulty:
+                                                  widget.isAutoDifficulty,
+                                              difficultyLevel:
+                                                  widget.isAutoDifficulty
+                                                  ? null
+                                                  : widget.selectedDifficulty,
+                                              selectedChunks: selectedChunks,
+                                            );
+                                      widget.onGenerate(config);
+                                    } else if (_questionSelectorEnabled &&
+                                        widget.questions != null) {
+                                      final selectedQuestions = widget.questions!
+                                          .asMap()
+                                          .entries
+                                          .where(
+                                            (entry) => _selectedQuestionIndices
+                                                .contains(entry.key),
+                                          )
+                                          .map((entry) => entry.value)
+                                          .toList();
+
+                                      final config = AiStudyGenerationConfig(
                                         language: widget.selectedLanguage,
                                         content: '',
-                                        preferredService:
-                                            widget.selectedService,
+                                        preferredService: widget.selectedService,
                                         preferredModel: widget.selectedModel,
                                         file: null,
                                         generationMode: AiGenerationMode.text,
-                                        isAutoDifficulty:
-                                            widget.isAutoDifficulty,
+                                        isAutoDifficulty: widget.isAutoDifficulty,
                                         difficultyLevel: widget.isAutoDifficulty
                                             ? null
                                             : widget.selectedDifficulty,
-                                      )
-                                    : AiQuestionGenerationConfig(
-                                        questionCount:
-                                            widget.questionCount ?? 5,
-                                        questionTypes:
-                                            widget.selectedQuestionTypes
-                                                ?.toList() ??
-                                            [],
-                                        language: widget.selectedLanguage,
-                                        content: '',
-                                        preferredService:
-                                            widget.selectedService,
-                                        preferredModel: widget.selectedModel,
-                                        file: null,
-                                        generationMode: AiGenerationMode.text,
-                                        generationCategory:
-                                            widget.selectedCategory,
-                                        isAutoDifficulty:
-                                            widget.isAutoDifficulty,
-                                        difficultyLevel: widget.isAutoDifficulty
-                                            ? null
-                                            : widget.selectedDifficulty,
-                                        selectedChunks: selectedChunks,
+                                        selectedQuestions: selectedQuestions,
                                       );
-                                widget.onGenerate(config);
-                              } else if (_questionSelectorEnabled &&
-                                  widget.questions != null) {
-                                final selectedQuestions = widget.questions!
-                                    .asMap()
-                                    .entries
-                                    .where(
-                                      (entry) => _selectedQuestionIndices
-                                          .contains(entry.key),
-                                    )
-                                    .map((entry) => entry.value)
-                                    .toList();
+                                      widget.onGenerate(config);
+                                    } else {
+                                      final mode = widget.fileAttachment != null
+                                          ? AiGenerationMode.context
+                                          : (widget.getTopicCount() <= 10
+                                                ? AiGenerationMode.topic
+                                                : AiGenerationMode.text);
 
-                                final config = AiStudyGenerationConfig(
-                                  language: widget.selectedLanguage,
-                                  content: '',
-                                  preferredService: widget.selectedService,
-                                  preferredModel: widget.selectedModel,
-                                  file: null,
-                                  generationMode: AiGenerationMode.text,
-                                  isAutoDifficulty: widget.isAutoDifficulty,
-                                  difficultyLevel: widget.isAutoDifficulty
-                                      ? null
-                                      : widget.selectedDifficulty,
-                                  selectedQuestions: selectedQuestions,
-                                );
-                                widget.onGenerate(config);
-                              } else {
-                                final mode = widget.fileAttachment != null
-                                    ? AiGenerationMode.context
-                                    : (widget.getTopicCount() <= 10
-                                          ? AiGenerationMode.topic
-                                          : AiGenerationMode.text);
-
-                                final config = widget.isStudyMode
-                                    ? AiStudyGenerationConfig(
-                                        language: widget.selectedLanguage,
-                                        content: widget.textController.text
-                                            .trim(),
-                                        preferredService:
-                                            widget.selectedService,
-                                        preferredModel: widget.selectedModel,
-                                        file: widget.fileAttachment,
-                                        generationMode: mode,
-                                        isAutoDifficulty:
-                                            widget.isAutoDifficulty,
-                                        difficultyLevel: widget.isAutoDifficulty
-                                            ? null
-                                            : widget.selectedDifficulty,
-                                      )
-                                    : AiQuestionGenerationConfig(
-                                        questionCount:
-                                            widget.questionCount ?? 5,
-                                        questionTypes:
-                                            widget.selectedQuestionTypes
-                                                ?.toList() ??
-                                            [],
-                                        language: widget.selectedLanguage,
-                                        content: widget.textController.text
-                                            .trim(),
-                                        preferredService:
-                                            widget.selectedService,
-                                        preferredModel: widget.selectedModel,
-                                        file: widget.fileAttachment,
-                                        generationMode: mode,
-                                        generationCategory:
-                                            widget.selectedCategory,
-                                        isAutoDifficulty:
-                                            widget.isAutoDifficulty,
-                                        difficultyLevel: widget.isAutoDifficulty
-                                            ? null
-                                            : widget.selectedDifficulty,
-                                      );
-                                widget.onGenerate(config);
-                              }
-                            }
-                          : null,
+                                      final config = widget.isStudyMode
+                                          ? AiStudyGenerationConfig(
+                                              language: widget.selectedLanguage,
+                                              content: widget.textController.text
+                                                  .trim(),
+                                              preferredService:
+                                                  widget.selectedService,
+                                              preferredModel:
+                                                  widget.selectedModel,
+                                              file: widget.fileAttachment,
+                                              generationMode: mode,
+                                              isAutoDifficulty:
+                                                  widget.isAutoDifficulty,
+                                              difficultyLevel:
+                                                  widget.isAutoDifficulty
+                                                  ? null
+                                                  : widget.selectedDifficulty,
+                                            )
+                                          : AiQuestionGenerationConfig(
+                                              questionCount:
+                                                  widget.questionCount ?? 5,
+                                              questionTypes:
+                                                  widget.selectedQuestionTypes
+                                                      ?.toList() ??
+                                                  [],
+                                              language: widget.selectedLanguage,
+                                              content: widget.textController.text
+                                                  .trim(),
+                                              preferredService:
+                                                  widget.selectedService,
+                                              preferredModel:
+                                                  widget.selectedModel,
+                                              file: widget.fileAttachment,
+                                              generationMode: mode,
+                                              generationCategory:
+                                                  widget.selectedCategory,
+                                              isAutoDifficulty:
+                                                  widget.isAutoDifficulty,
+                                              difficultyLevel:
+                                                  widget.isAutoDifficulty
+                                                  ? null
+                                                  : widget.selectedDifficulty,
+                                            );
+                                      widget.onGenerate(config);
+                                    }
+                                  }
+                                : null,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

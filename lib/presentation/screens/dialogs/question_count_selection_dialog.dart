@@ -20,6 +20,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
+import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 
 import 'package:quizdy/data/services/configuration_service.dart';
@@ -355,6 +356,7 @@ class _QuestionCountSelectionDialogState
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final colors = context.appColors;
     final cardColor = isDark ? const Color(0xFF27272A) : Colors.white;
     final textColor = isDark ? Colors.white : const Color(0xFF18181B);
     final subTextColor = isDark
@@ -376,7 +378,6 @@ class _QuestionCountSelectionDialogState
       insetPadding: const EdgeInsets.symmetric(horizontal: 16),
       child: Container(
         width: 520, // Max width from design
-        padding: const EdgeInsets.all(32),
         decoration: BoxDecoration(
           color: cardColor,
           borderRadius: BorderRadius.circular(24),
@@ -394,39 +395,42 @@ class _QuestionCountSelectionDialogState
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Header (Pinned)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(
-                    AppLocalizations.of(context)!.startQuiz,
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
-                      color: textColor,
-                      height: 1.2,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(32, 32, 32, 32),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      AppLocalizations.of(context)!.startQuiz,
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        color: textColor,
+                        height: 1.2,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
-                const SizedBox(width: 16),
-                IconButton(
-                  onPressed: () => context.pop(null),
-                  style: IconButton.styleFrom(
-                    backgroundColor: controlBgColor,
-                    fixedSize: const Size(40, 40),
-                    padding: EdgeInsets.zero,
-                    shape: const CircleBorder(),
+                  const SizedBox(width: 16),
+                  IconButton(
+                    onPressed: () => context.pop(null),
+                    style: IconButton.styleFrom(
+                      backgroundColor: controlBgColor,
+                      fixedSize: const Size(40, 40),
+                      padding: EdgeInsets.zero,
+                      shape: const CircleBorder(),
+                    ),
+                    icon: Icon(LucideIcons.x, size: 20, color: subTextColor),
                   ),
-                  icon: Icon(LucideIcons.x, size: 20, color: subTextColor),
-                ),
-              ],
+                ],
+              ),
             ),
-            const SizedBox(height: 32),
 
             // Scrollable Content
             Flexible(
               child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(32, 0, 32, 24),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -756,36 +760,52 @@ class _QuestionCountSelectionDialogState
               ),
             ),
 
-            const SizedBox(height: 32),
+            // Action Buttons (Fixed Footer)
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Divider(height: 1, thickness: 1, color: colors.border),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(32, 24, 32, 32),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      // Start with selected questions button
+                      if (widget.selectedQuestionCount > 0) ...[
+                        QuizdyButton(
+                          type: QuizdyButtonType.secondary,
+                          title: l10n.startWithSelectedQuestions(
+                            widget.selectedQuestionCount,
+                          ),
+                          icon: LucideIcons.checkCircle,
+                          expanded: true,
+                          onPressed:
+                              ((_examTimeEnabled && _hasExamTimeError) ||
+                                  (_enableMaxIncorrectAnswers &&
+                                      _hasMaxIncorrectError))
+                              ? null
+                              : () => _startQuiz(useSelectedOnly: true),
+                        ),
+                        const SizedBox(height: 12),
+                      ],
 
-            // Start with selected questions button
-            if (widget.selectedQuestionCount > 0) ...[
-              QuizdyButton(
-                type: QuizdyButtonType.secondary,
-                title: l10n.startWithSelectedQuestions(
-                  widget.selectedQuestionCount,
+                      // Start Button
+                      QuizdyButton(
+                        title: AppLocalizations.of(context)!.startQuiz,
+                        icon: LucideIcons.play,
+                        expanded: true,
+                        onPressed:
+                            ((_examTimeEnabled && _hasExamTimeError) ||
+                                (_enableMaxIncorrectAnswers &&
+                                    _hasMaxIncorrectError))
+                            ? null
+                            : () => _startQuiz(),
+                      ),
+                    ],
+                  ),
                 ),
-                icon: LucideIcons.checkCircle,
-                expanded: true,
-                onPressed:
-                    ((_examTimeEnabled && _hasExamTimeError) ||
-                        (_enableMaxIncorrectAnswers && _hasMaxIncorrectError))
-                    ? null
-                    : () => _startQuiz(useSelectedOnly: true),
-              ),
-              const SizedBox(height: 12),
-            ],
-
-            // Start Button
-            QuizdyButton(
-              title: AppLocalizations.of(context)!.startQuiz,
-              icon: LucideIcons.play,
-              expanded: true,
-              onPressed:
-                  ((_examTimeEnabled && _hasExamTimeError) ||
-                      (_enableMaxIncorrectAnswers && _hasMaxIncorrectError))
-                  ? null
-                  : () => _startQuiz(),
+              ],
             ),
           ],
         ),

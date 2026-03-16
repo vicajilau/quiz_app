@@ -19,6 +19,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
+import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 
 /// A dialog that allows the user to create or edit quiz metadata.
@@ -138,13 +139,15 @@ class _QuizMetadataDialogState extends State<QuizMetadataDialog> {
     int? minLines,
     TextCapitalization textCapitalization = TextCapitalization.sentences,
   }) {
+    final colors = context.appColors;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           label,
           style: TextStyle(
-            color: Colors.white.withValues(alpha: 0.7),
+            color: colors.subtitle,
             fontSize: 14,
             fontWeight: FontWeight.w500,
           ),
@@ -155,13 +158,13 @@ class _QuizMetadataDialogState extends State<QuizMetadataDialog> {
           maxLines: maxLines,
           minLines: minLines,
           textCapitalization: textCapitalization,
-          style: const TextStyle(color: Colors.white, fontSize: 16),
+          style: TextStyle(color: colors.title, fontSize: 16),
           cursorColor: Theme.of(context).primaryColor,
           decoration: InputDecoration(
             filled: true,
-            fillColor: AppTheme.borderColorDark,
+            fillColor: colors.surface,
             hintText: hintText,
-            hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.3)),
+            hintStyle: TextStyle(color: colors.subtitle.withValues(alpha: 0.5)),
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 16,
               vertical: 16,
@@ -194,28 +197,34 @@ class _QuizMetadataDialogState extends State<QuizMetadataDialog> {
   Widget build(BuildContext context) {
     final unknownHint = AppLocalizations.of(context)!.questionTypeUnknown;
 
+    final colors = context.appColors;
+
     return Dialog(
       backgroundColor: Colors.transparent,
       elevation: 0,
       insetPadding: const EdgeInsets.symmetric(horizontal: 16),
       child: Container(
         width: 520,
-        padding: const EdgeInsets.all(32),
         decoration: BoxDecoration(
-          color: AppTheme.cardColorDark,
+          color: colors.card,
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(
-            color: Colors.white.withValues(alpha: 0.1),
-            width: 1,
-          ),
+          border: Border.all(color: colors.border, width: 1),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.1),
+              blurRadius: 20,
+              offset: const Offset(0, 10),
+            ),
+          ],
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // Header
-              Row(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Header
+            Padding(
+              padding: const EdgeInsets.fromLTRB(32, 32, 32, 24),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
@@ -223,8 +232,8 @@ class _QuizMetadataDialogState extends State<QuizMetadataDialog> {
                       widget.isEditing
                           ? AppLocalizations.of(context)!.editQuizFileTitle
                           : AppLocalizations.of(context)!.createQuizFileTitle,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: colors.title,
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
@@ -232,59 +241,76 @@ class _QuizMetadataDialogState extends State<QuizMetadataDialog> {
                   ),
                   IconButton(
                     onPressed: () => context.pop(),
-                    icon: const Icon(LucideIcons.x, size: 20),
+                    icon: Icon(LucideIcons.x, size: 20, color: colors.subtitle),
                     style: IconButton.styleFrom(
-                      backgroundColor: AppTheme.borderColorDark,
-                      foregroundColor: Colors.white,
+                      backgroundColor: colors.surface,
                       fixedSize: const Size(40, 40),
                       padding: EdgeInsets.zero,
+                      shape: const CircleBorder(),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 32),
+            ),
 
-              // Fields
-              _buildTextField(
-                controller: _nameController,
-                label: AppLocalizations.of(context)!.fileNameLabel,
-                hintText: unknownHint,
-                errorText: _nameError,
-                onChanged: _onNameChanged,
-                textCapitalization: TextCapitalization.words,
+            // Fields (Scrollable)
+            Flexible(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(32, 0, 32, 24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _buildTextField(
+                      controller: _nameController,
+                      label: AppLocalizations.of(context)!.fileNameLabel,
+                      hintText: unknownHint,
+                      errorText: _nameError,
+                      onChanged: _onNameChanged,
+                      textCapitalization: TextCapitalization.words,
+                    ),
+                    const SizedBox(height: 16),
+                    _buildTextField(
+                      controller: _descriptionController,
+                      label: AppLocalizations.of(context)!.fileDescriptionLabel,
+                      hintText: unknownHint,
+                      errorText: _descriptionError,
+                      onChanged: _onDescriptionChanged,
+                      minLines: 1,
+                      maxLines: null,
+                    ),
+                    const SizedBox(height: 16),
+                    _buildTextField(
+                      controller: _authorController,
+                      label: AppLocalizations.of(context)!.authorLabel,
+                      hintText: unknownHint,
+                      errorText: _authorError,
+                      onChanged: _onAuthorChanged,
+                      textCapitalization: TextCapitalization.words,
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 16),
-              _buildTextField(
-                controller: _descriptionController,
-                label: AppLocalizations.of(context)!.fileDescriptionLabel,
-                hintText: unknownHint,
-                errorText: _descriptionError,
-                onChanged: _onDescriptionChanged,
-                minLines: 1,
-                maxLines: null,
-              ),
-              const SizedBox(height: 16),
-              _buildTextField(
-                controller: _authorController,
-                label: AppLocalizations.of(context)!.authorLabel,
-                hintText: unknownHint,
-                errorText: _authorError,
-                onChanged: _onAuthorChanged,
-                textCapitalization: TextCapitalization.words,
-              ),
+            ),
 
-              const SizedBox(height: 32),
-
-              // Submit Button
-              QuizdyButton(
-                title: widget.isEditing
-                    ? AppLocalizations.of(context)!.saveButton
-                    : AppLocalizations.of(context)!.createButton,
-                expanded: true,
-                onPressed: _submit,
-              ),
-            ],
-          ),
+            // Submit Button (Fixed Footer)
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Divider(height: 1, thickness: 1, color: colors.border),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(32, 24, 32, 32),
+                  child: QuizdyButton(
+                    title: widget.isEditing
+                        ? AppLocalizations.of(context)!.saveButton
+                        : AppLocalizations.of(context)!.createButton,
+                    expanded: true,
+                    onPressed: _submit,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

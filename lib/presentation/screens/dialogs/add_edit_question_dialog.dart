@@ -592,13 +592,19 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
             ),
 
             // Footer / Actions
-            Padding(
-              padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
-              child: QuizdyButton(
-                title: localizations.save,
-                expanded: true,
-                onPressed: _saveQuestion,
-              ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Divider(height: 1, thickness: 1, color: theme.borderColor),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(32, 24, 32, 32),
+                  child: QuizdyButton(
+                    title: localizations.save,
+                    expanded: true,
+                    onPressed: _saveQuestion,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
