@@ -1507,6 +1507,7 @@
     "description": "Tooltip for the reorder questions button"
   },
   "quizPreviewTitle": "Vista previa do cuestionario",
+  "quizLoadedNoQuestionsAvailable": "Non hai preguntas dispoñibles.",
   "select": "Seleccionar",
   "done": "Feito",
   "importButton": "Importar",

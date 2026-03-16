@@ -468,6 +468,7 @@
   "enable": "활성화",
   "disable": "비활성화",
   "quizPreviewTitle": "퀴즈 미리보기",
+  "quizLoadedNoQuestionsAvailable": "사용 가능한 질문이 없습니다.",
   "select": "선택",
   "done": "완료",
   "importButton": "가져오기",

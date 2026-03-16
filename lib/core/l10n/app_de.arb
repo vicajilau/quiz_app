@@ -1628,6 +1628,7 @@
     "description": "Tooltip for the reorder questions button"
   },
   "quizPreviewTitle": "Quiz-Vorschau",
+  "quizLoadedNoQuestionsAvailable": "Keine Fragen verfügbar.",
   "select": "Auswählen",
   "done": "Fertig",
   "importButton": "Importieren",

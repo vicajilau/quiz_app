@@ -1474,6 +1474,7 @@
     "description": "質問並べ替えボタンのツールチップ"
   },
   "quizPreviewTitle": "クイズプレビュー",
+  "quizLoadedNoQuestionsAvailable": "利用可能な質問はありません。",
   "select": "選択",
   "done": "完了",
   "importButton": "インポート",

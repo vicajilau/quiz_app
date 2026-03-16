@@ -468,6 +468,7 @@
   "enable": "ჩართვა",
   "disable": "გამორთვა",
   "quizPreviewTitle": "ქვიზის წინასწარი ნახვა",
+  "quizLoadedNoQuestionsAvailable": "ხელმისაწვდომი კითხვები არ არის.",
   "select": "არჩევა",
   "done": "დასრულება",
   "importButton": "იმპორტი",

@@ -1788,6 +1788,7 @@
   "@quizPreviewTitle": {
     "description": "Title for the Quiz Preview screen"
   },
+  "quizLoadedNoQuestionsAvailable": "No hay preguntas disponibles.",
   "select": "Seleccionar",
   "@select": {
     "description": "Label for select button"

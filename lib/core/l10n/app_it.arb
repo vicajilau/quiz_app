@@ -1540,6 +1540,7 @@
     "description": "Tooltip for the reorder questions button"
   },
   "quizPreviewTitle": "Anteprima Quiz",
+  "quizLoadedNoQuestionsAvailable": "Nessuna domanda disponibile.",
   "select": "Seleziona",
   "done": "Fatto",
   "importButton": "Importa",
