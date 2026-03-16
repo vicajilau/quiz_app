@@ -13,7 +13,7 @@ As an AI agent, your primary mission is to maintain the architectural integrity 
 Always use `find_by_name` or `grep_search` to find existing patterns before creating something new. The project likely already has a pattern for what you are doing.
 
 ### 2. Follow Workflows
-Before performing an action, check `.agents/workflows/`. If a workflow exists for your task (e.g., `check-theme-compliance`), you **MUST** follow it rigorously.
+Before performing an action, check `.agents/workflows/`. If a workflow exists for your task (e.g., `check-theme-compliance`, `implement-pencil-design`), you **MUST** follow it rigorously.
 
 ### 3. Proactive Static Analysis
 Never consider a task "done" without running `flutter analyze`. Fix all warnings immediately.
@@ -195,10 +195,15 @@ Follow the standard Dart import grouping, in this order:
 
 ### Common Agent Pitfalls (AVOID THESE)
 - **Hardcoding Hex Colors**: Use `StudyThemeExtension` or `CustomColors` instead. Run `/check-theme-compliance` to verify.
+- **Hardcoding Font Families in Widgets**: Do not add `fontFamily: 'Inter'` directly in UI widgets. Use `Theme.of(context).textTheme` (or theme extensions) and keep typography theme-driven.
 - **Missing License Headers**: Check `Phase 5` of any implementation plan to ensure headers are added.
 - **Inconsistent Imports**: Always order them: Dart -> Flutter -> Packages -> Project.
 - **Large Widget Methods**: Split `build` methods into private sub-widgets (`_MySubPart`).
 - **Ignoring Analysis**: `flutter analyze` is your source of truth for code quality.
+
+### Pencil Design Implementation Rule
+- For any implementation derived from `.pen` files, run the `implement-pencil-design` workflow first.
+- If the design includes both light and dark variants, both variants must be implemented in the same change.
 
 ---
 

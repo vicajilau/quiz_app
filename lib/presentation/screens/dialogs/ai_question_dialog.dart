@@ -269,7 +269,6 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                         child: Text(
                           localizations.aiAssistantTitle,
                           style: TextStyle(
-                            fontFamily: 'Inter',
                             fontSize: 22,
                             fontWeight: FontWeight.w700,
                             color: colors.title,
@@ -422,7 +421,6 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                           color: isDark
                               ? AppTheme.zinc400
                               : AppTheme.textSecondaryColor,
-                          fontFamily: 'Inter',
                         ),
                         border: InputBorder.none,
                         contentPadding: const EdgeInsets.symmetric(
@@ -430,10 +428,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                           vertical: 14,
                         ),
                       ),
-                      style: TextStyle(
-                        color: colors.title,
-                        fontFamily: 'Inter',
-                      ),
+                      style: TextStyle(color: colors.title),
                       maxLines: 3,
                       minLines: 1,
                       textInputAction: TextInputAction.newline,

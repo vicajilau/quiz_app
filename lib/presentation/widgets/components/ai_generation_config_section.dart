@@ -72,7 +72,6 @@ class AiGenerationConfigSection extends StatelessWidget {
           Text(
             localizations.aiGenerationCategoryLabel,
             style: TextStyle(
-              fontFamily: 'Inter',
               fontSize: 14,
               fontWeight: FontWeight.w500,
               color: colors.subtitle,
@@ -110,7 +109,6 @@ class AiGenerationConfigSection extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 textStyle: const TextStyle(
-                  fontFamily: 'Inter',
                   fontSize: 13,
                   fontWeight: FontWeight.w500,
                 ),
@@ -123,7 +121,6 @@ class AiGenerationConfigSection extends StatelessWidget {
           Text(
             localizations.aiNumberQuestionsLabel,
             style: TextStyle(
-              fontFamily: 'Inter',
               fontSize: 14,
               fontWeight: FontWeight.w500,
               color: colors.subtitle,
@@ -173,7 +170,6 @@ class AiGenerationConfigSection extends StatelessWidget {
                       LengthLimitingTextInputFormatter(2),
                     ],
                     style: TextStyle(
-                      fontFamily: 'Inter',
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: colors.title,
@@ -232,7 +228,6 @@ class AiGenerationConfigSection extends StatelessWidget {
         Text(
           localizations.aiDifficultyTitle,
           style: TextStyle(
-            fontFamily: 'Inter',
             fontSize: 14,
             fontWeight: FontWeight.w500,
             color: colors.subtitle,
@@ -265,7 +260,6 @@ class AiGenerationConfigSection extends StatelessWidget {
                                 ? localizations.aiDifficultyAutoTurnedOn
                                 : localizations.aiDifficultyAutoTurnedOff,
                             style: TextStyle(
-                              fontFamily: 'Inter',
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
                               color: colors.title,
@@ -277,7 +271,6 @@ class AiGenerationConfigSection extends StatelessWidget {
                                 ? localizations.aiDifficultyAutoDescription
                                 : localizations.aiDifficultyManualDescription,
                             style: TextStyle(
-                              fontFamily: 'Inter',
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
                               color: colors.subtitle,
@@ -319,66 +312,42 @@ class AiGenerationConfigSection extends StatelessWidget {
                           value: AiDifficultyLevel.elementary,
                           child: Text(
                             localizations.aiDifficultyElementary,
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 14,
-                              color: colors.title,
-                            ),
+                            style: TextStyle(fontSize: 14, color: colors.title),
                           ),
                         ),
                         DropdownMenuItem(
                           value: AiDifficultyLevel.highSchool,
                           child: Text(
                             localizations.aiDifficultyHighSchool,
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 14,
-                              color: colors.title,
-                            ),
+                            style: TextStyle(fontSize: 14, color: colors.title),
                           ),
                         ),
                         DropdownMenuItem(
                           value: AiDifficultyLevel.bachelors,
                           child: Text(
                             localizations.aiDifficultyBachelors,
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 14,
-                              color: colors.title,
-                            ),
+                            style: TextStyle(fontSize: 14, color: colors.title),
                           ),
                         ),
                         DropdownMenuItem(
                           value: AiDifficultyLevel.university,
                           child: Text(
                             localizations.aiDifficultyUniversity,
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 14,
-                              color: colors.title,
-                            ),
+                            style: TextStyle(fontSize: 14, color: colors.title),
                           ),
                         ),
                         DropdownMenuItem(
                           value: AiDifficultyLevel.masters,
                           child: Text(
                             localizations.aiDifficultyMasters,
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 14,
-                              color: colors.title,
-                            ),
+                            style: TextStyle(fontSize: 14, color: colors.title),
                           ),
                         ),
                         DropdownMenuItem(
                           value: AiDifficultyLevel.doctorate,
                           child: Text(
                             localizations.aiDifficultyDoctorate,
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 14,
-                              color: colors.title,
-                            ),
+                            style: TextStyle(fontSize: 14, color: colors.title),
                           ),
                         ),
                       ],

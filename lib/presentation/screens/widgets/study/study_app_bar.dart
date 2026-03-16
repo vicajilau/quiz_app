@@ -140,12 +140,11 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                     ),
                     child: IconButton(
                       padding: EdgeInsets.zero,
-                      onPressed:
-                          () async => await showDialog(
-                            context: context,
-                            barrierDismissible: false,
-                            builder: (_) => const SettingsDialog(),
-                          ),
+                      onPressed: () async => await showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (_) => const SettingsDialog(),
+                      ),
                       icon: Icon(
                         LucideIcons.settings,
                         color: Theme.of(context).colorScheme.onPrimary,
@@ -161,10 +160,9 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                       margin: const EdgeInsets.only(right: 24),
                       constraints: const BoxConstraints(minWidth: 40),
                       child: Material(
-                        color:
-                            context
-                                .quizLoadedTheme
-                                .selectionInactiveBackgroundColor,
+                        color: context
+                            .quizLoadedTheme
+                            .selectionInactiveBackgroundColor,
                         borderRadius: BorderRadius.circular(12),
                         child: InkWell(
                           borderRadius: BorderRadius.circular(12),
@@ -191,10 +189,9 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                                       state.isSelectionMode
                                           ? LucideIcons.checkSquare
                                           : LucideIcons.mousePointer2,
-                                      color:
-                                          Theme.of(
-                                            context,
-                                          ).colorScheme.onPrimary,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onPrimary,
                                       size: 18,
                                     ),
                                     if (showText) ...[
@@ -205,13 +202,11 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                                               ? localizations.done
                                               : localizations.select,
                                           style: TextStyle(
-                                            color:
-                                                Theme.of(
-                                                  context,
-                                                ).colorScheme.onPrimary,
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.onPrimary,
                                             fontSize: 13,
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Inter',
                                           ),
                                           overflow: TextOverflow.ellipsis,
                                         ),

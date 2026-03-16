@@ -227,7 +227,6 @@ class _SettingsDialogState extends State<SettingsDialog> {
                   Text(
                     AppLocalizations.of(context)!.settingsTitle,
                     style: TextStyle(
-                      fontFamily: 'Inter',
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
                       color: colors.title,
@@ -384,7 +383,6 @@ class _OnboardingRow extends StatelessWidget {
                   Text(
                     AppLocalizations.of(context)!.showOnboarding,
                     style: TextStyle(
-                      fontFamily: 'Inter',
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: colors.title,
@@ -392,11 +390,7 @@ class _OnboardingRow extends StatelessWidget {
                   ),
                   Text(
                     AppLocalizations.of(context)!.showOnboardingDescription,
-                    style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: 12,
-                      color: colors.subtitle,
-                    ),
+                    style: TextStyle(fontSize: 12, color: colors.subtitle),
                   ),
                 ],
               ),
@@ -438,7 +432,6 @@ class _VersionRow extends StatelessWidget {
                 Text(
                   AppLocalizations.of(context)!.versionLabel,
                   style: TextStyle(
-                    fontFamily: 'Inter',
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     color: colors.title,
@@ -446,11 +439,7 @@ class _VersionRow extends StatelessWidget {
                 ),
                 Text(
                   version,
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 12,
-                    color: colors.subtitle,
-                  ),
+                  style: TextStyle(fontSize: 12, color: colors.subtitle),
                 ),
               ],
             ),
@@ -497,7 +486,6 @@ class _SupportRow extends StatelessWidget {
                   Text(
                     AppLocalizations.of(context)!.supportLabel,
                     style: TextStyle(
-                      fontFamily: 'Inter',
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: colors.title,
@@ -505,11 +493,7 @@ class _SupportRow extends StatelessWidget {
                   ),
                   Text(
                     AppLocalizations.of(context)!.supportDescription,
-                    style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: 12,
-                      color: colors.subtitle,
-                    ),
+                    style: TextStyle(fontSize: 12, color: colors.subtitle),
                   ),
                 ],
               ),

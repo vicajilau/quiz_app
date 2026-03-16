@@ -94,7 +94,6 @@ class QuestionOptionsList extends StatelessWidget {
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface,
                     fontSize: 14,
-                    fontFamily: 'Inter',
                     decoration: isDisabled ? TextDecoration.lineThrough : null,
                   ),
                 ),

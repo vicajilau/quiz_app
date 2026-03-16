@@ -57,7 +57,6 @@ class QuizProgressIndicator extends StatelessWidget {
                         state.totalQuestions,
                       ),
                       style: TextStyle(
-                        fontFamily: 'Inter',
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                         color: textColor,

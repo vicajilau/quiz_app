@@ -57,7 +57,6 @@ class SubmitQuizDialog {
                       Text(
                         AppLocalizations.of(context)!.finishQuiz,
                         style: TextStyle(
-                          fontFamily: 'Inter',
                           fontSize: 24,
                           fontWeight: FontWeight.w700,
                           color: colors.title,
@@ -101,7 +100,6 @@ class SubmitQuizDialog {
                       return Text(
                         message,
                         style: TextStyle(
-                          fontFamily: 'Inter',
                           fontSize: 14,
                           fontWeight: FontWeight.normal,
                           color: colors.subtitle,

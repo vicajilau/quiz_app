@@ -59,7 +59,6 @@ class PenaltyAmountInput extends StatelessWidget {
             Text(
               AppLocalizations.of(context)!.penaltyAmountLabel,
               style: TextStyle(
-                fontFamily: 'Inter',
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
                 color: subTextColor,
@@ -70,7 +69,6 @@ class PenaltyAmountInput extends StatelessWidget {
                 context,
               )!.penaltyPointsLabel(penaltyAmount.toStringAsFixed(2)),
               style: const TextStyle(
-                fontFamily: 'Inter',
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
                 color: AppTheme.errorColor,
@@ -112,7 +110,6 @@ class PenaltyAmountInput extends StatelessWidget {
                     contentPadding: EdgeInsets.zero,
                   ),
                   style: TextStyle(
-                    fontFamily: 'Inter',
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                     color: textColor,

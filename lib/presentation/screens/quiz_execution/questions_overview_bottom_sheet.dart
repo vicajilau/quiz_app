@@ -86,7 +86,6 @@ class QuestionsOverviewBottomSheet extends StatelessWidget {
               Text(
                 localizations.questionsOverview,
                 style: const TextStyle(
-                  fontFamily: 'Inter',
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -94,7 +93,6 @@ class QuestionsOverviewBottomSheet extends StatelessWidget {
               Text(
                 '${state.answeredQuestionsCount} / ${state.totalQuestions}',
                 style: TextStyle(
-                  fontFamily: 'Inter',
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color: primaryColor,
@@ -228,7 +226,6 @@ class QuestionsOverviewBottomSheet extends StatelessWidget {
                   child: Text(
                     '${index + 1}',
                     style: TextStyle(
-                      fontFamily: 'Inter',
                       fontSize: 14,
                       fontWeight: isCurrent ? FontWeight.bold : FontWeight.w500,
                       color: textColor,

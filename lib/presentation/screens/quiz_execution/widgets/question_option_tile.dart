@@ -120,7 +120,6 @@ class QuestionOptionTile extends StatelessWidget {
       fontSize: 16,
       fontWeight: fontWeight,
       color: isSelected ? (iconColor ?? theme.primaryColor) : null,
-      fontFamily: 'Inter',
     );
 
     return Material(

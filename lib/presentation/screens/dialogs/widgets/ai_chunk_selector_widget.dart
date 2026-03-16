@@ -51,7 +51,6 @@ class AiChunkSelectorWidget extends StatelessWidget {
             Text(
               localizations.aiSelectSectionsTitle,
               style: TextStyle(
-                fontFamily: 'Inter',
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: colors.title,
@@ -64,7 +63,6 @@ class AiChunkSelectorWidget extends StatelessWidget {
         Text(
           localizations.aiSelectSectionsSubtitle,
           style: TextStyle(
-            fontFamily: 'Inter',
             fontSize: 12,
             fontWeight: FontWeight.normal,
             color: colors.subtitle,
@@ -165,7 +163,6 @@ class _ChunkItem extends StatelessWidget {
                   child: Text(
                     chunk.title,
                     style: TextStyle(
-                      fontFamily: 'Inter',
                       fontSize: 14,
                       fontWeight: isSelected
                           ? FontWeight.w500
