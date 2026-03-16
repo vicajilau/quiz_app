@@ -79,19 +79,18 @@ class AiQuestionsSelectorWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: List.generate(questions.length, (i) {
-                    final question = questions[i];
-                    final isSelected = selectedIndices.contains(i);
-                    return _QuestionItem(
-                      question: question,
-                      isSelected: isSelected,
-                      onTap: () => onQuestionToggled(i),
-                      isLast: i == questions.length - 1,
-                    );
-                  }),
-                ),
+              child: ListView.builder(
+                itemCount: questions.length,
+                itemBuilder: (context, i) {
+                  final question = questions[i];
+                  final isSelected = selectedIndices.contains(i);
+                  return _QuestionItem(
+                    question: question,
+                    isSelected: isSelected,
+                    onTap: () => onQuestionToggled(i),
+                    isLast: i == questions.length - 1,
+                  );
+                },
               ),
             ),
           ),
