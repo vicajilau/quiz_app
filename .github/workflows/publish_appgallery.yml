@@ -1,47 +1,61 @@
-name: Publish Android Release
+name: Publish AppGallery Release
+
 on:
   push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+*'
+    branches:
+      - main
+      - feat/appgallery-continuous-integration
   workflow_dispatch:
 
 jobs:
-  publish_android_release:
-    name: Generate Android Release
+  publish_appgallery_release:
+    name: Generate AppGallery Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+
       - name: Download Android keystore
         id: android_keystore
         uses: timheuer/base64-to-file@v1
         with:
           fileName: upload-keystore.jks
           encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+
       - name: Create key.properties file
         run: |
           echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
           echo "storePassword=${{ secrets.ANDROID_STORE_PASSWORD }}" >> android/key.properties
           echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
           echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
+
       - uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
+
       - uses: subosito/flutter-action@v2
         with:
-          channel: "stable"
-      - name: Start Android Release Build
-        run: flutter build appbundle
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Start Android App Bundle Build
+        run: flutter build apk
+
       - name: Upload Release Build to Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: android-release-artifacts
-          path: build/app/outputs/bundle/release/app-release.aab
-      - name: Release Build to internal track
-        uses: r0adkll/upload-google-play@v1
+          name: appgallery-release-artifacts
+          path: build/app/outputs/bundle/release/app-release.apk
+
+      - name: Release Build to Huawei AppGallery
+        uses: eatorb/huawei-appgallery-action@e77c25116505ccbaf4fdfce9f8bf51bb02f512dc
         with:
-          serviceAccountJsonPlainText: ${{ secrets.ANDROID_PLAYSTORE_ACCOUNT_KEY }}
-          packageName: es.victorcarreras.quiz_app
-          releaseFiles: build/app/outputs/bundle/release/app-release.aab
-          track: production
-          status: completed
+          client-id: ${{ secrets.APPGALLERY_CLIENT_ID }}
+          client-secret: ${{ secrets.APPGALLERY_CLIENT_SECRET }}
+          app-id: ${{ secrets.APPGALLERY_APP_ID }}
+          file-path: build/app/outputs/bundle/release/app-release.apk
+          submit: 'true'
