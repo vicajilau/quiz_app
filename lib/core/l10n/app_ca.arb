@@ -1634,6 +1634,7 @@
     "description": "Tooltip for the reorder questions button"
   },
   "quizPreviewTitle": "Vista prèvia del qüestionari",
+  "quizLoadedNoQuestionsAvailable": "No hi ha preguntes disponibles.",
   "select": "Seleccionar",
   "done": "Fet",
   "importButton": "Importar",

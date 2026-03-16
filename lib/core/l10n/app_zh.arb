@@ -1447,6 +1447,7 @@
     "description": "Tooltip for the reorder questions button"
   },
   "quizPreviewTitle": "测验预览",
+  "quizLoadedNoQuestionsAvailable": "没有可用的问题。",
   "select": "选择",
   "done": "完成",
   "importButton": "导入",

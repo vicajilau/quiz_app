@@ -29,6 +29,7 @@ import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_s
 import 'package:quizdy/presentation/screens/widgets/study/study_index_chunk_card.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_hero_card.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_sections_header.dart';
+import 'package:quizdy/presentation/widgets/empty_state_view.dart';
 
 class StudyIndexView extends StatelessWidget {
   final StudyExecutionState state;
@@ -207,29 +208,7 @@ class StudyIndexView extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         if (state.chunks.isEmpty)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 48),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.library_books_outlined,
-                    size: 64,
-                    color: Theme.of(context).hintColor.withValues(alpha: 0.5),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    localizations.studyScreenNoSlidesAvailable,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: Theme.of(context).hintColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
+          EmptyStateView(message: localizations.studyScreenNoSlidesAvailable)
         else
           ...List.generate(state.chunks.length, (index) {
             final chunk = state.chunks[index];
@@ -304,29 +283,8 @@ class StudyIndexView extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               if (state.chunks.isEmpty)
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 64),
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.library_books_outlined,
-                          size: 80,
-                          color: Theme.of(
-                            context,
-                          ).hintColor.withValues(alpha: 0.5),
-                        ),
-                        const SizedBox(height: 24),
-                        Text(
-                          localizations.studyScreenNoSlidesAvailable,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headlineSmall
-                              ?.copyWith(color: Theme.of(context).hintColor),
-                        ),
-                      ],
-                    ),
-                  ),
+                EmptyStateView(
+                  message: localizations.studyScreenNoSlidesAvailable,
                 )
               else
                 Row(

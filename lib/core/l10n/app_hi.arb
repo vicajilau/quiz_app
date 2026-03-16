@@ -1466,6 +1466,7 @@
     "description": "Tooltip for the reorder questions button"
   },
   "quizPreviewTitle": "प्रश्नोत्तरी पूर्वावलोकन",
+  "quizLoadedNoQuestionsAvailable": "कोई प्रश्न उपलब्ध नहीं है।",
   "select": "चुनें",
   "done": "हो गया",
   "importButton": "आयात करें",

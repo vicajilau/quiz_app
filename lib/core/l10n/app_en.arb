@@ -1826,6 +1826,10 @@
   "@quizPreviewTitle": {
     "description": "Title for the Quiz Preview screen"
   },
+  "quizLoadedNoQuestionsAvailable": "No questions available.",
+  "@quizLoadedNoQuestionsAvailable": {
+    "description": "Text displayed when there are no questions in the quiz."
+  },
   "select": "Select",
   "@select": {
     "description": "Label for select button"

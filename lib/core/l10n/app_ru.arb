@@ -485,6 +485,7 @@
   "enable": "Включить",
   "disable": "Отключить",
   "quizPreviewTitle": "Предпросмотр квиза",
+  "quizLoadedNoQuestionsAvailable": "Нет доступных вопросов.",
   "select": "Выбрать",
   "done": "Готово",
   "importButton": "Импорт",

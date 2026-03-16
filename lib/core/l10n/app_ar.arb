@@ -1620,6 +1620,7 @@
   "@quizPreviewTitle": {
     "description": "Title for the quiz preview screen"
   },
+  "quizLoadedNoQuestionsAvailable": "لا توجد أسئلة متاحة.",
   "select": "تحديد",
   "@select": {
     "description": "Generic select button text"

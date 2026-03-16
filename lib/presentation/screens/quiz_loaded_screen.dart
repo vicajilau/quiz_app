@@ -48,6 +48,7 @@ import 'package:quizdy/presentation/screens/dialogs/ai_generate_questions_dialog
 import 'package:quizdy/presentation/screens/widgets/quiz_loaded_bottom_bar.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/request_file_name_dialog.dart';
+import 'package:quizdy/presentation/widgets/empty_state_view.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/presentation/screens/dialogs/quiz_metadata_dialog.dart';
 import 'package:quizdy/core/theme/extensions/quiz_loaded_theme.dart';
@@ -787,25 +788,33 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                   onDragExited: (_) => setState(() => _isDragging = false),
                   child: Stack(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                        child: QuestionListWidget(
-                          quizFile: cachedQuizFile,
-                          onFileChange: () {
-                            setState(() {});
-                            _syncQuizFileToBloc();
-                          },
-                          isSelectionMode: _isSelectionMode,
-                          selectedQuestions: _selectedQuestions,
-                          onToggleSelection: _toggleQuestionSelection,
-                          onSelectionChanged: (newSelection) {
-                            setState(() {
-                              _selectedQuestions.clear();
-                              _selectedQuestions.addAll(newSelection);
-                            });
-                          },
+                      if (cachedQuizFile.questions.isEmpty)
+                        EmptyStateView(
+                          message: AppLocalizations.of(
+                            context,
+                          )!.quizLoadedNoQuestionsAvailable,
+                          icon: LucideIcons.fileQuestion,
+                        )
+                      else
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                          child: QuestionListWidget(
+                            quizFile: cachedQuizFile,
+                            onFileChange: () {
+                              setState(() {});
+                              _syncQuizFileToBloc();
+                            },
+                            isSelectionMode: _isSelectionMode,
+                            selectedQuestions: _selectedQuestions,
+                            onToggleSelection: _toggleQuestionSelection,
+                            onSelectionChanged: (newSelection) {
+                              setState(() {
+                                _selectedQuestions.clear();
+                                _selectedQuestions.addAll(newSelection);
+                              });
+                            },
+                          ),
                         ),
-                      ),
                       if (_isDragging)
                         Positioned.fill(
                           child: Container(

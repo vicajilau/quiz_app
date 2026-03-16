@@ -113,6 +113,7 @@
   },
   "startQuizButton": "Почати вікторину",
   "quizPreviewTitle": "Предпросмотр вікторини",
+  "quizLoadedNoQuestionsAvailable": "Немає доступних питань.",
   "resultsTitle": "Результати",
   "@resultsTitle": {
     "description": "Title for the results screen"
