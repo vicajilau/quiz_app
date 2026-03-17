@@ -54,6 +54,7 @@ class _QuizInProgressViewState extends State<QuizInProgressView>
   bool _isChatOpen = false;
   bool _isChatMounted = false;
   bool _isAiAvailable = false;
+  bool _showFooterDivider = false;
 
   late final AnimationController _mobileChatAnimController;
   late final Animation<Offset> _mobileChatSlide;
@@ -62,6 +63,10 @@ class _QuizInProgressViewState extends State<QuizInProgressView>
   void initState() {
     super.initState();
     _checkAiAvailability();
+    _scrollController.addListener(_updateFooterDivider);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && _scrollController.hasClients) _updateFooterDivider();
+    });
     _mobileChatAnimController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 300),
@@ -83,11 +88,33 @@ class _QuizInProgressViewState extends State<QuizInProgressView>
     }
   }
 
+  void _updateFooterDivider() {
+    final show = _scrollController.position.extentAfter > 0;
+    if (show != _showFooterDivider) {
+      setState(() => _showFooterDivider = show);
+    }
+  }
+
   @override
   void dispose() {
+    _scrollController.removeListener(_updateFooterDivider);
     _scrollController.dispose();
     _mobileChatAnimController.dispose();
     super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(QuizInProgressView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.state.currentQuestionIndex !=
+        widget.state.currentQuestionIndex) {
+      setState(() => _showFooterDivider = false);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && _scrollController.hasClients) {
+          _updateFooterDivider();
+        }
+      });
+    }
   }
 
   void _scrollToBottom() {
@@ -314,7 +341,9 @@ class _QuizInProgressViewState extends State<QuizInProgressView>
                     constraints: const BoxConstraints(maxWidth: 720),
                     child: SingleChildScrollView(
                       controller: _scrollController,
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                      ).copyWith(bottom: 20),
                       child: Container(
                         padding: const EdgeInsets.all(32),
                         decoration: BoxDecoration(
@@ -340,9 +369,7 @@ class _QuizInProgressViewState extends State<QuizInProgressView>
               ),
 
               // Footer
-              Container(
-                height: 120,
-                padding: const EdgeInsets.symmetric(horizontal: 24),
+              Align(
                 alignment: Alignment.center,
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 720),
@@ -350,6 +377,7 @@ class _QuizInProgressViewState extends State<QuizInProgressView>
                     state: widget.state,
                     isStudyMode: isStudyMode,
                     isAiAvailable: _isAiAvailable,
+                    showDivider: _showFooterDivider,
                   ),
                 ),
               ),
