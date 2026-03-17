@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.10.0]
 
+- ui: Added divider to quiz navigation footer, visible only when card content overflows below the footer.
 - refactor: Extracted empty state into a reusable `EmptyStateView` widget and applied it to the Quiz Preview and Study Mode index screens.
 - feat: Added "Study Mode" button to the Quiz Preview header for direct navigation to Study Mode from the quiz editor.
 - ui: Improved dialog footer layout with consistent padding, theme-aware colors, and text overflow handling across multiple dialogs.
