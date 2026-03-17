@@ -16,6 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
@@ -26,12 +27,14 @@ class QuizNavigationButtons extends StatelessWidget {
   final QuizExecutionInProgress state;
   final bool isStudyMode;
   final bool isAiAvailable;
+  final bool showDivider;
 
   const QuizNavigationButtons({
     super.key,
     required this.state,
     this.isStudyMode = false,
     this.isAiAvailable = false,
+    this.showDivider = false,
   });
 
   @override
@@ -41,95 +44,102 @@ class QuizNavigationButtons extends StatelessWidget {
     final canProceed = isCheckPhase
         ? (state.hasCurrentQuestionAnswered && !isEvaluating)
         : !isEvaluating;
+    final colors = context.appColors;
 
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // Previous Button
-          if (!state.isFirstQuestion) ...[
-            Expanded(
-              child: QuizdyButton(
-                type: QuizdyButtonType.secondary,
-                title: AppLocalizations.of(context)!.previous,
-                icon: Icons.chevron_left,
-                expanded: true,
-                onPressed: isEvaluating
-                    ? null
-                    : () {
-                        context.read<QuizExecutionBloc>().add(
-                          PreviousQuestionRequested(),
-                        );
-                      },
-              ),
-            ),
-            const SizedBox(width: 16),
-          ],
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (showDivider) Divider(height: 1, thickness: 1, color: colors.border),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Previous Button
+              if (!state.isFirstQuestion) ...[
+                Expanded(
+                  child: QuizdyButton(
+                    type: QuizdyButtonType.secondary,
+                    title: AppLocalizations.of(context)!.previous,
+                    icon: Icons.chevron_left,
+                    expanded: true,
+                    onPressed: isEvaluating
+                        ? null
+                        : () {
+                            context.read<QuizExecutionBloc>().add(
+                              PreviousQuestionRequested(),
+                            );
+                          },
+                  ),
+                ),
+                const SizedBox(width: 8),
+              ],
 
-          // Next / Check / Finish Button
-          Expanded(
-            child: QuizdyButton(
-              title: isCheckPhase
-                  ? (state.hasCurrentQuestionAnswered
-                        ? AppLocalizations.of(context)!.checkAnswer
-                        : (state.isLastQuestion
-                              ? AppLocalizations.of(context)!.finish
-                              : AppLocalizations.of(context)!.skip))
-                  : (state.isLastQuestion
-                        ? AppLocalizations.of(context)!.finish
-                        : (state.hasCurrentQuestionAnswered
-                              ? AppLocalizations.of(context)!.next
-                              : AppLocalizations.of(context)!.skip)),
-              icon: isCheckPhase
-                  ? (state.hasCurrentQuestionAnswered
-                        ? Icons.check_circle
-                        : (state.isLastQuestion
-                              ? Icons.check
-                              : Icons.skip_next))
-                  : (state.isLastQuestion
-                        ? Icons.check
-                        : (state.hasCurrentQuestionAnswered
-                              ? Icons.chevron_right
-                              : Icons.skip_next)),
-              expanded: true,
-              onPressed: canProceed
-                  ? () {
-                      if (isCheckPhase) {
-                        context.read<QuizExecutionBloc>().add(
-                          CheckAnswerRequested(),
-                        );
-                      } else if (state.isLastQuestion) {
-                        SubmitQuizDialog.show(
-                          context,
-                          context.read<QuizExecutionBloc>(),
-                          isAiAvailable: isAiAvailable,
-                        );
-                      } else {
-                        context.read<QuizExecutionBloc>().add(
-                          NextQuestionRequested(),
-                        );
-                      }
-                    }
-                  : (isCheckPhase && !state.hasCurrentQuestionAnswered
-                        ? () {
-                            if (state.isLastQuestion) {
-                              SubmitQuizDialog.show(
-                                context,
-                                context.read<QuizExecutionBloc>(),
-                                isAiAvailable: isAiAvailable,
-                              );
-                            } else {
-                              context.read<QuizExecutionBloc>().add(
-                                NextQuestionRequested(),
-                              );
-                            }
+              // Next / Check / Finish Button
+              Expanded(
+                child: QuizdyButton(
+                  title: isCheckPhase
+                      ? (state.hasCurrentQuestionAnswered
+                            ? AppLocalizations.of(context)!.checkAnswer
+                            : (state.isLastQuestion
+                                  ? AppLocalizations.of(context)!.finish
+                                  : AppLocalizations.of(context)!.skip))
+                      : (state.isLastQuestion
+                            ? AppLocalizations.of(context)!.finish
+                            : (state.hasCurrentQuestionAnswered
+                                  ? AppLocalizations.of(context)!.next
+                                  : AppLocalizations.of(context)!.skip)),
+                  icon: isCheckPhase
+                      ? (state.hasCurrentQuestionAnswered
+                            ? Icons.check_circle
+                            : (state.isLastQuestion
+                                  ? Icons.check
+                                  : Icons.skip_next))
+                      : (state.isLastQuestion
+                            ? Icons.check
+                            : (state.hasCurrentQuestionAnswered
+                                  ? Icons.chevron_right
+                                  : Icons.skip_next)),
+                  expanded: true,
+                  onPressed: canProceed
+                      ? () {
+                          if (isCheckPhase) {
+                            context.read<QuizExecutionBloc>().add(
+                              CheckAnswerRequested(),
+                            );
+                          } else if (state.isLastQuestion) {
+                            SubmitQuizDialog.show(
+                              context,
+                              context.read<QuizExecutionBloc>(),
+                              isAiAvailable: isAiAvailable,
+                            );
+                          } else {
+                            context.read<QuizExecutionBloc>().add(
+                              NextQuestionRequested(),
+                            );
                           }
-                        : null),
-            ),
+                        }
+                      : (isCheckPhase && !state.hasCurrentQuestionAnswered
+                            ? () {
+                                if (state.isLastQuestion) {
+                                  SubmitQuizDialog.show(
+                                    context,
+                                    context.read<QuizExecutionBloc>(),
+                                    isAiAvailable: isAiAvailable,
+                                  );
+                                } else {
+                                  context.read<QuizExecutionBloc>().add(
+                                    NextQuestionRequested(),
+                                  );
+                                }
+                              }
+                            : null),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
