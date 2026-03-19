@@ -2030,10 +2030,18 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
-  "privacyPolicyLabel": "Privacy Policy",
-  "privacyPolicyDescription": "Read how your data is handled in Quizdy",
-  "privacyPolicyRequiredDescription": "Please review and accept the privacy policy to continue.",
-  "privacyPolicyLoadError": "Could not load the privacy policy content.",
+  "privacyPolicyLabel": "隐私政策",
+  "privacyPolicyDescription": "查看 Quizdy 如何处理你的数据",
+  "privacyPolicyRequiredDescription": "请先阅读并接受隐私政策以继续。",
+  "privacyPolicyLoadError": "无法加载隐私政策内容。",
+  "privacyPolicyCanonicalNotice": "本政策的官方法律版本为项目仓库中提供的英文文本。",
+  "@privacyPolicyCanonicalNotice": {
+    "description": "Short legal notice indicating the canonical version of the privacy policy"
+  },
+  "privacyPolicyOpenInBrowser": "在 GitHub 上打开完整政策",
+  "@privacyPolicyOpenInBrowser": {
+    "description": "Button label to open the privacy policy URL in an external browser"
+  },
   "supportLabel": "支持",
   "@supportLabel": {
     "description": "Label for the support action in settings"

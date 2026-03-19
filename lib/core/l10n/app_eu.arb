@@ -1978,10 +1978,18 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
-  "privacyPolicyLabel": "Privacy Policy",
-  "privacyPolicyDescription": "Read how your data is handled in Quizdy",
-  "privacyPolicyRequiredDescription": "Please review and accept the privacy policy to continue.",
-  "privacyPolicyLoadError": "Could not load the privacy policy content.",
+  "privacyPolicyLabel": "Pribatutasun politika",
+  "privacyPolicyDescription": "Irakurri nola kudeatzen diren zure datuak Quizdy-n",
+  "privacyPolicyRequiredDescription": "Mesedez, berrikusi eta onartu pribatutasun politika jarraitzeko.",
+  "privacyPolicyLoadError": "Ezin izan da pribatutasun politikaren edukia kargatu.",
+  "privacyPolicyCanonicalNotice": "Politika honen legezko bertsio ofiziala proiektuaren biltegian argitaratutako ingelesezko testua da.",
+  "@privacyPolicyCanonicalNotice": {
+    "description": "Short legal notice indicating the canonical version of the privacy policy"
+  },
+  "privacyPolicyOpenInBrowser": "Ireki politika osoa GitHub-en",
+  "@privacyPolicyOpenInBrowser": {
+    "description": "Button label to open the privacy policy URL in an external browser"
+  },
   "supportLabel": "Laguntza",
   "@supportLabel": {
     "description": "Label for the support action in settings"

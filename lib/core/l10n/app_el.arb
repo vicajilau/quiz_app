@@ -978,10 +978,18 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
-  "privacyPolicyLabel": "Privacy Policy",
-  "privacyPolicyDescription": "Read how your data is handled in Quizdy",
-  "privacyPolicyRequiredDescription": "Please review and accept the privacy policy to continue.",
-  "privacyPolicyLoadError": "Could not load the privacy policy content.",
+  "privacyPolicyLabel": "Πολιτικη απορρητου",
+  "privacyPolicyDescription": "Δες πως διαχειριζεται το Quizdy τα δεδομενα σου",
+  "privacyPolicyRequiredDescription": "Παρακαλουμε διαβασε και αποδεξου την πολιτικη απορρητου για να συνεχισεις.",
+  "privacyPolicyLoadError": "Δεν ηταν δυνατη η φορτωση του περιεχομενου της πολιτικης απορρητου.",
+  "privacyPolicyCanonicalNotice": "Η επισημη νομικη εκδοση αυτης της πολιτικης ειναι το αγγλικο κειμενο που φιλοξενειται στο αποθετηριο του εργου.",
+  "@privacyPolicyCanonicalNotice": {
+    "description": "Short legal notice indicating the canonical version of the privacy policy"
+  },
+  "privacyPolicyOpenInBrowser": "Ανοιγμα πληρους πολιτικης στο GitHub",
+  "@privacyPolicyOpenInBrowser": {
+    "description": "Button label to open the privacy policy URL in an external browser"
+  },
   "supportLabel": "Υποστήριξη",
   "@supportLabel": {
     "description": "Label for the support action in settings"

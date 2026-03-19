@@ -685,10 +685,18 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
-  "privacyPolicyLabel": "Privacy Policy",
-  "privacyPolicyDescription": "Read how your data is handled in Quizdy",
-  "privacyPolicyRequiredDescription": "Please review and accept the privacy policy to continue.",
-  "privacyPolicyLoadError": "Could not load the privacy policy content.",
+  "privacyPolicyLabel": "Политика конфиденциальности",
+  "privacyPolicyDescription": "Узнайте, как ваши данные обрабатываются в Quizdy",
+  "privacyPolicyRequiredDescription": "Пожалуйста, ознакомьтесь и примите политику конфиденциальности, чтобы продолжить.",
+  "privacyPolicyLoadError": "Не удалось загрузить содержимое политики конфиденциальности.",
+  "privacyPolicyCanonicalNotice": "Официальная юридическая версия этой политики - английский текст, размещенный в репозитории проекта.",
+  "@privacyPolicyCanonicalNotice": {
+    "description": "Short legal notice indicating the canonical version of the privacy policy"
+  },
+  "privacyPolicyOpenInBrowser": "Открыть полную политику на GitHub",
+  "@privacyPolicyOpenInBrowser": {
+    "description": "Button label to open the privacy policy URL in an external browser"
+  },
   "supportLabel": "Поддержка",
   "@supportLabel": {
     "description": "Label for the support action in settings"
