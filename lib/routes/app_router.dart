@@ -30,6 +30,7 @@ import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/screens/home_screen.dart';
 import 'package:quizdy/presentation/screens/onboarding/onboarding_screen.dart';
+import 'package:quizdy/presentation/screens/privacy_policy/privacy_policy_screen.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -37,6 +38,7 @@ final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 class AppRoutes {
   static const String home = '/';
   static const String onboarding = '/onboarding';
+  static const String privacyPolicy = '/privacy_policy';
   static const String fileLoadedScreen = '/quiz_loaded_screen';
   static const String quizFileExecutionScreen = '/quiz_file_execution_screen';
   static const String studyScreen = '/study_screen';
@@ -55,6 +57,13 @@ GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
     GoRoute(
       path: AppRoutes.home,
       builder: (context, state) => const HomeScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.privacyPolicy,
+      builder: (context, state) => PrivacyPolicyScreen(
+        fromSettings: state.uri.queryParameters['from'] == 'settings',
+        requireAcceptance: state.uri.queryParameters['required'] == 'true',
+      ),
     ),
     GoRoute(
       path: AppRoutes.fileLoadedScreen,

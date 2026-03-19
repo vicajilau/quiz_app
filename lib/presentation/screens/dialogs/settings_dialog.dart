@@ -315,6 +315,8 @@ class _SettingsDialogState extends State<SettingsDialog> {
                           const SizedBox(height: 16),
                           _OnboardingRow(colors: colors),
                           const SizedBox(height: 8),
+                          _PrivacyPolicyRow(colors: colors),
+                          const SizedBox(height: 8),
                           _SupportRow(
                             colors: colors,
                             onTap: _openSupportIssueUrl,
@@ -451,6 +453,60 @@ class _VersionRow extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _PrivacyPolicyRow extends StatelessWidget {
+  final ConfirmingDialogColorsExtension colors;
+
+  const _PrivacyPolicyRow({required this.colors});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(12),
+      onTap: () {
+        context.pop();
+        context.push('${AppRoutes.privacyPolicy}?from=settings');
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Row(
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: colors.surface,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(LucideIcons.shield, size: 20, color: colors.subtitle),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.privacyPolicyLabel,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: colors.title,
+                    ),
+                  ),
+                  Text(
+                    AppLocalizations.of(context)!.privacyPolicyDescription,
+                    style: TextStyle(fontSize: 12, color: colors.subtitle),
+                  ),
+                ],
+              ),
+            ),
+            Icon(LucideIcons.chevronRight, size: 18, color: colors.subtitle),
+          ],
+        ),
       ),
     );
   }

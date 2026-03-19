@@ -1980,8 +1980,12 @@
   "onboardingStudyStepStudyDescription": "प्रत्येक अनुभाग को नेविगेट करें और अपनी शिक्षा को सुदृढ़ करें",
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
-  }
-  ,"supportLabel": "सहायता",
+  },
+  "privacyPolicyLabel": "Privacy Policy",
+  "privacyPolicyDescription": "Read how your data is handled in Quizdy",
+  "privacyPolicyRequiredDescription": "Please review and accept the privacy policy to continue.",
+  "privacyPolicyLoadError": "Could not load the privacy policy content.",
+  "supportLabel": "सहायता",
   "@supportLabel": {
     "description": "Label for the support action in settings"
   },
