@@ -105,21 +105,6 @@ To enable AI features, configure at least one API key inside the app:
 - Gemini API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
 - OpenAI API key from [OpenAI Platform](https://platform.openai.com/api-keys)
 
-### AppGallery Continuous Distribution Setup
-
-The AppGallery release workflow is defined in `.github/workflows/publish_appgallery.yml` and runs on version tags (`vX.Y.Z`) and manual dispatch.
-
-Required repository secrets:
-
-- `ANDROID_KEYSTORE_BASE64`
-- `ANDROID_STORE_PASSWORD`
-- `ANDROID_KEY_PASSWORD`
-- `ANDROID_KEY_ALIAS`
-- `ANDROID_LOCAL_PROPERTIES_FILE`
-- `APPGALLERY_CLIENT_ID`
-- `APPGALLERY_CLIENT_SECRET`
-- `APPGALLERY_APP_ID`
-
 ## Development
 
 ```bash
