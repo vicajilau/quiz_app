@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.10.0]
 
+- feat: Added a new Privacy Policy acceptance screen shown before entering the app.
+
+## [1.10.0] -2026-03-17
+
 - ui: Added divider to quiz navigation footer, visible only when card content overflows below the footer.
 - refactor: Extracted empty state into a reusable `EmptyStateView` widget and applied it to the Quiz Preview and Study Mode index screens.
 - feat: Added "Study Mode" button to the Quiz Preview header for direct navigation to Study Mode from the quiz editor.
