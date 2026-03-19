@@ -1998,10 +1998,18 @@
   "@showOnboardingDescription": {
     "description": "Descripción del botón para volver a abrir el onboarding"
   },
-  "privacyPolicyLabel": "Privacy Policy",
-  "privacyPolicyDescription": "Read how your data is handled in Quizdy",
-  "privacyPolicyRequiredDescription": "Please review and accept the privacy policy to continue.",
-  "privacyPolicyLoadError": "Could not load the privacy policy content.",
+  "privacyPolicyLabel": "Politica de privacidad",
+  "privacyPolicyDescription": "Consulta como se gestionan tus datos en Quizdy",
+  "privacyPolicyRequiredDescription": "Revisa y acepta la politica de privacidad para continuar.",
+  "privacyPolicyLoadError": "No se pudo cargar el contenido de la politica de privacidad.",
+  "privacyPolicyCanonicalNotice": "La version legal oficial de esta politica es el texto en ingles alojado en el repositorio del proyecto.",
+  "@privacyPolicyCanonicalNotice": {
+    "description": "Short legal notice indicating the canonical version of the privacy policy"
+  },
+  "privacyPolicyOpenInBrowser": "Abrir la politica completa en GitHub",
+  "@privacyPolicyOpenInBrowser": {
+    "description": "Button label to open the privacy policy URL in an external browser"
+  },
   "supportLabel": "Soporte",
   "@supportLabel": {
     "description": "Etiqueta para la acción de soporte en ajustes"

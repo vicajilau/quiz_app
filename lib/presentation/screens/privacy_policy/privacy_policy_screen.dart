@@ -16,12 +16,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 import 'package:quizdy/routes/app_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PrivacyPolicyScreen extends StatefulWidget {
   final bool fromSettings;
@@ -38,6 +40,10 @@ class PrivacyPolicyScreen extends StatefulWidget {
 }
 
 class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
+  static final Uri _privacyPolicyUrl = Uri.parse(
+    'https://github.com/vicajilau/quizdy/blob/main/PRIVACY.md',
+  );
+
   final ConfigurationService _configurationService =
       ServiceLocator.getIt<ConfigurationService>();
 
@@ -98,6 +104,21 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
     context.go(AppRoutes.home);
   }
 
+  Future<void> _openPrivacyPolicyUrl() async {
+    final launched = await launchUrl(
+      _privacyPolicyUrl,
+      mode: LaunchMode.externalApplication,
+    );
+
+    if (!launched && mounted) {
+      context.presentSnackBar(
+        AppLocalizations.of(
+          context,
+        )!.couldNotOpenUrl(_privacyPolicyUrl.toString()),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
@@ -120,6 +141,17 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   Text(
                     localizations.privacyPolicyRequiredDescription,
                     style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    localizations.privacyPolicyCanonicalNotice,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  const SizedBox(height: 12),
+                ] else ...[
+                  Text(
+                    localizations.privacyPolicyCanonicalNotice,
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                   const SizedBox(height: 12),
                 ],
@@ -151,6 +183,13 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   ),
                 ),
                 const SizedBox(height: 16),
+                QuizdyButton(
+                  type: QuizdyButtonType.secondary,
+                  title: localizations.privacyPolicyOpenInBrowser,
+                  expanded: true,
+                  onPressed: _openPrivacyPolicyUrl,
+                ),
+                const SizedBox(height: 12),
                 if (widget.requireAcceptance)
                   QuizdyButton(
                     title: localizations.acceptButton,

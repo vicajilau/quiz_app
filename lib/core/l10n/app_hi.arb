@@ -1981,10 +1981,18 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
-  "privacyPolicyLabel": "Privacy Policy",
-  "privacyPolicyDescription": "Read how your data is handled in Quizdy",
-  "privacyPolicyRequiredDescription": "Please review and accept the privacy policy to continue.",
-  "privacyPolicyLoadError": "Could not load the privacy policy content.",
+  "privacyPolicyLabel": "गोपनीयता नीति",
+  "privacyPolicyDescription": "Quizdy में आपके डेटा को कैसे संभाला जाता है, यह देखें",
+  "privacyPolicyRequiredDescription": "जारी रखने के लिए कृपया गोपनीयता नीति की समीक्षा करें और उसे स्वीकार करें।",
+  "privacyPolicyLoadError": "गोपनीयता नीति की सामग्री लोड नहीं की जा सकी।",
+  "privacyPolicyCanonicalNotice": "इस नीति का आधिकारिक कानूनी संस्करण प्रोजेक्ट रिपॉजिटरी में उपलब्ध अंग्रेज़ी पाठ है।",
+  "@privacyPolicyCanonicalNotice": {
+    "description": "Short legal notice indicating the canonical version of the privacy policy"
+  },
+  "privacyPolicyOpenInBrowser": "GitHub पर पूरी नीति खोलें",
+  "@privacyPolicyOpenInBrowser": {
+    "description": "Button label to open the privacy policy URL in an external browser"
+  },
   "supportLabel": "सहायता",
   "@supportLabel": {
     "description": "Label for the support action in settings"

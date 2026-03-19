@@ -670,10 +670,18 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
-  "privacyPolicyLabel": "Privacy Policy",
-  "privacyPolicyDescription": "Read how your data is handled in Quizdy",
-  "privacyPolicyRequiredDescription": "Please review and accept the privacy policy to continue.",
-  "privacyPolicyLoadError": "Could not load the privacy policy content.",
+  "privacyPolicyLabel": "개인정보 처리방침",
+  "privacyPolicyDescription": "Quizdy에서 데이터가 어떻게 처리되는지 확인하세요",
+  "privacyPolicyRequiredDescription": "계속하려면 개인정보 처리방침을 검토하고 동의해 주세요.",
+  "privacyPolicyLoadError": "개인정보 처리방침 내용을 불러올 수 없습니다.",
+  "privacyPolicyCanonicalNotice": "이 정책의 공식 법적 버전은 프로젝트 저장소에 게시된 영어 텍스트입니다.",
+  "@privacyPolicyCanonicalNotice": {
+    "description": "Short legal notice indicating the canonical version of the privacy policy"
+  },
+  "privacyPolicyOpenInBrowser": "GitHub에서 전체 정책 열기",
+  "@privacyPolicyOpenInBrowser": {
+    "description": "Button label to open the privacy policy URL in an external browser"
+  },
   "supportLabel": "지원",
   "@supportLabel": {
     "description": "Label for the support action in settings"

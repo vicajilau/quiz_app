@@ -2380,21 +2380,29 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
-  "privacyPolicyLabel": "Privacy Policy",
+  "privacyPolicyLabel": "سياسة الخصوصية",
   "@privacyPolicyLabel": {
     "description": "Label for the privacy policy action in settings and title on the privacy policy screen"
   },
-  "privacyPolicyDescription": "Read how your data is handled in Quizdy",
+  "privacyPolicyDescription": "اطلع على كيفية التعامل مع بياناتك في Quizdy",
   "@privacyPolicyDescription": {
     "description": "Description for the privacy policy action in settings"
   },
-  "privacyPolicyRequiredDescription": "Please review and accept the privacy policy to continue.",
+  "privacyPolicyRequiredDescription": "يرجى مراجعة سياسة الخصوصية والموافقة عليها للمتابعة.",
   "@privacyPolicyRequiredDescription": {
     "description": "Message shown when privacy policy acceptance is required after onboarding"
   },
-  "privacyPolicyLoadError": "Could not load the privacy policy content.",
+  "privacyPolicyLoadError": "تعذر تحميل محتوى سياسة الخصوصية.",
   "@privacyPolicyLoadError": {
     "description": "Error shown when PRIVACY.md cannot be loaded"
+  },
+  "privacyPolicyCanonicalNotice": "النسخة القانونية الرسمية لهذه السياسة هي النص الإنجليزي المستضاف في مستودع المشروع.",
+  "@privacyPolicyCanonicalNotice": {
+    "description": "Short legal notice indicating the canonical version of the privacy policy"
+  },
+  "privacyPolicyOpenInBrowser": "فتح السياسة الكاملة على GitHub",
+  "@privacyPolicyOpenInBrowser": {
+    "description": "Button label to open the privacy policy URL in an external browser"
   },
   "supportLabel": "الدعم",
   "@supportLabel": {

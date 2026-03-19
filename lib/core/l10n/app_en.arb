@@ -2064,6 +2064,14 @@
   "@privacyPolicyLoadError": {
     "description": "Error shown when PRIVACY.md cannot be loaded"
   },
+  "privacyPolicyCanonicalNotice": "The official legal version of this policy is the English text hosted in the project repository.",
+  "@privacyPolicyCanonicalNotice": {
+    "description": "Short legal notice indicating the canonical version of the privacy policy"
+  },
+  "privacyPolicyOpenInBrowser": "Open full policy on GitHub",
+  "@privacyPolicyOpenInBrowser": {
+    "description": "Button label to open the privacy policy URL in an external browser"
+  },
   "supportLabel": "Support",
   "@supportLabel": {
     "description": "Label for the support action in settings"
