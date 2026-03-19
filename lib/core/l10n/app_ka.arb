@@ -669,8 +669,12 @@
   "onboardingStudyStepStudyDescription": "ნავიგაცია გაუკეთეთ თითოეულ სექციას და გაიუმჯობესეთ სწავლა",
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
-  }
-  ,"supportLabel": "მხარდაჭერა",
+  },
+  "privacyPolicyLabel": "Privacy Policy",
+  "privacyPolicyDescription": "Read how your data is handled in Quizdy",
+  "privacyPolicyRequiredDescription": "Please review and accept the privacy policy to continue.",
+  "privacyPolicyLoadError": "Could not load the privacy policy content.",
+  "supportLabel": "მხარდაჭერა",
   "@supportLabel": {
     "description": "Label for the support action in settings"
   },

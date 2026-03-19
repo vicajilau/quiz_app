@@ -16,6 +16,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quizdy/core/service_locator.dart';
+import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/presentation/blocs/onboarding_cubit/onboarding_cubit.dart';
 import 'package:quizdy/presentation/blocs/onboarding_cubit/onboarding_state.dart';
 import 'package:quizdy/presentation/screens/onboarding/widgets/onboarding_desktop_layout.dart';
@@ -56,12 +58,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   Future<void> _finish(BuildContext context) async {
+    final configurationService = ServiceLocator.getIt<ConfigurationService>();
     await context.read<OnboardingCubit>().completeOnboarding();
+    final hasAcceptedPrivacyPolicy = await configurationService
+        .getPrivacyPolicyAccepted();
+
     if (context.mounted) {
       if (widget.fromSettings) {
         context.pop();
         return;
       }
+
+      if (!hasAcceptedPrivacyPolicy) {
+        context.go('${AppRoutes.privacyPolicy}?required=true');
+        return;
+      }
+
       context.go(AppRoutes.home);
     }
   }

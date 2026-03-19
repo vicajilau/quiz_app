@@ -1998,6 +1998,10 @@
   "@showOnboardingDescription": {
     "description": "Descripción del botón para volver a abrir el onboarding"
   },
+  "privacyPolicyLabel": "Privacy Policy",
+  "privacyPolicyDescription": "Read how your data is handled in Quizdy",
+  "privacyPolicyRequiredDescription": "Please review and accept the privacy policy to continue.",
+  "privacyPolicyLoadError": "Could not load the privacy policy content.",
   "supportLabel": "Soporte",
   "@supportLabel": {
     "description": "Etiqueta para la acción de soporte en ajustes"

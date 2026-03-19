@@ -2048,6 +2048,22 @@
   "@showOnboardingDescription": {
     "description": "Description for the button to re-open the onboarding flow"
   },
+  "privacyPolicyLabel": "Privacy Policy",
+  "@privacyPolicyLabel": {
+    "description": "Label for the privacy policy action in settings and title on the privacy policy screen"
+  },
+  "privacyPolicyDescription": "Read how your data is handled in Quizdy",
+  "@privacyPolicyDescription": {
+    "description": "Description for the privacy policy action in settings"
+  },
+  "privacyPolicyRequiredDescription": "Please review and accept the privacy policy to continue.",
+  "@privacyPolicyRequiredDescription": {
+    "description": "Message shown when privacy policy acceptance is required after onboarding"
+  },
+  "privacyPolicyLoadError": "Could not load the privacy policy content.",
+  "@privacyPolicyLoadError": {
+    "description": "Error shown when PRIVACY.md cannot be loaded"
+  },
   "supportLabel": "Support",
   "@supportLabel": {
     "description": "Label for the support action in settings"

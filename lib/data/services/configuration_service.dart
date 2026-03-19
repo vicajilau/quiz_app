@@ -63,6 +63,7 @@ class ConfigurationService {
       'ai_study_generation_difficulty_level';
 
   static const String _onboardingCompletedKey = 'onboarding_completed';
+  static const String _privacyPolicyAcceptedKey = 'privacy_policy_accepted';
 
   static const String _lastQuestionCountKey = 'last_question_count';
   static const String _lastQuizModeKey = 'last_quiz_mode';
@@ -85,6 +86,18 @@ class ConfigurationService {
   Future<void> setOnboardingCompleted(bool completed) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_onboardingCompletedKey, completed);
+  }
+
+  /// Gets whether the privacy policy has been accepted
+  Future<bool> getPrivacyPolicyAccepted() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_privacyPolicyAcceptedKey) ?? false;
+  }
+
+  /// Marks privacy policy as accepted
+  Future<void> setPrivacyPolicyAccepted(bool accepted) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_privacyPolicyAcceptedKey, accepted);
   }
 
   /// Saves the selected question order to SharedPreferences

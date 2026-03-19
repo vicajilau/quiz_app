@@ -702,8 +702,12 @@
   "onboardingStudyStepStudyDescription": "Переглядайте кожен розділ і закріплюйте свої знання",
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
-  }
-  ,"supportLabel": "Підтримка",
+  },
+  "privacyPolicyLabel": "Privacy Policy",
+  "privacyPolicyDescription": "Read how your data is handled in Quizdy",
+  "privacyPolicyRequiredDescription": "Please review and accept the privacy policy to continue.",
+  "privacyPolicyLoadError": "Could not load the privacy policy content.",
+  "supportLabel": "Підтримка",
   "@supportLabel": {
     "description": "Label for the support action in settings"
   },

@@ -2068,8 +2068,12 @@
   "onboardingStudyStepStudyDescription": "Navegue por cada seção e reforce o seu aprendizado",
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
-  }
-  ,"supportLabel": "Suporte",
+  },
+  "privacyPolicyLabel": "Privacy Policy",
+  "privacyPolicyDescription": "Read how your data is handled in Quizdy",
+  "privacyPolicyRequiredDescription": "Please review and accept the privacy policy to continue.",
+  "privacyPolicyLoadError": "Could not load the privacy policy content.",
+  "supportLabel": "Suporte",
   "@supportLabel": {
     "description": "Label for the support action in settings"
   },
