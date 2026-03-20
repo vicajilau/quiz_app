@@ -37,6 +37,7 @@ import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
+import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_cubit.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
@@ -84,34 +85,48 @@ class StudyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
 
-    return BlocProvider(
-      create: (context) => StudyExecutionBloc(
-        jitProcessingService: ServiceLocator.getIt<AiJitProcessingService>(),
-        localizations: localizations,
-        initialChunks: initialChunks,
-        fileAttachment: fileAttachment ?? quizFile?.fileAttachment,
-        fileUri: quizFile?.fileUri,
-        fileExpirationTime: quizFile?.fileExpirationTime,
-        documentTitle: documentTitle,
-        documentSummary: documentSummary ?? quizFile?.metadata.description,
-        isAutoDifficulty: quizFile?.study?.isAutoDifficulty ?? isAutoDifficulty,
-        difficultyLevel: difficultyLevel ?? quizFile?.study?.difficultyLevel,
-        originalText: originalText ?? quizFile?.study?.originalText,
-        language: language ?? quizFile?.study?.language,
-        generationMode: generationMode ?? quizFile?.study?.generationMode,
-        onProgressChanged:
-            (progress, processedChunks, chunks, fileUri, expirationTime) {
-              context.read<FileBloc>().add(
-                StudyProgressUpdated(
-                  progress: progress,
-                  processedChunks: processedChunks,
-                  chunks: chunks,
-                  fileUri: fileUri,
-                  fileExpirationTime: expirationTime,
-                ),
-              );
-            },
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => StudyExecutionBloc(
+            jitProcessingService:
+                ServiceLocator.getIt<AiJitProcessingService>(),
+            localizations: localizations,
+            initialChunks: initialChunks,
+            fileAttachment: fileAttachment ?? quizFile?.fileAttachment,
+            fileUri: quizFile?.fileUri,
+            fileExpirationTime: quizFile?.fileExpirationTime,
+            documentTitle: documentTitle,
+            documentSummary: documentSummary ?? quizFile?.metadata.description,
+            isAutoDifficulty:
+                quizFile?.study?.isAutoDifficulty ?? isAutoDifficulty,
+            difficultyLevel:
+                difficultyLevel ?? quizFile?.study?.difficultyLevel,
+            originalText: originalText ?? quizFile?.study?.originalText,
+            language: language ?? quizFile?.study?.language,
+            generationMode: generationMode ?? quizFile?.study?.generationMode,
+            onProgressChanged:
+                (progress, processedChunks, chunks, fileUri, expirationTime) {
+                  context.read<FileBloc>().add(
+                    StudyProgressUpdated(
+                      progress: progress,
+                      processedChunks: processedChunks,
+                      chunks: chunks,
+                      fileUri: fileUri,
+                      fileExpirationTime: expirationTime,
+                    ),
+                  );
+                },
+          ),
+        ),
+        BlocProvider(
+          create: (_) => StudyEditorCubit(
+            initialChunks: initialChunks,
+            quizFile: quizFile,
+            repository: ServiceLocator.getIt<QuizFileRepository>(),
+          ),
+        ),
+      ],
       child: StudyScreenView(
         quizFile: quizFile,
         generationMode: generationMode,

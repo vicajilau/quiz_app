@@ -117,6 +117,14 @@ class StudyFileSaved extends StudyExecutionEvent {
   const StudyFileSaved();
 }
 
+/// Dispatched when the study editor has made changes to chunks that must be
+/// reflected in the execution state (e.g. after editing a paragraph).
+class StudyChunksUpdated extends StudyExecutionEvent {
+  final List<StudyChunk> chunks;
+
+  const StudyChunksUpdated(this.chunks);
+}
+
 /// Dispatched to generate new study sections using AI.
 class GenerateAiStudyChunksRequested extends StudyExecutionEvent {
   final AiStudyGenerationConfig config;
