@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:quizdy/domain/models/quiz/ui_element.dart';
+import 'package:quizdy/domain/models/quiz/study_component.dart';
 
 import 'package:quizdy/presentation/screens/widgets/study/components/section_title_component.dart';
 import 'package:quizdy/presentation/screens/widgets/study/components/paragraph_component.dart';
@@ -31,54 +31,39 @@ import 'package:quizdy/presentation/screens/widgets/study/components/reminder_co
 import 'package:quizdy/presentation/screens/widgets/study/components/icon_cards_component.dart';
 
 class StudyComponentBuilder extends StatelessWidget {
-  final UiElement element;
+  final StudyComponent element;
 
   const StudyComponentBuilder({super.key, required this.element});
 
   @override
   Widget build(BuildContext context) {
     switch (element.componentType) {
-      case 'section_title':
-      case 'Title': // Legacy support
+      case StudyComponentType.sectionTitle:
         return SectionTitleComponent(element: element);
-      case 'paragraph':
+      case StudyComponentType.paragraph:
         return ParagraphComponent(element: element);
-      case 'key_definition':
+      case StudyComponentType.keyDefinition:
         return KeyDefinitionComponent(element: element);
-      case 'numbered_list':
+      case StudyComponentType.numberedList:
         return NumberedListComponent(element: element);
-      case 'comparison_table':
+      case StudyComponentType.comparisonTable:
         return ComparisonTableComponent(element: element);
-      case 'quote':
+      case StudyComponentType.quote:
         return QuoteComponent(element: element);
-      case 'warning':
+      case StudyComponentType.warning:
         return WarningComponent(element: element);
-      case 'formula':
+      case StudyComponentType.formula:
         return FormulaComponent(element: element);
-      case 'timeline':
+      case StudyComponentType.timeline:
         return TimelineComponent(element: element);
-      case 'pros_cons':
+      case StudyComponentType.prosCons:
         return ProsConsComponent(element: element);
-      case 'key_concepts':
+      case StudyComponentType.keyConcepts:
         return KeyConceptsComponent(element: element);
-      case 'reminder':
+      case StudyComponentType.reminder:
         return ReminderComponent(element: element);
-      case 'icon_cards':
+      case StudyComponentType.iconCards:
         return IconCardsComponent(element: element);
-      default:
-        // Fallback for unknown component types that might have 'text' or 'body'
-        final text =
-            element.props['text']?.toString() ??
-            element.props['body']?.toString();
-        if (text != null && text.isNotEmpty) {
-          return ParagraphComponent(
-            element: element.copyWith(
-              componentType: 'paragraph',
-              props: {'body': text},
-            ),
-          );
-        }
-        return const SizedBox.shrink();
     }
   }
 }

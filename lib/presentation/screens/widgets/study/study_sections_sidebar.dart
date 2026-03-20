@@ -256,7 +256,7 @@ class _SidebarChunkItem extends StatelessWidget {
     final Color bgColor;
     if (isSelected) {
       bgColor = isDark ? AppTheme.zinc700 : AppTheme.zinc100;
-    } else if (isCompleted) {
+    } else if (isCompleted || isModified) {
       bgColor = AppTheme.primaryColor.withValues(alpha: isDark ? 0.125 : 0.063);
     } else {
       bgColor = AppTheme.transparent;

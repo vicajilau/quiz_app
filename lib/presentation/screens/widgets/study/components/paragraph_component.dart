@@ -14,12 +14,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:quizdy/domain/models/quiz/ui_element.dart';
+import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class ParagraphComponent extends StatelessWidget {
-  final UiElement element;
+  final StudyComponent element;
 
   const ParagraphComponent({super.key, required this.element});
 
