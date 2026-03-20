@@ -294,13 +294,13 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
                             QuizdyButton(
                               type: QuizdyButtonType.secondary,
                               icon: LucideIcons.plus,
-                              title: localizations.addSection,
+                              title: localizations.addComponentTitle,
                               onPressed: _openAddComponent,
                             ),
                             const SizedBox(width: 12),
                             QuizdyButton(
                               backgroundColor: AppTheme.secondaryColor,
-                              title: localizations.addSectionsWithAI,
+                              title: localizations.addComponentsWithAI,
                               icon: LucideIcons.sparkles,
                               onPressed: () => context.presentSnackBar(
                                 localizations.featureComingSoon,

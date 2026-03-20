@@ -949,5 +949,9 @@
   "addComponentTitle": "Додати компонент",
   "@addComponentTitle": {
     "description": "Title for the Add Component picker screen"
+  },
+  "addComponentsWithAI": "Додати компоненти за допомогою ШІ",
+  "@addComponentsWithAI": {
+    "description": "Button label to add study components using AI"
   }
 }

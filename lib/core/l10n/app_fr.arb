@@ -2269,5 +2269,9 @@
   "addComponentTitle": "Ajouter un composant",
   "@addComponentTitle": {
     "description": "Title for the Add Component picker screen"
+  },
+  "addComponentsWithAI": "Ajouter des composants avec l'IA",
+  "@addComponentsWithAI": {
+    "description": "Button label to add study components using AI"
   }
 }

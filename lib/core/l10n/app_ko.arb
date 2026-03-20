@@ -916,5 +916,9 @@
   "addComponentTitle": "구성 요소 추가",
   "@addComponentTitle": {
     "description": "Title for the Add Component picker screen"
+  },
+  "addComponentsWithAI": "AI로 구성 요소 추가",
+  "@addComponentsWithAI": {
+    "description": "Button label to add study components using AI"
   }
 }

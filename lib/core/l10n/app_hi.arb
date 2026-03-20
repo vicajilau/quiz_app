@@ -2227,5 +2227,9 @@
   "componentFieldEquationLabel": "समीकरण लेबल",
   "@componentFieldEquationLabel": {
     "description": "Form field label for formula equation label"
+  },
+  "addComponentsWithAI": "AI से घटक जोड़ें",
+  "@addComponentsWithAI": {
+    "description": "Button label to add study components using AI"
   }
 }

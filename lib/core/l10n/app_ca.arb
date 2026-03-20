@@ -2326,5 +2326,9 @@
         "type": "String"
       }
     }
+  },
+  "addComponentsWithAI": "Afegeix components amb IA",
+  "@addComponentsWithAI": {
+    "description": "Button label to add study components using AI"
   }
 }

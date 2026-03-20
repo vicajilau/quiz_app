@@ -1224,5 +1224,9 @@
   "addComponentTitle": "Προσθήκη στοιχείου",
   "@addComponentTitle": {
     "description": "Title for the Add Component picker screen"
+  },
+  "addComponentsWithAI": "Προσθήκη στοιχείων με ΤΝ",
+  "@addComponentsWithAI": {
+    "description": "Button label to add study components using AI"
   }
 }

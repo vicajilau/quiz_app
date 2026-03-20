@@ -2469,5 +2469,9 @@
   },
   "@studyEditorDeletePage": {
     "description": "Button label to delete a page from a section"
+  },
+  "addComponentsWithAI": "Añadir componentes con IA",
+  "@addComponentsWithAI": {
+    "description": "Button label to add study components using AI"
   }
 }

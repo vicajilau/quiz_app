@@ -2224,5 +2224,9 @@
   "componentFieldCon": "Kon",
   "@componentFieldCon": {
     "description": "Form field label for a single con item"
+  },
+  "addComponentsWithAI": "Gehitu osagaiak IArekin",
+  "@addComponentsWithAI": {
+    "description": "Button label to add study components using AI"
   }
 }

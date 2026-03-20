@@ -2638,5 +2638,9 @@
         "type": "int"
       }
     }
+  },
+  "addComponentsWithAI": "إضافة مكونات بالذكاء الاصطناعي",
+  "@addComponentsWithAI": {
+    "description": "Button label to add study components using AI"
   }
 }

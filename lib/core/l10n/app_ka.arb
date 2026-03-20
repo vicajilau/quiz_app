@@ -916,5 +916,9 @@
         "type": "String"
       }
     }
+  },
+  "addComponentsWithAI": "კომპონენტების AI-ით დამატება",
+  "@addComponentsWithAI": {
+    "description": "Button label to add study components using AI"
   }
 }

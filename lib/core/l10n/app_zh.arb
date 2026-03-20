@@ -2276,5 +2276,9 @@
         "type": "String"
       }
     }
+  },
+  "addComponentsWithAI": "用 AI 添加组件",
+  "@addComponentsWithAI": {
+    "description": "Button label to add study components using AI"
   }
 }

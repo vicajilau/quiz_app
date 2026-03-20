@@ -2227,5 +2227,9 @@
   "componentFieldEquationLabel": "方程式ラベル",
   "@componentFieldEquationLabel": {
     "description": "Form field label for formula equation label"
+  },
+  "addComponentsWithAI": "AIでコンポーネントを追加",
+  "@addComponentsWithAI": {
+    "description": "Button label to add study components using AI"
   }
 }
