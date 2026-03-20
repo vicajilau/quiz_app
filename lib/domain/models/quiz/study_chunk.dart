@@ -15,7 +15,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:quizdy/domain/models/quiz/source_reference.dart';
-import 'package:quizdy/domain/models/quiz/page.dart';
+import 'package:quizdy/domain/models/quiz/study_page.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 
 /// Represents a distinct chunk of study material, often derived from a source document.
@@ -39,7 +39,7 @@ class StudyChunk {
   final String? aiSummary;
 
   /// The UI views to present to the user representing this chunk.
-  final List<Page> pages;
+  final List<StudyPage> pages;
 
   /// An optional error message if the chunk generation failed.
   final String? errorMessage;
@@ -59,12 +59,14 @@ class StudyChunk {
   /// - [json]: The JSON map containing the study chunk data.
   /// - Returns: A populated `StudyChunk` instance.
   factory StudyChunk.fromJson(Map<String, dynamic> json) {
-    List<Page> parsedPages = [];
+    List<StudyPage> parsedPages = [];
     // Check both pages (issue #221) and slides (legacy)
     final pagesJson = (json['pages'] ?? json['slides']) as List<dynamic>?;
     if (pagesJson != null) {
       parsedPages = pagesJson
-          .map((pageJson) => Page.fromJson(pageJson as Map<String, dynamic>))
+          .map(
+            (pageJson) => StudyPage.fromJson(pageJson as Map<String, dynamic>),
+          )
           .toList();
     }
 
@@ -102,7 +104,7 @@ class StudyChunk {
     StudyChunkState? status,
     SourceReference? sourceReference,
     String? aiSummary,
-    List<Page>? pages,
+    List<StudyPage>? pages,
     String? errorMessage,
   }) {
     return StudyChunk(

@@ -13,32 +13,62 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
+
+/// Represents a dynamic UI component within a quiz page, defined by a type and associated properties.
+/// This flexible structure allows for generative UI definitions based on a `componentType` and arbitrary `props
+enum StudyComponentType {
+  sectionTitle,
+  paragraph,
+  keyDefinition,
+  numberedList,
+  comparisonTable,
+  quote,
+  warning,
+  formula,
+  timeline,
+  prosCons,
+  keyConcepts,
+  reminder,
+  iconCards,
+}
 
 /// Represents a UI component element within a slide.
 ///
 /// This flexible structure allows for generative UI definitions based on
 /// a `componentType` and arbitrary `props`.
-class UiElement {
+class StudyComponent {
   /// The type of the UI component to render (e.g., 'ConceptHighlight').
-  final String componentType;
+  final StudyComponentType componentType;
 
   /// The dynamic properties or data for the component.
   final Map<String, dynamic> props;
 
-  /// Constructor for a `UiElement`.
-  const UiElement({required this.componentType, required this.props});
+  /// Constructor for a `StudyComponent`.
+  const StudyComponent({required this.componentType, required this.props});
 
-  /// Creates a `UiElement` instance from a JSON map.
+  /// Creates a `StudyComponent` instance from a JSON map.
   ///
   /// - [json]: The JSON map containing the dynamic layout data.
-  /// - Returns: A populated `UiElement` instance.
-  factory UiElement.fromJson(Map<String, dynamic> json) {
-    // Determine the type: check both the new issue #221 'type' and legacy 'component_type'
-    final String type =
-        json['type'] as String? ??
-        json['component_type'] as String? ??
-        'Unknown';
+  /// - Returns: A populated `StudyComponent` instance.
+  factory StudyComponent.fromJson(Map<String, dynamic> json) {
+    // Determine the type: check both the new issue #221 'type' and legacy 'component_type'.
+    // Normalise snake_case → camelCase so values like "section_title" match enum
+    // names like "sectionTitle".
+    String toCamelCase(String s) => s.replaceAllMapped(
+      RegExp(r'_([a-z])'),
+      (m) => m.group(1)!.toUpperCase(),
+    );
+
+    final rawType =
+        (json['type'] as String?)?.trim() ??
+        (json['component_type'] as String?)?.trim();
+    final normalised = rawType != null ? toCamelCase(rawType) : null;
+
+    final type = StudyComponentType.values.firstWhereOrNull(
+      (e) => e.name == normalised,
+    );
 
     // Collect all properties dynamically.
     // In legacy format, properties were inside 'props'.
@@ -55,10 +85,13 @@ class UiElement {
       }
     });
 
-    return UiElement(componentType: type, props: extractedProps);
+    return StudyComponent(
+      componentType: type ?? StudyComponentType.sectionTitle,
+      props: extractedProps,
+    );
   }
 
-  /// Converts the `UiElement` instance to a JSON map.
+  /// Converts the `StudyComponent` instance to a JSON map.
   ///
   /// - Returns: A JSON map representation.
   Map<String, dynamic> toJson() {
@@ -68,9 +101,12 @@ class UiElement {
     return json;
   }
 
-  /// Creates a copy of the `UiElement` with optional parameter modifications.
-  UiElement copyWith({String? componentType, Map<String, dynamic>? props}) {
-    return UiElement(
+  /// Creates a copy of the `StudyComponent` with optional parameter modifications.
+  StudyComponent copyWith({
+    StudyComponentType? componentType,
+    Map<String, dynamic>? props,
+  }) {
+    return StudyComponent(
       componentType: componentType ?? this.componentType,
       props: props ?? Map<String, dynamic>.from(this.props),
     );
@@ -80,7 +116,7 @@ class UiElement {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is UiElement &&
+    return other is StudyComponent &&
         other.componentType == componentType &&
         mapEquals(other.props, props);
   }
@@ -93,5 +129,5 @@ class UiElement {
 
   @override
   String toString() =>
-      'UiElement(componentType: $componentType, props: $props)';
+      'StudyComponent(componentType: $componentType, props: $props)';
 }
