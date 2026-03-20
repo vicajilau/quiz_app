@@ -96,7 +96,7 @@ class StudyComponent {
   /// - Returns: A JSON map representation.
   Map<String, dynamic> toJson() {
     // When serializing, we output the new format.
-    final json = <String, dynamic>{'type': componentType};
+    final json = <String, dynamic>{'type': componentType.name};
     json.addAll(props);
     return json;
   }
