@@ -997,5 +997,232 @@
   "supportDescription": "Άνοιγμα θεμάτων GitHub με λεπτομέρειες εφαρμογής και πλατφόρμας",
   "@supportDescription": {
     "description": "Description for the support action in settings"
+  },
+  "studyEditorSaveChanges": "Αποθήκευση αλλαγών",
+  "@studyEditorSaveChanges": {
+    "description": "Button label to save edited component properties"
+  },
+  "studyEditorFieldTitle": "Τίτλος (προαιρετικό)",
+  "@studyEditorFieldTitle": {
+    "description": "Label for the optional title field in component editors"
+  },
+  "studyEditorEmptyPages": "Δεν υπάρχουν ακόμα σελίδες. Πατήστε + για να προσθέσετε ένα.",
+  "@studyEditorEmptyPages": {
+    "description": "Empty state message in the section page manager"
+  },
+  "studyEditorEmptyComponents": "Δεν υπάρχουν στοιχεία σε αυτήν τη σελίδα.",
+  "@studyEditorEmptyComponents": {
+    "description": "Empty state message in the component editor"
+  },
+  "studyEditorComponents": "εξαρτήματα",
+  "@studyEditorComponents": {
+    "description": "Section header for the list of components in the component editor"
+  },
+  "studyEditorExitEdit": "Έξοδος από τη λειτουργία επεξεργασίας",
+  "@studyEditorExitEdit": {
+    "description": "Tooltip for the FAB button that disables study content edit mode"
+  },
+  "studyEditorPages": "Σελίδες",
+  "@studyEditorPages": {
+    "description": "Section header for the list of pages in the section page manager"
+  },
+  "studyEditorToggleEdit": "Επεξεργασία περιεχομένου",
+  "@studyEditorToggleEdit": {
+    "description": "Tooltip for the FAB button that enables study content edit mode"
+  },
+  "studyEditorEditParagraph": "Επεξεργασία παραγράφου",
+  "@studyEditorEditParagraph": {
+    "description": "Navigation header title for the paragraph property panel"
+  },
+  "componentTypeParagraph": "Παράγραφος",
+  "@componentTypeParagraph": {
+    "description": "Display name for the paragraph component type"
+  },
+  "studyEditorFieldBody": "Κείμενο σώματος",
+  "@studyEditorFieldBody": {
+    "description": "Label for the main body text field in component editors"
+  },
+  "studyEditorAddPage": "Προσθήκη σελίδας",
+  "@studyEditorAddPage": {
+    "description": "Button label to add a new page to a section"
+  },
+  "studyEditorEditName": "Επεξεργασία {name}",
+  "@studyEditorEditName": {
+    "description": "Navigation header title: Edit [section name]",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "studyEditorDeletePage": "Διαγραφή σελίδας",
+  "@studyEditorDeletePage": {
+    "description": "Button label to delete a page from a section"
+  },
+  "studyEditorPageN": "Σελίδα {n}",
+  "@studyEditorPageN": {
+    "description": "Label for page number n in the section page manager",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "componentTypeWarning": "Προειδοποίηση",
+  "@componentTypeWarning": {
+    "description": "Display name for the warning component type"
+  },
+  "componentTypeComparisonTable": "Συγκριτικός Πίνακας",
+  "@componentTypeComparisonTable": {
+    "description": "Display name for the comparisonTable component type"
+  },
+  "componentTypeSectionTitle": "Τίτλος Ενότητας",
+  "@componentTypeSectionTitle": {
+    "description": "Display name for the sectionTitle component type"
+  },
+  "componentTypeQuote": "Παραθέτω",
+  "@componentTypeQuote": {
+    "description": "Display name for the quote component type"
+  },
+  "componentTypeTimeline": "Χρονολόγιο",
+  "@componentTypeTimeline": {
+    "description": "Display name for the timeline component type"
+  },
+  "componentTypeProsCons": "Πλεονεκτήματα & Μειονεκτήματα",
+  "@componentTypeProsCons": {
+    "description": "Display name for the prosCons component type"
+  },
+  "componentTypeFormula": "Τύπος",
+  "@componentTypeFormula": {
+    "description": "Display name for the formula component type"
+  },
+  "componentTypeKeyConcepts": "Βασικές Έννοιες",
+  "@componentTypeKeyConcepts": {
+    "description": "Display name for the keyConcepts component type"
+  },
+  "componentTypeNumberedList": "Αριθμημένη λίστα",
+  "@componentTypeNumberedList": {
+    "description": "Display name for the numberedList component type"
+  },
+  "componentTypeReminder": "Υπενθύμιση",
+  "@componentTypeReminder": {
+    "description": "Display name for the reminder component type"
+  },
+  "componentFieldSubtitle": "Υπότιτλος",
+  "@componentFieldSubtitle": {
+    "description": "Form field label for subtitle"
+  },
+  "componentFieldDefinition": "Ορισμός",
+  "@componentFieldDefinition": {
+    "description": "Form field label for definition"
+  },
+  "componentFieldEquation": "Εξίσωση",
+  "@componentFieldEquation": {
+    "description": "Form field label for formula equation"
+  },
+  "componentFieldQuote": "Παραθέτω",
+  "@componentFieldQuote": {
+    "description": "Form field label for quote text"
+  },
+  "componentFieldAuthor": "Συγγραφέας",
+  "@componentFieldAuthor": {
+    "description": "Form field label for quote author"
+  },
+  "componentTypeIconCards": "Κάρτες εικονιδίων",
+  "@componentTypeIconCards": {
+    "description": "Display name for the iconCards component type"
+  },
+  "componentTypeKeyDefinition": "Ορισμός κλειδιού",
+  "@componentTypeKeyDefinition": {
+    "description": "Display name for the keyDefinition component type"
+  },
+  "componentFieldTerm": "Ορος",
+  "@componentFieldTerm": {
+    "description": "Form field label for term (key definition)"
+  },
+  "componentFieldExplanation": "Εξήγηση",
+  "@componentFieldExplanation": {
+    "description": "Form field label for formula explanation"
+  },
+  "componentFieldConcept": "Εννοια",
+  "@componentFieldConcept": {
+    "description": "Form field label for a single concept item"
+  },
+  "componentFieldEvents": "Εκδηλώσεις",
+  "@componentFieldEvents": {
+    "description": "Form section label for timeline events"
+  },
+  "componentFieldDescription": "Περιγραφή",
+  "@componentFieldDescription": {
+    "description": "Form field label for item description"
+  },
+  "componentFieldItems": "Είδη",
+  "@componentFieldItems": {
+    "description": "Form section label for a list of items"
+  },
+  "componentFieldDate": "Ημερομηνία",
+  "@componentFieldDate": {
+    "description": "Form field label for timeline event date"
+  },
+  "componentFieldPros": "Πλεονεκτήματα",
+  "@componentFieldPros": {
+    "description": "Form section label for pros list"
+  },
+  "componentFieldCards": "Καρτέλλες",
+  "@componentFieldCards": {
+    "description": "Form section label for icon cards"
+  },
+  "componentFieldCon": "Απατώ",
+  "@componentFieldCon": {
+    "description": "Form field label for a single con item"
+  },
+  "componentFieldRow": "Σειρά",
+  "@componentFieldRow": {
+    "description": "Form field label for a single table row"
+  },
+  "componentFieldColumns": "Στήλες",
+  "@componentFieldColumns": {
+    "description": "Form section label for table columns"
+  },
+  "componentFieldLabel": "Επιγραφή",
+  "@componentFieldLabel": {
+    "description": "Form field label for a row label in comparison table"
+  },
+  "componentFieldRows": "Σειρές",
+  "@componentFieldRows": {
+    "description": "Form section label for table rows"
+  },
+  "componentFieldColumn": "Στήλη",
+  "@componentFieldColumn": {
+    "description": "Form field label for a single table column"
+  },
+  "componentFieldEquationLabel": "Ετικέτα εξίσωσης",
+  "@componentFieldEquationLabel": {
+    "description": "Form field label for formula equation label"
+  },
+  "componentFieldPro": "Pro",
+  "@componentFieldPro": {
+    "description": "Form field label for a single pro item"
+  },
+  "componentFieldCons": "Μειονεκτήματα",
+  "@componentFieldCons": {
+    "description": "Form section label for cons list"
+  },
+  "componentFieldOptional": "προαιρετικός",
+  "@componentFieldOptional": {
+    "description": "Label shown next to optional form fields"
+  },
+  "componentFieldAdd": "Προσθήκη {item}",
+  "@componentFieldAdd": {
+    "description": "Button label to add a new item to a list",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "addComponentTitle": "Προσθήκη στοιχείου",
+  "@addComponentTitle": {
+    "description": "Title for the Add Component picker screen"
   }
 }

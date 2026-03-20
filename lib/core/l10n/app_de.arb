@@ -2093,5 +2093,232 @@
   "supportDescription": "GitHub-Issues mit App- und Plattformdetails öffnen",
   "@supportDescription": {
     "description": "Description for the support action in settings"
+  },
+  "studyEditorToggleEdit": "Inhalte bearbeiten",
+  "studyEditorExitEdit": "Bearbeitungsmodus verlassen",
+  "studyEditorPages": "Seiten",
+  "studyEditorEmptyPages": "Noch keine Seiten. Tippen Sie auf +, um eines hinzuzufügen.",
+  "studyEditorComponents": "Komponenten",
+  "studyEditorEmptyComponents": "Keine Komponenten auf dieser Seite.",
+  "studyEditorSaveChanges": "Änderungen speichern",
+  "studyEditorEditParagraph": "Absatz bearbeiten",
+  "studyEditorFieldTitle": "Titel (optional)",
+  "studyEditorFieldBody": "Fließtext",
+  "studyEditorAddPage": "Seite hinzufügen",
+  "studyEditorDeletePage": "Seite löschen",
+  "studyEditorEditName": "Bearbeiten {name}",
+  "studyEditorPageN": "Seite {n}",
+  "componentTypeSectionTitle": "Abschnittstitel",
+  "@componentTypeSectionTitle": {
+    "description": "Display name for the sectionTitle component type"
+  },
+  "componentTypeParagraph": "Absatz",
+  "@componentTypeParagraph": {
+    "description": "Display name for the paragraph component type"
+  },
+  "componentTypeKeyDefinition": "Schlüsseldefinition",
+  "@componentTypeKeyDefinition": {
+    "description": "Display name for the keyDefinition component type"
+  },
+  "componentTypeNumberedList": "Nummerierte Liste",
+  "@componentTypeNumberedList": {
+    "description": "Display name for the numberedList component type"
+  },
+  "componentTypeComparisonTable": "Vergleichstabelle",
+  "@componentTypeComparisonTable": {
+    "description": "Display name for the comparisonTable component type"
+  },
+  "componentTypeQuote": "Zitat",
+  "@componentTypeQuote": {
+    "description": "Display name for the quote component type"
+  },
+  "componentTypeWarning": "Warnung",
+  "@componentTypeWarning": {
+    "description": "Display name for the warning component type"
+  },
+  "componentTypeFormula": "Formel",
+  "@componentTypeFormula": {
+    "description": "Display name for the formula component type"
+  },
+  "componentTypeTimeline": "Zeitleiste",
+  "@componentTypeTimeline": {
+    "description": "Display name for the timeline component type"
+  },
+  "componentTypeProsCons": "Vor- und Nachteile",
+  "@componentTypeProsCons": {
+    "description": "Display name for the prosCons component type"
+  },
+  "componentTypeKeyConcepts": "Schlüsselkonzepte",
+  "@componentTypeKeyConcepts": {
+    "description": "Display name for the keyConcepts component type"
+  },
+  "componentTypeReminder": "Erinnerung",
+  "@componentTypeReminder": {
+    "description": "Display name for the reminder component type"
+  },
+  "componentTypeIconCards": "Symbolkarten",
+  "@componentTypeIconCards": {
+    "description": "Display name for the iconCards component type"
+  },
+  "componentFieldSubtitle": "Untertitel",
+  "@componentFieldSubtitle": {
+    "description": "Form field label for subtitle"
+  },
+  "componentFieldTerm": "Begriff",
+  "@componentFieldTerm": {
+    "description": "Form field label for term (key definition)"
+  },
+  "componentFieldDefinition": "Definition",
+  "@componentFieldDefinition": {
+    "description": "Form field label for definition"
+  },
+  "componentFieldQuote": "Zitat",
+  "@componentFieldQuote": {
+    "description": "Form field label for quote text"
+  },
+  "componentFieldAuthor": "Autor",
+  "@componentFieldAuthor": {
+    "description": "Form field label for quote author"
+  },
+  "componentFieldEquation": "Gleichung",
+  "@componentFieldEquation": {
+    "description": "Form field label for formula equation"
+  },
+  "componentFieldEquationLabel": "Gleichungsbeschriftung",
+  "@componentFieldEquationLabel": {
+    "description": "Form field label for formula equation label"
+  },
+  "componentFieldExplanation": "Erläuterung",
+  "@componentFieldExplanation": {
+    "description": "Form field label for formula explanation"
+  },
+  "componentFieldItems": "Artikel",
+  "@componentFieldItems": {
+    "description": "Form section label for a list of items"
+  },
+  "componentFieldConcept": "Konzept",
+  "@componentFieldConcept": {
+    "description": "Form field label for a single concept item"
+  },
+  "componentFieldEvents": "Veranstaltungen",
+  "@componentFieldEvents": {
+    "description": "Form section label for timeline events"
+  },
+  "componentFieldDate": "Datum",
+  "@componentFieldDate": {
+    "description": "Form field label for timeline event date"
+  },
+  "componentFieldDescription": "Beschreibung",
+  "@componentFieldDescription": {
+    "description": "Form field label for item description"
+  },
+  "componentFieldCards": "Karten",
+  "@componentFieldCards": {
+    "description": "Form section label for icon cards"
+  },
+  "componentFieldPros": "Vorteile",
+  "@componentFieldPros": {
+    "description": "Form section label for pros list"
+  },
+  "componentFieldPro": "Profi",
+  "@componentFieldPro": {
+    "description": "Form field label for a single pro item"
+  },
+  "componentFieldCons": "Nachteile",
+  "@componentFieldCons": {
+    "description": "Form section label for cons list"
+  },
+  "componentFieldCon": "Con",
+  "@componentFieldCon": {
+    "description": "Form field label for a single con item"
+  },
+  "componentFieldColumns": "Spalten",
+  "@componentFieldColumns": {
+    "description": "Form section label for table columns"
+  },
+  "componentFieldColumn": "Spalte",
+  "@componentFieldColumn": {
+    "description": "Form field label for a single table column"
+  },
+  "componentFieldRows": "Reihen",
+  "@componentFieldRows": {
+    "description": "Form section label for table rows"
+  },
+  "componentFieldRow": "Reihe",
+  "@componentFieldRow": {
+    "description": "Form field label for a single table row"
+  },
+  "componentFieldLabel": "Etikett",
+  "@componentFieldLabel": {
+    "description": "Form field label for a row label in comparison table"
+  },
+  "componentFieldAdd": "{item} hinzufügen",
+  "@componentFieldAdd": {
+    "description": "Button label to add a new item to a list",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "componentFieldOptional": "optional",
+  "@componentFieldOptional": {
+    "description": "Label shown next to optional form fields"
+  },
+  "addComponentTitle": "Komponente hinzufügen",
+  "@addComponentTitle": {
+    "description": "Title for the Add Component picker screen"
+  },
+  "@studyEditorPages": {
+    "description": "Section header for the list of pages in the section page manager"
+  },
+  "@studyEditorComponents": {
+    "description": "Section header for the list of components in the component editor"
+  },
+  "@studyEditorSaveChanges": {
+    "description": "Button label to save edited component properties"
+  },
+  "@studyEditorEmptyComponents": {
+    "description": "Empty state message in the component editor"
+  },
+  "@studyEditorFieldTitle": {
+    "description": "Label for the optional title field in component editors"
+  },
+  "@studyEditorToggleEdit": {
+    "description": "Tooltip for the FAB button that enables study content edit mode"
+  },
+  "@studyEditorEmptyPages": {
+    "description": "Empty state message in the section page manager"
+  },
+  "@studyEditorExitEdit": {
+    "description": "Tooltip for the FAB button that disables study content edit mode"
+  },
+  "@studyEditorEditParagraph": {
+    "description": "Navigation header title for the paragraph property panel"
+  },
+  "@studyEditorAddPage": {
+    "description": "Button label to add a new page to a section"
+  },
+  "@studyEditorEditName": {
+    "description": "Navigation header title: Edit [section name]",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@studyEditorFieldBody": {
+    "description": "Label for the main body text field in component editors"
+  },
+  "@studyEditorPageN": {
+    "description": "Label for page number n in the section page manager",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@studyEditorDeletePage": {
+    "description": "Button label to delete a page from a section"
   }
 }

@@ -2051,5 +2051,232 @@
   "supportDescription": "Apri issue su GitHub con i dettagli dell'app e della piattaforma",
   "@supportDescription": {
     "description": "Description for the support action in settings"
+  },
+  "studyEditorComponents": "Componenti",
+  "@studyEditorComponents": {
+    "description": "Section header for the list of components in the component editor"
+  },
+  "studyEditorPages": "Pagine",
+  "@studyEditorPages": {
+    "description": "Section header for the list of pages in the section page manager"
+  },
+  "studyEditorEditParagraph": "Modifica paragrafo",
+  "@studyEditorEditParagraph": {
+    "description": "Navigation header title for the paragraph property panel"
+  },
+  "studyEditorEmptyPages": "Nessuna pagina ancora. Tocca + per aggiungerne uno.",
+  "@studyEditorEmptyPages": {
+    "description": "Empty state message in the section page manager"
+  },
+  "studyEditorAddPage": "Aggiungi pagina",
+  "@studyEditorAddPage": {
+    "description": "Button label to add a new page to a section"
+  },
+  "studyEditorSaveChanges": "Salva modifiche",
+  "@studyEditorSaveChanges": {
+    "description": "Button label to save edited component properties"
+  },
+  "studyEditorExitEdit": "Uscire dalla modalità di modifica",
+  "@studyEditorExitEdit": {
+    "description": "Tooltip for the FAB button that disables study content edit mode"
+  },
+  "studyEditorDeletePage": "Elimina pagina",
+  "@studyEditorDeletePage": {
+    "description": "Button label to delete a page from a section"
+  },
+  "studyEditorFieldBody": "Testo del corpo",
+  "@studyEditorFieldBody": {
+    "description": "Label for the main body text field in component editors"
+  },
+  "studyEditorFieldTitle": "Titolo (facoltativo)",
+  "@studyEditorFieldTitle": {
+    "description": "Label for the optional title field in component editors"
+  },
+  "studyEditorToggleEdit": "Modifica contenuto",
+  "@studyEditorToggleEdit": {
+    "description": "Tooltip for the FAB button that enables study content edit mode"
+  },
+  "componentTypeComparisonTable": "Tabella comparativa",
+  "@componentTypeComparisonTable": {
+    "description": "Display name for the comparisonTable component type"
+  },
+  "componentTypeParagraph": "Paragrafo",
+  "@componentTypeParagraph": {
+    "description": "Display name for the paragraph component type"
+  },
+  "componentTypeWarning": "Avvertimento",
+  "@componentTypeWarning": {
+    "description": "Display name for the warning component type"
+  },
+  "componentTypeQuote": "Citazione",
+  "@componentTypeQuote": {
+    "description": "Display name for the quote component type"
+  },
+  "studyEditorEmptyComponents": "Nessun componente in questa pagina.",
+  "@studyEditorEmptyComponents": {
+    "description": "Empty state message in the component editor"
+  },
+  "componentTypeSectionTitle": "Titolo della sezione",
+  "@componentTypeSectionTitle": {
+    "description": "Display name for the sectionTitle component type"
+  },
+  "studyEditorPageN": "Pagina {n}",
+  "@studyEditorPageN": {
+    "description": "Label for page number n in the section page manager",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "studyEditorEditName": "Modifica {name}",
+  "@studyEditorEditName": {
+    "description": "Navigation header title: Edit [section name]",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "componentTypeNumberedList": "Elenco numerato",
+  "@componentTypeNumberedList": {
+    "description": "Display name for the numberedList component type"
+  },
+  "componentTypeKeyDefinition": "Definizione chiave",
+  "@componentTypeKeyDefinition": {
+    "description": "Display name for the keyDefinition component type"
+  },
+  "componentTypeTimeline": "Cronologia",
+  "@componentTypeTimeline": {
+    "description": "Display name for the timeline component type"
+  },
+  "componentTypeFormula": "Formula",
+  "@componentTypeFormula": {
+    "description": "Display name for the formula component type"
+  },
+  "componentFieldSubtitle": "Sottotitolo",
+  "@componentFieldSubtitle": {
+    "description": "Form field label for subtitle"
+  },
+  "componentFieldDefinition": "Definizione",
+  "@componentFieldDefinition": {
+    "description": "Form field label for definition"
+  },
+  "componentTypeProsCons": "Pro e contro",
+  "@componentTypeProsCons": {
+    "description": "Display name for the prosCons component type"
+  },
+  "componentFieldQuote": "Citazione",
+  "@componentFieldQuote": {
+    "description": "Form field label for quote text"
+  },
+  "componentTypeKeyConcepts": "Concetti chiave",
+  "@componentTypeKeyConcepts": {
+    "description": "Display name for the keyConcepts component type"
+  },
+  "componentTypeReminder": "Promemoria",
+  "@componentTypeReminder": {
+    "description": "Display name for the reminder component type"
+  },
+  "componentFieldAuthor": "Autore",
+  "@componentFieldAuthor": {
+    "description": "Form field label for quote author"
+  },
+  "componentFieldTerm": "Termine",
+  "@componentFieldTerm": {
+    "description": "Form field label for term (key definition)"
+  },
+  "componentFieldEquation": "Equazione",
+  "@componentFieldEquation": {
+    "description": "Form field label for formula equation"
+  },
+  "componentFieldItems": "Elementi",
+  "@componentFieldItems": {
+    "description": "Form section label for a list of items"
+  },
+  "componentFieldEvents": "Eventi",
+  "@componentFieldEvents": {
+    "description": "Form section label for timeline events"
+  },
+  "componentFieldDate": "Data",
+  "@componentFieldDate": {
+    "description": "Form field label for timeline event date"
+  },
+  "componentFieldExplanation": "Spiegazione",
+  "@componentFieldExplanation": {
+    "description": "Form field label for formula explanation"
+  },
+  "componentFieldDescription": "Descrizione",
+  "@componentFieldDescription": {
+    "description": "Form field label for item description"
+  },
+  "componentFieldCards": "Carte",
+  "@componentFieldCards": {
+    "description": "Form section label for icon cards"
+  },
+  "componentFieldConcept": "Concetto",
+  "@componentFieldConcept": {
+    "description": "Form field label for a single concept item"
+  },
+  "componentFieldColumns": "Colonne",
+  "@componentFieldColumns": {
+    "description": "Form section label for table columns"
+  },
+  "componentFieldCons": "Contro",
+  "@componentFieldCons": {
+    "description": "Form section label for cons list"
+  },
+  "componentFieldPro": "Pro",
+  "@componentFieldPro": {
+    "description": "Form field label for a single pro item"
+  },
+  "componentFieldRows": "Righe",
+  "@componentFieldRows": {
+    "description": "Form section label for table rows"
+  },
+  "componentFieldColumn": "Colonna",
+  "@componentFieldColumn": {
+    "description": "Form field label for a single table column"
+  },
+  "componentFieldRow": "Riga",
+  "@componentFieldRow": {
+    "description": "Form field label for a single table row"
+  },
+  "componentFieldCon": "Contro",
+  "@componentFieldCon": {
+    "description": "Form field label for a single con item"
+  },
+  "componentFieldLabel": "Etichetta",
+  "@componentFieldLabel": {
+    "description": "Form field label for a row label in comparison table"
+  },
+  "componentFieldPros": "Pro",
+  "@componentFieldPros": {
+    "description": "Form section label for pros list"
+  },
+  "componentFieldOptional": "opzionale",
+  "@componentFieldOptional": {
+    "description": "Label shown next to optional form fields"
+  },
+  "componentFieldEquationLabel": "Etichetta dell'equazione",
+  "@componentFieldEquationLabel": {
+    "description": "Form field label for formula equation label"
+  },
+  "componentTypeIconCards": "Carte icona",
+  "@componentTypeIconCards": {
+    "description": "Display name for the iconCards component type"
+  },
+  "addComponentTitle": "Aggiungi componente",
+  "@addComponentTitle": {
+    "description": "Title for the Add Component picker screen"
+  },
+  "componentFieldAdd": "Aggiungi {item}",
+  "@componentFieldAdd": {
+    "description": "Button label to add a new item to a list",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -2372,5 +2372,102 @@
   "onboardingStudyStepStudyDescription": "Navega por cada sección y refuerza tu aprendizaje",
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
+  },
+  "studyEditorToggleEdit": "Editar contenido",
+  "studyEditorExitEdit": "Salir del modo de edición",
+  "studyEditorPages": "paginas",
+  "studyEditorEmptyPages": "Aún no hay páginas. Toca + para agregar uno.",
+  "studyEditorComponents": "Componentes",
+  "studyEditorEmptyComponents": "No hay componentes en esta página.",
+  "studyEditorSaveChanges": "Guardar cambios",
+  "studyEditorEditParagraph": "Editar párrafo",
+  "studyEditorFieldTitle": "Título (opcional)",
+  "studyEditorFieldBody": "Texto del cuerpo",
+  "studyEditorAddPage": "Agregar página",
+  "studyEditorDeletePage": "Eliminar página",
+  "studyEditorEditName": "Editar {name}",
+  "studyEditorPageN": "Página {n}",
+  "componentTypeSectionTitle": "Título de sección",
+  "componentTypeParagraph": "Párrafo",
+  "componentTypeKeyDefinition": "Definición clave",
+  "componentTypeNumberedList": "Lista numerada",
+  "componentTypeComparisonTable": "Tabla comparativa",
+  "componentTypeQuote": "Cita",
+  "componentTypeWarning": "Advertencia",
+  "componentTypeFormula": "Fórmula",
+  "componentTypeTimeline": "Línea de tiempo",
+  "componentTypeProsCons": "Pros y contras",
+  "componentTypeKeyConcepts": "Conceptos clave",
+  "componentTypeReminder": "Recordatorio",
+  "componentTypeIconCards": "Tarjetas con iconos",
+  "componentFieldSubtitle": "Subtítulo",
+  "componentFieldTerm": "Término",
+  "componentFieldDefinition": "Definición",
+  "componentFieldQuote": "Cita",
+  "componentFieldAuthor": "Autor",
+  "componentFieldEquation": "Ecuación",
+  "componentFieldEquationLabel": "Etiqueta de ecuación",
+  "componentFieldExplanation": "Explicación",
+  "componentFieldItems": "Elementos",
+  "componentFieldConcept": "Concepto",
+  "componentFieldEvents": "Eventos",
+  "componentFieldDate": "Fecha",
+  "componentFieldDescription": "Descripción",
+  "componentFieldCards": "Tarjetas",
+  "componentFieldPros": "Pros",
+  "componentFieldPro": "Pro",
+  "componentFieldCons": "Contras",
+  "componentFieldCon": "Contra",
+  "componentFieldColumns": "Columnas",
+  "componentFieldColumn": "Columna",
+  "componentFieldRows": "Filas",
+  "componentFieldRow": "Fila",
+  "componentFieldLabel": "Etiqueta",
+  "componentFieldAdd": "Añadir {item}",
+  "componentFieldOptional": "opcional",
+  "addComponentTitle": "Añadir componente",
+  "@studyEditorComponents": {
+    "description": "Section header for the list of components in the component editor"
+  },
+  "@studyEditorPages": {
+    "description": "Section header for the list of pages in the section page manager"
+  },
+  "@studyEditorToggleEdit": {
+    "description": "Tooltip for the FAB button that enables study content edit mode"
+  },
+  "@studyEditorExitEdit": {
+    "description": "Tooltip for the FAB button that disables study content edit mode"
+  },
+  "@studyEditorEmptyPages": {
+    "description": "Empty state message in the section page manager"
+  },
+  "@studyEditorSaveChanges": {
+    "description": "Button label to save edited component properties"
+  },
+  "@studyEditorFieldTitle": {
+    "description": "Label for the optional title field in component editors"
+  },
+  "@studyEditorEmptyComponents": {
+    "description": "Empty state message in the component editor"
+  },
+  "@studyEditorAddPage": {
+    "description": "Button label to add a new page to a section"
+  },
+  "@studyEditorFieldBody": {
+    "description": "Label for the main body text field in component editors"
+  },
+  "@studyEditorEditParagraph": {
+    "description": "Navigation header title for the paragraph property panel"
+  },
+  "@studyEditorEditName": {
+    "description": "Navigation header title: Edit [section name]",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@studyEditorDeletePage": {
+    "description": "Button label to delete a page from a section"
   }
 }

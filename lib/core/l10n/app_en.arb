@@ -2416,5 +2416,232 @@
   "noInternetConnection": "No internet connection. Please check your network settings and try again.",
   "@noInternetConnection": {
     "description": "Error message shown when the device has no internet connection."
+  },
+  "studyEditorToggleEdit": "Edit content",
+  "@studyEditorToggleEdit": {
+    "description": "Tooltip for the FAB button that enables study content edit mode"
+  },
+  "studyEditorExitEdit": "Exit edit mode",
+  "@studyEditorExitEdit": {
+    "description": "Tooltip for the FAB button that disables study content edit mode"
+  },
+  "studyEditorPages": "Pages",
+  "@studyEditorPages": {
+    "description": "Section header for the list of pages in the section page manager"
+  },
+  "studyEditorEmptyPages": "No pages yet. Tap + to add one.",
+  "@studyEditorEmptyPages": {
+    "description": "Empty state message in the section page manager"
+  },
+  "studyEditorComponents": "Components",
+  "@studyEditorComponents": {
+    "description": "Section header for the list of components in the component editor"
+  },
+  "studyEditorEmptyComponents": "No components on this page.",
+  "@studyEditorEmptyComponents": {
+    "description": "Empty state message in the component editor"
+  },
+  "studyEditorSaveChanges": "Save Changes",
+  "@studyEditorSaveChanges": {
+    "description": "Button label to save edited component properties"
+  },
+  "studyEditorEditParagraph": "Edit Paragraph",
+  "@studyEditorEditParagraph": {
+    "description": "Navigation header title for the paragraph property panel"
+  },
+  "studyEditorFieldTitle": "Title (optional)",
+  "@studyEditorFieldTitle": {
+    "description": "Label for the optional title field in component editors"
+  },
+  "studyEditorFieldBody": "Body text",
+  "@studyEditorFieldBody": {
+    "description": "Label for the main body text field in component editors"
+  },
+  "studyEditorAddPage": "Add Page",
+  "@studyEditorAddPage": {
+    "description": "Button label to add a new page to a section"
+  },
+  "studyEditorDeletePage": "Delete Page",
+  "@studyEditorDeletePage": {
+    "description": "Button label to delete a page from a section"
+  },
+  "studyEditorEditName": "Edit {name}",
+  "@studyEditorEditName": {
+    "description": "Navigation header title: Edit [section name]",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "studyEditorPageN": "Page {n}",
+  "@studyEditorPageN": {
+    "description": "Label for page number n in the section page manager",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "componentTypeSectionTitle": "Section Title",
+  "@componentTypeSectionTitle": {
+    "description": "Display name for the sectionTitle component type"
+  },
+  "componentTypeParagraph": "Paragraph",
+  "@componentTypeParagraph": {
+    "description": "Display name for the paragraph component type"
+  },
+  "componentTypeKeyDefinition": "Key Definition",
+  "@componentTypeKeyDefinition": {
+    "description": "Display name for the keyDefinition component type"
+  },
+  "componentTypeNumberedList": "Numbered List",
+  "@componentTypeNumberedList": {
+    "description": "Display name for the numberedList component type"
+  },
+  "componentTypeComparisonTable": "Comparison Table",
+  "@componentTypeComparisonTable": {
+    "description": "Display name for the comparisonTable component type"
+  },
+  "componentTypeQuote": "Quote",
+  "@componentTypeQuote": {
+    "description": "Display name for the quote component type"
+  },
+  "componentTypeWarning": "Warning",
+  "@componentTypeWarning": {
+    "description": "Display name for the warning component type"
+  },
+  "componentTypeFormula": "Formula",
+  "@componentTypeFormula": {
+    "description": "Display name for the formula component type"
+  },
+  "componentTypeTimeline": "Timeline",
+  "@componentTypeTimeline": {
+    "description": "Display name for the timeline component type"
+  },
+  "componentTypeProsCons": "Pros & Cons",
+  "@componentTypeProsCons": {
+    "description": "Display name for the prosCons component type"
+  },
+  "componentTypeKeyConcepts": "Key Concepts",
+  "@componentTypeKeyConcepts": {
+    "description": "Display name for the keyConcepts component type"
+  },
+  "componentTypeReminder": "Reminder",
+  "@componentTypeReminder": {
+    "description": "Display name for the reminder component type"
+  },
+  "componentTypeIconCards": "Icon Cards",
+  "@componentTypeIconCards": {
+    "description": "Display name for the iconCards component type"
+  },
+  "componentFieldSubtitle": "Subtitle",
+  "@componentFieldSubtitle": {
+    "description": "Form field label for subtitle"
+  },
+  "componentFieldTerm": "Term",
+  "@componentFieldTerm": {
+    "description": "Form field label for term (key definition)"
+  },
+  "componentFieldDefinition": "Definition",
+  "@componentFieldDefinition": {
+    "description": "Form field label for definition"
+  },
+  "componentFieldQuote": "Quote",
+  "@componentFieldQuote": {
+    "description": "Form field label for quote text"
+  },
+  "componentFieldAuthor": "Author",
+  "@componentFieldAuthor": {
+    "description": "Form field label for quote author"
+  },
+  "componentFieldEquation": "Equation",
+  "@componentFieldEquation": {
+    "description": "Form field label for formula equation"
+  },
+  "componentFieldEquationLabel": "Equation label",
+  "@componentFieldEquationLabel": {
+    "description": "Form field label for formula equation label"
+  },
+  "componentFieldExplanation": "Explanation",
+  "@componentFieldExplanation": {
+    "description": "Form field label for formula explanation"
+  },
+  "componentFieldItems": "Items",
+  "@componentFieldItems": {
+    "description": "Form section label for a list of items"
+  },
+  "componentFieldConcept": "Concept",
+  "@componentFieldConcept": {
+    "description": "Form field label for a single concept item"
+  },
+  "componentFieldEvents": "Events",
+  "@componentFieldEvents": {
+    "description": "Form section label for timeline events"
+  },
+  "componentFieldDate": "Date",
+  "@componentFieldDate": {
+    "description": "Form field label for timeline event date"
+  },
+  "componentFieldDescription": "Description",
+  "@componentFieldDescription": {
+    "description": "Form field label for item description"
+  },
+  "componentFieldCards": "Cards",
+  "@componentFieldCards": {
+    "description": "Form section label for icon cards"
+  },
+  "componentFieldPros": "Pros",
+  "@componentFieldPros": {
+    "description": "Form section label for pros list"
+  },
+  "componentFieldPro": "Pro",
+  "@componentFieldPro": {
+    "description": "Form field label for a single pro item"
+  },
+  "componentFieldCons": "Cons",
+  "@componentFieldCons": {
+    "description": "Form section label for cons list"
+  },
+  "componentFieldCon": "Con",
+  "@componentFieldCon": {
+    "description": "Form field label for a single con item"
+  },
+  "componentFieldColumns": "Columns",
+  "@componentFieldColumns": {
+    "description": "Form section label for table columns"
+  },
+  "componentFieldColumn": "Column",
+  "@componentFieldColumn": {
+    "description": "Form field label for a single table column"
+  },
+  "componentFieldRows": "Rows",
+  "@componentFieldRows": {
+    "description": "Form section label for table rows"
+  },
+  "componentFieldRow": "Row",
+  "@componentFieldRow": {
+    "description": "Form field label for a single table row"
+  },
+  "componentFieldLabel": "Label",
+  "@componentFieldLabel": {
+    "description": "Form field label for a row label in comparison table"
+  },
+  "componentFieldAdd": "Add {item}",
+  "@componentFieldAdd": {
+    "description": "Button label to add a new item to a list",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "componentFieldOptional": "optional",
+  "@componentFieldOptional": {
+    "description": "Label shown next to optional form fields"
+  },
+  "addComponentTitle": "Add Component",
+  "@addComponentTitle": {
+    "description": "Title for the Add Component picker screen"
   }
 }

@@ -689,5 +689,232 @@
   "supportDescription": "გახსენით GitHub Issues აპისა და პლატფორმის დეტალებით",
   "@supportDescription": {
     "description": "Description for the support action in settings"
+  },
+  "studyEditorComponents": "კომპონენტები",
+  "@studyEditorComponents": {
+    "description": "Section header for the list of components in the component editor"
+  },
+  "studyEditorEmptyComponents": "ამ გვერდზე კომპონენტები არ არის.",
+  "@studyEditorEmptyComponents": {
+    "description": "Empty state message in the component editor"
+  },
+  "studyEditorExitEdit": "რედაქტირების რეჟიმიდან გამოსვლა",
+  "@studyEditorExitEdit": {
+    "description": "Tooltip for the FAB button that disables study content edit mode"
+  },
+  "studyEditorFieldBody": "სხეულის ტექსტი",
+  "@studyEditorFieldBody": {
+    "description": "Label for the main body text field in component editors"
+  },
+  "studyEditorFieldTitle": "სათაური (არასავალდებულო)",
+  "@studyEditorFieldTitle": {
+    "description": "Label for the optional title field in component editors"
+  },
+  "studyEditorEmptyPages": "ჯერ არ არის გვერდები. ერთის დასამატებლად შეეხეთ +.",
+  "@studyEditorEmptyPages": {
+    "description": "Empty state message in the section page manager"
+  },
+  "studyEditorSaveChanges": "ცვლილებების შენახვა",
+  "@studyEditorSaveChanges": {
+    "description": "Button label to save edited component properties"
+  },
+  "studyEditorEditParagraph": "პარაგრაფის რედაქტირება",
+  "@studyEditorEditParagraph": {
+    "description": "Navigation header title for the paragraph property panel"
+  },
+  "studyEditorPages": "გვერდები",
+  "@studyEditorPages": {
+    "description": "Section header for the list of pages in the section page manager"
+  },
+  "studyEditorToggleEdit": "შინაარსის რედაქტირება",
+  "@studyEditorToggleEdit": {
+    "description": "Tooltip for the FAB button that enables study content edit mode"
+  },
+  "componentTypeQuote": "ციტატა",
+  "@componentTypeQuote": {
+    "description": "Display name for the quote component type"
+  },
+  "studyEditorAddPage": "გვერდის დამატება",
+  "@studyEditorAddPage": {
+    "description": "Button label to add a new page to a section"
+  },
+  "componentTypeWarning": "გაფრთხილება",
+  "@componentTypeWarning": {
+    "description": "Display name for the warning component type"
+  },
+  "studyEditorDeletePage": "გვერდის წაშლა",
+  "@studyEditorDeletePage": {
+    "description": "Button label to delete a page from a section"
+  },
+  "studyEditorEditName": "რედაქტირება {name}",
+  "@studyEditorEditName": {
+    "description": "Navigation header title: Edit [section name]",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "componentTypeProsCons": "დადებითი და უარყოფითი მხარეები",
+  "@componentTypeProsCons": {
+    "description": "Display name for the prosCons component type"
+  },
+  "componentTypeTimeline": "ვადები",
+  "@componentTypeTimeline": {
+    "description": "Display name for the timeline component type"
+  },
+  "componentTypeNumberedList": "დანომრილი სია",
+  "@componentTypeNumberedList": {
+    "description": "Display name for the numberedList component type"
+  },
+  "studyEditorPageN": "გვერდი {n}",
+  "@studyEditorPageN": {
+    "description": "Label for page number n in the section page manager",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "componentTypeSectionTitle": "განყოფილების სათაური",
+  "@componentTypeSectionTitle": {
+    "description": "Display name for the sectionTitle component type"
+  },
+  "componentTypeKeyDefinition": "გასაღების განმარტება",
+  "@componentTypeKeyDefinition": {
+    "description": "Display name for the keyDefinition component type"
+  },
+  "componentTypeParagraph": "პარაგრაფი",
+  "@componentTypeParagraph": {
+    "description": "Display name for the paragraph component type"
+  },
+  "componentTypeComparisonTable": "შედარების ცხრილი",
+  "@componentTypeComparisonTable": {
+    "description": "Display name for the comparisonTable component type"
+  },
+  "componentTypeFormula": "ფორმულა",
+  "@componentTypeFormula": {
+    "description": "Display name for the formula component type"
+  },
+  "componentTypeReminder": "შეხსენება",
+  "@componentTypeReminder": {
+    "description": "Display name for the reminder component type"
+  },
+  "componentTypeKeyConcepts": "ძირითადი ცნებები",
+  "@componentTypeKeyConcepts": {
+    "description": "Display name for the keyConcepts component type"
+  },
+  "componentFieldTerm": "ვადა",
+  "@componentFieldTerm": {
+    "description": "Form field label for term (key definition)"
+  },
+  "componentTypeIconCards": "ხატულა ბარათები",
+  "@componentTypeIconCards": {
+    "description": "Display name for the iconCards component type"
+  },
+  "componentFieldDefinition": "განმარტება",
+  "@componentFieldDefinition": {
+    "description": "Form field label for definition"
+  },
+  "componentFieldAuthor": "ავტორი",
+  "@componentFieldAuthor": {
+    "description": "Form field label for quote author"
+  },
+  "componentFieldSubtitle": "სუბტიტრები",
+  "@componentFieldSubtitle": {
+    "description": "Form field label for subtitle"
+  },
+  "componentFieldEquation": "განტოლება",
+  "@componentFieldEquation": {
+    "description": "Form field label for formula equation"
+  },
+  "componentFieldItems": "ნივთები",
+  "@componentFieldItems": {
+    "description": "Form section label for a list of items"
+  },
+  "componentFieldDate": "თარიღი",
+  "@componentFieldDate": {
+    "description": "Form field label for timeline event date"
+  },
+  "componentFieldExplanation": "ახსნა",
+  "@componentFieldExplanation": {
+    "description": "Form field label for formula explanation"
+  },
+  "componentFieldDescription": "აღწერა",
+  "@componentFieldDescription": {
+    "description": "Form field label for item description"
+  },
+  "componentFieldPros": "დადებითი",
+  "@componentFieldPros": {
+    "description": "Form section label for pros list"
+  },
+  "componentFieldQuote": "ციტატა",
+  "@componentFieldQuote": {
+    "description": "Form field label for quote text"
+  },
+  "componentFieldConcept": "კონცეფცია",
+  "@componentFieldConcept": {
+    "description": "Form field label for a single concept item"
+  },
+  "componentFieldCons": "მინუსები",
+  "@componentFieldCons": {
+    "description": "Form section label for cons list"
+  },
+  "componentFieldEquationLabel": "განტოლების ეტიკეტი",
+  "@componentFieldEquationLabel": {
+    "description": "Form field label for formula equation label"
+  },
+  "componentFieldEvents": "ღონისძიებები",
+  "@componentFieldEvents": {
+    "description": "Form section label for timeline events"
+  },
+  "componentFieldCards": "ბარათები",
+  "@componentFieldCards": {
+    "description": "Form section label for icon cards"
+  },
+  "componentFieldCon": "კონ",
+  "@componentFieldCon": {
+    "description": "Form field label for a single con item"
+  },
+  "componentFieldRows": "რიგები",
+  "@componentFieldRows": {
+    "description": "Form section label for table rows"
+  },
+  "componentFieldColumn": "სვეტი",
+  "@componentFieldColumn": {
+    "description": "Form field label for a single table column"
+  },
+  "componentFieldColumns": "სვეტები",
+  "@componentFieldColumns": {
+    "description": "Form section label for table columns"
+  },
+  "componentFieldLabel": "ლეიბლი",
+  "@componentFieldLabel": {
+    "description": "Form field label for a row label in comparison table"
+  },
+  "componentFieldPro": "პრო",
+  "@componentFieldPro": {
+    "description": "Form field label for a single pro item"
+  },
+  "componentFieldRow": "მწკრივი",
+  "@componentFieldRow": {
+    "description": "Form field label for a single table row"
+  },
+  "componentFieldOptional": "სურვილისამებრ",
+  "@componentFieldOptional": {
+    "description": "Label shown next to optional form fields"
+  },
+  "addComponentTitle": "კომპონენტის დამატება",
+  "@addComponentTitle": {
+    "description": "Title for the Add Component picker screen"
+  },
+  "componentFieldAdd": "დაამატეთ {item}",
+  "@componentFieldAdd": {
+    "description": "Button label to add a new item to a list",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
   }
 }

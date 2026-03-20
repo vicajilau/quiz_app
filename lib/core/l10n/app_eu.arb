@@ -1997,5 +1997,232 @@
   "supportDescription": "Ireki GitHub arazoak aplikazioaren eta plataformaren xehetasunekin",
   "@supportDescription": {
     "description": "Description for the support action in settings"
+  },
+  "studyEditorComponents": "Osagaiak",
+  "@studyEditorComponents": {
+    "description": "Section header for the list of components in the component editor"
+  },
+  "studyEditorEmptyComponents": "Orrialde honetan ez dago osagairik.",
+  "@studyEditorEmptyComponents": {
+    "description": "Empty state message in the component editor"
+  },
+  "studyEditorToggleEdit": "Editatu edukia",
+  "@studyEditorToggleEdit": {
+    "description": "Tooltip for the FAB button that enables study content edit mode"
+  },
+  "studyEditorFieldBody": "Gorputz testua",
+  "@studyEditorFieldBody": {
+    "description": "Label for the main body text field in component editors"
+  },
+  "studyEditorSaveChanges": "Gorde aldaketak",
+  "@studyEditorSaveChanges": {
+    "description": "Button label to save edited component properties"
+  },
+  "studyEditorPages": "Orriak",
+  "@studyEditorPages": {
+    "description": "Section header for the list of pages in the section page manager"
+  },
+  "studyEditorFieldTitle": "Izenburua (aukerakoa)",
+  "@studyEditorFieldTitle": {
+    "description": "Label for the optional title field in component editors"
+  },
+  "studyEditorExitEdit": "Irten edizio modua",
+  "@studyEditorExitEdit": {
+    "description": "Tooltip for the FAB button that disables study content edit mode"
+  },
+  "studyEditorEmptyPages": "Oraindik ez dago orrialderik. Sakatu + bat gehitzeko.",
+  "@studyEditorEmptyPages": {
+    "description": "Empty state message in the section page manager"
+  },
+  "studyEditorEditParagraph": "Editatu paragrafoa",
+  "@studyEditorEditParagraph": {
+    "description": "Navigation header title for the paragraph property panel"
+  },
+  "studyEditorDeletePage": "Ezabatu orria",
+  "@studyEditorDeletePage": {
+    "description": "Button label to delete a page from a section"
+  },
+  "componentTypeParagraph": "Paragrafoa",
+  "@componentTypeParagraph": {
+    "description": "Display name for the paragraph component type"
+  },
+  "componentTypeSectionTitle": "Atalaren Izenburua",
+  "@componentTypeSectionTitle": {
+    "description": "Display name for the sectionTitle component type"
+  },
+  "studyEditorPageN": "{n} orrialdea",
+  "@studyEditorPageN": {
+    "description": "Label for page number n in the section page manager",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "studyEditorEditName": "Editatu {name}",
+  "@studyEditorEditName": {
+    "description": "Navigation header title: Edit [section name]",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "studyEditorAddPage": "Gehitu orria",
+  "@studyEditorAddPage": {
+    "description": "Button label to add a new page to a section"
+  },
+  "componentTypeComparisonTable": "Konparazio taula",
+  "@componentTypeComparisonTable": {
+    "description": "Display name for the comparisonTable component type"
+  },
+  "componentTypeProsCons": "Alde onak eta txarrak",
+  "@componentTypeProsCons": {
+    "description": "Display name for the prosCons component type"
+  },
+  "componentTypeQuote": "Aipatu",
+  "@componentTypeQuote": {
+    "description": "Display name for the quote component type"
+  },
+  "componentTypeTimeline": "Denbora-lerroa",
+  "@componentTypeTimeline": {
+    "description": "Display name for the timeline component type"
+  },
+  "componentTypeWarning": "Abisua",
+  "@componentTypeWarning": {
+    "description": "Display name for the warning component type"
+  },
+  "componentFieldDefinition": "Definizioa",
+  "@componentFieldDefinition": {
+    "description": "Form field label for definition"
+  },
+  "componentFieldTerm": "Epea",
+  "@componentFieldTerm": {
+    "description": "Form field label for term (key definition)"
+  },
+  "componentFieldQuote": "Aipatu",
+  "@componentFieldQuote": {
+    "description": "Form field label for quote text"
+  },
+  "componentFieldAuthor": "Egilea",
+  "@componentFieldAuthor": {
+    "description": "Form field label for quote author"
+  },
+  "componentFieldEquation": "Ekuazioa",
+  "@componentFieldEquation": {
+    "description": "Form field label for formula equation"
+  },
+  "componentFieldEquationLabel": "Ekuazioaren etiketa",
+  "@componentFieldEquationLabel": {
+    "description": "Form field label for formula equation label"
+  },
+  "componentTypeNumberedList": "Zenbakidun Zerrenda",
+  "@componentTypeNumberedList": {
+    "description": "Display name for the numberedList component type"
+  },
+  "componentFieldSubtitle": "Azpititulua",
+  "@componentFieldSubtitle": {
+    "description": "Form field label for subtitle"
+  },
+  "componentTypeIconCards": "Ikono Txartelak",
+  "@componentTypeIconCards": {
+    "description": "Display name for the iconCards component type"
+  },
+  "componentTypeFormula": "Formula",
+  "@componentTypeFormula": {
+    "description": "Display name for the formula component type"
+  },
+  "componentTypeKeyConcepts": "Funtsezko kontzeptuak",
+  "@componentTypeKeyConcepts": {
+    "description": "Display name for the keyConcepts component type"
+  },
+  "componentTypeKeyDefinition": "Gako Definizioa",
+  "@componentTypeKeyDefinition": {
+    "description": "Display name for the keyDefinition component type"
+  },
+  "componentFieldItems": "Elementuak",
+  "@componentFieldItems": {
+    "description": "Form section label for a list of items"
+  },
+  "componentFieldExplanation": "Azalpena",
+  "@componentFieldExplanation": {
+    "description": "Form field label for formula explanation"
+  },
+  "componentFieldDate": "Data",
+  "@componentFieldDate": {
+    "description": "Form field label for timeline event date"
+  },
+  "componentFieldDescription": "Deskribapena",
+  "@componentFieldDescription": {
+    "description": "Form field label for item description"
+  },
+  "componentFieldEvents": "Gertaerak",
+  "@componentFieldEvents": {
+    "description": "Form section label for timeline events"
+  },
+  "componentFieldPros": "Aldekoak",
+  "@componentFieldPros": {
+    "description": "Form section label for pros list"
+  },
+  "componentFieldCons": "Cons",
+  "@componentFieldCons": {
+    "description": "Form section label for cons list"
+  },
+  "componentFieldColumn": "Zutabea",
+  "@componentFieldColumn": {
+    "description": "Form field label for a single table column"
+  },
+  "componentFieldRow": "Errenkada",
+  "@componentFieldRow": {
+    "description": "Form field label for a single table row"
+  },
+  "componentFieldColumns": "Zutabeak",
+  "@componentFieldColumns": {
+    "description": "Form section label for table columns"
+  },
+  "componentTypeReminder": "Oroigarria",
+  "@componentTypeReminder": {
+    "description": "Display name for the reminder component type"
+  },
+  "componentFieldLabel": "Etiketa",
+  "@componentFieldLabel": {
+    "description": "Form field label for a row label in comparison table"
+  },
+  "componentFieldOptional": "aukerakoa",
+  "@componentFieldOptional": {
+    "description": "Label shown next to optional form fields"
+  },
+  "componentFieldAdd": "Gehitu {item}",
+  "@componentFieldAdd": {
+    "description": "Button label to add a new item to a list",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "componentFieldRows": "Errenkadak",
+  "@componentFieldRows": {
+    "description": "Form section label for table rows"
+  },
+  "componentFieldCards": "Txartelak",
+  "@componentFieldCards": {
+    "description": "Form section label for icon cards"
+  },
+  "componentFieldConcept": "Kontzeptua",
+  "@componentFieldConcept": {
+    "description": "Form field label for a single concept item"
+  },
+  "componentFieldPro": "Pro",
+  "@componentFieldPro": {
+    "description": "Form field label for a single pro item"
+  },
+  "addComponentTitle": "Gehitu osagaia",
+  "@addComponentTitle": {
+    "description": "Title for the Add Component picker screen"
+  },
+  "componentFieldCon": "Kon",
+  "@componentFieldCon": {
+    "description": "Form field label for a single con item"
   }
 }

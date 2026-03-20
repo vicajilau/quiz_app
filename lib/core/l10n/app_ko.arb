@@ -689,5 +689,232 @@
   "supportDescription": "앱 및 플랫폼 세부정보와 함께 GitHub Issues 열기",
   "@supportDescription": {
     "description": "Description for the support action in settings"
+  },
+  "studyEditorPages": "페이지",
+  "@studyEditorPages": {
+    "description": "Section header for the list of pages in the section page manager"
+  },
+  "studyEditorSaveChanges": "변경 사항 저장",
+  "@studyEditorSaveChanges": {
+    "description": "Button label to save edited component properties"
+  },
+  "studyEditorExitEdit": "편집 모드 종료",
+  "@studyEditorExitEdit": {
+    "description": "Tooltip for the FAB button that disables study content edit mode"
+  },
+  "studyEditorToggleEdit": "콘텐츠 편집",
+  "@studyEditorToggleEdit": {
+    "description": "Tooltip for the FAB button that enables study content edit mode"
+  },
+  "studyEditorComponents": "구성요소",
+  "@studyEditorComponents": {
+    "description": "Section header for the list of components in the component editor"
+  },
+  "studyEditorFieldBody": "본문 텍스트",
+  "@studyEditorFieldBody": {
+    "description": "Label for the main body text field in component editors"
+  },
+  "studyEditorAddPage": "페이지 추가",
+  "@studyEditorAddPage": {
+    "description": "Button label to add a new page to a section"
+  },
+  "componentTypeParagraph": "절",
+  "@componentTypeParagraph": {
+    "description": "Display name for the paragraph component type"
+  },
+  "studyEditorEmptyComponents": "이 페이지에는 구성요소가 없습니다.",
+  "@studyEditorEmptyComponents": {
+    "description": "Empty state message in the component editor"
+  },
+  "studyEditorEditParagraph": "단락 편집",
+  "@studyEditorEditParagraph": {
+    "description": "Navigation header title for the paragraph property panel"
+  },
+  "studyEditorFieldTitle": "제목(선택사항)",
+  "@studyEditorFieldTitle": {
+    "description": "Label for the optional title field in component editors"
+  },
+  "studyEditorEmptyPages": "아직 페이지가 없습니다. +를 탭하여 추가하세요.",
+  "@studyEditorEmptyPages": {
+    "description": "Empty state message in the section page manager"
+  },
+  "componentTypeComparisonTable": "비교표",
+  "@componentTypeComparisonTable": {
+    "description": "Display name for the comparisonTable component type"
+  },
+  "componentTypeQuote": "인용하다",
+  "@componentTypeQuote": {
+    "description": "Display name for the quote component type"
+  },
+  "componentTypeFormula": "공식",
+  "@componentTypeFormula": {
+    "description": "Display name for the formula component type"
+  },
+  "componentTypeWarning": "경고",
+  "@componentTypeWarning": {
+    "description": "Display name for the warning component type"
+  },
+  "componentTypeTimeline": "타임라인",
+  "@componentTypeTimeline": {
+    "description": "Display name for the timeline component type"
+  },
+  "componentTypeProsCons": "장점과 단점",
+  "@componentTypeProsCons": {
+    "description": "Display name for the prosCons component type"
+  },
+  "componentTypeReminder": "알림",
+  "@componentTypeReminder": {
+    "description": "Display name for the reminder component type"
+  },
+  "componentTypeKeyConcepts": "주요 개념",
+  "@componentTypeKeyConcepts": {
+    "description": "Display name for the keyConcepts component type"
+  },
+  "componentFieldSubtitle": "부제",
+  "@componentFieldSubtitle": {
+    "description": "Form field label for subtitle"
+  },
+  "componentFieldDefinition": "정의",
+  "@componentFieldDefinition": {
+    "description": "Form field label for definition"
+  },
+  "componentFieldTerm": "용어",
+  "@componentFieldTerm": {
+    "description": "Form field label for term (key definition)"
+  },
+  "studyEditorPageN": "페이지 {n}",
+  "@studyEditorPageN": {
+    "description": "Label for page number n in the section page manager",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "studyEditorDeletePage": "페이지 삭제",
+  "@studyEditorDeletePage": {
+    "description": "Button label to delete a page from a section"
+  },
+  "componentFieldAuthor": "작가",
+  "@componentFieldAuthor": {
+    "description": "Form field label for quote author"
+  },
+  "componentFieldQuote": "인용하다",
+  "@componentFieldQuote": {
+    "description": "Form field label for quote text"
+  },
+  "componentFieldEquation": "방정식",
+  "@componentFieldEquation": {
+    "description": "Form field label for formula equation"
+  },
+  "componentFieldExplanation": "설명",
+  "@componentFieldExplanation": {
+    "description": "Form field label for formula explanation"
+  },
+  "componentFieldItems": "품목",
+  "@componentFieldItems": {
+    "description": "Form section label for a list of items"
+  },
+  "componentFieldConcept": "개념",
+  "@componentFieldConcept": {
+    "description": "Form field label for a single concept item"
+  },
+  "componentFieldEvents": "이벤트",
+  "@componentFieldEvents": {
+    "description": "Form section label for timeline events"
+  },
+  "componentTypeIconCards": "아이콘 카드",
+  "@componentTypeIconCards": {
+    "description": "Display name for the iconCards component type"
+  },
+  "componentFieldDate": "날짜",
+  "@componentFieldDate": {
+    "description": "Form field label for timeline event date"
+  },
+  "componentFieldDescription": "설명",
+  "@componentFieldDescription": {
+    "description": "Form field label for item description"
+  },
+  "studyEditorEditName": "{name} 편집",
+  "@studyEditorEditName": {
+    "description": "Navigation header title: Edit [section name]",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "componentTypeKeyDefinition": "주요 정의",
+  "@componentTypeKeyDefinition": {
+    "description": "Display name for the keyDefinition component type"
+  },
+  "componentTypeSectionTitle": "섹션 제목",
+  "@componentTypeSectionTitle": {
+    "description": "Display name for the sectionTitle component type"
+  },
+  "componentTypeNumberedList": "번호 매기기 목록",
+  "@componentTypeNumberedList": {
+    "description": "Display name for the numberedList component type"
+  },
+  "componentFieldColumn": "열",
+  "@componentFieldColumn": {
+    "description": "Form field label for a single table column"
+  },
+  "componentFieldRow": "열",
+  "@componentFieldRow": {
+    "description": "Form field label for a single table row"
+  },
+  "componentFieldColumns": "열",
+  "@componentFieldColumns": {
+    "description": "Form section label for table columns"
+  },
+  "componentFieldCon": "범죄자",
+  "@componentFieldCon": {
+    "description": "Form field label for a single con item"
+  },
+  "componentFieldCons": "단점",
+  "@componentFieldCons": {
+    "description": "Form section label for cons list"
+  },
+  "componentFieldPro": "찬성",
+  "@componentFieldPro": {
+    "description": "Form field label for a single pro item"
+  },
+  "componentFieldPros": "장점",
+  "@componentFieldPros": {
+    "description": "Form section label for pros list"
+  },
+  "componentFieldOptional": "선택 과목",
+  "@componentFieldOptional": {
+    "description": "Label shown next to optional form fields"
+  },
+  "componentFieldLabel": "상표",
+  "@componentFieldLabel": {
+    "description": "Form field label for a row label in comparison table"
+  },
+  "componentFieldAdd": "{item} 추가",
+  "@componentFieldAdd": {
+    "description": "Button label to add a new item to a list",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "componentFieldEquationLabel": "방정식 레이블",
+  "@componentFieldEquationLabel": {
+    "description": "Form field label for formula equation label"
+  },
+  "componentFieldCards": "카드",
+  "@componentFieldCards": {
+    "description": "Form section label for icon cards"
+  },
+  "componentFieldRows": "행",
+  "@componentFieldRows": {
+    "description": "Form section label for table rows"
+  },
+  "addComponentTitle": "구성 요소 추가",
+  "@addComponentTitle": {
+    "description": "Title for the Add Component picker screen"
   }
 }
