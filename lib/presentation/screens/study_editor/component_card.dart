@@ -1,3 +1,18 @@
+// Copyright (C) 2026 Víctor Carreras
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/extensions/study_extension.dart';
@@ -73,17 +88,31 @@ class ComponentCard extends StatelessWidget {
                     // Edit (pencil)
                     IconButton(
                       onPressed: onEdit,
-                      icon: Icon(LucideIcons.pencil, size: 18, color: pencilColor),
+                      icon: Icon(
+                        LucideIcons.pencil,
+                        size: 18,
+                        color: pencilColor,
+                      ),
                       padding: const EdgeInsets.all(6),
-                      constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
+                      constraints: const BoxConstraints(
+                        minWidth: 36,
+                        minHeight: 36,
+                      ),
                     ),
                     const SizedBox(width: 4),
                     // Duplicate
                     IconButton(
                       onPressed: onDuplicate,
-                      icon: Icon(LucideIcons.copy, size: 18, color: chevronColor),
+                      icon: Icon(
+                        LucideIcons.copy,
+                        size: 18,
+                        color: chevronColor,
+                      ),
                       padding: const EdgeInsets.all(6),
-                      constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
+                      constraints: const BoxConstraints(
+                        minWidth: 36,
+                        minHeight: 36,
+                      ),
                     ),
                     const SizedBox(width: 4),
                     // Move up
@@ -95,7 +124,10 @@ class ComponentCard extends StatelessWidget {
                         color: index > 0 ? chevronColor : disabledColor,
                       ),
                       padding: const EdgeInsets.all(6),
-                      constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
+                      constraints: const BoxConstraints(
+                        minWidth: 36,
+                        minHeight: 36,
+                      ),
                     ),
                     const SizedBox(width: 4),
                     // Move down
@@ -104,18 +136,30 @@ class ComponentCard extends StatelessWidget {
                       icon: Icon(
                         LucideIcons.chevronDown,
                         size: 18,
-                        color: index < totalCount - 1 ? chevronColor : disabledColor,
+                        color: index < totalCount - 1
+                            ? chevronColor
+                            : disabledColor,
                       ),
                       padding: const EdgeInsets.all(6),
-                      constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
+                      constraints: const BoxConstraints(
+                        minWidth: 36,
+                        minHeight: 36,
+                      ),
                     ),
                     const SizedBox(width: 4),
                     // Delete
                     IconButton(
                       onPressed: onDelete,
-                      icon: const Icon(LucideIcons.trash2, size: 18, color: AppTheme.errorColor),
+                      icon: const Icon(
+                        LucideIcons.trash2,
+                        size: 18,
+                        color: AppTheme.errorColor,
+                      ),
                       padding: const EdgeInsets.all(6),
-                      constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
+                      constraints: const BoxConstraints(
+                        minWidth: 36,
+                        minHeight: 36,
+                      ),
                     ),
                   ],
                 ),
