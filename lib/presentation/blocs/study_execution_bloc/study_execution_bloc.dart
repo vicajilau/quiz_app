@@ -93,6 +93,7 @@ class StudyExecutionBloc
     on<GenerateAiStudyChunksRequested>(_onGenerateAiStudyChunksRequested);
     on<DeleteSelectedChunksRequested>(_onDeleteSelectedChunksRequested);
     on<ImportStudyChunksRequested>(_onImportStudyChunksRequested);
+    on<StudyChunksUpdated>(_onStudyChunksUpdated);
     on<StudyFileSaved>(
       (_, emit) => emit(state.copyWith(savedVersion: state.savedVersion + 1)),
     );
@@ -699,5 +700,13 @@ class StudyExecutionBloc
       newState.fileUri,
       newState.fileExpirationTime,
     );
+  }
+
+  void _onStudyChunksUpdated(
+    StudyChunksUpdated event,
+    Emitter<StudyExecutionState> emit,
+  ) {
+    final newState = _updateProgress(state.copyWith(chunks: event.chunks));
+    emit(newState);
   }
 }

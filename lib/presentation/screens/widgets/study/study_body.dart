@@ -24,11 +24,14 @@ import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
+import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_cubit.dart'
+    show StudyEditorCubit;
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
 import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quizdy/presentation/screens/quiz_execution/widgets/ai_studio_chat_side_panel.dart';
+import 'package:quizdy/presentation/screens/study_editor/component_editor_screen.dart';
 import 'package:quizdy/presentation/screens/widgets/study/components/study_component_builder.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_view.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_sections_sidebar.dart';
@@ -290,6 +293,27 @@ class _StudyBodyState extends State<StudyBody>
                   },
                   onSave: widget.onSave,
                   onImport: () => widget.onHandleFileReattachment(context),
+                  onChunkEditTap: (chunkIndex) async {
+                    final cubit = context.read<StudyEditorCubit>();
+                    final bloc = context.read<StudyExecutionBloc>();
+                    final snapshot = List.of(cubit.state.chunks);
+                    final saved = await Navigator.of(context).push<bool>(
+                      MaterialPageRoute<bool>(
+                        builder: (_) => BlocProvider.value(
+                          value: cubit,
+                          child: ComponentEditorScreen(
+                            chunkIndex: chunkIndex,
+                            pageIndex: 0,
+                          ),
+                        ),
+                      ),
+                    );
+                    if (saved == true) {
+                      bloc.add(StudyChunksUpdated(cubit.state.chunks));
+                    } else {
+                      cubit.resetToSnapshot(snapshot);
+                    }
+                  },
                 );
               }
 

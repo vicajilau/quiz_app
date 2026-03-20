@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.10.0]
 
 - feat: Added a new Privacy Policy acceptance screen shown before entering the app.
+- feat: Added Study Editor with support for 13 component types, including section titles, paragraphs, key definitions, timelines, comparison tables, and more.
+- feat: Added component picker screen in Study Editor, accessible as a full-screen view on mobile and as an inline sidebar panel on desktop.
+- feat: Added individual component edit forms that open immediately upon selecting a component type or tapping an existing card.
+- ui: Improved Study Editor navigation with a redesigned app bar showing the chapter name and consistent back/close behavior across mobile and desktop.
 
 ## [1.10.0] -2026-03-17
 
