@@ -26,7 +26,7 @@ import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
-import 'package:quizdy/domain/models/quiz/ui_element.dart';
+import 'package:quizdy/domain/models/quiz/study_component.dart';
 
 import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';
@@ -608,7 +608,7 @@ IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
     return buffer.toString();
   }
 
-  static String _extractTextFromUiElement(UiElement element) {
+  static String _extractTextFromUiElement(StudyComponent element) {
     final props = element.props;
     final parts = <String>[];
 
