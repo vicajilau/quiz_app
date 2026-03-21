@@ -20,6 +20,7 @@ import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
+import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 import 'package:quizdy/routes/app_router.dart';
@@ -127,9 +128,18 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
     return PopScope(
       canPop: canPopScreen,
       child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: canPopScreen,
-          title: Text(localizations.privacyPolicyLabel),
+        appBar: QuizdyAppBar(
+          showLeading: canPopScreen,
+          onLeadingPressed: _closeScreen,
+          title: Text(
+            localizations.privacyPolicyLabel,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimary,
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+              fontFamily: 'Plus Jakarta Sans',
+            ),
+          ),
         ),
         body: SafeArea(
           child: Padding(

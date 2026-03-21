@@ -15,10 +15,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_cubit.dart';
+import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
@@ -86,13 +86,18 @@ class _ParagraphPropertyPanelState extends State<ParagraphPropertyPanel> {
     final localizations = AppLocalizations.of(context)!;
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(LucideIcons.arrowLeft),
-          onPressed: () => Navigator.of(context).pop(),
+      appBar: QuizdyAppBar(
+        onLeadingPressed: () => Navigator.of(context).pop(),
+        title: Text(
+          localizations.studyEditorEditParagraph,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            fontFamily: 'Plus Jakarta Sans',
+          ),
+          overflow: TextOverflow.ellipsis,
         ),
-        title: Text(localizations.studyEditorEditParagraph),
-        elevation: 0,
       ),
       body: Column(
         children: [

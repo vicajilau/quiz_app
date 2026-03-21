@@ -26,6 +26,7 @@ import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_state.
 import 'package:quizdy/presentation/screens/study_editor/add_component_sheet.dart';
 import 'package:quizdy/presentation/screens/study_editor/component_card.dart';
 import 'package:quizdy/presentation/screens/study_editor/component_edit_sidebar.dart';
+import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 
 /// Shows the list of [StudyComponent]s on a single page within a section.
@@ -217,38 +218,8 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
         return Scaffold(
           appBar: showMobileOverlay
               ? null
-              : AppBar(
-                  backgroundColor: Theme.of(context).primaryColor,
-                  elevation: 0,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(
-                      bottom: Radius.circular(24),
-                    ),
-                  ),
-                  toolbarHeight: 72,
-                  leadingWidth: 72,
-                  leading: Padding(
-                    padding: const EdgeInsets.only(left: 24),
-                    child: Center(
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: AppTheme.appBarIconBackground,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: IconButton(
-                          padding: EdgeInsets.zero,
-                          icon: Icon(
-                            LucideIcons.arrowLeft,
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            size: 20,
-                          ),
-                          onPressed: () => context.pop(false),
-                        ),
-                      ),
-                    ),
-                  ),
+              : QuizdyAppBar(
+                  onLeadingPressed: () => context.pop(false),
                   title: Text(
                     chunk.title,
                     style: TextStyle(

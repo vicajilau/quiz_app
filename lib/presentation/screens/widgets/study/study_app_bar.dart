@@ -24,6 +24,7 @@ import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_b
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
+import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
 
 class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Future<bool> Function() onConfirmExit;
@@ -37,14 +38,7 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
 
-    return AppBar(
-      backgroundColor: Theme.of(context).primaryColor,
-      elevation: 0,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
-      ),
-      toolbarHeight: 72,
-      leadingWidth: 72,
+    return QuizdyAppBar(
       leading: Padding(
         padding: const EdgeInsets.only(left: 24),
         child: Center(
