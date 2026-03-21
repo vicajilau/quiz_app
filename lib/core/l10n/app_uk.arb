@@ -722,5 +722,236 @@
   "supportDescription": "Відкрити GitHub Issues з даними застосунку та платформи",
   "@supportDescription": {
     "description": "Description for the support action in settings"
+  },
+  "studyEditorComponents": "компоненти",
+  "@studyEditorComponents": {
+    "description": "Section header for the list of components in the component editor"
+  },
+  "studyEditorPages": "сторінки",
+  "@studyEditorPages": {
+    "description": "Section header for the list of pages in the section page manager"
+  },
+  "studyEditorSaveChanges": "Зберегти зміни",
+  "@studyEditorSaveChanges": {
+    "description": "Button label to save edited component properties"
+  },
+  "studyEditorFieldTitle": "Назва (необов'язково)",
+  "@studyEditorFieldTitle": {
+    "description": "Label for the optional title field in component editors"
+  },
+  "studyEditorExitEdit": "Вийти з режиму редагування",
+  "@studyEditorExitEdit": {
+    "description": "Tooltip for the FAB button that disables study content edit mode"
+  },
+  "studyEditorEmptyPages": "Сторінок ще немає. Торкніться +, щоб додати.",
+  "@studyEditorEmptyPages": {
+    "description": "Empty state message in the section page manager"
+  },
+  "studyEditorEditParagraph": "Редагувати абзац",
+  "@studyEditorEditParagraph": {
+    "description": "Navigation header title for the paragraph property panel"
+  },
+  "componentTypeParagraph": "Абзац",
+  "@componentTypeParagraph": {
+    "description": "Display name for the paragraph component type"
+  },
+  "studyEditorEmptyComponents": "На цій сторінці немає компонентів.",
+  "@studyEditorEmptyComponents": {
+    "description": "Empty state message in the component editor"
+  },
+  "studyEditorEditName": "Редагувати {name}",
+  "@studyEditorEditName": {
+    "description": "Navigation header title: Edit [section name]",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "componentTypeNumberedList": "Нумерований список",
+  "@componentTypeNumberedList": {
+    "description": "Display name for the numberedList component type"
+  },
+  "studyEditorFieldBody": "Основний текст",
+  "@studyEditorFieldBody": {
+    "description": "Label for the main body text field in component editors"
+  },
+  "componentTypeKeyDefinition": "Визначення ключа",
+  "@componentTypeKeyDefinition": {
+    "description": "Display name for the keyDefinition component type"
+  },
+  "studyEditorAddPage": "Додати сторінку",
+  "@studyEditorAddPage": {
+    "description": "Button label to add a new page to a section"
+  },
+  "componentTypeSectionTitle": "Назва розділу",
+  "@componentTypeSectionTitle": {
+    "description": "Display name for the sectionTitle component type"
+  },
+  "studyEditorDeletePage": "Видалити сторінку",
+  "@studyEditorDeletePage": {
+    "description": "Button label to delete a page from a section"
+  },
+  "studyEditorPageN": "Сторінка {n}",
+  "@studyEditorPageN": {
+    "description": "Label for page number n in the section page manager",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "studyEditorToggleEdit": "Редагувати вміст",
+  "@studyEditorToggleEdit": {
+    "description": "Tooltip for the FAB button that enables study content edit mode"
+  },
+  "componentTypeQuote": "Цитата",
+  "@componentTypeQuote": {
+    "description": "Display name for the quote component type"
+  },
+  "componentFieldSubtitle": "Підзаголовок",
+  "@componentFieldSubtitle": {
+    "description": "Form field label for subtitle"
+  },
+  "componentTypeTimeline": "Хронологія",
+  "@componentTypeTimeline": {
+    "description": "Display name for the timeline component type"
+  },
+  "componentTypeReminder": "Нагадування",
+  "@componentTypeReminder": {
+    "description": "Display name for the reminder component type"
+  },
+  "componentTypeWarning": "УВАГА",
+  "@componentTypeWarning": {
+    "description": "Display name for the warning component type"
+  },
+  "componentFieldTerm": "термін",
+  "@componentFieldTerm": {
+    "description": "Form field label for term (key definition)"
+  },
+  "componentFieldDefinition": "Визначення",
+  "@componentFieldDefinition": {
+    "description": "Form field label for definition"
+  },
+  "componentFieldQuote": "Цитата",
+  "@componentFieldQuote": {
+    "description": "Form field label for quote text"
+  },
+  "componentFieldAuthor": "Автор",
+  "@componentFieldAuthor": {
+    "description": "Form field label for quote author"
+  },
+  "componentTypeComparisonTable": "Порівняльна таблиця",
+  "@componentTypeComparisonTable": {
+    "description": "Display name for the comparisonTable component type"
+  },
+  "componentFieldEquation": "Рівняння",
+  "@componentFieldEquation": {
+    "description": "Form field label for formula equation"
+  },
+  "componentFieldItems": "Предмети",
+  "@componentFieldItems": {
+    "description": "Form section label for a list of items"
+  },
+  "componentFieldExplanation": "Пояснення",
+  "@componentFieldExplanation": {
+    "description": "Form field label for formula explanation"
+  },
+  "componentFieldEvents": "Події",
+  "@componentFieldEvents": {
+    "description": "Form section label for timeline events"
+  },
+  "componentFieldDate": "Дата",
+  "@componentFieldDate": {
+    "description": "Form field label for timeline event date"
+  },
+  "componentFieldDescription": "опис",
+  "@componentFieldDescription": {
+    "description": "Form field label for item description"
+  },
+  "componentFieldCards": "картки",
+  "@componentFieldCards": {
+    "description": "Form section label for icon cards"
+  },
+  "componentFieldPro": "Pro",
+  "@componentFieldPro": {
+    "description": "Form field label for a single pro item"
+  },
+  "componentFieldPros": "плюси",
+  "@componentFieldPros": {
+    "description": "Form section label for pros list"
+  },
+  "componentTypeKeyConcepts": "Ключові поняття",
+  "@componentTypeKeyConcepts": {
+    "description": "Display name for the keyConcepts component type"
+  },
+  "componentTypeFormula": "Формула",
+  "@componentTypeFormula": {
+    "description": "Display name for the formula component type"
+  },
+  "componentTypeIconCards": "Іконні картки",
+  "@componentTypeIconCards": {
+    "description": "Display name for the iconCards component type"
+  },
+  "componentFieldEquationLabel": "Мітка рівняння",
+  "@componentFieldEquationLabel": {
+    "description": "Form field label for formula equation label"
+  },
+  "componentFieldConcept": "Концепція",
+  "@componentFieldConcept": {
+    "description": "Form field label for a single concept item"
+  },
+  "componentTypeProsCons": "Плюси і мінуси",
+  "@componentTypeProsCons": {
+    "description": "Display name for the prosCons component type"
+  },
+  "componentFieldCons": "мінуси",
+  "@componentFieldCons": {
+    "description": "Form section label for cons list"
+  },
+  "componentFieldCon": "проти",
+  "@componentFieldCon": {
+    "description": "Form field label for a single con item"
+  },
+  "componentFieldColumns": "Стовпці",
+  "@componentFieldColumns": {
+    "description": "Form section label for table columns"
+  },
+  "componentFieldColumn": "Колонка",
+  "@componentFieldColumn": {
+    "description": "Form field label for a single table column"
+  },
+  "componentFieldOptional": "необов'язковий",
+  "@componentFieldOptional": {
+    "description": "Label shown next to optional form fields"
+  },
+  "componentFieldRows": "рядки",
+  "@componentFieldRows": {
+    "description": "Form section label for table rows"
+  },
+  "componentFieldLabel": "Мітка",
+  "@componentFieldLabel": {
+    "description": "Form field label for a row label in comparison table"
+  },
+  "componentFieldRow": "рядок",
+  "@componentFieldRow": {
+    "description": "Form field label for a single table row"
+  },
+  "componentFieldAdd": "Додати {item}",
+  "@componentFieldAdd": {
+    "description": "Button label to add a new item to a list",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "addComponentTitle": "Додати компонент",
+  "@addComponentTitle": {
+    "description": "Title for the Add Component picker screen"
+  },
+  "addComponentsWithAI": "Додати компоненти за допомогою ШІ",
+  "@addComponentsWithAI": {
+    "description": "Button label to add study components using AI"
   }
 }

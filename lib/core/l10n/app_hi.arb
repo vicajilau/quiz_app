@@ -2000,5 +2000,236 @@
   "supportDescription": "ऐप और प्लेटफ़ॉर्म विवरण के साथ GitHub Issues खोलें",
   "@supportDescription": {
     "description": "Description for the support action in settings"
+  },
+  "studyEditorSaveChanges": "परिवर्तनों को सुरक्षित करें",
+  "@studyEditorSaveChanges": {
+    "description": "Button label to save edited component properties"
+  },
+  "studyEditorFieldBody": "मुख्य भाग",
+  "@studyEditorFieldBody": {
+    "description": "Label for the main body text field in component editors"
+  },
+  "studyEditorComponents": "अवयव",
+  "@studyEditorComponents": {
+    "description": "Section header for the list of components in the component editor"
+  },
+  "studyEditorAddPage": "पृष्ठ जोड़ें",
+  "@studyEditorAddPage": {
+    "description": "Button label to add a new page to a section"
+  },
+  "studyEditorEmptyComponents": "इस पृष्ठ पर कोई घटक नहीं.",
+  "@studyEditorEmptyComponents": {
+    "description": "Empty state message in the component editor"
+  },
+  "studyEditorPages": "पृष्ठों",
+  "@studyEditorPages": {
+    "description": "Section header for the list of pages in the section page manager"
+  },
+  "componentTypeParagraph": "अनुच्छेद",
+  "@componentTypeParagraph": {
+    "description": "Display name for the paragraph component type"
+  },
+  "componentTypeSectionTitle": "अनुभाग शीर्षक",
+  "@componentTypeSectionTitle": {
+    "description": "Display name for the sectionTitle component type"
+  },
+  "studyEditorDeletePage": "पृष्ठ हटाएँ",
+  "@studyEditorDeletePage": {
+    "description": "Button label to delete a page from a section"
+  },
+  "studyEditorFieldTitle": "शीर्षक (वैकल्पिक)",
+  "@studyEditorFieldTitle": {
+    "description": "Label for the optional title field in component editors"
+  },
+  "studyEditorExitEdit": "संपादन मोड से बाहर निकलें",
+  "@studyEditorExitEdit": {
+    "description": "Tooltip for the FAB button that disables study content edit mode"
+  },
+  "studyEditorToggleEdit": "सामग्री संपादित करें",
+  "@studyEditorToggleEdit": {
+    "description": "Tooltip for the FAB button that enables study content edit mode"
+  },
+  "studyEditorEmptyPages": "अभी तक कोई पेज नहीं. एक जोड़ने के लिए + टैप करें.",
+  "@studyEditorEmptyPages": {
+    "description": "Empty state message in the section page manager"
+  },
+  "studyEditorEditParagraph": "अनुच्छेद संपादित करें",
+  "@studyEditorEditParagraph": {
+    "description": "Navigation header title for the paragraph property panel"
+  },
+  "componentTypeNumberedList": "क्रमांकित सूची",
+  "@componentTypeNumberedList": {
+    "description": "Display name for the numberedList component type"
+  },
+  "componentTypeProsCons": "पक्ष विपक्ष",
+  "@componentTypeProsCons": {
+    "description": "Display name for the prosCons component type"
+  },
+  "componentTypeTimeline": "समय",
+  "@componentTypeTimeline": {
+    "description": "Display name for the timeline component type"
+  },
+  "componentTypeQuote": "उद्धरण",
+  "@componentTypeQuote": {
+    "description": "Display name for the quote component type"
+  },
+  "componentTypeComparisonTable": "तुलना तालिका",
+  "@componentTypeComparisonTable": {
+    "description": "Display name for the comparisonTable component type"
+  },
+  "componentTypeWarning": "चेतावनी",
+  "@componentTypeWarning": {
+    "description": "Display name for the warning component type"
+  },
+  "componentTypeFormula": "FORMULA",
+  "@componentTypeFormula": {
+    "description": "Display name for the formula component type"
+  },
+  "componentTypeKeyConcepts": "महत्वपूर्ण अवधारणाएं",
+  "@componentTypeKeyConcepts": {
+    "description": "Display name for the keyConcepts component type"
+  },
+  "componentFieldDefinition": "परिभाषा",
+  "@componentFieldDefinition": {
+    "description": "Form field label for definition"
+  },
+  "componentTypeReminder": "अनुस्मारक",
+  "@componentTypeReminder": {
+    "description": "Display name for the reminder component type"
+  },
+  "componentFieldQuote": "उद्धरण",
+  "@componentFieldQuote": {
+    "description": "Form field label for quote text"
+  },
+  "componentFieldTerm": "अवधि",
+  "@componentFieldTerm": {
+    "description": "Form field label for term (key definition)"
+  },
+  "componentFieldSubtitle": "उपशीर्षक",
+  "@componentFieldSubtitle": {
+    "description": "Form field label for subtitle"
+  },
+  "componentFieldAuthor": "लेखक",
+  "@componentFieldAuthor": {
+    "description": "Form field label for quote author"
+  },
+  "componentFieldExplanation": "स्पष्टीकरण",
+  "@componentFieldExplanation": {
+    "description": "Form field label for formula explanation"
+  },
+  "componentFieldConcept": "अवधारणा",
+  "@componentFieldConcept": {
+    "description": "Form field label for a single concept item"
+  },
+  "componentTypeIconCards": "चिह्न कार्ड",
+  "@componentTypeIconCards": {
+    "description": "Display name for the iconCards component type"
+  },
+  "studyEditorPageN": "पेज {n}",
+  "@studyEditorPageN": {
+    "description": "Label for page number n in the section page manager",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "componentFieldEquation": "समीकरण",
+  "@componentFieldEquation": {
+    "description": "Form field label for formula equation"
+  },
+  "studyEditorEditName": "संपादित करें {name}",
+  "@studyEditorEditName": {
+    "description": "Navigation header title: Edit [section name]",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "componentTypeKeyDefinition": "मुख्य परिभाषा",
+  "@componentTypeKeyDefinition": {
+    "description": "Display name for the keyDefinition component type"
+  },
+  "componentFieldEvents": "घटनाएँ",
+  "@componentFieldEvents": {
+    "description": "Form section label for timeline events"
+  },
+  "componentFieldDate": "तारीख",
+  "@componentFieldDate": {
+    "description": "Form field label for timeline event date"
+  },
+  "componentFieldItems": "सामान",
+  "@componentFieldItems": {
+    "description": "Form section label for a list of items"
+  },
+  "componentFieldDescription": "विवरण",
+  "@componentFieldDescription": {
+    "description": "Form field label for item description"
+  },
+  "componentFieldColumns": "कॉलम",
+  "@componentFieldColumns": {
+    "description": "Form section label for table columns"
+  },
+  "componentFieldCons": "दोष",
+  "@componentFieldCons": {
+    "description": "Form section label for cons list"
+  },
+  "componentFieldPros": "पेशेवरों",
+  "@componentFieldPros": {
+    "description": "Form section label for pros list"
+  },
+  "componentFieldCards": "कार्ड",
+  "@componentFieldCards": {
+    "description": "Form section label for icon cards"
+  },
+  "componentFieldCon": "चोर",
+  "@componentFieldCon": {
+    "description": "Form field label for a single con item"
+  },
+  "componentFieldPro": "प्रो",
+  "@componentFieldPro": {
+    "description": "Form field label for a single pro item"
+  },
+  "componentFieldColumn": "स्तंभ",
+  "@componentFieldColumn": {
+    "description": "Form field label for a single table column"
+  },
+  "componentFieldRows": "पंक्तियों",
+  "@componentFieldRows": {
+    "description": "Form section label for table rows"
+  },
+  "componentFieldOptional": "वैकल्पिक",
+  "@componentFieldOptional": {
+    "description": "Label shown next to optional form fields"
+  },
+  "componentFieldRow": "पंक्ति",
+  "@componentFieldRow": {
+    "description": "Form field label for a single table row"
+  },
+  "componentFieldLabel": "लेबल",
+  "@componentFieldLabel": {
+    "description": "Form field label for a row label in comparison table"
+  },
+  "addComponentTitle": "घटक जोड़ें",
+  "@addComponentTitle": {
+    "description": "Title for the Add Component picker screen"
+  },
+  "componentFieldAdd": "{item} जोड़ें",
+  "@componentFieldAdd": {
+    "description": "Button label to add a new item to a list",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "componentFieldEquationLabel": "समीकरण लेबल",
+  "@componentFieldEquationLabel": {
+    "description": "Form field label for formula equation label"
+  },
+  "addComponentsWithAI": "AI से घटक जोड़ें",
+  "@addComponentsWithAI": {
+    "description": "Button label to add study components using AI"
   }
 }

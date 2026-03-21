@@ -1997,5 +1997,236 @@
   "supportDescription": "Abrir incidencias de GitHub cos detalles da aplicación e da plataforma",
   "@supportDescription": {
     "description": "Description for the support action in settings"
+  },
+  "studyEditorComponents": "Compoñentes",
+  "@studyEditorComponents": {
+    "description": "Section header for the list of components in the component editor"
+  },
+  "studyEditorPages": "Páxinas",
+  "@studyEditorPages": {
+    "description": "Section header for the list of pages in the section page manager"
+  },
+  "studyEditorEmptyComponents": "Non hai compoñentes nesta páxina.",
+  "@studyEditorEmptyComponents": {
+    "description": "Empty state message in the component editor"
+  },
+  "studyEditorToggleEdit": "Editar contido",
+  "@studyEditorToggleEdit": {
+    "description": "Tooltip for the FAB button that enables study content edit mode"
+  },
+  "studyEditorFieldBody": "Texto corporal",
+  "@studyEditorFieldBody": {
+    "description": "Label for the main body text field in component editors"
+  },
+  "studyEditorExitEdit": "Saír do modo de edición",
+  "@studyEditorExitEdit": {
+    "description": "Tooltip for the FAB button that disables study content edit mode"
+  },
+  "studyEditorFieldTitle": "Título (opcional)",
+  "@studyEditorFieldTitle": {
+    "description": "Label for the optional title field in component editors"
+  },
+  "studyEditorEmptyPages": "Aínda non hai páxinas. Toca + para engadir un.",
+  "@studyEditorEmptyPages": {
+    "description": "Empty state message in the section page manager"
+  },
+  "studyEditorEditParagraph": "Editar parágrafo",
+  "@studyEditorEditParagraph": {
+    "description": "Navigation header title for the paragraph property panel"
+  },
+  "studyEditorSaveChanges": "Gardar cambios",
+  "@studyEditorSaveChanges": {
+    "description": "Button label to save edited component properties"
+  },
+  "studyEditorEditName": "Editar {name}",
+  "@studyEditorEditName": {
+    "description": "Navigation header title: Edit [section name]",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "componentTypeQuote": "Cita",
+  "@componentTypeQuote": {
+    "description": "Display name for the quote component type"
+  },
+  "studyEditorDeletePage": "Eliminar páxina",
+  "@studyEditorDeletePage": {
+    "description": "Button label to delete a page from a section"
+  },
+  "studyEditorAddPage": "Engadir páxina",
+  "@studyEditorAddPage": {
+    "description": "Button label to add a new page to a section"
+  },
+  "componentTypeWarning": "Aviso",
+  "@componentTypeWarning": {
+    "description": "Display name for the warning component type"
+  },
+  "componentTypeSectionTitle": "Título da sección",
+  "@componentTypeSectionTitle": {
+    "description": "Display name for the sectionTitle component type"
+  },
+  "componentTypeParagraph": "Parágrafo",
+  "@componentTypeParagraph": {
+    "description": "Display name for the paragraph component type"
+  },
+  "componentTypeProsCons": "Pros e contras",
+  "@componentTypeProsCons": {
+    "description": "Display name for the prosCons component type"
+  },
+  "studyEditorPageN": "Páxina {n}",
+  "@studyEditorPageN": {
+    "description": "Label for page number n in the section page manager",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "componentTypeTimeline": "Cronoloxía",
+  "@componentTypeTimeline": {
+    "description": "Display name for the timeline component type"
+  },
+  "componentTypeComparisonTable": "Táboa de comparación",
+  "@componentTypeComparisonTable": {
+    "description": "Display name for the comparisonTable component type"
+  },
+  "componentTypeNumberedList": "Lista numerada",
+  "@componentTypeNumberedList": {
+    "description": "Display name for the numberedList component type"
+  },
+  "componentTypeReminder": "Recordatorio",
+  "@componentTypeReminder": {
+    "description": "Display name for the reminder component type"
+  },
+  "componentTypeKeyConcepts": "Conceptos clave",
+  "@componentTypeKeyConcepts": {
+    "description": "Display name for the keyConcepts component type"
+  },
+  "componentFieldQuote": "Cita",
+  "@componentFieldQuote": {
+    "description": "Form field label for quote text"
+  },
+  "componentTypeFormula": "Fórmula",
+  "@componentTypeFormula": {
+    "description": "Display name for the formula component type"
+  },
+  "componentTypeKeyDefinition": "Definición clave",
+  "@componentTypeKeyDefinition": {
+    "description": "Display name for the keyDefinition component type"
+  },
+  "componentFieldTerm": "Prazo",
+  "@componentFieldTerm": {
+    "description": "Form field label for term (key definition)"
+  },
+  "componentFieldDefinition": "Definición",
+  "@componentFieldDefinition": {
+    "description": "Form field label for definition"
+  },
+  "componentFieldExplanation": "Explicación",
+  "@componentFieldExplanation": {
+    "description": "Form field label for formula explanation"
+  },
+  "componentFieldEvents": "Eventos",
+  "@componentFieldEvents": {
+    "description": "Form section label for timeline events"
+  },
+  "componentFieldDate": "Data",
+  "@componentFieldDate": {
+    "description": "Form field label for timeline event date"
+  },
+  "componentFieldDescription": "Descrición",
+  "@componentFieldDescription": {
+    "description": "Form field label for item description"
+  },
+  "componentFieldEquation": "Ecuación",
+  "@componentFieldEquation": {
+    "description": "Form field label for formula equation"
+  },
+  "componentFieldSubtitle": "Subtítulo",
+  "@componentFieldSubtitle": {
+    "description": "Form field label for subtitle"
+  },
+  "componentFieldAuthor": "Autor",
+  "@componentFieldAuthor": {
+    "description": "Form field label for quote author"
+  },
+  "componentFieldPros": "Pros",
+  "@componentFieldPros": {
+    "description": "Form section label for pros list"
+  },
+  "componentFieldEquationLabel": "Etiqueta da ecuación",
+  "@componentFieldEquationLabel": {
+    "description": "Form field label for formula equation label"
+  },
+  "componentTypeIconCards": "Tarxetas de iconas",
+  "@componentTypeIconCards": {
+    "description": "Display name for the iconCards component type"
+  },
+  "componentFieldItems": "Elementos",
+  "@componentFieldItems": {
+    "description": "Form section label for a list of items"
+  },
+  "componentFieldPro": "Pro",
+  "@componentFieldPro": {
+    "description": "Form field label for a single pro item"
+  },
+  "componentFieldColumn": "Columna",
+  "@componentFieldColumn": {
+    "description": "Form field label for a single table column"
+  },
+  "componentFieldLabel": "Etiqueta",
+  "@componentFieldLabel": {
+    "description": "Form field label for a row label in comparison table"
+  },
+  "componentFieldCons": "Cons",
+  "@componentFieldCons": {
+    "description": "Form section label for cons list"
+  },
+  "componentFieldRows": "Filas",
+  "@componentFieldRows": {
+    "description": "Form section label for table rows"
+  },
+  "componentFieldCards": "Tarxetas",
+  "@componentFieldCards": {
+    "description": "Form section label for icon cards"
+  },
+  "componentFieldConcept": "Concepto",
+  "@componentFieldConcept": {
+    "description": "Form field label for a single concept item"
+  },
+  "componentFieldOptional": "opcional",
+  "@componentFieldOptional": {
+    "description": "Label shown next to optional form fields"
+  },
+  "componentFieldRow": "Fila",
+  "@componentFieldRow": {
+    "description": "Form field label for a single table row"
+  },
+  "componentFieldColumns": "Columnas",
+  "@componentFieldColumns": {
+    "description": "Form section label for table columns"
+  },
+  "componentFieldAdd": "Engadir {item}",
+  "@componentFieldAdd": {
+    "description": "Button label to add a new item to a list",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "componentFieldCon": "Con",
+  "@componentFieldCon": {
+    "description": "Form field label for a single con item"
+  },
+  "addComponentTitle": "Engadir compoñente",
+  "@addComponentTitle": {
+    "description": "Title for the Add Component picker screen"
+  },
+  "addComponentsWithAI": "Engadir compoñentes con IA",
+  "@addComponentsWithAI": {
+    "description": "Button label to add study components using AI"
   }
 }

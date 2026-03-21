@@ -53,6 +53,27 @@ class AppTheme {
   static const Color violet500 = Color(0xFF8B5CF6); // primaryColor
   static const Color violet900 = Color(0xFF4C1D95);
 
+  static const Color purple400 = Color(0xFFC084FC);
+
+  static const Color blue400 = Color(0xFF60A5FA);
+
+  static const Color sky400 = Color(0xFF38BDF8);
+
+  static const Color teal300 = Color(0xFF5EEAD4);
+
+  static const Color emerald400 = Color(0xFF34D399);
+
+  static const Color amber400 = Color(0xFFFBBF24);
+
+  /// Semi-transparent white used for icon containers on primary-color app bars.
+  static const Color appBarIconBackground = Color(0x33FFFFFF);
+
+  /// Selected component card background in dark mode.
+  static const Color selectedCardDark = Color(0xFF2D2040);
+
+  /// Selected component card background in light mode.
+  static const Color selectedCardLight = Color(0xFFF3EEFF);
+
   static const Color shadowColor = Colors.black;
   static const Color transparent = Colors.transparent;
 

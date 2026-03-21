@@ -17,7 +17,7 @@ import 'dart:convert';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/ai/gemini_service.dart';
-import 'package:quizdy/domain/models/quiz/page.dart';
+import 'package:quizdy/domain/models/quiz/study_page.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
@@ -105,7 +105,7 @@ class AiJitProcessingService {
       return chunk.copyWith(
         status: StudyChunkState.downloaded,
         aiSummary: parsedData['aiSummary'] as String?,
-        pages: parsedData['pages'] as List<Page>?,
+        pages: parsedData['pages'] as List<StudyPage>?,
       );
     } catch (e) {
       if (e is FormatException) {
@@ -232,14 +232,14 @@ Analyzing document range: Pages $startPage to $endPage.
       }
 
       final summary = decoded['ai_summary'] as String?;
-      List<Page>? pages;
+      List<StudyPage>? pages;
 
       // Check both pages (issue #221) and slides (legacy)
       final pagesList =
           (decoded['pages'] ?? decoded['slides']) as List<dynamic>?;
       if (pagesList != null) {
         pages = pagesList
-            .map((s) => Page.fromJson(s as Map<String, dynamic>))
+            .map((s) => StudyPage.fromJson(s as Map<String, dynamic>))
             .toList();
       }
 

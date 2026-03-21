@@ -15,12 +15,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:quizdy/domain/models/quiz/ui_element.dart';
+import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class NumberedListComponent extends StatelessWidget {
-  final UiElement element;
+  final StudyComponent element;
 
   const NumberedListComponent({super.key, required this.element});
 

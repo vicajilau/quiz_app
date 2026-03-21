@@ -2411,5 +2411,236 @@
   "supportDescription": "فتح مشكلات GitHub مع تفاصيل التطبيق والمنصة",
   "@supportDescription": {
     "description": "Description for the support action in settings"
+  },
+  "studyEditorToggleEdit": "تحرير المحتوى",
+  "studyEditorExitEdit": "الخروج من وضع التحرير",
+  "studyEditorPages": "الصفحات",
+  "studyEditorEmptyPages": "لا توجد صفحات بعد. اضغط على + لإضافة واحدة.",
+  "studyEditorComponents": "عناصر",
+  "studyEditorEmptyComponents": "لا توجد مكونات في هذه الصفحة.",
+  "studyEditorSaveChanges": "حفظ التغييرات",
+  "studyEditorEditParagraph": "تحرير الفقرة",
+  "studyEditorFieldTitle": "العنوان (اختياري)",
+  "studyEditorFieldBody": "نص الجسم",
+  "studyEditorAddPage": "إضافة صفحة",
+  "studyEditorDeletePage": "حذف الصفحة",
+  "studyEditorEditName": "تحرير {name}",
+  "studyEditorPageN": "الصفحة {n}",
+  "componentTypeSectionTitle": "عنوان القسم",
+  "@componentTypeSectionTitle": {
+    "description": "Display name for the sectionTitle component type"
+  },
+  "componentTypeParagraph": "فقرة",
+  "@componentTypeParagraph": {
+    "description": "Display name for the paragraph component type"
+  },
+  "componentTypeKeyDefinition": "تعريف المفتاح",
+  "@componentTypeKeyDefinition": {
+    "description": "Display name for the keyDefinition component type"
+  },
+  "componentTypeNumberedList": "قائمة مرقمة",
+  "@componentTypeNumberedList": {
+    "description": "Display name for the numberedList component type"
+  },
+  "componentTypeComparisonTable": "جدول المقارنة",
+  "@componentTypeComparisonTable": {
+    "description": "Display name for the comparisonTable component type"
+  },
+  "componentTypeQuote": "يقتبس",
+  "@componentTypeQuote": {
+    "description": "Display name for the quote component type"
+  },
+  "componentTypeWarning": "تحذير",
+  "@componentTypeWarning": {
+    "description": "Display name for the warning component type"
+  },
+  "componentTypeFormula": "صيغة",
+  "@componentTypeFormula": {
+    "description": "Display name for the formula component type"
+  },
+  "componentTypeTimeline": "الجدول الزمني",
+  "@componentTypeTimeline": {
+    "description": "Display name for the timeline component type"
+  },
+  "componentTypeProsCons": "إيجابيات وسلبيات",
+  "@componentTypeProsCons": {
+    "description": "Display name for the prosCons component type"
+  },
+  "componentTypeKeyConcepts": "المفاهيم الأساسية",
+  "@componentTypeKeyConcepts": {
+    "description": "Display name for the keyConcepts component type"
+  },
+  "componentTypeReminder": "تذكير",
+  "@componentTypeReminder": {
+    "description": "Display name for the reminder component type"
+  },
+  "componentTypeIconCards": "بطاقات الأيقونات",
+  "@componentTypeIconCards": {
+    "description": "Display name for the iconCards component type"
+  },
+  "componentFieldSubtitle": "الترجمة",
+  "@componentFieldSubtitle": {
+    "description": "Form field label for subtitle"
+  },
+  "componentFieldTerm": "شرط",
+  "@componentFieldTerm": {
+    "description": "Form field label for term (key definition)"
+  },
+  "componentFieldDefinition": "تعريف",
+  "@componentFieldDefinition": {
+    "description": "Form field label for definition"
+  },
+  "componentFieldQuote": "يقتبس",
+  "@componentFieldQuote": {
+    "description": "Form field label for quote text"
+  },
+  "componentFieldAuthor": "مؤلف",
+  "@componentFieldAuthor": {
+    "description": "Form field label for quote author"
+  },
+  "componentFieldEquation": "معادلة",
+  "@componentFieldEquation": {
+    "description": "Form field label for formula equation"
+  },
+  "componentFieldEquationLabel": "تسمية المعادلة",
+  "@componentFieldEquationLabel": {
+    "description": "Form field label for formula equation label"
+  },
+  "componentFieldExplanation": "توضيح",
+  "@componentFieldExplanation": {
+    "description": "Form field label for formula explanation"
+  },
+  "componentFieldItems": "أغراض",
+  "@componentFieldItems": {
+    "description": "Form section label for a list of items"
+  },
+  "componentFieldConcept": "مفهوم",
+  "@componentFieldConcept": {
+    "description": "Form field label for a single concept item"
+  },
+  "componentFieldEvents": "الأحداث",
+  "@componentFieldEvents": {
+    "description": "Form section label for timeline events"
+  },
+  "componentFieldDate": "تاريخ",
+  "@componentFieldDate": {
+    "description": "Form field label for timeline event date"
+  },
+  "componentFieldDescription": "وصف",
+  "@componentFieldDescription": {
+    "description": "Form field label for item description"
+  },
+  "componentFieldCards": "بطاقات",
+  "@componentFieldCards": {
+    "description": "Form section label for icon cards"
+  },
+  "componentFieldPros": "الايجابيات",
+  "@componentFieldPros": {
+    "description": "Form section label for pros list"
+  },
+  "componentFieldPro": "برو",
+  "@componentFieldPro": {
+    "description": "Form field label for a single pro item"
+  },
+  "componentFieldCons": "سلبيات",
+  "@componentFieldCons": {
+    "description": "Form section label for cons list"
+  },
+  "componentFieldCon": "يخدع",
+  "@componentFieldCon": {
+    "description": "Form field label for a single con item"
+  },
+  "componentFieldColumns": "أعمدة",
+  "@componentFieldColumns": {
+    "description": "Form section label for table columns"
+  },
+  "componentFieldColumn": "عمود",
+  "@componentFieldColumn": {
+    "description": "Form field label for a single table column"
+  },
+  "componentFieldRows": "الصفوف",
+  "@componentFieldRows": {
+    "description": "Form section label for table rows"
+  },
+  "componentFieldRow": "صف",
+  "@componentFieldRow": {
+    "description": "Form field label for a single table row"
+  },
+  "componentFieldLabel": "ملصق",
+  "@componentFieldLabel": {
+    "description": "Form field label for a row label in comparison table"
+  },
+  "componentFieldAdd": "إضافة {item}",
+  "@componentFieldAdd": {
+    "description": "Button label to add a new item to a list",
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "componentFieldOptional": "خياري",
+  "@componentFieldOptional": {
+    "description": "Label shown next to optional form fields"
+  },
+  "addComponentTitle": "إضافة مكون",
+  "@addComponentTitle": {
+    "description": "Title for the Add Component picker screen"
+  },
+  "@studyEditorComponents": {
+    "description": "Section header for the list of components in the component editor"
+  },
+  "@studyEditorPages": {
+    "description": "Section header for the list of pages in the section page manager"
+  },
+  "@studyEditorSaveChanges": {
+    "description": "Button label to save edited component properties"
+  },
+  "@studyEditorExitEdit": {
+    "description": "Tooltip for the FAB button that disables study content edit mode"
+  },
+  "@studyEditorEmptyComponents": {
+    "description": "Empty state message in the component editor"
+  },
+  "@studyEditorFieldTitle": {
+    "description": "Label for the optional title field in component editors"
+  },
+  "@studyEditorToggleEdit": {
+    "description": "Tooltip for the FAB button that enables study content edit mode"
+  },
+  "@studyEditorEmptyPages": {
+    "description": "Empty state message in the section page manager"
+  },
+  "@studyEditorFieldBody": {
+    "description": "Label for the main body text field in component editors"
+  },
+  "@studyEditorDeletePage": {
+    "description": "Button label to delete a page from a section"
+  },
+  "@studyEditorAddPage": {
+    "description": "Button label to add a new page to a section"
+  },
+  "@studyEditorEditName": {
+    "description": "Navigation header title: Edit [section name]",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@studyEditorEditParagraph": {
+    "description": "Navigation header title for the paragraph property panel"
+  },
+  "@studyEditorPageN": {
+    "description": "Label for page number n in the section page manager",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "addComponentsWithAI": "إضافة مكونات بالذكاء الاصطناعي",
+  "@addComponentsWithAI": {
+    "description": "Button label to add study components using AI"
   }
 }
