@@ -6,6 +6,7 @@
   <img src="https://github.com/vicajilau/quizdy/actions/workflows/flutter_workflow.yml/badge.svg" alt="CI Status">
   <img src="https://github.com/vicajilau/quizdy/actions/workflows/deploy_web.yml/badge.svg" alt="Web CD Status">
   <img src="https://github.com/vicajilau/quizdy/actions/workflows/publish_android.yml/badge.svg" alt="Android CD Status">
+  <img src="https://github.com/vicajilau/quizdy/actions/workflows/publish_appgallery.yml/badge.svg" alt="AppGallery CD Status">
   <img src="https://github.com/vicajilau/quizdy/actions/workflows/publish_ios.yml/badge.svg" alt="iOS CD Status">
   <img src="https://github.com/vicajilau/quizdy/actions/workflows/publish_macos.yml/badge.svg" alt="macOS CD Status">
   <img src="https://github.com/vicajilau/quizdy/actions/workflows/publish_microsoft_store.yml/badge.svg" alt="Windows Store CD Status">
@@ -18,6 +19,7 @@ Quizdy is a cross-platform quiz and study app built with Flutter. It combines AI
 
 - Web: [vicajilau.github.io/quizdy](https://vicajilau.github.io/quizdy/)
 - Android: [Google Play Store](https://play.google.com/store/apps/details?id=es.victorcarreras.quiz_app)
+- Huawei: [AppGallery](https://appgallery.huawei.com/app/C117142053)
 - iOS: [App Store](https://apps.apple.com/app/quiz-appl/id6758663432)
 - macOS: [Mac App Store](https://apps.apple.com/app/quiz-appl/id6758663432)
 - Windows: [Microsoft Store](https://apps.microsoft.com/store/detail/9P77H0WRJSM2?cid=DevShareMCLPCS)
