@@ -21,6 +21,7 @@ import 'package:quizdy/domain/models/quiz/study_page.dart';
 import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_cubit.dart';
 import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_state.dart';
 import 'package:quizdy/presentation/screens/study_editor/component_editor_screen.dart';
+import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 
 /// Manages the list of pages within a study section (chunk).
@@ -80,13 +81,18 @@ class SectionPageManagerScreen extends StatelessWidget {
         final pages = chunk.pages;
 
         return Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(LucideIcons.arrowLeft),
-              onPressed: () => Navigator.of(context).pop(),
+          appBar: QuizdyAppBar(
+            onLeadingPressed: () => Navigator.of(context).pop(),
+            title: Text(
+              localizations.studyEditorEditName(chunk.title),
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onPrimary,
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'Plus Jakarta Sans',
+              ),
+              overflow: TextOverflow.ellipsis,
             ),
-            title: Text(localizations.studyEditorEditName(chunk.title)),
-            elevation: 0,
           ),
           body: pages.isEmpty
               ? Center(child: Text(localizations.studyEditorEmptyPages))
