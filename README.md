@@ -19,7 +19,7 @@ Quizdy is a cross-platform quiz and study app built with Flutter. It combines AI
 
 - Web: [vicajilau.github.io/quizdy](https://vicajilau.github.io/quizdy/)
 - Android: [Google Play Store](https://play.google.com/store/apps/details?id=es.victorcarreras.quiz_app)
-- Huawei: [App Gallery](https://play.google.com/store/apps/details?id=es.victorcarreras.quiz_app)
+- Huawei: [AppGallery](https://appgallery.huawei.com/app/C117142053)
 - iOS: [App Store](https://apps.apple.com/app/quiz-appl/id6758663432)
 - macOS: [Mac App Store](https://apps.apple.com/app/quiz-appl/id6758663432)
 - Windows: [Microsoft Store](https://apps.microsoft.com/store/detail/9P77H0WRJSM2?cid=DevShareMCLPCS)
