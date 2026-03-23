@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat: Added individual component edit forms that open immediately upon selecting a component type or tapping an existing card.
 - ui: Improved Study Editor navigation with a redesigned app bar showing the chapter name and consistent back/close behavior across mobile and desktop.
 - ux: Added unsaved changes confirmation dialog when leaving the component editor without saving.
+- feat: Added multi-selection mode to the component editor, allowing bulk delete and drag-to-reorder of multiple components at once.
 
 ## [1.10.0] -2026-03-17
 
