@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -23,6 +24,7 @@ import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_cubit.dart';
 import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_state.dart';
+import 'package:quizdy/presentation/screens/dialogs/exit_confirmation_dialog.dart';
 import 'package:quizdy/presentation/screens/study_editor/add_component_sheet.dart';
 import 'package:quizdy/presentation/screens/study_editor/component_card.dart';
 import 'package:quizdy/presentation/screens/study_editor/component_edit_sidebar.dart';
@@ -51,6 +53,7 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
   int? _editingIndex;
   bool _isSidebarMounted = false;
   bool _isAddCompMounted = false;
+  late List<StudyComponent> _initialComponents;
 
   late final AnimationController _slideController;
   late final Animation<Offset> _slideAnimation;
@@ -66,6 +69,15 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
       begin: const Offset(1, 0),
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _slideController, curve: Curves.linear));
+
+    _initialComponents = List<StudyComponent>.from(
+      context
+          .read<StudyEditorCubit>()
+          .state
+          .chunks[widget.chunkIndex]
+          .pages[widget.pageIndex]
+          .uiElements,
+    );
   }
 
   @override
@@ -103,6 +115,27 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
     _slideController.reverse().then((_) {
       if (mounted) setState(() => _isAddCompMounted = false);
     });
+  }
+
+  bool _hasChanges(StudyEditorState state) {
+    final current =
+        state.chunks[widget.chunkIndex].pages[widget.pageIndex].uiElements;
+    return !const ListEquality<StudyComponent>().equals(
+      current,
+      _initialComponents,
+    );
+  }
+
+  Future<void> _confirmBack(BuildContext context) async {
+    final state = context.read<StudyEditorCubit>().state;
+    if (_hasChanges(state)) {
+      final confirmed = await showDialog<bool>(
+        context: context,
+        builder: (_) => const ExitConfirmationDialog(),
+      );
+      if (confirmed != true || !context.mounted) return;
+    }
+    if (context.mounted) context.pop(false);
   }
 
   void _selectComponentType(BuildContext context, StudyComponentType type) {
@@ -219,7 +252,7 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
           appBar: showMobileOverlay
               ? null
               : QuizdyAppBar(
-                  onLeadingPressed: () => context.pop(false),
+                  onLeadingPressed: () => _confirmBack(context),
                   title: Text(
                     chunk.title,
                     style: TextStyle(
