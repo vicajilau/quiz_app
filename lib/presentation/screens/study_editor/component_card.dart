@@ -18,6 +18,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/extensions/study_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
+import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/presentation/screens/widgets/study/components/study_component_builder.dart';
 
@@ -32,6 +33,15 @@ class ComponentCard extends StatelessWidget {
   final VoidCallback onMoveUp;
   final VoidCallback onMoveDown;
 
+  /// Whether the list is in multi-selection mode.
+  final bool isInSelectionMode;
+
+  /// Whether this card is checked in multi-selection mode.
+  final bool isChecked;
+
+  /// Called when the card is tapped in multi-selection mode.
+  final VoidCallback? onToggleSelect;
+
   const ComponentCard({
     super.key,
     required this.element,
@@ -43,26 +53,29 @@ class ComponentCard extends StatelessWidget {
     required this.onDuplicate,
     required this.onMoveUp,
     required this.onMoveDown,
+    this.isInSelectionMode = false,
+    this.isChecked = false,
+    this.onToggleSelect,
   });
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
+    final effectiveSelected = isInSelectionMode ? isChecked : isSelected;
     final cardBg = isDark
-        ? (isSelected ? AppTheme.selectedCardDark : AppTheme.zinc800)
-        : (isSelected ? AppTheme.selectedCardLight : Colors.white);
-    final borderColor = isSelected
+        ? (effectiveSelected ? AppTheme.selectedCardDark : AppTheme.zinc800)
+        : (effectiveSelected ? AppTheme.selectedCardLight : Colors.white);
+    final borderColor = effectiveSelected
         ? AppTheme.primaryColor
         : (isDark ? AppTheme.zinc700 : AppTheme.zinc200);
-    final borderWidth = isSelected ? 2.0 : 1.0;
+    final borderWidth = effectiveSelected ? 2.0 : 1.0;
 
-    final pencilColor = AppTheme.violet400;
     final chevronColor = AppTheme.zinc400;
     final disabledColor = isDark ? AppTheme.zinc800 : AppTheme.zinc300;
 
     return GestureDetector(
-      onTap: onEdit,
+      onTap: isInSelectionMode ? onToggleSelect : onEdit,
       child: Container(
         margin: const EdgeInsets.only(bottom: 12),
         decoration: BoxDecoration(
@@ -76,93 +89,121 @@ class ComponentCard extends StatelessWidget {
           children: [
             // ── Header row ───────────────────────────────────────────────────
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                if (isInSelectionMode) ...[
+                  Icon(
+                    isChecked ? Icons.check_box : Icons.check_box_outline_blank,
+                    color: isChecked ? AppTheme.primaryColor : chevronColor,
+                    size: 22,
+                  ),
+                  const SizedBox(width: 10),
+                ],
                 _ComponentTypeChip(
                   type: element.componentType,
                   isSelected: true,
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // Edit (pencil)
-                    IconButton(
-                      onPressed: onEdit,
-                      icon: Icon(
-                        LucideIcons.pencil,
-                        size: 18,
-                        color: pencilColor,
-                      ),
-                      padding: const EdgeInsets.all(6),
-                      constraints: const BoxConstraints(
-                        minWidth: 36,
-                        minHeight: 36,
-                      ),
+                const Spacer(),
+                if (isInSelectionMode)
+                  ReorderableDragStartListener(
+                    index: index,
+                    child: Icon(
+                      Icons.drag_handle,
+                      color: chevronColor,
+                      size: 20,
                     ),
-                    const SizedBox(width: 4),
-                    // Duplicate
-                    IconButton(
-                      onPressed: onDuplicate,
-                      icon: Icon(
-                        LucideIcons.copy,
-                        size: 18,
-                        color: chevronColor,
+                  )
+                else
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Edit (pencil)
+                      Container(
+                        width: 32,
+                        height: 32,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context)
+                              .extension<CustomColors>()!
+                              .info!
+                              .withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: IconButton(
+                          icon: Icon(
+                            LucideIcons.pencil,
+                            size: 16,
+                            color: Theme.of(
+                              context,
+                            ).extension<CustomColors>()!.info!,
+                          ),
+                          padding: EdgeInsets.zero,
+                          onPressed: onEdit,
+                          tooltip: AppLocalizations.of(context)!.edit,
+                        ),
                       ),
-                      padding: const EdgeInsets.all(6),
-                      constraints: const BoxConstraints(
-                        minWidth: 36,
-                        minHeight: 36,
+                      const SizedBox(width: 4),
+                      // Duplicate
+                      IconButton(
+                        onPressed: onDuplicate,
+                        icon: Icon(
+                          LucideIcons.copy,
+                          size: 18,
+                          color: chevronColor,
+                        ),
+                        padding: const EdgeInsets.all(6),
+                        constraints: const BoxConstraints(
+                          minWidth: 36,
+                          minHeight: 36,
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 4),
-                    // Move up
-                    IconButton(
-                      onPressed: index > 0 ? onMoveUp : null,
-                      icon: Icon(
-                        LucideIcons.chevronUp,
-                        size: 18,
-                        color: index > 0 ? chevronColor : disabledColor,
+                      const SizedBox(width: 4),
+                      // Move up
+                      IconButton(
+                        onPressed: index > 0 ? onMoveUp : null,
+                        icon: Icon(
+                          LucideIcons.chevronUp,
+                          size: 18,
+                          color: index > 0 ? chevronColor : disabledColor,
+                        ),
+                        padding: const EdgeInsets.all(6),
+                        constraints: const BoxConstraints(
+                          minWidth: 36,
+                          minHeight: 36,
+                        ),
                       ),
-                      padding: const EdgeInsets.all(6),
-                      constraints: const BoxConstraints(
-                        minWidth: 36,
-                        minHeight: 36,
+                      const SizedBox(width: 4),
+                      // Move down
+                      IconButton(
+                        onPressed: index < totalCount - 1 ? onMoveDown : null,
+                        icon: Icon(
+                          LucideIcons.chevronDown,
+                          size: 18,
+                          color: index < totalCount - 1
+                              ? chevronColor
+                              : disabledColor,
+                        ),
+                        padding: const EdgeInsets.all(6),
+                        constraints: const BoxConstraints(
+                          minWidth: 36,
+                          minHeight: 36,
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 4),
-                    // Move down
-                    IconButton(
-                      onPressed: index < totalCount - 1 ? onMoveDown : null,
-                      icon: Icon(
-                        LucideIcons.chevronDown,
-                        size: 18,
-                        color: index < totalCount - 1
-                            ? chevronColor
-                            : disabledColor,
+                      const SizedBox(width: 4),
+                      // Delete
+                      IconButton(
+                        onPressed: onDelete,
+                        icon: const Icon(
+                          LucideIcons.trash2,
+                          size: 18,
+                          color: AppTheme.errorColor,
+                        ),
+                        padding: const EdgeInsets.all(6),
+                        constraints: const BoxConstraints(
+                          minWidth: 36,
+                          minHeight: 36,
+                        ),
                       ),
-                      padding: const EdgeInsets.all(6),
-                      constraints: const BoxConstraints(
-                        minWidth: 36,
-                        minHeight: 36,
-                      ),
-                    ),
-                    const SizedBox(width: 4),
-                    // Delete
-                    IconButton(
-                      onPressed: onDelete,
-                      icon: const Icon(
-                        LucideIcons.trash2,
-                        size: 18,
-                        color: AppTheme.errorColor,
-                      ),
-                      padding: const EdgeInsets.all(6),
-                      constraints: const BoxConstraints(
-                        minWidth: 36,
-                        minHeight: 36,
-                      ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
               ],
             ),
             const SizedBox(height: 10),

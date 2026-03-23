@@ -375,6 +375,66 @@ class StudyEditorCubit extends Cubit<StudyEditorState> {
     );
   }
 
+  /// Deletes all components whose indices are listed in [indices] from the page
+  /// at [pageIndex] within the section at [chunkIndex].
+  void deleteComponents(int chunkIndex, int pageIndex, List<int> indices) {
+    if (indices.isEmpty || !_isValidPageRef(chunkIndex, pageIndex)) return;
+    final sortedDesc = indices.toList()..sort((a, b) => b.compareTo(a));
+    final updatedChunks = _withUpdatedPage(chunkIndex, pageIndex, (page) {
+      final elements = List<StudyComponent>.from(page.uiElements);
+      for (final idx in sortedDesc) {
+        if (idx >= 0 && idx < elements.length) elements.removeAt(idx);
+      }
+      return page.copyWith(uiElements: elements);
+    });
+
+    emit(
+      state.copyWith(
+        chunks: updatedChunks,
+        hasUnsavedChanges: true,
+        clearError: true,
+        clearSelectedComponent: true,
+      ),
+    );
+  }
+
+  /// Moves the components at [fromIndices] to [targetIndex] (insert-before
+  /// position in the original list) on the page at [pageIndex] within the
+  /// section at [chunkIndex].
+  void moveComponents(
+    int chunkIndex,
+    int pageIndex,
+    List<int> fromIndices,
+    int targetIndex,
+  ) {
+    if (fromIndices.isEmpty || !_isValidPageRef(chunkIndex, pageIndex)) return;
+    final sortedFrom = fromIndices.toList()..sort();
+    final updatedChunks = _withUpdatedPage(chunkIndex, pageIndex, (page) {
+      final elements = List<StudyComponent>.from(page.uiElements);
+      final selected = sortedFrom.map((i) => elements[i]).toList();
+
+      // Remove selected elements (highest index first to preserve order).
+      for (final idx in sortedFrom.reversed) {
+        elements.removeAt(idx);
+      }
+
+      // Adjust target: each removed index below targetIndex shifts it left by 1.
+      final offset = sortedFrom.where((i) => i < targetIndex).length;
+      final insertAt = (targetIndex - offset).clamp(0, elements.length);
+      elements.insertAll(insertAt, selected);
+
+      return page.copyWith(uiElements: elements);
+    });
+
+    emit(
+      state.copyWith(
+        chunks: updatedChunks,
+        hasUnsavedChanges: true,
+        clearError: true,
+      ),
+    );
+  }
+
   /// Reorders components on the page at [pageIndex] within the section at
   /// [chunkIndex].
   void reorderComponents(
