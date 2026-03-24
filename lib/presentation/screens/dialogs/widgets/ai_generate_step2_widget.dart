@@ -32,7 +32,9 @@ import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
+import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_chunk_selector_widget.dart';
+import 'package:quizdy/presentation/screens/dialogs/widgets/ai_component_type_selector_widget.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_questions_selector_widget.dart';
 import 'package:quizdy/presentation/widgets/dialog_drop_zone.dart';
 import 'package:quizdy/presentation/widgets/components/ai_content_input_zone.dart';
@@ -111,8 +113,10 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
   bool _isDragging = false;
   bool _chunkSelectorEnabled = false;
   bool _questionSelectorEnabled = false;
+  bool _componentTypeSelectorEnabled = false;
   late Set<int> _selectedChunkIndices;
   late Set<int> _selectedQuestionIndices;
+  late Set<StudyComponentType> _selectedComponentTypes;
 
   @override
   void initState() {
@@ -136,6 +140,8 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
     } else {
       _selectedQuestionIndices = {};
     }
+
+    _selectedComponentTypes = {};
   }
 
   @override
@@ -185,6 +191,9 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
   }
 
   bool _isGenerateEnabled() {
+    if (_componentTypeSelectorEnabled && _selectedComponentTypes.isEmpty) {
+      return false;
+    }
     if (_questionSelectorEnabled) {
       return _selectedQuestionIndices.isNotEmpty;
     }
@@ -327,6 +336,24 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                         ),
                         const SizedBox(height: 24),
                       ],
+                      if (widget.isStudyMode) ...[
+                        AiComponentTypeSelectorWidget(
+                          enabled: _componentTypeSelectorEnabled,
+                          selectedTypes: _selectedComponentTypes,
+                          onToggle: (value) =>
+                              setState(() => _componentTypeSelectorEnabled = value),
+                          onTypeToggled: (type) {
+                            setState(() {
+                              if (_selectedComponentTypes.contains(type)) {
+                                _selectedComponentTypes.remove(type);
+                              } else {
+                                _selectedComponentTypes.add(type);
+                              }
+                            });
+                          },
+                        ),
+                        const SizedBox(height: 24),
+                      ],
                       if (!_chunkSelectorEnabled &&
                           !_questionSelectorEnabled) ...[
                         // Input Area
@@ -452,6 +479,11 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                                   widget.isAutoDifficulty
                                                   ? null
                                                   : widget.selectedDifficulty,
+                                              allowedComponentTypes:
+                                                  _componentTypeSelectorEnabled
+                                                  ? _selectedComponentTypes
+                                                        .toList()
+                                                  : null,
                                             )
                                           : AiQuestionGenerationConfig(
                                               questionCount:
@@ -504,6 +536,10 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                             ? null
                                             : widget.selectedDifficulty,
                                         selectedQuestions: selectedQuestions,
+                                        allowedComponentTypes:
+                                            _componentTypeSelectorEnabled
+                                            ? _selectedComponentTypes.toList()
+                                            : null,
                                       );
                                       widget.onGenerate(config);
                                     } else {
@@ -530,6 +566,11 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                                   widget.isAutoDifficulty
                                                   ? null
                                                   : widget.selectedDifficulty,
+                                              allowedComponentTypes:
+                                                  _componentTypeSelectorEnabled
+                                                  ? _selectedComponentTypes
+                                                        .toList()
+                                                  : null,
                                             )
                                           : AiQuestionGenerationConfig(
                                               questionCount:
