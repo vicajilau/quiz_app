@@ -121,7 +121,7 @@ class AddComponentSheet extends StatelessWidget {
         crossAxisCount: 3,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
-        mainAxisExtent: 100,
+        mainAxisExtent: 125,
       ),
       itemCount: types.length,
       itemBuilder: (context, index) {
@@ -179,35 +179,37 @@ class AddComponentSheet extends StatelessWidget {
     }
 
     // Mobile full-screen
-    return Column(
-      children: [
-        Container(
-          height: 52,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            children: [
-              GestureDetector(
-                onTap: onClose,
-                child: Icon(
-                  LucideIcons.chevronLeft,
-                  size: 22,
-                  color: isDark ? AppTheme.zinc400 : AppTheme.zinc500,
+    return SafeArea(
+      child: Column(
+        children: [
+          Container(
+            height: 52,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: onClose,
+                  child: Icon(
+                    LucideIcons.chevronLeft,
+                    size: 22,
+                    color: isDark ? AppTheme.zinc400 : AppTheme.zinc500,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 10),
-              Text(
-                l.addComponentTitle,
-                style: const TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700,
+                const SizedBox(width: 10),
+                Text(
+                  l.addComponentTitle,
+                  style: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        Divider(color: dividerColor, height: 1, thickness: 1),
-        Expanded(child: grid),
-      ],
+          Divider(color: dividerColor, height: 1, thickness: 1),
+          Expanded(child: grid),
+        ],
+      ),
     );
   }
 }
