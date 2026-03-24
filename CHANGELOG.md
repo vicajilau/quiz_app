@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.11.0]
 
+- ux: Renamed "Study Mode" button on home screen to "Generate Study with AI" for better clarity, adding the new localization key across all 18 supported languages.
 - feat: Added component type filter to the AI study generation dialog, allowing users to select which of the 13 component types the AI should use when generating study content from the component editor.
 - feat: Added a new Privacy Policy acceptance screen shown before entering the app.
 - feat: Added Study Editor with support for 13 component types, including section titles, paragraphs, key definitions, timelines, comparison tables, and more.
