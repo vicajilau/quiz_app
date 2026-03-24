@@ -496,7 +496,7 @@ Rules:
 
     String difficultyInstruction = '';
     if (!config.isAutoDifficulty && config.difficultyLevel != null) {
-      final levelName = _getDifficultyName(config.difficultyLevel!, localizations);
+      final levelName = config.difficultyLevel!.localizedName(localizations);
       difficultyInstruction =
           '\nIMPORTANT: The content MUST be adapted to a $levelName difficulty level.';
     } else if (config.isAutoDifficulty) {
@@ -555,26 +555,6 @@ $contentHeader
       return response.substring(firstBracket, lastBracket + 1).trim();
     }
     return response.trim();
-  }
-
-  String _getDifficultyName(
-    AiDifficultyLevel difficulty,
-    AppLocalizations localizations,
-  ) {
-    switch (difficulty) {
-      case AiDifficultyLevel.elementary:
-        return localizations.aiDifficultyElementary;
-      case AiDifficultyLevel.highSchool:
-        return localizations.aiDifficultyHighSchool;
-      case AiDifficultyLevel.bachelors:
-        return localizations.aiDifficultyBachelors;
-      case AiDifficultyLevel.university:
-        return localizations.aiDifficultyUniversity;
-      case AiDifficultyLevel.masters:
-        return localizations.aiDifficultyMasters;
-      case AiDifficultyLevel.doctorate:
-        return localizations.aiDifficultyDoctorate;
-    }
   }
 
   String _buildSelectedQuestionsContent(List<Question> questions) {
