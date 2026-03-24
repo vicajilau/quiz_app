@@ -928,5 +928,9 @@
   "aiSelectComponentTypesSubtitle": "생성된 학습 콘텐츠에 포함할 구성 요소 유형을 필터링하려면 활성화하세요",
   "@aiSelectComponentTypesSubtitle": {
     "description": "Subtitle for the component type filter in AI study generation"
+  },
+  "aiComponentsGeneratedSuccess": "콘텐츠가 성공적으로 생성되었습니다",
+  "@aiComponentsGeneratedSuccess": {
+    "description": "Snackbar message shown when AI component generation completes successfully"
   }
 }

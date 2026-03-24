@@ -2288,5 +2288,9 @@
   "aiSelectComponentTypesSubtitle": "启用以过滤要包含在生成的学习内容中的组件类型",
   "@aiSelectComponentTypesSubtitle": {
     "description": "Subtitle for the component type filter in AI study generation"
+  },
+  "aiComponentsGeneratedSuccess": "内容生成成功",
+  "@aiComponentsGeneratedSuccess": {
+    "description": "Snackbar message shown when AI component generation completes successfully"
   }
 }

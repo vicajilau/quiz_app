@@ -961,5 +961,9 @@
   "aiSelectComponentTypesSubtitle": "Увімкніть, щоб відфільтрувати, які типи компонентів будуть включені до згенерованого навчального контенту",
   "@aiSelectComponentTypesSubtitle": {
     "description": "Subtitle for the component type filter in AI study generation"
+  },
+  "aiComponentsGeneratedSuccess": "Контент успішно згенеровано",
+  "@aiComponentsGeneratedSuccess": {
+    "description": "Snackbar message shown when AI component generation completes successfully"
   }
 }

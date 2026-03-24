@@ -928,5 +928,9 @@
   "aiSelectComponentTypesSubtitle": "ჩართეთ, რათა გაფილტროთ, რომელი კომპონენტის ტიპები ჩაირთოს გენერირებულ სასწავლო შინაარსში",
   "@aiSelectComponentTypesSubtitle": {
     "description": "Subtitle for the component type filter in AI study generation"
+  },
+  "aiComponentsGeneratedSuccess": "კონტენტი წარმატებით შეიქმნა",
+  "@aiComponentsGeneratedSuccess": {
+    "description": "Snackbar message shown when AI component generation completes successfully"
   }
 }

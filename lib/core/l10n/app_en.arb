@@ -1344,6 +1344,10 @@
   "@aiSelectComponentTypesSubtitle": {
     "description": "Subtitle for the component type filter in AI study generation"
   },
+  "aiComponentsGeneratedSuccess": "Content generated successfully",
+  "@aiComponentsGeneratedSuccess": {
+    "description": "Snackbar message shown when AI component generation completes successfully"
+  },
   "aiContentFieldHint": "Enter a topic like \"World War II history\" or paste text content here...",
   "@aiContentFieldHint": {
     "description": "Hint text for the content input field"

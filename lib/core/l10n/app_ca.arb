@@ -2338,5 +2338,9 @@
   "aiSelectComponentTypesSubtitle": "Activa-ho per filtrar quins tipus de components s'inclouran al contingut d'estudi generat",
   "@aiSelectComponentTypesSubtitle": {
     "description": "Subtitle for the component type filter in AI study generation"
+  },
+  "aiComponentsGeneratedSuccess": "Contingut generat correctament",
+  "@aiComponentsGeneratedSuccess": {
+    "description": "Snackbar message shown when AI component generation completes successfully"
   }
 }

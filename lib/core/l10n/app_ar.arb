@@ -2650,5 +2650,9 @@
   "aiSelectComponentTypesSubtitle": "تمكين التصفية لتحديد أنواع المكونات التي سيتم تضمينها في محتوى الدراسة المنشأ",
   "@aiSelectComponentTypesSubtitle": {
     "description": "Subtitle for the component type filter in AI study generation"
+  },
+  "aiComponentsGeneratedSuccess": "تم إنشاء المحتوى بنجاح",
+  "@aiComponentsGeneratedSuccess": {
+    "description": "Snackbar message shown when AI component generation completes successfully"
   }
 }

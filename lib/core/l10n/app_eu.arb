@@ -2236,5 +2236,9 @@
   "aiSelectComponentTypesSubtitle": "Gaitu sortutako ikasketa-edukian zein osagai mota sartuko diren iragazteko",
   "@aiSelectComponentTypesSubtitle": {
     "description": "Subtitle for the component type filter in AI study generation"
+  },
+  "aiComponentsGeneratedSuccess": "Edukia behar bezala sortu da",
+  "@aiComponentsGeneratedSuccess": {
+    "description": "Snackbar message shown when AI component generation completes successfully"
   }
 }
