@@ -17,6 +17,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:quizdy/routes/app_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:mime/mime.dart';
 import 'package:quizdy/core/context_extension.dart';
@@ -437,7 +439,28 @@ class _StudyScreenViewState extends State<StudyScreenView> {
             }
           },
         ),
-        appBar: StudyAppBar(onConfirmExit: _confirmExit),
+        appBar: StudyAppBar(
+          onConfirmExit: _confirmExit,
+          onEditCurrentChunk: () async {
+            final cubit = context.read<StudyEditorCubit>();
+            final bloc = context.read<StudyExecutionBloc>();
+            final chunkIndex = bloc.state.currentChunkIndex;
+            final snapshot = List.of(cubit.state.chunks);
+            final saved = await context.push<bool>(
+              AppRoutes.componentEditorScreen,
+              extra: {
+                'cubit': cubit,
+                'chunkIndex': chunkIndex,
+                'pageIndex': 0,
+              },
+            );
+            if (saved == true) {
+              bloc.add(StudyChunksUpdated(cubit.state.chunks));
+            } else {
+              cubit.resetToSnapshot(snapshot);
+            }
+          },
+        ),
         body: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
           buildWhen: (previous, current) =>
               previous.isIndexMode != current.isIndexMode,

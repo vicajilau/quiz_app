@@ -18,8 +18,11 @@ import 'package:go_router/go_router.dart';
 import 'package:quizdy/core/debug_print.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_cubit.dart';
 import 'package:quizdy/presentation/screens/quiz_loaded_screen.dart';
 import 'package:quizdy/presentation/screens/quiz_file_execution_screen.dart';
+import 'package:quizdy/presentation/screens/study_editor/component_editor_screen.dart';
 import 'package:quizdy/presentation/screens/study_screen.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
@@ -42,6 +45,7 @@ class AppRoutes {
   static const String fileLoadedScreen = '/quiz_loaded_screen';
   static const String quizFileExecutionScreen = '/quiz_file_execution_screen';
   static const String studyScreen = '/study_screen';
+  static const String componentEditorScreen = '/component_editor_screen';
 }
 
 GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
@@ -78,6 +82,22 @@ GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
       path: AppRoutes.quizFileExecutionScreen,
       builder: (context, state) =>
           QuizFileExecutionScreen(quizFile: ServiceLocator.getIt<QuizFile>()),
+    ),
+    GoRoute(
+      path: AppRoutes.componentEditorScreen,
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>;
+        final cubit = extra['cubit'] as StudyEditorCubit;
+        final chunkIndex = extra['chunkIndex'] as int;
+        final pageIndex = extra['pageIndex'] as int;
+        return BlocProvider.value(
+          value: cubit,
+          child: ComponentEditorScreen(
+            chunkIndex: chunkIndex,
+            pageIndex: pageIndex,
+          ),
+        );
+      },
     ),
     GoRoute(
       path: AppRoutes.studyScreen,
