@@ -15,6 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/extensions/study_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
@@ -101,6 +102,7 @@ class ComponentCard extends StatelessWidget {
                 _ComponentTypeChip(
                   type: element.componentType,
                   isSelected: true,
+                  showLabel: !context.isMobile,
                 ),
                 const Spacer(),
                 if (isInSelectionMode)
@@ -218,8 +220,13 @@ class ComponentCard extends StatelessWidget {
 class _ComponentTypeChip extends StatelessWidget {
   final StudyComponentType type;
   final bool isSelected;
+  final bool showLabel;
 
-  const _ComponentTypeChip({required this.type, required this.isSelected});
+  const _ComponentTypeChip({
+    required this.type,
+    required this.isSelected,
+    this.showLabel = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -238,15 +245,17 @@ class _ComponentTypeChip extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, size: 11, color: fg),
-          const SizedBox(width: 4),
-          Text(
-            type.displayName(l),
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w600,
-              color: fg,
+          if (showLabel) ...[
+            const SizedBox(width: 4),
+            Text(
+              type.displayName(l),
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                color: fg,
+              ),
             ),
-          ),
+          ],
         ],
       ),
     );
