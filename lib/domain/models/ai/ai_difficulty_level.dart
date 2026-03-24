@@ -13,6 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:quizdy/core/l10n/app_localizations.dart';
+
 /// Represents the academic difficulty level for AI question generation.
 enum AiDifficultyLevel {
   elementary,
@@ -21,4 +23,16 @@ enum AiDifficultyLevel {
   university,
   masters,
   doctorate,
+}
+
+extension AiDifficultyLevelLocalization on AiDifficultyLevel {
+  /// Returns the localized display name for this difficulty level.
+  String localizedName(AppLocalizations localizations) => switch (this) {
+    AiDifficultyLevel.elementary => localizations.aiDifficultyElementary,
+    AiDifficultyLevel.highSchool => localizations.aiDifficultyHighSchool,
+    AiDifficultyLevel.bachelors => localizations.aiDifficultyBachelors,
+    AiDifficultyLevel.university => localizations.aiDifficultyUniversity,
+    AiDifficultyLevel.masters => localizations.aiDifficultyMasters,
+    AiDifficultyLevel.doctorate => localizations.aiDifficultyDoctorate,
+  };
 }
