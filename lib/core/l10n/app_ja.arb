@@ -2239,5 +2239,9 @@
   "aiSelectComponentTypesSubtitle": "生成される学習コンテンツに含めるコンポーネントの種類をフィルタリングするには有効にします",
   "@aiSelectComponentTypesSubtitle": {
     "description": "Subtitle for the component type filter in AI study generation"
+  },
+  "aiComponentsGeneratedSuccess": "コンテンツが正常に生成されました",
+  "@aiComponentsGeneratedSuccess": {
+    "description": "Snackbar message shown when AI component generation completes successfully"
   }
 }

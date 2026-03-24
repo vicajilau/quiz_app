@@ -1236,5 +1236,9 @@
   "aiSelectComponentTypesSubtitle": "Ενεργοποιήστε για να φιλτράρετε ποιοι τύποι στοιχείων θα συμπεριληφθούν στο παραγόμενο περιεχόμενο μελέτης",
   "@aiSelectComponentTypesSubtitle": {
     "description": "Subtitle for the component type filter in AI study generation"
+  },
+  "aiComponentsGeneratedSuccess": "Το περιεχόμενο δημιουργήθηκε με επιτυχία",
+  "@aiComponentsGeneratedSuccess": {
+    "description": "Snackbar message shown when AI component generation completes successfully"
   }
 }

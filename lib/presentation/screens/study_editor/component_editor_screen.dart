@@ -239,17 +239,22 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
 
     return BlocConsumer<StudyEditorCubit, StudyEditorState>(
       listenWhen: (prev, curr) =>
-          curr.error != null && curr.error != prev.error,
+          (curr.error != null && curr.error != prev.error) ||
+          (prev.isGenerating && !curr.isGenerating && curr.error == null),
       listener: (context, state) {
-        showDialog(
-          context: context,
-          builder: (context) => CustomConfirmDialog(
-            title: localizations.aiGenerationErrorTitle,
-            message: state.error!.cleanExceptionPrefix(),
-            confirmText: localizations.acceptButton,
-            showCloseButton: false,
-          ),
-        );
+        if (state.error != null) {
+          showDialog(
+            context: context,
+            builder: (context) => CustomConfirmDialog(
+              title: localizations.aiGenerationErrorTitle,
+              message: state.error!.cleanExceptionPrefix(),
+              confirmText: localizations.acceptButton,
+              showCloseButton: false,
+            ),
+          );
+        } else {
+          context.presentSnackBar(localizations.aiComponentsGeneratedSuccess);
+        }
       },
       builder: (context, state) {
         final chunk = state.chunks[widget.chunkIndex];

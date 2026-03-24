@@ -2290,5 +2290,9 @@
   "aiSelectComponentTypesSubtitle": "Abilita per filtrare quali tipi di componenti includere nei contenuti di studio generati",
   "@aiSelectComponentTypesSubtitle": {
     "description": "Subtitle for the component type filter in AI study generation"
+  },
+  "aiComponentsGeneratedSuccess": "Contenuto generato con successo",
+  "@aiComponentsGeneratedSuccess": {
+    "description": "Snackbar message shown when AI component generation completes successfully"
   }
 }

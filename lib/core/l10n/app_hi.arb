@@ -2239,5 +2239,9 @@
   "aiSelectComponentTypesSubtitle": "उत्पन्न अध्ययन सामग्री में किन घटक प्रकारों को शामिल करना है, इसे फ़िल्टर करने के लिए सक्षम करें",
   "@aiSelectComponentTypesSubtitle": {
     "description": "Subtitle for the component type filter in AI study generation"
+  },
+  "aiComponentsGeneratedSuccess": "सामग्री सफलतापूर्वक उत्पन्न हुई",
+  "@aiComponentsGeneratedSuccess": {
+    "description": "Snackbar message shown when AI component generation completes successfully"
   }
 }
