@@ -19,12 +19,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/context_extension.dart';
+import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/quiz_loaded_theme.dart';
+import 'package:quizdy/data/services/configuration_service.dart';
+import 'package:quizdy/domain/models/ai/ai_study_generation_config.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_cubit.dart';
 import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_state.dart';
+import 'package:quizdy/presentation/screens/dialogs/ai_generate_study_dialog.dart';
+import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quizdy/presentation/screens/dialogs/exit_confirmation_dialog.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
 import 'package:quizdy/presentation/screens/study_editor/add_component_sheet.dart';
@@ -231,7 +237,20 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
     final localizations = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return BlocBuilder<StudyEditorCubit, StudyEditorState>(
+    return BlocConsumer<StudyEditorCubit, StudyEditorState>(
+      listenWhen: (prev, curr) =>
+          curr.error != null && curr.error != prev.error,
+      listener: (context, state) {
+        showDialog(
+          context: context,
+          builder: (context) => CustomConfirmDialog(
+            title: localizations.aiGenerationErrorTitle,
+            message: state.error!.cleanExceptionPrefix(),
+            confirmText: localizations.acceptButton,
+            showCloseButton: false,
+          ),
+        );
+      },
       builder: (context, state) {
         final chunk = state.chunks[widget.chunkIndex];
         final page = chunk.pages[widget.pageIndex];
@@ -335,8 +354,29 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
                   localizations: localizations,
                   onAddComponent: _openAddComponent,
                   onSave: () => context.pop(true),
-                  onAI: () =>
-                      context.presentSnackBar(localizations.featureComingSoon),
+                  onAI: () async {
+                    final isAiAvailable =
+                        await ServiceLocator.getIt<ConfigurationService>()
+                            .getIsAiAvailable();
+                    if (!context.mounted) return;
+                    if (!isAiAvailable) {
+                      context.presentSnackBar(localizations.aiApiKeyRequired);
+                      return;
+                    }
+                    final config = await showDialog<AiStudyGenerationConfig>(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (_) => const AiGenerateStudyDialog(),
+                    );
+                    if (config != null && context.mounted) {
+                      context.read<StudyEditorCubit>().generateAndAddComponents(
+                        widget.chunkIndex,
+                        widget.pageIndex,
+                        config,
+                        localizations,
+                      );
+                    }
+                  },
                   deleteCount: _selectionMode && _selectedIndices.isNotEmpty
                       ? _selectedIndices.length
                       : null,
@@ -383,6 +423,13 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
                         onSelect: (type) => _selectComponentType(context, type),
                       ),
                     ),
+                  ),
+                ),
+              if (state.isGenerating)
+                Positioned.fill(
+                  child: Container(
+                    color: Colors.black.withValues(alpha: 0.1),
+                    child: const Center(child: CircularProgressIndicator()),
                   ),
                 ),
             ],
