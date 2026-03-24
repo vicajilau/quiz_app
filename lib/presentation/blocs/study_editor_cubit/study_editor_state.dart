@@ -57,6 +57,9 @@ class StudyEditorState {
   /// Whether an async save operation is in progress.
   final bool isSaving;
 
+  /// Whether an AI component generation is in progress.
+  final bool isGenerating;
+
   /// Whether there are unsaved changes compared to the original state.
   final bool hasUnsavedChanges;
 
@@ -71,6 +74,7 @@ class StudyEditorState {
     this.selectedPageIndex,
     this.selectedComponentIndex,
     this.isSaving = false,
+    this.isGenerating = false,
     this.hasUnsavedChanges = false,
     this.error,
   });
@@ -119,6 +123,7 @@ class StudyEditorState {
     int? selectedComponentIndex,
     bool clearSelectedComponent = false,
     bool? isSaving,
+    bool? isGenerating,
     bool? hasUnsavedChanges,
     String? error,
     bool clearError = false,
@@ -137,6 +142,7 @@ class StudyEditorState {
           ? null
           : selectedComponentIndex ?? this.selectedComponentIndex,
       isSaving: isSaving ?? this.isSaving,
+      isGenerating: isGenerating ?? this.isGenerating,
       hasUnsavedChanges: hasUnsavedChanges ?? this.hasUnsavedChanges,
       error: clearError ? null : error ?? this.error,
     );
@@ -155,6 +161,7 @@ class StudyEditorState {
         other.selectedPageIndex == selectedPageIndex &&
         other.selectedComponentIndex == selectedComponentIndex &&
         other.isSaving == isSaving &&
+        other.isGenerating == isGenerating &&
         other.hasUnsavedChanges == hasUnsavedChanges &&
         other.error == error;
   }
@@ -168,6 +175,7 @@ class StudyEditorState {
       selectedPageIndex.hashCode ^
       selectedComponentIndex.hashCode ^
       isSaving.hashCode ^
+      isGenerating.hashCode ^
       hasUnsavedChanges.hashCode ^
       error.hashCode;
 }

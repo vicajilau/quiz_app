@@ -15,7 +15,11 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizdy/core/debug_print.dart';
+import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/repositories/quiz_file_repository.dart';
+import 'package:quizdy/data/services/ai/gemini_service.dart';
+import 'package:quizdy/domain/models/ai/ai_study_generation_config.dart';
 import 'package:quizdy/domain/models/quiz/study_page.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/source_reference.dart';
@@ -460,6 +464,33 @@ class StudyEditorCubit extends Cubit<StudyEditorState> {
         clearError: true,
       ),
     );
+  }
+
+  /// Calls the Gemini AI service to generate [StudyComponent]s from [config]
+  /// and appends them to the page at [pageIndex] within the section at
+  /// [chunkIndex].
+  Future<void> generateAndAddComponents(
+    int chunkIndex,
+    int pageIndex,
+    AiStudyGenerationConfig config,
+    AppLocalizations localizations,
+  ) async {
+    if (state.isGenerating) return;
+    emit(state.copyWith(isGenerating: true, clearError: true));
+    try {
+      final geminiService = ServiceLocator.getIt<GeminiService>();
+      final components = await geminiService.generatePageComponents(
+        localizations,
+        config,
+      );
+      for (final component in components) {
+        addComponent(chunkIndex, pageIndex, component);
+      }
+      emit(state.copyWith(isGenerating: false));
+    } catch (e) {
+      printInDebug('StudyEditorCubit.generateAndAddComponents error: $e');
+      emit(state.copyWith(isGenerating: false, error: e.toString()));
+    }
   }
 
   /// Persists the current working [chunks] to the `.quiz` file via
