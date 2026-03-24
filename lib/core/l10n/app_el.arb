@@ -474,6 +474,7 @@
   "aiCommentsHelperText": "Προαιρετικά προσθέστε οδηγίες σχετικά με τον τρόπο δημιουργίας ερωτήσεων από το αρχείο",
   "aiFilePickerError": "Δεν ήταν δυνατή η φόρτωση του επιλεγμένου αρχείου",
   "studyModeLabel": "Λειτουργία Μελέτης",
+  "generateStudyWithAI": "Δημιουργία Μελέτης με AI",
   "practiceModeLabel": "Λειτουργία Πρακτικής",
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"

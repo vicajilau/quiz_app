@@ -44,7 +44,7 @@ class HomeFooterWidget extends StatelessWidget {
         spacing: 12,
         children: [
           QuizdyButton(
-            title: AppLocalizations.of(context)!.studyModeLabel,
+            title: AppLocalizations.of(context)!.generateStudyWithAI,
             icon: LucideIcons.bookOpen,
             onPressed: isLoading ? null : onStudyModeTap,
             expanded: true,

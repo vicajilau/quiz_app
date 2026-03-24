@@ -1782,6 +1782,10 @@
   "@studyModeLabel": {
     "description": "Label for study mode option"
   },
+  "generateStudyWithAI": "Generate Study with AI",
+  "@generateStudyWithAI": {
+    "description": "Label for generate study with AI button on home screen"
+  },
   "practiceModeLabel": "Practice Mode",
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"

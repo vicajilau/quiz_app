@@ -1462,6 +1462,7 @@
     "description": "Error message when file picker fails"
   },
   "studyModeLabel": "Ikasteko Modua",
+  "generateStudyWithAI": "AI-rekin ikasketa sortu",
   "practiceModeLabel": "Praktika Modua",
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"

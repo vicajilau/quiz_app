@@ -1452,6 +1452,7 @@
     "description": "ファイルピッカーが失敗したときのエラーメッセージ"
   },
   "studyModeLabel": "学習モード",
+  "generateStudyWithAI": "AIで学習を生成",
   "practiceModeLabel": "練習モード",
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"

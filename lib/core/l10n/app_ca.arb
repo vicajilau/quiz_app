@@ -1572,6 +1572,7 @@
     "description": "Error message when file picker fails"
   },
   "studyModeLabel": "Mode estudi",
+  "generateStudyWithAI": "Generar Estudi amb IA",
   "practiceModeLabel": "Mode pràctica",
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
