@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.11.0]
 
+- feat: Added component type filter to the AI study generation dialog, allowing users to select which of the 13 component types the AI should use when generating study content from the component editor.
 - feat: Added a new Privacy Policy acceptance screen shown before entering the app.
 - feat: Added Study Editor with support for 13 component types, including section titles, paragraphs, key definitions, timelines, comparison tables, and more.
 - feat: Added component picker screen in Study Editor, accessible as a full-screen view on mobile and as an inline sidebar panel on desktop.
