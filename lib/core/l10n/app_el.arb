@@ -1228,5 +1228,13 @@
   "addComponentsWithAI": "Προσθήκη στοιχείων με ΤΝ",
   "@addComponentsWithAI": {
     "description": "Button label to add study components using AI"
+  },
+  "aiSelectComponentTypesTitle": "Επιλογή τύπων στοιχείων",
+  "@aiSelectComponentTypesTitle": {
+    "description": "Title for the component type filter in AI study generation"
+  },
+  "aiSelectComponentTypesSubtitle": "Ενεργοποιήστε για να φιλτράρετε ποιοι τύποι στοιχείων θα συμπεριληφθούν στο παραγόμενο περιεχόμενο μελέτης",
+  "@aiSelectComponentTypesSubtitle": {
+    "description": "Subtitle for the component type filter in AI study generation"
   }
 }

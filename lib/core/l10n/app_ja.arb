@@ -2231,5 +2231,13 @@
   "addComponentsWithAI": "AIでコンポーネントを追加",
   "@addComponentsWithAI": {
     "description": "Button label to add study components using AI"
+  },
+  "aiSelectComponentTypesTitle": "コンポーネントの種類を選択",
+  "@aiSelectComponentTypesTitle": {
+    "description": "Title for the component type filter in AI study generation"
+  },
+  "aiSelectComponentTypesSubtitle": "生成される学習コンテンツに含めるコンポーネントの種類をフィルタリングするには有効にします",
+  "@aiSelectComponentTypesSubtitle": {
+    "description": "Subtitle for the component type filter in AI study generation"
   }
 }

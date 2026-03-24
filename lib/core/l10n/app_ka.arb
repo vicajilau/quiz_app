@@ -920,5 +920,13 @@
   "addComponentsWithAI": "კომპონენტების AI-ით დამატება",
   "@addComponentsWithAI": {
     "description": "Button label to add study components using AI"
+  },
+  "aiSelectComponentTypesTitle": "აირჩიეთ კომპონენტის ტიპები",
+  "@aiSelectComponentTypesTitle": {
+    "description": "Title for the component type filter in AI study generation"
+  },
+  "aiSelectComponentTypesSubtitle": "ჩართეთ, რათა გაფილტროთ, რომელი კომპონენტის ტიპები ჩაირთოს გენერირებულ სასწავლო შინაარსში",
+  "@aiSelectComponentTypesSubtitle": {
+    "description": "Subtitle for the component type filter in AI study generation"
   }
 }

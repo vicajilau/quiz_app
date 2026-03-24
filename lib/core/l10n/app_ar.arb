@@ -2642,5 +2642,13 @@
   "addComponentsWithAI": "إضافة مكونات بالذكاء الاصطناعي",
   "@addComponentsWithAI": {
     "description": "Button label to add study components using AI"
+  },
+  "aiSelectComponentTypesTitle": "تحديد أنواع المكونات",
+  "@aiSelectComponentTypesTitle": {
+    "description": "Title for the component type filter in AI study generation"
+  },
+  "aiSelectComponentTypesSubtitle": "تمكين التصفية لتحديد أنواع المكونات التي سيتم تضمينها في محتوى الدراسة المنشأ",
+  "@aiSelectComponentTypesSubtitle": {
+    "description": "Subtitle for the component type filter in AI study generation"
   }
 }

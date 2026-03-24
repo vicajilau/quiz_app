@@ -920,5 +920,13 @@
   "addComponentsWithAI": "AI로 구성 요소 추가",
   "@addComponentsWithAI": {
     "description": "Button label to add study components using AI"
+  },
+  "aiSelectComponentTypesTitle": "구성 요소 유형 선택",
+  "@aiSelectComponentTypesTitle": {
+    "description": "Title for the component type filter in AI study generation"
+  },
+  "aiSelectComponentTypesSubtitle": "생성된 학습 콘텐츠에 포함할 구성 요소 유형을 필터링하려면 활성화하세요",
+  "@aiSelectComponentTypesSubtitle": {
+    "description": "Subtitle for the component type filter in AI study generation"
   }
 }

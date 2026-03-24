@@ -953,5 +953,13 @@
   "addComponentsWithAI": "Додати компоненти за допомогою ШІ",
   "@addComponentsWithAI": {
     "description": "Button label to add study components using AI"
+  },
+  "aiSelectComponentTypesTitle": "Виберіть типи компонентів",
+  "@aiSelectComponentTypesTitle": {
+    "description": "Title for the component type filter in AI study generation"
+  },
+  "aiSelectComponentTypesSubtitle": "Увімкніть, щоб відфільтрувати, які типи компонентів будуть включені до згенерованого навчального контенту",
+  "@aiSelectComponentTypesSubtitle": {
+    "description": "Subtitle for the component type filter in AI study generation"
   }
 }
