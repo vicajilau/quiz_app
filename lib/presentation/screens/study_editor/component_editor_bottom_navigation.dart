@@ -12,6 +12,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
@@ -125,94 +126,189 @@ class _ComponentEditorBottomNavigationState
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Stack(
-              children: [
-                SingleChildScrollView(
-                  controller: _scrollController,
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (widget.deleteCount != null) ...[
-                        QuizdyButton(
-                          type: QuizdyButtonType.warning,
-                          icon: LucideIcons.trash2,
-                          title:
-                              '${widget.localizations.deleteButton} (${widget.deleteCount})',
-                          onPressed: widget.onDelete,
-                        ),
-                        const SizedBox(width: 12),
-                      ],
-                      QuizdyButton(
-                        type: QuizdyButtonType.secondary,
-                        icon: LucideIcons.plus,
-                        title: widget.localizations.addComponentTitle,
-                        onPressed: widget.onAddComponent,
-                      ),
-                      const SizedBox(width: 12),
-                      QuizdyButton(
-                        backgroundColor: AppTheme.secondaryColor,
-                        title: widget.localizations.addComponentsWithAI,
-                        icon: LucideIcons.sparkles,
-                        onPressed: widget.onAI,
-                      ),
-                    ],
-                  ),
-                ),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                const gap = 12.0;
+                final availableWidth = constraints.maxWidth;
 
-                // Left shadow indicator
-                if (_showLeftShadow)
-                  Positioned(
-                    left: -1,
-                    top: 0,
-                    bottom: 0,
-                    width: 40,
-                    child: IgnorePointer(
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: [
-                              backgroundColor,
-                              backgroundColor.withValues(alpha: 0.0),
-                            ],
-                          ),
+                final buttonData = [
+                  if (widget.deleteCount != null)
+                    (
+                      button: QuizdyButton(
+                        type: QuizdyButtonType.warning,
+                        icon: LucideIcons.trash2,
+                        expanded: true,
+                        title:
+                            '${widget.localizations.deleteButton} (${widget.deleteCount})',
+                        onPressed: widget.onDelete,
+                      ),
+                      flex: 2,
+                    ),
+                  (
+                    button: QuizdyButton(
+                      type: QuizdyButtonType.secondary,
+                      icon: LucideIcons.plus,
+                      expanded: true,
+                      title: widget.localizations.addComponentTitle,
+                      onPressed: widget.onAddComponent,
+                    ),
+                    flex: 2,
+                  ),
+                  (
+                    button: QuizdyButton(
+                      backgroundColor: AppTheme.secondaryColor,
+                      icon: LucideIcons.sparkles,
+                      expanded: true,
+                      title: widget.localizations.addComponentsWithAI,
+                      onPressed: widget.onAI,
+                    ),
+                    flex: 3,
+                  ),
+                ];
+
+                const safeFlexUnitWidth = 120.0;
+                final buttonCount = buttonData.length;
+                final totalFlex = buttonData.fold<int>(
+                  0,
+                  (sum, item) => sum + item.flex,
+                );
+                final idealWidth =
+                    (safeFlexUnitWidth * totalFlex) + (gap * (buttonCount - 1));
+                final isScrollable = idealWidth > availableWidth;
+                final effectiveWidth =
+                    isScrollable ? availableWidth : idealWidth;
+
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Top action row
+                    Align(
+                      alignment: Alignment.center,
+                      child: SizedBox(
+                        width: effectiveWidth,
+                        child: !isScrollable
+                            ? Row(
+                                children: [
+                                  for (int i = 0;
+                                      i < buttonData.length;
+                                      i++) ...[
+                                    Expanded(
+                                      flex: buttonData[i].flex,
+                                      child: buttonData[i].button,
+                                    ),
+                                    if (i < buttonData.length - 1)
+                                      const SizedBox(width: gap),
+                                  ],
+                                ],
+                              )
+                            : Stack(
+                                children: [
+                                  ScrollConfiguration(
+                                    behavior: ScrollConfiguration.of(context)
+                                        .copyWith(
+                                          dragDevices: {
+                                            PointerDeviceKind.touch,
+                                            PointerDeviceKind.mouse,
+                                          },
+                                        ),
+                                    child: NotificationListener<
+                                      ScrollMetricsNotification
+                                    >(
+                                      onNotification: (notification) {
+                                        _updateShadows();
+                                        return true;
+                                      },
+                                      child: SingleChildScrollView(
+                                        controller: _scrollController,
+                                        scrollDirection: Axis.horizontal,
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            for (int i = 0;
+                                                i < buttonData.length;
+                                                i++) ...[
+                                              SizedBox(
+                                                width: safeFlexUnitWidth *
+                                                    buttonData[i].flex,
+                                                child: buttonData[i].button,
+                                              ),
+                                              if (i < buttonData.length - 1)
+                                                const SizedBox(width: gap),
+                                            ],
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  if (_showLeftShadow)
+                                    Positioned(
+                                      left: -1,
+                                      top: 0,
+                                      bottom: 0,
+                                      width: 40,
+                                      child: IgnorePointer(
+                                        child: DecoratedBox(
+                                          decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                              begin: Alignment.centerLeft,
+                                              end: Alignment.centerRight,
+                                              colors: [
+                                                backgroundColor,
+                                                backgroundColor.withValues(
+                                                  alpha: 0.0,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  if (_showRightShadow)
+                                    Positioned(
+                                      right: -1,
+                                      top: 0,
+                                      bottom: 0,
+                                      width: 40,
+                                      child: IgnorePointer(
+                                        child: DecoratedBox(
+                                          decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                              begin: Alignment.centerRight,
+                                              end: Alignment.centerLeft,
+                                              colors: [
+                                                backgroundColor,
+                                                backgroundColor.withValues(
+                                                  alpha: 0.0,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    // Save button — same width as the action row
+                    Align(
+                      alignment: Alignment.center,
+                      child: SizedBox(
+                        width: effectiveWidth,
+                        child: QuizdyButton(
+                          type: QuizdyButtonType.primary,
+                          title: widget.localizations.studyEditorSaveChanges,
+                          expanded: true,
+                          onPressed: widget.onSave,
                         ),
                       ),
                     ),
-                  ),
-
-                // Right shadow indicator
-                if (_showRightShadow)
-                  Positioned(
-                    right: -1,
-                    top: 0,
-                    bottom: 0,
-                    width: 40,
-                    child: IgnorePointer(
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.centerRight,
-                            end: Alignment.centerLeft,
-                            colors: [
-                              backgroundColor,
-                              backgroundColor.withValues(alpha: 0.0),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            QuizdyButton(
-              type: QuizdyButtonType.primary,
-              title: widget.localizations.studyEditorSaveChanges,
-              expanded: true,
-              onPressed: widget.onSave,
+                  ],
+                );
+              },
             ),
           ],
         ),
