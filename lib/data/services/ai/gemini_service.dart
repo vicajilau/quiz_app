@@ -20,8 +20,11 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/data/services/ai/ai_service.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/domain/models/ai/ai_study_generation_config.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
+import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/domain/models/custom_exceptions/connectivity_exception.dart';
 
 class GeminiService extends AIService {
@@ -442,6 +445,136 @@ Rules:
       localizations,
       responseMimeType: 'application/json',
     );
+  }
+
+  /// Generates a list of [StudyComponent]s from an [AiStudyGenerationConfig].
+  ///
+  /// Returns the components to be added directly to a study page.
+  Future<List<StudyComponent>> generatePageComponents(
+    AppLocalizations localizations,
+    AiStudyGenerationConfig config,
+  ) async {
+    final prompt = _buildPageComponentsPrompt(config, localizations);
+
+    final String responseBody;
+    if (config.hasFile) {
+      responseBody = await getChatResponseWithFile(
+        prompt,
+        localizations,
+        model: config.preferredModel,
+        responseMimeType: 'application/json',
+        file: config.file!,
+      );
+    } else {
+      responseBody = await getChatResponse(
+        prompt,
+        localizations,
+        model: config.preferredModel,
+        responseMimeType: 'application/json',
+      );
+    }
+
+    final cleanJson = _extractJsonArrayFromResponse(responseBody);
+    final decoded = jsonDecode(cleanJson);
+    if (decoded is! List) {
+      throw FormatException(
+        'Expected a JSON array of components. Got: $cleanJson',
+      );
+    }
+    return decoded
+        .map(
+          (e) => StudyComponent.fromJson(e as Map<String, dynamic>),
+        )
+        .toList();
+  }
+
+  String _buildPageComponentsPrompt(
+    AiStudyGenerationConfig config,
+    AppLocalizations localizations,
+  ) {
+    final targetLanguage = config.language;
+
+    String difficultyInstruction = '';
+    if (!config.isAutoDifficulty && config.difficultyLevel != null) {
+      final levelName = _getDifficultyName(config.difficultyLevel!, localizations);
+      difficultyInstruction =
+          '\nIMPORTANT: The content MUST be adapted to a $levelName difficulty level.';
+    } else if (config.isAutoDifficulty) {
+      difficultyInstruction =
+          '\nIMPORTANT: Adapt the content difficulty to match the provided material.';
+    }
+
+    final allowedTypes = config.allowedComponentTypes;
+    final typeConstraint = allowedTypes != null
+        ? '\nIMPORTANT: You MUST ONLY use the following component types: '
+              '${allowedTypes.map((t) => t.name).join(', ')}. Do not use any other types.'
+        : '';
+
+    final contentHeader = config.generationMode == AiGenerationMode.topic
+        ? 'Topic to cover: ${config.content}'
+        : 'Source text:\n${config.content}';
+
+    return '''
+You are an expert educational content generator. Generate study components based on the provided content.
+
+IMPORTANT GLOBAL RULE:
+ALL generated content MUST be written strictly in the following language: $targetLanguage.
+$difficultyInstruction$typeConstraint
+
+Return ONLY a valid JSON array of component objects. Do not include any other text, markdown formatting (like ```json), or explanations.
+
+Each element in the array MUST have a "type" field and its specific required fields. Allowed component types:
+1. { "type": "section_title", "title": "Main topic", "subtitle": "Optional context" }
+2. { "type": "paragraph", "title": "Optional heading", "body": "Main text block" }
+3. { "type": "key_definition", "term": "Vocabulary word/concept", "body": "Clear definition" }
+4. { "type": "numbered_list", "title": "Optional heading", "items": [{"title": "Step 1", "description": "Details"}] }
+5. { "type": "comparison_table", "title": "Optional", "columns": ["Feature", "A", "B"], "rows": [{"label": "Row 1", "values": ["A val", "B val"]}] }
+6. { "type": "quote", "body": "The quote text", "author": "Optional source" }
+7. { "type": "warning", "body": "Important caveat or common misconception" }
+8. { "type": "formula", "title": "Optional", "equation": "E = mc^2", "equation_label": "Optional name", "body": "Explanation" }
+9. { "type": "timeline", "title": "Optional", "items": [{"date": "1990", "title": "Event", "description": "Optional details"}] }
+10. { "type": "pros_cons", "items": {"pros": ["Advantage 1"], "cons": ["Disadvantage 1"]} }
+11. { "type": "key_concepts", "title": "Optional", "items": ["Concept 1", "Concept 2"] }
+12. { "type": "reminder", "body": "A quick tip or study reminder" }
+13. { "type": "icon_cards", "title": "Optional", "items": [{"title": "Card title", "description": "Card details"}] }
+
+$contentHeader
+''';
+  }
+
+  /// Extracts a JSON array string from the LLM response, stripping markdown if present.
+  String _extractJsonArrayFromResponse(String response) {
+    final regExp = RegExp(r'```json\s*([\s\S]*?)\s*```', multiLine: true);
+    final match = regExp.firstMatch(response);
+    if (match != null && match.groupCount >= 1) {
+      return match.group(1)!.trim();
+    }
+    final firstBracket = response.indexOf('[');
+    final lastBracket = response.lastIndexOf(']');
+    if (firstBracket != -1 && lastBracket != -1 && lastBracket > firstBracket) {
+      return response.substring(firstBracket, lastBracket + 1).trim();
+    }
+    return response.trim();
+  }
+
+  String _getDifficultyName(
+    AiDifficultyLevel difficulty,
+    AppLocalizations localizations,
+  ) {
+    switch (difficulty) {
+      case AiDifficultyLevel.elementary:
+        return localizations.aiDifficultyElementary;
+      case AiDifficultyLevel.highSchool:
+        return localizations.aiDifficultyHighSchool;
+      case AiDifficultyLevel.bachelors:
+        return localizations.aiDifficultyBachelors;
+      case AiDifficultyLevel.university:
+        return localizations.aiDifficultyUniversity;
+      case AiDifficultyLevel.masters:
+        return localizations.aiDifficultyMasters;
+      case AiDifficultyLevel.doctorate:
+        return localizations.aiDifficultyDoctorate;
+    }
   }
 
   String _buildSelectedQuestionsContent(List<Question> questions) {
