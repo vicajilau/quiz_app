@@ -1336,6 +1336,14 @@
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiSelectComponentTypesTitle": "Select Component Types",
+  "@aiSelectComponentTypesTitle": {
+    "description": "Title for the component type filter in AI study generation"
+  },
+  "aiSelectComponentTypesSubtitle": "Enable to filter which component types to include in the generated study content",
+  "@aiSelectComponentTypesSubtitle": {
+    "description": "Subtitle for the component type filter in AI study generation"
+  },
   "aiContentFieldHint": "Enter a topic like \"World War II history\" or paste text content here...",
   "@aiContentFieldHint": {
     "description": "Hint text for the content input field"

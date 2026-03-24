@@ -2228,5 +2228,13 @@
   "addComponentsWithAI": "Gehitu osagaiak IArekin",
   "@addComponentsWithAI": {
     "description": "Button label to add study components using AI"
+  },
+  "aiSelectComponentTypesTitle": "Hautatu osagai motak",
+  "@aiSelectComponentTypesTitle": {
+    "description": "Title for the component type filter in AI study generation"
+  },
+  "aiSelectComponentTypesSubtitle": "Gaitu sortutako ikasketa-edukian zein osagai mota sartuko diren iragazteko",
+  "@aiSelectComponentTypesSubtitle": {
+    "description": "Subtitle for the component type filter in AI study generation"
   }
 }

@@ -14,11 +14,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:quizdy/data/services/ai/ai_service.dart';
-import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
-import 'package:quizdy/domain/models/quiz/question.dart';
-
+import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/domain/models/quiz/question.dart';
+import 'package:quizdy/domain/models/quiz/study_component.dart';
 
 /// Configuration settings for AI-powered interactive Study Mode generation.
 class AiStudyGenerationConfig {
@@ -49,12 +49,21 @@ class AiStudyGenerationConfig {
   /// Optional subset of quiz questions selected as generation context.
   final List<Question>? selectedQuestions;
 
+  /// Optional filter restricting which component types the AI should generate.
+  /// When null, all component types are allowed.
+  final List<StudyComponentType>? allowedComponentTypes;
+
   /// Returns true if a file is attached to this configuration.
   bool get hasFile => file != null;
 
   /// Returns true if specific quiz questions are selected as source.
   bool get hasSelectedQuestions =>
       selectedQuestions != null && selectedQuestions!.isNotEmpty;
+
+  /// Returns true if a component type filter is active.
+  bool get hasComponentTypeFilter =>
+      allowedComponentTypes != null &&
+      allowedComponentTypes!.length < StudyComponentType.values.length;
 
   const AiStudyGenerationConfig({
     required this.language,
@@ -66,5 +75,6 @@ class AiStudyGenerationConfig {
     this.isAutoDifficulty = true,
     this.difficultyLevel,
     this.selectedQuestions,
+    this.allowedComponentTypes,
   });
 }

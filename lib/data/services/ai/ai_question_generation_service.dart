@@ -293,10 +293,7 @@ class AiQuestionGenerationService {
 
     String difficultyInstruction = '';
     if (!config.isAutoDifficulty && config.difficultyLevel != null) {
-      final levelName = _getDifficultyName(
-        config.difficultyLevel!,
-        localizations,
-      );
+      final levelName = config.difficultyLevel!.localizedName(localizations);
       difficultyInstruction =
           '\n10. DIFFICULTY LEVEL: The generated questions MUST be adapted to a $levelName difficulty level. Explain concepts, use vocabulary, and provide examples appropriate for this academic level.';
     } else if (config.isAutoDifficulty) {
@@ -693,23 +690,4 @@ IMPORTANT: Respond strictly in the same language as the student's answer.
     return prompt;
   }
 
-  String _getDifficultyName(
-    AiDifficultyLevel difficulty,
-    AppLocalizations localizations,
-  ) {
-    switch (difficulty) {
-      case AiDifficultyLevel.elementary:
-        return localizations.aiDifficultyElementary;
-      case AiDifficultyLevel.highSchool:
-        return localizations.aiDifficultyHighSchool;
-      case AiDifficultyLevel.bachelors:
-        return localizations.aiDifficultyBachelors;
-      case AiDifficultyLevel.university:
-        return localizations.aiDifficultyUniversity;
-      case AiDifficultyLevel.masters:
-        return localizations.aiDifficultyMasters;
-      case AiDifficultyLevel.doctorate:
-        return localizations.aiDifficultyDoctorate;
-    }
-  }
 }

@@ -2228,5 +2228,13 @@
   "addComponentsWithAI": "Engadir compoñentes con IA",
   "@addComponentsWithAI": {
     "description": "Button label to add study components using AI"
+  },
+  "aiSelectComponentTypesTitle": "Seleccionar os tipos de compoñentes",
+  "@aiSelectComponentTypesTitle": {
+    "description": "Title for the component type filter in AI study generation"
+  },
+  "aiSelectComponentTypesSubtitle": "Activa para filtrar que tipos de compoñentes se incluirán no contido de estudo xerado",
+  "@aiSelectComponentTypesSubtitle": {
+    "description": "Subtitle for the component type filter in AI study generation"
   }
 }

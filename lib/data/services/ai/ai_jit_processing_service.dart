@@ -144,7 +144,7 @@ class AiJitProcessingService {
             : '');
     String difficultyInstruction = '';
     if (!isAutoDifficulty && difficultyLevel != null) {
-      final levelName = _getDifficultyName(difficultyLevel, localizations);
+      final levelName = difficultyLevel.localizedName(localizations);
       difficultyInstruction =
           '\nIMPORTANT: The generated content and study materials MUST be adapted to a $levelName difficulty level. Explain concepts, use vocabulary, and provide examples appropriate for this academic level.';
     } else if (isAutoDifficulty) {
@@ -251,23 +251,4 @@ Analyzing document range: Pages $startPage to $endPage.
     }
   }
 
-  String _getDifficultyName(
-    AiDifficultyLevel difficulty,
-    AppLocalizations localizations,
-  ) {
-    switch (difficulty) {
-      case AiDifficultyLevel.elementary:
-        return localizations.aiDifficultyElementary;
-      case AiDifficultyLevel.highSchool:
-        return localizations.aiDifficultyHighSchool;
-      case AiDifficultyLevel.bachelors:
-        return localizations.aiDifficultyBachelors;
-      case AiDifficultyLevel.university:
-        return localizations.aiDifficultyUniversity;
-      case AiDifficultyLevel.masters:
-        return localizations.aiDifficultyMasters;
-      case AiDifficultyLevel.doctorate:
-        return localizations.aiDifficultyDoctorate;
-    }
-  }
 }
