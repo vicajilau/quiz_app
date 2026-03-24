@@ -75,18 +75,36 @@ class AddComponentSheet extends StatelessWidget {
       LucideIcons.fileText,
       AppTheme.primaryColor,
     ),
-    StudyComponentType.sectionTitle => (LucideIcons.type, AppTheme.primaryColor),
+    StudyComponentType.sectionTitle => (
+      LucideIcons.type,
+      AppTheme.primaryColor,
+    ),
     StudyComponentType.quote => (LucideIcons.quote, AppTheme.teal300),
     StudyComponentType.formula => (LucideIcons.sigma, AppTheme.sky400),
-    StudyComponentType.numberedList => (LucideIcons.listOrdered, AppTheme.amber400),
-    StudyComponentType.keyConcepts => (LucideIcons.lightbulb, AppTheme.purple400),
-    StudyComponentType.comparisonTable => (LucideIcons.table2, AppTheme.violet400),
+    StudyComponentType.numberedList => (
+      LucideIcons.listOrdered,
+      AppTheme.amber400,
+    ),
+    StudyComponentType.keyConcepts => (
+      LucideIcons.lightbulb,
+      AppTheme.purple400,
+    ),
+    StudyComponentType.comparisonTable => (
+      LucideIcons.table2,
+      AppTheme.violet400,
+    ),
     StudyComponentType.timeline => (LucideIcons.gitCommit, AppTheme.teal300),
-    StudyComponentType.warning => (LucideIcons.alertTriangle, AppTheme.amber400),
+    StudyComponentType.warning => (
+      LucideIcons.alertTriangle,
+      AppTheme.amber400,
+    ),
     StudyComponentType.keyDefinition => (LucideIcons.bookOpen, AppTheme.sky400),
     StudyComponentType.prosCons => (LucideIcons.scale, AppTheme.emerald400),
     StudyComponentType.reminder => (LucideIcons.bell, AppTheme.purple400),
-    StudyComponentType.iconCards => (LucideIcons.layoutGrid, AppTheme.violet400),
+    StudyComponentType.iconCards => (
+      LucideIcons.layoutGrid,
+      AppTheme.violet400,
+    ),
   };
 
   @override
@@ -122,7 +140,7 @@ class AddComponentSheet extends StatelessWidget {
     if (!isFullScreen) {
       // Desktop inline panel
       return SizedBox(
-        width: 320,
+        width: 400,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
