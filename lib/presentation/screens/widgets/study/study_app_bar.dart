@@ -28,8 +28,13 @@ import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
 
 class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Future<bool> Function() onConfirmExit;
+  final VoidCallback onEditCurrentChunk;
 
-  const StudyAppBar({super.key, required this.onConfirmExit});
+  const StudyAppBar({
+    super.key,
+    required this.onConfirmExit,
+    required this.onEditCurrentChunk,
+  });
 
   @override
   Size get preferredSize => const Size.fromHeight(72);
@@ -123,6 +128,63 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  // Edit Button (only when viewing a specific chunk)
+                  if (!state.isIndexMode)
+                    Container(
+                      margin: const EdgeInsets.only(right: 8),
+                      constraints: const BoxConstraints(minWidth: 40),
+                      child: Material(
+                        color: context
+                            .quizLoadedTheme
+                            .selectionInactiveBackgroundColor,
+                        borderRadius: BorderRadius.circular(12),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(12),
+                          onTap: onEditCurrentChunk,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 10,
+                            ),
+                            child: Builder(
+                              builder: (context) {
+                                final showText =
+                                    MediaQuery.of(context).size.width > 500;
+                                return Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      LucideIcons.pencil,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onPrimary,
+                                      size: 18,
+                                    ),
+                                    if (showText) ...[
+                                      const SizedBox(width: 8),
+                                      Flexible(
+                                        child: Text(
+                                          localizations.edit,
+                                          style: TextStyle(
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.onPrimary,
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ],
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   // Settings Button
                   Container(
                     width: 40,
