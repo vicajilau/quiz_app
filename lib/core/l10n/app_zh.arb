@@ -1424,6 +1424,7 @@
     "description": "Error message when file picker fails"
   },
   "studyModeLabel": "学习模式",
+  "generateStudyWithAI": "使用AI生成学习",
   "practiceModeLabel": "练习模式",
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"

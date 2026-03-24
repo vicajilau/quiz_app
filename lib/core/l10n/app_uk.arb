@@ -139,6 +139,7 @@
   "aiQuestionCountLabel": "Кількість питань",
   "aiDifficultyTitle": "Рівень складності",
   "studyModeLabel": "Режим навчання",
+  "generateStudyWithAI": "Створити навчання за допомогою ШІ",
   "examModeLabel": "Режим іспиту",
   "checkAnswer": "Перевірити відповідь",
   "explanationTitle": "Пояснення",

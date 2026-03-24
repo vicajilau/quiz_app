@@ -1556,6 +1556,7 @@
   "@studyModeLabel": {
     "description": "Label for study mode option in start quiz"
   },
+  "generateStudyWithAI": "إنشاء دراسة بالذكاء الاصطناعي",
   "practiceModeLabel": "وضع التدريب",
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
