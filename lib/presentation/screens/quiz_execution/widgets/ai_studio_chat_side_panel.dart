@@ -29,6 +29,7 @@ import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_chat_bubble.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/question_context_widget.dart';
 import 'package:quizdy/presentation/widgets/ai_service_model_selector.dart';
+import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
 class AiStudioChatSidePanel extends StatefulWidget {
@@ -396,19 +397,10 @@ class AiStudioChatSidePanelState extends State<AiStudioChatSidePanel> {
                         borderRadius: BorderRadius.circular(24),
                         border: Border.all(color: borderColor),
                       ),
-                      child: TextField(
+                      child: QuizdyTextField(
                         controller: _questionController,
                         focusNode: _focusNode,
-                        decoration: InputDecoration(
-                          hintText: localizations.askAIHint,
-                          hintStyle: TextStyle(color: aiTheme.inputHintColor),
-                          border: InputBorder.none,
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 20,
-                            vertical: 12,
-                          ),
-                        ),
-                        style: TextStyle(color: aiTheme.chatTitleColor),
+                        hint: localizations.askAIHint,
                         maxLines: 3,
                         minLines: 1,
                         textInputAction: TextInputAction.newline,

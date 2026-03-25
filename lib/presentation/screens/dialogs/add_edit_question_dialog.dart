@@ -32,6 +32,7 @@ import 'package:quizdy/presentation/screens/dialogs/mixins/option_management_mix
 import 'package:quizdy/presentation/screens/dialogs/mixins/validation_mixin.dart';
 import 'package:quizdy/presentation/widgets/latex_text.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
+import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
 /// Dialog widget for creating or editing a Question.
 class AddEditQuestionDialog extends StatefulWidget {
@@ -428,36 +429,15 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                             ),
                           ),
                         ],
-                        TextField(
+                        QuizdyTextField(
                           controller: _questionTextController,
+                          minLines: 3,
                           maxLines: 3,
-                          textAlignVertical: TextAlignVertical.top,
-                          style: TextStyle(color: theme.textColor),
+                          errorText: questionTextError,
                           onChanged: (_) {
                             clearQuestionTextError();
                             setState(() {});
                           },
-                          decoration: InputDecoration(
-                            alignLabelWithHint: true,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: theme.borderColor),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: theme.borderColor),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(
-                                color: Theme.of(context).primaryColor,
-                                width: 2,
-                              ),
-                            ),
-                            errorText: questionTextError,
-                            filled: true,
-                            fillColor: Theme.of(context).cardColor,
-                          ),
                         ),
                       ],
                     ),
@@ -555,34 +535,11 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                             ),
                           ),
                         ],
-                        TextField(
+                        QuizdyTextField(
                           controller: _explanationController,
+                          minLines: 2,
                           maxLines: 2,
-                          textAlignVertical: TextAlignVertical.top,
-                          style: TextStyle(color: theme.textColor),
-                          onChanged: (_) {
-                            setState(() {});
-                          },
-                          decoration: InputDecoration(
-                            alignLabelWithHint: true,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: theme.borderColor),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: theme.borderColor),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(
-                                color: Theme.of(context).primaryColor,
-                                width: 2,
-                              ),
-                            ),
-                            filled: true,
-                            fillColor: Theme.of(context).cardColor,
-                          ),
+                          onChanged: (_) => setState(() {}),
                         ),
                       ],
                     ),

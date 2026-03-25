@@ -19,6 +19,7 @@ import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';
+import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
 class AiContentInputZone extends StatelessWidget {
   final TextEditingController controller;
@@ -51,14 +52,10 @@ class AiContentInputZone extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: TextField(
+            child: QuizdyTextField(
               controller: controller,
               maxLines: null,
-              style: TextStyle(fontSize: 14, color: colors.title),
-              decoration: InputDecoration.collapsed(
-                hintText: localizations.aiContentFieldHint,
-                hintStyle: TextStyle(fontSize: 14, color: colors.surface),
-              ),
+              hint: localizations.aiContentFieldHint,
             ),
           ),
           const SizedBox(height: 8),

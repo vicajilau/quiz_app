@@ -18,9 +18,9 @@ import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
+import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
 /// A dialog that allows the user to create or edit quiz metadata.
 ///
@@ -153,40 +153,11 @@ class _QuizMetadataDialogState extends State<QuizMetadataDialog> {
           ),
         ),
         const SizedBox(height: 8),
-        TextFormField(
+        QuizdyTextField(
           controller: controller,
           maxLines: maxLines,
-          minLines: minLines,
+          minLines: minLines ?? 1,
           textCapitalization: textCapitalization,
-          style: TextStyle(color: colors.title, fontSize: 16),
-          cursorColor: Theme.of(context).primaryColor,
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: colors.surface,
-            hintText: hintText,
-            hintStyle: TextStyle(color: colors.subtitle.withValues(alpha: 0.5)),
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 16,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide.none,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide.none,
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: Theme.of(context).primaryColor,
-                width: 2,
-              ),
-            ),
-            errorText: errorText,
-            errorStyle: const TextStyle(color: AppTheme.errorColor),
-          ),
           onChanged: onChanged,
         ),
       ],

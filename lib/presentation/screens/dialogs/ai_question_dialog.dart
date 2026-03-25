@@ -31,6 +31,7 @@ import 'package:quizdy/presentation/screens/dialogs/widgets/question_context_wid
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quizdy/core/extensions/focus_node_extension.dart';
+import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
 class AIQuestionDialog extends StatefulWidget {
   final Question question;
@@ -412,23 +413,10 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                           ? null
                           : Border.all(color: AppTheme.borderColor),
                     ),
-                    child: TextField(
+                    child: QuizdyTextField(
                       controller: _questionController,
                       focusNode: _focusNode,
-                      decoration: InputDecoration(
-                        hintText: localizations.askAIHint,
-                        hintStyle: TextStyle(
-                          color: isDark
-                              ? AppTheme.zinc400
-                              : AppTheme.textSecondaryColor,
-                        ),
-                        border: InputBorder.none,
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 14,
-                        ),
-                      ),
-                      style: TextStyle(color: colors.title),
+                      hint: localizations.askAIHint,
                       maxLines: 3,
                       minLines: 1,
                       textInputAction: TextInputAction.newline,
