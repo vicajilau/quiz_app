@@ -877,6 +877,26 @@
   "startQuizFromStudy": "Δοκιμάστε τις γνώσεις σας",
   "studyScreenCustomChapter": "Προσαρμοσμένο κεφάλαιο",
   "addSection": "Προσθήκη ενότητας",
+  "editSection": "Επεξεργασία ενότητας",
+  "@editSection": {
+    "description": "Title for editing an existing section dialog"
+  },
+  "sectionTitleLabel": "Τίτλος",
+  "@sectionTitleLabel": {
+    "description": "Label for section title input field in add/edit section dialog"
+  },
+  "sectionTitleHint": "Εισάγετε τίτλο ενότητας",
+  "@sectionTitleHint": {
+    "description": "Hint for section title input field in add/edit section dialog"
+  },
+  "sectionContentLabel": "Περιεχόμενο",
+  "@sectionContentLabel": {
+    "description": "Label for section content input field in add/edit section dialog"
+  },
+  "sectionContentHint": "Εισάγετε περιεχόμενο ενότητας",
+  "@sectionContentHint": {
+    "description": "Hint for section content input field in add/edit section dialog"
+  },
   "generateSectionsWithAI": "Δημιουργία ενοτήτων με AI",
   "addSectionsWithAI": "Προσθήκη ενοτήτων με AI",
   "studyScreenReminder": "Υπενθύμιση",

@@ -4,6 +4,26 @@
   "abortQuizMessage": "Відкриття нового файлу зупинить поточну вікторину.",
   "addQuestion": "Додати питання",
   "addSection": "Додати розділ",
+  "editSection": "Редагувати розділ",
+  "@editSection": {
+    "description": "Title for editing an existing section dialog"
+  },
+  "sectionTitleLabel": "Заголовок",
+  "@sectionTitleLabel": {
+    "description": "Label for section title input field in add/edit section dialog"
+  },
+  "sectionTitleHint": "Введіть заголовок розділу",
+  "@sectionTitleHint": {
+    "description": "Hint for section title input field in add/edit section dialog"
+  },
+  "sectionContentLabel": "Зміст",
+  "@sectionContentLabel": {
+    "description": "Label for section content input field in add/edit section dialog"
+  },
+  "sectionContentHint": "Введіть зміст розділу",
+  "@sectionContentHint": {
+    "description": "Hint for section content input field in add/edit section dialog"
+  },
   "editQuestion": "Редагувати питання",
   "questionText": "Текст питання",
   "questionType": "Тип питання",

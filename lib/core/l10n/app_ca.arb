@@ -1982,6 +1982,26 @@
   "startQuizFromStudy": "Posa a prova els teus coneixements",
   "studyScreenCustomChapter": "Capítol personalitzat",
   "addSection": "Afegir secció",
+  "editSection": "Editar secció",
+  "@editSection": {
+    "description": "Title for editing an existing section dialog"
+  },
+  "sectionTitleLabel": "Títol",
+  "@sectionTitleLabel": {
+    "description": "Label for section title input field in add/edit section dialog"
+  },
+  "sectionTitleHint": "Introduïu el títol de la secció",
+  "@sectionTitleHint": {
+    "description": "Hint for section title input field in add/edit section dialog"
+  },
+  "sectionContentLabel": "Contingut",
+  "@sectionContentLabel": {
+    "description": "Label for section content input field in add/edit section dialog"
+  },
+  "sectionContentHint": "Introduïu el contingut de la secció",
+  "@sectionContentHint": {
+    "description": "Hint for section content input field in add/edit section dialog"
+  },
   "generateSectionsWithAI": "Generar seccions amb IA",
   "addSectionsWithAI": "Afegir seccions amb IA",
   "studyScreenReminder": "Recordatori",

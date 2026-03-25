@@ -1883,6 +1883,26 @@
   "startQuizFromStudy": "知識をテストする",
   "studyScreenCustomChapter": "カスタムチャプター",
   "addSection": "セクションを追加",
+  "editSection": "セクションを編集",
+  "@editSection": {
+    "description": "Title for editing an existing section dialog"
+  },
+  "sectionTitleLabel": "タイトル",
+  "@sectionTitleLabel": {
+    "description": "Label for section title input field in add/edit section dialog"
+  },
+  "sectionTitleHint": "セクションタイトルを入力",
+  "@sectionTitleHint": {
+    "description": "Hint for section title input field in add/edit section dialog"
+  },
+  "sectionContentLabel": "コンテンツ",
+  "@sectionContentLabel": {
+    "description": "Label for section content input field in add/edit section dialog"
+  },
+  "sectionContentHint": "セクションのコンテンツを入力",
+  "@sectionContentHint": {
+    "description": "Hint for section content input field in add/edit section dialog"
+  },
   "generateSectionsWithAI": "AIでセクションを生成",
   "addSectionsWithAI": "AIでセクションを追加",
   "studyScreenReminder": "リマインダー",

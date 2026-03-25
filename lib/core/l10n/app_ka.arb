@@ -270,6 +270,26 @@
   "falseLabel": "მცდარი",
   "addQuestion": "კითხვის დამატება",
   "addSection": "სექციის დამატება",
+  "editSection": "სექციის რედაქტირება",
+  "@editSection": {
+    "description": "Title for editing an existing section dialog"
+  },
+  "sectionTitleLabel": "სათაური",
+  "@sectionTitleLabel": {
+    "description": "Label for section title input field in add/edit section dialog"
+  },
+  "sectionTitleHint": "შეიყვანეთ სექციის სათაური",
+  "@sectionTitleHint": {
+    "description": "Hint for section title input field in add/edit section dialog"
+  },
+  "sectionContentLabel": "შინაარსი",
+  "@sectionContentLabel": {
+    "description": "Label for section content input field in add/edit section dialog"
+  },
+  "sectionContentHint": "შეიყვანეთ სექციის შინაარსი",
+  "@sectionContentHint": {
+    "description": "Hint for section content input field in add/edit section dialog"
+  },
   "editQuestion": "კითხვის რედაქტირება",
   "questionText": "კითხვის ტექსტი",
   "questionType": "კითხვის ტიპი",

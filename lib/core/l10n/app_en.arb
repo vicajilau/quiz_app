@@ -888,6 +888,26 @@
   "@addSection": {
     "description": "Title for adding a new section manually"
   },
+  "editSection": "Edit Section",
+  "@editSection": {
+    "description": "Title for editing an existing section dialog"
+  },
+  "sectionTitleLabel": "Title",
+  "@sectionTitleLabel": {
+    "description": "Label for section title input field in add/edit section dialog"
+  },
+  "sectionTitleHint": "Enter section title",
+  "@sectionTitleHint": {
+    "description": "Hint for section title input field in add/edit section dialog"
+  },
+  "sectionContentLabel": "Content",
+  "@sectionContentLabel": {
+    "description": "Label for section content input field in add/edit section dialog"
+  },
+  "sectionContentHint": "Enter section content",
+  "@sectionContentHint": {
+    "description": "Hint for section content input field in add/edit section dialog"
+  },
   "editQuestion": "Edit Question",
   "@editQuestion": {
     "description": "Title for editing an existing question dialog"
