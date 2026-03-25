@@ -92,10 +92,25 @@ class ComponentCard extends StatelessWidget {
             Row(
               children: [
                 if (isInSelectionMode) ...[
-                  Icon(
-                    isChecked ? Icons.check_box : Icons.check_box_outline_blank,
-                    color: isChecked ? AppTheme.primaryColor : chevronColor,
-                    size: 22,
+                  Container(
+                    width: 24,
+                    height: 24,
+                    decoration: BoxDecoration(
+                      color: isChecked
+                          ? AppTheme.primaryColor
+                          : Colors.transparent,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: isChecked ? AppTheme.primaryColor : chevronColor,
+                      ),
+                    ),
+                    child: isChecked
+                        ? const Icon(
+                            LucideIcons.check,
+                            size: 16,
+                            color: Colors.white,
+                          )
+                        : null,
                   ),
                   const SizedBox(width: 10),
                 ],
@@ -108,10 +123,12 @@ class ComponentCard extends StatelessWidget {
                 if (isInSelectionMode)
                   ReorderableDragStartListener(
                     index: index,
-                    child: Icon(
-                      Icons.drag_handle,
-                      color: chevronColor,
-                      size: 20,
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Icon(
+                        Icons.drag_indicator,
+                        color: Theme.of(context).hintColor,
+                      ),
                     ),
                   )
                 else
