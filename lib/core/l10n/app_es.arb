@@ -2382,7 +2382,7 @@
   "studyEditorEmptyComponents": "No hay componentes en esta página.",
   "studyEditorSaveChanges": "Guardar cambios",
   "studyEditorEditParagraph": "Editar párrafo",
-  "studyEditorFieldTitle": "Título (opcional)",
+  "studyEditorFieldTitle": "Título",
   "studyEditorFieldBody": "Texto del cuerpo",
   "studyEditorAddPage": "Agregar página",
   "studyEditorDeletePage": "Eliminar página",
@@ -2426,6 +2426,7 @@
   "componentFieldLabel": "Etiqueta",
   "componentFieldAdd": "Añadir {item}",
   "componentFieldOptional": "opcional",
+  "componentFieldRequired": "Este campo es obligatorio",
   "addComponentTitle": "Añadir componente",
   "@studyEditorComponents": {
     "description": "Section header for the list of components in the component editor"

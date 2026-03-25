@@ -2083,7 +2083,7 @@
   "@studyEditorFieldBody": {
     "description": "Label for the main body text field in component editors"
   },
-  "studyEditorFieldTitle": "标题（可选）",
+  "studyEditorFieldTitle": "标题",
   "@studyEditorFieldTitle": {
     "description": "Label for the optional title field in component editors"
   },
@@ -2261,6 +2261,7 @@
   "@componentFieldOptional": {
     "description": "Label shown next to optional form fields"
   },
+  "componentFieldRequired": "此字段为必填项",
   "componentFieldRows": "行数",
   "@componentFieldRows": {
     "description": "Form section label for table rows"

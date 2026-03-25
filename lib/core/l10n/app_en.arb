@@ -2465,7 +2465,7 @@
   "@studyEditorEditParagraph": {
     "description": "Navigation header title for the paragraph property panel"
   },
-  "studyEditorFieldTitle": "Title (optional)",
+  "studyEditorFieldTitle": "Title",
   "@studyEditorFieldTitle": {
     "description": "Label for the optional title field in component editors"
   },
@@ -2655,6 +2655,10 @@
   "componentFieldOptional": "optional",
   "@componentFieldOptional": {
     "description": "Label shown next to optional form fields"
+  },
+  "componentFieldRequired": "This field is required",
+  "@componentFieldRequired": {
+    "description": "Inline validation error shown below a required form field when left empty"
   },
   "addComponentTitle": "Add Component",
   "@addComponentTitle": {

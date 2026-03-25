@@ -2043,7 +2043,7 @@
   "@studyEditorExitEdit": {
     "description": "Tooltip for the FAB button that disables study content edit mode"
   },
-  "studyEditorFieldTitle": "タイトル (オプション)",
+  "studyEditorFieldTitle": "タイトル",
   "@studyEditorFieldTitle": {
     "description": "Label for the optional title field in component editors"
   },
@@ -2204,6 +2204,7 @@
   "@componentFieldOptional": {
     "description": "Label shown next to optional form fields"
   },
+  "componentFieldRequired": "このフィールドは必須です",
   "componentFieldLabel": "ラベル",
   "@componentFieldLabel": {
     "description": "Form field label for a row label in comparison table"

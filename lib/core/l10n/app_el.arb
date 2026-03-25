@@ -1003,7 +1003,7 @@
   "@studyEditorSaveChanges": {
     "description": "Button label to save edited component properties"
   },
-  "studyEditorFieldTitle": "Τίτλος (προαιρετικό)",
+  "studyEditorFieldTitle": "Τίτλος",
   "@studyEditorFieldTitle": {
     "description": "Label for the optional title field in component editors"
   },
@@ -1213,6 +1213,7 @@
   "@componentFieldOptional": {
     "description": "Label shown next to optional form fields"
   },
+  "componentFieldRequired": "Αυτό το πεδίο είναι υποχρεωτικό",
   "componentFieldAdd": "Προσθήκη {item}",
   "@componentFieldAdd": {
     "description": "Button label to add a new item to a list",
