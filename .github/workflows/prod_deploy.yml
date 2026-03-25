@@ -66,7 +66,7 @@ jobs:
       - name: Build & Publish web
         uses: Spaccesi/flutter-actions-suite@main
         with:
-          base-href: ${{ github.event.repository.name }}
+          base-href: "quizdy/"
           run-test: "false"
           run-build-runner: "false"
           run-gen-l10n: "false"
@@ -93,6 +93,7 @@ jobs:
           ios-distribution-certificate-base64: ${{ secrets.IOS_DIST_CERTIFICATE_BASE64 }}
           ios-distribution-certificate-password: ${{ secrets.IOS_DIST_CERTIFICATE_PASSWORD }}
           ios-provisioning-profile-base64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
+          export-options-plist: "ios/Runner/ExportOptions.plist"
           
       # - name: Publish ios
       #   uses: Spaccesi/flutter-actions-suite/publish/ios-app-store@main
