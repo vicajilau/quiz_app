@@ -736,7 +736,7 @@
   "@studyEditorSaveChanges": {
     "description": "Button label to save edited component properties"
   },
-  "studyEditorFieldTitle": "Назва (необов'язково)",
+  "studyEditorFieldTitle": "Назва",
   "@studyEditorFieldTitle": {
     "description": "Label for the optional title field in component editors"
   },
@@ -926,6 +926,7 @@
   "@componentFieldOptional": {
     "description": "Label shown next to optional form fields"
   },
+  "componentFieldRequired": "Це поле є обов'язковим",
   "componentFieldRows": "рядки",
   "@componentFieldRows": {
     "description": "Form section label for table rows"

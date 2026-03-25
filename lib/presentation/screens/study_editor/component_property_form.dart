@@ -50,6 +50,7 @@ class ComponentPropertyForm extends StatefulWidget {
 class ComponentPropertyFormState extends State<ComponentPropertyForm> {
   late StudyComponentType _type;
   late Map<String, dynamic> _originalProps;
+  bool _triedToSave = false;
 
   // All controllers tracked for disposal
   final List<TextEditingController> _disposables = [];
@@ -136,14 +137,17 @@ class ComponentPropertyFormState extends State<ComponentPropertyForm> {
 
       case StudyComponentType.keyConcepts:
         _title = _c(_str(p, 'title'));
-        _conceptControllers = _list(p, 'items')
-            .map((e) => _c(e?.toString() ?? ''))
-            .toList();
+        _conceptControllers = _list(
+          p,
+          'items',
+        ).map((e) => _c(e?.toString() ?? '')).toList();
 
       case StudyComponentType.numberedList:
         _title = _c(_str(p, 'title'));
         _itemRows = _list(p, 'items').map((e) {
-          final m = e is Map ? Map<String, dynamic>.from(e) : <String, dynamic>{};
+          final m = e is Map
+              ? Map<String, dynamic>.from(e)
+              : <String, dynamic>{};
           return {
             'title': _c(m['title']?.toString() ?? ''),
             'description': _c(m['description']?.toString() ?? ''),
@@ -153,7 +157,9 @@ class ComponentPropertyFormState extends State<ComponentPropertyForm> {
       case StudyComponentType.timeline:
         _title = _c(_str(p, 'title'));
         _itemRows = _list(p, 'items').map((e) {
-          final m = e is Map ? Map<String, dynamic>.from(e) : <String, dynamic>{};
+          final m = e is Map
+              ? Map<String, dynamic>.from(e)
+              : <String, dynamic>{};
           return {
             'date': _c(m['date']?.toString() ?? ''),
             'title': _c(m['title']?.toString() ?? ''),
@@ -164,7 +170,9 @@ class ComponentPropertyFormState extends State<ComponentPropertyForm> {
       case StudyComponentType.iconCards:
         _title = _c(_str(p, 'title'));
         _itemRows = _list(p, 'items').map((e) {
-          final m = e is Map ? Map<String, dynamic>.from(e) : <String, dynamic>{};
+          final m = e is Map
+              ? Map<String, dynamic>.from(e)
+              : <String, dynamic>{};
           return {
             'title': _c(m['title']?.toString() ?? ''),
             'description': _c(m['description']?.toString() ?? ''),
@@ -187,7 +195,9 @@ class ComponentPropertyFormState extends State<ComponentPropertyForm> {
         final cols = _list(p, 'columns');
         _columnControllers = cols.map((e) => _c(e?.toString() ?? '')).toList();
         _tableRows = _list(p, 'rows').map((e) {
-          final m = e is Map ? Map<String, dynamic>.from(e) : <String, dynamic>{};
+          final m = e is Map
+              ? Map<String, dynamic>.from(e)
+              : <String, dynamic>{};
           final values = (m['values'] is List)
               ? List<String>.from(m['values'])
               : List.filled(_columnControllers.length, '');
@@ -253,44 +263,50 @@ class ComponentPropertyFormState extends State<ComponentPropertyForm> {
 
       case StudyComponentType.keyConcepts:
         return {
-          if (optional(_title) != null) 'title': optional(_title),
+          'title': text(_title),
           'items': _conceptControllers
-              .map((c) => c.text)
+              .map((c) => c.text.trim())
               .where((s) => s.isNotEmpty)
               .toList(),
         };
 
       case StudyComponentType.numberedList:
         return {
-          if (optional(_title) != null) 'title': optional(_title),
+          'title': text(_title),
           'items': _itemRows
-              .map((r) => {
-                    'title': r['title']!.text,
-                    'description': r['description']!.text,
-                  })
+              .map(
+                (r) => {
+                  'title': r['title']!.text,
+                  'description': r['description']!.text,
+                },
+              )
               .toList(),
         };
 
       case StudyComponentType.timeline:
         return {
-          if (optional(_title) != null) 'title': optional(_title),
+          'title': text(_title),
           'items': _itemRows
-              .map((r) => {
-                    'date': r['date']!.text,
-                    'title': r['title']!.text,
-                    'description': r['description']!.text,
-                  })
+              .map(
+                (r) => {
+                  'date': r['date']!.text,
+                  'title': r['title']!.text,
+                  'description': r['description']!.text,
+                },
+              )
               .toList(),
         };
 
       case StudyComponentType.iconCards:
         return {
-          if (optional(_title) != null) 'title': optional(_title),
+          'title': text(_title),
           'items': _itemRows
-              .map((r) => {
-                    'title': r['title']!.text,
-                    'description': r['description']!.text,
-                  })
+              .map(
+                (r) => {
+                  'title': r['title']!.text,
+                  'description': r['description']!.text,
+                },
+              )
               .toList(),
         };
 
@@ -298,11 +314,11 @@ class ComponentPropertyFormState extends State<ComponentPropertyForm> {
         return {
           'items': {
             'pros': _prosControllers
-                .map((c) => c.text)
+                .map((c) => c.text.trim())
                 .where((s) => s.isNotEmpty)
                 .toList(),
             'cons': _consControllers
-                .map((c) => c.text)
+                .map((c) => c.text.trim())
                 .where((s) => s.isNotEmpty)
                 .toList(),
           },
@@ -313,16 +329,64 @@ class ComponentPropertyFormState extends State<ComponentPropertyForm> {
           if (optional(_title) != null) 'title': optional(_title),
           'columns': _columnControllers.map((c) => c.text).toList(),
           'rows': _tableRows
-              .map((r) => {
-                    'label': r.label.text,
-                    'values': r.values.map((c) => c.text).toList(),
-                  })
+              .map(
+                (r) => {
+                  'label': r.label.text,
+                  'values': r.values.map((c) => c.text).toList(),
+                },
+              )
               .toList(),
         };
     }
   }
 
+  bool _validateRequiredControllers() {
+    final required = <TextEditingController?>[];
+    switch (_type) {
+      case StudyComponentType.sectionTitle:
+        required.addAll([_title]);
+      case StudyComponentType.paragraph:
+        required.addAll([_body]);
+      case StudyComponentType.keyDefinition:
+        required.addAll([_term, _body]);
+      case StudyComponentType.quote:
+        required.addAll([_body]);
+      case StudyComponentType.warning:
+        required.addAll([_body]);
+      case StudyComponentType.reminder:
+        required.addAll([_body]);
+      case StudyComponentType.formula:
+        required.addAll([_equation]);
+      case StudyComponentType.iconCards:
+        required.addAll([_title]);
+        for (final row in _itemRows) {
+          required.addAll(row.values);
+        }
+      case StudyComponentType.numberedList:
+        required.addAll([_title]);
+        for (final row in _itemRows) {
+          required.addAll(row.values);
+        }
+      case StudyComponentType.timeline:
+        required.addAll([_title]);
+        for (final row in _itemRows) {
+          required.addAll(row.values);
+        }
+      case StudyComponentType.keyConcepts:
+        required.addAll([_title]);
+        required.addAll(_conceptControllers);
+      case StudyComponentType.prosCons:
+      case StudyComponentType.comparisonTable:
+        break;
+    }
+    return required.every((c) => c != null && c.text.trim().isNotEmpty);
+  }
+
   void save() {
+    if (!_validateRequiredControllers()) {
+      setState(() => _triedToSave = true);
+      return;
+    }
     context.read<StudyEditorCubit>().updateComponent(
       widget.chunkIndex,
       widget.pageIndex,
@@ -396,203 +460,250 @@ class ComponentPropertyFormState extends State<ComponentPropertyForm> {
   Widget _buildForm(AppLocalizations l) {
     switch (_type) {
       case StudyComponentType.sectionTitle:
-        return PropertySimpleForm(children: [
-          PropertyField(label: l.studyEditorFieldTitle, controller: _title!),
-          PropertyField(
-            label: l.componentFieldSubtitle,
-            controller: _subtitle!,
-            optional: true,
-          ),
-        ]);
+        return PropertySimpleForm(
+          children: [
+            PropertyField(
+              label: l.studyEditorFieldTitle,
+              controller: _title!,
+              forceShowError: _triedToSave,
+            ),
+            PropertyField(
+              label: l.componentFieldSubtitle,
+              controller: _subtitle!,
+              optional: true,
+            ),
+          ],
+        );
 
       case StudyComponentType.paragraph:
-        return PropertySimpleForm(children: [
-          PropertyField(
-            label: l.studyEditorFieldTitle,
-            controller: _title!,
-            optional: true,
-          ),
-          PropertyField(
-            label: l.studyEditorFieldBody,
-            controller: _body!,
-            multiline: true,
-          ),
-        ]);
+        return PropertySimpleForm(
+          children: [
+            PropertyField(
+              label: l.studyEditorFieldTitle,
+              controller: _title!,
+              optional: true,
+            ),
+            PropertyField(
+              label: l.studyEditorFieldBody,
+              controller: _body!,
+              multiline: true,
+              forceShowError: _triedToSave,
+            ),
+          ],
+        );
 
       case StudyComponentType.keyDefinition:
-        return PropertySimpleForm(children: [
-          PropertyField(label: l.componentFieldTerm, controller: _term!),
-          PropertyField(
-            label: l.componentFieldDefinition,
-            controller: _body!,
-            multiline: true,
-          ),
-        ]);
+        return PropertySimpleForm(
+          children: [
+            PropertyField(
+              label: l.componentFieldTerm,
+              controller: _term!,
+              forceShowError: _triedToSave,
+            ),
+            PropertyField(
+              label: l.componentFieldDefinition,
+              controller: _body!,
+              multiline: true,
+              forceShowError: _triedToSave,
+            ),
+          ],
+        );
 
       case StudyComponentType.quote:
-        return PropertySimpleForm(children: [
-          PropertyField(
-            label: l.componentFieldQuote,
-            controller: _body!,
-            multiline: true,
-          ),
-          PropertyField(
-            label: l.componentFieldAuthor,
-            controller: _author!,
-            optional: true,
-          ),
-        ]);
+        return PropertySimpleForm(
+          children: [
+            PropertyField(
+              label: l.componentFieldQuote,
+              controller: _body!,
+              multiline: true,
+              forceShowError: _triedToSave,
+            ),
+            PropertyField(
+              label: l.componentFieldAuthor,
+              controller: _author!,
+              optional: true,
+            ),
+          ],
+        );
 
       case StudyComponentType.warning:
-        return PropertySimpleForm(children: [
-          PropertyField(
-            label: l.studyEditorFieldBody,
-            controller: _body!,
-            multiline: true,
-          ),
-        ]);
+        return PropertySimpleForm(
+          children: [
+            PropertyField(
+              label: l.studyEditorFieldBody,
+              controller: _body!,
+              multiline: true,
+              forceShowError: _triedToSave,
+            ),
+          ],
+        );
 
       case StudyComponentType.reminder:
-        return PropertySimpleForm(children: [
-          PropertyField(
-            label: l.studyEditorFieldBody,
-            controller: _body!,
-            multiline: true,
-          ),
-        ]);
+        return PropertySimpleForm(
+          children: [
+            PropertyField(
+              label: l.studyEditorFieldBody,
+              controller: _body!,
+              multiline: true,
+              forceShowError: _triedToSave,
+            ),
+          ],
+        );
 
       case StudyComponentType.formula:
-        return PropertySimpleForm(children: [
-          PropertyField(
-            label: l.studyEditorFieldTitle,
-            controller: _title!,
-            optional: true,
-          ),
-          PropertyField(label: l.componentFieldEquation, controller: _equation!),
-          PropertyField(
-            label: l.componentFieldEquationLabel,
-            controller: _equationLabel!,
-            optional: true,
-          ),
-          PropertyField(
-            label: l.componentFieldExplanation,
-            controller: _body!,
-            optional: true,
-            multiline: true,
-          ),
-        ]);
+        return PropertySimpleForm(
+          children: [
+            PropertyField(
+              label: l.studyEditorFieldTitle,
+              controller: _title!,
+              optional: true,
+            ),
+            PropertyField(
+              label: l.componentFieldEquation,
+              controller: _equation!,
+              forceShowError: _triedToSave,
+            ),
+            PropertyField(
+              label: l.componentFieldEquationLabel,
+              controller: _equationLabel!,
+              optional: true,
+            ),
+            PropertyField(
+              label: l.componentFieldExplanation,
+              controller: _body!,
+              optional: true,
+              multiline: true,
+            ),
+          ],
+        );
 
       case StudyComponentType.keyConcepts:
-        return PropertySimpleForm(children: [
-          PropertyField(
-            label: l.studyEditorFieldTitle,
-            controller: _title!,
-            optional: true,
-          ),
-          PropertyStringListEditor(
-            label: l.componentFieldItems,
-            controllers: _conceptControllers,
-            itemLabel: l.componentFieldConcept,
-            onAdd: () => _addStringItem(_conceptControllers),
-            onRemove: (i) => _removeStringItem(_conceptControllers, i),
-          ),
-        ]);
+        return PropertySimpleForm(
+          children: [
+            PropertyField(
+              label: l.studyEditorFieldTitle,
+              controller: _title!,
+              forceShowError: _triedToSave,
+            ),
+            PropertyStringListEditor(
+              label: l.componentFieldItems,
+              controllers: _conceptControllers,
+              itemLabel: l.componentFieldConcept,
+              onAdd: () => _addStringItem(_conceptControllers),
+              onRemove: (i) => _removeStringItem(_conceptControllers, i),
+              forceShowError: _triedToSave,
+            ),
+          ],
+        );
 
       case StudyComponentType.numberedList:
-        return PropertySimpleForm(children: [
-          PropertyField(
-            label: l.studyEditorFieldTitle,
-            controller: _title!,
-            optional: true,
-          ),
-          PropertyObjectListEditor(
-            label: l.componentFieldItems,
-            rows: _itemRows,
-            fieldLabels: {
-              'title': l.studyEditorFieldTitle,
-              'description': l.componentFieldDescription,
-            },
-            onAdd: () => _addItemRow(['title', 'description']),
-            onRemove: _removeItemRow,
-          ),
-        ]);
+        return PropertySimpleForm(
+          children: [
+            PropertyField(
+              label: l.studyEditorFieldTitle,
+              controller: _title!,
+              forceShowError: _triedToSave,
+            ),
+            PropertyObjectListEditor(
+              label: l.componentFieldItems,
+              rows: _itemRows,
+              fieldLabels: {
+                'title': l.studyEditorFieldTitle,
+                'description': l.componentFieldDescription,
+              },
+              onAdd: () => _addItemRow(['title', 'description']),
+              onRemove: _removeItemRow,
+              forceShowError: _triedToSave,
+            ),
+          ],
+        );
 
       case StudyComponentType.timeline:
-        return PropertySimpleForm(children: [
-          PropertyField(
-            label: l.studyEditorFieldTitle,
-            controller: _title!,
-            optional: true,
-          ),
-          PropertyObjectListEditor(
-            label: l.componentFieldEvents,
-            rows: _itemRows,
-            fieldLabels: {
-              'date': l.componentFieldDate,
-              'title': l.studyEditorFieldTitle,
-              'description': l.componentFieldDescription,
-            },
-            onAdd: () => _addItemRow(['date', 'title', 'description']),
-            onRemove: _removeItemRow,
-          ),
-        ]);
+        return PropertySimpleForm(
+          children: [
+            PropertyField(
+              label: l.studyEditorFieldTitle,
+              controller: _title!,
+              forceShowError: _triedToSave,
+            ),
+            PropertyObjectListEditor(
+              label: l.componentFieldEvents,
+              rows: _itemRows,
+              fieldLabels: {
+                'date': l.componentFieldDate,
+                'title': l.studyEditorFieldTitle,
+                'description': l.componentFieldDescription,
+              },
+              onAdd: () => _addItemRow(['date', 'title', 'description']),
+              onRemove: _removeItemRow,
+              forceShowError: _triedToSave,
+            ),
+          ],
+        );
 
       case StudyComponentType.iconCards:
-        return PropertySimpleForm(children: [
-          PropertyField(
-            label: l.studyEditorFieldTitle,
-            controller: _title!,
-            optional: true,
-          ),
-          PropertyObjectListEditor(
-            label: l.componentFieldCards,
-            rows: _itemRows,
-            fieldLabels: {
-              'title': l.studyEditorFieldTitle,
-              'description': l.componentFieldDescription,
-            },
-            onAdd: () => _addItemRow(['title', 'description']),
-            onRemove: _removeItemRow,
-          ),
-        ]);
+        return PropertySimpleForm(
+          children: [
+            PropertyField(
+              label: l.studyEditorFieldTitle,
+              controller: _title!,
+              forceShowError: _triedToSave,
+            ),
+            PropertyObjectListEditor(
+              label: l.componentFieldCards,
+              rows: _itemRows,
+              fieldLabels: {
+                'title': l.studyEditorFieldTitle,
+                'description': l.componentFieldDescription,
+              },
+              onAdd: () => _addItemRow(['title', 'description']),
+              onRemove: _removeItemRow,
+              forceShowError: _triedToSave,
+            ),
+          ],
+        );
 
       case StudyComponentType.prosCons:
-        return PropertySimpleForm(children: [
-          PropertyStringListEditor(
-            label: l.componentFieldPros,
-            controllers: _prosControllers,
-            itemLabel: l.componentFieldPro,
-            onAdd: () => _addStringItem(_prosControllers),
-            onRemove: (i) => _removeStringItem(_prosControllers, i),
-          ),
-          PropertyStringListEditor(
-            label: l.componentFieldCons,
-            controllers: _consControllers,
-            itemLabel: l.componentFieldCon,
-            onAdd: () => _addStringItem(_consControllers),
-            onRemove: (i) => _removeStringItem(_consControllers, i),
-          ),
-        ]);
+        return PropertySimpleForm(
+          children: [
+            PropertyStringListEditor(
+              label: l.componentFieldPros,
+              controllers: _prosControllers,
+              itemLabel: l.componentFieldPro,
+              onAdd: () => _addStringItem(_prosControllers),
+              onRemove: (i) => _removeStringItem(_prosControllers, i),
+            ),
+            PropertyStringListEditor(
+              label: l.componentFieldCons,
+              controllers: _consControllers,
+              itemLabel: l.componentFieldCon,
+              onAdd: () => _addStringItem(_consControllers),
+              onRemove: (i) => _removeStringItem(_consControllers, i),
+            ),
+          ],
+        );
 
       case StudyComponentType.comparisonTable:
-        return PropertySimpleForm(children: [
-          PropertyField(
-            label: l.studyEditorFieldTitle,
-            controller: _title!,
-            optional: true,
-          ),
-          PropertyComparisonTableEditor(
-            columnControllers: _columnControllers,
-            tableRows: _tableRows,
-            onAddColumn: _addColumn,
-            onRemoveColumn: _removeColumn,
-            onAddRow: _addTableRow,
-            onRemoveRow: _removeTableRow,
-            columnLabel: l.componentFieldColumn,
-            rowLabel: l.componentFieldRow,
-            labelLabel: l.componentFieldLabel,
-          ),
-        ]);
+        return PropertySimpleForm(
+          children: [
+            PropertyField(
+              label: l.studyEditorFieldTitle,
+              controller: _title!,
+              optional: true,
+            ),
+            PropertyComparisonTableEditor(
+              columnControllers: _columnControllers,
+              tableRows: _tableRows,
+              onAddColumn: _addColumn,
+              onRemoveColumn: _removeColumn,
+              onAddRow: _addTableRow,
+              onRemoveRow: _removeTableRow,
+              columnLabel: l.componentFieldColumn,
+              rowLabel: l.componentFieldRow,
+              labelLabel: l.componentFieldLabel,
+            ),
+          ],
+        );
     }
   }
 }

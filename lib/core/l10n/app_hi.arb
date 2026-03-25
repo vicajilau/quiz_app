@@ -2038,7 +2038,7 @@
   "@studyEditorDeletePage": {
     "description": "Button label to delete a page from a section"
   },
-  "studyEditorFieldTitle": "शीर्षक (वैकल्पिक)",
+  "studyEditorFieldTitle": "शीर्षक",
   "@studyEditorFieldTitle": {
     "description": "Label for the optional title field in component editors"
   },
@@ -2204,6 +2204,7 @@
   "@componentFieldOptional": {
     "description": "Label shown next to optional form fields"
   },
+  "componentFieldRequired": "यह फ़ील्ड आवश्यक है",
   "componentFieldRow": "पंक्ति",
   "@componentFieldRow": {
     "description": "Form field label for a single table row"

@@ -710,7 +710,7 @@
   "@studyEditorToggleEdit": {
     "description": "Tooltip for the FAB button that enables study content edit mode"
   },
-  "studyEditorFieldTitle": "Название (необязательно)",
+  "studyEditorFieldTitle": "Название",
   "@studyEditorFieldTitle": {
     "description": "Label for the optional title field in component editors"
   },
@@ -913,6 +913,7 @@
   "@componentFieldOptional": {
     "description": "Label shown next to optional form fields"
   },
+  "componentFieldRequired": "Это поле обязательно для заполнения",
   "componentFieldLabel": "Этикетка",
   "@componentFieldLabel": {
     "description": "Form field label for a row label in comparison table"

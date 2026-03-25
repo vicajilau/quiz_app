@@ -42,11 +42,18 @@ class PropertySimpleForm extends StatelessWidget {
 }
 
 /// Single labeled text field (single-line or multiline), with optional marker.
-class PropertyField extends StatelessWidget {
+///
+/// Required fields (where [optional] is false) show an inline error message
+/// when the user leaves the field empty after interacting with it.
+class PropertyField extends StatefulWidget {
   final String label;
   final TextEditingController controller;
   final bool optional;
   final bool multiline;
+
+  /// When true, immediately shows the required-field error if the field is empty.
+  /// Useful for triggering validation on a save attempt.
+  final bool forceShowError;
 
   const PropertyField({
     super.key,
@@ -54,18 +61,70 @@ class PropertyField extends StatelessWidget {
     required this.controller,
     this.optional = false,
     this.multiline = false,
+    this.forceShowError = false,
   });
+
+  @override
+  State<PropertyField> createState() => _PropertyFieldState();
+}
+
+class _PropertyFieldState extends State<PropertyField> {
+  late final FocusNode _focusNode;
+  bool _showError = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode();
+    _focusNode.addListener(_onFocusChange);
+    widget.controller.addListener(_onTextChange);
+  }
+
+  @override
+  void didUpdateWidget(PropertyField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!oldWidget.forceShowError &&
+        widget.forceShowError &&
+        !widget.optional) {
+      setState(() {
+        _showError = widget.controller.text.trim().isEmpty;
+      });
+    }
+  }
+
+  void _onFocusChange() {
+    if (!_focusNode.hasFocus && !widget.optional) {
+      setState(() {
+        _showError = widget.controller.text.trim().isEmpty;
+      });
+    }
+  }
+
+  void _onTextChange() {
+    if (_showError && widget.controller.text.trim().isNotEmpty) {
+      setState(() => _showError = false);
+    }
+  }
+
+  @override
+  void dispose() {
+    _focusNode.removeListener(_onFocusChange);
+    widget.controller.removeListener(_onTextChange);
+    _focusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
+    final errorColor = Theme.of(context).colorScheme.error;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
-            QuizdyFieldLabel(label: label),
-            if (optional) ...[
+            QuizdyFieldLabel(label: widget.label),
+            if (widget.optional) ...[
               const SizedBox(width: 4),
               Text(
                 '(${l.componentFieldOptional})',
@@ -76,12 +135,22 @@ class PropertyField extends StatelessWidget {
         ),
         const SizedBox(height: 6),
         QuizdyTextField(
-          controller: controller,
-          hint: label,
-          minLines: multiline ? 4 : 1,
-          maxLines: multiline ? null : 1,
-          keyboardType: multiline ? TextInputType.multiline : TextInputType.text,
+          controller: widget.controller,
+          focusNode: _focusNode,
+          hint: widget.label,
+          minLines: widget.multiline ? 4 : 1,
+          maxLines: widget.multiline ? null : 1,
+          keyboardType: widget.multiline
+              ? TextInputType.multiline
+              : TextInputType.text,
         ),
+        if (_showError) ...[
+          const SizedBox(height: 4),
+          Text(
+            l.componentFieldRequired,
+            style: TextStyle(fontSize: 11, color: errorColor),
+          ),
+        ],
       ],
     );
   }
