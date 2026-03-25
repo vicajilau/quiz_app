@@ -120,11 +120,13 @@ class ComparisonTableComponent extends StatelessWidget {
                       ...columns.map(
                         (col) => DataColumn(
                           label: Expanded(
-                            child: LaTeXText(
-                              col,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).primaryColor,
+                            child: Center(
+                              child: LaTeXText(
+                                col,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).primaryColor,
+                                ),
                               ),
                             ),
                           ),
@@ -138,7 +140,7 @@ class ComparisonTableComponent extends StatelessWidget {
                         cells: [
                           DataCell(
                             LaTeXText(
-                              label,
+                              label.isEmpty ? '-' : label,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: studyTheme.cardTitle,
@@ -146,7 +148,13 @@ class ComparisonTableComponent extends StatelessWidget {
                             ),
                           ),
                           ...values.map(
-                            (val) => DataCell(MarkdownWidget(data: val)),
+                            (val) => DataCell(
+                              Center(
+                                child: MarkdownWidget(
+                                  data: val.isEmpty ? '-' : val,
+                                ),
+                              ),
+                            ),
                           ),
                         ],
                       );
