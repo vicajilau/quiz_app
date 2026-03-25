@@ -1508,7 +1508,7 @@
     "description": "Tooltip for the reorder questions button"
   },
   "quizPreviewTitle": "Vista previa do cuestionario",
-  "quizLoadedNoQuestionsAvailable": "Non hai preguntas dispoñibles.",
+  "quizLoadedNoQuestionsAvailable": "Non hai preguntas dispoñibles",
   "select": "Seleccionar",
   "done": "Feito",
   "importButton": "Importar",
@@ -1812,7 +1812,7 @@
   "@documentTooLongForProcessing": {
     "description": "Error message when AI document processing fails due to document length"
   },
-  "studyScreenNoSlidesAvailable": "Non hai seccións de estudo dispoñibles.",
+  "studyScreenNoSlidesAvailable": "Non hai seccións de estudo dispoñibles",
   "studyScreenGenerating": "Xerando materiais de estudo...",
   "studyScreenError": "Produciuse un erro ao xerar o material de estudo.",
   "studyScreenNoSlidesGenerated": "Non se xeraron diapositivas.",

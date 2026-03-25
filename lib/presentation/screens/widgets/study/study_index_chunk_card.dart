@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';
@@ -83,7 +84,6 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
     final cardBg = isDark ? AppTheme.cardColorDark : Colors.white;
     final pendingBadgeBg = isDark ? AppTheme.zinc700 : AppTheme.zinc100;
     final pendingBadgeText = isDark ? AppTheme.zinc400 : AppTheme.zinc500;
-    final titleColor = isDark ? AppTheme.zinc300 : AppTheme.zinc700;
     final subtitleColor = isDark ? AppTheme.zinc600 : AppTheme.zinc400;
     final arrowColor = isDark ? AppTheme.zinc600 : AppTheme.zinc400;
     final summaryColor = isDark ? AppTheme.zinc400 : AppTheme.zinc500;
@@ -113,12 +113,25 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
               if (isSelectionMode)
                 Padding(
                   padding: const EdgeInsets.only(right: 12),
-                  child: Icon(
-                    isSelected
-                        ? Icons.check_box
-                        : Icons.check_box_outline_blank,
-                    color: isSelected ? AppTheme.primaryColor : arrowColor,
-                    size: 22,
+                  child: Container(
+                    width: 24,
+                    height: 24,
+                    decoration: BoxDecoration(
+                      color: isSelected
+                          ? AppTheme.primaryColor
+                          : Colors.transparent,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: isSelected ? AppTheme.primaryColor : arrowColor,
+                      ),
+                    ),
+                    child: isSelected
+                        ? const Icon(
+                            LucideIcons.check,
+                            size: 16,
+                            color: Colors.white,
+                          )
+                        : null,
                   ),
                 )
               else
@@ -154,7 +167,9 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
                               fontWeight: isCompleted
                                   ? FontWeight.w600
                                   : FontWeight.w500,
-                              color: isCompleted ? null : titleColor,
+                              color: isDark
+                                  ? AppTheme.backgroundColor
+                                  : AppTheme.zinc900,
                             ),
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -179,13 +194,21 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
               if (isSelectionMode && widget.supportsReordering)
                 ReorderableDragStartListener(
                   index: index,
-                  child: Icon(Icons.drag_handle, color: arrowColor, size: 20),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Icon(
+                      Icons.drag_indicator,
+                      color: Theme.of(context).hintColor,
+                    ),
+                  ),
                 )
               else if (isSelectionMode)
-                Icon(
-                  Icons.drag_handle,
-                  color: arrowColor.withValues(alpha: 0.3),
-                  size: 20,
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Icon(
+                    Icons.drag_indicator,
+                    color: Theme.of(context).hintColor.withValues(alpha: 0.3),
+                  ),
                 )
               else if (isCompleted)
                 const Icon(

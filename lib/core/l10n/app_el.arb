@@ -496,7 +496,7 @@
     "description": "Tooltip for the reorder questions button"
   },
   "quizPreviewTitle": "Προεπισκόπηση Κουίζ",
-  "quizLoadedNoQuestionsAvailable": "Δεν υπάρχουν διαθέσιμες ερωτήσεις.",
+  "quizLoadedNoQuestionsAvailable": "Δεν υπάρχουν διαθέσιμες ερωτήσεις",
   "select": "Επιλογή",
   "done": "Τέλος",
   "importButton": "Εισαγωγή",
@@ -801,7 +801,7 @@
   "@documentTooLongForProcessing": {
     "description": "Error message when AI document processing fails due to document length"
   },
-  "studyScreenNoSlidesAvailable": "Δεν υπάρχουν διαθέσιμες ενότητες μελέτης.",
+  "studyScreenNoSlidesAvailable": "Δεν υπάρχουν διαθέσιμες ενότητες μελέτης",
   "studyScreenGenerating": "Δημιουργία υλικού μελέτης...",
   "studyScreenError": "Παρουσιάστηκε σφάλμα κατά τη δημιουργία του υλικού μελέτης.",
   "studyScreenRetry": "Δοκιμάστε ξανά",

@@ -1635,7 +1635,7 @@
     "description": "Tooltip for the reorder questions button"
   },
   "quizPreviewTitle": "Vista prèvia del qüestionari",
-  "quizLoadedNoQuestionsAvailable": "No hi ha preguntes disponibles.",
+  "quizLoadedNoQuestionsAvailable": "No hi ha preguntes disponibles",
   "select": "Seleccionar",
   "done": "Fet",
   "importButton": "Importar",
@@ -1918,7 +1918,7 @@
   "@documentTooLongForProcessing": {
     "description": "Error message when AI document processing fails due to document length"
   },
-  "studyScreenNoSlidesAvailable": "No hi ha seccions d'estudi disponibles.",
+  "studyScreenNoSlidesAvailable": "No hi ha seccions d'estudi disponibles",
   "studyScreenGenerating": "Generant materials d'estudi...",
   "studyScreenError": "S'ha produït un error en generar el material d'estudi.",
   "studyScreenNoSlidesGenerated": "No s'han generat diapositives.",

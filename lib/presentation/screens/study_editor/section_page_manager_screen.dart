@@ -158,9 +158,12 @@ class _PageCard extends StatelessWidget {
         onTap: onTap,
         leading: ReorderableDragStartListener(
           index: index,
-          child: Icon(
-            LucideIcons.gripVertical,
-            color: colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Icon(
+              Icons.drag_indicator,
+              color: Theme.of(context).hintColor,
+            ),
           ),
         ),
         title: Text(label),
