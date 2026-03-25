@@ -1539,7 +1539,7 @@
     "description": "Tooltip for the reorder questions button"
   },
   "quizPreviewTitle": "Aperçu du Quiz",
-  "quizLoadedNoQuestionsAvailable": "Aucune question disponible.",
+  "quizLoadedNoQuestionsAvailable": "Aucune question disponible",
   "select": "Sélectionner",
   "done": "Terminé",
   "importButton": "Importer",
@@ -1857,7 +1857,7 @@
   "@documentTooLongForProcessing": {
     "description": "Error message when AI document processing fails due to document length"
   },
-  "studyScreenNoSlidesAvailable": "Aucune section d'étude disponible.",
+  "studyScreenNoSlidesAvailable": "Aucune section d'étude disponible",
   "studyScreenGenerating": "Création du matériel d'étude...",
   "studyScreenError": "Une erreur s'est produite lors de la création du matériel d'étude.",
   "studyScreenNoSlidesGenerated": "Aucune diapositive générée.",

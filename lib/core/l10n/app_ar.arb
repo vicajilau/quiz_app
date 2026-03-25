@@ -1621,7 +1621,7 @@
   "@quizPreviewTitle": {
     "description": "Title for the quiz preview screen"
   },
-  "quizLoadedNoQuestionsAvailable": "لا توجد أسئلة متاحة.",
+  "quizLoadedNoQuestionsAvailable": "لا توجد أسئلة متاحة",
   "select": "تحديد",
   "@select": {
     "description": "Generic select button text"
@@ -2070,7 +2070,7 @@
   "@documentTooLongForProcessing": {
     "description": "Error message when AI document processing fails due to document length"
   },
-  "studyScreenNoSlidesAvailable": "لا توجد أقسام دراسية متاحة.",
+  "studyScreenNoSlidesAvailable": "لا توجد أقسام دراسية متاحة",
   "@studyScreenNoSlidesAvailable": {
     "description": "Message shown when no study slides are available"
   },

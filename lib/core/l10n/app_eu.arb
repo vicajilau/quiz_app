@@ -1486,7 +1486,7 @@
     "description": "Tooltip for the reorder questions button"
   },
   "quizPreviewTitle": "Galdetegiaren Aurrebista",
-  "quizLoadedNoQuestionsAvailable": "Ez dago galderarik erabilgarri.",
+  "quizLoadedNoQuestionsAvailable": "Ez dago galderarik erabilgarri",
   "select": "Hautatu",
   "done": "Eginda",
   "importButton": "Inportatu",
@@ -1812,7 +1812,7 @@
   "@documentTooLongForProcessing": {
     "description": "Error message when AI document processing fails due to document length"
   },
-  "studyScreenNoSlidesAvailable": "Ez dago ikasketa atalik erabilgarri.",
+  "studyScreenNoSlidesAvailable": "Ez dago ikasketa atalik erabilgarri",
   "studyScreenGenerating": "Ikasketa materiala sortzen...",
   "studyScreenError": "Errore bat gertatu da ikasketa materiala sortzean.",
   "studyScreenNoSlidesGenerated": "Ez da diapositibarik sortu.",
