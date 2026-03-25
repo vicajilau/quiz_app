@@ -1880,6 +1880,26 @@
   "startQuizFromStudy": "Probatu zure ezagutzak",
   "studyScreenCustomChapter": "Kapitulu pertsonalizatua",
   "addSection": "Gehitu atala",
+  "editSection": "Atala editatu",
+  "@editSection": {
+    "description": "Title for editing an existing section dialog"
+  },
+  "sectionTitleLabel": "Izenburua",
+  "@sectionTitleLabel": {
+    "description": "Label for section title input field in add/edit section dialog"
+  },
+  "sectionTitleHint": "Sartu atalaren izenburua",
+  "@sectionTitleHint": {
+    "description": "Hint for section title input field in add/edit section dialog"
+  },
+  "sectionContentLabel": "Edukia",
+  "@sectionContentLabel": {
+    "description": "Label for section content input field in add/edit section dialog"
+  },
+  "sectionContentHint": "Sartu atalaren edukia",
+  "@sectionContentHint": {
+    "description": "Hint for section content input field in add/edit section dialog"
+  },
   "generateSectionsWithAI": "Sortu atalak AIarekin",
   "addSectionsWithAI": "Gehitu atalak AIarekin",
   "studyScreenReminder": "Oroigarria",

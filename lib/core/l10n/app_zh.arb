@@ -1932,6 +1932,26 @@
   "startQuizFromStudy": "测试你的知识",
   "studyScreenCustomChapter": "自定义章节",
   "addSection": "添加章节",
+  "editSection": "编辑章节",
+  "@editSection": {
+    "description": "Title for editing an existing section dialog"
+  },
+  "sectionTitleLabel": "标题",
+  "@sectionTitleLabel": {
+    "description": "Label for section title input field in add/edit section dialog"
+  },
+  "sectionTitleHint": "输入章节标题",
+  "@sectionTitleHint": {
+    "description": "Hint for section title input field in add/edit section dialog"
+  },
+  "sectionContentLabel": "内容",
+  "@sectionContentLabel": {
+    "description": "Label for section content input field in add/edit section dialog"
+  },
+  "sectionContentHint": "输入章节内容",
+  "@sectionContentHint": {
+    "description": "Hint for section content input field in add/edit section dialog"
+  },
   "generateSectionsWithAI": "使用 AI 生成章节",
   "addSectionsWithAI": "使用 AI 添加章节",
   "studyScreenReminder": "提醒",

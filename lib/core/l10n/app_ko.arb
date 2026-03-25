@@ -270,6 +270,26 @@
   "falseLabel": "거짓",
   "addQuestion": "질문 추가",
   "addSection": "섹션 추가",
+  "editSection": "섹션 편집",
+  "@editSection": {
+    "description": "Title for editing an existing section dialog"
+  },
+  "sectionTitleLabel": "제목",
+  "@sectionTitleLabel": {
+    "description": "Label for section title input field in add/edit section dialog"
+  },
+  "sectionTitleHint": "섹션 제목 입력",
+  "@sectionTitleHint": {
+    "description": "Hint for section title input field in add/edit section dialog"
+  },
+  "sectionContentLabel": "내용",
+  "@sectionContentLabel": {
+    "description": "Label for section content input field in add/edit section dialog"
+  },
+  "sectionContentHint": "섹션 내용 입력",
+  "@sectionContentHint": {
+    "description": "Hint for section content input field in add/edit section dialog"
+  },
   "editQuestion": "질문 편집",
   "questionText": "질문 내용",
   "questionType": "질문 유형",

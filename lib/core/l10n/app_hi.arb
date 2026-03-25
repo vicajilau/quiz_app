@@ -1883,6 +1883,26 @@
   "startQuizFromStudy": "अपने ज्ञान का परीक्षण करें",
   "studyScreenCustomChapter": "कस्टम अध्याय",
   "addSection": "अनुभाग जोड़ें",
+  "editSection": "अनुभाग संपादित करें",
+  "@editSection": {
+    "description": "Title for editing an existing section dialog"
+  },
+  "sectionTitleLabel": "शीर्षक",
+  "@sectionTitleLabel": {
+    "description": "Label for section title input field in add/edit section dialog"
+  },
+  "sectionTitleHint": "अनुभाग शीर्षक दर्ज करें",
+  "@sectionTitleHint": {
+    "description": "Hint for section title input field in add/edit section dialog"
+  },
+  "sectionContentLabel": "सामग्री",
+  "@sectionContentLabel": {
+    "description": "Label for section content input field in add/edit section dialog"
+  },
+  "sectionContentHint": "अनुभाग सामग्री दर्ज करें",
+  "@sectionContentHint": {
+    "description": "Hint for section content input field in add/edit section dialog"
+  },
   "generateSectionsWithAI": "AI के साथ अनुभाग उत्पन्न करें",
   "addSectionsWithAI": "AI के साथ अनुभाग जोड़ें",
   "studyScreenReminder": "अनुस्मारक",

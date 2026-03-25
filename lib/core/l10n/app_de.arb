@@ -1976,6 +1976,26 @@
   "startQuizFromStudy": "Testen Sie Ihr Wissen",
   "studyScreenCustomChapter": "Benutzerdefiniertes Kapitel",
   "addSection": "Abschnitt hinzufügen",
+  "editSection": "Abschnitt bearbeiten",
+  "@editSection": {
+    "description": "Title for editing an existing section dialog"
+  },
+  "sectionTitleLabel": "Titel",
+  "@sectionTitleLabel": {
+    "description": "Label for section title input field in add/edit section dialog"
+  },
+  "sectionTitleHint": "Abschnittstitel eingeben",
+  "@sectionTitleHint": {
+    "description": "Hint for section title input field in add/edit section dialog"
+  },
+  "sectionContentLabel": "Inhalt",
+  "@sectionContentLabel": {
+    "description": "Label for section content input field in add/edit section dialog"
+  },
+  "sectionContentHint": "Abschnittsinhalt eingeben",
+  "@sectionContentHint": {
+    "description": "Hint for section content input field in add/edit section dialog"
+  },
   "generateSectionsWithAI": "Abschnitte mit KI generieren",
   "addSectionsWithAI": "Abschnitte mit KI hinzufügen",
   "studyScreenReminder": "Erinnerung",

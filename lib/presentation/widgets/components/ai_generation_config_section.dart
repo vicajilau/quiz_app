@@ -21,6 +21,7 @@ import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quizdy/presentation/widgets/quizdy_switch.dart';
+import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
 class AiGenerationConfigSection extends StatelessWidget {
   final bool isStudyMode;
@@ -159,7 +160,7 @@ class AiGenerationConfigSection extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   alignment: Alignment.center,
-                  child: TextField(
+                  child: QuizdyTextField(
                     controller:
                         questionCountController ?? TextEditingController(),
                     focusNode: questionCountFocusNode ?? FocusNode(),
@@ -169,16 +170,6 @@ class AiGenerationConfigSection extends StatelessWidget {
                       FilteringTextInputFormatter.digitsOnly,
                       LengthLimitingTextInputFormatter(2),
                     ],
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: colors.title,
-                    ),
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.zero,
-                      isDense: true,
-                    ),
                     onChanged: (value) {
                       if (value.isEmpty || onQuestionCountChanged == null) {
                         return;

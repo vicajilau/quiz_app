@@ -2258,6 +2258,26 @@
   "@addSection": {
     "description": "Generic add section button text"
   },
+  "editSection": "تعديل القسم",
+  "@editSection": {
+    "description": "Title for editing an existing section dialog"
+  },
+  "sectionTitleLabel": "العنوان",
+  "@sectionTitleLabel": {
+    "description": "Label for section title input field in add/edit section dialog"
+  },
+  "sectionTitleHint": "أدخل عنوان القسم",
+  "@sectionTitleHint": {
+    "description": "Hint for section title input field in add/edit section dialog"
+  },
+  "sectionContentLabel": "المحتوى",
+  "@sectionContentLabel": {
+    "description": "Label for section content input field in add/edit section dialog"
+  },
+  "sectionContentHint": "أدخل محتوى القسم",
+  "@sectionContentHint": {
+    "description": "Hint for section content input field in add/edit section dialog"
+  },
   "generateSectionsWithAI": "إنشاء أقسام باستخدام الذكاء الاصطناعي",
   "@generateSectionsWithAI": {
     "description": "Tooltip for generating sections from scratch with AI"

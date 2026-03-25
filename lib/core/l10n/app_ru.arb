@@ -4,6 +4,26 @@
   "abortQuizMessage": "Открытие нового файла остановит текущую викторину.",
   "addQuestion": "Добавить вопрос",
   "addSection": "Добавить раздел",
+  "editSection": "Редактировать раздел",
+  "@editSection": {
+    "description": "Title for editing an existing section dialog"
+  },
+  "sectionTitleLabel": "Заголовок",
+  "@sectionTitleLabel": {
+    "description": "Label for section title input field in add/edit section dialog"
+  },
+  "sectionTitleHint": "Введите заголовок раздела",
+  "@sectionTitleHint": {
+    "description": "Hint for section title input field in add/edit section dialog"
+  },
+  "sectionContentLabel": "Содержание",
+  "@sectionContentLabel": {
+    "description": "Label for section content input field in add/edit section dialog"
+  },
+  "sectionContentHint": "Введите содержание раздела",
+  "@sectionContentHint": {
+    "description": "Hint for section content input field in add/edit section dialog"
+  },
   "editQuestion": "Редактировать вопрос",
   "questionText": "Текст вопроса",
   "questionType": "Тип вопроса",

@@ -24,6 +24,7 @@ import 'package:quizdy/domain/models/quiz/essay_ai_evaluation.dart';
 import 'package:quizdy/presentation/screens/quiz_execution/widgets/ai_studio_chat_button.dart';
 import 'package:quizdy/presentation/screens/quiz_execution/widgets/ai_evaluation_result.dart';
 import 'package:quizdy/presentation/screens/quiz_execution/widgets/quiz_question_explanation.dart';
+import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
 /// A widget that handles essay-type questions.
 ///
@@ -146,18 +147,12 @@ class _EssayAnswerInputState extends State<EssayAnswerInput> {
               borderRadius: BorderRadius.circular(12),
               border: Border.all(color: Theme.of(context).dividerColor),
             ),
-            child: TextField(
+            child: QuizdyTextField(
               controller: _essayController,
               minLines: 5,
               maxLines: null,
               keyboardType: TextInputType.multiline,
-              textAlignVertical: TextAlignVertical.top,
-              decoration: InputDecoration(
-                hintText: AppLocalizations.of(context)!.explanationHint,
-                border: InputBorder.none,
-                hintStyle: TextStyle(color: Theme.of(context).hintColor),
-                contentPadding: const EdgeInsets.all(16),
-              ),
+              hint: AppLocalizations.of(context)!.explanationHint,
               readOnly:
                   widget.isStudyMode && widget.state.isCurrentQuestionValidated,
               onChanged: (text) {

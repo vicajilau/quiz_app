@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
+import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
 class AddEditChunkDialog extends StatefulWidget {
   final AppLocalizations localizations;
@@ -64,10 +65,9 @@ class _AddEditChunkDialogState extends State<AddEditChunkDialog> {
 
   @override
   Widget build(BuildContext context) {
-    // Assuming adding 'title' and 'cancel' translations later or reusing existing
     final isEditing = widget.initialTitle != null;
     final dialogTitle = isEditing
-        ? 'Edit Section'
+        ? widget.localizations.editSection
         : widget.localizations.addSection;
 
     return Dialog(
@@ -115,29 +115,25 @@ class _AddEditChunkDialogState extends State<AddEditChunkDialog> {
               ],
             ),
             const SizedBox(height: 24),
-            TextField(
+            QuizdyFieldLabel(label: widget.localizations.sectionTitleLabel),
+            const SizedBox(height: 6),
+            QuizdyTextField(
               controller: _titleController,
-              decoration: const InputDecoration(
-                labelText: 'Title', // Ideally use translation
-                hintText: 'Enter section title',
-                border: OutlineInputBorder(),
-              ),
+              hint: widget.localizations.sectionTitleHint,
+              textCapitalization: TextCapitalization.sentences,
+              textInputAction: TextInputAction.next,
               onChanged: (_) => setState(() {}),
             ),
             const SizedBox(height: 16),
+            QuizdyFieldLabel(label: widget.localizations.sectionContentLabel),
+            const SizedBox(height: 6),
             Expanded(
-              child: TextField(
+              child: QuizdyTextField(
                 controller: _textController,
-                decoration: const InputDecoration(
-                  labelText: 'Content', // Ideally use translation
-                  hintText: 'Enter section text',
-                  border: OutlineInputBorder(),
-                  alignLabelWithHint: true,
-                ),
+                hint: widget.localizations.sectionContentHint,
+                minLines: 1,
                 maxLines: null,
-                expands: true,
                 keyboardType: TextInputType.multiline,
-                textAlignVertical: TextAlignVertical.top,
               ),
             ),
             const SizedBox(height: 24),
@@ -147,7 +143,7 @@ class _AddEditChunkDialogState extends State<AddEditChunkDialog> {
               expanded: true,
               onPressed: _titleController.text.trim().isNotEmpty
                   ? _handleSave
-                  : null, // Disable if title is empty
+                  : null,
             ),
           ],
         ),

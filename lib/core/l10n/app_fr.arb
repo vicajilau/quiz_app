@@ -1925,6 +1925,26 @@
   "startQuizFromStudy": "Testez vos connaissances",
   "studyScreenCustomChapter": "Chapitre personnalisé",
   "addSection": "Ajouter une section",
+  "editSection": "Modifier la section",
+  "@editSection": {
+    "description": "Title for editing an existing section dialog"
+  },
+  "sectionTitleLabel": "Titre",
+  "@sectionTitleLabel": {
+    "description": "Label for section title input field in add/edit section dialog"
+  },
+  "sectionTitleHint": "Saisissez le titre de la section",
+  "@sectionTitleHint": {
+    "description": "Hint for section title input field in add/edit section dialog"
+  },
+  "sectionContentLabel": "Contenu",
+  "@sectionContentLabel": {
+    "description": "Label for section content input field in add/edit section dialog"
+  },
+  "sectionContentHint": "Saisissez le contenu de la section",
+  "@sectionContentHint": {
+    "description": "Hint for section content input field in add/edit section dialog"
+  },
   "generateSectionsWithAI": "Générer des sections avec l'IA",
   "addSectionsWithAI": "Ajouter des sections avec l'IA",
   "studyScreenReminder": "Rappel",
