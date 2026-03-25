@@ -169,7 +169,6 @@ jobs:
         with:
           android-store-file-base64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
           android-key-password:  ${{ secrets.ANDROID_KEY_PASSWORD }}
-          android-local-properties-file: ${{ secrets.ANDROID_LOCAL_PROPERTIES_FILE }}
           android-store-password: ${{ secrets.ANDROID_STORE_PASSWORD }}
           android-key-alias: ${{ secrets.ANDROID_KEY_ALIAS }}
           
