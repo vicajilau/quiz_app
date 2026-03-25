@@ -53,6 +53,7 @@ jobs:
 
   build_and_deploy_web:
     runs-on: ubuntu-latest
+    name: Build & Publish web
     needs: [prepare_and_check]
     steps:
       - name: Download prepared workspace
@@ -66,7 +67,7 @@ jobs:
       - name: Build & Publish web
         uses: Spaccesi/flutter-actions-suite@main
         with:
-          base-href: "quizdy/"
+          base-href: "/${{ github.event.repository.name }}/"
           run-test: "false"
           run-build-runner: "false"
           run-gen-l10n: "false"
@@ -77,6 +78,7 @@ jobs:
 
   build_and_deploy_ios:
     runs-on: macos-latest
+    name: Build & Publish ios
     needs: [prepare_and_check]
     steps:
       - name: Download prepared workspace
@@ -95,17 +97,17 @@ jobs:
           ios-provisioning-profile-base64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
           export-options-plist: "ios/Runner/ExportOptions.plist"
           
-      # - name: Publish ios
-      #   uses: Spaccesi/flutter-actions-suite/publish/ios-app-store@main
-      #   with:
-      #     apple-app-id:
-      #     app-version: 
-      #     apple-api-key-id: ${{ secrets.APPLE_API_KEY_ID }}
-      #     apple-api-key-issuer-id: ${{ secrets.APPLE_API_KEY_ISSUER }}
-      #     apple-api-key-content: ${{ secrets.APPLE_API_KEY_CONTENT }}
+      - name: Publish ios
+        uses: Spaccesi/flutter-actions-suite/publish/ios-app-store@main
+        with:
+          apple-api-key-id: ${{ secrets.APPLE_API_KEY_ID }}
+          apple-api-key-issuer-id: ${{ secrets.APPLE_API_KEY_ISSUER }}
+          apple-api-key-content: ${{ secrets.APPLE_API_KEY_CONTENT }}
+          ios-app-path: "build/ios/ipa/*.ipa"
 
   build_and_deploy_macos:
     runs-on: macos-latest
+    name: Build & Publish macos
     needs: [prepare_and_check]
     steps:
       - name: Download prepared workspace
@@ -135,6 +137,7 @@ jobs:
 
   build_and_deploy_linux:
     runs-on: ubuntu-latest
+    name: Build & Publish linux
     needs: [prepare_and_check]
     steps:
       - name: Download prepared workspace
@@ -148,13 +151,14 @@ jobs:
       - name: Build linux
         uses: Spaccesi/flutter-actions-suite/build/linux@main
 
-      # - name: Publish on snap
-      #   uses: Spaccesi/flutter-actions-suite/publish/snap-store@main
-      #   with:
-      #     snap-store-token: ${{ secrets.SNAPCRAFT_LOGIN }}
+      - name: Publish on snap
+        uses: Spaccesi/flutter-actions-suite/publish/snap-store@main
+        with:
+          snap-store-token: ${{ secrets.SNAPCRAFT_LOGIN }}
 
   build_and_deploy_android:
     runs-on: ubuntu-latest
+    name: Build & Publish android
     needs: [prepare_and_check]
     steps:
       - name: Download prepared workspace
@@ -173,15 +177,17 @@ jobs:
           android-store-password: ${{ secrets.ANDROID_STORE_PASSWORD }}
           android-key-alias: ${{ secrets.ANDROID_KEY_ALIAS }}
           
-      # - name: Publish Android
-      #   uses: Spaccesi/flutter-actions-suite/publish/play-store@main
-      #   with:
-      #     android-service-account-json-base64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
-      #     android-package-name:
-      #     android-track: 
+      - name: Publish Android
+        uses: Spaccesi/flutter-actions-suite/publish/play-store@main
+        with:
+          android-service-account-json: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          android-package-name: es.victorcarreras.quiz_app
+          android-track: production
+          android-release-files: "build/app/outputs/bundle/release/app-release.aab"
 
   build_and_deploy_windows:
     runs-on: windows-latest
+    name: Build & Publish windows
     needs: [prepare_and_check]
     steps:
       - name: Download prepared workspace
@@ -192,16 +198,16 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
 
-      - name: Build ios
+      - name: Build windows
         uses: Spaccesi/flutter-actions-suite/build/windows@main
 
-      # - name: Publish Microsoft store
-      #   uses: Spaccesi/flutter-actions-suite/publish/microsoft-store@main
-      #   with:
-      #     microsoft-partner-center-tenant-id: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
-      #     microsoft-partner-center-seller-id: ${{ secrets.PARTNER_CENTER_SELLER_ID }}
-      #     microsoft-center-client-id: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
-      #     microsoft-partner-center-client-secret: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
+      - name: Publish Microsoft store
+        uses: Spaccesi/flutter-actions-suite/publish/microsoft-store@main
+        with:
+          microsoft-partner-center-tenant-id: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
+          microsoft-partner-center-seller-id: ${{ secrets.PARTNER_CENTER_SELLER_ID }}
+          microsoft-partner-center-client-id: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
+          microsoft-partner-center-client-secret: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
 
   clean_up:
     runs-on: ubuntu-latest
