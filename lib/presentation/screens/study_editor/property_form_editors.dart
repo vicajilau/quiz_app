@@ -34,6 +34,7 @@ class PropertyStringListEditor extends StatelessWidget {
   final List<TextEditingController> controllers;
   final VoidCallback onAdd;
   final ValueChanged<int> onRemove;
+  final bool forceShowError;
 
   const PropertyStringListEditor({
     super.key,
@@ -42,10 +43,14 @@ class PropertyStringListEditor extends StatelessWidget {
     required this.controllers,
     required this.onAdd,
     required this.onRemove,
+    this.forceShowError = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    final errorColor = Theme.of(context).colorScheme.error;
+    final l = AppLocalizations.of(context)!;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -53,11 +58,25 @@ class PropertyStringListEditor extends StatelessWidget {
         const SizedBox(height: 8),
         for (int i = 0; i < controllers.length; i++) ...[
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: QuizdyTextField(
-                  controller: controllers[i],
-                  hint: '$itemLabel ${i + 1}',
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    QuizdyTextField(
+                      controller: controllers[i],
+                      hint: '$itemLabel ${i + 1}',
+                    ),
+                    if (forceShowError &&
+                        controllers[i].text.trim().isEmpty) ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        l.componentFieldRequired,
+                        style: TextStyle(fontSize: 11, color: errorColor),
+                      ),
+                    ],
+                  ],
                 ),
               ),
               const SizedBox(width: 6),
@@ -79,6 +98,7 @@ class PropertyObjectListEditor extends StatelessWidget {
   final Map<String, String> fieldLabels;
   final VoidCallback onAdd;
   final ValueChanged<int> onRemove;
+  final bool forceShowError;
 
   const PropertyObjectListEditor({
     super.key,
@@ -87,12 +107,15 @@ class PropertyObjectListEditor extends StatelessWidget {
     required this.fieldLabels,
     required this.onAdd,
     required this.onRemove,
+    this.forceShowError = false,
   });
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final borderColor = isDark ? AppTheme.zinc800 : AppTheme.zinc200;
+    final errorColor = Theme.of(context).colorScheme.error;
+    final l = AppLocalizations.of(context)!;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,6 +159,14 @@ class PropertyObjectListEditor extends StatelessWidget {
                         ? TextInputType.multiline
                         : TextInputType.text,
                   ),
+                  if (forceShowError &&
+                      rows[i][entry.key]!.text.trim().isEmpty) ...[
+                    const SizedBox(height: 4),
+                    Text(
+                      l.componentFieldRequired,
+                      style: TextStyle(fontSize: 11, color: errorColor),
+                    ),
+                  ],
                   const SizedBox(height: 8),
                 ],
               ],

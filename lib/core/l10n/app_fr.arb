@@ -2056,7 +2056,7 @@
   "@studyEditorPages": {
     "description": "Section header for the list of pages in the section page manager"
   },
-  "studyEditorFieldTitle": "Titre (facultatif)",
+  "studyEditorFieldTitle": "Titre",
   "@studyEditorFieldTitle": {
     "description": "Label for the optional title field in component editors"
   },
@@ -2258,6 +2258,7 @@
   "@componentFieldOptional": {
     "description": "Label shown next to optional form fields"
   },
+  "componentFieldRequired": "Ce champ est obligatoire",
   "componentFieldAdd": "Ajouter {item}",
   "@componentFieldAdd": {
     "description": "Button label to add a new item to a list",

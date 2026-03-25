@@ -2023,7 +2023,7 @@
   "@studyEditorPages": {
     "description": "Section header for the list of pages in the section page manager"
   },
-  "studyEditorFieldTitle": "Izenburua (aukerakoa)",
+  "studyEditorFieldTitle": "Izenburua",
   "@studyEditorFieldTitle": {
     "description": "Label for the optional title field in component editors"
   },
@@ -2193,6 +2193,7 @@
   "@componentFieldOptional": {
     "description": "Label shown next to optional form fields"
   },
+  "componentFieldRequired": "Eremu hau nahitaezkoa da",
   "componentFieldAdd": "Gehitu {item}",
   "@componentFieldAdd": {
     "description": "Button label to add a new item to a list",

@@ -2109,7 +2109,7 @@
   "studyEditorEmptyComponents": "No hi ha components en aquesta pàgina.",
   "studyEditorSaveChanges": "Desa els canvis",
   "studyEditorEditParagraph": "Edita el paràgraf",
-  "studyEditorFieldTitle": "Títol (opcional)",
+  "studyEditorFieldTitle": "Títol",
   "studyEditorFieldBody": "Text corporal",
   "studyEditorAddPage": "Afegeix pàgina",
   "studyEditorDeletePage": "Suprimeix la pàgina",
@@ -2272,6 +2272,7 @@
   "@componentFieldOptional": {
     "description": "Label shown next to optional form fields"
   },
+  "componentFieldRequired": "Aquest camp és obligatori",
   "addComponentTitle": "Afegeix un component",
   "@addComponentTitle": {
     "description": "Title for the Add Component picker screen"

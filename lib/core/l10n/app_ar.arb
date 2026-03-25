@@ -2421,7 +2421,7 @@
   "studyEditorEmptyComponents": "لا توجد مكونات في هذه الصفحة.",
   "studyEditorSaveChanges": "حفظ التغييرات",
   "studyEditorEditParagraph": "تحرير الفقرة",
-  "studyEditorFieldTitle": "العنوان (اختياري)",
+  "studyEditorFieldTitle": "العنوان",
   "studyEditorFieldBody": "نص الجسم",
   "studyEditorAddPage": "إضافة صفحة",
   "studyEditorDeletePage": "حذف الصفحة",
@@ -2584,6 +2584,7 @@
   "@componentFieldOptional": {
     "description": "Label shown next to optional form fields"
   },
+  "componentFieldRequired": "هذا الحقل مطلوب",
   "addComponentTitle": "إضافة مكون",
   "@addComponentTitle": {
     "description": "Title for the Add Component picker screen"

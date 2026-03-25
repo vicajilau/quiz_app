@@ -731,7 +731,7 @@
   "@studyEditorEditParagraph": {
     "description": "Navigation header title for the paragraph property panel"
   },
-  "studyEditorFieldTitle": "제목(선택사항)",
+  "studyEditorFieldTitle": "제목",
   "@studyEditorFieldTitle": {
     "description": "Label for the optional title field in component editors"
   },
@@ -889,6 +889,7 @@
   "@componentFieldOptional": {
     "description": "Label shown next to optional form fields"
   },
+  "componentFieldRequired": "이 필드는 필수입니다",
   "componentFieldLabel": "상표",
   "@componentFieldLabel": {
     "description": "Form field label for a row label in comparison table"

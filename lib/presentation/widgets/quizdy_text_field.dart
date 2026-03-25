@@ -25,6 +25,7 @@ import 'package:quizdy/core/theme/app_theme.dart';
 /// Use [QuizdyFieldLabel] to render the matching field label above this widget.
 class QuizdyTextField extends StatelessWidget {
   final TextEditingController controller;
+  final FocusNode? focusNode;
   final String? hint;
   final int minLines;
   final int? maxLines;
@@ -37,6 +38,7 @@ class QuizdyTextField extends StatelessWidget {
   const QuizdyTextField({
     super.key,
     required this.controller,
+    this.focusNode,
     this.hint,
     this.minLines = 1,
     this.maxLines = 1,
@@ -56,6 +58,7 @@ class QuizdyTextField extends StatelessWidget {
 
     return TextField(
       controller: controller,
+      focusNode: focusNode,
       maxLines: maxLines,
       minLines: minLines,
       keyboardType: keyboardType,

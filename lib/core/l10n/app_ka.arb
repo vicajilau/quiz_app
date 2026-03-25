@@ -707,7 +707,7 @@
   "@studyEditorFieldBody": {
     "description": "Label for the main body text field in component editors"
   },
-  "studyEditorFieldTitle": "სათაური (არასავალდებულო)",
+  "studyEditorFieldTitle": "სათაური",
   "@studyEditorFieldTitle": {
     "description": "Label for the optional title field in component editors"
   },
@@ -905,6 +905,7 @@
   "@componentFieldOptional": {
     "description": "Label shown next to optional form fields"
   },
+  "componentFieldRequired": "ეს ველი სავალდებულოა",
   "addComponentTitle": "კომპონენტის დამატება",
   "@addComponentTitle": {
     "description": "Title for the Add Component picker screen"

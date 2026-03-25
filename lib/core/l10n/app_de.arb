@@ -2103,7 +2103,7 @@
   "studyEditorEmptyComponents": "Keine Komponenten auf dieser Seite.",
   "studyEditorSaveChanges": "Änderungen speichern",
   "studyEditorEditParagraph": "Absatz bearbeiten",
-  "studyEditorFieldTitle": "Titel (optional)",
+  "studyEditorFieldTitle": "Titel",
   "studyEditorFieldBody": "Fließtext",
   "studyEditorAddPage": "Seite hinzufügen",
   "studyEditorDeletePage": "Seite löschen",
@@ -2266,6 +2266,7 @@
   "@componentFieldOptional": {
     "description": "Label shown next to optional form fields"
   },
+  "componentFieldRequired": "Dieses Feld ist erforderlich",
   "addComponentTitle": "Komponente hinzufügen",
   "@addComponentTitle": {
     "description": "Title for the Add Component picker screen"
