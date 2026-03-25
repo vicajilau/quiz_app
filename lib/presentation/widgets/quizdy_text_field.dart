@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 
 /// A styled text field that follows the Quizdy design system.
@@ -34,6 +35,10 @@ class QuizdyTextField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
+  final bool readOnly;
+  final List<TextInputFormatter>? inputFormatters;
+  final String? errorText;
+  final TextAlign textAlign;
 
   const QuizdyTextField({
     super.key,
@@ -46,6 +51,10 @@ class QuizdyTextField extends StatelessWidget {
     this.textCapitalization = TextCapitalization.sentences,
     this.textInputAction,
     this.onChanged,
+    this.readOnly = false,
+    this.inputFormatters,
+    this.errorText,
+    this.textAlign = TextAlign.start,
     this.onSubmitted,
   });
 
@@ -66,6 +75,9 @@ class QuizdyTextField extends StatelessWidget {
       textInputAction: textInputAction,
       onChanged: onChanged,
       onSubmitted: onSubmitted,
+      readOnly: readOnly,
+      inputFormatters: inputFormatters,
+      textAlign: textAlign,
       style: TextStyle(fontSize: 14, color: textColor, height: 1.65),
       decoration: InputDecoration(
         hintText: hint,
@@ -73,6 +85,7 @@ class QuizdyTextField extends StatelessWidget {
         filled: true,
         fillColor: fieldBg,
         contentPadding: const EdgeInsets.all(14),
+        errorText: errorText,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(color: enabledBorderColor, width: 1.5),
@@ -83,7 +96,18 @@ class QuizdyTextField extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: AppTheme.primaryColor, width: 1.5),
+          borderSide: const BorderSide(
+            color: AppTheme.primaryColor,
+            width: 1.5,
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppTheme.errorColor, width: 1.5),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppTheme.errorColor, width: 1.5),
         ),
       ),
     );
