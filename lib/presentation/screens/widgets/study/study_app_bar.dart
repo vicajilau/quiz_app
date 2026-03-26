@@ -133,53 +133,56 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                     Container(
                       margin: const EdgeInsets.only(right: 8),
                       constraints: const BoxConstraints(minWidth: 40),
-                      child: Material(
-                        color: context
-                            .quizLoadedTheme
-                            .selectionInactiveBackgroundColor,
-                        borderRadius: BorderRadius.circular(12),
-                        child: InkWell(
+                      child: Tooltip(
+                        message: localizations.edit,
+                        child: Material(
+                          color: context
+                              .quizLoadedTheme
+                              .selectionInactiveBackgroundColor,
                           borderRadius: BorderRadius.circular(12),
-                          onTap: onEditCurrentChunk,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 10,
-                            ),
-                            child: Builder(
-                              builder: (context) {
-                                final showText =
-                                    MediaQuery.of(context).size.width > 500;
-                                return Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      LucideIcons.pencil,
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.onPrimary,
-                                      size: 18,
-                                    ),
-                                    if (showText) ...[
-                                      const SizedBox(width: 8),
-                                      Flexible(
-                                        child: Text(
-                                          localizations.edit,
-                                          style: TextStyle(
-                                            color: Theme.of(
-                                              context,
-                                            ).colorScheme.onPrimary,
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(12),
+                            onTap: onEditCurrentChunk,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 10,
+                              ),
+                              child: Builder(
+                                builder: (context) {
+                                  final showText =
+                                      MediaQuery.of(context).size.width > 500;
+                                  return Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        LucideIcons.pencil,
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onPrimary,
+                                        size: 18,
                                       ),
+                                      if (showText) ...[
+                                        const SizedBox(width: 8),
+                                        Flexible(
+                                          child: Text(
+                                            localizations.edit,
+                                            style: TextStyle(
+                                              color: Theme.of(
+                                                context,
+                                              ).colorScheme.onPrimary,
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
                                     ],
-                                  ],
-                                );
-                              },
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ),
@@ -206,7 +209,7 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                         color: Theme.of(context).colorScheme.onPrimary,
                         size: 20,
                       ),
-                      tooltip: localizations.questionOrderConfigTooltip,
+                      tooltip: localizations.settingsTitle,
                     ),
                   ),
 
@@ -215,62 +218,67 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                     Container(
                       margin: const EdgeInsets.only(right: 24),
                       constraints: const BoxConstraints(minWidth: 40),
-                      child: Material(
-                        color: context
-                            .quizLoadedTheme
-                            .selectionInactiveBackgroundColor,
-                        borderRadius: BorderRadius.circular(12),
-                        child: InkWell(
+                      child: Tooltip(
+                        message: state.isSelectionMode
+                            ? localizations.done
+                            : localizations.select,
+                        child: Material(
+                          color: context
+                              .quizLoadedTheme
+                              .selectionInactiveBackgroundColor,
                           borderRadius: BorderRadius.circular(12),
-                          onTap: () {
-                            context.read<StudyExecutionBloc>().add(
-                              const ToggleStudySelectionMode(),
-                            );
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 10,
-                            ),
-                            child: Builder(
-                              builder: (context) {
-                                final showText =
-                                    MediaQuery.of(context).size.width > 500;
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(12),
+                            onTap: () {
+                              context.read<StudyExecutionBloc>().add(
+                                const ToggleStudySelectionMode(),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 10,
+                              ),
+                              child: Builder(
+                                builder: (context) {
+                                  final showText =
+                                      MediaQuery.of(context).size.width > 500;
 
-                                return Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      state.isSelectionMode
-                                          ? LucideIcons.checkSquare
-                                          : LucideIcons.mousePointer2,
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.onPrimary,
-                                      size: 18,
-                                    ),
-                                    if (showText) ...[
-                                      const SizedBox(width: 8),
-                                      Flexible(
-                                        child: Text(
-                                          state.isSelectionMode
-                                              ? localizations.done
-                                              : localizations.select,
-                                          style: TextStyle(
-                                            color: Theme.of(
-                                              context,
-                                            ).colorScheme.onPrimary,
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
+                                  return Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        state.isSelectionMode
+                                            ? LucideIcons.checkSquare
+                                            : LucideIcons.mousePointer2,
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onPrimary,
+                                        size: 18,
                                       ),
+                                      if (showText) ...[
+                                        const SizedBox(width: 8),
+                                        Flexible(
+                                          child: Text(
+                                            state.isSelectionMode
+                                                ? localizations.done
+                                                : localizations.select,
+                                            style: TextStyle(
+                                              color: Theme.of(
+                                                context,
+                                              ).colorScheme.onPrimary,
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
                                     ],
-                                  ],
-                                );
-                              },
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ),
