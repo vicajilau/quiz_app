@@ -21,7 +21,7 @@ jobs:
           gen-l10n-fails-if-untranslated: "true"
           run-test: "true"
           run-analyze: "true"
-          run-license: "true"
+          run-license-check: "true"
           licenses-conf-path: ".github/licenses_checker.yaml"
 
       - name: Check license headers
@@ -58,8 +58,8 @@ jobs:
         uses: Spaccesi/flutter-actions-suite@main
         with:
           base-href: "/${{ github.event.repository.name }}/"
-          build-platform: "web"
-          publish-destination: "github-pages"
+          build-platforms: "web"
+          publish-destinations: "github-pages"
 
   build_and_deploy_ios:
     runs-on: macos-latest
@@ -148,7 +148,7 @@ jobs:
           android-key-password:  ${{ secrets.ANDROID_KEY_PASSWORD }}
           android-store-password: ${{ secrets.ANDROID_STORE_PASSWORD }}
           android-key-alias: ${{ secrets.ANDROID_KEY_ALIAS }}
-          android-service-account-json: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          play-store-service-account-json: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
           play-store-package-name: es.victorcarreras.quiz_app
           play-store-track: production
    
