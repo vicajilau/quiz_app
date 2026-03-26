@@ -7,6 +7,12 @@ on:
       - feature/github-action-update
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  actions: write
+
 jobs:
   prepare_and_check:
     name: Run flutter test and analyze
@@ -120,14 +126,12 @@ jobs:
         with:
           name: prepared-repo
 
-          
       - name: Build & Publish linux
         uses: Spaccesi/flutter-actions-suite@main
         with:
           build-platforms: "linux"
           publish-destinations: "snap-store"
           snap-store-token: ${{ secrets.SNAPCRAFT_LOGIN }}
-
 
   build_and_deploy_android:
     runs-on: ubuntu-latest
@@ -148,11 +152,10 @@ jobs:
           android-key-password:  ${{ secrets.ANDROID_KEY_PASSWORD }}
           android-store-password: ${{ secrets.ANDROID_STORE_PASSWORD }}
           android-key-alias: ${{ secrets.ANDROID_KEY_ALIAS }}
-          play-store-service-account-json: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          play-store-service-account-json: ${{ secrets.ANDROID_PLAYSTORE_ACCOUNT_KEY }}
           play-store-package-name: es.victorcarreras.quiz_app
           play-store-track: production
    
-
   build_and_deploy_windows:
     runs-on: windows-latest
     name: Build & Publish windows
@@ -163,7 +166,6 @@ jobs:
         with:
           name: prepared-repo
 
-     
       - name: Build & Publish windows
         uses: Spaccesi/flutter-actions-suite@main
         with:
@@ -171,7 +173,7 @@ jobs:
           publish-destinations: "microsoft-store"
           microsoft-partner-center-tenant-id: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
           microsoft-partner-center-seller-id: ${{ secrets.PARTNER_CENTER_SELLER_ID }}
-          microsoft-store-app-id: ${{ secrets.MICROSOFT_STORE_APP_ID }}
+          microsoft-store-app-id: ${{ secrets.MS_STORE_APP_ID }}
           microsoft-partner-center-client-id: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
           microsoft-partner-center-client-secret: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
 
@@ -192,5 +194,3 @@ jobs:
         uses: geekyeggo/delete-artifact@v4
         with:
           name: prepared-repo
-
-
