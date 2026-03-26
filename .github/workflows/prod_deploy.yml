@@ -14,22 +14,15 @@ jobs:
     steps:
       - name: Checkout repositoy
         uses: actions/checkout@v5
-
-      - name: Install flutter
-        uses: subosito/flutter-action@v2
-
       - name: Prepare repository
-        uses: Spaccesi/flutter-actions-suite/prepare@main
+        uses: Spaccesi/flutter-actions-suite@main
         with:
-          run-build-runner: "false"
           run-gen-l10n: "true"
           gen-l10n-fails-if-untranslated: "true"
-
-      - name: Check repository
-        uses: Spaccesi/flutter-actions-suite/check@main
-        with:
+          run-test: "true"
+          run-analyze: "true"
           run-license: "true"
-          compatible-licenses-conf-path: ".github/licenses_checker.yaml"
+          licenses-conf-path: ".github/licenses_checker.yaml"
 
       - name: Check license headers
         run: |
@@ -61,20 +54,12 @@ jobs:
         with:
           name: prepared-repo
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-
       - name: Build & Publish web
         uses: Spaccesi/flutter-actions-suite@main
         with:
           base-href: "/${{ github.event.repository.name }}/"
-          run-test: "false"
-          run-build-runner: "false"
-          run-gen-l10n: "false"
-          run-analyze: "false"
-          run-license: "false"
           build-platform: "web"
-          publish-destination: "none"
+          publish-destination: "github-pages"
 
   build_and_deploy_ios:
     runs-on: macos-latest
@@ -86,24 +71,19 @@ jobs:
         with:
           name: prepared-repo
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-
-      - name: Build ios
-        uses: Spaccesi/flutter-actions-suite/build/ios@main
+      - name: Build & Publish ios
+        uses: Spaccesi/flutter-actions-suite@main
         with:
+          build-platforms: "ios"
+          publish-destinations: "ios-app-store"
           ios-distribution-certificate-base64: ${{ secrets.IOS_DIST_CERTIFICATE_BASE64 }}
           ios-distribution-certificate-password: ${{ secrets.IOS_DIST_CERTIFICATE_PASSWORD }}
           ios-provisioning-profile-base64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
-          export-options-plist: "ios/Runner/ExportOptions.plist"
-          
-      - name: Publish ios
-        uses: Spaccesi/flutter-actions-suite/publish/ios-app-store@main
-        with:
           apple-api-key-id: ${{ secrets.APPLE_API_KEY_ID }}
           apple-api-key-issuer-id: ${{ secrets.APPLE_API_KEY_ISSUER }}
           apple-api-key-content: ${{ secrets.APPLE_API_KEY_CONTENT }}
-          ios-app-path: "build/ios/ipa/*.ipa"
+          ios-export-options-plist: "ios/Runner/ExportOptions.plist"
+
 
   build_and_deploy_macos:
     runs-on: macos-latest
@@ -115,24 +95,20 @@ jobs:
         with:
           name: prepared-repo
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-
       - name: Build macos
-        uses: Spaccesi/flutter-actions-suite/build/macos@main
+        uses: Spaccesi/flutter-actions-suite@main
         with:
           macos-distribution-certificate-base64: ${{ secrets.MACOS_DIST_CERTIFICATE_BASE64 }}
           macos-distribution-certificate-password: ${{ secrets.MACOS_DIST_CERTIFICATE_PASSWORD }}
           macos-installer-certificate-base64: ${{ secrets.MACOS_INSTALLER_CERTIFICATE_BASE64 }}
           macos-installer-certificate-password: ${{ secrets.MACOS_INSTALLER_CERTIFICATE_PASSWORD }}
           macos-provisioning-profile-base64: ${{ secrets.MACOS_PROVISIONING_PROFILE_BASE64 }}
-
-      - name: Publish macos
-        uses: Spaccesi/flutter-actions-suite/publish/macos-app-store@main
-        with:
           apple-api-key-id: ${{ secrets.APPLE_API_KEY_ID }}
           apple-api-key-issuer-id: ${{ secrets.APPLE_API_KEY_ISSUER }}
           apple-api-key-content: ${{ secrets.APPLE_API_KEY_CONTENT }}
+          build-platforms: "macos"
+          publish-destinations: "macos-app-store"
+
 
   build_and_deploy_linux:
     runs-on: ubuntu-latest
@@ -144,16 +120,14 @@ jobs:
         with:
           name: prepared-repo
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-
-      - name: Build linux
-        uses: Spaccesi/flutter-actions-suite/build/linux@main
-
-      - name: Publish on snap
-        uses: Spaccesi/flutter-actions-suite/publish/snap-store@main
+          
+      - name: Build & Publish linux
+        uses: Spaccesi/flutter-actions-suite@main
         with:
+          build-platforms: "linux"
+          publish-destinations: "snap-store"
           snap-store-token: ${{ secrets.SNAPCRAFT_LOGIN }}
+
 
   build_and_deploy_android:
     runs-on: ubuntu-latest
@@ -165,24 +139,19 @@ jobs:
         with:
           name: prepared-repo
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-
-      - name: Build android
-        uses: Spaccesi/flutter-actions-suite/build/android@main
+      - name: Build & Publish android
+        uses: Spaccesi/flutter-actions-suite@main
         with:
+          build-platforms: "android-appbundle"
+          publish-destinations: "play-store"
           android-store-file-base64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
           android-key-password:  ${{ secrets.ANDROID_KEY_PASSWORD }}
           android-store-password: ${{ secrets.ANDROID_STORE_PASSWORD }}
           android-key-alias: ${{ secrets.ANDROID_KEY_ALIAS }}
-          
-      - name: Publish Android
-        uses: Spaccesi/flutter-actions-suite/publish/play-store@main
-        with:
           android-service-account-json: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
-          android-package-name: es.victorcarreras.quiz_app
-          android-track: production
-          android-release-files: "build/app/outputs/bundle/release/app-release.aab"
+          play-store-package-name: es.victorcarreras.quiz_app
+          play-store-track: production
+   
 
   build_and_deploy_windows:
     runs-on: windows-latest
@@ -194,15 +163,12 @@ jobs:
         with:
           name: prepared-repo
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-
-      - name: Build windows
-        uses: Spaccesi/flutter-actions-suite/build/windows@main
-
-      - name: Publish Microsoft store
-        uses: Spaccesi/flutter-actions-suite/publish/microsoft-store@main
+     
+      - name: Build & Publish windows
+        uses: Spaccesi/flutter-actions-suite@main
         with:
+          build-platforms: "windows"
+          publish-destinations: "microsoft-store"
           microsoft-partner-center-tenant-id: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
           microsoft-partner-center-seller-id: ${{ secrets.PARTNER_CENTER_SELLER_ID }}
           microsoft-store-app-id: ${{ secrets.MICROSOFT_STORE_APP_ID }}
