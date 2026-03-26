@@ -2507,5 +2507,17 @@
   "aiComponentsGeneratedSuccess": "Contenido generado correctamente",
   "@aiComponentsGeneratedSuccess": {
     "description": "Snackbar message shown when AI component generation completes successfully"
+  },
+  "duplicate": "Duplicar",
+  "@duplicate": {
+    "description": "Tooltip for the duplicate button in the component card"
+  },
+  "moveUp": "Mover arriba",
+  "@moveUp": {
+    "description": "Tooltip for the move up button in the component card"
+  },
+  "moveDown": "Mover abajo",
+  "@moveDown": {
+    "description": "Tooltip for the move down button in the component card"
   }
 }
