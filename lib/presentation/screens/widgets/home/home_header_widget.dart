@@ -15,6 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:quizdy/core/l10n/app_localizations.dart';
 
 class HomeHeaderWidget extends StatelessWidget {
   final bool isLoading;
@@ -43,6 +44,7 @@ class HomeHeaderWidget extends StatelessWidget {
             ),
             child: IconButton(
               icon: const Icon(LucideIcons.settings),
+              tooltip: AppLocalizations.of(context)!.settingsTitle,
               color: Theme.of(context).iconTheme.color,
               iconSize: 24,
               onPressed: isLoading ? null : onSettingsTap,

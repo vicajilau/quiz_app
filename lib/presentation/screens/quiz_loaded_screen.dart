@@ -557,68 +557,72 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                   ),
                   actions: [
                     // Study Mode Button
-                    Container(
-                      margin: const EdgeInsets.only(right: 8),
-                      constraints: const BoxConstraints(minWidth: 40),
-                      child: Material(
-                        color:
-                            context.quizLoadedTheme.appBarIconBackgroundColor,
-                        borderRadius: BorderRadius.circular(20),
-                        child: InkWell(
+                    Tooltip(
+                      message: AppLocalizations.of(context)!.studyModeLabel,
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 8),
+                        constraints: const BoxConstraints(minWidth: 40),
+                        child: Material(
+                          color:
+                              context.quizLoadedTheme.appBarIconBackgroundColor,
                           borderRadius: BorderRadius.circular(20),
-                          onTap: () {
-                            context.push(
-                              AppRoutes.studyScreen,
-                              extra: {
-                                'initialChunks':
-                                    widget.quizFile.study!.content.cache,
-                                'documentTitle': widget.quizFile.metadata.title,
-                                'documentSummary':
-                                    widget.quizFile.metadata.description,
-                                'quizFile': widget.quizFile,
-                                'hideStartQuizButton': true,
-                              },
-                            );
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 10,
-                            ),
-                            child: Builder(
-                              builder: (context) {
-                                final showText =
-                                    MediaQuery.of(context).size.width > 500;
-                                return Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      LucideIcons.bookOpen,
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.onPrimary,
-                                      size: 18,
-                                    ),
-                                    if (showText) ...[
-                                      const SizedBox(width: 6),
-                                      Text(
-                                        AppLocalizations.of(
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(20),
+                            onTap: () {
+                              context.push(
+                                AppRoutes.studyScreen,
+                                extra: {
+                                  'initialChunks':
+                                      widget.quizFile.study!.content.cache,
+                                  'documentTitle':
+                                      widget.quizFile.metadata.title,
+                                  'documentSummary':
+                                      widget.quizFile.metadata.description,
+                                  'quizFile': widget.quizFile,
+                                  'hideStartQuizButton': true,
+                                },
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 10,
+                              ),
+                              child: Builder(
+                                builder: (context) {
+                                  final showText =
+                                      MediaQuery.of(context).size.width > 500;
+                                  return Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        LucideIcons.bookOpen,
+                                        color: Theme.of(
                                           context,
-                                        )!.studyModeLabel,
-                                        style: TextStyle(
-                                          color: Theme.of(
-                                            context,
-                                          ).colorScheme.onPrimary,
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
+                                        ).colorScheme.onPrimary,
+                                        size: 18,
                                       ),
+                                      if (showText) ...[
+                                        const SizedBox(width: 6),
+                                        Text(
+                                          AppLocalizations.of(
+                                            context,
+                                          )!.studyModeLabel,
+                                          style: TextStyle(
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.onPrimary,
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ],
                                     ],
-                                  ],
-                                );
-                              },
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ),
@@ -642,72 +646,75 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                           color: Theme.of(context).colorScheme.onPrimary,
                           size: 20,
                         ),
-                        tooltip: AppLocalizations.of(
-                          context,
-                        )!.questionOrderConfigTooltip,
+                        tooltip: AppLocalizations.of(context)!.settingsTitle,
                       ),
                     ),
                     Container(
                       margin: const EdgeInsets.only(right: 24),
                       constraints: const BoxConstraints(minWidth: 40),
-                      child: Material(
-                        color: context
-                            .quizLoadedTheme
-                            .selectionInactiveBackgroundColor,
-                        borderRadius: BorderRadius.circular(12),
-                        child: InkWell(
+                      child: Tooltip(
+                        message: _isSelectionMode
+                            ? AppLocalizations.of(context)!.done
+                            : AppLocalizations.of(context)!.select,
+                        child: Material(
+                          color: context
+                              .quizLoadedTheme
+                              .selectionInactiveBackgroundColor,
                           borderRadius: BorderRadius.circular(12),
-                          onTap: () {
-                            _toggleSelectionMode();
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 10,
-                            ),
-                            child: Builder(
-                              builder: (context) {
-                                final showText =
-                                    MediaQuery.of(context).size.width > 500;
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(12),
+                            onTap: () {
+                              _toggleSelectionMode();
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 10,
+                              ),
+                              child: Builder(
+                                builder: (context) {
+                                  final showText =
+                                      MediaQuery.of(context).size.width > 500;
 
-                                return Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      _isSelectionMode
-                                          ? LucideIcons.checkSquare
-                                          : LucideIcons.mousePointer2,
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.onPrimary,
-                                      size: 18,
-                                    ),
-                                    if (showText) ...[
-                                      const SizedBox(width: 8),
-                                      Flexible(
-                                        child: Text(
-                                          _isSelectionMode
-                                              ? AppLocalizations.of(
-                                                  context,
-                                                )!.done
-                                              : AppLocalizations.of(
-                                                  context,
-                                                )!.select,
-                                          style: TextStyle(
-                                            color: Theme.of(
-                                              context,
-                                            ).colorScheme.onPrimary,
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
+                                  return Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        _isSelectionMode
+                                            ? LucideIcons.checkSquare
+                                            : LucideIcons.mousePointer2,
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onPrimary,
+                                        size: 18,
                                       ),
+                                      if (showText) ...[
+                                        const SizedBox(width: 8),
+                                        Flexible(
+                                          child: Text(
+                                            _isSelectionMode
+                                                ? AppLocalizations.of(
+                                                    context,
+                                                  )!.done
+                                                : AppLocalizations.of(
+                                                    context,
+                                                  )!.select,
+                                            style: TextStyle(
+                                              color: Theme.of(
+                                                context,
+                                              ).colorScheme.onPrimary,
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
                                     ],
-                                  ],
-                                );
-                              },
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ),

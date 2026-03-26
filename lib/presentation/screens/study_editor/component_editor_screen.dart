@@ -536,47 +536,50 @@ class _SelectToggleButton extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(right: 24),
       constraints: const BoxConstraints(minWidth: 40),
-      child: Material(
-        color: context.quizLoadedTheme.selectionInactiveBackgroundColor,
-        borderRadius: BorderRadius.circular(12),
-        child: InkWell(
+      child: Tooltip(
+        message: isSelectionMode ? localizations.done : localizations.select,
+        child: Material(
+          color: context.quizLoadedTheme.selectionInactiveBackgroundColor,
           borderRadius: BorderRadius.circular(12),
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-            child: Builder(
-              builder: (context) {
-                final showText = MediaQuery.of(context).size.width > 500;
-                return Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      isSelectionMode
-                          ? LucideIcons.checkSquare
-                          : LucideIcons.mousePointer2,
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      size: 18,
-                    ),
-                    if (showText) ...[
-                      const SizedBox(width: 8),
-                      Flexible(
-                        child: Text(
-                          isSelectionMode
-                              ? localizations.done
-                              : localizations.select,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(12),
+            onTap: onTap,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              child: Builder(
+                builder: (context) {
+                  final showText = MediaQuery.of(context).size.width > 500;
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        isSelectionMode
+                            ? LucideIcons.checkSquare
+                            : LucideIcons.mousePointer2,
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        size: 18,
                       ),
+                      if (showText) ...[
+                        const SizedBox(width: 8),
+                        Flexible(
+                          child: Text(
+                            isSelectionMode
+                                ? localizations.done
+                                : localizations.select,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
                     ],
-                  ],
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
         ),

@@ -2265,5 +2265,17 @@
   "aiComponentsGeneratedSuccess": "コンテンツが正常に生成されました",
   "@aiComponentsGeneratedSuccess": {
     "description": "Snackbar message shown when AI component generation completes successfully"
+  },
+  "duplicate": "複製",
+  "@duplicate": {
+    "description": "Tooltip for the duplicate button in the component card"
+  },
+  "moveUp": "上に移動",
+  "@moveUp": {
+    "description": "Tooltip for the move up button in the component card"
+  },
+  "moveDown": "下に移動",
+  "@moveDown": {
+    "description": "Tooltip for the move down button in the component card"
   }
 }

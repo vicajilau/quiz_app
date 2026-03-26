@@ -168,6 +168,7 @@ class ComponentCard extends StatelessWidget {
                           size: 18,
                           color: chevronColor,
                         ),
+                        tooltip: AppLocalizations.of(context)!.duplicate,
                         padding: const EdgeInsets.all(6),
                         constraints: const BoxConstraints(
                           minWidth: 36,
@@ -183,6 +184,7 @@ class ComponentCard extends StatelessWidget {
                           size: 18,
                           color: index > 0 ? chevronColor : disabledColor,
                         ),
+                        tooltip: AppLocalizations.of(context)!.moveUp,
                         padding: const EdgeInsets.all(6),
                         constraints: const BoxConstraints(
                           minWidth: 36,
@@ -200,6 +202,7 @@ class ComponentCard extends StatelessWidget {
                               ? chevronColor
                               : disabledColor,
                         ),
+                        tooltip: AppLocalizations.of(context)!.moveDown,
                         padding: const EdgeInsets.all(6),
                         constraints: const BoxConstraints(
                           minWidth: 36,
@@ -215,6 +218,7 @@ class ComponentCard extends StatelessWidget {
                           size: 18,
                           color: AppTheme.errorColor,
                         ),
+                        tooltip: AppLocalizations.of(context)!.deleteButton,
                         padding: const EdgeInsets.all(6),
                         constraints: const BoxConstraints(
                           minWidth: 36,
