@@ -127,13 +127,12 @@ jobs:
           macos-installer-certificate-password: ${{ secrets.MACOS_INSTALLER_CERTIFICATE_PASSWORD }}
           macos-provisioning-profile-base64: ${{ secrets.MACOS_PROVISIONING_PROFILE_BASE64 }}
 
-      # - name: Publish macos
-      #   uses: Spaccesi/flutter-actions-suite/publish/macos-app-store@main
-      #   with:
-      #     macos-provisioning-profile-base64: ${{ secrets.MACOS_PROVISIONING_PROFILE_BASE64 }}
-      #     apple-api-key-id: ${{ secrets.APPLE_API_KEY_ID }}
-      #     apple-api-key-issuer-id: ${{ secrets.APPLE_API_KEY_ISSUER }}
-      #     apple-api-key-content: ${{ secrets.APPLE_API_KEY_CONTENT }}
+      - name: Publish macos
+        uses: Spaccesi/flutter-actions-suite/publish/macos-app-store@main
+        with:
+          apple-api-key-id: ${{ secrets.APPLE_API_KEY_ID }}
+          apple-api-key-issuer-id: ${{ secrets.APPLE_API_KEY_ISSUER }}
+          apple-api-key-content: ${{ secrets.APPLE_API_KEY_CONTENT }}
 
   build_and_deploy_linux:
     runs-on: ubuntu-latest
@@ -206,6 +205,7 @@ jobs:
         with:
           microsoft-partner-center-tenant-id: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
           microsoft-partner-center-seller-id: ${{ secrets.PARTNER_CENTER_SELLER_ID }}
+          microsoft-store-app-id: ${{ secrets.MICROSOFT_STORE_APP_ID }}
           microsoft-partner-center-client-id: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
           microsoft-partner-center-client-secret: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
 
