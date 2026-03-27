@@ -116,7 +116,11 @@ class ComparisonTableComponent extends StatelessWidget {
                     dividerThickness: 1,
                     columns: [
                       if (!useFirstColumnAsLabel)
-                        const DataColumn(label: Text('')), // Empty corner
+                        DataColumn(
+                          label: Text(
+                            element.props['labelHeader']?.toString() ?? '',
+                          ),
+                        ),
                       ...columns.map(
                         (col) => DataColumn(
                           label: Expanded(
