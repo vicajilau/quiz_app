@@ -914,6 +914,10 @@
   "@componentFieldLabel": {
     "description": "Form field label for a row label in comparison table"
   },
+  "componentFieldLabelColumn": "레이블 열",
+  "@componentFieldLabelColumn": {
+    "description": "Form field label for the header of the label column in a comparison table"
+  },
   "componentFieldAdd": "{item} 추가",
   "@componentFieldAdd": {
     "description": "Button label to add a new item to a list",

@@ -2444,6 +2444,7 @@
   "componentFieldRows": "Filas",
   "componentFieldRow": "Fila",
   "componentFieldLabel": "Etiqueta",
+  "componentFieldLabelColumn": "Columna de etiquetas",
   "componentFieldAdd": "Añadir {item}",
   "componentFieldOptional": "opcional",
   "componentFieldRequired": "Este campo es obligatorio",

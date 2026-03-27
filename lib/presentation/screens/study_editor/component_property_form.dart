@@ -75,6 +75,7 @@ class ComponentPropertyFormState extends State<ComponentPropertyForm> {
   // comparisonTable
   List<TextEditingController> _columnControllers = [];
   List<PropertyTableRow> _tableRows = [];
+  TextEditingController? _labelHeader;
 
   TextEditingController _c(String text) {
     final c = TextEditingController(text: text);
@@ -192,6 +193,7 @@ class ComponentPropertyFormState extends State<ComponentPropertyForm> {
 
       case StudyComponentType.comparisonTable:
         _title = _c(_str(p, 'title'));
+        _labelHeader = _c(_str(p, 'labelHeader'));
         final cols = _list(p, 'columns');
         _columnControllers = cols.map((e) => _c(e?.toString() ?? '')).toList();
         _tableRows = _list(p, 'rows').map((e) {
@@ -327,6 +329,8 @@ class ComponentPropertyFormState extends State<ComponentPropertyForm> {
       case StudyComponentType.comparisonTable:
         return {
           if (optional(_title) != null) 'title': optional(_title),
+          if (optional(_labelHeader) != null)
+            'labelHeader': optional(_labelHeader),
           'columns': _columnControllers.map((c) => c.text).toList(),
           'rows': _tableRows
               .map(
@@ -694,6 +698,7 @@ class ComponentPropertyFormState extends State<ComponentPropertyForm> {
             PropertyComparisonTableEditor(
               columnControllers: _columnControllers,
               tableRows: _tableRows,
+              labelHeaderController: _labelHeader!,
               onAddColumn: _addColumn,
               onRemoveColumn: _removeColumn,
               onAddRow: _addTableRow,
@@ -701,6 +706,7 @@ class ComponentPropertyFormState extends State<ComponentPropertyForm> {
               columnLabel: l.componentFieldColumn,
               rowLabel: l.componentFieldRow,
               labelLabel: l.componentFieldLabel,
+              labelHeaderLabel: l.componentFieldLabelColumn,
             ),
           ],
         );

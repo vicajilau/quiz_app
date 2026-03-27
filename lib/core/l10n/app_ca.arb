@@ -2279,6 +2279,10 @@
   "@componentFieldLabel": {
     "description": "Form field label for a row label in comparison table"
   },
+  "componentFieldLabelColumn": "Columna d'etiquetes",
+  "@componentFieldLabelColumn": {
+    "description": "Form field label for the header of the label column in a comparison table"
+  },
   "componentFieldAdd": "Afegeix {item}",
   "@componentFieldAdd": {
     "description": "Button label to add a new item to a list",

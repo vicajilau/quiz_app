@@ -2270,6 +2270,10 @@
   "@componentFieldLabel": {
     "description": "Form field label for a row label in comparison table"
   },
+  "componentFieldLabelColumn": "Colonne d'étiquettes",
+  "@componentFieldLabelColumn": {
+    "description": "Form field label for the header of the label column in a comparison table"
+  },
   "componentFieldCon": "Escroquer",
   "@componentFieldCon": {
     "description": "Form field label for a single con item"

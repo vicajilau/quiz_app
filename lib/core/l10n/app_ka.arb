@@ -913,6 +913,10 @@
   "@componentFieldLabel": {
     "description": "Form field label for a row label in comparison table"
   },
+  "componentFieldLabelColumn": "ლეიბლის სვეტი",
+  "@componentFieldLabelColumn": {
+    "description": "Form field label for the header of the label column in a comparison table"
+  },
   "componentFieldPro": "პრო",
   "@componentFieldPro": {
     "description": "Form field label for a single pro item"
