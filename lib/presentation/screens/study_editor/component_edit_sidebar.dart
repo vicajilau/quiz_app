@@ -65,98 +65,100 @@ class _ComponentEditSidebarState extends State<ComponentEditSidebar> {
         .uiElements[widget.componentIndex]
         .componentType;
 
-    return Container(
-      width: widget.isFullScreen ? double.infinity : 320,
-      decoration: BoxDecoration(
-        color: panelBg,
-        border: widget.isFullScreen
-            ? null
-            : Border(left: BorderSide(color: borderColor)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          SizedBox(
-            height: 56,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Type badge
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppTheme.primaryColor.withValues(alpha: 0.12),
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(
-                          LucideIcons.fileText,
-                          size: 13,
-                          color: AppTheme.primaryColor,
-                        ),
-                        const SizedBox(width: 6),
-                        Text(
-                          componentType.displayName(localizations),
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                            color: AppTheme.violet400,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // Close button
-                  GestureDetector(
-                    onTap: widget.onClose,
-                    child: Container(
-                      width: 28,
-                      height: 28,
+    return SafeArea(
+      child: Container(
+        width: widget.isFullScreen ? double.infinity : 320,
+        decoration: BoxDecoration(
+          color: panelBg,
+          border: widget.isFullScreen
+              ? null
+              : Border(left: BorderSide(color: borderColor)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(
+              height: 56,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Type badge
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
                       decoration: BoxDecoration(
-                        color: isDark ? AppTheme.zinc800 : AppTheme.zinc100,
+                        color: AppTheme.primaryColor.withValues(alpha: 0.12),
                         borderRadius: BorderRadius.circular(6),
                       ),
-                      alignment: Alignment.center,
-                      child: const Icon(
-                        LucideIcons.x,
-                        size: 14,
-                        color: AppTheme.zinc500,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(
+                            LucideIcons.fileText,
+                            size: 13,
+                            color: AppTheme.primaryColor,
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            componentType.displayName(localizations),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: AppTheme.violet400,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                ],
+                    // Close button
+                    GestureDetector(
+                      onTap: widget.onClose,
+                      child: Container(
+                        width: 28,
+                        height: 28,
+                        decoration: BoxDecoration(
+                          color: isDark ? AppTheme.zinc800 : AppTheme.zinc100,
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        alignment: Alignment.center,
+                        child: const Icon(
+                          LucideIcons.x,
+                          size: 14,
+                          color: AppTheme.zinc500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          Divider(height: 1, thickness: 1, color: borderColor),
-          Expanded(
-            child: ComponentPropertyForm(
-              key: _formKey,
-              chunkIndex: widget.chunkIndex,
-              pageIndex: widget.pageIndex,
-              componentIndex: widget.componentIndex,
-              onSave: widget.onClose,
+            Divider(height: 1, thickness: 1, color: borderColor),
+            Expanded(
+              child: ComponentPropertyForm(
+                key: _formKey,
+                chunkIndex: widget.chunkIndex,
+                pageIndex: widget.pageIndex,
+                componentIndex: widget.componentIndex,
+                onSave: widget.onClose,
+              ),
             ),
-          ),
-          Divider(height: 1, thickness: 1, color: borderColor),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
-            child: QuizdyButton(
-              type: QuizdyButtonType.primary,
-              icon: LucideIcons.check,
-              title: localizations.okButton,
-              expanded: true,
-              onPressed: () => _formKey.currentState?.save(),
+            Divider(height: 1, thickness: 1, color: borderColor),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
+              child: QuizdyButton(
+                type: QuizdyButtonType.primary,
+                icon: LucideIcons.check,
+                title: localizations.okButton,
+                expanded: true,
+                onPressed: () => _formKey.currentState?.save(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
