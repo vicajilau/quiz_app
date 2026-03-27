@@ -116,6 +116,7 @@ class AddComponentSheet extends StatelessWidget {
     final types = StudyComponentType.values;
 
     final grid = GridView.builder(
+      physics: const ClampingScrollPhysics(),
       padding: const EdgeInsets.all(16),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
@@ -187,12 +188,16 @@ class AddComponentSheet extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
-                GestureDetector(
+                InkWell(
                   onTap: onClose,
-                  child: Icon(
-                    LucideIcons.chevronLeft,
-                    size: 22,
-                    color: isDark ? AppTheme.zinc400 : AppTheme.zinc500,
+                  borderRadius: BorderRadius.circular(20),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4),
+                    child: Icon(
+                      LucideIcons.chevronLeft,
+                      size: 22,
+                      color: isDark ? AppTheme.zinc400 : AppTheme.zinc500,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -235,43 +240,45 @@ class _ComponentTypeCard extends StatelessWidget {
     final labelColor = isDark ? AppTheme.zinc200 : AppTheme.zinc800;
     final iconBg = color.withValues(alpha: 0.12);
 
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          color: cardBg,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        padding: const EdgeInsets.all(14),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 36,
-              height: 36,
-              decoration: BoxDecoration(
-                color: iconBg,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(icon, size: 18, color: color),
-            ),
-            const SizedBox(height: 8),
-            Flexible(
-              child: Text(
-                label,
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w500,
-                  color: labelColor,
+    return Material(
+      color: cardBg,
+      borderRadius: BorderRadius.circular(12),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  color: iconBg,
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+                child: Icon(icon, size: 18, color: color),
               ),
-            ),
-          ],
+              const SizedBox(height: 8),
+              Flexible(
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w500,
+                    color: labelColor,
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
