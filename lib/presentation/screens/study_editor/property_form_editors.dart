@@ -184,6 +184,7 @@ class PropertyObjectListEditor extends StatelessWidget {
 class PropertyComparisonTableEditor extends StatelessWidget {
   final List<TextEditingController> columnControllers;
   final List<PropertyTableRow> tableRows;
+  final TextEditingController labelHeaderController;
   final VoidCallback onAddColumn;
   final ValueChanged<int> onRemoveColumn;
   final VoidCallback onAddRow;
@@ -191,11 +192,13 @@ class PropertyComparisonTableEditor extends StatelessWidget {
   final String columnLabel;
   final String rowLabel;
   final String labelLabel;
+  final String labelHeaderLabel;
 
   const PropertyComparisonTableEditor({
     super.key,
     required this.columnControllers,
     required this.tableRows,
+    required this.labelHeaderController,
     required this.onAddColumn,
     required this.onRemoveColumn,
     required this.onAddRow,
@@ -203,6 +206,7 @@ class PropertyComparisonTableEditor extends StatelessWidget {
     required this.columnLabel,
     required this.rowLabel,
     required this.labelLabel,
+    required this.labelHeaderLabel,
   });
 
   @override
@@ -214,6 +218,23 @@ class PropertyComparisonTableEditor extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // ── Label column header ───────────────────────────────────────────────
+        Row(
+          children: [
+            QuizdyFieldLabel(label: labelHeaderLabel),
+            const SizedBox(width: 4),
+            Text(
+              '(${l.componentFieldOptional})',
+              style: const TextStyle(fontSize: 11, color: AppTheme.zinc500),
+            ),
+          ],
+        ),
+        const SizedBox(height: 4),
+        QuizdyTextField(
+          controller: labelHeaderController,
+          hint: labelHeaderLabel,
+        ),
+        const SizedBox(height: 16),
         // ── Columns ──────────────────────────────────────────────────────────
         QuizdyFieldLabel(label: l.componentFieldColumns),
         const SizedBox(height: 8),
