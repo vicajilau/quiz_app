@@ -418,8 +418,17 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
                 ),
               if (isMobile && _isAddCompMounted)
                 Positioned.fill(
-                  child: SlideTransition(
-                    position: _slideAnimation,
+                  child: AnimatedBuilder(
+                    animation: _slideController,
+                    builder: (context, child) => Transform.translate(
+                      offset: Offset(
+                        _slideAnimation.value.dx *
+                            MediaQuery.of(context).size.width,
+                        0,
+                      ),
+                      transformHitTests: false,
+                      child: child,
+                    ),
                     child: Material(
                       color: isDark ? AppTheme.zinc900 : Colors.white,
                       child: AddComponentSheet(
