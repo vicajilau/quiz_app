@@ -2209,6 +2209,10 @@
   "@componentFieldLabel": {
     "description": "Form field label for a row label in comparison table"
   },
+  "componentFieldLabelColumn": "Etiketen zutabea",
+  "@componentFieldLabelColumn": {
+    "description": "Form field label for the header of the label column in a comparison table"
+  },
   "componentFieldOptional": "aukerakoa",
   "@componentFieldOptional": {
     "description": "Label shown next to optional form fields"

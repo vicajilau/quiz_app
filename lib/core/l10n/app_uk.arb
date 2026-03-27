@@ -955,6 +955,10 @@
   "@componentFieldLabel": {
     "description": "Form field label for a row label in comparison table"
   },
+  "componentFieldLabelColumn": "Стовпець міток",
+  "@componentFieldLabelColumn": {
+    "description": "Form field label for the header of the label column in a comparison table"
+  },
   "componentFieldRow": "рядок",
   "@componentFieldRow": {
     "description": "Form field label for a single table row"

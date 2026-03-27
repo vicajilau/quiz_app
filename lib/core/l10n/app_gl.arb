@@ -2201,6 +2201,10 @@
   "@componentFieldLabel": {
     "description": "Form field label for a row label in comparison table"
   },
+  "componentFieldLabelColumn": "Columna de etiquetas",
+  "@componentFieldLabelColumn": {
+    "description": "Form field label for the header of the label column in a comparison table"
+  },
   "componentFieldCons": "Cons",
   "@componentFieldCons": {
     "description": "Form section label for cons list"

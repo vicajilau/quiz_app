@@ -2271,6 +2271,10 @@
   "@componentFieldLabel": {
     "description": "Form field label for a row label in comparison table"
   },
+  "componentFieldLabelColumn": "Colonna etichette",
+  "@componentFieldLabelColumn": {
+    "description": "Form field label for the header of the label column in a comparison table"
+  },
   "componentFieldPros": "Pro",
   "@componentFieldPros": {
     "description": "Form section label for pros list"

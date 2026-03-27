@@ -1209,6 +1209,10 @@
   "@componentFieldLabel": {
     "description": "Form field label for a row label in comparison table"
   },
+  "componentFieldLabelColumn": "Στήλη ετικέτας",
+  "@componentFieldLabelColumn": {
+    "description": "Form field label for the header of the label column in a comparison table"
+  },
   "componentFieldRows": "Σειρές",
   "@componentFieldRows": {
     "description": "Form section label for table rows"

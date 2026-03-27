@@ -2233,6 +2233,10 @@
   "@componentFieldLabel": {
     "description": "Form field label for a row label in comparison table"
   },
+  "componentFieldLabelColumn": "लेबल कॉलम",
+  "@componentFieldLabelColumn": {
+    "description": "Form field label for the header of the label column in a comparison table"
+  },
   "addComponentTitle": "घटक जोड़ें",
   "@addComponentTitle": {
     "description": "Title for the Add Component picker screen"
