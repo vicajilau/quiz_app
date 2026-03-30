@@ -22,6 +22,7 @@ import 'package:quizdy/presentation/screens/dialogs/count_selection/widgets/max_
 import 'package:quizdy/presentation/screens/dialogs/count_selection/widgets/max_incorrect_toggle.dart';
 import 'package:quizdy/presentation/screens/dialogs/count_selection/widgets/penalty_amount_input.dart';
 import 'package:quizdy/presentation/screens/dialogs/count_selection/widgets/subtract_points_toggle.dart';
+import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
 class AdvancedSettingsSection extends StatefulWidget {
   final bool isStudyMode;
@@ -111,6 +112,31 @@ class AdvancedSettingsSection extends StatefulWidget {
 
 class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
   bool _hasExamTimeError = false;
+  late TextEditingController _timeController;
+  String? _timeErrorText;
+
+  @override
+  void initState() {
+    super.initState();
+    _timeController = TextEditingController(
+      text: widget.examTimeMinutes.toString(),
+    );
+  }
+
+  @override
+  void didUpdateWidget(AdvancedSettingsSection oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.examTimeMinutes != oldWidget.examTimeMinutes &&
+        _timeController.text != widget.examTimeMinutes.toString()) {
+      _timeController.text = widget.examTimeMinutes.toString();
+    }
+  }
+
+  @override
+  void dispose() {
+    _timeController.dispose();
+    super.dispose();
+  }
 
   void _updateExamTimeError(bool hasError) {
     if (_hasExamTimeError != hasError) {
@@ -305,53 +331,19 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          AppLocalizations.of(context)!.timeLimitMinutes,
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w400,
-            color: widget.subTextColor,
-          ),
-        ),
+        QuizdyFieldLabel(label: AppLocalizations.of(context)!.timeLimitMinutes),
         const SizedBox(height: 8),
-        TextFormField(
-          initialValue: widget.examTimeMinutes.toString(),
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: widget.borderColor),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: widget.borderColor),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: widget.primaryColor),
-            ),
-            suffixText: AppLocalizations.of(context)!.minutesAbbreviation,
-            suffixStyle: TextStyle(color: widget.subTextColor),
-            filled: true,
-            fillColor: widget.controlBgColor,
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 12,
-            ),
-          ),
-          style: TextStyle(color: widget.textColor),
+        QuizdyTextField(
+          controller: _timeController,
           keyboardType: TextInputType.number,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+          suffixText: AppLocalizations.of(context)!.minutesAbbreviation,
+          errorText: _timeErrorText,
           onChanged: (value) {
-            final newMinutes = int.tryParse(value);
-            if (newMinutes != null && newMinutes > 0 && newMinutes <= 43200) {
-              widget.onExamTimeMinutesChanged(newMinutes);
-            }
-          },
-          validator: (value) {
             bool hasError = false;
             String? errorText;
 
-            if (value == null || value.isEmpty) {
+            if (value.isEmpty) {
               hasError = true;
               errorText = AppLocalizations.of(context)!.validationMin1Error;
             } else {
@@ -364,13 +356,14 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
                 errorText = AppLocalizations.of(
                   context,
                 )!.validationMax30DaysError;
+              } else {
+                widget.onExamTimeMinutesChanged(newMinutes);
               }
             }
 
+            setState(() => _timeErrorText = errorText);
             _updateExamTimeError(hasError);
-            return errorText;
           },
-          autovalidateMode: AutovalidateMode.always,
         ),
       ],
     );
