@@ -69,11 +69,11 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
   @override
   void didUpdateWidget(AiServiceModelSelector oldWidget) {
     super.didUpdateWidget(oldWidget);
-    // Reload services when API keys change or initial values change
+    // Only reload when API keys change — initialService/initialModel changes are
+    // caused by the parent echoing back the selector's own callbacks, which would
+    // cause an infinite reload loop and overwrite the user's selection.
     if (oldWidget.geminiApiKey != widget.geminiApiKey ||
-        oldWidget.openaiApiKey != widget.openaiApiKey ||
-        oldWidget.initialService != widget.initialService ||
-        oldWidget.initialModel != widget.initialModel) {
+        oldWidget.openaiApiKey != widget.openaiApiKey) {
       _loadAvailableServices();
     }
   }
