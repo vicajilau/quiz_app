@@ -227,13 +227,17 @@ class AiGenerationConfigSection extends StatelessWidget {
         const SizedBox(height: 12),
 
         // Option 1: Auto Document
-        QuizdySelectableCard(
-          icon: LucideIcons.fileText,
-          title: localizations.aiDifficultyAutoTurnedOn,
-          description: localizations.aiDifficultyAutoDescription,
-          isSelected: isEffectivelyAuto,
-          isLocked: !hasFile,
-          onTap: () => onAutoDifficultyChanged(true),
+        Tooltip(
+          message: !hasFile ? localizations.aiDifficultyRequiresFileTooltip : '',
+          triggerMode: TooltipTriggerMode.tap,
+          child: QuizdySelectableCard(
+            icon: LucideIcons.fileText,
+            title: localizations.aiDifficultyAutoTurnedOn,
+            description: localizations.aiDifficultyAutoDescription,
+            isSelected: isEffectivelyAuto,
+            isLocked: !hasFile,
+            onTap: () => onAutoDifficultyChanged(true),
+          ),
         ),
         const SizedBox(height: 12),
 
