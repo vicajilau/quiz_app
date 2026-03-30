@@ -970,5 +970,9 @@
   "moveDown": "아래로 이동",
   "@moveDown": {
     "description": "Tooltip for the move down button in the component card"
+  },
+  "aiDifficultyRequiresFileTooltip": "이 옵션을 사용하려면 파일을 첨부해야 합니다",
+  "@aiDifficultyRequiresFileTooltip": {
+    "description": "Tooltip when auto difficulty is disabled due to missing file"
   }
 }

@@ -82,7 +82,7 @@ class StudyExecutionBottomBar extends StatelessWidget {
                           ? ''
                           : localizations.studyScreenPreviousSection,
                       icon: LucideIcons.chevronLeft,
-                      type: QuizdyButtonType.secondary,
+                      type: QuizdyButtonType.primary,
                       onPressed: onPrevious,
                     ),
                   ),

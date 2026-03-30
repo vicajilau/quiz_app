@@ -2330,5 +2330,9 @@
   "moveDown": "下移",
   "@moveDown": {
     "description": "Tooltip for the move down button in the component card"
+  },
+  "aiDifficultyRequiresFileTooltip": "需要附加文件才能使用此选项",
+  "@aiDifficultyRequiresFileTooltip": {
+    "description": "Tooltip when auto difficulty is disabled due to missing file"
   }
 }

@@ -1003,5 +1003,9 @@
   "moveDown": "Перемістити вниз",
   "@moveDown": {
     "description": "Tooltip for the move down button in the component card"
+  },
+  "aiDifficultyRequiresFileTooltip": "Для використання цієї опції необхідно прикріпити файл",
+  "@aiDifficultyRequiresFileTooltip": {
+    "description": "Tooltip when auto difficulty is disabled due to missing file"
   }
 }

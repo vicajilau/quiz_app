@@ -1278,5 +1278,9 @@
   "moveDown": "Μετακίνηση κάτω",
   "@moveDown": {
     "description": "Tooltip for the move down button in the component card"
+  },
+  "aiDifficultyRequiresFileTooltip": "Απαιτείται η επισύναψη αρχείου για τη χρήση αυτής της επιλογής",
+  "@aiDifficultyRequiresFileTooltip": {
+    "description": "Tooltip when auto difficulty is disabled due to missing file"
   }
 }
