@@ -28,8 +28,8 @@ import 'package:quizdy/domain/models/quiz/quiz_config.dart';
 import 'package:quizdy/domain/models/quiz/quiz_config_stored_settings.dart';
 import 'package:quizdy/domain/models/quiz/question_order.dart';
 import 'package:quizdy/presentation/screens/dialogs/count_selection/advanced_settings_section.dart';
-import 'package:quizdy/presentation/screens/dialogs/count_selection/count_control_button.dart';
 import 'package:quizdy/presentation/screens/dialogs/count_selection/quiz_mode_selection.dart';
+import 'package:quizdy/presentation/widgets/quizdy_stepper_field.dart';
 
 class QuestionCountSelectionDialog extends StatefulWidget {
   final int totalQuestions;
@@ -519,127 +519,70 @@ class _QuestionCountSelectionDialogState
                               ),
                             ),
                             const SizedBox(height: 12),
-                            Row(
-                              children: [
-                                // Minus Button
-                                CountControlButton(
-                                  icon: LucideIcons.minus,
-                                  onTap: _decrementCount,
-                                  bgColor: controlBgColor,
-                                  iconColor: controlIconColor,
-                                ),
-                                const SizedBox(width: 16),
-                                // Display
-                                Expanded(
-                                  child: Container(
-                                    height: 56,
-                                    decoration: BoxDecoration(
-                                      color: controlBgColor,
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    alignment: Alignment.center,
-                                    // Note: Non QuizdyTextfield to allow custom styling and behavior
-                                    child: TextFormField(
-                                      controller: _questionCountController,
-                                      focusNode: _questionCountFocusNode,
-                                      keyboardType: TextInputType.number,
-                                      inputFormatters: [
-                                        FilteringTextInputFormatter.digitsOnly,
-                                      ],
-                                      textAlign: TextAlign.center,
-                                      decoration: const InputDecoration(
-                                        border: InputBorder.none,
-                                        isDense: true,
-                                        contentPadding: EdgeInsets.zero,
-                                      ),
-                                      style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w700,
-                                        color: textColor,
-                                      ),
-                                      onEditingComplete: () {
-                                        if (_questionCountController
-                                                .text
-                                                .isEmpty ||
-                                            int.tryParse(
-                                                  _questionCountController.text,
-                                                ) ==
-                                                0) {
-                                          setState(() {
-                                            _selectedCount = 1;
-                                            _questionCountController.text = '1';
-
-                                            // Ensure error limit doesn't exceed question count
-                                            if (_maxIncorrectAnswersLimit >
-                                                _selectedCount) {
-                                              _maxIncorrectAnswersLimit =
-                                                  _selectedCount;
-                                              _maxIncorrectAnswersController
-                                                      .text =
-                                                  _maxIncorrectAnswersLimit
-                                                      .toString();
-                                            }
-                                          });
-                                        }
-                                        _questionCountFocusNode.unfocus();
-                                      },
-                                      onChanged: (value) {
-                                        if (value.isEmpty) {
-                                          setState(() {
-                                            _selectedCount = 1;
-                                          });
-                                          return;
-                                        }
-                                        final val = int.tryParse(value);
-                                        if (val != null) {
-                                          setState(() {
-                                            final clampedVal = val.clamp(
-                                              1,
-                                              widget.totalQuestions,
-                                            );
-                                            _selectedCount = clampedVal;
-
-                                            // If user typed a value outside range, update the text field
-                                            if (val != clampedVal) {
-                                              _questionCountController.text =
-                                                  clampedVal.toString();
-                                              _questionCountController
-                                                      .selection =
-                                                  TextSelection.fromPosition(
-                                                    TextPosition(
-                                                      offset:
-                                                          _questionCountController
-                                                              .text
-                                                              .length,
-                                                    ),
-                                                  );
-                                            }
-
-                                            // Ensure error limit doesn't exceed question count
-                                            if (_maxIncorrectAnswersLimit >
-                                                _selectedCount) {
-                                              _maxIncorrectAnswersLimit =
-                                                  _selectedCount;
-                                              _maxIncorrectAnswersController
-                                                      .text =
-                                                  _maxIncorrectAnswersLimit
-                                                      .toString();
-                                            }
-                                          });
-                                        }
-                                      },
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(width: 16),
-                                // Plus Button
-                                CountControlButton(
-                                  icon: LucideIcons.plus,
-                                  onTap: _incrementCount,
-                                  bgColor: Theme.of(context).primaryColor,
-                                  iconColor: Colors.white,
-                                ),
+                            QuizdyStepperField(
+                              controller: _questionCountController,
+                              focusNode: _questionCountFocusNode,
+                              keyboardType: TextInputType.number,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly,
                               ],
+                              onIncrement: _incrementCount,
+                              onDecrement: _decrementCount,
+                              onEditingComplete: () {
+                                if (_questionCountController.text.isEmpty ||
+                                    int.tryParse(
+                                          _questionCountController.text,
+                                        ) ==
+                                        0) {
+                                  setState(() {
+                                    _selectedCount = 1;
+                                    _questionCountController.text = '1';
+
+                                    if (_maxIncorrectAnswersLimit >
+                                        _selectedCount) {
+                                      _maxIncorrectAnswersLimit = _selectedCount;
+                                      _maxIncorrectAnswersController.text =
+                                          _maxIncorrectAnswersLimit.toString();
+                                    }
+                                  });
+                                }
+                                _questionCountFocusNode.unfocus();
+                              },
+                              onChanged: (value) {
+                                if (value.isEmpty) {
+                                  setState(() => _selectedCount = 1);
+                                  return;
+                                }
+                                final val = int.tryParse(value);
+                                if (val != null) {
+                                  setState(() {
+                                    final clampedVal = val.clamp(
+                                      1,
+                                      widget.totalQuestions,
+                                    );
+                                    _selectedCount = clampedVal;
+
+                                    if (val != clampedVal) {
+                                      _questionCountController.text =
+                                          clampedVal.toString();
+                                      _questionCountController.selection =
+                                          TextSelection.fromPosition(
+                                            TextPosition(
+                                              offset: _questionCountController
+                                                  .text.length,
+                                            ),
+                                          );
+                                    }
+
+                                    if (_maxIncorrectAnswersLimit >
+                                        _selectedCount) {
+                                      _maxIncorrectAnswersLimit = _selectedCount;
+                                      _maxIncorrectAnswersController.text =
+                                          _maxIncorrectAnswersLimit.toString();
+                                    }
+                                  });
+                                }
+                              },
                             ),
                           ],
                         ],
