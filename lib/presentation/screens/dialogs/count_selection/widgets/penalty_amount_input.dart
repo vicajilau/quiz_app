@@ -94,6 +94,7 @@ class PenaltyAmountInput extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 alignment: Alignment.center,
+                // Note: Non QuizdyTextfield to allow custom styling and behavior
                 child: TextFormField(
                   controller: penaltyController,
                   focusNode: penaltyFocusNode,

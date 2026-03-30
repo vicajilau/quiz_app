@@ -113,6 +113,7 @@ class _MaxIncorrectLimitInputState extends State<MaxIncorrectLimitInput> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Center(
+                    // Note: Non QuizdyTextfield to allow custom styling and behavior
                     child: TextFormField(
                       controller: widget.maxIncorrectAnswersController,
                       focusNode: widget.maxIncorrectAnswersFocusNode,
