@@ -258,20 +258,13 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                         padding: EdgeInsets.zero,
                         shape: const CircleBorder(),
                       ),
-                      icon: Icon(LucideIcons.x, color: colors.subtitle, size: 20),
+                      icon: Icon(
+                        LucideIcons.x,
+                        color: colors.subtitle,
+                        size: 20,
+                      ),
                     ),
                   ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(32, 0, 32, 24),
-                child: Text(
-                  localizations.aiEnterContentDescription,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                    color: colors.subtitle,
-                  ),
                 ),
               ),
 
@@ -340,8 +333,9 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                         AiComponentTypeSelectorWidget(
                           enabled: _componentTypeSelectorEnabled,
                           selectedTypes: _selectedComponentTypes,
-                          onToggle: (value) =>
-                              setState(() => _componentTypeSelectorEnabled = value),
+                          onToggle: (value) => setState(
+                            () => _componentTypeSelectorEnabled = value,
+                          ),
                           onTypeToggled: (type) {
                             setState(() {
                               if (_selectedComponentTypes.contains(type)) {
@@ -356,6 +350,19 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                       ],
                       if (!_chunkSelectorEnabled &&
                           !_questionSelectorEnabled) ...[
+                        Padding(
+                          padding: const EdgeInsetsGeometry.symmetric(
+                            vertical: 12,
+                          ),
+                          child: Text(
+                            localizations.aiEnterContentDescription,
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.normal,
+                              color: colors.subtitle,
+                            ),
+                          ),
+                        ),
                         // Input Area
                         AiContentInputZone(
                           controller: widget.textController,
@@ -514,7 +521,8 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                       widget.onGenerate(config);
                                     } else if (_questionSelectorEnabled &&
                                         widget.questions != null) {
-                                      final selectedQuestions = widget.questions!
+                                      final selectedQuestions = widget
+                                          .questions!
                                           .asMap()
                                           .entries
                                           .where(
@@ -527,11 +535,13 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                       final config = AiStudyGenerationConfig(
                                         language: widget.selectedLanguage,
                                         content: '',
-                                        preferredService: widget.selectedService,
+                                        preferredService:
+                                            widget.selectedService,
                                         preferredModel: widget.selectedModel,
                                         file: null,
                                         generationMode: AiGenerationMode.text,
-                                        isAutoDifficulty: widget.isAutoDifficulty,
+                                        isAutoDifficulty:
+                                            widget.isAutoDifficulty,
                                         difficultyLevel: widget.isAutoDifficulty
                                             ? null
                                             : widget.selectedDifficulty,
@@ -552,7 +562,9 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                       final config = widget.isStudyMode
                                           ? AiStudyGenerationConfig(
                                               language: widget.selectedLanguage,
-                                              content: widget.textController.text
+                                              content: widget
+                                                  .textController
+                                                  .text
                                                   .trim(),
                                               preferredService:
                                                   widget.selectedService,
@@ -580,7 +592,9 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                                       ?.toList() ??
                                                   [],
                                               language: widget.selectedLanguage,
-                                              content: widget.textController.text
+                                              content: widget
+                                                  .textController
+                                                  .text
                                                   .trim(),
                                               preferredService:
                                                   widget.selectedService,
