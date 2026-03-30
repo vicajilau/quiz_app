@@ -19,7 +19,6 @@ import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';
-import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
 class AiContentInputZone extends StatelessWidget {
   final TextEditingController controller;
@@ -40,6 +39,7 @@ class AiContentInputZone extends StatelessWidget {
     final colors = context.appColors;
     final customColors = Theme.of(context).extension<CustomColors>()!;
     final inputBg = isDark ? AppTheme.borderColorDark : AppTheme.cardColorLight;
+    final textColor = isDark ? Colors.white : AppTheme.textColor;
 
     return Container(
       height: 200,
@@ -52,10 +52,25 @@ class AiContentInputZone extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: QuizdyTextField(
+            child: TextField(
               controller: controller,
               maxLines: null,
-              hint: localizations.aiContentFieldHint,
+              expands: true,
+              textAlignVertical: TextAlignVertical.top,
+              style: TextStyle(fontSize: 14, color: textColor, height: 1.65),
+              decoration: InputDecoration(
+                hintText: localizations.aiContentFieldHint,
+                hintStyle: const TextStyle(
+                  color: AppTheme.zinc500,
+                  fontSize: 14,
+                ),
+                border: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                filled: false,
+                contentPadding: EdgeInsets.zero,
+                isDense: true,
+              ),
             ),
           ),
           const SizedBox(height: 8),
