@@ -20,7 +20,7 @@ import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
-import 'package:quizdy/presentation/widgets/quizdy_switch.dart';
+import 'package:quizdy/presentation/widgets/quizdy_selectable_card.dart';
 import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
 class AiGenerationConfigSection extends StatelessWidget {
@@ -225,133 +225,114 @@ class AiGenerationConfigSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        Container(
-          decoration: BoxDecoration(
-            color: inputBg,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: attachStroke),
-          ),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
+
+        // Option 1: Auto Document
+        QuizdySelectableCard(
+          icon: LucideIcons.fileText,
+          title: localizations.aiDifficultyAutoTurnedOn,
+          description: localizations.aiDifficultyAutoDescription,
+          isSelected: isEffectivelyAuto,
+          isLocked: !hasFile,
+          onTap: () => onAutoDifficultyChanged(true),
+        ),
+        const SizedBox(height: 12),
+
+        // Option 2: Manual Selection
+        QuizdySelectableCard(
+          icon: LucideIcons.settings2,
+          title: localizations.aiDifficultyAutoTurnedOff,
+          description: localizations.aiDifficultyManualDescription,
+          isSelected: !isEffectivelyAuto,
+          onTap: () => onAutoDifficultyChanged(false),
+          bottomContent: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            decoration: BoxDecoration(
+              color: isDark ? const Color(0xFF27272A) : Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: attachStroke),
+            ),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<AiDifficultyLevel>(
+                value: selectedDifficulty,
+                isExpanded: true,
+                icon: Icon(
+                  LucideIcons.chevronDown,
+                  color: colors.subtitle,
+                  size: 16,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            isEffectivelyAuto
-                                ? localizations.aiDifficultyAutoTurnedOn
-                                : localizations.aiDifficultyAutoTurnedOff,
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500,
-                              color: colors.title,
-                            ),
-                          ),
-                          const SizedBox(height: 2),
-                          Text(
-                            isEffectivelyAuto
-                                ? localizations.aiDifficultyAutoDescription
-                                : localizations.aiDifficultyManualDescription,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: colors.subtitle,
-                            ),
-                          ),
-                        ],
+                dropdownColor: isDark
+                    ? const Color(0xFF27272A)
+                    : Colors.white,
+                items: [
+                  DropdownMenuItem(
+                    value: AiDifficultyLevel.elementary,
+                    child: Text(
+                      localizations.aiDifficultyElementary,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: colors.title,
                       ),
                     ),
-                    QuizdySwitch(
-                      value: isEffectivelyAuto,
-                      onChanged: !hasFile
-                          ? null
-                          : (value) {
-                              onAutoDifficultyChanged(value);
-                            },
+                  ),
+                  DropdownMenuItem(
+                    value: AiDifficultyLevel.highSchool,
+                    child: Text(
+                      localizations.aiDifficultyHighSchool,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: colors.title,
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                  DropdownMenuItem(
+                    value: AiDifficultyLevel.bachelors,
+                    child: Text(
+                      localizations.aiDifficultyBachelors,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: colors.title,
+                      ),
+                    ),
+                  ),
+                  DropdownMenuItem(
+                    value: AiDifficultyLevel.university,
+                    child: Text(
+                      localizations.aiDifficultyUniversity,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: colors.title,
+                      ),
+                    ),
+                  ),
+                  DropdownMenuItem(
+                    value: AiDifficultyLevel.masters,
+                    child: Text(
+                      localizations.aiDifficultyMasters,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: colors.title,
+                      ),
+                    ),
+                  ),
+                  DropdownMenuItem(
+                    value: AiDifficultyLevel.doctorate,
+                    child: Text(
+                      localizations.aiDifficultyDoctorate,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: colors.title,
+                      ),
+                    ),
+                  ),
+                ],
+                onChanged: (AiDifficultyLevel? value) {
+                  if (value != null) {
+                    onDifficultyChanged(value);
+                  }
+                },
               ),
-              if (!isEffectivelyAuto) ...[
-                Divider(height: 1, color: attachStroke),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<AiDifficultyLevel>(
-                      value: selectedDifficulty,
-                      isExpanded: true,
-                      icon: Icon(
-                        LucideIcons.chevronDown,
-                        color: colors.subtitle,
-                        size: 16,
-                      ),
-                      dropdownColor: inputBg,
-                      items: [
-                        DropdownMenuItem(
-                          value: AiDifficultyLevel.elementary,
-                          child: Text(
-                            localizations.aiDifficultyElementary,
-                            style: TextStyle(fontSize: 14, color: colors.title),
-                          ),
-                        ),
-                        DropdownMenuItem(
-                          value: AiDifficultyLevel.highSchool,
-                          child: Text(
-                            localizations.aiDifficultyHighSchool,
-                            style: TextStyle(fontSize: 14, color: colors.title),
-                          ),
-                        ),
-                        DropdownMenuItem(
-                          value: AiDifficultyLevel.bachelors,
-                          child: Text(
-                            localizations.aiDifficultyBachelors,
-                            style: TextStyle(fontSize: 14, color: colors.title),
-                          ),
-                        ),
-                        DropdownMenuItem(
-                          value: AiDifficultyLevel.university,
-                          child: Text(
-                            localizations.aiDifficultyUniversity,
-                            style: TextStyle(fontSize: 14, color: colors.title),
-                          ),
-                        ),
-                        DropdownMenuItem(
-                          value: AiDifficultyLevel.masters,
-                          child: Text(
-                            localizations.aiDifficultyMasters,
-                            style: TextStyle(fontSize: 14, color: colors.title),
-                          ),
-                        ),
-                        DropdownMenuItem(
-                          value: AiDifficultyLevel.doctorate,
-                          child: Text(
-                            localizations.aiDifficultyDoctorate,
-                            style: TextStyle(fontSize: 14, color: colors.title),
-                          ),
-                        ),
-                      ],
-                      onChanged: (AiDifficultyLevel? value) {
-                        if (value != null) {
-                          onDifficultyChanged(value);
-                        }
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            ],
+            ),
           ),
         ),
       ],
