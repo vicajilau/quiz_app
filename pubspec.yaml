@@ -47,7 +47,7 @@ dependencies:
   mime: ^2.0.0
   platform_detail: ^5.4.0
   flutter_launcher_icons: ^0.14.4
-  shared_preferences: ^2.5.4
+  shared_preferences: ^2.5.5
   web: ^1.1.1
   http: ^1.6.0
   crypto: ^3.0.7
