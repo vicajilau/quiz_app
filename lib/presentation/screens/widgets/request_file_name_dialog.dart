@@ -20,6 +20,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
+import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
 /// A dialog widget for requesting a file name from the user.
 /// Styled according to design node 75JA2.
@@ -133,49 +134,13 @@ class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  AppLocalizations.of(context)!.fileNameHint,
-                  style: TextStyle(
-                    color: Colors.white.withValues(alpha: 0.7),
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+                QuizdyFieldLabel(label: AppLocalizations.of(context)!.fileNameHint),
                 const SizedBox(height: 8),
-                TextFormField(
+                QuizdyTextField(
                   controller: _controller,
-                  style: const TextStyle(color: Colors.white, fontSize: 16),
-                  cursorColor: Theme.of(context).primaryColor,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: AppTheme.zinc700, // Zinc 700
-                    hintText: 'quiz_name',
-                    hintStyle: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.3),
-                    ),
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 16,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(
-                        color: Theme.of(context).primaryColor,
-                        width: 2,
-                      ),
-                    ),
-                    errorText: _errorMessage,
-                    errorStyle: const TextStyle(color: AppTheme.errorColor),
-                  ),
-                  onFieldSubmitted: (_) => _submit(),
+                  hint: 'quiz_name',
+                  errorText: _errorMessage,
+                  onSubmitted: (_) => _submit(),
                   onChanged: (value) {
                     setState(() {
                       _errorMessage = null;

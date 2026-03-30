@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/presentation/widgets/latex_text.dart';
+import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
 /// Separate widget for each option row to optimize rendering
 class QuestionOptionRow extends StatefulWidget {
@@ -133,19 +134,14 @@ class _QuestionOptionRowState extends State<QuestionOptionRow>
                   ),
                 if (widget.questionType != QuestionType.trueFalse)
                   const SizedBox(height: 6),
-                TextFormField(
+                QuizdyTextField(
                   controller: widget.controller,
-                  decoration: InputDecoration(
-                    labelText:
-                        '${localizations.optionLabel} ${widget.index + 1}',
-                    border: const OutlineInputBorder(),
-                    errorText:
-                        widget.optionsError != null &&
-                            widget.controller.text.trim().isEmpty &&
-                            widget.questionType != QuestionType.trueFalse
-                        ? localizations.optionEmptyError
-                        : null,
-                  ),
+                  hint: '${localizations.optionLabel} ${widget.index + 1}',
+                  errorText: widget.optionsError != null &&
+                          widget.controller.text.trim().isEmpty &&
+                          widget.questionType != QuestionType.trueFalse
+                      ? localizations.optionEmptyError
+                      : null,
                   onChanged: (value) {
                     widget.onTextChanged();
                     (context as Element)

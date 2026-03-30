@@ -15,18 +15,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:quizdy/core/theme/app_theme.dart';
-import 'package:quizdy/presentation/screens/dialogs/count_selection/count_control_button.dart';
+import 'package:quizdy/presentation/widgets/quizdy_stepper_field.dart';
 
 class MaxIncorrectLimitInput extends StatefulWidget {
-  final bool isDark;
-  final Color textColor;
   final Color subTextColor;
-  final Color primaryColor;
-  final Color controlBgColor;
-  final Color borderColor;
   final TextEditingController maxIncorrectAnswersController;
   final FocusNode maxIncorrectAnswersFocusNode;
   final ValueChanged<int> onMaxIncorrectAnswersLimitChanged;
@@ -36,12 +29,7 @@ class MaxIncorrectLimitInput extends StatefulWidget {
 
   const MaxIncorrectLimitInput({
     super.key,
-    required this.isDark,
-    required this.textColor,
     required this.subTextColor,
-    required this.primaryColor,
-    required this.controlBgColor,
-    required this.borderColor,
     required this.maxIncorrectAnswersController,
     required this.maxIncorrectAnswersFocusNode,
     required this.onMaxIncorrectAnswersLimitChanged,
@@ -59,7 +47,7 @@ class _MaxIncorrectLimitInputState extends State<MaxIncorrectLimitInput> {
 
   void _updateError(bool hasError) {
     if (_hasError != hasError) {
-      _hasError = hasError;
+      setState(() => _hasError = hasError);
       if (widget.onMaxIncorrectErrorChanged != null) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (mounted) {
@@ -86,86 +74,19 @@ class _MaxIncorrectLimitInputState extends State<MaxIncorrectLimitInput> {
           ),
         ),
         const SizedBox(height: 12),
-        Container(
-          height: 56,
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          decoration: BoxDecoration(
-            color: widget.controlBgColor,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: _hasError
-                  ? errorColor
-                  : widget.borderColor.withValues(alpha: 0.5),
-              width: _hasError ? 1.5 : 1.0,
-            ),
-          ),
-          child: Row(
-            children: [
-              CountControlButton(
-                icon: LucideIcons.minus,
-                onTap: widget.onDecrementMaxIncorrect,
-                bgColor: widget.isDark
-                    ? AppTheme.zinc900.withValues(alpha: 0.5)
-                    : Colors.white,
-                iconColor: widget.primaryColor,
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Center(
-                    child: TextFormField(
-                      controller: widget.maxIncorrectAnswersController,
-                      focusNode: widget.maxIncorrectAnswersFocusNode,
-                      textAlign: TextAlign.center,
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: widget.textColor,
-                      ),
-                      decoration: const InputDecoration(
-                        isDense: true,
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.zero,
-                        errorStyle: TextStyle(height: 0, fontSize: 0),
-                      ),
-                      onChanged: (value) {
-                        final val = int.tryParse(value);
-                        if (val != null && val >= 0) {
-                          widget.onMaxIncorrectAnswersLimitChanged(val);
-                        }
-                      },
-                      validator: (value) {
-                        bool hasError = false;
-
-                        if (value == null || value.isEmpty) {
-                          hasError = true;
-                        } else {
-                          final newVal = int.tryParse(value);
-                          if (newVal == null || newVal < 0) {
-                            hasError = true;
-                          }
-                        }
-
-                        _updateError(hasError);
-                        return hasError ? '' : null;
-                      },
-                      autovalidateMode: AutovalidateMode.always,
-                    ),
-                  ),
-                ),
-              ),
-              CountControlButton(
-                icon: LucideIcons.plus,
-                onTap: widget.onIncrementMaxIncorrect,
-                bgColor: widget.isDark
-                    ? AppTheme.zinc900.withValues(alpha: 0.5)
-                    : Colors.white,
-                iconColor: widget.primaryColor,
-              ),
-            ],
-          ),
+        QuizdyStepperField(
+          controller: widget.maxIncorrectAnswersController,
+          focusNode: widget.maxIncorrectAnswersFocusNode,
+          keyboardType: TextInputType.number,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+          onIncrement: widget.onIncrementMaxIncorrect,
+          onDecrement: widget.onDecrementMaxIncorrect,
+          onChanged: (value) {
+            final val = int.tryParse(value);
+            final hasError = value.isEmpty || val == null || val < 0;
+            if (!hasError) widget.onMaxIncorrectAnswersLimitChanged(val);
+            _updateError(hasError);
+          },
         ),
         if (_hasError) ...[
           const SizedBox(height: 8),

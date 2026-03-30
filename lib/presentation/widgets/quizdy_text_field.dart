@@ -39,6 +39,10 @@ class QuizdyTextField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final String? errorText;
   final TextAlign textAlign;
+  final String? suffixText;
+  final bool obscureText;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
 
   const QuizdyTextField({
     super.key,
@@ -56,6 +60,10 @@ class QuizdyTextField extends StatelessWidget {
     this.errorText,
     this.textAlign = TextAlign.start,
     this.onSubmitted,
+    this.suffixText,
+    this.obscureText = false,
+    this.prefixIcon,
+    this.suffixIcon,
   });
 
   @override
@@ -78,6 +86,7 @@ class QuizdyTextField extends StatelessWidget {
       readOnly: readOnly,
       inputFormatters: inputFormatters,
       textAlign: textAlign,
+      obscureText: obscureText,
       style: TextStyle(fontSize: 14, color: textColor, height: 1.65),
       decoration: InputDecoration(
         hintText: hint,
@@ -86,6 +95,9 @@ class QuizdyTextField extends StatelessWidget {
         fillColor: fieldBg,
         contentPadding: const EdgeInsets.all(14),
         errorText: errorText,
+        suffixText: suffixText,
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(color: enabledBorderColor, width: 1.5),
@@ -122,12 +134,15 @@ class QuizdyFieldLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textColor = Theme.of(context).brightness == Brightness.dark
+        ? AppTheme.zinc400
+        : AppTheme.zinc500;
     return Text(
       label,
-      style: const TextStyle(
+      style: TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w600,
-        color: AppTheme.zinc600,
+        color: textColor,
       ),
     );
   }

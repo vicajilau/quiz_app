@@ -22,6 +22,7 @@ import 'package:quizdy/presentation/widgets/quizdy_switch.dart';
 import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/presentation/widgets/ai_service_model_selector.dart';
+import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
 /// A widget that handles the AI Assistant settings section.
 ///
@@ -298,57 +299,49 @@ class AiSettingsSection extends StatelessWidget {
     required String buttonLabel,
   }) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextFormField(
+        QuizdyFieldLabel(label: label),
+        const SizedBox(height: 8),
+        QuizdyTextField(
           controller: controller,
-          decoration: InputDecoration(
-            labelText: label,
-            hintText: hint,
-            hintMaxLines: 1,
-            border: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: isValid
-                    ? Theme.of(context).colorScheme.outline
-                    : Theme.of(context).colorScheme.error,
-              ),
-            ),
-            prefixIcon: Icon(
-              Icons.key,
-              color: isValid ? null : Theme.of(context).colorScheme.error,
-            ),
-            suffixIcon: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (isValid)
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: Icon(
-                      Icons.check_circle,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
-                IconButton(
-                  tooltip: AppLocalizations.of(context)!.pasteFromClipboard,
-                  icon: const Icon(Icons.paste),
-                  onPressed: () async {
-                    final clipboardContent = await Pasteboard.text;
-                    if (clipboardContent != null &&
-                        clipboardContent.isNotEmpty) {
-                      controller.text = clipboardContent;
-                      onApiKeyChanged();
-                    }
-                  },
-                ),
-                IconButton(
-                  icon: Icon(
-                    isVisible ? Icons.visibility_off : Icons.visibility,
-                  ),
-                  onPressed: onToggleVisibility,
-                ),
-              ],
-            ),
-          ),
+          hint: hint,
           obscureText: !isVisible,
+          prefixIcon: Icon(
+            Icons.key,
+            color: isValid ? null : Theme.of(context).colorScheme.error,
+          ),
+          suffixIcon: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (isValid)
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: Icon(
+                    Icons.check_circle,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              IconButton(
+                tooltip: AppLocalizations.of(context)!.pasteFromClipboard,
+                icon: const Icon(Icons.paste),
+                onPressed: () async {
+                  final clipboardContent = await Pasteboard.text;
+                  if (clipboardContent != null &&
+                      clipboardContent.isNotEmpty) {
+                    controller.text = clipboardContent;
+                    onApiKeyChanged();
+                  }
+                },
+              ),
+              IconButton(
+                icon: Icon(
+                  isVisible ? Icons.visibility_off : Icons.visibility,
+                ),
+                onPressed: onToggleVisibility,
+              ),
+            ],
+          ),
           onChanged: (value) async {
             onApiKeyChanged();
           },
