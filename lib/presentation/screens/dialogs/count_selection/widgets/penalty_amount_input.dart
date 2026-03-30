@@ -15,17 +15,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
-import 'package:quizdy/presentation/screens/dialogs/count_selection/count_control_button.dart';
+import 'package:quizdy/presentation/widgets/quizdy_stepper_field.dart';
 
 class PenaltyAmountInput extends StatelessWidget {
-  final Color textColor;
   final Color subTextColor;
-  final Color primaryColor;
-  final Color controlBgColor;
-  final Color controlIconColor;
   final double penaltyAmount;
   final TextEditingController penaltyController;
   final FocusNode penaltyFocusNode;
@@ -35,11 +30,7 @@ class PenaltyAmountInput extends StatelessWidget {
 
   const PenaltyAmountInput({
     super.key,
-    required this.textColor,
     required this.subTextColor,
-    required this.primaryColor,
-    required this.controlBgColor,
-    required this.controlIconColor,
     required this.penaltyAmount,
     required this.penaltyController,
     required this.penaltyFocusNode,
@@ -77,63 +68,23 @@ class PenaltyAmountInput extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 12),
-        Row(
-          children: [
-            CountControlButton(
-              icon: LucideIcons.minus,
-              onTap: onDecrementPenalty,
-              bgColor: controlBgColor,
-              iconColor: controlIconColor,
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Container(
-                height: 48,
-                decoration: BoxDecoration(
-                  color: controlBgColor,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                alignment: Alignment.center,
-                // Note: Non QuizdyTextfield to allow custom styling and behavior
-                child: TextFormField(
-                  controller: penaltyController,
-                  focusNode: penaltyFocusNode,
-                  keyboardType: const TextInputType.numberWithOptions(
-                    decimal: true,
-                  ),
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9.,]')),
-                  ],
-                  textAlign: TextAlign.center,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    isDense: true,
-                    contentPadding: EdgeInsets.zero,
-                  ),
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: textColor,
-                  ),
-                  onChanged: (value) {
-                    if (value.isEmpty) return;
-                    final normalizedValue = value.replaceAll(',', '.');
-                    final val = double.tryParse(normalizedValue);
-                    if (val != null && val >= 0) {
-                      onPenaltyAmountChanged(val);
-                    }
-                  },
-                ),
-              ),
-            ),
-            const SizedBox(width: 16),
-            CountControlButton(
-              icon: LucideIcons.plus,
-              onTap: onIncrementPenalty,
-              bgColor: primaryColor,
-              iconColor: Colors.white,
-            ),
+        QuizdyStepperField(
+          controller: penaltyController,
+          focusNode: penaltyFocusNode,
+          keyboardType: const TextInputType.numberWithOptions(decimal: true),
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(RegExp(r'[0-9.,]')),
           ],
+          onIncrement: onIncrementPenalty,
+          onDecrement: onDecrementPenalty,
+          onChanged: (value) {
+            if (value.isEmpty) return;
+            final normalizedValue = value.replaceAll(',', '.');
+            final val = double.tryParse(normalizedValue);
+            if (val != null && val >= 0) {
+              onPenaltyAmountChanged(val);
+            }
+          },
         ),
       ],
     );
