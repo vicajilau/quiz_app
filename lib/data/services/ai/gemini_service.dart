@@ -39,7 +39,7 @@ class GeminiService extends AIService {
   static const List<String> _models = [
     'gemini-flash-latest',
     'gemini-3.1-pro-preview',
-    'gemini-3.1-flash-preview',
+    'gemini-3-flash-preview',
     'gemini-2.5-pro',
     'gemini-2.5-flash',
     'gemini-2.5-flash-lite',
@@ -482,9 +482,7 @@ Rules:
       );
     }
     return decoded
-        .map(
-          (e) => StudyComponent.fromJson(e as Map<String, dynamic>),
-        )
+        .map((e) => StudyComponent.fromJson(e as Map<String, dynamic>))
         .toList();
   }
 
