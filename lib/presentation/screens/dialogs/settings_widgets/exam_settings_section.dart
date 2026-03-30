@@ -15,14 +15,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quizdy/presentation/widgets/quizdy_switch.dart';
+import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
 /// A widget that handles the exam mode settings section.
 ///
 /// Allows the user to enable/disable the exam timer and configure the time limit in minutes.
-class ExamSettingsSection extends StatelessWidget {
+class ExamSettingsSection extends StatefulWidget {
   final bool enabled;
   final int minutes;
   final ValueChanged<bool> onEnabledChanged;
@@ -37,8 +37,37 @@ class ExamSettingsSection extends StatelessWidget {
   });
 
   @override
+  State<ExamSettingsSection> createState() => _ExamSettingsSectionState();
+}
+
+class _ExamSettingsSectionState extends State<ExamSettingsSection> {
+  late TextEditingController _minutesController;
+
+  @override
+  void initState() {
+    super.initState();
+    _minutesController = TextEditingController(
+      text: widget.minutes.toString(),
+    );
+  }
+
+  @override
+  void didUpdateWidget(ExamSettingsSection oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.minutes != oldWidget.minutes &&
+        _minutesController.text != widget.minutes.toString()) {
+      _minutesController.text = widget.minutes.toString();
+    }
+  }
+
+  @override
+  void dispose() {
+    _minutesController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     final colors = context.appColors;
 
     return Column(
@@ -77,45 +106,22 @@ class ExamSettingsSection extends StatelessWidget {
                   ],
                 ),
               ),
-              QuizdySwitch(value: enabled, onChanged: onEnabledChanged),
+              QuizdySwitch(value: widget.enabled, onChanged: widget.onEnabledChanged),
             ],
           ),
         ),
-        if (enabled) ...[
+        if (widget.enabled) ...[
           const SizedBox(height: 16),
-          TextFormField(
-            initialValue: minutes.toString(),
-            decoration: InputDecoration(
-              labelText: AppLocalizations.of(context)!.timeLimitMinutes,
-              labelStyle: TextStyle(color: colors.subtitle),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color: isDark
-                      ? AppTheme.borderColorDark
-                      : AppTheme.borderColor,
-                ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color: isDark
-                      ? AppTheme.borderColorDark
-                      : AppTheme.borderColor,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: Theme.of(context).primaryColor),
-              ),
-              suffixText: AppLocalizations.of(context)!.minutesAbbreviation,
-            ),
-            style: TextStyle(color: colors.title),
+          QuizdyFieldLabel(label: AppLocalizations.of(context)!.timeLimitMinutes),
+          const SizedBox(height: 8),
+          QuizdyTextField(
+            controller: _minutesController,
             keyboardType: TextInputType.number,
+            suffixText: AppLocalizations.of(context)!.minutesAbbreviation,
             onChanged: (value) {
               final newMinutes = int.tryParse(value);
               if (newMinutes != null && newMinutes > 0) {
-                onMinutesChanged(newMinutes);
+                widget.onMinutesChanged(newMinutes);
               }
             },
           ),
