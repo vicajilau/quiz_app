@@ -134,12 +134,15 @@ class QuizdyFieldLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textColor = Theme.of(context).brightness == Brightness.dark
+        ? AppTheme.zinc400
+        : AppTheme.zinc500;
     return Text(
       label,
-      style: const TextStyle(
+      style: TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w600,
-        color: AppTheme.zinc600,
+        color: textColor,
       ),
     );
   }
