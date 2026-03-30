@@ -970,5 +970,9 @@
   "moveDown": "ქვემოთ გადატანა",
   "@moveDown": {
     "description": "Tooltip for the move down button in the component card"
+  },
+  "aiDifficultyRequiresFileTooltip": "ამ პარამეტრის გამოსაყენებლად საჭიროა ფაილის მიმაგრება",
+  "@aiDifficultyRequiresFileTooltip": {
+    "description": "Tooltip when auto difficulty is disabled due to missing file"
   }
 }

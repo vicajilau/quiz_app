@@ -2281,5 +2281,9 @@
   "moveDown": "नीचे ले जाएं",
   "@moveDown": {
     "description": "Tooltip for the move down button in the component card"
+  },
+  "aiDifficultyRequiresFileTooltip": "इस विकल्प का उपयोग करने के लिए फ़ाइल संलग्न करना आवश्यक है",
+  "@aiDifficultyRequiresFileTooltip": {
+    "description": "Tooltip when auto difficulty is disabled due to missing file"
   }
 }

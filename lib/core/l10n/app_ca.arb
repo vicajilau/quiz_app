@@ -2380,5 +2380,9 @@
   "moveDown": "Moure avall",
   "@moveDown": {
     "description": "Tooltip for the move down button in the component card"
+  },
+  "aiDifficultyRequiresFileTooltip": "Requereix adjuntar un fitxer per utilitzar aquesta opció",
+  "@aiDifficultyRequiresFileTooltip": {
+    "description": "Tooltip when auto difficulty is disabled due to missing file"
   }
 }

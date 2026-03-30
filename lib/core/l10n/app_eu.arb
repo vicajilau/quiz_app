@@ -2278,5 +2278,9 @@
   "moveDown": "Mugitu behera",
   "@moveDown": {
     "description": "Tooltip for the move down button in the component card"
+  },
+  "aiDifficultyRequiresFileTooltip": "Aukera hau erabiltzeko fitxategi bat erantsi behar da",
+  "@aiDifficultyRequiresFileTooltip": {
+    "description": "Tooltip when auto difficulty is disabled due to missing file"
   }
 }

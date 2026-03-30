@@ -2692,5 +2692,9 @@
   "moveDown": "تحريك لأسفل",
   "@moveDown": {
     "description": "Tooltip for the move down button in the component card"
+  },
+  "aiDifficultyRequiresFileTooltip": "يتطلب إرفاق ملف لاستخدام هذا الخيار",
+  "@aiDifficultyRequiresFileTooltip": {
+    "description": "Tooltip when auto difficulty is disabled due to missing file"
   }
 }
