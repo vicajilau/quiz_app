@@ -227,11 +227,7 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
             if (widget.subtractPoints) ...[
               const SizedBox(height: 20),
               PenaltyAmountInput(
-                textColor: widget.textColor,
                 subTextColor: widget.subTextColor,
-                primaryColor: widget.primaryColor,
-                controlBgColor: widget.controlBgColor,
-                controlIconColor: widget.controlIconColor,
                 penaltyAmount: widget.penaltyAmount,
                 penaltyController: widget.penaltyController,
                 penaltyFocusNode: widget.penaltyFocusNode,
@@ -255,12 +251,7 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
             if (widget.enableMaxIncorrectAnswers) ...[
               const SizedBox(height: 20),
               MaxIncorrectLimitInput(
-                isDark: widget.isDark,
-                textColor: widget.textColor,
                 subTextColor: widget.subTextColor,
-                primaryColor: widget.primaryColor,
-                controlBgColor: widget.controlBgColor,
-                borderColor: widget.borderColor,
                 maxIncorrectAnswersController:
                     widget.maxIncorrectAnswersController,
                 maxIncorrectAnswersFocusNode:
