@@ -31,6 +31,7 @@ import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_chunk_selector_widget.dart';
@@ -118,6 +119,14 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
   late Set<int> _selectedQuestionIndices;
   late Set<StudyComponentType> _selectedComponentTypes;
 
+  List<StudyChunk> get _availableChunks => (widget.chunks ?? [])
+      .where(
+        (c) =>
+            c.status == StudyChunkState.completed ||
+            c.status == StudyChunkState.downloaded,
+      )
+      .toList();
+
   @override
   void initState() {
     super.initState();
@@ -125,8 +134,8 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
     _questionCountFocusNode = FocusNode();
     _questionCountFocusNode.addListener(_onFocusChange);
     _scrollController = ScrollController();
-    final chunks = widget.chunks;
-    if (chunks != null && chunks.isNotEmpty) {
+    final chunks = _availableChunks;
+    if (chunks.isNotEmpty) {
       _selectedChunkIndices = chunks.map((c) => c.chunkIndex).toSet();
     } else {
       _selectedChunkIndices = {};
@@ -276,10 +285,9 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if (widget.chunks != null &&
-                          widget.chunks!.isNotEmpty) ...[
+                      if (_availableChunks.isNotEmpty) ...[
                         AiChunkSelectorWidget(
-                          chunks: widget.chunks!,
+                          chunks: _availableChunks,
                           enabled: _chunkSelectorEnabled,
                           selectedIndices: _selectedChunkIndices,
                           onToggle: (value) {
@@ -462,8 +470,8 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                             onPressed: _isGenerateEnabled()
                                 ? () {
                                     if (_chunkSelectorEnabled &&
-                                        widget.chunks != null) {
-                                      final selectedChunks = widget.chunks!
+                                        _availableChunks.isNotEmpty) {
+                                      final selectedChunks = _availableChunks
                                           .where(
                                             (c) => _selectedChunkIndices
                                                 .contains(c.chunkIndex),
