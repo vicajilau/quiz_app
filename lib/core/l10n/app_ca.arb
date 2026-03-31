@@ -2384,5 +2384,19 @@
   "aiDifficultyRequiresFileTooltip": "Requereix adjuntar un fitxer per utilitzar aquesta opció",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
+  },
+  "deleteDuplicatesButton": "Suprimeix els duplicats",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "Estàs segur que vols suprimir {count} elements duplicats? Només es conservarà una sola còpia de cadascun.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }

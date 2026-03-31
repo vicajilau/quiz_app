@@ -2282,5 +2282,19 @@
   "aiDifficultyRequiresFileTooltip": "Aukera hau erabiltzeko fitxategi bat erantsi behar da",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
+  },
+  "deleteDuplicatesButton": "Ezabatu bikoiztuak",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "Ziur zaude {count} elementu bikoiztu ezabatu nahi dituzula? Bakoitzaren kopia bakarra gordeko da.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }

@@ -2285,5 +2285,19 @@
   "aiDifficultyRequiresFileTooltip": "इस विकल्प का उपयोग करने के लिए फ़ाइल संलग्न करना आवश्यक है",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
+  },
+  "deleteDuplicatesButton": "डुप्लिेकेट हटाएं",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "क्या आप वाकई {count} डुप्लिकेट आइटम हटाना चाहते हैं? प्रत्येक की केवल एक प्रति रखी जाएगी।",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }

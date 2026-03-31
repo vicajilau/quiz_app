@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
+import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 
 class QuizLoadedBottomBar extends StatefulWidget {
@@ -32,6 +33,9 @@ class QuizLoadedBottomBar extends StatefulWidget {
   final bool showSaveButton;
   final bool hasQuestions;
 
+  final VoidCallback onDeleteDuplicates;
+  final bool hasDuplicates;
+
   const QuizLoadedBottomBar({
     super.key,
     required this.onAddQuestion,
@@ -40,10 +44,12 @@ class QuizLoadedBottomBar extends StatefulWidget {
     required this.onSave,
     required this.onDelete,
     required this.onPlay,
+    required this.onDeleteDuplicates,
     this.isPlayEnabled = false,
     this.selectedQuestionCount = 0,
     this.showSaveButton = false,
     this.hasQuestions = false,
+    this.hasDuplicates = false,
   });
 
   @override
@@ -141,8 +147,20 @@ class _QuizLoadedBottomBarState extends State<QuizLoadedBottomBar> {
                   const gap = 12.0;
                   final availableWidth = constraints.maxWidth;
                   final localizations = AppLocalizations.of(context)!;
+                  final customColors = Theme.of(context).extension<CustomColors>();
 
                   final buttonData = [
+                    if (widget.hasDuplicates)
+                      (
+                        button: QuizdyButton(
+                          backgroundColor: customColors?.onWarningContainer,
+                          icon: LucideIcons.copyMinus,
+                          expanded: true,
+                          title: localizations.deleteDuplicatesButton,
+                          onPressed: widget.onDeleteDuplicates,
+                        ),
+                        flex: 2,
+                      ),
                     if (widget.selectedQuestionCount > 0)
                       (
                         button: QuizdyButton(

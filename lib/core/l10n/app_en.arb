@@ -140,6 +140,20 @@
   "@duplicatedTag": {
     "description": "Tag to indicate an item is duplicated"
   },
+  "deleteDuplicatesButton": "Delete duplicates",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "Are you sure you want to delete {count} duplicated items? Only a single copy of each will be kept.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
   "confirmDeleteTitle": "Confirm Deletion",
   "@confirmDeleteTitle": {
     "description": "Title for the confirmation dialog when deleting a process."

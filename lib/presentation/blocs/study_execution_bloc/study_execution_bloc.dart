@@ -92,6 +92,7 @@ class StudyExecutionBloc
     on<DownloadStudyChunkRequested>(_onDownloadStudyChunkRequested);
     on<GenerateAiStudyChunksRequested>(_onGenerateAiStudyChunksRequested);
     on<DeleteSelectedChunksRequested>(_onDeleteSelectedChunksRequested);
+    on<DeleteDuplicateChunksRequested>(_onDeleteDuplicateChunksRequested);
     on<ImportStudyChunksRequested>(_onImportStudyChunksRequested);
     on<StudyChunksUpdated>(_onStudyChunksUpdated);
     on<StudyFileSaved>(
@@ -659,6 +660,68 @@ class StudyExecutionBloc
         chunks: updatedChunks,
         currentChunkIndex: newCurrentIndex,
         isSelectionMode: updatedChunks.isNotEmpty,
+        selectedIndices: {},
+      ),
+    );
+    emit(newState);
+
+    // Notify progress change for persistence
+    onProgressChanged?.call(
+      newState.progressPercentage,
+      newState.processedChunks,
+      newState.chunks,
+      newState.fileUri,
+      newState.fileExpirationTime,
+    );
+  }
+
+  void _onDeleteDuplicateChunksRequested(
+    DeleteDuplicateChunksRequested event,
+    Emitter<StudyExecutionState> emit,
+  ) {
+    if (state.chunks.isEmpty) return;
+
+    final duplicates = <int>[];
+    final seen = <String>{};
+    for (int i = 0; i < state.chunks.length; i++) {
+      final chunk = state.chunks[i];
+      final key = chunk.duplicationKey;
+      if (key.isNotEmpty) {
+        if (!seen.add(key)) {
+          duplicates.add(i);
+        }
+      }
+    }
+
+    if (duplicates.isEmpty) return;
+
+    final updatedChunks = List<StudyChunk>.from(state.chunks);
+    duplicates.sort((a, b) => b.compareTo(a));
+
+    for (final index in duplicates) {
+      updatedChunks.removeAt(index);
+    }
+
+    // Re-index remaining chunks
+    for (int i = 0; i < updatedChunks.length; i++) {
+      updatedChunks[i] = updatedChunks[i].copyWith(chunkIndex: i);
+    }
+
+    // Adjust currentChunkIndex if needed
+    int newCurrentIndex = state.currentChunkIndex;
+    if (updatedChunks.isEmpty) {
+      newCurrentIndex = 0;
+    } else if (newCurrentIndex >= updatedChunks.length) {
+      newCurrentIndex = updatedChunks.length - 1;
+    }
+
+    // Carefully handle selectedIndices so they aren't out of bounds
+    // For simplicity, let's just clear the selection
+    final newState = _updateProgress(
+      state.copyWith(
+        chunks: updatedChunks,
+        currentChunkIndex: newCurrentIndex,
+        isSelectionMode: updatedChunks.isNotEmpty ? state.isSelectionMode : false,
         selectedIndices: {},
       ),
     );

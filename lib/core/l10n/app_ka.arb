@@ -974,5 +974,19 @@
   "aiDifficultyRequiresFileTooltip": "ამ პარამეტრის გამოსაყენებლად საჭიროა ფაილის მიმაგრება",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
+  },
+  "deleteDuplicatesButton": "დუბლიკატების წაშლა",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "დარწმუნებული ხართ, რომ გსურთ {count} დუბლირებული ერთეულის წაშლა? თითოეულის მხოლოდ ერთი ასლი შენარჩუნდება.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }
