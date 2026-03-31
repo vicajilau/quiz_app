@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pasteboard/pasteboard.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
@@ -303,48 +304,53 @@ class AiSettingsSection extends StatelessWidget {
       children: [
         QuizdyFieldLabel(label: label),
         const SizedBox(height: 8),
-        QuizdyTextField(
-          controller: controller,
-          hint: hint,
-          obscureText: !isVisible,
-          prefixIcon: Icon(
-            Icons.key,
-            color: isValid ? null : Theme.of(context).colorScheme.error,
-          ),
-          suffixIcon: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (isValid)
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Icon(
-                    Icons.check_circle,
-                    color: Theme.of(context).colorScheme.primary,
+        SensitiveContent(
+          sensitivity: isVisible
+              ? ContentSensitivity.sensitive
+              : ContentSensitivity.notSensitive,
+          child: QuizdyTextField(
+            controller: controller,
+            hint: hint,
+            obscureText: !isVisible,
+            prefixIcon: Icon(
+              Icons.key,
+              color: isValid ? null : Theme.of(context).colorScheme.error,
+            ),
+            suffixIcon: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (isValid)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Icon(
+                      Icons.check_circle,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
+                IconButton(
+                  tooltip: AppLocalizations.of(context)!.pasteFromClipboard,
+                  icon: const Icon(Icons.paste),
+                  onPressed: () async {
+                    final clipboardContent = await Pasteboard.text;
+                    if (clipboardContent != null &&
+                        clipboardContent.isNotEmpty) {
+                      controller.text = clipboardContent;
+                      onApiKeyChanged();
+                    }
+                  },
                 ),
-              IconButton(
-                tooltip: AppLocalizations.of(context)!.pasteFromClipboard,
-                icon: const Icon(Icons.paste),
-                onPressed: () async {
-                  final clipboardContent = await Pasteboard.text;
-                  if (clipboardContent != null &&
-                      clipboardContent.isNotEmpty) {
-                    controller.text = clipboardContent;
-                    onApiKeyChanged();
-                  }
-                },
-              ),
-              IconButton(
-                icon: Icon(
-                  isVisible ? Icons.visibility_off : Icons.visibility,
+                IconButton(
+                  icon: Icon(
+                    isVisible ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: onToggleVisibility,
                 ),
-                onPressed: onToggleVisibility,
-              ),
-            ],
+              ],
+            ),
+            onChanged: (value) async {
+              onApiKeyChanged();
+            },
           ),
-          onChanged: (value) async {
-            onApiKeyChanged();
-          },
         ),
         const SizedBox(height: 8),
         Column(
