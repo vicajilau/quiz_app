@@ -401,7 +401,8 @@ class StudyPdfGenerator {
             if (author != null && author.isNotEmpty) ...[
               pw.SizedBox(height: 4),
               pw.Text(
-                '— ${_strip(author)}',
+                '- ${_strip(author)}',
+                textAlign: pw.TextAlign.right,
                 style: const pw.TextStyle(
                   fontSize: 10,
                   color: PdfColors.grey700,
