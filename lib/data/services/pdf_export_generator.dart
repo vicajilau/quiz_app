@@ -452,7 +452,7 @@ class StudyPdfGenerator {
           color: PdfColors.grey100,
           padding: const pw.EdgeInsets.all(10),
           child: pw.Text(
-            equation,
+            _latexToText(equation),
             style: pw.TextStyle(fontSize: 13, font: pw.Font.courier()),
           ),
         ),
@@ -726,28 +726,29 @@ class StudyPdfGenerator {
   // ---------------------------------------------------------------------------
 
   /// Strips Markdown and LaTeX delimiters from [text] so it renders cleanly
-  /// in PDF. LaTeX content is preserved as plain text (e.g. `$x^2$` → `x^2`).
+  /// in PDF. LaTeX math content is converted to readable Unicode via
+  /// [_latexToText].
   static String _strip(String text) {
     return text
         // LaTeX: display mode $$...$$ must come before inline $...$
         .replaceAllMapped(
           RegExp(r'\$\$(.+?)\$\$', dotAll: true),
-          (m) => m.group(1)!,
+          (m) => _latexToText(m.group(1)!),
         )
         // LaTeX: inline $...$
         .replaceAllMapped(
           RegExp(r'\$(.+?)\$', dotAll: true),
-          (m) => m.group(1)!,
+          (m) => _latexToText(m.group(1)!),
         )
         // LaTeX: \(...\) inline
         .replaceAllMapped(
           RegExp(r'\\\((.+?)\\\)', dotAll: true),
-          (m) => m.group(1)!,
+          (m) => _latexToText(m.group(1)!),
         )
         // LaTeX: \[...\] display
         .replaceAllMapped(
           RegExp(r'\\\[(.+?)\\\]', dotAll: true),
-          (m) => m.group(1)!,
+          (m) => _latexToText(m.group(1)!),
         )
         // Markdown: **bold** and __bold__
         .replaceAllMapped(
@@ -771,5 +772,177 @@ class StudyPdfGenerator {
         // Markdown: # headings
         .replaceAll(RegExp(r'^#{1,6}\s+', multiLine: true), '')
         .trim();
+  }
+
+  // ---------------------------------------------------------------------------
+  // LaTeX → Unicode converter
+  // ---------------------------------------------------------------------------
+
+  /// Converts LaTeX math notation to a readable Unicode representation.
+  ///
+  /// Handles the most common constructs found in study content:
+  /// fractions, roots, Greek letters, operators, and super/subscripts.
+  static String _latexToText(String latex) {
+    var s = latex;
+
+    // Strip any remaining math delimiters (e.g. if called on already-stripped
+    // content that still carries wrappers).
+    s = s
+        .replaceAllMapped(
+          RegExp(r'\$\$(.+?)\$\$', dotAll: true),
+          (m) => m.group(1)!,
+        )
+        .replaceAllMapped(
+          RegExp(r'\$(.+?)\$', dotAll: true),
+          (m) => m.group(1)!,
+        )
+        .replaceAllMapped(
+          RegExp(r'\\\((.+?)\\\)', dotAll: true),
+          (m) => m.group(1)!,
+        )
+        .replaceAllMapped(
+          RegExp(r'\\\[(.+?)\\\]', dotAll: true),
+          (m) => m.group(1)!,
+        );
+
+    // \frac{num}{den} → (num/den)
+    s = s.replaceAllMapped(
+      RegExp(r'\\frac\{([^{}]*)\}\{([^{}]*)\}'),
+      (m) => '(${m.group(1)!} / ${m.group(2)!})',
+    );
+
+    // \sqrt[n]{x} → n√(x)
+    s = s.replaceAllMapped(
+      RegExp(r'\\sqrt\[([^\]]*)\]\{([^{}]*)\}'),
+      (m) => '${m.group(1)!}√(${m.group(2)!})',
+    );
+
+    // \sqrt{x} → √(x)
+    s = s.replaceAllMapped(
+      RegExp(r'\\sqrt\{([^{}]*)\}'),
+      (m) => '√(${m.group(1)!})',
+    );
+
+    // ^{...} → ^(...) and _{...} → _(...)
+    s = s
+        .replaceAllMapped(
+          RegExp(r'\^\{([^{}]*)\}'),
+          (m) => '^(${m.group(1)!})',
+        )
+        .replaceAllMapped(
+          RegExp(r'_\{([^{}]*)\}'),
+          (m) => '_(${m.group(1)!})',
+        );
+
+    // Named LaTeX commands → Unicode symbols (ordered longest-first where
+    // needed to avoid prefix clashes, e.g. \varepsilon before \epsilon).
+    const symbols = <String, String>{
+      r'\varepsilon': 'ε',
+      r'\varphi': 'φ',
+      r'\vartheta': 'ϑ',
+      r'\alpha': 'α',
+      r'\beta': 'β',
+      r'\gamma': 'γ',
+      r'\delta': 'δ',
+      r'\epsilon': 'ε',
+      r'\zeta': 'ζ',
+      r'\eta': 'η',
+      r'\theta': 'θ',
+      r'\iota': 'ι',
+      r'\kappa': 'κ',
+      r'\lambda': 'λ',
+      r'\mu': 'μ',
+      r'\nu': 'ν',
+      r'\xi': 'ξ',
+      r'\pi': 'π',
+      r'\rho': 'ρ',
+      r'\sigma': 'σ',
+      r'\tau': 'τ',
+      r'\upsilon': 'υ',
+      r'\phi': 'φ',
+      r'\chi': 'χ',
+      r'\psi': 'ψ',
+      r'\omega': 'ω',
+      r'\Gamma': 'Γ',
+      r'\Delta': 'Δ',
+      r'\Theta': 'Θ',
+      r'\Lambda': 'Λ',
+      r'\Xi': 'Ξ',
+      r'\Pi': 'Π',
+      r'\Sigma': 'Σ',
+      r'\Upsilon': 'Υ',
+      r'\Phi': 'Φ',
+      r'\Psi': 'Ψ',
+      r'\Omega': 'Ω',
+      r'\sum': 'Σ',
+      r'\prod': 'Π',
+      r'\int': '∫',
+      r'\oint': '∮',
+      r'\partial': '∂',
+      r'\nabla': '∇',
+      r'\infty': '∞',
+      r'\pm': '±',
+      r'\mp': '∓',
+      r'\times': '×',
+      r'\div': '÷',
+      r'\cdot': '·',
+      r'\cdots': '⋯',
+      r'\ldots': '…',
+      r'\leq': '≤',
+      r'\geq': '≥',
+      r'\neq': '≠',
+      r'\approx': '≈',
+      r'\equiv': '≡',
+      r'\sim': '∼',
+      r'\propto': '∝',
+      r'\in': '∈',
+      r'\notin': '∉',
+      r'\subset': '⊂',
+      r'\supset': '⊃',
+      r'\subseteq': '⊆',
+      r'\supseteq': '⊇',
+      r'\cup': '∪',
+      r'\cap': '∩',
+      r'\forall': '∀',
+      r'\exists': '∃',
+      r'\neg': '¬',
+      r'\land': '∧',
+      r'\lor': '∨',
+      r'\Rightarrow': '⇒',
+      r'\Leftarrow': '⇐',
+      r'\Leftrightarrow': '⟺',
+      r'\rightarrow': '→',
+      r'\leftarrow': '←',
+      r'\leftrightarrow': '↔',
+      r'\to': '→',
+      r'\uparrow': '↑',
+      r'\downarrow': '↓',
+      r'\langle': '⟨',
+      r'\rangle': '⟩',
+      r'\lfloor': '⌊',
+      r'\rfloor': '⌋',
+      r'\lceil': '⌈',
+      r'\rceil': '⌉',
+      r'\|': '‖',
+      r'\{': '{',
+      r'\}': '}',
+      r'\%': '%',
+    };
+
+    for (final entry in symbols.entries) {
+      s = s.replaceAll(entry.key, entry.value);
+    }
+
+    // Remove any remaining unknown LaTeX commands (e.g. \text, \mathrm, \left,
+    // \right, \limits, \displaystyle …).
+    s = s.replaceAll(RegExp(r'\\[a-zA-Z]+\*?\s*'), '');
+
+    // Remove leftover bare braces.
+    s = s.replaceAll('{', '').replaceAll('}', '');
+
+    // Collapse multiple spaces introduced by brace removal.
+    s = s.replaceAll(RegExp(r'  +'), ' ');
+
+    return s.trim();
   }
 }
