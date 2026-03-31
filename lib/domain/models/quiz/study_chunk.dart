@@ -44,6 +44,19 @@ class StudyChunk {
   /// An optional error message if the chunk generation failed.
   final String? errorMessage;
 
+  /// Returns a unique key representing the source of this chunk to identify duplicates.
+  String get duplicationKey {
+    final source = sourceReference;
+    return [
+      source.documentId.trim().toLowerCase(),
+      source.startPage,
+      source.endPage,
+      source.startOffset,
+      source.endOffset,
+      source.blockType.trim().toLowerCase(),
+    ].join('|');
+  }
+
   /// Constructor for a `StudyChunk`.
   const StudyChunk({
     required this.chunkIndex,

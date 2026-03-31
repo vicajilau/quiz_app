@@ -116,27 +116,14 @@ class StudyIndexView extends StatelessWidget {
   Map<String, int> _buildChunkDuplicateCounts(List<StudyChunk> chunks) {
     final counts = <String, int>{};
     for (final chunk in chunks) {
-      final key = _normalizeChunkKey(chunk);
+      final key = chunk.duplicationKey;
       counts[key] = (counts[key] ?? 0) + 1;
     }
     return counts;
   }
 
   bool _isChunkDuplicated(StudyChunk chunk, Map<String, int> counts) {
-    final key = _normalizeChunkKey(chunk);
-    return (counts[key] ?? 0) > 1;
-  }
-
-  String _normalizeChunkKey(StudyChunk chunk) {
-    final source = chunk.sourceReference;
-    return [
-      source.documentId.trim().toLowerCase(),
-      source.startPage,
-      source.endPage,
-      source.startOffset,
-      source.endOffset,
-      source.blockType.trim().toLowerCase(),
-    ].join('|');
+    return (counts[chunk.duplicationKey] ?? 0) > 1;
   }
 
   /// Wraps [child] in a [Stack] with a pencil icon in the top-right corner

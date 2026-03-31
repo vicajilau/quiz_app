@@ -56,27 +56,13 @@ class StudySectionsSidebar extends StatelessWidget {
   Map<String, int> _buildChunkDuplicateCounts() {
     final counts = <String, int>{};
     for (final chunk in chunks) {
-      final key = _normalizeChunkKey(chunk);
-      counts[key] = (counts[key] ?? 0) + 1;
+      counts[chunk.duplicationKey] = (counts[chunk.duplicationKey] ?? 0) + 1;
     }
     return counts;
   }
 
   bool _isDuplicated(StudyChunk chunk, Map<String, int> duplicateCounts) {
-    final key = _normalizeChunkKey(chunk);
-    return (duplicateCounts[key] ?? 0) > 1;
-  }
-
-  String _normalizeChunkKey(StudyChunk chunk) {
-    final source = chunk.sourceReference;
-    return [
-      source.documentId.trim().toLowerCase(),
-      source.startPage,
-      source.endPage,
-      source.startOffset,
-      source.endOffset,
-      source.blockType.trim().toLowerCase(),
-    ].join('|');
+    return (duplicateCounts[chunk.duplicationKey] ?? 0) > 1;
   }
 
   @override
