@@ -263,7 +263,6 @@ class StudyPdfGenerator {
   static List<pw.Widget> _buildNumberedList(StudyComponent c) {
     final title = c.props['title']?.toString();
     final rawItems = c.props['items'] as List<dynamic>? ?? [];
-    final items = rawItems.map((e) => _strip(e.toString())).toList();
     return [
       if (title != null && title.isNotEmpty)
         pw.Text(
@@ -271,9 +270,20 @@ class StudyPdfGenerator {
           style: pw.TextStyle(fontSize: 13, fontWeight: pw.FontWeight.bold),
         ),
       pw.SizedBox(height: 4),
-      ...List.generate(items.length, (i) {
+      ...List.generate(rawItems.length, (i) {
+        final item = rawItems[i];
+        final String itemTitle;
+        final String? itemDescription;
+        if (item is Map) {
+          itemTitle = _strip(item['title']?.toString() ?? '');
+          final desc = item['description']?.toString() ?? '';
+          itemDescription = desc.isNotEmpty ? _strip(desc) : null;
+        } else {
+          itemTitle = _strip(item.toString());
+          itemDescription = null;
+        }
         return pw.Padding(
-          padding: const pw.EdgeInsets.only(left: 16, bottom: 4),
+          padding: const pw.EdgeInsets.only(left: 16, bottom: 6),
           child: pw.Row(
             crossAxisAlignment: pw.CrossAxisAlignment.start,
             children: [
@@ -285,9 +295,25 @@ class StudyPdfGenerator {
                 ),
               ),
               pw.Expanded(
-                child: pw.Text(
-                  items[i],
-                  style: const pw.TextStyle(fontSize: 11),
+                child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: [
+                    if (itemTitle.isNotEmpty)
+                      pw.Text(
+                        itemTitle,
+                        style: pw.TextStyle(
+                          fontSize: 11,
+                          fontWeight: itemDescription != null
+                              ? pw.FontWeight.bold
+                              : pw.FontWeight.normal,
+                        ),
+                      ),
+                    if (itemDescription != null)
+                      pw.Text(
+                        itemDescription,
+                        style: const pw.TextStyle(fontSize: 11),
+                      ),
+                  ],
                 ),
               ),
             ],
@@ -539,10 +565,10 @@ class StudyPdfGenerator {
   static List<pw.Widget> _buildProsCons(StudyComponent c, _PdfLabels labels) {
     final items = c.props['items'] as Map<String, dynamic>?;
     final pros = (items?['pros'] as List<dynamic>? ?? [])
-        .map((e) => _strip(e.toString()))
+        .map((e) => _strip(_itemToText(e)))
         .toList();
     final cons = (items?['cons'] as List<dynamic>? ?? [])
-        .map((e) => _strip(e.toString()))
+        .map((e) => _strip(_itemToText(e)))
         .toList();
 
     pw.Widget buildColumn(String header, List<String> list, PdfColor color) {
@@ -607,7 +633,8 @@ class StudyPdfGenerator {
   static List<pw.Widget> _buildKeyConcepts(StudyComponent c) {
     final title = c.props['title']?.toString();
     final rawItems = c.props['items'] as List<dynamic>? ?? [];
-    final items = rawItems.map((e) => _strip(e.toString())).toList();
+    // For chips only show the title/label — description would overflow.
+    final items = rawItems.map((e) => _strip(_itemLabel(e))).toList();
     return [
       if (title != null && title.isNotEmpty)
         pw.Text(
@@ -722,6 +749,35 @@ class StudyPdfGenerator {
   }
 
   // ---------------------------------------------------------------------------
+  // Item text helpers
+  // ---------------------------------------------------------------------------
+
+  /// Returns a combined readable string from a list item that may be either a
+  /// plain string or a Map with `title` / `description` / `label` keys.
+  /// Used for pros/cons lists and other flat item lists.
+  static String _itemToText(dynamic item) {
+    if (item is Map) {
+      final title = item['title']?.toString() ?? item['label']?.toString() ?? '';
+      final desc = item['description']?.toString() ?? '';
+      if (title.isNotEmpty && desc.isNotEmpty) return '$title: $desc';
+      return title.isNotEmpty ? title : desc;
+    }
+    return item.toString();
+  }
+
+  /// Returns only the label/title portion of an item — for compact widgets
+  /// like chips where description would overflow.
+  static String _itemLabel(dynamic item) {
+    if (item is Map) {
+      return item['title']?.toString() ??
+          item['label']?.toString() ??
+          item['name']?.toString() ??
+          item.toString();
+    }
+    return item.toString();
+  }
+
+  // ---------------------------------------------------------------------------
   // Markdown stripper
   // ---------------------------------------------------------------------------
 
@@ -759,12 +815,12 @@ class StudyPdfGenerator {
           RegExp(r'__(.+?)__', dotAll: true),
           (m) => m.group(1)!,
         )
-        // Markdown: *italic* and _italic_
+        // Markdown: *italic* — use word-boundary-aware pattern to avoid
+        // conflicting with underscores produced by LaTeX subscript conversion.
         .replaceAllMapped(
           RegExp(r'\*(.+?)\*', dotAll: true),
           (m) => m.group(1)!,
         )
-        .replaceAllMapped(RegExp(r'_(.+?)_', dotAll: true), (m) => m.group(1)!)
         // Markdown: `code`
         .replaceAllMapped(RegExp(r'`(.+?)`', dotAll: true), (m) => m.group(1)!)
         // Markdown: [text](url)
@@ -775,18 +831,33 @@ class StudyPdfGenerator {
   }
 
   // ---------------------------------------------------------------------------
-  // LaTeX → Unicode converter
+  // LaTeX → ASCII-safe text converter
   // ---------------------------------------------------------------------------
 
-  /// Converts LaTeX math notation to a readable Unicode representation.
+  /// Converts LaTeX math notation to a plain-text representation that is safe
+  /// to render with the PDF package's built-in fonts.
   ///
-  /// Handles the most common constructs found in study content:
-  /// fractions, roots, Greek letters, operators, and super/subscripts.
+  /// The built-in PDF fonts (Helvetica, Courier, Times) use WinAnsi / Latin-1
+  /// encoding. Characters outside that range (Greek letters, math symbols like
+  /// √, →, ∞, etc.) render as boxes. This converter therefore maps everything
+  /// that is not in Latin-1 to a recognisable ASCII / Latin-1 equivalent:
+  ///   • \sqrt{x}       → sqrt(x)
+  ///   • \frac{a}{b}    → (a / b)
+  ///   • \rightarrow    → ->
+  ///   • \alpha         → alpha
+  ///   • \leq           → <=
+  ///
+  /// Latin-1 characters that ARE supported by the built-in fonts are kept as
+  /// Unicode: ± × ÷ · ¬ µ ° etc.
+  ///
+  /// Nested constructs (e.g. \frac{\sqrt{x}}{2}) are resolved by running
+  /// structural replacements in up to [_kMaxPasses] passes.
+  static const int _kMaxPasses = 5;
+
   static String _latexToText(String latex) {
     var s = latex;
 
-    // Strip any remaining math delimiters (e.g. if called on already-stripped
-    // content that still carries wrappers).
+    // -- 1. Strip outer math delimiters that may have been passed through. ---
     s = s
         .replaceAllMapped(
           RegExp(r'\$\$(.+?)\$\$', dotAll: true),
@@ -805,142 +876,272 @@ class StudyPdfGenerator {
           (m) => m.group(1)!,
         );
 
-    // \frac{num}{den} → (num/den)
+    // -- 2. LaTeX environments: \begin{env}...\end{env} → content only. ------
     s = s.replaceAllMapped(
-      RegExp(r'\\frac\{([^{}]*)\}\{([^{}]*)\}'),
-      (m) => '(${m.group(1)!} / ${m.group(2)!})',
+      RegExp(r'\\begin\{[^}]*\}([\s\S]*?)\\end\{[^}]*\}'),
+      (m) => m.group(1)!.trim(),
     );
 
-    // \sqrt[n]{x} → n√(x)
+    // -- 3. LaTeX line breaks \\ → space. ------------------------------------
+    s = s.replaceAll(r'\\', ' ');
+
+    // -- 4. Content-preserving wrappers: keep inner text, drop command. ------
     s = s.replaceAllMapped(
-      RegExp(r'\\sqrt\[([^\]]*)\]\{([^{}]*)\}'),
-      (m) => '${m.group(1)!}√(${m.group(2)!})',
+      RegExp(
+        r'\\(?:text|mathrm|mathbf|mathit|mathsf|mathtt|mathcal|operatorname)\{([^{}]*)\}',
+      ),
+      (m) => m.group(1)!,
     );
 
-    // \sqrt{x} → √(x)
+    // -- 5. \mathbb{R} → R, \mathbb{N} → N, etc. (just the letter). ---------
     s = s.replaceAllMapped(
-      RegExp(r'\\sqrt\{([^{}]*)\}'),
-      (m) => '√(${m.group(1)!})',
+      RegExp(r'\\mathbb\{([^}]*)\}'),
+      (m) => m.group(1)!,
     );
 
-    // ^{...} → ^(...) and _{...} → _(...)
+    // -- 6. Accent/decoration commands: preserve the base, drop decoration. --
+    //    PDF fonts have no combining-character support, so we just keep the
+    //    inner content (x_hat → x, x_bar → x).  A label suffix is added for
+    //    the most important ones to retain meaning.
     s = s
         .replaceAllMapped(
-          RegExp(r'\^\{([^{}]*)\}'),
-          (m) => '^(${m.group(1)!})',
-        )
-        .replaceAllMapped(
-          RegExp(r'_\{([^{}]*)\}'),
-          (m) => '_(${m.group(1)!})',
+          RegExp(r'\\(?:hat|bar|overline|tilde|vec|dot|ddot|acute|grave)\{([^{}]*)\}'),
+          (m) => m.group(1)!,
         );
 
-    // Named LaTeX commands → Unicode symbols (ordered longest-first where
-    // needed to avoid prefix clashes, e.g. \varepsilon before \epsilon).
+    // -- 7. Structural constructs — multiple passes handle nesting. ----------
+    for (int pass = 0; pass < _kMaxPasses; pass++) {
+      final before = s;
+
+      // \frac{num}{den} → (num / den)
+      s = s.replaceAllMapped(
+        RegExp(r'\\frac\{([^{}]*)\}\{([^{}]*)\}'),
+        (m) => '(${m.group(1)!} / ${m.group(2)!})',
+      );
+
+      // \sqrt[n]{x} → root_n(x)
+      s = s.replaceAllMapped(
+        RegExp(r'\\sqrt\[([^\]]*)\]\{([^{}]*)\}'),
+        (m) => 'root${m.group(1)!}(${m.group(2)!})',
+      );
+
+      // \sqrt{x} → sqrt(x)
+      s = s.replaceAllMapped(
+        RegExp(r'\\sqrt\{([^{}]*)\}'),
+        (m) => 'sqrt(${m.group(1)!})',
+      );
+
+      // ^{...} → ^(...) — keeps exponent notation readable
+      s = s.replaceAllMapped(
+        RegExp(r'\^\{([^{}]*)\}'),
+        (m) => '^(${m.group(1)!})',
+      );
+
+      // _{...} → [subscript] — square brackets are universally readable
+      s = s.replaceAllMapped(
+        RegExp(r'_\{([^{}]*)\}'),
+        (m) => '[${m.group(1)!}]',
+      );
+
+      if (s == before) break;
+    }
+
+    // -- 8. Bare single-character sub/superscripts (no braces): x_i, CO_2 --
+    //    Only match a single alphanumeric char to avoid over-consuming text.
+    s = s
+        .replaceAllMapped(
+          RegExp(r'_([a-zA-Z0-9])'),
+          (m) => '[${m.group(1)!}]',
+        );
+    // Bare superscripts like x^2 are already readable — leave them as-is.
+
+    // -- 9. Size modifiers before brackets: \left, \right, \big, \Big, etc. --
+    s = s.replaceAll(RegExp(r'\\(?:left|right|[bB]ig{1,2})\s*'), '');
+
+    // -- 10. Named LaTeX commands → ASCII-safe text. -------------------------
+    //
+    //  IMPORTANT: All target strings must use only Latin-1 / WinAnsi
+    //  characters so they render correctly with the built-in PDF fonts.
+    //  Characters ≤ U+00FF that ARE in WinAnsi are used where appropriate
+    //  (±, ×, ÷, ·, ¬, µ, °).  Everything else uses ASCII.
+    //
+    //  Order matters: longer keys before their common prefixes
+    //  (e.g. \varepsilon before \epsilon, \Leftrightarrow before \leftarrow).
     const symbols = <String, String>{
-      r'\varepsilon': 'ε',
-      r'\varphi': 'φ',
-      r'\vartheta': 'ϑ',
-      r'\alpha': 'α',
-      r'\beta': 'β',
-      r'\gamma': 'γ',
-      r'\delta': 'δ',
-      r'\epsilon': 'ε',
-      r'\zeta': 'ζ',
-      r'\eta': 'η',
-      r'\theta': 'θ',
-      r'\iota': 'ι',
-      r'\kappa': 'κ',
-      r'\lambda': 'λ',
-      r'\mu': 'μ',
-      r'\nu': 'ν',
-      r'\xi': 'ξ',
-      r'\pi': 'π',
-      r'\rho': 'ρ',
-      r'\sigma': 'σ',
-      r'\tau': 'τ',
-      r'\upsilon': 'υ',
-      r'\phi': 'φ',
-      r'\chi': 'χ',
-      r'\psi': 'ψ',
-      r'\omega': 'ω',
-      r'\Gamma': 'Γ',
-      r'\Delta': 'Δ',
-      r'\Theta': 'Θ',
-      r'\Lambda': 'Λ',
-      r'\Xi': 'Ξ',
-      r'\Pi': 'Π',
-      r'\Sigma': 'Σ',
-      r'\Upsilon': 'Υ',
-      r'\Phi': 'Φ',
-      r'\Psi': 'Ψ',
-      r'\Omega': 'Ω',
-      r'\sum': 'Σ',
-      r'\prod': 'Π',
-      r'\int': '∫',
-      r'\oint': '∮',
-      r'\partial': '∂',
-      r'\nabla': '∇',
-      r'\infty': '∞',
-      r'\pm': '±',
-      r'\mp': '∓',
-      r'\times': '×',
-      r'\div': '÷',
-      r'\cdot': '·',
-      r'\cdots': '⋯',
-      r'\ldots': '…',
-      r'\leq': '≤',
-      r'\geq': '≥',
-      r'\neq': '≠',
-      r'\approx': '≈',
-      r'\equiv': '≡',
-      r'\sim': '∼',
-      r'\propto': '∝',
-      r'\in': '∈',
-      r'\notin': '∉',
-      r'\subset': '⊂',
-      r'\supset': '⊃',
-      r'\subseteq': '⊆',
-      r'\supseteq': '⊇',
-      r'\cup': '∪',
-      r'\cap': '∩',
-      r'\forall': '∀',
-      r'\exists': '∃',
-      r'\neg': '¬',
-      r'\land': '∧',
-      r'\lor': '∨',
-      r'\Rightarrow': '⇒',
-      r'\Leftarrow': '⇐',
-      r'\Leftrightarrow': '⟺',
-      r'\rightarrow': '→',
-      r'\leftarrow': '←',
-      r'\leftrightarrow': '↔',
-      r'\to': '→',
-      r'\uparrow': '↑',
-      r'\downarrow': '↓',
-      r'\langle': '⟨',
-      r'\rangle': '⟩',
-      r'\lfloor': '⌊',
-      r'\rfloor': '⌋',
-      r'\lceil': '⌈',
-      r'\rceil': '⌉',
-      r'\|': '‖',
+      // Greek – variant forms first
+      r'\varepsilon': 'eps',
+      r'\varphi': 'phi',
+      r'\vartheta': 'theta',
+      r'\varrho': 'rho',
+      r'\varsigma': 'sigma',
+      // Greek – lowercase
+      r'\alpha': 'alpha',
+      r'\beta': 'beta',
+      r'\gamma': 'gamma',
+      r'\delta': 'delta',
+      r'\epsilon': 'eps',
+      r'\zeta': 'zeta',
+      r'\eta': 'eta',
+      r'\theta': 'theta',
+      r'\iota': 'iota',
+      r'\kappa': 'kappa',
+      r'\lambda': 'lambda',
+      r'\mu': 'mu',  // µ (U+00B5) is Latin-1 but confusable; keep ASCII
+      r'\nu': 'nu',
+      r'\xi': 'xi',
+      r'\pi': 'pi',
+      r'\rho': 'rho',
+      r'\sigma': 'sigma',
+      r'\tau': 'tau',
+      r'\upsilon': 'upsilon',
+      r'\phi': 'phi',
+      r'\chi': 'chi',
+      r'\psi': 'psi',
+      r'\omega': 'omega',
+      // Greek – uppercase
+      r'\Gamma': 'Gamma',
+      r'\Delta': 'Delta',
+      r'\Theta': 'Theta',
+      r'\Lambda': 'Lambda',
+      r'\Xi': 'Xi',
+      r'\Pi': 'Pi',
+      r'\Sigma': 'Sigma',
+      r'\Upsilon': 'Upsilon',
+      r'\Phi': 'Phi',
+      r'\Psi': 'Psi',
+      r'\Omega': 'Omega',
+      // Large operators
+      r'\sum': 'sum',
+      r'\prod': 'prod',
+      r'\coprod': 'coprod',
+      r'\iint': 'iint',
+      r'\iiint': 'iiint',
+      r'\oint': 'oint',
+      r'\int': 'int',
+      r'\partial': 'd',   // partial derivative → plain d in context
+      r'\nabla': 'grad',
+      // Trig / common functions — already ASCII, just strip the backslash
+      r'\arccos': 'arccos',
+      r'\arcsin': 'arcsin',
+      r'\arctan': 'arctan',
+      r'\sinh': 'sinh',
+      r'\cosh': 'cosh',
+      r'\tanh': 'tanh',
+      r'\coth': 'coth',
+      r'\sin': 'sin',
+      r'\cos': 'cos',
+      r'\tan': 'tan',
+      r'\cot': 'cot',
+      r'\sec': 'sec',
+      r'\csc': 'csc',
+      r'\limsup': 'lim sup',
+      r'\liminf': 'lim inf',
+      r'\lim': 'lim',
+      r'\sup': 'sup',
+      r'\inf': 'inf',
+      r'\max': 'max',
+      r'\min': 'min',
+      r'\log': 'log',
+      r'\ln': 'ln',
+      r'\exp': 'exp',
+      r'\det': 'det',
+      r'\dim': 'dim',
+      r'\ker': 'ker',
+      r'\deg': 'deg',
+      r'\gcd': 'gcd',
+      r'\lcm': 'lcm',
+      r'\mod': 'mod',
+      r'\arg': 'arg',
+      // Misc symbols — Latin-1 where available, ASCII otherwise
+      r'\infty': 'inf',
+      r'\varnothing': '{}',
+      r'\emptyset': '{}',
+      r'\pm': '\u00b1',    // ± Latin-1 U+00B1 ✓
+      r'\mp': '-/+',
+      r'\times': '\u00d7', // × Latin-1 U+00D7 ✓
+      r'\div': '\u00f7',   // ÷ Latin-1 U+00F7 ✓
+      r'\cdots': '...',
+      r'\cdot': '\u00b7',  // · Latin-1 U+00B7 ✓
+      r'\ldots': '...',
+      r'\vdots': ':',
+      r'\ddots': '...',
+      // Comparison operators → ASCII pairs
+      r'\leq': '<=',
+      r'\geq': '>=',
+      r'\ll': '<<',
+      r'\gg': '>>',
+      r'\neq': '!=',
+      r'\approx': '~=',
+      r'\cong': '~=',
+      r'\equiv': '===',
+      r'\sim': '~',
+      r'\simeq': '~=',
+      r'\propto': 'prop',
+      // Set operators → ASCII / short words
+      r'\notin': 'not in',
+      r'\in': 'in',
+      r'\ni': 'contains',
+      r'\subseteq': 'subset=',
+      r'\supseteq': 'supset=',
+      r'\subset': 'subset',
+      r'\supset': 'supset',
+      r'\cup': 'union',
+      r'\cap': 'inter',
+      r'\setminus': '\\',
+      // Logic
+      r'\forall': 'forall',
+      r'\nexists': '!exists',
+      r'\exists': 'exists',
+      r'\neg': '\u00ac',   // ¬ Latin-1 U+00AC ✓
+      r'\land': 'and',
+      r'\lor': 'or',
+      r'\oplus': '(+)',
+      r'\otimes': '(x)',
+      // Arrows → ASCII
+      r'\Leftrightarrow': '<=>',
+      r'\Rightarrow': '=>',
+      r'\Leftarrow': '<=',
+      r'\leftrightarrow': '<->',
+      r'\rightarrow': '->',
+      r'\leftarrow': '<-',
+      r'\mapsto': '|->',
+      r'\to': '->',
+      r'\uparrow': '^',
+      r'\downarrow': 'v',
+      r'\updownarrow': '^v',
+      // Brackets → ASCII equivalents
+      r'\langle': '<',
+      r'\rangle': '>',
+      r'\lfloor': 'floor(',
+      r'\rfloor': ')',
+      r'\lceil': 'ceil(',
+      r'\rceil': ')',
+      r'\|': '||',
+      // Escaped punctuation
       r'\{': '{',
       r'\}': '}',
       r'\%': '%',
+      r'\#': '#',
+      r'\&': '&',
+      // Physics / misc
+      r'\hbar': 'hbar',
+      r'\ell': 'l',
+      r'\Re': 'Re',
+      r'\Im': 'Im',
+      r'\aleph': 'aleph',
     };
 
     for (final entry in symbols.entries) {
       s = s.replaceAll(entry.key, entry.value);
     }
 
-    // Remove any remaining unknown LaTeX commands (e.g. \text, \mathrm, \left,
-    // \right, \limits, \displaystyle …).
+    // -- 11. Strip remaining unknown LaTeX commands. -------------------------
     s = s.replaceAll(RegExp(r'\\[a-zA-Z]+\*?\s*'), '');
 
-    // Remove leftover bare braces.
+    // -- 12. Remove leftover bare braces. ------------------------------------
     s = s.replaceAll('{', '').replaceAll('}', '');
 
-    // Collapse multiple spaces introduced by brace removal.
+    // -- 13. Collapse multiple spaces. ---------------------------------------
     s = s.replaceAll(RegExp(r'  +'), ' ');
 
     return s.trim();
