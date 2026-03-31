@@ -93,9 +93,7 @@ class StudyBottomNavigation extends StatelessWidget {
                       );
                     },
                     onStartQuiz: () {
-                      if (quizFile != null) {
-                        ServiceLocator.registerQuizFile(quizFile!);
-                      }
+                      ServiceLocator.registerQuizFile(currentQuizFile);
                       context.push(AppRoutes.fileLoadedScreen);
                     },
                     onAddChunk: onAddChunk,
