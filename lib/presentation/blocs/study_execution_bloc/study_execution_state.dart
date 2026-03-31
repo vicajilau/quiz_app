@@ -114,17 +114,7 @@ class StudyExecutionState {
   bool get hasPrevious => currentChunkIndex > 0;
 
   /// Checks if there are duplicate chunks based on their duplicationKey.
-  bool get hasDuplicates {
-    if (chunks.isEmpty) return false;
-    final seen = <String>{};
-    for (final chunk in chunks) {
-      final key = chunk.duplicationKey;
-      if (key.isNotEmpty) {
-        if (!seen.add(key)) return true;
-      }
-    }
-    return false;
-  }
+  bool get hasDuplicates => duplicateCount > 0;
 
   /// Returns the count of duplicate chunks.
   int get duplicateCount {
