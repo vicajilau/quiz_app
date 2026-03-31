@@ -974,5 +974,8 @@
   "aiDifficultyRequiresFileTooltip": "ამ პარამეტრის გამოსაყენებლად საჭიროა ფაილის მიმაგრება",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
-  }
+  },
+  "exportAsPdf": "PDF-ად ექსპორტი",
+  "exportPdfSuccess": "PDF წარმატებით ექსპორტირდა",
+  "exportPdfError": "PDF-ის ექსპორტი ვერ მოხერხდა"
 }

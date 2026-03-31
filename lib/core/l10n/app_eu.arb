@@ -2282,5 +2282,8 @@
   "aiDifficultyRequiresFileTooltip": "Aukera hau erabiltzeko fitxategi bat erantsi behar da",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
-  }
+  },
+  "exportAsPdf": "PDF gisa esportatu",
+  "exportPdfSuccess": "PDF-a arrakastaz esportatu da",
+  "exportPdfError": "PDF esportatzean errorea"
 }

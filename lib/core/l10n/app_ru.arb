@@ -989,5 +989,8 @@
   "aiDifficultyRequiresFileTooltip": "Для использования этой опции необходимо прикрепить файл",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
-  }
+  },
+  "exportAsPdf": "Экспорт в PDF",
+  "exportPdfSuccess": "PDF успешно экспортирован",
+  "exportPdfError": "Ошибка экспорта PDF"
 }

@@ -2334,5 +2334,8 @@
   "aiDifficultyRequiresFileTooltip": "需要附加文件才能使用此选项",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
-  }
+  },
+  "exportAsPdf": "导出为PDF",
+  "exportPdfSuccess": "PDF导出成功",
+  "exportPdfError": "PDF导出失败"
 }

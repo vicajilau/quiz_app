@@ -974,5 +974,8 @@
   "aiDifficultyRequiresFileTooltip": "이 옵션을 사용하려면 파일을 첨부해야 합니다",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
-  }
+  },
+  "exportAsPdf": "PDF로 내보내기",
+  "exportPdfSuccess": "PDF 내보내기 성공",
+  "exportPdfError": "PDF 내보내기 실패"
 }

@@ -2285,5 +2285,8 @@
   "aiDifficultyRequiresFileTooltip": "このオプションを使用するにはファイルを添付する必要があります",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
-  }
+  },
+  "exportAsPdf": "PDFとしてエクスポート",
+  "exportPdfSuccess": "PDFのエクスポートに成功しました",
+  "exportPdfError": "PDFのエクスポートに失敗しました"
 }

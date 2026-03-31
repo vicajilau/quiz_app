@@ -1282,5 +1282,8 @@
   "aiDifficultyRequiresFileTooltip": "Απαιτείται η επισύναψη αρχείου για τη χρήση αυτής της επιλογής",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
-  }
+  },
+  "exportAsPdf": "Εξαγωγή ως PDF",
+  "exportPdfSuccess": "Το PDF εξήχθη με επιτυχία",
+  "exportPdfError": "Αποτυχία εξαγωγής PDF"
 }

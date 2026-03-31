@@ -2696,5 +2696,8 @@
   "aiDifficultyRequiresFileTooltip": "يتطلب إرفاق ملف لاستخدام هذا الخيار",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
-  }
+  },
+  "exportAsPdf": "تصدير كـ PDF",
+  "exportPdfSuccess": "تم تصدير PDF بنجاح",
+  "exportPdfError": "فشل تصدير PDF"
 }
