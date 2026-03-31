@@ -379,21 +379,12 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
   }
 
   List<int> _getDuplicatedIndices() {
-    final counts = <String, int>{};
-    for (final q in cachedQuizFile.questions) {
-      final text = q.text.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
-      if (text.isNotEmpty) {
-        counts[text] = (counts[text] ?? 0) + 1;
-      }
-    }
-
     final duplicates = <int>[];
-    final seen = <String, int>{};
+    final seen = <String>{};
     for (int i = 0; i < cachedQuizFile.questions.length; i++) {
       final text = cachedQuizFile.questions[i].text.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
-      if (text.isNotEmpty && (counts[text] ?? 0) > 1) {
-        seen[text] = (seen[text] ?? 0) + 1;
-        if (seen[text]! > 1) {
+      if (text.isNotEmpty) {
+        if (!seen.add(text)) {
           duplicates.add(i);
         }
       }
