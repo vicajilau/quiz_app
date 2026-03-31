@@ -977,5 +977,19 @@
   },
   "exportAsPdf": "PDF로 내보내기",
   "exportPdfSuccess": "PDF 내보내기 성공",
-  "exportPdfError": "PDF 내보내기 실패"
+  "exportPdfError": "PDF 내보내기 실패",
+  "deleteDuplicatesButton": "중복 삭제",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "정말로 {count}개의 중복 항목을 삭제하시겠습니까? 각 항목의 단일 복사본만 유지됩니다.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  }
 }

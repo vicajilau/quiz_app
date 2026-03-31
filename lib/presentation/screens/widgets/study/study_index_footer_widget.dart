@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
+import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_progress_bar.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 
@@ -31,9 +32,11 @@ class StudyIndexFooterWidget extends StatefulWidget {
   final VoidCallback? onSave;
   final VoidCallback? onDelete;
   final VoidCallback? onExportPdf;
+  final VoidCallback? onDeleteDuplicates;
   final VoidCallback onStartQuiz;
   final bool isStartQuizEnabled;
   final int selectedChunkCount;
+  final bool hasDuplicates;
   final bool showSaveButton;
   final bool hasChunks;
 
@@ -47,9 +50,11 @@ class StudyIndexFooterWidget extends StatefulWidget {
     this.onSave,
     this.onDelete,
     this.onExportPdf,
+    this.onDeleteDuplicates,
     required this.onStartQuiz,
     this.isStartQuizEnabled = true,
     this.selectedChunkCount = 0,
+    this.hasDuplicates = false,
     this.showSaveButton = true,
     this.hasChunks = true,
   });
@@ -156,6 +161,18 @@ class _StudyIndexFooterWidgetState extends State<StudyIndexFooterWidget> {
                   final availableWidth = constraints.maxWidth;
 
                   final buttonData = [
+                    if (widget.hasDuplicates)
+                      (
+                        button: QuizdyButton(
+                          backgroundColor:
+                              Theme.of(context).extension<CustomColors>()?.onWarningContainer,
+                          icon: LucideIcons.copyX,
+                          expanded: true,
+                          title: widget.localizations.deleteDuplicatesButton,
+                          onPressed: widget.onDeleteDuplicates,
+                        ),
+                        flex: 2,
+                      ),
                     if (widget.selectedChunkCount > 0)
                       (
                         button: QuizdyButton(

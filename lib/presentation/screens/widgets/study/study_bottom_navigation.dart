@@ -31,6 +31,7 @@ import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_s
 import 'package:quizdy/presentation/screens/widgets/study/study_execution_bottom_bar.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_footer_widget.dart';
 import 'package:quizdy/presentation/screens/widgets/study/utils/study_quiz_file_helper.dart';
+import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quizdy/routes/app_router.dart';
 
 class StudyBottomNavigation extends StatelessWidget {
@@ -87,12 +88,32 @@ class StudyBottomNavigation extends StatelessWidget {
                     progressPercentage: state.progressPercentage,
                     hasChunks: state.chunks.isNotEmpty,
                     selectedChunkCount: state.selectedIndices.length,
+                    hasDuplicates: state.hasDuplicates,
                     isStartQuizEnabled:
                         !hideStartQuizButton && state.chunks.isNotEmpty,
                     onDelete: () {
                       context.read<StudyExecutionBloc>().add(
                         const DeleteSelectedChunksRequested(),
                       );
+                    },
+                    onDeleteDuplicates: () async {
+                      final confirmed = await showDialog<bool>(
+                        context: context,
+                        builder: (context) => CustomConfirmDialog(
+                          title: localizations.deleteButton,
+                          message: localizations.deleteDuplicatesConfirmationMessage(
+                            state.duplicateCount,
+                          ),
+                          confirmText: localizations.deleteButton,
+                          isDestructive: true,
+                        ),
+                      );
+
+                      if (confirmed == true && context.mounted) {
+                        context.read<StudyExecutionBloc>().add(
+                          const DeleteDuplicateChunksRequested(),
+                        );
+                      }
                     },
                     onStartQuiz: () {
                       ServiceLocator.registerQuizFile(currentQuizFile);

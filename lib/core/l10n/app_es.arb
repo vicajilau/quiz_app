@@ -152,6 +152,20 @@
   "@duplicatedTag": {
     "description": "Etiqueta para indicar que un elemento está duplicado"
   },
+  "deleteDuplicatesButton": "Borrar duplicados",
+  "@deleteDuplicatesButton": {
+    "description": "Botón para borrar elementos duplicados"
+  },
+  "deleteDuplicatesConfirmationMessage": "¿Estás seguro de que quieres borrar {count} elementos duplicados? Solo se conservará una copia de cada uno.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Mensaje de confirmación al borrar duplicados",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
   "confirmDeleteTitle": "Confirmar eliminación",
   "@confirmDeleteTitle": {
     "description": "Título para el diálogo de confirmación al eliminar un proceso."

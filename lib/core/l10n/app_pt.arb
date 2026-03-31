@@ -2376,5 +2376,19 @@
   },
   "exportAsPdf": "Exportar como PDF",
   "exportPdfSuccess": "PDF exportado com sucesso",
-  "exportPdfError": "Falha ao exportar PDF"
+  "exportPdfError": "Falha ao exportar PDF",
+  "deleteDuplicatesButton": "Excluir duplicados",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "Tem certeza de que deseja excluir {count} itens duplicados? Apenas uma cópia de cada será mantida.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  }
 }

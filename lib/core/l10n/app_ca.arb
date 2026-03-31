@@ -2387,5 +2387,19 @@
   },
   "exportAsPdf": "Exporta com a PDF",
   "exportPdfSuccess": "PDF exportat amb èxit",
-  "exportPdfError": "Error en exportar el PDF"
+  "exportPdfError": "Error en exportar el PDF",
+  "deleteDuplicatesButton": "Suprimeix els duplicats",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "Estàs segur que vols suprimir {count} elements duplicats? Només es conservarà una sola còpia de cadascun.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  }
 }

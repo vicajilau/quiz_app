@@ -2699,5 +2699,19 @@
   },
   "exportAsPdf": "تصدير كـ PDF",
   "exportPdfSuccess": "تم تصدير PDF بنجاح",
-  "exportPdfError": "فشل تصدير PDF"
+  "exportPdfError": "فشل تصدير PDF",
+  "deleteDuplicatesButton": "حذف التكرارات",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "هل أنت متأكد أنك تريد حذف {count} عنصر مكرر؟ سيتم الاحتفاظ بنسخة واحدة فقط من كل منها.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  }
 }

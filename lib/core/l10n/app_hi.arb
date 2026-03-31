@@ -2288,5 +2288,19 @@
   },
   "exportAsPdf": "PDF के रूप में निर्यात करें",
   "exportPdfSuccess": "PDF सफलतापूर्वक निर्यात किया गया",
-  "exportPdfError": "PDF निर्यात विफल हुआ"
+  "exportPdfError": "PDF निर्यात विफल हुआ",
+  "deleteDuplicatesButton": "डुप्लिेकेट हटाएं",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "क्या आप वाकई {count} डुप्लिकेट आइटम हटाना चाहते हैं? प्रत्येक की केवल एक प्रति रखी जाएगी।",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  }
 }

@@ -977,5 +977,19 @@
   },
   "exportAsPdf": "PDF-ად ექსპორტი",
   "exportPdfSuccess": "PDF წარმატებით ექსპორტირდა",
-  "exportPdfError": "PDF-ის ექსპორტი ვერ მოხერხდა"
+  "exportPdfError": "PDF-ის ექსპორტი ვერ მოხერხდა",
+  "deleteDuplicatesButton": "დუბლიკატების წაშლა",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "დარწმუნებული ხართ, რომ გსურთ {count} დუბლირებული ერთეულის წაშლა? თითოეულის მხოლოდ ერთი ასლი შენარჩუნდება.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  }
 }

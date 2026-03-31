@@ -2330,5 +2330,19 @@
   },
   "exportAsPdf": "Exporter en PDF",
   "exportPdfSuccess": "PDF exporté avec succès",
-  "exportPdfError": "Échec de l'export PDF"
+  "exportPdfError": "Échec de l'export PDF",
+  "deleteDuplicatesButton": "Supprimer les doublons",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "Êtes-vous sûr de vouloir supprimer {count} éléments en double ? Seule une copie de chaque élément sera conservée.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  }
 }

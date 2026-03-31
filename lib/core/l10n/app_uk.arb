@@ -1010,5 +1010,19 @@
   },
   "exportAsPdf": "Експортувати як PDF",
   "exportPdfSuccess": "PDF успішно експортовано",
-  "exportPdfError": "Помилка експорту PDF"
+  "exportPdfError": "Помилка експорту PDF",
+  "deleteDuplicatesButton": "Видалити дублікати",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "Ви впевнені, що хочете видалити {count} повторюваних елементів? Буде збережено лише одну копію кожного з них.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  }
 }

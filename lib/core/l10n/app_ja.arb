@@ -2288,5 +2288,19 @@
   },
   "exportAsPdf": "PDFとしてエクスポート",
   "exportPdfSuccess": "PDFのエクスポートに成功しました",
-  "exportPdfError": "PDFのエクスポートに失敗しました"
+  "exportPdfError": "PDFのエクスポートに失敗しました",
+  "deleteDuplicatesButton": "重複を削除",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "本当に{count}個の重複項目を削除しますか？それぞれの項目は1つだけ保持されます。",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  }
 }

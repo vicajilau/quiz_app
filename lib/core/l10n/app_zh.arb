@@ -2337,5 +2337,19 @@
   },
   "exportAsPdf": "导出为PDF",
   "exportPdfSuccess": "PDF导出成功",
-  "exportPdfError": "PDF导出失败"
+  "exportPdfError": "PDF导出失败",
+  "deleteDuplicatesButton": "删除重复项",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "您确定要删除 {count} 个重复项目吗？每个项目只保留一份。",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  }
 }

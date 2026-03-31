@@ -1285,5 +1285,19 @@
   },
   "exportAsPdf": "Εξαγωγή ως PDF",
   "exportPdfSuccess": "Το PDF εξήχθη με επιτυχία",
-  "exportPdfError": "Αποτυχία εξαγωγής PDF"
+  "exportPdfError": "Αποτυχία εξαγωγής PDF",
+  "deleteDuplicatesButton": "Διαγραφή διπλότυπων",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "Είστε βέβαιοι ότι θέλετε να διαγράψετε {count} διπλότυπα στοιχεία; Θα διατηρηθεί μόνο ένα αντίγραφο από το καθένα.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  }
 }
