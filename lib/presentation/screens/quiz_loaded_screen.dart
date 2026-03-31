@@ -378,6 +378,60 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
     }
   }
 
+  List<int> _getDuplicatedIndices() {
+    final counts = <String, int>{};
+    for (final q in cachedQuizFile.questions) {
+      final text = q.text.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
+      if (text.isNotEmpty) {
+        counts[text] = (counts[text] ?? 0) + 1;
+      }
+    }
+
+    final duplicates = <int>[];
+    final seen = <String, int>{};
+    for (int i = 0; i < cachedQuizFile.questions.length; i++) {
+      final text = cachedQuizFile.questions[i].text.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
+      if (text.isNotEmpty && (counts[text] ?? 0) > 1) {
+        seen[text] = (seen[text] ?? 0) + 1;
+        if (seen[text]! > 1) {
+          duplicates.add(i);
+        }
+      }
+    }
+    return duplicates;
+  }
+
+  Future<void> _handleDeleteDuplicates() async {
+    final duplicatedIndices = _getDuplicatedIndices();
+    if (duplicatedIndices.isEmpty) return;
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => CustomConfirmDialog(
+        title: AppLocalizations.of(context)!.deleteDuplicatesButton,
+        message: AppLocalizations.of(context)!.deleteDuplicatesConfirmationMessage(duplicatedIndices.length),
+        confirmText: AppLocalizations.of(context)!.deleteButton,
+        isDestructive: true,
+      ),
+    );
+
+    if (confirmed == true && mounted) {
+      setState(() {
+        final indices = duplicatedIndices.toList()..sort((a, b) => b.compareTo(a));
+
+        final updatedQuestions = List<Question>.from(cachedQuizFile.questions);
+
+        for (final index in indices) {
+          updatedQuestions.removeAt(index);
+        }
+
+        cachedQuizFile = cachedQuizFile.copyWith(questions: updatedQuestions);
+        _selectedQuestions.clear();
+      });
+      _syncQuizFileToBloc();
+    }
+  }
+
   Future<void> _handleDeleteQuestions() async {
     if (_selectedQuestions.isEmpty) return;
 
@@ -859,6 +913,8 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                   onImport: _handleImportButton,
                   onSave: _handleSave,
                   onDelete: _handleDeleteQuestions,
+                  onDeleteDuplicates: _handleDeleteDuplicates,
+                  hasDuplicates: _getDuplicatedIndices().isNotEmpty,
                   selectedQuestionCount: _selectedQuestions.length,
                   showSaveButton: widget.checkFileChangesUseCase.execute(
                     cachedQuizFile,

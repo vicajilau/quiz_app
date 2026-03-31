@@ -1007,5 +1007,19 @@
   "aiDifficultyRequiresFileTooltip": "Для використання цієї опції необхідно прикріпити файл",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
+  },
+  "deleteDuplicatesButton": "Видалити дублікати",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "Ви впевнені, що хочете видалити {count} повторюваних елементів? Буде збережено лише одну копію кожного з них.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }

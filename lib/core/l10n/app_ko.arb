@@ -974,5 +974,19 @@
   "aiDifficultyRequiresFileTooltip": "이 옵션을 사용하려면 파일을 첨부해야 합니다",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
+  },
+  "deleteDuplicatesButton": "중복 삭제",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "정말로 {count}개의 중복 항목을 삭제하시겠습니까? 각 항목의 단일 복사본만 유지됩니다.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }

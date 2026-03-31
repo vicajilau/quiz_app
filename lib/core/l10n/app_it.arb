@@ -2336,5 +2336,19 @@
   "aiDifficultyRequiresFileTooltip": "Richiede di allegare un file per utilizzare questa opzione",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
+  },
+  "deleteDuplicatesButton": "Elimina duplicati",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "Sei sicuro di voler eliminare {count} elementi duplicati? Verrà conservata solo una copia di ciascuno.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }

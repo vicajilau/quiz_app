@@ -1282,5 +1282,19 @@
   "aiDifficultyRequiresFileTooltip": "Απαιτείται η επισύναψη αρχείου για τη χρήση αυτής της επιλογής",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
+  },
+  "deleteDuplicatesButton": "Διαγραφή διπλότυπων",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "Είστε βέβαιοι ότι θέλετε να διαγράψετε {count} διπλότυπα στοιχεία; Θα διατηρηθεί μόνο ένα αντίγραφο από το καθένα.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }

@@ -2327,5 +2327,19 @@
   "aiDifficultyRequiresFileTooltip": "Nécessite de joindre un fichier pour utiliser cette option",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
+  },
+  "deleteDuplicatesButton": "Supprimer les doublons",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "Êtes-vous sûr de vouloir supprimer {count} éléments en double ? Seule une copie de chaque élément sera conservée.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }

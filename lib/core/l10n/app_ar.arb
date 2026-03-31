@@ -2696,5 +2696,19 @@
   "aiDifficultyRequiresFileTooltip": "يتطلب إرفاق ملف لاستخدام هذا الخيار",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
+  },
+  "deleteDuplicatesButton": "حذف التكرارات",
+  "@deleteDuplicatesButton": {
+    "description": "Button to delete duplicated items"
+  },
+  "deleteDuplicatesConfirmationMessage": "هل أنت متأكد أنك تريد حذف {count} عنصر مكرر؟ سيتم الاحتفاظ بنسخة واحدة فقط من كل منها.",
+  "@deleteDuplicatesConfirmationMessage": {
+    "description": "Confirmation message when deleting duplicates",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
   }
 }
