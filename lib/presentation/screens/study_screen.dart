@@ -445,22 +445,11 @@ class _StudyScreenViewState extends State<StudyScreenView> {
             final cubit = context.read<StudyEditorCubit>();
             final bloc = context.read<StudyExecutionBloc>();
             final blocState = bloc.state;
-            if (blocState.chunks.isEmpty) return;
+            final chunkIndex = blocState.currentChunkIndex;
 
-            // Keep editor state aligned with current study state before opening
-            // the component editor.
+            // Keep editor state aligned with current study state before opening the component editor.
             cubit.resetToSnapshot(blocState.chunks);
             final snapshot = List.of(cubit.state.chunks);
-
-            final chunkIndex = blocState.currentChunkIndex.clamp(
-              0,
-              blocState.chunks.length - 1,
-            );
-
-            // Ensure the selected chunk always has at least one editable page.
-            if (cubit.state.chunks[chunkIndex].pages.isEmpty) {
-              cubit.addPage(chunkIndex);
-            }
 
             final saved = await context.push<bool>(
               AppRoutes.componentEditorScreen,
