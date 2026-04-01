@@ -87,10 +87,10 @@ class StudyPdfGenerator {
                   children: [
                      pw.Image(
                   pw.MemoryImage(imageBytes1),
-                  height: 200,
+                  height: 240,
                 ), pw.Image(
                   pw.MemoryImage(imageBytes2),
-                  height: 200,
+                  height: 180,
                 ),
                   ]
                 )
