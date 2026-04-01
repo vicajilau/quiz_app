@@ -382,7 +382,10 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
     final duplicates = <int>[];
     final seen = <String>{};
     for (int i = 0; i < cachedQuizFile.questions.length; i++) {
-      final text = cachedQuizFile.questions[i].text.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
+      final text = cachedQuizFile.questions[i].text
+          .trim()
+          .toLowerCase()
+          .replaceAll(RegExp(r'\s+'), ' ');
       if (text.isNotEmpty) {
         if (!seen.add(text)) {
           duplicates.add(i);
@@ -400,7 +403,9 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
       context: context,
       builder: (context) => CustomConfirmDialog(
         title: AppLocalizations.of(context)!.deleteDuplicatesButton,
-        message: AppLocalizations.of(context)!.deleteDuplicatesConfirmationMessage(duplicatedIndices.length),
+        message: AppLocalizations.of(
+          context,
+        )!.deleteDuplicatesConfirmationMessage(duplicatedIndices.length),
         confirmText: AppLocalizations.of(context)!.deleteButton,
         isDestructive: true,
       ),
@@ -408,7 +413,8 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
 
     if (confirmed == true && mounted) {
       setState(() {
-        final indices = duplicatedIndices.toList()..sort((a, b) => b.compareTo(a));
+        final indices = duplicatedIndices.toList()
+          ..sort((a, b) => b.compareTo(a));
 
         final updatedQuestions = List<Question>.from(cachedQuizFile.questions);
 

@@ -721,7 +721,9 @@ class StudyExecutionBloc
       state.copyWith(
         chunks: updatedChunks,
         currentChunkIndex: newCurrentIndex,
-        isSelectionMode: updatedChunks.isNotEmpty ? state.isSelectionMode : false,
+        isSelectionMode: updatedChunks.isNotEmpty
+            ? state.isSelectionMode
+            : false,
         selectedIndices: {},
       ),
     );

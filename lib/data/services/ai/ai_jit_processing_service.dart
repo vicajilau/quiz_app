@@ -250,5 +250,4 @@ Analyzing document range: Pages $startPage to $endPage.
       );
     }
   }
-
 }

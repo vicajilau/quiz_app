@@ -162,8 +162,9 @@ class _StudyIndexFooterWidgetState extends State<StudyIndexFooterWidget> {
                     if (widget.hasDuplicates)
                       (
                         button: QuizdyButton(
-                          backgroundColor:
-                              Theme.of(context).extension<CustomColors>()?.onWarningContainer,
+                          backgroundColor: Theme.of(
+                            context,
+                          ).extension<CustomColors>()?.onWarningContainer,
                           icon: LucideIcons.copyX,
                           expanded: true,
                           title: widget.localizations.deleteDuplicatesButton,

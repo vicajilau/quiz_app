@@ -134,7 +134,9 @@ class _RequestFileNameDialogState extends State<RequestFileNameDialog> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                QuizdyFieldLabel(label: AppLocalizations.of(context)!.fileNameHint),
+                QuizdyFieldLabel(
+                  label: AppLocalizations.of(context)!.fileNameHint,
+                ),
                 const SizedBox(height: 8),
                 QuizdyTextField(
                   controller: _controller,

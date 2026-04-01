@@ -777,13 +777,17 @@
   "@sectionTitleHint": {
     "description": "Hint for section title input field in add/edit section dialog"
   },
-  "sectionContentLabel": "Contenuto",
-  "@sectionContentLabel": {
-    "description": "Label for section content input field in add/edit section dialog"
+  "sectionDescriptionLabel": "Descrizione",
+  "@sectionDescriptionLabel": {
+    "description": "Label for section description input field in add/edit section dialog"
   },
-  "sectionContentHint": "Inserisci il contenuto della sezione",
-  "@sectionContentHint": {
-    "description": "Hint for section content input field in add/edit section dialog"
+  "sectionDescriptionHint": "Inserisci la descrizione della sezione",
+  "@sectionDescriptionHint": {
+    "description": "Hint for section description input field in add/edit section dialog"
+  },
+  "sectionDescriptionAiHint": "Queste informazioni saranno utilizzate più tardi dall'IA per generare contenuti di studio.",
+  "@sectionDescriptionAiHint": {
+    "description": "Helper text shown below section description input, indicating AI will use this information later"
   },
   "editQuestion": "Modifica domanda",
   "@editQuestion": {

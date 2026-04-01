@@ -16,13 +16,17 @@
   "@sectionTitleHint": {
     "description": "Hint for section title input field in add/edit section dialog"
   },
-  "sectionContentLabel": "Зміст",
-  "@sectionContentLabel": {
-    "description": "Label for section content input field in add/edit section dialog"
+  "sectionDescriptionLabel": "Опис",
+  "@sectionDescriptionLabel": {
+    "description": "Label for section description input field in add/edit section dialog"
   },
-  "sectionContentHint": "Введіть зміст розділу",
-  "@sectionContentHint": {
-    "description": "Hint for section content input field in add/edit section dialog"
+  "sectionDescriptionHint": "Введіть опис розділу",
+  "@sectionDescriptionHint": {
+    "description": "Hint for section description input field in add/edit section dialog"
+  },
+  "sectionDescriptionAiHint": "Ця інформація пізніше буде використана ШІ для генерації навчального контенту.",
+  "@sectionDescriptionAiHint": {
+    "description": "Helper text shown below section description input, indicating AI will use this information later"
   },
   "editQuestion": "Редагувати питання",
   "questionText": "Текст питання",

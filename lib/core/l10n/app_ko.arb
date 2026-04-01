@@ -282,13 +282,17 @@
   "@sectionTitleHint": {
     "description": "Hint for section title input field in add/edit section dialog"
   },
-  "sectionContentLabel": "내용",
-  "@sectionContentLabel": {
-    "description": "Label for section content input field in add/edit section dialog"
+  "sectionDescriptionLabel": "설명",
+  "@sectionDescriptionLabel": {
+    "description": "Label for section description input field in add/edit section dialog"
   },
-  "sectionContentHint": "섹션 내용 입력",
-  "@sectionContentHint": {
-    "description": "Hint for section content input field in add/edit section dialog"
+  "sectionDescriptionHint": "섹션 설명 입력",
+  "@sectionDescriptionHint": {
+    "description": "Hint for section description input field in add/edit section dialog"
+  },
+  "sectionDescriptionAiHint": "이 정보는 나중에 AI가 학습 콘텐츠를 생성하는 데 사용됩니다.",
+  "@sectionDescriptionAiHint": {
+    "description": "Helper text shown below section description input, indicating AI will use this information later"
   },
   "editQuestion": "질문 편집",
   "questionText": "질문 내용",

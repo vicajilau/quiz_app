@@ -540,7 +540,8 @@ class _QuestionCountSelectionDialogState
 
                                     if (_maxIncorrectAnswersLimit >
                                         _selectedCount) {
-                                      _maxIncorrectAnswersLimit = _selectedCount;
+                                      _maxIncorrectAnswersLimit =
+                                          _selectedCount;
                                       _maxIncorrectAnswersController.text =
                                           _maxIncorrectAnswersLimit.toString();
                                     }
@@ -563,20 +564,22 @@ class _QuestionCountSelectionDialogState
                                     _selectedCount = clampedVal;
 
                                     if (val != clampedVal) {
-                                      _questionCountController.text =
-                                          clampedVal.toString();
+                                      _questionCountController.text = clampedVal
+                                          .toString();
                                       _questionCountController.selection =
                                           TextSelection.fromPosition(
                                             TextPosition(
                                               offset: _questionCountController
-                                                  .text.length,
+                                                  .text
+                                                  .length,
                                             ),
                                           );
                                     }
 
                                     if (_maxIncorrectAnswersLimit >
                                         _selectedCount) {
-                                      _maxIncorrectAnswersLimit = _selectedCount;
+                                      _maxIncorrectAnswersLimit =
+                                          _selectedCount;
                                       _maxIncorrectAnswersController.text =
                                           _maxIncorrectAnswersLimit.toString();
                                     }

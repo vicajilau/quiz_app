@@ -53,7 +53,11 @@ class PropertyAddButton extends StatelessWidget {
   final String label;
   final VoidCallback onTap;
 
-  const PropertyAddButton({super.key, required this.label, required this.onTap});
+  const PropertyAddButton({
+    super.key,
+    required this.label,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {

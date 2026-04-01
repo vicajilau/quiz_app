@@ -282,13 +282,17 @@
   "@sectionTitleHint": {
     "description": "Hint for section title input field in add/edit section dialog"
   },
-  "sectionContentLabel": "შინაარსი",
-  "@sectionContentLabel": {
-    "description": "Label for section content input field in add/edit section dialog"
+  "sectionDescriptionLabel": "აღწერა",
+  "@sectionDescriptionLabel": {
+    "description": "Label for section description input field in add/edit section dialog"
   },
-  "sectionContentHint": "შეიყვანეთ სექციის შინაარსი",
-  "@sectionContentHint": {
-    "description": "Hint for section content input field in add/edit section dialog"
+  "sectionDescriptionHint": "შეიყვანეთ სექციის აღწერა",
+  "@sectionDescriptionHint": {
+    "description": "Hint for section description input field in add/edit section dialog"
+  },
+  "sectionDescriptionAiHint": "ეს ინფორმაცია მოგვიანებით გამოყენებული იქნება AI-ის მიერ სასწავლო შინაარსის გენერირებისთვის.",
+  "@sectionDescriptionAiHint": {
+    "description": "Helper text shown below section description input, indicating AI will use this information later"
   },
   "editQuestion": "კითხვის რედაქტირება",
   "questionText": "კითხვის ტექსტი",

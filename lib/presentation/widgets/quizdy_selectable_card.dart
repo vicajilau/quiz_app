@@ -41,9 +41,11 @@ class QuizdySelectableCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.appColors;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
+
     final inputBg = isDark ? const Color(0xFF1E1E22) : const Color(0xFFFAFAFA);
-    final attachStroke = isDark ? const Color(0xFF3F3F46) : const Color(0xFFE4E4E7);
+    final attachStroke = isDark
+        ? const Color(0xFF3F3F46)
+        : const Color(0xFFE4E4E7);
 
     return GestureDetector(
       onTap: isLocked ? null : onTap,

@@ -327,17 +327,14 @@ class AiSettingsSection extends StatelessWidget {
                 icon: const Icon(Icons.paste),
                 onPressed: () async {
                   final clipboardContent = await Pasteboard.text;
-                  if (clipboardContent != null &&
-                      clipboardContent.isNotEmpty) {
+                  if (clipboardContent != null && clipboardContent.isNotEmpty) {
                     controller.text = clipboardContent;
                     onApiKeyChanged();
                   }
                 },
               ),
               IconButton(
-                icon: Icon(
-                  isVisible ? Icons.visibility_off : Icons.visibility,
-                ),
+                icon: Icon(isVisible ? Icons.visibility_off : Icons.visibility),
                 onPressed: onToggleVisibility,
               ),
             ],

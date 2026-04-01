@@ -147,7 +147,9 @@ class _QuizLoadedBottomBarState extends State<QuizLoadedBottomBar> {
                   const gap = 12.0;
                   final availableWidth = constraints.maxWidth;
                   final localizations = AppLocalizations.of(context)!;
-                  final customColors = Theme.of(context).extension<CustomColors>();
+                  final customColors = Theme.of(
+                    context,
+                  ).extension<CustomColors>();
 
                   final buttonData = [
                     if (widget.hasDuplicates)
