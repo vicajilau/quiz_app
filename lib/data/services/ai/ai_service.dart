@@ -15,16 +15,16 @@
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
-import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
-import 'package:quizdy/domain/models/quiz/question.dart';
+import 'package:quizdy/domain/models/ai/ai_file_upload_result.dart';
 
-class FileUploadResult {
-  final String fileUri;
-  final DateTime expirationTime;
+/// @deprecated Use [AiFileUploadResult] from the domain layer.
+typedef FileUploadResult = AiFileUploadResult;
 
-  FileUploadResult({required this.fileUri, required this.expirationTime});
-}
-
+/// Legacy service abstraction for AI providers.
+///
+/// New code should use [AiRepository] (via [AiRepositoryFactory]) instead.
+/// This interface remains to support existing call-sites that rely on
+/// service-level helpers such as [serviceName] and [availableModels].
 abstract class AIService {
   /// Obtiene una respuesta del servicio de IA basado en el prompt proporcionado
   Future<String> getChatResponse(
@@ -44,7 +44,7 @@ abstract class AIService {
   });
 
   /// Sube un archivo al servicio de IA y devuelve su URI y fecha de expiración
-  Future<FileUploadResult> uploadFile(
+  Future<AiFileUploadResult> uploadFile(
     AiFileAttachment file,
     AppLocalizations localizations,
   );
@@ -57,24 +57,6 @@ abstract class AIService {
     String? responseMimeType,
     required String fileUri,
     required String fileMimeType,
-  });
-
-  /// Generates a structured syllabus or index from a previously uploaded file.
-  Future<String> generateStudyIndex(
-    AppLocalizations localizations, {
-    required String fileUri,
-    required String fileMimeType,
-    String? extraContext,
-    required String language,
-  });
-
-  /// Generates a structured syllabus/index directly from text content or topics without a file.
-  Future<String> generateStudyIndexFromText(
-    AppLocalizations localizations, {
-    required String content,
-    required AiGenerationMode generationMode,
-    required String language,
-    List<Question>? selectedQuestions,
   });
 
   /// Verifica si el servicio está disponible (tiene API key configurada)
