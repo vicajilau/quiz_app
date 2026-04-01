@@ -96,7 +96,7 @@ class LaTeXImageRenderer {
           key.currentContext?.findRenderObject() as RenderRepaintBoundary?;
       if (renderObject == null) return null;
 
-      final image = await renderObject.toImage(pixelRatio: 2.0);
+      final image = await renderObject.toImage();
       final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
       return byteData?.buffer.asUint8List();
     } catch (_) {
