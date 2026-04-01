@@ -326,9 +326,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                       const SizedBox(width: 8),
                                       _buildIconButton(
                                         icon: LucideIcons.pencil,
-                                        color: Theme.of(
-                                          context,
-                                        ).extension<CustomColors>()!.info!,
+                                        color: AppTheme.secondaryColor,
                                         onPressed: widget.onEdit,
                                         tooltip: AppLocalizations.of(
                                           context,
