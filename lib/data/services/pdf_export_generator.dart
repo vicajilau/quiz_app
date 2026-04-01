@@ -85,17 +85,10 @@ class StudyPdfGenerator {
                 child: pw.Column(
                   mainAxisSize: pw.MainAxisSize.min,
                   children: [
-                     pw.Image(
-                  pw.MemoryImage(imageBytes1),
-                  height: 240,
-                ), pw.Image(
-                  pw.MemoryImage(imageBytes2),
-                  height: 180,
+                    pw.Image(pw.MemoryImage(imageBytes1), height: 240),
+                    pw.Image(pw.MemoryImage(imageBytes2), height: 180),
+                  ],
                 ),
-                  ]
-                )
-                
-               
               ),
             ),
           ),
@@ -555,17 +548,22 @@ class StudyPdfGenerator {
                 ),
         ),
       if (equation.isNotEmpty) ...[
-        pw.Text(
-          _strip(equation),
-          style: const pw.TextStyle(fontSize: 10, color: PdfColors.grey700),
+        pw.Center(
+          child: pw.Text(
+            _strip(equation),
+            style: const pw.TextStyle(fontSize: 8, color: PdfColors.grey700),
+            textAlign: pw.TextAlign.center,
+          ),
         ),
         pw.SizedBox(height: 6),
       ],
-      if (equationLabel != null && equationLabel.isNotEmpty)
+      if (equationLabel != null && equationLabel.isNotEmpty) ...[
         pw.Text(
           _strip(equationLabel),
           style: const pw.TextStyle(fontSize: 10, color: PdfColors.grey700),
         ),
+        pw.SizedBox(height: 6),
+      ],
       if (body != null && body.isNotEmpty)
         pw.Text(_strip(body), style: const pw.TextStyle(fontSize: 11)),
       pw.SizedBox(height: 10),
