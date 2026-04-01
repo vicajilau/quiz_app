@@ -1,0 +1,20 @@
+name: quizdy_widgetbook
+description: Widgetbook catalog for Quizdy UI components.
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  quizdy:
+    path: ..
+  widgetbook: ^3.22.0
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

@@ -13,7 +13,7 @@ jobs:
         with:
             channel: stable
 
-      - name: Bootstrap App
+      - name: Quizdy App
         run: |
             flutter pub get
             # Add any other steps needed to make your
