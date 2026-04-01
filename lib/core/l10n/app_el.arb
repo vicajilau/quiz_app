@@ -1287,6 +1287,9 @@
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
   },
+  "exportAsPdf": "Εξαγωγή ως PDF",
+  "exportPdfSuccess": "Το PDF εξήχθη με επιτυχία",
+  "exportPdfError": "Αποτυχία εξαγωγής PDF",
   "deleteDuplicatesButton": "Διαγραφή διπλότυπων",
   "@deleteDuplicatesButton": {
     "description": "Button to delete duplicated items"

@@ -31,6 +31,7 @@ class StudyIndexFooterWidget extends StatefulWidget {
   final VoidCallback? onImport;
   final VoidCallback? onSave;
   final VoidCallback? onDelete;
+  final VoidCallback? onExportPdf;
   final VoidCallback? onDeleteDuplicates;
   final VoidCallback onStartQuiz;
   final bool isStartQuizEnabled;
@@ -48,6 +49,7 @@ class StudyIndexFooterWidget extends StatefulWidget {
     this.onImport,
     this.onSave,
     this.onDelete,
+    this.onExportPdf,
     this.onDeleteDuplicates,
     required this.onStartQuiz,
     this.isStartQuizEnabled = true,
@@ -227,6 +229,17 @@ class _StudyIndexFooterWidgetState extends State<StudyIndexFooterWidget> {
                       ),
                       flex: 2,
                     ),
+                    if (widget.hasChunks)
+                      (
+                        button: QuizdyButton(
+                          type: QuizdyButtonType.secondary,
+                          icon: LucideIcons.fileDown,
+                          expanded: true,
+                          title: widget.localizations.exportAsPdf,
+                          onPressed: widget.onExportPdf,
+                        ),
+                        flex: 2,
+                      ),
                   ];
 
                   final buttonCount = buttonData.length;

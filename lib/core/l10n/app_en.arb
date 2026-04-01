@@ -2725,5 +2725,17 @@
   "aiDifficultyRequiresFileTooltip": "Requires attaching a file to use this option",
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
+  },
+  "exportAsPdf": "Export as PDF",
+  "@exportAsPdf": {
+    "description": "Button label to export study content as a PDF document"
+  },
+  "exportPdfSuccess": "PDF exported successfully",
+  "@exportPdfSuccess": {
+    "description": "Snackbar message shown when the PDF export succeeds"
+  },
+  "exportPdfError": "Failed to export PDF",
+  "@exportPdfError": {
+    "description": "Snackbar message shown when the PDF export fails"
   }
 }

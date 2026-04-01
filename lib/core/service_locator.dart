@@ -29,6 +29,8 @@ import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/data/repositories/quiz_file_repository.dart';
 import 'package:quizdy/data/services/file_service/mobile_desktop_file_service.dart'
     if (dart.library.js_interop) '../../data/services/file_service/web_file_service.dart';
+import 'package:quizdy/data/services/pdf_export_service_io.dart'
+    if (dart.library.js_interop) 'package:quizdy/data/services/pdf_export_service.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/quiz_config.dart';
 
@@ -96,6 +98,9 @@ class ServiceLocator {
     getIt.registerSingleton<ClipboardImageHelper>(ClipboardImageHelper());
 
     getIt.registerSingleton<DialogDropGuard>(DialogDropGuard());
+    getIt.registerLazySingleton<StudyPdfExportService>(
+      () => StudyPdfExportService(),
+    );
 
     getIt.registerLazySingleton<QuizFileService>(() => QuizFileService());
     getIt.registerLazySingleton<CheckFileChangesUseCase>(

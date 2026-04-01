@@ -42,6 +42,7 @@ class StudyBottomNavigation extends StatelessWidget {
   final VoidCallback onImport;
   final VoidCallback onAddChunk;
   final VoidCallback onGenerateAI;
+  final VoidCallback? onExportPdf;
   final bool hideStartQuizButton;
 
   const StudyBottomNavigation({
@@ -53,6 +54,7 @@ class StudyBottomNavigation extends StatelessWidget {
     required this.onImport,
     required this.onAddChunk,
     required this.onGenerateAI,
+    this.onExportPdf,
     this.hideStartQuizButton = false,
   });
 
@@ -122,6 +124,7 @@ class StudyBottomNavigation extends StatelessWidget {
                     onGenerateAI: onGenerateAI,
                     onImport: onImport,
                     onSave: onSave,
+                    onExportPdf: onExportPdf,
                     showSaveButton: hasChanges,
                   );
                 }

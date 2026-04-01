@@ -2332,6 +2332,9 @@
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
   },
+  "exportAsPdf": "Exporter en PDF",
+  "exportPdfSuccess": "PDF exporté avec succès",
+  "exportPdfError": "Échec de l'export PDF",
   "deleteDuplicatesButton": "Supprimer les doublons",
   "@deleteDuplicatesButton": {
     "description": "Button to delete duplicated items"

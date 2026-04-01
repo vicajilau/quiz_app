@@ -2290,6 +2290,9 @@
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
   },
+  "exportAsPdf": "PDFとしてエクスポート",
+  "exportPdfSuccess": "PDFのエクスポートに成功しました",
+  "exportPdfError": "PDFのエクスポートに失敗しました",
   "deleteDuplicatesButton": "重複を削除",
   "@deleteDuplicatesButton": {
     "description": "Button to delete duplicated items"

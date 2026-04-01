@@ -979,6 +979,9 @@
   "@aiDifficultyRequiresFileTooltip": {
     "description": "Tooltip when auto difficulty is disabled due to missing file"
   },
+  "exportAsPdf": "PDF로 내보내기",
+  "exportPdfSuccess": "PDF 내보내기 성공",
+  "exportPdfError": "PDF 내보내기 실패",
   "deleteDuplicatesButton": "중복 삭제",
   "@deleteDuplicatesButton": {
     "description": "Button to delete duplicated items"

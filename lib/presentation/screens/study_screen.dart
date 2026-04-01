@@ -30,6 +30,8 @@ import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/data/repositories/quiz_file_repository.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
+import 'package:quizdy/data/services/pdf_export_service_io.dart'
+    if (dart.library.js_interop) 'package:quizdy/data/services/pdf_export_service.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
@@ -52,8 +54,10 @@ import 'package:quizdy/presentation/screens/widgets/request_file_name_dialog.dar
 import 'package:quizdy/presentation/screens/widgets/study/add_edit_chunk_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_app_bar.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_bottom_navigation.dart';
+import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_body.dart';
 import 'package:quizdy/presentation/screens/widgets/study/utils/study_quiz_file_helper.dart';
+import 'package:quizdy/presentation/utils/latex_image_renderer.dart';
 
 class StudyScreen extends StatelessWidget {
   final List<StudyChunk> initialChunks;
@@ -225,6 +229,58 @@ class _StudyScreenViewState extends State<StudyScreenView> {
     }
   }
 
+  Future<void> _handleExportPdf() async {
+    final localizations = AppLocalizations.of(context)!;
+    final studyState = context.read<StudyExecutionBloc>().state;
+
+    try {
+      final sanitizedTitle = studyState.documentTitle.replaceAll(
+        RegExp(r'[^\w\s\-]'),
+        '',
+      );
+      final fileName =
+          '${sanitizedTitle.trim().isNotEmpty ? sanitizedTitle.trim() : "study"}.pdf';
+
+      // Collect all formula equations across all ready chunks.
+      final equations = <String>[];
+      for (final chunk in studyState.chunks) {
+        for (final page in chunk.pages) {
+          for (final component in page.uiElements) {
+            if (component.componentType == StudyComponentType.formula) {
+              final eq = component.props['equation']?.toString() ?? '';
+              if (eq.isNotEmpty) equations.add(eq);
+            }
+          }
+        }
+      }
+
+      final latexImages = await LaTeXImageRenderer.renderEquations(
+        context,
+        equations,
+      );
+
+      final success = await ServiceLocator.getIt<StudyPdfExportService>()
+          .exportStudy(
+            documentTitle: studyState.documentTitle,
+            documentSummary: studyState.documentSummary,
+            chunks: studyState.chunks,
+            dialogTitle: localizations.exportAsPdf,
+            fileName: fileName,
+            advantagesLabel: localizations.studyComponentAdvantages,
+            limitationsLabel: localizations.studyComponentLimitations,
+            latexImages: latexImages,
+          );
+
+      if (success && mounted) {
+        context.presentSnackBar(localizations.exportPdfSuccess);
+      }
+    } catch (_) {
+      if (mounted) {
+        context.presentSnackBar(localizations.exportPdfError);
+      }
+    }
+  }
+
   Future<void> _handleChunkImport() async {
     try {
       FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -388,6 +444,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
           hideStartQuizButton: widget.hideStartQuizButton,
           onSave: _handleSave,
           onImport: _handleChunkImport,
+          onExportPdf: _handleExportPdf,
           onAddChunk: () async {
             final localizations = AppLocalizations.of(context)!;
             final result = await showDialog<Map<String, String>>(
