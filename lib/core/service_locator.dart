@@ -17,6 +17,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:quizdy/data/interceptors/ai_logging_interceptor.dart';
 import 'package:quizdy/data/interceptors/connectivity_interceptor.dart';
+import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
 import 'package:quizdy/data/services/ai/ai_document_chunking_service.dart';
 import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
@@ -82,6 +83,13 @@ class ServiceLocator {
       AIServiceSelector(
         geminiService: getIt.get<GeminiService>(),
         openAIService: getIt.get<OpenAIService>(),
+      ),
+    );
+
+    getIt.registerSingleton<AiRepositoryFactory>(
+      AiRepositoryFactory(
+        dioClient: dioClient,
+        configurationService: configurationService,
       ),
     );
 
