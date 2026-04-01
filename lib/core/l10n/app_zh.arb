@@ -1964,7 +1964,7 @@
   "studyComponentNoItems": "没有项目",
   "studyComponentAdvantages": "优势",
   "studyComponentLimitations": "局限性",
-  "studyScreenDownloadChunk": "下载",
+  "studyScreenDownloadChunk": "生成",
   "aiStudyChapterSystemPrompt": "你是一位 AI 学习助手，正在帮助学生理解学习章节的内容。请深入解释概念，提供示例，并在相关时通过学习材料的其他部分建立联系。请使用学生提问的同种语言进行回答。",
   "@aiStudyChapterSystemPrompt": {
     "description": "System prompt for the AI study assistant when chatting about a study chapter"

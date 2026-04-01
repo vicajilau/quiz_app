@@ -417,7 +417,7 @@
   "studyScreenGenerating": "Генерация учебных материалов...",
   "studyScreenError": "Произошла ошибка при генерации учебного материала.",
   "studyScreenRetry": "Повторить",
-  "studyScreenDownloadChunk": "Скачать",
+  "studyScreenDownloadChunk": "Сгенерировать",
   "studyScreenOmit": "Пропустить",
   "studyScreenNoSlidesGenerated": "Слайды не созданы.",
   "studyScreenPreviousSection": "Предыдущая страница",

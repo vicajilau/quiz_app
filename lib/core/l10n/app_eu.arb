@@ -1912,7 +1912,7 @@
   "studyComponentNoItems": "Elementurik ez",
   "studyComponentAdvantages": "Abantailak",
   "studyComponentLimitations": "Mugak",
-  "studyScreenDownloadChunk": "Deskargatu",
+  "studyScreenDownloadChunk": "Sortu",
   "aiStudyChapterSystemPrompt": "Ikasketarako AI laguntzailea zara, ikasle bati ikasketa-kapitulu baten edukia ulertzen laguntzen diona. Azaldu kontzeptuak sakon, eman adibideak eta egin loturak ikasmaterialaren beste atal batzuekin hala dagokionean. Erantzun galdetu dizun hizkuntza berean.",
   "@aiStudyChapterSystemPrompt": {
     "description": "System prompt for the AI study assistant when chatting about a study chapter"

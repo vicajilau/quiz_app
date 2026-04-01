@@ -1966,7 +1966,7 @@
   "studyComponentNoItems": "Nessun elemento",
   "studyComponentAdvantages": "Vantaggi",
   "studyComponentLimitations": "Limitazioni",
-  "studyScreenDownloadChunk": "Scarica",
+  "studyScreenDownloadChunk": "Genera",
   "aiStudyChapterSystemPrompt": "Sei un assistent di studio AI che aiuta uno studente a comprendere il contenuto di un capitolo di studio. Spiega i concetti in modo approfondito, fornisci esempi e stabilisci collegamenti con altre parti del materiale di studio quando pertinente. Rispondi nella stessa lingua in cui ti viene chiesto.",
   "@aiStudyChapterSystemPrompt": {
     "description": "System prompt for the AI study assistant when chatting about a study chapter"

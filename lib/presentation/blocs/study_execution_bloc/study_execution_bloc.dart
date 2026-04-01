@@ -20,6 +20,7 @@ import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
 import 'package:quizdy/data/services/ai/gemini_service.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
+import 'package:quizdy/domain/models/quiz/study_page.dart';
 import 'package:quizdy/domain/models/quiz/source_reference.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
@@ -395,6 +396,7 @@ class StudyExecutionBloc
             ? event.title
             : _localizations.studyScreenCustomChapter,
       ),
+      pages: [const StudyPage(uiElements: [])],
     );
 
     final modifiedChunks = List<StudyChunk>.from(state.chunks)..add(newChunk);
@@ -771,7 +773,15 @@ class StudyExecutionBloc
     StudyChunksUpdated event,
     Emitter<StudyExecutionState> emit,
   ) {
-    final newState = _updateProgress(state.copyWith(chunks: event.chunks));
+    final normalizedChunks = event.chunks.map((chunk) {
+      final hasAnyContent = chunk.pages.any((p) => p.uiElements.isNotEmpty);
+      if (chunk.status == StudyChunkState.created && hasAnyContent) {
+        return chunk.copyWith(status: StudyChunkState.downloaded);
+      }
+      return chunk;
+    }).toList();
+
+    final newState = _updateProgress(state.copyWith(chunks: normalizedChunks));
     emit(newState);
   }
 }

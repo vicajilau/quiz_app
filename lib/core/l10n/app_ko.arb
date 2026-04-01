@@ -398,7 +398,7 @@
   "studyScreenGenerating": "학습 자료 생성 중...",
   "studyScreenError": "학습 자료를 생성하는 동안 오류가 발생했습니다.",
   "studyScreenRetry": "재시도",
-  "studyScreenDownloadChunk": "다운로드",
+  "studyScreenDownloadChunk": "생성",
   "studyScreenOmit": "건너뛰기",
   "studyScreenNoSlidesGenerated": "생성된 슬라이드가 없습니다.",
   "studyScreenPreviousSection": "이전 페이지",
