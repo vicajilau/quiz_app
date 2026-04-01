@@ -449,7 +449,7 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
               if (isMobile && _isSidebarMounted && sidebar != null)
                 Positioned.fill(
                   child: IgnorePointer(
-                    ignoring: _editingIndex == null,
+                    ignoring: _editingIndex == null && _pendingNewComponentType == null,
                     child: SlideTransition(
                       position: _slideAnimation,
                       child: Material(
