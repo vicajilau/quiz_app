@@ -312,18 +312,18 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
                           ),
                           borderRadius: BorderRadius.circular(6),
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.edit_outlined,
                               size: 12,
                               color: AppTheme.secondaryColor,
                             ),
-                            SizedBox(width: 4),
+                            const SizedBox(width: 4),
                             Text(
-                              'Edit',
-                              style: TextStyle(
+                              localizations.edit,
+                              style: const TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.w600,
                                 color: AppTheme.secondaryColor,
