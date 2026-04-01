@@ -59,6 +59,7 @@ class ComponentEditorScreen extends StatefulWidget {
 class _ComponentEditorScreenState extends State<ComponentEditorScreen>
     with SingleTickerProviderStateMixin {
   int? _editingIndex;
+  StudyComponentType? _pendingNewComponentType;
   bool _isSidebarMounted = false;
   bool _isAddCompMounted = false;
   late List<StudyComponent> _initialComponents;
@@ -125,6 +126,7 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
   void _openEditor(BuildContext context, int componentIndex) {
     setState(() {
       _editingIndex = componentIndex;
+      _pendingNewComponentType = null;
       _isSidebarMounted = true;
       _isAddCompMounted = false;
     });
@@ -135,7 +137,10 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
     _slideController.reverse().then((_) {
       if (mounted) setState(() => _isSidebarMounted = false);
     });
-    setState(() => _editingIndex = null);
+    setState(() {
+      _editingIndex = null;
+      _pendingNewComponentType = null;
+    });
   }
 
   void _openAddComponent() {
@@ -228,51 +233,6 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
     );
   }
 
-  bool _isNonEmptyString(dynamic value) {
-    return value is String && value.trim().isNotEmpty;
-  }
-
-  bool _isComponentValid(StudyComponent component) {
-    final p = component.props;
-
-    switch (component.componentType) {
-      case StudyComponentType.sectionTitle:
-        return _isNonEmptyString(p['title']);
-      case StudyComponentType.paragraph:
-        return _isNonEmptyString(p['body']);
-      case StudyComponentType.keyDefinition:
-        return _isNonEmptyString(p['term']) && _isNonEmptyString(p['body']);
-      case StudyComponentType.quote:
-      case StudyComponentType.warning:
-      case StudyComponentType.reminder:
-        return _isNonEmptyString(p['body']);
-      case StudyComponentType.formula:
-        return _isNonEmptyString(p['equation']);
-      case StudyComponentType.numberedList:
-      case StudyComponentType.timeline:
-      case StudyComponentType.iconCards:
-        if (!_isNonEmptyString(p['title'])) return false;
-        final items = p['items'];
-        if (items is! List) return true;
-        for (final item in items) {
-          if (item is! Map) return false;
-          final map = Map<String, dynamic>.from(item);
-          for (final value in map.values) {
-            if (!_isNonEmptyString(value)) return false;
-          }
-        }
-        return true;
-      case StudyComponentType.keyConcepts:
-        if (!_isNonEmptyString(p['title'])) return false;
-        final items = p['items'];
-        if (items is! List) return true;
-        return items.every(_isNonEmptyString);
-      case StudyComponentType.prosCons:
-      case StudyComponentType.comparisonTable:
-        return true;
-    }
-  }
-
   Future<void> _confirmBack(BuildContext context) async {
     final state = context.read<StudyEditorCubit>().state;
     if (_hasChanges(state)) {
@@ -286,25 +246,11 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
   }
 
   void _selectComponentType(BuildContext context, StudyComponentType type) {
-    final cubit = context.read<StudyEditorCubit>();
-    final newIndex = cubit
-        .state
-        .chunks[widget.chunkIndex]
-        .pages[_pageIndex]
-        .uiElements
-        .length;
-    cubit.addComponent(
-      widget.chunkIndex,
-      _pageIndex,
-      StudyComponent(
-        componentType: type,
-        props: AddComponentSheet.defaultProps(type),
-      ),
-    );
-    // Swap directly into the editor panel (slide is already at 1.0)
+    // Open sidebar in create mode; component is inserted only when OK is pressed.
     setState(() {
       _isAddCompMounted = false;
-      _editingIndex = newIndex;
+      _editingIndex = null;
+      _pendingNewComponentType = type;
       _isSidebarMounted = true;
     });
   }
@@ -350,10 +296,7 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
 
         final page = chunk.pages[_pageIndex];
         final elements = page.uiElements;
-        final canSave =
-            _hasChanges(state) &&
-            elements.isNotEmpty &&
-            elements.every(_isComponentValid);
+        final canSave = _hasChanges(state) && elements.isNotEmpty;
 
         // Reset sidebar if selected index goes out of bounds after a delete.
         if (_editingIndex != null && _editingIndex! >= elements.length) {
@@ -376,19 +319,24 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
 
         final isMobile = context.isMobile;
         final showDesktopSidebar =
-            !isMobile && _editingIndex != null && !_selectionMode;
+            !isMobile &&
+            (_editingIndex != null || _pendingNewComponentType != null) &&
+            !_selectionMode;
         final showDesktopAddComp = !isMobile && _isAddCompMounted;
         final showMobileOverlay =
             isMobile && (_isSidebarMounted || _isAddCompMounted);
 
-        final sidebar = _isSidebarMounted && _editingIndex != null
+        final sidebar =
+            _isSidebarMounted &&
+                (_editingIndex != null || _pendingNewComponentType != null)
             ? ComponentEditSidebar(
                 key: ValueKey(
-                  'sidebar_${widget.chunkIndex}_${_pageIndex}_$_editingIndex',
+                  'sidebar_${widget.chunkIndex}_${_pageIndex}_${_editingIndex}_${_pendingNewComponentType?.name}',
                 ),
                 chunkIndex: widget.chunkIndex,
                 pageIndex: _pageIndex,
-                componentIndex: _editingIndex!,
+                componentIndex: _editingIndex,
+                initialType: _pendingNewComponentType,
                 isFullScreen: isMobile,
                 onClose: _closeSidebar,
               )

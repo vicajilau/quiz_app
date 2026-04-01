@@ -29,7 +29,8 @@ import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 class ComponentEditSidebar extends StatefulWidget {
   final int chunkIndex;
   final int pageIndex;
-  final int componentIndex;
+  final int? componentIndex;
+  final StudyComponentType? initialType;
   final VoidCallback onClose;
   final bool isFullScreen;
 
@@ -37,10 +38,14 @@ class ComponentEditSidebar extends StatefulWidget {
     super.key,
     required this.chunkIndex,
     required this.pageIndex,
-    required this.componentIndex,
+    this.componentIndex,
+    this.initialType,
     required this.onClose,
     this.isFullScreen = false,
-  });
+  }) : assert(
+         componentIndex != null || initialType != null,
+         'Either componentIndex or initialType must be provided',
+       );
 
   @override
   State<ComponentEditSidebar> createState() => _ComponentEditSidebarState();
@@ -56,14 +61,15 @@ class _ComponentEditSidebarState extends State<ComponentEditSidebar> {
 
     final panelBg = isDark ? AppTheme.zinc900 : Colors.white;
     final borderColor = isDark ? AppTheme.zinc800 : AppTheme.zinc200;
-
-    final componentType = context
-        .read<StudyEditorCubit>()
-        .state
-        .chunks[widget.chunkIndex]
-        .pages[widget.pageIndex]
-        .uiElements[widget.componentIndex]
-        .componentType;
+    final componentType = widget.componentIndex != null
+        ? context
+              .read<StudyEditorCubit>()
+              .state
+              .chunks[widget.chunkIndex]
+              .pages[widget.pageIndex]
+              .uiElements[widget.componentIndex!]
+              .componentType
+        : widget.initialType!;
 
     return SafeArea(
       child: Container(
@@ -143,6 +149,7 @@ class _ComponentEditSidebarState extends State<ComponentEditSidebar> {
                 chunkIndex: widget.chunkIndex,
                 pageIndex: widget.pageIndex,
                 componentIndex: widget.componentIndex,
+                initialType: widget.initialType,
                 onSave: widget.onClose,
               ),
             ),

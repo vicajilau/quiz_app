@@ -30,7 +30,8 @@ export 'package:quizdy/presentation/screens/study_editor/property_form_field.dar
 class ComponentPropertyForm extends StatefulWidget {
   final int chunkIndex;
   final int pageIndex;
-  final int componentIndex;
+  final int? componentIndex;
+  final StudyComponentType? initialType;
 
   /// Called after the cubit has been updated (e.g. to close the panel).
   final VoidCallback onSave;
@@ -39,9 +40,13 @@ class ComponentPropertyForm extends StatefulWidget {
     super.key,
     required this.chunkIndex,
     required this.pageIndex,
-    required this.componentIndex,
+    this.componentIndex,
+    this.initialType,
     required this.onSave,
-  });
+  }) : assert(
+         componentIndex != null || initialType != null,
+         'Either componentIndex or initialType must be provided',
+       );
 
   @override
   State<ComponentPropertyForm> createState() => ComponentPropertyFormState();
@@ -95,14 +100,19 @@ class ComponentPropertyFormState extends State<ComponentPropertyForm> {
   @override
   void initState() {
     super.initState();
-    final element = context
-        .read<StudyEditorCubit>()
-        .state
-        .chunks[widget.chunkIndex]
-        .pages[widget.pageIndex]
-        .uiElements[widget.componentIndex];
-    _type = element.componentType;
-    _originalProps = Map<String, dynamic>.from(element.props);
+    if (widget.componentIndex != null) {
+      final element = context
+          .read<StudyEditorCubit>()
+          .state
+          .chunks[widget.chunkIndex]
+          .pages[widget.pageIndex]
+          .uiElements[widget.componentIndex!];
+      _type = element.componentType;
+      _originalProps = Map<String, dynamic>.from(element.props);
+    } else {
+      _type = widget.initialType!;
+      _originalProps = <String, dynamic>{};
+    }
     _initControllers(_originalProps);
   }
 
@@ -391,12 +401,24 @@ class ComponentPropertyFormState extends State<ComponentPropertyForm> {
       setState(() => _triedToSave = true);
       return;
     }
-    context.read<StudyEditorCubit>().updateComponent(
-      widget.chunkIndex,
-      widget.pageIndex,
-      widget.componentIndex,
-      StudyComponent(componentType: _type, props: _buildProps()),
+    final component = StudyComponent(
+      componentType: _type,
+      props: _buildProps(),
     );
+    if (widget.componentIndex != null) {
+      context.read<StudyEditorCubit>().updateComponent(
+        widget.chunkIndex,
+        widget.pageIndex,
+        widget.componentIndex!,
+        component,
+      );
+    } else {
+      context.read<StudyEditorCubit>().addComponent(
+        widget.chunkIndex,
+        widget.pageIndex,
+        component,
+      );
+    }
     widget.onSave();
   }
 
