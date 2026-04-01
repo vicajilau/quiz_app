@@ -88,8 +88,6 @@ class LaTeXImageRenderer {
 
       Overlay.of(context).insert(entry);
 
-      // Wait two frames so the widget is laid out and painted.
-      await WidgetsBinding.instance.endOfFrame;
       await WidgetsBinding.instance.endOfFrame;
 
       final renderObject =
