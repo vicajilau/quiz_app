@@ -721,7 +721,9 @@ class StudyExecutionBloc
       state.copyWith(
         chunks: updatedChunks,
         currentChunkIndex: newCurrentIndex,
-        isSelectionMode: updatedChunks.isNotEmpty ? state.isSelectionMode : false,
+        isSelectionMode: updatedChunks.isNotEmpty
+            ? state.isSelectionMode
+            : false,
         selectedIndices: {},
       ),
     );
@@ -769,7 +771,22 @@ class StudyExecutionBloc
     StudyChunksUpdated event,
     Emitter<StudyExecutionState> emit,
   ) {
-    final newState = _updateProgress(state.copyWith(chunks: event.chunks));
+    final reindexedChunks = event.chunks
+        .asMap()
+        .entries
+        .map((entry) => entry.value.copyWith(chunkIndex: entry.key))
+        .toList();
+
+    final newCurrentIndex = reindexedChunks.isEmpty
+        ? 0
+        : state.currentChunkIndex.clamp(0, reindexedChunks.length - 1);
+
+    final newState = _updateProgress(
+      state.copyWith(
+        chunks: reindexedChunks,
+        currentChunkIndex: newCurrentIndex,
+      ),
+    );
     emit(newState);
   }
 }
