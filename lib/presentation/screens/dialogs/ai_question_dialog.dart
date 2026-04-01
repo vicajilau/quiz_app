@@ -308,11 +308,6 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                 children: [
                   // Selectors
                   AiServiceModelSelector(
-                    onServiceChanged: (service) {
-                      setState(() {
-                        _selectedService = service;
-                      });
-                    },
                     onModelChanged: (model) {
                       setState(() {
                         _selectedModel = model;

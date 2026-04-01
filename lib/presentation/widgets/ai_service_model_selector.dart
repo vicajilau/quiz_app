@@ -14,31 +14,38 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:quizdy/core/service_locator.dart';
-import 'package:quizdy/data/services/configuration_service.dart';
-import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:quizdy/core/theme/extensions/ai_assistant_theme.dart';
-import 'package:quizdy/data/services/ai/ai_service.dart';
-import 'package:quizdy/data/services/ai/ai_service_selector.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/service_locator.dart';
+import 'package:quizdy/core/theme/extensions/ai_assistant_theme.dart';
+import 'package:quizdy/data/services/configuration_service.dart';
+import 'package:quizdy/domain/models/ai/ai_model_catalog.dart';
 
+/// Displays a collapsible selector with two dropdowns:
+/// 1. Provider — only shows providers that have a configured API key.
+/// 2. Model — filtered to the selected provider's models.
+///
+/// Reloads the available provider list whenever [geminiApiKey] or
+/// [openaiApiKey] change, so the selector updates immediately when the user
+/// types a key in the settings screen.
 class AiServiceModelSelector extends StatefulWidget {
-  final String? initialService;
   final String? initialModel;
-  final ValueChanged<AIService?>? onServiceChanged;
   final ValueChanged<String?>? onModelChanged;
   final ValueChanged<bool>? onLoadingChanged;
   final bool enabled;
   final bool saveToPreferences;
 
+  /// Pass the current (possibly unconfirmed) Gemini key so the widget can
+  /// react to it changing without waiting for a save.
   final String? geminiApiKey;
+
+  /// Pass the current (possibly unconfirmed) OpenAI key so the widget can
+  /// react to it changing without waiting for a save.
   final String? openaiApiKey;
 
   const AiServiceModelSelector({
     super.key,
-    this.initialService,
     this.initialModel,
-    this.onServiceChanged,
     this.onModelChanged,
     this.onLoadingChanged,
     this.enabled = true,
@@ -52,103 +59,119 @@ class AiServiceModelSelector extends StatefulWidget {
 }
 
 class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
-  static const String _defaultModelFallback = 'gemini-flash-latest';
-
-  List<AIService> _availableServices = [];
-  AIService? _selectedService;
-  String? _selectedModel;
+  List<String> _availableProviderIds = [];
+  String? _selectedProviderId;
+  String? _selectedModelId;
   bool _isExpanded = false;
   bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _loadAvailableServices();
+    _loadAvailableProviders();
   }
 
   @override
   void didUpdateWidget(AiServiceModelSelector oldWidget) {
     super.didUpdateWidget(oldWidget);
-    // Only reload when API keys change — initialService/initialModel changes are
-    // caused by the parent echoing back the selector's own callbacks, which would
-    // cause an infinite reload loop and overwrite the user's selection.
+    // Only reload when API keys change — same guard as the old widget.
     if (oldWidget.geminiApiKey != widget.geminiApiKey ||
         oldWidget.openaiApiKey != widget.openaiApiKey) {
-      _loadAvailableServices();
+      _loadAvailableProviders();
     }
   }
 
-  Future<void> _loadAvailableServices() async {
+  Future<void> _loadAvailableProviders() async {
     try {
-      // Load saved preferences
-      final savedServiceName =
-          await ServiceLocator.getIt<ConfigurationService>()
-              .getDefaultAIService();
-      final savedModel = await ServiceLocator.getIt<ConfigurationService>()
-          .getDefaultAIModel();
+      final configService = ServiceLocator.getIt<ConfigurationService>();
 
-      // Get available services
-      final services = await ServiceLocator.getIt<AIServiceSelector>()
-          .getAvailableServices();
+      // Determine which providers have a key configured.
+      final geminiKey = await configService.getGeminiApiKey();
+      final openaiKey = await configService.getOpenAIApiKey();
+
+      final available = <String>[
+        if ((geminiKey?.isNotEmpty ?? false))
+          AiModelCatalog.geminiProviderId,
+        if ((openaiKey?.isNotEmpty ?? false))
+          AiModelCatalog.openaiProviderId,
+      ];
+
+      if (!mounted) return;
+
+      // Load saved model preference.
+      final savedModel = await configService.getDefaultAIModel();
+
+      String? resolvedProviderId;
+      String? resolvedModelId;
+
+      // Try to honour the saved / initial model if its provider is available.
+      final candidateModelId =
+          (savedModel != null && AiModelCatalog.forModelId(savedModel) != null)
+          ? savedModel
+          : widget.initialModel != null &&
+                AiModelCatalog.forModelId(widget.initialModel!) != null
+          ? widget.initialModel
+          : null;
+
+      if (candidateModelId != null) {
+        final entry = AiModelCatalog.forModelId(candidateModelId)!;
+        if (available.contains(entry.providerId)) {
+          resolvedProviderId = entry.providerId;
+          resolvedModelId = candidateModelId;
+        }
+      }
+
+      // Fall back to the first available provider and its first model.
+      if (resolvedProviderId == null && available.isNotEmpty) {
+        resolvedProviderId = available.first;
+        final models = AiModelCatalog.forProvider(resolvedProviderId);
+        resolvedModelId = models.isNotEmpty ? models.first.modelId : null;
+      }
 
       if (mounted) {
-        AIService? newService;
-        String? newModel;
-
-        // Try to find saved service, or use first available
-        if (widget.initialService != null &&
-            services.any((s) => s.serviceName == widget.initialService)) {
-          newService = services.firstWhere(
-            (s) => s.serviceName == widget.initialService,
-          );
-        } else if (savedServiceName != null &&
-            services.any((s) => s.serviceName == savedServiceName)) {
-          newService = services.firstWhere(
-            (s) => s.serviceName == savedServiceName,
-          );
-        } else if (services.isNotEmpty) {
-          newService = services.first;
-        }
-
-        // Set model: use saved, or initialModel from widget, or find default
-        if (savedModel != null &&
-            newService != null &&
-            newService.availableModels.contains(savedModel)) {
-          newModel = savedModel;
-        } else if (widget.initialModel != null &&
-            newService != null &&
-            newService.availableModels.contains(widget.initialModel)) {
-          newModel = widget.initialModel;
-        } else if (newService != null) {
-          // Try to use _defaultModelFallback if available
-          if (newService.availableModels.contains(_defaultModelFallback)) {
-            newModel = _defaultModelFallback;
-          } else {
-            newModel = newService.defaultModel;
-          }
-        }
-
         setState(() {
-          _availableServices = services;
-          _selectedService = newService;
-          _selectedModel = newModel;
+          _availableProviderIds = available;
+          _selectedProviderId = resolvedProviderId;
+          _selectedModelId = resolvedModelId;
           _isLoading = false;
         });
-
-        // Notify parent of initial values
-        widget.onServiceChanged?.call(newService);
-        widget.onModelChanged?.call(newModel);
+        widget.onModelChanged?.call(resolvedModelId);
         widget.onLoadingChanged?.call(false);
       }
-    } catch (e) {
+    } catch (_) {
       if (mounted) {
-        setState(() {
-          _isLoading = false;
-        });
+        setState(() => _isLoading = false);
         widget.onLoadingChanged?.call(false);
       }
     }
   }
+
+  void _onProviderSelected(String? providerId) {
+    if (providerId == null || providerId == _selectedProviderId) return;
+    final models = AiModelCatalog.forProvider(providerId);
+    final newModelId = models.isNotEmpty ? models.first.modelId : null;
+    setState(() {
+      _selectedProviderId = providerId;
+      _selectedModelId = newModelId;
+    });
+    widget.onModelChanged?.call(newModelId);
+    if (widget.saveToPreferences && newModelId != null) {
+      ServiceLocator.getIt<ConfigurationService>()
+          .saveDefaultAIModel(newModelId);
+    }
+  }
+
+  Future<void> _onModelSelected(String? modelId) async {
+    if (modelId == null || modelId == _selectedModelId) return;
+    setState(() => _selectedModelId = modelId);
+    widget.onModelChanged?.call(modelId);
+    if (widget.saveToPreferences) {
+      await ServiceLocator.getIt<ConfigurationService>()
+          .saveDefaultAIModel(modelId);
+    }
+  }
+
+  // ── Build ────────────────────────────────────────────────────────────────
 
   @override
   Widget build(BuildContext context) {
@@ -161,15 +184,13 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
     final textColor = aiTheme.selectorTextColor;
     final chevronColor = aiTheme.selectorLabelColor;
 
-    Widget buildSelector({
+    Widget buildDropdown<T>({
       required String label,
-      required String? value,
-      required List<DropdownMenuItem<String>> items,
-      required ValueChanged<String?>? onChanged,
-      bool isLoading = false,
+      required T? value,
+      required List<DropdownMenuItem<T>> items,
+      required ValueChanged<T?>? onChanged,
       String? loadingText,
       String? emptyText,
-      bool isEnabled = true,
     }) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -191,16 +212,16 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
               borderRadius: BorderRadius.circular(10),
             ),
             alignment: Alignment.centerLeft,
-            child: isLoading
+            child: _isLoading
                 ? Text(
-                    loadingText ?? 'Loading...',
+                    loadingText ?? localizations.aiServicesLoading,
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w500,
                       color: textColor,
                     ),
                   )
-                : (items.isEmpty && emptyText != null)
+                : items.isEmpty && emptyText != null
                 ? Text(
                     emptyText,
                     style: TextStyle(
@@ -210,7 +231,7 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                     ),
                   )
                 : DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
+                    child: DropdownButton<T>(
                       value: value,
                       isExpanded: true,
                       icon: Icon(
@@ -219,27 +240,27 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                         size: 16,
                       ),
                       dropdownColor: headerBg,
-                      selectedItemBuilder: (context) {
-                        return items.map((item) {
-                          return Container(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              item.value ?? '',
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                color: textColor,
+                      selectedItemBuilder: (context) => items
+                          .map(
+                            (item) => Container(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                item.value?.toString() ?? '',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  color: textColor,
+                                ),
+                                overflow: TextOverflow.ellipsis,
                               ),
-                              overflow: TextOverflow.ellipsis,
                             ),
-                          );
-                        }).toList();
-                      },
+                          )
+                          .toList(),
                       items: items.map((item) {
-                        return DropdownMenuItem<String>(
+                        return DropdownMenuItem<T>(
                           value: item.value,
                           child: Text(
-                            item.value ?? '',
+                            item.value?.toString() ?? '',
                             style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w500,
@@ -248,7 +269,7 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                           ),
                         );
                       }).toList(),
-                      onChanged: isEnabled ? onChanged : null,
+                      onChanged: widget.enabled ? onChanged : null,
                     ),
                   ),
           ),
@@ -271,7 +292,7 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
             Icon(
               LucideIcons.sparkles,
               size: 16,
-              color: Theme.of(context).primaryColor, // Violet 500
+              color: Theme.of(context).primaryColor,
             ),
             const SizedBox(width: 8),
             Text(
@@ -292,6 +313,28 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
         ),
       );
     }
+
+    // Provider items — only configured providers.
+    final providerItems = _availableProviderIds
+        .map(
+          (id) => DropdownMenuItem<String>(
+            value: id,
+            child: Text(AiModelCatalog.providerDisplayNames[id] ?? id),
+          ),
+        )
+        .toList();
+
+    // Model items — filtered to the selected provider.
+    final modelItems = (_selectedProviderId != null
+            ? AiModelCatalog.forProvider(_selectedProviderId!)
+            : <AiModelEntry>[])
+        .map(
+          (entry) => DropdownMenuItem<String>(
+            value: entry.modelId,
+            child: Text(entry.displayName),
+          ),
+        )
+        .toList();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -334,84 +377,25 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // AI Service Selector
-                      buildSelector(
+                      // Provider selector
+                      buildDropdown<String>(
                         label: localizations.aiServiceLabel,
-                        value: _selectedService?.serviceName,
-                        items: _availableServices
-                            .map(
-                              (s) => DropdownMenuItem(
-                                value: s.serviceName,
-                                child: Text(s.serviceName),
-                              ),
-                            )
-                            .toList(),
-                        onChanged: widget.enabled
-                            ? (val) async {
-                                final service = _availableServices.firstWhere(
-                                  (s) => s.serviceName == val,
-                                );
-
-                                if (service.serviceName !=
-                                    _selectedService?.serviceName) {
-                                  final newModel = service.defaultModel;
-                                  setState(() {
-                                    _selectedService = service;
-                                    _selectedModel = newModel;
-                                  });
-                                  widget.onServiceChanged?.call(service);
-                                  widget.onModelChanged?.call(newModel);
-                                  if (widget.saveToPreferences) {
-                                    final configurationService =
-                                        ServiceLocator.getIt<
-                                          ConfigurationService
-                                        >();
-                                    await configurationService
-                                        .saveDefaultAIService(
-                                          service.serviceName,
-                                        );
-                                    await configurationService
-                                        .saveDefaultAIModel(newModel);
-                                  }
-                                }
-                              }
-                            : null,
-                        isLoading: _isLoading,
+                        value: _selectedProviderId,
+                        items: providerItems,
+                        onChanged: _onProviderSelected,
                         loadingText: localizations.aiServicesLoading,
                         emptyText: localizations.aiServicesNotConfigured,
-                        isEnabled: widget.enabled,
                       ),
-
-                      if (_selectedService != null &&
-                          _availableServices.isNotEmpty) ...[
+                      if (!_isLoading &&
+                          _selectedProviderId != null &&
+                          _availableProviderIds.isNotEmpty) ...[
                         const SizedBox(height: 12),
-                        // Model Selector
-                        buildSelector(
+                        // Model selector
+                        buildDropdown<String>(
                           label: localizations.aiModelLabel,
-                          value: _selectedModel,
-                          items: _selectedService!.availableModels
-                              .map(
-                                (m) =>
-                                    DropdownMenuItem(value: m, child: Text(m)),
-                              )
-                              .toList(),
-                          onChanged: widget.enabled
-                              ? (val) async {
-                                  if (val != null) {
-                                    setState(() {
-                                      _selectedModel = val;
-                                    });
-                                    widget.onModelChanged?.call(val);
-                                    if (widget.saveToPreferences) {
-                                      await ServiceLocator.getIt<
-                                            ConfigurationService
-                                          >()
-                                          .saveDefaultAIModel(val);
-                                    }
-                                  }
-                                }
-                              : null,
-                          isEnabled: widget.enabled,
+                          value: _selectedModelId,
+                          items: modelItems,
+                          onChanged: _onModelSelected,
                         ),
                       ],
                     ],

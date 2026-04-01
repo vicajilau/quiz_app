@@ -123,13 +123,7 @@ class AiGenerateStep1Widget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AiServiceModelSelector(
-                      initialService: selectedService?.serviceName,
                       initialModel: selectedModel,
-                      onServiceChanged: (service) {
-                        if (service != null) {
-                          onServiceChanged(service);
-                        }
-                      },
                       onModelChanged: onModelChanged,
                       saveToPreferences: false,
                     ),

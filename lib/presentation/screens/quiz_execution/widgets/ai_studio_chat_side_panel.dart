@@ -372,9 +372,6 @@ class AiStudioChatSidePanelState extends State<AiStudioChatSidePanel> {
               const SizedBox(height: 20),
 
               AiServiceModelSelector(
-                onServiceChanged: (service) {
-                  setState(() => _selectedService = service);
-                },
                 onModelChanged: (model) {
                   setState(() => _selectedModel = model);
                 },
