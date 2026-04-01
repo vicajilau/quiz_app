@@ -1308,7 +1308,7 @@
   "@studyScreenRetry": {
     "description": "Button text to retry parsing a failed chunk."
   },
-  "studyScreenDownloadChunk": "Download",
+  "studyScreenDownloadChunk": "Generate",
   "@studyScreenDownloadChunk": {
     "description": "Button text to download (JIT-process) a study chunk from the index."
   },

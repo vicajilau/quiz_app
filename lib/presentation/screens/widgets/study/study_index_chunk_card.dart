@@ -29,6 +29,7 @@ class StudyIndexChunkCard extends StatefulWidget {
   final AppLocalizations localizations;
   final VoidCallback onTap;
   final VoidCallback? onDownload;
+  final VoidCallback? onEdit;
   final VoidCallback? onLongPress;
   final bool isSelected;
   final bool isSelectionMode;
@@ -45,6 +46,7 @@ class StudyIndexChunkCard extends StatefulWidget {
     required this.localizations,
     required this.onTap,
     this.onDownload,
+    this.onEdit,
     this.onLongPress,
     this.isSelected = false,
     this.isSelectionMode = false,
@@ -284,11 +286,62 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
           // Download button for created/error chunks
           if (!isSelectionMode && needsDownload) ...[
             const SizedBox(height: 12),
-            StudyIndexChunkDownloadButton(
-              isError: isError,
-              onDownload: widget.onDownload,
-              localizations: localizations,
-            ),
+            if (chunk.status == StudyChunkState.created &&
+                widget.onEdit != null)
+              Row(
+                children: [
+                  Expanded(
+                    child: StudyIndexChunkDownloadButton(
+                      isError: isError,
+                      onDownload: widget.onDownload,
+                      localizations: localizations,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: widget.onEdit,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 8,
+                          horizontal: 12,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppTheme.secondaryColor.withValues(
+                            alpha: isDark ? 0.15 : 0.1,
+                          ),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.edit_outlined,
+                              size: 12,
+                              color: AppTheme.secondaryColor,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              localizations.edit,
+                              style: const TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w600,
+                                color: AppTheme.secondaryColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            else
+              StudyIndexChunkDownloadButton(
+                isError: isError,
+                onDownload: widget.onDownload,
+                localizations: localizations,
+              ),
           ],
           // Loading indicator while processing
           if (!isSelectionMode && isProcessing) ...[

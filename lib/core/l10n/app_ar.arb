@@ -2314,7 +2314,7 @@
   "@studyComponentLimitations": {
     "description": "Header for the limitations section in a study component"
   },
-  "studyScreenDownloadChunk": "تنزيل",
+  "studyScreenDownloadChunk": "توليد",
   "aiStudyChapterSystemPrompt": "أنت مساعد دراسة بالذكاء الاصطناعي تساعد الطالب على فهم محتوى فصل دراسي. اشرح المفاهيم بعمق، وقدم أمثلة، واذكر الروابط مع الأجزاء الأخرى من المادة الدراسية عندما يكون ذلك مناسباً. أجب بنفس اللغة التي سُئلت بها.",
   "@aiStudyChapterSystemPrompt": {
     "description": "System prompt for the AI study assistant when chatting about a study chapter"

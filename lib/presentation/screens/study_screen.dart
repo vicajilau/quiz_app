@@ -447,7 +447,11 @@ class _StudyScreenViewState extends State<StudyScreenView> {
             final blocState = bloc.state;
             final chunkIndex = blocState.currentChunkIndex;
 
-            // Keep editor state aligned with current study state before opening the component editor.
+            if (chunkIndex < 0 || chunkIndex >= blocState.chunks.length) {
+              return;
+            }
+
+            // Keep editor state aligned with current study state before opening the editor.
             cubit.resetToSnapshot(blocState.chunks);
             final snapshot = List.of(cubit.state.chunks);
 

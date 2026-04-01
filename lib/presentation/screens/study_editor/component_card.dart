@@ -19,7 +19,6 @@ import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/extensions/study_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
-import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/presentation/screens/widgets/study/components/study_component_builder.dart';
 
@@ -140,19 +139,16 @@ class ComponentCard extends StatelessWidget {
                         width: 32,
                         height: 32,
                         decoration: BoxDecoration(
-                          color: Theme.of(context)
-                              .extension<CustomColors>()!
-                              .info!
-                              .withValues(alpha: 0.1),
+                          color: AppTheme.secondaryColor.withValues(
+                            alpha: 0.12,
+                          ),
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             LucideIcons.pencil,
                             size: 16,
-                            color: Theme.of(
-                              context,
-                            ).extension<CustomColors>()!.info!,
+                            color: AppTheme.secondaryColor,
                           ),
                           padding: EdgeInsets.zero,
                           onPressed: onEdit,
@@ -184,7 +180,9 @@ class ComponentCard extends StatelessWidget {
                           size: 18,
                           color: index > 0 ? chevronColor : disabledColor,
                         ),
-                        tooltip: AppLocalizations.of(context)!.moveUp,
+                        tooltip: index > 0
+                            ? AppLocalizations.of(context)!.moveUp
+                            : null,
                         padding: const EdgeInsets.all(6),
                         constraints: const BoxConstraints(
                           minWidth: 36,
@@ -202,7 +200,9 @@ class ComponentCard extends StatelessWidget {
                               ? chevronColor
                               : disabledColor,
                         ),
-                        tooltip: AppLocalizations.of(context)!.moveDown,
+                        tooltip: index < totalCount - 1
+                            ? AppLocalizations.of(context)!.moveDown
+                            : null,
                         padding: const EdgeInsets.all(6),
                         constraints: const BoxConstraints(
                           minWidth: 36,

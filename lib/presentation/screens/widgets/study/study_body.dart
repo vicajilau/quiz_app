@@ -24,6 +24,7 @@ import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
+import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_cubit.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
@@ -33,6 +34,8 @@ import 'package:quizdy/presentation/screens/widgets/study/components/study_compo
 import 'package:quizdy/presentation/screens/widgets/study/study_index_view.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_sections_sidebar.dart';
 import 'package:quizdy/presentation/screens/widgets/study/add_edit_chunk_dialog.dart';
+import 'package:quizdy/routes/app_router.dart';
+import 'package:go_router/go_router.dart';
 
 class StudyBody extends StatefulWidget {
   final Future<void> Function(BuildContext) onHandleFileReattachment;
@@ -290,7 +293,34 @@ class _StudyBodyState extends State<StudyBody>
                   },
                   onSave: widget.onSave,
                   onImport: () => widget.onHandleFileReattachment(context),
-                  onChunkEditTap: null,
+                  onChunkEditTap: (index) async {
+                    final blocState = context.read<StudyExecutionBloc>().state;
+                    if (index < 0 || index >= blocState.chunks.length) {
+                      return;
+                    }
+
+                    final cubit = context.read<StudyEditorCubit>();
+                    cubit.resetToSnapshot(blocState.chunks);
+                    final snapshot = List.of(cubit.state.chunks);
+
+                    if (!context.mounted) return;
+                    final saved = await context.push<bool>(
+                      AppRoutes.componentEditorScreen,
+                      extra: {
+                        'cubit': cubit,
+                        'chunkIndex': index,
+                        'pageIndex': 0,
+                      },
+                    );
+                    if (saved == true) {
+                      if (!context.mounted) return;
+                      context.read<StudyExecutionBloc>().add(
+                        StudyChunksUpdated(cubit.state.chunks),
+                      );
+                    } else {
+                      cubit.resetToSnapshot(snapshot);
+                    }
+                  },
                 );
               }
 
@@ -405,6 +435,37 @@ class _StudyBodyState extends State<StudyBody>
                           DownloadStudyChunkRequested(index),
                         );
                       }
+                    },
+                    onChunkEdit: (index) async {
+                      final cubit = context.read<StudyEditorCubit>();
+                      final bloc = context.read<StudyExecutionBloc>();
+                      final blocState = bloc.state;
+
+                      if (index < 0 || index >= blocState.chunks.length) {
+                        return;
+                      }
+
+                      cubit.resetToSnapshot(blocState.chunks);
+                      final snapshot = List.of(cubit.state.chunks);
+
+                      if (!context.mounted) return;
+                      final saved = await context.push<bool>(
+                        AppRoutes.componentEditorScreen,
+                        extra: {
+                          'cubit': cubit,
+                          'chunkIndex': index,
+                          'pageIndex': 0,
+                        },
+                      );
+
+                      if (saved == true) {
+                        if (!context.mounted) return;
+                        bloc.add(StudyChunksUpdated(cubit.state.chunks));
+                      } else {
+                        cubit.resetToSnapshot(snapshot);
+                      }
+
+                      if (isMobile) _closeSidebar();
                     },
                   );
 

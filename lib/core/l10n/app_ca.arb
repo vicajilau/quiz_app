@@ -2014,7 +2014,7 @@
   "studyComponentNoItems": "Sense elements",
   "studyComponentAdvantages": "Avantatges",
   "studyComponentLimitations": "Limitacions",
-  "studyScreenDownloadChunk": "Descarregar",
+  "studyScreenDownloadChunk": "Generar",
   "aiStudyChapterSystemPrompt": "Ets un assistent d'estudi per IA que ajuda a un estudiant a comprendre el contingut d'un capítol d'estudi. Explica els conceptes en profunditat, proporciona exemples i estableix connexions amb altres parts del material d'estudi quan sigui pertinent. Respon en el mateix idioma en què se't pregunti.",
   "@aiStudyChapterSystemPrompt": {
     "description": "System prompt for the AI study assistant when chatting about a study chapter"

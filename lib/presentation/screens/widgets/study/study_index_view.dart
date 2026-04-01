@@ -15,12 +15,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
-import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
@@ -126,41 +124,6 @@ class StudyIndexView extends StatelessWidget {
     return (counts[chunk.duplicationKey] ?? 0) > 1;
   }
 
-  /// Wraps [child] in a [Stack] with a pencil icon in the top-right corner
-  /// when [onChunkEditTap] is provided. Returns [child] unchanged otherwise.
-  Widget _withEditOverlay(BuildContext context, Widget child, int index) {
-    if (onChunkEditTap == null) return child;
-    return Stack(
-      children: [
-        child,
-        Positioned(
-          bottom: 18,
-          right: 8,
-          child: Container(
-            width: 32,
-            height: 32,
-            decoration: BoxDecoration(
-              color: Theme.of(
-                context,
-              ).extension<CustomColors>()!.info!.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: IconButton(
-              icon: Icon(
-                LucideIcons.pencil,
-                size: 16,
-                color: Theme.of(context).extension<CustomColors>()!.info!,
-              ),
-              padding: EdgeInsets.zero,
-              onPressed: () => onChunkEditTap!(index),
-              tooltip: localizations.edit,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _buildMobileLayout(
     BuildContext context,
     Map<String, int> duplicateChunkCounts,
@@ -187,38 +150,37 @@ class StudyIndexView extends StatelessWidget {
           return Padding(
             key: ValueKey('chunk_${chunk.chunkIndex}'),
             padding: const EdgeInsets.only(bottom: 10),
-            child: _withEditOverlay(
-              context,
-              StudyIndexChunkCard(
-                chunk: chunk,
-                index: index,
-                total: state.chunks.length,
-                localizations: localizations,
-                isSelectionMode: state.isSelectionMode,
-                isSelected: isSelected,
-                supportsReordering: true,
-                isNew: ServiceLocator.getIt<CheckFileChangesUseCase>()
-                    .isStudyChunkNew(index, chunk),
-                isModified: ServiceLocator.getIt<CheckFileChangesUseCase>()
-                    .isStudyChunkModified(index, chunk),
-                isDuplicated: _isChunkDuplicated(chunk, duplicateChunkCounts),
-                onTap: () {
-                  if (state.isSelectionMode) {
-                    context.read<StudyExecutionBloc>().add(
-                      ToggleChunkSelection(index),
-                    );
-                  } else {
-                    _onChunkTap(context, index);
-                  }
-                },
-                onDownload: () => _onChunkDownload(context, index),
-                onLongPress: () {
+            child: StudyIndexChunkCard(
+              chunk: chunk,
+              index: index,
+              total: state.chunks.length,
+              localizations: localizations,
+              isSelectionMode: state.isSelectionMode,
+              isSelected: isSelected,
+              supportsReordering: true,
+              isNew: ServiceLocator.getIt<CheckFileChangesUseCase>()
+                  .isStudyChunkNew(index, chunk),
+              isModified: ServiceLocator.getIt<CheckFileChangesUseCase>()
+                  .isStudyChunkModified(index, chunk),
+              isDuplicated: _isChunkDuplicated(chunk, duplicateChunkCounts),
+              onTap: () {
+                if (state.isSelectionMode) {
                   context.read<StudyExecutionBloc>().add(
                     ToggleChunkSelection(index),
                   );
-                },
-              ),
-              index,
+                } else {
+                  _onChunkTap(context, index);
+                }
+              },
+              onDownload: () => _onChunkDownload(context, index),
+              onEdit: onChunkEditTap != null
+                  ? () => onChunkEditTap!(index)
+                  : null,
+              onLongPress: () {
+                context.read<StudyExecutionBloc>().add(
+                  ToggleChunkSelection(index),
+                );
+              },
             ),
           );
         },
@@ -248,38 +210,37 @@ class StudyIndexView extends StatelessWidget {
             final isSelected = state.selectedIndices.contains(index);
             return Padding(
               padding: const EdgeInsets.only(bottom: 10),
-              child: _withEditOverlay(
-                context,
-                StudyIndexChunkCard(
-                  chunk: chunk,
-                  index: index,
-                  total: state.chunks.length,
-                  localizations: localizations,
-                  isSelectionMode: state.isSelectionMode,
-                  isSelected: isSelected,
-                  supportsReordering: false,
-                  isNew: ServiceLocator.getIt<CheckFileChangesUseCase>()
-                      .isStudyChunkNew(index, chunk),
-                  isModified: ServiceLocator.getIt<CheckFileChangesUseCase>()
-                      .isStudyChunkModified(index, chunk),
-                  isDuplicated: _isChunkDuplicated(chunk, duplicateChunkCounts),
-                  onTap: () {
-                    if (state.isSelectionMode) {
-                      context.read<StudyExecutionBloc>().add(
-                        ToggleChunkSelection(index),
-                      );
-                    } else {
-                      _onChunkTap(context, index);
-                    }
-                  },
-                  onDownload: () => _onChunkDownload(context, index),
-                  onLongPress: () {
+              child: StudyIndexChunkCard(
+                chunk: chunk,
+                index: index,
+                total: state.chunks.length,
+                localizations: localizations,
+                isSelectionMode: state.isSelectionMode,
+                isSelected: isSelected,
+                supportsReordering: false,
+                isNew: ServiceLocator.getIt<CheckFileChangesUseCase>()
+                    .isStudyChunkNew(index, chunk),
+                isModified: ServiceLocator.getIt<CheckFileChangesUseCase>()
+                    .isStudyChunkModified(index, chunk),
+                isDuplicated: _isChunkDuplicated(chunk, duplicateChunkCounts),
+                onTap: () {
+                  if (state.isSelectionMode) {
                     context.read<StudyExecutionBloc>().add(
                       ToggleChunkSelection(index),
                     );
-                  },
-                ),
-                index,
+                  } else {
+                    _onChunkTap(context, index);
+                  }
+                },
+                onDownload: () => _onChunkDownload(context, index),
+                onEdit: onChunkEditTap != null
+                    ? () => onChunkEditTap!(index)
+                    : null,
+                onLongPress: () {
+                  context.read<StudyExecutionBloc>().add(
+                    ToggleChunkSelection(index),
+                  );
+                },
               ),
             );
           }),
@@ -369,6 +330,9 @@ class StudyIndexView extends StatelessWidget {
                                   }
                                 },
                                 onDownload: () => _onChunkDownload(context, i),
+                                onEdit: onChunkEditTap != null
+                                    ? () => onChunkEditTap!(i)
+                                    : null,
                                 onLongPress: () {
                                   context.read<StudyExecutionBloc>().add(
                                     ToggleChunkSelection(i),
@@ -423,6 +387,9 @@ class StudyIndexView extends StatelessWidget {
                                   }
                                 },
                                 onDownload: () => _onChunkDownload(context, i),
+                                onEdit: onChunkEditTap != null
+                                    ? () => onChunkEditTap!(i)
+                                    : null,
                                 onLongPress: () {
                                   context.read<StudyExecutionBloc>().add(
                                     ToggleChunkSelection(i),

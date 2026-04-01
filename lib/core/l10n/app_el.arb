@@ -909,7 +909,7 @@
   "studyComponentNoItems": "Δεν υπάρχουν στοιχεία",
   "studyComponentAdvantages": "Πλεονεκτήματα",
   "studyComponentLimitations": "Περιορισμοί",
-  "studyScreenDownloadChunk": "Λήψη",
+  "studyScreenDownloadChunk": "Δημιουργία",
   "aiStudyChapterSystemPrompt": "Είστε ένας βοηθός μελέτης AI που βοηθά έναν φοιτητή να κατανοήσει το περιεχόμενο ενός κεφαλαίου μελέτης. Εξηγήστε τις έννοιες σε βάθος, δώστε παραδείγματα και κάντε συνδέσεις με άλλα μέρη του υλικού μελέτης όταν είναι σχετικό. Απαντήστε στην ίδια γλώσσα που σας ρωτούν.",
   "@aiStudyChapterSystemPrompt": {
     "description": "System prompt for the AI study assistant when chatting about a study chapter"

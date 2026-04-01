@@ -59,9 +59,11 @@ class ComponentEditorScreen extends StatefulWidget {
 class _ComponentEditorScreenState extends State<ComponentEditorScreen>
     with SingleTickerProviderStateMixin {
   int? _editingIndex;
+  StudyComponentType? _pendingNewComponentType;
   bool _isSidebarMounted = false;
   bool _isAddCompMounted = false;
   late List<StudyComponent> _initialComponents;
+  late int _pageIndex;
 
   bool _selectionMode = false;
   final Set<int> _selectedIndices = {};
@@ -81,12 +83,36 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _slideController, curve: Curves.linear));
 
+    final cubit = context.read<StudyEditorCubit>();
+    final chunks = cubit.state.chunks;
+
+    if (widget.chunkIndex < 0 || widget.chunkIndex >= chunks.length) {
+      _pageIndex = 0;
+      _initialComponents = const [];
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) context.pop(false);
+      });
+      return;
+    }
+
+    if (chunks[widget.chunkIndex].pages.isEmpty) {
+      cubit.addPage(widget.chunkIndex);
+    }
+
+    final pages = cubit.state.chunks[widget.chunkIndex].pages;
+    _pageIndex = widget.pageIndex;
+    if (_pageIndex < 0) {
+      _pageIndex = 0;
+    } else if (_pageIndex >= pages.length) {
+      _pageIndex = pages.length - 1;
+    }
+
     _initialComponents = List<StudyComponent>.from(
       context
           .read<StudyEditorCubit>()
           .state
           .chunks[widget.chunkIndex]
-          .pages[widget.pageIndex]
+          .pages[_pageIndex]
           .uiElements,
     );
   }
@@ -100,6 +126,7 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
   void _openEditor(BuildContext context, int componentIndex) {
     setState(() {
       _editingIndex = componentIndex;
+      _pendingNewComponentType = null;
       _isSidebarMounted = true;
       _isAddCompMounted = false;
     });
@@ -110,7 +137,10 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
     _slideController.reverse().then((_) {
       if (mounted) setState(() => _isSidebarMounted = false);
     });
-    setState(() => _editingIndex = null);
+    setState(() {
+      _editingIndex = null;
+      _pendingNewComponentType = null;
+    });
   }
 
   void _openAddComponent() {
@@ -160,7 +190,7 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
     if (_selectedIndices.isEmpty) return;
     context.read<StudyEditorCubit>().deleteComponents(
       widget.chunkIndex,
-      widget.pageIndex,
+      _pageIndex,
       _selectedIndices.toList(),
     );
     setState(() => _selectedIndices.clear());
@@ -172,7 +202,7 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
       // Move all selected components as a group.
       cubit.moveComponents(
         widget.chunkIndex,
-        widget.pageIndex,
+        _pageIndex,
         _selectedIndices.toList(),
         newIndex,
       );
@@ -180,7 +210,7 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
     } else {
       cubit.reorderComponents(
         widget.chunkIndex,
-        widget.pageIndex,
+        _pageIndex,
         oldIndex,
         newIndex,
       );
@@ -188,8 +218,15 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
   }
 
   bool _hasChanges(StudyEditorState state) {
+    if (widget.chunkIndex < 0 || widget.chunkIndex >= state.chunks.length) {
+      return false;
+    }
+    final pages = state.chunks[widget.chunkIndex].pages;
+    if (pages.isEmpty || _pageIndex < 0 || _pageIndex >= pages.length) {
+      return false;
+    }
     final current =
-        state.chunks[widget.chunkIndex].pages[widget.pageIndex].uiElements;
+        state.chunks[widget.chunkIndex].pages[_pageIndex].uiElements;
     return !const ListEquality<StudyComponent>().equals(
       current,
       _initialComponents,
@@ -209,25 +246,11 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
   }
 
   void _selectComponentType(BuildContext context, StudyComponentType type) {
-    final cubit = context.read<StudyEditorCubit>();
-    final newIndex = cubit
-        .state
-        .chunks[widget.chunkIndex]
-        .pages[widget.pageIndex]
-        .uiElements
-        .length;
-    cubit.addComponent(
-      widget.chunkIndex,
-      widget.pageIndex,
-      StudyComponent(
-        componentType: type,
-        props: AddComponentSheet.defaultProps(type),
-      ),
-    );
-    // Swap directly into the editor panel (slide is already at 1.0)
+    // Open sidebar in create mode; component is inserted only when OK is pressed.
     setState(() {
       _isAddCompMounted = false;
-      _editingIndex = newIndex;
+      _editingIndex = null;
+      _pendingNewComponentType = type;
       _isSidebarMounted = true;
     });
   }
@@ -257,9 +280,23 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
         }
       },
       builder: (context, state) {
+        if (widget.chunkIndex < 0 || widget.chunkIndex >= state.chunks.length) {
+          // During route transitions the source state can be temporarily out of sync.
+          // Avoid triggering an extra pop from build, which can navigate back twice.
+          return const SizedBox.shrink();
+        }
+
         final chunk = state.chunks[widget.chunkIndex];
-        final page = chunk.pages[widget.pageIndex];
+        if (chunk.pages.isEmpty ||
+            _pageIndex < 0 ||
+            _pageIndex >= chunk.pages.length) {
+          // Same as above: render nothing transiently instead of forcing pop.
+          return const SizedBox.shrink();
+        }
+
+        final page = chunk.pages[_pageIndex];
         final elements = page.uiElements;
+        final canSave = _hasChanges(state) && elements.isNotEmpty;
 
         // Reset sidebar if selected index goes out of bounds after a delete.
         if (_editingIndex != null && _editingIndex! >= elements.length) {
@@ -282,19 +319,24 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
 
         final isMobile = context.isMobile;
         final showDesktopSidebar =
-            !isMobile && _editingIndex != null && !_selectionMode;
+            !isMobile &&
+            (_editingIndex != null || _pendingNewComponentType != null) &&
+            !_selectionMode;
         final showDesktopAddComp = !isMobile && _isAddCompMounted;
         final showMobileOverlay =
             isMobile && (_isSidebarMounted || _isAddCompMounted);
 
-        final sidebar = _isSidebarMounted && _editingIndex != null
+        final sidebar =
+            _isSidebarMounted &&
+                (_editingIndex != null || _pendingNewComponentType != null)
             ? ComponentEditSidebar(
                 key: ValueKey(
-                  'sidebar_${widget.chunkIndex}_${widget.pageIndex}_$_editingIndex',
+                  'sidebar_${widget.chunkIndex}_${_pageIndex}_${_editingIndex}_${_pendingNewComponentType?.name}',
                 ),
                 chunkIndex: widget.chunkIndex,
-                pageIndex: widget.pageIndex,
-                componentIndex: _editingIndex!,
+                pageIndex: _pageIndex,
+                componentIndex: _editingIndex,
+                initialType: _pendingNewComponentType,
                 isFullScreen: isMobile,
                 onClose: _closeSidebar,
               )
@@ -376,7 +418,7 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
                     if (config != null && context.mounted) {
                       context.read<StudyEditorCubit>().generateAndAddComponents(
                         widget.chunkIndex,
-                        widget.pageIndex,
+                        _pageIndex,
                         config,
                         localizations,
                       );
@@ -388,6 +430,7 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
                   onDelete: _selectionMode && _selectedIndices.isNotEmpty
                       ? _deleteSelected
                       : null,
+                  canSave: canSave,
                 ),
           body: Stack(
             children: [
@@ -489,9 +532,7 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
     final element = elements[index];
     final isEditing = _editingIndex == index;
     return ComponentCard(
-      key: ValueKey(
-        'component_${widget.chunkIndex}_${widget.pageIndex}_$index',
-      ),
+      key: ValueKey('component_${widget.chunkIndex}_${_pageIndex}_$index'),
       element: element,
       index: index,
       totalCount: elements.length,
@@ -504,25 +545,25 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
         if (_editingIndex == index) _closeSidebar();
         context.read<StudyEditorCubit>().deleteComponent(
           widget.chunkIndex,
-          widget.pageIndex,
+          _pageIndex,
           index,
         );
       },
       onMoveUp: () => context.read<StudyEditorCubit>().reorderComponents(
         widget.chunkIndex,
-        widget.pageIndex,
+        _pageIndex,
         index,
         index - 1,
       ),
       onMoveDown: () => context.read<StudyEditorCubit>().reorderComponents(
         widget.chunkIndex,
-        widget.pageIndex,
+        _pageIndex,
         index,
         index + 2,
       ),
       onDuplicate: () => context.read<StudyEditorCubit>().duplicateComponent(
         widget.chunkIndex,
-        widget.pageIndex,
+        _pageIndex,
         index,
       ),
     );

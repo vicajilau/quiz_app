@@ -398,7 +398,7 @@
   "studyScreenGenerating": "სასწავლო მასალების გენერირება...",
   "studyScreenError": "სასწავლო მასალის გენერირებისას მოხდა შეცდომა.",
   "studyScreenRetry": "თავიდან ცდა",
-  "studyScreenDownloadChunk": "ჩამოტვირთვა",
+  "studyScreenDownloadChunk": "გენერირება",
   "studyScreenOmit": "გამოტოვება",
   "studyScreenNoSlidesGenerated": "სლაიდები არ დაგენერირებულა.",
   "studyScreenPreviousSection": "წინა გვერდი",

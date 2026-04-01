@@ -2008,7 +2008,7 @@
   "studyComponentNoItems": "Keine Elemente",
   "studyComponentAdvantages": "Vorteile",
   "studyComponentLimitations": "Einschränkungen",
-  "studyScreenDownloadChunk": "Herunterladen",
+  "studyScreenDownloadChunk": "Generieren",
   "aiStudyChapterSystemPrompt": "Du bist ein KI-Lernassistent, der einem Studenten hilft, den Inhalt eines Lernkapitels zu verstehen. Erkläre Konzepte ausführliche, nenne Beispiele und stelle bei Bedarf Verbindungen zu anderen Teilen des Lernmaterials her. Antworte in derselben Sprache, in der du gefragt wirst.",
   "@aiStudyChapterSystemPrompt": {
     "description": "System prompt for the AI study assistant when chatting about a study chapter"

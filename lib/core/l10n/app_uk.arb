@@ -448,7 +448,7 @@
   "studyScreenGenerating": "Генерація навчальних матеріалів...",
   "studyScreenError": "Сталася помилка під час генерації навчального матеріалу.",
   "studyScreenRetry": "Повторити",
-  "studyScreenDownloadChunk": "Завантажити",
+  "studyScreenDownloadChunk": "Згенерувати",
   "studyScreenOmit": "Пропустити",
   "studyScreenNoSlidesGenerated": "Слайди не створено.",
   "studyScreenPreviousSection": "Попередня сторінка",

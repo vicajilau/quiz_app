@@ -1912,7 +1912,7 @@
   "studyComponentNoItems": "Sen elementos",
   "studyComponentAdvantages": "Vantaxes",
   "studyComponentLimitations": "Limitacións",
-  "studyScreenDownloadChunk": "Descargar",
+  "studyScreenDownloadChunk": "Xerar",
   "aiStudyChapterSystemPrompt": "Es un asistente de estudo por IA que axuda a un estudante a comprender o contido dun capítulo de estudo. Explica os conceptos en profundidade, proporciona exemplos e establece conexións con outras partes do material de estudo cando sexa pertinente. Responde no mesmo idioma no que se te pregunte.",
   "@aiStudyChapterSystemPrompt": {
     "description": "System prompt for the AI study assistant when chatting about a study chapter"

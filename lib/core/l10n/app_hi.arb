@@ -1915,7 +1915,7 @@
   "studyComponentNoItems": "कोई आइटम नहीं",
   "studyComponentAdvantages": "लाभ",
   "studyComponentLimitations": "सीमाएं",
-  "studyScreenDownloadChunk": "डाउनलोड",
+  "studyScreenDownloadChunk": "जनरेट करें",
   "aiStudyChapterSystemPrompt": "आप एक AI अध्ययन सहायक हैं जो एक छात्र को अध्ययन अध्याय की सामग्री को समझने में मदद कर रहे हैं। अवधारणाओं को गहराई से समझाएं, उदाहरण प्रदान करें और प्रासंगिक होने पर अध्ययन सामग्री के अन्य भागों से संबंध बनाएं। उसी भाषा में उत्तर दें जिसमें आपसे पूछा गया है।",
   "@aiStudyChapterSystemPrompt": {
     "description": "System prompt for the AI study assistant when chatting about a study chapter"

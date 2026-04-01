@@ -25,6 +25,7 @@ class ComponentEditorBottomNavigation extends StatefulWidget {
   final VoidCallback onAddComponent;
   final VoidCallback onSave;
   final VoidCallback onAI;
+  final bool canSave;
 
   /// When non-null, a delete button is shown before "Add Component".
   final int? deleteCount;
@@ -37,6 +38,7 @@ class ComponentEditorBottomNavigation extends StatefulWidget {
     required this.onAddComponent,
     required this.onSave,
     required this.onAI,
+    required this.canSave,
     this.deleteCount,
     this.onDelete,
   });
@@ -309,7 +311,7 @@ class _ComponentEditorBottomNavigationState
                           type: QuizdyButtonType.primary,
                           title: widget.localizations.studyEditorSaveChanges,
                           expanded: true,
-                          onPressed: widget.onSave,
+                          onPressed: widget.canSave ? widget.onSave : null,
                         ),
                       ),
                     ),
