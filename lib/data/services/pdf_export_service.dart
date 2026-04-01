@@ -13,6 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:typed_data';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:quizdy/data/services/pdf_export_generator.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
@@ -34,6 +36,7 @@ class StudyPdfExportService {
     required String fileName,
     String advantagesLabel = 'Advantages',
     String limitationsLabel = 'Limitations',
+    Map<String, Uint8List> latexImages = const {},
   }) async {
     final pdfBytes = await StudyPdfGenerator.generate(
       documentTitle: documentTitle,
@@ -41,6 +44,7 @@ class StudyPdfExportService {
       chunks: chunks,
       advantagesLabel: advantagesLabel,
       limitationsLabel: limitationsLabel,
+      latexImages: latexImages,
     );
 
     final result = await FilePicker.platform.saveFile(

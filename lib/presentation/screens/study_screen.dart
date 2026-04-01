@@ -54,8 +54,10 @@ import 'package:quizdy/presentation/screens/widgets/request_file_name_dialog.dar
 import 'package:quizdy/presentation/screens/widgets/study/add_edit_chunk_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_app_bar.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_bottom_navigation.dart';
+import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_body.dart';
 import 'package:quizdy/presentation/screens/widgets/study/utils/study_quiz_file_helper.dart';
+import 'package:quizdy/presentation/utils/latex_image_renderer.dart';
 
 class StudyScreen extends StatelessWidget {
   final List<StudyChunk> initialChunks;
@@ -239,6 +241,24 @@ class _StudyScreenViewState extends State<StudyScreenView> {
       final fileName =
           '${sanitizedTitle.trim().isNotEmpty ? sanitizedTitle.trim() : "study"}.pdf';
 
+      // Collect all formula equations across all ready chunks.
+      final equations = <String>[];
+      for (final chunk in studyState.chunks) {
+        for (final page in chunk.pages) {
+          for (final component in page.uiElements) {
+            if (component.componentType == StudyComponentType.formula) {
+              final eq = component.props['equation']?.toString() ?? '';
+              if (eq.isNotEmpty) equations.add(eq);
+            }
+          }
+        }
+      }
+
+      final latexImages = await LaTeXImageRenderer.renderEquations(
+        context,
+        equations,
+      );
+
       final success = await ServiceLocator.getIt<StudyPdfExportService>()
           .exportStudy(
             documentTitle: studyState.documentTitle,
@@ -248,6 +268,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
             fileName: fileName,
             advantagesLabel: localizations.studyComponentAdvantages,
             limitationsLabel: localizations.studyComponentLimitations,
+            latexImages: latexImages,
           );
 
       if (success && mounted) {
