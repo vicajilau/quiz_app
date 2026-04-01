@@ -771,22 +771,7 @@ class StudyExecutionBloc
     StudyChunksUpdated event,
     Emitter<StudyExecutionState> emit,
   ) {
-    final reindexedChunks = event.chunks
-        .asMap()
-        .entries
-        .map((entry) => entry.value.copyWith(chunkIndex: entry.key))
-        .toList();
-
-    final newCurrentIndex = reindexedChunks.isEmpty
-        ? 0
-        : state.currentChunkIndex.clamp(0, reindexedChunks.length - 1);
-
-    final newState = _updateProgress(
-      state.copyWith(
-        chunks: reindexedChunks,
-        currentChunkIndex: newCurrentIndex,
-      ),
-    );
+    final newState = _updateProgress(state.copyWith(chunks: event.chunks));
     emit(newState);
   }
 }
