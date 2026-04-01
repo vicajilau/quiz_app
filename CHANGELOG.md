@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.11.0]
 
+- fix: Improved Study section editing flow by opening edit directly on page 0, allowing chunk editing before downloading, blocking empty/invalid saves, and marking manually edited created sections as `downloaded` when saved with content.
 - feat: Added "Delete Duplicates" button to quiz editor bottom bar, using the same deletion confirmation logic and banner color styling.
 - ux: Renamed "Study Mode" button on home screen to "Generate Study with AI" for better clarity, adding the new localization key across all 18 supported languages.
 - feat: Added component type filter to the AI study generation dialog, allowing users to select which of the 13 component types the AI should use when generating study content from the component editor.
