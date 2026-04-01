@@ -286,7 +286,7 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
           // Download button for created/error chunks
           if (!isSelectionMode && needsDownload) ...[
             const SizedBox(height: 12),
-            if (chunk.status == StudyChunkState.created &&
+            if ((chunk.status == StudyChunkState.created || isError) &&
                 widget.onEdit != null)
               Row(
                 children: [
