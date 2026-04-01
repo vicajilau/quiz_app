@@ -13,12 +13,14 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'dart:convert';
-import 'package:quizdy/data/services/ai/ai_service.dart';
-import 'package:quizdy/domain/models/quiz/source_reference.dart';
+
+import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
+import 'package:quizdy/domain/models/quiz/source_reference.dart';
+import 'package:quizdy/domain/repositories/ai_repository.dart';
+import 'package:quizdy/domain/use_cases/build_study_index_prompt_use_case.dart';
 
 class _TextBatch {
   final String text;
@@ -88,7 +90,7 @@ class AiDocumentChunkingService {
   /// - `title`: AI-generated document title
   /// - `description`: AI-generated document description
   Future<Map<String, dynamic>> generateIndexWithAi({
-    required AIService aiService,
+    required AiRepository aiRepository,
     required String fileUri,
     required String fileMimeType,
     required String documentId,
@@ -97,12 +99,16 @@ class AiDocumentChunkingService {
     required String language,
   }) async {
     try {
-      final jsonResponse = await aiService.generateStudyIndex(
+      final prompt = BuildStudyIndexPromptUseCase.buildFromFile(
+        language: language,
+        extraContext: extraContext,
+      );
+      final jsonResponse = await aiRepository.sendMessagesWithFileUri(
+        prompt,
         localizations,
         fileUri: fileUri,
         fileMimeType: fileMimeType,
-        extraContext: extraContext,
-        language: language,
+        responseMimeType: 'application/json',
       );
 
       // Clean the response if it contains markdown code blocks
@@ -173,7 +179,7 @@ class AiDocumentChunkingService {
 
   /// Generates logical chunks from text content using AI.
   Future<Map<String, dynamic>> generateIndexFromTextWithAi({
-    required AIService aiService,
+    required AiRepository aiRepository,
     required String content,
     required AiGenerationMode generationMode,
     required String documentId,
@@ -182,12 +188,16 @@ class AiDocumentChunkingService {
     List<Question>? selectedQuestions,
   }) async {
     try {
-      final jsonResponse = await aiService.generateStudyIndexFromText(
-        localizations,
+      final prompt = BuildStudyIndexPromptUseCase.buildFromText(
         content: content,
         generationMode: generationMode,
         language: language,
         selectedQuestions: selectedQuestions,
+      );
+      final jsonResponse = await aiRepository.sendMessages(
+        prompt,
+        localizations,
+        responseMimeType: 'application/json',
       );
 
       // Clean the response if it contains markdown code blocks
