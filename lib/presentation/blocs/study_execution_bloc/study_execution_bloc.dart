@@ -573,9 +573,7 @@ class StudyExecutionBloc
     emit(state.copyWith(isLoading: true, error: null));
 
     try {
-      final initializeUseCase = InitializeQuizChunksUseCase(
-        aiService: event.config.preferredService,
-      );
+      final initializeUseCase = InitializeQuizChunksUseCase();
       final documentId = 'study_${DateTime.now().millisecondsSinceEpoch}';
       final effectiveQuizContext = event.quizContext;
 
