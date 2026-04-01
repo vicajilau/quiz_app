@@ -15,31 +15,31 @@
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
+import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
 import 'package:quizdy/data/services/ai/ai_document_chunking_service.dart';
-import 'package:quizdy/data/services/ai/gemini_service.dart';
-import 'package:quizdy/domain/models/quiz/quiz_file.dart';
-import 'package:quizdy/domain/models/quiz/study.dart';
-import 'package:quizdy/domain/models/quiz/study_content.dart';
-import 'package:quizdy/domain/models/quiz/study_chunk.dart';
-import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
-import 'package:quizdy/data/services/ai/ai_service.dart';
-import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
-import 'package:quizdy/domain/models/quiz/source_reference.dart';
+import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
+import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+import 'package:quizdy/domain/models/quiz/source_reference.dart';
+import 'package:quizdy/domain/models/quiz/study.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
+import 'package:quizdy/domain/models/quiz/study_content.dart';
 
 /// Use case that configures the `.quiz` file with chunk boundaries identified by AI.
 class InitializeQuizChunksUseCase {
   final AiDocumentChunkingService _chunkingService;
-  final AIService _aiService;
+  final AiRepositoryFactory _repositoryFactory;
 
   InitializeQuizChunksUseCase({
     AiDocumentChunkingService? chunkingService,
-    AIService? aiService,
+    AiRepositoryFactory? repositoryFactory,
   }) : _chunkingService =
            chunkingService ?? ServiceLocator.getIt<AiDocumentChunkingService>(),
-       _aiService = aiService ?? ServiceLocator.getIt<GeminiService>();
+       _repositoryFactory =
+           repositoryFactory ?? ServiceLocator.getIt<AiRepositoryFactory>();
 
   /// Executes the AI chunking and returns a new [QuizFile] updated with the `study` mapping.
   Future<QuizFile> execute({
@@ -99,14 +99,14 @@ class InitializeQuizChunksUseCase {
     String? extraContext,
     required String language,
   }) async {
-    // 1. Upload the file to the AI service to get a URI (Gemini File API)
-    final uploadResult = await _aiService.uploadFile(file, localizations);
+    final aiRepository = await _repositoryFactory.createDefault();
+
+    final uploadResult = await aiRepository.uploadFile(file, localizations);
     final fileUri = uploadResult.fileUri;
     final fileExpirationTime = uploadResult.expirationTime;
 
-    // 2. Generate logical chunks using AI analysis of the uploaded file
     final indexResult = await _chunkingService.generateIndexWithAi(
-      aiService: _aiService,
+      aiRepository: aiRepository,
       fileUri: fileUri,
       fileMimeType: file.mimeType,
       documentId: documentId,
@@ -143,8 +143,10 @@ class InitializeQuizChunksUseCase {
     required String language,
     List<Question>? selectedQuestions,
   }) async {
+    final aiRepository = await _repositoryFactory.createDefault();
+
     final indexResult = await _chunkingService.generateIndexFromTextWithAi(
-      aiService: _aiService,
+      aiRepository: aiRepository,
       content: content,
       generationMode: generationMode,
       documentId: documentId,
