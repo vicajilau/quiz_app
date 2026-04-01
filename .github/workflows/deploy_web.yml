@@ -3,6 +3,11 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'lib/**/*.dart'
+      - 'web/**'
+      - 'pubspec.yaml'
+      - '.github/workflows/deploy_web.yml'
   workflow_dispatch:
 
 permissions:
