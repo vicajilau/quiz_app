@@ -16,6 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
@@ -125,15 +126,25 @@ class _AddEditChunkDialogState extends State<AddEditChunkDialog> {
               onChanged: (_) => setState(() {}),
             ),
             const SizedBox(height: 16),
-            QuizdyFieldLabel(label: widget.localizations.sectionContentLabel),
+            QuizdyFieldLabel(
+              label: widget.localizations.sectionDescriptionLabel,
+            ),
             const SizedBox(height: 6),
-            Expanded(
-              child: QuizdyTextField(
-                controller: _textController,
-                hint: widget.localizations.sectionContentHint,
-                minLines: 1,
-                maxLines: null,
-                keyboardType: TextInputType.multiline,
+            QuizdyTextField(
+              controller: _textController,
+              hint: widget.localizations.sectionDescriptionHint,
+              minLines: 4,
+              maxLines: null,
+              keyboardType: TextInputType.multiline,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              widget.localizations.sectionDescriptionAiHint,
+              style: TextStyle(
+                fontSize: 12,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? AppTheme.zinc400
+                    : AppTheme.zinc500,
               ),
             ),
             const SizedBox(height: 24),

@@ -889,13 +889,17 @@
   "@sectionTitleHint": {
     "description": "Hint for section title input field in add/edit section dialog"
   },
-  "sectionContentLabel": "Περιεχόμενο",
-  "@sectionContentLabel": {
-    "description": "Label for section content input field in add/edit section dialog"
+  "sectionDescriptionLabel": "Περιγραφή",
+  "@sectionDescriptionLabel": {
+    "description": "Label for section description input field in add/edit section dialog"
   },
-  "sectionContentHint": "Εισάγετε περιεχόμενο ενότητας",
-  "@sectionContentHint": {
-    "description": "Hint for section content input field in add/edit section dialog"
+  "sectionDescriptionHint": "Εισάγετε περιγραφή ενότητας",
+  "@sectionDescriptionHint": {
+    "description": "Hint for section description input field in add/edit section dialog"
+  },
+  "sectionDescriptionAiHint": "Αυτές οι πληροφορίες θα χρησιμοποιηθούν αργότερα από την ΤΝ για τη δημιουργία εκπαιδευτικού περιεχομένου.",
+  "@sectionDescriptionAiHint": {
+    "description": "Helper text shown below section description input, indicating AI will use this information later"
   },
   "generateSectionsWithAI": "Δημιουργία ενοτήτων με AI",
   "addSectionsWithAI": "Προσθήκη ενοτήτων με AI",

@@ -2270,13 +2270,17 @@
   "@sectionTitleHint": {
     "description": "Hint for section title input field in add/edit section dialog"
   },
-  "sectionContentLabel": "المحتوى",
-  "@sectionContentLabel": {
-    "description": "Label for section content input field in add/edit section dialog"
+  "sectionDescriptionLabel": "الوصف",
+  "@sectionDescriptionLabel": {
+    "description": "Label for section description input field in add/edit section dialog"
   },
-  "sectionContentHint": "أدخل محتوى القسم",
-  "@sectionContentHint": {
-    "description": "Hint for section content input field in add/edit section dialog"
+  "sectionDescriptionHint": "أدخل وصف القسم",
+  "@sectionDescriptionHint": {
+    "description": "Hint for section description input field in add/edit section dialog"
+  },
+  "sectionDescriptionAiHint": "سيتم استخدام هذه المعلومات لاحقًا بواسطة الذكاء الاصطناعي لإنشاء محتوى الدراسة.",
+  "@sectionDescriptionAiHint": {
+    "description": "Helper text shown below section description input, indicating AI will use this information later"
   },
   "generateSectionsWithAI": "إنشاء أقسام باستخدام الذكاء الاصطناعي",
   "@generateSectionsWithAI": {

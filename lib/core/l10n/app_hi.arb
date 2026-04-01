@@ -1895,13 +1895,17 @@
   "@sectionTitleHint": {
     "description": "Hint for section title input field in add/edit section dialog"
   },
-  "sectionContentLabel": "सामग्री",
-  "@sectionContentLabel": {
-    "description": "Label for section content input field in add/edit section dialog"
+  "sectionDescriptionLabel": "विवरण",
+  "@sectionDescriptionLabel": {
+    "description": "Label for section description input field in add/edit section dialog"
   },
-  "sectionContentHint": "अनुभाग सामग्री दर्ज करें",
-  "@sectionContentHint": {
-    "description": "Hint for section content input field in add/edit section dialog"
+  "sectionDescriptionHint": "अनुभाग विवरण दर्ज करें",
+  "@sectionDescriptionHint": {
+    "description": "Hint for section description input field in add/edit section dialog"
+  },
+  "sectionDescriptionAiHint": "इस जानकारी का उपयोग बाद में एआई द्वारा अध्ययन सामग्री बनाने के लिए किया जाएगा।",
+  "@sectionDescriptionAiHint": {
+    "description": "Helper text shown below section description input, indicating AI will use this information later"
   },
   "generateSectionsWithAI": "AI के साथ अनुभाग उत्पन्न करें",
   "addSectionsWithAI": "AI के साथ अनुभाग जोड़ें",
