@@ -228,7 +228,9 @@ class AiGenerationConfigSection extends StatelessWidget {
 
         // Option 1: Auto Document
         Tooltip(
-          message: !hasFile ? localizations.aiDifficultyRequiresFileTooltip : '',
+          message: !hasFile
+              ? localizations.aiDifficultyRequiresFileTooltip
+              : '',
           triggerMode: TooltipTriggerMode.tap,
           child: QuizdySelectableCard(
             icon: LucideIcons.fileText,
@@ -265,68 +267,48 @@ class AiGenerationConfigSection extends StatelessWidget {
                   color: colors.subtitle,
                   size: 16,
                 ),
-                dropdownColor: isDark
-                    ? const Color(0xFF27272A)
-                    : Colors.white,
+                dropdownColor: isDark ? const Color(0xFF27272A) : Colors.white,
                 items: [
                   DropdownMenuItem(
                     value: AiDifficultyLevel.elementary,
                     child: Text(
                       localizations.aiDifficultyElementary,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: colors.title,
-                      ),
+                      style: TextStyle(fontSize: 14, color: colors.title),
                     ),
                   ),
                   DropdownMenuItem(
                     value: AiDifficultyLevel.highSchool,
                     child: Text(
                       localizations.aiDifficultyHighSchool,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: colors.title,
-                      ),
+                      style: TextStyle(fontSize: 14, color: colors.title),
                     ),
                   ),
                   DropdownMenuItem(
                     value: AiDifficultyLevel.bachelors,
                     child: Text(
                       localizations.aiDifficultyBachelors,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: colors.title,
-                      ),
+                      style: TextStyle(fontSize: 14, color: colors.title),
                     ),
                   ),
                   DropdownMenuItem(
                     value: AiDifficultyLevel.university,
                     child: Text(
                       localizations.aiDifficultyUniversity,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: colors.title,
-                      ),
+                      style: TextStyle(fontSize: 14, color: colors.title),
                     ),
                   ),
                   DropdownMenuItem(
                     value: AiDifficultyLevel.masters,
                     child: Text(
                       localizations.aiDifficultyMasters,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: colors.title,
-                      ),
+                      style: TextStyle(fontSize: 14, color: colors.title),
                     ),
                   ),
                   DropdownMenuItem(
                     value: AiDifficultyLevel.doctorate,
                     child: Text(
                       localizations.aiDifficultyDoctorate,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: colors.title,
-                      ),
+                      style: TextStyle(fontSize: 14, color: colors.title),
                     ),
                   ),
                 ],

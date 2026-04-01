@@ -137,7 +137,8 @@ class _QuestionOptionRowState extends State<QuestionOptionRow>
                 QuizdyTextField(
                   controller: widget.controller,
                   hint: '${localizations.optionLabel} ${widget.index + 1}',
-                  errorText: widget.optionsError != null &&
+                  errorText:
+                      widget.optionsError != null &&
                           widget.controller.text.trim().isEmpty &&
                           widget.questionType != QuestionType.trueFalse
                       ? localizations.optionEmptyError

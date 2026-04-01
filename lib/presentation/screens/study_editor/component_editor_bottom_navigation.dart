@@ -175,8 +175,9 @@ class _ComponentEditorBottomNavigationState
                 final idealWidth =
                     (safeFlexUnitWidth * totalFlex) + (gap * (buttonCount - 1));
                 final isScrollable = idealWidth > availableWidth;
-                final effectiveWidth =
-                    isScrollable ? availableWidth : idealWidth;
+                final effectiveWidth = isScrollable
+                    ? availableWidth
+                    : idealWidth;
 
                 return Column(
                   mainAxisSize: MainAxisSize.min,
@@ -189,9 +190,11 @@ class _ComponentEditorBottomNavigationState
                         child: !isScrollable
                             ? Row(
                                 children: [
-                                  for (int i = 0;
-                                      i < buttonData.length;
-                                      i++) ...[
+                                  for (
+                                    int i = 0;
+                                    i < buttonData.length;
+                                    i++
+                                  ) ...[
                                     Expanded(
                                       flex: buttonData[i].flex,
                                       child: buttonData[i].button,
@@ -211,34 +214,38 @@ class _ComponentEditorBottomNavigationState
                                             PointerDeviceKind.mouse,
                                           },
                                         ),
-                                    child: NotificationListener<
-                                      ScrollMetricsNotification
-                                    >(
-                                      onNotification: (notification) {
-                                        _updateShadows();
-                                        return true;
-                                      },
-                                      child: SingleChildScrollView(
-                                        controller: _scrollController,
-                                        scrollDirection: Axis.horizontal,
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            for (int i = 0;
-                                                i < buttonData.length;
-                                                i++) ...[
-                                              SizedBox(
-                                                width: safeFlexUnitWidth *
-                                                    buttonData[i].flex,
-                                                child: buttonData[i].button,
-                                              ),
-                                              if (i < buttonData.length - 1)
-                                                const SizedBox(width: gap),
-                                            ],
-                                          ],
+                                    child:
+                                        NotificationListener<
+                                          ScrollMetricsNotification
+                                        >(
+                                          onNotification: (notification) {
+                                            _updateShadows();
+                                            return true;
+                                          },
+                                          child: SingleChildScrollView(
+                                            controller: _scrollController,
+                                            scrollDirection: Axis.horizontal,
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                for (
+                                                  int i = 0;
+                                                  i < buttonData.length;
+                                                  i++
+                                                ) ...[
+                                                  SizedBox(
+                                                    width:
+                                                        safeFlexUnitWidth *
+                                                        buttonData[i].flex,
+                                                    child: buttonData[i].button,
+                                                  ),
+                                                  if (i < buttonData.length - 1)
+                                                    const SizedBox(width: gap),
+                                                ],
+                                              ],
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
                                   ),
                                   if (_showLeftShadow)
                                     Positioned(

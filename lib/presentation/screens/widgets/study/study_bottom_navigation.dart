@@ -99,9 +99,10 @@ class StudyBottomNavigation extends StatelessWidget {
                         context: context,
                         builder: (context) => CustomConfirmDialog(
                           title: localizations.deleteButton,
-                          message: localizations.deleteDuplicatesConfirmationMessage(
-                            state.duplicateCount,
-                          ),
+                          message: localizations
+                              .deleteDuplicatesConfirmationMessage(
+                                state.duplicateCount,
+                              ),
                           confirmText: localizations.deleteButton,
                           isDestructive: true,
                         ),

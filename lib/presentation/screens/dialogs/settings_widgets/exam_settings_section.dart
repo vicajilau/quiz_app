@@ -46,9 +46,7 @@ class _ExamSettingsSectionState extends State<ExamSettingsSection> {
   @override
   void initState() {
     super.initState();
-    _minutesController = TextEditingController(
-      text: widget.minutes.toString(),
-    );
+    _minutesController = TextEditingController(text: widget.minutes.toString());
   }
 
   @override
@@ -106,13 +104,18 @@ class _ExamSettingsSectionState extends State<ExamSettingsSection> {
                   ],
                 ),
               ),
-              QuizdySwitch(value: widget.enabled, onChanged: widget.onEnabledChanged),
+              QuizdySwitch(
+                value: widget.enabled,
+                onChanged: widget.onEnabledChanged,
+              ),
             ],
           ),
         ),
         if (widget.enabled) ...[
           const SizedBox(height: 16),
-          QuizdyFieldLabel(label: AppLocalizations.of(context)!.timeLimitMinutes),
+          QuizdyFieldLabel(
+            label: AppLocalizations.of(context)!.timeLimitMinutes,
+          ),
           const SizedBox(height: 8),
           QuizdyTextField(
             controller: _minutesController,

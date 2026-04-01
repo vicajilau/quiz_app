@@ -182,8 +182,7 @@ class _TypeItem extends StatelessWidget {
                 name,
                 style: TextStyle(
                   fontSize: 13,
-                  fontWeight:
-                      isSelected ? FontWeight.w500 : FontWeight.normal,
+                  fontWeight: isSelected ? FontWeight.w500 : FontWeight.normal,
                   color: isSelected ? colors.title : colors.subtitle,
                 ),
                 overflow: TextOverflow.ellipsis,

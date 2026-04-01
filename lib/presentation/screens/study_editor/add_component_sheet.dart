@@ -281,4 +281,3 @@ class _ComponentTypeCard extends StatelessWidget {
     );
   }
 }
-
