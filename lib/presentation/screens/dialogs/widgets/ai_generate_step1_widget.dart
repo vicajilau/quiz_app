@@ -18,7 +18,6 @@ import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/extensions/app_localizations_extension.dart';
-import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_question_type_chip.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
@@ -28,14 +27,10 @@ import 'package:quizdy/presentation/widgets/ai_service_model_selector.dart';
 
 class AiGenerateStep1Widget extends StatelessWidget {
   final bool isStudyMode;
-  final bool isLoadingServices;
-  final List<AIService> availableServices;
-  final AIService? selectedService;
   final String? selectedModel;
   final String selectedLanguage;
   final Set<AiQuestionType>? selectedQuestionTypes;
   final List<String> supportedLanguages;
-  final ValueChanged<AIService> onServiceChanged;
   final ValueChanged<String?> onModelChanged;
   final ValueChanged<String> onLanguageChanged;
   final ValueChanged<AiQuestionType>? onQuestionTypeToggled;
@@ -44,14 +39,10 @@ class AiGenerateStep1Widget extends StatelessWidget {
   const AiGenerateStep1Widget({
     super.key,
     this.isStudyMode = false,
-    required this.isLoadingServices,
-    required this.availableServices,
-    required this.selectedService,
     required this.selectedModel,
     required this.selectedLanguage,
     this.selectedQuestionTypes,
     required this.supportedLanguages,
-    required this.onServiceChanged,
     required this.onModelChanged,
     required this.onLanguageChanged,
     this.onQuestionTypeToggled,
@@ -228,7 +219,7 @@ class AiGenerateStep1Widget extends StatelessWidget {
                     title: AppLocalizations.of(context)!.next,
                     icon: LucideIcons.arrowRight,
                     expanded: true,
-                    onPressed: selectedService != null ? onNext : null,
+                    onPressed: selectedModel != null ? onNext : null,
                   ),
                 ),
               ],

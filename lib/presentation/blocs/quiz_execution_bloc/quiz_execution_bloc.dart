@@ -22,19 +22,17 @@ import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_eve
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_scoring_helper.dart';
 import 'package:quizdy/domain/models/quiz/essay_ai_evaluation.dart';
-import 'package:quizdy/data/services/ai/ai_service_selector.dart';
+import 'package:quizdy/core/service_locator.dart';
+import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
-import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/core/extensions/string_extension.dart';
 
 /// BLoC for managing quiz execution state and logic.
 class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
-  final AIServiceSelector aiServiceSelector;
-  final ConfigurationService configurationService;
+  final AiRepositoryFactory aiRepositoryFactory;
   QuizExecutionBloc({
-    required this.aiServiceSelector,
-    required this.configurationService,
+    required this.aiRepositoryFactory,
   }) : super(QuizExecutionInitial()) {
     // Handle quiz start
     on<QuizExecutionStarted>((event, emit) {
@@ -259,7 +257,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
           _emitQuizCompleted(
             emit,
             currentState,
-            isAiAvailable: await configurationService.getIsAiAvailable(),
+            isAiAvailable: await ServiceLocator.getIt<ConfigurationService>().getIsAiAvailable(),
           );
           return;
         }
@@ -419,38 +417,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
     }
 
     try {
-      final availableServices = await aiServiceSelector.getAvailableServices();
-      if (availableServices.isEmpty) {
-        add(
-          EssayAiEvaluationReceived(
-            questionIndex,
-            EssayAiEvaluation.error(
-              localizations.aiAssistantRequiresApiKeyError,
-            ),
-          ),
-        );
-        return;
-      }
-
-      final savedServiceName = await configurationService.getDefaultAIService();
-      final savedModel = await configurationService.getDefaultAIModel();
-
-      AIService? service;
-      if (savedServiceName != null &&
-          availableServices.any((s) => s.serviceName == savedServiceName)) {
-        service = availableServices.firstWhere(
-          (s) => s.serviceName == savedServiceName,
-        );
-      } else {
-        service = availableServices.first;
-      }
-
-      String? model;
-      if (savedModel != null && service.availableModels.contains(savedModel)) {
-        model = savedModel;
-      } else {
-        model = service.defaultModel;
-      }
+      final repository = await aiRepositoryFactory.createDefault();
 
       final prompt = AiQuestionGenerationService.buildEvaluationPrompt(
         question.text,
@@ -459,10 +426,9 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
         localizations,
       );
 
-      final evaluationResponse = await service.getChatResponse(
+      final evaluationResponse = await repository.sendMessages(
         prompt,
         localizations,
-        model: model,
       );
 
       String feedback = evaluationResponse;
