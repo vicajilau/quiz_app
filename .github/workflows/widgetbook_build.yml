@@ -23,7 +23,7 @@ jobs:
         working-directory: widgetbook
         run: |
             flutter pub get
-            dart run build_runner build -d
+            flutter analyze
             flutter build web -t lib/main.dart
 
       - name: Install Widgetbook CLI
