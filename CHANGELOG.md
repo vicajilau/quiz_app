@@ -5,7 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.11.0]
+## [1.12.0]
+
+## [1.11.0] - 2026-04-01
 
 - fix: Improved Study section editing flow by opening edit directly on page 0, allowing chunk editing before downloading, blocking empty/invalid saves, and marking manually edited created sections as `downloaded` when saved with content.
 - feat: Added "Delete Duplicates" button to quiz editor bottom bar, using the same deletion confirmation logic and banner color styling.
@@ -21,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat: Added export Study into PDF feature.
 - fix: Implemented `Edit` and `Generate` buttons in `Study Sections`.
 
-## [1.10.0] -2026-03-17
+## [1.10.0] - 2026-03-17
 
 - ui: Added divider to quiz navigation footer, visible only when card content overflows below the footer.
 - refactor: Extracted empty state into a reusable `EmptyStateView` widget and applied it to the Quiz Preview and Study Mode index screens.
