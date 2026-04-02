@@ -1,5 +1,10 @@
 name: Widgetbook Cloud Hosting
-on: push
+on:
+  push:
+    paths:
+      - 'widgetbook/**'
+      - '.github/workflows/widgetbook_build.yml'
+  workflow_dispatch:
 
 jobs:
   widgetbook-cloud-hosting:
@@ -24,6 +29,7 @@ jobs:
         run: |
             flutter pub get
             flutter analyze
+            dart run build_runner build -d
             flutter build web -t lib/main.dart
 
       - name: Install Widgetbook CLI
