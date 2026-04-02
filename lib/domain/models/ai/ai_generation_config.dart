@@ -13,7 +13,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';
@@ -35,10 +34,7 @@ class AiQuestionGenerationConfig {
   /// The source text or topic description to generate questions from.
   final String content;
 
-  /// The preferred AI service provider (e.g., OpenAI, Gemini).
-  final AIService? preferredService;
-
-  /// The specific model version to use for the selected AI service.
+  /// The specific model version to use for generation.
   final String? preferredModel;
 
   /// Optional file attachment containing source material.
@@ -70,7 +66,6 @@ class AiQuestionGenerationConfig {
     required this.questionTypes,
     required this.language,
     required this.content,
-    this.preferredService,
     this.preferredModel,
     this.file,
     this.generationMode = AiGenerationMode.text,
@@ -86,7 +81,6 @@ class AiQuestionGenerationConfig {
     List<AiQuestionType>? questionTypes,
     String? language,
     String? content,
-    AIService? preferredService,
     String? preferredModel,
     AiFileAttachment? file,
     AiGenerationMode? generationMode,
@@ -100,7 +94,6 @@ class AiQuestionGenerationConfig {
       questionTypes: questionTypes ?? this.questionTypes,
       language: language ?? this.language,
       content: content ?? this.content,
-      preferredService: preferredService ?? this.preferredService,
       preferredModel: preferredModel ?? this.preferredModel,
       file: file ?? this.file,
       generationMode: generationMode ?? this.generationMode,

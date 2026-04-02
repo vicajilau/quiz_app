@@ -16,7 +16,6 @@
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 
 class AiStudyGenerationStoredSettings {
-  final String? serviceName;
   final String? modelName;
   final String? language;
   final String? draftText;
@@ -24,7 +23,6 @@ class AiStudyGenerationStoredSettings {
   final AiDifficultyLevel? difficultyLevel;
 
   const AiStudyGenerationStoredSettings({
-    this.serviceName,
     this.modelName,
     this.language,
     this.draftText,
