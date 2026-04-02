@@ -21,9 +21,6 @@ import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
 import 'package:quizdy/data/services/ai/ai_document_chunking_service.dart';
 import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
-import 'package:quizdy/data/services/ai/ai_service_selector.dart';
-import 'package:quizdy/data/services/ai/gemini_service.dart';
-import 'package:quizdy/data/services/ai/openai_service.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 
@@ -65,27 +62,6 @@ class ServiceLocator {
       ConfigurationService(sharedPreferences: sharedPreferences),
     );
 
-    // Servicies
-    getIt.registerSingleton<GeminiService>(
-      GeminiService(
-        dioClient: dioClient,
-        configurationService: configurationService,
-      ),
-    );
-    getIt.registerSingleton<OpenAIService>(
-      OpenAIService(
-        dioClient: dioClient,
-        configurationService: configurationService,
-      ),
-    );
-
-    getIt.registerSingleton<AIServiceSelector>(
-      AIServiceSelector(
-        geminiService: getIt.get<GeminiService>(),
-        openAIService: getIt.get<OpenAIService>(),
-      ),
-    );
-
     getIt.registerSingleton<AiRepositoryFactory>(
       AiRepositoryFactory(
         dioClient: dioClient,
@@ -123,8 +99,7 @@ class ServiceLocator {
     );
     getIt.registerFactory<QuizExecutionBloc>(
       () => QuizExecutionBloc(
-        aiServiceSelector: getIt.get<AIServiceSelector>(),
-        configurationService: getIt.get<ConfigurationService>(),
+        aiRepositoryFactory: getIt.get<AiRepositoryFactory>(),
       ),
     );
   }
