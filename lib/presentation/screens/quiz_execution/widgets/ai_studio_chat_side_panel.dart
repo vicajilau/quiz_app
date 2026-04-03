@@ -20,9 +20,10 @@ import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/ai_assistant_theme.dart';
 import 'package:quizdy/core/extensions/focus_node_extension.dart';
+import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
-import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
+import 'package:quizdy/domain/models/ai/ai_model_catalog.dart';
 import 'package:quizdy/domain/models/ai/chat_message.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
@@ -63,7 +64,6 @@ class AiStudioChatSidePanelState extends State<AiStudioChatSidePanel> {
 
   final List<ChatMessage> _messages = [];
 
-  AIService? _selectedService;
   String? _selectedModel;
   String? _lastUserQuestion;
 
@@ -164,27 +164,12 @@ class AiStudioChatSidePanelState extends State<AiStudioChatSidePanel> {
         return;
       }
 
-      if (_selectedService == null) {
-        setState(() {
-          _messages.add(
-            ChatMessage(
-              content:
-                  '${localizations.aiErrorResponse}\n\n${localizations.configureApiKeyMessage}',
-              isUser: false,
-              isError: true,
-            ),
-          );
-          _isLoading = false;
-        });
-        return;
-      }
-
       final prompt = _buildPrompt(userText);
-      final response = await _selectedService!.getChatResponse(
-        prompt,
-        localizations,
-        model: _selectedModel,
-      );
+      final factory = ServiceLocator.getIt<AiRepositoryFactory>();
+      final repository = _selectedModel != null
+          ? factory.createForModel(_selectedModel!)
+          : await factory.createDefault();
+      final response = await repository.sendMessages(prompt, localizations);
 
       final processedResponse = _preprocessResponse(response);
 
@@ -246,7 +231,7 @@ class AiStudioChatSidePanelState extends State<AiStudioChatSidePanel> {
             isError: message.isError,
             aiServiceName: message.isUser
                 ? null
-                : _selectedService?.serviceName,
+                : AiModelCatalog.providerDisplayNames[AiModelCatalog.forModelId(_selectedModel ?? '')?.providerId ?? ''],
             onRetry: message.isError ? () => _retryLastQuestion(i) : null,
           ),
         ),
@@ -372,9 +357,6 @@ class AiStudioChatSidePanelState extends State<AiStudioChatSidePanel> {
               const SizedBox(height: 20),
 
               AiServiceModelSelector(
-                onServiceChanged: (service) {
-                  setState(() => _selectedService = service);
-                },
                 onModelChanged: (model) {
                   setState(() => _selectedModel = model);
                 },

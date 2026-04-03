@@ -16,8 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quizdy/data/services/ai/ai_service_selector.dart';
-import 'package:quizdy/data/services/configuration_service.dart';
+import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
@@ -36,10 +35,7 @@ class FakeQuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState>
   FakeQuizExecutionBloc(super.initialState);
 
   @override
-  AIServiceSelector get aiServiceSelector => throw UnimplementedError();
-
-  @override
-  ConfigurationService get configurationService => throw UnimplementedError();
+  AiRepositoryFactory get aiRepositoryFactory => throw UnimplementedError();
 }
 
 void main() {

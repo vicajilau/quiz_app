@@ -17,24 +17,13 @@ import 'package:flutter/material.dart';
 import 'package:gpt_markdown/gpt_markdown.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/extensions/ai_assistant_theme.dart';
-import 'package:quizdy/data/services/ai/ai_service.dart';
-
 /// A container that displays the result of an AI essay evaluation.
-///
-/// Shows the evaluation text rendered as Markdown, with an optional
-/// header showing the service name badge.
 class AiEvaluationResult extends StatelessWidget {
   /// The AI evaluation text to display.
   final String? aiEvaluation;
 
   /// An optional error message to display.
   final String? errorMessage;
-
-  /// The AI service used for evaluation (shown as a badge when provided).
-  final AIService? selectedService;
-
-  /// Whether to show the service name as a badge in the header.
-  final bool showServiceBadge;
 
   /// Callback when the retry evaluation button is pressed.
   final VoidCallback? onRetry;
@@ -44,8 +33,6 @@ class AiEvaluationResult extends StatelessWidget {
     super.key,
     required this.aiEvaluation,
     this.errorMessage,
-    this.selectedService,
-    this.showServiceBadge = false,
     this.onRetry,
   });
 
@@ -89,32 +76,6 @@ class AiEvaluationResult extends StatelessWidget {
                       color: theme.colorScheme.primary,
                     ),
                   ),
-                  if (showServiceBadge && selectedService != null) ...[
-                    const SizedBox(width: 8),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 2,
-                      ),
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.primary.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: theme.colorScheme.primary.withValues(
-                            alpha: 0.3,
-                          ),
-                        ),
-                      ),
-                      child: Text(
-                        selectedService!.serviceName,
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w500,
-                          color: theme.colorScheme.primary,
-                        ),
-                      ),
-                    ),
-                  ],
                 ],
               ),
             ),

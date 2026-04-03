@@ -16,9 +16,7 @@
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quizdy/core/service_locator.dart';
-import 'package:quizdy/data/services/ai/ai_service_selector.dart';
-import 'package:quizdy/data/services/ai/gemini_service.dart';
-import 'package:quizdy/data/services/ai/openai_service.dart';
+import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 
 /// Registers the minimum services needed for tests that access GetIt.
@@ -39,22 +37,16 @@ Future<ConfigurationService> setUpTestServiceLocator() async {
   return configurationService;
 }
 
-/// Creates a real [AIServiceSelector] with real (but unconfigured) services.
+/// Creates a real [AiRepositoryFactory] with real (but unconfigured) services.
 ///
 /// Useful for tests that need to instantiate [QuizExecutionBloc].
-Future<AIServiceSelector> createTestAIServiceSelector(
+AiRepositoryFactory createTestAiRepositoryFactory(
   ConfigurationService configurationService,
-) async {
-  final dio = Dio();
-  final gemini = GeminiService(
-    dioClient: dio,
+) {
+  return AiRepositoryFactory(
+    dioClient: Dio(),
     configurationService: configurationService,
   );
-  final openAI = OpenAIService(
-    dioClient: dio,
-    configurationService: configurationService,
-  );
-  return AIServiceSelector(geminiService: gemini, openAIService: openAI);
 }
 
 /// Unregisters services registered by [setUpTestServiceLocator].

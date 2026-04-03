@@ -18,10 +18,7 @@ import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 
 /// DTO representing the saved settings for AI question generation.
 class AiGenerationStoredSettings {
-  /// The name of the selected AI service (e.g., 'Google Gemini', 'OpenAI').
-  final String? serviceName;
-
-  /// The name of the selected model for the service.
+  /// The name of the selected model for generation.
   final String? modelName;
 
   /// The language code selected for generation.
@@ -50,7 +47,6 @@ class AiGenerationStoredSettings {
 
   /// Creates a new instance of [AiGenerationStoredSettings].
   const AiGenerationStoredSettings({
-    this.serviceName,
     this.modelName,
     this.language,
     this.questionCount,

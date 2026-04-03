@@ -20,8 +20,6 @@ import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
-import 'package:quizdy/data/services/ai/ai_service.dart';
-import 'package:quizdy/data/services/ai/ai_service_selector.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_stored_settings.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';
@@ -52,10 +50,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
 
   Set<AiQuestionType> _selectedQuestionTypes = {AiQuestionType.random};
   String _selectedLanguage = 'en';
-  List<AIService> _availableServices = [];
-  AIService? _selectedService;
   String? _selectedModel;
-  bool _isLoadingServices = true;
 
   AiFileAttachment? _fileAttachment;
   bool _isAutoDifficulty = true;
@@ -80,44 +75,11 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   }
 
   Future<void> _loadData() async {
-    await _loadAvailableServices();
     await _loadDraft();
-  }
-
-  Future<void> _loadAvailableServices() async {
-    setState(() {
-      _isLoadingServices = true;
-    });
-
-    try {
-      final services = await ServiceLocator.getIt<AIServiceSelector>()
-          .getAvailableServices();
-      if (mounted) {
-        setState(() {
-          _availableServices = services;
-          // Default to first service if available and none selected (and no draft)
-          if (_selectedService == null && services.isNotEmpty) {
-            // Logic to prefer saved default if draft doesn't override
-          }
-          _isLoadingServices = false;
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _isLoadingServices = false;
-        });
-      }
-    }
   }
 
   Future<void> _loadDraft() async {
     final keepDraft = await configurationService.getAiKeepDraft();
-    AIService? serviceToSet;
-    String? modelToSet;
-
-    // Use a local copy of available services for safety in async gap
-    final services = _availableServices;
 
     if (keepDraft) {
       final settings = await configurationService.getAiGenerationSettings();
@@ -160,6 +122,10 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
               _selectedQuestionTypes = types;
             }
           }
+
+          if (settings.modelName != null) {
+            _selectedModel = settings.modelName;
+          }
         });
       }
 
@@ -174,65 +140,6 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
           });
         }
       }
-
-      // Determine Service
-      if (settings.serviceName != null) {
-        serviceToSet = services
-            .where((s) => s.serviceName == settings.serviceName)
-            .firstOrNull;
-      }
-
-      if (serviceToSet == null && services.isNotEmpty) {
-        final defaultService = await configurationService.getDefaultAIService();
-        if (defaultService != null) {
-          serviceToSet = services
-              .where((s) => s.serviceName == defaultService)
-              .firstOrNull;
-        }
-        serviceToSet ??= services.first;
-      }
-
-      // Determine Model
-      if (settings.modelName != null && serviceToSet != null) {
-        if (serviceToSet.availableModels.contains(settings.modelName)) {
-          modelToSet = settings.modelName;
-        }
-      }
-
-      if (modelToSet == null && serviceToSet != null) {
-        final defaultModel = await configurationService.getDefaultAIModel();
-        if (defaultModel != null &&
-            serviceToSet.availableModels.contains(defaultModel)) {
-          modelToSet = defaultModel;
-        } else {
-          modelToSet = serviceToSet.defaultModel;
-        }
-      }
-    } else {
-      // Establish defaults if no draft
-      if (services.isNotEmpty) {
-        if (mounted) {
-          setState(() {
-            _questionCount = 5;
-            _questionCountController.text = '5';
-          });
-        }
-        final defaultService = await configurationService.getDefaultAIService();
-        if (defaultService != null) {
-          serviceToSet = services
-              .where((s) => s.serviceName == defaultService)
-              .firstOrNull;
-        }
-        serviceToSet ??= services.first;
-        modelToSet = serviceToSet.defaultModel;
-      }
-    }
-
-    if (mounted) {
-      setState(() {
-        if (serviceToSet != null) _selectedService = serviceToSet;
-        if (modelToSet != null) _selectedModel = modelToSet;
-      });
     }
   }
 
@@ -313,7 +220,6 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
       }
 
       final settings = AiGenerationStoredSettings(
-        serviceName: _selectedService?.serviceName,
         modelName: _selectedModel,
         language: _selectedLanguage,
         questionCount: _questionCount,
@@ -380,19 +286,10 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   Widget build(BuildContext context) {
     if (_currentStep == 0) {
       return AiGenerateStep1Widget(
-        isLoadingServices: _isLoadingServices,
-        availableServices: _availableServices,
-        selectedService: _selectedService,
         selectedModel: _selectedModel,
         selectedLanguage: _selectedLanguage,
         selectedQuestionTypes: _selectedQuestionTypes,
         supportedLanguages: _supportedLanguages,
-        onServiceChanged: (service) {
-          setState(() {
-            _selectedService = service;
-            _selectedModel = service.defaultModel;
-          });
-        },
         onModelChanged: (value) {
           setState(() {
             _selectedModel = value;
@@ -454,7 +351,6 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
         fileAttachment: _fileAttachment,
         selectedQuestionTypes: _selectedQuestionTypes,
         selectedLanguage: _selectedLanguage,
-        selectedService: _selectedService,
         selectedModel: _selectedModel,
         onPickFile: _pickFile,
         onPasteFromClipboard: _pasteFromClipboard,

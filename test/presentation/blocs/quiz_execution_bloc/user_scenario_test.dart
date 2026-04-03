@@ -15,7 +15,7 @@
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quizdy/data/services/ai/ai_service_selector.dart';
+import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
@@ -30,16 +30,13 @@ void main() {
   group('QuizExecutionBloc User Scenario', () {
     late QuizExecutionBloc quizExecutionBloc;
     late ConfigurationService configurationService;
-    late AIServiceSelector aiServiceSelector;
+    late AiRepositoryFactory aiRepositoryFactory;
 
     setUp(() async {
       configurationService = await setUpTestServiceLocator();
-      aiServiceSelector = await createTestAIServiceSelector(
-        configurationService,
-      );
+      aiRepositoryFactory = createTestAiRepositoryFactory(configurationService);
       quizExecutionBloc = QuizExecutionBloc(
-        aiServiceSelector: aiServiceSelector,
-        configurationService: configurationService,
+        aiRepositoryFactory: aiRepositoryFactory,
       );
     });
 

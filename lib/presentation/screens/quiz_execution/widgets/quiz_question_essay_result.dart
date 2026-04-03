@@ -17,15 +17,13 @@ import 'package:flutter/material.dart';
 import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
+import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
-import 'package:quizdy/data/services/ai/ai_service.dart';
-import 'package:quizdy/data/services/ai/ai_service_selector.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/quiz/essay_ai_evaluation.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'package:quizdy/presentation/screens/quiz_execution/widgets/ai_evaluate_button.dart';
 import 'package:quizdy/presentation/screens/quiz_execution/widgets/ai_evaluation_result.dart';
-import 'package:quizdy/presentation/screens/quiz_execution/widgets/ai_service_selector.dart';
 
 /// A widget that displays the result of an essay question.
 ///
@@ -57,8 +55,6 @@ class _QuizQuestionEssayResultState extends State<QuizQuestionEssayResult> {
   bool _hasAPIKey = false;
   bool _isEvaluating = false;
   String? _aiEvaluation;
-  List<AIService> _availableServices = [];
-  AIService? _selectedService;
   String? _errorMessage;
 
   @override
@@ -71,24 +67,23 @@ class _QuizQuestionEssayResultState extends State<QuizQuestionEssayResult> {
   Future<void> _checkAIAvailability() async {
     final aiEnabled = await ServiceLocator.getIt<ConfigurationService>()
         .getIsAiAvailable();
-    final availableServices = await ServiceLocator.getIt<AIServiceSelector>()
-        .getAvailableServices();
+    final geminiKey = await ServiceLocator.getIt<ConfigurationService>()
+        .getGeminiApiKey();
+    final openaiKey = await ServiceLocator.getIt<ConfigurationService>()
+        .getOpenAIApiKey();
 
     if (mounted) {
       setState(() {
         _isAIEnabled = aiEnabled;
-        _hasAPIKey = availableServices.isNotEmpty;
-        _availableServices = availableServices;
-        _selectedService = availableServices.isNotEmpty
-            ? availableServices.first
-            : null;
+        _hasAPIKey = (geminiKey?.isNotEmpty ?? false) ||
+            (openaiKey?.isNotEmpty ?? false);
       });
     }
   }
 
   /// Initiates the AI evaluation process for the essay answer.
   Future<void> _evaluateEssayWithAI() async {
-    if (_isEvaluating || _selectedService == null) return;
+    if (_isEvaluating) return;
 
     setState(() {
       _errorMessage = null;
@@ -98,18 +93,16 @@ class _QuizQuestionEssayResultState extends State<QuizQuestionEssayResult> {
     try {
       final localizations = AppLocalizations.of(context)!;
 
-      // Build the evaluation prompt
-      String prompt = AiQuestionGenerationService.buildEvaluationPrompt(
+      final String prompt = AiQuestionGenerationService.buildEvaluationPrompt(
         widget.result.question.text,
         widget.result.essayAnswer,
         widget.result.question.explanation,
         localizations,
       );
 
-      final evaluation = await _selectedService!.getChatResponse(
-        prompt,
-        localizations,
-      );
+      final repository = await ServiceLocator.getIt<AiRepositoryFactory>()
+          .createDefault();
+      final evaluation = await repository.sendMessages(prompt, localizations);
 
       if (mounted) {
         setState(() {
@@ -234,8 +227,6 @@ class _QuizQuestionEssayResultState extends State<QuizQuestionEssayResult> {
       return AiEvaluationResult(
         aiEvaluation: aiEvaluation.evaluation,
         errorMessage: aiEvaluation.errorMessage,
-        selectedService: _selectedService,
-        showServiceBadge: true,
         onRetry: widget.onRetryEvaluation,
       );
     }
@@ -245,33 +236,14 @@ class _QuizQuestionEssayResultState extends State<QuizQuestionEssayResult> {
       return AiEvaluationResult(
         aiEvaluation: _aiEvaluation,
         errorMessage: _errorMessage,
-        selectedService: _selectedService,
-        showServiceBadge: true,
       );
     }
 
     // 4. Handle Not Evaluated / Action required
     if (widget.result.essayAnswer.trim().isNotEmpty) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AiServiceSelector(
-            availableServices: _availableServices,
-            selectedService: _selectedService,
-            onServiceChanged: (newService) {
-              setState(() {
-                _selectedService = newService;
-                _aiEvaluation = null;
-              });
-            },
-          ),
-          AiEvaluateButton(
-            isEvaluating: _isEvaluating,
-            selectedService: _selectedService,
-            availableServicesCount: _availableServices.length,
-            onEvaluate: _evaluateEssayWithAI,
-          ),
-        ],
+      return AiEvaluateButton(
+        isEvaluating: _isEvaluating,
+        onEvaluate: _evaluateEssayWithAI,
       );
     }
 
