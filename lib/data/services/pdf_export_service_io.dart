@@ -50,7 +50,7 @@ class StudyPdfExportService {
       latexImages: latexImages,
     );
 
-    final result = await FilePicker.platform.saveFile(
+    final result = await FilePicker.saveFile(
       dialogTitle: dialogTitle,
       fileName: fileName,
       bytes: pdfBytes,

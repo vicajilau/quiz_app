@@ -283,7 +283,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
 
   Future<void> _handleChunkImport() async {
     try {
-      FilePickerResult? result = await FilePicker.platform.pickFiles(
+      FilePickerResult? result = await FilePicker.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['quiz'],
       );
@@ -392,7 +392,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
       return;
     }
 
-    final result = await FilePicker.platform.pickFiles(
+    final result = await FilePicker.pickFiles(
       type: FileType.any,
       withData: true,
     );

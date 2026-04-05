@@ -95,7 +95,7 @@ class QuizFileService implements IFileService {
         .split(Platform.pathSeparator)
         .last;
 
-    String? outputFile = await FilePicker.platform.saveFile(
+    String? outputFile = await FilePicker.saveFile(
       dialogTitle: dialogTitle,
       fileName: sanitizedFileName,
       allowedExtensions: ['quiz'],
@@ -143,7 +143,7 @@ class QuizFileService implements IFileService {
   /// - Returns: A `QuizFile` object if a valid file is selected, or `null` if no file is selected.
   @override
   Future<QuizFile?> pickFileContent() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
+    FilePickerResult? result = await FilePicker.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['quiz'],
       allowMultiple: false,
