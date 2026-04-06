@@ -102,7 +102,7 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
 
   Future<void> _handleImportButton() async {
     try {
-      FilePickerResult? result = await FilePicker.platform.pickFiles(
+      FilePickerResult? result = await FilePicker.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['quiz'],
       );
