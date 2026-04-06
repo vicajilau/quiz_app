@@ -44,7 +44,7 @@ class OnboardingMobileLayout extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
+      padding: const EdgeInsets.fromLTRB(0, 20, 0, 40),
       child: Column(
         children: [
           // Page content with floating Skip button
@@ -57,13 +57,16 @@ class OnboardingMobileLayout extends StatelessWidget {
                   itemCount: pages.length,
                   itemBuilder: (context, index) {
                     final page = pages[index];
-                    return OnboardingMobilePageContent(page: page);
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: OnboardingMobilePageContent(page: page),
+                    );
                   },
                 ),
                 if (!state.isLastPage)
                   Positioned(
                     top: 0,
-                    right: 0,
+                    right: 20,
                     child: TextButton(
                       onPressed: onFinish,
                       child: Text(
@@ -91,12 +94,15 @@ class OnboardingMobileLayout extends StatelessWidget {
           const SizedBox(height: 24),
 
           // Nav buttons
-          OnboardingNavButtons(
-            isFirstPage: state.isFirstPage,
-            isLastPage: state.isLastPage,
-            onBack: cubit.previousPage,
-            onNext: cubit.nextPage,
-            onFinish: onFinish,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: OnboardingNavButtons(
+              isFirstPage: state.isFirstPage,
+              isLastPage: state.isLastPage,
+              onBack: cubit.previousPage,
+              onNext: cubit.nextPage,
+              onFinish: onFinish,
+            ),
           ),
         ],
       ),
