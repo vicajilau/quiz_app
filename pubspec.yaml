@@ -53,7 +53,7 @@ dependencies:
   http: ^1.6.0
   crypto: ^3.0.7
   url_launcher: ^6.3.2
-  gpt_markdown: ^1.1.5
+  gpt_markdown: ^1.1.6
   flutter_math_fork: ^0.7.2
   google_fonts: ^8.0.2
   lucide_icons: ^0.257.0
