@@ -88,7 +88,7 @@ class QuizFileService implements IFileService {
     final bytes = utf8.encode(jsonString);
 
     // Open a save dialog for the user to select a file path
-    final pathSaved = await FilePicker.platform.saveFile(
+    final pathSaved = await FilePicker.saveFile(
       dialogTitle: dialogTitle,
       fileName: fileName,
       initialDirectory: quizFile.filePath,
@@ -122,7 +122,7 @@ class QuizFileService implements IFileService {
   @override
   Future<QuizFile?> pickFileContent() async {
     // Open the file picker dialog
-    final result = await FilePicker.platform.pickFiles(
+    final result = await FilePicker.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['quiz'],
     );
