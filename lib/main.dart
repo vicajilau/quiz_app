@@ -32,6 +32,7 @@ import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/blocs/locale_cubit/locale_cubit.dart';
 import 'package:quizdy/presentation/blocs/locale_cubit/locale_state.dart';
 import 'package:quizdy/presentation/screens/dialogs/exit_confirmation_dialog.dart';
+import 'package:quizdy/presentation/widgets/quizdy_text_scale_factor_clamper.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 
 void main() async {
@@ -122,6 +123,9 @@ class _QuizApplicationState extends State<QuizApplication>
             onTap: () => context.hideKeyboard(),
             child: MaterialApp.router(
               routerConfig: appRouter,
+              builder: (_, child) => QuizdyTextScaleFactorClamper(
+                child: child ?? const SizedBox(),
+              ),
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,
               locale: state.locale,
