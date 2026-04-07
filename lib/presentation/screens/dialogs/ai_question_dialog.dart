@@ -19,9 +19,10 @@ import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:quizdy/data/services/configuration_service.dart';
-import 'package:quizdy/data/services/ai/ai_service.dart';
+import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
+import 'package:quizdy/data/services/configuration_service.dart';
+import 'package:quizdy/domain/models/ai/ai_model_catalog.dart';
 import 'package:quizdy/presentation/widgets/ai_service_model_selector.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
@@ -51,8 +52,6 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
   // Chat state
   final List<ChatMessage> _messages = [];
 
-  // Service Selection
-  AIService? _selectedService;
   String? _selectedModel;
 
   // Last user question for retry functionality
@@ -145,34 +144,15 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
         return;
       }
 
-      // Check if we have a selected AI service
-      if (_selectedService == null) {
-        setState(() {
-          _messages.add(
-            ChatMessage(
-              content:
-                  '${localizations.aiErrorResponse}\n\n${localizations.configureApiKeyMessage}',
-              isUser: false,
-              isError: true,
-            ),
-          );
-          _isLoading = false;
-        });
-        return;
-      }
-
       // Build the prompt with question context
       final prompt = _buildPrompt(userText);
 
-      // Make API call to the selected AI service
-      // Note: Passing _selectedModel if the service supports it would be better,
-      // but getChatResponse might not accept it yet.
-      // Assuming getChatResponse uses default or configured model.
-      final response = await _selectedService!.getChatResponse(
-        prompt,
-        localizations,
-        model: _selectedModel,
-      );
+      final factory = ServiceLocator.getIt<AiRepositoryFactory>();
+      final repository = _selectedModel != null
+          ? factory.createForModel(_selectedModel!)
+          : await factory.createDefault();
+
+      final response = await repository.sendMessages(prompt, localizations);
 
       // Preprocess response to fix LaTeX delimiters
       final processedResponse = _preprocessResponse(response);
@@ -308,11 +288,6 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                 children: [
                   // Selectors
                   AiServiceModelSelector(
-                    onServiceChanged: (service) {
-                      setState(() {
-                        _selectedService = service;
-                      });
-                    },
                     onModelChanged: (model) {
                       setState(() {
                         _selectedModel = model;
@@ -353,7 +328,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                               isError: message.isError,
                               aiServiceName: message.isUser
                                   ? null
-                                  : _selectedService?.serviceName,
+                                  : AiModelCatalog.providerDisplayNames[AiModelCatalog.forModelId(_selectedModel ?? '')?.providerId ?? ''],
                               onRetry: message.isError
                                   ? () => _retryLastQuestion(messageIndex)
                                   : null,

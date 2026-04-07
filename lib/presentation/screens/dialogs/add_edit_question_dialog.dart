@@ -220,15 +220,17 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    widget.question == null
-                        ? localizations.addQuestion
-                        : localizations.editQuestion,
-                    style: TextStyle(
-                      fontFamily: 'Plus Jakarta Sans',
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      color: theme.textColor,
+                  Flexible(
+                    child: Text(
+                      widget.question == null
+                          ? localizations.addQuestion
+                          : localizations.editQuestion,
+                      style: TextStyle(
+                        fontFamily: 'Plus Jakarta Sans',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: theme.textColor,
+                      ),
                     ),
                   ),
                   Row(

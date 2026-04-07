@@ -13,7 +13,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
@@ -28,10 +27,7 @@ class AiStudyGenerationConfig {
   /// The source text or topic description to generate study chunks from.
   final String content;
 
-  /// The preferred AI service provider (e.g., OpenAI, Gemini).
-  final AIService? preferredService;
-
-  /// The specific model version to use for the selected AI service.
+  /// The specific model version to use for generation.
   final String? preferredModel;
 
   /// Optional file attachment containing source material.
@@ -68,7 +64,6 @@ class AiStudyGenerationConfig {
   const AiStudyGenerationConfig({
     required this.language,
     required this.content,
-    this.preferredService,
     this.preferredModel,
     this.file,
     this.generationMode = AiGenerationMode.text,

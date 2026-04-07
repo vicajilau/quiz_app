@@ -31,13 +31,11 @@ class ConfigurationService {
   static const String _geminiApiKeyKey = 'gemini_api_key';
   static const String _randomizeAnswersKey = 'randomize_answers';
   static const String _showCorrectAnswerCountKey = 'show_correct_answer_count';
-  static const String _defaultAIServiceKey = 'default_ai_service';
   static const String _defaultAIModelKey = 'default_ai_model';
 
   static const String _aiKeepDraftKey = 'ai_keep_draft';
   static const String _aiDraftTextKey = 'ai_draft_text';
   static const String _aiDraftFilePathKey = 'ai_draft_file_path';
-  static const String _aiGenerationServiceKey = 'ai_generation_service';
   static const String _aiGenerationModelKey = 'ai_generation_model';
   static const String _aiGenerationLanguageKey = 'ai_generation_language';
   static const String _aiGenerationQuestionCountKey =
@@ -52,8 +50,6 @@ class ConfigurationService {
 
   static const String _aiStudyKeepDraftKey = 'ai_study_keep_draft';
   static const String _aiStudyDraftTextKey = 'ai_study_draft_text';
-  static const String _aiStudyGenerationServiceKey =
-      'ai_study_generation_service';
   static const String _aiStudyGenerationModelKey = 'ai_study_generation_model';
   static const String _aiStudyGenerationLanguageKey =
       'ai_study_generation_language';
@@ -228,18 +224,6 @@ class ConfigurationService {
     return prefs.getBool(_showCorrectAnswerCountKey) ?? false;
   }
 
-  /// Saves the default AI service name
-  Future<void> saveDefaultAIService(String serviceName) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_defaultAIServiceKey, serviceName);
-  }
-
-  /// Gets the default AI service name, returns null if not set
-  Future<String?> getDefaultAIService() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_defaultAIServiceKey);
-  }
-
   /// Saves the default AI model
   Future<void> saveDefaultAIModel(String model) async {
     final prefs = await SharedPreferences.getInstance();
@@ -252,10 +236,9 @@ class ConfigurationService {
     return prefs.getString(_defaultAIModelKey);
   }
 
-  /// Deletes the default AI service and model
+  /// Deletes the default AI model setting
   Future<void> deleteDefaultAISettings() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_defaultAIServiceKey);
     await prefs.remove(_defaultAIModelKey);
   }
 
@@ -277,9 +260,6 @@ class ConfigurationService {
   ) async {
     final prefs = await SharedPreferences.getInstance();
 
-    if (settings.serviceName != null) {
-      await prefs.setString(_aiGenerationServiceKey, settings.serviceName!);
-    }
     if (settings.modelName != null) {
       await prefs.setString(_aiGenerationModelKey, settings.modelName!);
     }
@@ -333,7 +313,6 @@ class ConfigurationService {
     final prefs = await SharedPreferences.getInstance();
 
     return AiGenerationStoredSettings(
-      serviceName: prefs.getString(_aiGenerationServiceKey),
       modelName: prefs.getString(_aiGenerationModelKey),
       language: prefs.getString(_aiGenerationLanguageKey),
       questionCount: prefs.getInt(_aiGenerationQuestionCountKey),
@@ -380,12 +359,6 @@ class ConfigurationService {
   ) async {
     final prefs = await SharedPreferences.getInstance();
 
-    if (settings.serviceName != null) {
-      await prefs.setString(
-        _aiStudyGenerationServiceKey,
-        settings.serviceName!,
-      );
-    }
     if (settings.modelName != null) {
       await prefs.setString(_aiStudyGenerationModelKey, settings.modelName!);
     }
@@ -415,7 +388,6 @@ class ConfigurationService {
     final prefs = await SharedPreferences.getInstance();
 
     return AiStudyGenerationStoredSettings(
-      serviceName: prefs.getString(_aiStudyGenerationServiceKey),
       modelName: prefs.getString(_aiStudyGenerationModelKey),
       language: prefs.getString(_aiStudyGenerationLanguageKey),
       draftText: prefs.getString(_aiStudyDraftTextKey),

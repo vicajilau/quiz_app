@@ -22,8 +22,6 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/ai/ai_study_generation_stored_settings.dart';
-import 'package:quizdy/data/services/ai/ai_service.dart';
-import 'package:quizdy/data/services/ai/ai_service_selector.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step1_widget.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step2_widget.dart';
@@ -47,10 +45,7 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
   int _currentStep = 0; // 0: Configuration, 1: Content
 
   String _selectedLanguage = 'en';
-  List<AIService> _availableServices = [];
-  AIService? _selectedService;
   String? _selectedModel;
-  bool _isLoadingServices = true;
 
   AiFileAttachment? _fileAttachment;
   bool _isAutoDifficulty = true;
@@ -70,46 +65,14 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
   }
 
   Future<void> _loadData() async {
-    await _loadAvailableServices();
     await _loadDraft();
-  }
-
-  Future<void> _loadAvailableServices() async {
-    setState(() {
-      _isLoadingServices = true;
-    });
-
-    try {
-      final services = await ServiceLocator.getIt<AIServiceSelector>()
-          .getAvailableServices();
-      if (mounted) {
-        setState(() {
-          _availableServices = services;
-          if (_selectedService == null && services.isNotEmpty) {
-            // Handled in _loadDraft or falls back to first
-          }
-          _isLoadingServices = false;
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _isLoadingServices = false;
-        });
-      }
-    }
   }
 
   Future<void> _loadDraft() async {
     final keepDraft = await configurationService.getAiStudyKeepDraft();
-    AIService? serviceToSet;
-    String? modelToSet;
-
-    final services = _availableServices;
 
     if (keepDraft) {
-      final settings = await configurationService
-          .getAiStudyGenerationSettings();
+      final settings = await configurationService.getAiStudyGenerationSettings();
 
       if (mounted) {
         setState(() {
@@ -128,58 +91,12 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
           if (settings.difficultyLevel != null) {
             _selectedDifficulty = settings.difficultyLevel!;
           }
+
+          if (settings.modelName != null) {
+            _selectedModel = settings.modelName;
+          }
         });
       }
-
-      if (settings.serviceName != null) {
-        serviceToSet = services
-            .where((s) => s.serviceName == settings.serviceName)
-            .firstOrNull;
-      }
-
-      if (serviceToSet == null && services.isNotEmpty) {
-        final defaultService = await configurationService.getDefaultAIService();
-        if (defaultService != null) {
-          serviceToSet = services
-              .where((s) => s.serviceName == defaultService)
-              .firstOrNull;
-        }
-        serviceToSet ??= services.first;
-      }
-
-      if (settings.modelName != null && serviceToSet != null) {
-        if (serviceToSet.availableModels.contains(settings.modelName)) {
-          modelToSet = settings.modelName;
-        }
-      }
-
-      if (modelToSet == null && serviceToSet != null) {
-        final defaultModel = await configurationService.getDefaultAIModel();
-        if (defaultModel != null &&
-            serviceToSet.availableModels.contains(defaultModel)) {
-          modelToSet = defaultModel;
-        } else {
-          modelToSet = serviceToSet.defaultModel;
-        }
-      }
-    } else {
-      if (services.isNotEmpty) {
-        final defaultService = await configurationService.getDefaultAIService();
-        if (defaultService != null) {
-          serviceToSet = services
-              .where((s) => s.serviceName == defaultService)
-              .firstOrNull;
-        }
-        serviceToSet ??= services.first;
-        modelToSet = serviceToSet.defaultModel;
-      }
-    }
-
-    if (mounted) {
-      setState(() {
-        if (serviceToSet != null) _selectedService = serviceToSet;
-        if (modelToSet != null) _selectedModel = modelToSet;
-      });
     }
   }
 
@@ -248,7 +165,6 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
 
     await configurationService.saveAiStudyGenerationSettings(
       AiStudyGenerationStoredSettings(
-        serviceName: _selectedService?.serviceName,
         modelName: _selectedModel,
         language: _selectedLanguage,
         isAutoDifficulty: _isAutoDifficulty,
@@ -260,7 +176,7 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
 
   Future<void> _pickFile() async {
     try {
-      final result = await FilePicker.platform.pickFiles(
+      final result = await FilePicker.pickFiles(
         type: FileType.any,
         withData: true,
       );
@@ -310,18 +226,9 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
     if (_currentStep == 0) {
       return AiGenerateStep1Widget(
         isStudyMode: true,
-        isLoadingServices: _isLoadingServices,
-        availableServices: _availableServices,
-        selectedService: _selectedService,
         selectedModel: _selectedModel,
         selectedLanguage: _selectedLanguage,
         supportedLanguages: _supportedLanguages,
-        onServiceChanged: (service) {
-          setState(() {
-            _selectedService = service;
-            _selectedModel = service.defaultModel;
-          });
-        },
         onModelChanged: (value) {
           setState(() {
             _selectedModel = value;
@@ -345,7 +252,6 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
         textController: _textController,
         fileAttachment: _fileAttachment,
         selectedLanguage: _selectedLanguage,
-        selectedService: _selectedService,
         selectedModel: _selectedModel,
         onPickFile: _pickFile,
         onPasteFromClipboard: _pasteFromClipboard,

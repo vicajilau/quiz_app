@@ -64,12 +64,14 @@ class AiComponentTypeSelectorWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              localizations.aiSelectComponentTypesTitle,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: colors.title,
+            Flexible(
+              child: Text(
+                localizations.aiSelectComponentTypesTitle,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: colors.title,
+                ),
               ),
             ),
             QuizdySwitch(value: enabled, onChanged: onToggle),

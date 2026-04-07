@@ -14,18 +14,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'dart:convert';
+
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
-import 'package:quizdy/data/services/ai/gemini_service.dart';
-import 'package:quizdy/domain/models/quiz/study_page.dart';
-import 'package:quizdy/domain/models/quiz/study_chunk.dart';
-import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
+import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
+import 'package:quizdy/domain/models/quiz/study_page.dart';
 
 /// Service responsible for Just-In-Time (JIT) processing of study chunks.
 class AiJitProcessingService {
   AiJitProcessingService();
+
+  AiRepositoryFactory get _factory =>
+      ServiceLocator.getIt<AiRepositoryFactory>();
 
   /// Processes a [StudyChunk] on-demand to generate its AI summary and UI pages.
   ///
@@ -73,10 +77,10 @@ class AiJitProcessingService {
     );
 
     try {
-      final geminiService = ServiceLocator.getIt<GeminiService>();
+      final repository = await _factory.createDefault();
       final String responseBody;
       if (fileUri != null && fileMimeType != null) {
-        responseBody = await geminiService.getChatResponseWithFileUri(
+        responseBody = await repository.sendMessagesWithFileUri(
           prompt,
           localizations,
           fileUri: fileUri,
@@ -85,14 +89,14 @@ class AiJitProcessingService {
         );
       } else if (originalText != null) {
         final textPrompt = '$prompt\n\nSource text:\n$originalText';
-        responseBody = await geminiService.getChatResponse(
+        responseBody = await repository.sendMessages(
           textPrompt,
           localizations,
           responseMimeType: 'application/json',
         );
       } else {
         // Fallback: Generate content using only metadata
-        responseBody = await geminiService.getChatResponse(
+        responseBody = await repository.sendMessages(
           '$prompt\n\nNo source text available. Generate based on metadata.',
           localizations,
           responseMimeType: 'application/json',

@@ -14,209 +14,53 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:quizdy/core/service_locator.dart';
-import 'package:quizdy/data/services/ai/ai_service.dart';
-import 'package:quizdy/data/services/ai/gemini_service.dart';
+
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/service_locator.dart';
+import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
-import 'package:quizdy/domain/models/ai/openai_content_block.dart';
-import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/domain/models/ai/ai_question_type.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
 
-import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
-import 'package:quizdy/domain/models/ai/ai_question_type.dart';
-import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
-
 class AiQuestionGenerationService {
-  static const String _openaiApiUrl =
-      'https://api.openai.com/v1/chat/completions';
-
   final ConfigurationService configurationService;
 
   AiQuestionGenerationService({required this.configurationService});
 
-  /// Generates questions using AI based on the provided configuration
+  /// Generates questions using AI based on the provided configuration.
   Future<List<Question>> generateQuestions(
     AiQuestionGenerationConfig config, {
     AppLocalizations? localizations,
   }) async {
-    try {
-      // If we have a file attached, let's extract its text first and convert to a content flow
-      AiQuestionGenerationConfig executionConfig = config;
+    final factory = ServiceLocator.getIt<AiRepositoryFactory>();
+    final repository = config.preferredModel != null
+        ? factory.createForModel(config.preferredModel!)
+        : await factory.createDefault();
 
-      // If a preferred service is specified, use it directly
-      if (executionConfig.preferredService != null && localizations != null) {
-        return await _generateWithService(
-          executionConfig,
-          executionConfig.preferredService!,
-          localizations,
-        );
-      }
-
-      // Verify that at least one API key is configured
-      final openaiKey = await configurationService.getOpenAIApiKey();
-      final geminiKey = await configurationService.getGeminiApiKey();
-
-      if ((openaiKey?.isEmpty ?? true) && (geminiKey?.isEmpty ?? true)) {
-        throw Exception('No API key configured for AI services');
-      }
-
-      // Try OpenAI first, then Gemini if it fails
-      if (openaiKey?.isNotEmpty == true) {
-        try {
-          return await _generateWithOpenAI(
-            executionConfig,
-            openaiKey!,
-            localizations!,
-          );
-        } catch (e) {
-          if (geminiKey?.isNotEmpty == true) {
-            return await _generateWithGemini(
-              executionConfig,
-              geminiKey!,
-              localizations!,
-            );
-          }
-          rethrow;
-        }
-      } else if (geminiKey?.isNotEmpty == true) {
-        return await _generateWithGemini(
-          executionConfig,
-          geminiKey!,
-          localizations!,
-        );
-      }
-
-      throw Exception('Could not generate questions with any AI service');
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  /// Generates questions using the specified AI service
-  Future<List<Question>> _generateWithService(
-    AiQuestionGenerationConfig config,
-    AIService aiService,
-    AppLocalizations localizations,
-  ) async {
-    final prompt = _buildPrompt(config, localizations);
-
-    try {
-      final String response;
-      if (config.hasFile) {
-        response = await aiService.getChatResponseWithFile(
-          prompt,
-          localizations,
-          model: config.preferredModel,
-          responseMimeType: 'application/json',
-          file: config.file!,
-        );
-      } else {
-        response = await aiService.getChatResponse(
-          prompt,
-          localizations,
-          model: config.preferredModel,
-        );
-      }
-      return _parseAiResponse(response);
-    } catch (e) {
-      rethrow; // Let the service handle its own errors
-    }
-  }
-
-  /// Generates questions using OpenAI
-  Future<List<Question>> _generateWithOpenAI(
-    AiQuestionGenerationConfig config,
-    String apiKey,
-    AppLocalizations localizations,
-  ) async {
-    final prompt = _buildPrompt(config, localizations);
-
-    final Map<String, Object> userMessage;
+    final prompt = _buildPrompt(config, localizations!);
+    final String response;
     if (config.hasFile) {
-      final contentBlocks = OpenAIContentBlock.fromPromptAndFile(
+      response = await repository.sendMessagesWithFile(
         prompt,
-        config.file!,
+        localizations,
+        file: config.file!,
+        responseMimeType: 'application/json',
       );
-      userMessage = {
-        'role': 'user',
-        'content': contentBlocks.map((b) => b.toJson()).toList(),
-      };
     } else {
-      userMessage = {'role': 'user', 'content': prompt};
+      response = await repository.sendMessages(
+        prompt,
+        localizations,
+        responseMimeType: 'application/json',
+      );
     }
-
-    final response = await http.post(
-      Uri.parse(_openaiApiUrl),
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $apiKey',
-      },
-      body: jsonEncode({
-        'model': 'gpt-3.5-turbo',
-        'messages': [
-          {
-            'role': 'system',
-            'content':
-                'You are an expert in education who creates high-quality quiz questions. Respond ONLY with the requested JSON, without additional text.',
-          },
-          userMessage,
-        ],
-        'max_tokens': 8192,
-        'temperature': 0.2,
-      }),
-    );
-
-    if (response.statusCode != 200) {
-      throw Exception(localizations.aiErrorResponse);
-    }
-
-    final jsonResponse = jsonDecode(response.body);
-    final content = jsonResponse['choices'][0]['message']['content'];
-
-    return _parseAiResponse(content);
-  }
-
-  /// Generates questions using Gemini
-  Future<List<Question>> _generateWithGemini(
-    AiQuestionGenerationConfig config,
-    String apiKey,
-    AppLocalizations localizations,
-  ) async {
-    final prompt = _buildPrompt(config, localizations);
-    final systemInstruction =
-        'You are an expert in education who creates high-quality quiz questions. Respond ONLY with the requested JSON, without additional text.';
-    final fullPrompt = '$systemInstruction\n\n$prompt';
-
-    try {
-      final String response;
-      if (config.hasFile) {
-        response = await ServiceLocator.getIt<GeminiService>()
-            .getChatResponseWithFile(
-              fullPrompt,
-              localizations,
-              model: config.preferredModel,
-              responseMimeType: 'application/json',
-              file: config.file!,
-            );
-      } else {
-        response = await ServiceLocator.getIt<GeminiService>().getChatResponse(
-          fullPrompt,
-          localizations,
-          model: config.preferredModel,
-        );
-      }
-      return _parseAiResponse(response);
-    } catch (e) {
-      // GeminiService handles its own errors, we just rethrow to the caller
-      // or handle specific cases if needed.
-      rethrow;
-    }
+    return _parseAiResponse(response);
   }
 
   /// Builds the prompt for the AI

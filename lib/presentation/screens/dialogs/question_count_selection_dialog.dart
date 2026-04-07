@@ -454,12 +454,14 @@ class _QuestionCountSelectionDialogState
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  l10n.allQuestionsLabel,
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
-                                    color: textColor,
+                                Flexible(
+                                  child: Text(
+                                    l10n.allQuestionsLabel,
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500,
+                                      color: textColor,
+                                    ),
                                   ),
                                 ),
                                 Switch(
@@ -810,19 +812,24 @@ class _CollapsibleExamConfigState extends State<_CollapsibleExamConfig> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Icon(LucideIcons.settings, size: 18, color: iconColor),
-                    const SizedBox(width: 8),
-                    Text(
-                      AppLocalizations.of(context)!.examConfigurationTitle,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: titleColor,
+                Expanded(
+                  child: Row(
+                    children: [
+                      Icon(LucideIcons.settings, size: 18, color: iconColor),
+                      const SizedBox(width: 8),
+                      Flexible(
+                        child: Text(
+                          AppLocalizations.of(context)!.examConfigurationTitle,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: titleColor,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Icon(
                   _isExpanded ? LucideIcons.chevronUp : LucideIcons.chevronDown,

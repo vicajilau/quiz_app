@@ -18,7 +18,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:mime/mime.dart';
-import 'package:quizdy/data/services/ai/ai_service.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
@@ -53,7 +52,6 @@ class AiGenerateStep2Widget extends StatefulWidget {
   final AiFileAttachment? fileAttachment;
   final Set<AiQuestionType>? selectedQuestionTypes;
   final String selectedLanguage;
-  final AIService? selectedService;
   final String? selectedModel;
   final VoidCallback onPickFile;
   final VoidCallback onRemoveFile;
@@ -83,7 +81,6 @@ class AiGenerateStep2Widget extends StatefulWidget {
     required this.fileAttachment,
     this.selectedQuestionTypes,
     required this.selectedLanguage,
-    required this.selectedService,
     required this.selectedModel,
     required this.onPickFile,
     required this.onRemoveFile,
@@ -256,7 +253,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                           fontWeight: FontWeight.w700,
                           color: colors.title,
                         ),
-                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                     IconButton(
@@ -481,8 +477,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                           ? AiStudyGenerationConfig(
                                               language: widget.selectedLanguage,
                                               content: '',
-                                              preferredService:
-                                                  widget.selectedService,
                                               preferredModel:
                                                   widget.selectedModel,
                                               file: null,
@@ -509,8 +503,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                                   [],
                                               language: widget.selectedLanguage,
                                               content: '',
-                                              preferredService:
-                                                  widget.selectedService,
                                               preferredModel:
                                                   widget.selectedModel,
                                               file: null,
@@ -543,8 +535,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                       final config = AiStudyGenerationConfig(
                                         language: widget.selectedLanguage,
                                         content: '',
-                                        preferredService:
-                                            widget.selectedService,
                                         preferredModel: widget.selectedModel,
                                         file: null,
                                         generationMode: AiGenerationMode.text,
@@ -574,8 +564,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                                   .textController
                                                   .text
                                                   .trim(),
-                                              preferredService:
-                                                  widget.selectedService,
                                               preferredModel:
                                                   widget.selectedModel,
                                               file: widget.fileAttachment,
@@ -604,8 +592,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                                   .textController
                                                   .text
                                                   .trim(),
-                                              preferredService:
-                                                  widget.selectedService,
                                               preferredModel:
                                                   widget.selectedModel,
                                               file: widget.fileAttachment,

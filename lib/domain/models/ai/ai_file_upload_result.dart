@@ -13,20 +13,16 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
+/// Result of uploading a file to an AI provider.
+///
+/// Contains the provider-assigned URI to reference the file in subsequent
+/// requests, and the time after which the file will no longer be accessible.
+class AiFileUploadResult {
+  final String fileUri;
+  final DateTime expirationTime;
 
-class AiStudyGenerationStoredSettings {
-  final String? modelName;
-  final String? language;
-  final String? draftText;
-  final bool? isAutoDifficulty;
-  final AiDifficultyLevel? difficultyLevel;
-
-  const AiStudyGenerationStoredSettings({
-    this.modelName,
-    this.language,
-    this.draftText,
-    this.isAutoDifficulty,
-    this.difficultyLevel,
+  const AiFileUploadResult({
+    required this.fileUri,
+    required this.expirationTime,
   });
 }
