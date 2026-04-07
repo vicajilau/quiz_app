@@ -96,6 +96,7 @@ class StudyExecutionBottomBar extends StatelessWidget {
                             currentIndex + 1,
                             totalCount,
                           ),
+                          textAlign: TextAlign.center,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w600,
                           ),
