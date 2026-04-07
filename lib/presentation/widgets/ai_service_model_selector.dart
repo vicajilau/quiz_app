@@ -90,10 +90,8 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
       final openaiKey = await configService.getOpenAIApiKey();
 
       final available = <String>[
-        if ((geminiKey?.isNotEmpty ?? false))
-          AiModelCatalog.geminiProviderId,
-        if ((openaiKey?.isNotEmpty ?? false))
-          AiModelCatalog.openaiProviderId,
+        if ((geminiKey?.isNotEmpty ?? false)) AiModelCatalog.geminiProviderId,
+        if ((openaiKey?.isNotEmpty ?? false)) AiModelCatalog.openaiProviderId,
       ];
 
       if (!mounted) return;
@@ -156,8 +154,9 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
     });
     widget.onModelChanged?.call(newModelId);
     if (widget.saveToPreferences && newModelId != null) {
-      ServiceLocator.getIt<ConfigurationService>()
-          .saveDefaultAIModel(newModelId);
+      ServiceLocator.getIt<ConfigurationService>().saveDefaultAIModel(
+        newModelId,
+      );
     }
   }
 
@@ -166,8 +165,9 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
     setState(() => _selectedModelId = modelId);
     widget.onModelChanged?.call(modelId);
     if (widget.saveToPreferences) {
-      await ServiceLocator.getIt<ConfigurationService>()
-          .saveDefaultAIModel(modelId);
+      await ServiceLocator.getIt<ConfigurationService>().saveDefaultAIModel(
+        modelId,
+      );
     }
   }
 
@@ -191,6 +191,7 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
       required ValueChanged<T?>? onChanged,
       String? loadingText,
       String? emptyText,
+      String Function(T value)? selectedLabelOf,
     }) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -245,7 +246,9 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                             (item) => Container(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                item.value?.toString() ?? '',
+                                item.value != null && selectedLabelOf != null
+                                    ? selectedLabelOf(item.value as T)
+                                    : item.value?.toString() ?? '',
                                 style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w500,
@@ -256,19 +259,7 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                             ),
                           )
                           .toList(),
-                      items: items.map((item) {
-                        return DropdownMenuItem<T>(
-                          value: item.value,
-                          child: Text(
-                            item.value?.toString() ?? '',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w500,
-                              color: textColor,
-                            ),
-                          ),
-                        );
-                      }).toList(),
+                      items: items,
                       onChanged: widget.enabled ? onChanged : null,
                     ),
                   ),
@@ -295,15 +286,18 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
               color: Theme.of(context).primaryColor,
             ),
             const SizedBox(width: 8),
-            Text(
-              localizations.aiDefaultModelTitle,
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
-                color: textColor,
+            Flexible(
+              child: Text(
+                localizations.aiDefaultModelTitle,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                  color: textColor,
+
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
-            const Spacer(),
             Icon(
               expanded ? LucideIcons.chevronUp : LucideIcons.chevronDown,
               size: 16,
@@ -325,16 +319,17 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
         .toList();
 
     // Model items — filtered to the selected provider.
-    final modelItems = (_selectedProviderId != null
-            ? AiModelCatalog.forProvider(_selectedProviderId!)
-            : <AiModelEntry>[])
-        .map(
-          (entry) => DropdownMenuItem<String>(
-            value: entry.modelId,
-            child: Text(entry.displayName),
-          ),
-        )
-        .toList();
+    final modelItems =
+        (_selectedProviderId != null
+                ? AiModelCatalog.forProvider(_selectedProviderId!)
+                : <AiModelEntry>[])
+            .map(
+              (entry) => DropdownMenuItem<String>(
+                value: entry.modelId,
+                child: Text(entry.displayName),
+              ),
+            )
+            .toList();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -385,6 +380,8 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                         onChanged: _onProviderSelected,
                         loadingText: localizations.aiServicesLoading,
                         emptyText: localizations.aiServicesNotConfigured,
+                        selectedLabelOf: (id) =>
+                            AiModelCatalog.providerDisplayNames[id] ?? id,
                       ),
                       if (!_isLoading &&
                           _selectedProviderId != null &&
@@ -396,6 +393,9 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                           value: _selectedModelId,
                           items: modelItems,
                           onChanged: _onModelSelected,
+                          selectedLabelOf: (modelId) =>
+                              AiModelCatalog.forModelId(modelId)?.displayName ??
+                              modelId,
                         ),
                       ],
                     ],
