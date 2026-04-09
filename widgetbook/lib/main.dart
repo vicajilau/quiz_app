@@ -14,11 +14,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
-import 'package:quizdy/presentation/widgets/quizdy_button.dart';
-import 'package:quizdy/presentation/widgets/quizdy_switch.dart';
-import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 import 'package:widgetbook/widgetbook.dart';
+
+import 'use_cases/quizdy_app_bar_use_case.dart';
+import 'use_cases/quizdy_button_use_case.dart';
+import 'use_cases/quizdy_empty_state_use_case.dart';
+import 'use_cases/quizdy_latex_text_use_case.dart';
+import 'use_cases/quizdy_markdown_use_case.dart';
+import 'use_cases/quizdy_selectable_card_use_case.dart';
+import 'use_cases/quizdy_stepper_field_use_case.dart';
+import 'use_cases/quizdy_switch_use_case.dart';
+import 'use_cases/quizdy_text_field_use_case.dart';
+import 'use_cases/study_progress_bar_use_case.dart';
 
 void main() {
   runApp(const QuizdyWidgetbookApp());
@@ -34,6 +43,8 @@ class QuizdyWidgetbookApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         home: Scaffold(
           body: Center(
             child: Padding(padding: const EdgeInsets.all(24), child: child),
@@ -58,27 +69,23 @@ class QuizdyWidgetbookApp extends StatelessWidget {
               useCases: [
                 WidgetbookUseCase(
                   name: 'Primary',
-                  builder: (context) => QuizdyButton(
-                    title: 'Start quiz',
-                    type: QuizdyButtonType.primary,
-                    onPressed: () {},
-                  ),
+                  builder: buildPrimaryQuizdyButtonUseCase,
                 ),
                 WidgetbookUseCase(
                   name: 'Secondary',
-                  builder: (context) => QuizdyButton(
-                    title: 'Cancel',
-                    type: QuizdyButtonType.secondary,
-                    onPressed: () {},
-                  ),
+                  builder: buildSecondaryQuizdyButtonUseCase,
                 ),
                 WidgetbookUseCase(
-                  name: 'Loading',
-                  builder: (context) => const QuizdyButton(
-                    title: 'Generating',
-                    isLoading: true,
-                    onPressed: null,
-                  ),
+                  name: 'Tertiary',
+                  builder: buildTertiaryQuizdyButtonUseCase,
+                ),
+                WidgetbookUseCase(
+                  name: 'Warning',
+                  builder: buildWarningQuizdyButtonUseCase,
+                ),
+                WidgetbookUseCase(
+                  name: 'Interactive',
+                  builder: buildInteractiveQuizdyButtonUseCase,
                 ),
               ],
             ),
@@ -86,27 +93,12 @@ class QuizdyWidgetbookApp extends StatelessWidget {
               name: 'QuizdyTextField',
               useCases: [
                 WidgetbookUseCase(
-                  name: 'Default',
-                  builder: (context) {
-                    final controller = TextEditingController(text: 'Quizdy');
-                    return QuizdyTextField(
-                      controller: controller,
-                      hint: 'Type a prompt',
-                    );
-                  },
+                  name: 'All variants',
+                  builder: buildQuizdyTextFieldUseCase,
                 ),
                 WidgetbookUseCase(
-                  name: 'Error',
-                  builder: (context) {
-                    final controller = TextEditingController(
-                      text: 'Invalid value',
-                    );
-                    return QuizdyTextField(
-                      controller: controller,
-                      hint: 'Type a prompt',
-                      errorText: 'Please enter a valid value',
-                    );
-                  },
+                  name: 'Interactive',
+                  builder: buildInteractiveQuizdyTextFieldUseCase,
                 ),
               ],
             ),
@@ -114,14 +106,103 @@ class QuizdyWidgetbookApp extends StatelessWidget {
               name: 'QuizdySwitch',
               useCases: [
                 WidgetbookUseCase(
-                  name: 'Enabled',
-                  builder: (context) =>
-                      QuizdySwitch(value: true, onChanged: (_) {}),
+                  name: 'All variants',
+                  builder: buildQuizdySwitchUseCase,
                 ),
                 WidgetbookUseCase(
-                  name: 'Disabled',
-                  builder: (context) =>
-                      const QuizdySwitch(value: false, onChanged: null),
+                  name: 'Interactive',
+                  builder: buildInteractiveQuizdySwitchUseCase,
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'QuizdyStepperField',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'All variants',
+                  builder: buildQuizdyStepperFieldUseCase,
+                ),
+                WidgetbookUseCase(
+                  name: 'Interactive',
+                  builder: buildInteractiveQuizdyStepperFieldUseCase,
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'QuizdyAppBar',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'All variants',
+                  builder: buildQuizdyAppBarUseCase,
+                ),
+                WidgetbookUseCase(
+                  name: 'Interactive',
+                  builder: buildInteractiveQuizdyAppBarUseCase,
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'QuizdyLatexText',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'All variants',
+                  builder: buildQuizdyLatexTextUseCase,
+                ),
+                WidgetbookUseCase(
+                  name: 'Interactive',
+                  builder: buildInteractiveQuizdyLatexTextUseCase,
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'QuizdyMarkdown',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'All variants',
+                  builder: buildQuizdyMarkdownUseCase,
+                ),
+                WidgetbookUseCase(
+                  name: 'Interactive',
+                  builder: buildInteractiveQuizdyMarkdownUseCase,
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'QuizdyEmptyState',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'All variants',
+                  builder: buildQuizdyEmptyStateUseCase,
+                ),
+                WidgetbookUseCase(
+                  name: 'Interactive',
+                  builder: buildInteractiveQuizdyEmptyStateUseCase,
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'StudyProgressBar',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'All variants',
+                  builder: buildStudyProgressBarUseCase,
+                ),
+                WidgetbookUseCase(
+                  name: 'Interactive',
+                  builder: buildInteractiveStudyProgressBarUseCase,
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'QuizdySelectableCard',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'All variants',
+                  builder: buildQuizdySelectableCardUseCase,
+                ),
+                WidgetbookUseCase(
+                  name: 'Interactive',
+                  builder: buildInteractiveQuizdySelectableCardUseCase,
                 ),
               ],
             ),
