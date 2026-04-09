@@ -64,6 +64,7 @@ class QuestionPreviewCard extends StatefulWidget {
 class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
   bool _isExpanded = false; // Collapsed by default as per user request
   bool _isActionsExpanded = false; // Used only on mobile to reveal actions
+  bool _isHovered = false; // Used only for desktop to reveal actions smoothly on hover
 
   Uint8List? _getImageBytes(String? imageData) {
     if (imageData == null) return null;
@@ -87,8 +88,11 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
     final customColors = Theme.of(context).extension<CustomColors>()!;
     final isMobile = context.isMobile;
 
-    Widget cardContent = Container(
-      margin: const EdgeInsets.only(bottom: 16),
+    Widget cardContent = MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(24),
@@ -301,7 +305,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                               AnimatedSize(
                                 duration: const Duration(milliseconds: 250),
                                 curve: Curves.easeInOutCubic,
-                                child: (!isMobile || _isActionsExpanded)
+                                child: ((!isMobile && _isHovered) || (isMobile && _isActionsExpanded))
                                     ? Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
@@ -486,7 +490,8 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
           ],
         ),
       ),
-    );
+    ),
+  );
 
     return cardContent;
   }
