@@ -22,7 +22,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
-import 'package:quizdy/presentation/widgets/latex_text.dart';
+import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 import 'package:quizdy/presentation/screens/widgets/question_preview/question_options_list.dart';
 import 'package:quizdy/presentation/screens/widgets/question_preview/question_type_indicator.dart';
@@ -370,7 +370,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                   padding: const EdgeInsets.symmetric(
                     horizontal: 20,
                   ).copyWith(bottom: 20),
-                  child: LaTeXText(
+                  child: QuizdyLatexText(
                     widget.question.text,
                     maxLines: _isExpanded ? 100 : 2,
                     overflow: TextOverflow.ellipsis,
@@ -473,7 +473,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                   ],
                                 ),
                                 const SizedBox(height: 12),
-                                LaTeXText(
+                                QuizdyLatexText(
                                   widget.question.explanation,
                                   style: TextStyle(
                                     color: Theme.of(context).hintColor,

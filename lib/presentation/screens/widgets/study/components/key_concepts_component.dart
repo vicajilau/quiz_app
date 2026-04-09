@@ -16,7 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
-import 'package:quizdy/presentation/widgets/latex_text.dart';
+import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class KeyConceptsComponent extends StatelessWidget {
@@ -88,7 +88,7 @@ class KeyConceptsComponent extends StatelessWidget {
                       ).primaryColor.withValues(alpha: 0.3),
                     ),
                   ),
-                  child: LaTeXText(
+                  child: QuizdyLatexText(
                     concept,
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,

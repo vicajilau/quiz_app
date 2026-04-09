@@ -22,7 +22,7 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
 import 'package:quizdy/domain/models/quiz/essay_ai_evaluation.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
-import 'package:quizdy/presentation/widgets/latex_text.dart';
+import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 
 /// A card widget that displays the result of a quiz question.
 ///
@@ -201,7 +201,7 @@ class QuizQuestionResultCard extends StatelessWidget {
               Icon(Icons.expand_more, color: theme.iconTheme.color),
             ],
           ),
-          subtitle: LaTeXText(
+          subtitle: QuizdyLatexText(
             result.question.text,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
@@ -215,7 +215,7 @@ class QuizQuestionResultCard extends StatelessWidget {
                 children: [
                   const Divider(height: 1),
                   const SizedBox(height: 16),
-                  LaTeXText(
+                  QuizdyLatexText(
                     result.question.text,
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w600,

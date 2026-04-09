@@ -18,7 +18,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
-import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
+import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class ProsConsComponent extends StatelessWidget {
@@ -144,7 +144,7 @@ class ProsConsComponent extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    Expanded(child: MarkdownWidget(data: item)),
+                    Expanded(child: QuizdyMarkdown(data: item)),
                   ],
                 ),
               ),

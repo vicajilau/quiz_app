@@ -20,7 +20,7 @@ import 'package:flutter_math_fork/flutter_math.dart';
 ///
 /// Uses [Math.tex] to render LaTeX expressions wrapped in `$...$` (inline)
 /// or `$$...$$` (display mode). Plain text is rendered normally.
-class LaTeXText extends StatelessWidget {
+class QuizdyLatexText extends StatelessWidget {
   /// The text content that may contain LaTeX expressions
   final String text;
 
@@ -33,7 +33,7 @@ class LaTeXText extends StatelessWidget {
   /// Text overflow behavior
   final TextOverflow overflow;
 
-  const LaTeXText(
+  const QuizdyLatexText(
     this.text, {
     super.key,
     this.style,

@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:quizdy/presentation/widgets/latex_text.dart';
+import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
@@ -60,7 +60,7 @@ class LaTeXPreviewDialog extends StatelessWidget {
                         color: isDark ? AppTheme.zinc400 : AppTheme.zinc500,
                       ),
                     )
-                  : LaTeXText(
+                  : QuizdyLatexText(
                       optionText,
                       style: TextStyle(
                         fontSize: 16,

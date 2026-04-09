@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
-import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
+import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class KeyDefinitionComponent extends StatelessWidget {
@@ -69,7 +69,7 @@ class KeyDefinitionComponent extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          MarkdownWidget(data: body),
+          QuizdyMarkdown(data: body),
         ],
       ),
     );

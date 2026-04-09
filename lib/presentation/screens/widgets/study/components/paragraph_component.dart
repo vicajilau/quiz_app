@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
-import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
+import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class ParagraphComponent extends StatelessWidget {
@@ -44,7 +44,7 @@ class ParagraphComponent extends StatelessWidget {
             ),
             const SizedBox(height: 12),
           ],
-          MarkdownWidget(data: body),
+          QuizdyMarkdown(data: body),
         ],
       ),
     );

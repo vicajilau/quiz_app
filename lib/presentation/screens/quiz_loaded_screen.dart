@@ -49,7 +49,7 @@ import 'package:quizdy/presentation/screens/widgets/quiz_loaded_bottom_bar.dart'
 import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
 import 'package:quizdy/presentation/screens/widgets/request_file_name_dialog.dart';
-import 'package:quizdy/presentation/widgets/empty_state_view.dart';
+import 'package:quizdy/presentation/widgets/quizdy_empty_state.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/presentation/screens/dialogs/quiz_metadata_dialog.dart';
 import 'package:quizdy/core/theme/extensions/quiz_loaded_theme.dart';
@@ -806,7 +806,7 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                   child: Stack(
                     children: [
                       if (cachedQuizFile.questions.isEmpty)
-                        EmptyStateView(
+                        QuizdyEmptyState(
                           message: AppLocalizations.of(
                             context,
                           )!.quizLoadedNoQuestionsAvailable,
