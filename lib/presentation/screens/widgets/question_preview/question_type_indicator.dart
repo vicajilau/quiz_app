@@ -62,13 +62,16 @@ class QuestionTypeIndicator extends StatelessWidget {
   }
 
   Widget _buildText(BuildContext context) {
-    return Text(
-      getQuestionTypeString(context, questionType),
-      style: TextStyle(
-        color: Theme.of(context).colorScheme.onSurface,
-        fontSize: 11,
-        fontWeight: FontWeight.w700,
-        letterSpacing: 0.2,
+    return Flexible(
+      child: Text(
+        getQuestionTypeString(context, questionType),
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.onSurface,
+          fontSize: 11,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 0.2,
+        ),
       ),
     );
   }
