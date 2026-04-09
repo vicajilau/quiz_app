@@ -15,11 +15,11 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
@@ -63,6 +63,8 @@ class QuestionPreviewCard extends StatefulWidget {
 
 class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
   bool _isExpanded = false; // Collapsed by default as per user request
+  bool _isActionsExpanded = false; // Used only on mobile to reveal actions
+  bool _isHovered = false; // Used only for desktop to reveal actions smoothly on hover
 
   Uint8List? _getImageBytes(String? imageData) {
     if (imageData == null) return null;
@@ -83,326 +85,324 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
   @override
   Widget build(BuildContext context) {
     final isDisabled = !widget.question.isEnabled;
+    final customColors = Theme.of(context).extension<CustomColors>()!;
+    final isMobile = context.isMobile;
 
-    Widget cardContent = Container(
-      margin: const EdgeInsets.only(bottom: 16),
+    Widget cardContent = MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
           color: widget.isSelected
-              ? Theme.of(context).extension<CustomColors>()!.aiIconColor!
+              ? customColors.aiIconColor!
               : Theme.of(context).dividerColor,
           width: widget.isSelected ? 2 : 1,
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Header and Question Text wrapped together for combined tap area
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: widget.isSelectionMode
-                ? widget.onSelectionToggle
-                : _toggleExpanded,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Header with Question Index Badge and Actions
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 12),
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      return ScrollConfiguration(
-                        behavior: ScrollConfiguration.of(context).copyWith(
-                          dragDevices: {
-                            PointerDeviceKind.touch,
-                            PointerDeviceKind.mouse,
-                          },
-                        ),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(
-                              minWidth: constraints.maxWidth,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // Left Group: Selection + Badge + Type
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    if (widget.isSelectionMode) ...[
-                                      Container(
-                                        width: 24,
-                                        height: 24,
-                                        decoration: BoxDecoration(
-                                          color: widget.isSelected
-                                              ? Theme.of(context)
-                                                    .extension<CustomColors>()!
-                                                    .aiIconColor!
-                                              : Colors.transparent,
-                                          shape: BoxShape.circle,
-                                          border: Border.all(
-                                            color: widget.isSelected
-                                                ? Theme.of(context)
-                                                      .extension<
-                                                        CustomColors
-                                                      >()!
-                                                      .aiIconColor!
-                                                : Theme.of(context).hintColor,
-                                          ),
-                                        ),
-                                        child: widget.isSelected
-                                            ? const Icon(
-                                                LucideIcons.check,
-                                                size: 16,
-                                                color: Colors.white,
-                                              )
-                                            : null,
-                                      ),
-                                      const SizedBox(width: 12),
-                                    ],
-
-                                    // Question Badge
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 12,
-                                        vertical: 6,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: Theme.of(context).dividerColor,
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Text(
-                                        (widget.index + 1).toString().padLeft(
-                                          2,
-                                          '0',
-                                        ),
-                                        style: TextStyle(
-                                          color: Theme.of(
-                                            context,
-                                          ).colorScheme.onSurface,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ),
-
-                                    const SizedBox(width: 8),
-
-                                    // Question Type Badge (Always Full)
-                                    Tooltip(
-                                      message: AppLocalizations.of(context)!
-                                          .questionTypeTooltip(
-                                            QuestionTypeIndicator.getQuestionTypeString(
-                                              context,
-                                              widget.question.type,
-                                            ),
-                                          ),
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 8,
-                                          vertical: 4,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .onSurface
-                                              .withValues(alpha: 0.1),
-                                          borderRadius: BorderRadius.circular(
-                                            8,
-                                          ),
-                                        ),
-                                        child: QuestionTypeIndicator(
-                                          questionType: widget.question.type,
-                                          showText: constraints.maxWidth > 340,
-                                        ),
-                                      ),
-                                    ),
-
-                                    if (widget
-                                        .question
-                                        .explanation
-                                        .isEmpty) ...[
-                                      const SizedBox(width: 8),
-                                      Tooltip(
-                                        message: AppLocalizations.of(
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Header and Question Text wrapped together for combined tap area
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: widget.isSelectionMode
+                  ? widget.onSelectionToggle
+                  : _toggleExpanded,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Status Bar (for New, Modified, Duplicated)
+                  if (widget.isNew || widget.isModified || widget.isDuplicated)
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 4,
+                        horizontal: 20,
+                      ),
+                      decoration: BoxDecoration(
+                        color: widget.isDuplicated
+                            ? customColors.onWarningContainer!.withValues(
+                              alpha: 0.1,
+                            )
+                            : (widget.isModified
+                                ? customColors.aiIconColor!.withValues(
+                                  alpha: 0.1,
+                                )
+                                : AppTheme.secondaryColor.withValues(
+                                  alpha: 0.1,
+                                )),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            widget.isDuplicated
+                                ? LucideIcons.copy
+                                : (widget.isModified
+                                    ? LucideIcons.refreshCw
+                                    : LucideIcons.plusCircle),
+                            size: 10,
+                            color: widget.isDuplicated
+                                ? customColors.onWarningContainer
+                                : (widget.isModified
+                                    ? customColors.aiIconColor
+                                    : AppTheme.secondaryColor),
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            (widget.isDuplicated
+                                    ? AppLocalizations.of(context)!.duplicatedTag
+                                    : (widget.isNew
+                                        ? AppLocalizations.of(context)!.newTag
+                                        : AppLocalizations.of(
                                           context,
-                                        )!.missingExplanationTooltip,
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 8,
-                                            vertical: 4,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: Theme.of(context)
-                                                .extension<CustomColors>()!
-                                                .warningContainer,
-                                            borderRadius: BorderRadius.circular(
-                                              8,
-                                            ),
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Icon(
-                                                LucideIcons.alertTriangle,
-                                                size: 12,
-                                                color: Theme.of(context)
-                                                    .extension<CustomColors>()!
-                                                    .onWarningContainer,
-                                              ),
-                                              if (constraints.maxWidth >
-                                                  340) ...[
-                                                const SizedBox(width: 4),
-                                                Text(
-                                                  AppLocalizations.of(
-                                                    context,
-                                                  )!.missingExplanation,
-                                                  style: TextStyle(
-                                                    color: Theme.of(context)
-                                                        .extension<
-                                                          CustomColors
-                                                        >()!
-                                                        .onWarningContainer,
-                                                    fontSize:
-                                                        Theme.of(
-                                                              context,
-                                                            ).brightness ==
-                                                            Brightness.dark
-                                                        ? 11
-                                                        : 10,
-                                                    fontWeight:
-                                                        Theme.of(
-                                                              context,
-                                                            ).brightness ==
-                                                            Brightness.dark
-                                                        ? FontWeight.w500
-                                                        : FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ],
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-
-                                    // Minimum gap before actions
-                                    const SizedBox(width: 16),
-                                  ],
-                                ),
-
-                                // Right Group: Actions (Pinned to right if space allows)
-                                if (widget.isSelectionMode)
-                                  ReorderableDragStartListener(
-                                    index: widget.index,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Icon(
-                                        Icons.drag_indicator,
-                                        color: Theme.of(context).hintColor,
-                                      ),
-                                    ),
-                                  )
-                                else
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      if (widget.onAiAssistant != null &&
-                                          !isDisabled)
-                                        _buildIconButton(
-                                          icon: LucideIcons.sparkles,
-                                          color: Theme.of(context)
-                                              .extension<CustomColors>()!
-                                              .aiIconColor!,
-                                          onPressed: widget.onAiAssistant!,
-                                          tooltip: AppLocalizations.of(
-                                            context,
-                                          )!.aiButtonTooltip,
-                                        ),
-                                      const SizedBox(width: 8),
-                                      _buildIconButton(
-                                        icon: LucideIcons.pencil,
-                                        color: AppTheme.secondaryColor,
-                                        onPressed: widget.onEdit,
-                                        tooltip: AppLocalizations.of(
-                                          context,
-                                        )!.edit,
-                                      ),
-                                      const SizedBox(width: 8),
-                                      _buildIconButton(
-                                        icon: LucideIcons.trash2,
-                                        color: Theme.of(
-                                          context,
-                                        ).colorScheme.error,
-                                        onPressed: widget.onDelete,
-                                        tooltip: AppLocalizations.of(
-                                          context,
-                                        )!.deleteButton,
-                                      ),
-                                      const SizedBox(width: 8),
-                                      _buildIconButton(
-                                        icon: _isExpanded
-                                            ? LucideIcons.chevronUp
-                                            : LucideIcons.chevronDown,
-                                        color: Theme.of(context).hintColor,
-                                        onPressed: _toggleExpanded,
-                                        tooltip: _isExpanded
-                                            ? 'Collapse'
-                                            : 'Expand',
-                                      ),
-                                    ],
-                                  ),
-                              ],
+                                        )!.modifiedTag))
+                                .toUpperCase(),
+                            style: TextStyle(
+                              fontSize: 9,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: 0.5,
+                              color: widget.isDuplicated
+                                  ? customColors.onWarningContainer
+                                  : (widget.isModified
+                                      ? customColors.aiIconColor
+                                      : AppTheme.secondaryColor),
                             ),
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                        ],
+                      ),
+                    ),
 
-                // Question Text Preview (Always visible)
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ).copyWith(bottom: 20),
-                  child: QuizdyLatexText(
-                    widget.question.text,
-                    maxLines: _isExpanded ? 100 : 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSurface,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      decoration: isDisabled
-                          ? TextDecoration.lineThrough
-                          : null,
+                  // Header with Question Index Badge and Actions
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 12),
+                    child: Row(
+                      children: [
+                        // Left Group: Selection + Badge + Type
+                        Expanded(
+                          child: Row(
+                            children: [
+                              if (widget.isSelectionMode) ...[
+                                Container(
+                                  width: 22,
+                                  height: 22,
+                                  decoration: BoxDecoration(
+                                    color: widget.isSelected
+                                        ? customColors.aiIconColor
+                                        : Colors.transparent,
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: widget.isSelected
+                                          ? customColors.aiIconColor!
+                                          : Theme.of(context).hintColor,
+                                      width: 2,
+                                    ),
+                                  ),
+                                  child: widget.isSelected
+                                      ? const Icon(
+                                        LucideIcons.check,
+                                        size: 14,
+                                        color: Colors.white,
+                                      )
+                                      : null,
+                                ),
+                                const SizedBox(width: 12),
+                              ],
+
+                              // Question Badge
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 4,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(
+                                    context,
+                                  ).dividerColor.withValues(alpha: 0.5),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Text(
+                                  (widget.index + 1).toString().padLeft(2, '0'),
+                                  style: TextStyle(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onSurface,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+
+                              const SizedBox(width: 8),
+
+                              // Question Type Badge
+                              Flexible(
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 4,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurface
+                                        .withValues(alpha: 0.05),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: QuestionTypeIndicator(
+                                    questionType: widget.question.type,
+                                    showText: true,
+                                  ),
+                                ),
+                              ),
+
+                              if (widget.question.explanation.isEmpty) ...[
+                                const SizedBox(width: 8),
+                                Tooltip(
+                                  message: AppLocalizations.of(
+                                    context,
+                                  )!.missingExplanationTooltip,
+                                  child: Icon(
+                                    LucideIcons.alertTriangle,
+                                    size: 14,
+                                    color: customColors.warning,
+                                  ),
+                                ),
+                              ],
+                            ],
+                          ),
+                        ),
+
+                        // Right Group: Actions
+                        if (widget.isSelectionMode)
+                          ReorderableDragStartListener(
+                            index: widget.index,
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Icon(
+                                LucideIcons.gripVertical,
+                                color: Theme.of(context).hintColor,
+                                size: 20,
+                              ),
+                            ),
+                          )
+                        else
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              AnimatedSize(
+                                duration: const Duration(milliseconds: 250),
+                                curve: Curves.easeInOutCubic,
+                                child: ((!isMobile && _isHovered) || (isMobile && _isActionsExpanded))
+                                    ? Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          if (widget.onAiAssistant != null && !isDisabled)
+                                            _buildIconButton(
+                                              icon: LucideIcons.sparkles,
+                                              color: customColors.aiIconColor!,
+                                              onPressed: widget.onAiAssistant!,
+                                              tooltip: AppLocalizations.of(
+                                                context,
+                                              )!.aiButtonTooltip,
+                                            ),
+                                          const SizedBox(width: 4),
+                                          _buildIconButton(
+                                            icon: LucideIcons.pencil,
+                                            color: AppTheme.secondaryColor,
+                                            onPressed: widget.onEdit,
+                                            tooltip: AppLocalizations.of(context)!.edit,
+                                          ),
+                                          const SizedBox(width: 4),
+                                          _buildIconButton(
+                                            icon: LucideIcons.trash2,
+                                            color: Theme.of(context).colorScheme.error,
+                                            onPressed: widget.onDelete,
+                                            tooltip: AppLocalizations.of(
+                                              context,
+                                            )!.deleteButton,
+                                          ),
+                                          const SizedBox(width: 4),
+                                        ],
+                                      )
+                                    : const SizedBox.shrink(),
+                              ),
+                              if (isMobile)
+                                _buildIconButton(
+                                  icon: _isActionsExpanded
+                                      ? LucideIcons.chevronRight
+                                      : LucideIcons.chevronLeft,
+                                  color: Theme.of(context).hintColor,
+                                  onPressed: () {
+                                    setState(() {
+                                      _isActionsExpanded = !_isActionsExpanded;
+                                    });
+                                  },
+                                  tooltip: _isActionsExpanded ? 'Hide' : 'Show',
+                                )
+                              else
+                                _buildIconButton(
+                                  icon: _isExpanded
+                                      ? LucideIcons.chevronUp
+                                      : LucideIcons.chevronDown,
+                                  color: Theme.of(context).hintColor,
+                                  onPressed: _toggleExpanded,
+                                  tooltip: _isExpanded ? 'Collapse' : 'Expand',
+                                ),
+                            ],
+                          ),
+                      ],
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
 
-          if (_isExpanded)
-            Divider(height: 1, color: Theme.of(context).dividerColor),
-          // Question Content
-          AnimatedSize(
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.linear,
-            child: _isExpanded
-                ? Padding(
-                    padding: const EdgeInsets.all(24),
+                  // Question Text Preview (Always visible)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ).copyWith(bottom: 20),
+                    child: QuizdyLatexText(
+                      widget.question.text,
+                      maxLines: _isExpanded ? 100 : 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        height: 1.4,
+                        decoration: isDisabled ? TextDecoration.lineThrough : null,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            if (_isExpanded)
+              Divider(height: 1, color: Theme.of(context).dividerColor),
+            // Question Content
+            AnimatedSize(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+              child: _isExpanded
+                  ? Padding(
+                    padding: const EdgeInsets.all(20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Image if present
                         if (widget.question.image != null) ...[
-                          const SizedBox(height: 20),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(16),
                             child: Image.memory(
@@ -422,9 +422,8 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                   ),
                             ),
                           ),
+                          const SizedBox(height: 20),
                         ],
-
-                        const SizedBox(height: 24),
 
                         // Options List
                         QuestionOptionsList(
@@ -434,12 +433,14 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
 
                         // Explanation
                         if (widget.question.explanation.isNotEmpty) ...[
-                          const SizedBox(height: 24),
+                          const SizedBox(height: 20),
                           Container(
                             width: double.infinity,
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
-                              color: Theme.of(context).scaffoldBackgroundColor,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.surface.withValues(alpha: 0.5),
                               borderRadius: BorderRadius.circular(16),
                               border: Border.all(
                                 color: Theme.of(context).dividerColor,
@@ -453,9 +454,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                     Icon(
                                       LucideIcons.lightbulb,
                                       size: 16,
-                                      color: Theme.of(
-                                        context,
-                                      ).extension<CustomColors>()!.warning,
+                                      color: customColors.warning,
                                     ),
                                     const SizedBox(width: 8),
                                     Text(
@@ -463,11 +462,9 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                         context,
                                       )!.explanationTitle,
                                       style: TextStyle(
-                                        color: Theme.of(
-                                          context,
-                                        ).extension<CustomColors>()!.warning,
+                                        color: customColors.warning,
                                         fontSize: 14,
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.w700,
                                       ),
                                     ),
                                   ],
@@ -476,7 +473,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                 QuizdyLatexText(
                                   widget.question.explanation,
                                   style: TextStyle(
-                                    color: Theme.of(context).hintColor,
+                                    color: Theme.of(context).colorScheme.onSurface,
                                     fontSize: 14,
                                     height: 1.5,
                                   ),
@@ -488,36 +485,13 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                       ],
                     ),
                   )
-                : const SizedBox.shrink(),
-          ),
-        ],
-      ),
-    );
-
-    if (widget.isDuplicated || widget.isNew || widget.isModified) {
-      cardContent = ClipRect(
-        child: Banner(
-          message: widget.isDuplicated
-              ? AppLocalizations.of(context)!.duplicatedTag.toUpperCase()
-              : (widget.isNew
-                    ? AppLocalizations.of(context)!.newTag.toUpperCase()
-                    : AppLocalizations.of(context)!.modifiedTag.toUpperCase()),
-          location: BannerLocation.topStart,
-          color: widget.isDuplicated
-              ? Theme.of(context).extension<CustomColors>()!.onWarningContainer!
-              : (widget.isModified
-                    ? Theme.of(context).extension<CustomColors>()!.aiIconColor!
-                    : AppTheme.secondaryColor),
-          textStyle: const TextStyle(
-            fontSize: 7,
-            fontWeight: FontWeight.w900,
-            color: Colors.white,
-            letterSpacing: 0.5,
-          ),
-          child: cardContent,
+                  : const SizedBox.shrink(),
+            ),
+          ],
         ),
-      );
-    }
+      ),
+    ),
+  );
 
     return cardContent;
   }

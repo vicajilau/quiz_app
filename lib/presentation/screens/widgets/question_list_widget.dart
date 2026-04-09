@@ -13,6 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import 'package:quizdy/core/context_extension.dart';
@@ -79,56 +81,36 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
 
     return ReorderableListView.builder(
       onReorder: _onReorder,
-      padding: const EdgeInsets.symmetric(horizontal: 8.0).copyWith(top: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 4.0).copyWith(
+        top: 24,
+        bottom: 100,
+      ),
       itemCount: widget.quizFile.questions.length,
       buildDefaultDragHandles: false, // We use custom drag handles
       itemBuilder: (constext, index) {
         final question = widget.quizFile.questions[index];
         return _buildQuestionCard(question, index, normalizedQuestionCounts);
       },
-      // ProxyDecorator is optional but good for visual feedback
       proxyDecorator: (child, index, animation) {
-        final isSelected = widget.selectedQuestions.contains(index);
-        final count = widget.selectedQuestions.length;
+        return AnimatedBuilder(
+          animation: animation,
+          builder: (context, child) {
+            final double animValue = Curves.easeInOut.transform(animation.value);
+            final double elevation = lerpDouble(0, 8, animValue)!;
+            final double scale = lerpDouble(1, 1.02, animValue)!;
 
-        return Material(
-          elevation: 4,
-          color: Colors.transparent,
-          child: Stack(
-            children: [
-              child,
-              if (isSelected && count > 1)
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.2),
-                          blurRadius: 4,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: Text(
-                      '$count',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                ),
-            ],
-          ),
+            return Transform.scale(
+              scale: scale,
+              child: Material(
+                elevation: elevation,
+                color: Colors.transparent,
+                shadowColor: Colors.black.withValues(alpha: 0.3),
+                borderRadius: BorderRadius.circular(24),
+                child: child,
+              ),
+            );
+          },
+          child: child,
         );
       },
     );
