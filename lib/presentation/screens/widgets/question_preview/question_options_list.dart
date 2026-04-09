@@ -31,6 +31,8 @@ class QuestionOptionsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final successColor = Theme.of(context).extension<CustomColors>()!.success!;
+
     return Column(
       children: question.options.asMap().entries.map((entry) {
         final idx = entry.key;
@@ -39,54 +41,48 @@ class QuestionOptionsList extends StatelessWidget {
 
         return Container(
           margin: const EdgeInsets.only(bottom: 12),
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
             color: isCorrect
-                ? Theme.of(
-                    context,
-                  ).extension<CustomColors>()!.success!.withValues(alpha: 0.1)
-                : Theme.of(context).scaffoldBackgroundColor,
+                ? successColor.withValues(alpha: 0.05)
+                : Theme.of(context).colorScheme.surface,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: isCorrect
-                  ? Theme.of(context).extension<CustomColors>()!.success!
+                  ? successColor.withValues(alpha: 0.5)
                   : Theme.of(context).dividerColor,
-              width: 1,
+              width: 1.5,
             ),
           ),
           child: Row(
             children: [
               // Option Letter Circle
               Container(
-                width: 32,
-                height: 32,
+                width: 28,
+                height: 28,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: isCorrect
-                      ? Theme.of(context).extension<CustomColors>()!.success
-                      : Colors.transparent,
+                  color: isCorrect ? successColor : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
                     color: isCorrect
-                        ? Theme.of(context).extension<CustomColors>()!.success!
+                        ? successColor
                         : Theme.of(context).dividerColor,
+                    width: 2,
                   ),
                 ),
                 child: isCorrect
-                    ? const Icon(
-                        LucideIcons.check,
-                        size: 16,
-                        color: Colors.white,
-                      )
+                    ? const Icon(LucideIcons.check, size: 14, color: Colors.white)
                     : Text(
-                        String.fromCharCode(65 + idx),
-                        style: TextStyle(
-                          color: Theme.of(context).hintColor,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      String.fromCharCode(65 + idx),
+                      style: TextStyle(
+                        color: Theme.of(context).hintColor,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w800,
                       ),
+                    ),
               ),
-              const SizedBox(width: 16),
+              const SizedBox(width: 14),
               // Option Text
               Expanded(
                 child: QuizdyLatexText(
@@ -94,6 +90,7 @@ class QuestionOptionsList extends StatelessWidget {
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface,
                     fontSize: 14,
+                    fontWeight: isCorrect ? FontWeight.w600 : FontWeight.w500,
                     decoration: isDisabled ? TextDecoration.lineThrough : null,
                   ),
                 ),
