@@ -19,6 +19,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
@@ -62,6 +63,7 @@ class QuestionPreviewCard extends StatefulWidget {
 
 class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
   bool _isExpanded = false; // Collapsed by default as per user request
+  bool _isActionsExpanded = false; // Used only on mobile to reveal actions
 
   Uint8List? _getImageBytes(String? imageData) {
     if (imageData == null) return null;
@@ -83,6 +85,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
   Widget build(BuildContext context) {
     final isDisabled = !widget.question.isEnabled;
     final customColors = Theme.of(context).extension<CustomColors>()!;
+    final isMobile = context.isMobile;
 
     Widget cardContent = Container(
       margin: const EdgeInsets.only(bottom: 16),
@@ -295,40 +298,65 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              if (widget.onAiAssistant != null && !isDisabled)
+                              AnimatedSize(
+                                duration: const Duration(milliseconds: 250),
+                                curve: Curves.easeInOutCubic,
+                                child: (!isMobile || _isActionsExpanded)
+                                    ? Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          if (widget.onAiAssistant != null && !isDisabled)
+                                            _buildIconButton(
+                                              icon: LucideIcons.sparkles,
+                                              color: customColors.aiIconColor!,
+                                              onPressed: widget.onAiAssistant!,
+                                              tooltip: AppLocalizations.of(
+                                                context,
+                                              )!.aiButtonTooltip,
+                                            ),
+                                          const SizedBox(width: 4),
+                                          _buildIconButton(
+                                            icon: LucideIcons.pencil,
+                                            color: AppTheme.secondaryColor,
+                                            onPressed: widget.onEdit,
+                                            tooltip: AppLocalizations.of(context)!.edit,
+                                          ),
+                                          const SizedBox(width: 4),
+                                          _buildIconButton(
+                                            icon: LucideIcons.trash2,
+                                            color: Theme.of(context).colorScheme.error,
+                                            onPressed: widget.onDelete,
+                                            tooltip: AppLocalizations.of(
+                                              context,
+                                            )!.deleteButton,
+                                          ),
+                                          const SizedBox(width: 4),
+                                        ],
+                                      )
+                                    : const SizedBox.shrink(),
+                              ),
+                              if (isMobile)
                                 _buildIconButton(
-                                  icon: LucideIcons.sparkles,
-                                  color: customColors.aiIconColor!,
-                                  onPressed: widget.onAiAssistant!,
-                                  tooltip: AppLocalizations.of(
-                                    context,
-                                  )!.aiButtonTooltip,
+                                  icon: _isActionsExpanded
+                                      ? LucideIcons.chevronRight
+                                      : LucideIcons.chevronLeft,
+                                  color: Theme.of(context).hintColor,
+                                  onPressed: () {
+                                    setState(() {
+                                      _isActionsExpanded = !_isActionsExpanded;
+                                    });
+                                  },
+                                  tooltip: _isActionsExpanded ? 'Hide' : 'Show',
+                                )
+                              else
+                                _buildIconButton(
+                                  icon: _isExpanded
+                                      ? LucideIcons.chevronUp
+                                      : LucideIcons.chevronDown,
+                                  color: Theme.of(context).hintColor,
+                                  onPressed: _toggleExpanded,
+                                  tooltip: _isExpanded ? 'Collapse' : 'Expand',
                                 ),
-                              const SizedBox(width: 4),
-                              _buildIconButton(
-                                icon: LucideIcons.pencil,
-                                color: AppTheme.secondaryColor,
-                                onPressed: widget.onEdit,
-                                tooltip: AppLocalizations.of(context)!.edit,
-                              ),
-                              const SizedBox(width: 4),
-                              _buildIconButton(
-                                icon: LucideIcons.trash2,
-                                color: Theme.of(context).colorScheme.error,
-                                onPressed: widget.onDelete,
-                                tooltip: AppLocalizations.of(
-                                  context,
-                                )!.deleteButton,
-                              ),
-                              const SizedBox(width: 4),
-                              _buildIconButton(
-                                icon: _isExpanded
-                                    ? LucideIcons.chevronUp
-                                    : LucideIcons.chevronDown,
-                                color: Theme.of(context).hintColor,
-                                onPressed: _toggleExpanded,
-                                tooltip: _isExpanded ? 'Collapse' : 'Expand',
-                              ),
                             ],
                           ),
                       ],
