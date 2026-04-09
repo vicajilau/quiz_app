@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:quizdy/presentation/widgets/latex_text.dart';
+import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 
 /// A widget that displays the explanation for a quiz question.
 ///
@@ -69,7 +69,7 @@ class QuizQuestionExplanation extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 8),
-              LaTeXText(
+              QuizdyLatexText(
                 explanation,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurfaceVariant,

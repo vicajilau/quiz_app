@@ -16,7 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
-import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
+import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class NumberedListComponent extends StatelessWidget {
@@ -122,7 +122,7 @@ class NumberedListComponent extends StatelessWidget {
                           ),
                         if (itemDesc.isNotEmpty) ...[
                           if (itemTitle.isNotEmpty) const SizedBox(height: 4),
-                          MarkdownWidget(data: itemDesc),
+                          QuizdyMarkdown(data: itemDesc),
                         ],
                       ],
                     ),

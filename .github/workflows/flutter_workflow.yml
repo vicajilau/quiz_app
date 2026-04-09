@@ -23,7 +23,7 @@ jobs:
         with:
           channel: "stable"
       - run: flutter pub get
-      - run: flutter analyze
+      - run: flutter analyze lib test
       - name: Check for untranslated messages
         run: |
           content=$(cat untranslated_messages.json)

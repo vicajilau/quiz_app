@@ -29,7 +29,7 @@ import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_s
 import 'package:quizdy/presentation/screens/widgets/study/study_index_chunk_card.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_hero_card.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_sections_header.dart';
-import 'package:quizdy/presentation/widgets/empty_state_view.dart';
+import 'package:quizdy/presentation/widgets/quizdy_empty_state.dart';
 
 class StudyIndexView extends StatelessWidget {
   final StudyExecutionState state;
@@ -203,7 +203,7 @@ class StudyIndexView extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         if (state.chunks.isEmpty)
-          EmptyStateView(message: localizations.studyScreenNoSlidesAvailable)
+          QuizdyEmptyState(message: localizations.studyScreenNoSlidesAvailable)
         else
           ...List.generate(state.chunks.length, (index) {
             final chunk = state.chunks[index];
@@ -281,7 +281,7 @@ class StudyIndexView extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               if (state.chunks.isEmpty)
-                EmptyStateView(
+                QuizdyEmptyState(
                   message: localizations.studyScreenNoSlidesAvailable,
                 )
               else

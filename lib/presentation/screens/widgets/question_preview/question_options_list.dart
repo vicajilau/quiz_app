@@ -16,7 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
-import 'package:quizdy/presentation/widgets/latex_text.dart';
+import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 
 class QuestionOptionsList extends StatelessWidget {
@@ -89,7 +89,7 @@ class QuestionOptionsList extends StatelessWidget {
               const SizedBox(width: 16),
               // Option Text
               Expanded(
-                child: LaTeXText(
+                child: QuizdyLatexText(
                   option,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface,

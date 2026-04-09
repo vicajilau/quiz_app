@@ -21,7 +21,7 @@ import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_blo
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'package:quizdy/presentation/utils/question_translation_helper.dart';
-import 'package:quizdy/presentation/widgets/latex_text.dart';
+import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 
 /// A widget representing a single option in a quiz question.
 ///
@@ -182,7 +182,7 @@ class QuestionOptionTile extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: LaTeXText(translatedOption, style: optionTextStyle),
+                child: QuizdyLatexText(translatedOption, style: optionTextStyle),
               ),
               ?statusBadge,
             ],
