@@ -624,12 +624,12 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                                 AppRoutes.studyScreen,
                                 extra: {
                                   'initialChunks':
-                                      widget.quizFile.study!.content.cache,
+                                      cachedQuizFile.study?.content.cache ?? [],
                                   'documentTitle':
-                                      widget.quizFile.metadata.title,
+                                      cachedQuizFile.metadata.title,
                                   'documentSummary':
-                                      widget.quizFile.metadata.description,
-                                  'quizFile': widget.quizFile,
+                                      cachedQuizFile.metadata.description,
+                                  'quizFile': cachedQuizFile,
                                   'hideStartQuizButton': true,
                                 },
                               );
