@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.12.0]
 
 - ui: The app now looks correct regardless of the font size set in your device's accessibility settings — text no longer overflows or breaks layouts when a larger system font is configured.
+- fix: Prevented a crash when opening Study Mode from Quiz Preview after generating questions with AI by handling missing study chunks safely.
 
 ## [1.11.0] - 2026-04-01
 
