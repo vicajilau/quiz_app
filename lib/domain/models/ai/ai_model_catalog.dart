@@ -40,22 +40,31 @@ class AiModelEntry {
 abstract final class AiModelCatalog {
   static const String geminiProviderId = 'gemini';
   static const String openaiProviderId = 'openai';
+  static const String llamaProviderId = 'llama';
 
   /// Display name shown in the UI for each provider.
   static const Map<String, String> providerDisplayNames = {
     geminiProviderId: 'Google Gemini',
     openaiProviderId: 'OpenAI GPT',
+    llamaProviderId: 'Local (llama.cpp)',
   };
 
   /// Ordered list of provider IDs (determines dropdown order).
   static const List<String> providerIds = [
     geminiProviderId,
     openaiProviderId,
+    llamaProviderId,
   ];
 
   static const String defaultModelId = 'gemini-flash-latest';
 
   static const List<AiModelEntry> models = [
+    // ── Local llama.cpp ───────────────────────────────────────────────────
+    AiModelEntry(
+      modelId: 'llama-local',
+      providerId: llamaProviderId,
+      displayName: 'Local model (llama.cpp)',
+    ),
     // ── Google Gemini ─────────────────────────────────────────────────────
     AiModelEntry(
       modelId: 'gemini-flash-latest',

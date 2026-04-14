@@ -82,6 +82,7 @@ Rules:
   }) {
     final header = selectedQuestions != null && selectedQuestions.isNotEmpty
         ? '''
+IMPORTANT: JUST ANSWER THE JSON MENTIONED IN THE RULES
 The user wants a personalized study plan based on the following selected quiz questions:
 
 ${_buildSelectedQuestionsContent(selectedQuestions)}
@@ -93,6 +94,7 @@ Use these questions to infer the concepts, topics, skills, and knowledge areas t
         : 'The user has provided the following text for creating a study plan:\n\n$content';
 
     return '''
+IMPORTANT: JUST ANSWER THE JSON MENTIONED IN THE RULES
 Act as an expert academic educator. $header
 
 Analyze the content and generate a structured study guide with a Table of Contents for a personalized study plan.
