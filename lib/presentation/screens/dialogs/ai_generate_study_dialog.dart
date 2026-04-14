@@ -72,7 +72,8 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
     final keepDraft = await configurationService.getAiStudyKeepDraft();
 
     if (keepDraft) {
-      final settings = await configurationService.getAiStudyGenerationSettings();
+      final settings = await configurationService
+          .getAiStudyGenerationSettings();
 
       if (mounted) {
         setState(() {
@@ -179,6 +180,7 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
       final result = await FilePicker.pickFiles(
         type: FileType.any,
         withData: true,
+        allowMultiple: false,
       );
 
       if (result != null && result.files.isNotEmpty) {

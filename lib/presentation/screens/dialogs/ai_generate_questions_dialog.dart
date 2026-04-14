@@ -239,6 +239,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
       final result = await FilePicker.pickFiles(
         type: FileType.any,
         withData: true,
+        allowMultiple: false,
       );
 
       if (result != null && result.files.isNotEmpty) {

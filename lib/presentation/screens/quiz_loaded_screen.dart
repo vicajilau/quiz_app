@@ -105,6 +105,8 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
       FilePickerResult? result = await FilePicker.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['quiz'],
+        withData: true,
+        allowMultiple: false,
       );
 
       if (result != null && result.files.single.path != null) {
