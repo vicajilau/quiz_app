@@ -15,6 +15,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:quizdy/data/repositories/ai/gemini_repository.dart';
+import 'package:quizdy/data/repositories/ai/local_llama_repository.dart';
 import 'package:quizdy/data/repositories/ai/openai_repository.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/ai/ai_model_catalog.dart';
@@ -55,6 +56,10 @@ class AiRepositoryFactory {
       ),
       AiModelCatalog.geminiProviderId => GeminiRepository(
         dioClient: _dioClient,
+        configurationService: _configurationService,
+        modelId: modelId,
+      ),
+      AiModelCatalog.llamaProviderId => LocalLlamaRepository(
         configurationService: _configurationService,
         modelId: modelId,
       ),

@@ -58,6 +58,7 @@ class ConfigurationService {
   static const String _aiStudyGenerationDifficultyLevelKey =
       'ai_study_generation_difficulty_level';
 
+  static const String _localModelPathKey = 'local_model_path';
   static const String _onboardingCompletedKey = 'onboarding_completed';
   static const String _privacyPolicyAcceptedKey = 'privacy_policy_accepted';
 
@@ -198,6 +199,24 @@ class ConfigurationService {
   Future<void> deleteGeminiApiKey() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_geminiApiKeyKey);
+  }
+
+  /// Gets the path to the local GGUF model file used by [LocalLlamaRepository].
+  Future<String?> getLocalModelPath() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_localModelPathKey);
+  }
+
+  /// Saves the path to the local GGUF model file.
+  Future<void> saveLocalModelPath(String path) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_localModelPathKey, path);
+  }
+
+  /// Removes the stored local model path.
+  Future<void> deleteLocalModelPath() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_localModelPathKey);
   }
 
   /// Saves whether answers should be randomized
