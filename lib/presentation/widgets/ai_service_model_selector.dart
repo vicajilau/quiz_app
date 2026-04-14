@@ -43,6 +43,10 @@ class AiServiceModelSelector extends StatefulWidget {
   /// react to it changing without waiting for a save.
   final String? openaiApiKey;
 
+  /// Pass the current local GGUF model path so the widget can show the
+  /// llama provider as soon as a model file is selected.
+  final String? localModelPath;
+
   const AiServiceModelSelector({
     super.key,
     this.initialModel,
@@ -52,6 +56,7 @@ class AiServiceModelSelector extends StatefulWidget {
     this.saveToPreferences = false,
     this.geminiApiKey,
     this.openaiApiKey,
+    this.localModelPath,
   });
 
   @override
@@ -74,9 +79,9 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
   @override
   void didUpdateWidget(AiServiceModelSelector oldWidget) {
     super.didUpdateWidget(oldWidget);
-    // Only reload when API keys change — same guard as the old widget.
     if (oldWidget.geminiApiKey != widget.geminiApiKey ||
-        oldWidget.openaiApiKey != widget.openaiApiKey) {
+        oldWidget.openaiApiKey != widget.openaiApiKey ||
+        oldWidget.localModelPath != widget.localModelPath) {
       _loadAvailableProviders();
     }
   }
@@ -85,13 +90,16 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
     try {
       final configService = ServiceLocator.getIt<ConfigurationService>();
 
-      // Determine which providers have a key configured.
+      // Determine which providers have a key / model configured.
       final geminiKey = await configService.getGeminiApiKey();
       final openaiKey = await configService.getOpenAIApiKey();
+      final localPath = await configService.getLocalModelPath();
 
       final available = <String>[
         if ((geminiKey?.isNotEmpty ?? false)) AiModelCatalog.geminiProviderId,
         if ((openaiKey?.isNotEmpty ?? false)) AiModelCatalog.openaiProviderId,
+        if (localPath != null && localPath.isNotEmpty)
+          AiModelCatalog.llamaProviderId,
       ];
 
       if (!mounted) return;

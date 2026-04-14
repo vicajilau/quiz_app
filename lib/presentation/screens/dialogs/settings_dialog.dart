@@ -51,6 +51,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
   final GlobalKey _aiSettingsKey = GlobalKey();
   final configurationService = ServiceLocator.getIt<ConfigurationService>();
 
+  String? _localModelPath;
   bool _isGeminiKeyVisible = false;
   bool _isOpenAiKeyVisible = false;
 
@@ -67,6 +68,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
       final geminiApiKey = await configurationService.getGeminiApiKey();
       _keepAiDraft = await configurationService.getAiKeepDraft();
       _defaultAIModel = await configurationService.getDefaultAIModel();
+      _localModelPath = await configurationService.getLocalModelPath();
       _aiAssistantEnabled = await configurationService.getIsAiAvailable();
       final versionDetails = await PlatformDetail.versionDetails();
       final versionLabel = kReleaseMode
@@ -105,7 +107,8 @@ class _SettingsDialogState extends State<SettingsDialog> {
     final hasValidOpenAI = apiKey.isValidOpenAIApiKey;
     final hasValidGemini = geminiApiKey.isValidGeminiApiKey;
 
-    if (_aiAssistantEnabled && !hasValidOpenAI && !hasValidGemini) {
+    final hasLocalModel = _localModelPath?.isNotEmpty ?? false;
+    if (_aiAssistantEnabled && !hasValidOpenAI && !hasValidGemini && !hasLocalModel) {
       setState(() {
         _apiKeyErrorMessage = AppLocalizations.of(
           context,
@@ -272,6 +275,17 @@ class _SettingsDialogState extends State<SettingsDialog> {
                             isGeminiVisible: _isGeminiKeyVisible,
                             isOpenAiVisible: _isOpenAiKeyVisible,
                             errorKey: _errorKey,
+                            localModelPath: _localModelPath,
+                            onLocalModelPathChanged: (path) async {
+                              if (path != null) {
+                                await configurationService.saveLocalModelPath(
+                                  path,
+                                );
+                              } else {
+                                await configurationService.deleteLocalModelPath();
+                              }
+                              setState(() => _localModelPath = path);
+                            },
                             onEnabledChanged: (value) {
                               setState(() => _aiAssistantEnabled = value);
                               if (value) {

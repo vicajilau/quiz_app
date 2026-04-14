@@ -13,6 +13,9 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:pasteboard/pasteboard.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -38,11 +41,13 @@ class AiSettingsSection extends StatelessWidget {
   final bool isGeminiVisible;
   final bool isOpenAiVisible;
   final GlobalKey? errorKey;
+  final String? localModelPath;
   final ValueChanged<bool> onEnabledChanged;
   final ValueChanged<bool> onKeepDraftChanged;
   final VoidCallback onToggleGeminiVisibility;
   final VoidCallback onToggleOpenAiVisibility;
   final VoidCallback onApiKeyChanged;
+  final ValueChanged<String?> onLocalModelPathChanged;
 
   const AiSettingsSection({
     super.key,
@@ -55,11 +60,13 @@ class AiSettingsSection extends StatelessWidget {
     required this.isGeminiVisible,
     required this.isOpenAiVisible,
     this.errorKey,
+    this.localModelPath,
     required this.onEnabledChanged,
     required this.onKeepDraftChanged,
     required this.onToggleGeminiVisibility,
     required this.onToggleOpenAiVisibility,
     required this.onApiKeyChanged,
+    required this.onLocalModelPathChanged,
   });
 
   Future<void> _openAiApiKeysUrl(BuildContext context) async {
@@ -265,11 +272,12 @@ class AiSettingsSection extends StatelessWidget {
               ),
             ),
           ],
+          const SizedBox(height: 16),
+          _buildLocalModelField(context),
           if (geminiController.text.isValidGeminiApiKey ||
-              openAiController.text.isValidOpenAIApiKey) ...[
+              openAiController.text.isValidOpenAIApiKey ||
+              (localModelPath?.isNotEmpty ?? false)) ...[
             const SizedBox(height: 24),
-            // Note: AiServiceModelSelector might need internal styling updates too,
-            // but for now we place it here.
             AiServiceModelSelector(
               initialModel: defaultModel,
               saveToPreferences: true,
@@ -279,9 +287,93 @@ class AiSettingsSection extends StatelessWidget {
               openaiApiKey: openAiController.text.isValidOpenAIApiKey
                   ? openAiController.text.trim()
                   : null,
+              localModelPath: localModelPath,
             ),
           ],
         ],
+      ],
+    );
+  }
+
+  Widget _buildLocalModelField(BuildContext context) {
+    final colors = context.appColors;
+    final localizations = AppLocalizations.of(context)!;
+    final hasModel = localModelPath?.isNotEmpty ?? false;
+    final fileName = hasModel ? File(localModelPath!).uri.pathSegments.last : null;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        QuizdyFieldLabel(label: localizations.llamaLocalModelLabel),
+        const SizedBox(height: 8),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+          decoration: BoxDecoration(
+            color: colors.surface,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: colors.border),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                hasModel ? Icons.check_circle_outline : Icons.folder_open,
+                size: 18,
+                color: hasModel
+                    ? Theme.of(context).colorScheme.primary
+                    : colors.subtitle,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  hasModel
+                      ? localizations.llamaLocalModelLoaded(fileName!)
+                      : localizations.llamaLocalModelHint,
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: hasModel ? colors.title : colors.subtitle,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ),
+              if (hasModel)
+                IconButton(
+                  tooltip: localizations.deleteAction,
+                  icon: Icon(Icons.close, size: 18, color: colors.subtitle),
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
+                  onPressed: () => onLocalModelPathChanged(null),
+                ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 8),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              localizations.llamaLocalModelDescription,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+            const SizedBox(height: 4),
+            Align(
+              alignment: Alignment.centerRight,
+              child: QuizdyButton(
+                type: QuizdyButtonType.tertiary,
+                title: localizations.llamaLocalModelBrowse.toUpperCase(),
+                icon: Icons.folder_open,
+                onPressed: () async {
+                  final result = await FilePicker.pickFiles(
+                    type: FileType.custom,
+                    allowedExtensions: const ['gguf'],
+                  );
+                  if (result != null && result.files.single.path != null) {
+                    onLocalModelPathChanged(result.files.single.path);
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }
