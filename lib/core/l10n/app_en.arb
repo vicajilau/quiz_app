@@ -2737,5 +2737,31 @@
   "exportPdfError": "Failed to export PDF",
   "@exportPdfError": {
     "description": "Snackbar message shown when the PDF export fails"
+  },
+  "llamaLocalModelLabel": "Local Model (llama.cpp)",
+  "@llamaLocalModelLabel": {
+    "description": "Label for the local GGUF model file picker in AI settings"
+  },
+  "llamaLocalModelDescription": "Run AI locally on-device. No API key required. Select a GGUF model file.",
+  "@llamaLocalModelDescription": {
+    "description": "Description for the local model file picker"
+  },
+  "llamaLocalModelHint": "No model file selected",
+  "@llamaLocalModelHint": {
+    "description": "Hint text when no local GGUF model is selected"
+  },
+  "llamaLocalModelBrowse": "Select .gguf file",
+  "@llamaLocalModelBrowse": {
+    "description": "Button label to open the file picker for a GGUF model file"
+  },
+  "llamaLocalModelLoaded": "Model: {fileName}",
+  "@llamaLocalModelLoaded": {
+    "description": "Shows the filename of the currently selected local model",
+    "placeholders": {
+      "fileName": {
+        "type": "String",
+        "example": "llama-3.2-1b-q4.gguf"
+      }
+    }
   }
 }
