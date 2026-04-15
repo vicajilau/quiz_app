@@ -43,13 +43,13 @@ class QuestionTypeIndicator extends StatelessWidget {
     IconData icon;
     switch (questionType.value) {
       case 'multiple_choice':
-        icon = LucideIcons.listChecks;
+        icon = LucideIcons.checkSquare;
         break;
       case 'true_false':
         icon = LucideIcons.circleDot;
         break;
       case 'single_choice':
-        icon = LucideIcons.circle;
+        icon = LucideIcons.list;
         break;
       case 'essay':
         icon = LucideIcons.fileText;
@@ -58,16 +58,20 @@ class QuestionTypeIndicator extends StatelessWidget {
         icon = LucideIcons.helpCircle;
     }
 
-    return Icon(icon, size: 12, color: Theme.of(context).colorScheme.onSurface);
+    return Icon(icon, size: 13, color: Theme.of(context).colorScheme.onSurface);
   }
 
   Widget _buildText(BuildContext context) {
-    return Text(
-      getQuestionTypeString(context, questionType),
-      style: TextStyle(
-        color: Theme.of(context).colorScheme.onSurface,
-        fontSize: 11,
-        fontWeight: FontWeight.w500,
+    return Flexible(
+      child: Text(
+        getQuestionTypeString(context, questionType),
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.onSurface,
+          fontSize: 11,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 0.2,
+        ),
       ),
     );
   }

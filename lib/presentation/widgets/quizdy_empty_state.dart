@@ -16,11 +16,11 @@
 import 'package:flutter/material.dart';
 import 'package:quizdy/core/context_extension.dart';
 
-class EmptyStateView extends StatelessWidget {
+class QuizdyEmptyState extends StatelessWidget {
   final String message;
   final IconData icon;
 
-  const EmptyStateView({
+  const QuizdyEmptyState({
     super.key,
     required this.message,
     this.icon = Icons.library_books_outlined,

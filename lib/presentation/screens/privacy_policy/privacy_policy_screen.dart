@@ -21,7 +21,7 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
-import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
+import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 import 'package:quizdy/routes/app_router.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -185,7 +185,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                               ),
                             )
                           : SingleChildScrollView(
-                              child: MarkdownWidget(
+                              child: QuizdyMarkdown(
                                 data: _privacyPolicyMarkdown!,
                               ),
                             ),

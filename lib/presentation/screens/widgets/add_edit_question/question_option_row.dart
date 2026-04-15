@@ -16,7 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:quizdy/presentation/widgets/latex_text.dart';
+import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
 /// Separate widget for each option row to optimize rendering
@@ -119,7 +119,7 @@ class _QuestionOptionRowState extends State<QuestionOptionRow>
                             ),
                             child: Center(
                               heightFactor: 1.0,
-                              child: LaTeXText(
+                              child: QuizdyLatexText(
                                 widget.controller.text,
                                 style: const TextStyle(
                                   fontSize: 12,

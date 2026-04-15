@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
-import 'package:quizdy/presentation/widgets/latex_text.dart';
+import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 
 /// A widget that displays the context of the question being discussed.
 ///
@@ -50,7 +50,7 @@ class QuestionContextWidget extends StatelessWidget {
             ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
-          LaTeXText(
+          QuizdyLatexText(
             question.text,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
@@ -63,7 +63,7 @@ class QuestionContextWidget extends StatelessWidget {
               final letter = String.fromCharCode(65 + index);
               return Padding(
                 padding: const EdgeInsets.only(bottom: 4),
-                child: LaTeXText(
+                child: QuizdyLatexText(
                   '$letter) $option',
                   style: Theme.of(context).textTheme.bodySmall,
                 ),

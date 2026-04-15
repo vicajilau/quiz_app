@@ -18,7 +18,7 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'package:quizdy/presentation/utils/question_translation_helper.dart';
-import 'package:quizdy/presentation/widgets/latex_text.dart';
+import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 
 /// A widget that displays the options for multiple choice or true/false questions.
 ///
@@ -140,7 +140,7 @@ class QuizQuestionOptionsResult extends StatelessWidget {
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: LaTeXText(
+                  child: QuizdyLatexText(
                     QuestionTranslationHelper.translateOption(
                       optionText,
                       localizations,

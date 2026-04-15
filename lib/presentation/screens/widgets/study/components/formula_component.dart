@@ -15,8 +15,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
-import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
-import 'package:quizdy/presentation/widgets/latex_text.dart';
+import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
+import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class FormulaComponent extends StatelessWidget {
@@ -60,7 +60,7 @@ class FormulaComponent extends StatelessWidget {
               children: [
                 Align(
                   alignment: Alignment.center,
-                  child: LaTeXText(
+                  child: QuizdyLatexText(
                     equation.trim().startsWith('\$')
                         ? equation
                         : '\$$equation\$',
@@ -84,7 +84,7 @@ class FormulaComponent extends StatelessWidget {
           ),
           if (body != null && body.isNotEmpty) ...[
             const SizedBox(height: 12),
-            MarkdownWidget(data: body),
+            QuizdyMarkdown(data: body),
           ],
         ],
       ),

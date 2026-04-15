@@ -30,7 +30,7 @@ import 'package:quizdy/presentation/screens/widgets/add_edit_question/question_i
 import 'package:quizdy/presentation/screens/widgets/add_edit_question/question_options_section.dart';
 import 'package:quizdy/presentation/screens/dialogs/mixins/option_management_mixin.dart';
 import 'package:quizdy/presentation/screens/dialogs/mixins/validation_mixin.dart';
-import 'package:quizdy/presentation/widgets/latex_text.dart';
+import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
@@ -220,15 +220,17 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    widget.question == null
-                        ? localizations.addQuestion
-                        : localizations.editQuestion,
-                    style: TextStyle(
-                      fontFamily: 'Plus Jakarta Sans',
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      color: theme.textColor,
+                  Flexible(
+                    child: Text(
+                      widget.question == null
+                          ? localizations.addQuestion
+                          : localizations.editQuestion,
+                      style: TextStyle(
+                        fontFamily: 'Plus Jakarta Sans',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: theme.textColor,
+                      ),
                     ),
                   ),
                   Row(
@@ -418,7 +420,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                                   ),
                                 ),
                                 const SizedBox(height: 8),
-                                LaTeXText(
+                                QuizdyLatexText(
                                   _questionTextController.text,
                                   style: TextStyle(
                                     fontSize: 16,
@@ -524,7 +526,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                                   ),
                                 ),
                                 const SizedBox(height: 8),
-                                LaTeXText(
+                                QuizdyLatexText(
                                   _explanationController.text,
                                   style: TextStyle(
                                     fontSize: 16,

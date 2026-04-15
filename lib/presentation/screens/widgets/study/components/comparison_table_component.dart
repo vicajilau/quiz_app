@@ -16,8 +16,8 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
-import 'package:quizdy/presentation/widgets/latex_text.dart';
-import 'package:quizdy/presentation/screens/widgets/common/markdown_widget.dart';
+import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
+import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 class ComparisonTableComponent extends StatelessWidget {
@@ -125,7 +125,7 @@ class ComparisonTableComponent extends StatelessWidget {
                         (col) => DataColumn(
                           label: Expanded(
                             child: Center(
-                              child: LaTeXText(
+                              child: QuizdyLatexText(
                                 col,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -143,7 +143,7 @@ class ComparisonTableComponent extends StatelessWidget {
                       return DataRow(
                         cells: [
                           DataCell(
-                            LaTeXText(
+                            QuizdyLatexText(
                               label.isEmpty ? '-' : label,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -154,7 +154,7 @@ class ComparisonTableComponent extends StatelessWidget {
                           ...values.map(
                             (val) => DataCell(
                               Center(
-                                child: MarkdownWidget(
+                                child: QuizdyMarkdown(
                                   data: val.isEmpty ? '-' : val,
                                 ),
                               ),

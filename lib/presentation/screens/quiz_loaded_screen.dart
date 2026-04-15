@@ -49,7 +49,7 @@ import 'package:quizdy/presentation/screens/widgets/quiz_loaded_bottom_bar.dart'
 import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
 import 'package:quizdy/presentation/screens/widgets/request_file_name_dialog.dart';
-import 'package:quizdy/presentation/widgets/empty_state_view.dart';
+import 'package:quizdy/presentation/widgets/quizdy_empty_state.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/presentation/screens/dialogs/quiz_metadata_dialog.dart';
 import 'package:quizdy/core/theme/extensions/quiz_loaded_theme.dart';
@@ -105,6 +105,8 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
       FilePickerResult? result = await FilePicker.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['quiz'],
+        withData: true,
+        allowMultiple: false,
       );
 
       if (result != null && result.files.single.path != null) {
@@ -624,12 +626,12 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                                 AppRoutes.studyScreen,
                                 extra: {
                                   'initialChunks':
-                                      widget.quizFile.study!.content.cache,
+                                      cachedQuizFile.study?.content.cache ?? [],
                                   'documentTitle':
-                                      widget.quizFile.metadata.title,
+                                      cachedQuizFile.metadata.title,
                                   'documentSummary':
-                                      widget.quizFile.metadata.description,
-                                  'quizFile': widget.quizFile,
+                                      cachedQuizFile.metadata.description,
+                                  'quizFile': cachedQuizFile,
                                   'hideStartQuizButton': true,
                                 },
                               );
@@ -806,7 +808,7 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                   child: Stack(
                     children: [
                       if (cachedQuizFile.questions.isEmpty)
-                        EmptyStateView(
+                        QuizdyEmptyState(
                           message: AppLocalizations.of(
                             context,
                           )!.quizLoadedNoQuestionsAvailable,

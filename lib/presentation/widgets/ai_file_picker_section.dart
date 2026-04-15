@@ -35,6 +35,7 @@ class AiFilePickerSection extends StatelessWidget {
       final result = await FilePicker.pickFiles(
         type: FileType.any,
         withData: true,
+        allowMultiple: false,
       );
 
       if (result != null && result.files.isNotEmpty) {

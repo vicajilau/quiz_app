@@ -132,14 +132,16 @@ class StudyIndexHeroCard extends StatelessWidget {
                   ).extension<CustomColors>()!.onWarningContainer,
                 ),
                 const SizedBox(width: 8),
-                Text(
-                  localizations.studyScreenPendingSections,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: Theme.of(
-                      context,
-                    ).extension<CustomColors>()!.onWarningContainer,
+                Flexible(
+                  child: Text(
+                    localizations.studyScreenPendingSections,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: Theme.of(
+                        context,
+                      ).extension<CustomColors>()!.onWarningContainer,
+                    ),
                   ),
                 ),
               ],

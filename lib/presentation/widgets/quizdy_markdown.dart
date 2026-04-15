@@ -17,11 +17,11 @@ import 'package:flutter/material.dart';
 import 'package:gpt_markdown/gpt_markdown.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 
-class MarkdownWidget extends StatelessWidget {
+class QuizdyMarkdown extends StatelessWidget {
   final String data;
   final TextStyle? style;
 
-  const MarkdownWidget({super.key, required this.data, this.style});
+  const QuizdyMarkdown({super.key, required this.data, this.style});
 
   @override
   Widget build(BuildContext context) {

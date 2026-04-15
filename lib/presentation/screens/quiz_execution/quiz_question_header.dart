@@ -18,7 +18,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
-import 'package:quizdy/presentation/widgets/latex_text.dart';
+import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 
 class QuizQuestionHeader extends StatelessWidget {
   final QuizExecutionInProgress state;
@@ -55,7 +55,7 @@ class QuizQuestionHeader extends StatelessWidget {
         const SizedBox(height: 8),
         Align(
           alignment: Alignment.centerLeft,
-          child: LaTeXText(
+          child: QuizdyLatexText(
             state.currentQuestion.text,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,

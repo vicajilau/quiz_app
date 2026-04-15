@@ -253,7 +253,6 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                           fontWeight: FontWeight.w700,
                           color: colors.title,
                         ),
-                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                     IconButton(

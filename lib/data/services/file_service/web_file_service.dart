@@ -125,6 +125,8 @@ class QuizFileService implements IFileService {
     final result = await FilePicker.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['quiz'],
+      withData: true,
+      allowMultiple: false,
     );
 
     // If a file is selected, read and return the file as a QuizFile object

@@ -286,6 +286,8 @@ class _StudyScreenViewState extends State<StudyScreenView> {
       FilePickerResult? result = await FilePicker.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['quiz'],
+        withData: true,
+        allowMultiple: false,
       );
 
       if (result != null && result.files.single.path != null) {
@@ -395,6 +397,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
     final result = await FilePicker.pickFiles(
       type: FileType.any,
       withData: true,
+      allowMultiple: false,
     );
 
     if (result == null ||

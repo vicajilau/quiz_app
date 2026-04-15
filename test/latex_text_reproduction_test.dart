@@ -16,7 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
-import 'package:quizdy/presentation/widgets/latex_text.dart';
+import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 
 void main() {
   testWidgets('LaTeXText wraps text when it exceeds constraints', (
@@ -32,7 +32,7 @@ void main() {
         home: Center(
           child: SizedBox(
             width: 200, // Narrow width to force wrapping
-            child: LaTeXText(
+            child: QuizdyLatexText(
               longText,
               style: TextStyle(
                 fontSize: 20,
@@ -44,10 +44,10 @@ void main() {
     );
 
     // Check if we found either
-    expect(find.byType(LaTeXText), findsOneWidget);
+    expect(find.byType(QuizdyLatexText), findsOneWidget);
 
     // Verify it takes up enough height to be multi-line
-    final Size size = tester.getSize(find.byType(LaTeXText));
+    final Size size = tester.getSize(find.byType(QuizdyLatexText));
 
     // 20px font size. Single line would be around 20-24px height.
     // Multi-line should be significantly larger.
@@ -70,13 +70,13 @@ void main() {
         home: Center(
           child: SizedBox(
             width: 200,
-            child: LaTeXText(longLatexText, style: TextStyle(fontSize: 20)),
+            child: QuizdyLatexText(longLatexText, style: TextStyle(fontSize: 20)),
           ),
         ),
       ),
     );
 
-    final Size size = tester.getSize(find.byType(LaTeXText));
+    final Size size = tester.getSize(find.byType(QuizdyLatexText));
     expect(
       size.height,
       greaterThan(30.0),
@@ -93,12 +93,12 @@ void main() {
     await tester.pumpWidget(
       const MaterialApp(
         home: Center(
-          child: LaTeXText(textWithDisplayMath, style: TextStyle(fontSize: 20)),
+          child: QuizdyLatexText(textWithDisplayMath, style: TextStyle(fontSize: 20)),
         ),
       ),
     );
 
-    expect(find.byType(LaTeXText), findsOneWidget);
+    expect(find.byType(QuizdyLatexText), findsOneWidget);
     // Math.tex is used internally
     expect(find.byType(Math), findsOneWidget);
   });
@@ -112,12 +112,12 @@ void main() {
     await tester.pumpWidget(
       const MaterialApp(
         home: Center(
-          child: LaTeXText(mixedMath, style: TextStyle(fontSize: 20)),
+          child: QuizdyLatexText(mixedMath, style: TextStyle(fontSize: 20)),
         ),
       ),
     );
 
-    expect(find.byType(LaTeXText), findsOneWidget);
+    expect(find.byType(QuizdyLatexText), findsOneWidget);
     expect(find.byType(Math), findsNWidgets(3));
   });
 
@@ -129,7 +129,7 @@ void main() {
     await tester.pumpWidget(
       const MaterialApp(
         home: Center(
-          child: LaTeXText(unclosed, style: TextStyle(fontSize: 20)),
+          child: QuizdyLatexText(unclosed, style: TextStyle(fontSize: 20)),
         ),
       ),
     );
