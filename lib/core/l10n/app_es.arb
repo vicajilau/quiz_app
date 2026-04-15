@@ -2545,5 +2545,19 @@
   },
   "exportAsPdf": "Exportar como PDF",
   "exportPdfSuccess": "PDF exportado con éxito",
-  "exportPdfError": "Error al exportar el PDF"
+  "exportPdfError": "Error al exportar el PDF",
+  "onboardingDownloadAppTitle": "Instala Quizdy en tus dispositivos",
+  "onboardingDownloadAppDescription": "Instala Quizdy en móvil con códigos QR o abre directamente los enlaces de las tiendas de escritorio.",
+  "onboardingDownloadAppSubtitle": "Instala en móvil o escritorio en un solo paso.",
+  "onboardingDownloadAppHelper": "Elige tu tienda y generaremos un código QR que podrás escanear con tu teléfono.",
+  "onboardingDownloadMobileSectionDescription": "Instalación móvil (para otro dispositivo): toca una tienda y escanea el código QR con tu teléfono.",
+  "onboardingDownloadDesktopSectionDescription": "Instalación de escritorio (este dispositivo): toca una tienda y abre directamente la página de instalación.",
+  "onboardingDownloadAndroidStoreButton": "Google Play",
+  "onboardingDownloadHuaweiStoreButton": "AppGallery",
+  "onboardingDownloadIosStoreButton": "App Store",
+  "onboardingDownloadMacStoreButton": "Mac App Store",
+  "onboardingDownloadWindowsStoreButton": "Microsoft Store",
+  "onboardingDownloadLinuxStoreButton": "Snapcraft",
+  "onboardingDownloadQrTitle": "Escanea para continuar",
+  "onboardingDownloadQrDescription": "Usa la cámara de tu teléfono para abrir el enlace de la tienda."
 }

@@ -2303,5 +2303,19 @@
         "example": "3"
       }
     }
-  }
+  },
+  "onboardingDownloadAppTitle": "Instalatu Quizdy zure gailuetan",
+  "onboardingDownloadAppDescription": "Instalatu Quizdy mugikorrean QR kodeekin edo ireki zuzenean mahaigaineko denden estekak.",
+  "onboardingDownloadAppSubtitle": "Instalatu mugikorrean edo mahaigainean pauso bakarrean.",
+  "onboardingDownloadAppHelper": "Aukeratu zure denda eta QR kode bat sortuko dugu telefonoarekin eskaneatzeko.",
+  "onboardingDownloadMobileSectionDescription": "Mugikorreko instalazioa (beste gailu baterako): sakatu denda bat eta eskaneatu QR kodea telefonoarekin.",
+  "onboardingDownloadDesktopSectionDescription": "Mahaigaineko instalazioa (gailu hau): sakatu denda bat eta ireki zuzenean instalazio-orria.",
+  "onboardingDownloadAndroidStoreButton": "Google Play",
+  "onboardingDownloadHuaweiStoreButton": "AppGallery",
+  "onboardingDownloadIosStoreButton": "App Store",
+  "onboardingDownloadMacStoreButton": "Mac App Store",
+  "onboardingDownloadWindowsStoreButton": "Microsoft Store",
+  "onboardingDownloadLinuxStoreButton": "Snapcraft",
+  "onboardingDownloadQrTitle": "Eskaneatu jarraitzeko",
+  "onboardingDownloadQrDescription": "Erabili telefonoaren kamera dendaren esteka irekitzeko."
 }

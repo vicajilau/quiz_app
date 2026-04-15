@@ -2303,5 +2303,19 @@
         "example": "3"
       }
     }
-  }
+  },
+  "onboardingDownloadAppTitle": "Instala Quizdy nos teus dispositivos",
+  "onboardingDownloadAppDescription": "Instala Quizdy no móbil con códigos QR ou abre directamente as ligazóns das tendas de escritorio.",
+  "onboardingDownloadAppSubtitle": "Instala no móbil ou no escritorio nun só paso.",
+  "onboardingDownloadAppHelper": "Escolle a túa tenda e xeraremos un código QR que poderás escanear co teu teléfono.",
+  "onboardingDownloadMobileSectionDescription": "Instalación móbil (para outro dispositivo): toca unha tenda e escanea o código QR co teu teléfono.",
+  "onboardingDownloadDesktopSectionDescription": "Instalación de escritorio (este dispositivo): toca unha tenda e abre directamente a páxina de instalación.",
+  "onboardingDownloadAndroidStoreButton": "Google Play",
+  "onboardingDownloadHuaweiStoreButton": "AppGallery",
+  "onboardingDownloadIosStoreButton": "App Store",
+  "onboardingDownloadMacStoreButton": "Mac App Store",
+  "onboardingDownloadWindowsStoreButton": "Microsoft Store",
+  "onboardingDownloadLinuxStoreButton": "Snapcraft",
+  "onboardingDownloadQrTitle": "Escanea para continuar",
+  "onboardingDownloadQrDescription": "Usa a cámara do teu teléfono para abrir a ligazón da tenda."
 }

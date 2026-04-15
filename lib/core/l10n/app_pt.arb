@@ -2394,5 +2394,19 @@
         "example": "3"
       }
     }
-  }
+  },
+  "onboardingDownloadAppTitle": "Instale o Quizdy nos seus dispositivos",
+  "onboardingDownloadAppDescription": "Instale o Quizdy no celular com códigos QR ou abra diretamente os links das lojas de desktop.",
+  "onboardingDownloadAppSubtitle": "Instale no celular ou no desktop em uma única etapa.",
+  "onboardingDownloadAppHelper": "Escolha sua loja abaixo e geraremos um código QR para você escanear com o celular.",
+  "onboardingDownloadMobileSectionDescription": "Instalação no celular (para outro dispositivo): toque em uma loja e escaneie o QR com o celular.",
+  "onboardingDownloadDesktopSectionDescription": "Instalação no desktop (este dispositivo): toque em uma loja e abra diretamente a página de instalação.",
+  "onboardingDownloadAndroidStoreButton": "Google Play",
+  "onboardingDownloadHuaweiStoreButton": "AppGallery",
+  "onboardingDownloadIosStoreButton": "App Store",
+  "onboardingDownloadMacStoreButton": "Mac App Store",
+  "onboardingDownloadWindowsStoreButton": "Microsoft Store",
+  "onboardingDownloadLinuxStoreButton": "Snapcraft",
+  "onboardingDownloadQrTitle": "Escaneie para continuar",
+  "onboardingDownloadQrDescription": "Use a câmera do seu celular para abrir o link da loja."
 }

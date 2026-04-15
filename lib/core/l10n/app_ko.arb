@@ -995,5 +995,19 @@
         "example": "3"
       }
     }
-  }
+  },
+  "onboardingDownloadAppTitle": "기기에 Quizdy 설치하기",
+  "onboardingDownloadAppDescription": "모바일에서는 QR 코드로 Quizdy를 설치하고, 데스크톱에서는 스토어 링크를 바로 열 수 있습니다.",
+  "onboardingDownloadAppSubtitle": "모바일 또는 데스크톱에 한 번에 설치하세요.",
+  "onboardingDownloadAppHelper": "아래 스토어를 선택하면 휴대폰으로 스캔할 수 있는 QR 코드를 생성합니다.",
+  "onboardingDownloadMobileSectionDescription": "모바일 설치(다른 기기용): 스토어를 탭하고 휴대폰으로 QR 코드를 스캔하세요.",
+  "onboardingDownloadDesktopSectionDescription": "데스크톱 설치(이 기기): 스토어를 탭해 설치 페이지를 바로 여세요.",
+  "onboardingDownloadAndroidStoreButton": "Google Play",
+  "onboardingDownloadHuaweiStoreButton": "AppGallery",
+  "onboardingDownloadIosStoreButton": "App Store",
+  "onboardingDownloadMacStoreButton": "Mac App Store",
+  "onboardingDownloadWindowsStoreButton": "Microsoft Store",
+  "onboardingDownloadLinuxStoreButton": "Snapcraft",
+  "onboardingDownloadQrTitle": "계속하려면 스캔",
+  "onboardingDownloadQrDescription": "휴대폰 카메라로 스토어 링크를 여세요."
 }

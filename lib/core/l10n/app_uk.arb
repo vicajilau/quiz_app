@@ -1028,5 +1028,19 @@
         "example": "3"
       }
     }
-  }
+  },
+  "onboardingDownloadAppTitle": "Встановіть Quizdy на свої пристрої",
+  "onboardingDownloadAppDescription": "Встановіть Quizdy на мобільний через QR-коди або відкрийте посилання магазинів для комп'ютера напряму.",
+  "onboardingDownloadAppSubtitle": "Встановіть на мобільний або комп'ютер за один крок.",
+  "onboardingDownloadAppHelper": "Виберіть магазин нижче, і ми згенеруємо QR-код, який можна відсканувати телефоном.",
+  "onboardingDownloadMobileSectionDescription": "Встановлення на мобільний (для іншого пристрою): натисніть магазин і відскануйте QR-код телефоном.",
+  "onboardingDownloadDesktopSectionDescription": "Встановлення на комп'ютер (цей пристрій): натисніть магазин і одразу відкрийте сторінку встановлення.",
+  "onboardingDownloadAndroidStoreButton": "Google Play",
+  "onboardingDownloadHuaweiStoreButton": "AppGallery",
+  "onboardingDownloadIosStoreButton": "App Store",
+  "onboardingDownloadMacStoreButton": "Mac App Store",
+  "onboardingDownloadWindowsStoreButton": "Microsoft Store",
+  "onboardingDownloadLinuxStoreButton": "Snapcraft",
+  "onboardingDownloadQrTitle": "Скануйте, щоб продовжити",
+  "onboardingDownloadQrDescription": "Скористайтеся камерою телефона, щоб відкрити посилання магазину"
 }
