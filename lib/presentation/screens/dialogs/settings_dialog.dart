@@ -15,6 +15,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:platform_detail/platform_detail.dart';
@@ -28,6 +29,7 @@ import 'package:quizdy/presentation/screens/dialogs/settings_widgets/ai_settings
 import 'package:quizdy/presentation/screens/dialogs/settings_widgets/advanced_settings_section.dart';
 import 'package:quizdy/presentation/utils/support_issue_helper.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
+import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/routes/app_router.dart';
 
 class SettingsDialog extends StatefulWidget {
@@ -173,6 +175,171 @@ class _SettingsDialogState extends State<SettingsDialog> {
     }
   }
 
+  Future<void> _openChangelog() async {
+    final version = _normalizedVersion(_appVersion);
+    if (version == null) {
+      return;
+    }
+
+    final changelog = await _loadChangelogForVersion(version);
+    if (!mounted) {
+      return;
+    }
+
+    await showDialog<void>(
+      context: context,
+      builder: (dialogContext) {
+        final dialogColors = dialogContext.appColors;
+        final localizations = AppLocalizations.of(dialogContext)!;
+
+        return Dialog(
+          backgroundColor: dialogColors.card,
+          insetPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 24,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+            side: BorderSide(color: dialogColors.border, width: 1),
+          ),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: 640,
+              maxHeight: MediaQuery.sizeOf(dialogContext).height * 0.8,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(24, 24, 24, 16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: dialogColors.surface,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Icon(
+                          LucideIcons.sparkles,
+                          size: 20,
+                          color: dialogColors.subtitle,
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${localizations.versionLabel} $version',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                color: dialogColors.title,
+                              ),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              localizations.settingsTitle,
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: dialogColors.subtitle,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Expanded(
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: dialogColors.surface,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: dialogColors.border),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: changelog == null
+                            ? Center(
+                                child: Text(
+                                  AppLocalizations.of(
+                                    dialogContext,
+                                  )!.emptyPlaceholder,
+                                  style: TextStyle(
+                                    color: dialogColors.subtitle,
+                                  ),
+                                ),
+                              )
+                            : SingleChildScrollView(
+                                child: QuizdyMarkdown(
+                                  data: changelog,
+                                  style: TextStyle(color: dialogColors.title),
+                                ),
+                              ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  QuizdyButton(
+                    type: QuizdyButtonType.primary,
+                    title: localizations.okButton,
+                    expanded: true,
+                    onPressed: () => Navigator.of(dialogContext).pop(),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<String?> _loadChangelogForVersion(String version) async {
+    try {
+      final changelog = await rootBundle.loadString('CHANGELOG.md');
+      return _extractChangelogSection(changelog, version);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  String? _extractChangelogSection(String changelog, String version) {
+    final sectionHeading = RegExp(r'^## \[([^\]]+)\]');
+    final lines = changelog.split('\n');
+    final sectionLines = <String>[];
+    var isCollecting = false;
+
+    for (final line in lines) {
+      final match = sectionHeading.firstMatch(line);
+      if (match != null) {
+        if (isCollecting) {
+          break;
+        }
+
+        isCollecting = match.group(1) == version;
+        continue;
+      }
+
+      if (isCollecting) {
+        sectionLines.add(line);
+      }
+    }
+
+    final section = sectionLines.join('\n').trim();
+    return section.isEmpty ? null : section;
+  }
+
+  String? _normalizedVersion(String version) {
+    final match = RegExp(r'^\d+\.\d+\.\d+').firstMatch(version);
+    return match?.group(0);
+  }
+
   /// Called when API keys change - saves them and refreshes the selector
   Future<void> _onApiKeyChanged() async {
     // Save API keys immediately so the selector can detect them
@@ -215,7 +382,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
           ],
         ),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Header
@@ -322,7 +489,11 @@ class _SettingsDialogState extends State<SettingsDialog> {
                             onTap: _openSupportIssueUrl,
                           ),
                           const SizedBox(height: 8),
-                          _VersionRow(colors: colors, version: _appVersion),
+                          _VersionRow(
+                            colors: colors,
+                            version: _appVersion,
+                            onTap: _openChangelog,
+                          ),
                         ],
                       ),
                     ),
@@ -414,45 +585,55 @@ class _OnboardingRow extends StatelessWidget {
 class _VersionRow extends StatelessWidget {
   final ConfirmingDialogColorsExtension colors;
   final String version;
+  final VoidCallback onTap;
 
-  const _VersionRow({required this.colors, required this.version});
+  const _VersionRow({
+    required this.colors,
+    required this.version,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Row(
-        children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: colors.surface,
-              borderRadius: BorderRadius.circular(10),
+    return InkWell(
+      borderRadius: BorderRadius.circular(12),
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Row(
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: colors.surface,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(LucideIcons.info, size: 20, color: colors.subtitle),
             ),
-            child: Icon(LucideIcons.info, size: 20, color: colors.subtitle),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.versionLabel,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: colors.title,
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.versionLabel,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: colors.title,
+                    ),
                   ),
-                ),
-                Text(
-                  version,
-                  style: TextStyle(fontSize: 12, color: colors.subtitle),
-                ),
-              ],
+                  Text(
+                    version,
+                    style: TextStyle(fontSize: 12, color: colors.subtitle),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+            Icon(LucideIcons.chevronRight, size: 18, color: colors.subtitle),
+          ],
+        ),
       ),
     );
   }
