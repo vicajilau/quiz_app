@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.12.0]
 
+- fix: Updated AI study component type selector behavior so enabling it selects all component types by default, and it auto-disables when all types are deselected.
+
 ## [1.11.0] - 2026-04-01
 
 - fix: Improved Study section editing flow by opening edit directly on page 0, allowing chunk editing before downloading, blocking empty/invalid saves, and marking manually edited created sections as `downloaded` when saved with content.
