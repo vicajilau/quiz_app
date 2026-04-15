@@ -337,9 +337,19 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                         AiComponentTypeSelectorWidget(
                           enabled: _componentTypeSelectorEnabled,
                           selectedTypes: _selectedComponentTypes,
-                          onToggle: (value) => setState(
-                            () => _componentTypeSelectorEnabled = value,
-                          ),
+                          onToggle: (value) {
+                            setState(() {
+                              _componentTypeSelectorEnabled = value;
+                              if (value) {
+                                _selectedComponentTypes =
+                                    Set<StudyComponentType>.from(
+                                      StudyComponentType.values,
+                                    );
+                              } else {
+                                _selectedComponentTypes.clear();
+                              }
+                            });
+                          },
                           onTypeToggled: (type) {
                             setState(() {
                               if (_selectedComponentTypes.contains(type)) {
@@ -347,6 +357,8 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                               } else {
                                 _selectedComponentTypes.add(type);
                               }
+                              _componentTypeSelectorEnabled =
+                                  _selectedComponentTypes.isNotEmpty;
                             });
                           },
                         ),
