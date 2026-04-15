@@ -400,9 +400,7 @@ class _StudyIndexFooterWidgetState extends State<StudyIndexFooterWidget> {
                             title: widget.localizations.startQuizFromStudy,
                             icon: LucideIcons.play,
                             expanded: true,
-                            onPressed: widget.isStartQuizEnabled
-                                ? widget.onStartQuiz
-                                : null,
+                            onPressed: widget.onStartQuiz,
                           ),
                         ),
                       ),

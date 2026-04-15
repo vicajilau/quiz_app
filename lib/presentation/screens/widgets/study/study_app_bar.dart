@@ -44,52 +44,50 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
     final localizations = AppLocalizations.of(context)!;
 
     return QuizdyAppBar(
-      leading: Padding(
-        padding: const EdgeInsets.only(left: 24),
-        child: Center(
-          child: Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: context.quizLoadedTheme.appBarIconBackgroundColor,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-              builder: (context, state) {
-                return AbsorbPointer(
-                  absorbing: state.isLoading,
-                  child: IconButton(
-                    padding: EdgeInsets.zero,
-                    icon: Icon(
-                      LucideIcons.arrowLeft,
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      size: 20,
-                    ),
-                    tooltip: localizations.backSemanticLabel,
-                    onPressed: () async {
-                      if (state.isSelectionMode) {
-                        context.read<StudyExecutionBloc>().add(
-                          const ClearSelectionRequested(),
-                        );
-                        return;
-                      }
-                      if (!state.isIndexMode) {
-                        context.read<StudyExecutionBloc>().add(
-                          const ReturnToIndexRequested(),
-                        );
-                        return;
-                      }
-                      final shouldExit = await onConfirmExit();
-                      if (shouldExit && context.mounted) {
-                        context.read<FileBloc>().add(QuizFileReset());
-                        context.pop();
-                      }
-                    },
+      leading: Center(
+        child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+          builder: (context, state) {
+            return AbsorbPointer(
+              absorbing: state.isLoading,
+              child: Container(
+                width: 40,
+                height: 40,
+                margin: const EdgeInsets.only(left: 8),
+                decoration: BoxDecoration(
+                  color: context.quizLoadedTheme.appBarIconBackgroundColor,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: IconButton(
+                  padding: EdgeInsets.zero,
+                  icon: Icon(
+                    Icons.close,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    size: 20,
                   ),
-                );
-              },
-            ),
-          ),
+                  onPressed: () async {
+                    if (state.isSelectionMode) {
+                      context.read<StudyExecutionBloc>().add(
+                        const ClearSelectionRequested(),
+                      );
+                      return;
+                    }
+                    if (!state.isIndexMode) {
+                      context.read<StudyExecutionBloc>().add(
+                        const ReturnToIndexRequested(),
+                      );
+                      return;
+                    }
+                    final shouldExit = await onConfirmExit();
+                    if (shouldExit && context.mounted) {
+                      context.read<FileBloc>().add(QuizFileReset());
+                      context.pop();
+                    }
+                  },
+                  tooltip: AppLocalizations.of(context)!.close,
+                ),
+              ),
+            );
+          },
         ),
       ),
       title: Row(

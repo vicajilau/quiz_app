@@ -118,7 +118,7 @@ class StudyBottomNavigation extends StatelessWidget {
                     },
                     onStartQuiz: () {
                       ServiceLocator.registerQuizFile(currentQuizFile);
-                      context.push(AppRoutes.fileLoadedScreen);
+                      context.pushReplacement(AppRoutes.fileLoadedScreen);
                     },
                     onAddChunk: onAddChunk,
                     onGenerateAI: onGenerateAI,
