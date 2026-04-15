@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (mode == QuizMode.study) {
       _navigateToStudy(context, quizFile);
     } else {
-      context.go(AppRoutes.fileLoadedScreen);
+      context.push(AppRoutes.fileLoadedScreen);
     }
   }
 
