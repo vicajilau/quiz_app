@@ -21,6 +21,7 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
+import 'package:quizdy/presentation/widgets/quizdy_loading.dart';
 import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 import 'package:quizdy/routes/app_router.dart';
@@ -175,7 +176,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(16),
                       child: _isLoading
-                          ? const Center(child: CircularProgressIndicator())
+                          ? const Center(child: QuizdyLoading())
                           : _privacyPolicyMarkdown == null
                           ? Center(
                               child: Text(

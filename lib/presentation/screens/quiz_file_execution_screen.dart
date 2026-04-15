@@ -31,6 +31,7 @@ import 'package:go_router/go_router.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
+import 'package:quizdy/presentation/widgets/quizdy_loading.dart';
 import 'package:quizdy/routes/app_router.dart';
 import 'package:quizdy/presentation/screens/quiz_execution/quiz_in_progress_view.dart';
 import 'package:quizdy/presentation/screens/quiz_execution/quiz_completed_view.dart';
@@ -86,7 +87,7 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(
             backgroundColor: isDark ? AppTheme.zinc900 : AppTheme.zinc50,
-            body: const Center(child: CircularProgressIndicator()),
+            body: const Center(child: QuizdyLoading()),
           );
         }
 
@@ -183,7 +184,7 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
                     },
                     builder: (context, state) {
                       if (state is QuizExecutionInitial) {
-                        return const Center(child: CircularProgressIndicator());
+                        return const Center(child: QuizdyLoading());
                       } else if (state is QuizExecutionInProgress) {
                         return QuizInProgressView(state: state);
                       } else if (state is QuizExecutionCompleted) {

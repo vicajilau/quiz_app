@@ -24,6 +24,7 @@ import 'package:quizdy/domain/models/quiz/study_content.dart';
 import 'package:quizdy/presentation/utils/dialog_drop_guard.dart';
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/presentation/widgets/quizdy_loading.dart';
 import 'package:quizdy/routes/app_router.dart';
 import 'package:quizdy/core/constants/quiz_metadata.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
@@ -540,7 +541,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const CircularProgressIndicator(),
+                          const QuizdyLoading(),
                           if (_loadingText != null) ...[
                             const SizedBox(height: 16),
                             Material(

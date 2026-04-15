@@ -13,6 +13,7 @@ dependencies:
     path: ..
   widgetbook: ^3.22.0
   widgetbook_annotation: ^3.11.0
+  lottie: ^3.3.0
 
 dev_dependencies:
   build_runner: ^2.13.1
@@ -21,3 +22,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - images/

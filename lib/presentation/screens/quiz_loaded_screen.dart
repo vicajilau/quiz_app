@@ -29,6 +29,7 @@ import 'package:quizdy/presentation/screens/dialogs/add_edit_question_dialog.dar
 import 'package:quizdy/presentation/screens/dialogs/exit_confirmation_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/question_list_widget.dart';
 import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
+import 'package:quizdy/presentation/widgets/quizdy_loading.dart';
 import 'package:quizdy/routes/app_router.dart';
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
@@ -287,7 +288,7 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
       showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (context) => const Center(child: CircularProgressIndicator()),
+        builder: (context) => const Center(child: QuizdyLoading()),
       );
 
       try {

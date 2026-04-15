@@ -20,6 +20,7 @@ import 'package:widgetbook/widgetbook.dart';
 
 import 'use_cases/quizdy_app_bar_use_case.dart';
 import 'use_cases/quizdy_button_use_case.dart';
+import 'use_cases/quizdy_loading_use_case.dart';
 import 'use_cases/quizdy_empty_state_use_case.dart';
 import 'use_cases/quizdy_latex_text_use_case.dart';
 import 'use_cases/quizdy_markdown_use_case.dart';
@@ -203,6 +204,19 @@ class QuizdyWidgetbookApp extends StatelessWidget {
                 WidgetbookUseCase(
                   name: 'Interactive',
                   builder: buildInteractiveQuizdySelectableCardUseCase,
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'QuizdyLoading',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Default',
+                  builder: buildQuizdyLoadingUseCase,
+                ),
+                WidgetbookUseCase(
+                  name: 'Interactive',
+                  builder: buildInteractiveQuizdyLoadingUseCase,
                 ),
               ],
             ),

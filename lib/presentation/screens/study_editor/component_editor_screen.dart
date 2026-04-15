@@ -38,6 +38,7 @@ import 'package:quizdy/presentation/screens/study_editor/component_card.dart';
 import 'package:quizdy/presentation/screens/study_editor/component_edit_sidebar.dart';
 import 'package:quizdy/presentation/screens/study_editor/component_editor_bottom_navigation.dart';
 import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
+import 'package:quizdy/presentation/widgets/quizdy_loading.dart';
 
 /// Shows the list of [StudyComponent]s on a single page within a section.
 /// On desktop the property panel appears as an inline sidebar.
@@ -449,7 +450,9 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
               if (isMobile && _isSidebarMounted && sidebar != null)
                 Positioned.fill(
                   child: IgnorePointer(
-                    ignoring: _editingIndex == null && _pendingNewComponentType == null,
+                    ignoring:
+                        _editingIndex == null &&
+                        _pendingNewComponentType == null,
                     child: SlideTransition(
                       position: _slideAnimation,
                       child: Material(
@@ -486,7 +489,7 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
                 Positioned.fill(
                   child: Container(
                     color: Colors.black.withValues(alpha: 0.1),
-                    child: const Center(child: CircularProgressIndicator()),
+                    child: const Center(child: QuizdyLoading()),
                   ),
                 ),
             ],
