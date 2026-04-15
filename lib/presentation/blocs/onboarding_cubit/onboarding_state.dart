@@ -17,15 +17,15 @@ class OnboardingState {
   final int currentPage;
   final int totalPages;
 
-  const OnboardingState({this.currentPage = 0, this.totalPages = 5});
+  const OnboardingState({this.currentPage = 0, required this.totalPages});
 
   bool get isFirstPage => currentPage == 0;
   bool get isLastPage => currentPage == totalPages - 1;
 
-  OnboardingState copyWith({int? currentPage}) {
+  OnboardingState copyWith({int? currentPage, int? totalPages}) {
     return OnboardingState(
       currentPage: currentPage ?? this.currentPage,
-      totalPages: totalPages,
+      totalPages: totalPages ?? this.totalPages,
     );
   }
 }

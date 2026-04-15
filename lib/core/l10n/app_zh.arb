@@ -2355,5 +2355,19 @@
         "example": "3"
       }
     }
-  }
+  },
+  "onboardingDownloadAppTitle": "在你的设备上安装 Quizdy",
+  "onboardingDownloadAppDescription": "可通过二维码在手机上安装 Quizdy，或直接打开桌面端应用商店链接。",
+  "onboardingDownloadAppSubtitle": "一步即可安装到手机或桌面端。",
+  "onboardingDownloadAppHelper": "选择下方商店，我们会生成可用手机扫描的二维码。",
+  "onboardingDownloadMobileSectionDescription": "手机安装（用于另一台设备）：点击商店并用手机扫描二维码。",
+  "onboardingDownloadDesktopSectionDescription": "桌面安装（当前设备）：点击商店并直接打开安装页面。",
+  "onboardingDownloadAndroidStoreButton": "Google Play",
+  "onboardingDownloadHuaweiStoreButton": "AppGallery",
+  "onboardingDownloadIosStoreButton": "App Store",
+  "onboardingDownloadMacStoreButton": "Mac App Store",
+  "onboardingDownloadWindowsStoreButton": "Microsoft Store",
+  "onboardingDownloadLinuxStoreButton": "Snapcraft",
+  "onboardingDownloadQrTitle": "扫码继续",
+  "onboardingDownloadQrDescription": "使用手机相机打开商店链接"
 }

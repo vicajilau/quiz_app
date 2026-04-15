@@ -995,5 +995,19 @@
         "example": "3"
       }
     }
-  }
+  },
+  "onboardingDownloadAppTitle": "დააინსტალირეთ Quizdy თქვენს მოწყობილობებზე",
+  "onboardingDownloadAppDescription": "დააყენეთ Quizdy მობილურზე QR კოდებით ან პირდაპირ გახსენით დესკტოპის მაღაზიების ბმულები.",
+  "onboardingDownloadAppSubtitle": "დააყენეთ მობილურზე ან დესკტოპზე ერთ ნაბიჯში.",
+  "onboardingDownloadAppHelper": "აირჩიეთ ქვემოთ მაღაზია და შევქმნით QR კოდს, რომელსაც ტელეფონით დაასკანერებთ.",
+  "onboardingDownloadMobileSectionDescription": "მობილურის ინსტალაცია (სხვა მოწყობილობისთვის): აირჩიეთ მაღაზია და დაასკანერეთ QR კოდი ტელეფონით.",
+  "onboardingDownloadDesktopSectionDescription": "დესკტოპის ინსტალაცია (ეს მოწყობილობა): აირჩიეთ მაღაზია და პირდაპირ გახსენით ინსტალაციის გვერდი.",
+  "onboardingDownloadAndroidStoreButton": "Google Play",
+  "onboardingDownloadHuaweiStoreButton": "AppGallery",
+  "onboardingDownloadIosStoreButton": "App Store",
+  "onboardingDownloadMacStoreButton": "Mac App Store",
+  "onboardingDownloadWindowsStoreButton": "Microsoft Store",
+  "onboardingDownloadLinuxStoreButton": "Snapcraft",
+  "onboardingDownloadQrTitle": "დაასკანერეთ გასაგრძელებლად",
+  "onboardingDownloadQrDescription": "მაღაზიის ბმულის გასახსნელად გამოიყენეთ ტელეფონის კამერა."
 }

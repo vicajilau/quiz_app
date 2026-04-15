@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.12.0]
 
+- feat: Added a final onboarding page that lets users generate QR codes for the mobile app store links.
 - feat: Added a changelog viewer in Settings that reads CHANGELOG.md and shows only the entries for the current app version.
 - fix: Updated AI study component type selector behavior so enabling it selects all component types by default, and it auto-disables when all types are deselected.
 - ui: The app now looks correct regardless of the font size set in your device's accessibility settings — text no longer overflows or breaks layouts when a larger system font is configured.

@@ -2405,5 +2405,19 @@
         "example": "3"
       }
     }
-  }
+  },
+  "onboardingDownloadAppTitle": "Instal·la Quizdy als teus dispositius",
+  "onboardingDownloadAppDescription": "Instal·la Quizdy al mòbil amb codis QR o obre directament els enllaços de les botigues d'escriptori.",
+  "onboardingDownloadAppSubtitle": "Instal·la a mòbil o escriptori en un sol pas.",
+  "onboardingDownloadAppHelper": "Tria la teva botiga i generarem un codi QR que podràs escanejar amb el telèfon.",
+  "onboardingDownloadMobileSectionDescription": "Instal·lació mòbil (per a un altre dispositiu): toca una botiga i escaneja el codi QR amb el telèfon.",
+  "onboardingDownloadDesktopSectionDescription": "Instal·lació d'escriptori (aquest dispositiu): toca una botiga i obre directament la pàgina d'instal·lació.",
+  "onboardingDownloadAndroidStoreButton": "Google Play",
+  "onboardingDownloadHuaweiStoreButton": "AppGallery",
+  "onboardingDownloadIosStoreButton": "App Store",
+  "onboardingDownloadMacStoreButton": "Mac App Store",
+  "onboardingDownloadWindowsStoreButton": "Microsoft Store",
+  "onboardingDownloadLinuxStoreButton": "Snapcraft",
+  "onboardingDownloadQrTitle": "Escaneja per continuar",
+  "onboardingDownloadQrDescription": "Fes servir la càmera del telèfon per obrir l'enllaç de la botiga."
 }

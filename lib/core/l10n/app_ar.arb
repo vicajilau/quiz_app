@@ -2717,5 +2717,19 @@
         "example": "3"
       }
     }
-  }
+  },
+  "onboardingDownloadAppTitle": "قم بتثبيت Quizdy على أجهزتك",
+  "onboardingDownloadAppDescription": "ثبّت Quizdy على الهاتف باستخدام رموز QR أو افتح روابط متاجر سطح المكتب مباشرة.",
+  "onboardingDownloadAppSubtitle": "ثبّت على الهاتف أو سطح المكتب بخطوة واحدة.",
+  "onboardingDownloadAppHelper": "اختر المتجر أدناه وسننشىء رمز QR يمكنك مسحه بهاتفك.",
+  "onboardingDownloadMobileSectionDescription": "تثبيت الهاتف (لجهاز آخر): اضغط على المتجر وامسح رمز QR بهاتفك.",
+  "onboardingDownloadDesktopSectionDescription": "تثبيت سطح المكتب (هذا الجهاز): اضغط على المتجر وافتح صفحة التثبيت مباشرة.",
+  "onboardingDownloadAndroidStoreButton": "Google Play",
+  "onboardingDownloadHuaweiStoreButton": "AppGallery",
+  "onboardingDownloadIosStoreButton": "App Store",
+  "onboardingDownloadMacStoreButton": "Mac App Store",
+  "onboardingDownloadWindowsStoreButton": "Microsoft Store",
+  "onboardingDownloadLinuxStoreButton": "Snapcraft",
+  "onboardingDownloadQrTitle": "امسح للمتابعة",
+  "onboardingDownloadQrDescription": "استخدم كاميرا هاتفك لفتح رابط المتجر."
 }

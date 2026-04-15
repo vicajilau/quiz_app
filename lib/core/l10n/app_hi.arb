@@ -2306,5 +2306,19 @@
         "example": "3"
       }
     }
-  }
+  },
+  "onboardingDownloadAppTitle": "अपने डिवाइस पर Quizdy इंस्टॉल करें",
+  "onboardingDownloadAppDescription": "मोबाइल पर QR कोड से Quizdy इंस्टॉल करें या डेस्कटॉप स्टोर लिंक सीधे खोलें।",
+  "onboardingDownloadAppSubtitle": "मोबाइल या डेस्कटॉप पर एक ही चरण में इंस्टॉल करें।",
+  "onboardingDownloadAppHelper": "नीचे अपना स्टोर चुनें, हम एक QR कोड बनाएंगे जिसे आप अपने फोन से स्कैन कर सकते हैं।",
+  "onboardingDownloadMobileSectionDescription": "मोबाइल इंस्टॉल (किसी अन्य डिवाइस के लिए): स्टोर पर टैप करें और अपने फोन से QR कोड स्कैन करें।",
+  "onboardingDownloadDesktopSectionDescription": "डेस्कटॉप इंस्टॉल (इस डिवाइस पर): स्टोर पर टैप करें और इंस्टॉल पेज सीधे खोलें।",
+  "onboardingDownloadAndroidStoreButton": "Google Play",
+  "onboardingDownloadHuaweiStoreButton": "AppGallery",
+  "onboardingDownloadIosStoreButton": "App Store",
+  "onboardingDownloadMacStoreButton": "Mac App Store",
+  "onboardingDownloadWindowsStoreButton": "Microsoft Store",
+  "onboardingDownloadLinuxStoreButton": "Snapcraft",
+  "onboardingDownloadQrTitle": "जारी रखने के लिए स्कैन करें",
+  "onboardingDownloadQrDescription": "स्टोर लिंक खोलने के लिए अपने फोन का कैमरा इस्तेमाल करें।"
 }

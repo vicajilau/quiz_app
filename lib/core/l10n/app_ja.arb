@@ -2306,5 +2306,19 @@
         "example": "3"
       }
     }
-  }
+  },
+  "onboardingDownloadAppTitle": "デバイスにQuizdyをインストール",
+  "onboardingDownloadAppDescription": "モバイルはQRコードでQuizdyをインストールし、デスクトップはストアリンクを直接開けます。",
+  "onboardingDownloadAppSubtitle": "モバイルまたはデスクトップに1ステップでインストール。",
+  "onboardingDownloadAppHelper": "下のストアを選ぶと、スマートフォンで読み取れるQRコードを生成します。",
+  "onboardingDownloadMobileSectionDescription": "モバイルインストール（別のデバイス向け）：ストアをタップして、スマートフォンでQRコードを読み取ってください。",
+  "onboardingDownloadDesktopSectionDescription": "デスクトップインストール（このデバイス）：ストアをタップして、インストールページを直接開いてください。",
+  "onboardingDownloadAndroidStoreButton": "Google Play",
+  "onboardingDownloadHuaweiStoreButton": "AppGallery",
+  "onboardingDownloadIosStoreButton": "App Store",
+  "onboardingDownloadMacStoreButton": "Mac App Store",
+  "onboardingDownloadWindowsStoreButton": "Microsoft Store",
+  "onboardingDownloadLinuxStoreButton": "Snapcraft",
+  "onboardingDownloadQrTitle": "続行するにはスキャン",
+  "onboardingDownloadQrDescription": "スマートフォンのカメラでストアリンクを開いてください。"
 }

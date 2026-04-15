@@ -1303,5 +1303,19 @@
         "example": "3"
       }
     }
-  }
+  },
+  "onboardingDownloadAppTitle": "Εγκαταστήστε το Quizdy στις συσκευές σας",
+  "onboardingDownloadAppDescription": "Εγκαταστήστε το Quizdy σε κινητό με QR ή ανοίξτε απευθείας τους συνδέσμους καταστημάτων για υπολογιστή.",
+  "onboardingDownloadAppSubtitle": "Εγκατάσταση σε κινητό ή υπολογιστή με ένα βήμα.",
+  "onboardingDownloadAppHelper": "Επιλέξτε κατάστημα παρακάτω και θα δημιουργήσουμε ένα QR για να το σαρώσετε με το κινητό σας.",
+  "onboardingDownloadMobileSectionDescription": "Εγκατάσταση σε κινητό (για άλλη συσκευή): πατήστε ένα κατάστημα και σαρώστε το QR με το κινητό σας.",
+  "onboardingDownloadDesktopSectionDescription": "Εγκατάσταση σε υπολογιστή (αυτή η συσκευή): πατήστε ένα κατάστημα και ανοίξτε απευθείας τη σελίδα εγκατάστασης.",
+  "onboardingDownloadAndroidStoreButton": "Google Play",
+  "onboardingDownloadHuaweiStoreButton": "AppGallery",
+  "onboardingDownloadIosStoreButton": "App Store",
+  "onboardingDownloadMacStoreButton": "Mac App Store",
+  "onboardingDownloadWindowsStoreButton": "Microsoft Store",
+  "onboardingDownloadLinuxStoreButton": "Snapcraft",
+  "onboardingDownloadQrTitle": "Σαρώστε για συνέχεια",
+  "onboardingDownloadQrDescription": "Χρησιμοποιήστε την κάμερα του κινητού σας για να ανοίξετε τον σύνδεσμο του καταστήματος."
 }

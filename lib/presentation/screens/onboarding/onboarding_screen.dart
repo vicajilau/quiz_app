@@ -35,7 +35,8 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  late final PageController _pageController;
+  late PageController _pageController;
+  bool? _wasWideLayout;
 
   @override
   void initState() {
@@ -50,11 +51,29 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _animateToPage(int page) {
+    if (!_pageController.hasClients) {
+      return;
+    }
+
+    final currentPage =
+        _pageController.page?.round() ?? _pageController.initialPage;
+    if (currentPage == page) {
+      return;
+    }
+
     _pageController.animateToPage(
       page,
       duration: const Duration(milliseconds: 350),
       curve: Curves.linear,
     );
+  }
+
+  void _recreatePageController(int initialPage) {
+    final previousController = _pageController;
+    _pageController = PageController(initialPage: initialPage);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      previousController.dispose();
+    });
   }
 
   Future<void> _finish(BuildContext context) async {
@@ -80,21 +99,28 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final pages = buildOnboardingPages(context);
+
     return BlocProvider(
-      create: (_) => OnboardingCubit(),
+      create: (_) => OnboardingCubit(totalPages: pages.length),
       child: BlocConsumer<OnboardingCubit, OnboardingState>(
         listener: (context, state) {
           _animateToPage(state.currentPage);
         },
         builder: (context, state) {
           final cubit = context.read<OnboardingCubit>();
-          final pages = buildOnboardingPages(context);
 
           return Scaffold(
             body: SafeArea(
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   final isWide = constraints.maxWidth > 720;
+                  if (_wasWideLayout != isWide) {
+                    final targetPage = state.currentPage;
+                    _wasWideLayout = isWide;
+                    _recreatePageController(targetPage);
+                  }
+
                   if (isWide) {
                     return OnboardingDesktopLayout(
                       state: state,

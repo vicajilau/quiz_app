@@ -22,5 +22,8 @@ This workflow allows automatically processing and adding missing translations in
    - Add the new entries at the end of the JSON object.
    - **IMPORTANT**: Ensure a comma is added to the line preceding the new entry and that the file remains a valid JSON.
 
-5. **Completion**:
-   Once all translations are processed, clear the `untranslated_messages.json` file, leaving an empty object `{}` to indicate no further messages are pending.
+5. **Verification and iteration**:
+   - Run the localization generation step used in the project.
+   - Check `untranslated_messages.json` after generation.
+   - If the file content is exactly `{}`, the workflow is complete.
+   - If it is not `{}`, repeat from step 1 until no missing messages remain.

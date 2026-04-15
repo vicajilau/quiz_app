@@ -19,7 +19,8 @@ import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/presentation/blocs/onboarding_cubit/onboarding_state.dart';
 
 class OnboardingCubit extends Cubit<OnboardingState> {
-  OnboardingCubit() : super(const OnboardingState());
+  OnboardingCubit({required int totalPages})
+    : super(OnboardingState(totalPages: totalPages));
 
   void setPage(int page) {
     emit(state.copyWith(currentPage: page));
