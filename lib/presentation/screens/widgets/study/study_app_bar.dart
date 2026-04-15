@@ -60,7 +60,7 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: IconButton(
                   padding: EdgeInsets.zero,
                   icon: Icon(
-                    Icons.close,
+                    state.isIndexMode ? Icons.close : LucideIcons.arrowLeft,
                     color: Theme.of(context).colorScheme.onPrimary,
                     size: 20,
                   ),
