@@ -34,6 +34,7 @@ import 'package:quizdy/presentation/screens/widgets/study/components/study_compo
 import 'package:quizdy/presentation/screens/widgets/study/study_index_view.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_sections_sidebar.dart';
 import 'package:quizdy/presentation/screens/widgets/study/add_edit_chunk_dialog.dart';
+import 'package:quizdy/presentation/widgets/quizdy_loading.dart';
 import 'package:quizdy/routes/app_router.dart';
 import 'package:go_router/go_router.dart';
 
@@ -268,7 +269,7 @@ class _StudyBodyState extends State<StudyBody>
           BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
             builder: (context, state) {
               if (state.isLoading && state.chunks.isEmpty) {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(child: QuizdyLoading());
               }
 
               if (state.isIndexMode) {
@@ -336,7 +337,7 @@ class _StudyBodyState extends State<StudyBody>
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const CircularProgressIndicator(),
+                      const QuizdyLoading(),
                       const SizedBox(height: 16),
                       Text(localizations.studyScreenGenerating),
                     ],
@@ -624,7 +625,7 @@ class _StudyBodyState extends State<StudyBody>
               return Positioned.fill(
                 child: Container(
                   color: Colors.black.withValues(alpha: 0.1),
-                  child: const Center(child: CircularProgressIndicator()),
+                  child: const Center(child: QuizdyLoading()),
                 ),
               );
             },
