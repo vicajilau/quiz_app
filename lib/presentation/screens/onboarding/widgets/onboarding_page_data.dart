@@ -16,6 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/presentation/screens/onboarding/widgets/onboarding_download_app_section.dart';
 
 class OnboardingPageData {
   final IconData? icon;
@@ -72,6 +73,13 @@ List<OnboardingPageData> buildOnboardingPages(BuildContext context) {
       description: localizations.onboardingAiFeaturesDescription,
       subtitle: localizations.onboardingAiFeaturesSubtitle,
       contentBuilder: (context) => _buildAiFeatures(context),
+    ),
+    OnboardingPageData(
+      icon: LucideIcons.qrCode,
+      title: localizations.onboardingDownloadAppTitle,
+      description: localizations.onboardingDownloadAppDescription,
+      subtitle: localizations.onboardingDownloadAppSubtitle,
+      contentBuilder: (context) => const OnboardingDownloadAppSection(),
     ),
   ];
 }

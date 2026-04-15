@@ -2214,6 +2214,62 @@
   "@onboardingFeatureLanguagesDescription": {
     "description": "Feature description in onboarding welcome page"
   },
+  "onboardingDownloadAppTitle": "Install Quizdy on your devices",
+  "@onboardingDownloadAppTitle": {
+    "description": "Title for the final onboarding page that promotes the mobile app downloads"
+  },
+  "onboardingDownloadAppDescription": "Install Quizdy on mobile with QR codes or open desktop store links directly.",
+  "@onboardingDownloadAppDescription": {
+    "description": "Description for the final onboarding page that promotes the mobile app downloads"
+  },
+  "onboardingDownloadAppSubtitle": "Install on mobile or desktop in one step.",
+  "@onboardingDownloadAppSubtitle": {
+    "description": "Subtitle for the mobile app download onboarding page"
+  },
+  "onboardingDownloadAppHelper": "Choose your store below and we will generate a QR code you can scan on your phone.",
+  "@onboardingDownloadAppHelper": {
+    "description": "Helper text shown above the store download buttons on the final onboarding page"
+  },
+  "onboardingDownloadMobileSectionDescription": "Mobile install (for another device): tap a store and scan the QR code with your phone.",
+  "@onboardingDownloadMobileSectionDescription": {
+    "description": "Description shown above mobile store buttons where QR codes are generated"
+  },
+  "onboardingDownloadDesktopSectionDescription": "Desktop install (this device): tap a store and open the install page directly.",
+  "@onboardingDownloadDesktopSectionDescription": {
+    "description": "Description shown above desktop store buttons that open direct URLs"
+  },
+  "onboardingDownloadAndroidStoreButton": "Google Play",
+  "@onboardingDownloadAndroidStoreButton": {
+    "description": "Button label for the Android store link in onboarding"
+  },
+  "onboardingDownloadHuaweiStoreButton": "AppGallery",
+  "@onboardingDownloadHuaweiStoreButton": {
+    "description": "Button label for the Huawei store link in onboarding"
+  },
+  "onboardingDownloadIosStoreButton": "App Store",
+  "@onboardingDownloadIosStoreButton": {
+    "description": "Button label for the iOS store link in onboarding"
+  },
+  "onboardingDownloadMacStoreButton": "Mac App Store",
+  "@onboardingDownloadMacStoreButton": {
+    "description": "Button label for the macOS store link in onboarding"
+  },
+  "onboardingDownloadWindowsStoreButton": "Microsoft Store",
+  "@onboardingDownloadWindowsStoreButton": {
+    "description": "Button label for the Windows store link in onboarding"
+  },
+  "onboardingDownloadLinuxStoreButton": "Snapcraft",
+  "@onboardingDownloadLinuxStoreButton": {
+    "description": "Button label for the Linux store link in onboarding"
+  },
+  "onboardingDownloadQrTitle": "Scan to continue",
+  "@onboardingDownloadQrTitle": {
+    "description": "Title for the QR dialog in onboarding"
+  },
+  "onboardingDownloadQrDescription": "Use your phone camera to open the store link.",
+  "@onboardingDownloadQrDescription": {
+    "description": "Description shown in the QR dialog on onboarding"
+  },
   "onboardingStepCreateTitle": "Create Quiz",
   "@onboardingStepCreateTitle": {
     "description": "Step title in onboarding start quiz page"

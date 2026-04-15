@@ -80,15 +80,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final pages = buildOnboardingPages(context);
+
     return BlocProvider(
-      create: (_) => OnboardingCubit(),
+      create: (_) => OnboardingCubit(totalPages: pages.length),
       child: BlocConsumer<OnboardingCubit, OnboardingState>(
         listener: (context, state) {
           _animateToPage(state.currentPage);
         },
         builder: (context, state) {
           final cubit = context.read<OnboardingCubit>();
-          final pages = buildOnboardingPages(context);
 
           return Scaffold(
             body: SafeArea(
