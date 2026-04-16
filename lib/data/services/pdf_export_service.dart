@@ -13,27 +13,28 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:js_interop';
 import 'dart:typed_data';
 
-import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:quizdy/data/services/pdf_export_generator.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
+import 'package:web/web.dart' as web;
 
 /// Web implementation of the PDF export service.
 ///
-/// On web, [FilePicker.platform.saveFile] with [bytes] triggers a browser
-/// download, so no additional file-writing step is needed.
+/// Generates the PDF and opens it in a new browser tab using a Blob URL,
+/// where the browser's built-in PDF viewer displays it automatically.
 class StudyPdfExportService {
-  /// Generates a PDF from the provided study data and opens a save dialog.
+  /// Generates a PDF from the provided study data and opens it in the browser.
   ///
-  /// Returns `true` if the user completed the save, `false` if cancelled or
-  /// an error occurred.
-  Future<bool> exportStudy({
+  /// Returns `true` after opening the new tab, `false` if context is no longer
+  /// mounted or an error occurred.
+  Future<bool?> exportStudy({
+    required BuildContext context,
     required String documentTitle,
     String? documentSummary,
     required List<StudyChunk> chunks,
-    required String dialogTitle,
-    required String fileName,
     String advantagesLabel = 'Advantages',
     String limitationsLabel = 'Limitations',
     String tableOfContentsLabel = 'Table of Contents',
@@ -49,12 +50,16 @@ class StudyPdfExportService {
       latexImages: latexImages,
     );
 
-    final result = await FilePicker.saveFile(
-      dialogTitle: dialogTitle,
-      fileName: fileName,
-      bytes: pdfBytes,
+    final blob = web.Blob(
+      [pdfBytes.toJS].toJS,
+      web.BlobPropertyBag(type: 'application/pdf'),
+    );
+    final url = web.URL.createObjectURL(blob);
+    web.window.open(url, '_blank');
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => web.URL.revokeObjectURL(url),
     );
 
-    return result != null;
+    return true;
   }
 }

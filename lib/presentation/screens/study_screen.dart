@@ -234,13 +234,6 @@ class _StudyScreenViewState extends State<StudyScreenView> {
     final studyState = context.read<StudyExecutionBloc>().state;
 
     try {
-      final sanitizedTitle = studyState.documentTitle.replaceAll(
-        RegExp(r'[^\w\s\-]'),
-        '',
-      );
-      final fileName =
-          '${sanitizedTitle.trim().isNotEmpty ? sanitizedTitle.trim() : "study"}.pdf';
-
       // Collect all formula equations across all ready chunks.
       final equations = <String>[];
       for (final chunk in studyState.chunks) {
@@ -259,20 +252,21 @@ class _StudyScreenViewState extends State<StudyScreenView> {
         equations,
       );
 
+      if (!mounted) return;
+
       final success = await ServiceLocator.getIt<StudyPdfExportService>()
           .exportStudy(
+            context: context,
             documentTitle: studyState.documentTitle,
             documentSummary: studyState.documentSummary,
             chunks: studyState.chunks,
-            dialogTitle: localizations.exportAsPdf,
-            fileName: fileName,
             advantagesLabel: localizations.studyComponentAdvantages,
             limitationsLabel: localizations.studyComponentLimitations,
             tableOfContentsLabel: localizations.studyPdfTableOfContents,
             latexImages: latexImages,
           );
 
-      if (success && mounted) {
+      if (success == true && mounted) {
         context.presentSnackBar(localizations.exportPdfSuccess);
       }
     } catch (_) {

@@ -5,18 +5,42 @@
             "name": "Quizdy (debug mode)",
             "request": "launch",
             "type": "dart",
+            "program": "lib/main.dart",
             "flutterMode": "debug"
         },
         {
             "name": "Quizdy (profile mode)",
             "request": "launch",
             "type": "dart",
+            "program": "lib/main.dart",
             "flutterMode": "profile"
         },
         {
             "name": "Quizdy (release mode)",
             "request": "launch",
             "type": "dart",
+            "program": "lib/main.dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "Quizdy WidgetBook (debug mode)",
+            "request": "launch",
+            "type": "dart",
+            "program": "widgetbook/lib/main.dart",
+            "flutterMode": "debug"
+        },
+        {
+            "name": "Quizdy WidgetBook (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "program": "widgetbook/lib/main.dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "Quizdy WidgetBook (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "program": "widgetbook/lib/main.dart",
             "flutterMode": "release"
         }
     ]
