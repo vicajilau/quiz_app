@@ -13,22 +13,22 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:js_interop';
 import 'dart:typed_data';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:quizdy/data/services/pdf_export_generator.dart';
-import 'package:quizdy/data/services/pdf_viewer_dialog.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
+import 'package:web/web.dart' as web;
 
 /// Web implementation of the PDF export service.
 ///
-/// Generates the PDF and displays it in a full-screen viewer dialog.
-/// The viewer includes a close button and a download action.
+/// Generates the PDF and opens it in a new browser tab using a Blob URL,
+/// where the browser's built-in PDF viewer displays it automatically.
 class StudyPdfExportService {
-  /// Generates a PDF from the provided study data and opens a viewer dialog.
+  /// Generates a PDF from the provided study data and opens it in the browser.
   ///
-  /// Returns `true` after the viewer is shown, `false` if context is no longer
+  /// Returns `true` after opening the new tab, `false` if context is no longer
   /// mounted or an error occurred.
   Future<bool?> exportStudy({
     required BuildContext context,
@@ -50,23 +50,16 @@ class StudyPdfExportService {
       latexImages: latexImages,
     );
 
-    if (!context.mounted) return false;
-
-    return await showDialog<bool?>(
-      context: context,
-      builder: (context) => Dialog.fullscreen(
-        child: PdfViewerDialog(
-          pdfBytes: pdfBytes,
-          title: documentTitle,
-          onSave: () async {
-            final result = await FilePicker.saveFile(
-              fileName: '$documentTitle.pdf',
-              bytes: pdfBytes,
-            );
-            return result != null;
-          },
-        ),
-      ),
+    final blob = web.Blob(
+      [pdfBytes.toJS].toJS,
+      web.BlobPropertyBag(type: 'application/pdf'),
     );
+    final url = web.URL.createObjectURL(blob);
+    web.window.open(url, '_blank');
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => web.URL.revokeObjectURL(url),
+    );
+
+    return true;
   }
 }
