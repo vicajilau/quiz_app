@@ -2317,5 +2317,9 @@
   "onboardingDownloadWindowsStoreButton": "Microsoft Store",
   "onboardingDownloadLinuxStoreButton": "Snapcraft",
   "onboardingDownloadQrTitle": "Eskaneatu jarraitzeko",
-  "onboardingDownloadQrDescription": "Erabili telefonoaren kamera dendaren esteka irekitzeko."
+  "onboardingDownloadQrDescription": "Erabili telefonoaren kamera dendaren esteka irekitzeko.",
+  "studyPdfTableOfContents": "Aurkibidea",
+  "@studyPdfTableOfContents": {
+    "description": "Title of the table of contents page in the exported PDF"
+  }
 }

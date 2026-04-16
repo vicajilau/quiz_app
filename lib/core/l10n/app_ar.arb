@@ -2731,5 +2731,9 @@
   "onboardingDownloadWindowsStoreButton": "Microsoft Store",
   "onboardingDownloadLinuxStoreButton": "Snapcraft",
   "onboardingDownloadQrTitle": "امسح للمتابعة",
-  "onboardingDownloadQrDescription": "استخدم كاميرا هاتفك لفتح رابط المتجر."
+  "onboardingDownloadQrDescription": "استخدم كاميرا هاتفك لفتح رابط المتجر.",
+  "studyPdfTableOfContents": "جدول المحتويات",
+  "@studyPdfTableOfContents": {
+    "description": "Title of the table of contents page in the exported PDF"
+  }
 }

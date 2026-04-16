@@ -1009,5 +1009,9 @@
   "onboardingDownloadWindowsStoreButton": "Microsoft Store",
   "onboardingDownloadLinuxStoreButton": "Snapcraft",
   "onboardingDownloadQrTitle": "დაასკანერეთ გასაგრძელებლად",
-  "onboardingDownloadQrDescription": "მაღაზიის ბმულის გასახსნელად გამოიყენეთ ტელეფონის კამერა."
+  "onboardingDownloadQrDescription": "მაღაზიის ბმულის გასახსნელად გამოიყენეთ ტელეფონის კამერა.",
+  "studyPdfTableOfContents": "სარჩევი",
+  "@studyPdfTableOfContents": {
+    "description": "Title of the table of contents page in the exported PDF"
+  }
 }

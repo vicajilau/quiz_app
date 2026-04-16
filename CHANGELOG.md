@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix: Fixed file picker behaviour on web loading files.
 - fix: Navigation and UI refactor: Mode switching flow between Study and Quiz.
 - feat: Added `QuizdyLoading` widget and implemened in whole app.
+- feat: Implemented index, cover page, and new look to the extracted pdf.
 
 ## [1.11.0] - 2026-04-01
 

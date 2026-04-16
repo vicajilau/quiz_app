@@ -1042,5 +1042,9 @@
   "onboardingDownloadWindowsStoreButton": "Microsoft Store",
   "onboardingDownloadLinuxStoreButton": "Snapcraft",
   "onboardingDownloadQrTitle": "Скануйте, щоб продовжити",
-  "onboardingDownloadQrDescription": "Скористайтеся камерою телефона, щоб відкрити посилання магазину"
+  "onboardingDownloadQrDescription": "Скористайтеся камерою телефона, щоб відкрити посилання магазину",
+  "studyPdfTableOfContents": "Зміст",
+  "@studyPdfTableOfContents": {
+    "description": "Title of the table of contents page in the exported PDF"
+  }
 }

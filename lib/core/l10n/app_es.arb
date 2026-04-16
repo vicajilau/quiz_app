@@ -2339,6 +2339,7 @@
   "@studyComponentLimitations": {
     "description": "Header for the limitations section in a study component"
   },
+  "studyPdfTableOfContents": "Índice",
   "studyScreenDownloadChunk": "Generar",
   "aiStudyChapterSystemPrompt": "Eres un asistente de estudio por IA que ayuda a un estudiante a comprender el contenido de un capítulo de estudio. Explica los conceptos en profundidad, proporciona ejemplos y establece conexiones con otras partes del material de estudio cuando sea pertinente. Responde en el mismo idioma en el que se te pregunte.",
   "@aiStudyChapterSystemPrompt": {

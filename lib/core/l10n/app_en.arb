@@ -2507,6 +2507,10 @@
   "@studyComponentLimitations": {
     "description": "Header for the limitations section in a study component"
   },
+  "studyPdfTableOfContents": "Table of Contents",
+  "@studyPdfTableOfContents": {
+    "description": "Title of the table of contents page in the exported PDF"
+  },
   "aiStudyChapterSystemPrompt": "You are an AI study assistant helping a student understand the content of a study chapter. Explain concepts in depth, provide examples, and make connections to other parts of the study material when relevant. Respond in the same language you are asked in.",
   "@aiStudyChapterSystemPrompt": {
     "description": "System prompt for the AI study assistant when chatting about a study chapter"

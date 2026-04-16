@@ -2320,5 +2320,9 @@
   "onboardingDownloadWindowsStoreButton": "Microsoft Store",
   "onboardingDownloadLinuxStoreButton": "Snapcraft",
   "onboardingDownloadQrTitle": "जारी रखने के लिए स्कैन करें",
-  "onboardingDownloadQrDescription": "स्टोर लिंक खोलने के लिए अपने फोन का कैमरा इस्तेमाल करें।"
+  "onboardingDownloadQrDescription": "स्टोर लिंक खोलने के लिए अपने फोन का कैमरा इस्तेमाल करें।",
+  "studyPdfTableOfContents": "विषय सूची",
+  "@studyPdfTableOfContents": {
+    "description": "Title of the table of contents page in the exported PDF"
+  }
 }
