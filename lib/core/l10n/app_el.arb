@@ -1003,6 +1003,14 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
+  "onboardingStudyStepPdfTitle": "Εξαγωγή ως PDF",
+  "@onboardingStudyStepPdfTitle": {
+    "description": "Step 4 title in study content onboarding page"
+  },
+  "onboardingStudyStepPdfDescription": "Κατεβάστε και μοιραστείτε τη μελέτη σας ως αρχείο PDF",
+  "@onboardingStudyStepPdfDescription": {
+    "description": "Step 4 description in study content onboarding page"
+  },
   "privacyPolicyLabel": "Πολιτικη απορρητου",
   "privacyPolicyDescription": "Δες πως διαχειριζεται το Quizdy τα δεδομενα σου",
   "privacyPolicyRequiredDescription": "Παρακαλουμε διαβασε και αποδεξου την πολιτικη απορρητου για να συνεχισεις.",

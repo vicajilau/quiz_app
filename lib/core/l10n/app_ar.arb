@@ -2405,6 +2405,14 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
+  "onboardingStudyStepPdfTitle": "تصدير كـ PDF",
+  "@onboardingStudyStepPdfTitle": {
+    "description": "Step 4 title in study content onboarding page"
+  },
+  "onboardingStudyStepPdfDescription": "قم بتنزيل ومشاركة دراستك كملف PDF",
+  "@onboardingStudyStepPdfDescription": {
+    "description": "Step 4 description in study content onboarding page"
+  },
   "privacyPolicyLabel": "سياسة الخصوصية",
   "@privacyPolicyLabel": {
     "description": "Label for the privacy policy action in settings and title on the privacy policy screen"

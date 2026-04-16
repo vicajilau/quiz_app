@@ -2003,6 +2003,14 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
+  "onboardingStudyStepPdfTitle": "PDF gisa esportatu",
+  "@onboardingStudyStepPdfTitle": {
+    "description": "Step 4 title in study content onboarding page"
+  },
+  "onboardingStudyStepPdfDescription": "Deskargatu eta partekatu zure ikasketa PDF fitxategi gisa",
+  "@onboardingStudyStepPdfDescription": {
+    "description": "Step 4 description in study content onboarding page"
+  },
   "privacyPolicyLabel": "Pribatutasun politika",
   "privacyPolicyDescription": "Irakurri nola kudeatzen diren zure datuak Quizdy-n",
   "privacyPolicyRequiredDescription": "Mesedez, berrikusi eta onartu pribatutasun politika jarraitzeko.",

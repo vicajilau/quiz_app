@@ -2006,6 +2006,14 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
+  "onboardingStudyStepPdfTitle": "PDF के रूप में निर्यात करें",
+  "@onboardingStudyStepPdfTitle": {
+    "description": "Step 4 title in study content onboarding page"
+  },
+  "onboardingStudyStepPdfDescription": "अपने अध्ययन को PDF फ़ाइल के रूप में डाउनलोड और साझा करें",
+  "@onboardingStudyStepPdfDescription": {
+    "description": "Step 4 description in study content onboarding page"
+  },
   "privacyPolicyLabel": "गोपनीयता नीति",
   "privacyPolicyDescription": "Quizdy में आपके डेटा को कैसे संभाला जाता है, यह देखें",
   "privacyPolicyRequiredDescription": "जारी रखने के लिए कृपया गोपनीयता नीति की समीक्षा करें और उसे स्वीकार करें।",

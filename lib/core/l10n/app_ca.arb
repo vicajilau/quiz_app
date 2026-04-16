@@ -2105,6 +2105,14 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
+  "onboardingStudyStepPdfTitle": "Exporta com a PDF",
+  "@onboardingStudyStepPdfTitle": {
+    "description": "Step 4 title in study content onboarding page"
+  },
+  "onboardingStudyStepPdfDescription": "Descarrega i comparteix el teu estudi com a fitxer PDF",
+  "@onboardingStudyStepPdfDescription": {
+    "description": "Step 4 description in study content onboarding page"
+  },
   "privacyPolicyLabel": "Politica de privacitat",
   "privacyPolicyDescription": "Llegeix com es gestionen les teves dades a Quizdy",
   "privacyPolicyRequiredDescription": "Revisa i accepta la politica de privacitat per continuar.",

@@ -695,6 +695,14 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
+  "onboardingStudyStepPdfTitle": "PDF-ად ექსპორტი",
+  "@onboardingStudyStepPdfTitle": {
+    "description": "Step 4 title in study content onboarding page"
+  },
+  "onboardingStudyStepPdfDescription": "გადმოწერეთ და გააზიარეთ თქვენი სწავლა PDF ფაილის სახით",
+  "@onboardingStudyStepPdfDescription": {
+    "description": "Step 4 description in study content onboarding page"
+  },
   "privacyPolicyLabel": "კონფიდენციალურობის პოლიტიკა",
   "privacyPolicyDescription": "გაეცანით, როგორ მუშავდება თქვენი მონაცემები Quizdy-ში",
   "privacyPolicyRequiredDescription": "გასაგრძელებლად გთხოვთ გაეცნოთ და დაეთანხმოთ კონფიდენციალურობის პოლიტიკას.",

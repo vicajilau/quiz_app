@@ -2099,6 +2099,14 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
+  "onboardingStudyStepPdfTitle": "Als PDF exportieren",
+  "@onboardingStudyStepPdfTitle": {
+    "description": "Step 4 title in study content onboarding page"
+  },
+  "onboardingStudyStepPdfDescription": "Lade dein Lernmaterial als PDF herunter und teile es",
+  "@onboardingStudyStepPdfDescription": {
+    "description": "Step 4 description in study content onboarding page"
+  },
   "privacyPolicyLabel": "Datenschutzrichtlinie",
   "privacyPolicyDescription": "Erfahre, wie deine Daten in Quizdy verarbeitet werden",
   "privacyPolicyRequiredDescription": "Bitte lies und akzeptiere die Datenschutzrichtlinie, um fortzufahren.",

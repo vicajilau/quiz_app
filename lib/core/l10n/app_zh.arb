@@ -2055,6 +2055,14 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
+  "onboardingStudyStepPdfTitle": "导出为PDF",
+  "@onboardingStudyStepPdfTitle": {
+    "description": "Step 4 title in study content onboarding page"
+  },
+  "onboardingStudyStepPdfDescription": "将您的学习内容下载并分享为PDF文件",
+  "@onboardingStudyStepPdfDescription": {
+    "description": "Step 4 description in study content onboarding page"
+  },
   "privacyPolicyLabel": "隐私政策",
   "privacyPolicyDescription": "查看 Quizdy 如何处理你的数据",
   "privacyPolicyRequiredDescription": "请先阅读并接受隐私政策以继续。",
