@@ -2408,5 +2408,9 @@
   "onboardingDownloadWindowsStoreButton": "Microsoft Store",
   "onboardingDownloadLinuxStoreButton": "Snapcraft",
   "onboardingDownloadQrTitle": "Escaneie para continuar",
-  "onboardingDownloadQrDescription": "Use a câmera do seu celular para abrir o link da loja."
+  "onboardingDownloadQrDescription": "Use a câmera do seu celular para abrir o link da loja.",
+  "studyPdfTableOfContents": "Sumário",
+  "@studyPdfTableOfContents": {
+    "description": "Title of the table of contents page in the exported PDF"
+  }
 }

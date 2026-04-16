@@ -1009,5 +1009,9 @@
   "onboardingDownloadWindowsStoreButton": "Microsoft Store",
   "onboardingDownloadLinuxStoreButton": "Snapcraft",
   "onboardingDownloadQrTitle": "계속하려면 스캔",
-  "onboardingDownloadQrDescription": "휴대폰 카메라로 스토어 링크를 여세요."
+  "onboardingDownloadQrDescription": "휴대폰 카메라로 스토어 링크를 여세요.",
+  "studyPdfTableOfContents": "목차",
+  "@studyPdfTableOfContents": {
+    "description": "Title of the table of contents page in the exported PDF"
+  }
 }

@@ -2419,5 +2419,9 @@
   "onboardingDownloadWindowsStoreButton": "Microsoft Store",
   "onboardingDownloadLinuxStoreButton": "Snapcraft",
   "onboardingDownloadQrTitle": "Escaneja per continuar",
-  "onboardingDownloadQrDescription": "Fes servir la càmera del telèfon per obrir l'enllaç de la botiga."
+  "onboardingDownloadQrDescription": "Fes servir la càmera del telèfon per obrir l'enllaç de la botiga.",
+  "studyPdfTableOfContents": "Taula de continguts",
+  "@studyPdfTableOfContents": {
+    "description": "Title of the table of contents page in the exported PDF"
+  }
 }

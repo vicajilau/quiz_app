@@ -1317,5 +1317,9 @@
   "onboardingDownloadWindowsStoreButton": "Microsoft Store",
   "onboardingDownloadLinuxStoreButton": "Snapcraft",
   "onboardingDownloadQrTitle": "Σαρώστε για συνέχεια",
-  "onboardingDownloadQrDescription": "Χρησιμοποιήστε την κάμερα του κινητού σας για να ανοίξετε τον σύνδεσμο του καταστήματος."
+  "onboardingDownloadQrDescription": "Χρησιμοποιήστε την κάμερα του κινητού σας για να ανοίξετε τον σύνδεσμο του καταστήματος.",
+  "studyPdfTableOfContents": "Πίνακας περιεχομένων",
+  "@studyPdfTableOfContents": {
+    "description": "Title of the table of contents page in the exported PDF"
+  }
 }
