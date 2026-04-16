@@ -36,6 +36,7 @@ class StudyPdfExportService {
     required String fileName,
     String advantagesLabel = 'Advantages',
     String limitationsLabel = 'Limitations',
+    String tableOfContentsLabel = 'Table of Contents',
     Map<String, Uint8List> latexImages = const {},
   }) async {
     final pdfBytes = await StudyPdfGenerator.generate(
@@ -44,6 +45,7 @@ class StudyPdfExportService {
       chunks: chunks,
       advantagesLabel: advantagesLabel,
       limitationsLabel: limitationsLabel,
+      tableOfContentsLabel: tableOfContentsLabel,
       latexImages: latexImages,
     );
 
