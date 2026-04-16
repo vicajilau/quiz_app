@@ -17,26 +17,26 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:platform_detail/platform_detail.dart';
 import 'package:quizdy/data/services/pdf_export_generator.dart';
+import 'package:quizdy/data/services/pdf_viewer_dialog.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 
 /// Mobile and desktop implementation of the PDF export service.
 ///
-/// On mobile platforms, [FilePicker.platform.saveFile] with [bytes] handles
-/// saving automatically. On desktop platforms, the bytes are written manually
-/// after the user selects a save path.
+/// Generates the PDF and displays it in a full-screen viewer dialog.
+/// The viewer includes a close button and a save action.
 class StudyPdfExportService {
-  /// Generates a PDF from the provided study data and opens a save dialog.
+  /// Generates a PDF from the provided study data and opens a viewer dialog.
   ///
-  /// Returns `true` if the user completed the save, `false` if cancelled or
-  /// an error occurred.
-  Future<bool> exportStudy({
+  /// Returns `true` after the viewer is shown, `false` if context is no longer
+  /// mounted or an error occurred.
+  Future<bool?> exportStudy({
+    required BuildContext context,
     required String documentTitle,
     String? documentSummary,
     required List<StudyChunk> chunks,
-    required String dialogTitle,
-    required String fileName,
     String advantagesLabel = 'Advantages',
     String limitationsLabel = 'Limitations',
     String tableOfContentsLabel = 'Table of Contents',
@@ -52,16 +52,26 @@ class StudyPdfExportService {
       latexImages: latexImages,
     );
 
-    final result = await FilePicker.saveFile(
-      dialogTitle: dialogTitle,
-      fileName: fileName,
-      bytes: pdfBytes,
+    if (!context.mounted) return false;
+
+    return await showDialog<bool?>(
+      context: context,
+      builder: (context) => Dialog.fullscreen(
+        child: PdfViewerDialog(
+          pdfBytes: pdfBytes,
+          title: documentTitle,
+          onSave: () async {
+            final result = await FilePicker.saveFile(
+              fileName: '$documentTitle.pdf',
+              bytes: pdfBytes,
+            );
+            if (result != null && PlatformDetail.isDesktop) {
+              await File(result).writeAsBytes(pdfBytes);
+            }
+            return result != null;
+          },
+        ),
+      ),
     );
-
-    if (result != null && PlatformDetail.isDesktop) {
-      await File(result).writeAsBytes(pdfBytes);
-    }
-
-    return result != null;
   }
 }
