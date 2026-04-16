@@ -268,6 +268,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
             fileName: fileName,
             advantagesLabel: localizations.studyComponentAdvantages,
             limitationsLabel: localizations.studyComponentLimitations,
+            tableOfContentsLabel: localizations.studyPdfTableOfContents,
             latexImages: latexImages,
           );
 
