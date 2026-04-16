@@ -728,6 +728,14 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
+  "onboardingStudyStepPdfTitle": "Експорт у PDF",
+  "@onboardingStudyStepPdfTitle": {
+    "description": "Step 4 title in study content onboarding page"
+  },
+  "onboardingStudyStepPdfDescription": "Завантажте та поділіться своїм навчанням у форматі PDF",
+  "@onboardingStudyStepPdfDescription": {
+    "description": "Step 4 description in study content onboarding page"
+  },
   "privacyPolicyLabel": "Политика конфиденциальности",
   "privacyPolicyDescription": "Дізнайтеся, як ваші дані обробляються у Quizdy",
   "privacyPolicyRequiredDescription": "Щоб продовжити, перегляньте та прийміть політику конфіденційності.",

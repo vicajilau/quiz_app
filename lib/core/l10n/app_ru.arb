@@ -710,6 +710,14 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
+  "onboardingStudyStepPdfTitle": "Экспорт в PDF",
+  "@onboardingStudyStepPdfTitle": {
+    "description": "Step 4 title in study content onboarding page"
+  },
+  "onboardingStudyStepPdfDescription": "Скачайте и поделитесь своими материалами в формате PDF",
+  "@onboardingStudyStepPdfDescription": {
+    "description": "Step 4 description in study content onboarding page"
+  },
   "privacyPolicyLabel": "Политика конфиденциальности",
   "privacyPolicyDescription": "Узнайте, как ваши данные обрабатываются в Quizdy",
   "privacyPolicyRequiredDescription": "Пожалуйста, ознакомьтесь и примите политику конфиденциальности, чтобы продолжить.",

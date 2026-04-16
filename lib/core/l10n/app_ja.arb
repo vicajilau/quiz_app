@@ -2006,6 +2006,14 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
+  "onboardingStudyStepPdfTitle": "PDFとしてエクスポート",
+  "@onboardingStudyStepPdfTitle": {
+    "description": "Step 4 title in study content onboarding page"
+  },
+  "onboardingStudyStepPdfDescription": "学習内容をPDFファイルとしてダウンロードして共有できます",
+  "@onboardingStudyStepPdfDescription": {
+    "description": "Step 4 description in study content onboarding page"
+  },
   "privacyPolicyLabel": "プライバシーポリシー",
   "privacyPolicyDescription": "Quizdyでデータがどのように扱われるかを確認してください",
   "privacyPolicyRequiredDescription": "続行するには、プライバシーポリシーを確認して同意してください。",

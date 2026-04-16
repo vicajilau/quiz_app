@@ -695,6 +695,14 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
+  "onboardingStudyStepPdfTitle": "PDF로 내보내기",
+  "@onboardingStudyStepPdfTitle": {
+    "description": "Step 4 title in study content onboarding page"
+  },
+  "onboardingStudyStepPdfDescription": "학습 내용을 PDF 파일로 다운로드하고 공유하세요",
+  "@onboardingStudyStepPdfDescription": {
+    "description": "Step 4 description in study content onboarding page"
+  },
   "privacyPolicyLabel": "개인정보 처리방침",
   "privacyPolicyDescription": "Quizdy에서 데이터가 어떻게 처리되는지 확인하세요",
   "privacyPolicyRequiredDescription": "계속하려면 개인정보 처리방침을 검토하고 동의해 주세요.",

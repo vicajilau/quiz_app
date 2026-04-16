@@ -2330,6 +2330,14 @@
   "@onboardingStudyStepStudyDescription": {
     "description": "Step 3 description in study content onboarding page"
   },
+  "onboardingStudyStepPdfTitle": "Export as PDF",
+  "@onboardingStudyStepPdfTitle": {
+    "description": "Step 4 title in study content onboarding page"
+  },
+  "onboardingStudyStepPdfDescription": "Download and share your study as a PDF file",
+  "@onboardingStudyStepPdfDescription": {
+    "description": "Step 4 description in study content onboarding page"
+  },
   "onboardingAiAutoGenerateTitle": "Auto-Generate Questions",
   "@onboardingAiAutoGenerateTitle": {
     "description": "AI feature title in onboarding"
