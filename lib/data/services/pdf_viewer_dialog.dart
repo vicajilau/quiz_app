@@ -19,6 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pdfrx/pdfrx.dart';
 import 'package:platform_detail/platform_detail.dart';
+import 'package:share_plus/share_plus.dart';
 
 /// Full-screen PDF viewer dialog with a close button and a configurable
 /// save action.
@@ -79,6 +80,26 @@ class _PdfViewerDialogState extends State<PdfViewerDialog> {
         ),
         title: Text(widget.title),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.share),
+            onPressed: () async {
+              final shared = await SharePlus.instance.share(
+                ShareParams(
+                  files: [
+                    XFile.fromData(
+                      widget.pdfBytes,
+                      name: '${widget.title}.pdf',
+                      mimeType: 'application/pdf',
+                    ),
+                  ],
+                ),
+              );
+              if (shared.status == ShareResultStatus.success &&
+                  context.mounted) {
+                context.pop(true);
+              }
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.download),
             onPressed: () async {
