@@ -5,6 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   desktop_drop
   pasteboard
+  share_plus
   url_launcher_windows
 )
 
