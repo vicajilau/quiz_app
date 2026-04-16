@@ -482,6 +482,9 @@ class _StudyBodyState extends State<StudyBody>
                                   ? const SizedBox.shrink()
                                   : (currentChunk.pages.isNotEmpty
                                         ? ListView.builder(
+                                            key: ValueKey(
+                                              state.currentChunkIndex,
+                                            ),
                                             itemCount:
                                                 currentChunk.pages.length,
                                             itemBuilder: (context, index) {
