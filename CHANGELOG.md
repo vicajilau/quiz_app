@@ -5,7 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.12.0]
+## [1.13.0] - TBD
+
+- feat: Implemented `CardStatusBar` and applied for `StudyIndexChunkCard` and `QuestionPreviewCard`.
+
+## [1.12.0] - 2026-04-17
 
 - feat: Added a final onboarding page that lets users generate QR codes for the mobile app store links.
 - feat: Added a changelog viewer in Settings that reads CHANGELOG.md and shows only the entries for the current app version.
