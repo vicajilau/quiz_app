@@ -1,6 +1,10 @@
 name: Widgetbook Cloud Hosting
 on:
   push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
     paths:
       - 'widgetbook/**'
       - '.github/workflows/widgetbook_build.yml'
