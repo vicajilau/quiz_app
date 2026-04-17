@@ -17,10 +17,10 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
-import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_chunk_download_button.dart';
+import 'package:quizdy/presentation/widgets/card_status_bar.dart';
 
 class StudyIndexChunkCard extends StatefulWidget {
   final StudyChunk chunk;
@@ -90,11 +90,18 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
     final arrowColor = isDark ? AppTheme.zinc600 : AppTheme.zinc400;
     final summaryColor = isDark ? AppTheme.zinc400 : AppTheme.zinc500;
 
+    final hasStatus = widget.isNew || widget.isModified || widget.isDuplicated;
+
     Widget cardContent = AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       decoration: BoxDecoration(
         color: cardBg,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: hasStatus
+            ? const BorderRadius.only(
+                bottomLeft: Radius.circular(14),
+                bottomRight: Radius.circular(14),
+              )
+            : BorderRadius.circular(14),
         border: isSelected
             ? Border.all(color: AppTheme.primaryColor, width: 2)
             : (isCompleted
@@ -372,27 +379,20 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
       ),
     );
 
-    if (widget.isDuplicated || widget.isNew || widget.isModified) {
-      cardContent = ClipRect(
-        child: Banner(
-          message: widget.isDuplicated
-              ? localizations.duplicatedTag.toUpperCase()
-              : (widget.isNew
-                    ? localizations.newTag.toUpperCase()
-                    : localizations.modifiedTag.toUpperCase()),
-          location: BannerLocation.topStart,
-          color: widget.isDuplicated
-              ? Theme.of(context).extension<CustomColors>()!.onWarningContainer!
-              : (widget.isModified
-                    ? Theme.of(context).extension<CustomColors>()!.aiIconColor!
-                    : AppTheme.secondaryColor),
-          textStyle: const TextStyle(
-            fontSize: 7,
-            fontWeight: FontWeight.w900,
-            color: Colors.white,
-            letterSpacing: 0.5,
-          ),
-          child: cardContent,
+    if (hasStatus) {
+      cardContent = ClipRRect(
+        borderRadius: BorderRadius.circular(14),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CardStatusBar(
+              isNew: widget.isNew,
+              isModified: widget.isModified,
+              isDuplicated: widget.isDuplicated,
+            ),
+            cardContent,
+          ],
         ),
       );
     }
