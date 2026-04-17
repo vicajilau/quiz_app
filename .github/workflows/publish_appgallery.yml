@@ -11,7 +11,7 @@ jobs:
     name: Generate AppGallery Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Download Android keystore
         id: android_keystore
