@@ -3,8 +3,6 @@ on:
   push:
     tags:
       - 'v*.*.*'
-    branches:
-      - '**'
   workflow_dispatch:
 
 jobs:
