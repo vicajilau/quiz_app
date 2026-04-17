@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat: Added `QuizdyLoading` widget and implemened in whole app.
 - feat: Implemented index, cover page, and new look to the extracted pdf.
 - feat: Implemented pdf preview dialog in order to save or share it.
+- fix: updated `Gemini` API key regex in order to accept new format.
 
 ## [1.11.0] - 2026-04-01
 

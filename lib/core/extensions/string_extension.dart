@@ -103,7 +103,7 @@ extension StringExtension on String {
   bool get isValidGeminiApiKey {
     if (trim().isEmpty) return false;
     // Gemini keys start with "AIza" and are typically 39 chars
-    final regex = RegExp(r'^AIza[a-zA-Z0-9_-]{31,}$');
+    final regex = RegExp(r'^(AIza[a-zA-Z0-9_-]{31,}|AQ\.[a-zA-Z0-9_-]{31,})$');
     return regex.hasMatch(trim());
   }
 
