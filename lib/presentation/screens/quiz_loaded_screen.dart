@@ -50,6 +50,7 @@ import 'package:quizdy/presentation/screens/widgets/quiz_loaded_bottom_bar.dart'
 import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
 import 'package:quizdy/presentation/screens/widgets/request_file_name_dialog.dart';
+import 'package:quizdy/presentation/screens/widgets/quiz_loaded/quiz_loaded_widgets.dart';
 import 'package:quizdy/presentation/widgets/quizdy_empty_state.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/presentation/screens/dialogs/quiz_metadata_dialog.dart';
@@ -620,164 +621,28 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                 ],
               ),
               actions: [
-                // Study Mode Button
-                Tooltip(
-                  message: AppLocalizations.of(context)!.studyModeLabel,
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 8),
-                    constraints: const BoxConstraints(minWidth: 40),
-                    child: Material(
-                      color: context.quizLoadedTheme.appBarIconBackgroundColor,
-                      borderRadius: BorderRadius.circular(20),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(20),
-                        onTap: () {
-                          context.pushReplacement(
-                            AppRoutes.studyScreen,
-                            extra: {
-                              'initialChunks':
-                                  cachedQuizFile.study?.content.cache ?? [],
-                              'documentTitle': cachedQuizFile.metadata.title,
-                              'documentSummary':
-                                  cachedQuizFile.metadata.description,
-                              'quizFile': cachedQuizFile,
-                              'hideStartQuizButton': true,
-                            },
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 10,
-                          ),
-                          child: Builder(
-                            builder: (context) {
-                              final showText =
-                                  MediaQuery.of(context).size.width > 500;
-                              return Row(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    LucideIcons.bookOpen,
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.onPrimary,
-                                    size: 18,
-                                  ),
-                                  if (showText) ...[
-                                    const SizedBox(width: 6),
-                                    Text(
-                                      AppLocalizations.of(
-                                        context,
-                                      )!.studyModeLabel,
-                                      style: TextStyle(
-                                        color: Theme.of(
-                                          context,
-                                        ).colorScheme.onPrimary,
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ],
-                                ],
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                QuizLoadedStudyModeButton(
+                  quizFile: cachedQuizFile,
+                  onTap: () {
+                    context.pushReplacement(
+                      AppRoutes.studyScreen,
+                      extra: {
+                        'initialChunks':
+                            cachedQuizFile.study?.content.cache ?? [],
+                        'documentTitle': cachedQuizFile.metadata.title,
+                        'documentSummary': cachedQuizFile.metadata.description,
+                        'quizFile': cachedQuizFile,
+                        'hideStartQuizButton': true,
+                      },
+                    );
+                  },
                 ),
-                // Settings Button
-                Container(
-                  width: 40,
-                  height: 40,
-                  margin: const EdgeInsets.only(right: 8),
-                  decoration: BoxDecoration(
-                    color: context.quizLoadedTheme.appBarIconBackgroundColor,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () => _showSettingsDialog(context),
-                    icon: Icon(
-                      LucideIcons.settings,
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      size: 20,
-                    ),
-                    tooltip: AppLocalizations.of(context)!.settingsTitle,
-                  ),
+                QuizLoadedSettingsButton(
+                  onTap: () => _showSettingsDialog(context),
                 ),
-                Container(
-                  margin: const EdgeInsets.only(right: 24),
-                  constraints: const BoxConstraints(minWidth: 40),
-                  child: Tooltip(
-                    message: _isSelectionMode
-                        ? AppLocalizations.of(context)!.done
-                        : AppLocalizations.of(context)!.select,
-                    child: Material(
-                      color: context
-                          .quizLoadedTheme
-                          .selectionInactiveBackgroundColor,
-                      borderRadius: BorderRadius.circular(12),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(12),
-                        onTap: () {
-                          _toggleSelectionMode();
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 10,
-                          ),
-                          child: Builder(
-                            builder: (context) {
-                              final showText =
-                                  MediaQuery.of(context).size.width > 500;
-
-                              return Row(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    _isSelectionMode
-                                        ? LucideIcons.checkSquare
-                                        : LucideIcons.mousePointer2,
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.onPrimary,
-                                    size: 18,
-                                  ),
-                                  if (showText) ...[
-                                    const SizedBox(width: 8),
-                                    Flexible(
-                                      child: Text(
-                                        _isSelectionMode
-                                            ? AppLocalizations.of(context)!.done
-                                            : AppLocalizations.of(
-                                                context,
-                                              )!.select,
-                                        style: TextStyle(
-                                          color: Theme.of(
-                                            context,
-                                          ).colorScheme.onPrimary,
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
-                                ],
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                QuizLoadedSelectionToggleButton(
+                  isSelectionMode: _isSelectionMode,
+                  onTap: _toggleSelectionMode,
                 ),
               ],
             ),
@@ -840,56 +705,7 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                         },
                       ),
                     ),
-                  if (_isDragging)
-                    Positioned.fill(
-                      child: Container(
-                        color: context.quizLoadedTheme.dragOverlayColor,
-                        child: Center(
-                          child: Container(
-                            padding: const EdgeInsets.all(32),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
-                              borderRadius: BorderRadius.circular(24),
-                              border: Border.all(
-                                color: context
-                                    .quizLoadedTheme
-                                    .dragOverlayBorderColor,
-                                width: 3,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: context
-                                      .quizLoadedTheme
-                                      .dragOverlayShadowColor,
-                                  blurRadius: 20,
-                                  offset: const Offset(0, 10),
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  LucideIcons.upload,
-                                  size: 48,
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                                const SizedBox(height: 16),
-                                Text(
-                                  AppLocalizations.of(context)!.dropFileHere,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineMedium
-                                      ?.copyWith(
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                  if (_isDragging) const QuizLoadedDragOverlay(),
                 ],
               ),
             ),
