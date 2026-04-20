@@ -28,6 +28,7 @@ import 'package:quizdy/domain/models/quiz/quiz_config.dart';
 import 'package:quizdy/domain/models/quiz/quiz_config_stored_settings.dart';
 import 'package:quizdy/domain/models/quiz/question_order.dart';
 import 'package:quizdy/presentation/screens/dialogs/count_selection/advanced_settings_section.dart';
+import 'package:quizdy/presentation/screens/dialogs/count_selection/collapsible_exam_config.dart';
 import 'package:quizdy/presentation/screens/dialogs/count_selection/quiz_mode_selection.dart';
 import 'package:quizdy/presentation/widgets/quizdy_stepper_field.dart';
 
@@ -613,7 +614,7 @@ class _QuestionCountSelectionDialogState
                     ),
 
                     const SizedBox(height: 12),
-                    _CollapsibleExamConfig(
+                    CollapsibleExamConfig(
                       isDark: isDark,
                       child: AdvancedSettingsSection(
                         isStudyMode: _isStudyMode,
@@ -759,109 +760,6 @@ class _QuestionCountSelectionDialogState
           ],
         ),
       ),
-    );
-  }
-}
-
-class _CollapsibleExamConfig extends StatefulWidget {
-  final bool isDark;
-  final Widget child;
-
-  const _CollapsibleExamConfig({required this.isDark, required this.child});
-
-  @override
-  State<_CollapsibleExamConfig> createState() => _CollapsibleExamConfigState();
-}
-
-class _CollapsibleExamConfigState extends State<_CollapsibleExamConfig> {
-  bool _isExpanded = false;
-
-  @override
-  Widget build(BuildContext context) {
-    final borderColor = widget.isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFE4E4E7);
-    final headerBgColor = widget.isDark
-        ? const Color(0xFF3F3F46)
-        : const Color(0xFFF4F4F5);
-    final bodyBgColor = widget.isDark
-        ? const Color(0xFF1E1E22)
-        : const Color(0xFFFAFAFA);
-    final iconColor = widget.isDark
-        ? const Color(0xFFA1A1AA)
-        : const Color(0xFF71717A);
-    final titleColor = widget.isDark ? Colors.white : const Color(0xFF18181B);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        GestureDetector(
-          onTap: () {
-            setState(() {
-              _isExpanded = !_isExpanded;
-            });
-          },
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-            decoration: BoxDecoration(
-              color: headerBgColor,
-              borderRadius: _isExpanded
-                  ? const BorderRadius.vertical(top: Radius.circular(12))
-                  : BorderRadius.circular(12),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Row(
-                    children: [
-                      Icon(LucideIcons.settings, size: 18, color: iconColor),
-                      const SizedBox(width: 8),
-                      Flexible(
-                        child: Text(
-                          AppLocalizations.of(context)!.examConfigurationTitle,
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: titleColor,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Icon(
-                  _isExpanded ? LucideIcons.chevronUp : LucideIcons.chevronDown,
-                  size: 18,
-                  color: iconColor,
-                ),
-              ],
-            ),
-          ),
-        ),
-        AnimatedSize(
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.linear,
-          child: _isExpanded
-              ? Container(
-                  padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
-                  decoration: BoxDecoration(
-                    color: bodyBgColor,
-                    borderRadius: const BorderRadius.vertical(
-                      bottom: Radius.circular(12),
-                    ),
-                    border: Border(
-                      left: BorderSide(color: borderColor),
-                      right: BorderSide(color: borderColor),
-                      bottom: BorderSide(color: borderColor),
-                    ),
-                  ),
-                  child: widget.child,
-                )
-              : const SizedBox(width: double.infinity),
-        ),
-      ],
     );
   }
 }

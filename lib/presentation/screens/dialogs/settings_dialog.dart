@@ -25,12 +25,12 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
+import 'package:quizdy/presentation/screens/dialogs/settings_dialog_widgets.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_widgets/ai_settings_section.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_widgets/advanced_settings_section.dart';
 import 'package:quizdy/presentation/utils/support_issue_helper.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
-import 'package:quizdy/routes/app_router.dart';
 
 class SettingsDialog extends StatefulWidget {
   const SettingsDialog({super.key});
@@ -480,16 +480,16 @@ class _SettingsDialogState extends State<SettingsDialog> {
                           const SizedBox(height: 24),
                           Divider(color: colors.border),
                           const SizedBox(height: 16),
-                          _OnboardingRow(colors: colors),
+                          SettingsOnboardingRow(colors: colors),
                           const SizedBox(height: 8),
-                          _PrivacyPolicyRow(colors: colors),
+                          SettingsPrivacyPolicyRow(colors: colors),
                           const SizedBox(height: 8),
-                          _SupportRow(
+                          SettingsSupportRow(
                             colors: colors,
                             onTap: _openSupportIssueUrl,
                           ),
                           const SizedBox(height: 8),
-                          _VersionRow(
+                          SettingsVersionRow(
                             colors: colors,
                             version: _appVersion,
                             onTap: _openChangelog,
@@ -513,235 +513,6 @@ class _SettingsDialogState extends State<SettingsDialog> {
                 ),
               ],
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _OnboardingRow extends StatelessWidget {
-  final ConfirmingDialogColorsExtension colors;
-
-  const _OnboardingRow({required this.colors});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(12),
-      onTap: () async {
-        await ServiceLocator.getIt<ConfigurationService>()
-            .setOnboardingCompleted(false);
-        if (context.mounted) {
-          context.pop();
-          context.push('${AppRoutes.onboarding}?from=settings');
-        }
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Row(
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: colors.surface,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(
-                LucideIcons.graduationCap,
-                size: 20,
-                color: colors.subtitle,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.showOnboarding,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: colors.title,
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.showOnboardingDescription,
-                    style: TextStyle(fontSize: 12, color: colors.subtitle),
-                  ),
-                ],
-              ),
-            ),
-            Icon(LucideIcons.chevronRight, size: 18, color: colors.subtitle),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _VersionRow extends StatelessWidget {
-  final ConfirmingDialogColorsExtension colors;
-  final String version;
-  final VoidCallback onTap;
-
-  const _VersionRow({
-    required this.colors,
-    required this.version,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(12),
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Row(
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: colors.surface,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(LucideIcons.info, size: 20, color: colors.subtitle),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.versionLabel,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: colors.title,
-                    ),
-                  ),
-                  Text(
-                    version,
-                    style: TextStyle(fontSize: 12, color: colors.subtitle),
-                  ),
-                ],
-              ),
-            ),
-            Icon(LucideIcons.chevronRight, size: 18, color: colors.subtitle),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _PrivacyPolicyRow extends StatelessWidget {
-  final ConfirmingDialogColorsExtension colors;
-
-  const _PrivacyPolicyRow({required this.colors});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(12),
-      onTap: () {
-        context.pop();
-        context.push('${AppRoutes.privacyPolicy}?from=settings');
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Row(
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: colors.surface,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(LucideIcons.shield, size: 20, color: colors.subtitle),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.privacyPolicyLabel,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: colors.title,
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.privacyPolicyDescription,
-                    style: TextStyle(fontSize: 12, color: colors.subtitle),
-                  ),
-                ],
-              ),
-            ),
-            Icon(LucideIcons.chevronRight, size: 18, color: colors.subtitle),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _SupportRow extends StatelessWidget {
-  final ConfirmingDialogColorsExtension colors;
-  final VoidCallback onTap;
-
-  const _SupportRow({required this.colors, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(12),
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Row(
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: colors.surface,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(
-                LucideIcons.lifeBuoy,
-                size: 20,
-                color: colors.subtitle,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.supportLabel,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: colors.title,
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.supportDescription,
-                    style: TextStyle(fontSize: 12, color: colors.subtitle),
-                  ),
-                ],
-              ),
-            ),
-            Icon(LucideIcons.chevronRight, size: 18, color: colors.subtitle),
           ],
         ),
       ),

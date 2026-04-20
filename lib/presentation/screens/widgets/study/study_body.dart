@@ -14,7 +14,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
@@ -30,10 +29,10 @@ import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_e
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
 import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quizdy/presentation/screens/quiz_execution/widgets/ai_studio_chat_side_panel.dart';
-import 'package:quizdy/presentation/screens/widgets/study/components/study_component_builder.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_view.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_sections_sidebar.dart';
 import 'package:quizdy/presentation/screens/widgets/study/add_edit_chunk_dialog.dart';
+import 'package:quizdy/presentation/screens/widgets/study/study_content_view.dart';
 import 'package:quizdy/presentation/widgets/quizdy_loading.dart';
 import 'package:quizdy/routes/app_router.dart';
 import 'package:go_router/go_router.dart';
@@ -327,22 +326,11 @@ class _StudyBodyState extends State<StudyBody>
 
               final currentChunk = state.currentChunk;
               if (currentChunk == null) {
-                return Center(
-                  child: Text(localizations.studyScreenNoSlidesAvailable),
-                );
+                return StudyNoChunkAvailable(localizations: localizations);
               }
 
               if (currentChunk.status == StudyChunkState.processing) {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const QuizdyLoading(),
-                      const SizedBox(height: 16),
-                      Text(localizations.studyScreenGenerating),
-                    ],
-                  ),
-                );
+                return StudyGeneratingContent(localizations: localizations);
               }
 
               final isChunkReady =
@@ -472,63 +460,16 @@ class _StudyBodyState extends State<StudyBody>
 
                   final mainContent = Stack(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child:
-                                  currentChunk.status == StudyChunkState.error
-                                  ? const SizedBox.shrink()
-                                  : (currentChunk.pages.isNotEmpty
-                                        ? ListView.builder(
-                                            key: ValueKey(
-                                              state.currentChunkIndex,
-                                            ),
-                                            itemCount:
-                                                currentChunk.pages.length,
-                                            itemBuilder: (context, index) {
-                                              final page =
-                                                  currentChunk.pages[index];
-                                              return Card(
-                                                margin: const EdgeInsets.only(
-                                                  bottom: 16,
-                                                ),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(
-                                                    16,
-                                                  ),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: page.uiElements.map((
-                                                      element,
-                                                    ) {
-                                                      return StudyComponentBuilder(
-                                                        element: element,
-                                                      );
-                                                    }).toList(),
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                          )
-                                        : Center(
-                                            child: Text(
-                                              localizations
-                                                  .studyScreenNoSlidesGenerated,
-                                            ),
-                                          )),
-                            ),
-                          ],
-                        ),
+                      StudyContentView(
+                        currentChunk: currentChunk,
+                        currentChunkIndex: state.currentChunkIndex,
+                        localizations: localizations,
                       ),
                       if (!_isSidebarOpen)
                         Positioned(
                           top: MediaQuery.of(context).padding.top + 12,
                           left: 12,
-                          child: _SidebarOpenButton(
+                          child: SidebarOpenButton(
                             isDark: isDark,
                             onTap: _openSidebar,
                           ),
@@ -537,7 +478,7 @@ class _StudyBodyState extends State<StudyBody>
                         Positioned(
                           top: MediaQuery.of(context).padding.top + 12,
                           right: 12,
-                          child: _AskAiButton(
+                          child: AskAiButton(
                             isDark: isDark,
                             isAiAvailable: _isAiAvailable,
                             tooltip: localizations.askAIStudyTooltip,
@@ -625,81 +566,10 @@ class _StudyBodyState extends State<StudyBody>
                 return const SizedBox.shrink();
               }
 
-              return Positioned.fill(
-                child: Container(
-                  color: Colors.black.withValues(alpha: 0.1),
-                  child: const Center(child: QuizdyLoading()),
-                ),
-              );
+              return const StudyLoadingOverlay();
             },
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _SidebarOpenButton extends StatelessWidget {
-  final bool isDark;
-  final VoidCallback onTap;
-
-  const _SidebarOpenButton({required this.isDark, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 32,
-        height: 32,
-        decoration: BoxDecoration(
-          color: isDark ? AppTheme.zinc700 : AppTheme.zinc100,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        alignment: Alignment.center,
-        child: Icon(
-          LucideIcons.panelRightClose,
-          size: 18,
-          color: isDark ? AppTheme.zinc400 : AppTheme.zinc500,
-        ),
-      ),
-    );
-  }
-}
-
-class _AskAiButton extends StatelessWidget {
-  final bool isDark;
-  final bool isAiAvailable;
-  final String tooltip;
-  final VoidCallback onTap;
-
-  const _AskAiButton({
-    required this.isDark,
-    required this.isAiAvailable,
-    required this.tooltip,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Tooltip(
-      message: tooltip,
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-          width: 36,
-          height: 36,
-          decoration: BoxDecoration(
-            color: isDark ? AppTheme.zinc700 : AppTheme.zinc100,
-            borderRadius: BorderRadius.circular(18),
-          ),
-          alignment: Alignment.center,
-          child: Icon(
-            LucideIcons.sparkles,
-            size: 18,
-            color: Theme.of(context).primaryColor,
-          ),
-        ),
       ),
     );
   }
