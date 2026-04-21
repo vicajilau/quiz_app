@@ -39,6 +39,7 @@ class StudyIndexFooterWidget extends StatefulWidget {
   final bool hasDuplicates;
   final bool showSaveButton;
   final bool hasChunks;
+  final bool canExportPdf;
 
   const StudyIndexFooterWidget({
     super.key,
@@ -57,6 +58,7 @@ class StudyIndexFooterWidget extends StatefulWidget {
     this.hasDuplicates = false,
     this.showSaveButton = true,
     this.hasChunks = true,
+    this.canExportPdf = false,
   });
 
   @override
@@ -229,7 +231,7 @@ class _StudyIndexFooterWidgetState extends State<StudyIndexFooterWidget> {
                       ),
                       flex: 2,
                     ),
-                    if (widget.hasChunks)
+                    if (widget.canExportPdf)
                       (
                         button: QuizdyButton(
                           type: QuizdyButtonType.secondary,

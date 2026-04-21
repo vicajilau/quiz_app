@@ -21,6 +21,7 @@ import 'package:flutter/material.dart';
 import 'package:platform_detail/platform_detail.dart';
 import 'package:quizdy/data/services/pdf_export_generator.dart';
 import 'package:quizdy/data/services/pdf_viewer_dialog.dart';
+import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 
 /// Mobile and desktop implementation of the PDF export service.
@@ -41,6 +42,10 @@ class StudyPdfExportService {
     String limitationsLabel = 'Limitations',
     String tableOfContentsLabel = 'Table of Contents',
     Map<String, Uint8List> latexImages = const {},
+    List<Question> questions = const [],
+    bool includeAnswers = false,
+    String questionsPageTitle = 'Questions',
+    String answersLabel = 'Answer',
   }) async {
     final pdfBytes = await StudyPdfGenerator.generate(
       documentTitle: documentTitle,
@@ -50,6 +55,10 @@ class StudyPdfExportService {
       limitationsLabel: limitationsLabel,
       tableOfContentsLabel: tableOfContentsLabel,
       latexImages: latexImages,
+      questions: questions,
+      includeAnswers: includeAnswers,
+      questionsPageTitle: questionsPageTitle,
+      answersLabel: answersLabel,
     );
 
     if (!context.mounted) return false;

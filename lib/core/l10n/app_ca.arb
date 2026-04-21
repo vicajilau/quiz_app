@@ -2431,5 +2431,45 @@
   "studyPdfTableOfContents": "Taula de continguts",
   "@studyPdfTableOfContents": {
     "description": "Title of the table of contents page in the exported PDF"
+  },
+  "exportPdfOptionsIncludeStudy": "Incloure estudi",
+  "@exportPdfOptionsIncludeStudy": {
+    "description": "Switch label to include the study content pages in the exported PDF"
+  },
+  "exportPdfOptionsIncludeStudySubtitle": "Afegir les pàgines de contingut d'estudi",
+  "@exportPdfOptionsIncludeStudySubtitle": {
+    "description": "Subtitle for the include study switch in the export PDF dialog"
+  },
+  "exportPdfOptionsTitle": "Exportar com a PDF",
+  "@exportPdfOptionsTitle": {
+    "description": "Title of the export PDF options dialog"
+  },
+  "exportPdfOptionsIncludeQuestions": "Incloure pàgina de preguntes",
+  "@exportPdfOptionsIncludeQuestions": {
+    "description": "Switch label to include a questions page in the exported PDF"
+  },
+  "exportPdfOptionsIncludeQuestionsSubtitle": "Afegir una pàgina amb totes les preguntes del qüestionari",
+  "@exportPdfOptionsIncludeQuestionsSubtitle": {
+    "description": "Subtitle for the include questions switch in the export PDF dialog"
+  },
+  "exportPdfOptionsIncludeAnswers": "Incloure respostes",
+  "@exportPdfOptionsIncludeAnswers": {
+    "description": "Switch label to include correct answers in the questions page"
+  },
+  "exportPdfOptionsIncludeAnswersSubtitle": "Afegir una pàgina separada amb les respostes correctes",
+  "@exportPdfOptionsIncludeAnswersSubtitle": {
+    "description": "Subtitle for the include answers switch in the export PDF dialog"
+  },
+  "exportPdfQuestionsPageTitle": "Preguntes",
+  "@exportPdfQuestionsPageTitle": {
+    "description": "Section title for the questions page in the exported PDF"
+  },
+  "exportPdfAnswersLabel": "Respostes",
+  "@exportPdfAnswersLabel": {
+    "description": "Title of the answers page in the exported PDF"
+  },
+  "exportButton": "Exportar",
+  "@exportButton": {
+    "description": "Label for the Export button in the export PDF options dialog"
   }
 }

@@ -28,6 +28,7 @@ class QuizLoadedBottomBar extends StatefulWidget {
   final VoidCallback onSave;
   final VoidCallback onDelete;
   final VoidCallback onPlay;
+  final VoidCallback? onExportPdf;
   final bool isPlayEnabled;
   final int selectedQuestionCount;
   final bool showSaveButton;
@@ -45,6 +46,7 @@ class QuizLoadedBottomBar extends StatefulWidget {
     required this.onDelete,
     required this.onPlay,
     required this.onDeleteDuplicates,
+    this.onExportPdf,
     this.isPlayEnabled = false,
     this.selectedQuestionCount = 0,
     this.showSaveButton = false,
@@ -218,6 +220,17 @@ class _QuizLoadedBottomBarState extends State<QuizLoadedBottomBar> {
                       ),
                       flex: 2,
                     ),
+                    if (widget.hasQuestions)
+                      (
+                        button: QuizdyButton(
+                          type: QuizdyButtonType.secondary,
+                          icon: LucideIcons.fileDown,
+                          expanded: true,
+                          title: localizations.exportAsPdf,
+                          onPressed: widget.onExportPdf,
+                        ),
+                        flex: 2,
+                      ),
                   ];
 
                   final buttonCount = buttonData.length;

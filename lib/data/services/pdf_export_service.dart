@@ -18,6 +18,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:quizdy/data/services/pdf_export_generator.dart';
+import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:web/web.dart' as web;
 
@@ -39,6 +40,10 @@ class StudyPdfExportService {
     String limitationsLabel = 'Limitations',
     String tableOfContentsLabel = 'Table of Contents',
     Map<String, Uint8List> latexImages = const {},
+    List<Question> questions = const [],
+    bool includeAnswers = false,
+    String questionsPageTitle = 'Questions',
+    String answersLabel = 'Answer',
   }) async {
     final pdfBytes = await StudyPdfGenerator.generate(
       documentTitle: documentTitle,
@@ -48,6 +53,10 @@ class StudyPdfExportService {
       limitationsLabel: limitationsLabel,
       tableOfContentsLabel: tableOfContentsLabel,
       latexImages: latexImages,
+      questions: questions,
+      includeAnswers: includeAnswers,
+      questionsPageTitle: questionsPageTitle,
+      answersLabel: answersLabel,
     );
 
     final blob = web.Blob(

@@ -83,10 +83,19 @@ class StudyBottomNavigation extends StatelessWidget {
                         currentQuizFile,
                       );
 
+                  final hasReadyChunks = state.chunks.any(
+                    (c) =>
+                        c.status == StudyChunkState.completed ||
+                        c.status == StudyChunkState.downloaded,
+                  );
+                  final hasQuestions =
+                      currentQuizFile.questions.isNotEmpty;
+
                   return StudyIndexFooterWidget(
                     localizations: localizations,
                     progressPercentage: state.progressPercentage,
                     hasChunks: state.chunks.isNotEmpty,
+                    canExportPdf: hasReadyChunks || hasQuestions,
                     selectedChunkCount: state.selectedIndices.length,
                     hasDuplicates: state.hasDuplicates,
                     isStartQuizEnabled:
