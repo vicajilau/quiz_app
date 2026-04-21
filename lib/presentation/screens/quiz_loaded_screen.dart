@@ -38,6 +38,7 @@ import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
+import 'package:quizdy/presentation/screens/widgets/study/utils/study_export_pdf_handler.dart';
 import 'package:quizdy/data/repositories/quiz_file_repository.dart';
 import 'package:quizdy/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
@@ -737,6 +738,14 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                 cachedQuizFile,
               ),
               hasQuestions: cachedQuizFile.questions.isNotEmpty,
+              onExportPdf: () => handleExportPdf(
+                context: context,
+                questions: cachedQuizFile.questions,
+                documentTitle: cachedQuizFile.metadata.title,
+                documentSummary: cachedQuizFile.metadata.description,
+                studyChunks:
+                    cachedQuizFile.study?.content.cache ?? const [],
+              ),
               isPlayEnabled: cachedQuizFile.questions.any((q) => q.isEnabled),
               onPlay: () async {
                 // Filter enabled questions first
