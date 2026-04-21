@@ -1329,5 +1329,45 @@
   "studyPdfTableOfContents": "Πίνακας περιεχομένων",
   "@studyPdfTableOfContents": {
     "description": "Title of the table of contents page in the exported PDF"
+  },
+  "exportPdfOptionsIncludeStudy": "Συμπερίληψη μελέτης",
+  "@exportPdfOptionsIncludeStudy": {
+    "description": "Switch label to include the study content pages in the exported PDF"
+  },
+  "exportPdfOptionsIncludeStudySubtitle": "Προσθήκη σελίδων περιεχομένου μελέτης",
+  "@exportPdfOptionsIncludeStudySubtitle": {
+    "description": "Subtitle for the include study switch in the export PDF dialog"
+  },
+  "exportPdfOptionsTitle": "Εξαγωγή ως PDF",
+  "@exportPdfOptionsTitle": {
+    "description": "Title of the export PDF options dialog"
+  },
+  "exportPdfOptionsIncludeQuestions": "Συμπερίληψη σελίδας ερωτήσεων",
+  "@exportPdfOptionsIncludeQuestions": {
+    "description": "Switch label to include a questions page in the exported PDF"
+  },
+  "exportPdfOptionsIncludeQuestionsSubtitle": "Προσθήκη σελίδας με όλες τις ερωτήσεις του κουίζ",
+  "@exportPdfOptionsIncludeQuestionsSubtitle": {
+    "description": "Subtitle for the include questions switch in the export PDF dialog"
+  },
+  "exportPdfOptionsIncludeAnswers": "Συμπερίληψη απαντήσεων",
+  "@exportPdfOptionsIncludeAnswers": {
+    "description": "Switch label to include correct answers in the questions page"
+  },
+  "exportPdfOptionsIncludeAnswersSubtitle": "Προσθήκη ξεχωριστής σελίδας με τις σωστές απαντήσεις",
+  "@exportPdfOptionsIncludeAnswersSubtitle": {
+    "description": "Subtitle for the include answers switch in the export PDF dialog"
+  },
+  "exportPdfQuestionsPageTitle": "Ερωτήσεις",
+  "@exportPdfQuestionsPageTitle": {
+    "description": "Section title for the questions page in the exported PDF"
+  },
+  "exportPdfAnswersLabel": "Απαντήσεις",
+  "@exportPdfAnswersLabel": {
+    "description": "Title of the answers page in the exported PDF"
+  },
+  "exportButton": "Εξαγωγή",
+  "@exportButton": {
+    "description": "Label for the Export button in the export PDF options dialog"
   }
 }

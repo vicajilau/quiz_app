@@ -2332,5 +2332,45 @@
   "studyPdfTableOfContents": "विषय सूची",
   "@studyPdfTableOfContents": {
     "description": "Title of the table of contents page in the exported PDF"
+  },
+  "exportPdfOptionsIncludeStudy": "अध्ययन शामिल करें",
+  "@exportPdfOptionsIncludeStudy": {
+    "description": "Switch label to include the study content pages in the exported PDF"
+  },
+  "exportPdfOptionsIncludeStudySubtitle": "अध्ययन सामग्री पृष्ठ जोड़ें",
+  "@exportPdfOptionsIncludeStudySubtitle": {
+    "description": "Subtitle for the include study switch in the export PDF dialog"
+  },
+  "exportPdfOptionsTitle": "PDF के रूप में निर्यात करें",
+  "@exportPdfOptionsTitle": {
+    "description": "Title of the export PDF options dialog"
+  },
+  "exportPdfOptionsIncludeQuestions": "प्रश्न पृष्ठ शामिल करें",
+  "@exportPdfOptionsIncludeQuestions": {
+    "description": "Switch label to include a questions page in the exported PDF"
+  },
+  "exportPdfOptionsIncludeQuestionsSubtitle": "सभी प्रश्नोत्तरी प्रश्नों के साथ एक पृष्ठ जोड़ें",
+  "@exportPdfOptionsIncludeQuestionsSubtitle": {
+    "description": "Subtitle for the include questions switch in the export PDF dialog"
+  },
+  "exportPdfOptionsIncludeAnswers": "उत्तर शामिल करें",
+  "@exportPdfOptionsIncludeAnswers": {
+    "description": "Switch label to include correct answers in the questions page"
+  },
+  "exportPdfOptionsIncludeAnswersSubtitle": "सही उत्तरों के साथ एक अलग पृष्ठ जोड़ें",
+  "@exportPdfOptionsIncludeAnswersSubtitle": {
+    "description": "Subtitle for the include answers switch in the export PDF dialog"
+  },
+  "exportPdfQuestionsPageTitle": "प्रश्न",
+  "@exportPdfQuestionsPageTitle": {
+    "description": "Section title for the questions page in the exported PDF"
+  },
+  "exportPdfAnswersLabel": "उत्तर",
+  "@exportPdfAnswersLabel": {
+    "description": "Title of the answers page in the exported PDF"
+  },
+  "exportButton": "निर्यात",
+  "@exportButton": {
+    "description": "Label for the Export button in the export PDF options dialog"
   }
 }

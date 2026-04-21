@@ -2374,5 +2374,45 @@
   "studyPdfTableOfContents": "Table des matières",
   "@studyPdfTableOfContents": {
     "description": "Title of the table of contents page in the exported PDF"
+  },
+  "exportPdfOptionsIncludeStudy": "Inclure l'étude",
+  "@exportPdfOptionsIncludeStudy": {
+    "description": "Switch label to include the study content pages in the exported PDF"
+  },
+  "exportPdfOptionsIncludeStudySubtitle": "Ajouter les pages de contenu d'étude",
+  "@exportPdfOptionsIncludeStudySubtitle": {
+    "description": "Subtitle for the include study switch in the export PDF dialog"
+  },
+  "exportPdfOptionsTitle": "Exporter en PDF",
+  "@exportPdfOptionsTitle": {
+    "description": "Title of the export PDF options dialog"
+  },
+  "exportPdfOptionsIncludeQuestions": "Inclure la page des questions",
+  "@exportPdfOptionsIncludeQuestions": {
+    "description": "Switch label to include a questions page in the exported PDF"
+  },
+  "exportPdfOptionsIncludeQuestionsSubtitle": "Ajouter une page avec toutes les questions du quiz",
+  "@exportPdfOptionsIncludeQuestionsSubtitle": {
+    "description": "Subtitle for the include questions switch in the export PDF dialog"
+  },
+  "exportPdfOptionsIncludeAnswers": "Inclure les réponses",
+  "@exportPdfOptionsIncludeAnswers": {
+    "description": "Switch label to include correct answers in the questions page"
+  },
+  "exportPdfOptionsIncludeAnswersSubtitle": "Ajouter une page séparée avec les bonnes réponses",
+  "@exportPdfOptionsIncludeAnswersSubtitle": {
+    "description": "Subtitle for the include answers switch in the export PDF dialog"
+  },
+  "exportPdfQuestionsPageTitle": "Questions",
+  "@exportPdfQuestionsPageTitle": {
+    "description": "Section title for the questions page in the exported PDF"
+  },
+  "exportPdfAnswersLabel": "Réponses",
+  "@exportPdfAnswersLabel": {
+    "description": "Title of the answers page in the exported PDF"
+  },
+  "exportButton": "Exporter",
+  "@exportButton": {
+    "description": "Label for the Export button in the export PDF options dialog"
   }
 }

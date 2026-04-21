@@ -1021,5 +1021,45 @@
   "studyPdfTableOfContents": "목차",
   "@studyPdfTableOfContents": {
     "description": "Title of the table of contents page in the exported PDF"
+  },
+  "exportPdfOptionsIncludeStudy": "학습 포함",
+  "@exportPdfOptionsIncludeStudy": {
+    "description": "Switch label to include the study content pages in the exported PDF"
+  },
+  "exportPdfOptionsIncludeStudySubtitle": "학습 콘텐츠 페이지 추가",
+  "@exportPdfOptionsIncludeStudySubtitle": {
+    "description": "Subtitle for the include study switch in the export PDF dialog"
+  },
+  "exportPdfOptionsTitle": "PDF로 내보내기",
+  "@exportPdfOptionsTitle": {
+    "description": "Title of the export PDF options dialog"
+  },
+  "exportPdfOptionsIncludeQuestions": "질문 페이지 포함",
+  "@exportPdfOptionsIncludeQuestions": {
+    "description": "Switch label to include a questions page in the exported PDF"
+  },
+  "exportPdfOptionsIncludeQuestionsSubtitle": "모든 퀴즈 질문이 포함된 페이지 추가",
+  "@exportPdfOptionsIncludeQuestionsSubtitle": {
+    "description": "Subtitle for the include questions switch in the export PDF dialog"
+  },
+  "exportPdfOptionsIncludeAnswers": "답변 포함",
+  "@exportPdfOptionsIncludeAnswers": {
+    "description": "Switch label to include correct answers in the questions page"
+  },
+  "exportPdfOptionsIncludeAnswersSubtitle": "정답이 포함된 별도의 페이지 추가",
+  "@exportPdfOptionsIncludeAnswersSubtitle": {
+    "description": "Subtitle for the include answers switch in the export PDF dialog"
+  },
+  "exportPdfQuestionsPageTitle": "질문",
+  "@exportPdfQuestionsPageTitle": {
+    "description": "Section title for the questions page in the exported PDF"
+  },
+  "exportPdfAnswersLabel": "답변",
+  "@exportPdfAnswersLabel": {
+    "description": "Title of the answers page in the exported PDF"
+  },
+  "exportButton": "내보내기",
+  "@exportButton": {
+    "description": "Label for the Export button in the export PDF options dialog"
   }
 }
