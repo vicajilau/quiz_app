@@ -16,6 +16,7 @@
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
@@ -26,6 +27,8 @@ class _PdfContext {
   final String advantages;
   final String limitations;
   final String tableOfContents;
+  final String questionsPageTitle;
+  final String answersLabel;
 
   /// Maps raw equation strings to pre-rendered PNG bytes captured via
   /// [LaTeXImageRenderer]. When an entry is present the equation is embedded
@@ -36,6 +39,8 @@ class _PdfContext {
     required this.advantages,
     required this.limitations,
     required this.tableOfContents,
+    this.questionsPageTitle = 'Questions',
+    this.answersLabel = 'Answer',
     this.latexImages = const {},
   });
 }
@@ -61,11 +66,17 @@ class StudyPdfGenerator {
     String limitationsLabel = 'Limitations',
     String tableOfContentsLabel = 'Table of Contents',
     Map<String, Uint8List> latexImages = const {},
+    List<Question> questions = const [],
+    bool includeAnswers = false,
+    String questionsPageTitle = 'Questions',
+    String answersLabel = 'Answer',
   }) async {
     final labels = _PdfContext(
       advantages: advantagesLabel,
       limitations: limitationsLabel,
       tableOfContents: tableOfContentsLabel,
+      questionsPageTitle: questionsPageTitle,
+      answersLabel: answersLabel,
       latexImages: latexImages,
     );
 
@@ -153,7 +164,7 @@ class StudyPdfGenerator {
     // added to the processing queue last so all Outline entries are resolved.
     // pw.TableOfContent uses DelayedWidget internally to read page numbers
     // after the full document outline is built.
-    if (readyChunks.isNotEmpty) {
+    if (readyChunks.isNotEmpty || questions.isNotEmpty) {
       pdf.addPage(
         pw.Page(
           pageTheme: pageTheme,
@@ -186,12 +197,241 @@ class StudyPdfGenerator {
       );
     }
 
+    // Questions page: appended at the end when requested.
+    if (questions.isNotEmpty) {
+      pdf.addPage(
+        pw.MultiPage(
+          pageTheme: pageTheme,
+          footer: buildFooter,
+          build: (pw.Context context) =>
+              _buildQuestionsPage(questions, labels, latexImages),
+        ),
+      );
+    }
+
+    // Answers page: separate page after questions when requested.
+    if (questions.isNotEmpty && includeAnswers) {
+      pdf.addPage(
+        pw.MultiPage(
+          pageTheme: pageTheme,
+          footer: buildFooter,
+          build: (pw.Context context) =>
+              _buildAnswersPage(questions, labels, latexImages),
+        ),
+      );
+    }
+
     return pdf.save();
   }
 
   // ---------------------------------------------------------------------------
   // Private helpers
   // ---------------------------------------------------------------------------
+
+  static List<pw.Widget> _buildQuestionsPage(
+    List<Question> questions,
+    _PdfContext labels,
+    Map<String, Uint8List> latexImages,
+  ) {
+    final widgets = <pw.Widget>[
+      pw.Outline(
+        name: 'questions_section',
+        title: labels.questionsPageTitle,
+        level: 0,
+        child: pw.Text(
+          labels.questionsPageTitle,
+          style: pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold),
+        ),
+      ),
+      pw.SizedBox(height: 8),
+      pw.Divider(thickness: 2, color: PdfColors.grey600),
+      pw.SizedBox(height: 16),
+    ];
+
+    for (int i = 0; i < questions.length; i++) {
+      final q = questions[i];
+      widgets.add(
+        pw.Padding(
+          padding: const pw.EdgeInsets.only(bottom: 12),
+          child: pw.Column(
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            children: [
+              pw.Text(
+                '${i + 1}. ${_strip(q.text)}',
+                style:
+                    pw.TextStyle(fontSize: 11, fontWeight: pw.FontWeight.bold),
+              ),
+              ..._inlineEquationWidgets(q.text, latexImages),
+              if (q.options.isNotEmpty) ...[
+                pw.SizedBox(height: 4),
+                ...List.generate(q.options.length, (j) {
+                  final label = String.fromCharCode(65 + j); // A, B, C…
+                  return pw.Column(
+                    crossAxisAlignment: pw.CrossAxisAlignment.start,
+                    children: [
+                      pw.Padding(
+                        padding: const pw.EdgeInsets.only(left: 16, bottom: 2),
+                        child: pw.Row(
+                          crossAxisAlignment: pw.CrossAxisAlignment.start,
+                          children: [
+                            pw.Text(
+                              '$label. ',
+                              style: const pw.TextStyle(fontSize: 10),
+                            ),
+                            pw.Expanded(
+                              child: pw.Text(
+                                _strip(q.options[j]),
+                                style: const pw.TextStyle(fontSize: 10),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      ..._inlineEquationWidgets(
+                        q.options[j],
+                        latexImages,
+                        paddingLeft: 32,
+                      ),
+                    ],
+                  );
+                }),
+              ],
+            ],
+          ),
+        ),
+      );
+    }
+
+    return widgets;
+  }
+
+  static List<pw.Widget> _buildAnswersPage(
+    List<Question> questions,
+    _PdfContext labels,
+    Map<String, Uint8List> latexImages,
+  ) {
+    final widgets = <pw.Widget>[
+      pw.Outline(
+        name: 'answers_section',
+        title: labels.answersLabel,
+        level: 0,
+        child: pw.Text(
+          labels.answersLabel,
+          style: pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold),
+        ),
+      ),
+      pw.SizedBox(height: 8),
+      pw.Divider(thickness: 2, color: PdfColors.grey600),
+      pw.SizedBox(height: 16),
+    ];
+
+    for (int i = 0; i < questions.length; i++) {
+      final q = questions[i];
+      final correctLabels = q.correctAnswers
+          .where((idx) => idx < q.options.length)
+          .map(
+            (idx) =>
+                '${String.fromCharCode(65 + idx)}. ${_strip(q.options[idx])}',
+          )
+          .toList();
+
+      widgets.add(
+        pw.Padding(
+          padding: const pw.EdgeInsets.only(bottom: 10),
+          child: pw.Row(
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            children: [
+              pw.Text(
+                '${i + 1}. ',
+                style:
+                    pw.TextStyle(fontSize: 10, fontWeight: pw.FontWeight.bold),
+              ),
+              pw.Expanded(
+                child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: [
+                    pw.Text(
+                      _strip(q.text),
+                      style: const pw.TextStyle(
+                        fontSize: 10,
+                        color: PdfColors.grey700,
+                      ),
+                    ),
+                    ..._inlineEquationWidgets(q.text, latexImages),
+                    pw.SizedBox(height: 3),
+                    if (correctLabels.isNotEmpty)
+                      ...q.correctAnswers
+                          .where((idx) => idx < q.options.length)
+                          .expand((idx) => [
+                            pw.Text(
+                              '${String.fromCharCode(65 + idx)}. ${_strip(q.options[idx])}',
+                              style: pw.TextStyle(
+                                fontSize: 10,
+                                fontWeight: pw.FontWeight.bold,
+                                color: PdfColors.green800,
+                              ),
+                            ),
+                            ..._inlineEquationWidgets(
+                              q.options[idx],
+                              latexImages,
+                            ),
+                          ])
+                    else if (q.explanation.isNotEmpty) ...[
+                      pw.Text(
+                        _strip(q.explanation),
+                        style: pw.TextStyle(
+                          fontSize: 10,
+                          fontWeight: pw.FontWeight.bold,
+                          color: PdfColors.green800,
+                        ),
+                      ),
+                      ..._inlineEquationWidgets(q.explanation, latexImages),
+                    ],
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return widgets;
+  }
+
+  /// Returns image widgets for any inline LaTeX equations found in [text] that
+  /// have a pre-rendered entry in [latexImages]. Equations with no pre-rendered
+  /// image are already shown as plain text via [_strip], so they are skipped.
+  static List<pw.Widget> _inlineEquationWidgets(
+    String text,
+    Map<String, Uint8List> latexImages, {
+    double paddingLeft = 0,
+  }) {
+    final widgets = <pw.Widget>[];
+    final patterns = [
+      RegExp(r'\$\$(.+?)\$\$', dotAll: true),
+      RegExp(r'(?<!\$)\$(?!\$)(.+?)(?<!\$)\$(?!\$)', dotAll: true),
+      RegExp(r'\\\[(.+?)\\\]', dotAll: true),
+      RegExp(r'\\\((.+?)\\\)', dotAll: true),
+    ];
+    final seen = <String>{};
+    for (final pattern in patterns) {
+      for (final match in pattern.allMatches(text)) {
+        final eq = match.group(1)?.trim() ?? '';
+        if (eq.isEmpty || seen.contains(eq)) continue;
+        seen.add(eq);
+        final bytes = latexImages[eq];
+        if (bytes == null) continue;
+        widgets.add(
+          pw.Padding(
+            padding: pw.EdgeInsets.only(left: paddingLeft, top: 4, bottom: 4),
+            child: pw.Center(child: pw.Image(pw.MemoryImage(bytes))),
+          ),
+        );
+      }
+    }
+    return widgets;
+  }
 
   static pw.Widget _buildCoverSection(String title, String? summary) {
     return pw.Center(
