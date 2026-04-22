@@ -218,20 +218,6 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                     ),
                                   ),
                                 ),
-
-                                if (widget.question.explanation.isEmpty) ...[
-                                  const SizedBox(width: 8),
-                                  Tooltip(
-                                    message: AppLocalizations.of(
-                                      context,
-                                    )!.missingExplanationTooltip,
-                                    child: Icon(
-                                      LucideIcons.alertTriangle,
-                                      size: 14,
-                                      color: customColors.warning,
-                                    ),
-                                  ),
-                                ],
                               ],
                             ),
                           ),
@@ -331,6 +317,33 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                         ],
                       ),
                     ),
+
+                    if (widget.question.explanation.isEmpty)
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+                        child: Row(
+                          children: [
+                            Icon(
+                              LucideIcons.alertTriangle,
+                              size: 14,
+                              color: customColors.warning,
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                AppLocalizations.of(
+                                  context,
+                                )!.missingExplanationTooltip,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                  color: customColors.warning,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
 
                     // Question Text Preview (Always visible)
                     Padding(
