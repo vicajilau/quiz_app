@@ -92,6 +92,7 @@ class StudyExecutionBloc
     on<ClearSelectionRequested>(_onClearSelectionRequested);
     on<DownloadStudyChunkRequested>(_onDownloadStudyChunkRequested);
     on<GenerateAiStudyChunksRequested>(_onGenerateAiStudyChunksRequested);
+    on<DeleteChunkAtIndexRequested>(_onDeleteChunkAtIndexRequested);
     on<DeleteSelectedChunksRequested>(_onDeleteSelectedChunksRequested);
     on<DeleteDuplicateChunksRequested>(_onDeleteDuplicateChunksRequested);
     on<ImportStudyChunksRequested>(_onImportStudyChunksRequested);
@@ -634,6 +635,47 @@ class StudyExecutionBloc
     } catch (e) {
       emit(state.copyWith(isLoading: false, error: e.toString()));
     }
+  }
+
+  void _onDeleteChunkAtIndexRequested(
+    DeleteChunkAtIndexRequested event,
+    Emitter<StudyExecutionState> emit,
+  ) {
+    final updatedChunks = List<StudyChunk>.from(state.chunks);
+    updatedChunks.removeAt(event.chunkIndex);
+
+    for (int i = 0; i < updatedChunks.length; i++) {
+      updatedChunks[i] = updatedChunks[i].copyWith(chunkIndex: i);
+    }
+
+    int newCurrentIndex = state.currentChunkIndex;
+    if (updatedChunks.isEmpty) {
+      newCurrentIndex = 0;
+    } else if (newCurrentIndex >= updatedChunks.length) {
+      newCurrentIndex = updatedChunks.length - 1;
+    }
+
+    final updatedSelection = state.selectedIndices
+        .where((i) => i != event.chunkIndex)
+        .map((i) => i > event.chunkIndex ? i - 1 : i)
+        .toSet();
+
+    final newState = _updateProgress(
+      state.copyWith(
+        chunks: updatedChunks,
+        currentChunkIndex: newCurrentIndex,
+        selectedIndices: updatedSelection,
+      ),
+    );
+    emit(newState);
+
+    onProgressChanged?.call(
+      newState.progressPercentage,
+      newState.processedChunks,
+      newState.chunks,
+      newState.fileUri,
+      newState.fileExpirationTime,
+    );
   }
 
   void _onDeleteSelectedChunksRequested(
