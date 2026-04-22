@@ -53,19 +53,35 @@ class QuestionListWidget extends StatefulWidget {
 }
 
 class _QuestionListWidgetState extends State<QuestionListWidget> {
-  bool _aiAssistantEnabled = true;
+  bool _aiAssistantEnabled = false;
+  late final ConfigurationService _configService;
 
   @override
   void initState() {
     super.initState();
+    _configService = ServiceLocator.getIt<ConfigurationService>();
+    _configService.aiAvailabilityNotifier.addListener(_onAiAvailabilityChanged);
     _loadAISettings();
   }
 
-  Future<void> _loadAISettings() async {
-    final aiEnabled = await ServiceLocator.getIt<ConfigurationService>()
-        .getIsAiAvailable();
+  @override
+  void dispose() {
+    _configService.aiAvailabilityNotifier.removeListener(
+      _onAiAvailabilityChanged,
+    );
+    super.dispose();
+  }
+
+  void _onAiAvailabilityChanged() {
     setState(() {
-      _aiAssistantEnabled = aiEnabled;
+      _aiAssistantEnabled = _configService.aiAvailabilityNotifier.value;
+    });
+  }
+
+  Future<void> _loadAISettings() async {
+    await _configService.getIsAiAvailable().then((aiEnabled) {
+      if (!mounted) return;
+      _configService.aiAvailabilityNotifier.value = aiEnabled;
     });
   }
 
@@ -211,13 +227,6 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
       }
     }
     widget.onSelectionChanged?.call(newSelection);
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // Recargar configuración cuando el widget se actualiza
-    _loadAISettings();
   }
 
   Widget _buildQuestionCard(
