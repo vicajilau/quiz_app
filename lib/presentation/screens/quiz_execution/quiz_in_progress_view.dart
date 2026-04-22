@@ -348,7 +348,6 @@ class _QuizInProgressViewState extends State<QuizInProgressView>
                         horizontal: 24,
                       ).copyWith(bottom: 20),
                       child: Container(
-                        padding: const EdgeInsets.all(32),
                         decoration: BoxDecoration(
                           color: colors.card,
                           borderRadius: BorderRadius.circular(24),

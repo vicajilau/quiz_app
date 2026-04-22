@@ -109,116 +109,140 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
     }
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // AI Chat Button (opens sidebar, visible in Study Mode when AI is available)
+        Padding(
+          padding: const EdgeInsetsGeometry.symmetric(horizontal: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // AI Chat Button (opens sidebar, visible in Study Mode when AI is available)
 
-        // Show correct answer count hint for multiple choice questions
-        if (widget.showCorrectAnswerCount &&
-            questionType == QuestionType.multipleChoice &&
-            correctAnswersCount > 1)
-          Padding(
-            padding: const EdgeInsets.only(bottom: 12.0),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: Theme.of(context).primaryColor.withValues(alpha: 0.3),
-                ),
-              ),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.info_outline,
-                    size: 16,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    AppLocalizations.of(
-                      context,
-                    )!.correctAnswersCount(correctAnswersCount),
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).primaryColor,
+              // Show correct answer count hint for multiple choice questions
+              if (widget.showCorrectAnswerCount &&
+                  questionType == QuestionType.multipleChoice &&
+                  correctAnswersCount > 1)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 12.0),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Theme.of(
+                        context,
+                      ).primaryColor.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: Theme.of(
+                          context,
+                        ).primaryColor.withValues(alpha: 0.3),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.info_outline,
+                          size: 16,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          AppLocalizations.of(
+                            context,
+                          )!.correctAnswersCount(correctAnswersCount),
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
-
-        // Options list
-        if (questionType == QuestionType.multipleChoice)
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: widget.state.currentQuestion.options.length,
-            itemBuilder: (context, index) {
-              final option = widget.state.currentQuestion.options[index];
-              final isSelected = widget.state.isOptionSelected(index);
-
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 12.0),
-                child: QuestionOptionTile(
-                  questionType: questionType,
-                  option: option,
-                  index: index,
-                  isSelected: isSelected,
-                  isStudyMode: widget.isStudyMode,
-                  state: widget.state,
                 ),
-              );
-            },
-          )
-        else
-          RadioGroup<int>(
-            groupValue: widget.state.currentQuestionAnswers.isNotEmpty
-                ? widget.state.currentQuestionAnswers.first
-                : null,
-            onChanged: (int? value) {
-              // In Study Mode, check if question is validated before locking
-              if (widget.isStudyMode &&
-                  widget.state.isCurrentQuestionValidated) {
-                return; // Prevent changing answer if already validated
-              }
 
-              if (value != null) {
-                context.read<QuizExecutionBloc>().add(
-                  AnswerSelected(value, true),
-                );
-              }
-            },
-            child: ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: widget.state.currentQuestion.options.length,
-              itemBuilder: (context, index) {
-                final option = widget.state.currentQuestion.options[index];
-                final isSelected = widget.state.isOptionSelected(index);
+              // Options list
+              if (questionType == QuestionType.multipleChoice)
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: widget.state.currentQuestion.options.length,
+                  itemBuilder: (context, index) {
+                    final option = widget.state.currentQuestion.options[index];
+                    final isSelected = widget.state.isOptionSelected(index);
 
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 12.0),
-                  child: QuestionOptionTile(
-                    questionType: questionType,
-                    option: option,
-                    index: index,
-                    isSelected: isSelected,
-                    isStudyMode: widget.isStudyMode,
-                    state: widget.state,
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 12.0),
+                      child: QuestionOptionTile(
+                        questionType: questionType,
+                        option: option,
+                        index: index,
+                        isSelected: isSelected,
+                        isStudyMode: widget.isStudyMode,
+                        state: widget.state,
+                      ),
+                    );
+                  },
+                )
+              else
+                RadioGroup<int>(
+                  groupValue: widget.state.currentQuestionAnswers.isNotEmpty
+                      ? widget.state.currentQuestionAnswers.first
+                      : null,
+                  onChanged: (int? value) {
+                    // In Study Mode, check if question is validated before locking
+                    if (widget.isStudyMode &&
+                        widget.state.isCurrentQuestionValidated) {
+                      return; // Prevent changing answer if already validated
+                    }
+
+                    if (value != null) {
+                      context.read<QuizExecutionBloc>().add(
+                        AnswerSelected(value, true),
+                      );
+                    }
+                  },
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: widget.state.currentQuestion.options.length,
+                    itemBuilder: (context, index) {
+                      final option =
+                          widget.state.currentQuestion.options[index];
+                      final isSelected = widget.state.isOptionSelected(index);
+
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 12.0),
+                        child: QuestionOptionTile(
+                          questionType: questionType,
+                          option: option,
+                          index: index,
+                          isSelected: isSelected,
+                          isStudyMode: widget.isStudyMode,
+                          state: widget.state,
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
-          ),
+                ),
 
+              // Show explanation in Study Mode after answering and validation
+              if (widget.isStudyMode &&
+                  widget.state.isCurrentQuestionValidated &&
+                  widget.state.currentQuestion.explanation.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 24.0),
+                  child: QuizQuestionExplanation(
+                    explanation: widget.state.currentQuestion.explanation,
+                  ),
+                ),
+            ],
+          ),
+        ),
         if (widget.isStudyMode) ...[
-          const SizedBox(height: 16),
-          Align(
-            alignment: Alignment.centerRight,
+          Padding(
+            padding: const EdgeInsetsGeometry.only(bottom: 16),
             child: AiStudioChatButton(
               question: widget.state.currentQuestion,
               onPressed: () => widget.onAskAi!(
@@ -228,17 +252,6 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
             ),
           ),
         ],
-
-        // Show explanation in Study Mode after answering and validation
-        if (widget.isStudyMode &&
-            widget.state.isCurrentQuestionValidated &&
-            widget.state.currentQuestion.explanation.isNotEmpty)
-          Padding(
-            padding: const EdgeInsets.only(top: 24.0),
-            child: QuizQuestionExplanation(
-              explanation: widget.state.currentQuestion.explanation,
-            ),
-          ),
       ],
     );
   }
