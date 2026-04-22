@@ -724,7 +724,7 @@ class _QuestionCountSelectionDialogState
                       // Start with selected questions button
                       if (widget.selectedQuestionCount > 0) ...[
                         QuizdyButton(
-                          type: QuizdyButtonType.secondary,
+                          type: QuizdyButtonType.primary,
                           title: l10n.startWithSelectedQuestions(
                             widget.selectedQuestionCount,
                           ),
@@ -744,6 +744,7 @@ class _QuestionCountSelectionDialogState
                       QuizdyButton(
                         title: AppLocalizations.of(context)!.startQuiz,
                         icon: LucideIcons.play,
+                        type: QuizdyButtonType.secondary,
                         expanded: true,
                         onPressed:
                             ((_examTimeEnabled && _hasExamTimeError) ||
