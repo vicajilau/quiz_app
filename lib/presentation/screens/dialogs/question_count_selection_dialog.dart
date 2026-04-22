@@ -744,7 +744,9 @@ class _QuestionCountSelectionDialogState
                       QuizdyButton(
                         title: AppLocalizations.of(context)!.startQuiz,
                         icon: LucideIcons.play,
-                        type: QuizdyButtonType.secondary,
+                        type: widget.selectedQuestionCount > 0
+                            ? QuizdyButtonType.secondary
+                            : QuizdyButtonType.primary,
                         expanded: true,
                         onPressed:
                             ((_examTimeEnabled && _hasExamTimeError) ||
