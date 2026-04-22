@@ -415,54 +415,74 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
           Positioned(
             top: 10,
             right: 10,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                AnimatedSize(
-                  duration: Durations.medium2,
-                  curve: Curves.easeInOutCubic,
-                  child:
-                      ((!isMobile && _isHovered) ||
-                          (isMobile && _isActionsExpanded))
-                      ? Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            if (widget.onEdit != null &&
-                                hasContent &&
-                                chunk.aiSummary != null &&
-                                chunk.aiSummary!.isNotEmpty) ...[
-                              _buildIconButton(
-                                icon: LucideIcons.pencil,
-                                color: AppTheme.secondaryColor,
-                                onPressed: widget.onEdit!,
-                                tooltip: localizations.edit,
-                              ),
-                              const SizedBox(width: 4),
-                            ],
-                            if (widget.onDelete != null) ...[
-                              _buildIconButton(
-                                icon: LucideIcons.trash2,
-                                color: theme.colorScheme.error,
-                                onPressed: widget.onDelete!,
-                                tooltip: localizations.deleteButton,
-                              ),
-                              const SizedBox(width: 4),
-                            ],
-                          ],
-                        )
-                      : const SizedBox.shrink(),
-                ),
-                if (isMobile)
-                  _buildIconButton(
-                    icon: _isActionsExpanded
-                        ? LucideIcons.chevronRight
-                        : Icons.more_horiz,
-                    color: Theme.of(context).hintColor,
-                    onPressed: () => setState(
-                      () => _isActionsExpanded = !_isActionsExpanded,
+            child: Builder(
+              builder: (context) {
+                final hasEditAction =
+                    widget.onEdit != null &&
+                    hasContent &&
+                    chunk.aiSummary != null &&
+                    chunk.aiSummary!.isNotEmpty;
+                final hasDeleteAction = widget.onDelete != null;
+                // On mobile with only one action, show it directly (no toggle)
+                final showDirectOnMobile =
+                    isMobile && !hasEditAction && hasDeleteAction;
+
+                if (showDirectOnMobile) {
+                  return _buildIconButton(
+                    icon: LucideIcons.trash2,
+                    color: theme.colorScheme.error,
+                    onPressed: widget.onDelete!,
+                    tooltip: localizations.deleteButton,
+                  );
+                }
+
+                return Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    AnimatedSize(
+                      duration: Durations.medium2,
+                      curve: Curves.easeInOutCubic,
+                      child:
+                          ((!isMobile && _isHovered) ||
+                              (isMobile && _isActionsExpanded))
+                          ? Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                if (hasEditAction) ...[
+                                  _buildIconButton(
+                                    icon: LucideIcons.pencil,
+                                    color: AppTheme.secondaryColor,
+                                    onPressed: widget.onEdit!,
+                                    tooltip: localizations.edit,
+                                  ),
+                                  const SizedBox(width: 4),
+                                ],
+                                if (hasDeleteAction) ...[
+                                  _buildIconButton(
+                                    icon: LucideIcons.trash2,
+                                    color: theme.colorScheme.error,
+                                    onPressed: widget.onDelete!,
+                                    tooltip: localizations.deleteButton,
+                                  ),
+                                  const SizedBox(width: 4),
+                                ],
+                              ],
+                            )
+                          : const SizedBox.shrink(),
                     ),
-                  ),
-              ],
+                    if (isMobile)
+                      _buildIconButton(
+                        icon: _isActionsExpanded
+                            ? LucideIcons.chevronRight
+                            : Icons.more_horiz,
+                        color: Theme.of(context).hintColor,
+                        onPressed: () => setState(
+                          () => _isActionsExpanded = !_isActionsExpanded,
+                        ),
+                      ),
+                  ],
+                );
+              },
             ),
           ),
         ],
