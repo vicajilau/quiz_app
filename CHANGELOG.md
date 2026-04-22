@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - feat: Implemented `CardStatusBar` and applied for `StudyIndexChunkCard` and `QuestionPreviewCard`.
 - feat(pdf): add export options dialog with questions, answers and study toggles.
+- ux(study): Updated the initial Study Mode action button from `Edit` to `Create` and replaced the pencil icon with an add icon.
 
 ## [1.12.0] - 2026-04-17
 

@@ -460,13 +460,13 @@ class _SidebarChunkItem extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Icon(
-                              Icons.edit_outlined,
+                              Icons.add_outlined,
                               size: 13,
                               color: AppTheme.secondaryColor,
                             ),
                             const SizedBox(width: 5),
                             Text(
-                              localizations.edit,
+                              localizations.create,
                               style: const TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.w600,
