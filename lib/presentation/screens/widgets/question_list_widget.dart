@@ -60,6 +60,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
   void initState() {
     super.initState();
     _configService = ServiceLocator.getIt<ConfigurationService>();
+    _aiAssistantEnabled = _configService.aiAvailabilityNotifier.value;
     _configService.aiAvailabilityNotifier.addListener(_onAiAvailabilityChanged);
     _loadAISettings();
   }
@@ -97,10 +98,9 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
 
     return ReorderableListView.builder(
       onReorder: _onReorder,
-      padding: const EdgeInsets.symmetric(horizontal: 4.0).copyWith(
-        top: 24,
-        bottom: 100,
-      ),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 4.0,
+      ).copyWith(top: 24, bottom: 100),
       itemCount: widget.quizFile.questions.length,
       buildDefaultDragHandles: false, // We use custom drag handles
       itemBuilder: (constext, index) {
@@ -111,7 +111,9 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
         return AnimatedBuilder(
           animation: animation,
           builder: (context, child) {
-            final double animValue = Curves.easeInOut.transform(animation.value);
+            final double animValue = Curves.easeInOut.transform(
+              animation.value,
+            );
             final double elevation = lerpDouble(0, 8, animValue)!;
             final double scale = lerpDouble(1, 1.02, animValue)!;
 

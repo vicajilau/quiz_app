@@ -26,6 +26,7 @@ import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
+import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_chunk_card.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_hero_card.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_sections_header.dart';
@@ -86,6 +87,29 @@ class StudyIndexView extends StatelessWidget {
     if (context.mounted) {
       context.read<StudyExecutionBloc>().add(
         DownloadStudyChunkRequested(index),
+      );
+    }
+  }
+
+  Future<void> _onChunkDelete(BuildContext context, int index) async {
+    final chunk = state.chunks[index];
+    final confirmed =
+        await showDialog<bool>(
+          context: context,
+          builder: (context) => CustomConfirmDialog(
+            title: AppLocalizations.of(context)!.confirmDeleteTitle,
+            message: AppLocalizations.of(
+              context,
+            )!.confirmDeleteMessage(chunk.title),
+            confirmText: AppLocalizations.of(context)!.deleteButton,
+            isDestructive: true,
+          ),
+        ) ??
+        false;
+
+    if (confirmed && context.mounted) {
+      context.read<StudyExecutionBloc>().add(
+        DeleteChunkAtIndexRequested(index),
       );
     }
   }
@@ -176,6 +200,7 @@ class StudyIndexView extends StatelessWidget {
               onEdit: onChunkEditTap != null
                   ? () => onChunkEditTap!(index)
                   : null,
+              onDelete: () => _onChunkDelete(context, index),
               onLongPress: () {
                 context.read<StudyExecutionBloc>().add(
                   ToggleChunkSelection(index),
@@ -236,6 +261,7 @@ class StudyIndexView extends StatelessWidget {
                 onEdit: onChunkEditTap != null
                     ? () => onChunkEditTap!(index)
                     : null,
+                onDelete: () => _onChunkDelete(context, index),
                 onLongPress: () {
                   context.read<StudyExecutionBloc>().add(
                     ToggleChunkSelection(index),
@@ -333,6 +359,7 @@ class StudyIndexView extends StatelessWidget {
                                 onEdit: onChunkEditTap != null
                                     ? () => onChunkEditTap!(i)
                                     : null,
+                                onDelete: () => _onChunkDelete(context, i),
                                 onLongPress: () {
                                   context.read<StudyExecutionBloc>().add(
                                     ToggleChunkSelection(i),
@@ -390,6 +417,7 @@ class StudyIndexView extends StatelessWidget {
                                 onEdit: onChunkEditTap != null
                                     ? () => onChunkEditTap!(i)
                                     : null,
+                                onDelete: () => _onChunkDelete(context, i),
                                 onLongPress: () {
                                   context.read<StudyExecutionBloc>().add(
                                     ToggleChunkSelection(i),

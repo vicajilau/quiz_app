@@ -99,6 +99,13 @@ class DeleteDuplicateChunksRequested extends StudyExecutionEvent {
   const DeleteDuplicateChunksRequested();
 }
 
+/// Dispatched to delete a single chunk at the given index.
+class DeleteChunkAtIndexRequested extends StudyExecutionEvent {
+  final int chunkIndex;
+
+  const DeleteChunkAtIndexRequested(this.chunkIndex);
+}
+
 /// Dispatched to download (JIT-process) a chunk from the index view without navigating away.
 class DownloadStudyChunkRequested extends StudyExecutionEvent {
   final int chunkIndex;

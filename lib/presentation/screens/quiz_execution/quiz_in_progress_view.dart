@@ -280,29 +280,7 @@ class _QuizInProgressViewState extends State<QuizInProgressView>
                           const SizedBox(width: 8),
                         ],
 
-                        IconButton(
-                          onPressed: () => BackPressHandler.handle(
-                            context,
-                            context.read<QuizExecutionBloc>(),
-                          ),
-                          style: IconButton.styleFrom(
-                            backgroundColor: colors.card,
-                            fixedSize: const Size(48, 48),
-                            padding: EdgeInsets.zero,
-                            shape: CircleBorder(
-                              side: closeBtnBorder == Colors.transparent
-                                  ? BorderSide.none
-                                  : BorderSide(color: closeBtnBorder),
-                            ),
-                          ),
-                          icon: Icon(
-                            Icons.close,
-                            color: colors.subtitle,
-                            size: 24,
-                          ),
-                        ),
                         if (isStudyMode && !_isChatOpen) ...[
-                          const SizedBox(width: 8),
                           IconButton(
                             onPressed: _isAiAvailable
                                 ? openAiChat
@@ -328,6 +306,31 @@ class _QuizInProgressViewState extends State<QuizInProgressView>
                             ),
                           ),
                         ],
+
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: IconButton(
+                            onPressed: () => BackPressHandler.handle(
+                              context,
+                              context.read<QuizExecutionBloc>(),
+                            ),
+                            style: IconButton.styleFrom(
+                              backgroundColor: colors.card,
+                              fixedSize: const Size(48, 48),
+                              padding: EdgeInsets.zero,
+                              shape: CircleBorder(
+                                side: closeBtnBorder == Colors.transparent
+                                    ? BorderSide.none
+                                    : BorderSide(color: closeBtnBorder),
+                              ),
+                            ),
+                            icon: Icon(
+                              Icons.close,
+                              color: colors.subtitle,
+                              size: 24,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ],
