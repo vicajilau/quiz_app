@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ux(study): Updated the initial Study Mode action button from `Edit` to `Create` and replaced the pencil icon with an add icon.
 - fix: AI Assistant button in question cards now updates instantly when the API key is added or removed in Settings.
 - ux(study): Added Edit and Delete action buttons to study section cards, with hover reveal on desktop, expandable toggle on mobile, and direct delete shortcut when no edit action is available.
+- ux(quiz): Added quiz question design adjustments.
 
 ## [1.12.0] - 2026-04-17
 
