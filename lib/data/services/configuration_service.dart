@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quizdy/domain/models/quiz/question_order.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_stored_settings.dart';
@@ -70,7 +71,13 @@ class ConfigurationService {
 
   final SharedPreferences sharedPreferences;
 
+  final ValueNotifier<bool> aiAvailabilityNotifier = ValueNotifier(false);
+
   ConfigurationService({required this.sharedPreferences});
+
+  Future<void> _refreshAiAvailability() async {
+    aiAvailabilityNotifier.value = await getIsAiAvailable();
+  }
 
   /// Gets whether onboarding has been completed
   Future<bool> getOnboardingCompleted() async {
@@ -142,6 +149,7 @@ class ConfigurationService {
   Future<void> saveAIAssistantEnabled(bool enabled) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_aiAssistantEnabledKey, enabled);
+    await _refreshAiAvailability();
   }
 
   /// Gets whether AI assistant is enabled, defaults to true
@@ -155,6 +163,7 @@ class ConfigurationService {
     final prefs = await SharedPreferences.getInstance();
     final encryptedApiKey = EncryptionService.encrypt(apiKey);
     await prefs.setString(_openaiApiKeyKey, encryptedApiKey);
+    await _refreshAiAvailability();
   }
 
   /// Gets OpenAI API Key (decrypted)
@@ -173,6 +182,7 @@ class ConfigurationService {
   Future<void> deleteOpenAIApiKey() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_openaiApiKeyKey);
+    await _refreshAiAvailability();
   }
 
   /// Saves Gemini API Key securely (encrypted)
@@ -180,6 +190,7 @@ class ConfigurationService {
     final prefs = await SharedPreferences.getInstance();
     final encryptedApiKey = EncryptionService.encrypt(apiKey);
     await prefs.setString(_geminiApiKeyKey, encryptedApiKey);
+    await _refreshAiAvailability();
   }
 
   /// Gets Gemini API Key (decrypted)
@@ -198,6 +209,7 @@ class ConfigurationService {
   Future<void> deleteGeminiApiKey() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_geminiApiKeyKey);
+    await _refreshAiAvailability();
   }
 
   /// Saves whether answers should be randomized
