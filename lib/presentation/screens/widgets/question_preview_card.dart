@@ -289,7 +289,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                   _buildIconButton(
                                     icon: _isActionsExpanded
                                         ? LucideIcons.chevronRight
-                                        : LucideIcons.chevronLeft,
+                                        : Icons.more_horiz,
                                     color: Theme.of(context).hintColor,
                                     onPressed: () {
                                       setState(() {
