@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - feat: Implemented `CardStatusBar` and applied for `StudyIndexChunkCard` and `QuestionPreviewCard`.
 - feat(pdf): add export options dialog with questions, answers and study toggles.
+- ux(quiz): Moved the missing explanation warning in question cards to its own line and added explanatory text in Quiz Preview.
 
 ## [1.12.0] - 2026-04-17
 
