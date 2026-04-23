@@ -14,7 +14,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/presentation/blocs/onboarding_cubit/onboarding_cubit.dart';
 import 'package:quizdy/presentation/blocs/onboarding_cubit/onboarding_state.dart';
@@ -144,7 +143,7 @@ class OnboardingMobilePageContent extends StatelessWidget {
           Text(
             page.title,
             textAlign: TextAlign.center,
-            style: GoogleFonts.plusJakartaSans(
+            style: theme.textTheme.headlineMedium?.copyWith(
               fontSize: 28,
               fontWeight: FontWeight.w700,
               color: theme.colorScheme.onSurface,

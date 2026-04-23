@@ -2031,6 +2031,14 @@
   "@supportDescription": {
     "description": "Description for the support action in settings"
   },
+  "feedbackTitle": "A túa opinión impórtanos",
+  "@feedbackTitle": {
+    "description": "Title for the home screen feedback prompt"
+  },
+  "feedbackDescription": "Responde unha enquisa rápida e axuda a mellorar Quizdy",
+  "@feedbackDescription": {
+    "description": "Description for the home screen feedback prompt"
+  },
   "studyEditorComponents": "Compoñentes",
   "@studyEditorComponents": {
     "description": "Section header for the list of components in the component editor"

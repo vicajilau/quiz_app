@@ -738,6 +738,14 @@
   "@supportDescription": {
     "description": "Description for the support action in settings"
   },
+  "feedbackTitle": "Ваше мнение важно для нас",
+  "@feedbackTitle": {
+    "description": "Title for the home screen feedback prompt"
+  },
+  "feedbackDescription": "Пройдите короткий опрос и помогите улучшить Quizdy",
+  "@feedbackDescription": {
+    "description": "Description for the home screen feedback prompt"
+  },
   "studyEditorToggleEdit": "Редактировать контент",
   "@studyEditorToggleEdit": {
     "description": "Tooltip for the FAB button that enables study content edit mode"

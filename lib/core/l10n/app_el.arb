@@ -1031,6 +1031,14 @@
   "@supportDescription": {
     "description": "Description for the support action in settings"
   },
+  "feedbackTitle": "Η γνώμη σου μετράει",
+  "@feedbackTitle": {
+    "description": "Title for the home screen feedback prompt"
+  },
+  "feedbackDescription": "Απάντησε σε μια σύντομη έρευνα και βοήθησε στη βελτίωση του Quizdy",
+  "@feedbackDescription": {
+    "description": "Description for the home screen feedback prompt"
+  },
   "studyEditorSaveChanges": "Αποθήκευση αλλαγών",
   "@studyEditorSaveChanges": {
     "description": "Button label to save edited component properties"

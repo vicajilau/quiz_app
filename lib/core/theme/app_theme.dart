@@ -14,7 +14,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 import 'package:quizdy/core/theme/extensions/exam_timer_theme.dart';
@@ -84,7 +83,6 @@ class AppTheme {
     cardColor: cardColorLight,
     dividerColor: borderColor,
     hintColor: zinc400,
-    fontFamily: GoogleFonts.inter().fontFamily,
     colorScheme: const ColorScheme.light(
       primary: primaryColor,
       secondary: secondaryColor,
@@ -95,35 +93,32 @@ class AppTheme {
       onSurface: textColor,
       onError: Colors.white,
     ),
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: surfaceColor,
       foregroundColor: textColor,
       elevation: 0,
       centerTitle: true,
-      titleTextStyle: GoogleFonts.plusJakartaSans(
+      titleTextStyle: TextStyle(
         color: textColor,
         fontSize: 20.0,
         fontWeight: FontWeight.bold,
       ),
-      iconTheme: const IconThemeData(color: textColor),
+      iconTheme: IconThemeData(color: textColor),
     ),
-    textTheme: TextTheme(
-      headlineLarge: GoogleFonts.plusJakartaSans(
+    textTheme: const TextTheme(
+      headlineLarge: TextStyle(
         fontSize: 48.0,
         fontWeight: FontWeight.w800,
         color: primaryColor,
       ),
-      headlineMedium: GoogleFonts.plusJakartaSans(
+      headlineMedium: TextStyle(
         fontSize: 24.0,
         fontWeight: FontWeight.bold,
         color: textColor,
       ),
-      bodyLarge: GoogleFonts.inter(fontSize: 16.0, color: textColor),
-      bodyMedium: GoogleFonts.inter(fontSize: 14.0, color: textSecondaryColor),
-      labelLarge: GoogleFonts.inter(
-        fontSize: 16.0,
-        fontWeight: FontWeight.w600,
-      ),
+      bodyLarge: TextStyle(fontSize: 16.0, color: textColor),
+      bodyMedium: TextStyle(fontSize: 14.0, color: textSecondaryColor),
+      labelLarge: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -132,7 +127,7 @@ class AppTheme {
         elevation: 0,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        textStyle: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600),
+        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
@@ -142,7 +137,7 @@ class AppTheme {
         side: const BorderSide(color: borderColor, width: 2),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        textStyle: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600),
+        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
       ),
     ),
     iconTheme: const IconThemeData(color: textSecondaryColor, size: 24),
@@ -267,7 +262,6 @@ class AppTheme {
     cardColor: cardColorDark,
     dividerColor: borderColorDark,
     hintColor: zinc400,
-    fontFamily: GoogleFonts.inter().fontFamily,
     colorScheme: const ColorScheme.dark(
       primary: primaryColor,
       secondary: secondaryColor,
@@ -278,38 +272,35 @@ class AppTheme {
       onSurface: Color(0xFFFAFAFA), // Zinc 50
       onError: Colors.white,
     ),
-    appBarTheme: AppBarTheme(
-      backgroundColor: const Color(0xFF18181B),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Color(0xFF18181B),
       foregroundColor: Colors.white,
       elevation: 0,
       centerTitle: true,
-      titleTextStyle: GoogleFonts.plusJakartaSans(
+      titleTextStyle: TextStyle(
         color: Colors.white,
         fontSize: 20.0,
         fontWeight: FontWeight.bold,
       ),
-      iconTheme: const IconThemeData(color: Colors.white),
+      iconTheme: IconThemeData(color: Colors.white),
     ),
-    textTheme: TextTheme(
-      headlineLarge: GoogleFonts.plusJakartaSans(
+    textTheme: const TextTheme(
+      headlineLarge: TextStyle(
         fontSize: 48.0,
         fontWeight: FontWeight.w800,
         color: primaryColor,
       ),
-      headlineMedium: GoogleFonts.plusJakartaSans(
+      headlineMedium: TextStyle(
         fontSize: 24.0,
         fontWeight: FontWeight.bold,
         color: Colors.white,
       ),
-      bodyLarge: GoogleFonts.inter(fontSize: 16.0, color: Colors.white),
-      bodyMedium: GoogleFonts.inter(
+      bodyLarge: TextStyle(fontSize: 16.0, color: Colors.white),
+      bodyMedium: TextStyle(
         fontSize: 14.0,
-        color: const Color(0xFFA1A1AA), // Zinc 400
+        color: Color(0xFFA1A1AA), // Zinc 400
       ),
-      labelLarge: GoogleFonts.inter(
-        fontSize: 16.0,
-        fontWeight: FontWeight.w600,
-      ),
+      labelLarge: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -318,7 +309,7 @@ class AppTheme {
         elevation: 0,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        textStyle: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600),
+        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
@@ -328,7 +319,7 @@ class AppTheme {
         side: const BorderSide(color: borderColorDark, width: 2), // Zinc 700
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        textStyle: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600),
+        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
       ),
     ),
     iconTheme: const IconThemeData(

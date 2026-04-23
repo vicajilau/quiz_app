@@ -50,12 +50,10 @@ dependencies:
   flutter_launcher_icons: ^0.14.4
   shared_preferences: ^2.5.5
   web: ^1.1.1
-  http: ^1.6.0
   crypto: ^3.0.7
   url_launcher: ^6.3.2
   gpt_markdown: ^1.1.6
   flutter_math_fork: ^0.7.2
-  google_fonts: ^8.0.2
   lucide_icons: ^0.257.0
   qr_flutter: ^4.1.0
   path_provider: ^2.1.5
@@ -98,6 +96,7 @@ flutter:
     - images/
     - PRIVACY.md
     - CHANGELOG.md
+    - app_config.json
 
 # Configuración para flutter_launcher_icons
 flutter_launcher_icons:

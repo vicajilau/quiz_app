@@ -17,6 +17,7 @@ import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
@@ -40,6 +41,7 @@ import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quizdy/presentation/screens/dialogs/mode_selection_dialog.dart';
+import 'package:quizdy/data/services/app_remote_config_service.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/core/extensions/string_extension.dart';
@@ -61,9 +63,28 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool _isDragging = false;
   bool _isLoading = false;
+  bool _showFeedbackBanner = AppRemoteConfig.defaults().homeFeedbackEnabled;
+  String? _feedbackFormUrl = AppRemoteConfig.defaults().homeFeedbackUrl;
   String? _loadingText;
   QuizMode? _hoveredDropMode;
   QuizMode? _pendingDropMode;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadRemoteConfig();
+  }
+
+  Future<void> _loadRemoteConfig() async {
+    final remoteConfig = await ServiceLocator.getIt<AppRemoteConfigService>()
+        .getConfig();
+    if (!mounted) return;
+
+    setState(() {
+      _showFeedbackBanner = remoteConfig.homeFeedbackEnabled;
+      _feedbackFormUrl = remoteConfig.homeFeedbackUrl;
+    });
+  }
 
   void _navigateByMode(BuildContext context, QuizMode mode, QuizFile quizFile) {
     if (mode == QuizMode.study) {
@@ -137,6 +158,28 @@ class _HomeScreenState extends State<HomeScreen> {
       barrierDismissible: false,
       builder: (_) => const SettingsDialog(),
     );
+  }
+
+  Future<void> _openFeedbackForm(BuildContext context) async {
+    final urlRaw = _feedbackFormUrl;
+    if (urlRaw == null || urlRaw.trim().isEmpty) {
+      context.presentSnackBar(AppLocalizations.of(context)!.featureComingSoon);
+      return;
+    }
+
+    final url = Uri.tryParse(urlRaw.trim());
+    if (url == null) {
+      context.presentSnackBar(AppLocalizations.of(context)!.featureComingSoon);
+      return;
+    }
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else if (context.mounted) {
+      context.presentSnackBar(
+        AppLocalizations.of(context)!.couldNotOpenUrl(url.toString()),
+      );
+    }
   }
 
   Future<void> _generateQuestionsWithAI(BuildContext context) async {
@@ -513,12 +556,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 HomeFooterWidget(
                                   isLoading: _isLoading,
+                                  showFeedbackBanner: _showFeedbackBanner,
                                   onCreateTap: () =>
                                       _showCreateQuizFileDialog(context),
                                   onGenerateAITap: () =>
                                       _generateQuestionsWithAI(context),
                                   onStudyModeTap: () =>
                                       _startStudyModeWithAI(context),
+                                  onFeedbackTap: () =>
+                                      _openFeedbackForm(context),
                                 ),
                               ],
                             ),

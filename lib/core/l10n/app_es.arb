@@ -2057,6 +2057,14 @@
   "@supportDescription": {
     "description": "Descripción para la acción de soporte en ajustes"
   },
+  "feedbackTitle": "Tu opinión nos importa",
+  "@feedbackTitle": {
+    "description": "Title for the home screen feedback prompt"
+  },
+  "feedbackDescription": "Responde una encuesta rápida y ayuda a mejorar Quizdy",
+  "@feedbackDescription": {
+    "description": "Description for the home screen feedback prompt"
+  },
   "onboardingBack": "Atrás",
   "@onboardingBack": {
     "description": "Botón atrás en la navegación del onboarding"

@@ -20,20 +20,25 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
+import 'package:quizdy/presentation/screens/widgets/home/home_feedback_banner.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 
 class HomeFooterWidget extends StatelessWidget {
   final bool isLoading;
+  final bool showFeedbackBanner;
   final VoidCallback onCreateTap;
   final VoidCallback onGenerateAITap;
   final VoidCallback onStudyModeTap;
+  final VoidCallback onFeedbackTap;
 
   const HomeFooterWidget({
     super.key,
     required this.isLoading,
+    required this.showFeedbackBanner,
     required this.onCreateTap,
     required this.onGenerateAITap,
     required this.onStudyModeTap,
+    required this.onFeedbackTap,
   });
 
   @override
@@ -89,6 +94,14 @@ class HomeFooterWidget extends StatelessWidget {
               ],
             ),
           ),
+          if (showFeedbackBanner)
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 620),
+              child: HomeFeedbackBanner(
+                isLoading: isLoading,
+                onTap: onFeedbackTap,
+              ),
+            ),
         ],
       ),
     );

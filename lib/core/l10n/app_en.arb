@@ -2134,6 +2134,14 @@
   "@supportDescription": {
     "description": "Description for the support action in settings"
   },
+  "feedbackTitle": "Your feedback matters",
+  "@feedbackTitle": {
+    "description": "Title for the home screen feedback prompt"
+  },
+  "feedbackDescription": "Answer a quick survey and help improve Quizdy",
+  "@feedbackDescription": {
+    "description": "Description for the home screen feedback prompt"
+  },
   "onboardingBack": "Back",
   "@onboardingBack": {
     "description": "Back button in onboarding navigation"

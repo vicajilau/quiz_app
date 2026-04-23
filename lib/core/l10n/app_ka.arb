@@ -723,6 +723,14 @@
   "@supportDescription": {
     "description": "Description for the support action in settings"
   },
+  "feedbackTitle": "თქვენი აზრი ჩვენთვის მნიშვნელოვანია",
+  "@feedbackTitle": {
+    "description": "Title for the home screen feedback prompt"
+  },
+  "feedbackDescription": "უპასუხეთ მოკლე გამოკითხვას და დაგვეხმარეთ Quizdy-ის გაუმჯობესებაში",
+  "@feedbackDescription": {
+    "description": "Description for the home screen feedback prompt"
+  },
   "studyEditorComponents": "კომპონენტები",
   "@studyEditorComponents": {
     "description": "Section header for the list of components in the component editor"

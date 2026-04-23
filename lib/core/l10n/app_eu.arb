@@ -2031,6 +2031,14 @@
   "@supportDescription": {
     "description": "Description for the support action in settings"
   },
+  "feedbackTitle": "Zure iritzia garrantzitsua da guretzat",
+  "@feedbackTitle": {
+    "description": "Title for the home screen feedback prompt"
+  },
+  "feedbackDescription": "Erantzun inkesta labur bati eta lagundu Quizdy hobetzen",
+  "@feedbackDescription": {
+    "description": "Description for the home screen feedback prompt"
+  },
   "studyEditorComponents": "Osagaiak",
   "@studyEditorComponents": {
     "description": "Section header for the list of components in the component editor"
