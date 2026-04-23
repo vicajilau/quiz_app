@@ -2445,6 +2445,14 @@
   "@supportDescription": {
     "description": "Description for the support action in settings"
   },
+  "feedbackTitle": "ملاحظاتك تهمنا",
+  "@feedbackTitle": {
+    "description": "Title for the home screen feedback prompt"
+  },
+  "feedbackDescription": "أجب عن استبيان سريع وساعدنا في تحسين Quizdy",
+  "@feedbackDescription": {
+    "description": "Description for the home screen feedback prompt"
+  },
   "studyEditorToggleEdit": "تحرير المحتوى",
   "studyEditorExitEdit": "الخروج من وضع التحرير",
   "studyEditorPages": "الصفحات",

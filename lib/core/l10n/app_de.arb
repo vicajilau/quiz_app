@@ -2127,6 +2127,14 @@
   "@supportDescription": {
     "description": "Description for the support action in settings"
   },
+  "feedbackTitle": "Dein Feedback ist uns wichtig",
+  "@feedbackTitle": {
+    "description": "Title for the home screen feedback prompt"
+  },
+  "feedbackDescription": "Beantworte eine kurze Umfrage und hilf dabei, Quizdy zu verbessern",
+  "@feedbackDescription": {
+    "description": "Description for the home screen feedback prompt"
+  },
   "studyEditorToggleEdit": "Inhalte bearbeiten",
   "studyEditorExitEdit": "Bearbeitungsmodus verlassen",
   "studyEditorPages": "Seiten",

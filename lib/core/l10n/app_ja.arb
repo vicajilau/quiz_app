@@ -2034,6 +2034,14 @@
   "@supportDescription": {
     "description": "Description for the support action in settings"
   },
+  "feedbackTitle": "あなたのご意見をお聞かせください",
+  "@feedbackTitle": {
+    "description": "Title for the home screen feedback prompt"
+  },
+  "feedbackDescription": "短いアンケートに回答して Quizdy の改善にご協力ください",
+  "@feedbackDescription": {
+    "description": "Description for the home screen feedback prompt"
+  },
   "studyEditorComponents": "コンポーネント",
   "@studyEditorComponents": {
     "description": "Section header for the list of components in the component editor"

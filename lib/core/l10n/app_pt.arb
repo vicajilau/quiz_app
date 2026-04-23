@@ -2122,6 +2122,14 @@
   "@supportDescription": {
     "description": "Description for the support action in settings"
   },
+  "feedbackTitle": "A sua opinião é importante",
+  "@feedbackTitle": {
+    "description": "Title for the home screen feedback prompt"
+  },
+  "feedbackDescription": "Responda a uma pesquisa rápida e ajude a melhorar o Quizdy",
+  "@feedbackDescription": {
+    "description": "Description for the home screen feedback prompt"
+  },
   "studyEditorPages": "Páginas",
   "@studyEditorPages": {
     "description": "Section header for the list of pages in the section page manager"

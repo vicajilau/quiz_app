@@ -723,6 +723,14 @@
   "@supportDescription": {
     "description": "Description for the support action in settings"
   },
+  "feedbackTitle": "여러분의 의견은 소중합니다",
+  "@feedbackTitle": {
+    "description": "Title for the home screen feedback prompt"
+  },
+  "feedbackDescription": "짧은 설문에 답하고 Quizdy 개선에 도움을 주세요",
+  "@feedbackDescription": {
+    "description": "Description for the home screen feedback prompt"
+  },
   "studyEditorPages": "페이지",
   "@studyEditorPages": {
     "description": "Section header for the list of pages in the section page manager"

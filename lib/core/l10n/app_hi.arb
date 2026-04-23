@@ -2034,6 +2034,14 @@
   "@supportDescription": {
     "description": "Description for the support action in settings"
   },
+  "feedbackTitle": "आपकी राय हमारे लिए महत्वपूर्ण है",
+  "@feedbackTitle": {
+    "description": "Title for the home screen feedback prompt"
+  },
+  "feedbackDescription": "एक छोटा सर्वे पूरा करें और Quizdy को बेहतर बनाने में मदद करें",
+  "@feedbackDescription": {
+    "description": "Description for the home screen feedback prompt"
+  },
   "studyEditorSaveChanges": "परिवर्तनों को सुरक्षित करें",
   "@studyEditorSaveChanges": {
     "description": "Button label to save edited component properties"

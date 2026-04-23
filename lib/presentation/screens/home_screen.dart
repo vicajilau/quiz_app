@@ -17,6 +17,7 @@ import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
@@ -137,6 +138,20 @@ class _HomeScreenState extends State<HomeScreen> {
       barrierDismissible: false,
       builder: (_) => const SettingsDialog(),
     );
+  }
+
+  Future<void> _openFeedbackForm(BuildContext context) async {
+    final url = Uri.parse(
+      'https://docs.google.com/forms/d/e/1FAIpQLSd3NmQZyROb7Z_tnULmbJuBEJpOW02_EjcIRNBRVLsKF7lFHQ/viewform?usp=publish-editor',
+    );
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else if (context.mounted) {
+      context.presentSnackBar(
+        AppLocalizations.of(context)!.couldNotOpenUrl(url.toString()),
+      );
+    }
   }
 
   Future<void> _generateQuestionsWithAI(BuildContext context) async {
@@ -519,6 +534,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       _generateQuestionsWithAI(context),
                                   onStudyModeTap: () =>
                                       _startStudyModeWithAI(context),
+                                  onFeedbackTap: () =>
+                                      _openFeedbackForm(context),
                                 ),
                               ],
                             ),

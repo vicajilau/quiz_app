@@ -2133,6 +2133,14 @@
   "@supportDescription": {
     "description": "Description for the support action in settings"
   },
+  "feedbackTitle": "La teva opinió ens importa",
+  "@feedbackTitle": {
+    "description": "Title for the home screen feedback prompt"
+  },
+  "feedbackDescription": "Respon una enquesta ràpida i ajuda a millorar Quizdy",
+  "@feedbackDescription": {
+    "description": "Description for the home screen feedback prompt"
+  },
   "studyEditorToggleEdit": "Edita el contingut",
   "studyEditorExitEdit": "Sortiu del mode d'edició",
   "studyEditorPages": "Pàgines",

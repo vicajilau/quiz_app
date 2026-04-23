@@ -756,6 +756,14 @@
   "@supportDescription": {
     "description": "Description for the support action in settings"
   },
+  "feedbackTitle": "Ваша думка важлива для нас",
+  "@feedbackTitle": {
+    "description": "Title for the home screen feedback prompt"
+  },
+  "feedbackDescription": "Пройдіть коротке опитування та допоможіть покращити Quizdy",
+  "@feedbackDescription": {
+    "description": "Description for the home screen feedback prompt"
+  },
   "studyEditorComponents": "компоненти",
   "@studyEditorComponents": {
     "description": "Section header for the list of components in the component editor"
