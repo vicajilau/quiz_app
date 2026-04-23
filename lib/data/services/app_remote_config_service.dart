@@ -194,7 +194,7 @@ class AppRemoteConfigService {
   Future<AppRemoteConfig> _fetchRemoteConfig() async {
     final response = await http
         .get(
-          Uri.parse(_remoteConfigUrl),
+          Uri.parse('$_remoteConfigUrl?t=${DateTime.now().millisecondsSinceEpoch}'),
           headers: {'Accept': 'application/json'},
         )
         .timeout(const Duration(seconds: 6));
