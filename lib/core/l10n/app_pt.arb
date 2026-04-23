@@ -1835,7 +1835,7 @@
   "@onboardingFeatureTypesDescription": {
     "description": "Descrição do recurso na página de boas-vindas"
   },
-  "onboardingFeatureLanguagesTitle": "13 idiomas suportados",
+  "onboardingFeatureLanguagesTitle": "18 idiomas suportados",
   "@onboardingFeatureLanguagesTitle": {
     "description": "Título do recurso na página de boas-vindas"
   },

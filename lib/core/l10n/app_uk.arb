@@ -586,7 +586,7 @@
   "onboardingFeatureAiDescription": "Створюйте квізи з будь-якого тексту з Gemini або GPT",
   "onboardingFeatureTypesTitle": "Різні типи питань",
   "onboardingFeatureTypesDescription": "Одиночний вибір, множинний вибір, вірно/невірно та есе",
-  "onboardingFeatureLanguagesTitle": "Підтримка 13 мов",
+  "onboardingFeatureLanguagesTitle": "Підтримка 18 мов",
   "onboardingFeatureLanguagesDescription": "Створюйте та проходьте квізи кількома мовами",
   "onboardingStepCreateTitle": "Створити квіз",
   "onboardingStepCreateDescription": "Почніть з нуля зі своїми власними питаннями",

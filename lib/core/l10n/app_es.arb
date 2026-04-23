@@ -2137,7 +2137,7 @@
   "@onboardingFeatureTypesDescription": {
     "description": "Descripción de característica en la página de bienvenida del onboarding"
   },
-  "onboardingFeatureLanguagesTitle": "13 idiomas soportados",
+  "onboardingFeatureLanguagesTitle": "18 idiomas soportados",
   "@onboardingFeatureLanguagesTitle": {
     "description": "Título de característica en la página de bienvenida del onboarding"
   },

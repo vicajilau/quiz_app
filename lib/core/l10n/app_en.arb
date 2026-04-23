@@ -2214,7 +2214,7 @@
   "@onboardingFeatureTypesDescription": {
     "description": "Feature description in onboarding welcome page"
   },
-  "onboardingFeatureLanguagesTitle": "13 languages supported",
+  "onboardingFeatureLanguagesTitle": "18 languages supported",
   "@onboardingFeatureLanguagesTitle": {
     "description": "Feature title in onboarding welcome page"
   },

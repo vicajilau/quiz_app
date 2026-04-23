@@ -1797,7 +1797,7 @@
   "@onboardingFeatureTypesDescription": {
     "description": "Description de la fonctionnalité sur la page d'accueil"
   },
-  "onboardingFeatureLanguagesTitle": "13 langues supportées",
+  "onboardingFeatureLanguagesTitle": "18 langues supportées",
   "@onboardingFeatureLanguagesTitle": {
     "description": "Titre de la fonctionnalité sur la page d'accueil"
   },
