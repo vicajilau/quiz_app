@@ -25,6 +25,7 @@ import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 
 class HomeFooterWidget extends StatelessWidget {
   final bool isLoading;
+  final bool showFeedbackBanner;
   final VoidCallback onCreateTap;
   final VoidCallback onGenerateAITap;
   final VoidCallback onStudyModeTap;
@@ -33,6 +34,7 @@ class HomeFooterWidget extends StatelessWidget {
   const HomeFooterWidget({
     super.key,
     required this.isLoading,
+    required this.showFeedbackBanner,
     required this.onCreateTap,
     required this.onGenerateAITap,
     required this.onStudyModeTap,
@@ -92,13 +94,14 @@ class HomeFooterWidget extends StatelessWidget {
               ],
             ),
           ),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 620),
-            child: HomeFeedbackBanner(
-              isLoading: isLoading,
-              onTap: onFeedbackTap,
+          if (showFeedbackBanner)
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 620),
+              child: HomeFeedbackBanner(
+                isLoading: isLoading,
+                onTap: onFeedbackTap,
+              ),
             ),
-          ),
         ],
       ),
     );

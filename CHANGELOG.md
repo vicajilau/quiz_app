@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat: Implemented `CardStatusBar` and applied for `StudyIndexChunkCard` and `QuestionPreviewCard`.
 - feat(pdf): add export options dialog with questions, answers and study toggles.
 - feat(home): Added a new feedback survey CTA on Home that opens an external Google Form, with full localization in all supported languages.
+- feat(config): Added offline-first remote app config (GitHub-hosted JSON + cache/TTL) to control Home feedback visibility without requiring a new release, and prepared base keys for `latestVersion` and `minimumSupportedVersion`.
 - ux(quiz): Updated the quiz start dialog so the selected-questions action is primary, and the generic start action becomes secondary only when selections are available.
 - ux(quiz): Moved the missing explanation warning in question cards to its own line and added explanatory text in Quiz Preview.
 - ux(study): Updated the initial Study Mode action button from `Edit` to `Create` and replaced the pencil icon with an add icon.
