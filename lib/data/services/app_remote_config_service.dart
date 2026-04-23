@@ -15,8 +15,10 @@
 
 import 'dart:convert';
 
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:quizdy/core/debug_print.dart';
 
 class AppRemoteConfig {
   static const String defaultFeedbackUrl =
@@ -36,7 +38,7 @@ class AppRemoteConfig {
 
   factory AppRemoteConfig.defaults() {
     return const AppRemoteConfig(
-      homeFeedbackEnabled: true,
+      homeFeedbackEnabled: false,
       homeFeedbackUrl: defaultFeedbackUrl,
       latestVersion: null,
       minimumSupportedVersion: null,
@@ -77,9 +79,10 @@ class AppRemoteConfig {
 
 class AppRemoteConfigService {
   static const String _remoteConfigUrl =
-      'https://raw.githubusercontent.com/vicajilau/quizdy/main/app_config.json';
+      'https://raw.githubusercontent.com/vicajilau/quizdy/feat/home-feedback-survey/app_config.json';
   static const String _cachePayloadKey = 'remote_app_config_payload';
   static const String _cacheTimestampKey = 'remote_app_config_timestamp_ms';
+  static const String _localConfigAssetPath = 'app_config.json';
   static const Duration _cacheTtl = Duration(hours: 6);
 
   final SharedPreferences _sharedPreferences;
@@ -89,19 +92,65 @@ class AppRemoteConfigService {
 
   Future<AppRemoteConfig> getConfig({bool forceRefresh = false}) async {
     final cachedConfig = _readCachedConfig();
+    final isCacheValid = _isCacheValid();
 
-    if (!forceRefresh && _isCacheValid()) {
-      if (cachedConfig != null) return cachedConfig;
-      return AppRemoteConfig.defaults();
+    printInDebug(
+      '[AppRemoteConfigService] getConfig(forceRefresh: $forceRefresh, '
+      'cacheValid: $isCacheValid)',
+    );
+    if (cachedConfig != null) {
+      _logConfig('cache_read', cachedConfig);
+    } else {
+      printInDebug('[AppRemoteConfigService] cache_read -> <empty>');
+    }
+
+    if (!forceRefresh && isCacheValid) {
+      if (cachedConfig != null) {
+        printInDebug('[AppRemoteConfigService] source=cache');
+        return cachedConfig;
+      }
+
+      final localConfig = await _loadLocalConfigAsset();
+      if (localConfig != null) {
+        printInDebug(
+          '[AppRemoteConfigService] cache valid but payload missing, source=local_asset',
+        );
+        return localConfig;
+      }
+
+      final defaults = AppRemoteConfig.defaults();
+      printInDebug(
+        '[AppRemoteConfigService] cache valid but payload missing, source=defaults',
+      );
+      _logConfig('defaults_returned', defaults);
+      return defaults;
     }
 
     try {
       final remoteConfig = await _fetchRemoteConfig();
+      _logConfig('remote_fetched', remoteConfig);
       await _writeCache(remoteConfig);
+      printInDebug('[AppRemoteConfigService] source=remote');
       return remoteConfig;
-    } catch (_) {
-      if (cachedConfig != null) return cachedConfig;
-      return AppRemoteConfig.defaults();
+    } catch (error) {
+      printInDebug(
+        '[AppRemoteConfigService] remote fetch failed, fallback path engaged: $error',
+      );
+      if (cachedConfig != null) {
+        printInDebug('[AppRemoteConfigService] source=fallback_cache');
+        return cachedConfig;
+      }
+
+      final localConfig = await _loadLocalConfigAsset();
+      if (localConfig != null) {
+        printInDebug('[AppRemoteConfigService] source=fallback_local_asset');
+        return localConfig;
+      }
+
+      final defaults = AppRemoteConfig.defaults();
+      printInDebug('[AppRemoteConfigService] source=fallback_defaults');
+      _logConfig('defaults_returned', defaults);
+      return defaults;
     }
   }
 
@@ -131,6 +180,7 @@ class AppRemoteConfigService {
   }
 
   Future<void> _writeCache(AppRemoteConfig config) async {
+    _logConfig('cache_write', config);
     await _sharedPreferences.setString(
       _cachePayloadKey,
       jsonEncode(config.toJson()),
@@ -161,5 +211,32 @@ class AppRemoteConfigService {
     }
 
     return AppRemoteConfig.fromJson(decoded);
+  }
+
+  Future<AppRemoteConfig?> _loadLocalConfigAsset() async {
+    try {
+      final payload = await rootBundle.loadString(_localConfigAssetPath);
+      if (payload.trim().isEmpty) return null;
+
+      final decoded = jsonDecode(payload);
+      if (decoded is! Map<String, dynamic>) return null;
+
+      final config = AppRemoteConfig.fromJson(decoded);
+      _logConfig('local_asset_read', config);
+      return config;
+    } catch (error) {
+      printInDebug('[AppRemoteConfigService] local asset load failed: $error');
+      return null;
+    }
+  }
+
+  void _logConfig(String source, AppRemoteConfig config) {
+    printInDebug(
+      '[AppRemoteConfigService][$source] '
+      'homeFeedbackEnabled=${config.homeFeedbackEnabled}, '
+      'homeFeedbackUrl=${config.homeFeedbackUrl}, '
+      'latestVersion=${config.latestVersion}, '
+      'minimumSupportedVersion=${config.minimumSupportedVersion}',
+    );
   }
 }
