@@ -15,8 +15,9 @@
 
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quizdy/core/debug_print.dart';
 
@@ -46,8 +47,8 @@ class AppRemoteConfig {
   }
 
   factory AppRemoteConfig.fromJson(Map<String, dynamic> json) {
-    final feedbackEnabled = json['homeFeedbackEnabled'];
-    final feedbackUrl = json['homeFeedbackUrl'];
+    final bool? feedbackEnabled = json['homeFeedbackEnabled'];
+    final String? feedbackUrl = json['homeFeedbackUrl'];
 
     return AppRemoteConfig(
       homeFeedbackEnabled: feedbackEnabled is bool
@@ -70,7 +71,7 @@ class AppRemoteConfig {
     };
   }
 
-  static String? _asCleanString(dynamic value) {
+  static String? _asCleanString(Object? value) {
     if (value is! String) return null;
     final trimmed = value.trim();
     return trimmed.isEmpty ? null : trimmed;
@@ -83,12 +84,16 @@ class AppRemoteConfigService {
   static const String _cachePayloadKey = 'remote_app_config_payload';
   static const String _cacheTimestampKey = 'remote_app_config_timestamp_ms';
   static const String _localConfigAssetPath = 'app_config.json';
-  static const Duration _cacheTtl = Duration(hours: 6);
+  static const Duration _cacheTtl = Duration(hours: 1);
 
   final SharedPreferences _sharedPreferences;
+  final Dio _dio;
 
-  AppRemoteConfigService({required SharedPreferences sharedPreferences})
-    : _sharedPreferences = sharedPreferences;
+  AppRemoteConfigService({
+    required SharedPreferences sharedPreferences,
+    required Dio dio,
+  }) : _sharedPreferences = sharedPreferences,
+       _dio = dio;
 
   Future<AppRemoteConfig> getConfig({bool forceRefresh = false}) async {
     final cachedConfig = _readCachedConfig();
@@ -159,6 +164,8 @@ class AppRemoteConfigService {
   }
 
   bool _isCacheValid() {
+    if (kDebugMode) return false;
+
     final fetchedAtMs = _sharedPreferences.getInt(_cacheTimestampKey);
     if (fetchedAtMs == null) return false;
 
@@ -192,25 +199,33 @@ class AppRemoteConfigService {
   }
 
   Future<AppRemoteConfig> _fetchRemoteConfig() async {
-    final response = await http
-        .get(
-          Uri.parse('$_remoteConfigUrl?t=${DateTime.now().millisecondsSinceEpoch}'),
-          headers: {'Accept': 'application/json'},
-        )
-        .timeout(const Duration(seconds: 6));
+    final response = await _dio.get<Object>(
+      _remoteConfigUrl,
+      queryParameters: {'t': DateTime.now().millisecondsSinceEpoch},
+      options: Options(
+        headers: {'Accept': 'application/json'},
+        receiveTimeout: const Duration(seconds: 6),
+      ),
+    );
 
-    if (response.statusCode < 200 || response.statusCode >= 300) {
-      throw Exception(
-        'Remote config request failed with ${response.statusCode}',
-      );
+    final responseData = response.data;
+    final Map<String, dynamic> configMap;
+
+    if (responseData is String) {
+      final decoded = jsonDecode(responseData);
+      if (decoded is Map<String, dynamic>) {
+        configMap = decoded;
+      } else {
+        throw Exception('Remote config payload string is not a JSON object');
+      }
+    } else if (responseData is Map<String, dynamic>) {
+      configMap = responseData;
+    } else {
+      throw Exception('Remote config payload must be a JSON object or a string');
     }
 
-    final decoded = jsonDecode(response.body);
-    if (decoded is! Map<String, dynamic>) {
-      throw Exception('Remote config payload must be a JSON object');
-    }
-
-    return AppRemoteConfig.fromJson(decoded);
+    printInDebug('[AppRemoteConfigService] raw_body: $configMap');
+    return AppRemoteConfig.fromJson(configMap);
   }
 
   Future<AppRemoteConfig?> _loadLocalConfigAsset() async {

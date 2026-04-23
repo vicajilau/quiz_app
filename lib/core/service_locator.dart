@@ -64,7 +64,10 @@ class ServiceLocator {
     );
 
     getIt.registerSingleton<AppRemoteConfigService>(
-      AppRemoteConfigService(sharedPreferences: sharedPreferences),
+      AppRemoteConfigService(
+        sharedPreferences: sharedPreferences,
+        dio: dioClient,
+      ),
     );
 
     getIt.registerSingleton<AiRepositoryFactory>(
