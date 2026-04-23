@@ -141,7 +141,7 @@ class AppRemoteConfigService {
       printInDebug(
         '[AppRemoteConfigService] remote fetch failed, fallback path engaged: $error',
       );
-      if (cachedConfig != null) {
+      if (cachedConfig != null && !kDebugMode) {
         printInDebug('[AppRemoteConfigService] source=fallback_cache');
         return cachedConfig;
       }
