@@ -80,7 +80,7 @@ class AppRemoteConfig {
 
 class AppRemoteConfigService {
   static const String _remoteConfigUrl =
-      'https://raw.githubusercontent.com/vicajilau/quizdy/feat/home-feedback-survey/app_config.json';
+      'https://raw.githubusercontent.com/vicajilau/quizdy/main/app_config.json';
   static const String _cachePayloadKey = 'remote_app_config_payload';
   static const String _cacheTimestampKey = 'remote_app_config_timestamp_ms';
   static const String _localConfigAssetPath = 'app_config.json';
