@@ -741,7 +741,7 @@
   "@onboardingFeatureTypesDescription": {
     "description": "Περιγραφή λειτουργίας στη σελίδα καλωσορίσματος"
   },
-  "onboardingFeatureLanguagesTitle": "Υποστήριξη 13 γλωσσών",
+  "onboardingFeatureLanguagesTitle": "Υποστήριξη 18 γλωσσών",
   "@onboardingFeatureLanguagesTitle": {
     "description": "Τίτλος λειτουργίας στη σελίδα καλωσορίσματος"
   },

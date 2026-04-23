@@ -1796,7 +1796,7 @@
   "@onboardingFeatureTypesDescription": {
     "description": "欢迎页面的功能描述"
   },
-  "onboardingFeatureLanguagesTitle": "支持 13 种语言",
+  "onboardingFeatureLanguagesTitle": "支持 18 种语言",
   "@onboardingFeatureLanguagesTitle": {
     "description": "欢迎页面的功能标题"
   },

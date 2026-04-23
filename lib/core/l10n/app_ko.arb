@@ -552,7 +552,7 @@
   "onboardingFeatureAiDescription": "Gemini 또는 GPT를 사용하여 모든 텍스트에서 퀴즈 생성",
   "onboardingFeatureTypesTitle": "다양한 질문 유형",
   "onboardingFeatureTypesDescription": "단일 선택, 다중 선택, 참/거짓 및 주관식",
-  "onboardingFeatureLanguagesTitle": "13개 언어 지원",
+  "onboardingFeatureLanguagesTitle": "18개 언어 지원",
   "onboardingFeatureLanguagesDescription": "여러 언어로 퀴즈를 생성하고 응시하세요",
   "onboardingStepCreateTitle": "퀴즈 생성",
   "onboardingStepCreateDescription": "나만의 질문으로 처음부터 시작하세요",
