@@ -20,16 +20,37 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quizdy/core/service_locator.dart';
+import 'package:quizdy/data/services/app_remote_config_service.dart';
 import 'package:quizdy/main.dart';
 import 'package:quizdy/routes/app_router.dart';
+
+class _TestAppRemoteConfigService extends AppRemoteConfigService {
+  _TestAppRemoteConfigService({required super.sharedPreferences})
+    : super(dio: Dio());
+
+  @override
+  Future<AppRemoteConfig> getConfig({bool forceRefresh = false}) async {
+    return AppRemoteConfig.defaults();
+  }
+}
 
 void main() {
   setUpAll(() async {
     SharedPreferences.setMockInitialValues({});
     await ServiceLocator.setup();
+
+    final sharedPreferences = await SharedPreferences.getInstance();
+    final getIt = ServiceLocator.getIt;
+    if (getIt.isRegistered<AppRemoteConfigService>()) {
+      getIt.unregister<AppRemoteConfigService>();
+    }
+    getIt.registerSingleton<AppRemoteConfigService>(
+      _TestAppRemoteConfigService(sharedPreferences: sharedPreferences),
+    );
   });
 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
