@@ -38,9 +38,6 @@ jobs:
       - name: Build web
         run: flutter build web --release --base-href /${{ github.event.repository.name }}/
 
-      - name: Disable Jekyll to serve .well-known
-        run: touch build/web/.nojekyll
-
       - name: Setup Pages
         uses: actions/configure-pages@v6
         with:
