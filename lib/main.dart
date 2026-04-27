@@ -41,6 +41,7 @@ void main() async {
   setUrlStrategy(null);
   await ServiceLocator.setup();
   await initAppRouter();
+  await DeepLinkHandler.registerProtocol();
 
   Bloc.observer = QuizdyBlocObserver();
 

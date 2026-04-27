@@ -146,5 +146,6 @@ msix_config:
   languages: ar-sa, ca-es, de-de, el-gr, en-GB, es-ES, eu-ES, fr-fr, gl-es, hi-in, it-it, ja-jp, ka-ge, ko-kr, pt-br, ru-ru, uk-ua, zh-cn
   capabilities: internetClient
   file_extension: .quiz
-  protocol_activation: quizdy
+  protocol_activation: https, quizdy
+  app_uri_handler_hosts: vicajilau.github.io
   store: true

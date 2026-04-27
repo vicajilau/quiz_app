@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:app_links/app_links.dart';
 import 'package:quizdy/core/debug_print.dart';
@@ -48,6 +49,46 @@ class DeepLinkHandler {
         printInDebug('Deep link stream error: $err');
       },
     );
+  }
+
+  /// Registers the custom protocol on Windows for development environments.
+  /// This allows testing deep links without packaging the app.
+  static Future<void> registerProtocol() async {
+    if (!Platform.isWindows || kIsWeb) return;
+
+    try {
+      const scheme = 'quizdy';
+      final appPath = Platform.resolvedExecutable;
+
+      // Register protocol
+      await Process.run('reg', [
+        'add',
+        'HKCU\\Software\\Classes\\$scheme',
+        '/v',
+        'URL Protocol',
+        '/t',
+        'REG_SZ',
+        '/d',
+        '',
+        '/f',
+      ]);
+
+      // Register command
+      await Process.run('reg', [
+        'add',
+        'HKCU\\Software\\Classes\\$scheme\\shell\\open\\command',
+        '/ve',
+        '/t',
+        'REG_SZ',
+        '/d',
+        '"$appPath" "%1"',
+        '/f',
+      ]);
+
+      printInDebug('Protocol "$scheme" registered successfully on Windows.');
+    } catch (e) {
+      printInDebug('Failed to register protocol on Windows: $e');
+    }
   }
 
   /// Processes the incoming deep link URI.
