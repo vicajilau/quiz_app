@@ -34,10 +34,16 @@ jobs:
           fi
       - name: Check license headers
         run: |
-          MISSING_HEADERS=$(find lib test -name "*.dart" ! -name "*.g.dart" ! -name "*.freezed.dart" ! -name "*.mocks.dart" ! -name "app_localizations*.dart" -exec sh -c '! grep -q "^// Copyright (C) 2026 Víctor Carreras" "$1" && echo "$1"' _ {} \;)
-          if [ -n "$MISSING_HEADERS" ]; then
+          MISSING_HEADERS=()
+          while IFS= read -r -d '' file; do
+            if ! grep -q "^// Copyright (C) 2026 Víctor Carreras" "$file"; then
+              MISSING_HEADERS+=("$file")
+            fi
+          done < <(find lib test -name "*.dart" ! -name "*.g.dart" ! -name "*.freezed.dart" ! -name "*.mocks.dart" ! -name "app_localizations*.dart" -print0)
+
+          if [ ${#MISSING_HEADERS[@]} -gt 0 ]; then
             echo "❌ The following files are missing the GPL-3.0 license header:"
-            echo "$MISSING_HEADERS"
+            printf '%s\n' "${MISSING_HEADERS[@]}"
             exit 1
           else
             echo "✅ All files have the correct GPL-3.0 license header."
