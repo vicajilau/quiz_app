@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:desktop_drop/desktop_drop.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -49,6 +50,7 @@ import 'package:quizdy/presentation/screens/widgets/home/home_header_widget.dart
 import 'package:quizdy/presentation/screens/widgets/home/home_drop_zone_widget.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_footer_widget.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_drag_mode_overlay.dart';
+import 'package:quizdy/presentation/widgets/smart_app_banner.dart';
 import 'package:quizdy/domain/use_cases/initialize_quiz_chunks_use_case.dart';
 import 'package:quizdy/data/repositories/quiz_file_repository.dart';
 import 'package:quizdy/domain/models/quiz/study.dart';
@@ -76,17 +78,21 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _loadRemoteConfig();
     
-    String? dataUrl = widget.initialDataUrl;
-    if (dataUrl == null || dataUrl.isEmpty) {
-      dataUrl = Uri.base.queryParameters['data'];
-    }
+    // On Web, handle the initial data URL from GoRouter.
+    // On Native, DeepLinkHandler handles all deep links.
+    if (kIsWeb) {
+      String? dataUrl = widget.initialDataUrl;
+      if (dataUrl == null || dataUrl.isEmpty) {
+        dataUrl = Uri.base.queryParameters['data'];
+      }
 
-    if (dataUrl != null && dataUrl.isNotEmpty) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted) {
-          context.read<FileBloc>().add(FileDropped(dataUrl!));
-        }
-      });
+      if (dataUrl != null && dataUrl.isNotEmpty) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) {
+            context.read<FileBloc>().add(FileDropped(dataUrl!));
+          }
+        });
+      }
     }
   }
 
@@ -476,8 +482,9 @@ class _HomeScreenState extends State<HomeScreen> {
           setState(() => _isLoading = false);
         }
       },
-      child: Scaffold(
-        body: DropTarget(
+      child: SmartAppBanner(
+        child: Scaffold(
+          body: DropTarget(
           onDragDone: (details) {
             if (ServiceLocator.getIt<DialogDropGuard>().isActive) {
               setState(() {
@@ -626,6 +633,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
+      ),
       ),
     );
   }

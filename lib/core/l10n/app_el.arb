@@ -1377,5 +1377,7 @@
   "exportButton": "Εξαγωγή",
   "@exportButton": {
     "description": "Label for the Export button in the export PDF options dialog"
-  }
+  },
+  "openInQuizdyApp": "Άνοιγμα στην εφαρμογή Quizdy",
+  "open": "Άνοιγμα"
 }

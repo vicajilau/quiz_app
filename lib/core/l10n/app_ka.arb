@@ -1069,5 +1069,7 @@
   "exportButton": "ექსპორტი",
   "@exportButton": {
     "description": "Label for the Export button in the export PDF options dialog"
-  }
+  },
+  "openInQuizdyApp": "გახსნა Quizdy აპში",
+  "open": "გახსნა"
 }
