@@ -85,13 +85,18 @@ static void my_application_activate(GApplication *application) {
   g_autoptr(FlMethodChannel) channel = fl_method_channel_new(
       messenger, "quiz.file", FL_METHOD_CODEC(fl_standard_method_codec_new()));
 
-  // Send file argument if exists
+  // Send file argument if exists and it is not a deep link URL
   if (self->dart_entrypoint_arguments &&
       self->dart_entrypoint_arguments[0] != nullptr) {
-    g_autoptr(FlValue) file_path =
-        fl_value_new_string(self->dart_entrypoint_arguments[0]);
-    fl_method_channel_invoke_method(channel, "openFile", file_path, nullptr,
-                                    nullptr, nullptr);
+    const gchar *arg = self->dart_entrypoint_arguments[0];
+    // Ignore URL schemes so they are handled by app_links instead of openFile
+    if (!g_str_has_prefix(arg, "quizdy://") && 
+        !g_str_has_prefix(arg, "http://") && 
+        !g_str_has_prefix(arg, "https://")) {
+      g_autoptr(FlValue) file_path = fl_value_new_string(arg);
+      fl_method_channel_invoke_method(channel, "openFile", file_path, nullptr,
+                                      nullptr, nullptr);
+    }
   }
 }
 
