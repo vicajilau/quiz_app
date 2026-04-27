@@ -19,6 +19,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:dio/dio.dart';
 import 'package:platform_detail/platform_detail.dart';
 import 'package:quizdy/data/services/file_service/i_file_service.dart';
 import 'package:quizdy/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
@@ -57,15 +58,25 @@ class QuizFileService implements IFileService {
   /// - Throws: [BadQuizFileException] if the file extension is invalid.
   @override
   Future<QuizFile> readQuizFileContent(String filePath) async {
-    if (!filePath.endsWith('.quiz')) {
-      throw const BadQuizFileException(
-        type: BadQuizFileErrorType.invalidExtension,
-      );
+    String content;
+
+    if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
+      final response = await Dio().get<String>(filePath);
+      if (response.data == null) {
+        throw Exception('Failed to download quiz file: Empty response');
+      }
+      content = response.data!;
+    } else {
+      if (!filePath.endsWith('.quiz')) {
+        throw const BadQuizFileException(
+          type: BadQuizFileErrorType.invalidExtension,
+        );
+      }
+      // Create a File object for the provided file path
+      final file = File(filePath);
+      // Read the file content as a string
+      content = await file.readAsString();
     }
-    // Create a File object for the provided file path
-    final file = File(filePath);
-    // Read the file content as a string
-    final content = await file.readAsString();
 
     // Decode the string content into a Map and convert it to a QuizFile object
     final json = jsonDecode(content) as Map<String, dynamic>;

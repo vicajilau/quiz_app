@@ -54,7 +54,9 @@ import 'package:quizdy/data/repositories/quiz_file_repository.dart';
 import 'package:quizdy/domain/models/quiz/study.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final String? initialDataUrl;
+
+  const HomeScreen({super.key, this.initialDataUrl});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -73,6 +75,19 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _loadRemoteConfig();
+    
+    String? dataUrl = widget.initialDataUrl;
+    if (dataUrl == null || dataUrl.isEmpty) {
+      dataUrl = Uri.base.queryParameters['data'];
+    }
+
+    if (dataUrl != null && dataUrl.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          context.read<FileBloc>().add(FileDropped(dataUrl!));
+        }
+      });
+    }
   }
 
   Future<void> _loadRemoteConfig() async {
