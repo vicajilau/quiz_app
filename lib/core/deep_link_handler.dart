@@ -54,7 +54,7 @@ class DeepLinkHandler {
   /// Registers the custom protocol on Windows for development environments.
   /// This allows testing deep links without packaging the app.
   static Future<void> registerProtocol() async {
-    if (!Platform.isWindows || kIsWeb) return;
+    if (kIsWeb || !Platform.isWindows) return;
 
     try {
       const scheme = 'quizdy';
