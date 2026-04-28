@@ -50,6 +50,10 @@ import 'package:quizdy/presentation/screens/widgets/home/home_header_widget.dart
 import 'package:quizdy/presentation/screens/widgets/home/home_drop_zone_widget.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_footer_widget.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_drag_mode_overlay.dart';
+import 'package:platform_detail/platform_detail.dart';
+import 'package:quizdy/presentation/blocs/app_update_cubit/app_update_cubit.dart';
+import 'package:quizdy/presentation/screens/dialogs/force_update_dialog.dart';
+import 'package:quizdy/presentation/widgets/app_update_banner.dart';
 import 'package:quizdy/presentation/widgets/smart_app_banner.dart';
 import 'package:quizdy/domain/use_cases/initialize_quiz_chunks_use_case.dart';
 import 'package:quizdy/data/repositories/quiz_file_repository.dart';
@@ -107,7 +111,21 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void _navigateByMode(BuildContext context, QuizMode mode, QuizFile quizFile) {
+  @protected
+  void openUpdateStoreUrl() {
+    final Uri url;
+    if (PlatformDetail.isIOS || PlatformDetail.isMacOS) {
+      url = Uri.parse('https://apps.apple.com/app/quiz-appl/id6758663432');
+    } else if (PlatformDetail.isWindows) {
+      url = Uri.parse('https://apps.microsoft.com/store/detail/9P77H0WRJSM2');
+    } else {
+      url = Uri.parse('https://github.com/vicajilau/quizdy/releases');
+    }
+    launchUrl(url, mode: LaunchMode.externalApplication);
+  }
+
+  @protected
+  void navigateByMode(BuildContext context, QuizMode mode, QuizFile quizFile) {
     if (mode == QuizMode.study) {
       _navigateToStudy(context, quizFile);
     } else {
@@ -448,189 +466,232 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<FileBloc, FileState>(
-      listener: (context, state) async {
-        if (state is FileLoaded) {
-          setState(() => _isLoading = false);
-          if (context.currentRoute != AppRoutes.home) return;
-          final quizFile = state.quizFile;
-
-          final dropMode = _pendingDropMode;
-          _pendingDropMode = null;
-
-          final choice = dropMode ?? await ModeSelectionDialog.show(context);
-          if (!context.mounted || choice == null) return;
-          _navigateByMode(context, choice, quizFile);
-        }
-        if (state is FileReplacementRequest) {
-          if (context.currentRoute == AppRoutes.home) {
-            context.read<FileBloc>().add(ConfirmFileReplacement());
+    return BlocProvider<AppUpdateCubit>(
+      create: (context) => ServiceLocator.getIt<AppUpdateCubit>(),
+      child: BlocListener<AppUpdateCubit, AppUpdateState>(
+        listener: (context, updateState) async {
+          if (updateState is AppUpdateForceRequired && context.mounted) {
+            await showDialog<void>(
+              context: context,
+              barrierDismissible: false,
+              builder: (_) =>
+                  ForceUpdateDialog(onUpdatePressed: openUpdateStoreUrl),
+            );
           }
-        }
-        if (state is FileError && context.mounted) {
-          setState(() => _isLoading = false);
-          if (state.error is BadQuizFileException) {
-            final badFileException = state.error as BadQuizFileException;
-            context.presentSnackBar(badFileException.toString());
-          } else {
-            context.presentSnackBar(state.getDescription(context));
-          }
-        }
-        if (state is FileLoading) {
-          setState(() => _isLoading = true);
-        } else if (state is FileInitial) {
-          setState(() => _isLoading = false);
-        }
-      },
-      child: SmartAppBanner(
-        child: Scaffold(
-          body: DropTarget(
-            onDragDone: (details) {
-              if (ServiceLocator.getIt<DialogDropGuard>().isActive) {
-                setState(() {
-                  _isDragging = false;
-                  _hoveredDropMode = null;
-                });
-                return;
+        },
+        child: BlocListener<FileBloc, FileState>(
+          listener: (context, state) async {
+            if (state is FileLoaded) {
+              setState(() => _isLoading = false);
+              if (context.currentRoute != AppRoutes.home) return;
+              final quizFile = state.quizFile;
+
+              final dropMode = _pendingDropMode;
+              _pendingDropMode = null;
+
+              final choice =
+                  dropMode ?? await ModeSelectionDialog.show(context);
+              if (!context.mounted || choice == null) return;
+              navigateByMode(context, choice, quizFile);
+            }
+            if (state is FileReplacementRequest) {
+              if (context.currentRoute == AppRoutes.home) {
+                context.read<FileBloc>().add(ConfirmFileReplacement());
               }
-              if (details.files.isNotEmpty && !_isLoading) {
-                if (context.currentRoute != AppRoutes.home) return;
+            }
+            if (state is FileError && context.mounted) {
+              setState(() => _isLoading = false);
+              if (state.error is BadQuizFileException) {
+                final badFileException = state.error as BadQuizFileException;
+                context.presentSnackBar(badFileException.toString());
+              } else {
+                context.presentSnackBar(state.getDescription(context));
+              }
+            }
+            if (state is FileLoading) {
+              setState(() => _isLoading = true);
+            } else if (state is FileInitial) {
+              setState(() => _isLoading = false);
+            }
+          },
+          child: SmartAppBanner(
+            child: BlocBuilder<AppUpdateCubit, AppUpdateState>(
+              builder: (context, updateState) {
+                final scaffold = Scaffold(
+                  body: DropTarget(
+                    onDragDone: (details) {
+                      if (ServiceLocator.getIt<DialogDropGuard>().isActive) {
+                        setState(() {
+                          _isDragging = false;
+                          _hoveredDropMode = null;
+                        });
+                        return;
+                      }
+                      if (details.files.isNotEmpty && !_isLoading) {
+                        if (context.currentRoute != AppRoutes.home) return;
 
-                final firstFile = details.files.first;
-                if (firstFile.path.isNotEmpty) {
-                  if (!firstFile.name.toLowerCase().endsWith('.quiz')) {
-                    context.presentSnackBar(
-                      AppLocalizations.of(context)!.errorInvalidFile,
-                    );
-                    setState(() {
+                        final firstFile = details.files.first;
+                        if (firstFile.path.isNotEmpty) {
+                          if (!firstFile.name.toLowerCase().endsWith('.quiz')) {
+                            context.presentSnackBar(
+                              AppLocalizations.of(context)!.errorInvalidFile,
+                            );
+                            setState(() {
+                              _isDragging = false;
+                              _hoveredDropMode = null;
+                            });
+                            return;
+                          }
+                          final renderBox =
+                              context.findRenderObject() as RenderBox;
+                          _pendingDropMode = _modeFromPosition(
+                            details.localPosition,
+                            renderBox.size,
+                          );
+                          context.read<FileBloc>().add(QuizFileReset());
+                          context.read<FileBloc>().add(
+                            FileDropped(firstFile.path),
+                          );
+                        }
+                      }
+                      setState(() {
+                        _isDragging = false;
+                        _hoveredDropMode = null;
+                      });
+                    },
+                    onDragEntered: (_) {
+                      if (!ServiceLocator.getIt<DialogDropGuard>().isActive) {
+                        setState(() => _isDragging = true);
+                      }
+                    },
+                    onDragUpdated: (details) {
+                      if (!_isDragging) return;
+                      final renderBox = context.findRenderObject() as RenderBox;
+                      final mode = _modeFromPosition(
+                        details.localPosition,
+                        renderBox.size,
+                      );
+                      if (mode != _hoveredDropMode) {
+                        setState(() => _hoveredDropMode = mode);
+                      }
+                    },
+                    onDragExited: (_) => setState(() {
                       _isDragging = false;
                       _hoveredDropMode = null;
-                    });
-                    return;
-                  }
-                  final renderBox = context.findRenderObject() as RenderBox;
-                  _pendingDropMode = _modeFromPosition(
-                    details.localPosition,
-                    renderBox.size,
-                  );
-                  context.read<FileBloc>().add(QuizFileReset());
-                  context.read<FileBloc>().add(FileDropped(firstFile.path));
-                }
-              }
-              setState(() {
-                _isDragging = false;
-                _hoveredDropMode = null;
-              });
-            },
-            onDragEntered: (_) {
-              if (!ServiceLocator.getIt<DialogDropGuard>().isActive) {
-                setState(() => _isDragging = true);
-              }
-            },
-            onDragUpdated: (details) {
-              if (!_isDragging) return;
-              final renderBox = context.findRenderObject() as RenderBox;
-              final mode = _modeFromPosition(
-                details.localPosition,
-                renderBox.size,
-              );
-              if (mode != _hoveredDropMode) {
-                setState(() => _hoveredDropMode = mode);
-              }
-            },
-            onDragExited: (_) => setState(() {
-              _isDragging = false;
-              _hoveredDropMode = null;
-            }),
-            child: Stack(
-              children: [
-                SafeArea(
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      final isMobile = context.isMobile;
-                      // Calculate the visual top margin:
-                      // SafeArea (padding.top) + Header centering offset ((72 - 48) / 2 = 12)
-                      final topPadding = MediaQuery.of(context).padding.top;
-                      final visualTopMargin = topPadding + 12.0;
+                    }),
+                    child: Stack(
+                      children: [
+                        SafeArea(
+                          child: LayoutBuilder(
+                            builder: (context, constraints) {
+                              final isMobile = context.isMobile;
+                              // Calculate the visual top margin:
+                              // SafeArea (padding.top) + Header centering offset ((72 - 48) / 2 = 12)
+                              final topPadding = MediaQuery.of(
+                                context,
+                              ).padding.top;
+                              final visualTopMargin = topPadding + 12.0;
 
-                      return SingleChildScrollView(
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints(
-                            minHeight: constraints.maxHeight,
-                          ),
-                          child: IntrinsicHeight(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: isMobile ? visualTopMargin : 48.0,
-                              ),
-                              child: Column(
-                                children: [
-                                  HomeHeaderWidget(
-                                    isLoading: _isLoading,
-                                    onSettingsTap: () =>
-                                        _showSettingsDialog(context),
+                              return SingleChildScrollView(
+                                child: ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                    minHeight: constraints.maxHeight,
                                   ),
-                                  Expanded(
-                                    child: HomeDropZoneWidget(
-                                      isDragging: _isDragging,
-                                      onTap: () => _pickFile(context),
+                                  child: IntrinsicHeight(
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: isMobile
+                                            ? visualTopMargin
+                                            : 48.0,
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          HomeHeaderWidget(
+                                            isLoading: _isLoading,
+                                            onSettingsTap: () =>
+                                                _showSettingsDialog(context),
+                                          ),
+                                          Expanded(
+                                            child: HomeDropZoneWidget(
+                                              isDragging: _isDragging,
+                                              onTap: () => _pickFile(context),
+                                            ),
+                                          ),
+                                          HomeFooterWidget(
+                                            isLoading: _isLoading,
+                                            showFeedbackBanner:
+                                                _showFeedbackBanner,
+                                            onCreateTap: () =>
+                                                _showCreateQuizFileDialog(
+                                                  context,
+                                                ),
+                                            onGenerateAITap: () =>
+                                                _generateQuestionsWithAI(
+                                                  context,
+                                                ),
+                                            onStudyModeTap: () =>
+                                                _startStudyModeWithAI(context),
+                                            onFeedbackTap: () =>
+                                                _openFeedbackForm(context),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                  HomeFooterWidget(
-                                    isLoading: _isLoading,
-                                    showFeedbackBanner: _showFeedbackBanner,
-                                    onCreateTap: () =>
-                                        _showCreateQuizFileDialog(context),
-                                    onGenerateAITap: () =>
-                                        _generateQuestionsWithAI(context),
-                                    onStudyModeTap: () =>
-                                        _startStudyModeWithAI(context),
-                                    onFeedbackTap: () =>
-                                        _openFeedbackForm(context),
-                                  ),
-                                ],
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        if (_isDragging)
+                          Positioned.fill(
+                            child: HomeDragModeOverlay(
+                              hoveredMode: _hoveredDropMode,
+                            ),
+                          ),
+                        if (_isLoading)
+                          Positioned.fill(
+                            child: Container(
+                              color: Colors.black.withValues(alpha: 0.3),
+                              child: Center(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const QuizdyLoading(),
+                                    if (_loadingText != null) ...[
+                                      const SizedBox(height: 16),
+                                      Material(
+                                        color: Colors.transparent,
+                                        child: Text(
+                                          _loadingText!,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                if (_isDragging)
-                  Positioned.fill(
-                    child: HomeDragModeOverlay(hoveredMode: _hoveredDropMode),
-                  ),
-                if (_isLoading)
-                  Positioned.fill(
-                    child: Container(
-                      color: Colors.black.withValues(alpha: 0.3),
-                      child: Center(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const QuizdyLoading(),
-                            if (_loadingText != null) ...[
-                              const SizedBox(height: 16),
-                              Material(
-                                color: Colors.transparent,
-                                child: Text(
-                                  _loadingText!,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ],
-                          ],
-                        ),
-                      ),
+                      ],
                     ),
                   ),
-              ],
+                );
+
+                if (updateState is AppUpdateAvailable) {
+                  return AppUpdateBanner(
+                    newVersion: updateState.newVersion,
+                    onUpdatePressed: openUpdateStoreUrl,
+                    child: scaffold,
+                  );
+                }
+                return scaffold;
+              },
             ),
           ),
         ),
