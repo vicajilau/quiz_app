@@ -1380,5 +1380,30 @@
   },
   "openInQuizdyApp": "Άνοιγμα στην εφαρμογή Quizdy",
   "open": "Άνοιγμα",
-  "installApp": "Εγκατάσταση εφαρμογής"
+  "installApp": "Εγκατάσταση εφαρμογής",
+  "updateAvailableTitle": "Διαθέσιμη ενημέρωση",
+  "@updateAvailableTitle": {
+    "description": "Title shown in the update banner when a newer app version is available."
+  },
+  "updateAvailableMessage": "Η έκδοση {version} του Quizdy είναι διαθέσιμη.",
+  "@updateAvailableMessage": {
+    "description": "Subtitle in the update banner indicating which version is available.",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateButton": "Ενημέρωση",
+  "@updateButton": {
+    "description": "Label for the update button in the update banner."
+  },
+  "forceUpdateTitle": "Απαιτείται ενημέρωση",
+  "@forceUpdateTitle": {
+    "description": "Title of the force update dialog."
+  },
+  "forceUpdateMessage": "Απαιτείται υποχρεωτική ενημέρωση για να συνεχίσετε να χρησιμοποιείτε το Quizdy. Παρακαλούμε ενημερώστε την εφαρμογή.",
+  "@forceUpdateMessage": {
+    "description": "Body message of the force update dialog."
+  }
 }

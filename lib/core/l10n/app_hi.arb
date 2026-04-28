@@ -2383,5 +2383,31 @@
   },
   "openInQuizdyApp": "Quizdy ऐप में खोलें",
   "open": "खोलें",
-  "installApp": "ऐप इंस्टॉल करें"
+  "installApp": "ऐप इंस्टॉल करें",
+  "updateAvailableTitle": "अपडेट उपलब्ध है",
+  "@updateAvailableTitle": {
+    "description": "Title shown in the update banner when a newer app version is available."
+  },
+  "updateAvailableMessage": "Quizdy का संस्करण {version} उपलब्ध है।",
+  "@updateAvailableMessage": {
+    "description": "Subtitle in the update banner indicating which version is available.",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateButton": "अपडेट करें",
+  "@updateButton": {
+    "description": "Label for the update button in the update banner."
+  },
+  "forceUpdateTitle": "अपडेट आवश्यक है",
+  "@forceUpdateTitle": {
+    "description": "Title of the force update dialog."
+  },
+  "forceUpdateMessage": "Quizdy का उपयोग जारी रखने के लिए एक अनिवार्य अपडेट आवश्यक है। कृपया ऐप अपडेट करें।",
+  "@forceUpdateMessage": {
+    "description": "Body message of the force update dialog."
+  }
 }
+

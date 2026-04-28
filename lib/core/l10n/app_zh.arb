@@ -2432,5 +2432,31 @@
   },
   "openInQuizdyApp": "在 Quizdy 应用中打开",
   "open": "打开",
-  "installApp": "安装应用"
+  "installApp": "安装应用",
+  "updateAvailableTitle": "有可用更新",
+  "@updateAvailableTitle": {
+    "description": "Title shown in the update banner when a newer app version is available."
+  },
+  "updateAvailableMessage": "Quizdy 版本 {version} 已发布。",
+  "@updateAvailableMessage": {
+    "description": "Subtitle in the update banner indicating which version is available.",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateButton": "更新",
+  "@updateButton": {
+    "description": "Label for the update button in the update banner."
+  },
+  "forceUpdateTitle": "需要更新",
+  "@forceUpdateTitle": {
+    "description": "Title of the force update dialog."
+  },
+  "forceUpdateMessage": "需要强制更新才能继续使用 Quizdy。请更新应用。",
+  "@forceUpdateMessage": {
+    "description": "Body message of the force update dialog."
+  }
 }
+

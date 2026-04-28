@@ -1105,5 +1105,31 @@
   },
   "openInQuizdyApp": "Відкрити в додатку Quizdy",
   "open": "Відкрити",
-  "installApp": "Встановити додаток"
+  "installApp": "Встановити додаток",
+  "updateAvailableTitle": "Доступне оновлення",
+  "@updateAvailableTitle": {
+    "description": "Title shown in the update banner when a newer app version is available."
+  },
+  "updateAvailableMessage": "Доступна версія {version} Quizdy.",
+  "@updateAvailableMessage": {
+    "description": "Subtitle in the update banner indicating which version is available.",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateButton": "Оновити",
+  "@updateButton": {
+    "description": "Label for the update button in the update banner."
+  },
+  "forceUpdateTitle": "Необхідне оновлення",
+  "@forceUpdateTitle": {
+    "description": "Title of the force update dialog."
+  },
+  "forceUpdateMessage": "Для продовження використання Quizdy необхідне обов'язкове оновлення. Будь ласка, оновіть програму.",
+  "@forceUpdateMessage": {
+    "description": "Body message of the force update dialog."
+  }
 }
+

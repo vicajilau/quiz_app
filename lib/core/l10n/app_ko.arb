@@ -1072,5 +1072,31 @@
   },
   "openInQuizdyApp": "Quizdy 앱에서 열기",
   "open": "열기",
-  "installApp": "앱 설치"
+  "installApp": "앱 설치",
+  "updateAvailableTitle": "업데이트 가능",
+  "@updateAvailableTitle": {
+    "description": "Title shown in the update banner when a newer app version is available."
+  },
+  "updateAvailableMessage": "Quizdy의 {version} 버전을 사용할 수 있습니다.",
+  "@updateAvailableMessage": {
+    "description": "Subtitle in the update banner indicating which version is available.",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateButton": "업데이트",
+  "@updateButton": {
+    "description": "Label for the update button in the update banner."
+  },
+  "forceUpdateTitle": "업데이트 필요",
+  "@forceUpdateTitle": {
+    "description": "Title of the force update dialog."
+  },
+  "forceUpdateMessage": "Quizdy를 계속 사용하려면 필수 업데이트가 필요합니다. 앱을 업데이트해 주세요.",
+  "@forceUpdateMessage": {
+    "description": "Body message of the force update dialog."
+  }
 }
+
