@@ -22,6 +22,7 @@ import 'package:quizdy/data/services/ai/ai_document_chunking_service.dart';
 import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/data/services/app_remote_config_service.dart';
+import 'package:quizdy/presentation/blocs/app_update_cubit/app_update_cubit.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 
@@ -67,6 +68,12 @@ class ServiceLocator {
       AppRemoteConfigService(
         sharedPreferences: sharedPreferences,
         dio: dioClient,
+      ),
+    );
+
+    getIt.registerFactory<AppUpdateCubit>(
+      () => AppUpdateCubit(
+        remoteConfigService: getIt<AppRemoteConfigService>(),
       ),
     );
 
