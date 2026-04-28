@@ -107,9 +107,13 @@ class AppUpdateCubit extends Cubit<AppUpdateState> {
         if (info.updateAvailability == UpdateAvailability.updateAvailable) {
           // Skip immediateUpdateAllowed — it can be false in Internal Testing
           // even when the update is genuinely available. Let Play decide.
-          await InAppUpdate.performImmediateUpdate();
-          emit(const AppUpdateUpToDate());
-          return;
+          final result = await InAppUpdate.performImmediateUpdate();
+          if (result == AppUpdateResult.success) {
+            emit(const AppUpdateUpToDate());
+            return;
+          }
+          // User dismissed or update failed — fall through to ForceUpdateDialog
+          // which blocks app usage via PopScope(canPop: false).
         }
       } catch (e) {
         // Expected in debug/sideloaded builds — Play In-App Updates only works

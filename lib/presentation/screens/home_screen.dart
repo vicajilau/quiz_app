@@ -50,7 +50,6 @@ import 'package:quizdy/presentation/screens/widgets/home/home_header_widget.dart
 import 'package:quizdy/presentation/screens/widgets/home/home_drop_zone_widget.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_footer_widget.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_drag_mode_overlay.dart';
-import 'package:platform_detail/platform_detail.dart';
 import 'package:quizdy/presentation/blocs/app_update_cubit/app_update_cubit.dart';
 import 'package:quizdy/presentation/screens/dialogs/force_update_dialog.dart';
 import 'package:quizdy/presentation/widgets/app_update_banner.dart';
@@ -114,12 +113,23 @@ class _HomeScreenState extends State<HomeScreen> {
   @protected
   void openUpdateStoreUrl() {
     final Uri url;
-    if (PlatformDetail.isIOS || PlatformDetail.isMacOS) {
-      url = Uri.parse('https://apps.apple.com/app/quiz-appl/id6758663432');
-    } else if (PlatformDetail.isWindows) {
-      url = Uri.parse('https://apps.microsoft.com/store/detail/9P77H0WRJSM2');
-    } else {
-      url = Uri.parse('https://github.com/vicajilau/quizdy/releases');
+    switch (defaultTargetPlatform) {
+      case TargetPlatform.iOS:
+      case TargetPlatform.macOS:
+        url = Uri.parse('https://apps.apple.com/app/quiz-appl/id6758663432');
+        break;
+      case TargetPlatform.android:
+        url = Uri.parse(
+          'https://play.google.com/store/apps/details?id=es.victorcarreras.quiz_app',
+        );
+        break;
+      case TargetPlatform.windows:
+        url = Uri.parse('https://apps.microsoft.com/store/detail/9P77H0WRJSM2');
+        break;
+      case TargetPlatform.linux:
+        url = Uri.parse('https://snapcraft.io/quiz-app');
+      default:
+        url = Uri.parse('https://github.com/vicajilau/quizdy/releases');
     }
     launchUrl(url, mode: LaunchMode.externalApplication);
   }
