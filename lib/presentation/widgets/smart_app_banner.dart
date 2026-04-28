@@ -87,6 +87,8 @@ class _SmartAppBannerState extends State<SmartAppBanner> {
 
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context)!;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isCompact = screenWidth < 500;
 
     return Column(
       children: [
@@ -106,6 +108,8 @@ class _SmartAppBannerState extends State<SmartAppBanner> {
                     icon: const Icon(Icons.close, size: 20),
                     onPressed: () => setState(() => _isVisible = false),
                     color: theme.colorScheme.onPrimaryContainer,
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
                   ),
                   const SizedBox(width: 8),
                   Container(
@@ -136,36 +140,55 @@ class _SmartAppBannerState extends State<SmartAppBanner> {
                             color: theme.colorScheme.onPrimaryContainer,
                             fontWeight: FontWeight.bold,
                           ),
-                        ),
-                        Text(
-                          l10n.openInQuizdyApp,
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            color: theme.colorScheme.onPrimaryContainer
-                                .withAlpha(200),
-                          ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
+                        if (!isCompact)
+                          Text(
+                            l10n.openInQuizdyApp,
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: theme.colorScheme.onPrimaryContainer
+                                  .withAlpha(200),
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                       ],
                     ),
                   ),
                   const SizedBox(width: 8),
                   if (_storeUrl.isNotEmpty) ...[
-                    OutlinedButton(
-                      onPressed: () => launchUrlString(_storeUrl),
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: theme.colorScheme.primary,
-                        side: BorderSide(color: theme.colorScheme.primary),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                    if (isCompact)
+                      Tooltip(
+                        message: l10n.installApp,
+                        child: OutlinedButton(
+                          onPressed: () => launchUrlString(_storeUrl),
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: theme.colorScheme.primary,
+                            side: BorderSide(color: theme.colorScheme.primary),
+                            shape: const CircleBorder(),
+                            padding: const EdgeInsets.all(8),
+                            minimumSize: const Size(36, 36),
+                          ),
+                          child: const Icon(Icons.download, size: 20),
                         ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 8,
+                      )
+                    else
+                      OutlinedButton(
+                        onPressed: () => launchUrlString(_storeUrl),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: theme.colorScheme.primary,
+                          side: BorderSide(color: theme.colorScheme.primary),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 8,
+                          ),
                         ),
+                        child: Text(l10n.installApp),
                       ),
-                      child: Text(l10n.installApp),
-                    ),
                     const SizedBox(width: 8),
                   ],
                   ElevatedButton(
