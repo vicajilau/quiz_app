@@ -98,8 +98,15 @@ class AppUpdateCubit extends Cubit<AppUpdateState> {
     if (PlatformDetail.isAndroid) {
       try {
         final info = await InAppUpdate.checkForUpdate();
-        if (info.updateAvailability == UpdateAvailability.updateAvailable &&
-            info.immediateUpdateAllowed) {
+        printInDebug(
+          '[AppUpdateCubit] checkForUpdate result: '
+          'availability=${info.updateAvailability}, '
+          'immediateAllowed=${info.immediateUpdateAllowed}, '
+          'flexibleAllowed=${info.flexibleUpdateAllowed}',
+        );
+        if (info.updateAvailability == UpdateAvailability.updateAvailable) {
+          // Skip immediateUpdateAllowed — it can be false in Internal Testing
+          // even when the update is genuinely available. Let Play decide.
           await InAppUpdate.performImmediateUpdate();
           emit(const AppUpdateUpToDate());
           return;
