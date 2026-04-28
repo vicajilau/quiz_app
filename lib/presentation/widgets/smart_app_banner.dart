@@ -16,6 +16,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -87,8 +88,6 @@ class _SmartAppBannerState extends State<SmartAppBanner> {
 
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context)!;
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isCompact = screenWidth < 500;
 
     return Column(
       children: [
@@ -143,7 +142,7 @@ class _SmartAppBannerState extends State<SmartAppBanner> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        if (!isCompact)
+                        if (!context.isMobile)
                           Text(
                             l10n.openInQuizdyApp,
                             style: theme.textTheme.bodySmall?.copyWith(
@@ -158,7 +157,7 @@ class _SmartAppBannerState extends State<SmartAppBanner> {
                   ),
                   const SizedBox(width: 8),
                   if (_storeUrl.isNotEmpty) ...[
-                    if (isCompact)
+                    if (context.isMobile)
                       Tooltip(
                         message: l10n.installApp,
                         child: OutlinedButton(
