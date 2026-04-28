@@ -40,6 +40,22 @@ class _SmartAppBannerState extends State<SmartAppBanner> {
     }
   }
 
+  String get _storeUrl {
+    switch (defaultTargetPlatform) {
+      case TargetPlatform.android:
+        return 'https://play.google.com/store/apps/details?id=es.victorcarreras.quiz_app';
+      case TargetPlatform.iOS:
+      case TargetPlatform.macOS:
+        return 'https://apps.apple.com/app/quiz-appl/id6758663432';
+      case TargetPlatform.windows:
+        return 'https://apps.microsoft.com/store/detail/9P77H0WRJSM2?cid=DevShareMCLPCS';
+      case TargetPlatform.linux:
+        return 'https://snapcraft.io/quiz-app';
+      default:
+        return '';
+    }
+  }
+
   void _openInApp() async {
     // Determine the data parameter to pass to the app
     final dataUrl = Uri.base.queryParameters['data'] ?? '';
@@ -55,7 +71,7 @@ class _SmartAppBannerState extends State<SmartAppBanner> {
       }
     }
 
-    // Generic deep link attempt (for iOS, Desktop or if intent fails)
+    // Generic deep link attempt
     try {
       await launchUrlString(intentUrl);
     } catch (e) {
@@ -134,6 +150,24 @@ class _SmartAppBannerState extends State<SmartAppBanner> {
                     ),
                   ),
                   const SizedBox(width: 8),
+                  if (_storeUrl.isNotEmpty) ...[
+                    OutlinedButton(
+                      onPressed: () => launchUrlString(_storeUrl),
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: theme.colorScheme.primary,
+                        side: BorderSide(color: theme.colorScheme.primary),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                      ),
+                      child: Text(l10n.installApp),
+                    ),
+                    const SizedBox(width: 8),
+                  ],
                   ElevatedButton(
                     onPressed: _openInApp,
                     style: ElevatedButton.styleFrom(

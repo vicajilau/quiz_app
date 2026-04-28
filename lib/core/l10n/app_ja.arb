@@ -2382,5 +2382,6 @@
     "description": "Label for the Export button in the export PDF options dialog"
   },
   "openInQuizdyApp": "Quizdyアプリで開く",
-  "open": "開く"
+  "open": "開く",
+  "installApp": "アプリをインストール"
 }

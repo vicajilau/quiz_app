@@ -1071,5 +1071,6 @@
     "description": "Label for the Export button in the export PDF options dialog"
   },
   "openInQuizdyApp": "Quizdy 앱에서 열기",
-  "open": "열기"
+  "open": "열기",
+  "installApp": "앱 설치"
 }

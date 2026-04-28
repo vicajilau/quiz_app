@@ -2481,5 +2481,6 @@
     "description": "Label for the Export button in the export PDF options dialog"
   },
   "openInQuizdyApp": "Obre a l'aplicació Quizdy",
-  "open": "Obre"
+  "open": "Obre",
+  "installApp": "Instal·lar App"
 }

@@ -2379,5 +2379,6 @@
     "description": "Label for the Export button in the export PDF options dialog"
   },
   "openInQuizdyApp": "Ireki Quizdy aplikazioan",
-  "open": "Ireki"
+  "open": "Ireki",
+  "installApp": "Instalatu aplikazioa"
 }

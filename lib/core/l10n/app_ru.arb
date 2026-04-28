@@ -1086,5 +1086,6 @@
     "description": "Label for the Export button in the export PDF options dialog"
   },
   "openInQuizdyApp": "Открыть в приложении Quizdy",
-  "open": "Открыть"
+  "open": "Открыть",
+  "installApp": "Установить приложение"
 }

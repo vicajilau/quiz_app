@@ -2861,5 +2861,9 @@
   "open": "Open",
   "@open": {
     "description": "Text for the open button."
+  },
+  "installApp": "Install App",
+  "@installApp": {
+    "description": "Label for the button to install the app from the store."
   }
 }

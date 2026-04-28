@@ -2433,5 +2433,6 @@
     "description": "Label for the Export button in the export PDF options dialog"
   },
   "openInQuizdyApp": "Apri nell'app Quizdy",
-  "open": "Apri"
+  "open": "Apri",
+  "installApp": "Installa App"
 }

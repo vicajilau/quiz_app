@@ -1071,5 +1071,6 @@
     "description": "Label for the Export button in the export PDF options dialog"
   },
   "openInQuizdyApp": "გახსნა Quizdy აპში",
-  "open": "გახსნა"
+  "open": "გახსნა",
+  "installApp": "აპლიკაციის ინსტალაცია"
 }

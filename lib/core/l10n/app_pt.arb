@@ -2470,5 +2470,6 @@
     "description": "Label for the Export button in the export PDF options dialog"
   },
   "openInQuizdyApp": "Abrir no app Quizdy",
-  "open": "Abrir"
+  "open": "Abrir",
+  "installApp": "Instalar App"
 }

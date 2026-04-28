@@ -2382,5 +2382,6 @@
     "description": "Label for the Export button in the export PDF options dialog"
   },
   "openInQuizdyApp": "Quizdy ऐप में खोलें",
-  "open": "खोलें"
+  "open": "खोलें",
+  "installApp": "ऐप इंस्टॉल करें"
 }
