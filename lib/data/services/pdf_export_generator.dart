@@ -258,8 +258,10 @@ class StudyPdfGenerator {
             children: [
               pw.Text(
                 '${i + 1}. ${_strip(q.text)}',
-                style:
-                    pw.TextStyle(fontSize: 11, fontWeight: pw.FontWeight.bold),
+                style: pw.TextStyle(
+                  fontSize: 11,
+                  fontWeight: pw.FontWeight.bold,
+                ),
               ),
               ..._inlineEquationWidgets(q.text, latexImages),
               if (q.options.isNotEmpty) ...[
@@ -343,8 +345,10 @@ class StudyPdfGenerator {
             children: [
               pw.Text(
                 '${i + 1}. ',
-                style:
-                    pw.TextStyle(fontSize: 10, fontWeight: pw.FontWeight.bold),
+                style: pw.TextStyle(
+                  fontSize: 10,
+                  fontWeight: pw.FontWeight.bold,
+                ),
               ),
               pw.Expanded(
                 child: pw.Column(
@@ -362,20 +366,22 @@ class StudyPdfGenerator {
                     if (correctLabels.isNotEmpty)
                       ...q.correctAnswers
                           .where((idx) => idx < q.options.length)
-                          .expand((idx) => [
-                            pw.Text(
-                              '${String.fromCharCode(65 + idx)}. ${_strip(q.options[idx])}',
-                              style: pw.TextStyle(
-                                fontSize: 10,
-                                fontWeight: pw.FontWeight.bold,
-                                color: PdfColors.green800,
+                          .expand(
+                            (idx) => [
+                              pw.Text(
+                                '${String.fromCharCode(65 + idx)}. ${_strip(q.options[idx])}',
+                                style: pw.TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: pw.FontWeight.bold,
+                                  color: PdfColors.green800,
+                                ),
                               ),
-                            ),
-                            ..._inlineEquationWidgets(
-                              q.options[idx],
-                              latexImages,
-                            ),
-                          ])
+                              ..._inlineEquationWidgets(
+                                q.options[idx],
+                                latexImages,
+                              ),
+                            ],
+                          )
                     else if (q.explanation.isNotEmpty) ...[
                       pw.Text(
                         _strip(q.explanation),

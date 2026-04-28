@@ -19,6 +19,8 @@ jobs:
         with:
           channel: "stable"
       - run: flutter pub get
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
       - run: flutter analyze lib test
       - name: Check for untranslated messages
         run: |

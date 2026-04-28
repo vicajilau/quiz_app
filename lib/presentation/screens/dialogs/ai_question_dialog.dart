@@ -328,7 +328,11 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
                               isError: message.isError,
                               aiServiceName: message.isUser
                                   ? null
-                                  : AiModelCatalog.providerDisplayNames[AiModelCatalog.forModelId(_selectedModel ?? '')?.providerId ?? ''],
+                                  : AiModelCatalog
+                                        .providerDisplayNames[AiModelCatalog.forModelId(
+                                          _selectedModel ?? '',
+                                        )?.providerId ??
+                                        ''],
                               onRetry: message.isError
                                   ? () => _retryLastQuestion(messageIndex)
                                   : null,

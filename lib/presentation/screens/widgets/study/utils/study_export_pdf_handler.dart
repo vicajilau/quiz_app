@@ -54,10 +54,8 @@ Future<void> handleExportPdf({
       ? context.read<StudyExecutionBloc>().state
       : null;
 
-  final String title =
-      documentTitle ?? studyState?.documentTitle ?? '';
-  final String? summary =
-      documentSummary ?? studyState?.documentSummary;
+  final String title = documentTitle ?? studyState?.documentTitle ?? '';
+  final String? summary = documentSummary ?? studyState?.documentSummary;
   final List<StudyChunk> chunks = studyChunks ?? studyState?.chunks ?? const [];
 
   final hasStudy = chunks.isNotEmpty;
@@ -77,19 +75,19 @@ Future<void> handleExportPdf({
     final result = await showDialog<PdfExportOptions>(
       context: context,
       barrierDismissible: false,
-      builder: (_) => ExportPdfOptionsDialog(
-        hasStudy: hasStudy,
-        hasQuestions: true,
-      ),
+      builder: (_) =>
+          ExportPdfOptionsDialog(hasStudy: hasStudy, hasQuestions: true),
     );
     if (result == null || !context.mounted) return;
     options = result;
   }
 
-  final exportQuestions =
-      options.includeQuestions ? questions : const <Question>[];
-  final exportChunks =
-      (hasStudy && options.includeStudy) ? chunks : const <StudyChunk>[];
+  final exportQuestions = options.includeQuestions
+      ? questions
+      : const <Question>[];
+  final exportChunks = (hasStudy && options.includeStudy)
+      ? chunks
+      : const <StudyChunk>[];
 
   try {
     final equations = _collectEquations(chunks, exportQuestions);

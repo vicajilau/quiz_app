@@ -52,7 +52,8 @@ class _InteractiveStepperField extends StatefulWidget {
   const _InteractiveStepperField({required this.initialValue});
 
   @override
-  State<_InteractiveStepperField> createState() => _InteractiveStepperFieldState();
+  State<_InteractiveStepperField> createState() =>
+      _InteractiveStepperFieldState();
 }
 
 class _InteractiveStepperFieldState extends State<_InteractiveStepperField> {

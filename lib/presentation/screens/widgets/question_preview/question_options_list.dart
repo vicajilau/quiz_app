@@ -72,15 +72,19 @@ class QuestionOptionsList extends StatelessWidget {
                   ),
                 ),
                 child: isCorrect
-                    ? const Icon(LucideIcons.check, size: 14, color: Colors.white)
+                    ? const Icon(
+                        LucideIcons.check,
+                        size: 14,
+                        color: Colors.white,
+                      )
                     : Text(
-                      String.fromCharCode(65 + idx),
-                      style: TextStyle(
-                        color: Theme.of(context).hintColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w800,
+                        String.fromCharCode(65 + idx),
+                        style: TextStyle(
+                          color: Theme.of(context).hintColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
-                    ),
               ),
               const SizedBox(width: 14),
               // Option Text

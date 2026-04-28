@@ -19,6 +19,7 @@ import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/quizdy_bloc_observer.dart';
 import 'package:quizdy/routes/app_router.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:quizdy/core/deep_link_handler.dart';
 
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/file_handler.dart';
@@ -40,6 +41,7 @@ void main() async {
   setUrlStrategy(null);
   await ServiceLocator.setup();
   await initAppRouter();
+  await DeepLinkHandler.registerProtocol();
 
   Bloc.observer = QuizdyBlocObserver();
 
@@ -65,10 +67,12 @@ class _QuizApplicationState extends State<QuizApplication>
         fileBloc.add(FileDropped(filePath));
       }
     });
+    DeepLinkHandler.initialize();
   }
 
   @override
   void dispose() {
+    DeepLinkHandler.dispose();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }

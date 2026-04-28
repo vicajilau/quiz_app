@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix: AI Assistant button in question cards now updates instantly when the API key is added or removed in Settings.
 - ux(study): Added Edit and Delete action buttons to study section cards, with hover reveal on desktop, expandable toggle on mobile, and direct delete shortcut when no edit action is available.
 - ux(quiz): Added quiz question design adjustments.
+- feat(deeplinks): Added App Links support for Android (`assetlinks.json`) and Universal Links support for iOS (`apple-app-site-association`) with pre-configured certificate fingerprints to enable seamless cross-platform deeplink testing.
+- feat(web): Enhanced web banner with automatic fallback to sample.quiz for convenient deeplink testing without manual URL parameter entry.
 
 ## [1.12.0] - 2026-04-17
 

@@ -19,8 +19,7 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'Default', type: QuizdyLoading)
-Widget buildQuizdyLoadingUseCase(BuildContext context) =>
-    const QuizdyLoading();
+Widget buildQuizdyLoadingUseCase(BuildContext context) => const QuizdyLoading();
 
 @widgetbook.UseCase(name: 'Interactive', type: QuizdyLoading)
 Widget buildInteractiveQuizdyLoadingUseCase(BuildContext context) {

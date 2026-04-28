@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "es.victorcarreras.quiz_app",
+      "sha256_cert_fingerprints": [
+        "45:F1:10:E2:22:7F:EE:9D:00:29:50:8E:F8:33:00:E4:5E:96:79:D7:2D:0C:CA:A9:8F:E7:4A:56:3B:C9:69:FD",
+        "5B:06:AD:2B:9A:D2:E6:CF:B0:E4:22:4A:E9:B6:96:59:EE:DE:3C:01:91:BA:44:F6:6F:97:DF:12:C0:0F:52:58"
+      ]
+    }
+  }
+]

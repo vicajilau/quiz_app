@@ -89,7 +89,8 @@ Widget buildQuizdyTextFieldUseCase(BuildContext context) {
           title: 'Multiline',
           child: QuizdyTextField(
             controller: TextEditingController(
-              text: 'This is a multiline text field.\nIt supports multiple lines.',
+              text:
+                  'This is a multiline text field.\nIt supports multiple lines.',
             ),
             hint: 'Type a description',
             minLines: 3,
@@ -103,11 +104,26 @@ Widget buildQuizdyTextFieldUseCase(BuildContext context) {
 
 @widgetbook.UseCase(name: 'Interactive', type: QuizdyTextField)
 Widget buildInteractiveQuizdyTextFieldUseCase(BuildContext context) {
-  final hint = context.knobs.string(label: 'Hint', initialValue: 'Type something...');
-  final errorText = context.knobs.stringOrNull(label: 'Error text', initialValue: null);
-  final readOnly = context.knobs.boolean(label: 'Read only', initialValue: false);
-  final obscureText = context.knobs.boolean(label: 'Obscure text', initialValue: false);
-  final suffixText = context.knobs.stringOrNull(label: 'Suffix text', initialValue: null);
+  final hint = context.knobs.string(
+    label: 'Hint',
+    initialValue: 'Type something...',
+  );
+  final errorText = context.knobs.stringOrNull(
+    label: 'Error text',
+    initialValue: null,
+  );
+  final readOnly = context.knobs.boolean(
+    label: 'Read only',
+    initialValue: false,
+  );
+  final obscureText = context.knobs.boolean(
+    label: 'Obscure text',
+    initialValue: false,
+  );
+  final suffixText = context.knobs.stringOrNull(
+    label: 'Suffix text',
+    initialValue: null,
+  );
   final minLines = context.knobs.int.slider(
     label: 'Min lines',
     initialValue: 1,

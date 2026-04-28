@@ -70,7 +70,10 @@ void main() {
         home: Center(
           child: SizedBox(
             width: 200,
-            child: QuizdyLatexText(longLatexText, style: TextStyle(fontSize: 20)),
+            child: QuizdyLatexText(
+              longLatexText,
+              style: TextStyle(fontSize: 20),
+            ),
           ),
         ),
       ),
@@ -93,7 +96,10 @@ void main() {
     await tester.pumpWidget(
       const MaterialApp(
         home: Center(
-          child: QuizdyLatexText(textWithDisplayMath, style: TextStyle(fontSize: 20)),
+          child: QuizdyLatexText(
+            textWithDisplayMath,
+            style: TextStyle(fontSize: 20),
+          ),
         ),
       ),
     );

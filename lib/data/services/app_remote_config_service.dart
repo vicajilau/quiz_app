@@ -221,7 +221,9 @@ class AppRemoteConfigService {
     } else if (responseData is Map<String, dynamic>) {
       configMap = responseData;
     } else {
-      throw Exception('Remote config payload must be a JSON object or a string');
+      throw Exception(
+        'Remote config payload must be a JSON object or a string',
+      );
     }
 
     printInDebug('[AppRemoteConfigService] raw_body: $configMap');

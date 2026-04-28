@@ -14,7 +14,15 @@ apps:
     plugs:
       - network
       - home
+    slots:
+      - dbus-quiz-app
     desktop: usr/share/applications/quiz-app.desktop
+
+slots:
+  dbus-quiz-app:
+    interface: dbus
+    bus: session
+    name: es.victorcarreras.quiz_app
 
 parts:
   quiz-app:

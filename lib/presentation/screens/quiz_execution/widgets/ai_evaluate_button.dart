@@ -15,6 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+
 /// A button that triggers AI evaluation of an essay answer.
 class AiEvaluateButton extends StatelessWidget {
   /// Whether an evaluation is currently in progress.

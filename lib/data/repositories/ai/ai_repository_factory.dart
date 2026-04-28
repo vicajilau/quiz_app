@@ -31,8 +31,8 @@ class AiRepositoryFactory {
   AiRepositoryFactory({
     required Dio dioClient,
     required ConfigurationService configurationService,
-  })  : _dioClient = dioClient,
-        _configurationService = configurationService;
+  }) : _dioClient = dioClient,
+       _configurationService = configurationService;
 
   /// Returns a repository configured for [modelId].
   ///
@@ -71,8 +71,8 @@ class AiRepositoryFactory {
   /// Falls back to [AiModelCatalog.defaultModelId] when no preference is saved.
   Future<AiRepository> createDefault() async {
     final savedModel = await _configurationService.getDefaultAIModel();
-    final modelId = (savedModel != null &&
-            AiModelCatalog.forModelId(savedModel) != null)
+    final modelId =
+        (savedModel != null && AiModelCatalog.forModelId(savedModel) != null)
         ? savedModel
         : AiModelCatalog.defaultModelId;
     return createForModel(modelId);

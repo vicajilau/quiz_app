@@ -2853,5 +2853,17 @@
   "exportButton": "Export",
   "@exportButton": {
     "description": "Label for the Export button in the export PDF options dialog"
+  },
+  "openInQuizdyApp": "Open in the Quizdy App",
+  "@openInQuizdyApp": {
+    "description": "Text displayed in the smart web banner to open the native app."
+  },
+  "open": "Open",
+  "@open": {
+    "description": "Text for the open button."
+  },
+  "installApp": "Install App",
+  "@installApp": {
+    "description": "Label for the button to install the app from the store."
   }
 }

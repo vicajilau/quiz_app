@@ -17,6 +17,13 @@ G_DEFINE_TYPE(MyApplication, my_application, GTK_TYPE_APPLICATION)
 // Implements GApplication::activate.
 static void my_application_activate(GApplication *application) {
   MyApplication *self = MY_APPLICATION(application);
+
+  GList* windows = gtk_application_get_windows(GTK_APPLICATION(application));
+  if (windows) {
+    gtk_window_present(GTK_WINDOW(windows->data));
+    return;
+  }
+
   GtkWindow *window =
       GTK_WINDOW(gtk_application_window_new(GTK_APPLICATION(application)));
 
@@ -78,13 +85,18 @@ static void my_application_activate(GApplication *application) {
   g_autoptr(FlMethodChannel) channel = fl_method_channel_new(
       messenger, "quiz.file", FL_METHOD_CODEC(fl_standard_method_codec_new()));
 
-  // Send file argument if exists
+  // Send file argument if exists and it is not a deep link URL
   if (self->dart_entrypoint_arguments &&
       self->dart_entrypoint_arguments[0] != nullptr) {
-    g_autoptr(FlValue) file_path =
-        fl_value_new_string(self->dart_entrypoint_arguments[0]);
-    fl_method_channel_invoke_method(channel, "openFile", file_path, nullptr,
-                                    nullptr, nullptr);
+    const gchar *arg = self->dart_entrypoint_arguments[0];
+    // Ignore URL schemes so they are handled by app_links instead of openFile
+    if (!g_str_has_prefix(arg, "quizdy://") && 
+        !g_str_has_prefix(arg, "http://") && 
+        !g_str_has_prefix(arg, "https://")) {
+      g_autoptr(FlValue) file_path = fl_value_new_string(arg);
+      fl_method_channel_invoke_method(channel, "openFile", file_path, nullptr,
+                                      nullptr, nullptr);
+    }
   }
 }
 
@@ -106,7 +118,7 @@ static gboolean my_application_local_command_line(GApplication *application,
   g_application_activate(application);
   *exit_status = 0;
 
-  return TRUE;
+  return FALSE;
 }
 
 // Implements GApplication::startup.
@@ -154,5 +166,5 @@ MyApplication *my_application_new() {
 
   return MY_APPLICATION(g_object_new(my_application_get_type(),
                                      "application-id", APPLICATION_ID, "flags",
-                                     G_APPLICATION_NON_UNIQUE, nullptr));
+                                     G_APPLICATION_HANDLES_COMMAND_LINE | G_APPLICATION_HANDLES_OPEN, nullptr));
 }

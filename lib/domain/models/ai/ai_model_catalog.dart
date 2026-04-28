@@ -48,10 +48,7 @@ abstract final class AiModelCatalog {
   };
 
   /// Ordered list of provider IDs (determines dropdown order).
-  static const List<String> providerIds = [
-    geminiProviderId,
-    openaiProviderId,
-  ];
+  static const List<String> providerIds = [geminiProviderId, openaiProviderId];
 
   static const String defaultModelId = 'gemini-flash-latest';
 

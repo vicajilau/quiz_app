@@ -2429,6 +2429,8 @@
   "exportButton": "导出",
   "@exportButton": {
     "description": "Label for the Export button in the export PDF options dialog"
-  }
-
+  },
+  "openInQuizdyApp": "在 Quizdy 应用中打开",
+  "open": "打开",
+  "installApp": "安装应用"
 }

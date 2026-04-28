@@ -2616,5 +2616,8 @@
   "exportButton": "Exportar",
   "@exportButton": {
     "description": "Label for the Export button in the export PDF options dialog"
-  }
+  },
+  "openInQuizdyApp": "Abrir en la app de Quizdy",
+  "open": "Abrir",
+  "installApp": "Instalar App"
 }

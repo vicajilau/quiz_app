@@ -743,8 +743,7 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                 questions: cachedQuizFile.questions,
                 documentTitle: cachedQuizFile.metadata.title,
                 documentSummary: cachedQuizFile.metadata.description,
-                studyChunks:
-                    cachedQuizFile.study?.content.cache ?? const [],
+                studyChunks: cachedQuizFile.study?.content.cache ?? const [],
               ),
               isPlayEnabled: cachedQuizFile.questions.any((q) => q.isEnabled),
               onPlay: () async {
