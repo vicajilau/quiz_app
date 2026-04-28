@@ -84,7 +84,10 @@ Widget buildQuizdySelectableCardUseCase(BuildContext context) {
 
 @widgetbook.UseCase(name: 'Interactive', type: QuizdySelectableCard)
 Widget buildInteractiveQuizdySelectableCardUseCase(BuildContext context) {
-  final title = context.knobs.string(label: 'Title', initialValue: 'Multiple choice');
+  final title = context.knobs.string(
+    label: 'Title',
+    initialValue: 'Multiple choice',
+  );
   final description = context.knobs.string(
     label: 'Description',
     initialValue: 'One correct answer per question',
@@ -154,7 +157,9 @@ class _InteractiveSelectableCardState
       description: widget.description,
       isSelected: _isSelected,
       isLocked: widget.isLocked,
-      onTap: widget.isLocked ? null : () => setState(() => _isSelected = !_isSelected),
+      onTap: widget.isLocked
+          ? null
+          : () => setState(() => _isSelected = !_isSelected),
       bottomContent: widget.hasBottomContent
           ? Container(
               padding: const EdgeInsets.all(12),

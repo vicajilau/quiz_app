@@ -31,9 +31,8 @@ import 'package:quizdy/core/extensions/string_extension.dart';
 /// BLoC for managing quiz execution state and logic.
 class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
   final AiRepositoryFactory aiRepositoryFactory;
-  QuizExecutionBloc({
-    required this.aiRepositoryFactory,
-  }) : super(QuizExecutionInitial()) {
+  QuizExecutionBloc({required this.aiRepositoryFactory})
+    : super(QuizExecutionInitial()) {
     // Handle quiz start
     on<QuizExecutionStarted>((event, emit) {
       emit(
@@ -257,7 +256,8 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
           _emitQuizCompleted(
             emit,
             currentState,
-            isAiAvailable: await ServiceLocator.getIt<ConfigurationService>().getIsAiAvailable(),
+            isAiAvailable: await ServiceLocator.getIt<ConfigurationService>()
+                .getIsAiAvailable(),
           );
           return;
         }

@@ -34,7 +34,6 @@ Widget buildTertiaryQuizdyButtonUseCase(BuildContext context) =>
 Widget buildWarningQuizdyButtonUseCase(BuildContext context) =>
     _ButtonTypeCard(type: QuizdyButtonType.warning);
 
-
 @widgetbook.UseCase(name: 'Interactive', type: QuizdyButton)
 Widget buildInteractiveQuizdyButtonUseCase(BuildContext context) {
   final type = context.knobs.object.dropdown<QuizdyButtonType>(
@@ -44,10 +43,22 @@ Widget buildInteractiveQuizdyButtonUseCase(BuildContext context) {
     labelBuilder: (t) => t.name,
   );
   final title = context.knobs.string(label: 'Title', initialValue: 'Click me');
-  final isLoading = context.knobs.boolean(label: 'Is loading', initialValue: false);
-  final disabled = context.knobs.boolean(label: 'Disabled', initialValue: false);
-  final expanded = context.knobs.boolean(label: 'Expanded', initialValue: false);
-  final showIcon = context.knobs.boolean(label: 'Show icon', initialValue: false);
+  final isLoading = context.knobs.boolean(
+    label: 'Is loading',
+    initialValue: false,
+  );
+  final disabled = context.knobs.boolean(
+    label: 'Disabled',
+    initialValue: false,
+  );
+  final expanded = context.knobs.boolean(
+    label: 'Expanded',
+    initialValue: false,
+  );
+  final showIcon = context.knobs.boolean(
+    label: 'Show icon',
+    initialValue: false,
+  );
 
   return QuizdyButton(
     type: type,

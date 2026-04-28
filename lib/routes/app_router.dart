@@ -60,9 +60,8 @@ GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
     ),
     GoRoute(
       path: AppRoutes.home,
-      builder: (context, state) => HomeScreen(
-        initialDataUrl: state.uri.queryParameters['data'],
-      ),
+      builder: (context, state) =>
+          HomeScreen(initialDataUrl: state.uri.queryParameters['data']),
     ),
     GoRoute(
       path: AppRoutes.privacyPolicy,

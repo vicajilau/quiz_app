@@ -42,12 +42,13 @@ class CardStatusBar extends StatelessWidget {
     final icon = isDuplicated
         ? LucideIcons.copy
         : (isModified ? LucideIcons.refreshCw : LucideIcons.plusCircle);
-    final label = (isDuplicated
-            ? AppLocalizations.of(context)!.duplicatedTag
-            : (isNew
-                ? AppLocalizations.of(context)!.newTag
-                : AppLocalizations.of(context)!.modifiedTag))
-        .toUpperCase();
+    final label =
+        (isDuplicated
+                ? AppLocalizations.of(context)!.duplicatedTag
+                : (isNew
+                      ? AppLocalizations.of(context)!.newTag
+                      : AppLocalizations.of(context)!.modifiedTag))
+            .toUpperCase();
 
     return Container(
       width: double.infinity,

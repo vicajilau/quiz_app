@@ -182,7 +182,10 @@ class QuestionOptionTile extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: QuizdyLatexText(translatedOption, style: optionTextStyle),
+                child: QuizdyLatexText(
+                  translatedOption,
+                  style: optionTextStyle,
+                ),
               ),
               ?statusBadge,
             ],

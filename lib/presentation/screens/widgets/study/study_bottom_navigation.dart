@@ -88,8 +88,7 @@ class StudyBottomNavigation extends StatelessWidget {
                         c.status == StudyChunkState.completed ||
                         c.status == StudyChunkState.downloaded,
                   );
-                  final hasQuestions =
-                      currentQuizFile.questions.isNotEmpty;
+                  final hasQuestions = currentQuizFile.questions.isNotEmpty;
 
                   return StudyIndexFooterWidget(
                     localizations: localizations,

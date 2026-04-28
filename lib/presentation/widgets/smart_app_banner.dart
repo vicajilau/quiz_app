@@ -80,7 +80,10 @@ class _SmartAppBannerState extends State<SmartAppBanner> {
           child: SafeArea(
             bottom: false,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8.0,
+                vertical: 8.0,
+              ),
               child: Row(
                 children: [
                   IconButton(
@@ -121,7 +124,8 @@ class _SmartAppBannerState extends State<SmartAppBanner> {
                         Text(
                           l10n.openInQuizdyApp,
                           style: theme.textTheme.bodySmall?.copyWith(
-                            color: theme.colorScheme.onPrimaryContainer.withAlpha(200),
+                            color: theme.colorScheme.onPrimaryContainer
+                                .withAlpha(200),
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -138,7 +142,10 @@ class _SmartAppBannerState extends State<SmartAppBanner> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
                     ),
                     child: Text(l10n.open),
                   ),

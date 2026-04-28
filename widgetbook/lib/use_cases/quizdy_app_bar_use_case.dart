@@ -75,10 +75,22 @@ Widget buildQuizdyAppBarUseCase(BuildContext context) {
 
 @widgetbook.UseCase(name: 'Interactive', type: QuizdyAppBar)
 Widget buildInteractiveQuizdyAppBarUseCase(BuildContext context) {
-  final titleText = context.knobs.string(label: 'Title', initialValue: 'Page Title');
-  final showLeading = context.knobs.boolean(label: 'Show leading', initialValue: true);
-  final showActions = context.knobs.boolean(label: 'Show actions', initialValue: false);
-  final leadingTooltip = context.knobs.stringOrNull(label: 'Leading tooltip', initialValue: null);
+  final titleText = context.knobs.string(
+    label: 'Title',
+    initialValue: 'Page Title',
+  );
+  final showLeading = context.knobs.boolean(
+    label: 'Show leading',
+    initialValue: true,
+  );
+  final showActions = context.knobs.boolean(
+    label: 'Show actions',
+    initialValue: false,
+  );
+  final leadingTooltip = context.knobs.stringOrNull(
+    label: 'Leading tooltip',
+    initialValue: null,
+  );
   final useCustomBg = context.knobs.boolean(
     label: 'Custom background color',
     initialValue: false,
@@ -116,10 +128,7 @@ Widget buildInteractiveQuizdyAppBarUseCase(BuildContext context) {
           foregroundColor: useCustomFg ? foregroundColor : null,
           actions: showActions
               ? [
-                  IconButton(
-                    icon: const Icon(Icons.share),
-                    onPressed: () {},
-                  ),
+                  IconButton(icon: const Icon(Icons.share), onPressed: () {}),
                   IconButton(
                     icon: const Icon(Icons.more_vert),
                     onPressed: () {},

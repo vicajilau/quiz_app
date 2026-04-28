@@ -72,7 +72,8 @@ Widget buildQuizdyLatexTextUseCase(BuildContext context) {
 Widget buildInteractiveQuizdyLatexTextUseCase(BuildContext context) {
   final text = context.knobs.string(
     label: 'Text',
-    initialValue: r'The area of a circle is $A = \pi r^2$ where $r$ is the radius.',
+    initialValue:
+        r'The area of a circle is $A = \pi r^2$ where $r$ is the radius.',
   );
   final fontSize = context.knobs.double.slider(
     label: 'Font size',
@@ -83,7 +84,12 @@ Widget buildInteractiveQuizdyLatexTextUseCase(BuildContext context) {
   );
   final fontWeight = context.knobs.object.dropdown<FontWeight>(
     label: 'Font weight',
-    options: [FontWeight.w400, FontWeight.w500, FontWeight.w600, FontWeight.bold],
+    options: [
+      FontWeight.w400,
+      FontWeight.w500,
+      FontWeight.w600,
+      FontWeight.bold,
+    ],
     initialOption: FontWeight.w400,
     labelBuilder: (w) {
       if (w == FontWeight.w400) return 'Regular (400)';

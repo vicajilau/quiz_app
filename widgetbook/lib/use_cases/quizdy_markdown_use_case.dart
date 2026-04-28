@@ -30,12 +30,14 @@ Widget buildQuizdyMarkdownUseCase(BuildContext context) {
         SizedBox(height: 10.0),
         _MarkdownCard(
           title: 'Headings',
-          data: '# Heading 1\n\n## Heading 2\n\n### Heading 3\n\nBody text below.',
+          data:
+              '# Heading 1\n\n## Heading 2\n\n### Heading 3\n\nBody text below.',
         ),
         SizedBox(height: 10.0),
         _MarkdownCard(
           title: 'Bold, italic & lists',
-          data: '**Bold text** and *italic text*.\n\n'
+          data:
+              '**Bold text** and *italic text*.\n\n'
               '- Item one\n'
               '- Item two\n'
               '- Item three',
@@ -43,7 +45,8 @@ Widget buildQuizdyMarkdownUseCase(BuildContext context) {
         SizedBox(height: 10.0),
         _MarkdownCard(
           title: 'Inline code & code block',
-          data: 'Use `print()` to output values.\n\n'
+          data:
+              'Use `print()` to output values.\n\n'
               '```dart\nvoid main() {\n  print("Hello, Quizdy!");\n}\n```',
         ),
         SizedBox(height: 10.0),
@@ -54,7 +57,8 @@ Widget buildQuizdyMarkdownUseCase(BuildContext context) {
         SizedBox(height: 10.0),
         _MarkdownCard(
           title: 'With LaTeX (block)',
-          data: r'The Pythagorean theorem:'
+          data:
+              r'The Pythagorean theorem:'
               '\n\n'
               r'$$a^2 + b^2 = c^2$$',
         ),

@@ -47,8 +47,8 @@ class GeminiRepository implements AiRepository {
     required Dio dioClient,
     required ConfigurationService configurationService,
     required this.modelId,
-  })  : _dioClient = dioClient,
-        _configurationService = configurationService;
+  }) : _dioClient = dioClient,
+       _configurationService = configurationService;
 
   @override
   String get providerId => AiModelCatalog.geminiProviderId;
@@ -89,10 +89,10 @@ class GeminiRepository implements AiRepository {
     }
     return switch (e.response?.statusCode) {
       302 => Exception(
-          localizations.aiErrorRedirect(
-            e.response?.headers['location']?.first ?? '',
-          ),
+        localizations.aiErrorRedirect(
+          e.response?.headers['location']?.first ?? '',
         ),
+      ),
       400 => Exception(_extractErrorDetail(e, localizations)),
       403 => Exception(localizations.invalidApiKeyError),
       429 => Exception(localizations.rateLimitError),
@@ -150,8 +150,7 @@ class GeminiRepository implements AiRepository {
       throw Exception(localizations.geminiApiKeyNotConfigured);
     }
 
-    final url =
-        '${_baseUrl()}/models/$modelId:generateContent?key=$apiKey';
+    final url = '${_baseUrl()}/models/$modelId:generateContent?key=$apiKey';
 
     try {
       final response = await _dioClient.post(
@@ -220,8 +219,7 @@ class GeminiRepository implements AiRepository {
         'Content-Type: ${file.mimeType}\r\n\r\n',
       );
       final List<int> footer = utf8.encode('\r\n--$boundary--\r\n');
-      final body =
-          Uint8List.fromList([...metadata, ...file.bytes, ...footer]);
+      final body = Uint8List.fromList([...metadata, ...file.bytes, ...footer]);
 
       final response = await _dioClient.post(
         url,
@@ -266,8 +264,7 @@ class GeminiRepository implements AiRepository {
       throw Exception(localizations.geminiApiKeyNotConfigured);
     }
 
-    final url =
-        '${_baseUrl()}/models/$modelId:generateContent?key=$apiKey';
+    final url = '${_baseUrl()}/models/$modelId:generateContent?key=$apiKey';
 
     try {
       final response = await _dioClient.post(
@@ -279,10 +276,7 @@ class GeminiRepository implements AiRepository {
               'parts': [
                 {'text': prompt},
                 {
-                  'file_data': {
-                    'mime_type': fileMimeType,
-                    'file_uri': fileUri,
-                  },
+                  'file_data': {'mime_type': fileMimeType, 'file_uri': fileUri},
                 },
               ],
             },

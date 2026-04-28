@@ -59,8 +59,14 @@ Widget buildQuizdySwitchUseCase(BuildContext context) {
 
 @widgetbook.UseCase(name: 'Interactive', type: QuizdySwitch)
 Widget buildInteractiveQuizdySwitchUseCase(BuildContext context) {
-  final initialValue = context.knobs.boolean(label: 'Initial value', initialValue: false);
-  final disabled = context.knobs.boolean(label: 'Disabled', initialValue: false);
+  final initialValue = context.knobs.boolean(
+    label: 'Initial value',
+    initialValue: false,
+  );
+  final disabled = context.knobs.boolean(
+    label: 'Disabled',
+    initialValue: false,
+  );
   final useCustomColor = context.knobs.boolean(
     label: 'Custom track color',
     initialValue: false,

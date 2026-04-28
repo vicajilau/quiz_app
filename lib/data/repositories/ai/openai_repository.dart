@@ -41,8 +41,8 @@ class OpenAiRepository implements AiRepository {
     required Dio dioClient,
     required ConfigurationService configurationService,
     required this.modelId,
-  })  : _dioClient = dioClient,
-        _configurationService = configurationService;
+  }) : _dioClient = dioClient,
+       _configurationService = configurationService;
 
   @override
   String get providerId => AiModelCatalog.openaiProviderId;

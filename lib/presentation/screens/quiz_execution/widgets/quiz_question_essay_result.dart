@@ -75,7 +75,8 @@ class _QuizQuestionEssayResultState extends State<QuizQuestionEssayResult> {
     if (mounted) {
       setState(() {
         _isAIEnabled = aiEnabled;
-        _hasAPIKey = (geminiKey?.isNotEmpty ?? false) ||
+        _hasAPIKey =
+            (geminiKey?.isNotEmpty ?? false) ||
             (openaiKey?.isNotEmpty ?? false);
       });
     }
