@@ -2380,5 +2380,31 @@
   },
   "openInQuizdyApp": "Ireki Quizdy aplikazioan",
   "open": "Ireki",
-  "installApp": "Instalatu aplikazioa"
+  "installApp": "Instalatu aplikazioa",
+  "updateAvailableTitle": "Eguneratzea eskuragarri",
+  "@updateAvailableTitle": {
+    "description": "Title shown in the update banner when a newer app version is available."
+  },
+  "updateAvailableMessage": "Quizdy-ren {version} bertsioa eskuragarri dago.",
+  "@updateAvailableMessage": {
+    "description": "Subtitle in the update banner indicating which version is available.",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateButton": "Eguneratu",
+  "@updateButton": {
+    "description": "Label for the update button in the update banner."
+  },
+  "forceUpdateTitle": "Eguneratzea beharrezkoa",
+  "@forceUpdateTitle": {
+    "description": "Title of the force update dialog."
+  },
+  "forceUpdateMessage": "Derrigorrezko eguneratzea beharrezkoa da Quizdy erabiltzen jarraitzak. Mesedez, eguneratu aplikazioa.",
+  "@forceUpdateMessage": {
+    "description": "Body message of the force update dialog."
+  }
 }
+

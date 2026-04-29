@@ -2619,5 +2619,30 @@
   },
   "openInQuizdyApp": "Abrir en la app de Quizdy",
   "open": "Abrir",
-  "installApp": "Instalar App"
+  "installApp": "Instalar App",
+  "updateAvailableTitle": "Actualización disponible",
+  "@updateAvailableTitle": {
+    "description": "Title shown in the update banner when a newer app version is available."
+  },
+  "updateAvailableMessage": "La versión {version} de Quizdy está disponible.",
+  "@updateAvailableMessage": {
+    "description": "Subtitle in the update banner indicating which version is available.",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateButton": "Actualizar",
+  "@updateButton": {
+    "description": "Label for the update button in the update banner."
+  },
+  "forceUpdateTitle": "Actualización requerida",
+  "@forceUpdateTitle": {
+    "description": "Title of the force update dialog."
+  },
+  "forceUpdateMessage": "Se requiere una actualización obligatoria para continuar usando Quizdy. Por favor, actualiza la aplicación.",
+  "@forceUpdateMessage": {
+    "description": "Body message of the force update dialog."
+  }
 }
