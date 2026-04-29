@@ -117,7 +117,6 @@ class AppUpdateCubit extends Cubit<AppUpdateState> {
           '[AppUpdateCubit] Android immediate update unavailable: $e',
         );
       }
-      return;
     }
 
     emit(const AppUpdateForceRequired());
