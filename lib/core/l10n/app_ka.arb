@@ -1072,5 +1072,31 @@
   },
   "openInQuizdyApp": "გახსნა Quizdy აპში",
   "open": "გახსნა",
-  "installApp": "აპლიკაციის ინსტალაცია"
+  "installApp": "აპლიკაციის ინსტალაცია",
+  "updateAvailableTitle": "განახლება ხელმისაწვდომია",
+  "@updateAvailableTitle": {
+    "description": "Title shown in the update banner when a newer app version is available."
+  },
+  "updateAvailableMessage": "Quizdy-ს ვერსია {version} ხელმისაწვდომია.",
+  "@updateAvailableMessage": {
+    "description": "Subtitle in the update banner indicating which version is available.",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateButton": "განახლება",
+  "@updateButton": {
+    "description": "Label for the update button in the update banner."
+  },
+  "forceUpdateTitle": "საჭიროა განახლება",
+  "@forceUpdateTitle": {
+    "description": "Title of the force update dialog."
+  },
+  "forceUpdateMessage": "Quizdy-ს გამოყენების გასაგრძელებლად საჭიროა სავალდებულო განახლება. გთხოვთ, განაახლოთ აპი.",
+  "@forceUpdateMessage": {
+    "description": "Body message of the force update dialog."
+  }
 }
+

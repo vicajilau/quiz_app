@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ux(quiz): Added quiz question design adjustments.
 - feat(deeplinks): Added App Links support for Android (`assetlinks.json`) and Universal Links support for iOS (`apple-app-site-association`) with pre-configured certificate fingerprints to enable seamless cross-platform deeplink testing.
 - feat(web): Enhanced web banner with automatic fallback to sample.quiz for convenient deeplink testing without manual URL parameter entry.
+- feat: Add remote version checks and in-app updates.
 
 ## [1.12.0] - 2026-04-17
 

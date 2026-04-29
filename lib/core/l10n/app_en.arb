@@ -2865,5 +2865,30 @@
   "installApp": "Install App",
   "@installApp": {
     "description": "Label for the button to install the app from the store."
+  },
+  "updateAvailableTitle": "Update available",
+  "@updateAvailableTitle": {
+    "description": "Title shown in the update banner when a newer app version is available."
+  },
+  "updateAvailableMessage": "Version {version} of Quizdy is available.",
+  "@updateAvailableMessage": {
+    "description": "Subtitle in the update banner indicating which version is available.",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateButton": "Update",
+  "@updateButton": {
+    "description": "Label for the update button in the update banner."
+  },
+  "forceUpdateTitle": "Update required",
+  "@forceUpdateTitle": {
+    "description": "Title of the force update dialog."
+  },
+  "forceUpdateMessage": "A mandatory update is required to continue using Quizdy. Please update the app.",
+  "@forceUpdateMessage": {
+    "description": "Body message of the force update dialog."
   }
 }

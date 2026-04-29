@@ -2383,5 +2383,31 @@
   },
   "openInQuizdyApp": "Quizdyアプリで開く",
   "open": "開く",
-  "installApp": "アプリをインストール"
+  "installApp": "アプリをインストール",
+  "updateAvailableTitle": "アップデートが利用可能です",
+  "@updateAvailableTitle": {
+    "description": "Title shown in the update banner when a newer app version is available."
+  },
+  "updateAvailableMessage": "Quizdyのバージョン{version}が利用可能です。",
+  "@updateAvailableMessage": {
+    "description": "Subtitle in the update banner indicating which version is available.",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateButton": "アップデート",
+  "@updateButton": {
+    "description": "Label for the update button in the update banner."
+  },
+  "forceUpdateTitle": "アップデートが必要です",
+  "@forceUpdateTitle": {
+    "description": "Title of the force update dialog."
+  },
+  "forceUpdateMessage": "Quizdyを引き続き使用するには、強制アップデートが必要です。アプリをアップデートしてください。",
+  "@forceUpdateMessage": {
+    "description": "Body message of the force update dialog."
+  }
 }
+
