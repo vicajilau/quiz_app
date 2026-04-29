@@ -75,8 +75,7 @@ class AppUpdateCubit extends Cubit<AppUpdateState> {
     if (PlatformDetail.isAndroid) {
       try {
         final info = await InAppUpdate.checkForUpdate();
-        if (info.updateAvailability == UpdateAvailability.updateAvailable &&
-            info.flexibleUpdateAllowed) {
+        if (info.updateAvailability == UpdateAvailability.updateAvailable) {
           await InAppUpdate.startFlexibleUpdate();
         }
       } catch (e) {
@@ -98,22 +97,10 @@ class AppUpdateCubit extends Cubit<AppUpdateState> {
     if (PlatformDetail.isAndroid) {
       try {
         final info = await InAppUpdate.checkForUpdate();
-        printInDebug(
-          '[AppUpdateCubit] checkForUpdate result: '
-          'availability=${info.updateAvailability}, '
-          'immediateAllowed=${info.immediateUpdateAllowed}, '
-          'flexibleAllowed=${info.flexibleUpdateAllowed}',
-        );
         if (info.updateAvailability == UpdateAvailability.updateAvailable) {
-          // Skip immediateUpdateAllowed — it can be false in Internal Testing
-          // even when the update is genuinely available. Let Play decide.
-          final result = await InAppUpdate.performImmediateUpdate();
-          if (result == AppUpdateResult.success) {
-            emit(const AppUpdateUpToDate());
-            return;
-          }
-          // User dismissed or update failed — fall through to ForceUpdateDialog
-          // which blocks app usage via PopScope(canPop: false).
+          await InAppUpdate.performImmediateUpdate();
+          emit(const AppUpdateUpToDate());
+          return;
         }
       } catch (e) {
         // Expected in debug/sideloaded builds — Play In-App Updates only works
@@ -123,7 +110,5 @@ class AppUpdateCubit extends Cubit<AppUpdateState> {
         );
       }
     }
-
-    emit(const AppUpdateForceRequired());
   }
 }
