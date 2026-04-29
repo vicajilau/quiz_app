@@ -249,6 +249,10 @@
   "@fileNameLabel": {
     "description": "Beschriftung für die Dateiname-Eingabe."
   },
+  "fileNameHint": "Dateiname (erforderlich)",
+  "@fileNameHint": {
+    "description": "Hinweistext für die Dateiname-Eingabe."
+  },
   "fileDescriptionLabel": "Dateibeschreibung",
   "@fileDescriptionLabel": {
     "description": "Beschriftung für die Dateibeschreibung-Eingabe."

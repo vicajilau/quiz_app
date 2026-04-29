@@ -185,7 +185,7 @@
   "@requestFileNameTitle": {
     "description": "Título para o diálogo de solicitude do nome do ficheiro."
   },
-  "fileNameHint": "Nome do ficheiro",
+  "fileNameHint": "Nome do ficheiro (obrigatoria)",
   "@fileNameHint": {
     "description": "Texto de suxestión para a entrada do nome do ficheiro."
   },

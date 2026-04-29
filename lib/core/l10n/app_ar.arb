@@ -258,6 +258,10 @@
   "@fileNameLabel": {
     "description": "Label for file name input."
   },
+  "fileNameHint": "اسم الملف (مطلوب)",
+  "@fileNameHint": {
+    "description": "Hint text for file name input."
+  },
   "fileDescriptionLabel": "وصف الملف",
   "@fileDescriptionLabel": {
     "description": "Label for file description input."

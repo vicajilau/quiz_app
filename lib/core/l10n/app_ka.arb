@@ -129,7 +129,7 @@
   "authorRequiredError": "ავტორის მითითება აუცილებელია.",
   "requiredFieldsError": "ყველა აუცილებელი ველი უნდა შეივსოს.",
   "requestFileNameTitle": "შეიყვანეთ ქვიზ ფაილის სახელი",
-  "fileNameHint": "ფაილის სახელი",
+  "fileNameHint": "ფაილის სახელი (სავალდებულო)",
   "emptyFileNameMessage": "ფაილის სახელი ვერ იქნება ცარიელი.",
   "acceptButton": "მიღება",
   "saveTooltip": "ფაილის შენახვა",

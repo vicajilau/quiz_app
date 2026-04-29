@@ -185,7 +185,7 @@
   "@requestFileNameTitle": {
     "description": "Fitxategiaren izena eskatzeko elkarrizketaren izenburua."
   },
-  "fileNameHint": "Fitxategiaren izena",
+  "fileNameHint": "Fitxategiaren izena (derrigorra)",
   "@fileNameHint": {
     "description": "Fitxategiaren izena sartzeko aholku testua."
   },
