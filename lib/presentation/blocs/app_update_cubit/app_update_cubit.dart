@@ -83,9 +83,7 @@ class AppUpdateCubit extends Cubit<AppUpdateState> {
       } catch (e) {
         // Expected in debug/sideloaded builds — Play In-App Updates only works
         // for apps installed from the Play Store (ERROR_APP_NOT_OWNED otherwise).
-        printInDebug(
-          '[AppUpdateCubit] Android flexible update unavailable: $e',
-        );
+        printInDebug('[AppUpdateCubit] Android flexible update error: $e');
       }
       emit(const AppUpdateUpToDate());
       return;
@@ -103,19 +101,13 @@ class AppUpdateCubit extends Cubit<AppUpdateState> {
         if (info.updateAvailability == UpdateAvailability.updateAvailable ||
             info.updateAvailability ==
                 UpdateAvailability.developerTriggeredUpdateInProgress) {
-          final result = await InAppUpdate.performImmediateUpdate();
-          if (result == AppUpdateResult.success) {
-            emit(const AppUpdateUpToDate());
-            return;
-          }
+          await InAppUpdate.performImmediateUpdate();
           // User dismissed — fall through to ForceUpdateDialog
         }
       } catch (e) {
         // Expected in debug/sideloaded builds — Play In-App Updates only works
         // for apps installed from the Play Store (ERROR_APP_NOT_OWNED otherwise).
-        printInDebug(
-          '[AppUpdateCubit] Android immediate update unavailable: $e',
-        );
+        printInDebug('[AppUpdateCubit] Android immediate update error: $e');
       }
     }
 
