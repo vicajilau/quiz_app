@@ -65,7 +65,7 @@ class AppUpdateCubit extends Cubit<AppUpdateState> {
           await handleForceUpdate();
       }
     } catch (e) {
-      printInDebug('[AppUpdateCubit] version check failed: $e');
+      printInDebug('[AppUpdateCubit] version check failed error: $e');
       emit(const AppUpdateUpToDate());
     }
   }
@@ -83,7 +83,7 @@ class AppUpdateCubit extends Cubit<AppUpdateState> {
       } catch (e) {
         // Expected in debug/sideloaded builds — Play In-App Updates only works
         // for apps installed from the Play Store (ERROR_APP_NOT_OWNED otherwise).
-        printInDebug('[AppUpdateCubit] Android flexible update: $e');
+        printInDebug('[AppUpdateCubit] Android flexible update error: $e');
       }
       emit(const AppUpdateUpToDate());
       return;
