@@ -72,9 +72,8 @@ class ServiceLocator {
     );
 
     getIt.registerFactory<AppUpdateCubit>(
-      () => AppUpdateCubit(
-        remoteConfigService: getIt<AppRemoteConfigService>(),
-      ),
+      () =>
+          AppUpdateCubit(remoteConfigService: getIt<AppRemoteConfigService>()),
     );
 
     getIt.registerSingleton<AiRepositoryFactory>(

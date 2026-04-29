@@ -34,10 +34,7 @@ class ForceUpdateDialog extends StatelessWidget {
         title: Text(l10n.forceUpdateTitle),
         content: Text(l10n.forceUpdateMessage),
         actions: [
-          QuizdyButton(
-            title: l10n.updateButton,
-            onPressed: onUpdatePressed,
-          ),
+          QuizdyButton(title: l10n.updateButton, onPressed: onUpdatePressed),
         ],
       ),
     );
