@@ -1798,11 +1798,11 @@
   "@onboardingWelcomeTitle": {
     "description": "Títol de la primera pàgina de la benvinguda"
   },
-  "onboardingWelcomeDescription": "El teu company de qüestionaris interactius amb funcions impulsades per IA, preguntes personalitzables i puntuació en temps real.",
+  "onboardingWelcomeDescription": "Amb funcions impulsades per IA, preguntes personalitzables i puntuació en temps real.",
   "@onboardingWelcomeDescription": {
     "description": "Descripció de la primera pàgina de la benvinguda"
   },
-  "onboardingWelcomeSubtitle": "El teu company de qüestionaris interactius",
+  "onboardingWelcomeSubtitle": "El teu company interactiu d'estudi i qüestionaris",
   "@onboardingWelcomeSubtitle": {
     "description": "Subtítol de la primera pàgina de la benvinguda en format escriptori"
   },
@@ -1842,7 +1842,7 @@
   "@onboardingAiFeaturesSubtitle": {
     "description": "Subtítol de la quarta pàgina de la benvinguda en format escriptori"
   },
-  "onboardingFeatureAiTitle": "Generació de preguntes amb IA",
+  "onboardingFeatureAiTitle": "Generació d'estudi i preguntes amb IA",
   "@onboardingFeatureAiTitle": {
     "description": "Títol de la funció a la pàgina de benvinguda"
   },
@@ -1910,7 +1910,7 @@
   "@onboardingAiMultiLanguageTitle": {
     "description": "Títol de la funció IA a la benvinguda"
   },
-  "onboardingAiMultiLanguageDescription": "Genera en 13 idiomes diferents",
+  "onboardingAiMultiLanguageDescription": "Genera en 18 idiomes diferents",
   "@onboardingAiMultiLanguageDescription": {
     "description": "Descripció de la funció IA a la benvinguda"
   },

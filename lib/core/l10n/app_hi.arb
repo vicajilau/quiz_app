@@ -1687,11 +1687,11 @@
   "@onboardingWelcomeTitle": {
     "description": "पहले स्वागत पृष्ठ के लिए शीर्षक"
   },
-  "onboardingWelcomeDescription": "एआई-संचालित सुविधाओं, अनुकूलन योग्य प्रश्नों और रीयल-टाइम स्कोरिंग के साथ आपका इंटरैक्टिव प्रश्नोत्तरी साथी।",
+  "onboardingWelcomeDescription": "एआई-संचालित सुविधाओं, अनुकूलन योग्य प्रश्नों और रीयल-टाइम स्कोरिंग के साथ।",
   "@onboardingWelcomeDescription": {
     "description": "पहले स्वागत पृष्ठ के लिए विवरण"
   },
-  "onboardingWelcomeSubtitle": "आपका इंटरैक्टिव प्रश्नोत्तरी साथी",
+  "onboardingWelcomeSubtitle": "आपका इंटरैक्टिव अध्ययन और प्रश्नोत्तरी साथी",
   "@onboardingWelcomeSubtitle": {
     "description": "डेस्कटॉप लेआउट में पहले स्वागत पृष्ठ के लिए उपशीर्षक"
   },
@@ -1731,11 +1731,11 @@
   "@onboardingAiFeaturesSubtitle": {
     "description": "डेस्कटॉप लेआउट में चौथे स्वागत पृष्ठ के लिए उपशीर्षक"
   },
-  "onboardingFeatureAiTitle": "एआई-संचालित प्रश्न निर्माण",
+  "onboardingFeatureAiTitle": "एआई अध्ययन और प्रश्न निर्माण",
   "@onboardingFeatureAiTitle": {
     "description": "स्वागत पृष्ठ पर सुविधा शीर्षक"
   },
-  "onboardingFeatureAiDescription": "Gemini या GPT के साथ किसी भी टेक्स्ट से प्रश्नोत्तरी उत्पन्न करें",
+  "onboardingFeatureAiDescription": "एआई अध्ययन और प्रश्न निर्माण",
   "@onboardingFeatureAiDescription": {
     "description": "स्वागत पृष्ठ पर सुविधा विवरण"
   },
@@ -1799,7 +1799,7 @@
   "@onboardingAiMultiLanguageTitle": {
     "description": "स्वागत प्रवाह में एआई सुविधा शीर्षक"
   },
-  "onboardingAiMultiLanguageDescription": "13 अलग-अलग भाषाओं में उत्पन्न करें",
+  "onboardingAiMultiLanguageDescription": "18 अलग-अलग भाषाओं में उत्पन्न करें",
   "@onboardingAiMultiLanguageDescription": {
     "description": "स्वागत प्रवाह में एआई सुविधा विवरण"
   },
@@ -2410,4 +2410,3 @@
     "description": "Body message of the force update dialog."
   }
 }
-

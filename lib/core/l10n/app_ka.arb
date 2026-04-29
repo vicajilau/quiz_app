@@ -537,8 +537,8 @@
   "onboardingBack": "უკან",
   "onboardingGetStarted": "დაწყება",
   "onboardingWelcomeTitle": "კეთილი იყოს თქვენი მობრძანება Quizdy-ში",
-  "onboardingWelcomeDescription": "თქვენი ინტერაქტიული ქვიზ კომპანიონი AI ფუნქციებით, მორგებადი კითხვებით და რეალური დროის ქულებით.",
-  "onboardingWelcomeSubtitle": "თქვენი ინტერაქტიული ქვიზ კომპანიონი",
+  "onboardingWelcomeDescription": "AI ფუნქციებით, მორგებადი კითხვებით და რეალური დროის ქულებით.",
+  "onboardingWelcomeSubtitle": "თქვენი ინტერაქტიული სასწავლო და ქვიზ კომპანიონი",
   "onboardingStartQuizTitle": "ქვიზის დაწყება",
   "onboardingStartQuizDescription": "ჩატვირთეთ არსებული .quiz ფაილი ან შექმენით ახალი. გადმოიტანეთ ფაილები პირდაპირ ან გამოიყენეთ ფაილის ამრჩევი.",
   "onboardingStartQuizSubtitle": "ჩატვირთვა, შექმნა და თამაში",
@@ -548,8 +548,8 @@
   "onboardingAiFeaturesTitle": "AI ფუნქციები",
   "onboardingAiFeaturesDescription": "დააგენერირეთ კითხვები ავტომატურად AI-ით, მიიღეთ სწავლისას დახმარება რეალურ დროში და ისწავლეთ ჭკვიანურად.",
   "onboardingAiFeaturesSubtitle": "AI-ის დახმარებით",
-  "onboardingFeatureAiTitle": "AI-ით კითხვების გენერირება",
-  "onboardingFeatureAiDescription": "შექმენით ქვიზები ნებისმიერი ტექსტიდან Gemini-ს ან GPT-ის მეშვეობით",
+  "onboardingFeatureAiTitle": "AI-ით სასწავლო მასალისა და კითხვების გენერირება",
+  "onboardingFeatureAiDescription": "AI-ით სასწავლო მასალისა და კითხვების გენერირება",
   "onboardingFeatureTypesTitle": "მრავალი ტიპის კითხვა",
   "onboardingFeatureTypesDescription": "ერთჯერადი არჩევანი, მრავალჯერადი არჩევანი, ჭეშმარიტი/მცდარი და ესე",
   "onboardingFeatureLanguagesTitle": "18 ენის მხარდაჭერა",
@@ -565,7 +565,7 @@
   "onboardingAiStudyAssistantTitle": "AI სწავლის ასისტენტი",
   "onboardingAiStudyAssistantDescription": "მიიღეთ განმარტებები სწავლის პროცესში",
   "onboardingAiMultiLanguageTitle": "მრავალენოვანი მხარდაჭერა",
-  "onboardingAiMultiLanguageDescription": "გენერირება 13 სხვადასხვა ენაზე",
+  "onboardingAiMultiLanguageDescription": "გენერირება 18 სხვადასხვა ენაზე",
   "documentTooLongForProcessing": "დოკუმენტი შეიძლება იყოს ძალიან გრძელი ერთი გადასვლით დასამუშავებლად ამ MVP ვერსიაში.",
   "studyScreenCoverage": "გენერირებული კონტენტი",
   "aiStudyLanguageLabel": "სწავლის ენა",
@@ -1099,4 +1099,3 @@
     "description": "Body message of the force update dialog."
   }
 }
-

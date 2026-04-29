@@ -552,8 +552,8 @@
   "onboardingBack": "Назад",
   "onboardingGetStarted": "Начать",
   "onboardingWelcomeTitle": "Добро пожаловать в Quizdy",
-  "onboardingWelcomeDescription": "Ваш интерактивный помощник по квизам с функциями на базе ИИ, настраиваемыми вопросами и оценкой в реальном времени.",
-  "onboardingWelcomeSubtitle": "Ваш интерактивный помощник",
+  "onboardingWelcomeDescription": "С функциями на базе ИИ, настраиваемыми вопросами и оценкой в реальном времени.",
+  "onboardingWelcomeSubtitle": "Ваш интерактивный помощник по обучению и квизам",
   "onboardingStartQuizTitle": "Начать квиз",
   "onboardingStartQuizDescription": "Загрузите существующий файл .quiz или создайте новый с нуля. Перенесите файлы напрямую или используйте выбор файлов.",
   "onboardingStartQuizSubtitle": "Загружайте, создавайте и играйте",
@@ -563,8 +563,8 @@
   "onboardingAiFeaturesTitle": "Функции на базе ИИ",
   "onboardingAiFeaturesDescription": "Генерируйте вопросы автоматически с помощью ИИ, получайте помощь в обучении в реальном времени и учитесь эффективнее.",
   "onboardingAiFeaturesSubtitle": "Работает на базе ИИ",
-  "onboardingFeatureAiTitle": "Генерация вопросов с ИИ",
-  "onboardingFeatureAiDescription": "Создавайте квизы из любого текста с Gemini или GPT",
+  "onboardingFeatureAiTitle": "Генерация учебных материалов и вопросов с ИИ",
+  "onboardingFeatureAiDescription": "Генерация учебных материалов и вопросов с ИИ",
   "onboardingFeatureTypesTitle": "Различные типы вопросов",
   "onboardingFeatureTypesDescription": "Одиночный выбор, множественный выбор, верно/неверно и эссе",
   "onboardingFeatureLanguagesTitle": "Поддержка 18 языков",
@@ -580,7 +580,7 @@
   "onboardingAiStudyAssistantTitle": "Ассистент ИИ для учебы",
   "onboardingAiStudyAssistantDescription": "Получайте объяснения во время обучения",
   "onboardingAiMultiLanguageTitle": "Мультиязычная поддержка",
-  "onboardingAiMultiLanguageDescription": "Генерация на 13 различных языках",
+  "onboardingAiMultiLanguageDescription": "Генерация на 18 различных языках",
   "documentTooLongForProcessing": "Документ может быть слишком длинным для обработки за один проход в этой версии.",
   "studyScreenCoverage": "Сгенерированный контент",
   "aiStudyLanguageLabel": "Язык обучения",
@@ -1114,4 +1114,3 @@
     "description": "Body message of the force update dialog."
   }
 }
-

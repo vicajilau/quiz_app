@@ -537,8 +537,8 @@
   "onboardingBack": "뒤로",
   "onboardingGetStarted": "시작하기",
   "onboardingWelcomeTitle": "Quizdy에 오신 것을 환영합니다",
-  "onboardingWelcomeDescription": "AI 기반 기능, 맞춤형 질문 및 실시간 채점 기능을 갖춘 대화형 퀴즈 동반자입니다.",
-  "onboardingWelcomeSubtitle": "대화형 퀴즈 동반자",
+  "onboardingWelcomeDescription": "AI 기반 기능, 맞춤형 질문 및 실시간 채점 기능을 갖추고 있습니다.",
+  "onboardingWelcomeSubtitle": "대화형 학습 및 퀴즈 동반자",
   "onboardingStartQuizTitle": "퀴즈 시작",
   "onboardingStartQuizDescription": "기존 .quiz 파일을 로드하거나 처음부터 새로 만듭니다. 파일을 직접 드래그 앤 드롭하거나 파일 선택기를 사용하세요.",
   "onboardingStartQuizSubtitle": "로드, 생성 및 플레이",
@@ -548,8 +548,8 @@
   "onboardingAiFeaturesTitle": "AI 기반 기능",
   "onboardingAiFeaturesDescription": "AI로 질문을 자동으로 생성하고, 실시간 학습 지원을 받으며, 지능형 튜터링으로 더 똑똑하게 학습하세요.",
   "onboardingAiFeaturesSubtitle": "AI 기반",
-  "onboardingFeatureAiTitle": "AI 기반 질문 생성",
-  "onboardingFeatureAiDescription": "Gemini 또는 GPT를 사용하여 모든 텍스트에서 퀴즈 생성",
+  "onboardingFeatureAiTitle": "AI 학습 및 문제 생성",
+  "onboardingFeatureAiDescription": "AI 학습 및 문제 생성",
   "onboardingFeatureTypesTitle": "다양한 질문 유형",
   "onboardingFeatureTypesDescription": "단일 선택, 다중 선택, 참/거짓 및 주관식",
   "onboardingFeatureLanguagesTitle": "18개 언어 지원",
@@ -565,7 +565,7 @@
   "onboardingAiStudyAssistantTitle": "AI 학습 도우미",
   "onboardingAiStudyAssistantDescription": "학습하는 동안 설명을 확인하세요",
   "onboardingAiMultiLanguageTitle": "다국어 지원",
-  "onboardingAiMultiLanguageDescription": "13가지 언어로 생성 가능",
+  "onboardingAiMultiLanguageDescription": "18가지 언어로 생성 가능",
   "documentTooLongForProcessing": "이 MVP 버전에서는 문서가 한 번에 처리하기에 너무 길 수 있습니다.",
   "studyScreenCoverage": "생성된 콘텐츠",
   "aiStudyLanguageLabel": "학습 언어",
@@ -1099,4 +1099,3 @@
     "description": "Body message of the force update dialog."
   }
 }
-

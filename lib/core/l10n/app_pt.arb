@@ -1775,11 +1775,11 @@
   "@onboardingWelcomeTitle": {
     "description": "Título da primeira página de boas-vindas"
   },
-  "onboardingWelcomeDescription": "Seu companheiro interativo de quizzes com recursos baseados em IA, perguntas personalizáveis e pontuação em tempo real.",
+  "onboardingWelcomeDescription": "Com recursos baseados em IA, perguntas personalizáveis e pontuação em tempo real.",
   "@onboardingWelcomeDescription": {
     "description": "Descrição da primeira página de boas-vindas"
   },
-  "onboardingWelcomeSubtitle": "Seu companheiro interativo de quizzes",
+  "onboardingWelcomeSubtitle": "Seu companheiro interativo de estudo e quizzes",
   "@onboardingWelcomeSubtitle": {
     "description": "Subtítulo da primeira página de boas-vindas em layout desktop"
   },
@@ -1819,11 +1819,11 @@
   "@onboardingAiFeaturesSubtitle": {
     "description": "Subtítulo da quarta página de boas-vindas em layout desktop"
   },
-  "onboardingFeatureAiTitle": "Geração de perguntas com IA",
+  "onboardingFeatureAiTitle": "Geração de estudo e perguntas com IA",
   "@onboardingFeatureAiTitle": {
     "description": "Título do recurso na página de boas-vindas"
   },
-  "onboardingFeatureAiDescription": "Gere quizzes a partir de qualquer texto com Gemini ou GPT",
+  "onboardingFeatureAiDescription": "Geração de estudo e perguntas com IA",
   "@onboardingFeatureAiDescription": {
     "description": "Descrição do recurso na página de boas-vindas"
   },
@@ -1887,7 +1887,7 @@
   "@onboardingAiMultiLanguageTitle": {
     "description": "Título do recurso de IA nas boas-vindas"
   },
-  "onboardingAiMultiLanguageDescription": "Gere em 13 idiomas diferentes",
+  "onboardingAiMultiLanguageDescription": "Gere em 18 idiomas diferentes",
   "@onboardingAiMultiLanguageDescription": {
     "description": "Descrição do recurso de IA nas boas-vindas"
   },
@@ -2498,4 +2498,3 @@
     "description": "Body message of the force update dialog."
   }
 }
-

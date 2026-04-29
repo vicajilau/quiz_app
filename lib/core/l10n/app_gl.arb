@@ -1692,11 +1692,11 @@
   "@onboardingWelcomeTitle": {
     "description": "Título da primeira páxina do acollemento"
   },
-  "onboardingWelcomeDescription": "O teu compañeiro interactivo de cuestionarios con funcións impulsadas por IA, preguntas personalizables e puntuación en tempo real.",
+  "onboardingWelcomeDescription": "Con funcións impulsadas por IA, preguntas personalizables e puntuación en tempo real.",
   "@onboardingWelcomeDescription": {
     "description": "Descrición da primeira páxina do acollemento"
   },
-  "onboardingWelcomeSubtitle": "O teu compañeiro interactivo de cuestionarios",
+  "onboardingWelcomeSubtitle": "O teu compañeiro interactivo de estudo e cuestionarios",
   "@onboardingWelcomeSubtitle": {
     "description": "Subtítulo da primeira páxina do acollemento en deseño de escritorio"
   },
@@ -1736,11 +1736,11 @@
   "@onboardingAiFeaturesSubtitle": {
     "description": "Subtítulo da cuarta páxina do acollemento en deseño de escritorio"
   },
-  "onboardingFeatureAiTitle": "Xeración de preguntas con IA",
+  "onboardingFeatureAiTitle": "Xeración de estudo e preguntas con IA",
   "@onboardingFeatureAiTitle": {
     "description": "Título da función na páxina de benvida"
   },
-  "onboardingFeatureAiDescription": "Xera cuestionarios desde calquera texto con Gemini ou GPT",
+  "onboardingFeatureAiDescription": "Xeración de estudo e preguntas con IA",
   "@onboardingFeatureAiDescription": {
     "description": "Descrición da función na páxina de benvida"
   },
@@ -1804,7 +1804,7 @@
   "@onboardingAiMultiLanguageTitle": {
     "description": "Título da función IA no acollemento"
   },
-  "onboardingAiMultiLanguageDescription": "Xera en 13 idiomas diferentes",
+  "onboardingAiMultiLanguageDescription": "Xera en 18 idiomas diferentes",
   "@onboardingAiMultiLanguageDescription": {
     "description": "Descrición da función IA no acollemento"
   },
@@ -2407,4 +2407,3 @@
     "description": "Body message of the force update dialog."
   }
 }
-

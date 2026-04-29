@@ -1737,11 +1737,11 @@
   "@onboardingWelcomeTitle": {
     "description": "Titre de la première page de l'accueil"
   },
-  "onboardingWelcomeDescription": "Votre compagnon de quiz interactif avec des fonctionnalités alimentées par l'IA, des questions personnalisables et un score en temps réel.",
+  "onboardingWelcomeDescription": "Avec des fonctionnalités alimentées par l'IA, des questions personnalisables et un score en temps réel.",
   "@onboardingWelcomeDescription": {
     "description": "Description de la première page de l'accueil"
   },
-  "onboardingWelcomeSubtitle": "Votre compagnon de quiz interactif",
+  "onboardingWelcomeSubtitle": "Votre compagnon interactif d'étude et de quiz",
   "@onboardingWelcomeSubtitle": {
     "description": "Sous-titre de la première page de l'accueil en mode bureau"
   },
@@ -1781,11 +1781,11 @@
   "@onboardingAiFeaturesSubtitle": {
     "description": "Sous-titre de la quatrième page de l'accueil en mode bureau"
   },
-  "onboardingFeatureAiTitle": "Génération de questions par l'IA",
+  "onboardingFeatureAiTitle": "Génération d'études et de questions par l'IA",
   "@onboardingFeatureAiTitle": {
     "description": "Titre de la fonctionnalité sur la page d'accueil"
   },
-  "onboardingFeatureAiDescription": "Générez des quiz à partir de n'importe quel texte avec Gemini ou GPT",
+  "onboardingFeatureAiDescription": "Génération d'études et de questions par l'IA",
   "@onboardingFeatureAiDescription": {
     "description": "Description de la fonctionnalité sur la page d'accueil"
   },
@@ -1849,7 +1849,7 @@
   "@onboardingAiMultiLanguageTitle": {
     "description": "Titre de la fonctionnalité IA dans l'accueil"
   },
-  "onboardingAiMultiLanguageDescription": "Générez dans 13 langues différentes",
+  "onboardingAiMultiLanguageDescription": "Générez dans 18 langues différentes",
   "@onboardingAiMultiLanguageDescription": {
     "description": "Description de la fonctionnalité IA dans l'accueil"
   },
@@ -2452,4 +2452,3 @@
     "description": "Body message of the force update dialog."
   }
 }
-

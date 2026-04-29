@@ -2077,11 +2077,11 @@
   "@onboardingWelcomeTitle": {
     "description": "Título de la primera página del onboarding"
   },
-  "onboardingWelcomeDescription": "Tu compañero interactivo de cuestionarios con funciones impulsadas por IA, preguntas personalizables y puntuación en tiempo real.",
+  "onboardingWelcomeDescription": "Con funciones impulsadas por IA, preguntas personalizables y puntuación en tiempo real.",
   "@onboardingWelcomeDescription": {
     "description": "Descripción de la primera página del onboarding"
   },
-  "onboardingWelcomeSubtitle": "Tu compañero interactivo de cuestionarios",
+  "onboardingWelcomeSubtitle": "Tu compañero interactivo de estudio y cuestionarios",
   "@onboardingWelcomeSubtitle": {
     "description": "Subtítulo de la primera página del onboarding en escritorio"
   },
@@ -2121,11 +2121,11 @@
   "@onboardingAiFeaturesSubtitle": {
     "description": "Subtítulo de la cuarta página del onboarding en escritorio"
   },
-  "onboardingFeatureAiTitle": "Generación de preguntas con IA",
+  "onboardingFeatureAiTitle": "Generación de estudio y preguntas con IA",
   "@onboardingFeatureAiTitle": {
     "description": "Título de característica en la página de bienvenida del onboarding"
   },
-  "onboardingFeatureAiDescription": "Genera cuestionarios desde cualquier texto con Gemini o GPT",
+  "onboardingFeatureAiDescription": "Desde cualquier texto con Gemini o GPT",
   "@onboardingFeatureAiDescription": {
     "description": "Descripción de característica en la página de bienvenida del onboarding"
   },
@@ -2189,7 +2189,7 @@
   "@onboardingAiMultiLanguageTitle": {
     "description": "Título de función IA en el onboarding"
   },
-  "onboardingAiMultiLanguageDescription": "Genera en 13 idiomas diferentes",
+  "onboardingAiMultiLanguageDescription": "Genera en 18 idiomas diferentes",
   "@onboardingAiMultiLanguageDescription": {
     "description": "Descripción de función IA en el onboarding"
   },
