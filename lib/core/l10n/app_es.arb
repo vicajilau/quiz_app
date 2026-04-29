@@ -108,7 +108,7 @@
       }
     }
   },
-  "fileNameHint": "Nombre del archivo (opcional)",
+  "fileNameHint": "Nombre del archivo (requerido)",
   "@fileNameHint": {
     "description": "Texto de ayuda para el campo de nombre de archivo."
   },

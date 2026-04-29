@@ -129,7 +129,7 @@
   "authorRequiredError": "작성자 입력이 필요합니다.",
   "requiredFieldsError": "모든 필수 필드를 입력해야 합니다.",
   "requestFileNameTitle": "퀴즈 파일 이름 입력",
-  "fileNameHint": "파일 이름",
+  "fileNameHint": "파일 이름 (필수)",
   "emptyFileNameMessage": "파일 이름은 비워둘 수 없습니다.",
   "acceptButton": "수락",
   "saveTooltip": "파일 저장",

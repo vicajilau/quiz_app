@@ -185,7 +185,7 @@
   "@requestFileNameTitle": {
     "description": "ファイル名入力のダイアログのタイトル。"
   },
-  "fileNameHint": "ファイル名",
+  "fileNameHint": "ファイル名（必須）",
   "@fileNameHint": {
     "description": "ファイル名入力のヒントテキスト。"
   },

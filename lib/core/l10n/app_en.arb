@@ -236,7 +236,7 @@
   "@requestFileNameTitle": {
     "description": "Title for request file name dialog."
   },
-  "fileNameHint": "File name",
+  "fileNameHint": "File name (required)",
   "@fileNameHint": {
     "description": "Hint text for file name input."
   },

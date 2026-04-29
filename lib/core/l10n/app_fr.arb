@@ -185,7 +185,7 @@
   "@requestFileNameTitle": {
     "description": "Titre de la boîte de dialogue de demande de nom de fichier."
   },
-  "fileNameHint": "Nom du fichier",
+  "fileNameHint": "Nom du fichier (requis)",
   "@fileNameHint": {
     "description": "Texte d'indication pour la saisie du nom de fichier."
   },

@@ -182,7 +182,7 @@
   "authorRequiredError": "Автор обязателен.",
   "requiredFieldsError": "Все обязательные поля должны быть заполнены.",
   "requestFileNameTitle": "Введите имя файла квиза",
-  "fileNameHint": "Имя файла",
+  "fileNameHint": "Имя файла (обязательно)",
   "emptyFileNameMessage": "Имя файла не может быть пустым.",
   "acceptButton": "Принять",
   "saveTooltip": "Сохранить файл",

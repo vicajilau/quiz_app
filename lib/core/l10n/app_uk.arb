@@ -219,7 +219,7 @@
   "authorRequiredError": "Автор є обов'язковим.",
   "requiredFieldsError": "Усі обов'язкові поля мають бути заповнені.",
   "requestFileNameTitle": "Введіть ім'я файлу квізу",
-  "fileNameHint": "Ім'я файлу",
+  "fileNameHint": "Ім'я файлу (обов'язково)",
   "emptyFileNameMessage": "Ім'я файлу не може бути порожнім.",
   "acceptButton": "Прийняти",
   "saveTooltip": "Зберегти файл",

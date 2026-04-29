@@ -185,7 +185,7 @@
   "@requestFileNameTitle": {
     "description": "Title for request file name dialog."
   },
-  "fileNameHint": "文件名",
+  "fileNameHint": "文件名（必需）",
   "@fileNameHint": {
     "description": "Hint text for file name input."
   },

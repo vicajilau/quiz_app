@@ -101,7 +101,7 @@
   "authorRequiredError": "Ο συγγραφέας είναι υποχρεωτικός.",
   "requiredFieldsError": "Όλα τα υποχρεωτικά πεδία πρέπει να συμπληρωθούν.",
   "requestFileNameTitle": "Εισάγετε το όνομα του αρχείου Quiz",
-  "fileNameHint": "Όνομα αρχείου",
+  "fileNameHint": "Όνομα αρχείου (υποχρεωτικό)",
   "emptyFileNameMessage": "Το όνομα αρχείου δεν μπορεί να είναι κενό.",
   "acceptButton": "Αποδοχή",
   "saveTooltip": "Αποθήκευση αρχείου",
