@@ -1736,11 +1736,11 @@
   "@onboardingWelcomeTitle": {
     "description": "第一页欢迎页面的标题"
   },
-  "onboardingWelcomeDescription": "您的互动测验伙伴，具备 AI 驱动的功能、可自定义的问题和实时评分。",
+  "onboardingWelcomeDescription": "具备 AI 驱动的功能、可自定义的问题和实时评分。",
   "@onboardingWelcomeDescription": {
     "description": "第一页欢迎页面的描述"
   },
-  "onboardingWelcomeSubtitle": "您的互动测验伙伴",
+  "onboardingWelcomeSubtitle": "您的互动学习和测验伙伴",
   "@onboardingWelcomeSubtitle": {
     "description": "桌面布局下第一页欢迎页面的副标题"
   },
@@ -1780,11 +1780,11 @@
   "@onboardingAiFeaturesSubtitle": {
     "description": "桌面布局下第四页欢迎页面的副标题"
   },
-  "onboardingFeatureAiTitle": "AI 题目生成",
+  "onboardingFeatureAiTitle": "AI学习和题目生成",
   "@onboardingFeatureAiTitle": {
     "description": "欢迎页面的功能标题"
   },
-  "onboardingFeatureAiDescription": "使用 Gemini 或 GPT 从任何文本生成测验",
+  "onboardingFeatureAiDescription": "AI学习和题目生成",
   "@onboardingFeatureAiDescription": {
     "description": "欢迎页面的功能描述"
   },
@@ -1848,7 +1848,7 @@
   "@onboardingAiMultiLanguageTitle": {
     "description": "欢迎流程中的 AI 功能标题"
   },
-  "onboardingAiMultiLanguageDescription": "支持 13 种不同语言生成",
+  "onboardingAiMultiLanguageDescription": "支持 18 种不同语言生成",
   "@onboardingAiMultiLanguageDescription": {
     "description": "欢迎流程中的 AI 功能描述"
   },
@@ -2459,4 +2459,3 @@
     "description": "Body message of the force update dialog."
   }
 }
-

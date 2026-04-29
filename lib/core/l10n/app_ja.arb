@@ -1695,11 +1695,11 @@
   "@onboardingWelcomeTitle": {
     "description": "オンボーディングの最初のページのタイトル"
   },
-  "onboardingWelcomeDescription": "AI機能、カスタマイズ可能な問題、リアルタイム採点を備えたインタラクティブなクイズのお供です。",
+  "onboardingWelcomeDescription": "AI機能、カスタマイズ可能な問題、リアルタイム採点を備えています。",
   "@onboardingWelcomeDescription": {
     "description": "オンボーディングの最初のページの説明"
   },
-  "onboardingWelcomeSubtitle": "インタラクティブなクイズのお供",
+  "onboardingWelcomeSubtitle": "インタラクティブな学習とクイズのお供",
   "@onboardingWelcomeSubtitle": {
     "description": "デスクトップレイアウトの最初のページのサブタイトル"
   },
@@ -1739,11 +1739,11 @@
   "@onboardingAiFeaturesSubtitle": {
     "description": "デスクトップレイアウトの4番目のページのサブタイトル"
   },
-  "onboardingFeatureAiTitle": "AI問題生成",
+  "onboardingFeatureAiTitle": "AIによる学習と問題生成",
   "@onboardingFeatureAiTitle": {
     "description": "ウェルカムページの機能タイトル"
   },
-  "onboardingFeatureAiDescription": "GeminiやGPTを使用して、あらゆるテキストからクイズを生成",
+  "onboardingFeatureAiDescription": "AIによる学習と問題生成",
   "@onboardingFeatureAiDescription": {
     "description": "ウェルカムページの機能説明"
   },
@@ -1807,7 +1807,7 @@
   "@onboardingAiMultiLanguageTitle": {
     "description": "オンボーディングのAI機能タイトル"
   },
-  "onboardingAiMultiLanguageDescription": "13の異なる言語で生成可能",
+  "onboardingAiMultiLanguageDescription": "18の異なる言語で生成可能",
   "@onboardingAiMultiLanguageDescription": {
     "description": "オンボーディングのAI機能説明"
   },
@@ -2410,4 +2410,3 @@
     "description": "Body message of the force update dialog."
   }
 }
-

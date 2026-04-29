@@ -1954,11 +1954,11 @@
   "@onboardingWelcomeTitle": {
     "description": "عنوان الصفحة الأولى من العرض الترحيبي"
   },
-  "onboardingWelcomeDescription": "رفيقك التفاعلي للاختبارات مع ميزات مدعومة بالذكاء الاصطناعي، وأسئلة قابلة للتخصيص، وتسجيل في الوقت الفعلي.",
+  "onboardingWelcomeDescription": "مع ميزات مدعومة بالذكاء الاصطناعي، وأسئلة قابلة للتخصيص، وتسجيل في الوقت الفعلي.",
   "@onboardingWelcomeDescription": {
     "description": "وصف الصفحة الأولى من العرض الترحيبي"
   },
-  "onboardingWelcomeSubtitle": "رفيقك التفاعلي للاختبارات",
+  "onboardingWelcomeSubtitle": "رفيقك التفاعلي للدراسة والاختبارات",
   "@onboardingWelcomeSubtitle": {
     "description": "العنوان الفرعي للصفحة الأولى من العرض الترحيبي في تخطيط سطح المكتب"
   },
@@ -1998,11 +1998,11 @@
   "@onboardingAiFeaturesSubtitle": {
     "description": "العنوان الفرعي للصفحة الرابعة من العرض الترحيبي في تخطيط سطح المكتب"
   },
-  "onboardingFeatureAiTitle": "توليد الأسئلة بالذكاء الاصطناعي",
+  "onboardingFeatureAiTitle": "توليد مواد الدراسة والأسئلة بالذكاء الاصطناعي",
   "@onboardingFeatureAiTitle": {
     "description": "عنوان الميزة في صفحة الترحيب بالعرض الترحيبي"
   },
-  "onboardingFeatureAiDescription": "توليد اختبارات من أي نص باستخدام Gemini أو GPT",
+  "onboardingFeatureAiDescription": "توليد مواد الدراسة والأسئلة بالذكاء الاصطناعي",
   "@onboardingFeatureAiDescription": {
     "description": "وصف الميزة في صفحة الترحيب بالعرض الترحيبي"
   },
@@ -2066,7 +2066,7 @@
   "@onboardingAiMultiLanguageTitle": {
     "description": "عنوان ميزة الذكاء الاصطناعي في العرض الترحيبي"
   },
-  "onboardingAiMultiLanguageDescription": "توليد بـ 13 لغة مختلفة",
+  "onboardingAiMultiLanguageDescription": "توليد بـ 18 لغة مختلفة",
   "@onboardingAiMultiLanguageDescription": {
     "description": "وصف ميزة الذكاء الاصطناعي في العرض الترحيبي"
   },

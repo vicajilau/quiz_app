@@ -571,8 +571,8 @@
   "onboardingBack": "Назад",
   "onboardingGetStarted": "Почати",
   "onboardingWelcomeTitle": "Ласкаво просимо до Quizdy",
-  "onboardingWelcomeDescription": "Ваш інтерактивний помічник для квізів з функціями на базі ШІ, налаштовуваними питаннями та оцінкою в реальному часі.",
-  "onboardingWelcomeSubtitle": "Ваш інтерактивний помічник",
+  "onboardingWelcomeDescription": "З функціями на базі ШІ, налаштовуваними питаннями та оцінкою в реальному часі.",
+  "onboardingWelcomeSubtitle": "Ваш інтерактивний помічник для навчання та квізів",
   "onboardingStartQuizTitle": "Почати квіз",
   "onboardingStartQuizDescription": "Завантажте існуючий файл .quiz або створіть новий з нуля. Перетягніть файли безпосередньо або скористайтеся вибором файлів.",
   "onboardingStartQuizSubtitle": "Завантажуйте, створюйте та грайте",
@@ -582,8 +582,8 @@
   "onboardingAiFeaturesTitle": "Функції на базі ШІ",
   "onboardingAiFeaturesDescription": "Генеруйте питання автоматично за допомогою ШІ, отримуйте допомогу в навчанні в реальному часі та вчіться ефективніше.",
   "onboardingAiFeaturesSubtitle": "Працює на базі ШІ",
-  "onboardingFeatureAiTitle": "Генерація питань за допомогою ШІ",
-  "onboardingFeatureAiDescription": "Створюйте квізи з будь-якого тексту з Gemini або GPT",
+  "onboardingFeatureAiTitle": "Генерація навчальних матеріалів і питань за допомогою ШІ",
+  "onboardingFeatureAiDescription": "Генерація навчальних матеріалів і питань за допомогою ШІ",
   "onboardingFeatureTypesTitle": "Різні типи питань",
   "onboardingFeatureTypesDescription": "Одиночний вибір, множинний вибір, вірно/невірно та есе",
   "onboardingFeatureLanguagesTitle": "Підтримка 18 мов",
@@ -599,7 +599,7 @@
   "onboardingAiStudyAssistantTitle": "Асистент ШІ для навчання",
   "onboardingAiStudyAssistantDescription": "Отримуйте пояснення під час навчання",
   "onboardingAiMultiLanguageTitle": "Мультимовна підтримка",
-  "onboardingAiMultiLanguageDescription": "Генерація на 13 різних мовах",
+  "onboardingAiMultiLanguageDescription": "Генерація на 18 різних мовах",
   "documentTooLongForProcessing": "Документ може бути занадто довгим для обробки за один прохід у цій версії.",
   "studyScreenCoverage": "Згенерований контент",
   "aiStudyLanguageLabel": "Мова навчання",
@@ -1132,4 +1132,3 @@
     "description": "Body message of the force update dialog."
   }
 }
-

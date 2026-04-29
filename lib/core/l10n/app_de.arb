@@ -1796,11 +1796,11 @@
   "@onboardingWelcomeTitle": {
     "description": "Titel für die erste Onboarding-Seite"
   },
-  "onboardingWelcomeDescription": "Ihr interaktiver Quiz-Begleiter mit KI-gestützten Funktionen, anpassbaren Fragen und Echtzeit-Auswertung.",
+  "onboardingWelcomeDescription": "Mit KI-gestützten Funktionen, anpassbaren Fragen und Echtzeit-Auswertung.",
   "@onboardingWelcomeDescription": {
     "description": "Beschreibung für die erste Onboarding-Seite"
   },
-  "onboardingWelcomeSubtitle": "Ihr interaktiver Quiz-Begleiter",
+  "onboardingWelcomeSubtitle": "Ihr interaktiver Lern- und Quiz-Begleiter",
   "@onboardingWelcomeSubtitle": {
     "description": "Untertitel für die erste Onboarding-Seite im Desktop-Layout"
   },
@@ -1840,11 +1840,11 @@
   "@onboardingAiFeaturesSubtitle": {
     "description": "Untertitel für die vierte Onboarding-Seite im Desktop-Layout"
   },
-  "onboardingFeatureAiTitle": "KI-gestützte Fragengenerierung",
+  "onboardingFeatureAiTitle": "KI-gestützte Lern- und Fragengenerierung",
   "@onboardingFeatureAiTitle": {
     "description": "Funktionstitel auf der Onboarding-Begrüßungsseite"
   },
-  "onboardingFeatureAiDescription": "Erstellen Sie Quizze aus beliebigem Text mit Gemini oder GPT",
+  "onboardingFeatureAiDescription": "KI-gestützte Lern- und Fragengenerierung",
   "@onboardingFeatureAiDescription": {
     "description": "Funktionsbeschreibung auf der Onboarding-Begrüßungsseite"
   },
@@ -1908,7 +1908,7 @@
   "@onboardingAiMultiLanguageTitle": {
     "description": "KI-Funktionstitel im Onboarding"
   },
-  "onboardingAiMultiLanguageDescription": "In 13 verschiedenen Sprachen generieren",
+  "onboardingAiMultiLanguageDescription": "In 18 verschiedenen Sprachen generieren",
   "@onboardingAiMultiLanguageDescription": {
     "description": "KI-Funktionsbeschreibung im Onboarding"
   },

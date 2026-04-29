@@ -1692,11 +1692,11 @@
   "@onboardingWelcomeTitle": {
     "description": "Ongietorriko lehen orrialdeko titulua"
   },
-  "onboardingWelcomeDescription": "Zure galdetegi interaktiboen laguntzailea, IAk bultzatutako funtzioekin, galdera pertsonalizagarriekin eta denbora errealeko puntuazioarekin.",
+  "onboardingWelcomeDescription": "IAk bultzatutako funtzioekin, galdera pertsonalizagarriekin eta denbora errealeko puntuazioarekin.",
   "@onboardingWelcomeDescription": {
     "description": "Ongietorriko lehen orrialdeko deskribapena"
   },
-  "onboardingWelcomeSubtitle": "Zure galdetegi interaktiboen laguntzailea",
+  "onboardingWelcomeSubtitle": "Zure ikasketa eta galdetegi interaktiboen laguntzailea",
   "@onboardingWelcomeSubtitle": {
     "description": "Ongietorriko lehen orrialdeko azpititulua mahaigaineko diseinuan"
   },
@@ -1736,11 +1736,11 @@
   "@onboardingAiFeaturesSubtitle": {
     "description": "Ongietorriko laugarren orrialdeko azpititulua mahaigaineko diseinuan"
   },
-  "onboardingFeatureAiTitle": "Galderak sortzea IArekin",
+  "onboardingFeatureAiTitle": "IArekin ikasketa eta galderak sortzea",
   "@onboardingFeatureAiTitle": {
     "description": "Funtzioaren titulua ongietorri orrialdean"
   },
-  "onboardingFeatureAiDescription": "Sortu galdetegiak edozein testutik Gemini edo GPTrekin",
+  "onboardingFeatureAiDescription": "IArekin ikasketa eta galderak sortzea",
   "@onboardingFeatureAiDescription": {
     "description": "Funtzioaren deskribapena ongietorri orrialdean"
   },
@@ -1804,7 +1804,7 @@
   "@onboardingAiMultiLanguageTitle": {
     "description": "IA funtzioaren titulua ongietorrian"
   },
-  "onboardingAiMultiLanguageDescription": "Sortu 13 hizkuntza desberdinetan",
+  "onboardingAiMultiLanguageDescription": "Sortu 18 hizkuntza desberdinetan",
   "@onboardingAiMultiLanguageDescription": {
     "description": "IA funtzioaren deskribapena ongietorrian"
   },
@@ -2407,4 +2407,3 @@
     "description": "Body message of the force update dialog."
   }
 }
-

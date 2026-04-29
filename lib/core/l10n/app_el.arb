@@ -681,11 +681,11 @@
   "@onboardingWelcomeTitle": {
     "description": "Τίτλος για την πρώτη σελίδα καλωσορίσματος"
   },
-  "onboardingWelcomeDescription": "Ο διαδραστικός σας σύντροφος κουίζ με λειτουργίες που υποστηρίζονται από AI, προσαρμόσιμες ερωτήσεις και βαθμολογία σε πραγματικό χρόνο.",
+  "onboardingWelcomeDescription": "Με λειτουργίες που υποστηρίζονται από AI, προσαρμόσιμες ερωτήσεις και βαθμολογία σε πραγματικό χρόνο.",
   "@onboardingWelcomeDescription": {
     "description": "Περιγραφή για την πρώτη σελίδα καλωσορίσματος"
   },
-  "onboardingWelcomeSubtitle": "Ο διαδραστικός σας σύντροφος κουίζ",
+  "onboardingWelcomeSubtitle": "Ο διαδραστικός σας σύντροφος μελέτης και κουίζ",
   "@onboardingWelcomeSubtitle": {
     "description": "Υπότιτλος για την πρώτη σελίδα καλωσορίσματος σε διάταξη επιφάνειας εργασίας"
   },
@@ -725,11 +725,11 @@
   "@onboardingAiFeaturesSubtitle": {
     "description": "Υπότιτλος για την τέταρτη σελίδα καλωσορίσματος σε διάταξη επιφάνειας εργασίας"
   },
-  "onboardingFeatureAiTitle": "Δημιουργία ερωτήσεων με AI",
+  "onboardingFeatureAiTitle": "Δημιουργία μελέτης και ερωτήσεων με AI",
   "@onboardingFeatureAiTitle": {
     "description": "Τίτλος λειτουργίας στη σελίδα καλωσορίσματος"
   },
-  "onboardingFeatureAiDescription": "Δημιουργήστε κουίζ από οποιοδήποτε κείμενο με Gemini ή GPT",
+  "onboardingFeatureAiDescription": "Δημιουργία μελέτης και ερωτήσεων με AI",
   "@onboardingFeatureAiDescription": {
     "description": "Περιγραφή λειτουργίας στη σελίδα καλωσορίσματος"
   },
@@ -793,7 +793,7 @@
   "@onboardingAiMultiLanguageTitle": {
     "description": "Τίτλος λειτουργίας AI στο καλωσόρισμα"
   },
-  "onboardingAiMultiLanguageDescription": "Δημιουργία σε 13 διαφορετικές γλώσσες",
+  "onboardingAiMultiLanguageDescription": "Δημιουργία σε 18 διαφορετικές γλώσσες",
   "@onboardingAiMultiLanguageDescription": {
     "description": "Περιγραφή λειτουργίας AI στο καλωσόρισμα"
   },

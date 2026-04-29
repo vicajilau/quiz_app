@@ -2154,11 +2154,11 @@
   "@onboardingWelcomeTitle": {
     "description": "Title for the first onboarding page"
   },
-  "onboardingWelcomeDescription": "Your interactive quiz companion with AI-powered features, customizable questions, and real-time scoring.",
+  "onboardingWelcomeDescription": "With AI-powered features, customizable questions, and real-time scoring.",
   "@onboardingWelcomeDescription": {
     "description": "Description for the first onboarding page"
   },
-  "onboardingWelcomeSubtitle": "Your interactive quiz companion",
+  "onboardingWelcomeSubtitle": "Your interactive study and quiz companion",
   "@onboardingWelcomeSubtitle": {
     "description": "Subtitle for the first onboarding page in desktop layout"
   },
@@ -2198,11 +2198,11 @@
   "@onboardingAiFeaturesSubtitle": {
     "description": "Subtitle for the fourth onboarding page in desktop layout"
   },
-  "onboardingFeatureAiTitle": "AI-powered question generation",
+  "onboardingFeatureAiTitle": "AI study and question generation",
   "@onboardingFeatureAiTitle": {
     "description": "Feature title in onboarding welcome page"
   },
-  "onboardingFeatureAiDescription": "Generate quizzes from any text with Gemini or GPT",
+  "onboardingFeatureAiDescription": "AI study and question generation",
   "@onboardingFeatureAiDescription": {
     "description": "Feature description in onboarding welcome page"
   },
@@ -2366,7 +2366,7 @@
   "@onboardingAiMultiLanguageTitle": {
     "description": "AI feature title in onboarding"
   },
-  "onboardingAiMultiLanguageDescription": "Generate in 13 different languages",
+  "onboardingAiMultiLanguageDescription": "Generate in 18 different languages",
   "@onboardingAiMultiLanguageDescription": {
     "description": "AI feature description in onboarding"
   },
