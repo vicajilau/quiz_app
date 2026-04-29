@@ -45,5 +45,5 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.ANDROID_PLAYSTORE_ACCOUNT_KEY }}
           packageName: es.victorcarreras.quiz_app
           releaseFiles: build/app/outputs/bundle/release/app-release.aab
-          track: internal
+          tracks: internal
           status: completed
