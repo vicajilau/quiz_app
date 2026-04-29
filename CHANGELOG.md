@@ -5,7 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.13.0] - TBD
+## [1.13.1] - TBD
+
+- ux(study): Added a visible horizontal scrollbar to comparison tables in Study Mode so overflow is easier to discover on desktop and touch devices.
+
+## [1.13.0] - 2026-04-29
 
 - feat: Implemented `CardStatusBar` and applied for `StudyIndexChunkCard` and `QuestionPreviewCard`.
 - feat(pdf): add export options dialog with questions, answers and study toggles.

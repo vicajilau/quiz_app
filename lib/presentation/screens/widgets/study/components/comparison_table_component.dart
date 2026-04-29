@@ -20,16 +20,36 @@ import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
-class ComparisonTableComponent extends StatelessWidget {
+class ComparisonTableComponent extends StatefulWidget {
   final StudyComponent element;
 
   const ComparisonTableComponent({super.key, required this.element});
 
   @override
+  State<ComparisonTableComponent> createState() =>
+      _ComparisonTableComponentState();
+}
+
+class _ComparisonTableComponentState extends State<ComparisonTableComponent> {
+  late final ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final title = element.props['title']?.toString();
-    final rawRows = (element.props['rows'] as List<dynamic>? ?? []);
-    final rawColumns = (element.props['columns'] as List<dynamic>? ?? [])
+    final title = widget.element.props['title']?.toString();
+    final rawRows = (widget.element.props['rows'] as List<dynamic>? ?? []);
+    final rawColumns = (widget.element.props['columns'] as List<dynamic>? ?? [])
         .map((e) => e.toString())
         .toList();
 
@@ -104,65 +124,74 @@ class ComparisonTableComponent extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: DataTable(
-                    headingRowColor: WidgetStateProperty.resolveWith(
-                      (states) => studyTheme.tableHeaderBackground,
-                    ),
-                    dataRowColor: WidgetStateProperty.resolveWith((states) {
-                      return Colors.transparent;
-                    }),
-                    dividerThickness: 1,
-                    columns: [
-                      if (!useFirstColumnAsLabel)
-                        DataColumn(
-                          label: Text(
-                            element.props['labelHeader']?.toString() ?? '',
+                child: Scrollbar(
+                  controller: _scrollController,
+                  thumbVisibility: true,
+                  trackVisibility: true,
+                  thickness: 8,
+                  radius: const Radius.circular(6),
+                  child: SingleChildScrollView(
+                    controller: _scrollController,
+                    scrollDirection: Axis.horizontal,
+                    child: DataTable(
+                      headingRowColor: WidgetStateProperty.resolveWith(
+                        (states) => studyTheme.tableHeaderBackground,
+                      ),
+                      dataRowColor: WidgetStateProperty.resolveWith((states) {
+                        return Colors.transparent;
+                      }),
+                      dividerThickness: 1,
+                      columns: [
+                        if (!useFirstColumnAsLabel)
+                          DataColumn(
+                            label: Text(
+                              widget.element.props['labelHeader']?.toString() ??
+                                  '',
+                            ),
+                          ),
+                        ...columns.map(
+                          (col) => DataColumn(
+                            label: Expanded(
+                              child: Center(
+                                child: QuizdyLatexText(
+                                  col,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ...columns.map(
-                        (col) => DataColumn(
-                          label: Expanded(
-                            child: Center(
-                              child: QuizdyLatexText(
-                                col,
+                      ],
+                      rows: rows.map((row) {
+                        final label = row['label'] as String;
+                        final values = row['values'] as List<String>;
+                        return DataRow(
+                          cells: [
+                            DataCell(
+                              QuizdyLatexText(
+                                label.isEmpty ? '-' : label,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).primaryColor,
+                                  color: studyTheme.cardTitle,
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                    ],
-                    rows: rows.map((row) {
-                      final label = row['label'] as String;
-                      final values = row['values'] as List<String>;
-                      return DataRow(
-                        cells: [
-                          DataCell(
-                            QuizdyLatexText(
-                              label.isEmpty ? '-' : label,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: studyTheme.cardTitle,
-                              ),
-                            ),
-                          ),
-                          ...values.map(
-                            (val) => DataCell(
-                              Center(
-                                child: QuizdyMarkdown(
-                                  data: val.isEmpty ? '-' : val,
+                            ...values.map(
+                              (val) => DataCell(
+                                Center(
+                                  child: QuizdyMarkdown(
+                                    data: val.isEmpty ? '-' : val,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      );
-                    }).toList(),
+                          ],
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
               ),
