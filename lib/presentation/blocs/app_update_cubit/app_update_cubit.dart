@@ -75,7 +75,9 @@ class AppUpdateCubit extends Cubit<AppUpdateState> {
     if (PlatformDetail.isAndroid) {
       try {
         final info = await InAppUpdate.checkForUpdate();
-        if (info.updateAvailability == UpdateAvailability.updateAvailable) {
+        if (info.updateAvailability == UpdateAvailability.updateAvailable ||
+            info.updateAvailability ==
+                UpdateAvailability.developerTriggeredUpdateInProgress) {
           await InAppUpdate.startFlexibleUpdate();
         }
       } catch (e) {
@@ -97,10 +99,16 @@ class AppUpdateCubit extends Cubit<AppUpdateState> {
     if (PlatformDetail.isAndroid) {
       try {
         final info = await InAppUpdate.checkForUpdate();
-        if (info.updateAvailability == UpdateAvailability.updateAvailable) {
-          await InAppUpdate.performImmediateUpdate();
-          emit(const AppUpdateUpToDate());
-          return;
+
+        if (info.updateAvailability == UpdateAvailability.updateAvailable ||
+            info.updateAvailability ==
+                UpdateAvailability.developerTriggeredUpdateInProgress) {
+          final result = await InAppUpdate.performImmediateUpdate();
+          if (result == AppUpdateResult.success) {
+            emit(const AppUpdateUpToDate());
+            return;
+          }
+          // User dismissed — fall through to ForceUpdateDialog
         }
       } catch (e) {
         // Expected in debug/sideloaded builds — Play In-App Updates only works
@@ -109,6 +117,9 @@ class AppUpdateCubit extends Cubit<AppUpdateState> {
           '[AppUpdateCubit] Android immediate update unavailable: $e',
         );
       }
+      return;
     }
+
+    emit(const AppUpdateForceRequired());
   }
 }
