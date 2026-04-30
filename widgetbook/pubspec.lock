@@ -891,7 +891,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.12.0+28"
+    version: "1.13.0+39"
   resizable_widget:
     dependency: transitive
     description:
