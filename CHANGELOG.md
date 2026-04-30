@@ -5,8 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.13.0] - 2026-04-29
+## [1.13.1] - TBD
 
+- fix(home): Status bar icons now switch to white while the update banner is visible on Home, and automatically restore theme-based light/dark colors when the banner is dismissed.
+
+## [1.13.0] - 2026-04-29
 - ux(study): Added a visible horizontal scrollbar to comparison tables in Study Mode so overflow is easier to discover on desktop and touch devices.
 - i18n: Changed file name label from "optional" to "required" in file save dialogs across all 18 supported languages to clarify that the file name is mandatory.
 - feat: Implemented `CardStatusBar` and applied for `StudyIndexChunkCard` and `QuestionPreviewCard`.

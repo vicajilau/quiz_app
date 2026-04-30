@@ -16,6 +16,7 @@ import 'package:desktop_drop/desktop_drop.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizdy/routes/app_router.dart';
@@ -381,193 +382,209 @@ class _StudyScreenViewState extends State<StudyScreenView> {
     // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: _confirmExit,
-      child: Scaffold(
-        backgroundColor: isDark ? AppTheme.zinc900 : AppTheme.zinc50,
-        extendBodyBehindAppBar: true,
-        extendBody: true,
-        bottomNavigationBar: StudyBottomNavigation(
-          quizFile: widget.quizFile,
-          generationMode: widget.generationMode,
-          originalText: widget.originalText,
-          hideStartQuizButton: widget.hideStartQuizButton,
-          onSave: _handleSave,
-          onImport: _handleChunkImport,
-          onExportPdf: () => handleExportPdf(
-            context: context,
-            questions: widget.quizFile?.questions ?? const [],
-          ),
-          onAddChunk: () async {
-            final localizations = AppLocalizations.of(context)!;
-            final result = await showDialog<Map<String, String>>(
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: isDark ? Brightness.light : Brightness.dark,
+          statusBarBrightness: isDark ? Brightness.dark : Brightness.light,
+          systemNavigationBarColor: isDark ? AppTheme.zinc900 : AppTheme.zinc50,
+          systemNavigationBarIconBrightness: isDark
+              ? Brightness.light
+              : Brightness.dark,
+        ),
+        child: Scaffold(
+          backgroundColor: isDark ? AppTheme.zinc900 : AppTheme.zinc50,
+          extendBodyBehindAppBar: true,
+          extendBody: true,
+          bottomNavigationBar: StudyBottomNavigation(
+            quizFile: widget.quizFile,
+            generationMode: widget.generationMode,
+            originalText: widget.originalText,
+            hideStartQuizButton: widget.hideStartQuizButton,
+            onSave: _handleSave,
+            onImport: _handleChunkImport,
+            onExportPdf: () => handleExportPdf(
               context: context,
-              builder: (context) =>
-                  AddEditChunkDialog(localizations: localizations),
-            );
-
-            if (result != null && context.mounted) {
-              context.read<StudyExecutionBloc>().add(
-                AddStudyChunkRequested(
-                  title: result['title'] ?? '',
-                  content: result['text'] ?? '',
-                ),
+              questions: widget.quizFile?.questions ?? const [],
+            ),
+            onAddChunk: () async {
+              final localizations = AppLocalizations.of(context)!;
+              final result = await showDialog<Map<String, String>>(
+                context: context,
+                builder: (context) =>
+                    AddEditChunkDialog(localizations: localizations),
               );
-            }
-          },
-          onGenerateAI: () async {
-            final isAiAvailable =
-                await ServiceLocator.getIt<ConfigurationService>()
-                    .getIsAiAvailable();
 
-            if (!isAiAvailable) {
-              if (context.mounted) {
-                context.presentSnackBar(
-                  AppLocalizations.of(context)!.aiApiKeyRequired,
+              if (result != null && context.mounted) {
+                context.read<StudyExecutionBloc>().add(
+                  AddStudyChunkRequested(
+                    title: result['title'] ?? '',
+                    content: result['text'] ?? '',
+                  ),
                 );
               }
-              return;
-            }
+            },
+            onGenerateAI: () async {
+              final isAiAvailable =
+                  await ServiceLocator.getIt<ConfigurationService>()
+                      .getIsAiAvailable();
 
-            if (!context.mounted) return;
-            final config = await showDialog<AiStudyGenerationConfig>(
-              context: context,
-              barrierDismissible: false,
-              builder: (context) =>
-                  AiGenerateStudyDialog(questions: widget.quizFile?.questions),
-            );
+              if (!isAiAvailable) {
+                if (context.mounted) {
+                  context.presentSnackBar(
+                    AppLocalizations.of(context)!.aiApiKeyRequired,
+                  );
+                }
+                return;
+              }
 
-            if (config != null && context.mounted) {
-              final studyState = context.read<StudyExecutionBloc>().state;
-              final quizFile = _getCurrentQuizFile(studyState);
-              context.read<StudyExecutionBloc>().add(
-                GenerateAiStudyChunksRequested(
-                  config: config,
-                  quizContext: quizFile.toAIPromptContext(),
+              if (!context.mounted) return;
+              final config = await showDialog<AiStudyGenerationConfig>(
+                context: context,
+                barrierDismissible: false,
+                builder: (context) => AiGenerateStudyDialog(
+                  questions: widget.quizFile?.questions,
                 ),
               );
-            }
-          },
-        ),
-        appBar: StudyAppBar(
-          onConfirmExit: _confirmExit,
-          onEditCurrentChunk: () async {
-            final cubit = context.read<StudyEditorCubit>();
-            final bloc = context.read<StudyExecutionBloc>();
-            final blocState = bloc.state;
-            final chunkIndex = blocState.currentChunkIndex;
 
-            if (chunkIndex < 0 || chunkIndex >= blocState.chunks.length) {
-              return;
-            }
+              if (config != null && context.mounted) {
+                final studyState = context.read<StudyExecutionBloc>().state;
+                final quizFile = _getCurrentQuizFile(studyState);
+                context.read<StudyExecutionBloc>().add(
+                  GenerateAiStudyChunksRequested(
+                    config: config,
+                    quizContext: quizFile.toAIPromptContext(),
+                  ),
+                );
+              }
+            },
+          ),
+          appBar: StudyAppBar(
+            onConfirmExit: _confirmExit,
+            onEditCurrentChunk: () async {
+              final cubit = context.read<StudyEditorCubit>();
+              final bloc = context.read<StudyExecutionBloc>();
+              final blocState = bloc.state;
+              final chunkIndex = blocState.currentChunkIndex;
 
-            // Keep editor state aligned with current study state before opening the editor.
-            cubit.resetToSnapshot(blocState.chunks);
-            final snapshot = List.of(cubit.state.chunks);
+              if (chunkIndex < 0 || chunkIndex >= blocState.chunks.length) {
+                return;
+              }
 
-            final saved = await context.push<bool>(
-              AppRoutes.componentEditorScreen,
-              extra: {'cubit': cubit, 'chunkIndex': chunkIndex, 'pageIndex': 0},
-            );
-            if (saved == true) {
-              bloc.add(StudyChunksUpdated(cubit.state.chunks));
-            } else {
-              cubit.resetToSnapshot(snapshot);
-            }
-          },
-        ),
-        body: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-          buildWhen: (previous, current) =>
-              previous.isIndexMode != current.isIndexMode,
-          builder: (context, state) {
-            final body = StudyBody(
-              onHandleFileReattachment: _handleFileReattachment,
-              onSave: _handleSave,
-            );
+              // Keep editor state aligned with current study state before opening the editor.
+              cubit.resetToSnapshot(blocState.chunks);
+              final snapshot = List.of(cubit.state.chunks);
 
-            if (!state.isIndexMode) return body;
+              final saved = await context.push<bool>(
+                AppRoutes.componentEditorScreen,
+                extra: {
+                  'cubit': cubit,
+                  'chunkIndex': chunkIndex,
+                  'pageIndex': 0,
+                },
+              );
+              if (saved == true) {
+                bloc.add(StudyChunksUpdated(cubit.state.chunks));
+              } else {
+                cubit.resetToSnapshot(snapshot);
+              }
+            },
+          ),
+          body: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+            buildWhen: (previous, current) =>
+                previous.isIndexMode != current.isIndexMode,
+            builder: (context, state) {
+              final body = StudyBody(
+                onHandleFileReattachment: _handleFileReattachment,
+                onSave: _handleSave,
+              );
 
-            return DropTarget(
-              onDragDone: (details) {
-                if (ModalRoute.of(context)?.isCurrent != true) return;
-                setState(() => _isDragging = false);
-                if (ServiceLocator.getIt<DialogDropGuard>().isActive) return;
-                if (details.files.isNotEmpty) {
-                  final firstFile = details.files.first;
-                  if (firstFile.path.isNotEmpty) {
-                    if (!firstFile.name.toLowerCase().endsWith('.quiz')) {
-                      if (mounted) {
-                        context.presentSnackBar(
-                          AppLocalizations.of(context)!.errorInvalidFile,
-                        );
+              if (!state.isIndexMode) return body;
+
+              return DropTarget(
+                onDragDone: (details) {
+                  if (ModalRoute.of(context)?.isCurrent != true) return;
+                  setState(() => _isDragging = false);
+                  if (ServiceLocator.getIt<DialogDropGuard>().isActive) return;
+                  if (details.files.isNotEmpty) {
+                    final firstFile = details.files.first;
+                    if (firstFile.path.isNotEmpty) {
+                      if (!firstFile.name.toLowerCase().endsWith('.quiz')) {
+                        if (mounted) {
+                          context.presentSnackBar(
+                            AppLocalizations.of(context)!.errorInvalidFile,
+                          );
+                        }
+                        return;
                       }
-                      return;
+                      _importChunksFromFile(firstFile.path);
                     }
-                    _importChunksFromFile(firstFile.path);
                   }
-                }
-              },
-              onDragEntered: (_) {
-                if (!ServiceLocator.getIt<DialogDropGuard>().isActive) {
-                  setState(() => _isDragging = true);
-                }
-              },
-              onDragExited: (_) => setState(() => _isDragging = false),
-              child: Stack(
-                children: [
-                  body,
-                  if (_isDragging)
-                    Positioned.fill(
-                      child: Container(
-                        color: Theme.of(
-                          context,
-                        ).primaryColor.withValues(alpha: 0.15),
-                        child: Center(
-                          child: Container(
-                            padding: const EdgeInsets.all(32),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
-                              borderRadius: BorderRadius.circular(24),
-                              border: Border.all(
-                                color: Theme.of(context).primaryColor,
-                                width: 3,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Theme.of(
-                                    context,
-                                  ).primaryColor.withValues(alpha: 0.2),
-                                  blurRadius: 20,
-                                  offset: const Offset(0, 10),
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  LucideIcons.upload,
-                                  size: 48,
+                },
+                onDragEntered: (_) {
+                  if (!ServiceLocator.getIt<DialogDropGuard>().isActive) {
+                    setState(() => _isDragging = true);
+                  }
+                },
+                onDragExited: (_) => setState(() => _isDragging = false),
+                child: Stack(
+                  children: [
+                    body,
+                    if (_isDragging)
+                      Positioned.fill(
+                        child: Container(
+                          color: Theme.of(
+                            context,
+                          ).primaryColor.withValues(alpha: 0.15),
+                          child: Center(
+                            child: Container(
+                              padding: const EdgeInsets.all(32),
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).cardColor,
+                                borderRadius: BorderRadius.circular(24),
+                                border: Border.all(
                                   color: Theme.of(context).primaryColor,
+                                  width: 3,
                                 ),
-                                const SizedBox(height: 16),
-                                Text(
-                                  AppLocalizations.of(context)!.dropFileHere,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineMedium
-                                      ?.copyWith(
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                ),
-                              ],
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Theme.of(
+                                      context,
+                                    ).primaryColor.withValues(alpha: 0.2),
+                                    blurRadius: 20,
+                                    offset: const Offset(0, 10),
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    LucideIcons.upload,
+                                    size: 48,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                  const SizedBox(height: 16),
+                                  Text(
+                                    AppLocalizations.of(context)!.dropFileHere,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium
+                                        ?.copyWith(
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                ],
-              ),
-            );
-          },
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
