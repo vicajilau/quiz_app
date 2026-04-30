@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.13.1] - TBD
 
-- fix(home): Status bar icons now switch to white while the update banner is visible on Home, and automatically restore theme-based light/dark colors when the banner is dismissed.
+- fix(mobile): Status bar icons now switch to white while the update banner is visible in light mode, and automatically restore theme-based light/dark colors when the banner is dismissed.
+- fix(mobile): Improved readability of the system status bar during in-app update prompts, dynamically adjusting icon colors to ensure they remain clearly visible over the update banner and seamlessly restore to their native theme once dismissed.
 
 ## [1.13.0] - 2026-04-29
 - ux(study): Added a visible horizontal scrollbar to comparison tables in Study Mode so overflow is easier to discover on desktop and touch devices.
