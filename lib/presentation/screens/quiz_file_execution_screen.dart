@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'dart:async';
@@ -173,25 +174,42 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
                   }
                 }
               },
-              child: Scaffold(
-                backgroundColor: isDark ? AppTheme.zinc900 : AppTheme.zinc50,
-                body: SafeArea(
-                  child: BlocConsumer<QuizExecutionBloc, QuizExecutionState>(
-                    listener: (context, state) {
-                      if (state is QuizExecutionCompleted) {
-                        // Handled by view
-                      }
-                    },
-                    builder: (context, state) {
-                      if (state is QuizExecutionInitial) {
-                        return const Center(child: QuizdyLoading());
-                      } else if (state is QuizExecutionInProgress) {
-                        return QuizInProgressView(state: state);
-                      } else if (state is QuizExecutionCompleted) {
-                        return QuizCompletedView(state: state);
-                      }
-                      return const SizedBox.shrink();
-                    },
+              child: AnnotatedRegion<SystemUiOverlayStyle>(
+                value: SystemUiOverlayStyle(
+                  statusBarColor: Colors.transparent,
+                  statusBarIconBrightness: isDark
+                      ? Brightness.light
+                      : Brightness.dark,
+                  statusBarBrightness: isDark
+                      ? Brightness.dark
+                      : Brightness.light,
+                  systemNavigationBarColor: isDark
+                      ? AppTheme.zinc900
+                      : AppTheme.zinc50,
+                  systemNavigationBarIconBrightness: isDark
+                      ? Brightness.light
+                      : Brightness.dark,
+                ),
+                child: Scaffold(
+                  backgroundColor: isDark ? AppTheme.zinc900 : AppTheme.zinc50,
+                  body: SafeArea(
+                    child: BlocConsumer<QuizExecutionBloc, QuizExecutionState>(
+                      listener: (context, state) {
+                        if (state is QuizExecutionCompleted) {
+                          // Handled by view
+                        }
+                      },
+                      builder: (context, state) {
+                        if (state is QuizExecutionInitial) {
+                          return const Center(child: QuizdyLoading());
+                        } else if (state is QuizExecutionInProgress) {
+                          return QuizInProgressView(state: state);
+                        } else if (state is QuizExecutionCompleted) {
+                          return QuizCompletedView(state: state);
+                        }
+                        return const SizedBox.shrink();
+                      },
+                    ),
                   ),
                 ),
               ),

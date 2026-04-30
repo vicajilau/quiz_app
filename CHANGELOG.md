@@ -5,8 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.13.0] - 2026-04-29
+## [1.13.1] - TBD
 
+- fix(mobile): Improved readability of the system status bar during in-app update prompts, dynamically adjusting icon colors to ensure they remain clearly visible over the update banner and seamlessly restore to their native theme once dismissed.
+
+## [1.13.0] - 2026-04-29
 - ux(study): Added a visible horizontal scrollbar to comparison tables in Study Mode so overflow is easier to discover on desktop and touch devices.
 - i18n: Changed file name label from "optional" to "required" in file save dialogs across all 18 supported languages to clarify that the file name is mandatory.
 - feat: Implemented `CardStatusBar` and applied for `StudyIndexChunkCard` and `QuestionPreviewCard`.
