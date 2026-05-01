@@ -47,8 +47,9 @@ app.*.map.json
 # Generated localization files
 untranslated_messages.json
 lib/core/l10n/app_localizations*.dart
-distribution/whatsnew/
+distribution/android/whatsnew/
 fastlane/metadata/
+distribution/windows/update_metadata.json
 
 # Copilot instructions (local configuration)
 .github/copilot-instructions.md

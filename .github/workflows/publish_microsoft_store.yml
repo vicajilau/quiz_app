@@ -22,9 +22,20 @@ jobs:
 
       - name: Install Dart dependencies
         run: flutter pub get
+
+      - name: Generate Windows release notes metadata
+        run: dart distribution/windows/generate_windows_release_notes.dart --version=${{ github.ref_name }}
         
       - name: Create MSIX package
         run: msstore package .
+
+      - name: Update Microsoft Store submission metadata
+        shell: pwsh
+        env:
+          MS_STORE_APP_ID: ${{ secrets.MS_STORE_APP_ID }}
+        run: |
+          $metadata = Get-Content -Raw .\distribution\windows\update_metadata.json
+          msstore submission updateMetadata $env:MS_STORE_APP_ID "$metadata"
 
       - name: Publish MSIX to the Microsoft Store
         run: msstore publish --appId ${{ secrets.MS_STORE_APP_ID }} -v

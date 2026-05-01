@@ -51,7 +51,7 @@ void main(List<String> args) {
 
   final String version = _resolveVersion(options['version']);
   final Directory outputDir = Directory(
-    options['output'] ?? 'distribution/whatsnew',
+    options['output'] ?? 'distribution/android/whatsnew',
   );
 
   final Map<String, dynamic> config = _readConfig(notesFile);

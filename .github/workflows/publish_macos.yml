@@ -158,7 +158,7 @@ jobs:
           xcrun altool --upload-app --type osx --file build/macos/pkg/*.pkg --apiKey "$API_KEY_ID" --apiIssuer "$API_ISSUER_ID"
 
       - name: Generate App Store release notes
-        run: dart scripts/generate_apple_release_notes.dart --version=${{ github.ref_name }}
+        run: dart distribution/apple/generate_apple_release_notes.dart --version=${{ github.ref_name }}
 
       - name: Install Fastlane
         run: gem install fastlane --no-document
