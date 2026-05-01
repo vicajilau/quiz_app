@@ -30,6 +30,8 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
+      - name: Generate Google Play release notes
+        run: dart scripts/generate_play_whatsnew.dart --version=${{ github.ref_name }}
       - name: Start Android Release Build
         run: flutter build appbundle
       - name: Upload Release Build to Artifacts
@@ -43,5 +45,6 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.ANDROID_PLAYSTORE_ACCOUNT_KEY }}
           packageName: es.victorcarreras.quiz_app
           releaseFiles: build/app/outputs/bundle/release/app-release.aab
+          whatsNewDirectory: distribution/whatsnew
           tracks: production
           status: completed

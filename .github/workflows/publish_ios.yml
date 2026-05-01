@@ -56,6 +56,14 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+
+      - name: Extract app version and build number
+        run: |
+          VERSION_LINE=$(grep '^version:' pubspec.yaml | sed 's/version: //')
+          APP_VERSION=$(echo "$VERSION_LINE" | sed 's/+.*//')
+          BUILD_NUMBER=$(echo "$VERSION_LINE" | sed 's/.*+//')
+          echo "APP_VERSION=$APP_VERSION" >> $GITHUB_ENV
+          echo "BUILD_NUMBER=$BUILD_NUMBER" >> $GITHUB_ENV
           
       - name: Install dependencies
         run: flutter pub get
@@ -82,3 +90,40 @@ jobs:
           
           # Upload
           xcrun altool --upload-app --type ios --file build/ios/ipa/*.ipa --apiKey "$API_KEY_ID" --apiIssuer "$API_ISSUER_ID"
+
+      - name: Generate App Store release notes
+        run: dart scripts/generate_apple_release_notes.dart --version=${{ github.ref_name }}
+
+      - name: Install Fastlane
+        run: gem install fastlane --no-document
+
+      - name: Submit iOS release to App Store Connect
+        env:
+          API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          API_ISSUER_ID: ${{ secrets.APPLE_API_KEY_ISSUER }}
+          API_KEY_CONTENT: ${{ secrets.APPLE_API_KEY_CONTENT }}
+          APPLE_BUNDLE_ID: es.victorcarreras.quiz-app
+        run: |
+          AUTOMATIC_RELEASE=true
+          mkdir -p fastlane
+          cat > fastlane/app_store_connect_api_key.json <<EOF
+          {
+            "key_id": "$API_KEY_ID",
+            "issuer_id": "$API_ISSUER_ID",
+            "key": "$API_KEY_CONTENT",
+            "in_house": false
+          }
+          EOF
+
+          fastlane deliver \
+            --platform ios \
+            --api_key_path fastlane/app_store_connect_api_key.json \
+            --app_identifier "$APPLE_BUNDLE_ID" \
+            --app_version "$APP_VERSION" \
+            --build_number "$BUILD_NUMBER" \
+            --metadata_path fastlane/metadata \
+            --skip_binary_upload true \
+            --skip_screenshots true \
+            --submit_for_review true \
+            --automatic_release "$AUTOMATIC_RELEASE" \
+            --force

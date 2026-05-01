@@ -1,0 +1,22 @@
+{
+  "1.13.1": {
+    "ar-SA": "تحسين الأداء العام للتطبيق وتسريع وقت التحميل.",
+    "ca-ES": "Millora del rendiment general de l'app i càrrega més ràpida.",
+    "de-DE": "Allgemeine Leistungsverbesserungen und schnelleres Laden.",
+    "el-GR": "Βελτιωμένη συνολική απόδοση και ταχύτερη φόρτωση.",
+    "en-GB": "Improved overall app performance and faster loading.",
+    "es-ES": "Mejorado el rendimiento general de la app y una carga más rápida.",
+    "eu-ES": "Aplikazioaren errendimendu orokorra hobetu da eta karga azkarragoa da.",
+    "fr-FR": "Amélioration des performances globales et chargement plus rapide.",
+    "gl-ES": "Mellorouse o rendemento xeral da app e a carga é máis rápida.",
+    "hi-IN": "ऐप का समग्र प्रदर्शन बेहतर हुआ है और लोडिंग तेज़ है।",
+    "it-IT": "Prestazioni generali migliorate e caricamento più rapido.",
+    "ja-JP": "アプリ全体のパフォーマンスを改善し、読み込み速度を向上しました。",
+    "ka-GE": "გაუმჯობესდა აპის საერთო წარმადობა და ჩატვირთვა დაჩქარდა.",
+    "ko-KR": "앱 전반의 성능이 향상되고 로딩 속도가 빨라졌습니다.",
+    "pt-BR": "Melhoria no desempenho geral do app e carregamento mais rápido.",
+    "ru-RU": "Улучшена общая производительность приложения и ускорена загрузка.",
+    "uk-UA": "Покращено загальну продуктивність застосунку та прискорено завантаження.",
+    "zh-CN": "整体性能已提升，加载速度更快。"
+  }
+}
