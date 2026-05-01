@@ -87,7 +87,7 @@ void main(List<String> args) {
 
   final String version = _resolveVersion(options['version']);
   final Directory outputDir = Directory(
-    options['output'] ?? 'fastlane/metadata',
+    options['output'] ?? 'distribution/apple/fastlane/metadata',
   );
 
   final Map<String, dynamic> config = _readConfig(notesFile);

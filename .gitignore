@@ -48,7 +48,7 @@ app.*.map.json
 untranslated_messages.json
 lib/core/l10n/app_localizations*.dart
 distribution/android/whatsnew/
-fastlane/metadata/
+distribution/apple/fastlane/metadata/
 distribution/windows/update_metadata.json
 
 # Copilot instructions (local configuration)
