@@ -289,10 +289,6 @@
   "@requestFileNameTitle": {
     "description": "Titel für den Dialog zur Anfrage des Dateinamens."
   },
-  "fileNameHint": "Dateiname",
-  "@fileNameHint": {
-    "description": "Hinweistext für die Dateiname-Eingabe."
-  },
   "emptyFileNameMessage": "Der Dateiname darf nicht leer sein.",
   "@emptyFileNameMessage": {
     "description": "Fehlermeldung, wenn der Dateiname leer ist."

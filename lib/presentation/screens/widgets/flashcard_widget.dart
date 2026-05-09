@@ -51,9 +51,10 @@ class _FlashcardWidgetState extends State<FlashcardWidget>
       vsync: this,
       duration: const Duration(milliseconds: 300),
     );
-    _animation = Tween<double>(begin: 0, end: pi).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
+    _animation = Tween<double>(
+      begin: 0,
+      end: pi,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
     if (widget.isFlipped) {
       _controller.value = 1.0;
@@ -105,10 +106,7 @@ class _FlashcardWidgetState extends State<FlashcardWidget>
           constraints: const BoxConstraints(maxHeight: 200),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.memory(
-              bytes,
-              fit: BoxFit.contain,
-            ),
+            child: Image.memory(bytes, fit: BoxFit.contain),
           ),
         ),
       );
@@ -155,7 +153,7 @@ class _FlashcardWidgetState extends State<FlashcardWidget>
 
   Widget _buildBack() {
     final customColors = Theme.of(context).extension<CustomColors>();
-    
+
     // Get correct answers text
     final correctOptions = widget.question.correctAnswers
         .map((index) {
@@ -176,13 +174,17 @@ class _FlashcardWidgetState extends State<FlashcardWidget>
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
             BoxShadow(
-              color: customColors?.success?.withValues(alpha: 0.2) ?? Colors.black.withValues(alpha: 0.1),
+              color:
+                  customColors?.success?.withValues(alpha: 0.2) ??
+                  Colors.black.withValues(alpha: 0.1),
               blurRadius: 15,
               offset: const Offset(0, 5),
             ),
           ],
           border: Border.all(
-            color: customColors?.success?.withValues(alpha: 0.5) ?? AppTheme.primaryColor,
+            color:
+                customColors?.success?.withValues(alpha: 0.5) ??
+                AppTheme.primaryColor,
             width: 2,
           ),
         ),
@@ -232,12 +234,9 @@ class _FlashcardWidgetState extends State<FlashcardWidget>
                 QuizdyLatexText(
                   widget.question.explanation,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    height: 1.5,
-                  ),
+                  style: const TextStyle(fontSize: 16, height: 1.5),
                 ),
-              ]
+              ],
             ],
           ),
         ),

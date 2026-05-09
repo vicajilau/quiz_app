@@ -37,11 +37,11 @@ class FlashcardsScreen extends StatefulWidget {
 
 class _FlashcardsScreenState extends State<FlashcardsScreen> {
   final CardSwiperController _swiperController = CardSwiperController();
-  
+
   late List<Question> _activeQueue;
   bool _isFinished = false;
   int _currentIndex = 0;
-  
+
   // Track flip state so we know if they actually reviewed it
   // (Optional: enforce flipping before swiping, but let's keep it simple first)
   bool _currentCardFlipped = false;
@@ -115,7 +115,9 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
           Container(
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
-              color: customColors?.success?.withValues(alpha: 0.1) ?? AppTheme.primaryColor.withValues(alpha: 0.1),
+              color:
+                  customColors?.success?.withValues(alpha: 0.1) ??
+                  AppTheme.primaryColor.withValues(alpha: 0.1),
               shape: BoxShape.circle,
             ),
             child: Icon(
@@ -127,10 +129,7 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
           const SizedBox(height: 32),
           Text(
             localizations.flashcardsCompletionMessage,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 48),
@@ -177,7 +176,10 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
             // Progress Indicator
             if (!_isFinished && _activeQueue.isNotEmpty)
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 16,
+                ),
                 child: Row(
                   children: [
                     Expanded(
@@ -210,19 +212,25 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
               child: _isFinished
                   ? _buildFinishedState()
                   : _activeQueue.isEmpty
-                      ? Center(child: Text(localizations.flashcardsEmptyState))
-                      : Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 24, vertical: 16),
-                          child: CardSwiper(
-                            controller: _swiperController,
-                            cardsCount: _activeQueue.length,
-                            onSwipe: _onSwipe,
-                            numberOfCardsDisplayed: 2,
-                            padding: EdgeInsets.zero,
-                            backCardOffset: const Offset(0, 15),
-                            allowedSwipeDirection: const AllowedSwipeDirection.symmetric(horizontal: true),
-                            cardBuilder: (
+                  ? Center(child: Text(localizations.flashcardsEmptyState))
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 16,
+                      ),
+                      child: CardSwiper(
+                        controller: _swiperController,
+                        cardsCount: _activeQueue.length,
+                        onSwipe: _onSwipe,
+                        numberOfCardsDisplayed: 2,
+                        padding: EdgeInsets.zero,
+                        backCardOffset: const Offset(0, 15),
+                        allowedSwipeDirection:
+                            const AllowedSwipeDirection.symmetric(
+                              horizontal: true,
+                            ),
+                        cardBuilder:
+                            (
                               context,
                               index,
                               horizontalThresholdPercentage,
@@ -238,8 +246,8 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
                                 },
                               );
                             },
-                          ),
-                        ),
+                      ),
+                    ),
             ),
 
             // Action Buttons
@@ -251,7 +259,8 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
                   children: [
                     FloatingActionButton.large(
                       heroTag: 'btn_wrong',
-                      onPressed: () => _swiperController.swipe(CardSwiperDirection.left),
+                      onPressed: () =>
+                          _swiperController.swipe(CardSwiperDirection.left),
                       backgroundColor: Theme.of(context).colorScheme.error,
                       elevation: 4,
                       child: Icon(
@@ -262,7 +271,8 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
                     ),
                     FloatingActionButton.large(
                       heroTag: 'btn_correct',
-                      onPressed: () => _swiperController.swipe(CardSwiperDirection.right),
+                      onPressed: () =>
+                          _swiperController.swipe(CardSwiperDirection.right),
                       backgroundColor: customColors?.success ?? Colors.green,
                       elevation: 4,
                       child: const Icon(

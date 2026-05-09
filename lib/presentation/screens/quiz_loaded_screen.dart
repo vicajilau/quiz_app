@@ -837,18 +837,18 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                       selectedQuestions.add(cachedQuizFile.questions[index]);
                     }
                   }
-                  
+
                   if (selectedQuestions.isEmpty) {
-                      return; // Handle case where none selected are enabled
+                    return; // Handle case where none selected are enabled
                   }
-                  
+
                   quizFileToUse = cachedQuizFile.copyWith(
                     questions: selectedQuestions,
                   );
                 } else {
-                    quizFileToUse = cachedQuizFile.copyWith(
-                        questions: enabledQuestions
-                    );
+                  quizFileToUse = cachedQuizFile.copyWith(
+                    questions: enabledQuestions,
+                  );
                 }
 
                 ServiceLocator.registerQuizFile(quizFileToUse);
