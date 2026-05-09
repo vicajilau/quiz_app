@@ -2408,5 +2408,15 @@
   "forceUpdateMessage": "Quizdy का उपयोग जारी रखने के लिए एक अनिवार्य अपडेट आवश्यक है। कृपया ऐप अपडेट करें।",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
+  },
+  "startFlashcardsButton": "फ़्लैशकार्ड का अध्ययन करें",
+  "@startFlashcardsButton": {"description": "Button text to start the flashcards study mode"},
+  "flashcardsModeTitle": "फ़्लैशकार्ड",
+  "@flashcardsModeTitle": {"description": "Title for the flashcards mode screen"},
+  "flashcardsEmptyState": "अध्ययन के लिए कोई प्रश्न उपलब्ध नहीं है।",
+  "@flashcardsEmptyState": {"description": "Empty state message for flashcards"},
+  "flashcardsCompletionMessage": "आपने सभी फ़्लैशकार्ड की समीक्षा कर ली है!",
+  "@flashcardsCompletionMessage": {"description": "Message shown when all flashcards are reviewed"},
+  "flashcardsRestartButton": "पुनरारंभ करें",
+  "@flashcardsRestartButton": {"description": "Button to restart the flashcards session"}
 }

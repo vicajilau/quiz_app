@@ -24,6 +24,7 @@ import 'package:quizdy/presentation/screens/quiz_loaded_screen.dart';
 import 'package:quizdy/presentation/screens/quiz_file_execution_screen.dart';
 import 'package:quizdy/presentation/screens/study_editor/component_editor_screen.dart';
 import 'package:quizdy/presentation/screens/study_screen.dart';
+import 'package:quizdy/presentation/screens/flashcards_screen.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 
@@ -46,6 +47,7 @@ class AppRoutes {
   static const String quizFileExecutionScreen = '/quiz_file_execution_screen';
   static const String studyScreen = '/study_screen';
   static const String componentEditorScreen = '/component_editor_screen';
+  static const String flashcardsScreen = '/flashcards_screen';
 }
 
 GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
@@ -118,6 +120,11 @@ GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
           language: extra['language'] as String?,
         );
       },
+    ),
+    GoRoute(
+      path: AppRoutes.flashcardsScreen,
+      builder: (context, state) =>
+          FlashcardsScreen(quizFile: ServiceLocator.getIt<QuizFile>()),
     ),
   ],
 

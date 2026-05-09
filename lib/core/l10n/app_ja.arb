@@ -2408,5 +2408,15 @@
   "forceUpdateMessage": "Quizdyを引き続き使用するには、強制アップデートが必要です。アプリをアップデートしてください。",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
+  },
+  "startFlashcardsButton": "フラッシュカードを学習",
+  "@startFlashcardsButton": {"description": "Button text to start the flashcards study mode"},
+  "flashcardsModeTitle": "フラッシュカード",
+  "@flashcardsModeTitle": {"description": "Title for the flashcards mode screen"},
+  "flashcardsEmptyState": "学習できる質問はありません。",
+  "@flashcardsEmptyState": {"description": "Empty state message for flashcards"},
+  "flashcardsCompletionMessage": "すべてのカードを確認しました！",
+  "@flashcardsCompletionMessage": {"description": "Message shown when all flashcards are reviewed"},
+  "flashcardsRestartButton": "再開する",
+  "@flashcardsRestartButton": {"description": "Button to restart the flashcards session"}
 }

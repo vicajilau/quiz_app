@@ -1097,5 +1097,15 @@
   "forceUpdateMessage": "Quizdy-ს გამოყენების გასაგრძელებლად საჭიროა სავალდებულო განახლება. გთხოვთ, განაახლოთ აპი.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
+  },
+  "startFlashcardsButton": "ფლეშ ბარათების შესწავლა",
+  "@startFlashcardsButton": {"description": "Button text to start the flashcards study mode"},
+  "flashcardsModeTitle": "ფლეშ ბარათები",
+  "@flashcardsModeTitle": {"description": "Title for the flashcards mode screen"},
+  "flashcardsEmptyState": "შესასწავლი კითხვები არ არის ხელმისაწვდომი.",
+  "@flashcardsEmptyState": {"description": "Empty state message for flashcards"},
+  "flashcardsCompletionMessage": "თქვენ გადახედეთ ყველა ბარათს!",
+  "@flashcardsCompletionMessage": {"description": "Message shown when all flashcards are reviewed"},
+  "flashcardsRestartButton": "გადატვირთვა",
+  "@flashcardsRestartButton": {"description": "Button to restart the flashcards session"}
 }

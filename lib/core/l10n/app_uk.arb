@@ -1130,5 +1130,15 @@
   "forceUpdateMessage": "Для продовження використання Quizdy необхідне обов'язкове оновлення. Будь ласка, оновіть програму.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
+  },
+  "startFlashcardsButton": "Вивчати картки",
+  "@startFlashcardsButton": {"description": "Button text to start the flashcards study mode"},
+  "flashcardsModeTitle": "Флеш-картки",
+  "@flashcardsModeTitle": {"description": "Title for the flashcards mode screen"},
+  "flashcardsEmptyState": "Немає доступних питань для вивчення.",
+  "@flashcardsEmptyState": {"description": "Empty state message for flashcards"},
+  "flashcardsCompletionMessage": "Ви переглянули всі картки!",
+  "@flashcardsCompletionMessage": {"description": "Message shown when all flashcards are reviewed"},
+  "flashcardsRestartButton": "Почати знову",
+  "@flashcardsRestartButton": {"description": "Button to restart the flashcards session"}
 }

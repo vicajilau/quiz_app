@@ -2450,5 +2450,15 @@
   "forceUpdateMessage": "Une mise à jour obligatoire est requise pour continuer à utiliser Quizdy. Veuillez mettre à jour l'application.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
+  },
+  "startFlashcardsButton": "Étudier les Flashcards",
+  "@startFlashcardsButton": {"description": "Button text to start the flashcards study mode"},
+  "flashcardsModeTitle": "Mode Flashcards",
+  "@flashcardsModeTitle": {"description": "Title for the flashcards mode screen"},
+  "flashcardsEmptyState": "Aucune question disponible pour l'étude.",
+  "@flashcardsEmptyState": {"description": "Empty state message for flashcards"},
+  "flashcardsCompletionMessage": "Vous avez révisé toutes les cartes !",
+  "@flashcardsCompletionMessage": {"description": "Message shown when all flashcards are reviewed"},
+  "flashcardsRestartButton": "Redémarrer",
+  "@flashcardsRestartButton": {"description": "Button to restart the flashcards session"}
 }

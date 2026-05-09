@@ -28,6 +28,7 @@ class QuizLoadedBottomBar extends StatefulWidget {
   final VoidCallback onSave;
   final VoidCallback onDelete;
   final VoidCallback onPlay;
+  final VoidCallback onPlayFlashcards;
   final VoidCallback? onExportPdf;
   final bool isPlayEnabled;
   final int selectedQuestionCount;
@@ -45,6 +46,7 @@ class QuizLoadedBottomBar extends StatefulWidget {
     required this.onSave,
     required this.onDelete,
     required this.onPlay,
+    required this.onPlayFlashcards,
     required this.onDeleteDuplicates,
     this.onExportPdf,
     this.isPlayEnabled = false,
@@ -387,13 +389,31 @@ class _QuizLoadedBottomBarState extends State<QuizLoadedBottomBar> {
                         alignment: Alignment.center,
                         child: SizedBox(
                           width: effectiveWidth,
-                          child: QuizdyButton(
-                            title: localizations.startQuizButton,
-                            icon: LucideIcons.play,
-                            expanded: true,
-                            onPressed: widget.isPlayEnabled
-                                ? widget.onPlay
-                                : null,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: QuizdyButton(
+                                  title: localizations.startFlashcardsButton,
+                                  icon: LucideIcons.layers,
+                                  expanded: true,
+                                  type: QuizdyButtonType.secondary,
+                                  onPressed: widget.isPlayEnabled
+                                      ? widget.onPlayFlashcards
+                                      : null,
+                                ),
+                              ),
+                              const SizedBox(width: gap),
+                              Expanded(
+                                child: QuizdyButton(
+                                  title: localizations.startQuizButton,
+                                  icon: LucideIcons.play,
+                                  expanded: true,
+                                  onPressed: widget.isPlayEnabled
+                                      ? widget.onPlay
+                                      : null,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),

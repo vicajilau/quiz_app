@@ -2457,5 +2457,15 @@
   "forceUpdateMessage": "需要强制更新才能继续使用 Quizdy。请更新应用。",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
+  },
+  "startFlashcardsButton": "学习抽认卡",
+  "@startFlashcardsButton": {"description": "Button text to start the flashcards study mode"},
+  "flashcardsModeTitle": "抽认卡",
+  "@flashcardsModeTitle": {"description": "Title for the flashcards mode screen"},
+  "flashcardsEmptyState": "没有可供学习的问题。",
+  "@flashcardsEmptyState": {"description": "Empty state message for flashcards"},
+  "flashcardsCompletionMessage": "您已复习完所有抽认卡！",
+  "@flashcardsCompletionMessage": {"description": "Message shown when all flashcards are reviewed"},
+  "flashcardsRestartButton": "重新开始",
+  "@flashcardsRestartButton": {"description": "Button to restart the flashcards session"}
 }

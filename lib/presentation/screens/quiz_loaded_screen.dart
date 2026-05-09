@@ -807,6 +807,53 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                   context.push(AppRoutes.quizFileExecutionScreen);
                 }
               },
+              onPlayFlashcards: () async {
+                // Filter enabled questions first
+                final enabledQuestions = cachedQuizFile.questions
+                    .where((question) => question.isEnabled)
+                    .toList();
+
+                if (enabledQuestions.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        AppLocalizations.of(context)!.noEnabledQuestionsError,
+                      ),
+                      backgroundColor: Theme.of(
+                        context,
+                      ).extension<CustomColors>()!.warning,
+                    ),
+                  );
+                  return;
+                }
+
+                // If selection mode is active, filter selected + enabled
+                QuizFile quizFileToUse = cachedQuizFile;
+                if (_isSelectionMode && _selectedQuestions.isNotEmpty) {
+                  final selectedQuestions = <Question>[];
+                  for (final index in _selectedQuestions) {
+                    if (index < cachedQuizFile.questions.length &&
+                        cachedQuizFile.questions[index].isEnabled) {
+                      selectedQuestions.add(cachedQuizFile.questions[index]);
+                    }
+                  }
+                  
+                  if (selectedQuestions.isEmpty) {
+                      return; // Handle case where none selected are enabled
+                  }
+                  
+                  quizFileToUse = cachedQuizFile.copyWith(
+                    questions: selectedQuestions,
+                  );
+                } else {
+                    quizFileToUse = cachedQuizFile.copyWith(
+                        questions: enabledQuestions
+                    );
+                }
+
+                ServiceLocator.registerQuizFile(quizFileToUse);
+                context.push(AppRoutes.flashcardsScreen);
+              },
             ),
           ),
         ),

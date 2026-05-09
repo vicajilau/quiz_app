@@ -2505,5 +2505,15 @@
   "forceUpdateMessage": "Ein obligatorisches Update ist erforderlich, um Quizdy weiterhin zu verwenden. Bitte aktualisieren Sie die App.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
+  },
+  "startFlashcardsButton": "Karteikarten lernen",
+  "@startFlashcardsButton": {"description": "Button text to start the flashcards study mode"},
+  "flashcardsModeTitle": "Karteikarten",
+  "@flashcardsModeTitle": {"description": "Title for the flashcards mode screen"},
+  "flashcardsEmptyState": "Keine Fragen zum Lernen verfügbar.",
+  "@flashcardsEmptyState": {"description": "Empty state message for flashcards"},
+  "flashcardsCompletionMessage": "Du hast alle Karteikarten überprüft!",
+  "@flashcardsCompletionMessage": {"description": "Message shown when all flashcards are reviewed"},
+  "flashcardsRestartButton": "Neustart",
+  "@flashcardsRestartButton": {"description": "Button to restart the flashcards session"}
 }

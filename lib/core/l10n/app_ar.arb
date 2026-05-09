@@ -2823,5 +2823,15 @@
   "forceUpdateMessage": "مطلوب تحديث إلزامي لمتابعة استخدام Quizdy. يرجى تحديث التطبيق.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
+  },
+  "startFlashcardsButton": "دراسة البطاقات",
+  "@startFlashcardsButton": {"description": "Button text to start the flashcards study mode"},
+  "flashcardsModeTitle": "البطاقات التعليمية",
+  "@flashcardsModeTitle": {"description": "Title for the flashcards mode screen"},
+  "flashcardsEmptyState": "لا توجد أسئلة متاحة للدراسة.",
+  "@flashcardsEmptyState": {"description": "Empty state message for flashcards"},
+  "flashcardsCompletionMessage": "لقد راجعت جميع البطاقات!",
+  "@flashcardsCompletionMessage": {"description": "Message shown when all flashcards are reviewed"},
+  "flashcardsRestartButton": "إعادة البدء",
+  "@flashcardsRestartButton": {"description": "Button to restart the flashcards session"}
 }

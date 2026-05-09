@@ -1097,5 +1097,15 @@
   "forceUpdateMessage": "Quizdy를 계속 사용하려면 필수 업데이트가 필요합니다. 앱을 업데이트해 주세요.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
+  },
+  "startFlashcardsButton": "플래시카드 학습",
+  "@startFlashcardsButton": {"description": "Button text to start the flashcards study mode"},
+  "flashcardsModeTitle": "플래시카드",
+  "@flashcardsModeTitle": {"description": "Title for the flashcards mode screen"},
+  "flashcardsEmptyState": "학습할 질문이 없습니다.",
+  "@flashcardsEmptyState": {"description": "Empty state message for flashcards"},
+  "flashcardsCompletionMessage": "모든 플래시카드를 검토했습니다!",
+  "@flashcardsCompletionMessage": {"description": "Message shown when all flashcards are reviewed"},
+  "flashcardsRestartButton": "다시 시작",
+  "@flashcardsRestartButton": {"description": "Button to restart the flashcards session"}
 }

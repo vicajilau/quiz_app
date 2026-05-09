@@ -2405,5 +2405,15 @@
   "forceUpdateMessage": "Derrigorrezko eguneratzea beharrezkoa da Quizdy erabiltzen jarraitzak. Mesedez, eguneratu aplikazioa.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
+  },
+  "startFlashcardsButton": "Flashcardak ikasi",
+  "@startFlashcardsButton": {"description": "Button text to start the flashcards study mode"},
+  "flashcardsModeTitle": "Flashcard modua",
+  "@flashcardsModeTitle": {"description": "Title for the flashcards mode screen"},
+  "flashcardsEmptyState": "Ez dago galderarik eskuragarri ikasteko.",
+  "@flashcardsEmptyState": {"description": "Empty state message for flashcards"},
+  "flashcardsCompletionMessage": "Txartel guztiak berrikusi dituzu!",
+  "@flashcardsCompletionMessage": {"description": "Message shown when all flashcards are reviewed"},
+  "flashcardsRestartButton": "Berrabiarazi",
+  "@flashcardsRestartButton": {"description": "Button to restart the flashcards session"}
 }

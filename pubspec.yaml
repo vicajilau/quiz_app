@@ -66,6 +66,7 @@ dependencies:
   share_plus: ^12.0.2
   app_links: ^7.0.0
   in_app_update: ^4.2.3
+  flutter_card_swiper: ^7.2.0
 
 dev_dependencies:
   flutter_test:

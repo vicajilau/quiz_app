@@ -2507,5 +2507,15 @@
   "forceUpdateMessage": "Cal una actualització obligatòria per continuar utilitzant Quizdy. Si us plau, actualitzeu l'aplicació.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
+  },
+  "startFlashcardsButton": "Estudiar Flashcards",
+  "@startFlashcardsButton": {"description": "Button text to start the flashcards study mode"},
+  "flashcardsModeTitle": "Mode Flashcards",
+  "@flashcardsModeTitle": {"description": "Title for the flashcards mode screen"},
+  "flashcardsEmptyState": "No hi ha preguntes disponibles per estudiar.",
+  "@flashcardsEmptyState": {"description": "Empty state message for flashcards"},
+  "flashcardsCompletionMessage": "Has repassat totes les targetes!",
+  "@flashcardsCompletionMessage": {"description": "Message shown when all flashcards are reviewed"},
+  "flashcardsRestartButton": "Tornar a començar",
+  "@flashcardsRestartButton": {"description": "Button to restart the flashcards session"}
 }
