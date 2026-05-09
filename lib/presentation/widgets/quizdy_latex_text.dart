@@ -33,12 +33,16 @@ class QuizdyLatexText extends StatelessWidget {
   /// Text overflow behavior
   final TextOverflow overflow;
 
+  /// How the text should be aligned horizontally.
+  final TextAlign textAlign;
+
   const QuizdyLatexText(
     this.text, {
     super.key,
     this.style,
     this.maxLines,
     this.overflow = TextOverflow.clip,
+    this.textAlign = TextAlign.start,
   });
 
   @override
@@ -49,7 +53,13 @@ class QuizdyLatexText extends StatelessWidget {
         text.contains('\$') && text.indexOf('\$', text.indexOf('\$') + 1) != -1;
 
     if (!hasInline) {
-      return Text(text, style: style, maxLines: maxLines, overflow: overflow);
+      return Text(
+        text,
+        style: style,
+        maxLines: maxLines,
+        overflow: overflow,
+        textAlign: textAlign,
+      );
     }
 
     // Parse and render mixed LaTeX and plain text
@@ -58,6 +68,7 @@ class QuizdyLatexText extends StatelessWidget {
       style: style,
       maxLines: maxLines,
       overflow: overflow,
+      textAlign: textAlign,
     );
   }
 }
@@ -68,12 +79,14 @@ class _LaTeXRichText extends StatelessWidget {
   final TextStyle? style;
   final int? maxLines;
   final TextOverflow overflow;
+  final TextAlign textAlign;
 
   const _LaTeXRichText({
     required this.text,
     this.style,
     this.maxLines,
     this.overflow = TextOverflow.ellipsis,
+    this.textAlign = TextAlign.start,
   });
 
   @override
@@ -88,12 +101,14 @@ class _LaTeXRichText extends StatelessWidget {
         style: effectiveStyle,
         maxLines: maxLines,
         overflow: overflow,
+        textAlign: textAlign,
       );
     }
 
     return RichText(
       maxLines: maxLines,
       overflow: overflow,
+      textAlign: textAlign,
       text: TextSpan(children: spans, style: effectiveStyle),
     );
   }

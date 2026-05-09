@@ -16,6 +16,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
+import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 import 'dart:convert';
@@ -138,14 +139,14 @@ class _FlashcardWidgetState extends State<FlashcardWidget>
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _buildImage(widget.question.image),
-          Text(
+          QuizdyLatexText(
             widget.question.text,
+            textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w600,
               height: 1.4,
             ),
-            textAlign: TextAlign.center,
           ),
         ],
       ),
@@ -204,13 +205,13 @@ class _FlashcardWidgetState extends State<FlashcardWidget>
               ...correctOptions.map(
                 (opt) => Padding(
                   padding: const EdgeInsets.symmetric(vertical: 4),
-                  child: Text(
+                  child: QuizdyLatexText(
                     opt,
+                    textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
@@ -228,13 +229,13 @@ class _FlashcardWidgetState extends State<FlashcardWidget>
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
-                Text(
+                QuizdyLatexText(
                   widget.question.explanation,
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 16,
                     height: 1.5,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ]
             ],
