@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.13.1] - TBD
 
-- feat(study): Added a new Flashcards study mode with swiping mechanics, 3D flip animations, Leitner-style progression, and LaTeX support.
+- feat(study): Added a new Flashcards study mode with swiping mechanics, flip animations, Leitner-style progression, and LaTeX support.
 - fix(mobile): Improved readability of the system status bar during in-app update prompts, dynamically adjusting icon colors to ensure they remain clearly visible over the update banner and seamlessly restore to their native theme once dismissed.
 
 ## [1.13.0] - 2026-04-29
