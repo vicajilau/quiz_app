@@ -90,6 +90,8 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+      - name: Generate build_runner files
+        run: dart run build_runner build -d
 
       - name: Build macOS Archive
         run: flutter build macos --release

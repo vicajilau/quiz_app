@@ -48,6 +48,11 @@ app.*.map.json
 untranslated_messages.json
 lib/core/l10n/app_localizations*.dart
 
+# Generated build_runner files
+*.g.dart
+*.freezed.dart
+*.mocks.dart
+
 # Copilot instructions (local configuration)
 .github/copilot-instructions.md
 
