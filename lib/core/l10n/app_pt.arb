@@ -2530,4 +2530,7 @@
 ,
   "modeGeneratesStats": "Gera estatísticas SRS",
   "modeNoStats": "Não gera estatísticas"
+,
+  "srsEmptyStateTitle": "Ainda não há dados para mostrar",
+  "srsEmptyStateSubtitle": "Conclua sua primeira sessão de estudo ou faça um exame para começar a acompanhar seu progresso de aprendizado."
 }

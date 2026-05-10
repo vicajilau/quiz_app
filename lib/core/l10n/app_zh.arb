@@ -2491,4 +2491,7 @@
 ,
   "modeGeneratesStats": "生成SRS统计数据",
   "modeNoStats": "不生成统计数据"
+,
+  "srsEmptyStateTitle": "暂无数据可显示",
+  "srsEmptyStateSubtitle": "完成您的第一个学习会话或参加考试以开始跟踪您的学习进度。"
 }

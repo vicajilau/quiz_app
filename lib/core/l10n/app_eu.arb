@@ -2439,4 +2439,7 @@
 ,
   "modeGeneratesStats": "SRS estatistikak sortzen ditu",
   "modeNoStats": "Ez du estatistikarik sortzen"
+,
+  "srsEmptyStateTitle": "Oraindik ez dago daturik",
+  "srsEmptyStateSubtitle": "Bete zure lehenengo ikasketa saioa edo egin azterketa bat zure ikaskuntzaren aurrerapena jarraitzeko."
 }

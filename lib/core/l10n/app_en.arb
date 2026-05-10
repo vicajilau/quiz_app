@@ -2913,7 +2913,15 @@
   },
   "srsNoStatsAvailable": "No SRS statistics available yet.",
   "@srsNoStatsAvailable": {
-    "description": "Message shown when there are no SRS stats"
+    "description": "Message displayed when there are no SRS statistics available."
+  },
+  "srsEmptyStateTitle": "No data to show yet",
+  "@srsEmptyStateTitle": {
+    "description": "Title for the empty state in SRS statistics"
+  },
+  "srsEmptyStateSubtitle": "Complete your first study session or take an exam to start tracking your learning progress.",
+  "@srsEmptyStateSubtitle": {
+    "description": "Subtitle for the empty state in SRS statistics"
   },
   "srsResetStatsTitle": "Reset Stats?",
   "@srsResetStatsTitle": {

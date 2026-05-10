@@ -2442,4 +2442,7 @@
 ,
   "modeGeneratesStats": "SRS統計を生成します",
   "modeNoStats": "統計を生成しません"
+,
+  "srsEmptyStateTitle": "まだ表示するデータがありません",
+  "srsEmptyStateSubtitle": "学習の進捗を追跡し始めるには、最初の学習セッションを完了するか試験を受けてください。"
 }

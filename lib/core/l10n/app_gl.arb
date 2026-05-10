@@ -2439,4 +2439,7 @@
 ,
   "modeGeneratesStats": "Xera estatísticas SRS",
   "modeNoStats": "Non xera estatísticas"
+,
+  "srsEmptyStateTitle": "Aínda non hai datos para mostrar",
+  "srsEmptyStateSubtitle": "Completa a túa primeira sesión de estudo ou fai un exame para comezar a rexistrar o teu progreso de aprendizaxe."
 }
