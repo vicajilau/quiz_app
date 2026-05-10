@@ -27,7 +27,11 @@ class QuizExecutionStarted extends QuizExecutionEvent {
   final QuizConfig quizConfig;
   final String? fileIdentifier;
 
-  QuizExecutionStarted(this.questions, {required this.quizConfig, this.fileIdentifier});
+  QuizExecutionStarted(
+    this.questions, {
+    required this.quizConfig,
+    this.fileIdentifier,
+  });
 }
 
 /// Event triggered when a user selects an answer.

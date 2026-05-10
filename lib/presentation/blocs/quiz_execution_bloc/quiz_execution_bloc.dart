@@ -34,11 +34,8 @@ import 'package:quizdy/core/extensions/string_extension.dart';
 class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
   final AiRepositoryFactory aiRepositoryFactory;
   final SrsRepository? srsRepository;
-  
-  QuizExecutionBloc({
-    required this.aiRepositoryFactory,
-    this.srsRepository,
-  })
+
+  QuizExecutionBloc({required this.aiRepositoryFactory, this.srsRepository})
     : super(QuizExecutionInitial()) {
     // Handle quiz start
     on<QuizExecutionStarted>((event, emit) {
@@ -378,9 +375,11 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
       currentState.quizConfig,
       aiEvaluations: aiEvaluations,
     );
-    
+
     // Process SRS if we have a fileIdentifier
-    if (currentState.fileIdentifier != null && srsRepository != null && !currentState.quizConfig.isStudyMode) {
+    if (currentState.fileIdentifier != null &&
+        srsRepository != null &&
+        !currentState.quizConfig.isStudyMode) {
       for (int i = 0; i < currentState.questions.length; i++) {
         final question = currentState.questions[i];
         final isCorrect = QuizScoringHelper.isAnswerCorrect(
@@ -389,14 +388,20 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
           currentState.essayAnswers[i] ?? '',
           aiEvaluation: aiEvaluations[i],
         );
-        
+
         final identity = question.identityHash.toString();
-        final metadata = srsRepository!.getMetadataForQuestion(identity, currentState.fileIdentifier!);
-        
-        final score = isCorrect ? 4 : 1; // Map correct to 4, incorrect to 1 for SM-2
-        final updatedMetadata = AnkiAlgorithmService.calculateNextReview(metadata, score).copyWith(
-          questionText: question.text,
+        final metadata = srsRepository!.getMetadataForQuestion(
+          identity,
+          currentState.fileIdentifier!,
         );
+
+        final score = isCorrect
+            ? 4
+            : 1; // Map correct to 4, incorrect to 1 for SM-2
+        final updatedMetadata = AnkiAlgorithmService.calculateNextReview(
+          metadata,
+          score,
+        ).copyWith(questionText: question.text);
         srsRepository!.saveMetadata(updatedMetadata);
       }
     }

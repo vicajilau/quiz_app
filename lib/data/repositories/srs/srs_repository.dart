@@ -26,14 +26,24 @@ class SrsRepository {
   }
 
   /// Gets the metadata for a specific question.
-  SrsMetadata getMetadataForQuestion(String questionIdentity, String fileIdentifier) {
+  SrsMetadata getMetadataForQuestion(
+    String questionIdentity,
+    String fileIdentifier,
+  ) {
     final key = _generateKey(fileIdentifier, questionIdentity);
-    return _box.get(key) ?? SrsMetadata(questionIdentity: questionIdentity, fileIdentifier: fileIdentifier);
+    return _box.get(key) ??
+        SrsMetadata(
+          questionIdentity: questionIdentity,
+          fileIdentifier: fileIdentifier,
+        );
   }
 
   /// Saves the metadata for a specific question.
   Future<void> saveMetadata(SrsMetadata metadata) async {
-    final key = _generateKey(metadata.fileIdentifier, metadata.questionIdentity);
+    final key = _generateKey(
+      metadata.fileIdentifier,
+      metadata.questionIdentity,
+    );
     await _box.put(key, metadata);
   }
 
@@ -41,7 +51,9 @@ class SrsRepository {
   List<SrsMetadata> getDueQuestions({String? fileIdentifier}) {
     final now = DateTime.now();
     return _box.values.where((metadata) {
-      final isDue = metadata.nextReviewDate.isBefore(now) || metadata.nextReviewDate.isAtSameMomentAs(now);
+      final isDue =
+          metadata.nextReviewDate.isBefore(now) ||
+          metadata.nextReviewDate.isAtSameMomentAs(now);
       if (fileIdentifier != null) {
         return isDue && metadata.fileIdentifier == fileIdentifier;
       }
@@ -63,7 +75,9 @@ class SrsRepository {
 
   /// Gets statistics for a specific file identifier.
   List<SrsMetadata> getStatsForFile(String fileIdentifier) {
-    return _box.values.where((m) => m.fileIdentifier == fileIdentifier).toList();
+    return _box.values
+        .where((m) => m.fileIdentifier == fileIdentifier)
+        .toList();
   }
 
   /// Deletes all statistics for a specific file identifier.
@@ -72,13 +86,15 @@ class SrsRepository {
         .where((m) => m.fileIdentifier == fileIdentifier)
         .map((m) => _generateKey(m.fileIdentifier, m.questionIdentity))
         .toList();
-    
+
     await _box.deleteAll(keysToDelete);
   }
 
   /// Resets statistics to zero for a specific file identifier, preserving question text.
   Future<void> resetStatsForFile(String fileIdentifier) async {
-    final toUpdate = _box.values.where((m) => m.fileIdentifier == fileIdentifier).toList();
+    final toUpdate = _box.values
+        .where((m) => m.fileIdentifier == fileIdentifier)
+        .toList();
     for (final metadata in toUpdate) {
       final resetMetadata = metadata.copyWith(
         interval: 0,
@@ -91,7 +107,7 @@ class SrsRepository {
       await saveMetadata(resetMetadata);
     }
   }
-  
+
   /// Deletes all statistics.
   Future<void> deleteAllStats() async {
     await _box.clear();

@@ -120,9 +120,11 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
 
                 return ServiceLocator.getIt<QuizExecutionBloc>()..add(
                   QuizExecutionStarted(
-                    questionsToUse, 
+                    questionsToUse,
                     quizConfig: quizConfig,
-                    fileIdentifier: widget.quizFile.filePath ?? widget.quizFile.metadata.title,
+                    fileIdentifier:
+                        widget.quizFile.filePath ??
+                        widget.quizFile.metadata.title,
                   ),
                 );
               },

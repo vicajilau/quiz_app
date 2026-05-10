@@ -136,7 +136,8 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
                         context,
                         order: QuestionOrder.spacedRepetition,
                         isSelected:
-                            widget.selectedOrder == QuestionOrder.spacedRepetition,
+                            widget.selectedOrder ==
+                            QuestionOrder.spacedRepetition,
                       ),
                     ],
                   ),

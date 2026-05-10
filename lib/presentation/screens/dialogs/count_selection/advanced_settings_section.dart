@@ -167,7 +167,9 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.questionOrderConfigDescription,
+                      AppLocalizations.of(
+                        context,
+                      )!.questionOrderConfigDescription,
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
@@ -176,7 +178,10 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      _getQuestionOrderDescription(context, widget.questionOrder),
+                      _getQuestionOrderDescription(
+                        context,
+                        widget.questionOrder,
+                      ),
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
@@ -188,7 +193,10 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
               ),
               const SizedBox(width: 16),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 0,
+                ),
                 decoration: BoxDecoration(
                   color: widget.controlBgColor,
                   borderRadius: BorderRadius.circular(8),
@@ -197,7 +205,9 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<QuestionOrder>(
                     value: widget.questionOrder,
-                    dropdownColor: widget.isDark ? AppTheme.zinc800 : Colors.white,
+                    dropdownColor: widget.isDark
+                        ? AppTheme.zinc800
+                        : Colors.white,
                     icon: Icon(Icons.arrow_drop_down, color: widget.textColor),
                     style: TextStyle(color: widget.textColor, fontSize: 14),
                     onChanged: (QuestionOrder? newValue) {
@@ -208,15 +218,23 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
                     items: [
                       DropdownMenuItem(
                         value: QuestionOrder.ascending,
-                        child: Text(AppLocalizations.of(context)!.questionOrderAscending),
+                        child: Text(
+                          AppLocalizations.of(context)!.questionOrderAscending,
+                        ),
                       ),
                       DropdownMenuItem(
                         value: QuestionOrder.random,
-                        child: Text(AppLocalizations.of(context)!.questionOrderRandom),
+                        child: Text(
+                          AppLocalizations.of(context)!.questionOrderRandom,
+                        ),
                       ),
                       DropdownMenuItem(
                         value: QuestionOrder.spacedRepetition,
-                        child: Text(AppLocalizations.of(context)!.questionOrderSpacedRepetition),
+                        child: Text(
+                          AppLocalizations.of(
+                            context,
+                          )!.questionOrderSpacedRepetition,
+                        ),
                       ),
                     ],
                   ),
@@ -413,7 +431,10 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
     );
   }
 
-  String _getQuestionOrderDescription(BuildContext context, QuestionOrder order) {
+  String _getQuestionOrderDescription(
+    BuildContext context,
+    QuestionOrder order,
+  ) {
     switch (order) {
       case QuestionOrder.ascending:
         return AppLocalizations.of(context)!.questionOrderAscendingDesc;

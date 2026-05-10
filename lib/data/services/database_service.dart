@@ -19,7 +19,7 @@ import 'package:quizdy/domain/models/srs/srs_metadata.dart';
 /// Service responsible for initializing the local database and registering adapters.
 class DatabaseService {
   /// Initializes the database.
-  /// 
+  ///
   /// If [path] is provided, it initializes the database at that specific path
   /// (useful for testing). Otherwise, it uses the default application directory.
   static Future<void> init({String? path}) async {
@@ -28,7 +28,7 @@ class DatabaseService {
     } else {
       await Hive.initFlutter();
     }
-    
+
     // Register all custom adapters
     Hive.registerAdapter(SrsMetadataAdapter());
   }

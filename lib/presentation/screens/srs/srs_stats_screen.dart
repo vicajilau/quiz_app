@@ -46,7 +46,7 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    
+
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.srsStatsTitle),
@@ -106,7 +106,10 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
                 Navigator.pop(context);
               }
             },
-            child: Text(l10n.srsResetAllStatsTooltip.split(' ')[0].toUpperCase(), style: const TextStyle(color: Colors.orange)),
+            child: Text(
+              l10n.srsResetAllStatsTooltip.split(' ')[0].toUpperCase(),
+              style: const TextStyle(color: Colors.orange),
+            ),
           ),
         ],
       ),
@@ -133,7 +136,10 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
                 Navigator.pop(context);
               }
             },
-            child: Text(l10n.deleteButton.toUpperCase(), style: const TextStyle(color: Colors.red)),
+            child: Text(
+              l10n.deleteButton.toUpperCase(),
+              style: const TextStyle(color: Colors.red),
+            ),
           ),
         ],
       ),
@@ -160,7 +166,10 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
                 Navigator.pop(context);
               }
             },
-            child: Text(l10n.srsResetAllStatsTooltip.toUpperCase(), style: const TextStyle(color: Colors.orange)),
+            child: Text(
+              l10n.srsResetAllStatsTooltip.toUpperCase(),
+              style: const TextStyle(color: Colors.orange),
+            ),
           ),
         ],
       ),
@@ -187,7 +196,10 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
                 Navigator.pop(context);
               }
             },
-            child: Text(l10n.srsDeleteAllStatsTooltip.toUpperCase(), style: const TextStyle(color: Colors.red)),
+            child: Text(
+              l10n.srsDeleteAllStatsTooltip.toUpperCase(),
+              style: const TextStyle(color: Colors.red),
+            ),
           ),
         ],
       ),
@@ -287,12 +299,18 @@ class _SrsFileStatsCardState extends State<_SrsFileStatsCard> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                        icon: const Icon(Icons.restart_alt, color: Colors.orange),
+                        icon: const Icon(
+                          Icons.restart_alt,
+                          color: Colors.orange,
+                        ),
                         onPressed: widget.onReset,
                         tooltip: l10n.srsResetFileStatsTooltip,
                       ),
                       IconButton(
-                        icon: const Icon(Icons.delete_forever, color: Colors.red),
+                        icon: const Icon(
+                          Icons.delete_forever,
+                          color: Colors.red,
+                        ),
                         onPressed: widget.onDelete,
                         tooltip: l10n.srsDeleteFileStatsTooltip,
                       ),
@@ -451,12 +469,16 @@ class _SrsFileStatsCardState extends State<_SrsFileStatsCard> {
                       _buildChip(
                         Icons.check_circle_outline,
                         l10n.srsCorrect(stat.timesCorrect),
-                        color: stat.timesCorrect > 0 ? Colors.green : Colors.grey,
+                        color: stat.timesCorrect > 0
+                            ? Colors.green
+                            : Colors.grey,
                       ),
                       _buildChip(
                         Icons.cancel_outlined,
                         l10n.srsIncorrect(stat.timesIncorrect),
-                        color: stat.timesIncorrect > 0 ? Colors.red : Colors.grey,
+                        color: stat.timesIncorrect > 0
+                            ? Colors.red
+                            : Colors.grey,
                       ),
                       _buildChip(
                         Icons.av_timer,
@@ -487,7 +509,12 @@ class _SrsFileStatsCardState extends State<_SrsFileStatsCard> {
     );
   }
 
-  Widget _buildChip(IconData icon, String label, {required Color color, String? tooltip}) {
+  Widget _buildChip(
+    IconData icon,
+    String label, {
+    required Color color,
+    String? tooltip,
+  }) {
     final chip = Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -503,7 +530,7 @@ class _SrsFileStatsCardState extends State<_SrsFileStatsCard> {
         ),
       ],
     );
-    
+
     if (tooltip != null) {
       return Tooltip(message: tooltip, child: chip);
     }

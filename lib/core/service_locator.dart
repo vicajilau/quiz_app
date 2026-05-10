@@ -112,7 +112,7 @@ class ServiceLocator {
     getIt.registerLazySingleton<FileBloc>(
       () => FileBloc(fileRepository: getIt<QuizFileRepository>()),
     );
-    
+
     // SRS
     final srsRepository = SrsRepository();
     await srsRepository.init();

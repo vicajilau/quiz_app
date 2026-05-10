@@ -43,11 +43,11 @@ class _TestAppRemoteConfigService extends AppRemoteConfigService {
 void main() {
   setUpAll(() async {
     SharedPreferences.setMockInitialValues({});
-    
+
     // Initialize local database with a temporary directory for tests
     final tempDir = await Directory.systemTemp.createTemp('hive_test');
     await DatabaseService.init(path: tempDir.path);
-    
+
     await ServiceLocator.setup();
 
     final sharedPreferences = await SharedPreferences.getInstance();

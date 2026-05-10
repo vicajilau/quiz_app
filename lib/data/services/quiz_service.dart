@@ -54,8 +54,14 @@ class QuizService {
           try {
             final srsRepo = ServiceLocator.getIt<SrsRepository>();
             orderedQuestions.sort((a, b) {
-              final statA = srsRepo.getMetadataForQuestion(a.identityHash.toString(), fileIdentifier);
-              final statB = srsRepo.getMetadataForQuestion(b.identityHash.toString(), fileIdentifier);
+              final statA = srsRepo.getMetadataForQuestion(
+                a.identityHash.toString(),
+                fileIdentifier,
+              );
+              final statB = srsRepo.getMetadataForQuestion(
+                b.identityHash.toString(),
+                fileIdentifier,
+              );
               return statA.nextReviewDate.compareTo(statB.nextReviewDate);
             });
           } catch (e) {
