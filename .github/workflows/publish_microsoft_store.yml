@@ -22,6 +22,7 @@ jobs:
 
       - name: Install Dart dependencies
         run: flutter pub get
+        
       - name: Generate build_runner files
         run: dart run build_runner build -d
         
