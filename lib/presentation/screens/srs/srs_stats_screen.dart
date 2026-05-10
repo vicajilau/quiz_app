@@ -50,18 +50,20 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.srsStatsTitle),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.restart_alt),
-            onPressed: () => _confirmResetAll(context),
-            tooltip: l10n.srsResetAllStatsTooltip,
-          ),
-          IconButton(
-            icon: const Icon(Icons.delete_forever),
-            onPressed: () => _confirmDeleteAll(context),
-            tooltip: l10n.srsDeleteAllStatsTooltip,
-          ),
-        ],
+        actions: _groupedStats.isEmpty
+            ? null
+            : [
+                IconButton(
+                  icon: const Icon(Icons.restart_alt),
+                  onPressed: () => _confirmResetAll(context),
+                  tooltip: l10n.srsResetAllStatsTooltip,
+                ),
+                IconButton(
+                  icon: const Icon(Icons.delete_forever),
+                  onPressed: () => _confirmDeleteAll(context),
+                  tooltip: l10n.srsDeleteAllStatsTooltip,
+                ),
+              ],
       ),
       body: _groupedStats.isEmpty
           ? Center(
@@ -87,29 +89,40 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
                     const SizedBox(height: 32),
                     Text(
                       l10n.srsEmptyStateTitle,
-                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      style: Theme.of(context).textTheme.headlineSmall
+                          ?.copyWith(fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 16),
                     Text(
                       l10n.srsEmptyStateSubtitle,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
-                          ),
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withValues(alpha: 0.6),
+                      ),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 32),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Theme.of(context).colorScheme.primary,
-                        foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                        textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                        foregroundColor: Theme.of(
+                          context,
+                        ).colorScheme.onPrimary,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 32,
+                          vertical: 16,
+                        ),
+                        textStyle: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
                       ),
                       onPressed: () {
-                        Navigator.of(context).popUntil((route) => route.isFirst);
+                        Navigator.of(
+                          context,
+                        ).popUntil((route) => route.isFirst);
                       },
                       child: Text(l10n.startQuizButton),
                     ),
