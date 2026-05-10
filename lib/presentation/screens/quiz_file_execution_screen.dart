@@ -119,7 +119,11 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
                     );
 
                 return ServiceLocator.getIt<QuizExecutionBloc>()..add(
-                  QuizExecutionStarted(questionsToUse, quizConfig: quizConfig),
+                  QuizExecutionStarted(
+                    questionsToUse, 
+                    quizConfig: quizConfig,
+                    fileIdentifier: widget.quizFile.filePath ?? widget.quizFile.metadata.title,
+                  ),
                 );
               },
             ),
@@ -237,10 +241,14 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
         .toList();
 
     // Select the questions to use for the quiz with the configured order
+    final fileIdentifier =
+        widget.quizFile.filePath ?? widget.quizFile.metadata.title;
+
     List<Question> selectedQuestions = QuizService.selectQuestions(
       enabledQuestions,
       questionCount,
       order: questionOrder,
+      fileIdentifier: fileIdentifier,
     );
 
     // Priority 1: Use QuizConfig from ServiceLocator (fresh from the dialog)

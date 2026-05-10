@@ -1467,9 +1467,9 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
-  "studyModeDescription": "AI laguntza eskuragarri. Erantzun bakoitzaren ondoren feedbacka berehala, denbora-mugarik eta zigorrrik gabe.",
+  "studyModeDescription": "AI laguntza eskuragarri. Erantzun bakoitzaren ondoren feedbacka berehala, denbora-mugarik eta zigorrrik gabe. Ez du estatistikarik sortzen.",
   "examModeLabel": "Azterketa Modua",
-  "examModeDescription": "AI laguntzarik gabe. Denbora-mugak eta erantzun okerrengatiko zigorrak aplika daitezke.",
+  "examModeDescription": "AI laguntzarik gabe. Denbora-mugak eta erantzun okerrengatiko zigorrak aplika daitezke. SRS estatistikak sortzen ditu.",
   "checkAnswer": "Egiaztatu",
   "quizModeTitle": "Galdetegi Modua",
   "skip": "Saltatu",
@@ -2406,4 +2406,37 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   }
+,
+  "questionOrderSpacedRepetition": "Errepikapen Tartekatua (Algoritmoa)",
+  "questionOrderSpacedRepetitionDesc": "SM-2 algoritmoan oinarritutako galderen ordena atxikipen optimorako",
+  "srsStatsTitle": "Errepikapen Tartekatuaren Estatistikak",
+  "srsResetAllStatsTooltip": "Berrezarri estatistika guztiak",
+  "srsDeleteAllStatsTooltip": "Ezabatu estatistika guztiak",
+  "srsNoStatsAvailable": "Oraindik ez dago estatistikarik erabilgarri.",
+  "srsResetStatsTitle": "Berrezarri estatistikak?",
+  "srsResetStatsContent": "Honek fitxategi honetako datu guztiak zerora berrezarriko ditu, baina historia mantenduko du. Ziur zaude?",
+  "srsDeleteStatsTitle": "Ezabatu estatistikak?",
+  "srsDeleteStatsContent": "Honek fitxategi honetako datu guztiak erabat ezabatuko ditu. Ziur zaude?",
+  "srsResetAllStatsDialogTitle": "Berrezarri estatistika guztiak?",
+  "srsResetAllStatsDialogContent": "Honek fitxategi guztietako datu GUZTIAK zerora berrezarriko ditu, historia mantenduz. Ziur zaude?",
+  "srsDeleteAllStatsDialogTitle": "Ezabatu estatistika guztiak?",
+  "srsDeleteAllStatsDialogContent": "Honek fitxategi guztietako datu GUZTIAK erabat ezabatuko ditu. Ziur zaude?",
+  "srsResetFileStatsTooltip": "Berrezarri fitxategiko estatistikak",
+  "srsDeleteFileStatsTooltip": "Ezabatu fitxategiko estatistikak",
+  "srsDueNow": "Errepasatzeko",
+  "srsRetention": "Atxikipena",
+  "srsIndividualQuestions": "Banakako galderak",
+  "srsQuestionId": "Galderaren IDa: {id}",
+  "srsIntervalShort": "Tart:",
+  "srsEaseShort": "Erraz:",
+  "srsDueShort": "Errep:",
+  "srsIntervalTooltip": "Hurrengo errepasora arteko egunen tartea",
+  "srsEaseTooltip": "Erraztasun faktorea (hurrengo tarterako biderkatzailea)",
+  "srsDueTooltip": "Galdera errepasatzeko programatutako data",
+  "srsCorrect": "{count} Zuzen",
+  "srsIncorrect": "{count} Oker",
+  "srsQuestions": "Galderak"
+,
+  "modeGeneratesStats": "SRS estatistikak sortzen ditu",
+  "modeNoStats": "Ez du estatistikarik sortzen"
 }

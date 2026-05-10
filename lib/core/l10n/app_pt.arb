@@ -1454,7 +1454,7 @@
   "@studyModeLabel": {
     "description": "Label for study mode option"
   },
-  "studyModeDescription": "Assistência de IA disponível. Feedback instantâneo após cada resposta, sem limites de tempo ou penalidades.",
+  "studyModeDescription": "Assistência de IA disponível. Feedback instantâneo após cada resposta, sem limites de tempo ou penalidades. Nenhuma estatística gerada.",
   "@studyModeDescription": {
     "description": "Description for study mode"
   },
@@ -1462,7 +1462,7 @@
   "@examModeLabel": {
     "description": "Label for exam mode option"
   },
-  "examModeDescription": "Sem assistência de IA. Podem aplicar-se limites de tempo e penalidades por respostas incorretas.",
+  "examModeDescription": "Sem assistência de IA. Podem aplicar-se limites de tempo e penalidades por respostas incorretas. Gera estatísticas SRS.",
   "@examModeDescription": {
     "description": "Description for exam mode"
   },
@@ -2497,4 +2497,37 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   }
+,
+  "questionOrderSpacedRepetition": "Repetição Espaçada (Algoritmo)",
+  "questionOrderSpacedRepetitionDesc": "Perguntas ordenadas pelo algoritmo SM-2 para retenção ideal",
+  "srsStatsTitle": "Estatísticas de Repetição Espaçada",
+  "srsResetAllStatsTooltip": "Redefinir todas as estatísticas",
+  "srsDeleteAllStatsTooltip": "Excluir todas as estatísticas",
+  "srsNoStatsAvailable": "Nenhuma estatística disponível ainda.",
+  "srsResetStatsTitle": "Redefinir Estatísticas?",
+  "srsResetStatsContent": "Isso redefinirá todos os dados deste arquivo para zero, mas manterá o histórico. Tem certeza?",
+  "srsDeleteStatsTitle": "Excluir Estatísticas?",
+  "srsDeleteStatsContent": "Isso excluirá completamente todos os dados deste arquivo. Tem certeza?",
+  "srsResetAllStatsDialogTitle": "Redefinir Todas as Estatísticas?",
+  "srsResetAllStatsDialogContent": "Isso redefinirá TODOS os dados em todos os arquivos para zero, mantendo o histórico. Tem certeza?",
+  "srsDeleteAllStatsDialogTitle": "Excluir Todas as Estatísticas?",
+  "srsDeleteAllStatsDialogContent": "Isso excluirá completamente TODOS os dados em todos os arquivos. Tem certeza?",
+  "srsResetFileStatsTooltip": "Redefinir Estatísticas do Arquivo",
+  "srsDeleteFileStatsTooltip": "Excluir Estatísticas do Arquivo",
+  "srsDueNow": "Para Revisar",
+  "srsRetention": "Retenção",
+  "srsIndividualQuestions": "Perguntas individuais",
+  "srsQuestionId": "ID da Pergunta: {id}",
+  "srsIntervalShort": "Int:",
+  "srsEaseShort": "Facil:",
+  "srsDueShort": "Venc:",
+  "srsIntervalTooltip": "Intervalo em dias até a próxima revisão",
+  "srsEaseTooltip": "Fator de facilidade (multiplicador para o próximo intervalo)",
+  "srsDueTooltip": "A data programada para revisão",
+  "srsCorrect": "{count} Correto",
+  "srsIncorrect": "{count} Incorreto",
+  "srsQuestions": "Perguntas"
+,
+  "modeGeneratesStats": "Gera estatísticas SRS",
+  "modeNoStats": "Não gera estatísticas"
 }

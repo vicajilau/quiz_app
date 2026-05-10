@@ -24,6 +24,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quizdy/core/service_locator.dart';
+import 'dart:io';
+import 'package:quizdy/data/services/database_service.dart';
 import 'package:quizdy/data/services/app_remote_config_service.dart';
 import 'package:quizdy/main.dart';
 import 'package:quizdy/routes/app_router.dart';
@@ -41,6 +43,11 @@ class _TestAppRemoteConfigService extends AppRemoteConfigService {
 void main() {
   setUpAll(() async {
     SharedPreferences.setMockInitialValues({});
+    
+    // Initialize local database with a temporary directory for tests
+    final tempDir = await Directory.systemTemp.createTemp('hive_test');
+    await DatabaseService.init(path: tempDir.path);
+    
     await ServiceLocator.setup();
 
     final sharedPreferences = await SharedPreferences.getInstance();

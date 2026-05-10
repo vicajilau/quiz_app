@@ -159,17 +159,70 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildToggleRow(
-            title: AppLocalizations.of(context)!.questionOrderRandom,
-            subtitle: widget.questionOrder == QuestionOrder.random
-                ? AppLocalizations.of(context)!.questionOrderRandomDesc
-                : AppLocalizations.of(context)!.questionOrderAscendingDesc,
-            value: widget.questionOrder == QuestionOrder.random,
-            onChanged: (value) {
-              widget.onQuestionOrderChanged(
-                value ? QuestionOrder.random : QuestionOrder.ascending,
-              );
-            },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.questionOrderConfigDescription,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: widget.textColor,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      _getQuestionOrderDescription(context, widget.questionOrder),
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: widget.subTextColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 16),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+                decoration: BoxDecoration(
+                  color: widget.controlBgColor,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: widget.borderColor),
+                ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<QuestionOrder>(
+                    value: widget.questionOrder,
+                    dropdownColor: widget.isDark ? AppTheme.zinc800 : Colors.white,
+                    icon: Icon(Icons.arrow_drop_down, color: widget.textColor),
+                    style: TextStyle(color: widget.textColor, fontSize: 14),
+                    onChanged: (QuestionOrder? newValue) {
+                      if (newValue != null) {
+                        widget.onQuestionOrderChanged(newValue);
+                      }
+                    },
+                    items: [
+                      DropdownMenuItem(
+                        value: QuestionOrder.ascending,
+                        child: Text(AppLocalizations.of(context)!.questionOrderAscending),
+                      ),
+                      DropdownMenuItem(
+                        value: QuestionOrder.random,
+                        child: Text(AppLocalizations.of(context)!.questionOrderRandom),
+                      ),
+                      DropdownMenuItem(
+                        value: QuestionOrder.spacedRepetition,
+                        child: Text(AppLocalizations.of(context)!.questionOrderSpacedRepetition),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 20),
           Divider(color: widget.borderColor, height: 1, thickness: 1),
@@ -358,5 +411,16 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
         ),
       ],
     );
+  }
+
+  String _getQuestionOrderDescription(BuildContext context, QuestionOrder order) {
+    switch (order) {
+      case QuestionOrder.ascending:
+        return AppLocalizations.of(context)!.questionOrderAscendingDesc;
+      case QuestionOrder.random:
+        return AppLocalizations.of(context)!.questionOrderRandomDesc;
+      case QuestionOrder.spacedRepetition:
+        return AppLocalizations.of(context)!.questionOrderSpacedRepetitionDesc;
+    }
   }
 }

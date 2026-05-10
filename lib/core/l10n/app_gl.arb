@@ -1489,9 +1489,9 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
-  "studyModeDescription": "Asistencia de IA dispoñible. Feedback instantáneo tras cada resposta, sen límites de tiempo nin penalizacións.",
+  "studyModeDescription": "Asistencia de IA dispoñible. Feedback instantáneo tras cada resposta, sen límites de tiempo nin penalizacións. Non se xeran estatísticas.",
   "examModeLabel": "Modo exame",
-  "examModeDescription": "Sen asistencia de IA. Poden aplicarse límites de tempo e penalizacións por respostas incorrectas.",
+  "examModeDescription": "Sen asistencia de IA. Poden aplicarse límites de tempo e penalizacións por respostas incorrectas. Xera estatísticas SRS.",
   "checkAnswer": "Comprobar",
   "quizModeTitle": "Modo cuestionario",
   "skip": "Saltar",
@@ -2406,4 +2406,37 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   }
+,
+  "questionOrderSpacedRepetition": "Repetición Espazada (Algoritmo)",
+  "questionOrderSpacedRepetitionDesc": "Preguntas ordenadas segundo o algoritmo SM-2 para unha retención óptima",
+  "srsStatsTitle": "Estatísticas de Repetición Espazada",
+  "srsResetAllStatsTooltip": "Restablecer todas as estatísticas",
+  "srsDeleteAllStatsTooltip": "Eliminar todas as estatísticas",
+  "srsNoStatsAvailable": "Aínda non hai estatísticas dispoñibles.",
+  "srsResetStatsTitle": "Restablecer estatísticas?",
+  "srsResetStatsContent": "Isto restablecerá todos os datos para este ficheiro a cero, pero manterá o historial. Estás seguro?",
+  "srsDeleteStatsTitle": "Eliminar estatísticas?",
+  "srsDeleteStatsContent": "Isto eliminará completamente todos os datos deste ficheiro. Estás seguro?",
+  "srsResetAllStatsDialogTitle": "Restablecer todas as estatísticas?",
+  "srsResetAllStatsDialogContent": "Isto restablecerá TODOS os datos en todos os ficheiros a cero, mantendo o historial. Estás seguro?",
+  "srsDeleteAllStatsDialogTitle": "Eliminar todas as estatísticas?",
+  "srsDeleteAllStatsDialogContent": "Isto eliminará completamente TODOS os datos en todos os ficheiros. Estás seguro?",
+  "srsResetFileStatsTooltip": "Restablecer estatísticas do ficheiro",
+  "srsDeleteFileStatsTooltip": "Eliminar estatísticas do ficheiro",
+  "srsDueNow": "Para repasar",
+  "srsRetention": "Retención",
+  "srsIndividualQuestions": "Preguntas individuais",
+  "srsQuestionId": "ID da pregunta: {id}",
+  "srsIntervalShort": "Int:",
+  "srsEaseShort": "Facil:",
+  "srsDueShort": "Repás:",
+  "srsIntervalTooltip": "Intervalo en días ata a próxima revisión",
+  "srsEaseTooltip": "Factor de facilidade (multiplicador para o próximo intervalo)",
+  "srsDueTooltip": "A data programada para revisar esta pregunta",
+  "srsCorrect": "{count} Correcto",
+  "srsIncorrect": "{count} Incorrecto",
+  "srsQuestions": "Preguntas"
+,
+  "modeGeneratesStats": "Xera estatísticas SRS",
+  "modeNoStats": "Non xera estatísticas"
 }

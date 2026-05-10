@@ -1449,9 +1449,9 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
-  "studyModeDescription": "AI सहायता उपलब्ध है। समय सीमा या दंड के बिना प्रत्येक उत्तर के बाद त्वरित प्रतिक्रिया।",
+  "studyModeDescription": "AI सहायता उपलब्ध है। समय सीमा या दंड के बिना प्रत्येक उत्तर के बाद त्वरित प्रतिक्रिया। कोई आँकड़े उत्पन्न नहीं किए गए।",
   "examModeLabel": "परीक्षा मोड",
-  "examModeDescription": "कोई AI सहायता नहीं। समय सीमा और गलत उत्तरों के लिए जुर्माना लागू हो सकता है।",
+  "examModeDescription": "कोई AI सहायता नहीं। समय सीमा और गलत उत्तरों के लिए जुर्माना लागू हो सकता है। SRS आँकड़े उत्पन्न करता है।",
   "checkAnswer": "जांचें",
   "quizModeTitle": "क्विज़ मोड",
   "askAiAssistant": "AI सहायक से पूछें",
@@ -2409,4 +2409,37 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   }
+,
+  "questionOrderSpacedRepetition": "अंतराल दोहराव (एल्गोरिदम)",
+  "questionOrderSpacedRepetitionDesc": "बेहतर याद रखने के लिए SM-2 एल्गोरिदम के आधार पर प्रश्नों का क्रम",
+  "srsStatsTitle": "अंतराल दोहराव आँकड़े",
+  "srsResetAllStatsTooltip": "सभी आँकड़े रीसेट करें",
+  "srsDeleteAllStatsTooltip": "सभी आँकड़े हटाएँ",
+  "srsNoStatsAvailable": "अभी कोई आँकड़े उपलब्ध नहीं हैं।",
+  "srsResetStatsTitle": "आँकड़े रीसेट करें?",
+  "srsResetStatsContent": "यह इस फ़ाइल के सभी डेटा को शून्य पर रीसेट कर देगा, लेकिन इतिहास बनाए रखेगा। क्या आप निश्चित हैं?",
+  "srsDeleteStatsTitle": "आँकड़े हटाएँ?",
+  "srsDeleteStatsContent": "यह इस फ़ाइल के सभी डेटा को पूरी तरह से हटा देगा। क्या आप निश्चित हैं?",
+  "srsResetAllStatsDialogTitle": "सभी आँकड़े रीसेट करें?",
+  "srsResetAllStatsDialogContent": "यह सभी फ़ाइलों के सभी डेटा को शून्य पर रीसेट कर देगा, लेकिन इतिहास बनाए रखेगा। क्या आप निश्चित हैं?",
+  "srsDeleteAllStatsDialogTitle": "सभी आँकड़े हटाएँ?",
+  "srsDeleteAllStatsDialogContent": "यह सभी फ़ाइलों के सभी डेटा को पूरी तरह से हटा देगा। क्या आप निश्चित हैं?",
+  "srsResetFileStatsTooltip": "फ़ाइल के आँकड़े रीसेट करें",
+  "srsDeleteFileStatsTooltip": "फ़ाइल के आँकड़े हटाएँ",
+  "srsDueNow": "समीक्षा के लिए",
+  "srsRetention": "याद रखने की दर",
+  "srsIndividualQuestions": "व्यक्तिगत प्रश्न",
+  "srsQuestionId": "प्रश्न ID: {id}",
+  "srsIntervalShort": "अंतराल:",
+  "srsEaseShort": "आसानी:",
+  "srsDueShort": "देय:",
+  "srsIntervalTooltip": "अगली समीक्षा तक दिनों में अंतराल",
+  "srsEaseTooltip": "आसानी कारक (अगले अंतराल के लिए गुणक)",
+  "srsDueTooltip": "अगली समीक्षा की तिथि",
+  "srsCorrect": "{count} सही",
+  "srsIncorrect": "{count} गलत",
+  "srsQuestions": "प्रश्न"
+,
+  "modeGeneratesStats": "SRS आँकड़े उत्पन्न करता है",
+  "modeNoStats": "आँकड़े उत्पन्न नहीं करता"
 }

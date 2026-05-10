@@ -479,9 +479,9 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
-  "studyModeDescription": "Διαθέσιμη βοήθεια AI. Άμεση ανατροφοδότηση μετά από κάθε απάντηση, χωρίς χρονικά όρια ή ποινές.",
+  "studyModeDescription": "Διαθέσιμη βοήθεια AI. Άμεση ανατροφοδότηση μετά από κάθε απάντηση, χωρίς χρονικά όρια ή ποινές. Δεν παράγονται στατιστικά.",
   "examModeLabel": "Λειτουργία Εξέτασης",
-  "examModeDescription": "Χωρίς βοήθεια AI. Ενδέχεται να ισχύουν χρονικά όρια και ποινές για λανθασμένες απαντήσεις.",
+  "examModeDescription": "Χωρίς βοήθεια AI. Ενδέχεται να ισχύουν χρονικά όρια και ποινές για λανθασμένες απαντήσεις. Παράγει στατιστικά SRS.",
   "checkAnswer": "Έλεγχος",
   "quizModeTitle": "Λειτουργία Κουίζ",
   "skip": "Παράλειψη",
@@ -1406,4 +1406,37 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   }
+,
+  "questionOrderSpacedRepetition": "Χωρική Επανάληψη (Αλγόριθμος)",
+  "questionOrderSpacedRepetitionDesc": "Ερωτήσεις ταξινομημένες βάσει αλγορίθμου SM-2 για βέλτιστη διατήρηση",
+  "srsStatsTitle": "Στατιστικά Χωρικής Επανάληψης",
+  "srsResetAllStatsTooltip": "Επαναφορά Όλων των Στατιστικών",
+  "srsDeleteAllStatsTooltip": "Διαγραφή Όλων των Στατιστικών",
+  "srsNoStatsAvailable": "Δεν υπάρχουν ακόμη διαθέσιμα στατιστικά.",
+  "srsResetStatsTitle": "Επαναφορά Στατιστικών;",
+  "srsResetStatsContent": "Αυτό θα μηδενίσει όλα τα δεδομένα για αυτό το αρχείο, αλλά θα κρατήσει το ιστορικό. Είστε σίγουροι;",
+  "srsDeleteStatsTitle": "Διαγραφή Στατιστικών;",
+  "srsDeleteStatsContent": "Αυτό θα διαγράψει εντελώς όλα τα δεδομένα για αυτό το αρχείο. Είστε σίγουροι;",
+  "srsResetAllStatsDialogTitle": "Επαναφορά Όλων των Στατιστικών;",
+  "srsResetAllStatsDialogContent": "Αυτό θα μηδενίσει ΟΛΑ τα δεδομένα σε όλα τα αρχεία, κρατώντας το ιστορικό. Είστε σίγουροι;",
+  "srsDeleteAllStatsDialogTitle": "Διαγραφή Όλων των Στατιστικών;",
+  "srsDeleteAllStatsDialogContent": "Αυτό θα διαγράψει εντελώς ΟΛΑ τα δεδομένα σε όλα τα αρχεία. Είστε σίγουροι;",
+  "srsResetFileStatsTooltip": "Επαναφορά Στατιστικών Αρχείου",
+  "srsDeleteFileStatsTooltip": "Διαγραφή Στατιστικών Αρχείου",
+  "srsDueNow": "Για Επανάληψη",
+  "srsRetention": "Διατήρηση",
+  "srsIndividualQuestions": "Μεμονωμένες Ερωτήσεις",
+  "srsQuestionId": "ID Ερώτησης: {id}",
+  "srsIntervalShort": "Διάσ:",
+  "srsEaseShort": "Ευκ:",
+  "srsDueShort": "Επαν:",
+  "srsIntervalTooltip": "Διάστημα σε ημέρες μέχρι την επόμενη επανάληψη",
+  "srsEaseTooltip": "Παράγοντας ευκολίας (πολλαπλασιαστής επόμενου διαστήματος)",
+  "srsDueTooltip": "Ημερομηνία προγραμματισμένης επανάληψης",
+  "srsCorrect": "{count} Σωστά",
+  "srsIncorrect": "{count} Λάθος",
+  "srsQuestions": "Ερωτήσεις"
+,
+  "modeGeneratesStats": "Παράγει στατιστικά SRS",
+  "modeNoStats": "Δεν παράγει στατιστικά"
 }

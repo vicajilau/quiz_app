@@ -20,11 +20,13 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 class HomeHeaderWidget extends StatelessWidget {
   final bool isLoading;
   final VoidCallback onSettingsTap;
+  final VoidCallback onSrsStatsTap;
 
   const HomeHeaderWidget({
     super.key,
     required this.isLoading,
     required this.onSettingsTap,
+    required this.onSrsStatsTap,
   });
 
   @override
@@ -34,6 +36,24 @@ class HomeHeaderWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(color: Theme.of(context).dividerColor),
+            ),
+            child: IconButton(
+              icon: const Icon(Icons.analytics_outlined),
+              tooltip: 'SRS Stats',
+              color: Theme.of(context).iconTheme.color,
+              iconSize: 24,
+              onPressed: isLoading ? null : onSrsStatsTap,
+              padding: EdgeInsets.zero,
+            ),
+          ),
+          const SizedBox(width: 12),
           Container(
             width: 48,
             height: 48,

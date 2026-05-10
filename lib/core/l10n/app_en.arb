@@ -492,7 +492,15 @@
   },
   "questionOrderAscendingDesc": "Questions will appear in order from 1 to the end",
   "@questionOrderAscendingDesc": {
-    "description": "Description for ascending question order option"
+    "description": "Subtitle explaining ascending question order setting"
+  },
+  "questionOrderSpacedRepetition": "Spaced Repetition (Anki)",
+  "@questionOrderSpacedRepetition": {
+    "description": "Title for spaced repetition question order setting"
+  },
+  "questionOrderSpacedRepetitionDesc": "Prioritize questions that are due for review",
+  "@questionOrderSpacedRepetitionDesc": {
+    "description": "Subtitle explaining spaced repetition question order setting"
   },
   "questionOrderDescending": "Descending Order",
   "@questionOrderDescending": {
@@ -1828,7 +1836,7 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
-  "studyModeDescription": "AI assistance available. Instant feedback after each answer with no time limits or penalties.",
+  "studyModeDescription": "AI assistance available. Instant feedback after each answer with no time limits or penalties. No stats generated.",
   "@studyModeDescription": {
     "description": "Description for study mode"
   },
@@ -1836,7 +1844,7 @@
   "@examModeLabel": {
     "description": "Label for exam mode option"
   },
-  "examModeDescription": "No AI assistance. Time limits and penalties for incorrect answers may apply.",
+  "examModeDescription": "No AI assistance. Time limits and penalties for incorrect answers may apply. Generates SRS stats.",
   "@examModeDescription": {
     "description": "Description for exam mode"
   },
@@ -2890,5 +2898,136 @@
   "forceUpdateMessage": "A mandatory update is required to continue using Quizdy. Please update the app.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
+  },
+  "srsStatsTitle": "Spaced Repetition Stats",
+  "@srsStatsTitle": {
+    "description": "Title of the Spaced Repetition Stats screen"
+  },
+  "srsResetAllStatsTooltip": "Reset All Stats",
+  "@srsResetAllStatsTooltip": {
+    "description": "Tooltip for the button to reset all SRS stats"
+  },
+  "srsDeleteAllStatsTooltip": "Delete All Stats",
+  "@srsDeleteAllStatsTooltip": {
+    "description": "Tooltip for the button to delete all SRS stats"
+  },
+  "srsNoStatsAvailable": "No SRS statistics available yet.",
+  "@srsNoStatsAvailable": {
+    "description": "Message shown when there are no SRS stats"
+  },
+  "srsResetStatsTitle": "Reset Stats?",
+  "@srsResetStatsTitle": {
+    "description": "Title for the reset stats confirmation dialog"
+  },
+  "srsResetStatsContent": "This will reset all Spaced Repetition data for this file to zero, but keep the history list. Are you sure?",
+  "@srsResetStatsContent": {
+    "description": "Content for the reset stats confirmation dialog"
+  },
+  "srsDeleteStatsTitle": "Delete Stats?",
+  "@srsDeleteStatsTitle": {
+    "description": "Title for the delete stats confirmation dialog"
+  },
+  "srsDeleteStatsContent": "This will completely delete all Spaced Repetition data for this file. Are you sure?",
+  "@srsDeleteStatsContent": {
+    "description": "Content for the delete stats confirmation dialog"
+  },
+  "srsResetAllStatsDialogTitle": "Reset All Stats?",
+  "@srsResetAllStatsDialogTitle": {
+    "description": "Title for the reset ALL stats confirmation dialog"
+  },
+  "srsResetAllStatsDialogContent": "This will reset ALL Spaced Repetition data across all files to zero, keeping the history list. Are you sure?",
+  "@srsResetAllStatsDialogContent": {
+    "description": "Content for the reset ALL stats confirmation dialog"
+  },
+  "srsDeleteAllStatsDialogTitle": "Delete All Stats?",
+  "@srsDeleteAllStatsDialogTitle": {
+    "description": "Title for the delete ALL stats confirmation dialog"
+  },
+  "srsDeleteAllStatsDialogContent": "This will completely delete ALL Spaced Repetition data across all files. Are you sure?",
+  "@srsDeleteAllStatsDialogContent": {
+    "description": "Content for the delete ALL stats confirmation dialog"
+  },
+  "srsResetFileStatsTooltip": "Reset File Stats",
+  "@srsResetFileStatsTooltip": {
+    "description": "Tooltip for the button to reset stats for a specific file"
+  },
+  "srsDeleteFileStatsTooltip": "Delete File Stats",
+  "@srsDeleteFileStatsTooltip": {
+    "description": "Tooltip for the button to delete stats for a specific file"
+  },
+  "srsDueNow": "Due Now",
+  "@srsDueNow": {
+    "description": "Label indicating how many questions are due for review now"
+  },
+  "srsRetention": "Retention",
+  "@srsRetention": {
+    "description": "Label indicating the retention rate percentage"
+  },
+  "srsIndividualQuestions": "Individual Questions",
+  "@srsIndividualQuestions": {
+    "description": "Header for the individual questions list in the stats card"
+  },
+  "srsQuestionId": "Question ID: {id}",
+  "@srsQuestionId": {
+    "description": "Fallback text showing the question ID when the text is not available",
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "srsIntervalShort": "Int:",
+  "@srsIntervalShort": {
+    "description": "Short label for Interval in the stats chip"
+  },
+  "srsEaseShort": "Ease:",
+  "@srsEaseShort": {
+    "description": "Short label for Ease Factor in the stats chip"
+  },
+  "srsDueShort": "Due:",
+  "@srsDueShort": {
+    "description": "Short label for Due Date in the stats chip"
+  },
+  "srsIntervalTooltip": "Interval in days until the next review",
+  "@srsIntervalTooltip": {
+    "description": "Tooltip explaining what the Interval means"
+  },
+  "srsEaseTooltip": "Ease Factor (multiplier for the next interval)",
+  "@srsEaseTooltip": {
+    "description": "Tooltip explaining what the Ease Factor means"
+  },
+  "srsDueTooltip": "The date when this question is scheduled for review",
+  "@srsDueTooltip": {
+    "description": "Tooltip explaining what the Due Date means"
+  },
+  "srsCorrect": "{count} Correct",
+  "@srsCorrect": {
+    "description": "Label showing the number of correct answers",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "srsIncorrect": "{count} Incorrect",
+  "@srsIncorrect": {
+    "description": "Label showing the number of incorrect answers",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "srsQuestions": "Questions",
+  "@srsQuestions": {
+    "description": "Label for the total questions metric"
+  },
+  "modeGeneratesStats": "Generates SRS Stats",
+  "@modeGeneratesStats": {
+    "description": "Indicates that the mode generates Spaced Repetition statistics"
+  },
+  "modeNoStats": "No Stats Generated",
+  "@modeNoStats": {
+    "description": "Indicates that the mode does not generate statistics"
   }
 }

@@ -20,6 +20,7 @@ import 'package:quizdy/core/quizdy_bloc_observer.dart';
 import 'package:quizdy/routes/app_router.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:quizdy/core/deep_link_handler.dart';
+import 'package:quizdy/data/services/database_service.dart';
 
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/file_handler.dart';
@@ -39,10 +40,11 @@ import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setUrlStrategy(null);
+  await DatabaseService.init();
   await ServiceLocator.setup();
   await initAppRouter();
   await DeepLinkHandler.registerProtocol();
-
+  
   Bloc.observer = QuizdyBlocObserver();
 
   runApp(const QuizApplication());
