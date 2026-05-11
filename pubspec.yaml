@@ -52,7 +52,7 @@ dependencies:
   web: ^1.1.1
   crypto: ^3.0.7
   url_launcher: ^6.3.2
-  gpt_markdown: ^1.1.6
+  gpt_markdown: ^1.1.7
   flutter_math_fork: ^0.7.2
   lucide_icons: ^0.257.0
   qr_flutter: ^4.1.0
