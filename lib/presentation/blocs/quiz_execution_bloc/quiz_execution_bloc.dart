@@ -258,7 +258,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
         // In Exam Mode, check if the limit was reached before allowing navigation
         if (!currentState.quizConfig.isStudyMode &&
             currentState.wasLimitReached) {
-          _emitQuizCompleted(
+          await _emitQuizCompleted(
             emit,
             currentState,
             isAiAvailable: await ServiceLocator.getIt<ConfigurationService>()
@@ -288,10 +288,10 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
     });
 
     // Handle quiz submission
-    on<QuizSubmitted>((event, emit) {
+    on<QuizSubmitted>((event, emit) async {
       if (state is QuizExecutionInProgress) {
         final currentState = state as QuizExecutionInProgress;
-        _emitQuizCompleted(
+        await _emitQuizCompleted(
           emit,
           currentState,
           isAiAvailable: event.isAiAvailable,
@@ -341,11 +341,11 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
     });
   }
 
-  void _emitQuizCompleted(
+  Future<void> _emitQuizCompleted(
     Emitter<QuizExecutionState> emit,
     QuizExecutionInProgress currentState, {
     bool isAiAvailable = false,
-  }) {
+  }) async {
     // Initialize AI evaluations map for essay questions,
     // preserving any evaluations already completed during Study Mode
     final aiEvaluations = <int, EssayAiEvaluation>{};
@@ -402,7 +402,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
           metadata,
           score,
         ).copyWith(questionText: question.text);
-        srsRepository!.saveMetadata(updatedMetadata);
+        await srsRepository!.saveMetadata(updatedMetadata);
       }
     }
 
