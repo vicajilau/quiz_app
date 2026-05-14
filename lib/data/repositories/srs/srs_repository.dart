@@ -115,21 +115,13 @@ class SrsRepository {
 
   /// Resets all statistics to zero, preserving question texts.
   Future<void> resetAllStats() async {
-    final toUpdate = _box.values.toList();
-    for (final metadata in toUpdate) {
-      final resetMetadata = metadata.copyWith(
-        interval: 0,
-        repetition: 0,
-        easeFactor: 2.5,
-        nextReviewDate: DateTime.now(),
-        timesCorrect: 0,
-        timesIncorrect: 0,
-      );
-      await saveMetadata(resetMetadata);
+    final fileIds = _box.values.map((m) => m.fileIdentifier).toSet();
+    for (final fileId in fileIds) {
+      await resetStatsForFile(fileId);
     }
   }
 
   String _generateKey(String fileIdentifier, String questionIdentity) {
-    return '${fileIdentifier}_$questionIdentity';
+    return '$fileIdentifier::$questionIdentity';
   }
 }
