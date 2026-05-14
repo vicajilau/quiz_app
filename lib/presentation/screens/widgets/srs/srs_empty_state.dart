@@ -46,8 +46,9 @@ class SrsEmptyState extends StatelessWidget {
             const SizedBox(height: 32),
             Text(
               l10n.srsEmptyStateTitle,
-              style: Theme.of(context).textTheme.headlineSmall
-                  ?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(
+                context,
+              ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
