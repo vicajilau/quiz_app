@@ -18,9 +18,7 @@ import 'package:hive_ce/hive.dart';
 part 'srs_metadata.g.dart';
 
 /// Represents the Spaced Repetition System (SRS) metadata for a question.
-@HiveType(
-  typeId: 0,
-) // You might need to change this typeId to a unique one in your app
+@HiveType(typeId: 0)
 class SrsMetadata extends HiveObject {
   @HiveField(0)
   String questionIdentity;
