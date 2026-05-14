@@ -2907,6 +2907,10 @@
   "@srsResetAllStatsTooltip": {
     "description": "Tooltip for the button to reset all SRS stats"
   },
+  "srsResetButton": "Reset",
+  "@srsResetButton": {
+    "description": "Label for the reset confirm button in SRS dialogs"
+  },
   "srsDeleteAllStatsTooltip": "Delete All Stats",
   "@srsDeleteAllStatsTooltip": {
     "description": "Tooltip for the button to delete all SRS stats"
@@ -2967,7 +2971,7 @@
   "@srsDueNow": {
     "description": "Label indicating how many questions are due for review now"
   },
-  "srsRetention": "Retention",
+  "srsRetention": "Hit Rate",
   "@srsRetention": {
     "description": "Label indicating the retention rate percentage"
   },
