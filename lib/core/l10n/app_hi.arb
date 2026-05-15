@@ -2410,9 +2410,9 @@
     "description": "Body message of the force update dialog."
   }
 ,
-  "questionOrderSpacedRepetition": "अंतराल दोहराव (एल्गोरिदम)",
-  "questionOrderSpacedRepetitionDesc": "बेहतर याद रखने के लिए SM-2 एल्गोरिदम के आधार पर प्रश्नों का क्रम",
-  "srsStatsTitle": "अंतराल दोहराव आँकड़े",
+  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
+  "questionOrderSpacedRepetitionDesc": "बेहतर याद रखने के लिए SM-2 एल्गोरिदम के आधार पर प्रश्नों का क्रम, Anki के स्मार्ट ऑर्डरिंग एल्गोरिदम पर आधारित",
+  "srsStatsTitle": "आँकड़े",
   "srsResetAllStatsTooltip": "सभी आँकड़े रीसेट करें",
   "srsResetButton": "रीसेट करें",
   "srsDeleteAllStatsTooltip": "सभी आँकड़े हटाएँ",

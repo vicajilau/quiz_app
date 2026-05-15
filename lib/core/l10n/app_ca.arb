@@ -2509,9 +2509,9 @@
     "description": "Body message of the force update dialog."
   }
 ,
-  "questionOrderSpacedRepetition": "Repetició Espaiada (Algorisme)",
-  "questionOrderSpacedRepetitionDesc": "Preguntes ordenades segons l'algorisme SM-2 per a una retenció òptima",
-  "srsStatsTitle": "Estadístiques de Repetició Espaiada",
+  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
+  "questionOrderSpacedRepetitionDesc": "Preguntes ordenades segons l'algorisme SM-2 per a una retenció òptima, basat en l'algorisme d'ordenació intel·ligent d'Anki",
+  "srsStatsTitle": "Estadístiques",
   "srsResetAllStatsTooltip": "Restablir totes les estadístiques",
   "srsResetButton": "Restablir",
   "srsDeleteAllStatsTooltip": "Esborrar totes les estadístiques",

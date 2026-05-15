@@ -2410,9 +2410,9 @@
     "description": "Body message of the force update dialog."
   }
 ,
-  "questionOrderSpacedRepetition": "間隔反復法（アルゴリズム）",
-  "questionOrderSpacedRepetitionDesc": "最適な記憶のためにSM-2アルゴリズムに基づいて質問を並べ替えます",
-  "srsStatsTitle": "間隔反復法の統計",
+  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
+  "questionOrderSpacedRepetitionDesc": "最適な記憶のためにSM-2アルゴリズムに基づいて質問を並べ替えます、Ankiのスマートオーダーアルゴリズムに基づく",
+  "srsStatsTitle": "統計",
   "srsResetAllStatsTooltip": "すべての統計をリセット",
   "srsResetButton": "リセット",
   "srsDeleteAllStatsTooltip": "すべての統計を削除",

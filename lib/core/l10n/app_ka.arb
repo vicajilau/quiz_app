@@ -1099,9 +1099,9 @@
     "description": "Body message of the force update dialog."
   }
 ,
-  "questionOrderSpacedRepetition": "ინტერვალური გამეორება (ალგორითმი)",
-  "questionOrderSpacedRepetitionDesc": "კითხვები დალაგებულია SM-2 ალგორითმით უკეთესი დამახსოვრებისთვის",
-  "srsStatsTitle": "ინტერვალური გამეორების სტატისტიკა",
+  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
+  "questionOrderSpacedRepetitionDesc": "კითხვები დალაგებულია SM-2 ალგორითმით უკეთესი დამახსოვრებისთვის, Anki-ს ჭკვიანი დალაგების ალგორითმზე დაყრდნობით",
+  "srsStatsTitle": "სტატისტიკა",
   "srsResetAllStatsTooltip": "ყველა სტატისტიკის გადატვირთვა",
   "srsResetButton": "გადატვირთვა",
   "srsDeleteAllStatsTooltip": "ყველა სტატისტიკის წაშლა",

@@ -2503,9 +2503,9 @@
     "description": "Body message of the force update dialog."
   }
 ,
-  "questionOrderSpacedRepetition": "Verteilte Wiederholung (Algorithmus)",
-  "questionOrderSpacedRepetitionDesc": "Fragen geordnet nach dem SM-2-Algorithmus für optimale Speicherung",
-  "srsStatsTitle": "Statistiken der verteilten Wiederholung",
+  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
+  "questionOrderSpacedRepetitionDesc": "Fragen geordnet nach dem SM-2-Algorithmus für optimale Speicherung, basierend auf dem Anki-Smart-Ordering-Algorithmus",
+  "srsStatsTitle": "Statistiken",
   "srsResetAllStatsTooltip": "Alle Statistiken zurücksetzen",
   "srsResetButton": "Zurücksetzen",
   "srsDeleteAllStatsTooltip": "Alle Statistiken löschen",

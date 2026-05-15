@@ -494,11 +494,11 @@
   "@questionOrderAscendingDesc": {
     "description": "Subtitle explaining ascending question order setting"
   },
-  "questionOrderSpacedRepetition": "Spaced Repetition (Anki)",
+  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
   "@questionOrderSpacedRepetition": {
     "description": "Title for spaced repetition question order setting"
   },
-  "questionOrderSpacedRepetitionDesc": "Prioritize questions that are due for review",
+  "questionOrderSpacedRepetitionDesc": "Prioritize questions that are due for review, based on the Anki smart ordering algorithm",
   "@questionOrderSpacedRepetitionDesc": {
     "description": "Subtitle explaining spaced repetition question order setting"
   },
@@ -2899,7 +2899,7 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   },
-  "srsStatsTitle": "Spaced Repetition Stats",
+  "srsStatsTitle": "Statistics",
   "@srsStatsTitle": {
     "description": "Title of the Spaced Repetition Stats screen"
   },

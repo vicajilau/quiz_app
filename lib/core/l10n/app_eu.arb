@@ -2407,9 +2407,9 @@
     "description": "Body message of the force update dialog."
   }
 ,
-  "questionOrderSpacedRepetition": "Errepikapen Tartekatua (Algoritmoa)",
-  "questionOrderSpacedRepetitionDesc": "SM-2 algoritmoan oinarritutako galderen ordena atxikipen optimorako",
-  "srsStatsTitle": "Errepikapen Tartekatuaren Estatistikak",
+  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
+  "questionOrderSpacedRepetitionDesc": "SM-2 algoritmoan oinarritutako galderen ordena atxikipen optimorako, Ankiren ordenatze adimendunaren algoritmoaren arabera",
+  "srsStatsTitle": "Estatistikak",
   "srsResetAllStatsTooltip": "Berrezarri estatistika guztiak",
   "srsResetButton": "Berrezarri",
   "srsDeleteAllStatsTooltip": "Ezabatu estatistika guztiak",

@@ -1099,9 +1099,9 @@
     "description": "Body message of the force update dialog."
   }
 ,
-  "questionOrderSpacedRepetition": "간격 반복 (알고리즘)",
-  "questionOrderSpacedRepetitionDesc": "최적의 기억을 위해 SM-2 알고리즘을 기반으로 질문 정렬",
-  "srsStatsTitle": "간격 반복 통계",
+  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
+  "questionOrderSpacedRepetitionDesc": "최적의 기억을 위해 SM-2 알고리즘을 기반으로 질문 정렬, Anki 스마트 정렬 알고리즘을 기반으로",
+  "srsStatsTitle": "통계",
   "srsResetAllStatsTooltip": "모든 통계 초기화",
   "srsResetButton": "초기화",
   "srsDeleteAllStatsTooltip": "모든 통계 삭제",

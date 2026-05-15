@@ -1114,9 +1114,9 @@
     "description": "Body message of the force update dialog."
   }
 ,
-  "questionOrderSpacedRepetition": "Интервальное повторение (алгоритм)",
-  "questionOrderSpacedRepetitionDesc": "Вопросы упорядочены по алгоритму SM-2 для лучшего запоминания",
-  "srsStatsTitle": "Статистика интервального повторения",
+  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
+  "questionOrderSpacedRepetitionDesc": "Вопросы упорядочены по алгоритму SM-2 для лучшего запоминания, основанный на алгоритме умной сортировки Anki",
+  "srsStatsTitle": "Статистика",
   "srsResetAllStatsTooltip": "Сбросить всю статистику",
   "srsResetButton": "Сбросить",
   "srsDeleteAllStatsTooltip": "Удалить всю статистику",

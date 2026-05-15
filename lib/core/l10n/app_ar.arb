@@ -2821,9 +2821,9 @@
     "description": "Body message of the force update dialog."
   }
 ,
-  "questionOrderSpacedRepetition": "التكرار المتباعد (خوارزمية)",
-  "questionOrderSpacedRepetitionDesc": "ترتيب الأسئلة بناءً على خوارزمية SM-2 لاحتفاظ مثالي",
-  "srsStatsTitle": "إحصائيات التكرار المتباعد",
+  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
+  "questionOrderSpacedRepetitionDesc": "ترتيب الأسئلة بناءً على خوارزمية SM-2 لاحتفاظ مثالي، استناداً إلى خوارزمية الترتيب الذكي لـ Anki",
+  "srsStatsTitle": "إحصائيات",
   "srsResetAllStatsTooltip": "إعادة تعيين جميع الإحصائيات",
   "srsResetButton": "إعادة تعيين",
   "srsDeleteAllStatsTooltip": "حذف جميع الإحصائيات",
