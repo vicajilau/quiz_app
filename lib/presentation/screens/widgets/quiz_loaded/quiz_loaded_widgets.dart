@@ -182,7 +182,7 @@ class QuizLoadedStatsButton extends StatelessWidget {
           color: Theme.of(context).colorScheme.onPrimary,
           size: 20,
         ),
-        tooltip: 'SRS Stats',
+        tooltip: AppLocalizations.of(context)!.srsStatsTitle,
       ),
     );
   }

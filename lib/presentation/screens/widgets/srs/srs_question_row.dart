@@ -19,6 +19,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/domain/models/srs/srs_metadata.dart';
+import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 
 class SrsQuestionRow extends StatelessWidget {
   final SrsMetadata stat;
@@ -45,7 +46,7 @@ class SrsQuestionRow extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          QuizdyLatexText(
             questionTitle,
             style: TextStyle(
               fontWeight: FontWeight.w600,
