@@ -25,8 +25,13 @@ abstract class QuizExecutionEvent {}
 class QuizExecutionStarted extends QuizExecutionEvent {
   final List<Question> questions;
   final QuizConfig quizConfig;
+  final String? fileIdentifier;
 
-  QuizExecutionStarted(this.questions, {required this.quizConfig});
+  QuizExecutionStarted(
+    this.questions, {
+    required this.quizConfig,
+    this.fileIdentifier,
+  });
 }
 
 /// Event triggered when a user selects an answer.

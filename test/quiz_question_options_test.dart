@@ -22,6 +22,7 @@ import 'package:quizdy/domain/models/quiz/question_type.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
+import 'package:quizdy/data/repositories/srs/srs_repository.dart';
 import 'package:quizdy/presentation/screens/quiz_execution/quiz_question_options.dart';
 import 'package:quizdy/presentation/screens/quiz_execution/widgets/question_option_tile.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
@@ -36,6 +37,9 @@ class FakeQuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState>
 
   @override
   AiRepositoryFactory get aiRepositoryFactory => throw UnimplementedError();
+
+  @override
+  SrsRepository? get srsRepository => throw UnimplementedError();
 }
 
 void main() {

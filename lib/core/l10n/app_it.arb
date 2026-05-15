@@ -1510,7 +1510,7 @@
   "@studyModeLabel": {
     "description": "Label for study mode option"
   },
-  "studyModeDescription": "Assistenza AI disponibile. Feedback istantaneo dopo ogni risposta, senza limiti di tempo o penalità.",
+  "studyModeDescription": "Assistenza AI disponibile. Feedback istantaneo dopo ogni risposta, senza limiti di tempo o penalità. Nessuna statistica generata.",
   "@studyModeDescription": {
     "description": "Description for study mode"
   },
@@ -1518,7 +1518,7 @@
   "@examModeLabel": {
     "description": "Label for exam mode option"
   },
-  "examModeDescription": "Nessuna assistenza AI. Potrebbero essere applicati limiti di tempo e penalità per le risposte errate.",
+  "examModeDescription": "Nessuna assistenza AI. Potrebbero essere applicati limiti di tempo e penalità per le risposte errate. Genera statistiche SRS.",
   "@examModeDescription": {
     "description": "Description for exam mode"
   },
@@ -2460,4 +2460,41 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   }
+,
+  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
+  "questionOrderSpacedRepetitionDesc": "Domande ordinate in base all'algoritmo SM-2 per una memorizzazione ottimale, basato sull'algoritmo di ordinamento intelligente Anki",
+  "srsStatsTitle": "Statistiche",
+  "srsResetAllStatsTooltip": "Ripristina tutte le statistiche",
+  "srsResetButton": "Ripristina",
+  "srsDeleteAllStatsTooltip": "Elimina tutte le statistiche",
+  "srsNoStatsAvailable": "Nessuna statistica disponibile.",
+  "srsResetStatsTitle": "Ripristinare le statistiche?",
+  "srsResetStatsContent": "Questo riporterà a zero tutti i dati per questo file, ma manterrà la cronologia. Sei sicuro?",
+  "srsDeleteStatsTitle": "Eliminare le statistiche?",
+  "srsDeleteStatsContent": "Questo eliminerà completamente tutti i dati di questo file. Sei sicuro?",
+  "srsResetAllStatsDialogTitle": "Ripristinare tutte le statistiche?",
+  "srsResetAllStatsDialogContent": "Questo riporterà a zero TUTTI i dati in tutti i file, mantenendo la cronologia. Sei sicuro?",
+  "srsDeleteAllStatsDialogTitle": "Eliminare tutte le statistiche?",
+  "srsDeleteAllStatsDialogContent": "Questo eliminerà completamente TUTTI i dati in tutti i file. Sei sicuro?",
+  "srsResetFileStatsTooltip": "Ripristina statistiche file",
+  "srsDeleteFileStatsTooltip": "Elimina statistiche file",
+  "srsDueNow": "Da ripassare",
+  "srsRetention": "Percentuale di successo",
+  "srsIndividualQuestions": "Domande singole",
+  "srsQuestionId": "ID domanda: {id}",
+  "srsIntervalShort": "Int:",
+  "srsEaseShort": "Facil:",
+  "srsDueShort": "Scad:",
+  "srsIntervalTooltip": "Intervallo in giorni fino alla prossima revisione",
+  "srsEaseTooltip": "Fattore di facilità (moltiplicatore per il prossimo intervallo)",
+  "srsDueTooltip": "La data prevista per la revisione",
+  "srsCorrect": "{count} Corretto",
+  "srsIncorrect": "{count} Errato",
+  "srsQuestions": "Domande"
+,
+  "modeGeneratesStats": "Genera statistiche SRS",
+  "modeNoStats": "Non genera statistiche"
+,
+  "srsEmptyStateTitle": "Ancora nessun dato da mostrare",
+  "srsEmptyStateSubtitle": "Completa la tua prima sessione di studio o fai un esame per iniziare a monitorare i tuoi progressi di apprendimento."
 }

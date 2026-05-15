@@ -26,6 +26,7 @@ import 'package:quizdy/presentation/screens/study_editor/component_editor_screen
 import 'package:quizdy/presentation/screens/study_screen.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/presentation/screens/srs/srs_stats_screen.dart';
 
 import 'package:quizdy/core/service_locator.dart';
 
@@ -46,6 +47,7 @@ class AppRoutes {
   static const String quizFileExecutionScreen = '/quiz_file_execution_screen';
   static const String studyScreen = '/study_screen';
   static const String componentEditorScreen = '/component_editor_screen';
+  static const String srsStats = '/srs_stats';
 }
 
 GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
@@ -118,6 +120,10 @@ GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
           language: extra['language'] as String?,
         );
       },
+    ),
+    GoRoute(
+      path: AppRoutes.srsStats,
+      builder: (context, state) => const SrsStatsScreen(),
     ),
   ],
 

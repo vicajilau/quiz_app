@@ -34,6 +34,10 @@ parts:
       - llvm
     build-environment:
       - PUB_CACHE: "$SNAPCRAFT_PART_BUILD/.pub-cache"
+    override-build: |
+      flutter pub get
+      dart run build_runner build -d
+      craftctl default
 
   desktop-file:
     plugin: dump

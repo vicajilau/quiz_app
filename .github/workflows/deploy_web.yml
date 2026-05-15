@@ -33,6 +33,9 @@ jobs:
 
       - name: Get dependencies
         run: flutter pub get
+        
+      - name: Generate build_runner files
+        run: dart run build_runner build -d
 
       - name: Build web
         run: flutter build web --release --base-href /${{ github.event.repository.name }}/

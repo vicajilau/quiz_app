@@ -33,6 +33,7 @@ import 'package:quizdy/data/services/pdf_export_service_io.dart'
     if (dart.library.js_interop) 'package:quizdy/data/services/pdf_export_service.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/quiz_config.dart';
+import 'package:quizdy/data/repositories/srs/srs_repository.dart';
 
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
@@ -111,9 +112,16 @@ class ServiceLocator {
     getIt.registerLazySingleton<FileBloc>(
       () => FileBloc(fileRepository: getIt<QuizFileRepository>()),
     );
+
+    // SRS
+    final srsRepository = SrsRepository();
+    await srsRepository.init();
+    getIt.registerSingleton<SrsRepository>(srsRepository);
+
     getIt.registerFactory<QuizExecutionBloc>(
       () => QuizExecutionBloc(
         aiRepositoryFactory: getIt.get<AiRepositoryFactory>(),
+        srsRepository: getIt.get<SrsRepository>(),
       ),
     );
   }
