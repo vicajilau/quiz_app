@@ -159,39 +159,19 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppLocalizations.of(
-                        context,
-                      )!.questionOrderConfigDescription,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        color: widget.textColor,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      _getQuestionOrderDescription(
-                        context,
-                        widget.questionOrder,
-                      ),
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        color: widget.subTextColor,
-                      ),
-                    ),
-                  ],
+              Text(
+                AppLocalizations.of(context)!.questionOrderConfigDescription,
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: widget.textColor,
                 ),
               ),
-              const SizedBox(width: 16),
+
+              const SizedBox(height: 10),
               Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 12,
@@ -204,6 +184,7 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
                 ),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<QuestionOrder>(
+                    isExpanded: true,
                     value: widget.questionOrder,
                     dropdownColor: widget.isDark
                         ? AppTheme.zinc800
@@ -238,6 +219,15 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
                       ),
                     ],
                   ),
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                _getQuestionOrderDescription(context, widget.questionOrder),
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: widget.subTextColor,
                 ),
               ),
             ],
