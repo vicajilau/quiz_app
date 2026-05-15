@@ -1580,7 +1580,7 @@
   "@studyModeLabel": {
     "description": "Label for study mode option"
   },
-  "studyModeDescription": "Assistència d'IA disponible. Feedback instantani després de cada resposta, sense límits de temps ni penalitzacions.",
+  "studyModeDescription": "Assistència d'IA disponible. Feedback instantani després de cada resposta, sense límits de temps ni penalitzacions. No genera estadístiques.",
   "@studyModeDescription": {
     "description": "Description for study mode"
   },
@@ -1588,7 +1588,7 @@
   "@examModeLabel": {
     "description": "Label for exam mode option"
   },
-  "examModeDescription": "Sense assistència d'IA. Es poden aplicar límits de temps i penalitzacions per respostes incorrectes.",
+  "examModeDescription": "Sense assistència d'IA. Es poden aplicar límits de temps i penalitzacions per respostes incorrectes. Genera estadístiques SRS.",
   "@examModeDescription": {
     "description": "Description for exam mode"
   },
@@ -2508,4 +2508,41 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   }
+,
+  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
+  "questionOrderSpacedRepetitionDesc": "Preguntes ordenades segons l'algorisme SM-2 per a una retenció òptima, basat en l'algorisme d'ordenació intel·ligent d'Anki",
+  "srsStatsTitle": "Estadístiques",
+  "srsResetAllStatsTooltip": "Restablir totes les estadístiques",
+  "srsResetButton": "Restablir",
+  "srsDeleteAllStatsTooltip": "Esborrar totes les estadístiques",
+  "srsNoStatsAvailable": "Encara no hi ha estadístiques disponibles.",
+  "srsResetStatsTitle": "Restablir estadístiques?",
+  "srsResetStatsContent": "Això restablirà totes les dades de repetició espaiada per a aquest fitxer a zero, però mantindrà l'historial. N'estàs segur?",
+  "srsDeleteStatsTitle": "Esborrar estadístiques?",
+  "srsDeleteStatsContent": "Això esborrarà completament totes les dades de repetició espaiada d'aquest fitxer. N'estàs segur?",
+  "srsResetAllStatsDialogTitle": "Restablir totes les estadístiques?",
+  "srsResetAllStatsDialogContent": "Això restablirà TOTES les dades de repetició espaiada en tots els fitxers a zero, mantenint l'historial. N'estàs segur?",
+  "srsDeleteAllStatsDialogTitle": "Esborrar totes les estadístiques?",
+  "srsDeleteAllStatsDialogContent": "Això esborrarà completament TOTES les dades de repetició espaiada en tots els fitxers. N'estàs segur?",
+  "srsResetFileStatsTooltip": "Restablir estadístiques del fitxer",
+  "srsDeleteFileStatsTooltip": "Esborrar estadístiques del fitxer",
+  "srsDueNow": "Per repassar",
+  "srsRetention": "Percentatge d'encerts",
+  "srsIndividualQuestions": "Preguntes individuals",
+  "srsQuestionId": "ID de la pregunta: {id}",
+  "srsIntervalShort": "Int:",
+  "srsEaseShort": "Facil:",
+  "srsDueShort": "Repàs:",
+  "srsIntervalTooltip": "Interval en dies fins a la propera revisió",
+  "srsEaseTooltip": "Factor de facilitat (multiplicador per a la propera revisió)",
+  "srsDueTooltip": "Data de la propera revisió",
+  "srsCorrect": "{count} Correcte",
+  "srsIncorrect": "{count} Incorrecte",
+  "srsQuestions": "Preguntes"
+,
+  "modeGeneratesStats": "Genera estadístiques SRS",
+  "modeNoStats": "No genera estadístiques"
+,
+  "srsEmptyStateTitle": "Encara no hi ha dades per mostrar",
+  "srsEmptyStateSubtitle": "Completa la teva primera sessió d'estudi o fes un examen per començar a registrar el teu progrés d'aprenentatge."
 }

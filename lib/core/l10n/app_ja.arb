@@ -1457,9 +1457,9 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
-  "studyModeDescription": "AIアシスタンス利用可能。回答直後のインスタント・フィードバック、時間制限や減点はありません。",
+  "studyModeDescription": "AIアシスタンス利用可能。回答直後のインスタント・フィードバック、時間制限や減点はありません。 統計は生成されません。",
   "examModeLabel": "試験モード",
-  "examModeDescription": "AIアシスタンスなし。時間制限や不正解による減点が適用される場合があります。",
+  "examModeDescription": "AIアシスタンスなし。時間制限や不正解による減点が適用される場合があります。 SRS統計を生成します。",
   "checkAnswer": "確認",
   "quizModeTitle": "クイズモード",
   "askAiAssistant": "AIアシスタントに聞く",
@@ -2409,4 +2409,41 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   }
+,
+  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
+  "questionOrderSpacedRepetitionDesc": "最適な記憶のためにSM-2アルゴリズムに基づいて質問を並べ替えます、Ankiのスマートオーダーアルゴリズムに基づく",
+  "srsStatsTitle": "統計",
+  "srsResetAllStatsTooltip": "すべての統計をリセット",
+  "srsResetButton": "リセット",
+  "srsDeleteAllStatsTooltip": "すべての統計を削除",
+  "srsNoStatsAvailable": "まだ利用できる統計はありません。",
+  "srsResetStatsTitle": "統計をリセットしますか？",
+  "srsResetStatsContent": "このファイルのすべてのデータをゼロにリセットしますが、履歴は保持します。よろしいですか？",
+  "srsDeleteStatsTitle": "統計を削除しますか？",
+  "srsDeleteStatsContent": "このファイルのすべてのデータを完全に削除します。よろしいですか？",
+  "srsResetAllStatsDialogTitle": "すべての統計をリセットしますか？",
+  "srsResetAllStatsDialogContent": "すべてのファイルのすべてのデータをゼロにリセットしますが、履歴は保持します。よろしいですか？",
+  "srsDeleteAllStatsDialogTitle": "すべての統計を削除しますか？",
+  "srsDeleteAllStatsDialogContent": "すべてのファイルのすべてのデータを完全に削除します。よろしいですか？",
+  "srsResetFileStatsTooltip": "ファイルの統計をリセット",
+  "srsDeleteFileStatsTooltip": "ファイルの統計を削除",
+  "srsDueNow": "復習の予定",
+  "srsRetention": "正解率",
+  "srsIndividualQuestions": "個別の質問",
+  "srsQuestionId": "質問ID：{id}",
+  "srsIntervalShort": "間隔:",
+  "srsEaseShort": "容易度:",
+  "srsDueShort": "予定:",
+  "srsIntervalTooltip": "次回の復習までの日数",
+  "srsEaseTooltip": "容易度係数（次の間隔の乗数）",
+  "srsDueTooltip": "復習が予定されている日付",
+  "srsCorrect": "{count} 正解",
+  "srsIncorrect": "{count} 不正解",
+  "srsQuestions": "質問"
+,
+  "modeGeneratesStats": "SRS統計を生成します",
+  "modeNoStats": "統計を生成しません"
+,
+  "srsEmptyStateTitle": "まだ表示するデータがありません",
+  "srsEmptyStateSubtitle": "学習の進捗を追跡し始めるには、最初の学習セッションを完了するか試験を受けてください。"
 }

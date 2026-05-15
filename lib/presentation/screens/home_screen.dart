@@ -642,6 +642,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                               isLoading: _isLoading,
                                               onSettingsTap: () =>
                                                   _showSettingsDialog(context),
+                                              onSrsStatsTap: () => context.push(
+                                                AppRoutes.srsStats,
+                                              ),
                                             ),
                                             Expanded(
                                               child: HomeDropZoneWidget(

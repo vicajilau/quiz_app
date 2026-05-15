@@ -22,6 +22,8 @@ import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_eve
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_scoring_helper.dart';
 import 'package:quizdy/domain/models/quiz/essay_ai_evaluation.dart';
+import 'package:quizdy/data/repositories/srs/srs_repository.dart';
+import 'package:quizdy/data/services/srs/anki_algorithm_service.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
@@ -31,7 +33,9 @@ import 'package:quizdy/core/extensions/string_extension.dart';
 /// BLoC for managing quiz execution state and logic.
 class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
   final AiRepositoryFactory aiRepositoryFactory;
-  QuizExecutionBloc({required this.aiRepositoryFactory})
+  final SrsRepository? srsRepository;
+
+  QuizExecutionBloc({required this.aiRepositoryFactory, this.srsRepository})
     : super(QuizExecutionInitial()) {
     // Handle quiz start
     on<QuizExecutionStarted>((event, emit) {
@@ -41,6 +45,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
           currentQuestionIndex: 0,
           userAnswers: {},
           quizConfig: event.quizConfig,
+          fileIdentifier: event.fileIdentifier,
         ),
       );
     });
@@ -253,7 +258,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
         // In Exam Mode, check if the limit was reached before allowing navigation
         if (!currentState.quizConfig.isStudyMode &&
             currentState.wasLimitReached) {
-          _emitQuizCompleted(
+          await _emitQuizCompleted(
             emit,
             currentState,
             isAiAvailable: await ServiceLocator.getIt<ConfigurationService>()
@@ -283,10 +288,10 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
     });
 
     // Handle quiz submission
-    on<QuizSubmitted>((event, emit) {
+    on<QuizSubmitted>((event, emit) async {
       if (state is QuizExecutionInProgress) {
         final currentState = state as QuizExecutionInProgress;
-        _emitQuizCompleted(
+        await _emitQuizCompleted(
           emit,
           currentState,
           isAiAvailable: event.isAiAvailable,
@@ -304,6 +309,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
             currentQuestionIndex: 0,
             userAnswers: {},
             quizConfig: currentState.quizConfig,
+            fileIdentifier: currentState.fileIdentifier,
           ),
         );
       }
@@ -327,6 +333,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
               currentQuestionIndex: 0,
               userAnswers: {},
               quizConfig: currentState.quizConfig,
+              fileIdentifier: currentState.fileIdentifier,
             ),
           );
         }
@@ -334,11 +341,11 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
     });
   }
 
-  void _emitQuizCompleted(
+  Future<void> _emitQuizCompleted(
     Emitter<QuizExecutionState> emit,
     QuizExecutionInProgress currentState, {
     bool isAiAvailable = false,
-  }) {
+  }) async {
     // Initialize AI evaluations map for essay questions,
     // preserving any evaluations already completed during Study Mode
     final aiEvaluations = <int, EssayAiEvaluation>{};
@@ -369,6 +376,36 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
       aiEvaluations: aiEvaluations,
     );
 
+    // Process SRS if we have a fileIdentifier
+    if (currentState.fileIdentifier != null &&
+        srsRepository != null &&
+        !currentState.quizConfig.isStudyMode) {
+      for (int i = 0; i < currentState.questions.length; i++) {
+        final question = currentState.questions[i];
+        final isCorrect = QuizScoringHelper.isAnswerCorrect(
+          question,
+          currentState.userAnswers[i] ?? [],
+          currentState.essayAnswers[i] ?? '',
+          aiEvaluation: aiEvaluations[i],
+        );
+
+        final identity = question.identityHash.toString();
+        final metadata = srsRepository!.getMetadataForQuestion(
+          identity,
+          currentState.fileIdentifier!,
+        );
+
+        final score = isCorrect
+            ? 4
+            : 1; // Map correct to 4, incorrect to 1 for SM-2
+        final updatedMetadata = AnkiAlgorithmService.calculateNextReview(
+          metadata,
+          score,
+        ).copyWith(questionText: question.text);
+        await srsRepository!.saveMetadata(updatedMetadata);
+      }
+    }
+
     emit(
       QuizExecutionCompleted(
         questions: currentState.questions,
@@ -380,6 +417,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
         score: results.score,
         quizConfig: currentState.quizConfig,
         wasLimitReached: currentState.wasLimitReached,
+        fileIdentifier: currentState.fileIdentifier,
       ),
     );
   }

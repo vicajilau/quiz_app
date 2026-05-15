@@ -14,6 +14,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'dart:math';
+import 'package:quizdy/core/service_locator.dart';
+import 'package:quizdy/data/repositories/srs/srs_repository.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/question_order.dart';
 
@@ -34,6 +36,7 @@ class QuizService {
     List<Question> allQuestions,
     int count, {
     QuestionOrder order = QuestionOrder.random,
+    String? fileIdentifier,
   }) {
     if (allQuestions.isEmpty || count <= 0) {
       return [];
@@ -44,6 +47,27 @@ class QuizService {
     switch (order) {
       case QuestionOrder.ascending:
         orderedQuestions = List<Question>.from(allQuestions);
+        break;
+      case QuestionOrder.spacedRepetition:
+        orderedQuestions = List<Question>.from(allQuestions);
+        if (fileIdentifier != null) {
+          try {
+            final srsRepo = ServiceLocator.getIt<SrsRepository>();
+            orderedQuestions.sort((a, b) {
+              final statA = srsRepo.getMetadataForQuestion(
+                a.identityHash.toString(),
+                fileIdentifier,
+              );
+              final statB = srsRepo.getMetadataForQuestion(
+                b.identityHash.toString(),
+                fileIdentifier,
+              );
+              return statA.nextReviewDate.compareTo(statB.nextReviewDate);
+            });
+          } catch (e) {
+            // Fallback if SrsRepository isn't available
+          }
+        }
         break;
       case QuestionOrder.random:
         orderedQuestions = List<Question>.from(allQuestions);

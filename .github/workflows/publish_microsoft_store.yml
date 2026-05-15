@@ -26,6 +26,9 @@ jobs:
       - name: Generate Windows release notes metadata
         run: dart distribution/windows/generate_windows_release_notes.dart --version=${{ github.ref_name }}
         
+      - name: Generate build_runner files
+        run: dart run build_runner build -d
+        
       - name: Create MSIX package
         run: msstore package .
 

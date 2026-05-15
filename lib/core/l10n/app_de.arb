@@ -249,10 +249,6 @@
   "@fileNameLabel": {
     "description": "Beschriftung für die Dateiname-Eingabe."
   },
-  "fileNameHint": "Dateiname (erforderlich)",
-  "@fileNameHint": {
-    "description": "Hinweistext für die Dateiname-Eingabe."
-  },
   "fileDescriptionLabel": "Dateibeschreibung",
   "@fileDescriptionLabel": {
     "description": "Beschriftung für die Dateibeschreibung-Eingabe."
@@ -1578,7 +1574,7 @@
   "@studyModeLabel": {
     "description": "Label for study mode option"
   },
-  "studyModeDescription": "KI-Unterstützung verfügbar. Sofortiges Feedback nach jeder Antwort, ohne Zeitlimits oder Punktabzüge.",
+  "studyModeDescription": "KI-Unterstützung verfügbar. Sofortiges Feedback nach jeder Antwort, ohne Zeitlimits oder Punktabzüge. Keine Statistiken generiert.",
   "@studyModeDescription": {
     "description": "Description for study mode"
   },
@@ -1586,7 +1582,7 @@
   "@examModeLabel": {
     "description": "Label for exam mode option"
   },
-  "examModeDescription": "Keine KI-Unterstützung. Zeitlimits und Punktabzüge für falsche Antworten können anfallen.",
+  "examModeDescription": "Keine KI-Unterstützung. Zeitlimits und Punktabzüge für falsche Antworten können anfallen. Erzeugt SRS-Statistiken.",
   "@examModeDescription": {
     "description": "Description for exam mode"
   },
@@ -2506,4 +2502,41 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   }
+,
+  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
+  "questionOrderSpacedRepetitionDesc": "Fragen geordnet nach dem SM-2-Algorithmus für optimale Speicherung, basierend auf dem Anki-Smart-Ordering-Algorithmus",
+  "srsStatsTitle": "Statistiken",
+  "srsResetAllStatsTooltip": "Alle Statistiken zurücksetzen",
+  "srsResetButton": "Zurücksetzen",
+  "srsDeleteAllStatsTooltip": "Alle Statistiken löschen",
+  "srsNoStatsAvailable": "Noch keine Statistiken verfügbar.",
+  "srsResetStatsTitle": "Statistiken zurücksetzen?",
+  "srsResetStatsContent": "Dies setzt alle Daten der verteilten Wiederholung für diese Datei auf Null zurück, behält aber den Verlauf. Sind Sie sicher?",
+  "srsDeleteStatsTitle": "Statistiken löschen?",
+  "srsDeleteStatsContent": "Dies löscht alle Daten der verteilten Wiederholung für diese Datei vollständig. Sind Sie sicher?",
+  "srsResetAllStatsDialogTitle": "Alle Statistiken zurücksetzen?",
+  "srsResetAllStatsDialogContent": "Dies setzt ALLE Daten der verteilten Wiederholung für alle Dateien auf Null zurück, behält aber den Verlauf. Sind Sie sicher?",
+  "srsDeleteAllStatsDialogTitle": "Alle Statistiken löschen?",
+  "srsDeleteAllStatsDialogContent": "Dies löscht ALLE Daten der verteilten Wiederholung für alle Dateien vollständig. Sind Sie sicher?",
+  "srsResetFileStatsTooltip": "Dateistatistiken zurücksetzen",
+  "srsDeleteFileStatsTooltip": "Dateistatistiken löschen",
+  "srsDueNow": "Fällig",
+  "srsRetention": "Trefferquote",
+  "srsIndividualQuestions": "Einzelne Fragen",
+  "srsQuestionId": "Fragen-ID: {id}",
+  "srsIntervalShort": "Int:",
+  "srsEaseShort": "Leicht:",
+  "srsDueShort": "Fällig:",
+  "srsIntervalTooltip": "Intervall in Tagen bis zur nächsten Überprüfung",
+  "srsEaseTooltip": "Leichtigkeitsfaktor (Multiplikator für das nächste Intervall)",
+  "srsDueTooltip": "Das Datum der geplanten Überprüfung",
+  "srsCorrect": "{count} Richtig",
+  "srsIncorrect": "{count} Falsch",
+  "srsQuestions": "Fragen"
+,
+  "modeGeneratesStats": "Erzeugt SRS-Statistiken",
+  "modeNoStats": "Keine Statistiken"
+,
+  "srsEmptyStateTitle": "Noch keine Daten vorhanden",
+  "srsEmptyStateSubtitle": "Schließen Sie Ihre erste Lernsitzung ab oder nehmen Sie an einer Prüfung teil, um Ihren Lernfortschritt zu verfolgen."
 }

@@ -486,7 +486,15 @@
   },
   "questionOrderAscendingDesc": "Las preguntas aparecerán en orden del 1 al final",
   "@questionOrderAscendingDesc": {
-    "description": "Descripción para la opción de orden ascendente de preguntas"
+    "description": "Subtitle explaining ascending question order setting"
+  },
+  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
+  "@questionOrderSpacedRepetition": {
+    "description": "Title for spaced repetition question order setting"
+  },
+  "questionOrderSpacedRepetitionDesc": "Prioriza las preguntas que necesitan ser repasadas, basado en el algoritmo de ordenamiento inteligente Anki",
+  "@questionOrderSpacedRepetitionDesc": {
+    "description": "Subtitle explaining spaced repetition question order setting"
   },
   "questionOrderDescending": "Orden descendente",
   "@questionOrderDescending": {
@@ -1775,7 +1783,7 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
-  "studyModeDescription": "Asistencia de IA disponible. Feedback instantáneo tras cada respuesta, sin límites de tiempo ni penalizaciones.",
+  "studyModeDescription": "Asistencia de IA disponible. Feedback instantáneo tras cada respuesta, sin límites de tiempo ni penalizaciones. No genera estadísticas.",
   "@studyModeDescription": {
     "description": "Description for study mode"
   },
@@ -1783,7 +1791,7 @@
   "@examModeLabel": {
     "description": "Label for exam mode option"
   },
-  "examModeDescription": "Sin asistencia de IA. Pueden aplicar límites de tiempo y penalizaciones por respuestas incorrectas.",
+  "examModeDescription": "Sin asistencia de IA. Pueden aplicar límites de tiempo y penalizaciones por respuestas incorrectas. Genera estadísticas SRS.",
   "@examModeDescription": {
     "description": "Description for exam mode"
   },
@@ -2644,5 +2652,37 @@
   "forceUpdateMessage": "Se requiere una actualización obligatoria para continuar usando Quizdy. Por favor, actualiza la aplicación.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
+  },
+  "srsStatsTitle": "Estadísticas",
+  "srsResetAllStatsTooltip": "Reiniciar Todas las Estadísticas",
+  "srsResetButton": "Reiniciar",
+  "srsDeleteAllStatsTooltip": "Eliminar Todas las Estadísticas",
+  "srsNoStatsAvailable": "Aún no hay estadísticas disponibles.",
+  "srsEmptyStateTitle": "Aún no hay datos para mostrar",
+  "srsEmptyStateSubtitle": "Completa tu primera sesión de estudio o realiza un examen para empezar a registrar tu progreso de aprendizaje.",
+  "srsResetStatsTitle": "Restablecer estadísticas?",
+  "srsResetStatsContent": "Esto reiniciará todos los datos de repaso espaciado de este archivo a cero, pero mantendrá el historial. ¿Estás seguro?",
+  "srsDeleteStatsTitle": "¿Eliminar Estadísticas?",
+  "srsDeleteStatsContent": "Esto eliminará por completo los datos de repaso espaciado de este archivo. ¿Estás seguro?",
+  "srsResetAllStatsDialogTitle": "¿Reiniciar Todas las Estadísticas?",
+  "srsResetAllStatsDialogContent": "Esto reiniciará TODOS los datos de repaso espaciado de todos los archivos a cero, manteniendo el historial. ¿Estás seguro?",
+  "srsDeleteAllStatsDialogTitle": "¿Eliminar Todas las Estadísticas?",
+  "srsDeleteAllStatsDialogContent": "Esto eliminará por completo TODOS los datos de repaso espaciado en todos los archivos. ¿Estás seguro?",
+  "srsResetFileStatsTooltip": "Reiniciar Estadísticas del Archivo",
+  "srsDeleteFileStatsTooltip": "Eliminar Estadísticas del Archivo",
+  "srsDueNow": "Para Repasar",
+  "srsRetention": "Porcentaje de aciertos",
+  "srsIndividualQuestions": "Preguntas Individuales",
+  "srsQuestionId": "Pregunta ID: {id}",
+  "srsIntervalShort": "Int:",
+  "srsEaseShort": "Facilidad:",
+  "srsDueShort": "Repaso:",
+  "srsIntervalTooltip": "Intervalo en días hasta el próximo repaso",
+  "srsEaseTooltip": "Factor de Facilidad (multiplicador para el próximo intervalo)",
+  "srsDueTooltip": "La fecha programada para repasar esta pregunta",
+  "srsCorrect": "{count} Aciertos",
+  "srsIncorrect": "{count} Fallos",
+  "srsQuestions": "Preguntas",
+  "modeGeneratesStats": "Genera estadísticas SRS",
+  "modeNoStats": "No genera estadísticas"
 }

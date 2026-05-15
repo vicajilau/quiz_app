@@ -159,6 +159,35 @@ class QuizLoadedSettingsButton extends StatelessWidget {
   }
 }
 
+class QuizLoadedStatsButton extends StatelessWidget {
+  final VoidCallback onTap;
+
+  const QuizLoadedStatsButton({super.key, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 40,
+      height: 40,
+      margin: const EdgeInsets.only(right: 8),
+      decoration: BoxDecoration(
+        color: context.quizLoadedTheme.appBarIconBackgroundColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: IconButton(
+        padding: EdgeInsets.zero,
+        onPressed: onTap,
+        icon: Icon(
+          Icons.analytics_outlined,
+          color: Theme.of(context).colorScheme.onPrimary,
+          size: 20,
+        ),
+        tooltip: AppLocalizations.of(context)!.srsStatsTitle,
+      ),
+    );
+  }
+}
+
 class QuizLoadedSelectionToggleButton extends StatelessWidget {
   final bool isSelectionMode;
   final VoidCallback onTap;

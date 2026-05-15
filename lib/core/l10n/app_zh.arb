@@ -1429,9 +1429,9 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
-  "studyModeDescription": "提供 AI 辅助。每题回答后提供即时反馈，无时间限制或扣分。",
+  "studyModeDescription": "提供 AI 辅助。每题回答后提供即时反馈，无时间限制或扣分。 不生成统计数据。",
   "examModeLabel": "考试模式",
-  "examModeDescription": "无 AI 辅助。可能适用时间限制和答错扣分。",
+  "examModeDescription": "无 AI 辅助。可能适用时间限制和答错扣分。 生成SRS统计数据。",
   "checkAnswer": "检查",
   "quizModeTitle": "测验模式",
   "skip": "跳过",
@@ -2458,4 +2458,41 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   }
+,
+  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
+  "questionOrderSpacedRepetitionDesc": "基于SM-2算法排序以获得最佳记忆效果，基于Anki智能排序算法",
+  "srsStatsTitle": "统计",
+  "srsResetAllStatsTooltip": "重置所有统计",
+  "srsResetButton": "重置",
+  "srsDeleteAllStatsTooltip": "删除所有统计",
+  "srsNoStatsAvailable": "暂无可用统计数据。",
+  "srsResetStatsTitle": "重置统计？",
+  "srsResetStatsContent": "这会将该文件的所有数据重置为零，但保留历史记录。确定吗？",
+  "srsDeleteStatsTitle": "删除统计？",
+  "srsDeleteStatsContent": "这将彻底删除该文件的所有数据。确定吗？",
+  "srsResetAllStatsDialogTitle": "重置所有统计？",
+  "srsResetAllStatsDialogContent": "这会将所有文件的所有数据重置为零，但保留历史记录。确定吗？",
+  "srsDeleteAllStatsDialogTitle": "删除所有统计？",
+  "srsDeleteAllStatsDialogContent": "这将彻底删除所有文件的所有数据。确定吗？",
+  "srsResetFileStatsTooltip": "重置文件统计",
+  "srsDeleteFileStatsTooltip": "删除文件统计",
+  "srsDueNow": "待复习",
+  "srsRetention": "正确率",
+  "srsIndividualQuestions": "单个问题",
+  "srsQuestionId": "问题ID: {id}",
+  "srsIntervalShort": "间隔:",
+  "srsEaseShort": "难度:",
+  "srsDueShort": "到期:",
+  "srsIntervalTooltip": "距下次复习的天数",
+  "srsEaseTooltip": "难度系数（下一次间隔的乘数）",
+  "srsDueTooltip": "计划复习的日期",
+  "srsCorrect": "{count} 答对",
+  "srsIncorrect": "{count} 答错",
+  "srsQuestions": "问题"
+,
+  "modeGeneratesStats": "生成SRS统计数据",
+  "modeNoStats": "不生成统计数据"
+,
+  "srsEmptyStateTitle": "暂无数据可显示",
+  "srsEmptyStateSubtitle": "完成您的第一个学习会话或参加考试以开始跟踪您的学习进度。"
 }

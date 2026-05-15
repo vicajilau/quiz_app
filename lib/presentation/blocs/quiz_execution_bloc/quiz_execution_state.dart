@@ -52,6 +52,7 @@ class QuizExecutionInProgress extends QuizExecutionState {
   final Map<int, EssayAiEvaluation> aiEvaluations; // questionIndex -> evaluation data
   final bool isAiEvaluating;
   final bool wasLimitReached;
+  final String? fileIdentifier;
 
   QuizExecutionInProgress({
     required this.questions,
@@ -61,6 +62,7 @@ class QuizExecutionInProgress extends QuizExecutionState {
     this.incorrectAnswersCount = 0,
     this.isAiEvaluating = false,
     this.wasLimitReached = false,
+    this.fileIdentifier,
     Map<int, String>? essayAnswers,
     Set<int>? validatedQuestions,
     Map<int, EssayAiEvaluation>? aiEvaluations,
@@ -137,6 +139,7 @@ class QuizExecutionInProgress extends QuizExecutionState {
     Map<int, EssayAiEvaluation>? aiEvaluations,
     bool? isAiEvaluating,
     bool? wasLimitReached,
+    String? fileIdentifier,
   }) {
     return QuizExecutionInProgress(
       questions: questions ?? this.questions,
@@ -150,6 +153,7 @@ class QuizExecutionInProgress extends QuizExecutionState {
       aiEvaluations: aiEvaluations ?? this.aiEvaluations,
       isAiEvaluating: isAiEvaluating ?? this.isAiEvaluating,
       wasLimitReached: wasLimitReached ?? this.wasLimitReached,
+      fileIdentifier: fileIdentifier ?? this.fileIdentifier,
     );
   }
 }
@@ -167,6 +171,7 @@ class QuizExecutionCompleted extends QuizExecutionState {
   final bool isStudyMode;
   final QuizConfig quizConfig;
   final bool wasLimitReached;
+  final String? fileIdentifier;
 
   QuizExecutionCompleted({
     required this.questions,
@@ -177,6 +182,7 @@ class QuizExecutionCompleted extends QuizExecutionState {
     required this.quizConfig,
     required this.score,
     this.wasLimitReached = false,
+    this.fileIdentifier,
     Map<int, EssayAiEvaluation>? aiEvaluations,
   }) : isStudyMode = quizConfig.isStudyMode,
        aiEvaluations = aiEvaluations ?? {};
@@ -232,6 +238,7 @@ class QuizExecutionCompleted extends QuizExecutionState {
     double? score,
     QuizConfig? quizConfig,
     bool? wasLimitReached,
+    String? fileIdentifier,
   }) {
     return QuizExecutionCompleted(
       questions: questions ?? this.questions,
@@ -243,6 +250,7 @@ class QuizExecutionCompleted extends QuizExecutionState {
       score: score ?? this.score,
       quizConfig: quizConfig ?? this.quizConfig,
       wasLimitReached: wasLimitReached ?? this.wasLimitReached,
+      fileIdentifier: fileIdentifier ?? this.fileIdentifier,
     );
   }
 }

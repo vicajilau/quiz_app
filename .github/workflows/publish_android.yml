@@ -32,6 +32,9 @@ jobs:
           channel: "stable"
       - name: Generate Google Play release notes
         run: dart distribution/android/generate_play_whatsnew.dart --version=${{ github.ref_name }}
+      - run: flutter pub get
+      - name: Generate build_runner files
+        run: dart run build_runner build -d
       - name: Start Android Release Build
         run: flutter build appbundle
       - name: Upload Release Build to Artifacts

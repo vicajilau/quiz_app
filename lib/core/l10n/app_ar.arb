@@ -258,10 +258,6 @@
   "@fileNameLabel": {
     "description": "Label for file name input."
   },
-  "fileNameHint": "اسم الملف (مطلوب)",
-  "@fileNameHint": {
-    "description": "Hint text for file name input."
-  },
   "fileDescriptionLabel": "وصف الملف",
   "@fileDescriptionLabel": {
     "description": "Label for file description input."
@@ -1565,7 +1561,7 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
-  "studyModeDescription": "مساعدة الذكاء الاصطناعي متاحة. تعليقات فورية بعد كل إجابة بدون حدود زمنية أو عقوبات.",
+  "studyModeDescription": "مساعدة الذكاء الاصطناعي متاحة. تعليقات فورية بعد كل إجابة بدون حدود زمنية أو عقوبات. لا يتم إنشاء أي إحصائيات.",
   "@studyModeDescription": {
     "description": "Description for the study mode"
   },
@@ -1573,7 +1569,7 @@
   "@examModeLabel": {
     "description": "Label for the exam mode option"
   },
-  "examModeDescription": "بدون مساعدة الذكاء الاصطناعي. قد يتم تطبيق حدود زمنية وعقوبات على الإجابات غير الصحيحة.",
+  "examModeDescription": "بدون مساعدة الذكاء الاصطناعي. قد يتم تطبيق حدود زمنية وعقوبات على الإجابات غير الصحيحة. يولد إحصائيات التكرار المتباعد.",
   "@examModeDescription": {
     "description": "Description for the exam mode"
   },
@@ -2824,4 +2820,41 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   }
+,
+  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
+  "questionOrderSpacedRepetitionDesc": "ترتيب الأسئلة بناءً على خوارزمية SM-2 لاحتفاظ مثالي، استناداً إلى خوارزمية الترتيب الذكي لـ Anki",
+  "srsStatsTitle": "إحصائيات",
+  "srsResetAllStatsTooltip": "إعادة تعيين جميع الإحصائيات",
+  "srsResetButton": "إعادة تعيين",
+  "srsDeleteAllStatsTooltip": "حذف جميع الإحصائيات",
+  "srsNoStatsAvailable": "لا تتوفر إحصائيات حتى الآن.",
+  "srsResetStatsTitle": "إعادة تعيين الإحصائيات؟",
+  "srsResetStatsContent": "سيؤدي هذا إلى إعادة تعيين جميع بيانات هذا الملف إلى الصفر، مع الاحتفاظ بالسجل. هل أنت متأكد؟",
+  "srsDeleteStatsTitle": "حذف الإحصائيات؟",
+  "srsDeleteStatsContent": "سيؤدي هذا إلى حذف جميع بيانات هذا الملف بالكامل. هل أنت متأكد؟",
+  "srsResetAllStatsDialogTitle": "إعادة تعيين جميع الإحصائيات؟",
+  "srsResetAllStatsDialogContent": "سيؤدي هذا إلى إعادة تعيين جميع البيانات في جميع الملفات إلى الصفر، مع الاحتفاظ بالسجل. هل أنت متأكد؟",
+  "srsDeleteAllStatsDialogTitle": "حذف جميع الإحصائيات؟",
+  "srsDeleteAllStatsDialogContent": "سيؤدي هذا إلى حذف جميع البيانات في جميع الملفات بالكامل. هل أنت متأكد؟",
+  "srsResetFileStatsTooltip": "إعادة تعيين إحصائيات الملف",
+  "srsDeleteFileStatsTooltip": "حذف إحصائيات الملف",
+  "srsDueNow": "للمراجعة",
+  "srsRetention": "نسبة الإجابات الصحيحة",
+  "srsIndividualQuestions": "الأسئلة الفردية",
+  "srsQuestionId": "معرف السؤال: {id}",
+  "srsIntervalShort": "فترة:",
+  "srsEaseShort": "سهولة:",
+  "srsDueShort": "استحقاق:",
+  "srsIntervalTooltip": "الفاصل الزمني بالأيام حتى المراجعة التالية",
+  "srsEaseTooltip": "عامل السهولة (مضاعف للفاصل الزمني التالي)",
+  "srsDueTooltip": "تاريخ المراجعة المجدولة",
+  "srsCorrect": "{count} صحيح",
+  "srsIncorrect": "{count} خطأ",
+  "srsQuestions": "الأسئلة"
+,
+  "modeGeneratesStats": "يولد إحصائيات التكرار المتباعد",
+  "modeNoStats": "لا يولد إحصائيات"
+,
+  "srsEmptyStateTitle": "لا توجد بيانات لعرضها بعد",
+  "srsEmptyStateSubtitle": "أكمل جلسة الدراسة الأولى أو خذ امتحانًا لبدء تتبع تقدمك في التعلم."
 }

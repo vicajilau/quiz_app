@@ -638,6 +638,11 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                     );
                   },
                 ),
+                QuizLoadedStatsButton(
+                  onTap: () {
+                    context.push(AppRoutes.srsStats);
+                  },
+                ),
                 QuizLoadedSettingsButton(
                   onTap: () => _showSettingsDialog(context),
                 ),

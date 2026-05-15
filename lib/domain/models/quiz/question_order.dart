@@ -19,7 +19,10 @@ enum QuestionOrder {
   random('random'),
 
   /// Questions are shown in their original creation order.
-  ascending('ascending');
+  ascending('ascending'),
+
+  /// Questions are sorted by their SRS algorithm due dates (Anki-style SM-2 algorithm).
+  spacedRepetition('spaced_repetition');
 
   /// The internal string value used for serialization and persistence.
   final String value;

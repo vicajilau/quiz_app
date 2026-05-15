@@ -51,6 +51,11 @@ distribution/android/whatsnew/
 distribution/apple/fastlane/metadata/
 distribution/windows/update_metadata.json
 
+# Generated build_runner files
+*.g.dart
+*.freezed.dart
+*.mocks.dart
+
 # Copilot instructions (local configuration)
 .github/copilot-instructions.md
 
