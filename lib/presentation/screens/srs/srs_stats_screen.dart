@@ -54,7 +54,14 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
 
     return Scaffold(
       appBar: QuizdyAppBar(
-        title: Text(l10n.srsStatsTitle),
+        title: Text(
+          l10n.srsStatsTitle,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
         onLeadingPressed: () => context.pop(),
         actions: _groupedStats.isEmpty
             ? null
