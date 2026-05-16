@@ -46,7 +46,7 @@ class HomeHeaderWidget extends StatelessWidget {
             ),
             child: IconButton(
               icon: const Icon(Icons.analytics_outlined),
-              tooltip: 'SRS Stats',
+              tooltip: AppLocalizations.of(context)!.srsStatsTitle,
               color: Theme.of(context).iconTheme.color,
               iconSize: 24,
               onPressed: isLoading ? null : onSrsStatsTap,
