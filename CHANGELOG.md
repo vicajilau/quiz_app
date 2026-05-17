@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.13.1] - TBD
+## [1.14.0] - TBD
 
 - feat(quiz): Allow selecting and linking a question to a specific study section upon question creation (#417).
 - feat(quiz): Support manually linking or updating the study section associated with a question during editing (#418).
