@@ -46,8 +46,8 @@ class StudyContentView extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Question> enabledLinkedQuestions = quizFile != null
         ? quizFile!.questions
-            .where((q) => q.isEnabled && q.studySectionId == currentChunk.id)
-            .toList()
+              .where((q) => q.isEnabled && q.studySectionId == currentChunk.id)
+              .toList()
         : const [];
     final hasLinkedQuestions = enabledLinkedQuestions.isNotEmpty;
 
@@ -61,10 +61,15 @@ class StudyContentView extends StatelessWidget {
                 : (currentChunk.pages.isNotEmpty || hasLinkedQuestions
                       ? ListView.builder(
                           key: ValueKey(currentChunkIndex),
-                          itemCount: currentChunk.pages.length + (hasLinkedQuestions ? 1 : 0),
+                          itemCount:
+                              currentChunk.pages.length +
+                              (hasLinkedQuestions ? 1 : 0),
                           itemBuilder: (context, index) {
                             if (index == currentChunk.pages.length) {
-                              return _buildPracticeBanner(context, enabledLinkedQuestions);
+                              return _buildPracticeBanner(
+                                context,
+                                enabledLinkedQuestions,
+                              );
                             }
                             final page = currentChunk.pages[index];
                             return Card(
@@ -94,7 +99,10 @@ class StudyContentView extends StatelessWidget {
     );
   }
 
-  Widget _buildPracticeBanner(BuildContext context, List<Question> linkedQuestions) {
+  Widget _buildPracticeBanner(
+    BuildContext context,
+    List<Question> linkedQuestions,
+  ) {
     if (quizFile == null) return const SizedBox.shrink();
 
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -143,17 +151,19 @@ class StudyContentView extends StatelessWidget {
                     Text(
                       localizations.studySectionPracticePrompt,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Plus Jakarta Sans',
-                          ),
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Plus Jakarta Sans',
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      localizations.studySectionPracticeSubtitle(linkedQuestions.length),
+                      localizations.studySectionPracticeSubtitle(
+                        linkedQuestions.length,
+                      ),
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: isDark ? AppTheme.zinc400 : AppTheme.zinc500,
-                            height: 1.4,
-                          ),
+                        color: isDark ? AppTheme.zinc400 : AppTheme.zinc500,
+                        height: 1.4,
+                      ),
                     ),
                   ],
                 ),
