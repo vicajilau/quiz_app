@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.13.1] - TBD
 
+- feat(quiz): Allow selecting and linking a question to a specific study section upon question creation (#417).
+- feat(quiz): Support manually linking or updating the study section associated with a question during editing (#418).
+- feat(ai): Automatically associate and link AI-generated questions to the corresponding study section context (#419).
+- ux(quiz): Display a premium warning row and alert icon for questions that are not linked to any study section when the quiz contains study sections, fully localized in all 18 languages (#421).
 - fix(mobile): Improved readability of the system status bar during in-app update prompts, dynamically adjusting icon colors to ensure they remain clearly visible over the update banner and seamlessly restore to their native theme once dismissed.
 
 ## [1.13.0] - 2026-04-29
