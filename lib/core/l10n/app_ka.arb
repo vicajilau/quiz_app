@@ -1136,5 +1136,6 @@
   "srsEmptyStateTitle": "ჯერჯერობით მონაცემები არ არის",
   "srsEmptyStateSubtitle": "დაასრულეთ თქვენი პირველი სასწავლო სესია ან ჩააბარეთ გამოცდა, რათა დაიწყოთ თქვენი სასწავლო პროგრესის თვალყურის დევნება.",
   "linkStudySection": "სასწავლო სექციასთან დაკავშირება",
-  "noStudySection": "არცერთი"
+  "noStudySection": "არცერთი",
+  "confirmDeleteSectionWithQuestionsMessage": "ამ სექციასთან დაკავშირებულია კითხვები. ნამდვილად გსურთ წაშალოთ `{sectionName}`?"
 }

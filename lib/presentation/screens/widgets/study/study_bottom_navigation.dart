@@ -99,10 +99,57 @@ class StudyBottomNavigation extends StatelessWidget {
                     hasDuplicates: state.hasDuplicates,
                     isStartQuizEnabled:
                         !hideStartQuizButton && state.chunks.isNotEmpty,
-                    onDelete: () {
-                      context.read<StudyExecutionBloc>().add(
-                        const DeleteSelectedChunksRequested(),
-                      );
+                    onDelete: () async {
+                      final selectedChunks = state.selectedIndices
+                          .map((i) => state.chunks[i])
+                          .toList();
+                      if (selectedChunks.isEmpty) return;
+
+                      bool hasQuestions = false;
+                      List<String> chunksWithQuestionsTitles = [];
+                      try {
+                        final fileState = context.read<FileBloc>().state;
+                        QuizFile? quizFile;
+                        if (fileState is FileLoaded) {
+                          quizFile = fileState.quizFile;
+                        } else if (fileState is FileSaved) {
+                          quizFile = fileState.quizFile;
+                        }
+                        if (quizFile != null) {
+                          for (final chunk in selectedChunks) {
+                            final chunkHasQuestions = quizFile.questions
+                                .any((q) => q.studySectionId == chunk.id);
+                            if (chunkHasQuestions) {
+                              hasQuestions = true;
+                              chunksWithQuestionsTitles.add(chunk.title);
+                            }
+                          }
+                        }
+                      } catch (_) {}
+
+                      final names = selectedChunks.map((c) => c.title).join(', ');
+                      final message = hasQuestions
+                          ? localizations.confirmDeleteSectionWithQuestionsMessage(
+                              chunksWithQuestionsTitles.join(', '),
+                            )
+                          : localizations.confirmDeleteMessage(names);
+
+                      final confirmed = await showDialog<bool>(
+                        context: context,
+                        builder: (context) => CustomConfirmDialog(
+                          title: localizations.confirmDeleteTitle,
+                          message: message,
+                          confirmText: localizations.deleteButton,
+                          isDestructive: true,
+                        ),
+                      ) ??
+                      false;
+
+                      if (confirmed && context.mounted) {
+                        context.read<StudyExecutionBloc>().add(
+                          const DeleteSelectedChunksRequested(),
+                        );
+                      }
                     },
                     onDeleteDuplicates: () async {
                       final confirmed = await showDialog<bool>(

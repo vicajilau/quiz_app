@@ -26,6 +26,9 @@ import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
+import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
+import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_chunk_card.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_hero_card.dart';
@@ -93,15 +96,34 @@ class StudyIndexView extends StatelessWidget {
 
   Future<void> _onChunkDelete(BuildContext context, int index) async {
     final chunk = state.chunks[index];
+
+    // Check if the section has associated questions
+    bool hasQuestions = false;
+    try {
+      final fileState = context.read<FileBloc>().state;
+      QuizFile? quizFile;
+      if (fileState is FileLoaded) {
+        quizFile = fileState.quizFile;
+      } else if (fileState is FileSaved) {
+        quizFile = fileState.quizFile;
+      }
+      if (quizFile != null) {
+        hasQuestions = quizFile.questions.any((q) => q.studySectionId == chunk.id);
+      }
+    } catch (_) {}
+
+    final appLocalizations = AppLocalizations.of(context)!;
+    final message = hasQuestions
+        ? appLocalizations.confirmDeleteSectionWithQuestionsMessage(chunk.title)
+        : appLocalizations.confirmDeleteMessage(chunk.title);
+
     final confirmed =
         await showDialog<bool>(
           context: context,
           builder: (context) => CustomConfirmDialog(
-            title: AppLocalizations.of(context)!.confirmDeleteTitle,
-            message: AppLocalizations.of(
-              context,
-            )!.confirmDeleteMessage(chunk.title),
-            confirmText: AppLocalizations.of(context)!.deleteButton,
+            title: appLocalizations.confirmDeleteTitle,
+            message: message,
+            confirmText: appLocalizations.deleteButton,
             isDestructive: true,
           ),
         ) ??

@@ -2858,5 +2858,6 @@
   "srsEmptyStateTitle": "لا توجد بيانات لعرضها بعد",
   "srsEmptyStateSubtitle": "أكمل جلسة الدراسة الأولى أو خذ امتحانًا لبدء تتبع تقدمك في التعلم.",
   "linkStudySection": "ربط بقسم الدراسة",
-  "noStudySection": "بلا"
+  "noStudySection": "بلا",
+  "confirmDeleteSectionWithQuestionsMessage": "هذا القسم يحتوي على أسئلة مرتبطة به. هل أنت متأكد أنك تريد حذف `{sectionName}`؟"
 }

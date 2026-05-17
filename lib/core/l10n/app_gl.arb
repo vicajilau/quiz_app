@@ -2444,5 +2444,6 @@
   "srsEmptyStateTitle": "Aínda non hai datos para mostrar",
   "srsEmptyStateSubtitle": "Completa a túa primeira sesión de estudo ou fai un exame para comezar a rexistrar o teu progreso de aprendizaxe.",
   "linkStudySection": "Vincular a sección de estudo",
-  "noStudySection": "Ningún"
+  "noStudySection": "Ningún",
+  "confirmDeleteSectionWithQuestionsMessage": "Esta sección ten preguntas asociadas. Seguro que queres eliminar `{sectionName}`?"
 }

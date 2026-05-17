@@ -1444,5 +1444,6 @@
   "srsEmptyStateTitle": "Δεν υπάρχουν δεδομένα ακόμη",
   "srsEmptyStateSubtitle": "Ολοκληρώστε την πρώτη σας συνεδρία μελέτης ή κάντε μια εξέταση για να ξεκινήσετε να παρακολουθείτε την πρόοδό σας.",
   "linkStudySection": "Σύνδεση με ενότητα μελέτης",
-  "noStudySection": "Κανένα"
+  "noStudySection": "Κανένα",
+  "confirmDeleteSectionWithQuestionsMessage": "Αυτή η ενότητα έχει συσχετισμένες ερωτήσεις. Είστε βέβαιοι ότι θέλετε να διαγράψετε το `{sectionName}`;"
 }

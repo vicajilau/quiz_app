@@ -2535,5 +2535,6 @@
   "srsEmptyStateTitle": "Ainda não há dados para mostrar",
   "srsEmptyStateSubtitle": "Conclua sua primeira sessão de estudo ou faça um exame para começar a acompanhar seu progresso de aprendizado.",
   "linkStudySection": "Vincular à seção de estudo",
-  "noStudySection": "Nenhum"
+  "noStudySection": "Nenhum",
+  "confirmDeleteSectionWithQuestionsMessage": "Esta seção possui perguntas associadas. Tem certeza de que deseja excluir `{sectionName}`?"
 }

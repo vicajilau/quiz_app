@@ -1151,5 +1151,6 @@
   "srsEmptyStateTitle": "Пока нет данных для отображения",
   "srsEmptyStateSubtitle": "Завершите свою первую учебную сессию или сдайте экзамен, чтобы начать отслеживать свой прогрес в обучении.",
   "linkStudySection": "Связать с разделом обучения",
-  "noStudySection": "Нет"
+  "noStudySection": "Нет",
+  "confirmDeleteSectionWithQuestionsMessage": "С этим разделом связаны вопросы. Вы действительно хотите удалить `{sectionName}`?"
 }

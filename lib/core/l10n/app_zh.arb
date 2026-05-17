@@ -2496,5 +2496,6 @@
   "srsEmptyStateTitle": "暂无数据可显示",
   "srsEmptyStateSubtitle": "完成您的第一个学习会话或参加考试以开始跟踪您的学习进度。",
   "linkStudySection": "链接至学习章节",
-  "noStudySection": "无"
+  "noStudySection": "无",
+  "confirmDeleteSectionWithQuestionsMessage": "此章节包含关联问题。您确定要删除 `{sectionName}` 吗？"
 }

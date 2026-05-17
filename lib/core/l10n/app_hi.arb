@@ -2447,5 +2447,6 @@
   "srsEmptyStateTitle": "दिखाने के लिए अभी तक कोई डेटा नहीं है",
   "srsEmptyStateSubtitle": "अपनी पहली अध्ययन सत्र पूरा करें या अपनी सीखने की प्रगति को ट्रैक करना शुरू करने के लिए एक परीक्षा दें।",
   "linkStudySection": "अध्ययन अनुभाग से लिंक करें",
-  "noStudySection": "कोई नहीं"
+  "noStudySection": "कोई नहीं",
+  "confirmDeleteSectionWithQuestionsMessage": "इस अनुभाग में जुड़े हुए प्रश्न हैं। क्या आप वाकई `{sectionName}` को हटाना चाहते हैं?"
 }

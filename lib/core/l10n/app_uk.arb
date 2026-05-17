@@ -1169,5 +1169,6 @@
   "srsEmptyStateTitle": "Поки немає даних для відображення",
   "srsEmptyStateSubtitle": "Завершіть свою першу навчальну сесію або складіть іспит, щоб почати відстежувати свій прогрес у навчанні.",
   "linkStudySection": "Зв'язати з розділом навчання",
-  "noStudySection": "Немає"
+  "noStudySection": "Немає",
+  "confirmDeleteSectionWithQuestionsMessage": "З цим розділом пов'язані питання. Ви дійсно хочете видалити `{sectionName}`?"
 }

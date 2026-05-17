@@ -168,6 +168,16 @@
       }
     }
   },
+  "confirmDeleteSectionWithQuestionsMessage": "This section has associated questions. Are you sure you want to delete `{sectionName}`?",
+  "@confirmDeleteSectionWithQuestionsMessage": {
+    "description": "Warning message when deleting a study section that has associated questions.",
+    "placeholders": {
+      "sectionName": {
+        "type": "String",
+        "example": "Chapter 1"
+      }
+    }
+  },
   "deleteButton": "Delete",
   "@deleteButton": {
     "description": "Button text for confirming deletion."
