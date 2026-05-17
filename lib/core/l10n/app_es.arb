@@ -2684,5 +2684,7 @@
   "srsIncorrect": "{count} Fallos",
   "srsQuestions": "Preguntas",
   "modeGeneratesStats": "Genera estadísticas SRS",
-  "modeNoStats": "No genera estadísticas"
+  "modeNoStats": "No genera estadísticas",
+  "linkStudySection": "Vincular a sección de estudio",
+  "noStudySection": "Ninguna"
 }

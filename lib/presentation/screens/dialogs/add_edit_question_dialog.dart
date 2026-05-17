@@ -64,6 +64,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
 
   QuestionType _selectedType = QuestionType.multipleChoice;
   String? _imageData;
+  String? _selectedStudySectionId;
 
   @override
   void initState() {
@@ -78,6 +79,16 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
       _explanationController.text = widget.question!.explanation;
       _imageData = widget.question!.image;
       _selectedType = widget.question!.type;
+      _selectedStudySectionId = widget.question!.studySectionId;
+
+      // Ensure the linked section still exists in the study chunks list, otherwise reset it
+      final chunks = widget.quizFile.study?.content.cache ?? [];
+      if (chunks.isNotEmpty && _selectedStudySectionId != null) {
+        final exists = chunks.any((c) => c.id == _selectedStudySectionId);
+        if (!exists) {
+          _selectedStudySectionId = null;
+        }
+      }
 
       // Initialize options using the mixin
       initializeOptions(
@@ -175,6 +186,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
           : getCorrectAnswerIndexes(),
       explanation: _explanationController.text.trim(),
       image: _imageData,
+      studySectionId: _selectedStudySectionId,
     );
 
     // Update the question in the quiz file if editing
@@ -363,6 +375,108 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                         ),
                       ],
                     ),
+
+                    // Study Section Linking Dropdown
+                    if (widget.quizFile.study?.content.cache.isNotEmpty ==
+                        true) ...[
+                      const SizedBox(height: 24),
+                      Text(
+                        localizations.linkStudySection,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: theme.closeIconColor,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.secondaryContainer,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Icon(
+                              LucideIcons.bookOpen,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onPrimaryContainer,
+                              size: 24,
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: DropdownButtonFormField<String?>(
+                              initialValue: _selectedStudySectionId,
+                              isExpanded: true,
+                              onChanged: (value) {
+                                setState(() {
+                                  _selectedStudySectionId = value;
+                                });
+                              },
+                              decoration: InputDecoration(
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 16,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide: BorderSide(
+                                    color: theme.borderColor,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide: BorderSide(
+                                    color: theme.borderColor,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor,
+                                    width: 2,
+                                  ),
+                                ),
+                                filled: true,
+                                fillColor: Theme.of(context).cardColor,
+                              ),
+                              items: [
+                                DropdownMenuItem<String?>(
+                                  value: null,
+                                  child: Text(
+                                    localizations.noStudySection,
+                                    style: TextStyle(
+                                      color: theme.textColor,
+                                      fontSize: 14,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                ...(widget.quizFile.study?.content.cache ?? [])
+                                    .map((chunk) {
+                                      return DropdownMenuItem<String?>(
+                                        value: chunk.id,
+                                        child: Text(
+                                          '${chunk.chunkIndex + 1}. ${chunk.title}',
+                                          style: TextStyle(
+                                            color: theme.textColor,
+                                            fontSize: 14,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      );
+                                    }),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+
                     const SizedBox(height: 24),
 
                     // Question Text Field

@@ -2442,5 +2442,7 @@
   "modeNoStats": "Non xera estatísticas"
 ,
   "srsEmptyStateTitle": "Aínda non hai datos para mostrar",
-  "srsEmptyStateSubtitle": "Completa a túa primeira sesión de estudo ou fai un exame para comezar a rexistrar o teu progreso de aprendizaxe."
+  "srsEmptyStateSubtitle": "Completa a túa primeira sesión de estudo ou fai un exame para comezar a rexistrar o teu progreso de aprendizaxe.",
+  "linkStudySection": "Vincular a sección de estudo",
+  "noStudySection": "Ningún"
 }

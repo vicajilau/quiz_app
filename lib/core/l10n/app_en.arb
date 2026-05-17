@@ -3041,5 +3041,13 @@
   "modeNoStats": "No Stats Generated",
   "@modeNoStats": {
     "description": "Indicates that the mode does not generate statistics"
+  },
+  "linkStudySection": "Link to study section",
+  "@linkStudySection": {
+    "description": "Label for the dropdown to link a question to a study section"
+  },
+  "noStudySection": "None",
+  "@noStudySection": {
+    "description": "Option in the dropdown to not link the question to any study section"
   }
 }

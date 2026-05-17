@@ -2442,5 +2442,7 @@
   "modeNoStats": "Ez du estatistikarik sortzen"
 ,
   "srsEmptyStateTitle": "Oraindik ez dago daturik",
-  "srsEmptyStateSubtitle": "Bete zure lehenengo ikasketa saioa edo egin azterketa bat zure ikaskuntzaren aurrerapena jarraitzeko."
+  "srsEmptyStateSubtitle": "Bete zure lehenengo ikasketa saioa edo egin azterketa bat zure ikaskuntzaren aurrerapena jarraitzeko.",
+  "linkStudySection": "Lotu ikasketa atalarekin",
+  "noStudySection": "Bat ere ez"
 }

@@ -40,6 +40,9 @@ class Question {
   /// Whether this question is enabled/active or disabled.
   final bool isEnabled;
 
+  /// The unique stable ID of the study section (chunk) linked to this question, if any.
+  final String? studySectionId;
+
   /// Constructor for creating a `Question` instance.
   const Question({
     required this.type,
@@ -49,6 +52,7 @@ class Question {
     required this.correctAnswers,
     required this.explanation,
     this.isEnabled = true,
+    this.studySectionId,
   });
 
   /// Creates a `Question` instance from a JSON map.
@@ -95,6 +99,7 @@ class Question {
       correctAnswers: correctAnswers,
       explanation: json['explanation'] ?? '',
       isEnabled: json['isEnabled'] ?? true,
+      studySectionId: json['study_section_id'] as String?,
     );
   }
 
@@ -113,6 +118,9 @@ class Question {
 
     if (image != null) {
       json['image'] = image;
+    }
+    if (studySectionId != null) {
+      json['study_section_id'] = studySectionId;
     }
 
     return json;
@@ -136,6 +144,8 @@ class Question {
     List<int>? correctAnswers,
     String? explanation,
     bool? isEnabled,
+    String? studySectionId,
+    bool clearStudySectionId = false,
   }) {
     return Question(
       type: type ?? this.type,
@@ -145,6 +155,7 @@ class Question {
       correctAnswers: correctAnswers ?? this.correctAnswers,
       explanation: explanation ?? this.explanation,
       isEnabled: isEnabled ?? this.isEnabled,
+      studySectionId: clearStudySectionId ? null : (studySectionId ?? this.studySectionId),
     );
   }
 
@@ -156,6 +167,7 @@ class Question {
     explanation,
     image,
     isEnabled,
+    studySectionId,
   );
 
   @override
@@ -167,6 +179,7 @@ class Question {
         other.image == image &&
         other.explanation == explanation &&
         other.isEnabled == isEnabled &&
+        other.studySectionId == studySectionId &&
         listEquals(other.options, options) &&
         listEquals(other.correctAnswers, correctAnswers);
   }
@@ -179,7 +192,8 @@ class Question {
           Object.hashAll(options) ^ // Use Object.hashAll
           Object.hashAll(correctAnswers) ^ // Use Object.hashAll
           explanation.hashCode ^
-          isEnabled.hashCode;
+          isEnabled.hashCode ^
+          studySectionId.hashCode;
     }
     return type.hashCode ^
         text.hashCode ^
@@ -187,11 +201,12 @@ class Question {
         Object.hashAll(options) ^ // Use Object.hashAll
         Object.hashAll(correctAnswers) ^ // Use Object.hashAll
         explanation.hashCode ^
-        isEnabled.hashCode;
+        isEnabled.hashCode ^
+        studySectionId.hashCode;
   }
 
   @override
   String toString() {
-    return 'Question(type: ${type.value}, text: $text, image: $image, options: $options, correctAnswers: $correctAnswers, explanation: $explanation, isEnabled: $isEnabled)';
+    return 'Question(type: ${type.value}, text: $text, image: $image, options: $options, correctAnswers: $correctAnswers, explanation: $explanation, isEnabled: $isEnabled, studySectionId: $studySectionId)';
   }
 }

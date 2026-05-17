@@ -2487,5 +2487,7 @@
   "modeNoStats": "Ne génère pas de statistiques"
 ,
   "srsEmptyStateTitle": "Pas encore de données à afficher",
-  "srsEmptyStateSubtitle": "Terminez votre première session d'étude ou passez un examen pour commencer à suivre vos progrès."
+  "srsEmptyStateSubtitle": "Terminez votre première session d'étude ou passez un examen pour commencer à suivre vos progrès.",
+  "linkStudySection": "Lier à la section d'étude",
+  "noStudySection": "Aucun"
 }
