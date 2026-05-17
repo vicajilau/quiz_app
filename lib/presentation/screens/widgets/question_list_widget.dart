@@ -241,6 +241,16 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
         normalizedText.isNotEmpty &&
         (normalizedQuestionCounts[normalizedText] ?? 0) > 1;
 
+    final hasStudySections =
+        widget.quizFile.study?.content.cache.isNotEmpty ?? false;
+    final isUnlinked =
+        hasStudySections &&
+        (question.studySectionId == null ||
+            question.studySectionId!.isEmpty ||
+            !widget.quizFile.study!.content.cache.any(
+              (chunk) => chunk.id == question.studySectionId,
+            ));
+
     return QuestionPreviewCard(
       key: ValueKey('${question.text}_${question.type}_$index'),
       question: question,
@@ -257,6 +267,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
       isModified: ServiceLocator.getIt<CheckFileChangesUseCase>()
           .isQuestionModified(index, question),
       isDuplicated: isDuplicated,
+      isUnlinked: isUnlinked,
       onSelectionToggle: () => widget.onToggleSelection(index),
       onAiAssistant: (_aiAssistantEnabled && question.isEnabled)
           ? () async {

@@ -1676,6 +1676,10 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
+  "missingStudySectionTooltip": "هذا السؤال غير مرتبط بأي قسم دراسي",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
+  },
   "questionTypeTooltip": "نوع السؤال: {type}",
   "@questionTypeTooltip": {
     "description": "Tooltip text for the question type badge",

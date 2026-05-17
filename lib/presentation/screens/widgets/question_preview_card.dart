@@ -40,6 +40,7 @@ class QuestionPreviewCard extends StatefulWidget {
   final bool isNew;
   final bool isModified;
   final bool isDuplicated;
+  final bool isUnlinked;
   final VoidCallback? onSelectionToggle;
 
   const QuestionPreviewCard({
@@ -56,6 +57,7 @@ class QuestionPreviewCard extends StatefulWidget {
     this.isModified = false,
     this.isDuplicated = false,
     this.onSelectionToggle,
+    this.isUnlinked = false,
   });
 
   @override
@@ -334,6 +336,33 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                 AppLocalizations.of(
                                   context,
                                 )!.missingExplanationTooltip,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                  color: customColors.warning,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                    if (widget.isUnlinked)
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+                        child: Row(
+                          children: [
+                            Icon(
+                              LucideIcons.alertTriangle,
+                              size: 14,
+                              color: customColors.warning,
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                AppLocalizations.of(
+                                  context,
+                                )!.missingStudySectionTooltip,
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w500,

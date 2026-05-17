@@ -1528,6 +1528,10 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
+  "missingStudySectionTooltip": "Esta pergunta não está vinculada a nenhuma seção de estudo",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
+  },
   "questionTypeTooltip": "Tipo de pergunta: {type}",
   "@questionTypeTooltip": {
     "description": "Tooltip text for the question type badge",

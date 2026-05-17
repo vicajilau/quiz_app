@@ -515,6 +515,10 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
+  "missingStudySectionTooltip": "Αυτή η ερώτηση δεν είναι συνδεδεμένη με καμία ενότητα μελέτης",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
+  },
   "questionTypeTooltip": "Τύπος ερώτησης: {type}",
   "@questionTypeTooltip": {
     "description": "Tooltip text for the question type badge",

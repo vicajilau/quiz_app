@@ -1654,6 +1654,10 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
+  "missingStudySectionTooltip": "Aquesta pregunta no està vinculada a cap secció d'estudi",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
+  },
   "questionTypeTooltip": "Tipus de pregunta: {type}",
   "@questionTypeTooltip": {
     "description": "Tooltip text for the question type badge",

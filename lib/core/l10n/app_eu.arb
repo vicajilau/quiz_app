@@ -1505,6 +1505,10 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
+  "missingStudySectionTooltip": "Galdera hau ez dago inongo ikasketa-atalekin lotuta",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
+  },
   "questionTypeTooltip": "Galdera mota: {type}",
   "@questionTypeTooltip": {
     "description": "Tooltip text for the question type badge",

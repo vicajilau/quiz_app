@@ -1486,6 +1486,10 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
+  "missingStudySectionTooltip": "यह प्रश्न किसी भी अध्ययन अनुभाग से संबद्ध नहीं है",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
+  },
   "questionTypeTooltip": "प्रश्न का प्रकार: {type}",
   "@questionTypeTooltip": {
     "description": "Tooltip text for the question type badge",

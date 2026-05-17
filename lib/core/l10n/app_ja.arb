@@ -1494,6 +1494,10 @@
   "@missingExplanationTooltip": {
     "description": "説明欠落バッジのツールチップテキスト"
   },
+  "missingStudySectionTooltip": "この質問はどの学習セクションにもリンクされていません",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
+  },
   "questionTypeTooltip": "質問の種類: {type}",
   "@questionTypeTooltip": {
     "description": "質問タイプバッジのツールチップテキスト",

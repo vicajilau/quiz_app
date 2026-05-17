@@ -1467,6 +1467,10 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
+  "missingStudySectionTooltip": "此问题未链接到任何学习章节",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
+  },
   "questionTypeTooltip": "问题类型：{type}",
   "@questionTypeTooltip": {
     "description": "Tooltip text for the question type badge",
