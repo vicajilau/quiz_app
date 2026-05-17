@@ -437,6 +437,20 @@
     "description": "Button text to start the quiz"
   },
   "startQuizFromStudy": "Test your knowledge",
+  "studySectionPracticePrompt": "Practice Section Questions",
+  "@studySectionPracticePrompt": {
+    "description": "Title of the banner prompting to practice the questions linked to this section"
+  },
+  "studySectionPracticeSubtitle": "This section has {count, plural, =1{1 linked question} other{{count} linked questions}}. Practice them now to reinforce your learning!",
+  "@studySectionPracticeSubtitle": {
+    "description": "Subtitle explaining how many questions are linked to the section",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
   "@startQuizFromStudy": {
     "description": "Button text to start the quiz from the study screen"
   },

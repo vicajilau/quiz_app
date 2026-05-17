@@ -1973,6 +1973,8 @@
     "description": "Label for context mode when a file is uploaded"
   },
   "startQuizFromStudy": "Teste seus conhecimentos",
+  "studySectionPracticePrompt": "Praticar perguntas da seção",
+  "studySectionPracticeSubtitle": "Esta seção possui {count, plural, =1{1 pergunta vinculada} other{{count} perguntas vinculadas}}. Pratique-as agora para reforçar seu aprendizado!",
   "studyScreenCustomChapter": "Capítulo personalizado",
   "addSection": "Adicionar seção",
   "editSection": "Editar secção",
@@ -2500,8 +2502,7 @@
   "forceUpdateMessage": "É necessária uma atualização obrigatória para continuar a utilizar o Quizdy. Por favor, atualize a aplicação.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
+  },
   "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
   "questionOrderSpacedRepetitionDesc": "Perguntas ordenadas pelo algoritmo SM-2 para retenção ideal, baseado no algoritmo de ordenamento inteligente do Anki",
   "srsStatsTitle": "Estatísticas",
@@ -2531,11 +2532,9 @@
   "srsDueTooltip": "A data programada para revisão",
   "srsCorrect": "{count} Correto",
   "srsIncorrect": "{count} Incorreto",
-  "srsQuestions": "Perguntas"
-,
+  "srsQuestions": "Perguntas",
   "modeGeneratesStats": "Gera estatísticas SRS",
-  "modeNoStats": "Não gera estatísticas"
-,
+  "modeNoStats": "Não gera estatísticas",
   "srsEmptyStateTitle": "Ainda não há dados para mostrar",
   "srsEmptyStateSubtitle": "Conclua sua primeira sessão de estudo ou faça um exame para começar a acompanhar seu progresso de aprendizado.",
   "linkStudySection": "Vincular à seção de estudo",

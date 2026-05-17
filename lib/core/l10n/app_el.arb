@@ -879,6 +879,8 @@
     "description": "Label for context mode when a file is uploaded"
   },
   "startQuizFromStudy": "Δοκιμάστε τις γνώσεις σας",
+  "studySectionPracticePrompt": "Εξάσκηση στις ερωτήσεις της ενότητας",
+  "studySectionPracticeSubtitle": "Αυτή η ενότητα έχει {count, plural, =1{1 συνδεδεμένη ερώτηση} other{{count} συνδεδεμένες ερωτήσεις}}. Εξασκηθείτε τώρα για να ενισχύσετε τη μάθησή σας!",
   "studyScreenCustomChapter": "Προσαρμοσμένο κεφάλαιο",
   "addSection": "Προσθήκη ενότητας",
   "editSection": "Επεξεργασία ενότητας",
@@ -1409,8 +1411,7 @@
   "forceUpdateMessage": "Απαιτείται υποχρεωτική ενημέρωση για να συνεχίσετε να χρησιμοποιείτε το Quizdy. Παρακαλούμε ενημερώστε την εφαρμογή.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
+  },
   "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
   "questionOrderSpacedRepetitionDesc": "Ερωτήσεις ταξινομημένες βάσει αλγορίθμου SM-2 για βέλτιστη διατήρηση, βασισμένο στον αλγόριθμο έξυπνης ταξινόμησης του Anki",
   "srsStatsTitle": "Στατιστικά",
@@ -1440,11 +1441,9 @@
   "srsDueTooltip": "Ημερομηνία προγραμματισμένης επανάληψης",
   "srsCorrect": "{count} Σωστά",
   "srsIncorrect": "{count} Λάθος",
-  "srsQuestions": "Ερωτήσεις"
-,
+  "srsQuestions": "Ερωτήσεις",
   "modeGeneratesStats": "Παράγει στατιστικά SRS",
-  "modeNoStats": "Δεν παράγει στατιστικά"
-,
+  "modeNoStats": "Δεν παράγει στατιστικά",
   "srsEmptyStateTitle": "Δεν υπάρχουν δεδομένα ακόμη",
   "srsEmptyStateSubtitle": "Ολοκληρώστε την πρώτη σας συνεδρία μελέτης ή κάντε μια εξέταση για να ξεκινήσετε να παρακολουθείτε την πρόοδό σας.",
   "linkStudySection": "Σύνδεση με ενότητα μελέτης",

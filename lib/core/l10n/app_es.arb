@@ -431,6 +431,8 @@
     "description": "Texto del botón para iniciar el quiz"
   },
   "startQuizFromStudy": "Pon a prueba tu conocimiento",
+  "studySectionPracticePrompt": "Practicar preguntas de la sección",
+  "studySectionPracticeSubtitle": "Esta sección tiene {count, plural, =1{1 pregunta vinculada} other{{count} preguntas vinculadas}}. ¡Practícalas ahora para reforzar tu aprendizaje!",
   "@startQuizFromStudy": {
     "description": "Texto del botón para iniciar el quiz desde la pantalla de estudio"
   },

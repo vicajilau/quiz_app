@@ -165,6 +165,8 @@
   "allQuestions": "ყველა კითხვა ({count})",
   "startQuiz": "ქვიზის დაწყება",
   "startQuizFromStudy": "შეამოწმეთ თქვენი ცოდნა",
+  "studySectionPracticePrompt": "სექციის კითხვების პრაქტიკა",
+  "studySectionPracticeSubtitle": "ამ სექციას აქვს {count} დაკავშირებული კითხვა. ივარჯიშეთ ახლავე მასალის განსამტკიცებლად!",
   "studyScreenCustomChapter": "საკუთარი თავი",
   "maxIncorrectAnswersLabel": "არასწორი პასუხების შეზღუდვა",
   "maxIncorrectAnswersDescription": "ჩააბარე/ვერ ჩააბარე გამოცდა. ციფრული ნიშნის გარეშე; თქვენ ან აბარებთ, ან ვერა.",
@@ -1098,8 +1100,7 @@
   "forceUpdateMessage": "Quizdy-ს გამოყენების გასაგრძელებლად საჭიროა სავალდებულო განახლება. გთხოვთ, განაახლოთ აპი.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
+  },
   "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
   "questionOrderSpacedRepetitionDesc": "კითხვები დალაგებულია SM-2 ალგორითმით უკეთესი დამახსოვრებისთვის, Anki-ს ჭკვიანი დალაგების ალგორითმზე დაყრდნობით",
   "srsStatsTitle": "სტატისტიკა",
@@ -1129,11 +1130,9 @@
   "srsDueTooltip": "შემდეგი გამეორების თარიღი",
   "srsCorrect": "{count} სწორი",
   "srsIncorrect": "{count} არასწორი",
-  "srsQuestions": "კითხვები"
-,
+  "srsQuestions": "კითხვები",
   "modeGeneratesStats": "ქმნის SRS სტატისტიკას",
-  "modeNoStats": "არ ქმნის სტატისტიკას"
-,
+  "modeNoStats": "არ ქმნის სტატისტიკას",
   "srsEmptyStateTitle": "ჯერჯერობით მონაცემები არ არის",
   "srsEmptyStateSubtitle": "დაასრულეთ თქვენი პირველი სასწავლო სესია ან ჩააბარეთ გამოცდა, რათა დაიწყოთ თქვენი სასწავლო პროგრესის თვალყურის დევნება.",
   "linkStudySection": "სასწავლო სექციასთან დაკავშირება",

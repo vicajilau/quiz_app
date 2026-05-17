@@ -1978,6 +1978,8 @@
   "showMoreLabel": "Mehr anzeigen",
   "showLessLabel": "Weniger anzeigen",
   "startQuizFromStudy": "Testen Sie Ihr Wissen",
+  "studySectionPracticePrompt": "Fragen dieses Abschnitts üben",
+  "studySectionPracticeSubtitle": "Dieser Abschnitt enthält {count, plural, =1{1 verknüpfte Frage} other{{count} verknüpfte Fragen}}. Übe sie jetzt, um dein Lernen zu festigen!",
   "studyScreenCustomChapter": "Benutzerdefiniertes Kapitel",
   "addSection": "Abschnitt hinzufügen",
   "editSection": "Abschnitt bearbeiten",
@@ -2505,8 +2507,7 @@
   "forceUpdateMessage": "Ein obligatorisches Update ist erforderlich, um Quizdy weiterhin zu verwenden. Bitte aktualisieren Sie die App.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
+  },
   "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
   "questionOrderSpacedRepetitionDesc": "Fragen geordnet nach dem SM-2-Algorithmus für optimale Speicherung, basierend auf dem Anki-Smart-Ordering-Algorithmus",
   "srsStatsTitle": "Statistiken",
@@ -2536,11 +2537,9 @@
   "srsDueTooltip": "Das Datum der geplanten Überprüfung",
   "srsCorrect": "{count} Richtig",
   "srsIncorrect": "{count} Falsch",
-  "srsQuestions": "Fragen"
-,
+  "srsQuestions": "Fragen",
   "modeGeneratesStats": "Erzeugt SRS-Statistiken",
-  "modeNoStats": "Keine Statistiken"
-,
+  "modeNoStats": "Keine Statistiken",
   "srsEmptyStateTitle": "Noch keine Daten vorhanden",
   "srsEmptyStateSubtitle": "Schließen Sie Ihre erste Lernsitzung ab oder nehmen Sie an einer Prüfung teil, um Ihren Lernfortschritt zu verfolgen.",
   "linkStudySection": "Mit Studienabschnitt verknüpfen",

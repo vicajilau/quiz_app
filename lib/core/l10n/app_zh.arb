@@ -1934,6 +1934,8 @@
     "description": "Label for context mode when a file is uploaded"
   },
   "startQuizFromStudy": "测试你的知识",
+  "studySectionPracticePrompt": "练习本节问题",
+  "studySectionPracticeSubtitle": "本节有 {count} 个关联问题。现在练习以巩固您的学习成果！",
   "studyScreenCustomChapter": "自定义章节",
   "addSection": "添加章节",
   "editSection": "编辑章节",
@@ -2461,8 +2463,7 @@
   "forceUpdateMessage": "需要强制更新才能继续使用 Quizdy。请更新应用。",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
+  },
   "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
   "questionOrderSpacedRepetitionDesc": "基于SM-2算法排序以获得最佳记忆效果，基于Anki智能排序算法",
   "srsStatsTitle": "统计",
@@ -2492,11 +2493,9 @@
   "srsDueTooltip": "计划复习的日期",
   "srsCorrect": "{count} 答对",
   "srsIncorrect": "{count} 答错",
-  "srsQuestions": "问题"
-,
+  "srsQuestions": "问题",
   "modeGeneratesStats": "生成SRS统计数据",
-  "modeNoStats": "不生成统计数据"
-,
+  "modeNoStats": "不生成统计数据",
   "srsEmptyStateTitle": "暂无数据可显示",
   "srsEmptyStateSubtitle": "完成您的第一个学习会话或参加考试以开始跟踪您的学习进度。",
   "linkStudySection": "链接至学习章节",

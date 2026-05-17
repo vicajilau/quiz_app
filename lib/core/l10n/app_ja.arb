@@ -1885,6 +1885,8 @@
     "description": "Label for context mode when a file is uploaded"
   },
   "startQuizFromStudy": "知識をテストする",
+  "studySectionPracticePrompt": "このセクションの質問を練習する",
+  "studySectionPracticeSubtitle": "このセクションには {count} 個のリンクされた質問があります。今すぐ練習して学習を強化しましょう！",
   "studyScreenCustomChapter": "カスタムチャプター",
   "addSection": "セクションを追加",
   "editSection": "セクションを編集",
@@ -2412,8 +2414,7 @@
   "forceUpdateMessage": "Quizdyを引き続き使用するには、強制アップデートが必要です。アプリをアップデートしてください。",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
+  },
   "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
   "questionOrderSpacedRepetitionDesc": "最適な記憶のためにSM-2アルゴリズムに基づいて質問を並べ替えます、Ankiのスマートオーダーアルゴリズムに基づく",
   "srsStatsTitle": "統計",
@@ -2443,11 +2444,9 @@
   "srsDueTooltip": "復習が予定されている日付",
   "srsCorrect": "{count} 正解",
   "srsIncorrect": "{count} 不正解",
-  "srsQuestions": "質問"
-,
+  "srsQuestions": "質問",
   "modeGeneratesStats": "SRS統計を生成します",
-  "modeNoStats": "統計を生成しません"
-,
+  "modeNoStats": "統計を生成しません",
   "srsEmptyStateTitle": "まだ表示するデータがありません",
   "srsEmptyStateSubtitle": "学習の進捗を追跡し始めるには、最初の学習セッションを完了するか試験を受けてください。",
   "linkStudySection": "学習セクションにリンク",

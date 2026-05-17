@@ -358,6 +358,8 @@
     "description": "Testo del pulsante per iniziare il quiz"
   },
   "startQuizFromStudy": "Mettiti alla prova",
+  "studySectionPracticePrompt": "Pratica le domande della sezione",
+  "studySectionPracticeSubtitle": "Questa sezione contiene {count, plural, =1{1 domanda collegata} other{{count} domande collegate}}. Pratica ora per rafforzare il tuo apprendimento!",
   "@startQuizFromStudy": {
     "description": "Testo del pulsante per avviare il quiz dalla schermata di studio"
   },
@@ -2463,8 +2465,7 @@
   "forceUpdateMessage": "È necessario un aggiornamento obbligatorio per continuare a utilizzare Quizdy. Aggiorna l'app.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
+  },
   "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
   "questionOrderSpacedRepetitionDesc": "Domande ordinate in base all'algoritmo SM-2 per una memorizzazione ottimale, basato sull'algoritmo di ordinamento intelligente Anki",
   "srsStatsTitle": "Statistiche",
@@ -2494,11 +2495,9 @@
   "srsDueTooltip": "La data prevista per la revisione",
   "srsCorrect": "{count} Corretto",
   "srsIncorrect": "{count} Errato",
-  "srsQuestions": "Domande"
-,
+  "srsQuestions": "Domande",
   "modeGeneratesStats": "Genera statistiche SRS",
-  "modeNoStats": "Non genera statistiche"
-,
+  "modeNoStats": "Non genera statistiche",
   "srsEmptyStateTitle": "Ancora nessun dato da mostrare",
   "srsEmptyStateSubtitle": "Completa la tua prima sessione di studio o fai un esame per iniziare a monitorare i tuoi progressi di apprendimento.",
   "linkStudySection": "Collega alla sezione di studio",

@@ -182,6 +182,10 @@ class _StudyBodyState extends State<StudyBody>
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final fileState = context.watch<FileBloc>().state;
+    final quizFile = fileState is FileLoaded
+        ? fileState.quizFile
+        : (fileState is FileSaved ? fileState.quizFile : null);
 
     return MultiBlocListener(
       listeners: [
@@ -464,6 +468,7 @@ class _StudyBodyState extends State<StudyBody>
                         currentChunk: currentChunk,
                         currentChunkIndex: state.currentChunkIndex,
                         localizations: localizations,
+                        quizFile: quizFile,
                       ),
                       if (!_isSidebarOpen)
                         Positioned(

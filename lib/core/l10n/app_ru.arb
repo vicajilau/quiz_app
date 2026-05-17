@@ -217,6 +217,8 @@
   "allQuestions": "Все вопросы ({count})",
   "startQuiz": "Начать квиз",
   "startQuizFromStudy": "Проверьте свои знания",
+  "studySectionPracticePrompt": "Практиковать вопросы раздела",
+  "studySectionPracticeSubtitle": "Этот раздел содержит {count, plural, =1{1 связанный вопрос} other{{count} связанных вопросов}}. Попрактикуйтесь прямо сейчас, чтобы закрепить материал!",
   "studyScreenCustomChapter": "Пользовательская глава",
   "maxIncorrectAnswersLabel": "Ограничить неправильные ответы",
   "maxIncorrectAnswersDescription": "Экзамен Сдал/Не сдал. Нет числовой оценки; вы либо сдали, либо нет.",
@@ -1113,8 +1115,7 @@
   "forceUpdateMessage": "Для продолжения использования Quizdy необходимо обязательное обновление. Пожалуйста, обновите приложение.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
+  },
   "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
   "questionOrderSpacedRepetitionDesc": "Вопросы упорядочены по алгоритму SM-2 для лучшего запоминания, основанный на алгоритме умной сортировки Anki",
   "srsStatsTitle": "Статистика",
@@ -1144,11 +1145,9 @@
   "srsDueTooltip": "Запланированная дата повторения",
   "srsCorrect": "{count} Верно",
   "srsIncorrect": "{count} Неверно",
-  "srsQuestions": "Вопросы"
-,
+  "srsQuestions": "Вопросы",
   "modeGeneratesStats": "Генерирует статистику SRS",
-  "modeNoStats": "Не генерирует статистику"
-,
+  "modeNoStats": "Не генерирует статистику",
   "srsEmptyStateTitle": "Пока нет данных для отображения",
   "srsEmptyStateSubtitle": "Завершите свою первую учебную сессию или сдайте экзамен, чтобы начать отслеживать свой прогрес в обучении.",
   "linkStudySection": "Связать с разделом обучения",

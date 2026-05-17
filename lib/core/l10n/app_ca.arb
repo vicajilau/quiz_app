@@ -1984,6 +1984,8 @@
   "showMoreLabel": "Mostrar més",
   "showLessLabel": "Mostrar menys",
   "startQuizFromStudy": "Posa a prova els teus coneixements",
+  "studySectionPracticePrompt": "Practicar preguntes de la secció",
+  "studySectionPracticeSubtitle": "Aquesta secció té {count, plural, =1{1 pregunta vinculada} other{{count} preguntes vinculades}}. Practica-les ara per reforçar el teu aprenentatge!",
   "studyScreenCustomChapter": "Capítol personalitzat",
   "addSection": "Afegir secció",
   "editSection": "Editar secció",
@@ -2511,8 +2513,7 @@
   "forceUpdateMessage": "Cal una actualització obligatòria per continuar utilitzant Quizdy. Si us plau, actualitzeu l'aplicació.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
+  },
   "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
   "questionOrderSpacedRepetitionDesc": "Preguntes ordenades segons l'algorisme SM-2 per a una retenció òptima, basat en l'algorisme d'ordenació intel·ligent d'Anki",
   "srsStatsTitle": "Estadístiques",
@@ -2542,11 +2543,9 @@
   "srsDueTooltip": "Data de la propera revisió",
   "srsCorrect": "{count} Correcte",
   "srsIncorrect": "{count} Incorrecte",
-  "srsQuestions": "Preguntes"
-,
+  "srsQuestions": "Preguntes",
   "modeGeneratesStats": "Genera estadístiques SRS",
-  "modeNoStats": "No genera estadístiques"
-,
+  "modeNoStats": "No genera estadístiques",
   "srsEmptyStateTitle": "Encara no hi ha dades per mostrar",
   "srsEmptyStateSubtitle": "Completa la teva primera sessió d'estudi o fes un examen per començar a registrar el teu progrés d'aprenentatge.",
   "linkStudySection": "Vincular a secció d'estudi",

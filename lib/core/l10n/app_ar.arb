@@ -2251,6 +2251,8 @@
     "description": "Label for the button to collapse content"
   },
   "startQuizFromStudy": "اختبر معرفتك",
+  "studySectionPracticePrompt": "تدريب على أسئلة القسم",
+  "studySectionPracticeSubtitle": "يحتوي هذا القسم على {count, plural, =1{سؤال واحد مرتبط} =2{سؤالين مرتبطين} other{{count} أسئلة مرتبطة}}. تدرب عليها الآن لتعزيز تعلمك!",
   "@startQuizFromStudy": {
     "description": "Label for the button to start a quiz based on study material"
   },
@@ -2823,8 +2825,7 @@
   "forceUpdateMessage": "مطلوب تحديث إلزامي لمتابعة استخدام Quizdy. يرجى تحديث التطبيق.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
+  },
   "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
   "questionOrderSpacedRepetitionDesc": "ترتيب الأسئلة بناءً على خوارزمية SM-2 لاحتفاظ مثالي، استناداً إلى خوارزمية الترتيب الذكي لـ Anki",
   "srsStatsTitle": "إحصائيات",
@@ -2854,11 +2855,9 @@
   "srsDueTooltip": "تاريخ المراجعة المجدولة",
   "srsCorrect": "{count} صحيح",
   "srsIncorrect": "{count} خطأ",
-  "srsQuestions": "الأسئلة"
-,
+  "srsQuestions": "الأسئلة",
   "modeGeneratesStats": "يولد إحصائيات التكرار المتباعد",
-  "modeNoStats": "لا يولد إحصائيات"
-,
+  "modeNoStats": "لا يولد إحصائيات",
   "srsEmptyStateTitle": "لا توجد بيانات لعرضها بعد",
   "srsEmptyStateSubtitle": "أكمل جلسة الدراسة الأولى أو خذ امتحانًا لبدء تتبع تقدمك في التعلم.",
   "linkStudySection": "ربط بقسم الدراسة",

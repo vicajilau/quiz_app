@@ -1885,6 +1885,8 @@
     "description": "Label for context mode when a file is uploaded"
   },
   "startQuizFromStudy": "अपने ज्ञान का परीक्षण करें",
+  "studySectionPracticePrompt": "इस अनुभाग के प्रश्नों का अभ्यास करें",
+  "studySectionPracticeSubtitle": "इस अनुभाग में {count} संबद्ध प्रश्न हैं। अपने सीखने को सुदृढ़ करने के लिए अभी उनका अभ्यास करें!",
   "studyScreenCustomChapter": "कस्टम अध्याय",
   "addSection": "अनुभाग जोड़ें",
   "editSection": "अनुभाग संपादित करें",
@@ -2412,8 +2414,7 @@
   "forceUpdateMessage": "Quizdy का उपयोग जारी रखने के लिए एक अनिवार्य अपडेट आवश्यक है। कृपया ऐप अपडेट करें।",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
+  },
   "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
   "questionOrderSpacedRepetitionDesc": "बेहतर याद रखने के लिए SM-2 एल्गोरिदम के आधार पर प्रश्नों का क्रम, Anki के स्मार्ट ऑर्डरिंग एल्गोरिदम पर आधारित",
   "srsStatsTitle": "आँकड़े",
@@ -2443,11 +2444,9 @@
   "srsDueTooltip": "अगली समीक्षा की तिथि",
   "srsCorrect": "{count} सही",
   "srsIncorrect": "{count} गलत",
-  "srsQuestions": "प्रश्न"
-,
+  "srsQuestions": "प्रश्न",
   "modeGeneratesStats": "SRS आँकड़े उत्पन्न करता है",
-  "modeNoStats": "आँकड़े उत्पन्न नहीं करता"
-,
+  "modeNoStats": "आँकड़े उत्पन्न नहीं करता",
   "srsEmptyStateTitle": "दिखाने के लिए अभी तक कोई डेटा नहीं है",
   "srsEmptyStateSubtitle": "अपनी पहली अध्ययन सत्र पूरा करें या अपनी सीखने की प्रगति को ट्रैक करना शुरू करने के लिए एक परीक्षा दें।",
   "linkStudySection": "अध्ययन अनुभाग से लिंक करें",
