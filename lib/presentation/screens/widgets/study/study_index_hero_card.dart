@@ -20,15 +20,20 @@ import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
+import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+import 'package:quizdy/data/repositories/srs/srs_repository.dart';
+import 'package:quizdy/core/service_locator.dart';
 
 class StudyIndexHeroCard extends StatelessWidget {
   final StudyExecutionState state;
   final AppLocalizations localizations;
+  final QuizFile? quizFile;
 
   const StudyIndexHeroCard({
     super.key,
     required this.state,
     required this.localizations,
+    this.quizFile,
   });
 
   @override
@@ -41,6 +46,40 @@ class StudyIndexHeroCard extends StatelessWidget {
     final completedValueColor = isDark
         ? const Color(0xFF5EEAD4)
         : AppTheme.secondaryColor;
+
+    int correctQuestionsCount = 0;
+    int totalQuestionsCount = 0;
+    double learnedPercentage = 0.0;
+
+    if (quizFile != null) {
+      final chunkIds = state.chunks.map((c) => c.id).toSet();
+      final questions = quizFile!.questions
+          .where(
+            (q) =>
+                q.isEnabled &&
+                q.studySectionId != null &&
+                chunkIds.contains(q.studySectionId),
+          )
+          .toList();
+
+      if (questions.isNotEmpty) {
+        totalQuestionsCount = questions.length;
+        final srsRepository = ServiceLocator.getIt<SrsRepository>();
+        final fileId = quizFile!.filePath ?? quizFile!.metadata.title;
+
+        for (final question in questions) {
+          final identity = question.identityHash.toString();
+          final metadata = srsRepository.getMetadataForQuestion(
+            identity,
+            fileId,
+          );
+          if (metadata.repetition > 0) {
+            correctQuestionsCount++;
+          }
+        }
+        learnedPercentage = (correctQuestionsCount / totalQuestionsCount) * 100;
+      }
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,6 +146,76 @@ class StudyIndexHeroCard extends StatelessWidget {
             ],
           ),
         ),
+        if (totalQuestionsCount > 0) ...[
+          const SizedBox(height: 16),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: statCardBg,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: isDark ? const Color(0xFF2D2D33) : AppTheme.zinc200,
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        const Icon(
+                          LucideIcons.brain,
+                          size: 18,
+                          color: AppTheme.primaryColor,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          localizations.studyScreenLearnedContent,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      '${learnedPercentage.toStringAsFixed(0)}%',
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: AppTheme.primaryColor,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(6),
+                  child: LinearProgressIndicator(
+                    value: learnedPercentage / 100,
+                    minHeight: 8,
+                    backgroundColor: isDark
+                        ? const Color(0xFF2D2D33)
+                        : AppTheme.zinc200,
+                    valueColor: const AlwaysStoppedAnimation<Color>(
+                      AppTheme.primaryColor,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  localizations.studyScreenLearnedQuestionsCount(
+                    correctQuestionsCount,
+                    totalQuestionsCount,
+                  ),
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: isDark ? AppTheme.zinc500 : AppTheme.zinc600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
         if (state.chunks.any(
           (c) =>
               c.status != StudyChunkState.completed &&

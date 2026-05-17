@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat(ai): Automatically associate and link AI-generated questions to the corresponding study section context (#419).
 - ux(quiz): Display a premium warning row and alert icon for questions that are not linked to any study section when the quiz contains study sections (#421).
 - feat(study): Display a beautiful premium banner card at the end of each study section's pages, allowing users to instantly start a custom quiz session composed only of questions linked to that section (#423).
+- feat(study): Added a progress circle indicator showing section mastery percentage to each study section card based on SRS statistics and latest answers of related questions (#422).
 - fix(mobile): Improved readability of the system status bar during in-app update prompts, dynamically adjusting icon colors to ensure they remain clearly visible over the update banner and seamlessly restore to their native theme once dismissed.
 
 ## [1.13.0] - 2026-04-29

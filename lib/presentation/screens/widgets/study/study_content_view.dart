@@ -14,8 +14,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
+import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
+import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
@@ -175,7 +178,7 @@ class StudyContentView extends StatelessWidget {
             title: localizations.startQuizFromStudy,
             icon: LucideIcons.play,
             expanded: true,
-            onPressed: () {
+            onPressed: () async {
               final sectionQuizFile = quizFile!.copyWith(
                 questions: linkedQuestions,
               );
@@ -186,7 +189,11 @@ class StudyContentView extends StatelessWidget {
                   isStudyMode: false,
                 ),
               );
-              context.push(AppRoutes.quizFileExecutionScreen);
+              await context.push(AppRoutes.quizFileExecutionScreen);
+              if (context.mounted) {
+                final studyBloc = context.read<StudyExecutionBloc>();
+                studyBloc.add(StudyChunksUpdated(studyBloc.state.chunks));
+              }
             },
           ),
         ],

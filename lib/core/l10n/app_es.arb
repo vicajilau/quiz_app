@@ -433,6 +433,25 @@
   "startQuizFromStudy": "Pon a prueba tu conocimiento",
   "studySectionPracticePrompt": "Practicar preguntas de la sección",
   "studySectionPracticeSubtitle": "Esta sección tiene {count, plural, =1{1 pregunta vinculada} other{{count} preguntas vinculadas}}. ¡Practícalas ahora para reforzar tu aprendizaje!",
+  "studySectionMasteryTooltip": "Dominio de la sección: {percentage}% ({correct} de {total} preguntas correctas en el último intento)",
+  "studyScreenLearnedContent": "Contenido aprendido",
+  "@studyScreenLearnedContent": {
+    "description": "Etiqueta para la tarjeta que muestra el porcentaje global de contenido aprendido"
+  },
+  "studyScreenLearnedQuestionsCount": "{correct} de {total} preguntas dominadas",
+  "@studyScreenLearnedQuestionsCount": {
+    "description": "Texto descriptivo de la cantidad de preguntas dominadas en relación al total del contenido",
+    "placeholders": {
+      "correct": {
+        "type": "int",
+        "example": "12"
+      },
+      "total": {
+        "type": "int",
+        "example": "15"
+      }
+    }
+  },
   "@startQuizFromStudy": {
     "description": "Texto del botón para iniciar el quiz desde la pantalla de estudio"
   },

@@ -2253,6 +2253,9 @@
   "startQuizFromStudy": "اختبر معرفتك",
   "studySectionPracticePrompt": "تدريب على أسئلة القسم",
   "studySectionPracticeSubtitle": "يحتوي هذا القسم على {count, plural, =1{سؤال واحد مرتبط} =2{سؤالين مرتبطين} other{{count} أسئلة مرتبطة}}. تدرب عليها الآن لتعزيز تعلمك!",
+  "studySectionMasteryTooltip": "إتقان القسم: {percentage}% (أجاب {correct} من {total} أسئلة بشكل صحيح في المحاولة الأخيرة)",
+  "studyScreenLearnedContent": "المحتوى المتعلم",
+  "studyScreenLearnedQuestionsCount": "تم إتقان {correct} من أصل {total} أسئلة",
   "@startQuizFromStudy": {
     "description": "Label for the button to start a quiz based on study material"
   },

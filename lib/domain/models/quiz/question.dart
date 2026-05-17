@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
 import 'package:quizdy/core/constants/question_constants.dart';
@@ -161,16 +162,27 @@ class Question {
     );
   }
 
-  /// Hash based on structural fields (excluding [text])
-  int get identityHash => Object.hash(
-    type,
-    Object.hashAll(options),
-    Object.hashAll(correctAnswers),
-    explanation,
-    image,
-    isEnabled,
-    studySectionId,
-  );
+  /// Hash based on structural fields (excluding [text]).
+  /// This hash is 100% stable and deterministic across app executions/sessions.
+  int get identityHash {
+    final str = [
+      type.value,
+      options.join('|'),
+      correctAnswers.join(','),
+      explanation,
+      image ?? '',
+      isEnabled ? 'true' : 'false',
+      studySectionId ?? '',
+    ].join('\n');
+
+    final bytes = utf8.encode(str);
+    int hash = 2166136261;
+    for (final byte in bytes) {
+      hash ^= byte;
+      hash = (hash * 16777619) & 0xFFFFFFFF;
+    }
+    return hash;
+  }
 
   @override
   bool operator ==(Object other) {

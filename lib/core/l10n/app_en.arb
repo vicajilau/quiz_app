@@ -442,6 +442,42 @@
     "description": "Title of the banner prompting to practice the questions linked to this section"
   },
   "studySectionPracticeSubtitle": "This section has {count, plural, =1{1 linked question} other{{count} linked questions}}. Practice them now to reinforce your learning!",
+  "studySectionMasteryTooltip": "Section mastery: {percentage}% ({correct} of {total} questions correct on the latest attempt)",
+  "studyScreenLearnedContent": "Learned content",
+  "@studyScreenLearnedContent": {
+    "description": "Label for the card displaying the overall percentage of learned content"
+  },
+  "studyScreenLearnedQuestionsCount": "{correct} of {total} questions mastered",
+  "@studyScreenLearnedQuestionsCount": {
+    "description": "Label indicating the count of questions learned/mastered out of the total in the content",
+    "placeholders": {
+      "correct": {
+        "type": "int",
+        "example": "12"
+      },
+      "total": {
+        "type": "int",
+        "example": "15"
+      }
+    }
+  },
+  "@studySectionMasteryTooltip": {
+    "description": "Tooltip showing the correct answer percentage for the questions in the study section based on latest SRS results",
+    "placeholders": {
+      "percentage": {
+        "type": "String",
+        "example": "80"
+      },
+      "correct": {
+        "type": "int",
+        "example": "8"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
   "@studySectionPracticeSubtitle": {
     "description": "Subtitle explaining how many questions are linked to the section",
     "placeholders": {

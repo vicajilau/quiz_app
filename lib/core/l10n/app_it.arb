@@ -360,6 +360,9 @@
   "startQuizFromStudy": "Mettiti alla prova",
   "studySectionPracticePrompt": "Pratica le domande della sezione",
   "studySectionPracticeSubtitle": "Questa sezione contiene {count, plural, =1{1 domanda collegata} other{{count} domande collegate}}. Pratica ora per rafforzare il tuo apprendimento!",
+  "studySectionMasteryTooltip": "Padronanza della sezione: {percentage}% ({correct} di {total} domande corrette nell'ultimo tentativo)",
+  "studyScreenLearnedContent": "Contenuto appreso",
+  "studyScreenLearnedQuestionsCount": "{correct} su {total} domande padroneggiate",
   "@startQuizFromStudy": {
     "description": "Testo del pulsante per avviare il quiz dalla schermata di studio"
   },

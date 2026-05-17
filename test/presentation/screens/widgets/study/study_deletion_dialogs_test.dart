@@ -32,6 +32,8 @@ import 'package:quizdy/presentation/screens/widgets/study/study_bottom_navigatio
 import 'package:quizdy/presentation/screens/widgets/study/study_index_view.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_chunk_card.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
+import 'package:quizdy/data/repositories/srs/srs_repository.dart';
+import 'package:quizdy/domain/models/srs/srs_metadata.dart';
 
 class MockFileBloc extends MockBloc<FileEvent, FileState> implements FileBloc {}
 
@@ -42,10 +44,13 @@ class MockStudyExecutionBloc
 class MockCheckFileChangesUseCase extends Mock
     implements CheckFileChangesUseCase {}
 
+class MockSrsRepository extends Mock implements SrsRepository {}
+
 void main() {
   late MockFileBloc mockFileBloc;
   late MockStudyExecutionBloc mockStudyBloc;
   late MockCheckFileChangesUseCase mockCheckFileChangesUseCase;
+  late MockSrsRepository mockSrsRepository;
 
   setUp(() {
     mockFileBloc = MockFileBloc();
@@ -87,6 +92,18 @@ void main() {
       () => mockCheckFileChangesUseCase.isStudyChunkModified(any(), any()),
     ).thenReturn(false);
 
+    mockSrsRepository = MockSrsRepository();
+    when(
+      () => mockSrsRepository.getMetadataForQuestion(any(), any()),
+    ).thenReturn(
+      SrsMetadata(
+        questionIdentity: '',
+        fileIdentifier: '',
+        repetition: 0,
+        timesCorrect: 0,
+      ),
+    );
+
     // Register singleton Mock in GetIt
     final getIt = ServiceLocator.getIt;
     if (!getIt.isRegistered<CheckFileChangesUseCase>()) {
@@ -94,12 +111,18 @@ void main() {
         mockCheckFileChangesUseCase,
       );
     }
+    if (!getIt.isRegistered<SrsRepository>()) {
+      getIt.registerSingleton<SrsRepository>(mockSrsRepository);
+    }
   });
 
   tearDown(() {
     final getIt = ServiceLocator.getIt;
     if (getIt.isRegistered<CheckFileChangesUseCase>()) {
       getIt.unregister<CheckFileChangesUseCase>();
+    }
+    if (getIt.isRegistered<SrsRepository>()) {
+      getIt.unregister<SrsRepository>();
     }
   });
 
@@ -145,7 +168,7 @@ void main() {
         ],
         child: MediaQuery(
           data: const MediaQueryData(size: Size(400, 800)),
-          child: Scaffold(body: child),
+          child: SizedBox(width: 400, child: Scaffold(body: child)),
         ),
       ),
     );
