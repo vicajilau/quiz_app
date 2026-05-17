@@ -120,9 +120,12 @@ void main() {
     tearDownTestServiceLocator();
   });
 
-  test('AiQuestionGenerationService parses studySectionId from JSON successfully', () async {
-    const sectionId = 'chunk_123456789';
-    const mockJson = '''
+  test(
+    'AiQuestionGenerationService parses studySectionId from JSON successfully',
+    () async {
+      const sectionId = 'chunk_123456789';
+      const mockJson =
+          '''
     [
       {
         "text": "What is the capital of France?",
@@ -135,47 +138,48 @@ void main() {
     ]
     ''';
 
-    final fakeRepo = FakeAiRepository(mockJson);
-    final fakeFactory = FakeAiRepositoryFactory(fakeRepo);
+      final fakeRepo = FakeAiRepository(mockJson);
+      final fakeFactory = FakeAiRepositoryFactory(fakeRepo);
 
-    final getIt = ServiceLocator.getIt;
-    getIt.registerSingleton<AiRepositoryFactory>(fakeFactory);
+      final getIt = ServiceLocator.getIt;
+      getIt.registerSingleton<AiRepositoryFactory>(fakeFactory);
 
-    final config = const AiQuestionGenerationConfig(
-      questionTypes: [AiQuestionType.singleChoice],
-      language: 'en',
-      content: 'France info',
-      selectedChunks: [
-        StudyChunk(
-          id: sectionId,
-          chunkIndex: 0,
-          status: StudyChunkState.completed,
-          pages: [],
-          sourceReference: SourceReference(
-            documentId: 'doc1',
-            startPage: 1,
-            endPage: 2,
-            startOffset: 0,
-            endOffset: 100,
-            blockType: 'Section 1',
+      final config = const AiQuestionGenerationConfig(
+        questionTypes: [AiQuestionType.singleChoice],
+        language: 'en',
+        content: 'France info',
+        selectedChunks: [
+          StudyChunk(
+            id: sectionId,
+            chunkIndex: 0,
+            status: StudyChunkState.completed,
+            pages: [],
+            sourceReference: SourceReference(
+              documentId: 'doc1',
+              startPage: 1,
+              endPage: 2,
+              startOffset: 0,
+              endOffset: 100,
+              blockType: 'Section 1',
+            ),
           ),
-        ),
-      ],
-    );
+        ],
+      );
 
-    final service = AiQuestionGenerationService(
-      configurationService: getIt(),
-    );
+      final service = AiQuestionGenerationService(
+        configurationService: getIt(),
+      );
 
-    final questions = await service.generateQuestions(
-      config,
-      localizations: MockAppLocalizations(),
-    );
+      final questions = await service.generateQuestions(
+        config,
+        localizations: MockAppLocalizations(),
+      );
 
-    expect(questions.length, 1);
-    expect(questions.first.text, 'What is the capital of France?');
-    expect(questions.first.studySectionId, sectionId);
+      expect(questions.length, 1);
+      expect(questions.first.text, 'What is the capital of France?');
+      expect(questions.first.studySectionId, sectionId);
 
-    getIt.unregister<AiRepositoryFactory>();
-  });
+      getIt.unregister<AiRepositoryFactory>();
+    },
+  );
 }

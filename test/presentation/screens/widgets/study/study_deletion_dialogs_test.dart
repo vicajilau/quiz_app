@@ -55,7 +55,12 @@ void main() {
     // Set up standard mock returns
     registerFallbackValue(
       QuizFile(
-        metadata: const QuizMetadata(title: '', description: '', version: '', author: ''),
+        metadata: const QuizMetadata(
+          title: '',
+          description: '',
+          version: '',
+          author: '',
+        ),
         questions: [],
       ),
     );
@@ -75,13 +80,19 @@ void main() {
       ),
     );
     when(() => mockCheckFileChangesUseCase.execute(any())).thenReturn(false);
-    when(() => mockCheckFileChangesUseCase.isStudyChunkNew(any(), any())).thenReturn(false);
-    when(() => mockCheckFileChangesUseCase.isStudyChunkModified(any(), any())).thenReturn(false);
+    when(
+      () => mockCheckFileChangesUseCase.isStudyChunkNew(any(), any()),
+    ).thenReturn(false);
+    when(
+      () => mockCheckFileChangesUseCase.isStudyChunkModified(any(), any()),
+    ).thenReturn(false);
 
     // Register singleton Mock in GetIt
     final getIt = ServiceLocator.getIt;
     if (!getIt.isRegistered<CheckFileChangesUseCase>()) {
-      getIt.registerSingleton<CheckFileChangesUseCase>(mockCheckFileChangesUseCase);
+      getIt.registerSingleton<CheckFileChangesUseCase>(
+        mockCheckFileChangesUseCase,
+      );
     }
   });
 
@@ -134,215 +145,219 @@ void main() {
         ],
         child: MediaQuery(
           data: const MediaQueryData(size: Size(400, 800)),
-          child: Scaffold(
-            body: child,
-          ),
+          child: Scaffold(body: child),
         ),
       ),
     );
   }
 
   group('StudyIndexView Deletion Dialogs', () {
-    testWidgets('shows warning dialog when deleting a section WITH associated questions', (tester) async {
-      // Mock FileLoaded state with a linked question
-      final fileState = FileLoaded(
-        QuizFile(
-          metadata: testMetadata,
-          study: null,
-          questions: [testQuestion],
-        ),
-      );
-      when(() => mockFileBloc.state).thenReturn(fileState);
+    testWidgets(
+      'shows warning dialog when deleting a section WITH associated questions',
+      (tester) async {
+        // Mock FileLoaded state with a linked question
+        final fileState = FileLoaded(
+          QuizFile(
+            metadata: testMetadata,
+            study: null,
+            questions: [testQuestion],
+          ),
+        );
+        when(() => mockFileBloc.state).thenReturn(fileState);
 
-      final studyState = StudyExecutionState(
-        chunks: [testChunk],
-        currentChunkIndex: 0,
-        processedChunks: 1,
-        progressPercentage: 100,
-        isIndexMode: true,
-      );
-      when(() => mockStudyBloc.state).thenReturn(studyState);
+        final studyState = StudyExecutionState(
+          chunks: [testChunk],
+          currentChunkIndex: 0,
+          processedChunks: 1,
+          progressPercentage: 100,
+          isIndexMode: true,
+        );
+        when(() => mockStudyBloc.state).thenReturn(studyState);
 
-      await tester.pumpWidget(
-        createWidgetUnderTest(
-          Builder(
-            builder: (context) => StudyIndexView(
-              state: studyState,
-              localizations: AppLocalizations.of(context)!,
+        await tester.pumpWidget(
+          createWidgetUnderTest(
+            Builder(
+              builder: (context) => StudyIndexView(
+                state: studyState,
+                localizations: AppLocalizations.of(context)!,
+              ),
             ),
           ),
-        ),
-      );
+        );
 
-      // Directly trigger onDelete callback from the StudyIndexChunkCard widget to bypass hover dependency
-      final cardFinder = find.byType(StudyIndexChunkCard);
-      expect(cardFinder, findsOneWidget);
-      final StudyIndexChunkCard cardWidget = tester.widget(cardFinder);
-      expect(cardWidget.onDelete, isNotNull);
-      cardWidget.onDelete!();
-      await tester.pumpAndSettle();
+        // Directly trigger onDelete callback from the StudyIndexChunkCard widget to bypass hover dependency
+        final cardFinder = find.byType(StudyIndexChunkCard);
+        expect(cardFinder, findsOneWidget);
+        final StudyIndexChunkCard cardWidget = tester.widget(cardFinder);
+        expect(cardWidget.onDelete, isNotNull);
+        cardWidget.onDelete!();
+        await tester.pumpAndSettle();
 
-      // Check for specialized warning
-      expect(
-        find.textContaining('This section has associated questions.'),
-        findsOneWidget,
-      );
-    });
+        // Check for specialized warning
+        expect(
+          find.textContaining('This section has associated questions.'),
+          findsOneWidget,
+        );
+      },
+    );
 
-    testWidgets('shows standard confirmation dialog when deleting a section WITHOUT associated questions', (tester) async {
-      // Mock FileLoaded state with NO linked questions
-      final fileState = FileLoaded(
-        QuizFile(
-          metadata: testMetadata,
-          study: null,
-          questions: [],
-        ),
-      );
-      when(() => mockFileBloc.state).thenReturn(fileState);
+    testWidgets(
+      'shows standard confirmation dialog when deleting a section WITHOUT associated questions',
+      (tester) async {
+        // Mock FileLoaded state with NO linked questions
+        final fileState = FileLoaded(
+          QuizFile(metadata: testMetadata, study: null, questions: []),
+        );
+        when(() => mockFileBloc.state).thenReturn(fileState);
 
-      final studyState = StudyExecutionState(
-        chunks: [testChunk],
-        currentChunkIndex: 0,
-        processedChunks: 1,
-        progressPercentage: 100,
-        isIndexMode: true,
-      );
-      when(() => mockStudyBloc.state).thenReturn(studyState);
+        final studyState = StudyExecutionState(
+          chunks: [testChunk],
+          currentChunkIndex: 0,
+          processedChunks: 1,
+          progressPercentage: 100,
+          isIndexMode: true,
+        );
+        when(() => mockStudyBloc.state).thenReturn(studyState);
 
-      await tester.pumpWidget(
-        createWidgetUnderTest(
-          Builder(
-            builder: (context) => StudyIndexView(
-              state: studyState,
-              localizations: AppLocalizations.of(context)!,
+        await tester.pumpWidget(
+          createWidgetUnderTest(
+            Builder(
+              builder: (context) => StudyIndexView(
+                state: studyState,
+                localizations: AppLocalizations.of(context)!,
+              ),
             ),
           ),
-        ),
-      );
+        );
 
-      final cardFinder = find.byType(StudyIndexChunkCard);
-      expect(cardFinder, findsOneWidget);
-      final StudyIndexChunkCard cardWidget = tester.widget(cardFinder);
-      expect(cardWidget.onDelete, isNotNull);
-      cardWidget.onDelete!();
-      await tester.pumpAndSettle();
+        final cardFinder = find.byType(StudyIndexChunkCard);
+        expect(cardFinder, findsOneWidget);
+        final StudyIndexChunkCard cardWidget = tester.widget(cardFinder);
+        expect(cardWidget.onDelete, isNotNull);
+        cardWidget.onDelete!();
+        await tester.pumpAndSettle();
 
-      // Check for standard confirmation message
-      expect(
-        find.textContaining('Are you sure you want to delete'),
-        findsOneWidget,
-      );
-      // Make sure the specialized warning is NOT present
-      expect(
-        find.textContaining('This section has associated questions.'),
-        findsNothing,
-      );
-    });
+        // Check for standard confirmation message
+        expect(
+          find.textContaining('Are you sure you want to delete'),
+          findsOneWidget,
+        );
+        // Make sure the specialized warning is NOT present
+        expect(
+          find.textContaining('This section has associated questions.'),
+          findsNothing,
+        );
+      },
+    );
   });
 
   group('StudyBottomNavigation Bulk Deletion Dialogs', () {
-    testWidgets('shows bulk deletion warning dialog when selected sections have associated questions', (tester) async {
-      // Mock FileLoaded state with a linked question
-      final fileState = FileLoaded(
-        QuizFile(
-          metadata: testMetadata,
-          study: null,
-          questions: [testQuestion],
-        ),
-      );
-      when(() => mockFileBloc.state).thenReturn(fileState);
-
-      // Mock StudyExecutionState in selection mode with selected chunk
-      final studyState = StudyExecutionState(
-        chunks: [testChunk],
-        currentChunkIndex: 0,
-        processedChunks: 1,
-        progressPercentage: 100,
-        isIndexMode: true,
-        isSelectionMode: true,
-        selectedIndices: {0},
-      );
-      when(() => mockStudyBloc.state).thenReturn(studyState);
-
-      await tester.pumpWidget(
-        createWidgetUnderTest(
-          StudyBottomNavigation(
-            quizFile: fileState.quizFile,
-            onSave: () {},
-            onImport: () {},
-            onAddChunk: () {},
-            onGenerateAI: () {},
+    testWidgets(
+      'shows bulk deletion warning dialog when selected sections have associated questions',
+      (tester) async {
+        // Mock FileLoaded state with a linked question
+        final fileState = FileLoaded(
+          QuizFile(
+            metadata: testMetadata,
+            study: null,
+            questions: [testQuestion],
           ),
-        ),
-      );
+        );
+        when(() => mockFileBloc.state).thenReturn(fileState);
 
-      // Find the bulk delete button by checking for a QuizdyButton with a title starting with 'Delete'
-      final deleteBtnFinder = find.byWidgetPredicate(
-        (widget) => widget is QuizdyButton && widget.title.startsWith('Delete'),
-      );
-      expect(deleteBtnFinder, findsOneWidget);
-      await tester.tap(deleteBtnFinder);
-      await tester.pumpAndSettle();
+        // Mock StudyExecutionState in selection mode with selected chunk
+        final studyState = StudyExecutionState(
+          chunks: [testChunk],
+          currentChunkIndex: 0,
+          processedChunks: 1,
+          progressPercentage: 100,
+          isIndexMode: true,
+          isSelectionMode: true,
+          selectedIndices: {0},
+        );
+        when(() => mockStudyBloc.state).thenReturn(studyState);
 
-      // Check for specialized warning
-      expect(
-        find.textContaining('This section has associated questions.'),
-        findsOneWidget,
-      );
-    });
-
-    testWidgets('shows standard bulk deletion confirmation dialog when selected sections have NO associated questions', (tester) async {
-      // Mock FileLoaded state with NO linked questions
-      final fileState = FileLoaded(
-        QuizFile(
-          metadata: testMetadata,
-          study: null,
-          questions: [],
-        ),
-      );
-      when(() => mockFileBloc.state).thenReturn(fileState);
-
-      // Mock StudyExecutionState in selection mode with selected chunk
-      final studyState = StudyExecutionState(
-        chunks: [testChunk],
-        currentChunkIndex: 0,
-        processedChunks: 1,
-        progressPercentage: 100,
-        isIndexMode: true,
-        isSelectionMode: true,
-        selectedIndices: {0},
-      );
-      when(() => mockStudyBloc.state).thenReturn(studyState);
-
-      await tester.pumpWidget(
-        createWidgetUnderTest(
-          StudyBottomNavigation(
-            quizFile: fileState.quizFile,
-            onSave: () {},
-            onImport: () {},
-            onAddChunk: () {},
-            onGenerateAI: () {},
+        await tester.pumpWidget(
+          createWidgetUnderTest(
+            StudyBottomNavigation(
+              quizFile: fileState.quizFile,
+              onSave: () {},
+              onImport: () {},
+              onAddChunk: () {},
+              onGenerateAI: () {},
+            ),
           ),
-        ),
-      );
+        );
 
-      final deleteBtnFinder = find.byWidgetPredicate(
-        (widget) => widget is QuizdyButton && widget.title.startsWith('Delete'),
-      );
-      expect(deleteBtnFinder, findsOneWidget);
-      await tester.tap(deleteBtnFinder);
-      await tester.pumpAndSettle();
+        // Find the bulk delete button by checking for a QuizdyButton with a title starting with 'Delete'
+        final deleteBtnFinder = find.byWidgetPredicate(
+          (widget) =>
+              widget is QuizdyButton && widget.title.startsWith('Delete'),
+        );
+        expect(deleteBtnFinder, findsOneWidget);
+        await tester.tap(deleteBtnFinder);
+        await tester.pumpAndSettle();
 
-      // Check for standard confirmation message
-      expect(
-        find.textContaining('Are you sure you want to delete'),
-        findsOneWidget,
-      );
-      // Make sure the specialized warning is NOT present
-      expect(
-        find.textContaining('This section has associated questions.'),
-        findsNothing,
-      );
-    });
+        // Check for specialized warning
+        expect(
+          find.textContaining('This section has associated questions.'),
+          findsOneWidget,
+        );
+      },
+    );
+
+    testWidgets(
+      'shows standard bulk deletion confirmation dialog when selected sections have NO associated questions',
+      (tester) async {
+        // Mock FileLoaded state with NO linked questions
+        final fileState = FileLoaded(
+          QuizFile(metadata: testMetadata, study: null, questions: []),
+        );
+        when(() => mockFileBloc.state).thenReturn(fileState);
+
+        // Mock StudyExecutionState in selection mode with selected chunk
+        final studyState = StudyExecutionState(
+          chunks: [testChunk],
+          currentChunkIndex: 0,
+          processedChunks: 1,
+          progressPercentage: 100,
+          isIndexMode: true,
+          isSelectionMode: true,
+          selectedIndices: {0},
+        );
+        when(() => mockStudyBloc.state).thenReturn(studyState);
+
+        await tester.pumpWidget(
+          createWidgetUnderTest(
+            StudyBottomNavigation(
+              quizFile: fileState.quizFile,
+              onSave: () {},
+              onImport: () {},
+              onAddChunk: () {},
+              onGenerateAI: () {},
+            ),
+          ),
+        );
+
+        final deleteBtnFinder = find.byWidgetPredicate(
+          (widget) =>
+              widget is QuizdyButton && widget.title.startsWith('Delete'),
+        );
+        expect(deleteBtnFinder, findsOneWidget);
+        await tester.tap(deleteBtnFinder);
+        await tester.pumpAndSettle();
+
+        // Check for standard confirmation message
+        expect(
+          find.textContaining('Are you sure you want to delete'),
+          findsOneWidget,
+        );
+        // Make sure the specialized warning is NOT present
+        expect(
+          find.textContaining('This section has associated questions.'),
+          findsNothing,
+        );
+      },
+    );
   });
 }

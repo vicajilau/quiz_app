@@ -117,8 +117,9 @@ class StudyBottomNavigation extends StatelessWidget {
                         }
                         if (quizFile != null) {
                           for (final chunk in selectedChunks) {
-                            final chunkHasQuestions = quizFile.questions
-                                .any((q) => q.studySectionId == chunk.id);
+                            final chunkHasQuestions = quizFile.questions.any(
+                              (q) => q.studySectionId == chunk.id,
+                            );
                             if (chunkHasQuestions) {
                               hasQuestions = true;
                               chunksWithQuestionsTitles.add(chunk.title);
@@ -127,23 +128,27 @@ class StudyBottomNavigation extends StatelessWidget {
                         }
                       } catch (_) {}
 
-                      final names = selectedChunks.map((c) => c.title).join(', ');
+                      final names = selectedChunks
+                          .map((c) => c.title)
+                          .join(', ');
                       final message = hasQuestions
-                          ? localizations.confirmDeleteSectionWithQuestionsMessage(
-                              chunksWithQuestionsTitles.join(', '),
-                            )
+                          ? localizations
+                                .confirmDeleteSectionWithQuestionsMessage(
+                                  chunksWithQuestionsTitles.join(', '),
+                                )
                           : localizations.confirmDeleteMessage(names);
 
-                      final confirmed = await showDialog<bool>(
-                        context: context,
-                        builder: (context) => CustomConfirmDialog(
-                          title: localizations.confirmDeleteTitle,
-                          message: message,
-                          confirmText: localizations.deleteButton,
-                          isDestructive: true,
-                        ),
-                      ) ??
-                      false;
+                      final confirmed =
+                          await showDialog<bool>(
+                            context: context,
+                            builder: (context) => CustomConfirmDialog(
+                              title: localizations.confirmDeleteTitle,
+                              message: message,
+                              confirmText: localizations.deleteButton,
+                              isDestructive: true,
+                            ),
+                          ) ??
+                          false;
 
                       if (confirmed && context.mounted) {
                         context.read<StudyExecutionBloc>().add(

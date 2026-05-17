@@ -108,7 +108,9 @@ class StudyIndexView extends StatelessWidget {
         quizFile = fileState.quizFile;
       }
       if (quizFile != null) {
-        hasQuestions = quizFile.questions.any((q) => q.studySectionId == chunk.id);
+        hasQuestions = quizFile.questions.any(
+          (q) => q.studySectionId == chunk.id,
+        );
       }
     } catch (_) {}
 

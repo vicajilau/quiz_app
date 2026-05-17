@@ -155,7 +155,9 @@ class Question {
       correctAnswers: correctAnswers ?? this.correctAnswers,
       explanation: explanation ?? this.explanation,
       isEnabled: isEnabled ?? this.isEnabled,
-      studySectionId: clearStudySectionId ? null : (studySectionId ?? this.studySectionId),
+      studySectionId: clearStudySectionId
+          ? null
+          : (studySectionId ?? this.studySectionId),
     );
   }
 
