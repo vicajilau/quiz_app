@@ -26,7 +26,7 @@ class AiQuestionsSelectorWidget extends StatelessWidget {
   final bool enabled;
   final Set<int> selectedIndices;
   final ValueChanged<bool> onToggle;
-  final ValueChanged<int> onQuestionToggled;
+  final ValueChanged<Set<int>> onSelectedIndicesChanged;
 
   const AiQuestionsSelectorWidget({
     super.key,
@@ -34,8 +34,39 @@ class AiQuestionsSelectorWidget extends StatelessWidget {
     required this.enabled,
     required this.selectedIndices,
     required this.onToggle,
-    required this.onQuestionToggled,
+    required this.onSelectedIndicesChanged,
   });
+
+  bool get _allSelected =>
+      questions.asMap().keys.every((i) => selectedIndices.contains(i));
+
+  void _handleAllToggled() {
+    final allIndices = questions.asMap().keys.toSet();
+    onSelectedIndicesChanged(allIndices);
+  }
+
+  void _handleQuestionToggled(int index) {
+    final allIndices = questions.asMap().keys.toSet();
+    Set<int> newSelected = Set.from(selectedIndices);
+
+    if (_allSelected) {
+      newSelected = {index};
+    } else {
+      if (newSelected.contains(index)) {
+        newSelected.remove(index);
+        if (newSelected.isEmpty) {
+          newSelected = allIndices;
+        }
+      } else {
+        newSelected.add(index);
+        if (newSelected.containsAll(allIndices)) {
+          newSelected = allIndices;
+        }
+      }
+    }
+
+    onSelectedIndicesChanged(newSelected);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,15 +111,25 @@ class AiQuestionsSelectorWidget extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: ListView.builder(
-                itemCount: questions.length,
+                itemCount: questions.length + 1,
                 itemBuilder: (context, i) {
-                  final question = questions[i];
-                  final isSelected = selectedIndices.contains(i);
+                  if (i == 0) {
+                    return _QuestionItem(
+                      label: localizations.aiAllQuestions,
+                      isSelected: _allSelected,
+                      onTap: _handleAllToggled,
+                      isLast: questions.isEmpty,
+                    );
+                  }
+                  final questionIndex = i - 1;
+                  final question = questions[questionIndex];
+                  final isSelected =
+                      !_allSelected && selectedIndices.contains(questionIndex);
                   return _QuestionItem(
-                    question: question,
+                    label: question.text,
                     isSelected: isSelected,
-                    onTap: () => onQuestionToggled(i),
-                    isLast: i == questions.length - 1,
+                    onTap: () => _handleQuestionToggled(questionIndex),
+                    isLast: questionIndex == questions.length - 1,
                   );
                 },
               ),
@@ -101,13 +142,13 @@ class AiQuestionsSelectorWidget extends StatelessWidget {
 }
 
 class _QuestionItem extends StatelessWidget {
-  final Question question;
+  final String label;
   final bool isSelected;
   final VoidCallback onTap;
   final bool isLast;
 
   const _QuestionItem({
-    required this.question,
+    required this.label,
     required this.isSelected,
     required this.onTap,
     required this.isLast,
@@ -158,10 +199,10 @@ class _QuestionItem extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Tooltip(
-                    message: question.text,
+                    message: label,
                     waitDuration: const Duration(milliseconds: 400),
                     child: Text(
-                      question.text,
+                      label,
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: isSelected

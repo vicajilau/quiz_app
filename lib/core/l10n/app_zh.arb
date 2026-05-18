@@ -1475,7 +1475,7 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
-  "missingStudySectionTooltip": "此问题未链接到任何学习章节",
+  "missingStudySectionTooltip": "未链接到学习章节",
   "@missingStudySectionTooltip": {
     "description": "Tooltip text for the unlinked study section warning"
   },
@@ -1505,7 +1505,7 @@
   "previewLatexTooltip": "预览 LaTeX 渲染",
   "okButton": "确定",
   "aiEnterContentTitle": "输入内容",
-  "aiEnterContentDescription": "输入主题或粘贴内容以生成问题",
+  "aiEnterContentDescription": "粘贴任意文本或附加文件作为内容来源",
   "aiContentFieldHint": "输入主题如“二战史”或在此粘贴文本...",
   "aiAttachFileHint": "附加文件 (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "在此处放置文件",
@@ -2024,18 +2024,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "启用以选择从文档的哪些部分生成问题",
+  "aiSelectSectionsSubtitle": "选择将用于生成问题的学习部分",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "所有部分",
   "aiSelectQuestionsTitle": "选择问题",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "启用以选择将哪些测验问题用作生成学习章节的上下文",
+  "aiSelectQuestionsSubtitle": "选择测验模式问题作为生成上下文",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "所有问题",
   "onboardingStudyContentTitle": "学习您的内容",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"

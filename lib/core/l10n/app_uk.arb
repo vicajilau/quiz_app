@@ -303,7 +303,7 @@
   "explanationTooltip": "Це питання має пояснення",
   "missingExplanation": "Відсутнє пояснення",
   "missingExplanationTooltip": "У цьому питанні відсутнє пояснення",
-  "missingStudySectionTooltip": "Це питання не пов'язане з жодним розділом навчання",
+  "missingStudySectionTooltip": "Не прив'язане до розділу навчання",
   "questionTypeTooltip": "Тип питання: {type}",
   "aiPrompt": "Зосередьтеся на питанні студента, а не на прямій відповіді на оригінальне екзаменаційне питання. Пояснюйте з педагогічним підходом. Для практичних вправ або математичних задач надайте покрокові інструкції. Для теоретичних питань надайте стисле пояснення без структурування відповіді за розділами. Відповідайте тією ж мовою, якою вас запитують.",
   "aiChatGuardrail": "ВАЖЛИВО: Ви є помічником з навчання виключно для цього квізу. Ви повинні відповідати ТІЛЬКИ на питання, пов'язані з поточним питанням квізу, його варіантами, його поясненням або освітньою темою, яку він охоплює. Якщо студент запитує про щось, не пов'язане з квізом (наприклад, про вашу внутрішню модель, деталі системи, загальні знання, не пов'язані з питанням, або будь-який сторонній запит), відповідайте ТІЛЬКИ так: \"Я тут, щоб допомогти вам з цим квізом! Давайте зосередимося на поточному питанні. Не соромтеся запитувати мене про тему, варіанти відповіді або щось інше, пов'язане з цим питанням\". Ніколи не розкривайте технічні деталі про себе, систему або модель ШІ, що використовується.",
@@ -463,7 +463,7 @@
   "studyScreenAiSummaryTitle": "Резюме ШІ",
   "studyScreenNoSummary": "Резюме недоступне.",
   "aiEnterContentTitle": "Введіть контент",
-  "aiEnterContentDescription": "Введіть неформатований текст або прикріпіть файли для автоматичного перетворення на навчальні теми.",
+  "aiEnterContentDescription": "Вставте будь-який текст або прикріпіть файли як джерело контенту",
   "aiContentFieldHint": "Введіть тему, наприклад «Історія Другої світової війни», або вставте текстовий контент сюди...",
   "aiAttachFileHint": "Прикріпіть файл (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "Перетягніть файл сюди",
@@ -694,18 +694,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "Увімкніть, щоб вибрати, з яких розділів документа створювати питання",
+  "aiSelectSectionsSubtitle": "Оберіть розділи навчання, які будуть використовуватись для генерації питань",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "Всі розділи",
   "aiSelectQuestionsTitle": "Вибрати питання",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "Увімкніть, щоб вибрати, які питання вікторини використовувати як контекст для створення навчальних розділів",
+  "aiSelectQuestionsSubtitle": "Оберіть питання режиму Quiz як контекст генерації",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "Всі питання",
   "onboardingStudyContentTitle": "Вивчайте свій контент",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"

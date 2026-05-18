@@ -214,7 +214,7 @@
   "explanationTooltip": "이 질문에는 설명이 있습니다",
   "missingExplanation": "설명 없음",
   "missingExplanationTooltip": "이 질문에는 설명이 누락되었습니다",
-  "missingStudySectionTooltip": "이 질문은 어떤 학습 섹션과도 연결되어 있지 않습니다",
+  "missingStudySectionTooltip": "학습 섹션에 연결되지 않음",
   "questionTypeTooltip": "질문 유형: {type}",
   "aiPrompt": "학생의 질문에 집중하고 시험 문제에 직접 답을 하는 것을 피하세요. 교육적인 접근 방식으로 설명하세요. 실습 문제나 수학 문제의 경우 단계별 지침을 제공하세요. 이론적인 질문의 경우 섹션으로 나누지 말고 간결하게 설명하세요. 질문을 받은 것과 동일한 언어로 답변하세요.",
   "aiChatGuardrail": "중요: 귀하는 이 퀴즈 전용 학습 어시스턴트입니다. 현재 퀴즈 질문, 해당 옵션, 설명 또는 관련된 교육 주제에 대한 질문에만 답변해야 합니다. 학생이 퀴즈와 무관한 질문(예: 내부 모델, 시스템 세부 정보, 일반 지식 등)을 할 경우 다음으로만 응답하십시오: \"이 퀴즈를 도와드리기 위해 여기 있습니다! 현재 문제에 집중해 봅시다. 주제, 답변 옵션 또는 이 문제와 관련된 무엇이든 자유롭게 물어보세요.\" 자신, 시스템 또는 사용 중인 AI 모델에 대한 기술적 세부 정보를 절대 밝히지 마십시오.",
@@ -413,7 +413,7 @@
   "studyScreenAiSummaryTitle": "AI 요약",
   "studyScreenNoSummary": "사용 가능한 요약이 없습니다.",
   "aiEnterContentTitle": "콘텐츠 입력",
-  "aiEnterContentDescription": "형식 없는 텍스트를 제공하거나 파일을 첨부하여 자동으로 학습 주제로 변환하세요.",
+  "aiEnterContentDescription": "임의의 텍스트를 붙여넣거나 파일을 콘텐츠 소스로 첨부하세요",
   "aiContentFieldHint": "\"제2차 세계 대전 역사\"와 같은 주제를 입력하거나 여기에 텍스트 내용을 붙여넣으세요...",
   "aiAttachFileHint": "파일 첨부 (PDF, TXT, MP3, MP4 등)",
   "dropAttachmentHere": "여기에 파일 드롭",
@@ -661,18 +661,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "문서의 어느 섹션에서 질문을 생성할지 선택하려면 활성화하세요",
+  "aiSelectSectionsSubtitle": "질문 생성에 사용할 학습 섹션을 선택하세요",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "전체 섹션",
   "aiSelectQuestionsTitle": "질문 선택",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "학습 섹션 생성에 사용할 컨텍스트로 어떤 퀴즈 질문을 사용할지 선택하려면 활성화하세요",
+  "aiSelectQuestionsSubtitle": "퀴즈 모드 문제를 생성 컨텍스트로 선택하세요",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "전체 문제",
   "onboardingStudyContentTitle": "콘텐츠를 학습하세요",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"

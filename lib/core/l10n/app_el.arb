@@ -13,7 +13,7 @@
   "previewLatexTooltip": "Προεπισκόπηση απόδοσης LaTeX",
   "okButton": "ΟΚ",
   "aiEnterContentTitle": "Εισαγωγή περιεχομένου",
-  "aiEnterContentDescription": "Εισάγετε το θέμα ή επικολλήστε περιεχόμενο για τη δημιουργία ερωτήσεων",
+  "aiEnterContentDescription": "Επικολλήστε οποιοδήποτε κείμενο ή επισυνάψτε αρχεία ως πηγή περιεχομένου",
   "aiContentFieldHint": "Εισάγετε ένα θέμα όπως \"Ιστορία του Β' Παγκόσμιου Πολέμου\" ή επικολλήστε κείμενο εδώ...",
   "aiAttachFileHint": "Επισύναψη αρχείου (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "Αφήστε το αρχείο εδώ",
@@ -523,7 +523,7 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
-  "missingStudySectionTooltip": "Αυτή η ερώτηση δεν είναι συνδεδεμένη με καμία ενότητα μελέτης",
+  "missingStudySectionTooltip": "Δεν συνδέεται με ενότητα μελέτης",
   "@missingStudySectionTooltip": {
     "description": "Tooltip text for the unlinked study section warning"
   },
@@ -972,18 +972,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "Ενεργοποιήστε για να επιλέξετε από ποιες ενότητες του εγγράφου θα δημιουργηθούν ερωτήσεις",
+  "aiSelectSectionsSubtitle": "Επιλέξτε ποιες ενότητες μελέτης θα χρησιμοποιηθούν για τη δημιουργία ερωτήσεων",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "Όλες οι ενότητες",
   "aiSelectQuestionsTitle": "Επιλογή Ερωτήσεων",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "Ενεργοποιήστε για να επιλέξετε ποιες ερωτήσεις του κουίζ θα χρησιμοποιηθούν ως πλαίσιο για τη δημιουργία ενοτήτων μελέτης",
+  "aiSelectQuestionsSubtitle": "Επιλέξτε ερωτήσεις Quiz ως πλαίσιο δημιουργίας",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "Όλες οι ερωτήσεις",
   "onboardingStudyContentTitle": "Μελετήστε το Περιεχόμενό σας",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"

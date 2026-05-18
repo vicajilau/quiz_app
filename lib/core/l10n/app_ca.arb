@@ -43,7 +43,7 @@
   "@aiEnterContentTitle": {
     "description": "Title for the step 2 of AI question generation"
   },
-  "aiEnterContentDescription": "Introduïu el tema o enganxeu el contingut per generar preguntes",
+  "aiEnterContentDescription": "Enganxa qualsevol text o adjunta fitxers com a font del contingut",
   "@aiEnterContentDescription": {
     "description": "Description for the content input step"
   },
@@ -1662,7 +1662,7 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
-  "missingStudySectionTooltip": "Aquesta pregunta no està vinculada a cap secció d'estudi",
+  "missingStudySectionTooltip": "Sense vincular a cap secció d'estudi",
   "@missingStudySectionTooltip": {
     "description": "Tooltip text for the unlinked study section warning"
   },
@@ -2074,18 +2074,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "Activa-ho per triar de quines seccions del document vols generar preguntes",
+  "aiSelectSectionsSubtitle": "Tria quines seccions de l'estudi s'usaran per generar preguntes",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "Totes les seccions",
   "aiSelectQuestionsTitle": "Seleccionar preguntes",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "Activa-ho per triar quines preguntes del qüestionari s'utilitzaran com a context per generar seccions d'estudi",
+  "aiSelectQuestionsSubtitle": "Tria preguntes del mode Quiz com a context de generació",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "Totes les preguntes",
   "onboardingStudyContentTitle": "Estudia el teu contingut",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"

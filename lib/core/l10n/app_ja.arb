@@ -1502,7 +1502,7 @@
   "@missingExplanationTooltip": {
     "description": "説明欠落バッジのツールチップテキスト"
   },
-  "missingStudySectionTooltip": "この質問はどの学習セクションにもリンクされていません",
+  "missingStudySectionTooltip": "学習セクションにリンクされていません",
   "@missingStudySectionTooltip": {
     "description": "Tooltip text for the unlinked study section warning"
   },
@@ -1528,7 +1528,7 @@
   "previewLatexTooltip": "LaTeX レンダリングのプレビュー",
   "okButton": "OK",
   "aiEnterContentTitle": "コンテンツを入力",
-  "aiEnterContentDescription": "質問を作成するトピックを入力するか、コンテンツを貼り付けてください",
+  "aiEnterContentDescription": "任意のテキストを貼り付けるか、ファイルをコンテンツソースとして添付してください",
   "aiContentFieldHint": "「第二次世界大戦の歴史」のようなトピックを入力するか、ここにテキストを貼り付けてください...",
   "aiAttachFileHint": "ファイルを添付 (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "ファイルをここにドロップ",
@@ -1975,18 +1975,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "ドキュメントのどのセクションから質問を生成するかを選択できるようにする",
+  "aiSelectSectionsSubtitle": "問題の生成に使用する学習セクションを選択してください",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "すべてのセクション",
   "aiSelectQuestionsTitle": "問題を選択",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "学習セクションを生成する際のコンテキストとして使用するクイズ問題を選択するには有効にしてください",
+  "aiSelectQuestionsSubtitle": "クイズモードの問題を生成コンテキストとして選択してください",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "すべての問題",
   "onboardingStudyContentTitle": "コンテンツを学習",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"
