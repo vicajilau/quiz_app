@@ -124,8 +124,7 @@ class AiQuestionsSelectorWidget extends StatelessWidget {
                   final questionIndex = i - 1;
                   final question = questions[questionIndex];
                   final isSelected =
-                      !_allSelected &&
-                      selectedIndices.contains(questionIndex);
+                      !_allSelected && selectedIndices.contains(questionIndex);
                   return _QuestionItem(
                     label: question.text,
                     isSelected: isSelected,
@@ -206,8 +205,9 @@ class _QuestionItem extends StatelessWidget {
                       label,
                       style: TextStyle(
                         fontSize: 14,
-                        fontWeight:
-                            isSelected ? FontWeight.w500 : FontWeight.normal,
+                        fontWeight: isSelected
+                            ? FontWeight.w500
+                            : FontWeight.normal,
                         color: isSelected ? colors.title : colors.subtitle,
                       ),
                       overflow: TextOverflow.ellipsis,

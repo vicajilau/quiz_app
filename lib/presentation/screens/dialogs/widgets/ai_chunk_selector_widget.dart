@@ -206,8 +206,9 @@ class _ChunkItem extends StatelessWidget {
                     label,
                     style: TextStyle(
                       fontSize: 14,
-                      fontWeight:
-                          isSelected ? FontWeight.w500 : FontWeight.normal,
+                      fontWeight: isSelected
+                          ? FontWeight.w500
+                          : FontWeight.normal,
                       color: isSelected ? colors.title : colors.subtitle,
                     ),
                     overflow: TextOverflow.ellipsis,
