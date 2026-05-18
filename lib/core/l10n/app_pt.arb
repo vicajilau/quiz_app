@@ -1451,6 +1451,14 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
+  "smartModeLabel": "Modo inteligente",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "Modo de exame especial. A app determina automaticamente o conjunto e o número de perguntas e atualiza as estatísticas de revisão.",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "@studyModeLabel": {
     "description": "Label for study mode option"
   },
@@ -2508,8 +2516,8 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   },
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "Perguntas ordenadas pelo algoritmo SM-2 para retenção ideal, baseado no algoritmo de ordenamento inteligente do Anki",
+  "questionOrderBySection": "Por seções",
+  "questionOrderBySectionDesc": "Agrupe as perguntas por seção e mostre cada seção em ordem crescente",
   "srsStatsTitle": "Estatísticas",
   "srsResetAllStatsTooltip": "Redefinir todas as estatísticas",
   "srsResetButton": "Redefinir",

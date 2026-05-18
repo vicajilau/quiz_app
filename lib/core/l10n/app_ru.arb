@@ -505,6 +505,14 @@
   "studyModeLabel": "Режим обучения",
   "generateStudyWithAI": "Создать учёбу с помощью ИИ",
   "practiceModeLabel": "Практический режим",
+  "smartModeLabel": "Умный режим",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "Специальный режим экзамена. Приложение автоматически определяет набор и количество вопросов и обновляет статистику повторения.",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "studyModeDescription": "Доступна помощь ИИ. Мгновенная обратная связь после каждого ответа без ограничений по времени и штрафов. Статистика не генерируется.",
   "examModeLabel": "Режим экзамена",
   "examModeDescription": "Помощь ИИ недоступна. Могут применяться ограничения по времени и штрафы за неправильные ответы. Генерирует статистику SRS.",
@@ -1121,8 +1129,8 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   },
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "Вопросы упорядочены по алгоритму SM-2 для лучшего запоминания, основанный на алгоритме умной сортировки Anki",
+  "questionOrderBySection": "По разделам",
+  "questionOrderBySectionDesc": "Группируйте вопросы по разделам и показывайте каждый раздел в порядке возрастания",
   "srsStatsTitle": "Статистика",
   "srsResetAllStatsTooltip": "Сбросить всю статистику",
   "srsResetButton": "Сбросить",

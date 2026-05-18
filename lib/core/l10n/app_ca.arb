@@ -1577,6 +1577,14 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
+  "smartModeLabel": "Mode intel·ligent",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "Mode d'examen especial. L'app decideix automàticament el conjunt i el nombre de preguntes, i actualitza les estadístiques de repàs.",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "@studyModeLabel": {
     "description": "Label for study mode option"
   },
@@ -2519,8 +2527,8 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   },
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "Preguntes ordenades segons l'algorisme SM-2 per a una retenció òptima, basat en l'algorisme d'ordenació intel·ligent d'Anki",
+  "questionOrderBySection": "Ordena per seccions",
+  "questionOrderBySectionDesc": "Agrupa les preguntes per secció i mostra cada secció en ordre ascendent",
   "srsStatsTitle": "Estadístiques",
   "srsResetAllStatsTooltip": "Restablir totes les estadístiques",
   "srsResetButton": "Restablir",

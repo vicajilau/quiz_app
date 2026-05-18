@@ -1561,6 +1561,14 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
+  "smartModeLabel": "الوضع الذكي",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "وضع اختبار خاص. يحدد التطبيق مجموعة الأسئلة وعددها تلقائيًا ويحدّث إحصاءات المراجعة.",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "studyModeDescription": "مساعدة الذكاء الاصطناعي متاحة. تعليقات فورية بعد كل إجابة بدون حدود زمنية أو عقوبات. لا يتم إنشاء أي إحصائيات.",
   "@studyModeDescription": {
     "description": "Description for the study mode"
@@ -2831,8 +2839,8 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   },
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "ترتيب الأسئلة بناءً على خوارزمية SM-2 لاحتفاظ مثالي، استناداً إلى خوارزمية الترتيب الذكي لـ Anki",
+  "questionOrderBySection": "ترتيب حسب الأقسام",
+  "questionOrderBySectionDesc": "اجمع الأسئلة حسب القسم واعرض كل قسم بالترتيب التصاعدي",
   "srsStatsTitle": "إحصائيات",
   "srsResetAllStatsTooltip": "إعادة تعيين جميع الإحصائيات",
   "srsResetButton": "إعادة تعيين",

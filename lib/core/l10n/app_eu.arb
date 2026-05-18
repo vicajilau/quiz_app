@@ -1467,6 +1467,14 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
+  "smartModeLabel": "Modu adimenduna",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "Azterketa modu berezia. Aplikazioak automatikoki zehazten du galdera multzoa eta kopurua, eta errepaso-estatistikak eguneratzen ditu.",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "studyModeDescription": "AI laguntza eskuragarri. Erantzun bakoitzaren ondoren feedbacka berehala, denbora-mugarik eta zigorrrik gabe. Ez du estatistikarik sortzen.",
   "examModeLabel": "Azterketa Modua",
   "examModeDescription": "AI laguntzarik gabe. Denbora-mugak eta erantzun okerrengatiko zigorrak aplika daitezke. SRS estatistikak sortzen ditu.",
@@ -2417,8 +2425,8 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   },
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "SM-2 algoritmoan oinarritutako galderen ordena atxikipen optimorako, Ankiren ordenatze adimendunaren algoritmoaren arabera",
+  "questionOrderBySection": "Atalen arabera",
+  "questionOrderBySectionDesc": "Taldekatu galderak atalez eta erakutsi atal bakoitza goranzko ordenan",
   "srsStatsTitle": "Estatistikak",
   "srsResetAllStatsTooltip": "Berrezarri estatistika guztiak",
   "srsResetButton": "Berrezarri",

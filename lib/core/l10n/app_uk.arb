@@ -534,6 +534,14 @@
   "aiCommentsHelperText": "Опціонально додайте інструкції про те, як створювати питання на основі файлу",
   "aiFilePickerError": "Не вдалося завантажити вибраний файл",
   "practiceModeLabel": "Практичний режим",
+  "smartModeLabel": "Розумний режим",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "Спеціальний режим іспиту. Додаток автоматично визначає набір і кількість запитань та оновлює статистику повторення.",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "studyModeDescription": "Доступна допомога ШІ. Миттєвий зворотний зв'язок після кожної відповіді без обмежень у часі та штрафів. Статистика не генерується.",
   "examModeDescription": "Допомога ШІ недоступна. Можуть застосовуватися обмеження у часі та штрафи за неправильні відповіді. Генерує статистику SRS.",
   "quizModeTitle": "Режим квізу",
@@ -1139,8 +1147,8 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   },
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "Питання впорядковані за алгоритмом SM-2 для кращого запам'ятовування, заснований на алгоритмі розумного впорядкування Anki",
+  "questionOrderBySection": "За розділами",
+  "questionOrderBySectionDesc": "Групуйте запитання за розділами та показуйте кожен розділ у порядку зростання",
   "srsStatsTitle": "Статистика",
   "srsResetAllStatsTooltip": "Скинути всю статистику",
   "srsResetButton": "Скинути",

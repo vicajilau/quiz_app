@@ -1429,6 +1429,14 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
+  "smartModeLabel": "智能模式",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "特殊考试模式。应用会自动决定题目集合和数量，并更新复习统计。",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "studyModeDescription": "提供 AI 辅助。每题回答后提供即时反馈，无时间限制或扣分。 不生成统计数据。",
   "examModeLabel": "考试模式",
   "examModeDescription": "无 AI 辅助。可能适用时间限制和答错扣分。 生成SRS统计数据。",
@@ -2469,8 +2477,8 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   },
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "基于SM-2算法排序以获得最佳记忆效果，基于Anki智能排序算法",
+  "questionOrderBySection": "按章节",
+  "questionOrderBySectionDesc": "按章节分组并按升序显示每个章节",
   "srsStatsTitle": "统计",
   "srsResetAllStatsTooltip": "重置所有统计",
   "srsResetButton": "重置",

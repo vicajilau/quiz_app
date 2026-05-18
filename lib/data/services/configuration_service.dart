@@ -64,6 +64,7 @@ class ConfigurationService {
 
   static const String _lastQuestionCountKey = 'last_question_count';
   static const String _lastQuizModeKey = 'last_quiz_mode';
+  static const String _lastQuizSmartModeKey = 'last_quiz_smart_mode';
   static const String _lastQuizEnableMaxIncorrectAnswersKey =
       'last_quiz_enable_max_incorrect_answers';
   static const String _lastQuizMaxIncorrectAnswersKey =
@@ -106,7 +107,7 @@ class ConfigurationService {
   /// Saves the selected question order to SharedPreferences
   Future<void> saveQuestionOrder(QuestionOrder order) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_questionOrderKey, order.value);
+    await prefs.setString(_questionOrderKey, order.name);
   }
 
   /// Gets the saved question order, defaults to random
@@ -431,6 +432,9 @@ class ConfigurationService {
     if (settings.isStudyMode != null) {
       await prefs.setBool(_lastQuizModeKey, settings.isStudyMode!);
     }
+    if (settings.isSmartMode != null) {
+      await prefs.setBool(_lastQuizSmartModeKey, settings.isSmartMode!);
+    }
     if (settings.subtractPoints != null) {
       await prefs.setBool(_lastQuizSubtractPointsKey, settings.subtractPoints!);
     }
@@ -451,7 +455,7 @@ class ConfigurationService {
     }
 
     if (settings.questionOrder != null) {
-      await prefs.setString(_questionOrderKey, settings.questionOrder!.value);
+      await prefs.setString(_questionOrderKey, settings.questionOrder!.name);
     }
     if (settings.randomizeAnswers != null) {
       await prefs.setBool(_randomizeAnswersKey, settings.randomizeAnswers!);
@@ -471,6 +475,7 @@ class ConfigurationService {
     return QuizConfigStoredSettings(
       questionCount: prefs.getInt(_lastQuestionCountKey),
       isStudyMode: prefs.getBool(_lastQuizModeKey),
+      isSmartMode: prefs.getBool(_lastQuizSmartModeKey),
       subtractPoints: prefs.getBool(_lastQuizSubtractPointsKey),
       penaltyAmount: prefs.getDouble(_lastQuizPenaltyAmountKey),
       enableMaxIncorrectAnswers: prefs.getBool(

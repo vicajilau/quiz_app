@@ -486,6 +486,14 @@
   "studyModeLabel": "학습 모드",
   "generateStudyWithAI": "AI로 학습 생성",
   "practiceModeLabel": "연습 모드",
+  "smartModeLabel": "스마트 모드",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "특별 시험 모드입니다. 앱이 문제 집합과 개수를 자동으로 결정하고 복습 통계를 업데이트합니다.",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "studyModeDescription": "AI 지원이 가능합니다. 각 답변 후 즉각적인 피드백이 제공되며 시간 제한이나 감점이 없습니다. 통계가 생성되지 않습니다.",
   "examModeLabel": "시험 모드",
   "examModeDescription": "AI 지원이 없습니다. 시간 제한과 오답에 대한 감점이 적용될 수 있습니다. SRS 통계를 생성합니다.",
@@ -1106,8 +1114,8 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   },
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "최적의 기억을 위해 SM-2 알고리즘을 기반으로 질문 정렬, Anki 스마트 정렬 알고리즘을 기반으로",
+  "questionOrderBySection": "섹션별 정렬",
+  "questionOrderBySectionDesc": "문항을 섹션별로 묶고 각 섹션을 오름차순으로 표시합니다",
   "srsStatsTitle": "통계",
   "srsResetAllStatsTooltip": "모든 통계 초기화",
   "srsResetButton": "초기화",

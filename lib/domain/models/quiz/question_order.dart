@@ -16,18 +16,13 @@
 /// Represents the order in which questions are presented in a quiz.
 enum QuestionOrder {
   /// Questions are randomized every time the quiz starts.
-  random('random'),
+  random,
 
   /// Questions are shown in their original creation order.
-  ascending('ascending'),
+  ascending,
 
-  /// Questions are sorted by their SRS algorithm due dates (Anki-style SM-2 algorithm).
-  spacedRepetition('spaced_repetition');
-
-  /// The internal string value used for serialization and persistence.
-  final String value;
-
-  const QuestionOrder(this.value);
+  /// Questions are grouped by section in ascending section order.
+  bySection;
 
   /// Returns the [QuestionOrder] corresponding to the given [value].
   ///
@@ -36,7 +31,7 @@ enum QuestionOrder {
   static QuestionOrder fromString(String? value) {
     if (value == null) return QuestionOrder.random;
     return QuestionOrder.values.firstWhere(
-      (order) => order.value == value,
+      (order) => order.name == value,
       orElse: () => QuestionOrder.random,
     );
   }

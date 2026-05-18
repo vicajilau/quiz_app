@@ -479,6 +479,14 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
+  "smartModeLabel": "Έξυπνη λειτουργία",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "Ειδική λειτουργία εξέτασης. Η εφαρμογή καθορίζει αυτόματα το σύνολο και τον αριθμό των ερωτήσεων και ενημερώνει τα στατιστικά επανάληψης.",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "studyModeDescription": "Διαθέσιμη βοήθεια AI. Άμεση ανατροφοδότηση μετά από κάθε απάντηση, χωρίς χρονικά όρια ή ποινές. Δεν παράγονται στατιστικά.",
   "examModeLabel": "Λειτουργία Εξέτασης",
   "examModeDescription": "Χωρίς βοήθεια AI. Ενδέχεται να ισχύουν χρονικά όρια και ποινές για λανθασμένες απαντήσεις. Παράγει στατιστικά SRS.",
@@ -1417,8 +1425,8 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   },
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "Ερωτήσεις ταξινομημένες βάσει αλγορίθμου SM-2 για βέλτιστη διατήρηση, βασισμένο στον αλγόριθμο έξυπνης ταξινόμησης του Anki",
+  "questionOrderBySection": "Κατά ενότητες",
+  "questionOrderBySectionDesc": "Ομαδοποιήστε τις ερωτήσεις ανά ενότητα και εμφανίστε κάθε ενότητα σε αύξουσα σειρά",
   "srsStatsTitle": "Στατιστικά",
   "srsResetAllStatsTooltip": "Επαναφορά Όλων των Στατιστικών",
   "srsResetButton": "Επαναφορά",
