@@ -45,6 +45,7 @@ void main() {
   group('AiJitProcessingService', () {
     test('processChunk ignores already completed chunks', () async {
       final chunk = const StudyChunk(
+        id: 'test_chunk_1',
         chunkIndex: 0,
         status: StudyChunkState.completed,
         sourceReference: SourceReference(
@@ -71,6 +72,7 @@ void main() {
 
     test('safe string extraction handles out-of-bounds offsets gracefully', () async {
       final chunk = const StudyChunk(
+        id: 'test_chunk_2',
         chunkIndex: 2,
         status: StudyChunkState.created,
         sourceReference: SourceReference(

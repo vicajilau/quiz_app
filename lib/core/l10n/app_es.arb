@@ -180,6 +180,16 @@
       }
     }
   },
+  "confirmDeleteSectionWithQuestionsMessage": "Esta sección tiene preguntas asociadas. ¿Estás seguro de que quieres eliminar `{sectionName}`?",
+  "@confirmDeleteSectionWithQuestionsMessage": {
+    "description": "Warning message when deleting a study section that has associated questions.",
+    "placeholders": {
+      "sectionName": {
+        "type": "String",
+        "example": "Chapter 1"
+      }
+    }
+  },
   "deleteButton": "Eliminar",
   "@deleteButton": {
     "description": "Texto del botón para confirmar eliminación."
@@ -421,6 +431,27 @@
     "description": "Texto del botón para iniciar el quiz"
   },
   "startQuizFromStudy": "Pon a prueba tu conocimiento",
+  "studySectionPracticePrompt": "Practicar preguntas de la sección",
+  "studySectionPracticeSubtitle": "Esta sección tiene {count, plural, =1{1 pregunta vinculada} other{{count} preguntas vinculadas}}. ¡Practícalas ahora para reforzar tu aprendizaje!",
+  "studySectionMasteryTooltip": "Dominio de la sección: {percentage}% ({correct} de {total} preguntas correctas en el último intento)",
+  "studyScreenLearnedContent": "Contenido aprendido",
+  "@studyScreenLearnedContent": {
+    "description": "Etiqueta para la tarjeta que muestra el porcentaje global de contenido aprendido"
+  },
+  "studyScreenLearnedQuestionsCount": "{correct} de {total} preguntas dominadas",
+  "@studyScreenLearnedQuestionsCount": {
+    "description": "Texto descriptivo de la cantidad de preguntas dominadas en relación al total del contenido",
+    "placeholders": {
+      "correct": {
+        "type": "int",
+        "example": "12"
+      },
+      "total": {
+        "type": "int",
+        "example": "15"
+      }
+    }
+  },
   "@startQuizFromStudy": {
     "description": "Texto del botón para iniciar el quiz desde la pantalla de estudio"
   },
@@ -619,6 +650,10 @@
   "missingExplanationTooltip": "Esta pregunta no tiene explicación",
   "@missingExplanationTooltip": {
     "description": "Texto del tooltip para el badge indicador de falta de explicación"
+  },
+  "missingStudySectionTooltip": "Esta pregunta no está vinculada a ninguna sección de estudio",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
   },
   "questionTypeTooltip": "Tipos de pregunta: {type}",
   "@questionTypeTooltip": {
@@ -2684,5 +2719,7 @@
   "srsIncorrect": "{count} Fallos",
   "srsQuestions": "Preguntas",
   "modeGeneratesStats": "Genera estadísticas SRS",
-  "modeNoStats": "No genera estadísticas"
+  "modeNoStats": "No genera estadísticas",
+  "linkStudySection": "Vincular a sección de estudio",
+  "noStudySection": "Ninguna"
 }

@@ -46,6 +46,7 @@ void main() {
 
   group('StudyExecutionBloc Coverage Calculation', () {
     final chunk1 = const StudyChunk(
+      id: 'test_chunk_1',
       chunkIndex: 0,
       status: StudyChunkState.completed,
       sourceReference: SourceReference(
@@ -59,6 +60,7 @@ void main() {
     );
 
     final chunk2 = const StudyChunk(
+      id: 'test_chunk_2',
       chunkIndex: 1,
       status: StudyChunkState.created,
       sourceReference: SourceReference(

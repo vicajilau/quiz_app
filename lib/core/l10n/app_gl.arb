@@ -543,6 +543,10 @@
   "@missingExplanationTooltip": {
     "description": "Texto do tooltip para a insignia indicadora de falta de explicación"
   },
+  "missingStudySectionTooltip": "Esta pregunta non está vinculada a ningunha sección de estudo",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
+  },
   "questionTypeTooltip": "Tipo de pregunta: {type}",
   "@questionTypeTooltip": {
     "description": "Texto do tooltip para a insignia de tipo de pregunta",
@@ -1878,6 +1882,11 @@
     "description": "Label for context mode when a file is uploaded"
   },
   "startQuizFromStudy": "Proba os teus coñecementos",
+  "studySectionPracticePrompt": "Practicar preguntas da sección",
+  "studySectionPracticeSubtitle": "Esta sección ten {count, plural, =1{1 pregunta vinculada} other{{count} preguntas vinculadas}}. Practícaas agora para reforzar a túa aprendizaxe!",
+  "studySectionMasteryTooltip": "Dominio da sección: {percentage}% ({correct} de {total} preguntas correctas no último intento)",
+  "studyScreenLearnedContent": "Contido aprendido",
+  "studyScreenLearnedQuestionsCount": "{correct} de {total} preguntas dominadas",
   "studyScreenCustomChapter": "Capítulo personalizado",
   "addSection": "Engadir sección",
   "editSection": "Editar sección",
@@ -2405,8 +2414,7 @@
   "forceUpdateMessage": "Requírese unha actualización obrigatoria para continuar usando Quizdy. Por favor, actualiza a aplicación.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
+  },
   "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
   "questionOrderSpacedRepetitionDesc": "Preguntas ordenadas segundo o algoritmo SM-2 para unha retención óptima, baseado no algoritmo de ordenamento intelixente de Anki",
   "srsStatsTitle": "Estatísticas",
@@ -2436,11 +2444,12 @@
   "srsDueTooltip": "A data programada para revisar esta pregunta",
   "srsCorrect": "{count} Correcto",
   "srsIncorrect": "{count} Incorrecto",
-  "srsQuestions": "Preguntas"
-,
+  "srsQuestions": "Preguntas",
   "modeGeneratesStats": "Xera estatísticas SRS",
-  "modeNoStats": "Non xera estatísticas"
-,
+  "modeNoStats": "Non xera estatísticas",
   "srsEmptyStateTitle": "Aínda non hai datos para mostrar",
-  "srsEmptyStateSubtitle": "Completa a túa primeira sesión de estudo ou fai un exame para comezar a rexistrar o teu progreso de aprendizaxe."
+  "srsEmptyStateSubtitle": "Completa a túa primeira sesión de estudo ou fai un exame para comezar a rexistrar o teu progreso de aprendizaxe.",
+  "linkStudySection": "Vincular a sección de estudo",
+  "noStudySection": "Ningún",
+  "confirmDeleteSectionWithQuestionsMessage": "Esta sección ten preguntas asociadas. Seguro que queres eliminar `{sectionName}`?"
 }

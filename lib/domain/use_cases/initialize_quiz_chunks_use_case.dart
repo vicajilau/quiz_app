@@ -117,8 +117,11 @@ class InitializeQuizChunksUseCase {
 
     final references = indexResult['references'] as List<SourceReference>;
     final chunks = references.asMap().entries.map((entry) {
+      final index = entry.key;
+      final uniqueId = 'chunk_${DateTime.now().microsecondsSinceEpoch}_$index';
       return StudyChunk(
-        chunkIndex: entry.key,
+        id: uniqueId,
+        chunkIndex: index,
         status: StudyChunkState.created,
         sourceReference: entry.value,
         aiSummary: null,
@@ -157,8 +160,11 @@ class InitializeQuizChunksUseCase {
 
     final references = indexResult['references'] as List<SourceReference>;
     final chunks = references.asMap().entries.map((entry) {
+      final index = entry.key;
+      final uniqueId = 'chunk_${DateTime.now().microsecondsSinceEpoch}_$index';
       return StudyChunk(
-        chunkIndex: entry.key,
+        id: uniqueId,
+        chunkIndex: index,
         status: StudyChunkState.created,
         sourceReference: entry.value,
         aiSummary: null,

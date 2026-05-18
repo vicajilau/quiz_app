@@ -145,6 +145,42 @@ class AiQuestionGenerationService {
           '\n10. DIFFICULTY LEVEL: The generated questions MUST be adapted to the SAME academic difficulty level, vocabulary, and depth as the provided content.';
     }
 
+    String studySectionInstruction = '';
+    if (config.hasChunks) {
+      studySectionInstruction =
+          '\n11. STUDY SECTION LINKING: You MUST associate each generated question with the section it belongs to by setting the "studySectionId" field in the JSON response to the exact "SECTION ID" of the section it was generated from (for example: "${config.selectedChunks!.first.id}").';
+    }
+
+    final String responseFormatJson;
+    if (config.hasChunks) {
+      responseFormatJson = '''
+RESPONSE FORMAT (JSON):
+Respond ONLY with a valid JSON array in this exact format:
+[
+  {
+    "text": "Question here?",
+    "type": "multiple_choice",
+    "options": ["Option A", "Option B", "Option C", "Option D"],
+    "correctAnswers": [0],
+    "explanation": "Detailed explanation of why answer A is correct...",
+    "studySectionId": "SECTION_ID"
+  }
+]''';
+    } else {
+      responseFormatJson = '''
+RESPONSE FORMAT (JSON):
+Respond ONLY with a valid JSON array in this exact format:
+[
+  {
+    "text": "Question here?",
+    "type": "multiple_choice",
+    "options": ["Option A", "Option B", "Option C", "Option D"],
+    "correctAnswers": [0],
+    "explanation": "Detailed explanation of why answer A is correct..."
+  }
+]''';
+    }
+
     const mathInstructions = r'''
 7. MATH AND FORMULAS: Any mathematical equations, formulas, fractions, or symbols MUST be formatted using standard LaTeX syntax wrapped in single dollar signs $ ... $. For example, use $\sqrt{16/9}$ instead of sqrt(16/9) and $\frac{1}{2}$ instead of 1/2. DO NOT use plain text representations for math.
 8. INLINE LAYOUT: You MUST keep all formulas and fractions inline within the text flow. DO NOT insert newlines (\n) before or after formulas. Avoid using double dollar signs $$ .. $$ as they force a block layout.''';
@@ -159,19 +195,9 @@ INSTRUCTIONS:
 5. Explanations should be educational and help understand why the answer is correct
 6. SELF-CONTAINED QUESTIONS: All questions must be fully self-contained so they can be answered without looking at the original source material. If you reuse an existing exercise, make sure to include all necessary context (text, variables, or descriptions) within the question itself. DO NOT reference specific exercise numbers or labels from the source text (e.g., instead of 'In exercise 17...', say 'Given the following scenario...').
 $mathInstructions
-$categoryInstructions$difficultyInstruction
+$categoryInstructions$difficultyInstruction$studySectionInstruction
 
-RESPONSE FORMAT (JSON):
-Respond ONLY with a valid JSON array in this exact format:
-[
-  {
-    "text": "Question here?",
-    "type": "multiple_choice",
-    "options": ["Option A", "Option B", "Option C", "Option D"],
-    "correctAnswers": [0],
-    "explanation": "Detailed explanation of why answer A is correct..."
-  }
-]
+$responseFormatJson
 
 QUESTION TYPES:
 - "multiple_choice": Allows multiple correct answers
@@ -339,6 +365,7 @@ IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
       correctAnswers: correctAnswers,
       explanation: json['explanation'] ?? '',
       image: null, // AI doesn't generate images for now
+      studySectionId: json['studySectionId'] ?? json['study_section_id'],
     );
   }
 
@@ -431,7 +458,7 @@ IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
   static String _buildChunksContent(List<StudyChunk> chunks) {
     final buffer = StringBuffer();
     for (final chunk in chunks) {
-      buffer.writeln('--- ${chunk.title} ---');
+      buffer.writeln('--- SECTION ID: ${chunk.id}, TITLE: ${chunk.title} ---');
       if (chunk.aiSummary != null && chunk.aiSummary!.isNotEmpty) {
         buffer.writeln('Summary: ${chunk.aiSummary}');
       }

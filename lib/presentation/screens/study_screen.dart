@@ -495,6 +495,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
                 previous.isIndexMode != current.isIndexMode,
             builder: (context, state) {
               final body = StudyBody(
+                quizFile: widget.quizFile,
                 onHandleFileReattachment: _handleFileReattachment,
                 onSave: _handleSave,
               );

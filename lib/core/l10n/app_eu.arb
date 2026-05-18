@@ -1505,6 +1505,10 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
+  "missingStudySectionTooltip": "Galdera hau ez dago inongo ikasketa-atalekin lotuta",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
+  },
   "questionTypeTooltip": "Galdera mota: {type}",
   "@questionTypeTooltip": {
     "description": "Tooltip text for the question type badge",
@@ -1878,6 +1882,11 @@
     "description": "Label for context mode when a file is uploaded"
   },
   "startQuizFromStudy": "Probatu zure ezagutzak",
+  "studySectionPracticePrompt": "Ataleko galderak praktikatu",
+  "studySectionPracticeSubtitle": "Atal honek {count, plural, =1{galdera lotu 1} other{{count} galdera lotu}} ditu. Praktika itzazu orain zure ikaskuntza sendotzeko!",
+  "studySectionMasteryTooltip": "Ataleko menderatzea: {percentage}% ({correct} galdera {total}(e)tik zuzen azken saiakeran)",
+  "studyScreenLearnedContent": "Ikasitako edukia",
+  "studyScreenLearnedQuestionsCount": "{correct} galdera {total}(e)tik menderatuta",
   "studyScreenCustomChapter": "Kapitulu pertsonalizatua",
   "addSection": "Gehitu atala",
   "editSection": "Atala editatu",
@@ -2405,8 +2414,7 @@
   "forceUpdateMessage": "Derrigorrezko eguneratzea beharrezkoa da Quizdy erabiltzen jarraitzak. Mesedez, eguneratu aplikazioa.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
+  },
   "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
   "questionOrderSpacedRepetitionDesc": "SM-2 algoritmoan oinarritutako galderen ordena atxikipen optimorako, Ankiren ordenatze adimendunaren algoritmoaren arabera",
   "srsStatsTitle": "Estatistikak",
@@ -2436,11 +2444,12 @@
   "srsDueTooltip": "Galdera errepasatzeko programatutako data",
   "srsCorrect": "{count} Zuzen",
   "srsIncorrect": "{count} Oker",
-  "srsQuestions": "Galderak"
-,
+  "srsQuestions": "Galderak",
   "modeGeneratesStats": "SRS estatistikak sortzen ditu",
-  "modeNoStats": "Ez du estatistikarik sortzen"
-,
+  "modeNoStats": "Ez du estatistikarik sortzen",
   "srsEmptyStateTitle": "Oraindik ez dago daturik",
-  "srsEmptyStateSubtitle": "Bete zure lehenengo ikasketa saioa edo egin azterketa bat zure ikaskuntzaren aurrerapena jarraitzeko."
+  "srsEmptyStateSubtitle": "Bete zure lehenengo ikasketa saioa edo egin azterketa bat zure ikaskuntzaren aurrerapena jarraitzeko.",
+  "linkStudySection": "Lotu ikasketa atalarekin",
+  "noStudySection": "Bat ere ez",
+  "confirmDeleteSectionWithQuestionsMessage": "Atal honek lotutako galderak ditu. Ziur zaude `{sectionName}` ezabatu nahi duzula?"
 }

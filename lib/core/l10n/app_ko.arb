@@ -165,6 +165,11 @@
   "allQuestions": "모든 질문 ({count}개)",
   "startQuiz": "퀴즈 시작",
   "startQuizFromStudy": "지식 테스트",
+  "studySectionPracticePrompt": "이 섹션의 질문 연습하기",
+  "studySectionPracticeSubtitle": "이 섹션에는 {count}개의 연결된 질문이 있습니다. 지금 연습하여 학습을 강화하세요!",
+  "studySectionMasteryTooltip": "섹션 마스터율: {percentage}% (최근 시도에서 {total}개 중 {correct}개 정답)",
+  "studyScreenLearnedContent": "학습된 콘텐츠",
+  "studyScreenLearnedQuestionsCount": "{total}개 질문 중 {correct}개 마스터함",
   "studyScreenCustomChapter": "사용자 정의 장",
   "maxIncorrectAnswersLabel": "오답 수 제한",
   "maxIncorrectAnswersDescription": "합격/불합격 시험. 숫자 등급 대신 합격 또는 불합격으로만 표시됩니다.",
@@ -209,6 +214,7 @@
   "explanationTooltip": "이 질문에는 설명이 있습니다",
   "missingExplanation": "설명 없음",
   "missingExplanationTooltip": "이 질문에는 설명이 누락되었습니다",
+  "missingStudySectionTooltip": "이 질문은 어떤 학습 섹션과도 연결되어 있지 않습니다",
   "questionTypeTooltip": "질문 유형: {type}",
   "aiPrompt": "학생의 질문에 집중하고 시험 문제에 직접 답을 하는 것을 피하세요. 교육적인 접근 방식으로 설명하세요. 실습 문제나 수학 문제의 경우 단계별 지침을 제공하세요. 이론적인 질문의 경우 섹션으로 나누지 말고 간결하게 설명하세요. 질문을 받은 것과 동일한 언어로 답변하세요.",
   "aiChatGuardrail": "중요: 귀하는 이 퀴즈 전용 학습 어시스턴트입니다. 현재 퀴즈 질문, 해당 옵션, 설명 또는 관련된 교육 주제에 대한 질문에만 답변해야 합니다. 학생이 퀴즈와 무관한 질문(예: 내부 모델, 시스템 세부 정보, 일반 지식 등)을 할 경우 다음으로만 응답하십시오: \"이 퀴즈를 도와드리기 위해 여기 있습니다! 현재 문제에 집중해 봅시다. 주제, 답변 옵션 또는 이 문제와 관련된 무엇이든 자유롭게 물어보세요.\" 자신, 시스템 또는 사용 중인 AI 모델에 대한 기술적 세부 정보를 절대 밝히지 마십시오.",
@@ -1097,8 +1103,7 @@
   "forceUpdateMessage": "Quizdy를 계속 사용하려면 필수 업데이트가 필요합니다. 앱을 업데이트해 주세요.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
+  },
   "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
   "questionOrderSpacedRepetitionDesc": "최적의 기억을 위해 SM-2 알고리즘을 기반으로 질문 정렬, Anki 스마트 정렬 알고리즘을 기반으로",
   "srsStatsTitle": "통계",
@@ -1128,11 +1133,12 @@
   "srsDueTooltip": "복습 예정 날짜",
   "srsCorrect": "{count} 정답",
   "srsIncorrect": "{count} 오답",
-  "srsQuestions": "질문"
-,
+  "srsQuestions": "질문",
   "modeGeneratesStats": "SRS 통계 생성",
-  "modeNoStats": "통계 생성 안 함"
-,
+  "modeNoStats": "통계 생성 안 함",
   "srsEmptyStateTitle": "아직 표시할 데이터가 없습니다",
-  "srsEmptyStateSubtitle": "학습 진행 상황 추적을 시작하려면 첫 번째 학습 세션을 완료하거나 시험을 치르세요."
+  "srsEmptyStateSubtitle": "학습 진행 상황 추적을 시작하려면 첫 번째 학습 세션을 완료하거나 시험을 치르세요.",
+  "linkStudySection": "학습 섹션에 연결",
+  "noStudySection": "없음",
+  "confirmDeleteSectionWithQuestionsMessage": "이 섹션에 연결된 질문이 있습니다. 정말로 `{sectionName}`을(를) 삭제하시겠습니까?"
 }

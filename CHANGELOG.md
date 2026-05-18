@@ -5,8 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.13.1] - TBD
+## [1.14.0] - TBD
 
+- feat(quiz): Allow selecting and linking a question to a specific study section upon question creation (#417).
+- feat(quiz): Support manually linking or updating the study section associated with a question during editing (#418).
+- feat(ai): Automatically associate and link AI-generated questions to the corresponding study section context (#419).
+- ux(quiz): Display a premium warning row and alert icon for questions that are not linked to any study section when the quiz contains study sections (#421).
+- feat(study): Display a beautiful premium banner card at the end of each study section's pages, allowing users to instantly start a custom quiz session composed only of questions linked to that section (#423).
+- feat(study): Added a progress circle indicator showing section mastery percentage to each study section card based on SRS statistics and latest answers of related questions (#422).
 - fix(mobile): Improved readability of the system status bar during in-app update prompts, dynamically adjusting icon colors to ensure they remain clearly visible over the update banner and seamlessly restore to their native theme once dismissed.
 
 ## [1.13.0] - 2026-04-29
