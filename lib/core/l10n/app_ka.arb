@@ -486,6 +486,14 @@
   "studyModeLabel": "სწავლის რეჟიმი",
   "generateStudyWithAI": "სწავლის გენერირება AI-ით",
   "practiceModeLabel": "პრაქტიკის რეჟიმი",
+  "smartModeLabel": "ჭკვიანი რეჟიმი",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "სპეციალური გამოცდის რეჟიმი. აპი ავტომატურად განსაზღვრავს კითხვების ნაკრებსა და რაოდენობას და აახლებას გამეორების სტატისტიკას.",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "studyModeDescription": "AI დახმარება ხელმისაწვდომია. მყისიერი უკუკავშირი ყოველი პასუხის შემდეგ, დროის ლიმიტისა და ჯარიმების გარეშე. სტატისტიკა არ იქმნება.",
   "examModeLabel": "გამოცდის რეჟიმი",
   "examModeDescription": "AI დახმარების გარეშე. მოქმედებს დროის ლიმიტები და ჯარიმები არასწორი პასუხებისთვის. ქმნის SRS სტატისტიკას.",
@@ -1104,8 +1112,8 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   },
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "კითხვები დალაგებულია SM-2 ალგორითმით უკეთესი დამახსოვრებისთვის, Anki-ს ჭკვიანი დალაგების ალგორითმზე დაყრდნობით",
+  "questionOrderBySection": "სექციების მიხედვით",
+  "questionOrderBySectionDesc": "შეკრიბეთ კითხვები სექციების მიხედვით და აჩვენეთ თითოეული სექცია ზრდადი თანმიმდევრობით",
   "srsStatsTitle": "სტატისტიკა",
   "srsResetAllStatsTooltip": "ყველა სტატისტიკის გადატვირთვა",
   "srsResetButton": "გადატვირთვა",

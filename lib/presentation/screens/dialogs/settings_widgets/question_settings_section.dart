@@ -134,10 +134,9 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
                       const SizedBox(width: 12),
                       _buildOrderOption(
                         context,
-                        order: QuestionOrder.spacedRepetition,
+                        order: QuestionOrder.bySection,
                         isSelected:
-                            widget.selectedOrder ==
-                            QuestionOrder.spacedRepetition,
+                            widget.selectedOrder == QuestionOrder.bySection,
                       ),
                     ],
                   ),
@@ -248,8 +247,8 @@ class _QuestionSettingsSectionState extends State<QuestionSettingsSection> {
       case QuestionOrder.random:
         label = AppLocalizations.of(context)!.questionOrderRandom;
         break;
-      case QuestionOrder.spacedRepetition:
-        label = AppLocalizations.of(context)!.questionOrderSpacedRepetition;
+      case QuestionOrder.bySection:
+        label = AppLocalizations.of(context)!.questionOrderBySection;
         break;
     }
 

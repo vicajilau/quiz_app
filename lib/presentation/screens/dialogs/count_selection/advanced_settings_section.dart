@@ -210,11 +210,9 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
                         ),
                       ),
                       DropdownMenuItem(
-                        value: QuestionOrder.spacedRepetition,
+                        value: QuestionOrder.bySection,
                         child: Text(
-                          AppLocalizations.of(
-                            context,
-                          )!.questionOrderSpacedRepetition,
+                          AppLocalizations.of(context)!.questionOrderBySection,
                         ),
                       ),
                     ],
@@ -430,8 +428,8 @@ class _AdvancedSettingsSectionState extends State<AdvancedSettingsSection> {
         return AppLocalizations.of(context)!.questionOrderAscendingDesc;
       case QuestionOrder.random:
         return AppLocalizations.of(context)!.questionOrderRandomDesc;
-      case QuestionOrder.spacedRepetition:
-        return AppLocalizations.of(context)!.questionOrderSpacedRepetitionDesc;
+      case QuestionOrder.bySection:
+        return AppLocalizations.of(context)!.questionOrderBySectionDesc;
     }
   }
 }

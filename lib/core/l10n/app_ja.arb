@@ -1457,6 +1457,14 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
+  "smartModeLabel": "スマートモード",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "特別な試験モードです。アプリが問題のセットと数を自動で決定し、復習統計を更新します。",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "studyModeDescription": "AIアシスタンス利用可能。回答直後のインスタント・フィードバック、時間制限や減点はありません。 統計は生成されません。",
   "examModeLabel": "試験モード",
   "examModeDescription": "AIアシスタンスなし。時間制限や不正解による減点が適用される場合があります。 SRS統計を生成します。",
@@ -2418,8 +2426,8 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   },
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "最適な記憶のためにSM-2アルゴリズムに基づいて質問を並べ替えます、Ankiのスマートオーダーアルゴリズムに基づく",
+  "questionOrderBySection": "セクション順",
+  "questionOrderBySectionDesc": "質問をセクションごとにまとめ、各セクションを昇順で表示します",
   "srsStatsTitle": "統計",
   "srsResetAllStatsTooltip": "すべての統計をリセット",
   "srsResetButton": "リセット",

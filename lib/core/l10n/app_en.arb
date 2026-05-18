@@ -554,13 +554,13 @@
   "@questionOrderAscendingDesc": {
     "description": "Subtitle explaining ascending question order setting"
   },
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "@questionOrderSpacedRepetition": {
-    "description": "Title for spaced repetition question order setting"
+  "questionOrderBySection": "Order by Sections",
+  "@questionOrderBySection": {
+    "description": "Title for section-based question order setting"
   },
-  "questionOrderSpacedRepetitionDesc": "Prioritize questions that are due for review, based on the Anki smart ordering algorithm",
-  "@questionOrderSpacedRepetitionDesc": {
-    "description": "Subtitle explaining spaced repetition question order setting"
+  "questionOrderBySectionDesc": "Group questions by their section and present each section in ascending order",
+  "@questionOrderBySectionDesc": {
+    "description": "Subtitle explaining section-based question order setting"
   },
   "questionOrderDescending": "Descending Order",
   "@questionOrderDescending": {
@@ -1900,9 +1900,17 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
+  "smartModeLabel": "Smart Mode",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
   "studyModeDescription": "AI assistance available. Instant feedback after each answer with no time limits or penalties. No stats generated.",
   "@studyModeDescription": {
     "description": "Description for study mode"
+  },
+  "smartModeDescription": "Special exam mode. The app determines the question set and count automatically, and updates review statistics.",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
   },
   "examModeLabel": "Exam Mode",
   "@examModeLabel": {

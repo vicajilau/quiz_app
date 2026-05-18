@@ -1449,6 +1449,14 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
+  "smartModeLabel": "स्मार्ट मोड",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "विशेष परीक्षा मोड। ऐप प्रश्नों का सेट और संख्या अपने आप तय करती है और रिवीजन आँकड़े अपडेट करती है।",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "studyModeDescription": "AI सहायता उपलब्ध है। समय सीमा या दंड के बिना प्रत्येक उत्तर के बाद त्वरित प्रतिक्रिया। कोई आँकड़े उत्पन्न नहीं किए गए।",
   "examModeLabel": "परीक्षा मोड",
   "examModeDescription": "कोई AI सहायता नहीं। समय सीमा और गलत उत्तरों के लिए जुर्माना लागू हो सकता है। SRS आँकड़े उत्पन्न करता है।",
@@ -2418,8 +2426,8 @@
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
   },
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "बेहतर याद रखने के लिए SM-2 एल्गोरिदम के आधार पर प्रश्नों का क्रम, Anki के स्मार्ट ऑर्डरिंग एल्गोरिदम पर आधारित",
+  "questionOrderBySection": "अनुभागों के अनुसार",
+  "questionOrderBySectionDesc": "प्रश्नों को उनके अनुभाग के आधार पर समूहित करें और प्रत्येक अनुभाग को आरोही क्रम में दिखाएँ",
   "srsStatsTitle": "आँकड़े",
   "srsResetAllStatsTooltip": "सभी आँकड़े रीसेट करें",
   "srsResetButton": "रीसेट करें",

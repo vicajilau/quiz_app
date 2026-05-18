@@ -52,7 +52,7 @@ class _QuestionCountSelectionDialogState
     with TickerProviderStateMixin {
   int _selectedCount = 10;
   bool _allQuestions = false;
-  bool _isStudyMode = false; // false = Exam, true = Study
+  QuizSelectionMode _quizMode = QuizSelectionMode.exam;
   bool _subtractPoints = false;
   double _penaltyAmount = 0.5;
   bool _enableMaxIncorrectAnswers = false;
@@ -163,8 +163,10 @@ class _QuestionCountSelectionDialogState
         }
         _questionCountController.text = _selectedCount.toString();
 
-        if (settings.isStudyMode != null) {
-          _isStudyMode = settings.isStudyMode!;
+        if (settings.isSmartMode == true) {
+          _quizMode = QuizSelectionMode.smart;
+        } else if (settings.isStudyMode == true) {
+          _quizMode = QuizSelectionMode.practice;
         }
 
         if (settings.subtractPoints != null) {
@@ -224,6 +226,17 @@ class _QuestionCountSelectionDialogState
         }
       }
     });
+  }
+
+  String _getModeDescription(AppLocalizations l10n) {
+    switch (_quizMode) {
+      case QuizSelectionMode.exam:
+        return l10n.examModeDescription;
+      case QuizSelectionMode.practice:
+        return l10n.studyModeDescription;
+      case QuizSelectionMode.smart:
+        return l10n.smartModeDescription;
+    }
   }
 
   void _decrementCount() {
@@ -290,7 +303,9 @@ class _QuestionCountSelectionDialogState
 
   Future<void> _startQuiz({bool useSelectedOnly = false}) async {
     int finalCount;
-    if (useSelectedOnly) {
+    if (_quizMode == QuizSelectionMode.smart) {
+      finalCount = widget.totalQuestions;
+    } else if (useSelectedOnly) {
       finalCount = widget.selectedQuestionCount;
     } else {
       finalCount = _selectedCount;
@@ -321,7 +336,8 @@ class _QuestionCountSelectionDialogState
       configurationService.saveQuizConfigSettings(
         QuizConfigStoredSettings(
           questionCount: finalCount,
-          isStudyMode: _isStudyMode,
+          isStudyMode: _quizMode == QuizSelectionMode.practice,
+          isSmartMode: _quizMode == QuizSelectionMode.smart,
           subtractPoints: _subtractPoints,
           penaltyAmount: _penaltyAmount,
           enableMaxIncorrectAnswers: _enableMaxIncorrectAnswers,
@@ -331,14 +347,14 @@ class _QuestionCountSelectionDialogState
           showCorrectAnswerCount: _showCorrectAnswerCount,
         ),
       );
-      // Also save exam time settings individually for now as they are still used elsewhere
       configurationService.saveExamTimeEnabled(_examTimeEnabled);
       configurationService.saveExamTimeMinutes(_examTimeMinutes);
 
       context.pop(
         QuizConfig(
           questionCount: finalCount,
-          isStudyMode: _isStudyMode,
+          isStudyMode: _quizMode == QuizSelectionMode.practice,
+          isSmartMode: _quizMode == QuizSelectionMode.smart,
           enableTimeLimit: _examTimeEnabled,
           timeLimitMinutes: _examTimeMinutes,
           subtractPoints: _subtractPoints,
@@ -373,12 +389,13 @@ class _QuestionCountSelectionDialogState
         ? const Color(0xFFA1A1AA)
         : const Color(0xFF3F3F46);
     final l10n = AppLocalizations.of(context)!;
+
     return Dialog(
       backgroundColor: Colors.transparent,
       elevation: 0,
       insetPadding: const EdgeInsets.symmetric(horizontal: 16),
       child: Container(
-        width: 520, // Max width from design
+        width: 520,
         decoration: BoxDecoration(
           color: cardColor,
           borderRadius: BorderRadius.circular(24),
@@ -395,7 +412,6 @@ class _QuestionCountSelectionDialogState
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Header (Pinned)
             Padding(
               padding: const EdgeInsets.fromLTRB(32, 32, 32, 32),
               child: Row(
@@ -403,7 +419,7 @@ class _QuestionCountSelectionDialogState
                 children: [
                   Expanded(
                     child: Text(
-                      AppLocalizations.of(context)!.startQuiz,
+                      l10n.startQuiz,
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
@@ -427,8 +443,6 @@ class _QuestionCountSelectionDialogState
                 ],
               ),
             ),
-
-            // Scrollable Content
             Flexible(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.fromLTRB(32, 0, 32, 24),
@@ -436,175 +450,187 @@ class _QuestionCountSelectionDialogState
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    // All Questions Toggle Section
-                    AnimatedSize(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.linear,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 12,
-                            ),
-                            decoration: BoxDecoration(
-                              color: controlBgColor,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Flexible(
-                                  child: Text(
-                                    l10n.allQuestionsLabel,
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500,
-                                      color: textColor,
+                    if (_quizMode != QuizSelectionMode.smart) ...[
+                      AnimatedSize(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.linear,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 12,
+                              ),
+                              decoration: BoxDecoration(
+                                color: controlBgColor,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      l10n.allQuestionsLabel,
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500,
+                                        color: textColor,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Switch(
-                                  value: _allQuestions,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _allQuestions = value;
-                                      if (_allQuestions) {
-                                        _selectedCount = widget.totalQuestions;
-                                        _questionCountController.text =
-                                            _selectedCount.toString();
-                                      } else if (_selectedCount ==
-                                              widget.totalQuestions &&
-                                          widget.totalQuestions > 1) {
-                                        // If turning OFF "All" and we are at max,
-                                        // decrement to allow the user to use the + button
-                                        _selectedCount =
-                                            widget.totalQuestions - 1;
-                                        _questionCountController.text =
-                                            _selectedCount.toString();
+                                  Switch(
+                                    value: _allQuestions,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _allQuestions = value;
+                                        if (_allQuestions) {
+                                          _selectedCount =
+                                              widget.totalQuestions;
+                                          _questionCountController.text =
+                                              _selectedCount.toString();
+                                        } else if (_selectedCount ==
+                                                widget.totalQuestions &&
+                                            widget.totalQuestions > 1) {
+                                          _selectedCount =
+                                              widget.totalQuestions - 1;
+                                          _questionCountController.text =
+                                              _selectedCount.toString();
 
-                                        // Ensure error limit doesn't exceed question count
-                                        if (_maxIncorrectAnswersLimit >
-                                            _selectedCount) {
-                                          _maxIncorrectAnswersLimit =
-                                              _selectedCount;
-                                          _maxIncorrectAnswersController.text =
-                                              _maxIncorrectAnswersLimit
-                                                  .toString();
+                                          if (_maxIncorrectAnswersLimit >
+                                              _selectedCount) {
+                                            _maxIncorrectAnswersLimit =
+                                                _selectedCount;
+                                            _maxIncorrectAnswersController
+                                                    .text =
+                                                _maxIncorrectAnswersLimit
+                                                    .toString();
+                                          }
                                         }
-                                      }
-                                    });
-                                  },
-                                  activeTrackColor: Theme.of(
-                                    context,
-                                  ).primaryColor,
-                                  activeThumbColor: Colors.white,
-                                  inactiveThumbColor: Colors.white,
-                                  inactiveTrackColor: isDark
-                                      ? const Color(0xFF52525B) // zinc600
-                                      : const Color(0xFFD4D4D8), // zinc300
-                                  trackOutlineColor: WidgetStateProperty.all(
-                                    Colors.transparent,
+                                      });
+                                    },
+                                    activeTrackColor: Theme.of(
+                                      context,
+                                    ).primaryColor,
+                                    activeThumbColor: Colors.white,
+                                    inactiveThumbColor: Colors.white,
+                                    inactiveTrackColor: isDark
+                                        ? const Color(0xFF52525B)
+                                        : const Color(0xFFD4D4D8),
+                                    trackOutlineColor: WidgetStateProperty.all(
+                                      Colors.transparent,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          if (!_allQuestions) ...[
-                            const SizedBox(height: 24),
-                            Text(
-                              l10n.numberInputLabel,
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: subTextColor,
+                                ],
                               ),
                             ),
-                            const SizedBox(height: 12),
-                            QuizdyStepperField(
-                              controller: _questionCountController,
-                              focusNode: _questionCountFocusNode,
-                              keyboardType: TextInputType.number,
-                              inputFormatters: [
-                                FilteringTextInputFormatter.digitsOnly,
-                              ],
-                              onIncrement: _incrementCount,
-                              onDecrement: _decrementCount,
-                              onEditingComplete: () {
-                                if (_questionCountController.text.isEmpty ||
-                                    int.tryParse(
-                                          _questionCountController.text,
-                                        ) ==
-                                        0) {
-                                  setState(() {
-                                    _selectedCount = 1;
-                                    _questionCountController.text = '1';
+                            if (!_allQuestions) ...[
+                              const SizedBox(height: 24),
+                              Text(
+                                l10n.numberInputLabel,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: subTextColor,
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              QuizdyStepperField(
+                                controller: _questionCountController,
+                                focusNode: _questionCountFocusNode,
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
+                                onIncrement: _incrementCount,
+                                onDecrement: _decrementCount,
+                                onEditingComplete: () {
+                                  if (_questionCountController.text.isEmpty ||
+                                      int.tryParse(
+                                            _questionCountController.text,
+                                          ) ==
+                                          0) {
+                                    setState(() {
+                                      _selectedCount = 1;
+                                      _questionCountController.text = '1';
 
-                                    if (_maxIncorrectAnswersLimit >
-                                        _selectedCount) {
-                                      _maxIncorrectAnswersLimit =
-                                          _selectedCount;
-                                      _maxIncorrectAnswersController.text =
-                                          _maxIncorrectAnswersLimit.toString();
-                                    }
-                                  });
-                                }
-                                _questionCountFocusNode.unfocus();
-                              },
-                              onChanged: (value) {
-                                if (value.isEmpty) {
-                                  setState(() => _selectedCount = 1);
-                                  return;
-                                }
-                                final val = int.tryParse(value);
-                                if (val != null) {
-                                  setState(() {
-                                    final clampedVal = val.clamp(
-                                      1,
-                                      widget.totalQuestions,
-                                    );
-                                    _selectedCount = clampedVal;
+                                      if (_maxIncorrectAnswersLimit >
+                                          _selectedCount) {
+                                        _maxIncorrectAnswersLimit =
+                                            _selectedCount;
+                                        _maxIncorrectAnswersController.text =
+                                            _maxIncorrectAnswersLimit
+                                                .toString();
+                                      }
+                                    });
+                                  }
+                                  _questionCountFocusNode.unfocus();
+                                },
+                                onChanged: (value) {
+                                  if (value.isEmpty) {
+                                    setState(() => _selectedCount = 1);
+                                    return;
+                                  }
+                                  final val = int.tryParse(value);
+                                  if (val != null) {
+                                    setState(() {
+                                      final clampedVal = val.clamp(
+                                        1,
+                                        widget.totalQuestions,
+                                      );
+                                      _selectedCount = clampedVal;
 
-                                    if (val != clampedVal) {
-                                      _questionCountController.text = clampedVal
-                                          .toString();
-                                      _questionCountController.selection =
-                                          TextSelection.fromPosition(
-                                            TextPosition(
-                                              offset: _questionCountController
-                                                  .text
-                                                  .length,
-                                            ),
-                                          );
-                                    }
+                                      if (val != clampedVal) {
+                                        _questionCountController.text =
+                                            clampedVal.toString();
+                                        _questionCountController.selection =
+                                            TextSelection.fromPosition(
+                                              TextPosition(
+                                                offset: _questionCountController
+                                                    .text
+                                                    .length,
+                                              ),
+                                            );
+                                      }
 
-                                    if (_maxIncorrectAnswersLimit >
-                                        _selectedCount) {
-                                      _maxIncorrectAnswersLimit =
-                                          _selectedCount;
-                                      _maxIncorrectAnswersController.text =
-                                          _maxIncorrectAnswersLimit.toString();
-                                    }
-                                  });
-                                }
-                              },
-                            ),
+                                      if (_maxIncorrectAnswersLimit >
+                                          _selectedCount) {
+                                        _maxIncorrectAnswersLimit =
+                                            _selectedCount;
+                                        _maxIncorrectAnswersController.text =
+                                            _maxIncorrectAnswersLimit
+                                                .toString();
+                                      }
+                                    });
+                                  }
+                                },
+                              ),
+                            ],
                           ],
-                        ],
+                        ),
                       ),
-                    ),
 
-                    const SizedBox(height: 32),
+                      const SizedBox(height: 32),
+                    ],
 
                     QuizModeSelection(
-                      isStudyMode: _isStudyMode,
-                      onModeChanged: (isStudyMode) {
+                      selectedMode: _quizMode,
+                      onModeChanged: (mode) {
                         setState(() {
-                          _isStudyMode = isStudyMode;
-                          if (_isStudyMode) {
+                          _quizMode = mode;
+                          if (_quizMode == QuizSelectionMode.practice) {
                             _subtractPoints = false;
                             _enableMaxIncorrectAnswers = false;
+                          }
+
+                          if (_quizMode == QuizSelectionMode.smart) {
+                            _questionCountController.text = widget
+                                .totalQuestions
+                                .toString();
+                            _selectedCount = widget.totalQuestions;
+                            _allQuestions = true;
+                            _questionOrder = QuestionOrder.bySection;
                           }
                         });
                       },
@@ -614,103 +640,128 @@ class _QuestionCountSelectionDialogState
                     ),
 
                     const SizedBox(height: 12),
-                    CollapsibleExamConfig(
-                      isDark: isDark,
-                      child: AdvancedSettingsSection(
-                        isStudyMode: _isStudyMode,
-                        isDark: isDark,
-                        textColor: textColor,
-                        subTextColor: subTextColor,
-                        borderColor: borderColor,
-                        primaryColor: Theme.of(context).primaryColor,
-                        controlBgColor: controlBgColor,
-                        controlIconColor: controlIconColor,
-                        subtractPoints: _subtractPoints,
-                        penaltyAmount: _penaltyAmount,
-                        penaltyController: _penaltyController,
-                        penaltyFocusNode: _penaltyFocusNode,
-                        onSubtractPointsChanged: (value) {
-                          setState(() {
-                            _subtractPoints = value;
-                            if (_subtractPoints && _penaltyAmount <= 0.0) {
-                              _penaltyAmount = 0.05;
-                              _penaltyController.text = '0.05';
-                            }
-                          });
-                        },
-                        onPenaltyAmountChanged: (val) {
-                          setState(() {
-                            _penaltyAmount = val;
-                          });
-                        },
-                        onIncrementPenalty: _incrementPenalty,
-                        onDecrementPenalty: _decrementPenalty,
-                        enableMaxIncorrectAnswers: _enableMaxIncorrectAnswers,
-                        maxIncorrectAnswersLimit: _maxIncorrectAnswersLimit,
-                        maxIncorrectAnswersController:
-                            _maxIncorrectAnswersController,
-                        maxIncorrectAnswersFocusNode:
-                            _maxIncorrectAnswersFocusNode,
-                        onEnableMaxIncorrectAnswersChanged: (value) {
-                          setState(() {
-                            _enableMaxIncorrectAnswers = value;
-                          });
-                        },
-                        onMaxIncorrectAnswersLimitChanged: (val) {
-                          setState(() {
-                            _maxIncorrectAnswersLimit = val.clamp(
-                              0,
-                              _selectedCount,
-                            );
-                            if (val != _maxIncorrectAnswersLimit) {
-                              _maxIncorrectAnswersController.text =
-                                  _maxIncorrectAnswersLimit.toString();
-                              _maxIncorrectAnswersController.selection =
-                                  TextSelection.fromPosition(
-                                    TextPosition(
-                                      offset: _maxIncorrectAnswersController
-                                          .text
-                                          .length,
-                                    ),
-                                  );
-                            }
-                          });
-                        },
-                        onIncrementMaxIncorrect: _incrementMaxIncorrect,
-                        onDecrementMaxIncorrect: _decrementMaxIncorrect,
-                        onMaxIncorrectErrorChanged: (hasError) {
-                          if (mounted) {
-                            setState(() => _hasMaxIncorrectError = hasError);
-                          }
-                        },
-                        questionOrder: _questionOrder,
-                        onQuestionOrderChanged: (value) =>
-                            setState(() => _questionOrder = value),
-                        randomizeAnswers: _randomizeAnswers,
-                        onRandomizeAnswersChanged: (value) =>
-                            setState(() => _randomizeAnswers = value),
-                        showCorrectAnswerCount: _showCorrectAnswerCount,
-                        onShowCorrectAnswerCountChanged: (value) =>
-                            setState(() => _showCorrectAnswerCount = value),
-                        examTimeEnabled: _examTimeEnabled,
-                        onExamTimeEnabledChanged: (value) =>
-                            setState(() => _examTimeEnabled = value),
-                        examTimeMinutes: _examTimeMinutes,
-                        onExamTimeMinutesChanged: (value) =>
-                            setState(() => _examTimeMinutes = value),
-                        onExamTimeErrorChanged: (hasError) {
-                          if (mounted) {
-                            setState(() => _hasExamTimeError = hasError);
-                          }
-                        },
+                    AnimatedSize(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.linear,
+                      child: Text(
+                        _getModeDescription(l10n),
+                        style: TextStyle(
+                          fontSize: 13,
+                          height: 1.35,
+                          color: subTextColor,
+                        ),
                       ),
                     ),
+
+                    if (_quizMode != QuizSelectionMode.smart) ...[
+                      const SizedBox(height: 12),
+                      CollapsibleExamConfig(
+                        isDark: isDark,
+                        child: AdvancedSettingsSection(
+                          isStudyMode: _quizMode == QuizSelectionMode.practice,
+                          isDark: isDark,
+                          textColor: textColor,
+                          subTextColor: subTextColor,
+                          borderColor: borderColor,
+                          primaryColor: Theme.of(context).primaryColor,
+                          controlBgColor: controlBgColor,
+                          controlIconColor: controlIconColor,
+                          subtractPoints: _subtractPoints,
+                          penaltyAmount: _penaltyAmount,
+                          penaltyController: _penaltyController,
+                          penaltyFocusNode: _penaltyFocusNode,
+                          onSubtractPointsChanged: (value) {
+                            setState(() {
+                              _subtractPoints = value;
+                              if (_subtractPoints && _penaltyAmount <= 0.0) {
+                                _penaltyAmount = 0.05;
+                                _penaltyController.text = '0.05';
+                              }
+                            });
+                          },
+                          onPenaltyAmountChanged: (val) {
+                            setState(() {
+                              _penaltyAmount = val;
+                            });
+                          },
+                          onIncrementPenalty: _incrementPenalty,
+                          onDecrementPenalty: _decrementPenalty,
+                          enableMaxIncorrectAnswers: _enableMaxIncorrectAnswers,
+                          maxIncorrectAnswersLimit: _maxIncorrectAnswersLimit,
+                          maxIncorrectAnswersController:
+                              _maxIncorrectAnswersController,
+                          maxIncorrectAnswersFocusNode:
+                              _maxIncorrectAnswersFocusNode,
+                          onEnableMaxIncorrectAnswersChanged: (value) {
+                            setState(() {
+                              _enableMaxIncorrectAnswers = value;
+                            });
+                          },
+                          onMaxIncorrectAnswersLimitChanged: (val) {
+                            setState(() {
+                              _maxIncorrectAnswersLimit = val.clamp(
+                                0,
+                                _selectedCount,
+                              );
+                              if (val != _maxIncorrectAnswersLimit) {
+                                _maxIncorrectAnswersController.text =
+                                    _maxIncorrectAnswersLimit.toString();
+                                _maxIncorrectAnswersController.selection =
+                                    TextSelection.fromPosition(
+                                      TextPosition(
+                                        offset: _maxIncorrectAnswersController
+                                            .text
+                                            .length,
+                                      ),
+                                    );
+                              }
+                              if (_maxIncorrectAnswersLimit > _selectedCount) {
+                                _maxIncorrectAnswersLimit = _selectedCount;
+                                _maxIncorrectAnswersController.text =
+                                    _maxIncorrectAnswersLimit.toString();
+                              }
+                            });
+                          },
+                          onIncrementMaxIncorrect: _incrementMaxIncorrect,
+                          onDecrementMaxIncorrect: _decrementMaxIncorrect,
+                          onMaxIncorrectErrorChanged: (hasError) {
+                            if (mounted) {
+                              setState(() => _hasMaxIncorrectError = hasError);
+                            }
+                          },
+                          questionOrder: _questionOrder,
+                          onQuestionOrderChanged: (value) => setState(() {
+                            _questionOrder = value;
+                          }),
+                          randomizeAnswers: _randomizeAnswers,
+                          onRandomizeAnswersChanged: (value) => setState(() {
+                            _randomizeAnswers = value;
+                          }),
+                          showCorrectAnswerCount: _showCorrectAnswerCount,
+                          onShowCorrectAnswerCountChanged: (value) =>
+                              setState(() {
+                                _showCorrectAnswerCount = value;
+                              }),
+                          examTimeEnabled: _examTimeEnabled,
+                          onExamTimeEnabledChanged: (value) => setState(() {
+                            _examTimeEnabled = value;
+                          }),
+                          examTimeMinutes: _examTimeMinutes,
+                          onExamTimeMinutesChanged: (value) => setState(() {
+                            _examTimeMinutes = value;
+                          }),
+                          onExamTimeErrorChanged: (hasError) {
+                            if (mounted) {
+                              setState(() => _hasExamTimeError = hasError);
+                            }
+                          },
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),
             ),
-
-            // Action Buttons (Fixed Footer)
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -721,7 +772,6 @@ class _QuestionCountSelectionDialogState
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      // Start with selected questions button
                       if (widget.selectedQuestionCount > 0) ...[
                         QuizdyButton(
                           type: QuizdyButtonType.primary,
@@ -739,10 +789,8 @@ class _QuestionCountSelectionDialogState
                         ),
                         const SizedBox(height: 12),
                       ],
-
-                      // Start Button
                       QuizdyButton(
-                        title: AppLocalizations.of(context)!.startQuiz,
+                        title: l10n.startQuiz,
                         icon: LucideIcons.play,
                         type: widget.selectedQuestionCount > 0
                             ? QuizdyButtonType.secondary

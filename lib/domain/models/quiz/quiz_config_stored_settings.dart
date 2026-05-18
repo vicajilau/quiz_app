@@ -26,6 +26,9 @@ class QuizConfigStoredSettings {
   /// Whether the quiz should run in Study Mode (true) or Exam Mode (false).
   final bool? isStudyMode;
 
+  /// Whether the quiz should run in smart exam mode.
+  final bool? isSmartMode;
+
   /// Whether to subtract points for incorrect answers.
   final bool? subtractPoints;
 
@@ -51,6 +54,7 @@ class QuizConfigStoredSettings {
   const QuizConfigStoredSettings({
     this.questionCount,
     this.isStudyMode,
+    this.isSmartMode,
     this.subtractPoints,
     this.penaltyAmount,
     this.enableMaxIncorrectAnswers,
