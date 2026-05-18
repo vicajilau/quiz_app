@@ -26,7 +26,7 @@ class AiChunkSelectorWidget extends StatelessWidget {
   final bool enabled;
   final Set<int> selectedIndices;
   final ValueChanged<bool> onToggle;
-  final ValueChanged<int> onChunkToggled;
+  final ValueChanged<Set<int>> onSelectedIndicesChanged;
 
   const AiChunkSelectorWidget({
     super.key,
@@ -34,8 +34,42 @@ class AiChunkSelectorWidget extends StatelessWidget {
     required this.enabled,
     required this.selectedIndices,
     required this.onToggle,
-    required this.onChunkToggled,
+    required this.onSelectedIndicesChanged,
   });
+
+  bool get _allSelected =>
+      chunks.every((c) => selectedIndices.contains(c.chunkIndex));
+
+  void _handleAllToggled() {
+    final allIndices = chunks.map((c) => c.chunkIndex).toSet();
+    onSelectedIndicesChanged(allIndices);
+  }
+
+  void _handleChunkToggled(int chunkIndex) {
+    final allIndices = chunks.map((c) => c.chunkIndex).toSet();
+    Set<int> newSelected = Set.from(selectedIndices);
+
+    if (_allSelected) {
+      // Deselect "all": keep only the tapped chunk
+      newSelected = {chunkIndex};
+    } else {
+      if (newSelected.contains(chunkIndex)) {
+        newSelected.remove(chunkIndex);
+        if (newSelected.isEmpty) {
+          // Nothing left selected → revert to all
+          newSelected = allIndices;
+        }
+      } else {
+        newSelected.add(chunkIndex);
+        // If all specific chunks are now selected → switch to "all"
+        if (newSelected.containsAll(allIndices)) {
+          newSelected = allIndices;
+        }
+      }
+    }
+
+    onSelectedIndicesChanged(newSelected);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,18 +115,26 @@ class AiChunkSelectorWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: SingleChildScrollView(
                 child: Column(
-                  children: List.generate(chunks.length, (i) {
-                    final chunk = chunks[i];
-                    final isSelected = selectedIndices.contains(
-                      chunk.chunkIndex,
-                    );
-                    return _ChunkItem(
-                      chunk: chunk,
-                      isSelected: isSelected,
-                      onTap: () => onChunkToggled(chunk.chunkIndex),
-                      isLast: i == chunks.length - 1,
-                    );
-                  }),
+                  children: [
+                    _ChunkItem(
+                      label: localizations.aiAllSections,
+                      isSelected: _allSelected,
+                      onTap: _handleAllToggled,
+                      isLast: chunks.isEmpty,
+                    ),
+                    ...List.generate(chunks.length, (i) {
+                      final chunk = chunks[i];
+                      final isSelected =
+                          !_allSelected &&
+                          selectedIndices.contains(chunk.chunkIndex);
+                      return _ChunkItem(
+                        label: chunk.title,
+                        isSelected: isSelected,
+                        onTap: () => _handleChunkToggled(chunk.chunkIndex),
+                        isLast: i == chunks.length - 1,
+                      );
+                    }),
+                  ],
                 ),
               ),
             ),
@@ -104,13 +146,13 @@ class AiChunkSelectorWidget extends StatelessWidget {
 }
 
 class _ChunkItem extends StatelessWidget {
-  final StudyChunk chunk;
+  final String label;
   final bool isSelected;
   final VoidCallback onTap;
   final bool isLast;
 
   const _ChunkItem({
-    required this.chunk,
+    required this.label,
     required this.isSelected,
     required this.onTap,
     required this.isLast,
@@ -161,12 +203,11 @@ class _ChunkItem extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    chunk.title,
+                    label,
                     style: TextStyle(
                       fontSize: 14,
-                      fontWeight: isSelected
-                          ? FontWeight.w500
-                          : FontWeight.normal,
+                      fontWeight:
+                          isSelected ? FontWeight.w500 : FontWeight.normal,
                       color: isSelected ? colors.title : colors.subtitle,
                     ),
                     overflow: TextOverflow.ellipsis,
