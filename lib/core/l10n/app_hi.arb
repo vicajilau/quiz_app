@@ -1486,7 +1486,7 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
-  "missingStudySectionTooltip": "यह प्रश्न किसी भी अध्ययन अनुभाग से संबद्ध नहीं है",
+  "missingStudySectionTooltip": "किसी अध्ययन अनुभाग से नहीं जुड़ा",
   "@missingStudySectionTooltip": {
     "description": "Tooltip text for the unlinked study section warning"
   },
@@ -1512,7 +1512,7 @@
   "previewLatexTooltip": "LaTeX रेंडरिंग का पूर्वावलोकन करें",
   "okButton": "ठीक है",
   "aiEnterContentTitle": "सामग्री दर्ज करें",
-  "aiEnterContentDescription": "प्रश्न उत्पन्न करने के लिए विषय दर्ज करें या सामग्री पेस्ट करें",
+  "aiEnterContentDescription": "कोई भी टेक्स्ट पेस्ट करें या फ़ाइलें सामग्री स्रोत के रूप में संलग्न करें",
   "aiContentFieldHint": "\"द्वितीय विश्व युद्ध का इतिहास\" जैसा कोई विषय दर्ज करें या यहां पाठ पेस्ट करें...",
   "aiAttachFileHint": "फ़ाइल संलग्न करें (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "फ़ाइल यहाँ छोड़ें",
@@ -1967,18 +1967,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "दस्तावेज़ के किन अनुभागों से प्रश्न बनाने हैं, यह चुनने के लिए सक्षम करें",
+  "aiSelectSectionsSubtitle": "चुनें कि प्रश्न बनाने के लिए कौन से अध्ययन अनुभागों का उपयोग किया जाएगा",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "सभी अनुभाग",
   "aiSelectQuestionsTitle": "प्रश्न चुनें",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "अध्ययन अनुभाग बनाने के लिए किन क्विज़ प्रश्नों को संदर्भ के रूप में उपयोग करना है, यह चुनने हेतु सक्षम करें",
+  "aiSelectQuestionsSubtitle": "जनरेशन संदर्भ के रूप में Quiz मोड के प्रश्न चुनें",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "सभी प्रश्न",
   "onboardingStudyContentTitle": "अपनी सामग्री का अध्ययन करें",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"

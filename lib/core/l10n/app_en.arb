@@ -698,7 +698,7 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
-  "missingStudySectionTooltip": "This question is not linked to any study section",
+  "missingStudySectionTooltip": "Not linked to a study section",
   "@missingStudySectionTooltip": {
     "description": "Tooltip text for the unlinked study section warning"
   },
@@ -1426,7 +1426,7 @@
   "@aiEnterContentTitle": {
     "description": "Title for the step 2 of AI question generation"
   },
-  "aiEnterContentDescription": "Provide unformatted text or attach files to convert into study topics automatically.",
+  "aiEnterContentDescription": "Paste any text or attach files as the content source",
   "@aiEnterContentDescription": {
     "description": "Description telling the user to enter text or attach files"
   },
@@ -1434,17 +1434,25 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "Enable to choose which sections of the document to generate questions from",
+  "aiSelectSectionsSubtitle": "Choose which study sections will be used to generate questions",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
+  },
+  "aiAllSections": "All sections",
+  "@aiAllSections": {
+    "description": "Label for the 'All sections' option in the chunk section selector"
   },
   "aiSelectQuestionsTitle": "Select Questions",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "Enable to choose which quiz questions to use as context for generating study sections",
+  "aiSelectQuestionsSubtitle": "Choose Quiz mode questions as generation context",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
+  },
+  "aiAllQuestions": "All questions",
+  "@aiAllQuestions": {
+    "description": "Label for the 'All questions' option in the question selector"
   },
   "aiSelectComponentTypesTitle": "Select Component Types",
   "@aiSelectComponentTypesTitle": {

@@ -1505,7 +1505,7 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
-  "missingStudySectionTooltip": "Galdera hau ez dago inongo ikasketa-atalekin lotuta",
+  "missingStudySectionTooltip": "Ez dago ikasketa-atal batekin lotuta",
   "@missingStudySectionTooltip": {
     "description": "Tooltip text for the unlinked study section warning"
   },
@@ -1535,7 +1535,7 @@
   "previewLatexTooltip": "Ikusi LaTeX errendatzea",
   "okButton": "Ados",
   "aiEnterContentTitle": "Sartu edukia",
-  "aiEnterContentDescription": "Sartu gaia edo itsatsi edukia galderak sortzeko",
+  "aiEnterContentDescription": "Itsatsi edozein testu edo erantsi fitxategiak edukiaren iturri gisa",
   "aiContentFieldHint": "Sartu gai bat, adibidez \"Bigarren Mundu Gerrako historia\" edo itsatsi testua hemen...",
   "aiAttachFileHint": "Erantsi fitxategia (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "Askatu fitxategia hemen",
@@ -1964,18 +1964,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "Gaitu dokumentuko zein ataletatik galderak sortzeko aukeratzeko",
+  "aiSelectSectionsSubtitle": "Aukeratu zein ikasketa-atal erabiliko diren galderak sortzeko",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "Atal guztiak",
   "aiSelectQuestionsTitle": "Hautatu galderak",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "Gaitu ikasketa-atalak sortzeko testuinguru gisa zein galdetegi-galdera erabiliko diren aukeratzeko",
+  "aiSelectQuestionsSubtitle": "Aukeratu Quiz moduko galderak sorkuntza-testuinguru gisa",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "Galdera guztiak",
   "onboardingStudyContentTitle": "Ikasi zure edukia",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"
