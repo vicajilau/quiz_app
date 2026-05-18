@@ -168,6 +168,16 @@
       }
     }
   },
+  "confirmDeleteSectionWithQuestionsMessage": "This section has associated questions. Are you sure you want to delete `{sectionName}`?",
+  "@confirmDeleteSectionWithQuestionsMessage": {
+    "description": "Warning message when deleting a study section that has associated questions.",
+    "placeholders": {
+      "sectionName": {
+        "type": "String",
+        "example": "Chapter 1"
+      }
+    }
+  },
   "deleteButton": "Delete",
   "@deleteButton": {
     "description": "Button text for confirming deletion."
@@ -427,6 +437,56 @@
     "description": "Button text to start the quiz"
   },
   "startQuizFromStudy": "Test your knowledge",
+  "studySectionPracticePrompt": "Practice Section Questions",
+  "@studySectionPracticePrompt": {
+    "description": "Title of the banner prompting to practice the questions linked to this section"
+  },
+  "studySectionPracticeSubtitle": "This section has {count, plural, =1{1 linked question} other{{count} linked questions}}. Practice them now to reinforce your learning!",
+  "studySectionMasteryTooltip": "Section mastery: {percentage}% ({correct} of {total} questions correct on the latest attempt)",
+  "studyScreenLearnedContent": "Learned content",
+  "@studyScreenLearnedContent": {
+    "description": "Label for the card displaying the overall percentage of learned content"
+  },
+  "studyScreenLearnedQuestionsCount": "{correct} of {total} questions mastered",
+  "@studyScreenLearnedQuestionsCount": {
+    "description": "Label indicating the count of questions learned/mastered out of the total in the content",
+    "placeholders": {
+      "correct": {
+        "type": "int",
+        "example": "12"
+      },
+      "total": {
+        "type": "int",
+        "example": "15"
+      }
+    }
+  },
+  "@studySectionMasteryTooltip": {
+    "description": "Tooltip showing the correct answer percentage for the questions in the study section based on latest SRS results",
+    "placeholders": {
+      "percentage": {
+        "type": "String",
+        "example": "80"
+      },
+      "correct": {
+        "type": "int",
+        "example": "8"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "@studySectionPracticeSubtitle": {
+    "description": "Subtitle explaining how many questions are linked to the section",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
   "@startQuizFromStudy": {
     "description": "Button text to start the quiz from the study screen"
   },
@@ -637,6 +697,10 @@
   "missingExplanationTooltip": "This question is missing an explanation",
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
+  },
+  "missingStudySectionTooltip": "This question is not linked to any study section",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
   },
   "questionTypeTooltip": "Question type: {type}",
   "@questionTypeTooltip": {
@@ -3041,5 +3105,13 @@
   "modeNoStats": "No Stats Generated",
   "@modeNoStats": {
     "description": "Indicates that the mode does not generate statistics"
+  },
+  "linkStudySection": "Link to study section",
+  "@linkStudySection": {
+    "description": "Label for the dropdown to link a question to a study section"
+  },
+  "noStudySection": "None",
+  "@noStudySection": {
+    "description": "Option in the dropdown to not link the question to any study section"
   }
 }

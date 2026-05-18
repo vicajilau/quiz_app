@@ -436,6 +436,7 @@ class _QuizCompletedViewState extends State<QuizCompletedView> {
         QuizExecutionStarted(
           failedQuestions,
           quizConfig: widget.state.quizConfig,
+          fileIdentifier: widget.state.fileIdentifier,
         ),
       );
     }

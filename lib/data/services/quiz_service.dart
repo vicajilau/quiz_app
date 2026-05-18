@@ -170,6 +170,7 @@ class QuizService {
       options: shuffledOptions,
       correctAnswers: newCorrectAnswers,
       explanation: question.explanation,
+      studySectionId: question.studySectionId,
     );
   }
 
