@@ -101,7 +101,7 @@ void main() {
 
       // Should find the unlinked study section warning
       expect(
-        find.text('This question is not linked to any study section'),
+        find.text('Not linked to a study section'),
         findsOneWidget,
       );
     });
@@ -126,7 +126,7 @@ void main() {
 
         // Should NOT find the unlinked study section warning
         expect(
-          find.text('This question is not linked to any study section'),
+          find.text('Not linked to a study section'),
           findsNothing,
         );
       },
