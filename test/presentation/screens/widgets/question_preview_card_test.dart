@@ -100,10 +100,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Should find the unlinked study section warning
-      expect(
-        find.text('This question is not linked to any study section'),
-        findsOneWidget,
-      );
+      expect(find.text('Not linked to a study section'), findsOneWidget);
     });
 
     testWidgets(
@@ -125,10 +122,7 @@ void main() {
         await tester.pumpAndSettle();
 
         // Should NOT find the unlinked study section warning
-        expect(
-          find.text('This question is not linked to any study section'),
-          findsNothing,
-        );
+        expect(find.text('Not linked to a study section'), findsNothing);
       },
     );
   });

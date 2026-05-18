@@ -294,13 +294,9 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                               }
                             });
                           },
-                          onChunkToggled: (index) {
+                          onSelectedIndicesChanged: (indices) {
                             setState(() {
-                              if (_selectedChunkIndices.contains(index)) {
-                                _selectedChunkIndices.remove(index);
-                              } else {
-                                _selectedChunkIndices.add(index);
-                              }
+                              _selectedChunkIndices = indices;
                             });
                           },
                         ),
@@ -321,13 +317,9 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                               }
                             });
                           },
-                          onQuestionToggled: (index) {
+                          onSelectedIndicesChanged: (indices) {
                             setState(() {
-                              if (_selectedQuestionIndices.contains(index)) {
-                                _selectedQuestionIndices.remove(index);
-                              } else {
-                                _selectedQuestionIndices.add(index);
-                              }
+                              _selectedQuestionIndices = indices;
                             });
                           },
                         ),

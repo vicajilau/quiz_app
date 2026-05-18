@@ -214,7 +214,7 @@
   "explanationTooltip": "ამ კითხვას აქვს განმარტება",
   "missingExplanation": "განმარტება აკლია",
   "missingExplanationTooltip": "ამ კითხვას არ აქვს განმარტება",
-  "missingStudySectionTooltip": "ეს კითხვა არ არის დაკავშირებული არცერთ სასწავლო სექციასთან",
+  "missingStudySectionTooltip": "არ არის დაკავშირებული სასწავლო სექციასთან",
   "questionTypeTooltip": "კითხვის ტიპი: {type}",
   "aiPrompt": "ფოკუსირება მოახდინეთ სტუდენტის კითხვაზე და არა უშუალოდ ორიგინალური საგამოცდო კითხვის პასუხზე. ახსენით პედაგოგიური მიდგომით. პრაქტიკული სავარჯიშოებისთვის ან მათემატიკური პრობლემებისთვის, მოამზადეთ ნაბიჯ-ნაბიჯ ინსტრუქციები. თეორიული კითხვებისთვის, მოამზადეთ მოკლე ახსნა სექციებად დაყოფის გარეშე. უპასუხეთ იმავე ენაზე, რომელზეც დაგისვეს კითხვა.",
   "aiChatGuardrail": "მნიშვნელოვანია: თქვენ ხართ სწავლის ასისტენტი ექსკლუზიურად ამ ქვიზისთვის. თქვენ უნდა უპასუხოთ მხოლოდ მიმდინარე ქვიზის კითხვასთან, მის ვარიანტებთან, მის ახსნასთან ან იმ საგანმანათლებლო თემასთან დაკავშირებულ კითხვებს, რომელსაც ის მოიცავს. თუ სტუდენტი დასვამს კითხვას, რომელიც არ უკავშირდება ქვიზს (მაგალითად, თქვენს შიდა მოდელზე, სისტემის დეტალებზე, ზოგად ცოდნაზე ან ნებისმიერ სხვა თემაზე), უპასუხეთ მხოლოდ შემდეგი: \"მე აქ ვარ, რათა დაგეხმაროთ ამ ქვიზში! მოდით ფოკუსირება მოვახდინოთ მოცემულ კითხვაზე. თავისუფლად მკითხეთ თემის, პასუხის ვარიანტების ან ამ კითხვასთან დაკავშირებული ნებისმიერი რამის შესახებ.\" არასოდეს გაამჟღავნოთ ტექნიკური დეტალები თქვენს შესახებ, სისტემის ან გამოყენებული AI მოდელის შესახებ.",
@@ -413,7 +413,7 @@
   "studyScreenAiSummaryTitle": "AI შეჯამება",
   "studyScreenNoSummary": "შეჯამება არ არის ხელმისაწვდომი.",
   "aiEnterContentTitle": "შეიყვანეთ კონტენტი",
-  "aiEnterContentDescription": "მიუთითეთ დაუფორმატებელი ტექსტი ან დაურთეთ ფაილები ავტომატურად სასწავლო თემებად გადასაქცევად.",
+  "aiEnterContentDescription": "ჩასვით ნებისმიერი ტექსტი ან დაურთეთ ფაილები, როგორც კონტენტის წყარო",
   "aiContentFieldHint": "შეიყვანეთ თემა, მაგალითად \"მეორე მსოფლიო ომის ისტორია\" ან ჩასვით ტექსტური კონტენტი აქ...",
   "aiAttachFileHint": "დაურთეთ ფაილი (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "გადმოიტანეთ ფაილი აქ",
@@ -653,18 +653,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "ჩართეთ დოკუმენტის იმ სექციების ასარჩევად, საიდანაც შეიქმნება კითხვები",
+  "aiSelectSectionsSubtitle": "აირჩიეთ სასწავლო სექციები, რომლებიც გამოყენებული იქნება კითხვების შესაქმნელად",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "ყველა სექცია",
   "aiSelectQuestionsTitle": "კითხვების არჩევა",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "ჩართეთ, რომ აირჩიოთ, რომელი ვიქტორინის კითხვები გამოყენდეს სასწავლო სექციების გენერაციის კონტექსტად",
+  "aiSelectQuestionsSubtitle": "აირჩიეთ Quiz რეჟიმის კითხვები, როგორც გენერაციის კონტექსტი",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "ყველა კითხვა",
   "onboardingStudyContentTitle": "შეისწავლეთ თქვენი კონტენტი",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"

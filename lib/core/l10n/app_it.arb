@@ -1589,7 +1589,7 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
-  "missingStudySectionTooltip": "Questa domanda non è collegata a nessuna sezione di studio",
+  "missingStudySectionTooltip": "Non collegata a una sezione di studio",
   "@missingStudySectionTooltip": {
     "description": "Tooltip text for the unlinked study section warning"
   },
@@ -1619,7 +1619,7 @@
   "previewLatexTooltip": "Anteprima rendering LaTeX",
   "okButton": "OK",
   "aiEnterContentTitle": "Inserisci contenuto",
-  "aiEnterContentDescription": "Inserisci l'argomento o incolla il contenuto da cui generare le domande",
+  "aiEnterContentDescription": "Incolla qualsiasi testo o allega file come fonte del contenuto",
   "aiContentFieldHint": "Inserisci un argomento come \"Storia della Seconda Guerra Mondiale\" o incolla il testo qui...",
   "aiAttachFileHint": "Allega file (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "Rilascia il file qui",
@@ -2018,18 +2018,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "Abilita per scegliere da quali sezioni del documento generare le domande",
+  "aiSelectSectionsSubtitle": "Scegli quali sezioni di studio verranno usate per generare domande",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "Tutte le sezioni",
   "aiSelectQuestionsTitle": "Seleziona domande",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "Abilita per scegliere quali domande del quiz usare come contesto per generare sezioni di studio",
+  "aiSelectQuestionsSubtitle": "Scegli le domande del Quiz come contesto di generazione",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "Tutte le domande",
   "onboardingStudyContentTitle": "Studia il tuo contenuto",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"

@@ -52,7 +52,7 @@
   "@aiEnterContentTitle": {
     "description": "Title for the step 2 of AI question generation"
   },
-  "aiEnterContentDescription": "أدخل الموضوع أو الصق المحتوى لتوليد الأسئلة منه",
+  "aiEnterContentDescription": "الصق أي نص أو أرفق ملفات كمصدر للمحتوى",
   "@aiEnterContentDescription": {
     "description": "Description for the content input step"
   },
@@ -1676,7 +1676,7 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
-  "missingStudySectionTooltip": "هذا السؤال غير مرتبط بأي قسم دراسي",
+  "missingStudySectionTooltip": "غير مرتبط بقسم دراسي",
   "@missingStudySectionTooltip": {
     "description": "Tooltip text for the unlinked study section warning"
   },
@@ -2366,18 +2366,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "قم بتمكينه لاختيار أقسام المستند التي سيتم إنشاء الأسئلة منها",
+  "aiSelectSectionsSubtitle": "اختر أقسام الدراسة التي ستُستخدم لإنشاء الأسئلة",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "جميع الأقسام",
   "aiSelectQuestionsTitle": "تحديد الأسئلة",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "قم بالتمكين لاختيار أسئلة الاختبار التي ستُستخدم كسياق لإنشاء أقسام الدراسة",
+  "aiSelectQuestionsSubtitle": "اختر أسئلة وضع الاختبار كسياق للإنشاء",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "جميع الأسئلة",
   "onboardingStudyContentTitle": "ادرس المحتوى الخاص بك",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"

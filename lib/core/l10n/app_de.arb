@@ -43,7 +43,7 @@
   "@aiEnterContentTitle": {
     "description": "Title for the step 2 of AI question generation"
   },
-  "aiEnterContentDescription": "Geben Sie das Thema ein oder fügen Sie Inhalte ein, um Fragen zu generieren",
+  "aiEnterContentDescription": "Füge beliebigen Text ein oder hänge Dateien als Inhaltsquelle an",
   "@aiEnterContentDescription": {
     "description": "Description for the content input step"
   },
@@ -1648,7 +1648,7 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
-  "missingStudySectionTooltip": "Diese Frage ist mit keinem Lernabschnitt verknüpft",
+  "missingStudySectionTooltip": "Nicht mit einem Lernabschnitt verknüpft",
   "@missingStudySectionTooltip": {
     "description": "Tooltip text for the unlinked study section warning"
   },
@@ -2060,18 +2060,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "Aktivieren, um auszuwählen, aus welchen Abschnitten des Dokuments Fragen generiert werden sollen",
+  "aiSelectSectionsSubtitle": "Wähle aus, welche Lernabschnitte für die Fragenerstellung verwendet werden",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "Alle Abschnitte",
   "aiSelectQuestionsTitle": "Fragen auswählen",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "Aktivieren, um auszuwählen, welche Quizfragen als Kontext zum Generieren von Lernabschnitten verwendet werden",
+  "aiSelectQuestionsSubtitle": "Wähle Quiz-Fragen als Kontext für die Generierung",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "Alle Fragen",
   "onboardingStudyContentTitle": "Lerne deine Inhalte",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"
