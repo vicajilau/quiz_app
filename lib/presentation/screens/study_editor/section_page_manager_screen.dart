@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart' hide Page;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/quiz/study_page.dart';
 import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_cubit.dart';
