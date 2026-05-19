@@ -512,7 +512,7 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
       return ReorderableListView.builder(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 88),
         buildDefaultDragHandles: false,
-        onReorder: _onReorder,
+        onReorderItem: _onReorder,
         itemCount: elements.length,
         itemBuilder: (context, index) =>
             _buildCard(context, elements: elements, index: index),

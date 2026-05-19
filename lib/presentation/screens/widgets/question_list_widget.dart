@@ -97,7 +97,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
     }
 
     return ReorderableListView.builder(
-      onReorder: _onReorder,
+      onReorderItem: _onReorder,
       padding: const EdgeInsets.symmetric(
         horizontal: 4.0,
       ).copyWith(top: 24, bottom: 100),

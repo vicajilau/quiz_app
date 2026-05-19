@@ -113,7 +113,7 @@ class SectionPageManagerScreen extends StatelessWidget {
                       onDelete: () => _confirmDeletePage(context, index),
                     );
                   },
-                  onReorder: (oldIndex, newIndex) => context
+                  onReorderItem: (oldIndex, newIndex) => context
                       .read<StudyEditorCubit>()
                       .reorderPages(chunkIndex, oldIndex, newIndex),
                 ),

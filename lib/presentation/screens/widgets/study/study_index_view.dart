@@ -259,7 +259,7 @@ class StudyIndexView extends StatelessWidget {
             ),
           );
         },
-        onReorder: (oldIndex, newIndex) {
+        onReorderItem: (oldIndex, newIndex) {
           context.read<StudyExecutionBloc>().add(
             ReorderStudyChunks(oldIndex, newIndex),
           );
