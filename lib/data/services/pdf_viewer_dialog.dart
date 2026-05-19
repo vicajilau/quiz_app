@@ -115,7 +115,9 @@ class _PdfViewerDialogState extends State<PdfViewerDialog> {
         controller: _controller,
         params: const PdfViewerParams(
           scrollByMouseWheel: 1,
-          useAlternativeFitScaleAsMinScale: false,
+          sizeDelegateProvider: PdfViewerSizeDelegateProviderLegacy(
+            useAlternativeFitScaleAsMinScale: false,
+          ),
         ),
       ),
     );

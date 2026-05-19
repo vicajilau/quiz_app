@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/extensions/app_localizations_extension.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';

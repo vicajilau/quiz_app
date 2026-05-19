@@ -24,7 +24,7 @@ import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/ai/ai_model_catalog.dart';
 import 'package:quizdy/presentation/widgets/ai_service_model_selector.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import 'package:quizdy/domain/models/ai/chat_message.dart';
 import 'package:quizdy/presentation/screens/dialogs/widgets/ai_chat_bubble.dart';
