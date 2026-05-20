@@ -67,9 +67,9 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
         case _SrsSortField.sectionOrder:
           comparison = 0;
         case _SrsSortField.name:
-          comparison = a.questionText
-              .toLowerCase()
-              .compareTo(b.questionText.toLowerCase());
+          comparison = a.questionText.toLowerCase().compareTo(
+            b.questionText.toLowerCase(),
+          );
         case _SrsSortField.pendingQuestions:
           // Earlier nextReviewDate → more urgent → comes first in ascending.
           comparison = a.nextReviewDate.compareTo(b.nextReviewDate);
@@ -91,10 +91,9 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
   void _onSortFieldSelected(_SrsSortField field) {
     setState(() {
       if (_sortField == field) {
-        _sortDirection =
-            _sortDirection == _SrsSortDirection.ascending
-                ? _SrsSortDirection.descending
-                : _SrsSortDirection.ascending;
+        _sortDirection = _sortDirection == _SrsSortDirection.ascending
+            ? _SrsSortDirection.descending
+            : _SrsSortDirection.ascending;
       } else {
         _sortField = field;
         _sortDirection = _SrsSortDirection.ascending;
@@ -117,43 +116,38 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
           ),
         ),
         onLeadingPressed: () => context.pop(),
-        actions:
-            _groupedStats.isEmpty
-                ? null
-                : [
-                  _SortMenuButton(
-                    sortField: _sortField,
-                    sortDirection: _sortDirection,
-                    onSelected: _onSortFieldSelected,
-                  ),
-                  _AppBarActionButton(
-                    icon: Icons.restart_alt,
-                    tooltip: l10n.srsResetAllStatsTooltip,
-                    onPressed: () => _confirmDeleteAll(context),
-                  ),
-                ],
-      ),
-      body:
-          _groupedStats.isEmpty
-              ? const SrsEmptyState()
-              : ListView.builder(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 20,
+        actions: _groupedStats.isEmpty
+            ? null
+            : [
+                _SortMenuButton(
+                  sortField: _sortField,
+                  sortDirection: _sortDirection,
+                  onSelected: _onSortFieldSelected,
                 ),
-                itemCount: _groupedStats.length,
-                itemBuilder: (context, index) {
-                  final fileId = _groupedStats.keys.elementAt(index);
-                  final stats = _sortedStats(_groupedStats[fileId]!);
-                  return SrsFileStatsCard(
-                    key: ValueKey(fileId),
-                    fileId: fileId,
-                    stats: stats,
-                    onReset: () => _confirmResetFile(context, fileId),
-                    onDelete: () => _confirmDeleteFile(context, fileId),
-                  );
-                },
-              ),
+                _AppBarActionButton(
+                  icon: Icons.restart_alt,
+                  tooltip: l10n.srsResetAllStatsTooltip,
+                  onPressed: () => _confirmDeleteAll(context),
+                ),
+              ],
+      ),
+      body: _groupedStats.isEmpty
+          ? const SrsEmptyState()
+          : ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+              itemCount: _groupedStats.length,
+              itemBuilder: (context, index) {
+                final fileId = _groupedStats.keys.elementAt(index);
+                final stats = _sortedStats(_groupedStats[fileId]!);
+                return SrsFileStatsCard(
+                  key: ValueKey(fileId),
+                  fileId: fileId,
+                  stats: stats,
+                  onReset: () => _confirmResetFile(context, fileId),
+                  onDelete: () => _confirmDeleteFile(context, fileId),
+                );
+              },
+            ),
     );
   }
 
@@ -200,27 +194,26 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
     final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
-      builder:
-          (ctx) => AlertDialog(
-            title: Text(title),
-            content: Text(content),
-            actions: [
-              TextButton(
-                onPressed: () => context.pop(ctx),
-                child: Text(l10n.cancelButton.toUpperCase()),
-              ),
-              TextButton(
-                onPressed: () async {
-                  await onConfirm();
-                  if (ctx.mounted) {
-                    _loadStats();
-                    context.pop(ctx);
-                  }
-                },
-                child: Text(confirmLabel.toUpperCase()),
-              ),
-            ],
+      builder: (ctx) => AlertDialog(
+        title: Text(title),
+        content: Text(content),
+        actions: [
+          TextButton(
+            onPressed: () => context.pop(ctx),
+            child: Text(l10n.cancelButton.toUpperCase()),
           ),
+          TextButton(
+            onPressed: () async {
+              await onConfirm();
+              if (ctx.mounted) {
+                _loadStats();
+                context.pop(ctx);
+              }
+            },
+            child: Text(confirmLabel.toUpperCase()),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -273,10 +266,9 @@ class _SortMenuButton extends StatelessWidget {
     required this.onSelected,
   });
 
-  IconData get _directionIcon =>
-      sortDirection == _SrsSortDirection.ascending
-          ? LucideIcons.arrowUp
-          : LucideIcons.arrowDown;
+  IconData get _directionIcon => sortDirection == _SrsSortDirection.ascending
+      ? LucideIcons.arrowUp
+      : LucideIcons.arrowDown;
 
   @override
   Widget build(BuildContext context) {
@@ -303,42 +295,38 @@ class _SortMenuButton extends StatelessWidget {
         tooltip: l10n.srsSortTooltip,
         icon: Icon(LucideIcons.arrowUpDown, color: onPrimary, size: 20),
         onSelected: onSelected,
-        itemBuilder:
-            (context) =>
-                fields.map((entry) {
-                  final (field, label) = entry;
-                  final isSelected = sortField == field;
-                  return PopupMenuItem<_SrsSortField>(
-                    value: field,
-                    child: Row(
-                      children: [
-                        Icon(
-                          isSelected ? _directionIcon : LucideIcons.minus,
-                          size: 16,
-                          color:
-                              isSelected
-                                  ? Theme.of(context).colorScheme.primary
-                                  : Theme.of(context).colorScheme.onSurface
-                                      .withValues(alpha: 0.3),
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          label,
-                          style: TextStyle(
-                            fontWeight:
-                                isSelected
-                                    ? FontWeight.w600
-                                    : FontWeight.normal,
-                            color:
-                                isSelected
-                                    ? Theme.of(context).colorScheme.primary
-                                    : null,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList(),
+        itemBuilder: (context) => fields.map((entry) {
+          final (field, label) = entry;
+          final isSelected = sortField == field;
+          return PopupMenuItem<_SrsSortField>(
+            value: field,
+            child: Row(
+              children: [
+                Icon(
+                  isSelected ? _directionIcon : LucideIcons.minus,
+                  size: 16,
+                  color: isSelected
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withValues(alpha: 0.3),
+                ),
+                const SizedBox(width: 10),
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontWeight: isSelected
+                        ? FontWeight.w600
+                        : FontWeight.normal,
+                    color: isSelected
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
+                  ),
+                ),
+              ],
+            ),
+          );
+        }).toList(),
       ),
     );
   }

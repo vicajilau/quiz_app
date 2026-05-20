@@ -131,8 +131,9 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
                     fileIdentifier:
                         widget.quizFile.filePath ??
                         widget.quizFile.metadata.title,
-                    studySectionNames:
-                        studySectionNames.isEmpty ? null : studySectionNames,
+                    studySectionNames: studySectionNames.isEmpty
+                        ? null
+                        : studySectionNames,
                   ),
                 );
               },
