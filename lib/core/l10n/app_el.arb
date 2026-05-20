@@ -1461,5 +1461,13 @@
   "srsEmptyStateSubtitle": "Ολοκληρώστε την πρώτη σας συνεδρία μελέτης ή κάντε μια εξέταση για να ξεκινήσετε να παρακολουθείτε την πρόοδό σας.",
   "linkStudySection": "Σύνδεση με ενότητα μελέτης",
   "noStudySection": "Κανένα",
-  "confirmDeleteSectionWithQuestionsMessage": "Αυτή η ενότητα έχει συσχετισμένες ερωτήσεις. Είστε βέβαιοι ότι θέλετε να διαγράψετε το `{sectionName}`;"
+  "confirmDeleteSectionWithQuestionsMessage": "Αυτή η ενότητα έχει συσχετισμένες ερωτήσεις. Είστε βέβαιοι ότι θέλετε να διαγράψετε το `{sectionName}`;",
+  "srsSortTooltip": "Ταξινόμηση",
+  "srsSortByName": "Όνομα (Α-Ω)",
+  "srsSortBySectionOrder": "Σειρά ενοτήτων",
+  "srsSortByPendingQuestions": "Εκκρεμείς ερωτήσεις",
+  "srsSortByHitRate": "Ποσοστό επιτυχίας",
+  "srsSortAscending": "Αύξουσα",
+  "srsSortDescending": "Φθίνουσα",
+  "srsUnassignedSection": "Χωρίς τμήμα"
 }

@@ -2563,5 +2563,13 @@
   "srsEmptyStateSubtitle": "Completa la teva primera sessió d'estudi o fes un examen per començar a registrar el teu progrés d'aprenentatge.",
   "linkStudySection": "Vincular a secció d'estudi",
   "noStudySection": "Cap",
-  "confirmDeleteSectionWithQuestionsMessage": "Aquesta secció té preguntes associades. Segur que vols eliminar `{sectionName}`?"
+  "confirmDeleteSectionWithQuestionsMessage": "Aquesta secció té preguntes associades. Segur que vols eliminar `{sectionName}`?",
+  "srsSortTooltip": "Ordenar",
+  "srsSortByName": "Nom (A-Z)",
+  "srsSortBySectionOrder": "Ordre de seccions",
+  "srsSortByPendingQuestions": "Preguntes pendents",
+  "srsSortByHitRate": "Taxa d'encerts",
+  "srsSortAscending": "Ascendent",
+  "srsSortDescending": "Descendent",
+  "srsUnassignedSection": "Sense secció"
 }

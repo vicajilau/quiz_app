@@ -27,10 +27,14 @@ class QuizExecutionStarted extends QuizExecutionEvent {
   final QuizConfig quizConfig;
   final String? fileIdentifier;
 
+  /// Maps studySectionId → section title for enriching SRS metadata.
+  final Map<String, String>? studySectionNames;
+
   QuizExecutionStarted(
     this.questions, {
     required this.quizConfig,
     this.fileIdentifier,
+    this.studySectionNames,
   });
 }
 

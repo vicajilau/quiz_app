@@ -2557,5 +2557,13 @@
   "srsEmptyStateSubtitle": "Schließen Sie Ihre erste Lernsitzung ab oder nehmen Sie an einer Prüfung teil, um Ihren Lernfortschritt zu verfolgen.",
   "linkStudySection": "Mit Studienabschnitt verknüpfen",
   "noStudySection": "Keine",
-  "confirmDeleteSectionWithQuestionsMessage": "Dieser Bereich hat zugeordnete Fragen. Sind Sie sicher, dass Sie `{sectionName}` löschen möchten?"
+  "confirmDeleteSectionWithQuestionsMessage": "Dieser Bereich hat zugeordnete Fragen. Sind Sie sicher, dass Sie `{sectionName}` löschen möchten?",
+  "srsSortTooltip": "Sortieren",
+  "srsSortByName": "Name (A-Z)",
+  "srsSortBySectionOrder": "Abschnittsreihenfolge",
+  "srsSortByPendingQuestions": "Ausstehende Fragen",
+  "srsSortByHitRate": "Trefferquote",
+  "srsSortAscending": "Aufsteigend",
+  "srsSortDescending": "Absteigend",
+  "srsUnassignedSection": "Nicht zugewiesen"
 }

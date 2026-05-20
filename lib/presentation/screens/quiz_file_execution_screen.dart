@@ -118,6 +118,12 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
                       isStudyMode: false,
                     );
 
+                final studySectionNames = <String, String>{
+                  for (final chunk
+                      in widget.quizFile.study?.content.cache ?? [])
+                    chunk.id: chunk.title,
+                };
+
                 return ServiceLocator.getIt<QuizExecutionBloc>()..add(
                   QuizExecutionStarted(
                     questionsToUse,
@@ -125,6 +131,9 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
                     fileIdentifier:
                         widget.quizFile.filePath ??
                         widget.quizFile.metadata.title,
+                    studySectionNames: studySectionNames.isEmpty
+                        ? null
+                        : studySectionNames,
                   ),
                 );
               },

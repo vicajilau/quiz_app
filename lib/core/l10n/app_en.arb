@@ -3129,5 +3129,44 @@
   "noStudySection": "None",
   "@noStudySection": {
     "description": "Option in the dropdown to not link the question to any study section"
+  },
+  "srsSortTooltip": "Sort",
+  "srsSortByName": "Name (A-Z)",
+  "srsSortBySectionOrder": "Section order",
+  "srsSortByPendingQuestions": "Pending questions",
+  "srsSortByHitRate": "Hit rate",
+  "srsSortAscending": "Ascending",
+  "srsSortDescending": "Descending",
+  "srsSortTooltip": "Sort",
+  "@srsSortTooltip": {
+    "description": "Tooltip for the sort button in SRS stats appbar"
+  },
+  "srsSortByName": "Name (A-Z)",
+  "@srsSortByName": {
+    "description": "Sort option: alphabetical by name"
+  },
+  "srsSortBySectionOrder": "Section order",
+  "@srsSortBySectionOrder": {
+    "description": "Sort option: original section order"
+  },
+  "srsSortByPendingQuestions": "Pending questions",
+  "@srsSortByPendingQuestions": {
+    "description": "Sort option: by number of pending (due) questions"
+  },
+  "srsSortByHitRate": "Hit rate",
+  "@srsSortByHitRate": {
+    "description": "Sort option: by hit rate percentage"
+  },
+  "srsSortAscending": "Ascending",
+  "@srsSortAscending": {
+    "description": "Sort direction: ascending"
+  },
+  "srsSortDescending": "Descending",
+  "@srsSortDescending": {
+    "description": "Sort direction: descending"
+  },
+  "srsUnassignedSection": "Unassigned",
+  "@srsUnassignedSection": {
+    "description": "Label shown when a question has no study section assigned"
   }
 }

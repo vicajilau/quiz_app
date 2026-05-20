@@ -2731,5 +2731,13 @@
   "modeGeneratesStats": "Genera estadísticas SRS",
   "modeNoStats": "No genera estadísticas",
   "linkStudySection": "Vincular a sección de estudio",
-  "noStudySection": "Ninguna"
+  "noStudySection": "Ninguna",
+  "srsSortTooltip": "Ordenar",
+  "srsSortByName": "Nombre (A-Z)",
+  "srsSortBySectionOrder": "Orden de secciones",
+  "srsSortByPendingQuestions": "Preguntas pendientes",
+  "srsSortByHitRate": "Porcentaje de aciertos",
+  "srsSortAscending": "Ascendente",
+  "srsSortDescending": "Descendente",
+  "srsUnassignedSection": "Sin asignar"
 }

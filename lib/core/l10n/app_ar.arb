@@ -2875,5 +2875,13 @@
   "srsEmptyStateSubtitle": "أكمل جلسة الدراسة الأولى أو خذ امتحانًا لبدء تتبع تقدمك في التعلم.",
   "linkStudySection": "ربط بقسم الدراسة",
   "noStudySection": "بلا",
-  "confirmDeleteSectionWithQuestionsMessage": "هذا القسم يحتوي على أسئلة مرتبطة به. هل أنت متأكد أنك تريد حذف `{sectionName}`؟"
+  "confirmDeleteSectionWithQuestionsMessage": "هذا القسم يحتوي على أسئلة مرتبطة به. هل أنت متأكد أنك تريد حذف `{sectionName}`؟",
+  "srsSortTooltip": "ترتيب",
+  "srsSortByName": "الاسم (أ-ي)",
+  "srsSortBySectionOrder": "ترتيب الأقسام",
+  "srsSortByPendingQuestions": "الأسئلة المعلقة",
+  "srsSortByHitRate": "معدل الإجابة",
+  "srsSortAscending": "تصاعدي",
+  "srsSortDescending": "تنازلي",
+  "srsUnassignedSection": "غير مُعيَّن"
 }

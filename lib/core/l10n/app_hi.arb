@@ -2464,5 +2464,13 @@
   "srsEmptyStateSubtitle": "अपनी पहली अध्ययन सत्र पूरा करें या अपनी सीखने की प्रगति को ट्रैक करना शुरू करने के लिए एक परीक्षा दें।",
   "linkStudySection": "अध्ययन अनुभाग से लिंक करें",
   "noStudySection": "कोई नहीं",
-  "confirmDeleteSectionWithQuestionsMessage": "इस अनुभाग में जुड़े हुए प्रश्न हैं। क्या आप वाकई `{sectionName}` को हटाना चाहते हैं?"
+  "confirmDeleteSectionWithQuestionsMessage": "इस अनुभाग में जुड़े हुए प्रश्न हैं। क्या आप वाकई `{sectionName}` को हटाना चाहते हैं?",
+  "srsSortTooltip": "क्रमबद्ध करें",
+  "srsSortByName": "नाम (A-Z)",
+  "srsSortBySectionOrder": "अनुभाग क्रम",
+  "srsSortByPendingQuestions": "लंबित प्रश्न",
+  "srsSortByHitRate": "सफलता दर",
+  "srsSortAscending": "आरोही",
+  "srsSortDescending": "अवरोही",
+  "srsUnassignedSection": "अनिर्धारित"
 }
