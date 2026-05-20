@@ -2513,5 +2513,13 @@
   "srsEmptyStateSubtitle": "完成您的第一个学习会话或参加考试以开始跟踪您的学习进度。",
   "linkStudySection": "链接至学习章节",
   "noStudySection": "无",
-  "confirmDeleteSectionWithQuestionsMessage": "此章节包含关联问题。您确定要删除 `{sectionName}` 吗？"
+  "confirmDeleteSectionWithQuestionsMessage": "此章节包含关联问题。您确定要删除 `{sectionName}` 吗？",
+  "srsSortTooltip": "排序",
+  "srsSortByName": "名称 (A-Z)",
+  "srsSortBySectionOrder": "章节顺序",
+  "srsSortByPendingQuestions": "待复习题目",
+  "srsSortByHitRate": "正确率",
+  "srsSortAscending": "升序",
+  "srsSortDescending": "降序",
+  "srsUnassignedSection": "未分配"
 }

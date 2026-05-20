@@ -2461,5 +2461,13 @@
   "srsEmptyStateSubtitle": "Bete zure lehenengo ikasketa saioa edo egin azterketa bat zure ikaskuntzaren aurrerapena jarraitzeko.",
   "linkStudySection": "Lotu ikasketa atalarekin",
   "noStudySection": "Bat ere ez",
-  "confirmDeleteSectionWithQuestionsMessage": "Atal honek lotutako galderak ditu. Ziur zaude `{sectionName}` ezabatu nahi duzula?"
+  "confirmDeleteSectionWithQuestionsMessage": "Atal honek lotutako galderak ditu. Ziur zaude `{sectionName}` ezabatu nahi duzula?",
+  "srsSortTooltip": "Ordenatu",
+  "srsSortByName": "Izena (A-Z)",
+  "srsSortBySectionOrder": "Atalaren ordena",
+  "srsSortByPendingQuestions": "Galdera irekiak",
+  "srsSortByHitRate": "Asmaketa-tasa",
+  "srsSortAscending": "Gorantz",
+  "srsSortDescending": "Beherantz",
+  "srsUnassignedSection": "Esleitu gabe"
 }

@@ -2515,5 +2515,13 @@
   "srsEmptyStateSubtitle": "Completa la tua prima sessione di studio o fai un esame per iniziare a monitorare i tuoi progressi di apprendimento.",
   "linkStudySection": "Collega alla sezione di studio",
   "noStudySection": "Nessuno",
-  "confirmDeleteSectionWithQuestionsMessage": "Questa sezione ha domande associate. Sei sicuro di voler eliminare `{sectionName}`?"
+  "confirmDeleteSectionWithQuestionsMessage": "Questa sezione ha domande associate. Sei sicuro di voler eliminare `{sectionName}`?",
+  "srsSortTooltip": "Ordina",
+  "srsSortByName": "Nome (A-Z)",
+  "srsSortBySectionOrder": "Ordine delle sezioni",
+  "srsSortByPendingQuestions": "Domande in sospeso",
+  "srsSortByHitRate": "Tasso di risposta",
+  "srsSortAscending": "Crescente",
+  "srsSortDescending": "Decrescente",
+  "srsUnassignedSection": "Non assegnato"
 }

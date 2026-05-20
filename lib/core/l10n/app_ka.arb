@@ -1150,5 +1150,13 @@
   "srsEmptyStateSubtitle": "დაასრულეთ თქვენი პირველი სასწავლო სესია ან ჩააბარეთ გამოცდა, რათა დაიწყოთ თქვენი სასწავლო პროგრესის თვალყურის დევნება.",
   "linkStudySection": "სასწავლო სექციასთან დაკავშირება",
   "noStudySection": "არცერთი",
-  "confirmDeleteSectionWithQuestionsMessage": "ამ სექციასთან დაკავშირებულია კითხვები. ნამდვილად გსურთ წაშალოთ `{sectionName}`?"
+  "confirmDeleteSectionWithQuestionsMessage": "ამ სექციასთან დაკავშირებულია კითხვები. ნამდვილად გსურთ წაშალოთ `{sectionName}`?",
+  "srsSortTooltip": "დალაგება",
+  "srsSortByName": "სახელი (A-Z)",
+  "srsSortBySectionOrder": "განყოფილებების თანმიმდევრობა",
+  "srsSortByPendingQuestions": "მოლოდინი კითხვები",
+  "srsSortByHitRate": "სიზუსტის მაჩვენებელი",
+  "srsSortAscending": "ზრდადობით",
+  "srsSortDescending": "კლებადობით",
+  "srsUnassignedSection": "მინიჭებული არ არის"
 }

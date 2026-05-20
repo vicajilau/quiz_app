@@ -2461,5 +2461,13 @@
   "srsEmptyStateSubtitle": "Completa a túa primeira sesión de estudo ou fai un exame para comezar a rexistrar o teu progreso de aprendizaxe.",
   "linkStudySection": "Vincular a sección de estudo",
   "noStudySection": "Ningún",
-  "confirmDeleteSectionWithQuestionsMessage": "Esta sección ten preguntas asociadas. Seguro que queres eliminar `{sectionName}`?"
+  "confirmDeleteSectionWithQuestionsMessage": "Esta sección ten preguntas asociadas. Seguro que queres eliminar `{sectionName}`?",
+  "srsSortTooltip": "Ordenar",
+  "srsSortByName": "Nome (A-Z)",
+  "srsSortBySectionOrder": "Orde de seccións",
+  "srsSortByPendingQuestions": "Preguntas pendentes",
+  "srsSortByHitRate": "Taxa de acertos",
+  "srsSortAscending": "Ascendente",
+  "srsSortDescending": "Descendente",
+  "srsUnassignedSection": "Sen sección"
 }

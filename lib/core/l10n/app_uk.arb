@@ -1183,5 +1183,13 @@
   "srsEmptyStateSubtitle": "Завершіть свою першу навчальну сесію або складіть іспит, щоб почати відстежувати свій прогрес у навчанні.",
   "linkStudySection": "Зв'язати з розділом навчання",
   "noStudySection": "Немає",
-  "confirmDeleteSectionWithQuestionsMessage": "З цим розділом пов'язані питання. Ви дійсно хочете видалити `{sectionName}`?"
+  "confirmDeleteSectionWithQuestionsMessage": "З цим розділом пов'язані питання. Ви дійсно хочете видалити `{sectionName}`?",
+  "srsSortTooltip": "Сортування",
+  "srsSortByName": "Ім'я (А-Я)",
+  "srsSortBySectionOrder": "Порядок розділів",
+  "srsSortByPendingQuestions": "Очікувані питання",
+  "srsSortByHitRate": "Відсоток успіху",
+  "srsSortAscending": "За зростанням",
+  "srsSortDescending": "За спаданням",
+  "srsUnassignedSection": "Без розділу"
 }

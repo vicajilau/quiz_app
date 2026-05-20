@@ -1165,5 +1165,13 @@
   "srsEmptyStateSubtitle": "Завершите свою первую учебную сессию или сдайте экзамен, чтобы начать отслеживать свой прогрес в обучении.",
   "linkStudySection": "Связать с разделом обучения",
   "noStudySection": "Нет",
-  "confirmDeleteSectionWithQuestionsMessage": "С этим разделом связаны вопросы. Вы действительно хотите удалить `{sectionName}`?"
+  "confirmDeleteSectionWithQuestionsMessage": "С этим разделом связаны вопросы. Вы действительно хотите удалить `{sectionName}`?",
+  "srsSortTooltip": "Сортировка",
+  "srsSortByName": "Имя (А-Я)",
+  "srsSortBySectionOrder": "Порядок разделов",
+  "srsSortByPendingQuestions": "Ожидающие вопросы",
+  "srsSortByHitRate": "Процент успеха",
+  "srsSortAscending": "По возрастанию",
+  "srsSortDescending": "По убыванию",
+  "srsUnassignedSection": "Без раздела"
 }

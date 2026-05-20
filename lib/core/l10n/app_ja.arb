@@ -2464,5 +2464,13 @@
   "srsEmptyStateSubtitle": "学習の進捗を追跡し始めるには、最初の学習セッションを完了するか試験を受けてください。",
   "linkStudySection": "学習セクションにリンク",
   "noStudySection": "なし",
-  "confirmDeleteSectionWithQuestionsMessage": "このセクションには関連する問題があります。本当に `{sectionName}` を削除しますか？"
+  "confirmDeleteSectionWithQuestionsMessage": "このセクションには関連する問題があります。本当に `{sectionName}` を削除しますか？",
+  "srsSortTooltip": "並び替え",
+  "srsSortByName": "名前 (A-Z)",
+  "srsSortBySectionOrder": "セクション順",
+  "srsSortByPendingQuestions": "保留中の問題",
+  "srsSortByHitRate": "正解率",
+  "srsSortAscending": "昇順",
+  "srsSortDescending": "降順",
+  "srsUnassignedSection": "未割り当て"
 }

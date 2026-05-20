@@ -2506,5 +2506,13 @@
   "srsEmptyStateSubtitle": "Terminez votre première session d'étude ou passez un examen pour commencer à suivre vos progrès.",
   "linkStudySection": "Lier à la section d'étude",
   "noStudySection": "Aucun",
-  "confirmDeleteSectionWithQuestionsMessage": "Cette section a des questions associées. Voulez-vous vraiment supprimer `{sectionName}` ?"
+  "confirmDeleteSectionWithQuestionsMessage": "Cette section a des questions associées. Voulez-vous vraiment supprimer `{sectionName}` ?",
+  "srsSortTooltip": "Trier",
+  "srsSortByName": "Nom (A-Z)",
+  "srsSortBySectionOrder": "Ordre des sections",
+  "srsSortByPendingQuestions": "Questions en attente",
+  "srsSortByHitRate": "Taux de réussite",
+  "srsSortAscending": "Croissant",
+  "srsSortDescending": "Décroissant",
+  "srsUnassignedSection": "Non attribué"
 }
