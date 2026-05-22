@@ -4,8 +4,6 @@ on:
   push:
     tags:
       - 'v*.*.*'
-    branches:
-      - feat/automated-release-notes
   workflow_dispatch:
 
 jobs:
@@ -151,7 +149,7 @@ jobs:
 
 
       - name: Generate App Store release notes
-        run: dart distribution/apple/generate_apple_release_notes.dart --version=1.14.0
+        run: dart distribution/apple/generate_apple_release_notes.dart --version=${{ github.ref_name }}
 
       - name: Install Fastlane
         run: gem install fastlane --no-document
