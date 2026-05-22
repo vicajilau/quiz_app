@@ -57,6 +57,8 @@ jobs:
                 $submission['Listings'] = @{}
               }
 
+              $submission['ApplicationCategory'] = 'Education_StudyAids'
+
               foreach ($locale in $releaseNotes.Listings.Keys) {
                 if (-not $submission['Listings'].ContainsKey($locale)) {
                   $submission['Listings'][$locale] = @{}
