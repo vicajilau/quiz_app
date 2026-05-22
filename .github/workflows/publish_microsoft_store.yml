@@ -61,7 +61,9 @@ jobs:
 
               if (-not $submission.ContainsKey('Pricing') -or $null -eq $submission['Pricing']) {
                 $submission['Pricing'] = @{
-                  PriceId = 'Base'
+                  PriceId = 'NotAvailable'
+                  TrialPeriod = 'NoFreeTrial'
+                  MarketSpecificPricings = @{}
                   IsAdvancedPricingModel = $false
                 }
               }
