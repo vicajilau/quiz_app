@@ -43,7 +43,7 @@ jobs:
           $metadata = $null
 
           try {
-            $currentSubmissionText = & msstore submission get $env:MS_STORE_APP_ID 2>&1 | Out-String
+            $currentSubmissionText = & msstore submission get $env:MS_STORE_APP_ID --verbose 2>&1 | Out-String
             $currentSubmissionText = $currentSubmissionText -replace '\e\[[0-9;]*m', ''
 
             $jsonStart = $currentSubmissionText.IndexOf('{')
@@ -80,7 +80,7 @@ jobs:
             $metadata = $releaseNotes | ConvertTo-Json -Depth 20 -Compress
           }
 
-          $updateMetadataOutput = & msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata 2>&1
+          $updateMetadataOutput = & msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata --verbose 2>&1
           $updateMetadataOutput | ForEach-Object { Write-Host $_ }
 
           if ($LASTEXITCODE -ne 0) {
