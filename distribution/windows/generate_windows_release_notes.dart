@@ -65,8 +65,7 @@ void main(List<String> args) {
   final Map<String, Object> listings = <String, Object>{};
   for (final String locale in _requiredLocales) {
     final String note = (rawNotes[locale] as String).trim();
-    final String windowsLocale = locale.toLowerCase();
-    listings[windowsLocale] = <String, Object>{
+    listings[locale] = <String, Object>{
       'BaseListing': <String, String>{'ReleaseNotes': note},
     };
   }
