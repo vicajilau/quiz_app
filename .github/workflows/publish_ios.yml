@@ -111,14 +111,12 @@ jobs:
         run: |
           AUTOMATIC_RELEASE=true
           mkdir -p distribution/apple/fastlane
-          cat > distribution/apple/fastlane/app_store_connect_api_key.json <<EOF
-          {
-            "key_id": "$API_KEY_ID",
-            "issuer_id": "$API_ISSUER_ID",
-            "key": "$API_KEY_CONTENT",
-            "in_house": false
-          }
-          EOF
+          jq -n \
+            --arg key_id "$API_KEY_ID" \
+            --arg issuer_id "$API_ISSUER_ID" \
+            --arg key "$API_KEY_CONTENT" \
+            '{key_id: $key_id, issuer_id: $issuer_id, key: $key, in_house: false}' \
+            > distribution/apple/fastlane/app_store_connect_api_key.json
 
           touch Deliverfile
           fastlane deliver \
