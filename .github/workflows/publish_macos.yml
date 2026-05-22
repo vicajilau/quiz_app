@@ -148,19 +148,7 @@ jobs:
           if-no-files-found: error
           path: build/macos/pkg/*.pkg
 
-      - name: Upload app to App Store Connect
-        env:
-          API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
-          API_ISSUER_ID: ${{ secrets.APPLE_API_KEY_ISSUER }}
-          API_KEY_CONTENT: ${{ secrets.APPLE_API_KEY_CONTENT }}
-        run: |
-          # Create private key file
-          mkdir -p ~/.appstoreconnect/private_keys
-          echo "$API_KEY_CONTENT" > ~/.appstoreconnect/private_keys/AuthKey_$API_KEY_ID.p8
-          
-          # Upload
-          # Note: altool uses --type osx for macOS apps
-          xcrun altool --upload-app --type osx --file build/macos/pkg/*.pkg --apiKey "$API_KEY_ID" --apiIssuer "$API_ISSUER_ID"
+
 
       - name: Generate App Store release notes
         run: dart distribution/apple/generate_apple_release_notes.dart --version=1.14.0
@@ -192,7 +180,7 @@ jobs:
             --app_version "$APP_VERSION" \
             --build_number "$BUILD_NUMBER" \
             --metadata_path distribution/apple/fastlane/metadata \
-            --skip_binary_upload true \
+            --pkg build/macos/pkg/*.pkg \
             --skip_screenshots true \
             --submit_for_review true \
             --automatic_release "$AUTOMATIC_RELEASE" \
