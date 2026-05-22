@@ -58,6 +58,10 @@ jobs:
               }
 
               $submission['ApplicationCategory'] = 'Education_StudyAids'
+              
+              if ($releaseNotes.ContainsKey('Pricing')) {
+                $submission['Pricing'] = $releaseNotes.Pricing
+              }
 
               foreach ($locale in $releaseNotes.Listings.Keys) {
                 if (-not $submission['Listings'].ContainsKey($locale)) {
@@ -75,6 +79,7 @@ jobs:
             }
           }
           catch {
+            Write-Host "Aviso: Failed to parse the API response, using the complete Dart payload."
             $metadata = $null
           }
 
@@ -89,6 +94,5 @@ jobs:
             Write-Host "UpdateMetadata payload used: $metadata"
             exit $LASTEXITCODE
           }
-
       - name: Publish MSIX to the Microsoft Store
         run: msstore publish --appId ${{ secrets.MS_STORE_APP_ID }} -v
