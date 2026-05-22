@@ -41,8 +41,8 @@ jobs:
         run: |
           $releaseNotes = Get-Content -Raw .\distribution\windows\update_metadata.json | ConvertFrom-Json -AsHashtable
           
-          $rawOutput = & msstore submission get $env:MS_STORE_APP_ID
-          $currentSubmissionText = $rawOutput -join ""
+          # Fetch the existing submission cleanly
+          $currentSubmissionText = & msstore submission get $env:MS_STORE_APP_ID | Out-String
           $currentSubmissionText = $currentSubmissionText -replace '\x1B\[[0-9;]*m', ''
 
           $jsonStart = $currentSubmissionText.IndexOf('{')
@@ -54,11 +54,36 @@ jobs:
             try {
               $submission = $currentSubmissionJson | ConvertFrom-Json -AsHashtable
 
-              if ($submission.ContainsKey('packages')) {
-                $releaseNotes['Packages'] = $submission['packages']
+              # FORWARD STRATEGY: Update the complete Store JSON with our local changes
+              # This ensures no mandatory Store properties (like Packages or Images) are accidentally deleted.
+              
+              if (-not $submission.ContainsKey('Listings')) {
+                $submission['Listings'] = @{}
+              }
+              
+              $submission['ApplicationCategory'] = 'Education_StudyAids'
+              
+              if ($releaseNotes.ContainsKey('Pricing')) {
+                $submission['Pricing'] = $releaseNotes.Pricing
+              }
+              
+              if ($releaseNotes.ContainsKey('AllowTargetFutureDeviceFamilies')) {
+                $submission['AllowTargetFutureDeviceFamilies'] = $releaseNotes.AllowTargetFutureDeviceFamilies
               }
 
-              $metadata = $releaseNotes | ConvertTo-Json -Depth 20 -Compress
+              foreach ($locale in $releaseNotes.Listings.Keys) {
+                if (-not $submission['Listings'].ContainsKey($locale)) {
+                  $submission['Listings'][$locale] = @{}
+                }
+
+                if (-not $submission['Listings'][$locale].ContainsKey('BaseListing')) {
+                  $submission['Listings'][$locale]['BaseListing'] = @{}
+                }
+
+                $submission['Listings'][$locale]['BaseListing']['ReleaseNotes'] = $releaseNotes.Listings[$locale].BaseListing.ReleaseNotes
+              }
+
+              $metadata = $submission | ConvertTo-Json -Depth 20 -Compress
             }
             catch {
               Write-Host "💥 Parsing error details: $($_.Exception.Message)"
@@ -69,6 +94,8 @@ jobs:
             exit 1
           }
 
+          # Direct execution to bypass the PowerShell 7 StandardOutputEncoding bug
+          # We do NOT capture this into a variable ($updateMetadataOutput = ...), which prevents the crash.
           & msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata --verbose
 
           if ($LASTEXITCODE -ne 0) {
