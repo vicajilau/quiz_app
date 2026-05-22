@@ -59,15 +59,6 @@ jobs:
 
               $submission['ApplicationCategory'] = 'Education_StudyAids'
 
-              if (-not $submission.ContainsKey('Pricing') -or $null -eq $submission['Pricing']) {
-                $submission['Pricing'] = @{
-                  PriceId = 'NotAvailable'
-                  TrialPeriod = 'NoFreeTrial'
-                  MarketSpecificPricings = @{}
-                  IsAdvancedPricingModel = $false
-                }
-              }
-
               foreach ($locale in $releaseNotes.Listings.Keys) {
                 if (-not $submission['Listings'].ContainsKey($locale)) {
                   $submission['Listings'][$locale] = @{}
