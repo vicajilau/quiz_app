@@ -39,9 +39,46 @@ jobs:
         env:
           MS_STORE_APP_ID: ${{ secrets.MS_STORE_APP_ID }}
         run: |
-          $metadata = Get-Content -Raw .\distribution\windows\update_metadata.json |
-            ConvertFrom-Json -AsHashtable |
-            ConvertTo-Json -Depth 20 -Compress
+          $releaseNotes = Get-Content -Raw .\distribution\windows\update_metadata.json | ConvertFrom-Json -AsHashtable
+          $metadata = $null
+
+          try {
+            $currentSubmissionText = & msstore submission get $env:MS_STORE_APP_ID 2>&1 | Out-String
+            $currentSubmissionText = $currentSubmissionText -replace '\e\[[0-9;]*m', ''
+
+            $jsonStart = $currentSubmissionText.IndexOf('{')
+            $jsonEnd = $currentSubmissionText.LastIndexOf('}')
+
+            if ($jsonStart -ge 0 -and $jsonEnd -gt $jsonStart) {
+              $currentSubmissionJson = $currentSubmissionText.Substring($jsonStart, $jsonEnd - $jsonStart + 1)
+              $submission = $currentSubmissionJson | ConvertFrom-Json -AsHashtable
+
+              if (-not $submission.ContainsKey('Listings')) {
+                $submission['Listings'] = @{}
+              }
+
+              foreach ($locale in $releaseNotes.Listings.Keys) {
+                if (-not $submission['Listings'].ContainsKey($locale)) {
+                  $submission['Listings'][$locale] = @{}
+                }
+
+                if (-not $submission['Listings'][$locale].ContainsKey('BaseListing')) {
+                  $submission['Listings'][$locale]['BaseListing'] = @{}
+                }
+
+                $submission['Listings'][$locale]['BaseListing']['ReleaseNotes'] = $releaseNotes.Listings[$locale].BaseListing.ReleaseNotes
+              }
+
+              $metadata = $submission | ConvertTo-Json -Depth 20 -Compress
+            }
+          }
+          catch {
+            $metadata = $null
+          }
+
+          if ([string]::IsNullOrWhiteSpace($metadata)) {
+            $metadata = $releaseNotes | ConvertTo-Json -Depth 20 -Compress
+          }
 
           msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata
 
