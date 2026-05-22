@@ -41,7 +41,8 @@ jobs:
         run: |
           $releaseNotes = Get-Content -Raw .\distribution\windows\update_metadata.json | ConvertFrom-Json -AsHashtable
           
-          $currentSubmissionText = & msstore submission get $env:MS_STORE_APP_ID | Out-String
+          $rawOutput = & msstore submission get $env:MS_STORE_APP_ID
+          $currentSubmissionText = $rawOutput -join ""
           $currentSubmissionText = $currentSubmissionText -replace '\x1B\[[0-9;]*m', ''
 
           $jsonStart = $currentSubmissionText.IndexOf('{')
