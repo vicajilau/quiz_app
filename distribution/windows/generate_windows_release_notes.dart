@@ -78,6 +78,10 @@ void main(List<String> args) {
 
   final Map<String, Object> payload = <String, Object>{
     'ApplicationCategory': 'Education_StudyAids',
+    'Pricing': <String, Object>{
+      'PriceId': 'Base',
+      'IsAdvancedPricingModel': false,
+    },
     'Listings': listings,
   };
 
