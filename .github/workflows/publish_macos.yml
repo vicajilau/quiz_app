@@ -196,4 +196,5 @@ jobs:
             --skip_screenshots true \
             --submit_for_review true \
             --automatic_release "$AUTOMATIC_RELEASE" \
+            --precheck_include_in_app_purchases false \
             --force
