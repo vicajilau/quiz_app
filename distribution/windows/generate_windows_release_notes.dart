@@ -67,11 +67,11 @@ void main(List<String> args) {
     final String note = (rawNotes[locale] as String).trim();
     final String windowsLocale = locale.toLowerCase();
     listings[windowsLocale] = <String, Object>{
-      'baseListing': <String, String>{'releaseNotes': note},
+      'BaseListing': <String, String>{'ReleaseNotes': note},
     };
   }
 
-  final Map<String, Object> payload = <String, Object>{'listings': listings};
+  final Map<String, Object> payload = <String, Object>{'Listings': listings};
 
   outputFile.parent.createSync(recursive: true);
   outputFile.writeAsStringSync(
