@@ -54,50 +54,22 @@ jobs:
             try {
               $submission = $currentSubmissionJson | ConvertFrom-Json -AsHashtable
 
-              if (-not $submission.ContainsKey('Listings')) {
-                $submission['Listings'] = @{}
-              }
-              
-              $submission['ApplicationCategory'] = 'Education_StudyAids'
-              
-              if ($releaseNotes.ContainsKey('Pricing')) {
-                $submission['Pricing'] = $releaseNotes.Pricing
-              }
-              
-              if ($releaseNotes.ContainsKey('AllowTargetFutureDeviceFamilies')) {
-                $submission['AllowTargetFutureDeviceFamilies'] = $releaseNotes.AllowTargetFutureDeviceFamilies
+              if ($submission.ContainsKey('packages')) {
+                $releaseNotes['Packages'] = $submission['packages']
               }
 
-              foreach ($locale in $releaseNotes.Listings.Keys) {
-                if (-not $submission['Listings'].ContainsKey($locale)) {
-                  $submission['Listings'][$locale] = @{}
-                }
-
-                if (-not $submission['Listings'][$locale].ContainsKey('BaseListing')) {
-                  $submission['Listings'][$locale]['BaseListing'] = @{}
-                }
-
-                $submission['Listings'][$locale]['BaseListing']['ReleaseNotes'] = $releaseNotes.Listings[$locale].BaseListing.ReleaseNotes
-              }
-
-              $metadata = $submission | ConvertTo-Json -Depth 20 -Compress
+              $metadata = $releaseNotes | ConvertTo-Json -Depth 20 -Compress
             }
             catch {
               Write-Host "💥 Parsing error details: $($_.Exception.Message)"
-              Write-Host "--- START OF EXTRACTED TEXT ---"
-              Write-Host $currentSubmissionJson
-              Write-Host "--- END OF EXTRACTED TEXT ---"
               exit 1
             }
           } else {
             Write-Host "💥 Error: JSON structure not found in the response."
-            Write-Host "--- START OF COMPLETE OUTPUT ---"
-            Write-Host $currentSubmissionText
             exit 1
           }
 
-          $updateMetadataOutput = & msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata --verbose 2>&1
-          $updateMetadataOutput | ForEach-Object { Write-Host $_ }
+          & msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata --verbose
 
           if ($LASTEXITCODE -ne 0) {
             Write-Host "UpdateMetadata payload used: $metadata"
