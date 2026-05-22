@@ -120,6 +120,7 @@ jobs:
           }
           EOF
 
+          touch Deliverfile
           fastlane deliver \
             --platform ios \
             --api_key_path distribution/apple/fastlane/app_store_connect_api_key.json \
