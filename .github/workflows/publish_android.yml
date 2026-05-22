@@ -3,8 +3,6 @@ on:
   push:
     tags:
       - 'v*.*.*'
-    branches:
-      - feat/automated-release-notes
   workflow_dispatch:
 
 jobs:
@@ -33,7 +31,7 @@ jobs:
         with:
           channel: "stable"
       - name: Generate Google Play release notes
-        run: dart distribution/android/generate_play_whatsnew.dart --version=1.14.1
+        run: dart distribution/android/generate_play_whatsnew.dart --version=${{ github.ref_name }}
       - run: flutter pub get
       - name: Generate build_runner files
         run: dart run build_runner build -d
