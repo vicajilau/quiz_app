@@ -82,11 +82,16 @@ jobs:
               $metadata = $submission | ConvertTo-Json -Depth 20 -Compress
             }
             catch {
-              Write-Error "Failed to parse the downloaded JSON."
+              Write-Host "💥 Parsing error details: $($_.Exception.Message)"
+              Write-Host "--- START OF EXTRACTED TEXT ---"
+              Write-Host $currentSubmissionJson
+              Write-Host "--- END OF EXTRACTED TEXT ---"
               exit 1
             }
           } else {
-            Write-Error "JSON structure not found in the response."
+            Write-Host "💥 Error: JSON structure not found in the response."
+            Write-Host "--- START OF COMPLETE OUTPUT ---"
+            Write-Host $currentSubmissionText
             exit 1
           }
 
