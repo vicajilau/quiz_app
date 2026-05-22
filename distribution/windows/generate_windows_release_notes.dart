@@ -82,6 +82,12 @@ void main(List<String> args) {
       'MarketPricing': <String, Object>{},
       'PriceId': 'Free',
     },
+    'AllowTargetFutureDeviceFamilies': <String, bool>{
+      'Desktop': true,
+      'Mobile': false,
+      'Xbox': false,
+      'Holographic': false,
+    },
     'Listings': listings,
   };
 

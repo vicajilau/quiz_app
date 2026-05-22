@@ -62,6 +62,10 @@ jobs:
               if ($releaseNotes.ContainsKey('Pricing')) {
                 $submission['Pricing'] = $releaseNotes.Pricing
               }
+              
+              if ($releaseNotes.ContainsKey('AllowTargetFutureDeviceFamilies')) {
+                $submission['AllowTargetFutureDeviceFamilies'] = $releaseNotes.AllowTargetFutureDeviceFamilies
+              }
 
               foreach ($locale in $releaseNotes.Listings.Keys) {
                 if (-not $submission['Listings'].ContainsKey($locale)) {
