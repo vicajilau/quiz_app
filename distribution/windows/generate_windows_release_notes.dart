@@ -48,6 +48,7 @@ void main(List<String> args) {
   }
 
   final String version = _resolveVersion(options['version']);
+  final _ProjectInfo projectInfo = _readProjectInfo();
   final File outputFile = File(
     options['output'] ?? 'distribution/windows/update_metadata.json',
   );
@@ -67,7 +68,11 @@ void main(List<String> args) {
     final String note = (rawNotes[locale] as String).trim();
     final String windowsLocale = locale.toLowerCase();
     listings[windowsLocale] = <String, Object>{
-      'BaseListing': <String, String>{'ReleaseNotes': note},
+      'BaseListing': <String, String>{
+        'Title': projectInfo.title,
+        'Description': projectInfo.description,
+        'ReleaseNotes': note,
+      },
     };
   }
 
@@ -119,6 +124,55 @@ Map<String, dynamic> _readConfig(File notesFile) {
     _fail('Invalid JSON root in ${notesFile.path}. Expected an object.');
   }
   return decoded;
+}
+
+_ProjectInfo _readProjectInfo() {
+  final File pubspec = File('pubspec.yaml');
+  if (!pubspec.existsSync()) {
+    return const _ProjectInfo(title: 'Quizdy', description: 'Quizdy');
+  }
+
+  final List<String> lines = pubspec.readAsLinesSync();
+  String? projectName;
+  String? projectDescription;
+
+  for (final String line in lines) {
+    final String trimmedLine = line.trim();
+
+    if (projectName == null) {
+      final Match? nameMatch = RegExp(
+        r'^name:\s*([^\s#]+)',
+      ).firstMatch(trimmedLine);
+      if (nameMatch != null) {
+        projectName = nameMatch.group(1);
+        continue;
+      }
+    }
+
+    if (projectDescription == null) {
+      final Match? descriptionMatch = RegExp(
+        r'^description:\s*"?(.+?)"?$',
+      ).firstMatch(trimmedLine);
+      if (descriptionMatch != null) {
+        projectDescription = descriptionMatch.group(1)?.trim();
+      }
+    }
+  }
+
+  final String title = _titleCase(projectName ?? 'Quizdy');
+  final String description = projectDescription?.isNotEmpty == true
+      ? projectDescription!
+      : title;
+
+  return _ProjectInfo(title: title, description: description);
+}
+
+String _titleCase(String value) {
+  if (value.isEmpty) {
+    return value;
+  }
+
+  return value[0].toUpperCase() + value.substring(1);
 }
 
 String _resolveVersion(String? versionArg) {
@@ -193,4 +247,11 @@ void _validateNotes({
 Never _fail(String message) {
   stderr.writeln('ERROR: $message');
   exit(1);
+}
+
+class _ProjectInfo {
+  const _ProjectInfo({required this.title, required this.description});
+
+  final String title;
+  final String description;
 }
