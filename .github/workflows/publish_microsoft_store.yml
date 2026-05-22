@@ -39,40 +39,9 @@ jobs:
         env:
           MS_STORE_APP_ID: ${{ secrets.MS_STORE_APP_ID }}
         run: |
-          $releaseNotes = Get-Content -Raw .\distribution\windows\update_metadata.json | ConvertFrom-Json -AsHashtable
-          $metadata = $null
-
-          try {
-            $currentSubmissionJson = & msstore submission get $env:MS_STORE_APP_ID 2>$null | Out-String
-            if (-not [string]::IsNullOrWhiteSpace($currentSubmissionJson)) {
-              $submission = $currentSubmissionJson | ConvertFrom-Json -AsHashtable
-
-              if (-not $submission.ContainsKey('Listings')) {
-                $submission['Listings'] = @{}
-              }
-
-              foreach ($locale in $releaseNotes.Listings.Keys) {
-                if (-not $submission['Listings'].ContainsKey($locale)) {
-                  $submission['Listings'][$locale] = @{}
-                }
-
-                if (-not $submission['Listings'][$locale].ContainsKey('BaseListing')) {
-                  $submission['Listings'][$locale]['BaseListing'] = @{}
-                }
-
-                $submission['Listings'][$locale]['BaseListing']['ReleaseNotes'] = $releaseNotes.Listings[$locale].BaseListing.ReleaseNotes
-              }
-
-              $metadata = $submission | ConvertTo-Json -Depth 20 -Compress
-            }
-          }
-          catch {
-            $metadata = $null
-          }
-
-          if ([string]::IsNullOrWhiteSpace($metadata)) {
-            $metadata = $releaseNotes | ConvertTo-Json -Depth 20 -Compress
-          }
+          $metadata = Get-Content -Raw .\distribution\windows\update_metadata.json |
+            ConvertFrom-Json -AsHashtable |
+            ConvertTo-Json -Depth 20 -Compress
 
           msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata
 
