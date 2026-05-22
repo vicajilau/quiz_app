@@ -178,7 +178,6 @@ jobs:
             --api_key_path distribution/apple/fastlane/app_store_connect_api_key.json \
             --app_identifier "$APPLE_BUNDLE_ID" \
             --app_version "$APP_VERSION" \
-            --build_number "$BUILD_NUMBER" \
             --metadata_path distribution/apple/fastlane/metadata \
             --pkg build/macos/pkg/*.pkg \
             --skip_screenshots true \
