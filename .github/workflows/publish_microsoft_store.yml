@@ -80,7 +80,12 @@ jobs:
             $metadata = $releaseNotes | ConvertTo-Json -Depth 20 -Compress
           }
 
-          msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata
+          $updateMetadataOutput = & msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata 2>&1
+          $updateMetadataOutput | ForEach-Object { Write-Host $_ }
+
+          if ($LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
 
       - name: Publish MSIX to the Microsoft Store
         run: msstore publish --appId ${{ secrets.MS_STORE_APP_ID }} -v
