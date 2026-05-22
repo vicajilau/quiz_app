@@ -26,7 +26,7 @@ jobs:
         run: flutter pub get
 
       - name: Generate Windows release notes metadata
-        run: dart distribution/windows/generate_windows_release_notes.dart --version=${{ github.ref_name }}
+        run: dart distribution/windows/generate_windows_release_notes.dart --version=1.14.0
         
       - name: Generate build_runner files
         run: dart run build_runner build -d
