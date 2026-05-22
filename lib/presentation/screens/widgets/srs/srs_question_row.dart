@@ -15,7 +15,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/domain/models/srs/srs_metadata.dart';
@@ -55,6 +55,25 @@ class SrsQuestionRow extends StatelessWidget {
             ),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 4),
+          Row(
+            children: [
+              Icon(LucideIcons.tag, size: 11, color: subtitleColor),
+              const SizedBox(width: 4),
+              Text(
+                stat.sectionName ?? l10n.srsUnassignedSection,
+                style: TextStyle(
+                  fontSize: 11,
+                  color: subtitleColor,
+                  fontStyle: stat.sectionName == null
+                      ? FontStyle.italic
+                      : FontStyle.normal,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
           ),
           const SizedBox(height: 6),
           Wrap(

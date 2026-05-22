@@ -14,27 +14,46 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
+import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
+import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/presentation/screens/widgets/study/components/study_component_builder.dart';
+import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+import 'package:quizdy/domain/models/quiz/quiz_config.dart';
+import 'package:quizdy/domain/models/quiz/question.dart';
+import 'package:quizdy/presentation/widgets/quizdy_button.dart';
+import 'package:quizdy/core/service_locator.dart';
+import 'package:quizdy/routes/app_router.dart';
+import 'package:go_router/go_router.dart';
 
 class StudyContentView extends StatelessWidget {
   final StudyChunk currentChunk;
   final int currentChunkIndex;
   final AppLocalizations localizations;
+  final QuizFile? quizFile;
 
   const StudyContentView({
     super.key,
     required this.currentChunk,
     required this.currentChunkIndex,
     required this.localizations,
+    this.quizFile,
   });
 
   @override
   Widget build(BuildContext context) {
+    final List<Question> enabledLinkedQuestions = quizFile != null
+        ? quizFile!.questions
+              .where((q) => q.isEnabled && q.studySectionId == currentChunk.id)
+              .toList()
+        : const [];
+    final hasLinkedQuestions = enabledLinkedQuestions.isNotEmpty;
+
     return Padding(
       padding: const EdgeInsets.only(left: 16.0),
       child: Column(
@@ -42,11 +61,19 @@ class StudyContentView extends StatelessWidget {
           Expanded(
             child: currentChunk.status == StudyChunkState.error
                 ? const SizedBox.shrink()
-                : (currentChunk.pages.isNotEmpty
+                : (currentChunk.pages.isNotEmpty || hasLinkedQuestions
                       ? ListView.builder(
                           key: ValueKey(currentChunkIndex),
-                          itemCount: currentChunk.pages.length,
+                          itemCount:
+                              currentChunk.pages.length +
+                              (hasLinkedQuestions ? 1 : 0),
                           itemBuilder: (context, index) {
+                            if (index == currentChunk.pages.length) {
+                              return _buildPracticeBanner(
+                                context,
+                                enabledLinkedQuestions,
+                              );
+                            }
                             final page = currentChunk.pages[index];
                             return Card(
                               margin: const EdgeInsets.only(bottom: 16),
@@ -69,6 +96,105 @@ class StudyContentView extends StatelessWidget {
                             localizations.studyScreenNoSlidesGenerated,
                           ),
                         )),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPracticeBanner(
+    BuildContext context,
+    List<Question> linkedQuestions,
+  ) {
+    if (quizFile == null) return const SizedBox.shrink();
+
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final primaryColor = Theme.of(context).primaryColor;
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 24),
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: isDark ? AppTheme.zinc800 : Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: isDark ? AppTheme.zinc700 : AppTheme.zinc200,
+          width: 1,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: primaryColor.withValues(alpha: 0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  LucideIcons.graduationCap,
+                  color: primaryColor,
+                  size: 24,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      localizations.studySectionPracticePrompt,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Plus Jakarta Sans',
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      localizations.studySectionPracticeSubtitle(
+                        linkedQuestions.length,
+                      ),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: isDark ? AppTheme.zinc400 : AppTheme.zinc500,
+                        height: 1.4,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          QuizdyButton(
+            title: localizations.startQuizFromStudy,
+            icon: LucideIcons.play,
+            expanded: true,
+            onPressed: () async {
+              final sectionQuizFile = quizFile!.copyWith(
+                questions: linkedQuestions,
+              );
+              ServiceLocator.registerQuizFile(sectionQuizFile);
+              ServiceLocator.registerQuizConfig(
+                QuizConfig(
+                  questionCount: linkedQuestions.length,
+                  isStudyMode: false,
+                ),
+              );
+              await context.push(AppRoutes.quizFileExecutionScreen);
+              if (context.mounted) {
+                final studyBloc = context.read<StudyExecutionBloc>();
+                studyBloc.add(StudyChunksUpdated(studyBloc.state.chunks));
+              }
+            },
           ),
         ],
       ),

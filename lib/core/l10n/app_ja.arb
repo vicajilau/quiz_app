@@ -1457,6 +1457,14 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
+  "smartModeLabel": "スマートモード",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "特別な試験モードです。アプリが問題のセットと数を自動で決定し、復習統計を更新します。",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "studyModeDescription": "AIアシスタンス利用可能。回答直後のインスタント・フィードバック、時間制限や減点はありません。 統計は生成されません。",
   "examModeLabel": "試験モード",
   "examModeDescription": "AIアシスタンスなし。時間制限や不正解による減点が適用される場合があります。 SRS統計を生成します。",
@@ -1494,6 +1502,10 @@
   "@missingExplanationTooltip": {
     "description": "説明欠落バッジのツールチップテキスト"
   },
+  "missingStudySectionTooltip": "学習セクションにリンクされていません",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
+  },
   "questionTypeTooltip": "質問の種類: {type}",
   "@questionTypeTooltip": {
     "description": "質問タイプバッジのツールチップテキスト",
@@ -1516,7 +1528,7 @@
   "previewLatexTooltip": "LaTeX レンダリングのプレビュー",
   "okButton": "OK",
   "aiEnterContentTitle": "コンテンツを入力",
-  "aiEnterContentDescription": "質問を作成するトピックを入力するか、コンテンツを貼り付けてください",
+  "aiEnterContentDescription": "任意のテキストを貼り付けるか、ファイルをコンテンツソースとして添付してください",
   "aiContentFieldHint": "「第二次世界大戦の歴史」のようなトピックを入力するか、ここにテキストを貼り付けてください...",
   "aiAttachFileHint": "ファイルを添付 (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "ファイルをここにドロップ",
@@ -1881,6 +1893,11 @@
     "description": "Label for context mode when a file is uploaded"
   },
   "startQuizFromStudy": "知識をテストする",
+  "studySectionPracticePrompt": "このセクションの質問を練習する",
+  "studySectionPracticeSubtitle": "このセクションには {count} 個のリンクされた質問があります。今すぐ練習して学習を強化しましょう！",
+  "studySectionMasteryTooltip": "セクションの習得度: {percentage}% (最新の試行で {total} 問中 {correct} 問正解)",
+  "studyScreenLearnedContent": "学習済みのコンテンツ",
+  "studyScreenLearnedQuestionsCount": "{total} 問中 {correct} 問を習得",
   "studyScreenCustomChapter": "カスタムチャプター",
   "addSection": "セクションを追加",
   "editSection": "セクションを編集",
@@ -1958,18 +1975,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "ドキュメントのどのセクションから質問を生成するかを選択できるようにする",
+  "aiSelectSectionsSubtitle": "問題の生成に使用する学習セクションを選択してください",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "すべてのセクション",
   "aiSelectQuestionsTitle": "問題を選択",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "学習セクションを生成する際のコンテキストとして使用するクイズ問題を選択するには有効にしてください",
+  "aiSelectQuestionsSubtitle": "クイズモードの問題を生成コンテキストとして選択してください",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "すべての問題",
   "onboardingStudyContentTitle": "コンテンツを学習",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"
@@ -2408,10 +2427,9 @@
   "forceUpdateMessage": "Quizdyを引き続き使用するには、強制アップデートが必要です。アプリをアップデートしてください。",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "最適な記憶のためにSM-2アルゴリズムに基づいて質問を並べ替えます、Ankiのスマートオーダーアルゴリズムに基づく",
+  },
+  "questionOrderBySection": "セクション順",
+  "questionOrderBySectionDesc": "質問をセクションごとにまとめ、各セクションを昇順で表示します",
   "srsStatsTitle": "統計",
   "srsResetAllStatsTooltip": "すべての統計をリセット",
   "srsResetButton": "リセット",
@@ -2439,11 +2457,20 @@
   "srsDueTooltip": "復習が予定されている日付",
   "srsCorrect": "{count} 正解",
   "srsIncorrect": "{count} 不正解",
-  "srsQuestions": "質問"
-,
+  "srsQuestions": "質問",
   "modeGeneratesStats": "SRS統計を生成します",
-  "modeNoStats": "統計を生成しません"
-,
+  "modeNoStats": "統計を生成しません",
   "srsEmptyStateTitle": "まだ表示するデータがありません",
-  "srsEmptyStateSubtitle": "学習の進捗を追跡し始めるには、最初の学習セッションを完了するか試験を受けてください。"
+  "srsEmptyStateSubtitle": "学習の進捗を追跡し始めるには、最初の学習セッションを完了するか試験を受けてください。",
+  "linkStudySection": "学習セクションにリンク",
+  "noStudySection": "なし",
+  "confirmDeleteSectionWithQuestionsMessage": "このセクションには関連する問題があります。本当に `{sectionName}` を削除しますか？",
+  "srsSortTooltip": "並び替え",
+  "srsSortByName": "名前 (A-Z)",
+  "srsSortBySectionOrder": "セクション順",
+  "srsSortByPendingQuestions": "保留中の問題",
+  "srsSortByHitRate": "正解率",
+  "srsSortAscending": "昇順",
+  "srsSortDescending": "降順",
+  "srsUnassignedSection": "未割り当て"
 }

@@ -26,6 +26,9 @@ import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
+import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
+import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_chunk_card.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_hero_card.dart';
@@ -38,6 +41,7 @@ class StudyIndexView extends StatelessWidget {
   final VoidCallback? onAddChunk;
   final VoidCallback? onSave;
   final VoidCallback? onImport;
+  final QuizFile? quizFile;
 
   /// Called with the chunk index when the user taps the edit (pencil) button
   /// on a chunk card while in edit mode. `null` when not in edit mode.
@@ -51,6 +55,7 @@ class StudyIndexView extends StatelessWidget {
     this.onSave,
     this.onImport,
     this.onChunkEditTap,
+    this.quizFile,
   });
 
   Future<void> _onChunkTap(BuildContext context, int index) async {
@@ -93,15 +98,36 @@ class StudyIndexView extends StatelessWidget {
 
   Future<void> _onChunkDelete(BuildContext context, int index) async {
     final chunk = state.chunks[index];
+
+    // Check if the section has associated questions
+    bool hasQuestions = false;
+    try {
+      final fileState = context.read<FileBloc>().state;
+      QuizFile? quizFile;
+      if (fileState is FileLoaded) {
+        quizFile = fileState.quizFile;
+      } else if (fileState is FileSaved) {
+        quizFile = fileState.quizFile;
+      }
+      if (quizFile != null) {
+        hasQuestions = quizFile.questions.any(
+          (q) => q.studySectionId == chunk.id,
+        );
+      }
+    } catch (_) {}
+
+    final appLocalizations = AppLocalizations.of(context)!;
+    final message = hasQuestions
+        ? appLocalizations.confirmDeleteSectionWithQuestionsMessage(chunk.title)
+        : appLocalizations.confirmDeleteMessage(chunk.title);
+
     final confirmed =
         await showDialog<bool>(
           context: context,
           builder: (context) => CustomConfirmDialog(
-            title: AppLocalizations.of(context)!.confirmDeleteTitle,
-            message: AppLocalizations.of(
-              context,
-            )!.confirmDeleteMessage(chunk.title),
-            confirmText: AppLocalizations.of(context)!.deleteButton,
+            title: appLocalizations.confirmDeleteTitle,
+            message: message,
+            confirmText: appLocalizations.deleteButton,
             isDestructive: true,
           ),
         ) ??
@@ -118,6 +144,16 @@ class StudyIndexView extends StatelessWidget {
   Widget build(BuildContext context) {
     final duplicateChunkCounts = _buildChunkDuplicateCounts(state.chunks);
 
+    final fileState = context.watch<FileBloc>().state;
+    QuizFile? resolvedQuizFile = quizFile;
+    if (resolvedQuizFile == null) {
+      if (fileState is FileLoaded) {
+        resolvedQuizFile = fileState.quizFile;
+      } else if (fileState is FileSaved) {
+        resolvedQuizFile = fileState.quizFile;
+      }
+    }
+
     return Padding(
       padding: EdgeInsets.only(
         top: MediaQuery.of(context).padding.top,
@@ -125,11 +161,19 @@ class StudyIndexView extends StatelessWidget {
       ),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final isWide = constraints.maxWidth >= 800;
+          final isWide = constraints.maxWidth >= 900;
           if (isWide) {
-            return _buildDesktopLayout(context, duplicateChunkCounts);
+            return _buildDesktopLayout(
+              context,
+              duplicateChunkCounts,
+              resolvedQuizFile,
+            );
           }
-          return _buildMobileLayout(context, duplicateChunkCounts);
+          return _buildMobileLayout(
+            context,
+            duplicateChunkCounts,
+            resolvedQuizFile,
+          );
         },
       ),
     );
@@ -151,6 +195,7 @@ class StudyIndexView extends StatelessWidget {
   Widget _buildMobileLayout(
     BuildContext context,
     Map<String, int> duplicateChunkCounts,
+    QuizFile? quizFile,
   ) {
     if (state.isSelectionMode) {
       return ReorderableListView.builder(
@@ -159,7 +204,11 @@ class StudyIndexView extends StatelessWidget {
         itemCount: state.chunks.length,
         header: Column(
           children: [
-            StudyIndexHeroCard(state: state, localizations: localizations),
+            StudyIndexHeroCard(
+              state: state,
+              localizations: localizations,
+              quizFile: quizFile,
+            ),
             const SizedBox(height: 24),
             StudyIndexSectionsHeader(
               chunksCount: state.chunks.length,
@@ -187,6 +236,7 @@ class StudyIndexView extends StatelessWidget {
               isModified: ServiceLocator.getIt<CheckFileChangesUseCase>()
                   .isStudyChunkModified(index, chunk),
               isDuplicated: _isChunkDuplicated(chunk, duplicateChunkCounts),
+              quizFile: quizFile,
               onTap: () {
                 if (state.isSelectionMode) {
                   context.read<StudyExecutionBloc>().add(
@@ -209,7 +259,7 @@ class StudyIndexView extends StatelessWidget {
             ),
           );
         },
-        onReorder: (oldIndex, newIndex) {
+        onReorderItem: (oldIndex, newIndex) {
           context.read<StudyExecutionBloc>().add(
             ReorderStudyChunks(oldIndex, newIndex),
           );
@@ -220,7 +270,11 @@ class StudyIndexView extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(20),
       children: [
-        StudyIndexHeroCard(state: state, localizations: localizations),
+        StudyIndexHeroCard(
+          state: state,
+          localizations: localizations,
+          quizFile: quizFile,
+        ),
         const SizedBox(height: 24),
         StudyIndexSectionsHeader(
           chunksCount: state.chunks.length,
@@ -248,6 +302,7 @@ class StudyIndexView extends StatelessWidget {
                 isModified: ServiceLocator.getIt<CheckFileChangesUseCase>()
                     .isStudyChunkModified(index, chunk),
                 isDuplicated: _isChunkDuplicated(chunk, duplicateChunkCounts),
+                quizFile: quizFile,
                 onTap: () {
                   if (state.isSelectionMode) {
                     context.read<StudyExecutionBloc>().add(
@@ -277,10 +332,11 @@ class StudyIndexView extends StatelessWidget {
   Widget _buildDesktopLayout(
     BuildContext context,
     Map<String, int> duplicateChunkCounts,
+    QuizFile? quizFile,
   ) {
     if (state.isSelectionMode) {
       // Use single column ReorderableListView even on desktop for functional reordering
-      return _buildMobileLayout(context, duplicateChunkCounts);
+      return _buildMobileLayout(context, duplicateChunkCounts, quizFile);
     }
 
     return Row(
@@ -292,7 +348,11 @@ class StudyIndexView extends StatelessWidget {
           child: ListView(
             padding: const EdgeInsets.all(24),
             children: [
-              StudyIndexHeroCard(state: state, localizations: localizations),
+              StudyIndexHeroCard(
+                state: state,
+                localizations: localizations,
+                quizFile: quizFile,
+              ),
             ],
           ),
         ),
@@ -346,6 +406,7 @@ class StudyIndexView extends StatelessWidget {
                                   state.chunks[i],
                                   duplicateChunkCounts,
                                 ),
+                                quizFile: quizFile,
                                 onTap: () {
                                   if (state.isSelectionMode) {
                                     context.read<StudyExecutionBloc>().add(
@@ -404,6 +465,7 @@ class StudyIndexView extends StatelessWidget {
                                   state.chunks[i],
                                   duplicateChunkCounts,
                                 ),
+                                quizFile: quizFile,
                                 onTap: () {
                                   if (state.isSelectionMode) {
                                     context.read<StudyExecutionBloc>().add(

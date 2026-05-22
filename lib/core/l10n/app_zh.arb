@@ -1429,6 +1429,14 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
+  "smartModeLabel": "智能模式",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "特殊考试模式。应用会自动决定题目集合和数量，并更新复习统计。",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "studyModeDescription": "提供 AI 辅助。每题回答后提供即时反馈，无时间限制或扣分。 不生成统计数据。",
   "examModeLabel": "考试模式",
   "examModeDescription": "无 AI 辅助。可能适用时间限制和答错扣分。 生成SRS统计数据。",
@@ -1467,6 +1475,10 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
+  "missingStudySectionTooltip": "未链接到学习章节",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
+  },
   "questionTypeTooltip": "问题类型：{type}",
   "@questionTypeTooltip": {
     "description": "Tooltip text for the question type badge",
@@ -1493,7 +1505,7 @@
   "previewLatexTooltip": "预览 LaTeX 渲染",
   "okButton": "确定",
   "aiEnterContentTitle": "输入内容",
-  "aiEnterContentDescription": "输入主题或粘贴内容以生成问题",
+  "aiEnterContentDescription": "粘贴任意文本或附加文件作为内容来源",
   "aiContentFieldHint": "输入主题如“二战史”或在此粘贴文本...",
   "aiAttachFileHint": "附加文件 (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "在此处放置文件",
@@ -1930,6 +1942,11 @@
     "description": "Label for context mode when a file is uploaded"
   },
   "startQuizFromStudy": "测试你的知识",
+  "studySectionPracticePrompt": "练习本节问题",
+  "studySectionPracticeSubtitle": "本节有 {count} 个关联问题。现在练习以巩固您的学习成果！",
+  "studySectionMasteryTooltip": "章节掌握度: {percentage}% (最新尝试中 {total} 道题答对 {correct} 道)",
+  "studyScreenLearnedContent": "已掌握内容",
+  "studyScreenLearnedQuestionsCount": "已掌握 {correct} / {total} 道题",
   "studyScreenCustomChapter": "自定义章节",
   "addSection": "添加章节",
   "editSection": "编辑章节",
@@ -2007,18 +2024,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "启用以选择从文档的哪些部分生成问题",
+  "aiSelectSectionsSubtitle": "选择将用于生成问题的学习部分",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "所有部分",
   "aiSelectQuestionsTitle": "选择问题",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "启用以选择将哪些测验问题用作生成学习章节的上下文",
+  "aiSelectQuestionsSubtitle": "选择测验模式问题作为生成上下文",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "所有问题",
   "onboardingStudyContentTitle": "学习您的内容",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"
@@ -2457,10 +2476,9 @@
   "forceUpdateMessage": "需要强制更新才能继续使用 Quizdy。请更新应用。",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "基于SM-2算法排序以获得最佳记忆效果，基于Anki智能排序算法",
+  },
+  "questionOrderBySection": "按章节",
+  "questionOrderBySectionDesc": "按章节分组并按升序显示每个章节",
   "srsStatsTitle": "统计",
   "srsResetAllStatsTooltip": "重置所有统计",
   "srsResetButton": "重置",
@@ -2488,11 +2506,20 @@
   "srsDueTooltip": "计划复习的日期",
   "srsCorrect": "{count} 答对",
   "srsIncorrect": "{count} 答错",
-  "srsQuestions": "问题"
-,
+  "srsQuestions": "问题",
   "modeGeneratesStats": "生成SRS统计数据",
-  "modeNoStats": "不生成统计数据"
-,
+  "modeNoStats": "不生成统计数据",
   "srsEmptyStateTitle": "暂无数据可显示",
-  "srsEmptyStateSubtitle": "完成您的第一个学习会话或参加考试以开始跟踪您的学习进度。"
+  "srsEmptyStateSubtitle": "完成您的第一个学习会话或参加考试以开始跟踪您的学习进度。",
+  "linkStudySection": "链接至学习章节",
+  "noStudySection": "无",
+  "confirmDeleteSectionWithQuestionsMessage": "此章节包含关联问题。您确定要删除 `{sectionName}` 吗？",
+  "srsSortTooltip": "排序",
+  "srsSortByName": "名称 (A-Z)",
+  "srsSortBySectionOrder": "章节顺序",
+  "srsSortByPendingQuestions": "待复习题目",
+  "srsSortByHitRate": "正确率",
+  "srsSortAscending": "升序",
+  "srsSortDescending": "降序",
+  "srsUnassignedSection": "未分配"
 }

@@ -15,6 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/extensions/quiz_loaded_theme.dart';
@@ -23,6 +24,10 @@ import 'package:quizdy/domain/models/srs/srs_metadata.dart';
 import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
 import 'package:quizdy/presentation/screens/widgets/srs/srs_empty_state.dart';
 import 'package:quizdy/presentation/screens/widgets/srs/srs_file_stats_card.dart';
+
+enum _SrsSortField { sectionOrder, name, pendingQuestions, hitRate }
+
+enum _SrsSortDirection { ascending, descending }
 
 class SrsStatsScreen extends StatefulWidget {
   const SrsStatsScreen({super.key});
@@ -34,6 +39,8 @@ class SrsStatsScreen extends StatefulWidget {
 class _SrsStatsScreenState extends State<SrsStatsScreen> {
   late SrsRepository _srsRepository;
   Map<String, List<SrsMetadata>> _groupedStats = {};
+  _SrsSortField _sortField = _SrsSortField.sectionOrder;
+  _SrsSortDirection _sortDirection = _SrsSortDirection.ascending;
 
   @override
   void initState() {
@@ -45,6 +52,52 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
   void _loadStats() {
     setState(() {
       _groupedStats = _srsRepository.getStatsGroupedByFile();
+    });
+  }
+
+  /// Returns [stats] sorted according to the current [_sortField] and
+  /// [_sortDirection]. A copy is always returned to avoid mutating the cache.
+  List<SrsMetadata> _sortedStats(List<SrsMetadata> stats) {
+    if (_sortField == _SrsSortField.sectionOrder) return List.of(stats);
+
+    final sorted = List.of(stats);
+    sorted.sort((a, b) {
+      final int comparison;
+      switch (_sortField) {
+        case _SrsSortField.sectionOrder:
+          comparison = 0;
+        case _SrsSortField.name:
+          comparison = a.questionText.toLowerCase().compareTo(
+            b.questionText.toLowerCase(),
+          );
+        case _SrsSortField.pendingQuestions:
+          // Earlier nextReviewDate → more urgent → comes first in ascending.
+          comparison = a.nextReviewDate.compareTo(b.nextReviewDate);
+        case _SrsSortField.hitRate:
+          comparison = _retentionRate(a).compareTo(_retentionRate(b));
+      }
+      return _sortDirection == _SrsSortDirection.ascending
+          ? comparison
+          : -comparison;
+    });
+    return sorted;
+  }
+
+  double _retentionRate(SrsMetadata s) {
+    final total = s.timesCorrect + s.timesIncorrect;
+    return total > 0 ? s.timesCorrect / total * 100 : 0.0;
+  }
+
+  void _onSortFieldSelected(_SrsSortField field) {
+    setState(() {
+      if (_sortField == field) {
+        _sortDirection = _sortDirection == _SrsSortDirection.ascending
+            ? _SrsSortDirection.descending
+            : _SrsSortDirection.ascending;
+      } else {
+        _sortField = field;
+        _sortDirection = _SrsSortDirection.ascending;
+      }
     });
   }
 
@@ -66,6 +119,11 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
         actions: _groupedStats.isEmpty
             ? null
             : [
+                _SortMenuButton(
+                  sortField: _sortField,
+                  sortDirection: _sortDirection,
+                  onSelected: _onSortFieldSelected,
+                ),
                 _AppBarActionButton(
                   icon: Icons.restart_alt,
                   tooltip: l10n.srsResetAllStatsTooltip,
@@ -80,8 +138,9 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
               itemCount: _groupedStats.length,
               itemBuilder: (context, index) {
                 final fileId = _groupedStats.keys.elementAt(index);
-                final stats = _groupedStats[fileId]!;
+                final stats = _sortedStats(_groupedStats[fileId]!);
                 return SrsFileStatsCard(
+                  key: ValueKey(fileId),
                   fileId: fileId,
                   stats: stats,
                   onReset: () => _confirmResetFile(context, fileId),
@@ -159,6 +218,8 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
   }
 }
 
+// ── AppBar widgets ────────────────────────────────────────────────────────────
+
 class _AppBarActionButton extends StatelessWidget {
   final IconData icon;
   final String tooltip;
@@ -189,6 +250,83 @@ class _AppBarActionButton extends StatelessWidget {
           size: 20,
         ),
         tooltip: tooltip,
+      ),
+    );
+  }
+}
+
+class _SortMenuButton extends StatelessWidget {
+  final _SrsSortField sortField;
+  final _SrsSortDirection sortDirection;
+  final ValueChanged<_SrsSortField> onSelected;
+
+  const _SortMenuButton({
+    required this.sortField,
+    required this.sortDirection,
+    required this.onSelected,
+  });
+
+  IconData get _directionIcon => sortDirection == _SrsSortDirection.ascending
+      ? LucideIcons.arrowUp
+      : LucideIcons.arrowDown;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final onPrimary = Theme.of(context).colorScheme.onPrimary;
+
+    final fields = [
+      (_SrsSortField.sectionOrder, l10n.srsSortBySectionOrder),
+      (_SrsSortField.name, l10n.srsSortByName),
+      (_SrsSortField.pendingQuestions, l10n.srsSortByPendingQuestions),
+      (_SrsSortField.hitRate, l10n.srsSortByHitRate),
+    ];
+
+    return Container(
+      width: 40,
+      height: 40,
+      margin: const EdgeInsets.only(right: 8),
+      decoration: BoxDecoration(
+        color: context.quizLoadedTheme.appBarIconBackgroundColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: PopupMenuButton<_SrsSortField>(
+        padding: EdgeInsets.zero,
+        tooltip: l10n.srsSortTooltip,
+        icon: Icon(LucideIcons.arrowUpDown, color: onPrimary, size: 20),
+        onSelected: onSelected,
+        itemBuilder: (context) => fields.map((entry) {
+          final (field, label) = entry;
+          final isSelected = sortField == field;
+          return PopupMenuItem<_SrsSortField>(
+            value: field,
+            child: Row(
+              children: [
+                Icon(
+                  isSelected ? _directionIcon : LucideIcons.minus,
+                  size: 16,
+                  color: isSelected
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withValues(alpha: 0.3),
+                ),
+                const SizedBox(width: 10),
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontWeight: isSelected
+                        ? FontWeight.w600
+                        : FontWeight.normal,
+                    color: isSelected
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
+                  ),
+                ),
+              ],
+            ),
+          );
+        }).toList(),
       ),
     );
   }

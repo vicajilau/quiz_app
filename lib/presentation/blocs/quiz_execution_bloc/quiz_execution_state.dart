@@ -54,6 +54,9 @@ class QuizExecutionInProgress extends QuizExecutionState {
   final bool wasLimitReached;
   final String? fileIdentifier;
 
+  /// Maps studySectionId → section title, used to enrich SRS metadata on save.
+  final Map<String, String>? studySectionNames;
+
   QuizExecutionInProgress({
     required this.questions,
     required this.currentQuestionIndex,
@@ -63,6 +66,7 @@ class QuizExecutionInProgress extends QuizExecutionState {
     this.isAiEvaluating = false,
     this.wasLimitReached = false,
     this.fileIdentifier,
+    this.studySectionNames,
     Map<int, String>? essayAnswers,
     Set<int>? validatedQuestions,
     Map<int, EssayAiEvaluation>? aiEvaluations,
@@ -140,6 +144,7 @@ class QuizExecutionInProgress extends QuizExecutionState {
     bool? isAiEvaluating,
     bool? wasLimitReached,
     String? fileIdentifier,
+    Map<String, String>? studySectionNames,
   }) {
     return QuizExecutionInProgress(
       questions: questions ?? this.questions,
@@ -154,6 +159,7 @@ class QuizExecutionInProgress extends QuizExecutionState {
       isAiEvaluating: isAiEvaluating ?? this.isAiEvaluating,
       wasLimitReached: wasLimitReached ?? this.wasLimitReached,
       fileIdentifier: fileIdentifier ?? this.fileIdentifier,
+      studySectionNames: studySectionNames ?? this.studySectionNames,
     );
   }
 }

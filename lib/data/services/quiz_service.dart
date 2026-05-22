@@ -14,8 +14,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'dart:math';
-import 'package:quizdy/core/service_locator.dart';
-import 'package:quizdy/data/repositories/srs/srs_repository.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/question_order.dart';
 
@@ -48,26 +46,44 @@ class QuizService {
       case QuestionOrder.ascending:
         orderedQuestions = List<Question>.from(allQuestions);
         break;
-      case QuestionOrder.spacedRepetition:
-        orderedQuestions = List<Question>.from(allQuestions);
-        if (fileIdentifier != null) {
-          try {
-            final srsRepo = ServiceLocator.getIt<SrsRepository>();
-            orderedQuestions.sort((a, b) {
-              final statA = srsRepo.getMetadataForQuestion(
-                a.identityHash.toString(),
-                fileIdentifier,
-              );
-              final statB = srsRepo.getMetadataForQuestion(
-                b.identityHash.toString(),
-                fileIdentifier,
-              );
-              return statA.nextReviewDate.compareTo(statB.nextReviewDate);
-            });
-          } catch (e) {
-            // Fallback if SrsRepository isn't available
+      case QuestionOrder.bySection:
+        final sectionOrder = <String, int>{};
+        for (final question in allQuestions) {
+          final sectionId = question.studySectionId?.trim();
+          if (sectionId == null || sectionId.isEmpty) {
+            continue;
           }
+          sectionOrder.putIfAbsent(sectionId, () => sectionOrder.length);
         }
+
+        final indexedQuestions = allQuestions.asMap().entries.toList();
+        indexedQuestions.sort((entryA, entryB) {
+          final questionA = entryA.value;
+          final questionB = entryB.value;
+
+          final sectionKeyA = questionA.studySectionId?.trim();
+          final sectionKeyB = questionB.studySectionId?.trim();
+          final normalizedSectionKeyA =
+              (sectionKeyA == null || sectionKeyA.isEmpty)
+              ? sectionOrder.length + 1
+              : sectionOrder[sectionKeyA] ?? sectionOrder.length;
+          final normalizedSectionKeyB =
+              (sectionKeyB == null || sectionKeyB.isEmpty)
+              ? sectionOrder.length + 1
+              : sectionOrder[sectionKeyB] ?? sectionOrder.length;
+
+          final sectionComparison = normalizedSectionKeyA.compareTo(
+            normalizedSectionKeyB,
+          );
+          if (sectionComparison != 0) {
+            return sectionComparison;
+          }
+
+          return entryA.key.compareTo(entryB.key);
+        });
+        orderedQuestions = indexedQuestions
+            .map((entry) => entry.value)
+            .toList();
         break;
       case QuestionOrder.random:
         orderedQuestions = List<Question>.from(allQuestions);
@@ -170,6 +186,7 @@ class QuizService {
       options: shuffledOptions,
       correctAnswers: newCorrectAnswers,
       explanation: question.explanation,
+      studySectionId: question.studySectionId,
     );
   }
 

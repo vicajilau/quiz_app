@@ -1451,6 +1451,14 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
+  "smartModeLabel": "Modo inteligente",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "Modo de exame especial. A app determina automaticamente o conjunto e o número de perguntas e atualiza as estatísticas de revisão.",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "@studyModeLabel": {
     "description": "Label for study mode option"
   },
@@ -1528,6 +1536,10 @@
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
   },
+  "missingStudySectionTooltip": "Sem vínculo com uma seção de estudo",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
+  },
   "questionTypeTooltip": "Tipo de pergunta: {type}",
   "@questionTypeTooltip": {
     "description": "Tooltip text for the question type badge",
@@ -1554,7 +1566,7 @@
   "previewLatexTooltip": "Pré-visualizar renderização LaTeX",
   "okButton": "OK",
   "aiEnterContentTitle": "Inserir Conteúdo",
-  "aiEnterContentDescription": "Insira o tópico ou cole o conteúdo para gerar perguntas",
+  "aiEnterContentDescription": "Cole qualquer texto ou anexe arquivos como fonte do conteúdo",
   "aiContentFieldHint": "Insira um tópico como \"História da Segunda Guerra Mundial\" ou cole o texto aqui...",
   "aiAttachFileHint": "Anexar arquivo (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "Solte o arquivo aqui",
@@ -1969,6 +1981,11 @@
     "description": "Label for context mode when a file is uploaded"
   },
   "startQuizFromStudy": "Teste seus conhecimentos",
+  "studySectionPracticePrompt": "Praticar perguntas da seção",
+  "studySectionPracticeSubtitle": "Esta seção possui {count, plural, =1{1 pergunta vinculada} other{{count} perguntas vinculadas}}. Pratique-as agora para reforçar seu aprendizado!",
+  "studySectionMasteryTooltip": "Domínio da seção: {percentage}% ({correct} de {total} perguntas corretas na última tentativa)",
+  "studyScreenLearnedContent": "Conteúdo aprendido",
+  "studyScreenLearnedQuestionsCount": "{correct} de {total} perguntas dominadas",
   "studyScreenCustomChapter": "Capítulo personalizado",
   "addSection": "Adicionar seção",
   "editSection": "Editar secção",
@@ -2046,18 +2063,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "Ative para escolher de quais seções do documento as perguntas serão geradas",
+  "aiSelectSectionsSubtitle": "Escolha quais seções de estudo serão usadas para gerar perguntas",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "Todas as seções",
   "aiSelectQuestionsTitle": "Selecionar perguntas",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "Ative para escolher quais perguntas do quiz serão usadas como contexto para gerar seções de estudo",
+  "aiSelectQuestionsSubtitle": "Escolha perguntas do modo Quiz como contexto de geração",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "Todas as perguntas",
   "onboardingStudyContentTitle": "Estude o seu conteúdo",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"
@@ -2496,10 +2515,9 @@
   "forceUpdateMessage": "É necessária uma atualização obrigatória para continuar a utilizar o Quizdy. Por favor, atualize a aplicação.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "Perguntas ordenadas pelo algoritmo SM-2 para retenção ideal, baseado no algoritmo de ordenamento inteligente do Anki",
+  },
+  "questionOrderBySection": "Por seções",
+  "questionOrderBySectionDesc": "Agrupe as perguntas por seção e mostre cada seção em ordem crescente",
   "srsStatsTitle": "Estatísticas",
   "srsResetAllStatsTooltip": "Redefinir todas as estatísticas",
   "srsResetButton": "Redefinir",
@@ -2527,11 +2545,20 @@
   "srsDueTooltip": "A data programada para revisão",
   "srsCorrect": "{count} Correto",
   "srsIncorrect": "{count} Incorreto",
-  "srsQuestions": "Perguntas"
-,
+  "srsQuestions": "Perguntas",
   "modeGeneratesStats": "Gera estatísticas SRS",
-  "modeNoStats": "Não gera estatísticas"
-,
+  "modeNoStats": "Não gera estatísticas",
   "srsEmptyStateTitle": "Ainda não há dados para mostrar",
-  "srsEmptyStateSubtitle": "Conclua sua primeira sessão de estudo ou faça um exame para começar a acompanhar seu progresso de aprendizado."
+  "srsEmptyStateSubtitle": "Conclua sua primeira sessão de estudo ou faça um exame para começar a acompanhar seu progresso de aprendizado.",
+  "linkStudySection": "Vincular à seção de estudo",
+  "noStudySection": "Nenhum",
+  "confirmDeleteSectionWithQuestionsMessage": "Esta seção possui perguntas associadas. Tem certeza de que deseja excluir `{sectionName}`?",
+  "srsSortTooltip": "Ordenar",
+  "srsSortByName": "Nome (A-Z)",
+  "srsSortBySectionOrder": "Ordem das secções",
+  "srsSortByPendingQuestions": "Perguntas pendentes",
+  "srsSortByHitRate": "Taxa de acertos",
+  "srsSortAscending": "Crescente",
+  "srsSortDescending": "Decrescente",
+  "srsUnassignedSection": "Sem secção"
 }

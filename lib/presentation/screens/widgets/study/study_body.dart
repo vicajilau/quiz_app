@@ -27,6 +27,7 @@ import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_cubit.
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
+import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quizdy/presentation/screens/quiz_execution/widgets/ai_studio_chat_side_panel.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_view.dart';
@@ -40,11 +41,13 @@ import 'package:go_router/go_router.dart';
 class StudyBody extends StatefulWidget {
   final Future<void> Function(BuildContext) onHandleFileReattachment;
   final VoidCallback onSave;
+  final QuizFile? quizFile;
 
   const StudyBody({
     super.key,
     required this.onHandleFileReattachment,
     required this.onSave,
+    this.quizFile,
   });
 
   @override
@@ -182,6 +185,15 @@ class _StudyBodyState extends State<StudyBody>
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final fileState = context.watch<FileBloc>().state;
+    QuizFile? quizFile = widget.quizFile;
+    if (quizFile == null) {
+      if (fileState is FileLoaded) {
+        quizFile = fileState.quizFile;
+      } else if (fileState is FileSaved) {
+        quizFile = fileState.quizFile;
+      }
+    }
 
     return MultiBlocListener(
       listeners: [
@@ -275,6 +287,7 @@ class _StudyBodyState extends State<StudyBody>
                 return StudyIndexView(
                   state: state,
                   localizations: localizations,
+                  quizFile: widget.quizFile,
                   onAddChunk: () async {
                     final result = await showDialog<Map<String, String>>(
                       context: context,
@@ -464,6 +477,7 @@ class _StudyBodyState extends State<StudyBody>
                         currentChunk: currentChunk,
                         currentChunkIndex: state.currentChunkIndex,
                         localizations: localizations,
+                        quizFile: quizFile,
                       ),
                       if (!_isSidebarOpen)
                         Positioned(

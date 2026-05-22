@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 
 class HomeHeaderWidget extends StatelessWidget {
@@ -46,7 +46,7 @@ class HomeHeaderWidget extends StatelessWidget {
             ),
             child: IconButton(
               icon: const Icon(Icons.analytics_outlined),
-              tooltip: 'SRS Stats',
+              tooltip: AppLocalizations.of(context)!.srsStatsTitle,
               color: Theme.of(context).iconTheme.color,
               iconSize: 24,
               onPressed: isLoading ? null : onSrsStatsTap,

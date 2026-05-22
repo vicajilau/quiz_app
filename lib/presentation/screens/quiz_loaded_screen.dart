@@ -19,7 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:desktop_drop/desktop_drop.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/presentation/utils/dialog_drop_guard.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
@@ -316,15 +316,31 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
           return;
         }
 
+        // Auto-link generated questions to the selected study section if it is unique
+        final List<Question> processedQuestions;
+        if (config.selectedChunks?.length == 1) {
+          final targetChunkId = config.selectedChunks!.first.id;
+          processedQuestions = generatedQuestions
+              .map((q) => q.copyWith(studySectionId: targetChunkId))
+              .toList();
+        } else if (cachedQuizFile.study?.content.cache.length == 1) {
+          final targetChunkId = cachedQuizFile.study!.content.cache.first.id;
+          processedQuestions = generatedQuestions
+              .map((q) => q.copyWith(studySectionId: targetChunkId))
+              .toList();
+        } else {
+          processedQuestions = generatedQuestions;
+        }
+
         if (cachedQuizFile.questions.isEmpty) {
           setState(() {
-            cachedQuizFile.questions.insertAll(0, generatedQuestions);
+            cachedQuizFile.questions.insertAll(0, processedQuestions);
           });
           if (mounted) {
             context.presentSnackBar(
               AppLocalizations.of(
                 context,
-              )!.questionsImportedSuccess(generatedQuestions.length),
+              )!.questionsImportedSuccess(processedQuestions.length),
             );
           }
           return;
@@ -336,7 +352,7 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
           context: context,
           barrierDismissible: false,
           builder: (context) => ImportQuestionsDialog(
-            questionCount: generatedQuestions.length,
+            questionCount: processedQuestions.length,
             fileName: AppLocalizations.of(context)!.aiGeneratedQuestions,
           ),
         );
@@ -345,10 +361,10 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
           setState(() {
             if (questionsPosition == QuestionsPosition.beginning) {
               // Insert at the beginning
-              cachedQuizFile.questions.insertAll(0, generatedQuestions);
+              cachedQuizFile.questions.insertAll(0, processedQuestions);
             } else {
               // Insert at the end
-              cachedQuizFile.questions.addAll(generatedQuestions);
+              cachedQuizFile.questions.addAll(processedQuestions);
             }
           });
 
@@ -356,7 +372,7 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
             context.presentSnackBar(
               AppLocalizations.of(
                 context,
-              )!.questionsImportedSuccess(generatedQuestions.length),
+              )!.questionsImportedSuccess(processedQuestions.length),
             );
           }
         }

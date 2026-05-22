@@ -13,7 +13,7 @@
   "previewLatexTooltip": "Προεπισκόπηση απόδοσης LaTeX",
   "okButton": "ΟΚ",
   "aiEnterContentTitle": "Εισαγωγή περιεχομένου",
-  "aiEnterContentDescription": "Εισάγετε το θέμα ή επικολλήστε περιεχόμενο για τη δημιουργία ερωτήσεων",
+  "aiEnterContentDescription": "Επικολλήστε οποιοδήποτε κείμενο ή επισυνάψτε αρχεία ως πηγή περιεχομένου",
   "aiContentFieldHint": "Εισάγετε ένα θέμα όπως \"Ιστορία του Β' Παγκόσμιου Πολέμου\" ή επικολλήστε κείμενο εδώ...",
   "aiAttachFileHint": "Επισύναψη αρχείου (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "Αφήστε το αρχείο εδώ",
@@ -479,6 +479,14 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
+  "smartModeLabel": "Έξυπνη λειτουργία",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "Ειδική λειτουργία εξέτασης. Η εφαρμογή καθορίζει αυτόματα το σύνολο και τον αριθμό των ερωτήσεων και ενημερώνει τα στατιστικά επανάληψης.",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "studyModeDescription": "Διαθέσιμη βοήθεια AI. Άμεση ανατροφοδότηση μετά από κάθε απάντηση, χωρίς χρονικά όρια ή ποινές. Δεν παράγονται στατιστικά.",
   "examModeLabel": "Λειτουργία Εξέτασης",
   "examModeDescription": "Χωρίς βοήθεια AI. Ενδέχεται να ισχύουν χρονικά όρια και ποινές για λανθασμένες απαντήσεις. Παράγει στατιστικά SRS.",
@@ -514,6 +522,10 @@
   "missingExplanationTooltip": "Αυτή η ερώτηση δεν έχει επεξήγηση",
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
+  },
+  "missingStudySectionTooltip": "Δεν συνδέεται με ενότητα μελέτης",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
   },
   "questionTypeTooltip": "Τύπος ερώτησης: {type}",
   "@questionTypeTooltip": {
@@ -875,6 +887,11 @@
     "description": "Label for context mode when a file is uploaded"
   },
   "startQuizFromStudy": "Δοκιμάστε τις γνώσεις σας",
+  "studySectionPracticePrompt": "Εξάσκηση στις ερωτήσεις της ενότητας",
+  "studySectionPracticeSubtitle": "Αυτή η ενότητα έχει {count, plural, =1{1 συνδεδεμένη ερώτηση} other{{count} συνδεδεμένες ερωτήσεις}}. Εξασκηθείτε τώρα για να ενισχύσετε τη μάθησή σας!",
+  "studySectionMasteryTooltip": "Εκμάθηση ενότητας: {percentage}% ({correct} από {total} ερωτήσεις σωστές στην τελευταία προσπάθεια)",
+  "studyScreenLearnedContent": "Εκμαθημένο περιεχόμενο",
+  "studyScreenLearnedQuestionsCount": "{correct} από τις {total} ερωτήσεις έχουν κατακτηθεί",
   "studyScreenCustomChapter": "Προσαρμοσμένο κεφάλαιο",
   "addSection": "Προσθήκη ενότητας",
   "editSection": "Επεξεργασία ενότητας",
@@ -955,18 +972,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "Ενεργοποιήστε για να επιλέξετε από ποιες ενότητες του εγγράφου θα δημιουργηθούν ερωτήσεις",
+  "aiSelectSectionsSubtitle": "Επιλέξτε ποιες ενότητες μελέτης θα χρησιμοποιηθούν για τη δημιουργία ερωτήσεων",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "Όλες οι ενότητες",
   "aiSelectQuestionsTitle": "Επιλογή Ερωτήσεων",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "Ενεργοποιήστε για να επιλέξετε ποιες ερωτήσεις του κουίζ θα χρησιμοποιηθούν ως πλαίσιο για τη δημιουργία ενοτήτων μελέτης",
+  "aiSelectQuestionsSubtitle": "Επιλέξτε ερωτήσεις Quiz ως πλαίσιο δημιουργίας",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "Όλες οι ερωτήσεις",
   "onboardingStudyContentTitle": "Μελετήστε το Περιεχόμενό σας",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"
@@ -1405,10 +1424,9 @@
   "forceUpdateMessage": "Απαιτείται υποχρεωτική ενημέρωση για να συνεχίσετε να χρησιμοποιείτε το Quizdy. Παρακαλούμε ενημερώστε την εφαρμογή.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "Ερωτήσεις ταξινομημένες βάσει αλγορίθμου SM-2 για βέλτιστη διατήρηση, βασισμένο στον αλγόριθμο έξυπνης ταξινόμησης του Anki",
+  },
+  "questionOrderBySection": "Κατά ενότητες",
+  "questionOrderBySectionDesc": "Ομαδοποιήστε τις ερωτήσεις ανά ενότητα και εμφανίστε κάθε ενότητα σε αύξουσα σειρά",
   "srsStatsTitle": "Στατιστικά",
   "srsResetAllStatsTooltip": "Επαναφορά Όλων των Στατιστικών",
   "srsResetButton": "Επαναφορά",
@@ -1436,11 +1454,20 @@
   "srsDueTooltip": "Ημερομηνία προγραμματισμένης επανάληψης",
   "srsCorrect": "{count} Σωστά",
   "srsIncorrect": "{count} Λάθος",
-  "srsQuestions": "Ερωτήσεις"
-,
+  "srsQuestions": "Ερωτήσεις",
   "modeGeneratesStats": "Παράγει στατιστικά SRS",
-  "modeNoStats": "Δεν παράγει στατιστικά"
-,
+  "modeNoStats": "Δεν παράγει στατιστικά",
   "srsEmptyStateTitle": "Δεν υπάρχουν δεδομένα ακόμη",
-  "srsEmptyStateSubtitle": "Ολοκληρώστε την πρώτη σας συνεδρία μελέτης ή κάντε μια εξέταση για να ξεκινήσετε να παρακολουθείτε την πρόοδό σας."
+  "srsEmptyStateSubtitle": "Ολοκληρώστε την πρώτη σας συνεδρία μελέτης ή κάντε μια εξέταση για να ξεκινήσετε να παρακολουθείτε την πρόοδό σας.",
+  "linkStudySection": "Σύνδεση με ενότητα μελέτης",
+  "noStudySection": "Κανένα",
+  "confirmDeleteSectionWithQuestionsMessage": "Αυτή η ενότητα έχει συσχετισμένες ερωτήσεις. Είστε βέβαιοι ότι θέλετε να διαγράψετε το `{sectionName}`;",
+  "srsSortTooltip": "Ταξινόμηση",
+  "srsSortByName": "Όνομα (Α-Ω)",
+  "srsSortBySectionOrder": "Σειρά ενοτήτων",
+  "srsSortByPendingQuestions": "Εκκρεμείς ερωτήσεις",
+  "srsSortByHitRate": "Ποσοστό επιτυχίας",
+  "srsSortAscending": "Αύξουσα",
+  "srsSortDescending": "Φθίνουσα",
+  "srsUnassignedSection": "Χωρίς τμήμα"
 }

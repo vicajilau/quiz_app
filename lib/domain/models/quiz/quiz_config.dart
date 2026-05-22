@@ -23,6 +23,9 @@ class QuizConfig {
   /// Whether the quiz should run in study mode (true) or exam mode (false).
   final bool isStudyMode;
 
+  /// Whether the quiz should run in smart exam mode.
+  final bool isSmartMode;
+
   /// The time limit for the quiz in minutes, if applicable.
   final int? timeLimitMinutes;
 
@@ -57,6 +60,7 @@ class QuizConfig {
   const QuizConfig({
     required this.questionCount,
     this.isStudyMode = false,
+    this.isSmartMode = false,
     this.enableTimeLimit = false,
     this.timeLimitMinutes,
     this.subtractPoints = false,
@@ -76,6 +80,7 @@ class QuizConfig {
     return other is QuizConfig &&
         other.questionCount == questionCount &&
         other.isStudyMode == isStudyMode &&
+        other.isSmartMode == isSmartMode &&
         other.enableTimeLimit == enableTimeLimit &&
         other.timeLimitMinutes == timeLimitMinutes &&
         other.subtractPoints == subtractPoints &&
@@ -91,6 +96,7 @@ class QuizConfig {
   int get hashCode =>
       questionCount.hashCode ^
       isStudyMode.hashCode ^
+      isSmartMode.hashCode ^
       enableTimeLimit.hashCode ^
       timeLimitMinutes.hashCode ^
       subtractPoints.hashCode ^
@@ -104,5 +110,5 @@ class QuizConfig {
 
   @override
   String toString() =>
-      'QuizConfig(questionCount: $questionCount, isStudyMode: $isStudyMode, enableTimeLimit: $enableTimeLimit, timeLimitMinutes: $timeLimitMinutes, subtractPoints: $subtractPoints, penaltyAmount: $penaltyAmount, useSelectedOnly: $useSelectedOnly, enableMaxIncorrectAnswers: $enableMaxIncorrectAnswers, maxIncorrectAnswers: $maxIncorrectAnswers, questionOrder: $questionOrder, randomizeAnswers: $randomizeAnswers, showCorrectAnswerCount: $showCorrectAnswerCount)';
+      'QuizConfig(questionCount: $questionCount, isStudyMode: $isStudyMode, isSmartMode: $isSmartMode, enableTimeLimit: $enableTimeLimit, timeLimitMinutes: $timeLimitMinutes, subtractPoints: $subtractPoints, penaltyAmount: $penaltyAmount, useSelectedOnly: $useSelectedOnly, enableMaxIncorrectAnswers: $enableMaxIncorrectAnswers, maxIncorrectAnswers: $maxIncorrectAnswers, questionOrder: $questionOrder, randomizeAnswers: $randomizeAnswers, showCorrectAnswerCount: $showCorrectAnswerCount)';
 }

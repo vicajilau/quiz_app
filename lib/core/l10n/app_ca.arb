@@ -43,7 +43,7 @@
   "@aiEnterContentTitle": {
     "description": "Title for the step 2 of AI question generation"
   },
-  "aiEnterContentDescription": "Introduïu el tema o enganxeu el contingut per generar preguntes",
+  "aiEnterContentDescription": "Enganxa qualsevol text o adjunta fitxers com a font del contingut",
   "@aiEnterContentDescription": {
     "description": "Description for the content input step"
   },
@@ -1577,6 +1577,14 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
+  "smartModeLabel": "Mode intel·ligent",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "Mode d'examen especial. L'app decideix automàticament el conjunt i el nombre de preguntes, i actualitza les estadístiques de repàs.",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "@studyModeLabel": {
     "description": "Label for study mode option"
   },
@@ -1653,6 +1661,10 @@
   "missingExplanationTooltip": "Aquesta pregunta no té explicació",
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
+  },
+  "missingStudySectionTooltip": "Sense vincular a cap secció d'estudi",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
   },
   "questionTypeTooltip": "Tipus de pregunta: {type}",
   "@questionTypeTooltip": {
@@ -1980,6 +1992,11 @@
   "showMoreLabel": "Mostrar més",
   "showLessLabel": "Mostrar menys",
   "startQuizFromStudy": "Posa a prova els teus coneixements",
+  "studySectionPracticePrompt": "Practicar preguntes de la secció",
+  "studySectionPracticeSubtitle": "Aquesta secció té {count, plural, =1{1 pregunta vinculada} other{{count} preguntes vinculades}}. Practica-les ara per reforçar el teu aprenentatge!",
+  "studySectionMasteryTooltip": "Domini de la secció: {percentage}% ({correct} de {total} preguntes encertades a l'últim intent)",
+  "studyScreenLearnedContent": "Contingut après",
+  "studyScreenLearnedQuestionsCount": "{correct} de {total} preguntes dominades",
   "studyScreenCustomChapter": "Capítol personalitzat",
   "addSection": "Afegir secció",
   "editSection": "Editar secció",
@@ -2057,18 +2074,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "Activa-ho per triar de quines seccions del document vols generar preguntes",
+  "aiSelectSectionsSubtitle": "Tria quines seccions de l'estudi s'usaran per generar preguntes",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "Totes les seccions",
   "aiSelectQuestionsTitle": "Seleccionar preguntes",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "Activa-ho per triar quines preguntes del qüestionari s'utilitzaran com a context per generar seccions d'estudi",
+  "aiSelectQuestionsSubtitle": "Tria preguntes del mode Quiz com a context de generació",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "Totes les preguntes",
   "onboardingStudyContentTitle": "Estudia el teu contingut",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"
@@ -2507,10 +2526,9 @@
   "forceUpdateMessage": "Cal una actualització obligatòria per continuar utilitzant Quizdy. Si us plau, actualitzeu l'aplicació.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "Preguntes ordenades segons l'algorisme SM-2 per a una retenció òptima, basat en l'algorisme d'ordenació intel·ligent d'Anki",
+  },
+  "questionOrderBySection": "Ordena per seccions",
+  "questionOrderBySectionDesc": "Agrupa les preguntes per secció i mostra cada secció en ordre ascendent",
   "srsStatsTitle": "Estadístiques",
   "srsResetAllStatsTooltip": "Restablir totes les estadístiques",
   "srsResetButton": "Restablir",
@@ -2538,11 +2556,20 @@
   "srsDueTooltip": "Data de la propera revisió",
   "srsCorrect": "{count} Correcte",
   "srsIncorrect": "{count} Incorrecte",
-  "srsQuestions": "Preguntes"
-,
+  "srsQuestions": "Preguntes",
   "modeGeneratesStats": "Genera estadístiques SRS",
-  "modeNoStats": "No genera estadístiques"
-,
+  "modeNoStats": "No genera estadístiques",
   "srsEmptyStateTitle": "Encara no hi ha dades per mostrar",
-  "srsEmptyStateSubtitle": "Completa la teva primera sessió d'estudi o fes un examen per començar a registrar el teu progrés d'aprenentatge."
+  "srsEmptyStateSubtitle": "Completa la teva primera sessió d'estudi o fes un examen per començar a registrar el teu progrés d'aprenentatge.",
+  "linkStudySection": "Vincular a secció d'estudi",
+  "noStudySection": "Cap",
+  "confirmDeleteSectionWithQuestionsMessage": "Aquesta secció té preguntes associades. Segur que vols eliminar `{sectionName}`?",
+  "srsSortTooltip": "Ordenar",
+  "srsSortByName": "Nom (A-Z)",
+  "srsSortBySectionOrder": "Ordre de seccions",
+  "srsSortByPendingQuestions": "Preguntes pendents",
+  "srsSortByHitRate": "Taxa d'encerts",
+  "srsSortAscending": "Ascendent",
+  "srsSortDescending": "Descendent",
+  "srsUnassignedSection": "Sense secció"
 }

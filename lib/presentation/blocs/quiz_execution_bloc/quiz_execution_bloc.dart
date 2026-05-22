@@ -46,6 +46,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
           userAnswers: {},
           quizConfig: event.quizConfig,
           fileIdentifier: event.fileIdentifier,
+          studySectionNames: event.studySectionNames,
         ),
       );
     });
@@ -398,10 +399,15 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
         final score = isCorrect
             ? 4
             : 1; // Map correct to 4, incorrect to 1 for SM-2
+        String? sectionName;
+        final sectionId = question.studySectionId;
+        if (sectionId != null) {
+          sectionName = currentState.studySectionNames?[sectionId];
+        }
         final updatedMetadata = AnkiAlgorithmService.calculateNextReview(
           metadata,
           score,
-        ).copyWith(questionText: question.text);
+        ).copyWith(questionText: question.text, sectionName: sectionName);
         await srsRepository!.saveMetadata(updatedMetadata);
       }
     }

@@ -47,6 +47,9 @@ class SrsMetadata extends HiveObject {
   @HiveField(8)
   String questionText;
 
+  @HiveField(9)
+  String? sectionName;
+
   SrsMetadata({
     required this.questionIdentity,
     required this.fileIdentifier,
@@ -57,6 +60,7 @@ class SrsMetadata extends HiveObject {
     this.timesCorrect = 0,
     this.timesIncorrect = 0,
     this.questionText = '',
+    this.sectionName,
   }) : nextReviewDate = nextReviewDate ?? DateTime.now();
 
   /// Creates a copy of the `SrsMetadata` with optional parameter modifications.
@@ -70,6 +74,7 @@ class SrsMetadata extends HiveObject {
     int? timesCorrect,
     int? timesIncorrect,
     String? questionText,
+    String? sectionName,
   }) {
     return SrsMetadata(
       questionIdentity: questionIdentity ?? this.questionIdentity,
@@ -81,6 +86,7 @@ class SrsMetadata extends HiveObject {
       timesCorrect: timesCorrect ?? this.timesCorrect,
       timesIncorrect: timesIncorrect ?? this.timesIncorrect,
       questionText: questionText ?? this.questionText,
+      sectionName: sectionName ?? this.sectionName,
     );
   }
 }

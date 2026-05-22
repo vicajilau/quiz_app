@@ -118,6 +118,12 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
                       isStudyMode: false,
                     );
 
+                final studySectionNames = <String, String>{
+                  for (final chunk
+                      in widget.quizFile.study?.content.cache ?? [])
+                    chunk.id: chunk.title,
+                };
+
                 return ServiceLocator.getIt<QuizExecutionBloc>()..add(
                   QuizExecutionStarted(
                     questionsToUse,
@@ -125,6 +131,9 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
                     fileIdentifier:
                         widget.quizFile.filePath ??
                         widget.quizFile.metadata.title,
+                    studySectionNames: studySectionNames.isEmpty
+                        ? null
+                        : studySectionNames,
                   ),
                 );
               },
@@ -229,18 +238,17 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
   Future<List<Question>> _prepareQuizQuestions() async {
     // Get the configured question count from service locator
     final quizConfig = ServiceLocator.getQuizConfig();
-    final questionCount =
-        quizConfig?.questionCount ?? widget.quizFile.questions.length;
+    final enabledQuestions = widget.quizFile.questions
+        .where((question) => question.isEnabled)
+        .toList();
+    final questionCount = quizConfig?.isSmartMode == true
+        ? enabledQuestions.length
+        : quizConfig?.questionCount ?? widget.quizFile.questions.length;
 
     // Get the configured question order
     final storedQuestionOrder =
         await ServiceLocator.getIt<ConfigurationService>().getQuestionOrder();
     final questionOrder = quizConfig?.questionOrder ?? storedQuestionOrder;
-
-    // Filter out disabled questions first
-    final enabledQuestions = widget.quizFile.questions
-        .where((question) => question.isEnabled)
-        .toList();
 
     // Select the questions to use for the quiz with the configured order
     final fileIdentifier =

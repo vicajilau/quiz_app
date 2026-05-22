@@ -20,7 +20,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizdy/routes/app_router.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:mime/mime.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/presentation/utils/dialog_drop_guard.dart';
@@ -495,6 +495,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
                 previous.isIndexMode != current.isIndexMode,
             builder: (context, state) {
               final body = StudyBody(
+                quizFile: widget.quizFile,
                 onHandleFileReattachment: _handleFileReattachment,
                 onSave: _handleSave,
               );

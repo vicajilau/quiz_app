@@ -52,7 +52,7 @@
   "@aiEnterContentTitle": {
     "description": "Title for the step 2 of AI question generation"
   },
-  "aiEnterContentDescription": "أدخل الموضوع أو الصق المحتوى لتوليد الأسئلة منه",
+  "aiEnterContentDescription": "الصق أي نص أو أرفق ملفات كمصدر للمحتوى",
   "@aiEnterContentDescription": {
     "description": "Description for the content input step"
   },
@@ -1561,6 +1561,14 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
+  "smartModeLabel": "الوضع الذكي",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "وضع اختبار خاص. يحدد التطبيق مجموعة الأسئلة وعددها تلقائيًا ويحدّث إحصاءات المراجعة.",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "studyModeDescription": "مساعدة الذكاء الاصطناعي متاحة. تعليقات فورية بعد كل إجابة بدون حدود زمنية أو عقوبات. لا يتم إنشاء أي إحصائيات.",
   "@studyModeDescription": {
     "description": "Description for the study mode"
@@ -1675,6 +1683,10 @@
   "missingExplanationTooltip": "هذا السؤال يفتقد للشرح",
   "@missingExplanationTooltip": {
     "description": "Tooltip text for the missing explanation badge"
+  },
+  "missingStudySectionTooltip": "غير مرتبط بقسم دراسي",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
   },
   "questionTypeTooltip": "نوع السؤال: {type}",
   "@questionTypeTooltip": {
@@ -2247,6 +2259,11 @@
     "description": "Label for the button to collapse content"
   },
   "startQuizFromStudy": "اختبر معرفتك",
+  "studySectionPracticePrompt": "تدريب على أسئلة القسم",
+  "studySectionPracticeSubtitle": "يحتوي هذا القسم على {count, plural, =1{سؤال واحد مرتبط} =2{سؤالين مرتبطين} other{{count} أسئلة مرتبطة}}. تدرب عليها الآن لتعزيز تعلمك!",
+  "studySectionMasteryTooltip": "إتقان القسم: {percentage}% (أجاب {correct} من {total} أسئلة بشكل صحيح في المحاولة الأخيرة)",
+  "studyScreenLearnedContent": "المحتوى المتعلم",
+  "studyScreenLearnedQuestionsCount": "تم إتقان {correct} من أصل {total} أسئلة",
   "@startQuizFromStudy": {
     "description": "Label for the button to start a quiz based on study material"
   },
@@ -2357,18 +2374,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "قم بتمكينه لاختيار أقسام المستند التي سيتم إنشاء الأسئلة منها",
+  "aiSelectSectionsSubtitle": "اختر أقسام الدراسة التي ستُستخدم لإنشاء الأسئلة",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "جميع الأقسام",
   "aiSelectQuestionsTitle": "تحديد الأسئلة",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "قم بالتمكين لاختيار أسئلة الاختبار التي ستُستخدم كسياق لإنشاء أقسام الدراسة",
+  "aiSelectQuestionsSubtitle": "اختر أسئلة وضع الاختبار كسياق للإنشاء",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "جميع الأسئلة",
   "onboardingStudyContentTitle": "ادرس المحتوى الخاص بك",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"
@@ -2819,10 +2838,9 @@
   "forceUpdateMessage": "مطلوب تحديث إلزامي لمتابعة استخدام Quizdy. يرجى تحديث التطبيق.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "ترتيب الأسئلة بناءً على خوارزمية SM-2 لاحتفاظ مثالي، استناداً إلى خوارزمية الترتيب الذكي لـ Anki",
+  },
+  "questionOrderBySection": "ترتيب حسب الأقسام",
+  "questionOrderBySectionDesc": "اجمع الأسئلة حسب القسم واعرض كل قسم بالترتيب التصاعدي",
   "srsStatsTitle": "إحصائيات",
   "srsResetAllStatsTooltip": "إعادة تعيين جميع الإحصائيات",
   "srsResetButton": "إعادة تعيين",
@@ -2850,11 +2868,20 @@
   "srsDueTooltip": "تاريخ المراجعة المجدولة",
   "srsCorrect": "{count} صحيح",
   "srsIncorrect": "{count} خطأ",
-  "srsQuestions": "الأسئلة"
-,
+  "srsQuestions": "الأسئلة",
   "modeGeneratesStats": "يولد إحصائيات التكرار المتباعد",
-  "modeNoStats": "لا يولد إحصائيات"
-,
+  "modeNoStats": "لا يولد إحصائيات",
   "srsEmptyStateTitle": "لا توجد بيانات لعرضها بعد",
-  "srsEmptyStateSubtitle": "أكمل جلسة الدراسة الأولى أو خذ امتحانًا لبدء تتبع تقدمك في التعلم."
+  "srsEmptyStateSubtitle": "أكمل جلسة الدراسة الأولى أو خذ امتحانًا لبدء تتبع تقدمك في التعلم.",
+  "linkStudySection": "ربط بقسم الدراسة",
+  "noStudySection": "بلا",
+  "confirmDeleteSectionWithQuestionsMessage": "هذا القسم يحتوي على أسئلة مرتبطة به. هل أنت متأكد أنك تريد حذف `{sectionName}`؟",
+  "srsSortTooltip": "ترتيب",
+  "srsSortByName": "الاسم (أ-ي)",
+  "srsSortBySectionOrder": "ترتيب الأقسام",
+  "srsSortByPendingQuestions": "الأسئلة المعلقة",
+  "srsSortByHitRate": "معدل الإجابة",
+  "srsSortAscending": "تصاعدي",
+  "srsSortDescending": "تنازلي",
+  "srsUnassignedSection": "غير مُعيَّن"
 }

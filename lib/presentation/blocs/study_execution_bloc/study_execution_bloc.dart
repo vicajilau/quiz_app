@@ -391,7 +391,9 @@ class StudyExecutionBloc
     Emitter<StudyExecutionState> emit,
   ) {
     final int newIndex = state.chunks.length;
+    final uniqueId = 'chunk_${DateTime.now().microsecondsSinceEpoch}_custom';
     final newChunk = StudyChunk(
+      id: uniqueId,
       chunkIndex: newIndex,
       status: StudyChunkState.created,
       aiSummary: event.content.isNotEmpty ? event.content : null,

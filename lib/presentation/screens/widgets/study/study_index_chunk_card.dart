@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
@@ -22,6 +22,10 @@ import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_chunk_download_button.dart';
 import 'package:quizdy/presentation/widgets/card_status_bar.dart';
+import 'package:quizdy/core/service_locator.dart';
+import 'package:quizdy/data/repositories/srs/srs_repository.dart';
+import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+import 'package:quizdy/presentation/screens/widgets/study/widgets/study_section_mastery_indicator.dart';
 
 class StudyIndexChunkCard extends StatefulWidget {
   final StudyChunk chunk;
@@ -39,6 +43,7 @@ class StudyIndexChunkCard extends StatefulWidget {
   final bool isNew;
   final bool isModified;
   final bool isDuplicated;
+  final QuizFile? quizFile;
 
   const StudyIndexChunkCard({
     super.key,
@@ -57,6 +62,7 @@ class StudyIndexChunkCard extends StatefulWidget {
     this.isNew = false,
     this.isModified = false,
     this.isDuplicated = false,
+    this.quizFile,
   });
 
   @override
@@ -98,6 +104,43 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
     final summaryColor = isDark ? AppTheme.zinc400 : AppTheme.zinc500;
 
     final hasStatus = widget.isNew || widget.isModified || widget.isDuplicated;
+
+    // Calculate mastery percentage if quizFile is present
+    double? masteryPercentage;
+    int correctQuestionsCount = 0;
+    int totalQuestionsCount = 0;
+    String? masteryTooltip;
+
+    final quizFile = widget.quizFile;
+    if (quizFile != null) {
+      final questions = quizFile.questions
+          .where((q) => q.isEnabled && q.studySectionId == chunk.id)
+          .toList();
+
+      if (questions.isNotEmpty) {
+        totalQuestionsCount = questions.length;
+        final srsRepository = ServiceLocator.getIt<SrsRepository>();
+        final fileId = quizFile.filePath ?? quizFile.metadata.title;
+
+        for (final question in questions) {
+          final identity = question.identityHash.toString();
+          final metadata = srsRepository.getMetadataForQuestion(
+            identity,
+            fileId,
+          );
+          if (metadata.repetition > 0) {
+            correctQuestionsCount++;
+          }
+        }
+
+        masteryPercentage = (correctQuestionsCount / totalQuestionsCount) * 100;
+        masteryTooltip = localizations.studySectionMasteryTooltip(
+          masteryPercentage.toStringAsFixed(0),
+          correctQuestionsCount,
+          totalQuestionsCount,
+        );
+      }
+    }
 
     Widget cardContent = AnimatedContainer(
       duration: const Duration(milliseconds: 200),
@@ -376,6 +419,14 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
               ),
             ),
           ),
+          if (!isSelectionMode && masteryPercentage != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: StudySectionMasteryIndicator(
+                percentage: masteryPercentage,
+                tooltipText: masteryTooltip ?? '',
+              ),
+            ),
           if (isSelectionMode && widget.supportsReordering)
             ReorderableDragStartListener(
               index: index,
@@ -393,15 +444,6 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
               child: Icon(
                 Icons.drag_indicator,
                 color: Theme.of(context).hintColor.withValues(alpha: 0.3),
-              ),
-            )
-          else if (isCompleted)
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Icon(
-                Icons.check_circle,
-                size: 22,
-                color: AppTheme.primaryColor,
               ),
             ),
         ],

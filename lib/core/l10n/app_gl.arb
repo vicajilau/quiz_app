@@ -543,6 +543,10 @@
   "@missingExplanationTooltip": {
     "description": "Texto do tooltip para a insignia indicadora de falta de explicación"
   },
+  "missingStudySectionTooltip": "Sen vincular a unha sección de estudo",
+  "@missingStudySectionTooltip": {
+    "description": "Tooltip text for the unlinked study section warning"
+  },
   "questionTypeTooltip": "Tipo de pregunta: {type}",
   "@questionTypeTooltip": {
     "description": "Texto do tooltip para a insignia de tipo de pregunta",
@@ -1489,6 +1493,14 @@
   "@practiceModeLabel": {
     "description": "Label for practice mode option in start quiz"
   },
+  "smartModeLabel": "Modo intelixente",
+  "@smartModeLabel": {
+    "description": "Label for smart exam mode option in start quiz"
+  },
+  "smartModeDescription": "Modo de exame especial. A aplicación determina automaticamente o conxunto e o número de preguntas e actualiza as estatísticas de repaso.",
+  "@smartModeDescription": {
+    "description": "Description for smart exam mode"
+  },
   "studyModeDescription": "Asistencia de IA dispoñible. Feedback instantáneo tras cada resposta, sen límites de tiempo nin penalizacións. Non se xeran estatísticas.",
   "examModeLabel": "Modo exame",
   "examModeDescription": "Sen asistencia de IA. Poden aplicarse límites de tempo e penalizacións por respostas incorrectas. Xera estatísticas SRS.",
@@ -1535,7 +1547,7 @@
   "previewLatexTooltip": "Vista previa do renderizado LaTeX",
   "okButton": "Aceptar",
   "aiEnterContentTitle": "Introducir contido",
-  "aiEnterContentDescription": "Introduza o tema ou pegue o contido para xerar preguntas",
+  "aiEnterContentDescription": "Pega calquera texto ou adxunta ficheiros como fonte do contido",
   "aiContentFieldHint": "Introduza un tema como \"Historia da Segunda Guerra Mundial\" ou pegue texto aquí...",
   "aiAttachFileHint": "Anexar ficheiro (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "Solte o ficheiro aquí",
@@ -1878,6 +1890,11 @@
     "description": "Label for context mode when a file is uploaded"
   },
   "startQuizFromStudy": "Proba os teus coñecementos",
+  "studySectionPracticePrompt": "Practicar preguntas da sección",
+  "studySectionPracticeSubtitle": "Esta sección ten {count, plural, =1{1 pregunta vinculada} other{{count} preguntas vinculadas}}. Practícaas agora para reforzar a túa aprendizaxe!",
+  "studySectionMasteryTooltip": "Dominio da sección: {percentage}% ({correct} de {total} preguntas correctas no último intento)",
+  "studyScreenLearnedContent": "Contido aprendido",
+  "studyScreenLearnedQuestionsCount": "{correct} de {total} preguntas dominadas",
   "studyScreenCustomChapter": "Capítulo personalizado",
   "addSection": "Engadir sección",
   "editSection": "Editar sección",
@@ -1955,18 +1972,20 @@
   "@aiSelectSectionsTitle": {
     "description": "Title for the chunk section selector in AI content step"
   },
-  "aiSelectSectionsSubtitle": "Activar para escoller de que seccións do documento se xerarán as preguntas",
+  "aiSelectSectionsSubtitle": "Escolle que seccións de estudo se usarán para xerar preguntas",
   "@aiSelectSectionsSubtitle": {
     "description": "Subtitle explaining what the section selector does"
   },
+  "aiAllSections": "Todas as seccións",
   "aiSelectQuestionsTitle": "Seleccionar preguntas",
   "@aiSelectQuestionsTitle": {
     "description": "Title for the question selector in AI study generation"
   },
-  "aiSelectQuestionsSubtitle": "Activa para escoller que preguntas do quiz se usarán como contexto para xerar seccións de estudo",
+  "aiSelectQuestionsSubtitle": "Escolle preguntas do modo Quiz como contexto de xeración",
   "@aiSelectQuestionsSubtitle": {
     "description": "Subtitle explaining what the question selector does"
   },
+  "aiAllQuestions": "Todas as preguntas",
   "onboardingStudyContentTitle": "Estuda o teu contido",
   "@onboardingStudyContentTitle": {
     "description": "Title of the study content onboarding page"
@@ -2405,10 +2424,9 @@
   "forceUpdateMessage": "Requírese unha actualización obrigatoria para continuar usando Quizdy. Por favor, actualiza a aplicación.",
   "@forceUpdateMessage": {
     "description": "Body message of the force update dialog."
-  }
-,
-  "questionOrderSpacedRepetition": "Smart Ordering (Anki)",
-  "questionOrderSpacedRepetitionDesc": "Preguntas ordenadas segundo o algoritmo SM-2 para unha retención óptima, baseado no algoritmo de ordenamento intelixente de Anki",
+  },
+  "questionOrderBySection": "Por seccións",
+  "questionOrderBySectionDesc": "Agrupa as preguntas por sección e mostra cada sección en orde ascendente",
   "srsStatsTitle": "Estatísticas",
   "srsResetAllStatsTooltip": "Restablecer todas as estatísticas",
   "srsResetButton": "Restablecer",
@@ -2436,11 +2454,20 @@
   "srsDueTooltip": "A data programada para revisar esta pregunta",
   "srsCorrect": "{count} Correcto",
   "srsIncorrect": "{count} Incorrecto",
-  "srsQuestions": "Preguntas"
-,
+  "srsQuestions": "Preguntas",
   "modeGeneratesStats": "Xera estatísticas SRS",
-  "modeNoStats": "Non xera estatísticas"
-,
+  "modeNoStats": "Non xera estatísticas",
   "srsEmptyStateTitle": "Aínda non hai datos para mostrar",
-  "srsEmptyStateSubtitle": "Completa a túa primeira sesión de estudo ou fai un exame para comezar a rexistrar o teu progreso de aprendizaxe."
+  "srsEmptyStateSubtitle": "Completa a túa primeira sesión de estudo ou fai un exame para comezar a rexistrar o teu progreso de aprendizaxe.",
+  "linkStudySection": "Vincular a sección de estudo",
+  "noStudySection": "Ningún",
+  "confirmDeleteSectionWithQuestionsMessage": "Esta sección ten preguntas asociadas. Seguro que queres eliminar `{sectionName}`?",
+  "srsSortTooltip": "Ordenar",
+  "srsSortByName": "Nome (A-Z)",
+  "srsSortBySectionOrder": "Orde de seccións",
+  "srsSortByPendingQuestions": "Preguntas pendentes",
+  "srsSortByHitRate": "Taxa de acertos",
+  "srsSortAscending": "Ascendente",
+  "srsSortDescending": "Descendente",
+  "srsUnassignedSection": "Sen sección"
 }

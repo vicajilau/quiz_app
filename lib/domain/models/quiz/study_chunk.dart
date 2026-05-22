@@ -23,6 +23,9 @@ import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 /// It holds the semantic essence of a specific section (via `aiSummary`) and
 /// provides UI-ready sequences (`pages`) for the user to consume interactively.
 class StudyChunk {
+  /// A unique, stable identifier for this study section.
+  final String id;
+
   /// The sequential index or ordering of this chunk.
   final int chunkIndex;
 
@@ -59,6 +62,7 @@ class StudyChunk {
 
   /// Constructor for a `StudyChunk`.
   const StudyChunk({
+    required this.id,
     required this.chunkIndex,
     required this.status,
     required this.sourceReference,
@@ -83,14 +87,27 @@ class StudyChunk {
           .toList();
     }
 
+    final sourceRef = SourceReference.fromJson(
+      json['source_reference'] as Map<String, dynamic>? ?? {},
+    );
+
+    // Deterministic fallback for id using duplication key components
+    final duplicationKeyFallback = [
+      sourceRef.documentId.trim().toLowerCase(),
+      sourceRef.startPage,
+      sourceRef.endPage,
+      sourceRef.startOffset,
+      sourceRef.endOffset,
+      sourceRef.blockType.trim().toLowerCase(),
+    ].join('|');
+
     return StudyChunk(
+      id: json['id'] as String? ?? duplicationKeyFallback,
       chunkIndex: json['chunk_index'] as int? ?? 0,
       status: StudyChunkState.fromString(
         json['status'] as String? ?? 'created',
       ),
-      sourceReference: SourceReference.fromJson(
-        json['source_reference'] as Map<String, dynamic>? ?? {},
-      ),
+      sourceReference: sourceRef,
       aiSummary: json['ai_summary'] as String?,
       pages: parsedPages,
       errorMessage: json['error_message'] as String?,
@@ -102,6 +119,7 @@ class StudyChunk {
   /// - Returns: A JSON map representation.
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'chunk_index': chunkIndex,
       'status': status.toJson(),
       'source_reference': sourceReference.toJson(),
@@ -113,6 +131,7 @@ class StudyChunk {
 
   /// Creates a copy of the `StudyChunk` with optional parameter modifications.
   StudyChunk copyWith({
+    String? id,
     int? chunkIndex,
     StudyChunkState? status,
     SourceReference? sourceReference,
@@ -121,6 +140,7 @@ class StudyChunk {
     String? errorMessage,
   }) {
     return StudyChunk(
+      id: id ?? this.id,
       chunkIndex: chunkIndex ?? this.chunkIndex,
       status: status ?? this.status,
       sourceReference: sourceReference ?? this.sourceReference.copyWith(),
@@ -135,6 +155,7 @@ class StudyChunk {
     if (identical(this, other)) return true;
 
     return other is StudyChunk &&
+        other.id == id &&
         other.chunkIndex == chunkIndex &&
         other.status == status &&
         other.sourceReference == sourceReference &&
@@ -145,7 +166,8 @@ class StudyChunk {
 
   @override
   int get hashCode {
-    return chunkIndex.hashCode ^
+    return id.hashCode ^
+        chunkIndex.hashCode ^
         status.hashCode ^
         sourceReference.hashCode ^
         aiSummary.hashCode ^
@@ -154,6 +176,6 @@ class StudyChunk {
 
   @override
   String toString() {
-    return 'StudyChunk(chunkIndex: $chunkIndex, status: ${status.name}, pages: ${pages.length})';
+    return 'StudyChunk(id: $id, chunkIndex: $chunkIndex, status: ${status.name}, pages: ${pages.length})';
   }
 }

@@ -183,7 +183,9 @@ class StudyEditorCubit extends Cubit<StudyEditorState> {
 
   /// Adds a new empty section with the given [title].
   void addSection(String title) {
+    final uniqueId = 'chunk_${DateTime.now().microsecondsSinceEpoch}_manual';
     final newChunk = StudyChunk(
+      id: uniqueId,
       chunkIndex: state.chunks.length,
       status: StudyChunkState.completed,
       sourceReference: SourceReference(

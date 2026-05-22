@@ -14,19 +14,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 
+enum QuizSelectionMode { exam, practice, smart }
+
 class QuizModeSelection extends StatelessWidget {
-  final bool isStudyMode;
-  final ValueChanged<bool> onModeChanged;
+  final QuizSelectionMode selectedMode;
+  final ValueChanged<QuizSelectionMode> onModeChanged;
   final Color primaryColor;
   final Color controlBgColor;
   final Color subTextColor;
 
   const QuizModeSelection({
     super.key,
-    required this.isStudyMode,
+    required this.selectedMode,
     required this.onModeChanged,
     required this.primaryColor,
     required this.controlBgColor,
@@ -35,12 +37,13 @@ class QuizModeSelection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Quiz Mode
         Text(
-          AppLocalizations.of(context)!.quizModeTitle,
+          localizations.quizModeTitle,
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w500,
@@ -48,17 +51,27 @@ class QuizModeSelection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-
-        // Mode Options (Horizontal Row)
+        _buildModeOption(
+          context: context,
+          title: localizations.examModeLabel,
+          icon: LucideIcons.fileText,
+          isSelected: selectedMode == QuizSelectionMode.exam,
+          onTap: () => onModeChanged(QuizSelectionMode.exam),
+          primaryColor: primaryColor,
+          defaultBgColor: controlBgColor,
+          defaultTextColor: subTextColor,
+          expand: true,
+        ),
+        const SizedBox(height: 12),
         Row(
           children: [
             Expanded(
               child: _buildModeOption(
                 context: context,
-                title: AppLocalizations.of(context)!.examModeLabel,
-                icon: LucideIcons.fileText,
-                isSelected: !isStudyMode,
-                onTap: () => onModeChanged(false),
+                title: localizations.practiceModeLabel,
+                icon: LucideIcons.bookOpen,
+                isSelected: selectedMode == QuizSelectionMode.practice,
+                onTap: () => onModeChanged(QuizSelectionMode.practice),
                 primaryColor: primaryColor,
                 defaultBgColor: controlBgColor,
                 defaultTextColor: subTextColor,
@@ -68,31 +81,16 @@ class QuizModeSelection extends StatelessWidget {
             Expanded(
               child: _buildModeOption(
                 context: context,
-                title: AppLocalizations.of(context)!.practiceModeLabel,
-                icon: LucideIcons.bookOpen,
-                isSelected: isStudyMode,
-                onTap: () => onModeChanged(true),
+                title: localizations.smartModeLabel,
+                icon: LucideIcons.brain,
+                isSelected: selectedMode == QuizSelectionMode.smart,
+                onTap: () => onModeChanged(QuizSelectionMode.smart),
                 primaryColor: primaryColor,
                 defaultBgColor: controlBgColor,
                 defaultTextColor: subTextColor,
               ),
             ),
           ],
-        ),
-        const SizedBox(height: 12),
-
-        // Mode Description
-        Text(
-          isStudyMode
-              ? AppLocalizations.of(context)!.studyModeDescription
-              : AppLocalizations.of(context)!.examModeDescription,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-            color: subTextColor,
-            height: 1.4,
-          ),
-          textAlign: TextAlign.start,
         ),
       ],
     );
@@ -107,18 +105,19 @@ class QuizModeSelection extends StatelessWidget {
     required Color primaryColor,
     required Color defaultBgColor,
     required Color defaultTextColor,
+    bool expand = false,
   }) {
     return IconButton(
       onPressed: onTap,
       style: IconButton.styleFrom(
         backgroundColor: isSelected ? primaryColor : defaultBgColor,
         foregroundColor: isSelected ? Colors.white : defaultTextColor,
-        minimumSize: const Size(double.infinity, 64),
+        minimumSize: const Size(double.infinity, 92),
         padding: const EdgeInsets.symmetric(horizontal: 20),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
       icon: SizedBox(
-        width: double.infinity,
+        width: expand ? double.infinity : null,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

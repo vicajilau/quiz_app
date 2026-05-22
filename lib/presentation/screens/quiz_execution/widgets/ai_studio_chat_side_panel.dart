@@ -31,7 +31,7 @@ import 'package:quizdy/presentation/screens/dialogs/widgets/ai_chat_bubble.dart'
 import 'package:quizdy/presentation/screens/dialogs/widgets/question_context_widget.dart';
 import 'package:quizdy/presentation/widgets/ai_service_model_selector.dart';
 import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class AiStudioChatSidePanel extends StatefulWidget {
   final Question? question;
