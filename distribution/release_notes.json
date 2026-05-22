@@ -1,22 +1,22 @@
 {
-  "1.13.1": {
-    "ar-SA": "تحسين الأداء العام للتطبيق وتسريع وقت التحميل.",
-    "ca-ES": "Millora del rendiment general de l'app i càrrega més ràpida.",
-    "de-DE": "Allgemeine Leistungsverbesserungen und schnelleres Laden.",
-    "el-GR": "Βελτιωμένη συνολική απόδοση και ταχύτερη φόρτωση.",
-    "en-GB": "Improved overall app performance and faster loading.",
-    "es-ES": "Mejorado el rendimiento general de la app y una carga más rápida.",
-    "eu-ES": "Aplikazioaren errendimendu orokorra hobetu da eta karga azkarragoa da.",
-    "fr-FR": "Amélioration des performances globales et chargement plus rapide.",
-    "gl-ES": "Mellorouse o rendemento xeral da app e a carga é máis rápida.",
-    "hi-IN": "ऐप का समग्र प्रदर्शन बेहतर हुआ है और लोडिंग तेज़ है।",
-    "it-IT": "Prestazioni generali migliorate e caricamento più rapido.",
-    "ja-JP": "アプリ全体のパフォーマンスを改善し、読み込み速度を向上しました。",
-    "ka-GE": "გაუმჯობესდა აპის საერთო წარმადობა და ჩატვირთვა დაჩქარდა.",
-    "ko-KR": "앱 전반의 성능이 향상되고 로딩 속도가 빨라졌습니다.",
-    "pt-BR": "Melhoria no desempenho geral do app e carregamento mais rápido.",
-    "ru-RU": "Улучшена общая производительность приложения и ускорена загрузка.",
-    "uk-UA": "Покращено загальну продуктивність застосунку та прискорено завантаження.",
-    "zh-CN": "整体性能已提升，加载速度更快。"
+  "1.14.0": {
+    "ar-SA": "تم تقديم أقسام الدراسة للاختبارات، وربط تلقائي لأسئلة الذكاء الاصطناعي، ومؤشرات التقدم للاتقان. تمت إضافة جلسات اختبار مخصصة لكل قسم.",
+    "ca-ES": "S'han introduït seccions d'estudi per als qüestionaris, enllaç automàtic de preguntes IA i indicadors de progrés. Afegides sessions de test personalitzades per secció.",
+    "de-DE": "Lernabschnitte für Quizze, automatische Verknüpfung von KI-Fragen und Fortschrittsanzeigen eingeführt. Benutzerdefinierte Quiz-Sitzungen pro Abschnitt hinzugefügt.",
+    "el-GR": "Εισαγωγή ενοτήτων μελέτης για κουίζ, αυτόματη σύνδεση ερωτήσεων AI και δείκτες προόδου. Προστέθηκαν προσαρμοσμένες συνεδρίες κουίζ ανά ενότητα.",
+    "en-GB": "Introduced study sections for quizzes, auto-linking for AI questions, and progress indicators for mastery. Added custom quiz sessions per section.",
+    "es-ES": "Introducidas secciones de estudio para cuestionarios, enlace automático para preguntas IA e indicadores de progreso. Añadidas sesiones de test personalizadas por sección.",
+    "eu-ES": "Galdetegietarako ikasketa-atalak, IA galderen lotura automatikoa eta aurrerapen-adierazleak sartu dira. Atal bakoitzeko galdetegi-saio pertsonalizatuak gehitu dira.",
+    "fr-FR": "Introduction de sections d'étude pour les quiz, liaison automatique pour les questions IA et indicateurs de progression. Ajout de sessions de quiz personnalisées par section.",
+    "gl-ES": "Introducíronse seccións de estudo para cuestionarios, ligazón automática para preguntas IA e indicadores de progreso. Engadíronse sesións de test personalizadas por sección.",
+    "hi-IN": "क्विज़ के लिए अध्ययन अनुभाग, AI प्रश्नों के लिए ऑटो-लिंकिंग और निपुणता के लिए प्रगति संकेतक पेश किए गए। प्रति अनुभाग कस्टम क्विज़ सत्र जोड़े गए।",
+    "it-IT": "Introdotte sezioni di studio per i quiz, collegamento automatico per domande IA e indicatori di progresso. Aggiunte sessioni di quiz personalizzate per sezione.",
+    "ja-JP": "クイズの学習セクション、AI問題の自動リンク、習熟度の進捗インジケーターを導入しました。セクションごとのカスタムクイズセッションを追加しました。",
+    "ka-GE": "დაემატა ტესტების სასწავლო სექციები, AI კითხვების ავტომატური დაკავშირება და პროგრესის ინდიკატორები. თითოეული სექციისთვის დაემატა პერსონალური ტესტის სესიები.",
+    "ko-KR": "퀴즈 학습 섹션, AI 문제 자동 연결 및 마스터리 진행률 표시기를 도입했습니다. 섹션별 맞춤형 퀴즈 세션을 추가했습니다.",
+    "pt-BR": "Introduzidas seções de estudo para quizzes, vinculação automática para perguntas com IA e indicadores de progresso. Adicionadas sessões de quiz personalizadas por seção.",
+    "ru-RU": "Введены учебные разделы для викторин, автоматическое связывание вопросов ИИ и индикаторы прогресса. Добавлены пользовательские сеансы викторин для каждого раздела.",
+    "uk-UA": "Запроваджено навчальні розділы для вікторин, автоматичне зв'язування питань ШІ та індикатори прогресу. Додано користувацькі сеанси вікторин для кожного розділу.",
+    "zh-CN": "引入了测验的学习部分、AI 问题的自动链接以及掌握程度的进度指示器。添加了每个部分的自定义测验会话。"
   }
 }
