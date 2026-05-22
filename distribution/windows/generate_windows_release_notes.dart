@@ -65,12 +65,13 @@ void main(List<String> args) {
   final Map<String, Object> listings = <String, Object>{};
   for (final String locale in _requiredLocales) {
     final String note = (rawNotes[locale] as String).trim();
-    listings[locale] = <String, Object>{
-      'BaseListing': <String, String>{'ReleaseNotes': note},
+    final String windowsLocale = locale.toLowerCase();
+    listings[windowsLocale] = <String, Object>{
+      'baseListing': <String, String>{'releaseNotes': note},
     };
   }
 
-  final Map<String, Object> payload = <String, Object>{'Listings': listings};
+  final Map<String, Object> payload = <String, Object>{'listings': listings};
 
   outputFile.parent.createSync(recursive: true);
   outputFile.writeAsStringSync(
