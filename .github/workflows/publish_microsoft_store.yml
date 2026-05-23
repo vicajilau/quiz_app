@@ -39,17 +39,22 @@ jobs:
         env:
           MS_STORE_APP_ID: ${{ secrets.MS_STORE_APP_ID }}
         run: |
-          try {
-            $meta = Get-Content -Raw .\distribution\windows\update_metadata.json
-            if ([string]::IsNullOrWhiteSpace($meta)) { Write-Host "💥 metadata file is empty"; exit 1 }
-            Write-Host "Updating submission metadata via msstore CLI (payload length $($meta.Length))."
-            msstore submission updateMetadata $env:MS_STORE_APP_ID "$meta"
-            Write-Host "✅ Metadata successfully updated via msstore CLI."
+          $meta = Get-Content -Raw .\distribution\windows\update_metadata.json
+          if ([string]::IsNullOrWhiteSpace($meta)) { Write-Host "💥 metadata file is empty"; exit 1 }
+          Write-Host "Updating submission metadata via msstore CLI (payload length $($meta.Length))."
+
+          # Ejecutar msstore y capturar salida y código de salida para diagnóstico
+          $output = & msstore submission updateMetadata $env:MS_STORE_APP_ID "$meta" 2>&1
+          $exitCode = $LASTEXITCODE
+
+          if ($output) { Write-Host $output }
+
+          if ($exitCode -ne 0) {
+            Write-Host "💥 msstore CLI exited with code $exitCode"
+            exit $exitCode
           }
-          catch {
-            Write-Host "💥 msstore CLI error: $($_.Exception.Message)"
-            exit 1
-          }
+
+          Write-Host "✅ Metadata successfully updated via msstore CLI."
 
       - name: Publish MSIX to the Microsoft Store
         run: msstore publish --appId ${{ secrets.MS_STORE_APP_ID }} -v
