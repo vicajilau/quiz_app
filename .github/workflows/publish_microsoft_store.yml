@@ -56,7 +56,6 @@ jobs:
               $submission = $currentSubmissionJson | ConvertFrom-Json -AsHashtable
 
               # FORWARD STRATEGY: Update the complete Store JSON with our local changes
-              # This ensures no mandatory Store properties (like Packages or Images) are accidentally deleted.
               
               if (-not $submission.ContainsKey('Listings')) {
                 $submission['Listings'] = @{}
@@ -95,12 +94,14 @@ jobs:
             exit 1
           }
 
-          # Direct execution to bypass the PowerShell 7 StandardOutputEncoding bug
-          # We do NOT capture this into a variable ($updateMetadataOutput = ...), which prevents the crash.
-          & msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata --verbose
+          # Save the massive JSON to a file to bypass Windows 8191 character limit
+          Set-Content -Path "final_payload.json" -Value $metadata -Encoding utf8
+
+          # Pass the file path instead of the raw string
+          & msstore submission updateMetadata $env:MS_STORE_APP_ID "final_payload.json" --verbose
 
           if ($LASTEXITCODE -ne 0) {
-            Write-Host "UpdateMetadata payload used: $metadata"
+            Write-Host "UpdateMetadata failed. Check final_payload.json for the generated payload."
             exit $LASTEXITCODE
           }
           
