@@ -56,5 +56,71 @@ jobs:
 
           Write-Host "✅ Metadata successfully updated via msstore CLI."
 
+      - name: Debug Dev Center REST PUT (diagnostic)
+        if: ${{ always() }}
+        shell: pwsh
+        env:
+          MS_STORE_APP_ID: ${{ secrets.MS_STORE_APP_ID }}
+          PARTNER_CENTER_TENANT_ID: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
+          PARTNER_CENTER_CLIENT_ID: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
+          PARTNER_CENTER_CLIENT_SECRET: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
+        run: |
+          Write-Host "Starting diagnostic REST PUT to Dev Center (will not run if previous step succeeded)."
+          $meta = Get-Content -Raw .\distribution\windows\update_metadata.json
+          if ([string]::IsNullOrWhiteSpace($meta)) { Write-Host "metadata file is empty"; exit 0 }
+
+          $tokenResponse = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/$($env:PARTNER_CENTER_TENANT_ID)/oauth2/v2.0/token" -ContentType 'application/x-www-form-urlencoded' -Body @{
+            grant_type    = 'client_credentials'
+            client_id     = $env:PARTNER_CENTER_CLIENT_ID
+            client_secret = $env:PARTNER_CENTER_CLIENT_SECRET
+            scope         = 'https://manage.devcenter.microsoft.com/.default'
+          }
+
+          $headers = @{
+            Authorization  = "Bearer $($tokenResponse.access_token)"
+            TenantId       = $env:PARTNER_CENTER_TENANT_ID
+            'Content-Type' = 'application/json'
+          }
+
+          $apiBaseUrl = "https://manage.devcenter.microsoft.com/v1.0/my/applications/$($env:MS_STORE_APP_ID)"
+
+          try {
+            $application = Invoke-RestMethod -Method Get -Uri $apiBaseUrl -Headers $headers
+
+            $submissionId = $null
+            if ($application.PendingApplicationSubmission -and -not [string]::IsNullOrWhiteSpace($application.PendingApplicationSubmission.Id)) {
+              $submissionId = $application.PendingApplicationSubmission.Id
+            }
+
+            if ([string]::IsNullOrWhiteSpace($submissionId)) {
+              $createdSubmission = Invoke-RestMethod -Method Post -Uri "$apiBaseUrl/submissions?isMinimalResponse=true" -Headers $headers
+              $submissionId = $createdSubmission.Id ? $createdSubmission.Id : $createdSubmission.id
+            }
+
+            if ([string]::IsNullOrWhiteSpace($submissionId)) { Write-Host "No submission id found; aborting diagnostic."; exit 0 }
+
+            Write-Host "Diagnostic: PUT to $apiBaseUrl/submissions/$submissionId"
+
+            Invoke-RestMethod -Method Put -Uri "$apiBaseUrl/submissions/$submissionId" -Headers $headers -Body $meta -ContentType 'application/json' -ErrorAction Stop
+            Write-Host "Diagnostic PUT returned success."
+          }
+          catch {
+            Write-Host "Diagnostic PUT failed: $($_.Exception.Message)"
+            if ($_.Exception.Response -ne $null) {
+              try {
+                $resp = $_.Exception.Response
+                $stream = $resp.GetResponseStream()
+                $reader = New-Object System.IO.StreamReader($stream)
+                $body = $reader.ReadToEnd()
+                Write-Host "Response status: $($resp.StatusCode)"
+                Write-Host "Response body: $body"
+              }
+              catch {
+                Write-Host "Could not read response body: $($_.Exception.Message)"
+              }
+            }
+            exit 1
+          }
+
       - name: Publish MSIX to the Microsoft Store
         run: msstore publish --appId ${{ secrets.MS_STORE_APP_ID }} -v
