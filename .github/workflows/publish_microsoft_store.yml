@@ -38,71 +38,83 @@ jobs:
         shell: pwsh
         env:
           MS_STORE_APP_ID: ${{ secrets.MS_STORE_APP_ID }}
+          PARTNER_CENTER_TENANT_ID: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
+          PARTNER_CENTER_CLIENT_ID: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
+          PARTNER_CENTER_CLIENT_SECRET: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
         run: |
           $releaseNotes = Get-Content -Raw .\distribution\windows\update_metadata.json | ConvertFrom-Json -AsHashtable
-          
-          # Fetch the existing submission cleanly and prevent 80-character line wrapping
-          $rawOutput = & msstore submission get $env:MS_STORE_APP_ID
-          $currentSubmissionText = $rawOutput -join ""
-          $currentSubmissionText = $currentSubmissionText -replace '\x1B\[[0-9;]*m', ''
+
+          $rawOutput = & msstore submission get $env:MS_STORE_APP_ID --verbose 2>&1 | Out-String
+          $currentSubmissionText = $rawOutput -replace '\x1B\[[0-9;]*m', ''
 
           $jsonStart = $currentSubmissionText.IndexOf('{')
           $jsonEnd = $currentSubmissionText.LastIndexOf('}')
 
-          if ($jsonStart -ge 0 -and $jsonEnd -gt $jsonStart) {
-            $currentSubmissionJson = $currentSubmissionText.Substring($jsonStart, $jsonEnd - $jsonStart + 1)
-            
-            try {
-              $submission = $currentSubmissionJson | ConvertFrom-Json -AsHashtable
-
-              # FORWARD STRATEGY: Update the complete Store JSON with our local changes
-              
-              if (-not $submission.ContainsKey('Listings')) {
-                $submission['Listings'] = @{}
-              }
-              
-              $submission['ApplicationCategory'] = 'Education_StudyAids'
-              
-              if ($releaseNotes.ContainsKey('Pricing')) {
-                $submission['Pricing'] = $releaseNotes.Pricing
-              }
-              
-              if ($releaseNotes.ContainsKey('AllowTargetFutureDeviceFamilies')) {
-                $submission['AllowTargetFutureDeviceFamilies'] = $releaseNotes.AllowTargetFutureDeviceFamilies
-              }
-
-              foreach ($locale in $releaseNotes.Listings.Keys) {
-                if (-not $submission['Listings'].ContainsKey($locale)) {
-                  $submission['Listings'][$locale] = @{}
-                }
-
-                if (-not $submission['Listings'][$locale].ContainsKey('BaseListing')) {
-                  $submission['Listings'][$locale]['BaseListing'] = @{}
-                }
-
-                $submission['Listings'][$locale]['BaseListing']['ReleaseNotes'] = $releaseNotes.Listings[$locale].BaseListing.ReleaseNotes
-              }
-
-              $metadata = $submission | ConvertTo-Json -Depth 20 -Compress
-            }
-            catch {
-              Write-Host "💥 Parsing error details: $($_.Exception.Message)"
-              exit 1
-            }
-          } else {
-            Write-Host "💥 Error: JSON structure not found in the response."
+          if ($jsonStart -lt 0 -or $jsonEnd -le $jsonStart) {
+            Write-Host "💥 Error: JSON structure not found in the submission response."
             exit 1
           }
 
-          # Save the massive JSON to a file to bypass Windows 8191 character limit
-          Set-Content -Path "final_payload.json" -Value $metadata -Encoding utf8
+          try {
+            $submission = $currentSubmissionText.Substring($jsonStart, $jsonEnd - $jsonStart + 1) | ConvertFrom-Json -AsHashtable
+          }
+          catch {
+            Write-Host "💥 Parsing error details: $($_.Exception.Message)"
+            exit 1
+          }
 
-          # Pass the file path instead of the raw string
-          & msstore submission updateMetadata $env:MS_STORE_APP_ID "final_payload.json" --verbose
+          if (-not $submission.ContainsKey('Listings')) {
+            $submission['Listings'] = @{}
+          }
 
-          if ($LASTEXITCODE -ne 0) {
-            Write-Host "UpdateMetadata failed. Check final_payload.json for the generated payload."
-            exit $LASTEXITCODE
+          $submission['ApplicationCategory'] = 'Education_StudyAids'
+
+          foreach ($locale in $releaseNotes.Listings.Keys) {
+            if (-not $submission['Listings'].ContainsKey($locale)) {
+              $submission['Listings'][$locale] = @{}
+            }
+
+            if (-not $submission['Listings'][$locale].ContainsKey('BaseListing')) {
+              $submission['Listings'][$locale]['BaseListing'] = @{}
+            }
+
+            $submission['Listings'][$locale]['BaseListing']['ReleaseNotes'] = $releaseNotes.Listings[$locale].BaseListing.ReleaseNotes
+          }
+
+          $metadata = $submission | ConvertTo-Json -Depth 20 -Compress
+          $bodyBytes = [System.Text.Encoding]::UTF8.GetBytes($metadata)
+
+          $tokenResponse = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/$($env:PARTNER_CENTER_TENANT_ID)/oauth2/token" -Body @{
+            grant_type    = 'client_credentials'
+            client_id     = $env:PARTNER_CENTER_CLIENT_ID
+            client_secret = $env:PARTNER_CENTER_CLIENT_SECRET
+            resource      = 'https://manage.devcenter.microsoft.com'
+          }
+
+          $submissionId = $submission['Id']
+          if ([string]::IsNullOrWhiteSpace($submissionId)) {
+            $submissionId = $submission['id']
+          }
+          if ([string]::IsNullOrWhiteSpace($submissionId)) {
+            Write-Host "💥 Error: submission Id not found in the current submission payload."
+            exit 1
+          }
+
+          $headers = @{
+            Authorization = "Bearer $($tokenResponse.access_token)"
+            TenantId      = $env:PARTNER_CENTER_TENANT_ID
+            'Content-Type' = 'application/json'
+          }
+
+          $apiUrl = "https://manage.devcenter.microsoft.com/v1.0/my/applications/$($env:MS_STORE_APP_ID)/submissions/$submissionId"
+          try {
+            Invoke-RestMethod -Method Put -Uri $apiUrl -Headers $headers -Body $bodyBytes | Out-Null
+            Write-Host "✅ Metadata successfully updated via direct Dev Center API."
+          }
+          catch {
+            Write-Host "💥 API Error: $($_.Exception.Message)"
+            Write-Host "UpdateMetadata payload used: $metadata"
+            exit 1
           }
           
       - name: Publish MSIX to the Microsoft Store
