@@ -11929,27 +11929,6 @@
               "alignItems": "center",
               "children": [
                 {
-                  "type": "frame",
-                  "id": "Eu5PF",
-                  "width": 34,
-                  "height": 34,
-                  "fill": "#27272A",
-                  "cornerRadius": 17,
-                  "justifyContent": "center",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "s3QlH",
-                      "width": 16,
-                      "height": 16,
-                      "iconFontName": "arrow-left",
-                      "iconFontFamily": "lucide",
-                      "fill": "#A1A1AA"
-                    }
-                  ]
-                },
-                {
                   "type": "text",
                   "id": "JpYYy",
                   "fill": "#FAFAFA",
