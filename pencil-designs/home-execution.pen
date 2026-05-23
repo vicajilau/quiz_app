@@ -11274,33 +11274,22 @@
                             },
                             {
                               "type": "frame",
-                              "id": "h8rax3",
-                              "fill": "#8B5CF6",
-                              "cornerRadius": 12,
-                              "gap": 8,
-                              "padding": [
-                                10,
-                                18
-                              ],
+                              "id": "m4ItQ",
+                              "width": 30,
+                              "height": 30,
+                              "fill": "#8B5CF620",
+                              "cornerRadius": 15,
+                              "justifyContent": "center",
                               "alignItems": "center",
                               "children": [
                                 {
-                                  "type": "text",
-                                  "id": "LuYQm",
-                                  "fill": "#FFFFFF",
-                                  "content": "Empezar",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 13,
-                                  "fontWeight": "700"
-                                },
-                                {
                                   "type": "icon_font",
-                                  "id": "WPFGh",
+                                  "id": "L3HeC",
                                   "width": 14,
                                   "height": 14,
                                   "iconFontName": "arrow-right",
                                   "iconFontFamily": "lucide",
-                                  "fill": "#FFFFFF"
+                                  "fill": "#8B5CF6"
                                 }
                               ]
                             }
@@ -11422,33 +11411,22 @@
                             },
                             {
                               "type": "frame",
-                              "id": "PP7az",
-                              "fill": "#F59E0B",
-                              "cornerRadius": 12,
-                              "gap": 8,
-                              "padding": [
-                                10,
-                                18
-                              ],
+                              "id": "tkAGJ",
+                              "width": 30,
+                              "height": 30,
+                              "fill": "#F59E0B20",
+                              "cornerRadius": 15,
+                              "justifyContent": "center",
                               "alignItems": "center",
                               "children": [
                                 {
-                                  "type": "text",
-                                  "id": "WRrHS",
-                                  "fill": "#FFFFFF",
-                                  "content": "Empezar",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 13,
-                                  "fontWeight": "700"
-                                },
-                                {
                                   "type": "icon_font",
-                                  "id": "hMeqX",
+                                  "id": "Q4vgV",
                                   "width": 14,
                                   "height": 14,
                                   "iconFontName": "arrow-right",
                                   "iconFontFamily": "lucide",
-                                  "fill": "#FFFFFF"
+                                  "fill": "#F59E0B"
                                 }
                               ]
                             }
@@ -12593,33 +12571,22 @@
                     },
                     {
                       "type": "frame",
-                      "id": "ltCbt",
-                      "fill": "#8B5CF6",
-                      "cornerRadius": 10,
-                      "gap": 7,
-                      "padding": [
-                        9,
-                        16
-                      ],
+                      "id": "l2pdJT",
+                      "width": 30,
+                      "height": 30,
+                      "fill": "#8B5CF620",
+                      "cornerRadius": 15,
+                      "justifyContent": "center",
                       "alignItems": "center",
                       "children": [
                         {
-                          "type": "text",
-                          "id": "N4TMo",
-                          "fill": "#FFFFFF",
-                          "content": "Empezar",
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
-                          "fontWeight": "700"
-                        },
-                        {
                           "type": "icon_font",
-                          "id": "z4PEK",
-                          "width": 13,
-                          "height": 13,
+                          "id": "cHy7j",
+                          "width": 14,
+                          "height": 14,
                           "iconFontName": "arrow-right",
                           "iconFontFamily": "lucide",
-                          "fill": "#FFFFFF"
+                          "fill": "#8B5CF6"
                         }
                       ]
                     }
@@ -12733,33 +12700,22 @@
                     },
                     {
                       "type": "frame",
-                      "id": "XLkGk",
-                      "fill": "#F59E0B",
-                      "cornerRadius": 10,
-                      "gap": 7,
-                      "padding": [
-                        9,
-                        16
-                      ],
+                      "id": "WquUt",
+                      "width": 30,
+                      "height": 30,
+                      "fill": "#F59E0B20",
+                      "cornerRadius": 15,
+                      "justifyContent": "center",
                       "alignItems": "center",
                       "children": [
                         {
-                          "type": "text",
-                          "id": "k7fN3",
-                          "fill": "#FFFFFF",
-                          "content": "Empezar",
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
-                          "fontWeight": "700"
-                        },
-                        {
                           "type": "icon_font",
-                          "id": "emMXO",
-                          "width": 13,
-                          "height": 13,
+                          "id": "vvUZ2",
+                          "width": 14,
+                          "height": 14,
                           "iconFontName": "arrow-right",
                           "iconFontFamily": "lucide",
-                          "fill": "#FFFFFF"
+                          "fill": "#F59E0B"
                         }
                       ]
                     }
