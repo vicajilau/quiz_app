@@ -27,10 +27,10 @@ jobs:
 
       - name: Generate Windows release notes metadata
         run: dart distribution/windows/generate_windows_release_notes.dart --version=1.14.0
-        
+
       - name: Generate build_runner files
         run: dart run build_runner build -d
-        
+
       - name: Create MSIX package
         run: msstore package .
 
@@ -44,46 +44,6 @@ jobs:
         run: |
           $releaseNotes = Get-Content -Raw .\distribution\windows\update_metadata.json | ConvertFrom-Json -AsHashtable
 
-          $rawOutput = & msstore submission get $env:MS_STORE_APP_ID --verbose 2>&1 | Out-String
-          $currentSubmissionText = $rawOutput -replace '\x1B\[[0-9;]*m', ''
-
-          $jsonStart = $currentSubmissionText.IndexOf('{')
-          $jsonEnd = $currentSubmissionText.LastIndexOf('}')
-
-          if ($jsonStart -lt 0 -or $jsonEnd -le $jsonStart) {
-            Write-Host "💥 Error: JSON structure not found in the submission response."
-            exit 1
-          }
-
-          try {
-            $submission = $currentSubmissionText.Substring($jsonStart, $jsonEnd - $jsonStart + 1) | ConvertFrom-Json -AsHashtable
-          }
-          catch {
-            Write-Host "💥 Parsing error details: $($_.Exception.Message)"
-            exit 1
-          }
-
-          if (-not $submission.ContainsKey('Listings')) {
-            $submission['Listings'] = @{}
-          }
-
-          $submission['ApplicationCategory'] = 'Education_StudyAids'
-
-          foreach ($locale in $releaseNotes.Listings.Keys) {
-            if (-not $submission['Listings'].ContainsKey($locale)) {
-              $submission['Listings'][$locale] = @{}
-            }
-
-            if (-not $submission['Listings'][$locale].ContainsKey('BaseListing')) {
-              $submission['Listings'][$locale]['BaseListing'] = @{}
-            }
-
-            $submission['Listings'][$locale]['BaseListing']['ReleaseNotes'] = $releaseNotes.Listings[$locale].BaseListing.ReleaseNotes
-          }
-
-          $metadata = $submission | ConvertTo-Json -Depth 20 -Compress
-          $bodyBytes = [System.Text.Encoding]::UTF8.GetBytes($metadata)
-
           $tokenResponse = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/$($env:PARTNER_CENTER_TENANT_ID)/oauth2/v2.0/token" -ContentType 'application/x-www-form-urlencoded' -Body @{
             grant_type    = 'client_credentials'
             client_id     = $env:PARTNER_CENTER_CLIENT_ID
@@ -91,31 +51,72 @@ jobs:
             scope         = 'https://manage.devcenter.microsoft.com/.default'
           }
 
-          $submissionId = $submission['Id']
-          if ([string]::IsNullOrWhiteSpace($submissionId)) {
-            $submissionId = $submission['id']
-          }
-          if ([string]::IsNullOrWhiteSpace($submissionId)) {
-            Write-Host "💥 Error: submission Id not found in the current submission payload."
-            exit 1
-          }
-
           $headers = @{
-            Authorization = "Bearer $($tokenResponse.access_token)"
-            TenantId      = $env:PARTNER_CENTER_TENANT_ID
+            Authorization  = "Bearer $($tokenResponse.access_token)"
+            TenantId       = $env:PARTNER_CENTER_TENANT_ID
             'Content-Type' = 'application/json'
           }
 
-          $apiUrl = "https://manage.devcenter.microsoft.com/v1.0/my/applications/$($env:MS_STORE_APP_ID)/submissions/$submissionId"
+          $apiBaseUrl = "https://manage.devcenter.microsoft.com/v1.0/my/applications/$($env:MS_STORE_APP_ID)"
+
           try {
-            Invoke-RestMethod -Method Put -Uri $apiUrl -Headers $headers -Body $bodyBytes | Out-Null
+            $application = Invoke-RestMethod -Method Get -Uri $apiBaseUrl -Headers $headers
+
+            $submissionId = $null
+            if ($application.PendingApplicationSubmission -and -not [string]::IsNullOrWhiteSpace($application.PendingApplicationSubmission.Id)) {
+              $submissionId = $application.PendingApplicationSubmission.Id
+            }
+
+            if ([string]::IsNullOrWhiteSpace($submissionId)) {
+              $createdSubmission = Invoke-RestMethod -Method Post -Uri "$apiBaseUrl/submissions?isMinimalResponse=true" -Headers $headers
+
+              if ($createdSubmission.Id) {
+                $submissionId = $createdSubmission.Id
+              }
+              elseif ($createdSubmission.id) {
+                $submissionId = $createdSubmission.id
+              }
+            }
+
+            if ([string]::IsNullOrWhiteSpace($submissionId)) {
+              Write-Host "💥 Error: submission Id not found in the Dev Center response."
+              exit 1
+            }
+
+            $currentSubmission = Invoke-RestMethod -Method Get -Uri "$apiBaseUrl/submissions/$submissionId" -Headers $headers
+            $submission = $currentSubmission | ConvertTo-Json -Depth 20 | ConvertFrom-Json -AsHashtable
+
+            if (-not $submission.ContainsKey('Listings')) {
+              $submission['Listings'] = @{}
+            }
+
+            $submission['ApplicationCategory'] = 'Education_StudyAids'
+
+            foreach ($locale in $releaseNotes.Listings.Keys) {
+              if (-not $submission['Listings'].ContainsKey($locale)) {
+                $submission['Listings'][$locale] = @{}
+              }
+
+              if (-not $submission['Listings'][$locale].ContainsKey('BaseListing')) {
+                $submission['Listings'][$locale]['BaseListing'] = @{}
+              }
+
+              $submission['Listings'][$locale]['BaseListing']['ReleaseNotes'] = $releaseNotes.Listings[$locale].BaseListing.ReleaseNotes
+            }
+
+            $metadata = $submission | ConvertTo-Json -Depth 20 -Compress
+            $bodyBytes = [System.Text.Encoding]::UTF8.GetBytes($metadata)
+
+            Invoke-RestMethod -Method Put -Uri "$apiBaseUrl/submissions/$submissionId" -Headers $headers -Body $bodyBytes | Out-Null
             Write-Host "✅ Metadata successfully updated via direct Dev Center API."
           }
           catch {
-            Write-Host "💥 API Error: $($_.Exception.Message)"
-            Write-Host "UpdateMetadata payload used: $metadata"
+            Write-Host "💥 Dev Center error: $($_.Exception.Message)"
+            if ($metadata) {
+              Write-Host "UpdateMetadata payload used: $metadata"
+            }
             exit 1
           }
-          
+
       - name: Publish MSIX to the Microsoft Store
         run: msstore publish --appId ${{ secrets.MS_STORE_APP_ID }} -v
