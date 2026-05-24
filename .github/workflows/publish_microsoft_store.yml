@@ -25,6 +25,13 @@ jobs:
       - name: Install Dart dependencies
         run: flutter pub get
 
+      - name: Fetch current Microsoft Store submission metadata
+        shell: pwsh
+        env:
+          MS_STORE_APP_ID: ${{ secrets.MS_STORE_APP_ID }}
+        run: |
+          msstore submission get $env:MS_STORE_APP_ID | Out-File -Encoding utf8 .\distribution\windows\current_metadata.json
+
       - name: Generate Windows release notes metadata
         run: dart distribution/windows/generate_windows_release_notes.dart --version=1.14.0
 
