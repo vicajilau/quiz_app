@@ -106,16 +106,14 @@ jobs:
           }
           catch {
             Write-Host "Diagnostic PUT failed: $($_.Exception.Message)"
-            if ($_.Exception.Response -ne $null) {
+            if ($_.ErrorDetails) {
+              Write-Host "Error details message: $($_.ErrorDetails.Message)"
+            } elseif ($_.Exception.Response) {
               try {
-                $resp = $_.Exception.Response
-                $stream = $resp.GetResponseStream()
-                $reader = New-Object System.IO.StreamReader($stream)
+                $reader = New-Object System.IO.StreamReader($_.Exception.Response.Content.ReadAsStream())
                 $body = $reader.ReadToEnd()
-                Write-Host "Response status: $($resp.StatusCode)"
                 Write-Host "Response body: $body"
-              }
-              catch {
+              } catch {
                 Write-Host "Could not read response body: $($_.Exception.Message)"
               }
             }

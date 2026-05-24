@@ -68,27 +68,27 @@ void main(List<String> args) {
     final String note = (rawNotes[locale] as String).trim();
     final String windowsLocale = locale.toLowerCase();
     listings[windowsLocale] = <String, Object>{
-      'BaseListing': <String, String>{
-        'Title': projectInfo.title,
-        'Description': projectInfo.description,
-        'ReleaseNotes': note,
+      'baseListing': <String, String>{
+        'title': projectInfo.title,
+        'description': projectInfo.description,
+        'releaseNotes': note,
       },
     };
   }
 
   final Map<String, Object> payload = <String, Object>{
-    'ApplicationCategory': 'Education_StudyAids',
-    'Pricing': <String, Object>{
-      'MarketPricing': <String, Object>{},
-      'PriceId': 'Free',
+    'applicationCategory': 'Education_StudyAids',
+    'pricing': <String, Object>{
+      'marketPricing': <String, Object>{},
+      'priceId': 'Free',
     },
-    'AllowTargetFutureDeviceFamilies': <String, bool>{
-      'Desktop': true,
-      'Mobile': false,
-      'Xbox': false,
-      'Holographic': false,
+    'allowTargetFutureDeviceFamilies': <String, bool>{
+      'desktop': true,
+      'mobile': false,
+      'xbox': false,
+      'holographic': false,
     },
-    'Listings': listings,
+    'listings': listings,
   };
 
   outputFile.parent.createSync(recursive: true);
