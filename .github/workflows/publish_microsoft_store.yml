@@ -80,13 +80,37 @@ jobs:
       - name: Create MSIX package
         run: msstore package .
 
-      - name: Update Microsoft Store submission metadata via REST
+      - name: Update Metadata, Upload Package, and Commit via REST
         shell: pwsh
         env:
           PARTNER_CENTER_TENANT_ID: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
           PARTNER_CENTER_CLIENT_ID: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
           PARTNER_CENTER_CLIENT_SECRET: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
         run: |
+          $metaContent = Get-Content -Raw .\distribution\windows\update_metadata.json
+          if ([string]::IsNullOrWhiteSpace($metaContent)) { Write-Host "💥 metadata file is empty"; exit 1 }
+
+          # Parse JSON to modify applicationPackages
+          $metaObj = $metaContent | ConvertFrom-Json -Depth 10
+
+          $pkgArray = @()
+          if ($metaObj.applicationPackages) {
+            foreach ($pkg in $metaObj.applicationPackages) {
+              $pkg.fileStatus = "PendingDelete"
+              $pkgArray += $pkg
+            }
+          }
+
+          $newPackage = @{
+            fileStatus = "PendingUpload"
+            fileName = "quizdy.msix"
+          }
+          $pkgArray += $newPackage
+          $metaObj.applicationPackages = $pkgArray
+
+          # Save back as JSON
+          $metaObj | ConvertTo-Json -Depth 10 | Out-File -Encoding utf8 .\distribution\windows\update_metadata.json
+
           Write-Host "Authenticating with Microsoft Store API..."
           $tokenResponse = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/$($env:PARTNER_CENTER_TENANT_ID)/oauth2/v2.0/token" -ContentType 'application/x-www-form-urlencoded' -Body @{
             grant_type    = 'client_credentials'
@@ -100,25 +124,56 @@ jobs:
             'Content-Type' = 'application/json'
           }
 
-          Write-Host "PUT to $env:MS_SUBMISSION_URL"
+          Write-Host "PUT to $env:MS_SUBMISSION_URL (Updating metadata and declaring new package)..."
           try {
             Invoke-RestMethod -Method Put -Uri $env:MS_SUBMISSION_URL -Headers $headers -InFile .\distribution\windows\update_metadata.json -ContentType 'application/json' -ErrorAction Stop
             Write-Host "✅ Metadata successfully updated via REST API."
           } catch {
             Write-Host "💥 PUT failed: $($_.Exception.Message)"
-            if ($_.ErrorDetails) {
-              Write-Host "Error details message: $($_.ErrorDetails.Message)"
-            } elseif ($_.Exception.Response) {
+            if ($_.ErrorDetails) { Write-Host "Error details message: $($_.ErrorDetails.Message)" }
+            elseif ($_.Exception.Response) {
               try {
                 $reader = New-Object System.IO.StreamReader($_.Exception.Response.Content.ReadAsStream())
-                $body = $reader.ReadToEnd()
-                Write-Host "Response body: $body"
-              } catch {
-                Write-Host "Could not read response body: $($_.Exception.Message)"
-              }
+                Write-Host "Response body: $($reader.ReadToEnd())"
+              } catch {}
             }
             exit 1
           }
 
-      - name: Publish MSIX to the Microsoft Store
-        run: msstore publish --appId ${{ secrets.MS_STORE_APP_ID }} -v
+          # --- UPLOAD PACKAGE ---
+          $msixPath = "build\windows\x64\runner\Release\quizdy.msix"
+          $zipPath = "bundle.zip"
+          if (-not (Test-Path $msixPath)) { Write-Host "💥 MSIX file not found at $msixPath"; exit 1 }
+
+          Write-Host "Compressing $msixPath to $zipPath..."
+          Compress-Archive -Path $msixPath -DestinationPath $zipPath -Force
+
+          $uploadUrl = $metaObj.fileUploadUrl
+          if ([string]::IsNullOrWhiteSpace($uploadUrl)) { Write-Host "💥 fileUploadUrl is missing from submission data!"; exit 1 }
+
+          Write-Host "Uploading $zipPath to Azure Blob Storage..."
+          $uploadHeaders = @{ "x-ms-blob-type" = "BlockBlob" }
+          
+          try {
+            Invoke-RestMethod -Method Put -Uri $uploadUrl -Headers $uploadHeaders -InFile $zipPath -ErrorAction Stop
+            Write-Host "✅ Package uploaded successfully."
+          } catch {
+            Write-Host "💥 Upload failed: $($_.Exception.Message)"
+            exit 1
+          }
+
+          # --- COMMIT SUBMISSION ---
+          Write-Host "Committing submission..."
+          try {
+            Invoke-RestMethod -Method Post -Uri "$($env:MS_SUBMISSION_URL)/commit" -Headers $headers -ErrorAction Stop
+            Write-Host "✅ Submission committed successfully! It will now be processed by the Microsoft Store."
+          } catch {
+            Write-Host "💥 Commit failed: $($_.Exception.Message)"
+            if ($_.Exception.Response) {
+              try {
+                $reader = New-Object System.IO.StreamReader($_.Exception.Response.Content.ReadAsStream())
+                Write-Host "Response body: $($reader.ReadToEnd())"
+              } catch {}
+            }
+            exit 1
+          }
