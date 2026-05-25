@@ -25,46 +25,7 @@ jobs:
       - name: Install Dart dependencies
         run: flutter pub get
 
-      - name: Fetch current Microsoft Store submission metadata
-        shell: pwsh
-        env:
-          MS_STORE_APP_ID: ${{ secrets.MS_STORE_APP_ID }}
-        run: |
-          msstore submission get $env:MS_STORE_APP_ID | Out-File -Encoding utf8 .\distribution\windows\current_metadata.json
-
-      - name: Generate Windows release notes metadata
-        run: dart distribution/windows/generate_windows_release_notes.dart --version=1.14.0
-
-      - name: Generate build_runner files
-        run: dart run build_runner build -d
-
-      - name: Create MSIX package
-        run: msstore package .
-
-      - name: Update Microsoft Store submission metadata
-        shell: pwsh
-        env:
-          MS_STORE_APP_ID: ${{ secrets.MS_STORE_APP_ID }}
-        run: |
-          $meta = Get-Content -Raw .\distribution\windows\update_metadata.json
-          if ([string]::IsNullOrWhiteSpace($meta)) { Write-Host "💥 metadata file is empty"; exit 1 }
-          Write-Host "Updating submission metadata via msstore CLI (payload length $($meta.Length))."
-
-          # Ejecutar msstore y capturar salida y código de salida para diagnóstico
-          $output = & msstore submission updateMetadata $env:MS_STORE_APP_ID "$meta" 2>&1
-          $exitCode = $LASTEXITCODE
-
-          if ($output) { Write-Host $output }
-
-          if ($exitCode -ne 0) {
-            Write-Host "💥 msstore CLI exited with code $exitCode"
-            exit $exitCode
-          }
-
-          Write-Host "✅ Metadata successfully updated via msstore CLI."
-
-      - name: Debug Dev Center REST PUT (diagnostic)
-        if: ${{ always() }}
+      - name: Fetch current Microsoft Store submission metadata via REST
         shell: pwsh
         env:
           MS_STORE_APP_ID: ${{ secrets.MS_STORE_APP_ID }}
@@ -72,47 +33,79 @@ jobs:
           PARTNER_CENTER_CLIENT_ID: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
           PARTNER_CENTER_CLIENT_SECRET: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
         run: |
-          Write-Host "Starting diagnostic REST PUT to Dev Center (will not run if previous step succeeded)."
-          $meta = Get-Content -Raw .\distribution\windows\update_metadata.json
-          if ([string]::IsNullOrWhiteSpace($meta)) { Write-Host "metadata file is empty"; exit 0 }
-
+          Write-Host "Authenticating with Microsoft Store API..."
           $tokenResponse = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/$($env:PARTNER_CENTER_TENANT_ID)/oauth2/v2.0/token" -ContentType 'application/x-www-form-urlencoded' -Body @{
             grant_type    = 'client_credentials'
             client_id     = $env:PARTNER_CENTER_CLIENT_ID
             client_secret = $env:PARTNER_CENTER_CLIENT_SECRET
             scope         = 'https://manage.devcenter.microsoft.com/.default'
           }
+          $headers = @{
+            Authorization  = "Bearer $($tokenResponse.access_token)"
+            TenantId       = $env:PARTNER_CENTER_TENANT_ID
+            'Content-Type' = 'application/json'
+          }
+          $apiBaseUrl = "https://manage.devcenter.microsoft.com/v1.0/my/applications/$($env:MS_STORE_APP_ID)"
 
+          Write-Host "Fetching application info..."
+          $application = Invoke-RestMethod -Method Get -Uri $apiBaseUrl -Headers $headers
+
+          $submissionId = $null
+          if ($application.PendingApplicationSubmission -and -not [string]::IsNullOrWhiteSpace($application.PendingApplicationSubmission.Id)) {
+            $submissionId = $application.PendingApplicationSubmission.Id
+          }
+
+          if ([string]::IsNullOrWhiteSpace($submissionId)) {
+            Write-Host "Creating new submission..."
+            $createdSubmission = Invoke-RestMethod -Method Post -Uri "$apiBaseUrl/submissions" -Headers $headers
+            $submissionId = $createdSubmission.Id ? $createdSubmission.Id : $createdSubmission.id
+          }
+
+          Write-Host "Fetching full submission metadata for $submissionId..."
+          $submission = Invoke-RestMethod -Method Get -Uri "$apiBaseUrl/submissions/$submissionId" -Headers $headers
+          
+          # ConvertTo-Json limits depth by default; -Depth 10 ensures we capture the whole structure
+          $submission | ConvertTo-Json -Depth 10 | Out-File -Encoding utf8 .\distribution\windows\current_metadata.json
+          Write-Host "Saved current metadata."
+          
+          # Export submission URL for the next step
+          "MS_SUBMISSION_URL=$apiBaseUrl/submissions/$submissionId" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Generate Windows release notes metadata
+        run: dart distribution/windows/generate_windows_release_notes.dart --version=${{ github.ref_name }}
+
+      - name: Generate build_runner files
+        run: dart run build_runner build -d
+
+      - name: Create MSIX package
+        run: msstore package .
+
+      - name: Update Microsoft Store submission metadata via REST
+        shell: pwsh
+        env:
+          PARTNER_CENTER_TENANT_ID: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
+          PARTNER_CENTER_CLIENT_ID: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
+          PARTNER_CENTER_CLIENT_SECRET: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
+        run: |
+          Write-Host "Authenticating with Microsoft Store API..."
+          $tokenResponse = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/$($env:PARTNER_CENTER_TENANT_ID)/oauth2/v2.0/token" -ContentType 'application/x-www-form-urlencoded' -Body @{
+            grant_type    = 'client_credentials'
+            client_id     = $env:PARTNER_CENTER_CLIENT_ID
+            client_secret = $env:PARTNER_CENTER_CLIENT_SECRET
+            scope         = 'https://manage.devcenter.microsoft.com/.default'
+          }
           $headers = @{
             Authorization  = "Bearer $($tokenResponse.access_token)"
             TenantId       = $env:PARTNER_CENTER_TENANT_ID
             'Content-Type' = 'application/json'
           }
 
-          $apiBaseUrl = "https://manage.devcenter.microsoft.com/v1.0/my/applications/$($env:MS_STORE_APP_ID)"
-
+          Write-Host "PUT to $env:MS_SUBMISSION_URL"
           try {
-            $application = Invoke-RestMethod -Method Get -Uri $apiBaseUrl -Headers $headers
-
-            $submissionId = $null
-            if ($application.PendingApplicationSubmission -and -not [string]::IsNullOrWhiteSpace($application.PendingApplicationSubmission.Id)) {
-              $submissionId = $application.PendingApplicationSubmission.Id
-            }
-
-            if ([string]::IsNullOrWhiteSpace($submissionId)) {
-              $createdSubmission = Invoke-RestMethod -Method Post -Uri "$apiBaseUrl/submissions?isMinimalResponse=true" -Headers $headers
-              $submissionId = $createdSubmission.Id ? $createdSubmission.Id : $createdSubmission.id
-            }
-
-            if ([string]::IsNullOrWhiteSpace($submissionId)) { Write-Host "No submission id found; aborting diagnostic."; exit 0 }
-
-            Write-Host "Diagnostic: PUT to $apiBaseUrl/submissions/$submissionId"
-
-            Invoke-RestMethod -Method Put -Uri "$apiBaseUrl/submissions/$submissionId" -Headers $headers -Body $meta -ContentType 'application/json' -ErrorAction Stop
-            Write-Host "Diagnostic PUT returned success."
-          }
-          catch {
-            Write-Host "Diagnostic PUT failed: $($_.Exception.Message)"
+            Invoke-RestMethod -Method Put -Uri $env:MS_SUBMISSION_URL -Headers $headers -InFile .\distribution\windows\update_metadata.json -ContentType 'application/json' -ErrorAction Stop
+            Write-Host "✅ Metadata successfully updated via REST API."
+          } catch {
+            Write-Host "💥 PUT failed: $($_.Exception.Message)"
             if ($_.ErrorDetails) {
               Write-Host "Error details message: $($_.ErrorDetails.Message)"
             } elseif ($_.Exception.Response) {
