@@ -221,24 +221,26 @@ String _titleCase(String value) {
 String _resolveVersion(String? versionArg) {
   final String? versionFromArg = versionArg?.trim();
   if (versionFromArg != null && versionFromArg.isNotEmpty) {
-    return _normalizeVersion(versionFromArg);
+    final String? normalized = _normalizeVersion(versionFromArg);
+    if (normalized != null) return normalized;
   }
 
   final String? refName = Platform.environment['GITHUB_REF_NAME']?.trim();
   if (refName != null && refName.isNotEmpty) {
-    return _normalizeVersion(refName);
+    final String? normalized = _normalizeVersion(refName);
+    if (normalized != null) return normalized;
   }
 
   return _readVersionFromPubspec();
 }
 
-String _normalizeVersion(String raw) {
+String? _normalizeVersion(String raw) {
   final String candidate = raw.startsWith('v') ? raw.substring(1) : raw;
   final String clean = candidate.split('+').first;
   if (!RegExp(
     r'^[0-9]+\.[0-9]+\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$',
   ).hasMatch(clean)) {
-    _fail('Invalid version value: "$raw"');
+    return null;
   }
   return clean;
 }
@@ -256,7 +258,8 @@ String _readVersionFromPubspec() {
     final Match? match = versionRegex.firstMatch(line.trim());
     if (match != null) {
       final String rawVersion = match.group(1)!;
-      return _normalizeVersion(rawVersion);
+      final String? normalized = _normalizeVersion(rawVersion);
+      if (normalized != null) return normalized;
     }
   }
 
