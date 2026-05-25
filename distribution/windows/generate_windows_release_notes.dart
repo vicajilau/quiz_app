@@ -67,7 +67,9 @@ void main(List<String> args) {
     options['current'] ?? 'distribution/windows/current_metadata.json',
   );
   if (!currentMetadataFile.existsSync()) {
-    _fail('Current metadata file not found: ${currentMetadataFile.path}. Make sure to run `msstore submission get` first.');
+    _fail(
+      'Current metadata file not found: ${currentMetadataFile.path}. Make sure to run `msstore submission get` first.',
+    );
   }
 
   // Parse current metadata, ignoring any non-JSON prefixes outputted by msstore CLI just in case
@@ -76,40 +78,43 @@ void main(List<String> args) {
   if (jsonStartIndex != -1 && jsonStartIndex > 0) {
     rawCurrent = rawCurrent.substring(jsonStartIndex);
   }
-  
+
   final Object? decoded = jsonDecode(rawCurrent);
   if (decoded is! Map<String, dynamic>) {
     _fail('Current metadata is not a valid JSON object.');
   }
   final Map<String, dynamic> currentMetadata = decoded;
-  
+
   final String listingsKey = currentMetadata.keys.firstWhere(
     (k) => k.toLowerCase() == 'listings',
     orElse: () => 'listings',
   );
   currentMetadata[listingsKey] ??= <String, dynamic>{};
-  final Map<String, dynamic> currentListings = currentMetadata[listingsKey] as Map<String, dynamic>;
+  final Map<String, dynamic> currentListings =
+      currentMetadata[listingsKey] as Map<String, dynamic>;
 
   for (final String locale in _requiredLocales) {
     final String note = (rawNotes[locale] as String).trim();
     final String windowsLocale = locale.toLowerCase();
-    
+
     final String actualLocaleKey = currentListings.keys.firstWhere(
       (k) => k.toLowerCase() == windowsLocale,
       orElse: () => windowsLocale,
     );
-    
+
     currentListings[actualLocaleKey] ??= <String, dynamic>{};
-    final Map<String, dynamic> localeListing = currentListings[actualLocaleKey] as Map<String, dynamic>;
-    
+    final Map<String, dynamic> localeListing =
+        currentListings[actualLocaleKey] as Map<String, dynamic>;
+
     final String baseListingKey = localeListing.keys.firstWhere(
       (k) => k.toLowerCase() == 'baselisting',
       orElse: () => 'baseListing',
     );
-    
+
     localeListing[baseListingKey] ??= <String, dynamic>{};
-    final Map<String, dynamic> baseListing = localeListing[baseListingKey] as Map<String, dynamic>;
-    
+    final Map<String, dynamic> baseListing =
+        localeListing[baseListingKey] as Map<String, dynamic>;
+
     // Update fields
     baseListing['title'] = projectInfo.title;
     baseListing['description'] = projectInfo.description;
