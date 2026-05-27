@@ -93,20 +93,13 @@ jobs:
           # Parse JSON to modify applicationPackages
           $metaObj = $metaContent | ConvertFrom-Json -Depth 10
 
-          $pkgArray = @()
-          if ($metaObj.applicationPackages) {
-            foreach ($pkg in $metaObj.applicationPackages) {
-              $pkg.fileStatus = "PendingDelete"
-              $pkgArray += $pkg
+          # Replace the existing package list so reruns do not accumulate paused/validated drafts.
+          $metaObj.applicationPackages = @(
+            @{
+              fileStatus = "PendingUpload"
+              fileName = "quizdy.msix"
             }
-          }
-
-          $newPackage = @{
-            fileStatus = "PendingUpload"
-            fileName = "quizdy.msix"
-          }
-          $pkgArray += $newPackage
-          $metaObj.applicationPackages = $pkgArray
+          )
 
           # Save back as JSON
           $metaObj | ConvertTo-Json -Depth 10 | Out-File -Encoding utf8 .\distribution\windows\update_metadata.json
