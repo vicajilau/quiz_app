@@ -115,10 +115,13 @@ void main(List<String> args) {
     final Map<String, dynamic> baseListing =
         localeListing[baseListingKey] as Map<String, dynamic>;
 
-    // Update fields
-    baseListing['title'] = projectInfo.title;
-    baseListing['description'] = projectInfo.description;
-    baseListing['releaseNotes'] = note;
+    _setValueCaseInsensitive(baseListing, 'Title', projectInfo.title);
+    _setValueCaseInsensitive(
+      baseListing,
+      'Description',
+      projectInfo.description,
+    );
+    _setValueCaseInsensitive(baseListing, 'ReleaseNotes', note);
   }
 
   outputFile.parent.createSync(recursive: true);
@@ -293,6 +296,18 @@ void _validateNotes({
 Never _fail(String message) {
   stderr.writeln('ERROR: $message');
   exit(1);
+}
+
+void _setValueCaseInsensitive(
+  Map<String, dynamic> target,
+  String expectedKey,
+  Object value,
+) {
+  final String key = target.keys.firstWhere(
+    (k) => k.toLowerCase() == expectedKey.toLowerCase(),
+    orElse: () => expectedKey,
+  );
+  target[key] = value;
 }
 
 class _ProjectInfo {
