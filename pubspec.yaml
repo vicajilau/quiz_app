@@ -64,7 +64,7 @@ dependencies:
   lottie: ^3.3.3
   pdfrx: ^2.4.2
   share_plus: ^12.0.2
-  app_links: ^7.0.0
+  app_links: ^7.1.1
   in_app_update: ^4.2.3
   hive_ce: ^2.19.3
   hive_ce_flutter: ^2.3.4
