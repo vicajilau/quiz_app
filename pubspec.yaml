@@ -62,9 +62,9 @@ dependencies:
   dio: ^5.9.2
   cross_file: ^0.3.5+2
   lottie: ^3.3.3
-  pdfrx: ^2.4.1
+  pdfrx: ^2.4.3
   share_plus: ^12.0.2
-  app_links: ^7.0.0
+  app_links: ^7.1.1
   in_app_update: ^4.2.3
   hive_ce: ^2.19.3
   hive_ce_flutter: ^2.3.4
@@ -82,7 +82,7 @@ dev_dependencies:
   msix: ^3.16.12
   bloc_test: ^10.0.0
   mocktail: ^1.0.5
-  hive_ce_generator: ^1.11.1
+  hive_ce_generator: ^1.11.2
   build_runner: ^2.15.0
 
 # For information on the generic Dart part of this file, see the
