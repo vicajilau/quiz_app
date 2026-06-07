@@ -1,4 +1,4 @@
-name: Publish Microsoft Store
+name: Publish Microsoft Store Copy
 on:
   push:
     tags:
