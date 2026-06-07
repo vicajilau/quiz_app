@@ -125,7 +125,7 @@ jobs:
           $metadata = $null
 
           try {
-            $currentSubmissionText = & msstore submission get $env:MS_STORE_APP_ID --verbose 2>&1 | Out-String
+            $currentSubmissionText = & msstore submission get $env:MS_STORE_APP_ID --verbose | Out-String
             $currentSubmissionText = $currentSubmissionText -replace '\e\[[0-9;]*m', ''
 
             $jsonStart = $currentSubmissionText.IndexOf('{')
@@ -155,13 +155,12 @@ jobs:
 
           if ([string]::IsNullOrWhiteSpace($metadata)) { $metadata = $releaseNotes | ConvertTo-Json -Depth 20 -Compress }
 
-          # msstore expects the updated metadata JSON as the second argument, not a file path.
-          $updateOutput = & msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata --verbose 2>&1
-          $updateOutput | ForEach-Object { Write-Host $_ }
+          # Invoke msstore without redirecting stdout/stderr; PowerShell 7 can fail the CLI when streams are merged.
+          & msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata --verbose
           if ($LASTEXITCODE -ne 0) { Write-Host "UpdateMetadata payload used: $metadata"; exit $LASTEXITCODE }
 
           # Refresh submission JSON so we have the latest fileUploadUrl and applicationPackages
-          $currentSubmissionText = & msstore submission get $env:MS_STORE_APP_ID --verbose 2>&1 | Out-String
+          $currentSubmissionText = & msstore submission get $env:MS_STORE_APP_ID --verbose | Out-String
           $currentSubmissionText = $currentSubmissionText -replace '\e\[[0-9;]*m', ''
           $jsonStart = $currentSubmissionText.IndexOf('{')
           $jsonEnd = $currentSubmissionText.LastIndexOf('}')
