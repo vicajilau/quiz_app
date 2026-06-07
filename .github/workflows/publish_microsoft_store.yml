@@ -71,8 +71,20 @@ jobs:
           # Export submission URL for the next step
           "MS_SUBMISSION_URL=$apiBaseUrl/submissions/$submissionId" | Out-File -FilePath $env:GITHUB_ENV -Append
 
+      - name: Upload current submission metadata artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: current_submission_metadata
+          path: distribution/windows/current_metadata.json
+
       - name: Generate Windows release notes metadata
         run: dart distribution/windows/generate_windows_release_notes.dart --version=${{ github.ref_name }}
+
+      - name: Upload generated update metadata artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated_update_metadata
+          path: distribution/windows/update_metadata.json
 
       - name: Generate build_runner files
         run: dart run build_runner build -d
@@ -107,33 +119,56 @@ jobs:
           # Save back as JSON
           $metaObj | ConvertTo-Json -Depth 10 | Out-File -Encoding utf8 .\distribution\windows\update_metadata.json
 
-          Write-Host "Authenticating with Microsoft Store API..."
-          $tokenResponse = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/$($env:PARTNER_CENTER_TENANT_ID)/oauth2/v2.0/token" -ContentType 'application/x-www-form-urlencoded' -Body @{
-            grant_type    = 'client_credentials'
-            client_id     = $env:PARTNER_CENTER_CLIENT_ID
-            client_secret = $env:PARTNER_CENTER_CLIENT_SECRET
-            scope         = 'https://manage.devcenter.microsoft.com/.default'
-          }
-          $headers = @{
-            Authorization  = "Bearer $($tokenResponse.access_token)"
-            TenantId       = $env:PARTNER_CENTER_TENANT_ID
-            'Content-Type' = 'application/json'
+          # Use msstore CLI to update metadata — it handles merging and preserves expected structure.
+          Write-Host "Preparing metadata payload and calling msstore submission updateMetadata..."
+          $releaseNotes = Get-Content -Raw .\distribution\windows\update_metadata.json | ConvertFrom-Json -AsHashtable
+          $metadata = $null
+
+          try {
+            $currentSubmissionText = & msstore submission get $env:MS_STORE_APP_ID --verbose 2>&1 | Out-String
+            $currentSubmissionText = $currentSubmissionText -replace '\e\[[0-9;]*m', ''
+
+            $jsonStart = $currentSubmissionText.IndexOf('{')
+            $jsonEnd = $currentSubmissionText.LastIndexOf('}')
+
+            if ($jsonStart -ge 0 -and $jsonEnd -gt $jsonStart) {
+              $currentSubmissionJson = $currentSubmissionText.Substring($jsonStart, $jsonEnd - $jsonStart + 1)
+              $submission = $currentSubmissionJson | ConvertFrom-Json -AsHashtable
+
+              if (-not $submission.ContainsKey('Listings')) { $submission['Listings'] = @{} }
+
+              if ($releaseNotes.ContainsKey('Pricing')) { $submission['Pricing'] = $releaseNotes.Pricing }
+              if ($releaseNotes.ContainsKey('AllowTargetFutureDeviceFamilies')) { $submission['AllowTargetFutureDeviceFamilies'] = $releaseNotes.AllowTargetFutureDeviceFamilies }
+
+              foreach ($locale in $releaseNotes.Listings.Keys) {
+                if (-not $submission['Listings'].ContainsKey($locale)) { $submission['Listings'][$locale] = @{} }
+                if (-not $submission['Listings'][$locale].ContainsKey('BaseListing')) { $submission['Listings'][$locale]['BaseListing'] = @{} }
+                $submission['Listings'][$locale]['BaseListing']['ReleaseNotes'] = $releaseNotes.Listings[$locale].BaseListing.ReleaseNotes
+              }
+
+              $metadata = $submission | ConvertTo-Json -Depth 20 -Compress
+            }
+          } catch {
+            Write-Host "Aviso: fallo al parsear la salida de msstore; se usará el payload generado por Dart."
+            $metadata = $null
           }
 
-          Write-Host "PUT to $env:MS_SUBMISSION_URL (Updating metadata and declaring new package)..."
-          try {
-            Invoke-RestMethod -Method Put -Uri $env:MS_SUBMISSION_URL -Headers $headers -InFile .\distribution\windows\update_metadata.json -ContentType 'application/json' -ErrorAction Stop
-            Write-Host "✅ Metadata successfully updated via REST API."
-          } catch {
-            Write-Host "💥 PUT failed: $($_.Exception.Message)"
-            if ($_.ErrorDetails) { Write-Host "Error details message: $($_.ErrorDetails.Message)" }
-            elseif ($_.Exception.Response) {
-              try {
-                $reader = New-Object System.IO.StreamReader($_.Exception.Response.Content.ReadAsStream())
-                Write-Host "Response body: $($reader.ReadToEnd())"
-              } catch {}
-            }
-            exit 1
+          if ([string]::IsNullOrWhiteSpace($metadata)) { $metadata = $releaseNotes | ConvertTo-Json -Depth 20 -Compress }
+
+          $updateOutput = & msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata --verbose 2>&1
+          $updateOutput | ForEach-Object { Write-Host $_ }
+          if ($LASTEXITCODE -ne 0) { Write-Host "UpdateMetadata payload used: $metadata"; exit $LASTEXITCODE }
+
+          # Refresh submission JSON so we have the latest fileUploadUrl and applicationPackages
+          $currentSubmissionText = & msstore submission get $env:MS_STORE_APP_ID --verbose 2>&1 | Out-String
+          $currentSubmissionText = $currentSubmissionText -replace '\e\[[0-9;]*m', ''
+          $jsonStart = $currentSubmissionText.IndexOf('{')
+          $jsonEnd = $currentSubmissionText.LastIndexOf('}')
+          if ($jsonStart -ge 0 -and $jsonEnd -gt $jsonStart) {
+            $currentSubmissionJson = $currentSubmissionText.Substring($jsonStart, $jsonEnd - $jsonStart + 1)
+            $metaObj = $currentSubmissionJson | ConvertFrom-Json -Depth 10
+            # Persist refreshed submission JSON for inspection
+            $metaObj | ConvertTo-Json -Depth 20 | Out-File -Encoding utf8 .\distribution\windows\refreshed_submission.json
           }
 
           # --- UPLOAD PACKAGE ---
@@ -173,3 +208,9 @@ jobs:
             }
             exit 1
           }
+
+      - name: Upload refreshed submission metadata artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: refreshed_submission_metadata
+          path: distribution/windows/refreshed_submission.json
