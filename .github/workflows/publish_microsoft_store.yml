@@ -90,16 +90,19 @@ jobs:
           $metaContent = Get-Content -Raw .\distribution\windows\update_metadata.json
           if ([string]::IsNullOrWhiteSpace($metaContent)) { Write-Host "💥 metadata file is empty"; exit 1 }
 
-          # Parse JSON to modify applicationPackages
+          # Parse JSON to keep the existing package entries and add the new upload.
           $metaObj = $metaContent | ConvertFrom-Json -Depth 10
 
-          # Replace the existing package list so reruns do not accumulate paused/validated drafts.
-          $metaObj.applicationPackages = @(
+          # Preserve every existing file entry; Microsoft rejects updates that drop any package.
+          $existingPackages = @($metaObj.applicationPackages)
+          $existingPackages += @(
             @{
               fileStatus = "PendingUpload"
               fileName = "quizdy.msix"
             }
           )
+
+          $metaObj.applicationPackages = $existingPackages
 
           # Save back as JSON
           $metaObj | ConvertTo-Json -Depth 10 | Out-File -Encoding utf8 .\distribution\windows\update_metadata.json
