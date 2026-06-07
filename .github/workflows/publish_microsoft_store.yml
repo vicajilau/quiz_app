@@ -155,7 +155,8 @@ jobs:
 
           if ([string]::IsNullOrWhiteSpace($metadata)) { $metadata = $releaseNotes | ConvertTo-Json -Depth 20 -Compress }
 
-          $updateOutput = & msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata --verbose 2>&1
+          # Pass the JSON file path to msstore CLI instead of the in-memory string to avoid stdout encoding errors.
+          $updateOutput = & msstore submission updateMetadata $env:MS_STORE_APP_ID .\distribution\windows\update_metadata.json --verbose 2>&1
           $updateOutput | ForEach-Object { Write-Host $_ }
           if ($LASTEXITCODE -ne 0) { Write-Host "UpdateMetadata payload used: $metadata"; exit $LASTEXITCODE }
 
