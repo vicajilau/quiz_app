@@ -86,6 +86,52 @@ jobs:
           name: generated_update_metadata
           path: distribution/windows/update_metadata.json
 
+      - name: Update submission metadata (pre-package) via REST
+        shell: pwsh
+        env:
+          PARTNER_CENTER_TENANT_ID: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
+          PARTNER_CENTER_CLIENT_ID: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
+          PARTNER_CENTER_CLIENT_SECRET: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
+        run: |
+          Write-Host "Preparing pre-package metadata update..."
+          $releaseNotes = Get-Content -Raw .\distribution\windows\update_metadata.json | ConvertFrom-Json -AsHashtable
+
+          $currentSubmissionJson = Get-Content -Raw .\distribution\windows\current_metadata.json
+          $submission = $currentSubmissionJson | ConvertFrom-Json -AsHashtable
+
+          if (-not $submission.ContainsKey('listings')) { $submission['listings'] = @{} }
+
+          foreach ($locale in $releaseNotes.listings.Keys) {
+            if (-not $submission['listings'].ContainsKey($locale)) { $submission['listings'][$locale] = @{} }
+            if (-not $submission['listings'][$locale].ContainsKey('baseListing')) { $submission['listings'][$locale]['baseListing'] = @{} }
+            $submission['listings'][$locale]['baseListing']['releaseNotes'] = $releaseNotes.listings[$locale].baseListing.releaseNotes
+          }
+
+          $payload = $submission | ConvertTo-Json -Depth 20 -Compress
+
+          Write-Host "Authenticating with Microsoft Store API for pre-package update..."
+          $tokenResponse = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/$($env:PARTNER_CENTER_TENANT_ID)/oauth2/v2.0/token" -ContentType 'application/x-www-form-urlencoded' -Body @{
+            grant_type    = 'client_credentials'
+            client_id     = $env:PARTNER_CENTER_CLIENT_ID
+            client_secret = $env:PARTNER_CENTER_CLIENT_SECRET
+            scope         = 'https://manage.devcenter.microsoft.com/.default'
+          }
+          $headers = @{
+            Authorization  = "Bearer $($tokenResponse.access_token)"
+            TenantId       = $env:PARTNER_CENTER_TENANT_ID
+            'Content-Type' = 'application/json'
+          }
+
+          $payload | Out-File -FilePath .\distribution\windows\pre_package_merged_submission.json -Encoding utf8
+
+          try {
+            Invoke-RestMethod -Method Put -Uri $env:MS_SUBMISSION_URL -Headers $headers -Body $payload -ContentType 'application/json' -ErrorAction Stop
+            Write-Host "✅ Pre-package metadata updated via REST."
+          } catch {
+            Write-Host "⚠️ Pre-package metadata update failed: $($_.Exception.Message)"
+            exit 1
+          }
+
       - name: Generate build_runner files
         run: dart run build_runner build -d
 
@@ -136,27 +182,28 @@ jobs:
           $metadata = $null
 
           try {
-            $currentSubmissionJson = Get-Content -Raw .\distribution\windows\current_metadata.json
-            $submission = $currentSubmissionJson | ConvertFrom-Json -AsHashtable
-
-            if (-not $submission.ContainsKey('Listings')) { $submission['Listings'] = @{} }
-
-            if ($releaseNotes.ContainsKey('Pricing')) { $submission['Pricing'] = $releaseNotes.Pricing }
-            if ($releaseNotes.ContainsKey('AllowTargetFutureDeviceFamilies')) { $submission['AllowTargetFutureDeviceFamilies'] = $releaseNotes.AllowTargetFutureDeviceFamilies }
-
-            foreach ($locale in $releaseNotes.Listings.Keys) {
-              if (-not $submission['Listings'].ContainsKey($locale)) { $submission['Listings'][$locale] = @{} }
-              if (-not $submission['Listings'][$locale].ContainsKey('BaseListing')) { $submission['Listings'][$locale]['BaseListing'] = @{} }
-              $submission['Listings'][$locale]['BaseListing']['ReleaseNotes'] = $releaseNotes.Listings[$locale].BaseListing.ReleaseNotes
+            Write-Host "Fetching latest submission from Dev Center and applying applicationPackages only..."
+            $tokenResponse = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/$($env:PARTNER_CENTER_TENANT_ID)/oauth2/v2.0/token" -ContentType 'application/x-www-form-urlencoded' -Body @{
+              grant_type    = 'client_credentials'
+              client_id     = $env:PARTNER_CENTER_CLIENT_ID
+              client_secret = $env:PARTNER_CENTER_CLIENT_SECRET
+              scope         = 'https://manage.devcenter.microsoft.com/.default'
+            }
+            $fetchHeaders = @{
+              Authorization  = "Bearer $($tokenResponse.access_token)"
+              TenantId       = $env:PARTNER_CENTER_TENANT_ID
+              'Content-Type' = 'application/json'
             }
 
-            $metadata = $submission | ConvertTo-Json -Depth 20 -Compress
-          } catch {
-            Write-Host "Aviso: fallo al parsear el metadata actual; se usará el payload generado por Dart."
-            $metadata = $null
-          }
+            $currentSubmission = Invoke-RestMethod -Method Get -Uri $env:MS_SUBMISSION_URL -Headers $fetchHeaders -ErrorAction Stop
 
-          if ([string]::IsNullOrWhiteSpace($metadata)) { $metadata = $releaseNotes | ConvertTo-Json -Depth 20 -Compress }
+            # Replace only applicationPackages so we don't overwrite listings that were updated pre-package
+            $currentSubmission.applicationPackages = $existingPackages
+            $metadata = $currentSubmission | ConvertTo-Json -Depth 20 -Compress
+          } catch {
+            Write-Host "Aviso: no se pudo obtener la submission actual desde Dev Center; usando el payload generado localmente. Error: $($_.Exception.Message)"
+            $metadata = $metaObj | ConvertTo-Json -Depth 20 -Compress
+          }
 
           # The msstore CLI can fail when the JSON payload is very large (command-line limits).
           # Use the Dev Center REST API to PUT the updated submission metadata instead.
