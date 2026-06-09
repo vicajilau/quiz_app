@@ -106,13 +106,24 @@ jobs:
           $metaObj = $metaContent | ConvertFrom-Json -Depth 10
 
           # Preserve every existing file entry; Microsoft rejects updates that drop any package.
+          # Only add a PendingUpload entry if the submission does not already contain quizdy.msix.
           $existingPackages = @($metaObj.applicationPackages)
-          $existingPackages += @(
-            @{
-              fileStatus = "PendingUpload"
-              fileName = "quizdy.msix"
+          $hasQuizdyPackage = $false
+          foreach ($package in $existingPackages) {
+            if ($package.fileName -and $package.fileName.ToLowerInvariant() -eq 'quizdy.msix') {
+              $hasQuizdyPackage = $true
+              break
             }
-          )
+          }
+
+          if (-not $hasQuizdyPackage) {
+            $existingPackages += @(
+              @{
+                fileStatus = "PendingUpload"
+                fileName = "quizdy.msix"
+              }
+            )
+          }
 
           $metaObj.applicationPackages = $existingPackages
 
@@ -185,9 +196,8 @@ jobs:
               Write-Host "Could not read error response body: $($_.Exception.Message)"
             }
 
-            Write-Host "Falling back to msstore CLI attempt (may still fail on very long payloads)."
-            & msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata --verbose
-            if ($LASTEXITCODE -ne 0) { Write-Host "UpdateMetadata payload used: $metadata"; exit $LASTEXITCODE }
+            Write-Host "No CLI fallback: the REST payload must be fixed or the package version must change."
+            exit 1
           }
 
           # Refresh submission JSON so we have the latest fileUploadUrl and applicationPackages
