@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>es.victorcarreras.quiz_app</id>
+  <name>Quizdy</name>
+  <summary>Quizdy — an interactive quiz application</summary>
+  <releases>
+  
+    <release version="1.13.1" date="2026-05-01">
+      <description>
+        <p>Improved overall app performance and faster loading.</p>
+      </description>
+    </release>
+  </releases>
+</component>

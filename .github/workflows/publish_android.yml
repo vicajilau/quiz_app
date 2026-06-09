@@ -2,7 +2,7 @@ name: Publish Android Release
 on:
   push:
     tags:
-      - 'v*.*.*' 
+      - 'v*.*.*'
   workflow_dispatch:
 
 jobs:
@@ -30,6 +30,8 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
+      - name: Generate Google Play release notes
+        run: dart distribution/android/generate_play_whatsnew.dart --version=${{ github.ref_name }}
       - run: flutter pub get
       - name: Generate build_runner files
         run: dart run build_runner build -d
@@ -46,5 +48,6 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.ANDROID_PLAYSTORE_ACCOUNT_KEY }}
           packageName: es.victorcarreras.quiz_app
           releaseFiles: build/app/outputs/bundle/release/app-release.aab
+          whatsNewDirectory: distribution/android/whatsnew
           tracks: production
           status: completed

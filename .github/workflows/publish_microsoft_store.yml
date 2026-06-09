@@ -22,12 +22,316 @@ jobs:
 
       - name: Install Dart dependencies
         run: flutter pub get
-        
+
+      - name: Fetch current Microsoft Store submission metadata via REST
+        shell: pwsh
+        env:
+          MS_STORE_APP_ID: ${{ secrets.MS_STORE_APP_ID }}
+          PARTNER_CENTER_TENANT_ID: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
+          PARTNER_CENTER_CLIENT_ID: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
+          PARTNER_CENTER_CLIENT_SECRET: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
+        run: |
+          Write-Host "Authenticating with Microsoft Store API..."
+          $tokenResponse = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/$($env:PARTNER_CENTER_TENANT_ID)/oauth2/v2.0/token" -ContentType 'application/x-www-form-urlencoded' -Body @{
+            grant_type    = 'client_credentials'
+            client_id     = $env:PARTNER_CENTER_CLIENT_ID
+            client_secret = $env:PARTNER_CENTER_CLIENT_SECRET
+            scope         = 'https://manage.devcenter.microsoft.com/.default'
+          }
+          $headers = @{
+            Authorization  = "Bearer $($tokenResponse.access_token)"
+            TenantId       = $env:PARTNER_CENTER_TENANT_ID
+            'Content-Type' = 'application/json'
+          }
+          $apiBaseUrl = "https://manage.devcenter.microsoft.com/v1.0/my/applications/$($env:MS_STORE_APP_ID)"
+
+          Write-Host "Fetching application info..."
+          $application = Invoke-RestMethod -Method Get -Uri $apiBaseUrl -Headers $headers
+
+          $submissionId = $null
+          if ($application.PendingApplicationSubmission -and -not [string]::IsNullOrWhiteSpace($application.PendingApplicationSubmission.Id)) {
+            $submissionId = $application.PendingApplicationSubmission.Id
+          }
+
+          if ([string]::IsNullOrWhiteSpace($submissionId)) {
+            Write-Host "Creating new submission..."
+            $createdSubmission = Invoke-RestMethod -Method Post -Uri "$apiBaseUrl/submissions" -Headers $headers
+            $submissionId = $createdSubmission.Id ? $createdSubmission.Id : $createdSubmission.id
+          }
+
+          Write-Host "Fetching full submission metadata for $submissionId..."
+          $submission = Invoke-RestMethod -Method Get -Uri "$apiBaseUrl/submissions/$submissionId" -Headers $headers
+          
+          # ConvertTo-Json limits depth by default; -Depth 10 ensures we capture the whole structure
+          $submission | ConvertTo-Json -Depth 10 | Out-File -Encoding utf8 .\distribution\windows\current_metadata.json
+          Write-Host "Saved current metadata."
+          
+          # Export submission URL for the next step
+          "MS_SUBMISSION_URL=$apiBaseUrl/submissions/$submissionId" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Upload current submission metadata artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: current_submission_metadata
+          path: distribution/windows/current_metadata.json
+
+      - name: Generate Windows release notes metadata
+        run: dart distribution/windows/generate_windows_release_notes.dart --version=${{ github.ref_name }}
+
+      - name: Upload generated update metadata artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated_update_metadata
+          path: distribution/windows/update_metadata.json
+
+      - name: Update submission metadata (pre-package) via REST
+        shell: pwsh
+        env:
+          PARTNER_CENTER_TENANT_ID: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
+          PARTNER_CENTER_CLIENT_ID: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
+          PARTNER_CENTER_CLIENT_SECRET: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
+        run: |
+          Write-Host "Preparing pre-package metadata update..."
+          $releaseNotes = Get-Content -Raw .\distribution\windows\update_metadata.json | ConvertFrom-Json -AsHashtable
+
+          $currentSubmissionJson = Get-Content -Raw .\distribution\windows\current_metadata.json
+          $submission = $currentSubmissionJson | ConvertFrom-Json -AsHashtable
+
+          if (-not $submission.ContainsKey('listings')) { $submission['listings'] = @{} }
+
+          foreach ($locale in $releaseNotes.listings.Keys) {
+            if (-not $submission['listings'].ContainsKey($locale)) { $submission['listings'][$locale] = @{} }
+            if (-not $submission['listings'][$locale].ContainsKey('baseListing')) { $submission['listings'][$locale]['baseListing'] = @{} }
+            $submission['listings'][$locale]['baseListing']['releaseNotes'] = $releaseNotes.listings[$locale].baseListing.releaseNotes
+          }
+
+          $payload = $submission | ConvertTo-Json -Depth 20 -Compress
+
+          Write-Host "Authenticating with Microsoft Store API for pre-package update..."
+          $tokenResponse = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/$($env:PARTNER_CENTER_TENANT_ID)/oauth2/v2.0/token" -ContentType 'application/x-www-form-urlencoded' -Body @{
+            grant_type    = 'client_credentials'
+            client_id     = $env:PARTNER_CENTER_CLIENT_ID
+            client_secret = $env:PARTNER_CENTER_CLIENT_SECRET
+            scope         = 'https://manage.devcenter.microsoft.com/.default'
+          }
+          $headers = @{
+            Authorization  = "Bearer $($tokenResponse.access_token)"
+            TenantId       = $env:PARTNER_CENTER_TENANT_ID
+            'Content-Type' = 'application/json'
+          }
+
+          $payload | Out-File -FilePath .\distribution\windows\pre_package_merged_submission.json -Encoding utf8
+
+          try {
+            Invoke-RestMethod -Method Put -Uri $env:MS_SUBMISSION_URL -Headers $headers -Body $payload -ContentType 'application/json' -ErrorAction Stop
+            Write-Host "✅ Pre-package metadata updated via REST."
+
+            # Verify the submission reflects the releaseNotes we just PUT
+            try {
+              $refreshed = Invoke-RestMethod -Method Get -Uri $env:MS_SUBMISSION_URL -Headers $headers -ErrorAction Stop
+              $refreshed | ConvertTo-Json -Depth 20 | Out-File -Encoding utf8 .\distribution\windows\refreshed_submission_prepackage.json
+
+              $refreshedHash = $refreshed | ConvertTo-Json -Depth 20 | ConvertFrom-Json -AsHashtable
+
+              $missing = @()
+              foreach ($locale in $releaseNotes.listings.Keys) {
+                if (-not $refreshedHash.ContainsKey('listings') -or -not $refreshedHash['listings'].ContainsKey($locale)) { $missing += $locale; continue }
+                $rl = $null
+                try { $rl = $refreshedHash['listings'][$locale]['baseListing']['releaseNotes'] } catch { $rl = $null }
+                if (-not $rl -or [string]::IsNullOrWhiteSpace($rl.ToString())) { $missing += $locale }
+              }
+
+              if ($missing.Count -gt 0) {
+                Write-Host "💥 Missing releaseNotes for locales: $($missing -join ', ')"
+                Write-Host "Saved refreshed submission to .\distribution\windows\refreshed_submission_prepackage.json"
+                exit 1
+              } else {
+                Write-Host "✅ releaseNotes present in refreshed submission for all locales."
+              }
+            } catch {
+              Write-Host "⚠️ Could not verify refreshed submission after PUT: $($_.Exception.Message)"
+              Write-Host "Saved whatever we received to .\distribution\windows\refreshed_submission_prepackage.json if present."
+              exit 1
+            }
+
+          } catch {
+            Write-Host "⚠️ Pre-package metadata update failed: $($_.Exception.Message)"
+            exit 1
+          }
+
       - name: Generate build_runner files
         run: dart run build_runner build -d
-        
+
+      - name: Upload pre-package refreshed submission artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: prepackage_refreshed_submission
+          path: distribution/windows/refreshed_submission_prepackage.json
+
       - name: Create MSIX package
         run: msstore package .
 
-      - name: Publish MSIX to the Microsoft Store
-        run: msstore publish --appId ${{ secrets.MS_STORE_APP_ID }} -v
+      - name: Update Metadata, Upload Package, and Commit via REST
+        shell: pwsh
+        env:
+          PARTNER_CENTER_TENANT_ID: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
+          PARTNER_CENTER_CLIENT_ID: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
+          PARTNER_CENTER_CLIENT_SECRET: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
+        run: |
+          $metaContent = Get-Content -Raw .\distribution\windows\update_metadata.json
+          if ([string]::IsNullOrWhiteSpace($metaContent)) { Write-Host "💥 metadata file is empty"; exit 1 }
+
+          # Parse JSON to keep the existing package entries and add the new upload.
+          $metaObj = $metaContent | ConvertFrom-Json -Depth 10
+
+          # Preserve every existing file entry; Microsoft rejects updates that drop any package.
+          # Only add a PendingUpload entry if the submission does not already contain quizdy.msix.
+          $existingPackages = @($metaObj.applicationPackages)
+          $hasQuizdyPackage = $false
+          foreach ($package in $existingPackages) {
+            if ($package.fileName -and $package.fileName.ToLowerInvariant() -eq 'quizdy.msix') {
+              $hasQuizdyPackage = $true
+              break
+            }
+          }
+
+          if (-not $hasQuizdyPackage) {
+            $existingPackages += @(
+              @{
+                fileStatus = "PendingUpload"
+                fileName = "quizdy.msix"
+              }
+            )
+          }
+
+          $metaObj.applicationPackages = $existingPackages
+
+          # Save back as JSON
+          $metaObj | ConvertTo-Json -Depth 10 | Out-File -Encoding utf8 .\distribution\windows\update_metadata.json
+
+          # Use msstore CLI to update metadata — it handles merging and preserves expected structure.
+          Write-Host "Preparing metadata payload and calling msstore submission updateMetadata..."
+          $releaseNotes = Get-Content -Raw .\distribution\windows\update_metadata.json | ConvertFrom-Json -AsHashtable
+          $metadata = $null
+
+          try {
+            Write-Host "Fetching latest submission from Dev Center and applying applicationPackages only..."
+            $tokenResponse = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/$($env:PARTNER_CENTER_TENANT_ID)/oauth2/v2.0/token" -ContentType 'application/x-www-form-urlencoded' -Body @{
+              grant_type    = 'client_credentials'
+              client_id     = $env:PARTNER_CENTER_CLIENT_ID
+              client_secret = $env:PARTNER_CENTER_CLIENT_SECRET
+              scope         = 'https://manage.devcenter.microsoft.com/.default'
+            }
+            $fetchHeaders = @{
+              Authorization  = "Bearer $($tokenResponse.access_token)"
+              TenantId       = $env:PARTNER_CENTER_TENANT_ID
+              'Content-Type' = 'application/json'
+            }
+
+            $currentSubmission = Invoke-RestMethod -Method Get -Uri $env:MS_SUBMISSION_URL -Headers $fetchHeaders -ErrorAction Stop
+
+            # Replace only applicationPackages so we don't overwrite listings that were updated pre-package
+            $currentSubmission.applicationPackages = $existingPackages
+            $metadata = $currentSubmission | ConvertTo-Json -Depth 20 -Compress
+          } catch {
+            Write-Host "Aviso: no se pudo obtener la submission actual desde Dev Center; usando el payload generado localmente. Error: $($_.Exception.Message)"
+            $metadata = $metaObj | ConvertTo-Json -Depth 20 -Compress
+          }
+
+          # The msstore CLI can fail when the JSON payload is very large (command-line limits).
+          # Use the Dev Center REST API to PUT the updated submission metadata instead.
+          Write-Host "Authenticating with Microsoft Store API for REST update..."
+          $tokenResponse = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/$($env:PARTNER_CENTER_TENANT_ID)/oauth2/v2.0/token" -ContentType 'application/x-www-form-urlencoded' -Body @{
+            grant_type    = 'client_credentials'
+            client_id     = $env:PARTNER_CENTER_CLIENT_ID
+            client_secret = $env:PARTNER_CENTER_CLIENT_SECRET
+            scope         = 'https://manage.devcenter.microsoft.com/.default'
+          }
+          $headers = @{
+            Authorization  = "Bearer $($tokenResponse.access_token)"
+            TenantId       = $env:PARTNER_CENTER_TENANT_ID
+            'Content-Type' = 'application/json'
+          }
+
+          # Persist the merged submission payload for inspection and artifact upload
+          $mergedPath = '.\distribution\windows\merged_submission.json'
+          $metadata | Out-File -FilePath $mergedPath -Encoding utf8
+          Write-Host "Wrote merged submission payload to $mergedPath"
+
+          try {
+            Write-Host "Updating submission metadata via REST at $env:MS_SUBMISSION_URL..."
+            $putResponse = Invoke-RestMethod -Method Put -Uri $env:MS_SUBMISSION_URL -Headers $headers -Body $metadata -ContentType 'application/json' -ErrorAction Stop
+            Write-Host "✅ Metadata updated via REST."
+          } catch {
+            Write-Host "💥 REST update failed: $($_.Exception.Message)"
+            # Try to capture response body for debugging
+            try {
+              $stream = $_.Exception.Response.Content.ReadAsStream()
+              $reader = New-Object System.IO.StreamReader($stream)
+              $body = $reader.ReadToEnd()
+              $errPath = '.\distribution\windows\update_metadata_error.json'
+              $body | Out-File -FilePath $errPath -Encoding utf8
+              Write-Host "Saved error response to $errPath"
+            } catch {
+              Write-Host "Could not read error response body: $($_.Exception.Message)"
+            }
+
+            Write-Host "No CLI fallback: the REST payload must be fixed or the package version must change."
+            exit 1
+          }
+
+          # Refresh submission JSON so we have the latest fileUploadUrl and applicationPackages
+          try {
+            $refreshedSubmission = Invoke-RestMethod -Method Get -Uri $env:MS_SUBMISSION_URL -Headers $headers -ErrorAction Stop
+            $metaObj = $refreshedSubmission
+            $metaObj | ConvertTo-Json -Depth 20 | Out-File -Encoding utf8 .\distribution\windows\refreshed_submission.json
+          } catch {
+            Write-Host "💥 Could not refresh submission metadata via REST: $($_.Exception.Message)"
+            if ($putResponse) {
+              $metaObj = $putResponse
+            }
+          }
+
+          # --- UPLOAD PACKAGE ---
+          $msixPath = "build\windows\x64\runner\Release\quizdy.msix"
+          $zipPath = "bundle.zip"
+          if (-not (Test-Path $msixPath)) { Write-Host "💥 MSIX file not found at $msixPath"; exit 1 }
+
+          Write-Host "Compressing $msixPath to $zipPath..."
+          Compress-Archive -Path $msixPath -DestinationPath $zipPath -Force
+
+          $uploadUrl = $metaObj.fileUploadUrl
+          if ([string]::IsNullOrWhiteSpace($uploadUrl)) { Write-Host "💥 fileUploadUrl is missing from submission data!"; exit 1 }
+
+          Write-Host "Uploading $zipPath to Azure Blob Storage..."
+          $uploadHeaders = @{ "x-ms-blob-type" = "BlockBlob" }
+          
+          try {
+            Invoke-RestMethod -Method Put -Uri $uploadUrl -Headers $uploadHeaders -InFile $zipPath -ErrorAction Stop
+            Write-Host "✅ Package uploaded successfully."
+          } catch {
+            Write-Host "💥 Upload failed: $($_.Exception.Message)"
+            exit 1
+          }
+
+          # --- COMMIT SUBMISSION ---
+          Write-Host "Committing submission..."
+          try {
+            Invoke-RestMethod -Method Post -Uri "$($env:MS_SUBMISSION_URL)/commit" -Headers $headers -ErrorAction Stop
+            Write-Host "✅ Submission committed successfully! It will now be processed by the Microsoft Store."
+          } catch {
+            Write-Host "💥 Commit failed: $($_.Exception.Message)"
+            if ($_.Exception.Response) {
+              try {
+                $reader = New-Object System.IO.StreamReader($_.Exception.Response.Content.ReadAsStream())
+                Write-Host "Response body: $($reader.ReadToEnd())"
+              } catch {}
+            }
+            exit 1
+          }
+
+      - name: Upload refreshed submission metadata artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: refreshed_submission_metadata
+          path: distribution/windows/refreshed_submission.json

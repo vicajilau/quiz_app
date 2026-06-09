@@ -109,6 +109,8 @@
 	<string>This app needs access to the photo library to select quiz files or images.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app needs access to the camera to take photos for quiz questions.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location access is required by underlying network libraries to verify local network status and region-specific features.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

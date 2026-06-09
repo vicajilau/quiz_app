@@ -56,6 +56,14 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+
+      - name: Extract app version and build number
+        run: |
+          VERSION_LINE=$(grep '^version:' pubspec.yaml | sed 's/version: //')
+          APP_VERSION=$(echo "$VERSION_LINE" | sed 's/+.*//')
+          BUILD_NUMBER=$(echo "$VERSION_LINE" | sed 's/.*+//')
+          echo "APP_VERSION=$APP_VERSION" >> $GITHUB_ENV
+          echo "BUILD_NUMBER=$BUILD_NUMBER" >> $GITHUB_ENV
           
       - name: Install dependencies
         run: flutter pub get
@@ -73,15 +81,40 @@ jobs:
           if-no-files-found: error
           path: build/ios/ipa/*.ipa
 
-      - name: Upload app to App Store Connect
+
+
+      - name: Generate App Store release notes
+        run: dart distribution/apple/generate_apple_release_notes.dart --version=${{ github.ref_name }}
+
+      - name: Install Fastlane
+        run: gem install fastlane --no-document
+
+      - name: Submit iOS release to App Store Connect
         env:
           API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
           API_ISSUER_ID: ${{ secrets.APPLE_API_KEY_ISSUER }}
           API_KEY_CONTENT: ${{ secrets.APPLE_API_KEY_CONTENT }}
+          APPLE_BUNDLE_ID: es.victorcarreras.quiz-app
         run: |
-          # Create private key file
-          mkdir -p ~/.appstoreconnect/private_keys
-          echo "$API_KEY_CONTENT" > ~/.appstoreconnect/private_keys/AuthKey_$API_KEY_ID.p8
-          
-          # Upload
-          xcrun altool --upload-app --type ios --file build/ios/ipa/*.ipa --apiKey "$API_KEY_ID" --apiIssuer "$API_ISSUER_ID"
+          AUTOMATIC_RELEASE=true
+          mkdir -p distribution/apple/fastlane
+          jq -n \
+            --arg key_id "$API_KEY_ID" \
+            --arg issuer_id "$API_ISSUER_ID" \
+            --arg key "$API_KEY_CONTENT" \
+            '{key_id: $key_id, issuer_id: $issuer_id, key: $key, in_house: false}' \
+            > distribution/apple/fastlane/app_store_connect_api_key.json
+
+          touch Deliverfile
+          fastlane deliver \
+            --platform ios \
+            --api_key_path distribution/apple/fastlane/app_store_connect_api_key.json \
+            --app_identifier "$APPLE_BUNDLE_ID" \
+            --app_version "$APP_VERSION" \
+            --metadata_path distribution/apple/fastlane/metadata \
+            --ipa build/ios/ipa/*.ipa \
+            --skip_screenshots true \
+            --submit_for_review true \
+            --automatic_release "$AUTOMATIC_RELEASE" \
+            --precheck_include_in_app_purchases false \
+            --force

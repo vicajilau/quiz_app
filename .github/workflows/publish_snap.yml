@@ -39,6 +39,9 @@ jobs:
         run: |
           sed -i "s/^version: .*/version: \"$VERSION\"/" snap/snapcraft.yaml
 
+      - name: Update Linux Release Notes (AppStream)
+        run: dart distribution/linux/generate_linux_release_notes.dart $VERSION
+
       - name: Build snap
         run: snapcraft pack --debug --use-lxd
 

@@ -32,9 +32,12 @@ parts:
     build-packages:
       - lld
       - llvm
+    build-snaps:
+      - flutter
     build-environment:
       - PUB_CACHE: "$SNAPCRAFT_PART_BUILD/.pub-cache"
     override-build: |
+      export PATH=$PATH:/snap/bin
       flutter pub get
       dart run build_runner build -d
       craftctl default
