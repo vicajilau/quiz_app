@@ -125,31 +125,23 @@ jobs:
           $metadata = $null
 
           try {
-            $currentSubmissionText = & msstore submission get $env:MS_STORE_APP_ID --verbose | Out-String
-            $currentSubmissionText = $currentSubmissionText -replace '\e\[[0-9;]*m', ''
+            $currentSubmissionJson = Get-Content -Raw .\distribution\windows\current_metadata.json
+            $submission = $currentSubmissionJson | ConvertFrom-Json -AsHashtable
 
-            $jsonStart = $currentSubmissionText.IndexOf('{')
-            $jsonEnd = $currentSubmissionText.LastIndexOf('}')
+            if (-not $submission.ContainsKey('Listings')) { $submission['Listings'] = @{} }
 
-            if ($jsonStart -ge 0 -and $jsonEnd -gt $jsonStart) {
-              $currentSubmissionJson = $currentSubmissionText.Substring($jsonStart, $jsonEnd - $jsonStart + 1)
-              $submission = $currentSubmissionJson | ConvertFrom-Json -AsHashtable
+            if ($releaseNotes.ContainsKey('Pricing')) { $submission['Pricing'] = $releaseNotes.Pricing }
+            if ($releaseNotes.ContainsKey('AllowTargetFutureDeviceFamilies')) { $submission['AllowTargetFutureDeviceFamilies'] = $releaseNotes.AllowTargetFutureDeviceFamilies }
 
-              if (-not $submission.ContainsKey('Listings')) { $submission['Listings'] = @{} }
-
-              if ($releaseNotes.ContainsKey('Pricing')) { $submission['Pricing'] = $releaseNotes.Pricing }
-              if ($releaseNotes.ContainsKey('AllowTargetFutureDeviceFamilies')) { $submission['AllowTargetFutureDeviceFamilies'] = $releaseNotes.AllowTargetFutureDeviceFamilies }
-
-              foreach ($locale in $releaseNotes.Listings.Keys) {
-                if (-not $submission['Listings'].ContainsKey($locale)) { $submission['Listings'][$locale] = @{} }
-                if (-not $submission['Listings'][$locale].ContainsKey('BaseListing')) { $submission['Listings'][$locale]['BaseListing'] = @{} }
-                $submission['Listings'][$locale]['BaseListing']['ReleaseNotes'] = $releaseNotes.Listings[$locale].BaseListing.ReleaseNotes
-              }
-
-              $metadata = $submission | ConvertTo-Json -Depth 20 -Compress
+            foreach ($locale in $releaseNotes.Listings.Keys) {
+              if (-not $submission['Listings'].ContainsKey($locale)) { $submission['Listings'][$locale] = @{} }
+              if (-not $submission['Listings'][$locale].ContainsKey('BaseListing')) { $submission['Listings'][$locale]['BaseListing'] = @{} }
+              $submission['Listings'][$locale]['BaseListing']['ReleaseNotes'] = $releaseNotes.Listings[$locale].BaseListing.ReleaseNotes
             }
+
+            $metadata = $submission | ConvertTo-Json -Depth 20 -Compress
           } catch {
-            Write-Host "Aviso: fallo al parsear la salida de msstore; se usará el payload generado por Dart."
+            Write-Host "Aviso: fallo al parsear el metadata actual; se usará el payload generado por Dart."
             $metadata = $null
           }
 
@@ -199,15 +191,15 @@ jobs:
           }
 
           # Refresh submission JSON so we have the latest fileUploadUrl and applicationPackages
-          $currentSubmissionText = & msstore submission get $env:MS_STORE_APP_ID --verbose | Out-String
-          $currentSubmissionText = $currentSubmissionText -replace '\e\[[0-9;]*m', ''
-          $jsonStart = $currentSubmissionText.IndexOf('{')
-          $jsonEnd = $currentSubmissionText.LastIndexOf('}')
-          if ($jsonStart -ge 0 -and $jsonEnd -gt $jsonStart) {
-            $currentSubmissionJson = $currentSubmissionText.Substring($jsonStart, $jsonEnd - $jsonStart + 1)
-            $metaObj = $currentSubmissionJson | ConvertFrom-Json -Depth 10
-            # Persist refreshed submission JSON for inspection
+          try {
+            $refreshedSubmission = Invoke-RestMethod -Method Get -Uri $env:MS_SUBMISSION_URL -Headers $headers -ErrorAction Stop
+            $metaObj = $refreshedSubmission
             $metaObj | ConvertTo-Json -Depth 20 | Out-File -Encoding utf8 .\distribution\windows\refreshed_submission.json
+          } catch {
+            Write-Host "💥 Could not refresh submission metadata via REST: $($_.Exception.Message)"
+            if ($putResponse) {
+              $metaObj = $putResponse
+            }
           }
 
           # --- UPLOAD PACKAGE ---
