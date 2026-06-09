@@ -127,6 +127,33 @@ jobs:
           try {
             Invoke-RestMethod -Method Put -Uri $env:MS_SUBMISSION_URL -Headers $headers -Body $payload -ContentType 'application/json' -ErrorAction Stop
             Write-Host "✅ Pre-package metadata updated via REST."
+
+            # Verify the submission reflects the releaseNotes we just PUT
+            try {
+              $refreshed = Invoke-RestMethod -Method Get -Uri $env:MS_SUBMISSION_URL -Headers $headers -ErrorAction Stop
+              $refreshed | ConvertTo-Json -Depth 20 | Out-File -Encoding utf8 .\distribution\windows\refreshed_submission_prepackage.json
+
+              $missing = @()
+              foreach ($locale in $releaseNotes.listings.Keys) {
+                if (-not $refreshed.listings.ContainsKey($locale)) { $missing += $locale; continue }
+                $rl = $null
+                try { $rl = $refreshed.listings[$locale].baseListing.releaseNotes } catch { $rl = $null }
+                if (-not $rl -or [string]::IsNullOrWhiteSpace($rl.ToString())) { $missing += $locale }
+              }
+
+              if ($missing.Count -gt 0) {
+                Write-Host "💥 Missing releaseNotes for locales: $($missing -join ', ')"
+                Write-Host "Saved refreshed submission to .\distribution\windows\refreshed_submission_prepackage.json"
+                exit 1
+              } else {
+                Write-Host "✅ releaseNotes present in refreshed submission for all locales."
+              }
+            } catch {
+              Write-Host "⚠️ Could not verify refreshed submission after PUT: $($_.Exception.Message)"
+              Write-Host "Saved whatever we received to .\distribution\windows\refreshed_submission_prepackage.json if present."
+              exit 1
+            }
+
           } catch {
             Write-Host "⚠️ Pre-package metadata update failed: $($_.Exception.Message)"
             exit 1
@@ -134,6 +161,12 @@ jobs:
 
       - name: Generate build_runner files
         run: dart run build_runner build -d
+
+      - name: Upload pre-package refreshed submission artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: prepackage_refreshed_submission
+          path: distribution/windows/refreshed_submission_prepackage.json
 
       - name: Create MSIX package
         run: msstore package .
