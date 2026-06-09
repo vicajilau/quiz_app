@@ -465,10 +465,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "92d8cee7c57dff0a6c409c05597b460002434eccf7424a712283225b3962d03f"
+      sha256: "5922b2861e2235a3504896f0d6fa07d84141b480cf52eecd2f42cd25585a9e8a"
       url: "https://pub.dev"
     source: hosted
-    version: "17.2.3"
+    version: "17.3.0"
   gpt_markdown:
     dependency: "direct main"
     description:
@@ -905,10 +905,10 @@ packages:
     dependency: "direct main"
     description:
       name: platform_detail
-      sha256: "429c8e93dd4d52045c2e03eebeb82f6601d5b4f7b7b1f2040ea6a35340ee0ad3"
+      sha256: e106164b1f4e03343ee60ad6c061b12351edcc1547501bfd54b916092fafc7d5
       url: "https://pub.dev"
     source: hosted
-    version: "5.4.0"
+    version: "5.5.0"
   plugin_platform_interface:
     dependency: transitive
     description:
