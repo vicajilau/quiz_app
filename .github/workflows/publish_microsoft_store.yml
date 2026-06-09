@@ -133,11 +133,13 @@ jobs:
               $refreshed = Invoke-RestMethod -Method Get -Uri $env:MS_SUBMISSION_URL -Headers $headers -ErrorAction Stop
               $refreshed | ConvertTo-Json -Depth 20 | Out-File -Encoding utf8 .\distribution\windows\refreshed_submission_prepackage.json
 
+              $refreshedHash = $refreshed | ConvertTo-Json -Depth 20 | ConvertFrom-Json -AsHashtable
+
               $missing = @()
               foreach ($locale in $releaseNotes.listings.Keys) {
-                if (-not $refreshed.listings.ContainsKey($locale)) { $missing += $locale; continue }
+                if (-not $refreshedHash.ContainsKey('listings') -or -not $refreshedHash['listings'].ContainsKey($locale)) { $missing += $locale; continue }
                 $rl = $null
-                try { $rl = $refreshed.listings[$locale].baseListing.releaseNotes } catch { $rl = $null }
+                try { $rl = $refreshedHash['listings'][$locale]['baseListing']['releaseNotes'] } catch { $rl = $null }
                 if (-not $rl -or [string]::IsNullOrWhiteSpace($rl.ToString())) { $missing += $locale }
               }
 
