@@ -155,9 +155,31 @@ jobs:
 
           if ([string]::IsNullOrWhiteSpace($metadata)) { $metadata = $releaseNotes | ConvertTo-Json -Depth 20 -Compress }
 
-          # Invoke msstore without redirecting stdout/stderr; PowerShell 7 can fail the CLI when streams are merged.
-          & msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata --verbose
-          if ($LASTEXITCODE -ne 0) { Write-Host "UpdateMetadata payload used: $metadata"; exit $LASTEXITCODE }
+          # The msstore CLI can fail when the JSON payload is very large (command-line limits).
+          # Use the Dev Center REST API to PUT the updated submission metadata instead.
+          Write-Host "Authenticating with Microsoft Store API for REST update..."
+          $tokenResponse = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/$($env:PARTNER_CENTER_TENANT_ID)/oauth2/v2.0/token" -ContentType 'application/x-www-form-urlencoded' -Body @{
+            grant_type    = 'client_credentials'
+            client_id     = $env:PARTNER_CENTER_CLIENT_ID
+            client_secret = $env:PARTNER_CENTER_CLIENT_SECRET
+            scope         = 'https://manage.devcenter.microsoft.com/.default'
+          }
+          $headers = @{
+            Authorization  = "Bearer $($tokenResponse.access_token)"
+            TenantId       = $env:PARTNER_CENTER_TENANT_ID
+            'Content-Type' = 'application/json'
+          }
+
+          try {
+            Write-Host "Updating submission metadata via REST at $env:MS_SUBMISSION_URL..."
+            $putResponse = Invoke-RestMethod -Method Put -Uri $env:MS_SUBMISSION_URL -Headers $headers -Body $metadata -ContentType 'application/json' -ErrorAction Stop
+            Write-Host "✅ Metadata updated via REST."
+          } catch {
+            Write-Host "💥 REST update failed: $($_.Exception.Message)"
+            Write-Host "Falling back to msstore CLI attempt (may still fail on very long payloads)."
+            & msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata --verbose
+            if ($LASTEXITCODE -ne 0) { Write-Host "UpdateMetadata payload used: $metadata"; exit $LASTEXITCODE }
+          }
 
           # Refresh submission JSON so we have the latest fileUploadUrl and applicationPackages
           $currentSubmissionText = & msstore submission get $env:MS_STORE_APP_ID --verbose | Out-String
