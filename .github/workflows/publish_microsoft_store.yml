@@ -170,12 +170,29 @@ jobs:
             'Content-Type' = 'application/json'
           }
 
+          # Persist the merged submission payload for inspection and artifact upload
+          $mergedPath = '.\distribution\windows\merged_submission.json'
+          $metadata | Out-File -FilePath $mergedPath -Encoding utf8
+          Write-Host "Wrote merged submission payload to $mergedPath"
+
           try {
             Write-Host "Updating submission metadata via REST at $env:MS_SUBMISSION_URL..."
             $putResponse = Invoke-RestMethod -Method Put -Uri $env:MS_SUBMISSION_URL -Headers $headers -Body $metadata -ContentType 'application/json' -ErrorAction Stop
             Write-Host "✅ Metadata updated via REST."
           } catch {
             Write-Host "💥 REST update failed: $($_.Exception.Message)"
+            # Try to capture response body for debugging
+            try {
+              $stream = $_.Exception.Response.Content.ReadAsStream()
+              $reader = New-Object System.IO.StreamReader($stream)
+              $body = $reader.ReadToEnd()
+              $errPath = '.\distribution\windows\update_metadata_error.json'
+              $body | Out-File -FilePath $errPath -Encoding utf8
+              Write-Host "Saved error response to $errPath"
+            } catch {
+              Write-Host "Could not read error response body: $($_.Exception.Message)"
+            }
+
             Write-Host "Falling back to msstore CLI attempt (may still fail on very long payloads)."
             & msstore submission updateMetadata $env:MS_STORE_APP_ID $metadata --verbose
             if ($LASTEXITCODE -ne 0) { Write-Host "UpdateMetadata payload used: $metadata"; exit $LASTEXITCODE }
