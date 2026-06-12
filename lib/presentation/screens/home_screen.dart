@@ -1661,7 +1661,7 @@ class _SidebarItem extends StatelessWidget {
                     ? MainAxisAlignment.center
                     : MainAxisAlignment.start,
                 children: [
-                  const SizedBox(width: 12),
+                  if (!isCollapsed) const SizedBox(width: 12),
                   Icon(
                     icon,
                     size: 18,

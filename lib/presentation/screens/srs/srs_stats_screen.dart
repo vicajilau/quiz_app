@@ -248,11 +248,7 @@ class _AppBarActionButton extends StatelessWidget {
       child: IconButton(
         padding: EdgeInsets.zero,
         onPressed: onPressed,
-        icon: Icon(
-          icon,
-          color: context.homeTheme.textPrimaryColor,
-          size: 20,
-        ),
+        icon: Icon(icon, color: context.homeTheme.textPrimaryColor, size: 20),
         tooltip: tooltip,
       ),
     );

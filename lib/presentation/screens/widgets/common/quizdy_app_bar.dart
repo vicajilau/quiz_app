@@ -64,12 +64,7 @@ class QuizdyAppBar extends StatelessWidget implements PreferredSizeWidget {
       surfaceTintColor: Colors.transparent,
       shadowColor: Colors.transparent,
       centerTitle: centerTitle,
-      shape: Border(
-        bottom: BorderSide(
-          color: homeTheme.borderColor,
-          width: 1,
-        ),
-      ),
+      shape: Border(bottom: BorderSide(color: homeTheme.borderColor, width: 1)),
       toolbarHeight: 72,
       leadingWidth: showLeading ? 72 : null,
       leading: showLeading
