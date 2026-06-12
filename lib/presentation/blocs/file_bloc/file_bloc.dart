@@ -15,7 +15,9 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/repositories/quiz_file_repository.dart';
+import 'package:quizdy/data/repositories/recent_quiz/recent_quiz_repository.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
@@ -75,6 +77,7 @@ class FileBloc extends Bloc<FileEvent, FileState> {
       ); // Emit loading state while the file is being processed
       try {
         final quizFile = await _fileRepository.loadQuizFile(event.filePath);
+        _saveToRecent(quizFile);
         emit(FileLoaded(quizFile)); // Emit the loaded file state
       } catch (e) {
         emit(FileError(reason: FileErrorType.errorOpeningFile, error: e));
@@ -93,6 +96,7 @@ class FileBloc extends Bloc<FileEvent, FileState> {
           version: event.version,
           author: event.author,
         );
+        _saveToRecent(quizFile);
         emit(FileLoaded(quizFile)); // Emit the loaded file state after creation
       } catch (e) {
         emit(FileError(reason: FileErrorType.errorOpeningFile, error: e));
@@ -112,6 +116,7 @@ class FileBloc extends Bloc<FileEvent, FileState> {
           description: event.description,
           questions: event.questions,
         );
+        _saveToRecent(quizFile);
         emit(FileLoaded(quizFile)); // Emit the loaded file state
       } catch (e) {
         emit(FileError(reason: FileErrorType.errorOpeningFile, error: e));
@@ -130,6 +135,7 @@ class FileBloc extends Bloc<FileEvent, FileState> {
         );
         if (quizFile != null) {
           // Use the returned quizFile with updated path instead of modifying the event
+          _saveToRecent(quizFile);
           emit(FileSaved(quizFile));
         }
       } catch (e) {
@@ -173,6 +179,7 @@ class FileBloc extends Bloc<FileEvent, FileState> {
       try {
         final quizFile = await _fileRepository.pickFileManually();
         if (quizFile != null) {
+          _saveToRecent(quizFile);
           emit(FileLoaded(quizFile)); // Emit the loaded file state if picked
         } else {
           emit(FileInitial()); // Emit initial state if no file is picked
@@ -187,6 +194,7 @@ class FileBloc extends Bloc<FileEvent, FileState> {
       if (state is FileReplacementRequest) {
         final newFile = (state as FileReplacementRequest).newFile;
         _fileRepository.registerQuizFile(newFile);
+        _saveToRecent(newFile);
         emit(FileLoaded(newFile));
       } else {
         debugPrint('FileBloc: ConfirmFileReplacement ignored (state: $state)');
@@ -237,6 +245,7 @@ class FileBloc extends Bloc<FileEvent, FileState> {
 
         // Update repository/service locator without dropping the original unmodified cache state
         _fileRepository.updateActiveQuizFile(updatedFile);
+        _saveToRecent(updatedFile);
 
         // Emit new state to keep UI in sync
         if (state is FileLoaded) {
@@ -246,13 +255,31 @@ class FileBloc extends Bloc<FileEvent, FileState> {
         }
       }
     });
+
     on<QuizFileUpdated>((event, emit) {
       _fileRepository.updateActiveQuizFile(event.quizFile);
+      _saveToRecent(event.quizFile);
       if (state is FileLoaded) {
         emit(FileLoaded(event.quizFile));
       } else if (state is FileSaved) {
         emit(FileSaved(event.quizFile));
       }
     });
+
+    on<LoadQuizFileFromData>((event, emit) {
+      _fileRepository.registerQuizFile(event.quizFile);
+      _saveToRecent(event.quizFile);
+      emit(FileLoaded(event.quizFile));
+    });
+  }
+
+  void _saveToRecent(QuizFile file) {
+    try {
+      if (ServiceLocator.getIt.isRegistered<RecentQuizRepository>()) {
+        ServiceLocator.getIt<RecentQuizRepository>().saveRecentQuiz(file);
+      }
+    } catch (e) {
+      debugPrint('FileBloc: failed to save to recent quizzes repository: $e');
+    }
   }
 }

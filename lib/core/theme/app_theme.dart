@@ -177,9 +177,19 @@ class AppTheme {
         dialogCanvasColor: Colors.transparent,
       ),
       const HomeTheme(
-        dropZoneShadowColor: Color(
-          0x1A8B5CF6,
-        ), // primaryColor.withValues(alpha: 0.1)
+        dropZoneShadowColor: Color(0x1A8B5CF6),
+        sidebarBackgroundColor: Color(0xFFF4F4F5),
+        mainBackgroundColor: Color(0xFFFAFAFA),
+        cardBackgroundColor: Colors.white,
+        borderColor: Color(0xFFE4E4E7),
+        textPrimaryColor: Color(0xFF18181B),
+        textSecondaryColor: Color(0xFF71717A),
+        progressGreenColor: Color(0xFF10B981),
+        progressOrangeColor: Color(0xFFF59E0B),
+        progressBlueColor: Color(0xFF3B82F6),
+        studyAiCardColor: Color(0xFF8B5CF6),
+        quizAiCardColor: Color(0xFF0D9488),
+        dragHintBackgroundColor: Color(0xFFF4F4F5),
       ),
       const QuizLoadedTheme(
         deleteDialogBackgroundColor: Color(0xFF27272A), // Zinc 800
@@ -364,9 +374,19 @@ class AppTheme {
         dialogCanvasColor: Colors.transparent,
       ),
       const HomeTheme(
-        dropZoneShadowColor: Color(
-          0x1A8B5CF6,
-        ), // primaryColor.withValues(alpha: 0.1)
+        dropZoneShadowColor: Color(0x1A8B5CF6),
+        sidebarBackgroundColor: Color(0xFF09090B),
+        mainBackgroundColor: Color(0xFF18181B),
+        cardBackgroundColor: Color(0xFF27272A),
+        borderColor: Color(0xFF3F3F46),
+        textPrimaryColor: Color(0xFFFAFAFA),
+        textSecondaryColor: Color(0xFF71717A),
+        progressGreenColor: Color(0xFF22C55E),
+        progressOrangeColor: Color(0xFFF59E0B),
+        progressBlueColor: Color(0xFF3B82F6),
+        studyAiCardColor: Color(0xFF8B5CF6),
+        quizAiCardColor: Color(0xFF0D9488),
+        dragHintBackgroundColor: Color(0xFF09090B),
       ),
       const QuizLoadedTheme(
         deleteDialogBackgroundColor: Color(0xFF27272A), // Zinc 800

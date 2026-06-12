@@ -33,6 +33,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/blocs/locale_cubit/locale_cubit.dart';
 import 'package:quizdy/presentation/blocs/locale_cubit/locale_state.dart';
+import 'package:quizdy/presentation/blocs/recent_quizzes/recent_quizzes_cubit.dart';
 import 'package:quizdy/presentation/screens/dialogs/exit_confirmation_dialog.dart';
 import 'package:quizdy/presentation/widgets/quizdy_text_scale_factor_clamper.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
@@ -121,6 +122,10 @@ class _QuizApplicationState extends State<QuizApplication>
       providers: [
         BlocProvider(create: (context) => LocaleCubit()),
         BlocProvider<FileBloc>.value(value: ServiceLocator.getIt<FileBloc>()),
+        BlocProvider(
+          create: (context) =>
+              ServiceLocator.getIt<RecentQuizzesCubit>()..loadRecentQuizzes(),
+        ),
       ],
       child: BlocBuilder<LocaleCubit, LocaleState>(
         builder: (context, state) {

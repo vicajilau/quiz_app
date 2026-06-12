@@ -34,6 +34,8 @@ import 'package:quizdy/data/services/pdf_export_service_io.dart'
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/quiz_config.dart';
 import 'package:quizdy/data/repositories/srs/srs_repository.dart';
+import 'package:quizdy/data/repositories/recent_quiz/recent_quiz_repository.dart';
+import 'package:quizdy/presentation/blocs/recent_quizzes/recent_quizzes_cubit.dart';
 
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
@@ -117,6 +119,17 @@ class ServiceLocator {
     final srsRepository = SrsRepository();
     await srsRepository.init();
     getIt.registerSingleton<SrsRepository>(srsRepository);
+
+    // Recent Quizzes
+    final recentQuizRepository = RecentQuizRepository();
+    await recentQuizRepository.init();
+    getIt.registerSingleton<RecentQuizRepository>(recentQuizRepository);
+
+    getIt.registerFactory<RecentQuizzesCubit>(
+      () => RecentQuizzesCubit(
+        recentQuizRepository: getIt<RecentQuizRepository>(),
+      ),
+    );
 
     getIt.registerFactory<QuizExecutionBloc>(
       () => QuizExecutionBloc(

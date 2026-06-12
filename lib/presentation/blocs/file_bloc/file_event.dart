@@ -110,3 +110,9 @@ class QuizFileUpdated extends FileEvent {
 
 /// Event triggered to reset the file state.
 class QuizFileReset extends FileEvent {}
+
+/// Event triggered to load a quiz file directly from memory or database.
+class LoadQuizFileFromData extends FileEvent {
+  final QuizFile quizFile;
+  LoadQuizFileFromData(this.quizFile);
+}
