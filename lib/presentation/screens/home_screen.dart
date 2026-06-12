@@ -59,6 +59,11 @@ import 'package:quizdy/presentation/screens/dialogs/mode_selection_dialog.dart';
 import 'package:quizdy/presentation/screens/dialogs/quiz_metadata_dialog.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_drag_mode_overlay.dart';
+import 'package:quizdy/presentation/screens/widgets/home/home_sidebar.dart';
+import 'package:quizdy/presentation/screens/widgets/home/home_recent_card.dart';
+import 'package:quizdy/presentation/screens/widgets/home/home_action_card.dart';
+import 'package:quizdy/presentation/screens/widgets/home/home_feedback_card.dart';
+import 'package:quizdy/presentation/screens/widgets/home/home_global_drag_hint.dart';
 import 'package:quizdy/presentation/screens/quiz_loaded_screen.dart';
 import 'package:quizdy/presentation/screens/srs/srs_stats_screen.dart';
 import 'package:quizdy/presentation/screens/study_screen.dart';
@@ -708,7 +713,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Row(
                             children: [
                               if (!context.isMobile)
-                                _HomeSidebar(
+                                HomeSidebar(
                                   isCollapsed: _isSidebarCollapsed,
                                   onToggleCollapse: () {
                                     setState(() {
@@ -952,7 +957,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     itemBuilder: (context, index) {
                       final item = items[index];
-                      return _HomeRecentCard(
+                      return HomeRecentCard(
                         title: item.title,
                         progress: item.progress,
                         lastOpenedText: _formatLastOpened(
@@ -1198,7 +1203,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (context, constraints) {
                     final useColumn = constraints.maxWidth < 600;
                     final cardWidgets = [
-                      _HomeActionCard(
+                      HomeActionCard(
                         title: AppLocalizations.of(
                           context,
                         )!.homeCardStudyAiTitle,
@@ -1213,7 +1218,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         isPrimary: true,
                         onTap: () => _startStudyModeWithAI(context),
                       ),
-                      _HomeActionCard(
+                      HomeActionCard(
                         title: AppLocalizations.of(
                           context,
                         )!.homeCardQuizAiTitle,
@@ -1264,7 +1269,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (context, constraints) {
                     final useColumn = constraints.maxWidth < 600;
                     final cardWidgets = [
-                      _HomeActionCard(
+                      HomeActionCard(
                         title: AppLocalizations.of(
                           context,
                         )!.homeCardCreateQuizTitle,
@@ -1280,7 +1285,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         accentColor: Theme.of(context).colorScheme.primary,
                         onTap: () => _showCreateQuizFileDialog(context),
                       ),
-                      _HomeActionCard(
+                      HomeActionCard(
                         title: AppLocalizations.of(
                           context,
                         )!.homeCardLoadFileTitle,
@@ -1328,12 +1333,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 24),
 
                 // Global drag hint card
-                const _HomeGlobalDragHint(),
+                const HomeGlobalDragHint(),
                 const SizedBox(height: 24),
 
                 // Feedback card
                 if (_showFeedbackBanner) ...[
-                  _HomeFeedbackCard(onTap: () => _openFeedbackForm(context)),
+                  HomeFeedbackCard(onTap: () => _openFeedbackForm(context)),
                   const SizedBox(height: 24),
                 ],
               ],
@@ -1433,7 +1438,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           itemBuilder: (context, index) {
             final item = items[index];
-            return _HomeRecentCard(
+            return HomeRecentCard(
               title: item.title,
               progress: item.progress,
               lastOpenedText: _formatLastOpened(context, item.lastOpened),
@@ -1445,638 +1450,6 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         );
       },
-    );
-  }
-}
-
-class _HomeSidebar extends StatelessWidget {
-  final bool isCollapsed;
-  final VoidCallback onToggleCollapse;
-  final ValueChanged<int> onTabSelected;
-  final int selectedIndex;
-
-  const _HomeSidebar({
-    required this.isCollapsed,
-    required this.onToggleCollapse,
-    required this.onTabSelected,
-    required this.selectedIndex,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final homeTheme = context.homeTheme;
-
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      width: isCollapsed ? 64 : 240,
-      height: double.infinity,
-      color: homeTheme.sidebarBackgroundColor,
-      clipBehavior: Clip.hardEdge,
-      child: Column(
-        children: [
-          // Sidebar top header
-          Container(
-            height: 72,
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            child: OverflowBox(
-              minWidth: 0,
-              maxWidth: 212,
-              alignment: isCollapsed ? Alignment.center : Alignment.centerLeft,
-              child: Row(
-                mainAxisSize: isCollapsed ? MainAxisSize.min : MainAxisSize.max,
-                mainAxisAlignment: isCollapsed
-                    ? MainAxisAlignment.center
-                    : MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        width: 36,
-                        height: 36,
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.primary,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const Icon(
-                          LucideIcons.graduationCap,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                      ),
-                      if (!isCollapsed) ...[
-                        const SizedBox(width: 12),
-                        Text(
-                          'Quizdy',
-                          style: TextStyle(
-                            color: homeTheme.textPrimaryColor,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ],
-                  ),
-                  if (!isCollapsed)
-                    IconButton(
-                      icon: Icon(
-                        LucideIcons.chevronLeft,
-                        color: homeTheme.textSecondaryColor,
-                        size: 18,
-                      ),
-                      onPressed: onToggleCollapse,
-                    ),
-                ],
-              ),
-            ),
-          ),
-          if (isCollapsed)
-            IconButton(
-              icon: Icon(
-                LucideIcons.chevronRight,
-                color: homeTheme.textSecondaryColor,
-                size: 18,
-              ),
-              onPressed: onToggleCollapse,
-            ),
-          Divider(color: homeTheme.borderColor, height: 1),
-
-          // Menu navigation items
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  if (!isCollapsed)
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 16,
-                        top: 8,
-                        bottom: 4,
-                      ),
-                      child: Text(
-                        AppLocalizations.of(context)!.homeMenuSettings,
-                        style: TextStyle(
-                          color: homeTheme.textSecondaryColor,
-                          fontSize: 11,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                  _SidebarItem(
-                    icon: LucideIcons.home,
-                    label: AppLocalizations.of(context)!.homeMenuInicio,
-                    isActive: selectedIndex == 0,
-                    isCollapsed: isCollapsed,
-                    onTap: () => onTabSelected(0),
-                  ),
-                  _SidebarItem(
-                    icon: LucideIcons.bookOpen,
-                    label: AppLocalizations.of(context)!.homeMenuStudy,
-                    isActive: selectedIndex == 1,
-                    isCollapsed: isCollapsed,
-                    onTap: () => onTabSelected(1),
-                  ),
-                  _SidebarItem(
-                    icon: LucideIcons.fileQuestion,
-                    label: AppLocalizations.of(context)!.homeMenuQuiz,
-                    isActive: selectedIndex == 2,
-                    isCollapsed: isCollapsed,
-                    onTap: () => onTabSelected(2),
-                  ),
-                  _SidebarItem(
-                    icon: LucideIcons.barChart2,
-                    label: AppLocalizations.of(context)!.homeMenuEstadisticas,
-                    isActive: selectedIndex == 3,
-                    isCollapsed: isCollapsed,
-                    onTap: () => onTabSelected(3),
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          Divider(color: homeTheme.borderColor, height: 1),
-          // Sidebar bottom settings
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            child: _SidebarItem(
-              icon: LucideIcons.settings,
-              label: AppLocalizations.of(context)!.homeMenuSettings,
-              isActive: false,
-              isCollapsed: isCollapsed,
-              onTap: () => onTabSelected(4),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _SidebarItem extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final bool isActive;
-  final bool isCollapsed;
-  final VoidCallback onTap;
-
-  const _SidebarItem({
-    required this.icon,
-    required this.label,
-    required this.isActive,
-    required this.isCollapsed,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final homeTheme = context.homeTheme;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-      child: Tooltip(
-        message: isCollapsed ? label : '',
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(8),
-          child: Container(
-            height: 44,
-            decoration: BoxDecoration(
-              color: isActive
-                  ? Theme.of(
-                      context,
-                    ).colorScheme.primary.withValues(alpha: 0.12)
-                  : Colors.transparent,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: OverflowBox(
-              minWidth: 0,
-              maxWidth: 220,
-              alignment: isCollapsed ? Alignment.center : Alignment.centerLeft,
-              child: Row(
-                mainAxisSize: isCollapsed ? MainAxisSize.min : MainAxisSize.max,
-                mainAxisAlignment: isCollapsed
-                    ? MainAxisAlignment.center
-                    : MainAxisAlignment.start,
-                children: [
-                  if (!isCollapsed) const SizedBox(width: 12),
-                  Icon(
-                    icon,
-                    size: 18,
-                    color: isActive
-                        ? Theme.of(context).colorScheme.primary
-                        : homeTheme.textSecondaryColor,
-                  ),
-                  if (!isCollapsed) ...[
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        label,
-                        style: TextStyle(
-                          color: isActive
-                              ? homeTheme.textPrimaryColor
-                              : homeTheme.textSecondaryColor,
-                          fontWeight: isActive
-                              ? FontWeight.w600
-                              : FontWeight.normal,
-                          fontSize: 14,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    if (isActive)
-                      Container(
-                        width: 4,
-                        height: 4,
-                        margin: const EdgeInsets.only(right: 12),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.primary,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                  ],
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _HomeRecentCard extends StatelessWidget {
-  final String title;
-  final double progress;
-  final String lastOpenedText;
-  final VoidCallback onTap;
-  final VoidCallback onDelete;
-
-  const _HomeRecentCard({
-    required this.title,
-    required this.progress,
-    required this.lastOpenedText,
-    required this.onTap,
-    required this.onDelete,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final homeTheme = context.homeTheme;
-
-    final progressColor = progress >= 0.8
-        ? homeTheme.progressGreenColor
-        : (progress >= 0.4
-              ? homeTheme.progressOrangeColor
-              : homeTheme.progressBlueColor);
-
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: homeTheme.cardBackgroundColor,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: homeTheme.borderColor, width: 1),
-        ),
-        child: Row(
-          children: [
-            // Circular progress indicator badge
-            Container(
-              width: 52,
-              height: 52,
-              decoration: BoxDecoration(
-                color: progressColor.withValues(alpha: 0.1),
-                shape: BoxShape.circle,
-              ),
-              alignment: Alignment.center,
-              child: Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: progressColor.withValues(alpha: 0.2),
-                  shape: BoxShape.circle,
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  '${(progress * 100).toInt()}%',
-                  style: TextStyle(
-                    color: progressColor,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 11,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(width: 14),
-
-            // Card content column
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: homeTheme.textPrimaryColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 6),
-                  // Progress bar
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(2.5),
-                    child: Container(
-                      height: 5,
-                      width: double.infinity,
-                      color: homeTheme.borderColor,
-                      child: FractionallySizedBox(
-                        alignment: Alignment.centerLeft,
-                        widthFactor: progress.clamp(0.0, 1.0),
-                        child: Container(color: progressColor),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    lastOpenedText,
-                    style: TextStyle(
-                      color: homeTheme.textSecondaryColor,
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            // Trash delete button
-            IconButton(
-              icon: Icon(
-                LucideIcons.trash2,
-                color: homeTheme.textSecondaryColor.withValues(alpha: 0.6),
-                size: 16,
-              ),
-              tooltip: AppLocalizations.of(context)!.deleteButton,
-              onPressed: onDelete,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _HomeActionCard extends StatelessWidget {
-  final String title;
-  final String description;
-  final String badgeText;
-  final Color backgroundColor;
-  final IconData icon;
-  final bool isPrimary;
-  final Color? accentColor;
-  final VoidCallback onTap;
-
-  const _HomeActionCard({
-    required this.title,
-    required this.description,
-    required this.badgeText,
-    required this.backgroundColor,
-    required this.icon,
-    required this.isPrimary,
-    this.accentColor,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final homeTheme = context.homeTheme;
-
-    final titleColor = isPrimary ? Colors.white : homeTheme.textPrimaryColor;
-    final bodyColor = isPrimary
-        ? Colors.white.withValues(alpha: 0.75)
-        : homeTheme.textSecondaryColor;
-    final badgeBgColor = isPrimary
-        ? Colors.white.withValues(alpha: 0.15)
-        : homeTheme.borderColor;
-    final badgeTextColor = isPrimary
-        ? Colors.white
-        : (accentColor ?? homeTheme.textSecondaryColor);
-
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
-      child: Container(
-        height: 154,
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(16),
-          border: isPrimary
-              ? null
-              : Border.all(color: homeTheme.borderColor, width: 1),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: isPrimary
-                        ? Colors.white.withValues(alpha: 0.2)
-                        : badgeBgColor,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    icon,
-                    color: isPrimary
-                        ? Colors.white
-                        : (accentColor ?? homeTheme.textSecondaryColor),
-                    size: 20,
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    title,
-                    style: TextStyle(
-                      color: titleColor,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ],
-            ),
-            const Spacer(),
-            Text(
-              description,
-              style: TextStyle(color: bodyColor, fontSize: 13, height: 1.4),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: badgeBgColor,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    badgeText,
-                    style: TextStyle(
-                      color: badgeTextColor,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-                Icon(
-                  LucideIcons.arrowRight,
-                  color: isPrimary
-                      ? Colors.white
-                      : homeTheme.textSecondaryColor,
-                  size: 16,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _HomeGlobalDragHint extends StatelessWidget {
-  const _HomeGlobalDragHint();
-
-  @override
-  Widget build(BuildContext context) {
-    final homeTheme = context.homeTheme;
-
-    return Container(
-      height: 48,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-        color: homeTheme.dragHintBackgroundColor,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            LucideIcons.uploadCloud,
-            size: 16,
-            color: homeTheme.textSecondaryColor,
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              AppLocalizations.of(context)!.homeGlobalDragHint,
-              style: TextStyle(
-                color: homeTheme.textSecondaryColor,
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _HomeFeedbackCard extends StatelessWidget {
-  final VoidCallback onTap;
-
-  const _HomeFeedbackCard({required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    final homeTheme = context.homeTheme;
-
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        height: 64,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        decoration: BoxDecoration(
-          color: homeTheme.cardBackgroundColor,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: homeTheme.borderColor, width: 1),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 36,
-              height: 36,
-              decoration: BoxDecoration(
-                color: Theme.of(
-                  context,
-                ).colorScheme.primary.withValues(alpha: 0.12),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                LucideIcons.messageSquare,
-                color: Theme.of(context).colorScheme.primary,
-                size: 18,
-              ),
-            ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.homeFeedbackCardTitle,
-                    style: TextStyle(
-                      color: homeTheme.textPrimaryColor,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    AppLocalizations.of(context)!.homeFeedbackCardDesc,
-                    style: TextStyle(
-                      color: homeTheme.textSecondaryColor,
-                      fontSize: 12,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ),
-            Icon(
-              LucideIcons.chevronRight,
-              size: 16,
-              color: homeTheme.textSecondaryColor,
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
