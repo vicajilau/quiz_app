@@ -69,7 +69,7 @@ extension NavigationExtension on BuildContext {
 
 extension ResponsiveExtension on BuildContext {
   /// Returns whether the current device is considered mobile based on width.
-  bool get isMobile => MediaQuery.of(this).size.width < 600;
+  bool get isMobile => MediaQuery.of(this).size.width < 960;
 }
 
 class _AutoDismissDialog extends StatefulWidget {

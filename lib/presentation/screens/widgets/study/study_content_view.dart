@@ -55,7 +55,7 @@ class StudyContentView extends StatelessWidget {
     final hasLinkedQuestions = enabledLinkedQuestions.isNotEmpty;
 
     return Padding(
-      padding: const EdgeInsets.only(left: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         children: [
           Expanded(

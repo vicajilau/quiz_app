@@ -49,12 +49,14 @@ class ReminderComponent extends StatelessWidget {
             children: [
               Icon(LucideIcons.lightbulb, color: iconColor, size: 16),
               const SizedBox(width: 8),
-              Text(
-                AppLocalizations.of(context)!.studyScreenReminder,
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
-                  color: iconColor,
+              Expanded(
+                child: Text(
+                  AppLocalizations.of(context)!.studyScreenReminder,
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                    color: iconColor,
+                  ),
                 ),
               ),
             ],

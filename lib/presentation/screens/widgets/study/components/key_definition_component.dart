@@ -50,12 +50,14 @@ class KeyDefinitionComponent extends StatelessWidget {
                 size: 16,
               ),
               const SizedBox(width: 8),
-              Text(
-                AppLocalizations.of(context)!.studyScreenKeyDefinition,
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
-                  color: Theme.of(context).primaryColor,
+              Expanded(
+                child: Text(
+                  AppLocalizations.of(context)!.studyScreenKeyDefinition,
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                    color: Theme.of(context).primaryColor,
+                  ),
                 ),
               ),
             ],

@@ -548,8 +548,14 @@ class _HomeScreenState extends State<HomeScreen> {
               final dropMode = _pendingDropMode;
               _pendingDropMode = null;
 
-              final choice =
-                  dropMode ?? await ModeSelectionDialog.show(context);
+              final QuizMode? choice;
+              if (_selectedTabIndex == 1) {
+                choice = QuizMode.study;
+              } else if (_selectedTabIndex == 2) {
+                choice = QuizMode.quiz;
+              } else {
+                choice = dropMode ?? await ModeSelectionDialog.show(context);
+              }
               if (!context.mounted || choice == null) return;
               navigateByMode(context, choice, quizFile);
             }
@@ -822,7 +828,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
           );
         } else {
-          return _buildNoActiveFileState(context);
+          return _buildNoActiveFileTab(context);
         }
       case 2:
         if (hasActiveFile) {
@@ -843,7 +849,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
           );
         } else {
-          return _buildNoActiveFileState(context);
+          return _buildNoActiveFileTab(context);
         }
       case 3:
         return const SrsStatsScreen(
@@ -853,6 +859,151 @@ class _HomeScreenState extends State<HomeScreen> {
       default:
         return const SizedBox.shrink();
     }
+  }
+
+  Widget _buildNoActiveFileTab(BuildContext context) {
+    return BlocBuilder<RecentQuizzesCubit, RecentQuizzesState>(
+      builder: (context, recentState) {
+        if (recentState is RecentQuizzesLoading ||
+            recentState is RecentQuizzesInitial) {
+          return const Center(child: QuizdyLoading());
+        } else if (recentState is RecentQuizzesLoaded) {
+          final list = recentState.recentQuizzes;
+          if (list.length == 1) {
+            final recent = list.first;
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (mounted) {
+                _handleRecentQuizTap(context, recent);
+              }
+            });
+            return const Center(child: QuizdyLoading());
+          } else if (list.length > 1) {
+            return _buildRecentSelectorState(context, list);
+          }
+        }
+        return _buildNoActiveFileState(context);
+      },
+    );
+  }
+
+  Widget _buildRecentSelectorState(
+    BuildContext context,
+    List<RecentQuiz> items,
+  ) {
+    final homeTheme = context.homeTheme;
+    final l10n = AppLocalizations.of(context)!;
+
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 800),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                width: 64,
+                height: 64,
+                decoration: BoxDecoration(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.primary.withValues(alpha: 0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  LucideIcons.fileClock,
+                  size: 32,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                l10n.homeRecentSectionTitle,
+                style: TextStyle(
+                  color: homeTheme.textPrimaryColor,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                l10n.homeCardLoadFileDesc,
+                style: TextStyle(
+                  color: homeTheme.textSecondaryColor,
+                  fontSize: 14,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 28),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final crossAxisCount = constraints.maxWidth > 600 ? 2 : 1;
+                  return GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: items.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: crossAxisCount,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                      mainAxisExtent: 96,
+                    ),
+                    itemBuilder: (context, index) {
+                      final item = items[index];
+                      return _HomeRecentCard(
+                        title: item.title,
+                        progress: item.progress,
+                        lastOpenedText: _formatLastOpened(
+                          context,
+                          item.lastOpened,
+                        ),
+                        onTap: () => _handleRecentQuizTap(context, item),
+                        onDelete: () {
+                          context.read<RecentQuizzesCubit>().deleteRecentQuiz(
+                            item.id,
+                          );
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+              const SizedBox(height: 32),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton.icon(
+                    onPressed: () => _pickFile(context),
+                    icon: const Icon(LucideIcons.upload, size: 16),
+                    label: Text(l10n.homeCardLoadFileTitle),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 12,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  OutlinedButton.icon(
+                    onPressed: () => _showCreateQuizFileDialog(context),
+                    icon: const Icon(LucideIcons.plusCircle, size: 16),
+                    label: Text(l10n.homeCardCreateQuizTitle),
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 12,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _buildNoActiveFileState(BuildContext context) {
