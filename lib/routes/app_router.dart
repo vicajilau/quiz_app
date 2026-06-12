@@ -17,21 +17,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizdy/core/debug_print.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
-import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_cubit.dart';
-import 'package:quizdy/presentation/screens/quiz_loaded_screen.dart';
 import 'package:quizdy/presentation/screens/quiz_file_execution_screen.dart';
 import 'package:quizdy/presentation/screens/study_editor/component_editor_screen.dart';
-import 'package:quizdy/presentation/screens/study_screen.dart';
-import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
-import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
-import 'package:quizdy/presentation/screens/srs/srs_stats_screen.dart';
 
 import 'package:quizdy/core/service_locator.dart';
 
-import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
-import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/screens/home_screen.dart';
 import 'package:quizdy/presentation/screens/onboarding/onboarding_screen.dart';
 import 'package:quizdy/presentation/screens/privacy_policy/privacy_policy_screen.dart';
@@ -74,12 +66,7 @@ GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
     ),
     GoRoute(
       path: AppRoutes.fileLoadedScreen,
-      builder: (context, state) => QuizLoadedScreen(
-        fileBloc: ServiceLocator.getIt<FileBloc>(),
-        checkFileChangesUseCase:
-            ServiceLocator.getIt<CheckFileChangesUseCase>(),
-        quizFile: ServiceLocator.getIt<QuizFile>(),
-      ),
+      builder: (context, state) => const HomeScreen(initialTabIndex: 2),
     ),
     GoRoute(
       path: AppRoutes.quizFileExecutionScreen,
@@ -106,24 +93,22 @@ GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
       path: AppRoutes.studyScreen,
       builder: (context, state) {
         final extra = state.extra as Map<String, dynamic>? ?? {};
-        return StudyScreen(
-          initialChunks: extra['initialChunks'] ?? [],
-          fileAttachment: extra['fileAttachment'] as AiFileAttachment?,
-          documentTitle: extra['documentTitle'] ?? '',
-          documentSummary: extra['documentSummary'] as String?,
-          quizFile: extra['quizFile'] as QuizFile?,
-          hideStartQuizButton: extra['hideStartQuizButton'] as bool? ?? false,
-          isAutoDifficulty: extra['isAutoDifficulty'] as bool? ?? true,
-          difficultyLevel: extra['difficultyLevel'] as AiDifficultyLevel?,
-          generationMode: extra['generationMode'] as AiGenerationMode?,
-          originalText: extra['originalText'] as String?,
-          language: extra['language'] as String?,
+        return HomeScreen(
+          initialTabIndex: 1,
+          studyExtra: extra,
+          onExit: () {
+            if (context.canPop()) {
+              context.pop();
+            } else {
+              context.go(AppRoutes.home);
+            }
+          },
         );
       },
     ),
     GoRoute(
       path: AppRoutes.srsStats,
-      builder: (context, state) => const SrsStatsScreen(),
+      builder: (context, state) => const HomeScreen(initialTabIndex: 3),
     ),
   ],
 

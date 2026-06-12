@@ -69,6 +69,7 @@ class StudyScreen extends StatelessWidget {
   final String? originalText;
   final String? language;
   final bool hideStartQuizButton;
+  final VoidCallback? onExit;
 
   const StudyScreen({
     super.key,
@@ -83,6 +84,7 @@ class StudyScreen extends StatelessWidget {
     this.originalText,
     this.language,
     this.hideStartQuizButton = false,
+    this.onExit,
   });
 
   @override
@@ -136,6 +138,7 @@ class StudyScreen extends StatelessWidget {
         generationMode: generationMode,
         originalText: originalText,
         hideStartQuizButton: hideStartQuizButton,
+        onExit: onExit,
       ),
     );
   }
@@ -148,12 +151,14 @@ class StudyScreenView extends StatefulWidget {
     this.generationMode,
     this.originalText,
     this.hideStartQuizButton = false,
+    this.onExit,
   });
 
   final QuizFile? quizFile;
   final AiGenerationMode? generationMode;
   final String? originalText;
   final bool hideStartQuizButton;
+  final VoidCallback? onExit;
 
   @override
   State<StudyScreenView> createState() => _StudyScreenViewState();
@@ -461,6 +466,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
           ),
           appBar: StudyAppBar(
             onConfirmExit: _confirmExit,
+            onExit: widget.onExit,
             onEditCurrentChunk: () async {
               final cubit = context.read<StudyEditorCubit>();
               final bloc = context.read<StudyExecutionBloc>();

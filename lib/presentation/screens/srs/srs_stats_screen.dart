@@ -30,7 +30,9 @@ enum _SrsSortField { sectionOrder, name, pendingQuestions, hitRate }
 enum _SrsSortDirection { ascending, descending }
 
 class SrsStatsScreen extends StatefulWidget {
-  const SrsStatsScreen({super.key});
+  final bool showBackButton;
+
+  const SrsStatsScreen({super.key, this.showBackButton = true});
 
   @override
   State<SrsStatsScreen> createState() => _SrsStatsScreenState();
@@ -115,6 +117,7 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
             fontWeight: FontWeight.w700,
           ),
         ),
+        showLeading: widget.showBackButton,
         onLeadingPressed: () => context.pop(),
         actions: _groupedStats.isEmpty
             ? null

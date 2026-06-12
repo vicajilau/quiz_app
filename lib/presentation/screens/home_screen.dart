@@ -34,6 +34,9 @@ import 'package:quizdy/data/services/app_remote_config_service.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
 import 'package:quizdy/domain/models/ai/ai_study_generation_config.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
+import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/study.dart';
@@ -41,6 +44,7 @@ import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_content.dart';
 import 'package:quizdy/domain/models/recent_quiz/recent_quiz.dart';
 import 'package:quizdy/domain/use_cases/initialize_quiz_chunks_use_case.dart';
+import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/presentation/blocs/app_update_cubit/app_update_cubit.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
@@ -55,6 +59,9 @@ import 'package:quizdy/presentation/screens/dialogs/mode_selection_dialog.dart';
 import 'package:quizdy/presentation/screens/dialogs/quiz_metadata_dialog.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_drag_mode_overlay.dart';
+import 'package:quizdy/presentation/screens/quiz_loaded_screen.dart';
+import 'package:quizdy/presentation/screens/srs/srs_stats_screen.dart';
+import 'package:quizdy/presentation/screens/study_screen.dart';
 import 'package:quizdy/presentation/utils/dialog_drop_guard.dart';
 import 'package:quizdy/presentation/widgets/app_update_banner.dart';
 import 'package:quizdy/presentation/widgets/quizdy_loading.dart';
@@ -63,8 +70,17 @@ import 'package:quizdy/routes/app_router.dart';
 
 class HomeScreen extends StatefulWidget {
   final String? initialDataUrl;
+  final int initialTabIndex;
+  final Map<String, dynamic>? studyExtra;
+  final VoidCallback? onExit;
 
-  const HomeScreen({super.key, this.initialDataUrl});
+  const HomeScreen({
+    super.key,
+    this.initialDataUrl,
+    this.initialTabIndex = 0,
+    this.studyExtra,
+    this.onExit,
+  });
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -80,10 +96,22 @@ class _HomeScreenState extends State<HomeScreen> {
 
   bool _isSidebarCollapsed = false;
   bool _showAllRecents = false;
+  late int _selectedTabIndex;
+
+  @override
+  void didUpdateWidget(HomeScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.initialTabIndex != widget.initialTabIndex) {
+      setState(() {
+        _selectedTabIndex = widget.initialTabIndex;
+      });
+    }
+  }
 
   @override
   void initState() {
     super.initState();
+    _selectedTabIndex = widget.initialTabIndex;
     _loadRemoteConfig();
 
     if (kIsWeb) {
@@ -141,19 +169,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @protected
   void navigateByMode(BuildContext context, QuizMode mode, QuizFile quizFile) {
     if (mode == QuizMode.study) {
-      final study = quizFile.study;
-      final chunks = study?.content.cache ?? [];
-      context.push(
-        AppRoutes.studyScreen,
-        extra: {
-          'initialChunks': chunks,
-          'documentTitle': quizFile.metadata.title,
-          'documentSummary': quizFile.metadata.description,
-          'quizFile': quizFile,
-        },
-      );
+      setState(() {
+        _selectedTabIndex = 1;
+      });
     } else {
-      context.push(AppRoutes.fileLoadedScreen);
+      setState(() {
+        _selectedTabIndex = 2;
+      });
     }
   }
 
@@ -463,41 +485,17 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _navigateTab(BuildContext context, int tabIndex) {
-    final hasActiveFile = ServiceLocator.getIt.isRegistered<QuizFile>();
-
-    switch (tabIndex) {
-      case 0: // Inicio
-        setState(() {
-          _showAllRecents = false;
-        });
-        break;
-      case 1: // Study
-        if (hasActiveFile) {
-          final file = ServiceLocator.getIt<QuizFile>();
-          navigateByMode(context, QuizMode.study, file);
-        } else {
-          context.presentSnackBar(
-            AppLocalizations.of(context)!.homeNoActiveFileError,
-          );
-        }
-        break;
-      case 2: // Quiz
-        if (hasActiveFile) {
-          final file = ServiceLocator.getIt<QuizFile>();
-          navigateByMode(context, QuizMode.quiz, file);
-        } else {
-          context.presentSnackBar(
-            AppLocalizations.of(context)!.homeNoActiveFileError,
-          );
-        }
-        break;
-      case 3: // Estadísticas
-        context.push(AppRoutes.srsStats);
-        break;
-      case 4: // Settings
-        _showSettingsDialog(context);
-        break;
+    if (tabIndex == 4) {
+      // Settings
+      _showSettingsDialog(context);
+      return;
     }
+    setState(() {
+      _selectedTabIndex = tabIndex;
+      if (tabIndex == 0) {
+        _showAllRecents = false;
+      }
+    });
   }
 
   String _formatLastOpened(BuildContext context, DateTime lastOpened) {
@@ -605,7 +603,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             unselectedItemColor: homeTheme.textSecondaryColor,
                             showUnselectedLabels: true,
                             type: BottomNavigationBarType.fixed,
-                            currentIndex: 0,
+                            currentIndex: _selectedTabIndex,
                             onTap: (index) => _navigateTab(context, index),
                             items: [
                               BottomNavigationBarItem(
@@ -714,17 +712,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   },
                                   onTabSelected: (index) =>
                                       _navigateTab(context, index),
+                                  selectedIndex: _selectedTabIndex,
                                 ),
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    _buildTopBar(context),
-                                    Expanded(
-                                      child: _buildMainContentArea(context),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              Expanded(child: _buildActiveTabContent(context)),
                             ],
                           ),
                           if (_isDragging)
@@ -756,6 +746,190 @@ class _HomeScreenState extends State<HomeScreen> {
                 return scaffold;
               },
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildActiveTabContent(BuildContext context) {
+    final hasActiveFile = ServiceLocator.getIt.isRegistered<QuizFile>();
+
+    switch (_selectedTabIndex) {
+      case 0:
+        return Column(
+          children: [
+            _buildTopBar(context),
+            Expanded(child: _buildMainContentArea(context)),
+          ],
+        );
+      case 1:
+        if (hasActiveFile) {
+          final file = ServiceLocator.getIt<QuizFile>();
+          final study = file.study;
+          final chunks = study?.content.cache ?? [];
+
+          final initialChunks =
+              widget.studyExtra?['initialChunks'] as List<StudyChunk>? ??
+              chunks;
+          final fileAttachment =
+              widget.studyExtra?['fileAttachment'] as AiFileAttachment? ??
+              file.fileAttachment;
+          final documentTitle =
+              widget.studyExtra?['documentTitle'] as String? ??
+              file.metadata.title;
+          final documentSummary =
+              widget.studyExtra?['documentSummary'] as String? ??
+              file.metadata.description;
+          final hideStartQuizButton =
+              widget.studyExtra?['hideStartQuizButton'] as bool? ?? false;
+          final isAutoDifficulty =
+              widget.studyExtra?['isAutoDifficulty'] as bool? ??
+              study?.isAutoDifficulty ??
+              true;
+          final difficultyLevel =
+              widget.studyExtra?['difficultyLevel'] as AiDifficultyLevel? ??
+              study?.difficultyLevel;
+          final generationMode =
+              widget.studyExtra?['generationMode'] as AiGenerationMode? ??
+              study?.generationMode;
+          final originalText =
+              widget.studyExtra?['originalText'] as String? ??
+              study?.originalText;
+          final language =
+              widget.studyExtra?['language'] as String? ?? study?.language;
+
+          return StudyScreen(
+            key: ValueKey('study_${file.filePath ?? file.metadata.title}'),
+            initialChunks: initialChunks,
+            fileAttachment: fileAttachment,
+            documentTitle: documentTitle,
+            documentSummary: documentSummary,
+            quizFile: file,
+            hideStartQuizButton: hideStartQuizButton,
+            isAutoDifficulty: isAutoDifficulty,
+            difficultyLevel: difficultyLevel,
+            generationMode: generationMode,
+            originalText: originalText,
+            language: language,
+            onExit:
+                widget.onExit ??
+                () {
+                  setState(() {
+                    _selectedTabIndex = 0;
+                  });
+                },
+          );
+        } else {
+          return _buildNoActiveFileState(context);
+        }
+      case 2:
+        if (hasActiveFile) {
+          final file = ServiceLocator.getIt<QuizFile>();
+          return QuizLoadedScreen(
+            key: ValueKey('quiz_${file.filePath ?? file.metadata.title}'),
+            fileBloc: context.read<FileBloc>(),
+            checkFileChangesUseCase:
+                ServiceLocator.getIt<CheckFileChangesUseCase>(),
+            quizFile: file,
+            resetOnDispose: false,
+            onExit:
+                widget.onExit ??
+                () {
+                  setState(() {
+                    _selectedTabIndex = 0;
+                  });
+                },
+          );
+        } else {
+          return _buildNoActiveFileState(context);
+        }
+      case 3:
+        return const SrsStatsScreen(
+          key: ValueKey('stats'),
+          showBackButton: false,
+        );
+      default:
+        return const SizedBox.shrink();
+    }
+  }
+
+  Widget _buildNoActiveFileState(BuildContext context) {
+    final homeTheme = context.homeTheme;
+    final l10n = AppLocalizations.of(context)!;
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 480),
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                width: 64,
+                height: 64,
+                decoration: BoxDecoration(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.primary.withValues(alpha: 0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  LucideIcons.fileWarning,
+                  size: 32,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              const SizedBox(height: 24),
+              Text(
+                l10n.homeNoActiveFileError,
+                style: TextStyle(
+                  color: homeTheme.textPrimaryColor,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                l10n.homeCardLoadFileDesc,
+                style: TextStyle(
+                  color: homeTheme.textSecondaryColor,
+                  fontSize: 14,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton.icon(
+                    onPressed: () => _pickFile(context),
+                    icon: const Icon(LucideIcons.upload, size: 16),
+                    label: Text(l10n.homeCardLoadFileTitle),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  OutlinedButton.icon(
+                    onPressed: () => _showCreateQuizFileDialog(context),
+                    icon: const Icon(LucideIcons.plusCircle, size: 16),
+                    label: Text(l10n.homeCardCreateQuizTitle),
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
@@ -1127,11 +1301,13 @@ class _HomeSidebar extends StatelessWidget {
   final bool isCollapsed;
   final VoidCallback onToggleCollapse;
   final ValueChanged<int> onTabSelected;
+  final int selectedIndex;
 
   const _HomeSidebar({
     required this.isCollapsed,
     required this.onToggleCollapse,
     required this.onTabSelected,
+    required this.selectedIndex,
   });
 
   @override
@@ -1239,28 +1415,28 @@ class _HomeSidebar extends StatelessWidget {
                   _SidebarItem(
                     icon: LucideIcons.home,
                     label: AppLocalizations.of(context)!.homeMenuInicio,
-                    isActive: true,
+                    isActive: selectedIndex == 0,
                     isCollapsed: isCollapsed,
                     onTap: () => onTabSelected(0),
                   ),
                   _SidebarItem(
                     icon: LucideIcons.bookOpen,
                     label: AppLocalizations.of(context)!.homeMenuStudy,
-                    isActive: false,
+                    isActive: selectedIndex == 1,
                     isCollapsed: isCollapsed,
                     onTap: () => onTabSelected(1),
                   ),
                   _SidebarItem(
                     icon: LucideIcons.fileQuestion,
                     label: AppLocalizations.of(context)!.homeMenuQuiz,
-                    isActive: false,
+                    isActive: selectedIndex == 2,
                     isCollapsed: isCollapsed,
                     onTap: () => onTabSelected(2),
                   ),
                   _SidebarItem(
                     icon: LucideIcons.barChart2,
                     label: AppLocalizations.of(context)!.homeMenuEstadisticas,
-                    isActive: false,
+                    isActive: selectedIndex == 3,
                     isCollapsed: isCollapsed,
                     onTap: () => onTabSelected(3),
                   ),

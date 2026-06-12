@@ -62,12 +62,16 @@ class QuizLoadedScreen extends StatefulWidget {
   final FileBloc fileBloc;
   final CheckFileChangesUseCase checkFileChangesUseCase;
   final QuizFile quizFile;
+  final VoidCallback? onExit;
+  final bool resetOnDispose;
 
   const QuizLoadedScreen({
     super.key,
     required this.fileBloc,
     required this.checkFileChangesUseCase,
     required this.quizFile,
+    this.onExit,
+    this.resetOnDispose = true,
   });
 
   @override
@@ -496,7 +500,9 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
   @override
   void dispose() {
     // Reset file bloc when leaving this screen
-    widget.fileBloc.add(QuizFileReset());
+    if (widget.resetOnDispose) {
+      widget.fileBloc.add(QuizFileReset());
+    }
     super.dispose();
   }
 
@@ -568,10 +574,15 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                     onPressed: () async {
                       final shouldExit = await _confirmExit();
                       if (shouldExit && context.mounted) {
-                        if (context.canPop()) {
-                          context.pop();
+                        context.read<FileBloc>().add(QuizFileReset());
+                        if (widget.onExit != null) {
+                          widget.onExit!();
                         } else {
-                          context.go(AppRoutes.home);
+                          if (context.canPop()) {
+                            context.pop();
+                          } else {
+                            context.go(AppRoutes.home);
+                          }
                         }
                       }
                     },

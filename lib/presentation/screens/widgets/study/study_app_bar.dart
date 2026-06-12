@@ -28,11 +28,13 @@ import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
 
 class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Future<bool> Function() onConfirmExit;
+  final VoidCallback? onExit;
   final VoidCallback onEditCurrentChunk;
 
   const StudyAppBar({
     super.key,
     required this.onConfirmExit,
+    this.onExit,
     required this.onEditCurrentChunk,
   });
 
@@ -80,7 +82,11 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                     final shouldExit = await onConfirmExit();
                     if (shouldExit && context.mounted) {
                       context.read<FileBloc>().add(QuizFileReset());
-                      context.pop();
+                      if (onExit != null) {
+                        onExit!();
+                      } else {
+                        context.pop();
+                      }
                     }
                   },
                   tooltip: AppLocalizations.of(context)!.close,
