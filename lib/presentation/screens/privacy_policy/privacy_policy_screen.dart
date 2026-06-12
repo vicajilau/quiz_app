@@ -18,6 +18,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/theme/extensions/home_theme.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
@@ -135,10 +136,9 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
           title: Text(
             localizations.privacyPolicyLabel,
             style: TextStyle(
-              color: Theme.of(context).colorScheme.onPrimary,
+              color: context.homeTheme.textPrimaryColor,
               fontSize: 20,
               fontWeight: FontWeight.w700,
-              fontFamily: 'Plus Jakarta Sans',
             ),
           ),
         ),

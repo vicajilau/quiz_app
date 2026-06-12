@@ -17,25 +17,27 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/theme/extensions/home_theme.dart';
 import 'package:quizdy/core/theme/extensions/quiz_loaded_theme.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
-import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
 
 class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Future<bool> Function() onConfirmExit;
   final VoidCallback? onExit;
   final VoidCallback onEditCurrentChunk;
+  final bool showLeading;
 
   const StudyAppBar({
     super.key,
     required this.onConfirmExit,
     this.onExit,
     required this.onEditCurrentChunk,
+    this.showLeading = true,
   });
 
   @override
@@ -46,6 +48,7 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
     final localizations = AppLocalizations.of(context)!;
 
     return QuizdyAppBar(
+      showLeading: showLeading,
       leading: Center(
         child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
           builder: (context, state) {
@@ -63,7 +66,7 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                   padding: EdgeInsets.zero,
                   icon: Icon(
                     state.isIndexMode ? Icons.close : LucideIcons.arrowLeft,
-                    color: Theme.of(context).colorScheme.onPrimary,
+                    color: context.homeTheme.textPrimaryColor,
                     size: 20,
                   ),
                   onPressed: () async {
@@ -110,10 +113,9 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                     return Text(
                       state.documentTitle,
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.onPrimary,
+                        color: context.homeTheme.textPrimaryColor,
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
-                        fontFamily: 'Plus Jakarta Sans',
                       ),
                       overflow: TextOverflow.ellipsis,
                     );
@@ -162,9 +164,8 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                                     children: [
                                       Icon(
                                         LucideIcons.pencil,
-                                        color: Theme.of(
-                                          context,
-                                        ).colorScheme.onPrimary,
+                                        color:
+                                            context.homeTheme.textPrimaryColor,
                                         size: 18,
                                       ),
                                       if (showText) ...[
@@ -173,9 +174,9 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                                           child: Text(
                                             localizations.edit,
                                             style: TextStyle(
-                                              color: Theme.of(
-                                                context,
-                                              ).colorScheme.onPrimary,
+                                              color: context
+                                                  .homeTheme
+                                                  .textPrimaryColor,
                                               fontSize: 13,
                                               fontWeight: FontWeight.w600,
                                             ),
@@ -192,31 +193,6 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                         ),
                       ),
                     ),
-                  // Settings Button
-                  Container(
-                    width: 40,
-                    height: 40,
-                    margin: const EdgeInsets.only(right: 8),
-                    decoration: BoxDecoration(
-                      color: context.quizLoadedTheme.appBarIconBackgroundColor,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: IconButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () async => await showDialog(
-                        context: context,
-                        barrierDismissible: false,
-                        builder: (_) => const SettingsDialog(),
-                      ),
-                      icon: Icon(
-                        LucideIcons.settings,
-                        color: Theme.of(context).colorScheme.onPrimary,
-                        size: 20,
-                      ),
-                      tooltip: localizations.settingsTitle,
-                    ),
-                  ),
-
                   // Selection Mode Toggle Button
                   if (state.isIndexMode)
                     Container(
@@ -256,9 +232,8 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                                         state.isSelectionMode
                                             ? LucideIcons.checkSquare
                                             : LucideIcons.mousePointer2,
-                                        color: Theme.of(
-                                          context,
-                                        ).colorScheme.onPrimary,
+                                        color:
+                                            context.homeTheme.textPrimaryColor,
                                         size: 18,
                                       ),
                                       if (showText) ...[
@@ -269,9 +244,9 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                                                 ? localizations.done
                                                 : localizations.select,
                                             style: TextStyle(
-                                              color: Theme.of(
-                                                context,
-                                              ).colorScheme.onPrimary,
+                                              color: context
+                                                  .homeTheme
+                                                  .textPrimaryColor,
                                               fontSize: 13,
                                               fontWeight: FontWeight.w600,
                                             ),

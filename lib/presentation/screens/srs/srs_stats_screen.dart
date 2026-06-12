@@ -18,6 +18,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
+import 'package:quizdy/core/theme/extensions/home_theme.dart';
 import 'package:quizdy/core/theme/extensions/quiz_loaded_theme.dart';
 import 'package:quizdy/data/repositories/srs/srs_repository.dart';
 import 'package:quizdy/domain/models/srs/srs_metadata.dart';
@@ -112,7 +113,7 @@ class _SrsStatsScreenState extends State<SrsStatsScreen> {
         title: Text(
           l10n.srsStatsTitle,
           style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimary,
+            color: context.homeTheme.textPrimaryColor,
             fontSize: 20,
             fontWeight: FontWeight.w700,
           ),
@@ -249,7 +250,7 @@ class _AppBarActionButton extends StatelessWidget {
         onPressed: onPressed,
         icon: Icon(
           icon,
-          color: Theme.of(context).colorScheme.onPrimary,
+          color: context.homeTheme.textPrimaryColor,
           size: 20,
         ),
         tooltip: tooltip,
@@ -276,7 +277,7 @@ class _SortMenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final onPrimary = Theme.of(context).colorScheme.onPrimary;
+    final onPrimary = context.homeTheme.textPrimaryColor;
 
     final fields = [
       (_SrsSortField.sectionOrder, l10n.srsSortBySectionOrder),

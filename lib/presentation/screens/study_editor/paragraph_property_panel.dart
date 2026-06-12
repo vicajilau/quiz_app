@@ -16,6 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/theme/extensions/home_theme.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_cubit.dart';
 import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
@@ -91,10 +92,9 @@ class _ParagraphPropertyPanelState extends State<ParagraphPropertyPanel> {
         title: Text(
           localizations.studyEditorEditParagraph,
           style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimary,
+            color: context.homeTheme.textPrimaryColor,
             fontSize: 20,
             fontWeight: FontWeight.w700,
-            fontFamily: 'Plus Jakarta Sans',
           ),
           overflow: TextOverflow.ellipsis,
         ),

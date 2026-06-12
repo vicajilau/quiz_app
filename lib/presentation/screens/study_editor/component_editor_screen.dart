@@ -19,6 +19,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quizdy/core/context_extension.dart';
+import 'package:quizdy/core/theme/extensions/home_theme.dart';
 import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
@@ -357,7 +358,7 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
                   title: Text(
                     chunk.title,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: context.homeTheme.textPrimaryColor,
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
                     ),
@@ -382,7 +383,7 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
                         ),
                         icon: Icon(
                           LucideIcons.settings,
-                          color: Theme.of(context).colorScheme.onPrimary,
+                          color: context.homeTheme.textPrimaryColor,
                           size: 20,
                         ),
                         tooltip: localizations.questionOrderConfigTooltip,
@@ -610,7 +611,7 @@ class _SelectToggleButton extends StatelessWidget {
                         isSelectionMode
                             ? LucideIcons.checkSquare
                             : LucideIcons.mousePointer2,
-                        color: Theme.of(context).colorScheme.onPrimary,
+                        color: context.homeTheme.textPrimaryColor,
                         size: 18,
                       ),
                       if (showText) ...[
@@ -621,7 +622,7 @@ class _SelectToggleButton extends StatelessWidget {
                                 ? localizations.done
                                 : localizations.select,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.onPrimary,
+                              color: context.homeTheme.textPrimaryColor,
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
                             ),

@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/extensions/quiz_loaded_theme.dart';
+import 'package:quizdy/core/theme/extensions/home_theme.dart';
 
 class QuizdyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget title;
@@ -27,6 +28,7 @@ class QuizdyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? leadingTooltip;
   final Color? backgroundColor;
   final Color? foregroundColor;
+  final bool centerTitle;
 
   const QuizdyAppBar({
     super.key,
@@ -38,6 +40,7 @@ class QuizdyAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leadingTooltip,
     this.backgroundColor,
     this.foregroundColor,
+    this.centerTitle = false,
   });
 
   @override
@@ -46,19 +49,26 @@ class QuizdyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
+    final homeTheme = context.homeTheme;
+    final resolvedBackgroundColor =
+        backgroundColor ?? homeTheme.mainBackgroundColor;
     final resolvedForegroundColor =
-        foregroundColor ?? Theme.of(context).colorScheme.onPrimary;
+        foregroundColor ?? homeTheme.textPrimaryColor;
 
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: backgroundColor ?? Theme.of(context).primaryColor,
+      backgroundColor: resolvedBackgroundColor,
       foregroundColor: resolvedForegroundColor,
       elevation: 0,
       scrolledUnderElevation: 0,
       surfaceTintColor: Colors.transparent,
       shadowColor: Colors.transparent,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
+      centerTitle: centerTitle,
+      shape: Border(
+        bottom: BorderSide(
+          color: homeTheme.borderColor,
+          width: 1,
+        ),
       ),
       toolbarHeight: 72,
       leadingWidth: showLeading ? 72 : null,

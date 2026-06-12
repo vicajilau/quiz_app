@@ -48,13 +48,13 @@ import 'package:quizdy/presentation/screens/dialogs/import_questions_dialog.dart
 import 'package:quizdy/domain/models/ai/ai_generation_config.dart';
 import 'package:quizdy/presentation/screens/dialogs/ai_generate_questions_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/quiz_loaded_bottom_bar.dart';
-import 'package:quizdy/presentation/screens/dialogs/settings_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/common/quizdy_app_bar.dart';
 import 'package:quizdy/presentation/screens/widgets/request_file_name_dialog.dart';
 import 'package:quizdy/presentation/screens/widgets/quiz_loaded/quiz_loaded_widgets.dart';
 import 'package:quizdy/presentation/widgets/quizdy_empty_state.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/presentation/screens/dialogs/quiz_metadata_dialog.dart';
+import 'package:quizdy/core/theme/extensions/home_theme.dart';
 import 'package:quizdy/core/theme/extensions/quiz_loaded_theme.dart';
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 
@@ -99,13 +99,6 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
     return true;
   }
 
-  Future<void> _showSettingsDialog(BuildContext context) async {
-    await showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) => const SettingsDialog(),
-    );
-  }
 
   Future<void> _handleImportButton() async {
     try {
@@ -555,6 +548,7 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
           },
           child: Scaffold(
             appBar: QuizdyAppBar(
+              showLeading: widget.resetOnDispose,
               leading: Center(
                 child: Container(
                   width: 40,
@@ -568,7 +562,7 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                     padding: EdgeInsets.zero,
                     icon: Icon(
                       Icons.close,
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: context.homeTheme.textPrimaryColor,
                       size: 20,
                     ),
                     onPressed: () async {
@@ -634,10 +628,9 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                             child: Text(
                               AppLocalizations.of(context)!.quizPreviewTitle,
                               style: TextStyle(
-                                color: Theme.of(context).colorScheme.onPrimary,
+                                color: context.homeTheme.textPrimaryColor,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w700,
-                                fontFamily: 'Plus Jakarta Sans',
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -649,30 +642,6 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                 ],
               ),
               actions: [
-                QuizLoadedStudyModeButton(
-                  quizFile: cachedQuizFile,
-                  onTap: () {
-                    context.pushReplacement(
-                      AppRoutes.studyScreen,
-                      extra: {
-                        'initialChunks':
-                            cachedQuizFile.study?.content.cache ?? [],
-                        'documentTitle': cachedQuizFile.metadata.title,
-                        'documentSummary': cachedQuizFile.metadata.description,
-                        'quizFile': cachedQuizFile,
-                        'hideStartQuizButton': true,
-                      },
-                    );
-                  },
-                ),
-                QuizLoadedStatsButton(
-                  onTap: () {
-                    context.push(AppRoutes.srsStats);
-                  },
-                ),
-                QuizLoadedSettingsButton(
-                  onTap: () => _showSettingsDialog(context),
-                ),
                 QuizLoadedSelectionToggleButton(
                   isSelectionMode: _isSelectionMode,
                   onTap: _toggleSelectionMode,

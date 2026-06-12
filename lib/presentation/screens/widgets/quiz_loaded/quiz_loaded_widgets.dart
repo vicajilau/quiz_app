@@ -16,6 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/core/theme/extensions/home_theme.dart';
 import 'package:quizdy/core/theme/extensions/quiz_loaded_theme.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 
@@ -150,7 +151,7 @@ class QuizLoadedSettingsButton extends StatelessWidget {
         onPressed: onTap,
         icon: Icon(
           LucideIcons.settings,
-          color: Theme.of(context).colorScheme.onPrimary,
+          color: context.homeTheme.textPrimaryColor,
           size: 20,
         ),
         tooltip: AppLocalizations.of(context)!.settingsTitle,
@@ -226,7 +227,7 @@ class QuizLoadedSelectionToggleButton extends StatelessWidget {
                         isSelectionMode
                             ? LucideIcons.checkSquare
                             : LucideIcons.mousePointer2,
-                        color: Theme.of(context).colorScheme.onPrimary,
+                        color: context.homeTheme.textPrimaryColor,
                         size: 18,
                       ),
                       if (showText) ...[
@@ -237,7 +238,7 @@ class QuizLoadedSelectionToggleButton extends StatelessWidget {
                                 ? AppLocalizations.of(context)!.done
                                 : AppLocalizations.of(context)!.select,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.onPrimary,
+                              color: context.homeTheme.textPrimaryColor,
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
                             ),

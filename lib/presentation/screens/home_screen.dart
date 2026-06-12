@@ -812,6 +812,7 @@ class _HomeScreenState extends State<HomeScreen> {
             generationMode: generationMode,
             originalText: originalText,
             language: language,
+            showLeading: false,
             onExit:
                 widget.onExit ??
                 () {

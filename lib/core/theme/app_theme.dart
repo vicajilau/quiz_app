@@ -196,11 +196,11 @@ class AppTheme {
         deleteDialogTextColor: Colors.white,
         deleteDialogSubTextColor: Colors.white70,
         appBarIconBackgroundColor: Color(
-          0x33FFFFFF,
-        ), // Colors.white.withValues(alpha: 0.2)
+          0x0F000000,
+        ), // Colors.black.withValues(alpha: 0.06)
         selectionInactiveBackgroundColor: Color(
-          0x33FFFFFF,
-        ), // Colors.white.withValues(alpha: 0.2)
+          0x0F000000,
+        ), // Colors.black.withValues(alpha: 0.06)
         dragOverlayColor: Color(
           0x1A8B5CF6,
         ), // primaryColor.withValues(alpha: 0.1)
