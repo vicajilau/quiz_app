@@ -62,239 +62,244 @@ class _HomeInicioTabViewState extends State<HomeInicioTabView> {
     final isMobile = context.isMobile;
     final homeTheme = context.homeTheme;
 
-    return Column(
-      children: [
-        _buildTopBar(context, isMobile, homeTheme),
-        Expanded(
-          child: RefreshIndicator(
-            onRefresh: () async {
-              context.read<RecentQuizzesCubit>().loadRecentQuizzes();
-            },
-            child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: isMobile ? 16.0 : 40.0,
-                  vertical: 24.0,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (!_showAllRecents) ...[
-                      // Welcome row
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            AppLocalizations.of(context)!.homeWelcomeTitle,
-                            style: TextStyle(
-                              color: homeTheme.textPrimaryColor,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            AppLocalizations.of(context)!.homeWelcomeSubtitle,
-                            style: TextStyle(
-                              color: homeTheme.textSecondaryColor,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 24),
-                    ],
-
-                    // Recent studies
-                    BlocBuilder<RecentQuizzesCubit, RecentQuizzesState>(
-                      builder: (context, recentState) {
-                        if (recentState is RecentQuizzesLoaded) {
-                          final recents = recentState.recentQuizzes;
-                          if (recents.isEmpty && !_showAllRecents) {
-                            return const SizedBox.shrink();
-                          }
-
-                          final listToDisplay = _showAllRecents
-                              ? recents
-                              : recents.take(3).toList();
-
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              _buildRecentHeader(
-                                context,
-                                recents.length,
-                                homeTheme,
+    return SafeArea(
+      bottom: false,
+      child: Column(
+        children: [
+          _buildTopBar(context, isMobile, homeTheme),
+          Expanded(
+            child: RefreshIndicator(
+              onRefresh: () async {
+                context.read<RecentQuizzesCubit>().loadRecentQuizzes();
+              },
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: isMobile ? 16.0 : 40.0,
+                    vertical: 24.0,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (!_showAllRecents) ...[
+                        // Welcome row
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.homeWelcomeTitle,
+                              style: TextStyle(
+                                color: homeTheme.textPrimaryColor,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
                               ),
-                              const SizedBox(height: 16),
-                              _buildRecentCardsGrid(context, listToDisplay),
-                              const SizedBox(height: 24),
-                            ],
-                          );
-                        }
-                        return const SizedBox.shrink();
-                      },
-                    ),
-
-                    if (!_showAllRecents) ...[
-                      // AI actions row
-                      LayoutBuilder(
-                        builder: (context, constraints) {
-                          final useColumn = constraints.maxWidth < 600;
-                          final cardWidgets = [
-                            HomeActionCard(
-                              title: AppLocalizations.of(
-                                context,
-                              )!.homeCardStudyAiTitle,
-                              description: AppLocalizations.of(
-                                context,
-                              )!.homeCardStudyAiDesc,
-                              badgeText: AppLocalizations.of(
-                                context,
-                              )!.homeCardStudyAiBadge,
-                              backgroundColor: homeTheme.studyAiCardColor,
-                              icon: LucideIcons.sparkles,
-                              isPrimary: true,
-                              onTap: widget.onStartStudyModeWithAI,
                             ),
-                            HomeActionCard(
-                              title: AppLocalizations.of(
-                                context,
-                              )!.homeCardQuizAiTitle,
-                              description: AppLocalizations.of(
-                                context,
-                              )!.homeCardQuizAiDesc,
-                              badgeText: AppLocalizations.of(
-                                context,
-                              )!.homeCardQuizAiBadge,
-                              backgroundColor: homeTheme.quizAiCardColor,
-                              icon: LucideIcons.graduationCap,
-                              isPrimary: true,
-                              onTap: widget.onGenerateQuestionsWithAI,
+                            const SizedBox(height: 4),
+                            Text(
+                              AppLocalizations.of(context)!.homeWelcomeSubtitle,
+                              style: TextStyle(
+                                color: homeTheme.textSecondaryColor,
+                                fontSize: 16,
+                              ),
                             ),
-                          ];
-
-                          return useColumn
-                              ? Column(
-                                  children: cardWidgets
-                                      .map(
-                                        (c) => Padding(
-                                          padding: const EdgeInsets.only(
-                                            bottom: 16,
-                                          ),
-                                          child: c,
-                                        ),
-                                      )
-                                      .toList(),
-                                )
-                              : Row(
-                                  children: cardWidgets
-                                      .map(
-                                        (c) => Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 8,
-                                            ),
-                                            child: c,
-                                          ),
-                                        ),
-                                      )
-                                      .toList(),
-                                );
-                        },
-                      ),
-                      const SizedBox(height: 16),
-
-                      // Manual actions row
-                      LayoutBuilder(
-                        builder: (context, constraints) {
-                          final useColumn = constraints.maxWidth < 600;
-                          final cardWidgets = [
-                            HomeActionCard(
-                              title: AppLocalizations.of(
-                                context,
-                              )!.homeCardCreateQuizTitle,
-                              description: AppLocalizations.of(
-                                context,
-                              )!.homeCardCreateQuizDesc,
-                              badgeText: AppLocalizations.of(
-                                context,
-                              )!.homeCardCreateQuizBadge,
-                              backgroundColor: homeTheme.cardBackgroundColor,
-                              icon: LucideIcons.plusCircle,
-                              isPrimary: false,
-                              accentColor: Theme.of(
-                                context,
-                              ).colorScheme.primary,
-                              onTap: widget.onCreateQuizFile,
-                            ),
-                            HomeActionCard(
-                              title: AppLocalizations.of(
-                                context,
-                              )!.homeCardLoadFileTitle,
-                              description: AppLocalizations.of(
-                                context,
-                              )!.homeCardLoadFileDesc,
-                              badgeText: AppLocalizations.of(
-                                context,
-                              )!.homeCardLoadFileBadge,
-                              backgroundColor: homeTheme.cardBackgroundColor,
-                              icon: LucideIcons.upload,
-                              isPrimary: false,
-                              accentColor: homeTheme.textSecondaryColor,
-                              onTap: widget.onLoadFile,
-                            ),
-                          ];
-
-                          return useColumn
-                              ? Column(
-                                  children: cardWidgets
-                                      .map(
-                                        (c) => Padding(
-                                          padding: const EdgeInsets.only(
-                                            bottom: 16,
-                                          ),
-                                          child: c,
-                                        ),
-                                      )
-                                      .toList(),
-                                )
-                              : Row(
-                                  children: cardWidgets
-                                      .map(
-                                        (c) => Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 8,
-                                            ),
-                                            child: c,
-                                          ),
-                                        ),
-                                      )
-                                      .toList(),
-                                );
-                        },
-                      ),
-                      const SizedBox(height: 24),
-
-                      // Global drag hint card
-                      const HomeGlobalDragHint(),
-                      const SizedBox(height: 24),
-
-                      // Feedback card
-                      if (widget.showFeedbackBanner) ...[
-                        HomeFeedbackCard(onTap: widget.onOpenFeedbackForm),
+                          ],
+                        ),
                         const SizedBox(height: 24),
                       ],
+
+                      // Recent studies
+                      BlocBuilder<RecentQuizzesCubit, RecentQuizzesState>(
+                        builder: (context, recentState) {
+                          if (recentState is RecentQuizzesLoaded) {
+                            final recents = recentState.recentQuizzes;
+                            if (recents.isEmpty && !_showAllRecents) {
+                              return const SizedBox.shrink();
+                            }
+
+                            final listToDisplay = _showAllRecents
+                                ? recents
+                                : recents.take(3).toList();
+
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _buildRecentHeader(
+                                  context,
+                                  recents.length,
+                                  homeTheme,
+                                ),
+                                const SizedBox(height: 16),
+                                _buildRecentCardsGrid(context, listToDisplay),
+                                const SizedBox(height: 24),
+                              ],
+                            );
+                          }
+                          return const SizedBox.shrink();
+                        },
+                      ),
+
+                      if (!_showAllRecents) ...[
+                        // AI actions row
+                        LayoutBuilder(
+                          builder: (context, constraints) {
+                            final useColumn = constraints.maxWidth < 600;
+                            final cardWidgets = [
+                              HomeActionCard(
+                                title: AppLocalizations.of(
+                                  context,
+                                )!.homeCardStudyAiTitle,
+                                description: AppLocalizations.of(
+                                  context,
+                                )!.homeCardStudyAiDesc,
+                                badgeText: AppLocalizations.of(
+                                  context,
+                                )!.homeCardStudyAiBadge,
+                                backgroundColor: homeTheme.studyAiCardColor,
+                                icon: LucideIcons.sparkles,
+                                isPrimary: true,
+                                onTap: widget.onStartStudyModeWithAI,
+                              ),
+                              HomeActionCard(
+                                title: AppLocalizations.of(
+                                  context,
+                                )!.homeCardQuizAiTitle,
+                                description: AppLocalizations.of(
+                                  context,
+                                )!.homeCardQuizAiDesc,
+                                badgeText: AppLocalizations.of(
+                                  context,
+                                )!.homeCardQuizAiBadge,
+                                backgroundColor: homeTheme.quizAiCardColor,
+                                icon: LucideIcons.graduationCap,
+                                isPrimary: true,
+                                onTap: widget.onGenerateQuestionsWithAI,
+                              ),
+                            ];
+
+                            return useColumn
+                                ? Column(
+                                    children: cardWidgets
+                                        .map(
+                                          (c) => Padding(
+                                            padding: const EdgeInsets.only(
+                                              bottom: 16,
+                                            ),
+                                            child: c,
+                                          ),
+                                        )
+                                        .toList(),
+                                  )
+                                : Row(
+                                    children: cardWidgets
+                                        .map(
+                                          (c) => Expanded(
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                    horizontal: 8,
+                                                  ),
+                                              child: c,
+                                            ),
+                                          ),
+                                        )
+                                        .toList(),
+                                  );
+                          },
+                        ),
+                        const SizedBox(height: 16),
+
+                        // Manual actions row
+                        LayoutBuilder(
+                          builder: (context, constraints) {
+                            final useColumn = constraints.maxWidth < 600;
+                            final cardWidgets = [
+                              HomeActionCard(
+                                title: AppLocalizations.of(
+                                  context,
+                                )!.homeCardCreateQuizTitle,
+                                description: AppLocalizations.of(
+                                  context,
+                                )!.homeCardCreateQuizDesc,
+                                badgeText: AppLocalizations.of(
+                                  context,
+                                )!.homeCardCreateQuizBadge,
+                                backgroundColor: homeTheme.cardBackgroundColor,
+                                icon: LucideIcons.plusCircle,
+                                isPrimary: false,
+                                accentColor: Theme.of(
+                                  context,
+                                ).colorScheme.primary,
+                                onTap: widget.onCreateQuizFile,
+                              ),
+                              HomeActionCard(
+                                title: AppLocalizations.of(
+                                  context,
+                                )!.homeCardLoadFileTitle,
+                                description: AppLocalizations.of(
+                                  context,
+                                )!.homeCardLoadFileDesc,
+                                badgeText: AppLocalizations.of(
+                                  context,
+                                )!.homeCardLoadFileBadge,
+                                backgroundColor: homeTheme.cardBackgroundColor,
+                                icon: LucideIcons.upload,
+                                isPrimary: false,
+                                accentColor: homeTheme.textSecondaryColor,
+                                onTap: widget.onLoadFile,
+                              ),
+                            ];
+
+                            return useColumn
+                                ? Column(
+                                    children: cardWidgets
+                                        .map(
+                                          (c) => Padding(
+                                            padding: const EdgeInsets.only(
+                                              bottom: 16,
+                                            ),
+                                            child: c,
+                                          ),
+                                        )
+                                        .toList(),
+                                  )
+                                : Row(
+                                    children: cardWidgets
+                                        .map(
+                                          (c) => Expanded(
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                    horizontal: 8,
+                                                  ),
+                                              child: c,
+                                            ),
+                                          ),
+                                        )
+                                        .toList(),
+                                  );
+                          },
+                        ),
+                        const SizedBox(height: 24),
+
+                        // Global drag hint card
+                        const HomeGlobalDragHint(),
+                        const SizedBox(height: 24),
+
+                        // Feedback card
+                        if (widget.showFeedbackBanner) ...[
+                          HomeFeedbackCard(onTap: widget.onOpenFeedbackForm),
+                          const SizedBox(height: 24),
+                        ],
+                      ],
                     ],
-                  ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
