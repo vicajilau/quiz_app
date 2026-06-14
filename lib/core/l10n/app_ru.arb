@@ -5,61 +5,19 @@
   "addQuestion": "Добавить вопрос",
   "addSection": "Добавить раздел",
   "editSection": "Редактировать раздел",
-  "@editSection": {
-    "description": "Title for editing an existing section dialog"
-  },
   "sectionTitleLabel": "Заголовок",
-  "@sectionTitleLabel": {
-    "description": "Label for section title input field in add/edit section dialog"
-  },
   "sectionTitleHint": "Введите заголовок раздела",
-  "@sectionTitleHint": {
-    "description": "Hint for section title input field in add/edit section dialog"
-  },
   "sectionDescriptionLabel": "Описание",
-  "@sectionDescriptionLabel": {
-    "description": "Label for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionHint": "Введите описание раздела",
-  "@sectionDescriptionHint": {
-    "description": "Hint for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionAiHint": "Эта информация позже будет использована ИИ для генерации учебного контента.",
-  "@sectionDescriptionAiHint": {
-    "description": "Helper text shown below section description input, indicating AI will use this information later"
-  },
   "editQuestion": "Редактировать вопрос",
   "questionText": "Текст вопроса",
   "questionType": "Тип вопроса",
   "addOption": "Добавить вариант",
   "optionsLabel": "Варианты",
   "optionLabel": "Вариант",
-  "delete": "Удалить",
-  "@delete": {
-    "description": "Generic delete button text"
-  },
   "edit": "Редактировать",
   "save": "Сохранить",
-  "cancel": "Отмена",
-  "@cancel": {
-    "description": "Generic cancel button text"
-  },
-  "confirm": "Подтвердить",
-  "@confirm": {
-    "description": "Generic confirm button text"
-  },
-  "ok": "ОК",
-  "@ok": {
-    "description": "Generic OK button text"
-  },
-  "error": "Ошибка",
-  "@error": {
-    "description": "Generic error text"
-  },
-  "loading": "Загрузка...",
-  "@loading": {
-    "description": "Generic loading text"
-  },
   "settingsTitle": "Настройки",
   "appLanguageLabel": "Язык приложения",
   "appLanguageDescription": "Переопределить язык приложения для тестирования",
@@ -70,66 +28,18 @@
   "languageGerman": "Немецкий",
   "languageItalian": "Итальянский",
   "languagePortuguese": "Португальский",
-  "@languagePortuguese": {
-    "description": "Название португальского языка."
-  },
   "languageGeorgian": "Грузинский",
-  "@languageGeorgian": {
-    "description": "Название грузинского языка."
-  },
   "languageUkrainian": "Украинский",
-  "@languageUkrainian": {
-    "description": "Название украинского языка."
-  },
   "languageKorean": "Корейский",
-  "@languageKorean": {
-    "description": "Название корейского языка."
-  },
   "languageGreek": "Греческий",
-  "@languageGreek": {
-    "description": "Название греческого языка."
-  },
   "languageCatalan": "Каталанский",
-  "@languageCatalan": {
-    "description": "Название каталанского языка."
-  },
   "languageBasque": "Баскский",
-  "@languageBasque": {
-    "description": "Название баскского языка."
-  },
   "languageGalician": "Галисийский",
-  "@languageGalician": {
-    "description": "Название галисийского языка."
-  },
   "languageHindi": "Хинди",
-  "@languageHindi": {
-    "description": "Название языка хинди."
-  },
   "languageChinese": "Китайский",
-  "@languageChinese": {
-    "description": "Название китайского языка."
-  },
   "languageArabic": "Арабский",
-  "@languageArabic": {
-    "description": "Название арабского языка."
-  },
   "languageJapanese": "Японский",
-  "@languageJapanese": {
-    "description": "Название японского языка."
-  },
-  "resultsTitle": "Результаты",
-  "@resultsTitle": {
-    "description": "Title for the results screen"
-  },
-  "scoreLabel": "Счет",
-  "@scoreLabel": {
-    "description": "Label for the score display"
-  },
   "correctAnswers": "Правильные ответы",
-  "incorrectAnswers": "Неправильные ответы",
-  "@incorrectAnswers": {
-    "description": "Label for incorrect answers count"
-  },
   "explanationTitle": "Объяснение",
   "stopAndOpenButton": "Остановить и открыть",
   "titleAppBar": "Quizdy - Симулятор экзаменов",
@@ -156,13 +66,7 @@
   "cancelButton": "Отмена",
   "saveButton": "Сохранить",
   "newTag": "Новый",
-  "@newTag": {
-    "description": "Тег для обозначения нового или измененного элемента"
-  },
   "modifiedTag": "Изменено",
-  "@modifiedTag": {
-    "description": "Тег для обозначения того, что элемент был изменен"
-  },
   "confirmDeleteTitle": "Подтверждение удаления",
   "confirmDeleteMessage": "Вы уверены, что хотите удалить процесс `{processName}`?",
   "deleteButton": "Удалить",
@@ -351,41 +255,10 @@
   "importAtEnd": "В конец",
   "questionsImportedSuccess": "Успешно импортировано {count} вопросов",
   "importChunksTitle": "Импорт разделов",
-  "@importChunksTitle": {
-    "description": "Title for the import chunks dialog."
-  },
   "importChunksMessage": "В файле \"{fileName}\" найдено {count} разделов. Куда вы хотите их импортировать?",
-  "@importChunksMessage": {
-    "description": "Message asking where to import sections from another file.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "study.quiz"
-      }
-    }
-  },
   "importChunksPositionQuestion": "Куда вы хотите добавить эти разделы?",
-  "@importChunksPositionQuestion": {
-    "description": "Question asking about import position for chunks."
-  },
   "chunksImportedSuccess": "{count} разделов успешно импортировано",
-  "@chunksImportedSuccess": {
-    "description": "Success message when chunks are imported.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "noChunksInFile": "В импортированном файле не найдено разделов",
-  "@noChunksInFile": {
-    "description": "Error message when the imported file has no study sections."
-  },
   "importQuestionsTooltip": "Импортировать вопросы из другого файла квиза",
   "dragDropHintText": "Вы также можете перетащить сюда файлы .quiz для импорта вопросов",
   "randomizeQuestionsTitle": "Случайный порядок вопросов",
@@ -506,13 +379,7 @@
   "generateStudyWithAI": "Создать учёбу с помощью ИИ",
   "practiceModeLabel": "Практический режим",
   "smartModeLabel": "Умный режим",
-  "@smartModeLabel": {
-    "description": "Label for smart exam mode option in start quiz"
-  },
   "smartModeDescription": "Специальный режим экзамена. Приложение автоматически определяет набор и количество вопросов и обновляет статистику повторения.",
-  "@smartModeDescription": {
-    "description": "Description for smart exam mode"
-  },
   "studyModeDescription": "Доступна помощь ИИ. Мгновенная обратная связь после каждого ответа без ограничений по времени и штрафов. Статистика не генерируется.",
   "examModeLabel": "Режим экзамена",
   "examModeDescription": "Помощь ИИ недоступна. Могут применяться ограничения по времени и штрафы за неправильные ответы. Генерирует статистику SRS.",
@@ -632,417 +499,108 @@
   "studyComponentAdvantages": "Преимущества",
   "studyComponentLimitations": "Ограничения",
   "aiStudyChapterSystemPrompt": "Вы — ИИ-помощник в учебе, помогающий студенту понять содержание учебной главы. Глубоко объясняйте концепции, приводите примеры и устанавливайте связи с другими частями учебного материала, когда это уместно. Отвечайте на том же языке, на котором вам задали вопрос.",
-  "@aiStudyChapterSystemPrompt": {
-    "description": "System prompt for the AI study assistant when chatting about a study chapter"
-  },
   "aiStudyChapterGuardrail": "Сосредоточьтесь на содержании предоставленной главы и учебных материалах. Если вопрос студента относится к другой главе, укажите название соответствующей главы.",
-  "@aiStudyChapterGuardrail": {
-    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
-  },
   "askAIStudyTooltip": "Спросить ИИ об этой главе",
-  "@askAIStudyTooltip": {
-    "description": "Tooltip for the Ask AI button shown in the study chapter view"
-  },
   "studyScreenPendingSections": "Некоторые разделы еще не созданы",
-  "@studyScreenPendingSections": {
-    "description": "Предупреждение, отображаемое в указателе обучения, когда некоторые части еще не созданы"
-  },
-  "@aiErrorResponse": {
-    "description": "Error message when AI request fails"
-  },
   "aiErrorRedirect": "Перенаправлено (302) на: {location}",
-  "@aiErrorRedirect": {
-    "description": "Сообщение об ошибке при возникновении перенаправления 302 во время запроса ИИ",
-    "placeholders": {
-      "location": {
-        "type": "String",
-        "example": "https://example.com"
-      }
-    }
-  },
   "aiErrorConnectionAborted": "Запрос был прерван, так как приложение было переведено в фоновый режим. Пожалуйста, не закрывайте приложение во время генерации контента.",
-  "@aiErrorConnectionAborted": {
-    "description": "Error message when a request is aborted because the app is minimized."
-  },
   "noInternetConnection": "Нет подключения к интернету. Пожалуйста, проверьте настройки сети и попробуйте снова.",
-  "@noInternetConnection": {
-    "description": "Error message shown when the device has no internet connection."
-  },
   "duplicatedTag": "Дубликат",
-  "@duplicatedTag": {
-    "description": "Tag to indicate an item is duplicated"
-  },
   "aiSelectSectionsTitle": "Выбрать разделы",
-  "@aiSelectSectionsTitle": {
-    "description": "Title for the chunk section selector in AI content step"
-  },
   "aiSelectSectionsSubtitle": "Выберите разделы обучения, которые будут использоваться для создания вопросов",
-  "@aiSelectSectionsSubtitle": {
-    "description": "Subtitle explaining what the section selector does"
-  },
   "aiAllSections": "Все разделы",
   "aiSelectQuestionsTitle": "Выбрать вопросы",
-  "@aiSelectQuestionsTitle": {
-    "description": "Title for the question selector in AI study generation"
-  },
   "aiSelectQuestionsSubtitle": "Выберите вопросы режима Quiz как контекст генерации",
-  "@aiSelectQuestionsSubtitle": {
-    "description": "Subtitle explaining what the question selector does"
-  },
   "aiAllQuestions": "Все вопросы",
   "onboardingStudyContentTitle": "Изучайте свой контент",
-  "@onboardingStudyContentTitle": {
-    "description": "Title of the study content onboarding page"
-  },
   "onboardingStudyContentDescription": "Организуйте свои материалы в учебные разделы. Импортируйте файлы, добавляйте вручную или позвольте ИИ сгенерировать контент.",
-  "@onboardingStudyContentDescription": {
-    "description": "Description of the study content onboarding page"
-  },
   "onboardingStudyContentSubtitle": "Организуйте, генерируйте и изучайте",
-  "@onboardingStudyContentSubtitle": {
-    "description": "Subtitle of the study content onboarding page"
-  },
   "onboardingStudyStepAddTitle": "Добавить материал",
-  "@onboardingStudyStepAddTitle": {
-    "description": "Step 1 title in study content onboarding page"
-  },
   "onboardingStudyStepAddDescription": "Пишите разделы или импортируйте из файлов .quiz",
-  "@onboardingStudyStepAddDescription": {
-    "description": "Step 1 description in study content onboarding page"
-  },
   "onboardingStudyStepGenerateTitle": "Сгенерировать ИИ",
-  "@onboardingStudyStepGenerateTitle": {
-    "description": "Step 2 title in study content onboarding page"
-  },
   "onboardingStudyStepGenerateDescription": "ИИ создает учебные разделы из ваших документов",
-  "@onboardingStudyStepGenerateDescription": {
-    "description": "Step 2 description in study content onboarding page"
-  },
   "onboardingStudyStepStudyTitle": "Изучайте сгенерированные разделы",
-  "@onboardingStudyStepStudyTitle": {
-    "description": "Step 3 title in study content onboarding page"
-  },
   "onboardingStudyStepStudyDescription": "Перемещайтесь по каждому разделу и закрепляйте свои знания",
-  "@onboardingStudyStepStudyDescription": {
-    "description": "Step 3 description in study content onboarding page"
-  },
   "onboardingStudyStepPdfTitle": "Экспорт в PDF",
-  "@onboardingStudyStepPdfTitle": {
-    "description": "Step 4 title in study content onboarding page"
-  },
   "onboardingStudyStepPdfDescription": "Скачайте и поделитесь своими материалами в формате PDF",
-  "@onboardingStudyStepPdfDescription": {
-    "description": "Step 4 description in study content onboarding page"
-  },
   "privacyPolicyLabel": "Политика конфиденциальности",
   "privacyPolicyDescription": "Узнайте, как ваши данные обрабатываются в Quizdy",
   "privacyPolicyRequiredDescription": "Пожалуйста, ознакомьтесь и примите политику конфиденциальности, чтобы продолжить.",
   "privacyPolicyLoadError": "Не удалось загрузить содержимое политики конфиденциальности.",
   "privacyPolicyCanonicalNotice": "Официальная юридическая версия этой политики - английский текст, размещенный в репозитории проекта.",
-  "@privacyPolicyCanonicalNotice": {
-    "description": "Short legal notice indicating the canonical version of the privacy policy"
-  },
   "privacyPolicyOpenInBrowser": "Открыть полную политику на GitHub",
-  "@privacyPolicyOpenInBrowser": {
-    "description": "Button label to open the privacy policy URL in an external browser"
-  },
   "supportLabel": "Поддержка",
-  "@supportLabel": {
-    "description": "Label for the support action in settings"
-  },
   "supportDescription": "Открыть GitHub Issues с данными приложения и платформы",
-  "@supportDescription": {
-    "description": "Description for the support action in settings"
-  },
   "feedbackTitle": "Ваше мнение важно для нас",
-  "@feedbackTitle": {
-    "description": "Title for the home screen feedback prompt"
-  },
   "feedbackDescription": "Пройдите короткий опрос и помогите улучшить Quizdy",
-  "@feedbackDescription": {
-    "description": "Description for the home screen feedback prompt"
-  },
   "studyEditorToggleEdit": "Редактировать контент",
-  "@studyEditorToggleEdit": {
-    "description": "Tooltip for the FAB button that enables study content edit mode"
-  },
   "studyEditorFieldTitle": "Название",
-  "@studyEditorFieldTitle": {
-    "description": "Label for the optional title field in component editors"
-  },
   "studyEditorSaveChanges": "Сохранить изменения",
-  "@studyEditorSaveChanges": {
-    "description": "Button label to save edited component properties"
-  },
   "studyEditorPages": "Страницы",
-  "@studyEditorPages": {
-    "description": "Section header for the list of pages in the section page manager"
-  },
   "studyEditorComponents": "Компоненты",
-  "@studyEditorComponents": {
-    "description": "Section header for the list of components in the component editor"
-  },
   "studyEditorAddPage": "Добавить страницу",
-  "@studyEditorAddPage": {
-    "description": "Button label to add a new page to a section"
-  },
   "componentTypeSectionTitle": "Название раздела",
-  "@componentTypeSectionTitle": {
-    "description": "Display name for the sectionTitle component type"
-  },
   "studyEditorExitEdit": "Выйти из режима редактирования",
-  "@studyEditorExitEdit": {
-    "description": "Tooltip for the FAB button that disables study content edit mode"
-  },
   "studyEditorDeletePage": "Удалить страницу",
-  "@studyEditorDeletePage": {
-    "description": "Button label to delete a page from a section"
-  },
   "studyEditorEmptyPages": "Страниц пока нет. Нажмите +, чтобы добавить его.",
-  "@studyEditorEmptyPages": {
-    "description": "Empty state message in the section page manager"
-  },
   "studyEditorPageN": "Страница {n}",
-  "@studyEditorPageN": {
-    "description": "Label for page number n in the section page manager",
-    "placeholders": {
-      "n": {
-        "type": "int"
-      }
-    }
-  },
   "studyEditorEditName": "Изменить {name}",
-  "@studyEditorEditName": {
-    "description": "Navigation header title: Edit [section name]",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "studyEditorEditParagraph": "Редактировать абзац",
-  "@studyEditorEditParagraph": {
-    "description": "Navigation header title for the paragraph property panel"
-  },
   "studyEditorFieldBody": "Основной текст",
-  "@studyEditorFieldBody": {
-    "description": "Label for the main body text field in component editors"
-  },
   "studyEditorEmptyComponents": "На этой странице нет компонентов.",
-  "@studyEditorEmptyComponents": {
-    "description": "Empty state message in the component editor"
-  },
   "componentTypeQuote": "Цитировать",
-  "@componentTypeQuote": {
-    "description": "Display name for the quote component type"
-  },
   "componentTypeComparisonTable": "Сравнительная таблица",
-  "@componentTypeComparisonTable": {
-    "description": "Display name for the comparisonTable component type"
-  },
   "componentTypeParagraph": "Параграф",
-  "@componentTypeParagraph": {
-    "description": "Display name for the paragraph component type"
-  },
   "componentTypeTimeline": "Хронология",
-  "@componentTypeTimeline": {
-    "description": "Display name for the timeline component type"
-  },
   "componentTypeNumberedList": "Нумерованный список",
-  "@componentTypeNumberedList": {
-    "description": "Display name for the numberedList component type"
-  },
   "componentTypeWarning": "Предупреждение",
-  "@componentTypeWarning": {
-    "description": "Display name for the warning component type"
-  },
   "componentTypeFormula": "Формула",
-  "@componentTypeFormula": {
-    "description": "Display name for the formula component type"
-  },
   "componentTypeProsCons": "Плюсы и минусы",
-  "@componentTypeProsCons": {
-    "description": "Display name for the prosCons component type"
-  },
   "componentTypeKeyConcepts": "Ключевые понятия",
-  "@componentTypeKeyConcepts": {
-    "description": "Display name for the keyConcepts component type"
-  },
   "componentTypeReminder": "Напоминание",
-  "@componentTypeReminder": {
-    "description": "Display name for the reminder component type"
-  },
   "componentFieldAuthor": "Автор",
-  "@componentFieldAuthor": {
-    "description": "Form field label for quote author"
-  },
   "componentFieldSubtitle": "Субтитры",
-  "@componentFieldSubtitle": {
-    "description": "Form field label for subtitle"
-  },
   "componentFieldDefinition": "Определение",
-  "@componentFieldDefinition": {
-    "description": "Form field label for definition"
-  },
   "componentFieldTerm": "Срок",
-  "@componentFieldTerm": {
-    "description": "Form field label for term (key definition)"
-  },
   "componentFieldQuote": "Цитировать",
-  "@componentFieldQuote": {
-    "description": "Form field label for quote text"
-  },
   "componentFieldEquation": "Уравнение",
-  "@componentFieldEquation": {
-    "description": "Form field label for formula equation"
-  },
   "componentTypeKeyDefinition": "Ключевое определение",
-  "@componentTypeKeyDefinition": {
-    "description": "Display name for the keyDefinition component type"
-  },
   "componentFieldExplanation": "Объяснение",
-  "@componentFieldExplanation": {
-    "description": "Form field label for formula explanation"
-  },
   "componentFieldDescription": "Описание",
-  "@componentFieldDescription": {
-    "description": "Form field label for item description"
-  },
   "componentFieldDate": "Дата",
-  "@componentFieldDate": {
-    "description": "Form field label for timeline event date"
-  },
   "componentFieldEvents": "События",
-  "@componentFieldEvents": {
-    "description": "Form section label for timeline events"
-  },
   "componentFieldItems": "Предметы",
-  "@componentFieldItems": {
-    "description": "Form section label for a list of items"
-  },
   "componentFieldCards": "Карты",
-  "@componentFieldCards": {
-    "description": "Form section label for icon cards"
-  },
   "componentFieldConcept": "Концепция",
-  "@componentFieldConcept": {
-    "description": "Form field label for a single concept item"
-  },
   "componentFieldPro": "Про",
-  "@componentFieldPro": {
-    "description": "Form field label for a single pro item"
-  },
   "componentFieldCon": "Кон",
-  "@componentFieldCon": {
-    "description": "Form field label for a single con item"
-  },
   "componentFieldCons": "Минусы",
-  "@componentFieldCons": {
-    "description": "Form section label for cons list"
-  },
   "componentFieldColumn": "Столбец",
-  "@componentFieldColumn": {
-    "description": "Form field label for a single table column"
-  },
   "componentFieldColumns": "Столбцы",
-  "@componentFieldColumns": {
-    "description": "Form section label for table columns"
-  },
   "componentFieldPros": "Плюсы",
-  "@componentFieldPros": {
-    "description": "Form section label for pros list"
-  },
   "componentFieldRow": "Ряд",
-  "@componentFieldRow": {
-    "description": "Form field label for a single table row"
-  },
   "componentFieldAdd": "Добавить {item}",
-  "@componentFieldAdd": {
-    "description": "Button label to add a new item to a list",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "componentFieldOptional": "необязательный",
-  "@componentFieldOptional": {
-    "description": "Label shown next to optional form fields"
-  },
   "componentFieldRequired": "Это поле обязательно для заполнения",
   "componentFieldLabel": "Этикетка",
-  "@componentFieldLabel": {
-    "description": "Form field label for a row label in comparison table"
-  },
   "componentFieldLabelColumn": "Столбец меток",
-  "@componentFieldLabelColumn": {
-    "description": "Form field label for the header of the label column in a comparison table"
-  },
   "componentFieldEquationLabel": "Метка уравнения",
-  "@componentFieldEquationLabel": {
-    "description": "Form field label for formula equation label"
-  },
   "componentTypeIconCards": "Карты со значками",
-  "@componentTypeIconCards": {
-    "description": "Display name for the iconCards component type"
-  },
   "componentFieldRows": "Строки",
-  "@componentFieldRows": {
-    "description": "Form section label for table rows"
-  },
   "addComponentTitle": "Добавить компонент",
-  "@addComponentTitle": {
-    "description": "Title for the Add Component picker screen"
-  },
   "addComponentsWithAI": "Добавить компоненты с помощью ИИ",
-  "@addComponentsWithAI": {
-    "description": "Button label to add study components using AI"
-  },
   "aiSelectComponentTypesTitle": "Выберите типы компонентов",
-  "@aiSelectComponentTypesTitle": {
-    "description": "Title for the component type filter in AI study generation"
-  },
   "aiSelectComponentTypesSubtitle": "Включите, чтобы отфильтровать, какие типы компонентов будут включены в сгенерированный учебный контент",
-  "@aiSelectComponentTypesSubtitle": {
-    "description": "Subtitle for the component type filter in AI study generation"
-  },
   "aiComponentsGeneratedSuccess": "Контент успешно сгенерирован",
-  "@aiComponentsGeneratedSuccess": {
-    "description": "Snackbar message shown when AI component generation completes successfully"
-  },
   "duplicate": "Дублировать",
-  "@duplicate": {
-    "description": "Tooltip for the duplicate button in the component card"
-  },
   "moveUp": "Переместить вверх",
-  "@moveUp": {
-    "description": "Tooltip for the move up button in the component card"
-  },
   "moveDown": "Переместить вниз",
-  "@moveDown": {
-    "description": "Tooltip for the move down button in the component card"
-  },
   "aiDifficultyRequiresFileTooltip": "Для использования этой опции необходимо прикрепить файл",
-  "@aiDifficultyRequiresFileTooltip": {
-    "description": "Tooltip when auto difficulty is disabled due to missing file"
-  },
   "exportAsPdf": "Экспорт в PDF",
   "exportPdfSuccess": "PDF успешно экспортирован",
   "exportPdfError": "Ошибка экспорта PDF",
   "deleteDuplicatesButton": "Удалить дубликаты",
-  "@deleteDuplicatesButton": {
-    "description": "Button to delete duplicated items"
-  },
   "deleteDuplicatesConfirmationMessage": "Вы уверены, что хотите удалить {count} повторяющихся элементов? Будет сохранена только одна копия каждого из них.",
-  "@deleteDuplicatesConfirmationMessage": {
-    "description": "Confirmation message when deleting duplicates",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "onboardingDownloadAppTitle": "Установите Quizdy на ваши устройства",
   "onboardingDownloadAppDescription": "Установите Quizdy на мобильный через QR-коды или сразу откройте ссылки магазинов для компьютера.",
   "onboardingDownloadAppSubtitle": "Установите на мобильный или компьютер за один шаг.",
@@ -1058,77 +616,24 @@
   "onboardingDownloadQrTitle": "Сканируйте, чтобы продолжить",
   "onboardingDownloadQrDescription": "Используйте камеру телефона, чтобы открыть ссылку магазина.",
   "studyPdfTableOfContents": "Оглавление",
-  "@studyPdfTableOfContents": {
-    "description": "Title of the table of contents page in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudy": "Включить обучение",
-  "@exportPdfOptionsIncludeStudy": {
-    "description": "Switch label to include the study content pages in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudySubtitle": "Добавить страницы с обучающим контентом",
-  "@exportPdfOptionsIncludeStudySubtitle": {
-    "description": "Subtitle for the include study switch in the export PDF dialog"
-  },
   "exportPdfOptionsTitle": "Экспорт в PDF",
-  "@exportPdfOptionsTitle": {
-    "description": "Title of the export PDF options dialog"
-  },
   "exportPdfOptionsIncludeQuestions": "Включить страницу с вопросами",
-  "@exportPdfOptionsIncludeQuestions": {
-    "description": "Switch label to include a questions page in the exported PDF"
-  },
   "exportPdfOptionsIncludeQuestionsSubtitle": "Добавить страницу со всеми вопросами теста",
-  "@exportPdfOptionsIncludeQuestionsSubtitle": {
-    "description": "Subtitle for the include questions switch in the export PDF dialog"
-  },
   "exportPdfOptionsIncludeAnswers": "Включить ответы",
-  "@exportPdfOptionsIncludeAnswers": {
-    "description": "Switch label to include correct answers in the questions page"
-  },
   "exportPdfOptionsIncludeAnswersSubtitle": "Добавить отдельную страницу с правильными ответами",
-  "@exportPdfOptionsIncludeAnswersSubtitle": {
-    "description": "Subtitle for the include answers switch in the export PDF dialog"
-  },
   "exportPdfQuestionsPageTitle": "Вопросы",
-  "@exportPdfQuestionsPageTitle": {
-    "description": "Section title for the questions page in the exported PDF"
-  },
   "exportPdfAnswersLabel": "Ответы",
-  "@exportPdfAnswersLabel": {
-    "description": "Title of the answers page in the exported PDF"
-  },
   "exportButton": "Экспорт",
-  "@exportButton": {
-    "description": "Label for the Export button in the export PDF options dialog"
-  },
   "openInQuizdyApp": "Открыть в приложении Quizdy",
   "open": "Открыть",
   "installApp": "Установить приложение",
   "updateAvailableTitle": "Доступно обновление",
-  "@updateAvailableTitle": {
-    "description": "Title shown in the update banner when a newer app version is available."
-  },
   "updateAvailableMessage": "Доступна версия {version} приложения Quizdy.",
-  "@updateAvailableMessage": {
-    "description": "Subtitle in the update banner indicating which version is available.",
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
   "updateButton": "Обновить",
-  "@updateButton": {
-    "description": "Label for the update button in the update banner."
-  },
   "forceUpdateTitle": "Требуется обновление",
-  "@forceUpdateTitle": {
-    "description": "Title of the force update dialog."
-  },
   "forceUpdateMessage": "Для продолжения использования Quizdy необходимо обязательное обновление. Пожалуйста, обновите приложение.",
-  "@forceUpdateMessage": {
-    "description": "Body message of the force update dialog."
-  },
   "questionOrderBySection": "По разделам",
   "questionOrderBySectionDesc": "Группируйте вопросы по разделам и показывайте каждый раздел в порядке возрастания",
   "srsStatsTitle": "Статистика",

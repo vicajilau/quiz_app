@@ -1,2477 +1,538 @@
 {
   "@@locale": "ar",
   "abortQuizTitle": "إلغاء Quiz؟",
-  "@abortQuizTitle": {
-    "description": "Title for the abort quiz confirmation dialog"
-  },
   "abortQuizMessage": "سيؤدي فتح ملف جديد إلى إيقاف الاختبار الحالي.",
-  "@abortQuizMessage": {
-    "description": "Message for the abort quiz confirmation dialog"
-  },
   "stopAndOpenButton": "إيقاف وفتح",
-  "@stopAndOpenButton": {
-    "description": "Label for the button that stops current quiz and opens a new file"
-  },
   "titleAppBar": "اختبار - محاكي الامتحان",
-  "@titleAppBar": {
-    "description": "Title of the application displayed in the AppBar."
-  },
   "create": "إنشاء",
-  "@create": {
-    "description": "Label for the Create Quiz file button in the AppBar."
-  },
   "preview": "معاينة",
-  "@preview": {
-    "description": "Label for the LaTeX preview section in question dialogs."
-  },
   "previewLabel": "معاينة:",
-  "@previewLabel": {
-    "description": "Label text for preview section"
-  },
   "emptyPlaceholder": "(فارغ)",
-  "@emptyPlaceholder": {
-    "description": "Placeholder text when content is empty"
-  },
   "latexSyntaxTitle": "بناء جملة LaTeX:",
-  "@latexSyntaxTitle": {
-    "description": "Title for LaTeX syntax help section"
-  },
   "latexSyntaxHelp": "الرياضيات المضمنة: استخدم $...$ لتعبيرات LaTeX\nمثال: $x^2 + y^2 = z^2$",
-  "@latexSyntaxHelp": {
-    "description": "Help text explaining LaTeX syntax"
-  },
   "previewLatexTooltip": "معاينة عرض LaTeX",
-  "@previewLatexTooltip": {
-    "description": "Tooltip for preview LaTeX button"
-  },
   "okButton": "موافق",
-  "@okButton": {
-    "description": "Generic OK button text"
-  },
   "aiEnterContentTitle": "إدخال المحتوى",
-  "@aiEnterContentTitle": {
-    "description": "Title for the step 2 of AI question generation"
-  },
   "aiEnterContentDescription": "الصق أي نص أو أرفق ملفات كمصدر للمحتوى",
-  "@aiEnterContentDescription": {
-    "description": "Description for the content input step"
-  },
   "aiContentFieldHint": "أدخل موضوعاً مثل \"تاريخ الحرب العالمية الثانية\" أو الصق محتوى نصي هنا...",
-  "@aiContentFieldHint": {
-    "description": "Hint text for the content input field"
-  },
   "aiAttachFileHint": "إرفاق ملف (PDF، TXT، MP3، MP4،...)",
-  "@aiAttachFileHint": {
-    "description": "Hint text for the file attachment area"
-  },
   "dropAttachmentHere": "أفلت الملف هنا",
-  "@dropAttachmentHere": {
-    "description": "Hint shown when dragging a file over the attachment area"
-  },
   "dropImageHere": "أفلت الصورة هنا",
-  "@dropImageHere": {
-    "description": "Hint shown when dragging an image over the image section"
-  },
   "aiNumberQuestionsLabel": "عدد الأسئلة",
-  "@aiNumberQuestionsLabel": {
-    "description": "Label for number of questions input"
-  },
   "backButton": "رجوع",
-  "@backButton": {
-    "description": "Generic back button text"
-  },
   "generateButton": "توليد",
-  "@generateButton": {
-    "description": "Generic generate button text"
-  },
   "aiTopicModeCount": "وضع الموضوع ({count} كلمات)",
-  "@aiTopicModeCount": {
-    "description": "Topic mode with word count",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "aiTextModeCount": "وضع النص ({count} كلمات)",
-  "@aiTextModeCount": {
-    "description": "Text mode with word count",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "150"
-      }
-    }
-  },
   "aiGenerationCategoryLabel": "وضع المحتوى",
-  "@aiGenerationCategoryLabel": {
-    "description": "Label for AI generation category selector"
-  },
   "aiGenerationCategoryTheory": "نظرية",
-  "@aiGenerationCategoryTheory": {
-    "description": "Label for theory category"
-  },
   "aiGenerationCategoryExercises": "تمارين",
-  "@aiGenerationCategoryExercises": {
-    "description": "Label for exercises category"
-  },
   "aiGenerationCategoryBoth": "مختلط",
-  "@aiGenerationCategoryBoth": {
-    "description": "Label for mixed category"
-  },
   "aiContextMode": "وضع السياق",
-  "@aiContextMode": {
-    "description": "Label for context mode when a file is uploaded"
-  },
   "load": "تحميل",
-  "@load": {
-    "description": "Label for the Load Quiz file button in the AppBar."
-  },
   "fileLoaded": "تم تحميل الملف: {filePath}",
-  "@fileLoaded": {
-    "description": "Message displayed when a file is successfully loaded.",
-    "placeholders": {
-      "filePath": {
-        "type": "String",
-        "example": "/path/to/file.quiz"
-      }
-    }
-  },
   "fileSaved": "تم حفظ الملف: {filePath}",
-  "@fileSaved": {
-    "description": "Message displayed when a file is successfully saved.",
-    "placeholders": {
-      "filePath": {
-        "type": "String",
-        "example": "/path/to/file.quiz"
-      }
-    }
-  },
   "dropFileHere": "انقر فوق الشعار أو اسحب ملف .quiz إلى الشاشة",
   "errorOpeningFile": "خطأ في فتح الملف",
-  "@errorOpeningFile": {
-    "description": "Generic error message when opening a file fails."
-  },
   "replaceFileTitle": "تحميل اختبار Quiz جديد",
-  "@replaceFileTitle": {
-    "description": "Title of the confirmation dialog to replace the current file."
-  },
   "replaceFileMessage": "هناك اختبار Quiz محمل بالفعل. هل تريد استبداله بالملف الجديد؟",
-  "@replaceFileMessage": {
-    "description": "Message of the confirmation dialog to replace the current file."
-  },
   "replaceButton": "تحميل",
-  "@replaceButton": {
-    "description": "Button to confirm replacing the file."
-  },
-  "@dropFileHere": {
-    "description": "النص المعروض داخل منطقة الإفلات لسحب الملفات."
-  },
   "clickOrDragFile": "انقر للتحميل أو اسحب ملف .quiz إلى الشاشة",
-  "@clickOrDragFile": {
-    "description": "النص المعروض أسفل منطقة التحميل"
-  },
   "errorInvalidFile": "خطأ: ملف غير صالح. يجب أن يكون ملف .quiz.",
-  "@errorInvalidFile": {
-    "description": "Message displayed when the dropped file is not a .quiz file."
-  },
   "errorLoadingFile": "خطأ في تحميل ملف الاختبار: {error}",
-  "@errorLoadingFile": {
-    "description": "Message displayed when there is an error while loading a Quiz file.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "File not found"
-      }
-    }
-  },
   "errorExportingFile": "خطأ في تصدير الملف: {error}",
-  "@errorExportingFile": {
-    "description": "Message displayed when there is an error while exporting a file.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "File not found"
-      }
-    }
-  },
   "cancelButton": "إلغاء",
-  "@cancelButton": {
-    "description": "Cancel button."
-  },
   "saveButton": "حفظ",
-  "@saveButton": {
-    "description": "Save button."
-  },
   "newTag": "جديد",
-  "@newTag": {
-    "description": "Tag to indicate a new or modified item"
-  },
   "modifiedTag": "معدل",
-  "@modifiedTag": {
-    "description": "Tag to indicate an item has been modified"
-  },
   "confirmDeleteTitle": "تأكيد الحذف",
-  "@confirmDeleteTitle": {
-    "description": "Title for the confirmation dialog when deleting a process."
-  },
   "confirmDeleteMessage": "هل أنت متأكد من أنك تريد حذف العملية `{processName}`؟",
-  "@confirmDeleteMessage": {
-    "description": "Message in the confirmation dialog for deletion.",
-    "placeholders": {
-      "processName": {
-        "type": "String",
-        "example": "Question 1"
-      }
-    }
-  },
   "deleteButton": "حذف",
-  "@deleteButton": {
-    "description": "Button text for confirming deletion."
-  },
   "confirmExitTitle": "تأكيد الخروج",
-  "@confirmExitTitle": {
-    "description": "Title for the confirmation dialog when exiting."
-  },
   "confirmExitMessage": "هناك تغييرات غير محفوظة. هل تريد الخروج وتجاهل التغييرات؟",
-  "@confirmExitMessage": {
-    "description": "Message in the confirmation dialog for exiting."
-  },
   "exitButton": "خروج بدون حفظ",
-  "@exitButton": {
-    "description": "Exit button text."
-  },
   "saveDialogTitle": "يرجى اختيار ملف الإخراج:",
-  "@saveDialogTitle": {
-    "description": "Title for the save dialog."
-  },
   "createQuizFileTitle": "إنشاء ملف اختبار",
-  "@createQuizFileTitle": {
-    "description": "Title for create quiz file dialog."
-  },
   "editQuizFileTitle": "تعديل ملف الاختبار",
-  "@editQuizFileTitle": {
-    "description": "Title for edit quiz file dialog."
-  },
   "fileNameLabel": "اسم الملف",
-  "@fileNameLabel": {
-    "description": "Label for file name input."
-  },
   "fileDescriptionLabel": "وصف الملف",
-  "@fileDescriptionLabel": {
-    "description": "Label for file description input."
-  },
   "createButton": "إنشاء",
-  "@createButton": {
-    "description": "Create button text."
-  },
   "fileNameRequiredError": "اسم الملف مطلوب.",
-  "@fileNameRequiredError": {
-    "description": "Error message when file name is empty."
-  },
   "fileDescriptionRequiredError": "وصف الملف مطلوب.",
-  "@fileDescriptionRequiredError": {
-    "description": "Error message when file description is empty."
-  },
   "versionLabel": "الإصدار",
-  "@versionLabel": {
-    "description": "Label for quiz version field"
-  },
   "authorLabel": "المؤلف",
-  "@authorLabel": {
-    "description": "Label for quiz author field"
-  },
   "authorRequiredError": "المؤلف مطلوب.",
-  "@authorRequiredError": {
-    "description": "Error message when author field is empty"
-  },
   "requiredFieldsError": "يجب ملء جميع الحقول المطلوبة.",
-  "@requiredFieldsError": {
-    "description": "Error message when required fields are missing"
-  },
   "requestFileNameTitle": "أدخل اسم ملف الاختبار",
-  "@requestFileNameTitle": {
-    "description": "Title for request file name dialog."
-  },
   "fileNameHint": "اسم الملف",
-  "@fileNameHint": {
-    "description": "Hint text for file name input."
-  },
   "emptyFileNameMessage": "اسم الملف لا يمكن أن يكون فارغاً.",
-  "@emptyFileNameMessage": {
-    "description": "Error message when file name is empty."
-  },
   "acceptButton": "قبول",
-  "@acceptButton": {
-    "description": "Accept button text."
-  },
   "saveTooltip": "حفظ الملف",
-  "@saveTooltip": {
-    "description": "Tooltip for save button."
-  },
   "saveDisabledTooltip": "لا توجد تغييرات للحفظ",
-  "@saveDisabledTooltip": {
-    "description": "Tooltip for disabled save button."
-  },
   "executeTooltip": "تنفيذ الامتحان",
-  "@executeTooltip": {
-    "description": "Tooltip for execute button."
-  },
   "addTooltip": "إضافة سؤال جديد",
-  "@addTooltip": {
-    "description": "Tooltip for add button."
-  },
   "backSemanticLabel": "زر الرجوع",
-  "@backSemanticLabel": {
-    "description": "Semantic label for back button."
-  },
   "createFileTooltip": "إنشاء ملف اختبار جديد",
-  "@createFileTooltip": {
-    "description": "Tooltip for create file button."
-  },
   "loadFileTooltip": "تحميل ملف اختبار موجود",
-  "@loadFileTooltip": {
-    "description": "Tooltip for load file button."
-  },
   "questionNumber": "السؤال {number}",
-  "@questionNumber": {
-    "description": "Question number label in quiz execution",
-    "placeholders": {
-      "number": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "questionOfTotal": "السؤال {current} من {total}",
-  "@questionOfTotal": {
-    "description": "تسمية تعرض رقم السؤال الحالي وإجمالي عدد الأسئلة",
-    "placeholders": {
-      "current": {
-        "type": "int",
-        "example": "1"
-      },
-      "total": {
-        "type": "int",
-        "example": "10"
-      }
-    }
-  },
   "previous": "السابق",
-  "@previous": {
-    "description": "Previous button text in quiz navigation"
-  },
   "skip": "تخطي",
-  "@skip": {
-    "description": "Skip button text in quiz navigation"
-  },
   "questionsOverview": "خريطة الأسئلة",
-  "@questionsOverview": {
-    "description": "Title for the questions overview bottom sheet"
-  },
   "next": "التالي",
-  "@next": {
-    "description": "Next button text in quiz navigation"
-  },
   "finish": "إنهاء",
-  "@finish": {
-    "description": "Finish button text in quiz navigation"
-  },
   "finishQuiz": "إنهاء الاختبار",
-  "@finishQuiz": {
-    "description": "Title of finish quiz dialog"
-  },
   "finishQuizConfirmation": "هل أنت متأكد من أنك تريد إنهاء الاختبار؟ لن تتمكن من تغيير إجاباتك بعد ذلك.",
-  "@finishQuizConfirmation": {
-    "description": "Confirmation message for finishing quiz"
-  },
   "abandonQuiz": "التخلي عن الاختبار",
-  "@abandonQuiz": {
-    "description": "Title of abandon quiz dialog"
-  },
   "abandonQuizConfirmation": "هل أنت متأكد من أنك تريد التخلي عن الاختبار؟ سيتم فقدان جميع التقدم.",
-  "@abandonQuizConfirmation": {
-    "description": "Confirmation message for abandoning quiz"
-  },
   "abandon": "التخلي",
-  "@abandon": {
-    "description": "Abandon button text"
-  },
   "quizCompleted": "تم إكمال الاختبار!",
-  "@quizCompleted": {
-    "description": "Quiz completed message"
-  },
   "score": "النتيجة: {score}%",
-  "@score": {
-    "description": "Score display",
-    "placeholders": {
-      "score": {
-        "type": "String",
-        "example": "85.5"
-      }
-    }
-  },
   "correctAnswers": "{correct} من {total} إجابات صحيحة",
-  "@correctAnswers": {
-    "description": "Correct answers count",
-    "placeholders": {
-      "correct": {
-        "type": "String",
-        "example": "8"
-      },
-      "total": {
-        "type": "int",
-        "example": "10"
-      }
-    }
-  },
   "retry": "إعادة المحاولة",
-  "@retry": {
-    "description": "Retry button text"
-  },
   "goBack": "إنهاء",
-  "@goBack": {
-    "description": "Go back button text"
-  },
   "retryFailedQuestions": "إعادة الأسئلة الخاطئة",
-  "@retryFailedQuestions": {
-    "description": "Button text to retry only the questions that were answered incorrectly"
-  },
   "question": "السؤال: {question}",
-  "@question": {
-    "description": "Question text in results",
-    "placeholders": {
-      "question": {
-        "type": "String",
-        "example": "What is the capital of France?"
-      }
-    }
-  },
   "selectQuestionCountTitle": "اختر عدد الأسئلة",
-  "@selectQuestionCountTitle": {
-    "description": "Title for the dialog to select number of questions for the quiz"
-  },
   "selectQuestionCountMessage": "كم عدد الأسئلة التي تريد الإجابة عليها في هذا الاختبار؟",
-  "@selectQuestionCountMessage": {
-    "description": "Message explaining the question count selection"
-  },
   "allQuestions": "جميع الأسئلة ({count})",
-  "@allQuestions": {
-    "description": "Option to select all available questions",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "25"
-      }
-    }
-  },
   "resolveUnansweredQuestions": "حل الأسئلة",
-  "@resolveUnansweredQuestions": {
-    "description": "Button text to resolve unanswered questions"
-  },
   "startQuiz": "بدء الاختبار",
-  "@startQuiz": {
-    "description": "Button text to start the quiz"
-  },
   "customNumberLabel": "أو أدخل رقماً مخصصاً:",
-  "@customNumberLabel": {
-    "description": "Label for custom number input section"
-  },
   "numberInputLabel": "عدد الأسئلة",
-  "@numberInputLabel": {
-    "description": "Label for the number input field"
-  },
   "errorInvalidNumber": "يرجى إدخال رقم صالح",
-  "@errorInvalidNumber": {
-    "description": "Error message for invalid number input"
-  },
   "errorNumberMustBePositive": "يجب أن يكون الرقم أكبر من 0",
-  "@errorNumberMustBePositive": {
-    "description": "Error message when number is zero or negative"
-  },
   "questionOrderConfigTitle": "إعداد ترتيب الأسئلة",
-  "@questionOrderConfigTitle": {
-    "description": "Title for the question order configuration dialog"
-  },
   "questionOrderConfigDescription": "اختر الترتيب الذي تريد أن تظهر به الأسئلة أثناء الامتحان:",
-  "@questionOrderConfigDescription": {
-    "description": "Description text for the question order configuration dialog"
-  },
   "questionOrderAscending": "الترتيب التصاعدي",
-  "@questionOrderAscending": {
-    "description": "Label for ascending question order option"
-  },
   "questionOrderAscendingDesc": "ستظهر الأسئلة بترتيب من 1 إلى النهاية",
-  "@questionOrderAscendingDesc": {
-    "description": "Description for ascending question order option"
-  },
   "questionOrderDescending": "الترتيب التنازلي",
-  "@questionOrderDescending": {
-    "description": "Label for descending question order option"
-  },
   "questionOrderDescendingDesc": "ستظهر الأسئلة من النهاية إلى 1",
-  "@questionOrderDescendingDesc": {
-    "description": "Description for descending question order option"
-  },
   "questionOrderRandom": "ترتيب عشوائي للأسئلة",
-  "@questionOrderRandom": {
-    "description": "Label for random question order option"
-  },
   "questionOrderRandomDesc": "ستظهر الأسئلة بترتيب عشوائي",
-  "@questionOrderRandomDesc": {
-    "description": "Description for random question order option"
-  },
   "questionOrderConfigTooltip": "إعداد ترتيب الأسئلة",
-  "@questionOrderConfigTooltip": {
-    "description": "Tooltip for the question order configuration button"
-  },
   "save": "حفظ",
-  "@save": {
-    "description": "Label for the save button"
-  },
   "examTimeLimitTitle": "حد وقت الامتحان",
-  "@examTimeLimitTitle": {
-    "description": "Title for exam time limit section"
-  },
   "examTimeLimitDescription": "قم بتعيين حد زمني للاختبار. سيتم عرض مؤقت تنازلي أثناء الاختبار.",
-  "@examTimeLimitDescription": {
-    "description": "Description for exam time limit feature"
-  },
   "examTimeLimitOffDescription": "لا يوجد حد زمني لهذا الاختبار.",
-  "@examTimeLimitOffDescription": {
-    "description": "Description shown when time limit is disabled"
-  },
   "enableTimeLimit": "تفعيل الحد الزمني",
-  "@enableTimeLimit": {
-    "description": "Label for enable exam time limit switch"
-  },
   "timeLimitMinutes": "الحد الزمني (دقائق)",
-  "@timeLimitMinutes": {
-    "description": "Label for exam time minutes input"
-  },
   "examTimeExpiredTitle": "انتهى الوقت!",
-  "@examTimeExpiredTitle": {
-    "description": "Title for exam time expired dialog"
-  },
   "examTimeExpiredMessage": "انتهى وقت الامتحان. تم تقديم إجاباتك تلقائياً.",
-  "@examTimeExpiredMessage": {
-    "description": "Message for exam time expired dialog"
-  },
   "remainingTime": "{hours}:{minutes}:{seconds}",
-  "@remainingTime": {
-    "description": "Format for remaining time display (hours:minutes:seconds)",
-    "placeholders": {
-      "hours": {
-        "type": "String",
-        "example": "01"
-      },
-      "minutes": {
-        "type": "String",
-        "example": "30"
-      },
-      "seconds": {
-        "type": "String",
-        "example": "45"
-      }
-    }
-  },
   "questionTypeMultipleChoice": "اختيار متعدد",
-  "@questionTypeMultipleChoice": {
-    "description": "Label for multiple choice question type"
-  },
   "questionTypeSingleChoice": "اختيار واحد",
-  "@questionTypeSingleChoice": {
-    "description": "Label for single choice question type"
-  },
   "questionTypeTrueFalse": "صح/خطأ",
-  "@questionTypeTrueFalse": {
-    "description": "Label for true/false question type"
-  },
   "questionTypeEssay": "مقالي",
-  "@questionTypeEssay": {
-    "description": "تسمية لنوع السؤال المقالي"
-  },
   "questionTypeRandom": "مختلط",
-  "@questionTypeRandom": {
-    "description": "تسمية لنوع السؤال المختلط"
-  },
   "questionTypeUnknown": "غير معروف",
-  "@questionTypeUnknown": {
-    "description": "Label for unknown question type"
-  },
   "optionsCount": "{count, plural, =1{خيار واحد} other{{count} خيارات}}",
-  "@optionsCount": {
-    "description": "Text showing the number of options in a question",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "optionsTooltip": "عدد خيارات الإجابة لهذا السؤال",
-  "@optionsTooltip": {
-    "description": "Tooltip text for the options count badge"
-  },
   "imageTooltip": "هذا السؤال له صورة مرتبطة",
-  "@imageTooltip": {
-    "description": "Tooltip text for the image indicator badge"
-  },
   "explanationTooltip": "هذا السؤال له شرح",
-  "@explanationTooltip": {
-    "description": "Tooltip text for the explanation indicator badge"
-  },
   "aiPrompt": "ركز على سؤال الطالب، وليس على الإجابة مباشرة على سؤال الامتحان الأصلي. اشرح بمنهج تربوي. بالنسبة للتمارين العملية أو المسائل الرياضية، قدم تعليمات خطوة بخطوة. بالنسبة للأسئلة النظرية، قدم شرحًا موجزًا دون تنظيم الإجابة في أقسام. أجب بنفس اللغة التي سُئلت بها.",
-  "@aiPrompt": {
-    "description": "Base prompt for AI assistant"
-  },
   "aiChatGuardrail": "مهم: أنت مساعد دراسة حصريًا لهذا الـ Quiz. يجب عليك الإجابة فقط على الأسئلة المتعلقة بسؤال الـ Quiz الحالي أو خياراته أو شرحه أو الموضوع التعليمي الذي يغطيه. إذا سأل الطالب عن شيء غير متعلق بالـ Quiz (مثل نموذجك الداخلي أو تفاصيل النظام أو معرفة عامة غير متعلقة بالسؤال أو أي طلب خارج الموضوع)، أجب فقط بـ: \"أنا هنا لمساعدتك في هذا الـ Quiz! دعنا نركز على السؤال. لا تتردد في سؤالي عن الموضوع أو خيارات الإجابة أو أي شيء متعلق بهذا السؤال.\" لا تكشف أبدًا عن تفاصيل تقنية عن نفسك أو النظام أو نموذج الذكاء الاصطناعي المستخدم.",
-  "@aiChatGuardrail": {
-    "description": "Guardrail prompt to keep AI focused on quiz content"
-  },
   "questionLabel": "السؤال",
-  "@questionLabel": {
-    "description": "Label for question in AI dialog"
-  },
   "optionsLabel": "الخيارات",
-  "@optionsLabel": {
-    "description": "Label for options in AI dialog"
-  },
   "studentComment": "تعليق الطالب",
-  "@studentComment": {
-    "description": "Label for student comment in AI dialog"
-  },
   "aiAssistantTitle": "مساعد الدراسة الذكي",
-  "@aiAssistantTitle": {
-    "description": "Title for AI assistant dialog"
-  },
   "questionContext": "سياق السؤال",
-  "@questionContext": {
-    "description": "Label for question context section"
-  },
   "aiAssistant": "المساعد الذكي",
-  "@aiAssistant": {
-    "description": "AI assistant label in chat"
-  },
   "aiThinking": "الذكاء الاصطناعي يفكر...",
-  "@aiThinking": {
-    "description": "Loading message while AI processes"
-  },
   "askAIHint": "اطرح سؤالك حول هذا الموضوع...",
-  "@askAIHint": {
-    "description": "Hint text for AI question input"
-  },
   "aiPlaceholderResponse": "هذه استجابة مؤقتة. في التطبيق الحقيقي، سيتصل هذا بخدمة الذكاء الاصطناعي لتقديم شروحات مفيدة حول السؤال.",
-  "@aiPlaceholderResponse": {
-    "description": "Placeholder AI response for demo"
-  },
   "aiErrorResponse": "عذراً، حدث خطأ في معالجة سؤالك. يرجى المحاولة مرة أخرى.",
-  "@aiErrorResponse": {
-    "description": "Error message when AI request fails"
-  },
   "configureApiKeyMessage": "يرجى تكوين مفتاح API للذكاء الاصطناعي في الإعدادات.",
-  "@configureApiKeyMessage": {
-    "description": "Message to configure API key when not set"
-  },
   "errorLabel": "خطأ:",
-  "@errorLabel": {
-    "description": "Error label prefix for error messages"
-  },
   "noResponseReceived": "لم يتم استلام رد",
-  "@noResponseReceived": {
-    "description": "Message when no response is received from AI"
-  },
   "invalidApiKeyError": "مفتاح API غير صالح. يرجى التحقق من مفتاح OpenAI API في الإعدادات.",
-  "@invalidApiKeyError": {
-    "description": "Error message for invalid API key"
-  },
   "rateLimitError": "تم تجاوز الحصة أو أن النموذج غير متوفر في خطتك. تحقق من خطتك.",
-  "@rateLimitError": {
-    "description": "Error message for rate limit exceeded or quota issues"
-  },
   "modelNotFoundError": "النموذج غير موجود. يرجى التحقق من إمكانية الوصول إلى API.",
-  "@modelNotFoundError": {
-    "description": "Error message for model not found"
-  },
   "unknownError": "خطأ غير معروف",
-  "@unknownError": {
-    "description": "Generic unknown error message"
-  },
   "networkErrorOpenAI": "خطأ في الشبكة: تعذر الاتصال بـ OpenAI. يرجى التحقق من اتصالك بالإنترنت.",
-  "@networkErrorOpenAI": {
-    "description": "رسالة خطأ في الاتصال بالشبكة لـ OpenAI"
-  },
   "networkErrorGemini": "خطأ في الشبكة: تعذر الاتصال بـ Gemini. يرجى التحقق من اتصالك بالإنترنت.",
-  "@networkErrorGemini": {
-    "description": "رسالة خطأ في الاتصال بالشبكة لـ Gemini"
-  },
   "openaiApiKeyNotConfigured": "مفتاح OpenAI API غير مُكوَّن",
-  "@openaiApiKeyNotConfigured": {
-    "description": "Error message when API key is not configured"
-  },
   "geminiApiKeyNotConfigured": "مفتاح Gemini API غير مُكوَّن",
-  "@geminiApiKeyNotConfigured": {
-    "description": "Error message when Gemini API key is not configured"
-  },
   "geminiApiKeyLabel": "مفتاح Gemini API",
-  "@geminiApiKeyLabel": {
-    "description": "Label for Gemini API Key field"
-  },
   "geminiApiKeyHint": "أدخل مفتاح Gemini API الخاص بك",
-  "@geminiApiKeyHint": {
-    "description": "Hint text for Gemini API Key field"
-  },
   "geminiApiKeyDescription": "مطلوب لوظائف Gemini AI. يتم تخزين مفتاحك بأمان.",
-  "@geminiApiKeyDescription": {
-    "description": "Description for Gemini API Key field"
-  },
   "getGeminiApiKeyTooltip": "احصل على مفتاح API من Google AI Studio",
-  "@getGeminiApiKeyTooltip": {
-    "description": "Tooltip for the button to get Gemini API key"
-  },
   "aiRequiresAtLeastOneApiKeyError": "يتطلب مساعد الدراسة الذكي مفتاح API واحدًا على الأقل (Gemini أو OpenAI). يرجى إدخال مفتاح API أو تعطيل المساعد الذكي.",
-  "@aiRequiresAtLeastOneApiKeyError": {
-    "description": "رسالة خطأ عند تمكين مساعد الذكاء الاصطناعي ولكن لم يتم توفير مفاتيح API"
-  },
   "minutesAbbreviation": "د",
-  "@minutesAbbreviation": {
-    "description": "Abbreviation for minutes"
-  },
   "aiButtonTooltip": "مساعد الدراسة الذكي",
-  "@aiButtonTooltip": {
-    "description": "Tooltip for AI assistant button"
-  },
   "aiButtonText": "AI",
-  "@aiButtonText": {
-    "description": "Text for AI assistant button"
-  },
   "aiAssistantSettingsTitle": "مساعد الدراسة الذكي (معاينة)",
-  "@aiAssistantSettingsTitle": {
-    "description": "Title for AI assistant settings section"
-  },
   "aiAssistantSettingsDescription": "تفعيل أو تعطيل مساعد الدراسة الذكي للأسئلة",
-  "@aiAssistantSettingsDescription": {
-    "description": "Description for AI assistant settings"
-  },
   "aiDefaultModelTitle": "نموذج الذكاء الاصطناعي الافتراضي",
-  "@aiDefaultModelTitle": {
-    "description": "Title for default AI model settings section"
-  },
   "aiDefaultModelDescription": "حدد خدمة ونموذج الذكاء الاصطناعي الافتراضي لتوليد الأسئلة",
-  "@aiDefaultModelDescription": {
-    "description": "Description for default AI model settings"
-  },
   "openaiApiKeyLabel": "مفتاح OpenAI API",
-  "@openaiApiKeyLabel": {
-    "description": "Label for OpenAI API Key field"
-  },
   "openaiApiKeyHint": "أدخل مفتاح OpenAI API الخاص بك (sk-...)",
-  "@openaiApiKeyHint": {
-    "description": "Hint text for OpenAI API Key field"
-  },
   "openaiApiKeyDescription": "مطلوب للتكامل مع OpenAI. يتم تخزين مفتاح OpenAI الخاص بك بأمان.",
-  "@openaiApiKeyDescription": {
-    "description": "Description for OpenAI API Key field"
-  },
   "aiAssistantRequiresApiKeyError": "مساعد الدراسة الذكي يتطلب مفتاح OpenAI API. يرجى إدخال مفتاح API أو تعطيل المساعد الذكي.",
-  "@aiAssistantRequiresApiKeyError": {
-    "description": "Error message when AI Assistant is enabled but no API key is provided"
-  },
   "getApiKeyTooltip": "احصل على مفتاح API من OpenAI",
-  "@getApiKeyTooltip": {
-    "description": "Tooltip for the button to get API key from OpenAI"
-  },
   "deleteAction": "حذف",
-  "@deleteAction": {
-    "description": "Delete action text shown when swiping to delete"
-  },
   "explanationLabel": "الشرح (اختياري)",
-  "@explanationLabel": {
-    "description": "Label for the explanation input field"
-  },
   "explanationHint": "أدخل شرحاً للإجابة/الإجابات الصحيحة",
-  "@explanationHint": {
-    "description": "Hint text for the explanation input field"
-  },
   "explanationTitle": "الشرح",
-  "@explanationTitle": {
-    "description": "Title for the explanation section in quiz results"
-  },
   "imageLabel": "الصورة",
-  "@imageLabel": {
-    "description": "Label for the image section in question editor"
-  },
   "changeImage": "تغيير الصورة",
-  "@changeImage": {
-    "description": "Text for button to change current image"
-  },
   "removeImage": "إزالة الصورة",
-  "@removeImage": {
-    "description": "Text for button to remove current image"
-  },
   "addImageTap": "انقر لإضافة صورة",
-  "@addImageTap": {
-    "description": "Instructional text for adding an image"
-  },
   "imageFormats": "التنسيقات: JPG، PNG، GIF",
-  "@imageFormats": {
-    "description": "Text indicating supported image formats"
-  },
   "imageLoadError": "خطأ في تحميل الصورة",
-  "@imageLoadError": {
-    "description": "Error message when image cannot be loaded"
-  },
   "imagePickError": "خطأ في تحميل الصورة: {error}",
-  "@imagePickError": {
-    "description": "Error message when image selection fails",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Invalid file"
-      }
-    }
-  },
   "tapToZoom": "انقر للتكبير",
-  "@tapToZoom": {
-    "description": "Instructional text to indicate image can be zoomed"
-  },
   "trueLabel": "صحيح",
-  "@trueLabel": {
-    "description": "Label for true option in true/false questions"
-  },
   "falseLabel": "خطأ",
-  "@falseLabel": {
-    "description": "Label for false option in true/false questions"
-  },
   "addQuestion": "إضافة سؤال",
-  "@addQuestion": {
-    "description": "Title for adding a new question dialog"
-  },
   "editQuestion": "تحرير السؤال",
-  "@editQuestion": {
-    "description": "Title for editing an existing question dialog"
-  },
   "questionText": "نص السؤال",
-  "@questionText": {
-    "description": "Label for question text input field"
-  },
   "questionType": "نوع السؤال",
-  "@questionType": {
-    "description": "Label for question type dropdown"
-  },
   "addOption": "إضافة خيار",
-  "@addOption": {
-    "description": "Label for add option button"
-  },
   "optionLabel": "الخيار",
-  "@optionLabel": {
-    "description": "Label for individual option input field"
-  },
   "questionTextRequired": "نص السؤال مطلوب",
-  "@questionTextRequired": {
-    "description": "Error message when question text is empty"
-  },
   "atLeastOneOptionRequired": "يجب أن يحتوي خيار واحد على الأقل على نص",
-  "@atLeastOneOptionRequired": {
-    "description": "Error message when all options are empty"
-  },
   "atLeastOneCorrectAnswerRequired": "يجب اختيار إجابة صحيحة واحدة على الأقل",
-  "@atLeastOneCorrectAnswerRequired": {
-    "description": "Error message when no correct answer is selected"
-  },
   "onlyOneCorrectAnswerAllowed": "إجابة صحيحة واحدة فقط مسموحة لهذا النوع من الأسئلة",
-  "@onlyOneCorrectAnswerAllowed": {
-    "description": "Error message when multiple correct answers are selected for single choice questions"
-  },
   "removeOption": "إزالة الخيار",
-  "@removeOption": {
-    "description": "Tooltip for remove option button"
-  },
   "selectCorrectAnswer": "اختر الإجابة الصحيحة",
-  "@selectCorrectAnswer": {
-    "description": "Tooltip for radio button to select correct answer"
-  },
   "selectCorrectAnswers": "اختر الإجابات الصحيحة",
-  "@selectCorrectAnswers": {
-    "description": "Tooltip for checkbox to select correct answers"
-  },
   "emptyOptionsError": "الخيارات {optionNumbers} فارغة. يرجى إضافة نص إليها أو إزالتها.",
-  "@emptyOptionsError": {
-    "description": "Error message when some options are empty",
-    "placeholders": {
-      "optionNumbers": {
-        "type": "String",
-        "example": "1, 3, 4"
-      }
-    }
-  },
   "emptyOptionError": "الخيار {optionNumber} فارغ. يرجى إضافة نص إليه أو إزالته.",
-  "@emptyOptionError": {
-    "description": "Error message when one option is empty",
-    "placeholders": {
-      "optionNumber": {
-        "type": "String",
-        "example": "3"
-      }
-    }
-  },
   "errorDuplicatedOption": "لا يمكن تكرار الخيارات.",
-  "@errorDuplicatedOption": {
-    "description": "رسالة خطأ عندما تحتوي الخيارات على نص مكرر"
-  },
   "optionEmptyError": "هذا الخيار لا يمكن أن يكون فارغاً",
-  "@optionEmptyError": {
-    "description": "Error message for individual empty option field"
-  },
   "hasImage": "صورة",
-  "@hasImage": {
-    "description": "Label indicating that a question has an image"
-  },
   "hasExplanation": "شرح",
-  "@hasExplanation": {
-    "description": "Label indicating that a question has an explanation"
-  },
   "errorLoadingSettings": "خطأ في تحميل الإعدادات: {error}",
-  "@errorLoadingSettings": {
-    "description": "Message displayed when there is an error while loading application settings.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "description": "The error message"
-      }
-    }
-  },
   "couldNotOpenUrl": "لا يمكن فتح {url}",
-  "@couldNotOpenUrl": {
-    "description": "Message displayed when a URL cannot be opened.",
-    "placeholders": {
-      "url": {
-        "type": "String",
-        "description": "The URL that could not be opened"
-      }
-    }
-  },
   "loadingAiServices": "جاري تحميل خدمات الذكاء الاصطناعي...",
-  "@loadingAiServices": {
-    "description": "Message displayed while loading available AI services."
-  },
   "usingAiService": "الاستخدام: {serviceName}",
-  "@usingAiService": {
-    "description": "Message displayed showing which AI service is being used.",
-    "placeholders": {
-      "serviceName": {
-        "type": "String",
-        "description": "The name of the AI service"
-      }
-    }
-  },
   "aiServiceLabel": "خدمة الذكاء الاصطناعي:",
-  "@aiServiceLabel": {
-    "description": "Label for the AI service selector."
-  },
   "aiModelLabel": "النموذج:",
-  "@aiModelLabel": {
-    "description": "Label for the AI model selector."
-  },
   "importQuestionsTitle": "استيراد الأسئلة",
-  "@importQuestionsTitle": {
-    "description": "Title for the import questions dialog."
-  },
   "importQuestionsMessage": "وجدت {count} أسئلة في \"{fileName}\". أين تريد استيرادها؟",
-  "@importQuestionsMessage": {
-    "description": "Message asking where to import questions from another file.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "questions.quiz"
-      }
-    }
-  },
   "importQuestionsPositionQuestion": "أين تريد إضافة هذه الأسئلة؟",
-  "@importQuestionsPositionQuestion": {
-    "description": "Question asking about import position."
-  },
   "importAtBeginning": "في البداية",
-  "@importAtBeginning": {
-    "description": "Button to import questions at the beginning of the list."
-  },
   "importAtEnd": "في النهاية",
-  "@importAtEnd": {
-    "description": "Button to import questions at the end of the list."
-  },
   "questionsImportedSuccess": "تم استيراد {count} أسئلة بنجاح",
-  "@questionsImportedSuccess": {
-    "description": "Success message when questions are imported.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "importChunksTitle": "استيراد الأقسام",
-  "@importChunksTitle": {
-    "description": "Title for the import chunks dialog."
-  },
   "importChunksMessage": "تم العثور على {count} أقسام في \"{fileName}\". أين تريد استيرادها؟",
-  "@importChunksMessage": {
-    "description": "Message asking where to import sections from another file.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "study.quiz"
-      }
-    }
-  },
   "importChunksPositionQuestion": "أين تريد إضافة هذه الأقسام؟",
-  "@importChunksPositionQuestion": {
-    "description": "Question asking about import position for chunks."
-  },
   "chunksImportedSuccess": "تم استيراد {count} أقسام بنجاح",
-  "@chunksImportedSuccess": {
-    "description": "Success message when chunks are imported.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "noChunksInFile": "لم يتم العثور على أقسام في الملف المستورد",
-  "@noChunksInFile": {
-    "description": "Error message when the imported file has no study sections."
-  },
   "importQuestionsTooltip": "استيراد أسئلة من ملف اختبار آخر",
-  "@importQuestionsTooltip": {
-    "description": "Tooltip for the import questions button."
-  },
   "dragDropHintText": "يمكنك أيضاً سحب وإفلات ملفات .quiz هنا لاستيراد الأسئلة",
-  "@dragDropHintText": {
-    "description": "Hint text shown when the question list is empty, indicating drag and drop functionality."
-  },
   "randomizeQuestionsTitle": "عشوائية الأسئلة",
-  "@randomizeQuestionsTitle": {
-    "description": "Title for the setting to randomize questions."
-  },
   "randomizeQuestionsDescription": "خلط ترتيب الأسئلة أثناء تنفيذ الاختبار",
-  "@randomizeQuestionsDescription": {
-    "description": "Description for the randomize questions setting."
-  },
   "randomizeQuestionsOffDescription": "ستظهر الأسئلة بترتيبها الأصلي",
-  "@randomizeQuestionsOffDescription": {
-    "description": "Description for the randomize questions setting when disabled."
-  },
   "randomizeAnswersTitle": "ترتيب عشوائي للإجابات",
-  "@randomizeAnswersTitle": {
-    "description": "Title for the setting to randomize answer options."
-  },
   "randomizeAnswersDescription": "خلط ترتيب خيارات الإجابة أثناء تنفيذ الاختبار",
-  "@randomizeAnswersDescription": {
-    "description": "Description for the randomize answers setting."
-  },
   "showCorrectAnswerCountTitle": "إظهار عدد الإجابات الصحيحة",
-  "@showCorrectAnswerCountTitle": {
-    "description": "Title for the setting to show correct answer count."
-  },
   "showCorrectAnswerCountDescription": "عرض عدد الإجابات الصحيحة في أسئلة الاختيار المتعدد",
-  "@showCorrectAnswerCountDescription": {
-    "description": "Description for the show correct answer count setting."
-  },
   "showCorrectAnswerCountOffDescription": "لن يتم عرض عدد الإجابات الصحيحة لأسئلة الاختيار من متعدد",
-  "@showCorrectAnswerCountOffDescription": {
-    "description": "Description for the show correct answer count setting when disabled."
-  },
   "correctAnswersCount": "اختر {count} إجابات صحيحة",
-  "@correctAnswersCount": {
-    "description": "Text showing how many correct answers to select in a multiple choice question.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "correctSelectedLabel": "صحيح",
-  "@correctSelectedLabel": {
-    "description": "Label for correctly selected answers in quiz results."
-  },
   "correctMissedLabel": "صحيح",
-  "@correctMissedLabel": {
-    "description": "Label for correct answers that were not selected in quiz results."
-  },
   "incorrectSelectedLabel": "خطأ",
-  "@incorrectSelectedLabel": {
-    "description": "Label for incorrectly selected answers in quiz results."
-  },
   "generateQuestionsWithAI": "إنتاج أسئلة بالذكاء الاصطناعي",
-  "@generateQuestionsWithAI": {
-    "description": "Tooltip for the generate questions with AI button."
-  },
   "addQuestionsWithAI": "إضافة أسئلة باستخدام الذكاء الاصطناعي",
-  "@addQuestionsWithAI": {
-    "description": "Label for the button to add more questions using AI when some already exist."
-  },
   "aiGenerateDialogTitle": "إنتاج أسئلة بالذكاء الاصطناعي",
-  "@aiGenerateDialogTitle": {
-    "description": "Title of the AI question generation dialog."
-  },
   "aiQuestionCountLabel": "عدد الأسئلة (اختياري)",
-  "@aiQuestionCountLabel": {
-    "description": "Label for the question count field."
-  },
   "aiQuestionCountHint": "اتركه فارغاً ليقرر الذكاء الاصطناعي",
-  "@aiQuestionCountHint": {
-    "description": "Hint text for the question count field."
-  },
   "aiQuestionCountValidation": "يجب أن يكون رقماً بين 1 و 50",
-  "@aiQuestionCountValidation": {
-    "description": "Validation message for question count."
-  },
   "aiQuestionTypeLabel": "نوع السؤال",
-  "@aiQuestionTypeLabel": {
-    "description": "Label for the question type selector."
-  },
   "aiQuestionTypeRandom": "عشوائي (مختلط)",
-  "@aiQuestionTypeRandom": {
-    "description": "Random type option for questions."
-  },
   "aiLanguageLabel": "لغة الأسئلة",
-  "@aiLanguageLabel": {
-    "description": "Label for the language selector."
-  },
   "aiContentLabel": "المحتوى لإنتاج الأسئلة منه",
-  "@aiContentLabel": {
-    "description": "Label for the content field."
-  },
   "aiWordCount": "{current} / {max} كلمة",
-  "@aiWordCount": {
-    "description": "Word counter for content.",
-    "placeholders": {
-      "current": {
-        "type": "int",
-        "example": "150"
-      },
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiContentHint": "أدخل النص أو الموضوع أو المحتوى الذي تريد إنتاج أسئلة منه...",
-  "@aiContentHint": {
-    "description": "Hint text for the content field."
-  },
   "aiContentHelperText": "سينشئ الذكاء الاصطناعي أسئلة بناءً على هذا المحتوى",
-  "@aiContentHelperText": {
-    "description": "Additional helper text for the content field."
-  },
   "aiWordLimitError": "لقد تجاوزت حد {max} كلمة",
-  "@aiWordLimitError": {
-    "description": "Error when word limit is exceeded.",
-    "placeholders": {
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiContentRequiredError": "يجب أن تقدم محتوى لإنتاج الأسئلة",
-  "@aiContentRequiredError": {
-    "description": "Error when no content is provided."
-  },
   "aiContentLimitError": "المحتوى يتجاوز حد {max} كلمة",
-  "@aiContentLimitError": {
-    "description": "Validation error for word limit.",
-    "placeholders": {
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiMinWordsError": "قدم 10 كلمات على الأقل لإنتاج أسئلة عالية الجودة",
-  "@aiMinWordsError": {
-    "description": "Error when content is too short."
-  },
   "aiInfoTitle": "معلومات",
-  "@aiInfoTitle": {
-    "description": "Title of the information section."
-  },
   "aiInfoDescription": "• سيحلل الذكاء الاصطناعي المحتوى وينتج أسئلة ذات صلة\n• إذا كتبت أقل من 10 كلمات، فستدخل في وضع الموضوع حيث سيطرح أسئلة حول تلك المواضيع المحددة\n• مع أكثر من 10 كلمات ستدخل في وضع المحتوى الذي سيطرح أسئلة حول النص نفسه (مزيد من الكلمات = مزيد من الدقة)\n• يمكنك تضمين نصوص وتعريفات وشروحات أو أي مادة تعليمية\n• ستتضمن الأسئلة خيارات إجابة وشروحات\n• قد تستغرق العملية بضع ثوانٍ",
-  "@aiInfoDescription": {
-    "description": "Informative description about the AI generation process."
-  },
   "aiGenerateButton": "إنتاج الأسئلة",
-  "@aiGenerateButton": {
-    "description": "Text for the generate questions button."
-  },
   "languageSpanish": "الإسبانية",
-  "@languageSpanish": {
-    "description": "اسم اللغة الإسبانية."
-  },
   "languageEnglish": "الإنجليزية",
-  "@languageEnglish": {
-    "description": "اسم اللغة الإنجليزية."
-  },
   "languageFrench": "الفرنسية",
-  "@languageFrench": {
-    "description": "اسم اللغة الفرنسية."
-  },
   "languageGerman": "الألمانية",
-  "@languageGerman": {
-    "description": "اسم اللغة الألمانية."
-  },
   "languageGreek": "اليونانية",
-  "@languageGreek": {
-    "description": "اسم اللغة اليونانية."
-  },
   "languageItalian": "الإيطالية",
-  "@languageItalian": {
-    "description": "اسم اللغة الإيطالية."
-  },
   "languagePortuguese": "البرتغالية",
-  "@languagePortuguese": {
-    "description": "اسم اللغة البرتغالية."
-  },
   "languageCatalan": "الكتالونية",
-  "@languageCatalan": {
-    "description": "اسم اللغة الكتالونية."
-  },
   "languageBasque": "الباسكية",
-  "@languageBasque": {
-    "description": "اسم اللغة الباسكية."
-  },
   "languageGalician": "الغاليكية",
-  "@languageGalician": {
-    "description": "اسم اللغة الغاليكية."
-  },
   "languageHindi": "الهندية",
-  "@languageHindi": {
-    "description": "اسم اللغة الهندية."
-  },
   "languageChinese": "الصينية",
-  "@languageChinese": {
-    "description": "اسم اللغة الصينية."
-  },
   "languageArabic": "العربية",
-  "@languageArabic": {
-    "description": "اسم اللغة العربية."
-  },
   "languageJapanese": "اليابانية",
-  "@languageJapanese": {
-    "description": "اسم اللغة اليابانية."
-  },
   "languageRussian": "الروسية",
-  "@languageRussian": {
-    "description": "اسم اللغة الروسية."
-  },
   "languageGeorgian": "الجورجية",
-  "@languageGeorgian": {
-    "description": "اسم اللغة الجورجية."
-  },
   "languageUkrainian": "الأوكرانية",
-  "@languageUkrainian": {
-    "description": "اسم اللغة الأوكرانية."
-  },
   "languageKorean": "الكورية",
-  "@languageKorean": {
-    "description": "اسم اللغة الكورية."
-  },
   "aiServicesLoading": "جاري تحميل خدمات الذكاء الاصطناعي...",
-  "@aiServicesLoading": {
-    "description": "Message shown while loading available AI services."
-  },
   "aiServicesNotConfigured": "لم يتم تكوين خدمات الذكاء الاصطناعي",
-  "@aiServicesNotConfigured": {
-    "description": "Message shown when no AI services are configured."
-  },
   "aiGeneratedQuestions": "منتج بالذكاء الاصطناعي",
-  "@aiGeneratedQuestions": {
-    "description": "Name for AI generated questions in the import dialog."
-  },
   "aiApiKeyRequired": "يرجى تكوين مفتاح API واحد على الأقل للذكاء الاصطناعي في الإعدادات لاستخدام الإنتاج بالذكاء الاصطناعي.",
-  "@aiApiKeyRequired": {
-    "description": "Message shown when no API keys are configured for AI."
-  },
   "aiGenerationFailed": "لم أتمكن من إنتاج الأسئلة. جرب بمحتوى مختلف.",
-  "@aiGenerationFailed": {
-    "description": "Message shown when AI question generation fails."
-  },
   "aiGenerationErrorTitle": "خطأ في إنتاج الأسئلة",
-  "@aiGenerationErrorTitle": {
-    "description": "عنوان لمربع حوار الخطأ عند إنشاء الأسئلة باستخدام الذكاء الاصطناعي."
-  },
   "noQuestionsInFile": "لم توجد أسئلة في الملف المستورد",
-  "@noQuestionsInFile": {
-    "description": "Message shown when an imported file contains no questions."
-  },
   "couldNotAccessFile": "لا يمكن الوصول إلى الملف المحدد",
-  "@couldNotAccessFile": {
-    "description": "Message shown when a selected file cannot be accessed."
-  },
   "defaultOutputFileName": "output-file.quiz",
-  "@defaultOutputFileName": {
-    "description": "Default name for output files."
-  },
   "aiServiceLimitsWithChars": "الحد: {words} كلمة أو {chars} حرف",
-  "@aiServiceLimitsWithChars": {
-    "description": "Description of AI service limits with both word and character limits.",
-    "placeholders": {
-      "words": {
-        "type": "int",
-        "example": "3000"
-      },
-      "chars": {
-        "type": "int",
-        "example": "12000"
-      }
-    }
-  },
   "aiServiceLimitsWordsOnly": "الحد: {words} كلمة",
-  "@aiServiceLimitsWordsOnly": {
-    "description": "Description of AI service limits with only word limit.",
-    "placeholders": {
-      "words": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiAssistantDisabled": "مساعد الذكاء الاصطناعي معطل",
-  "@aiAssistantDisabled": {
-    "description": "عنوان الحوار عندما يكون مساعد الذكاء الاصطناعي معطلاً"
-  },
   "enableAiAssistant": "مساعد الذكاء الاصطناعي معطل. يرجى تفعيله في الإعدادات لاستخدام ميزات الذكاء الاصطناعي.",
-  "@enableAiAssistant": {
-    "description": "رسالة تظهر عندما يكون مساعد الذكاء الاصطناعي معطلاً"
-  },
   "aiMinWordsRequired": "مطلوب الحد الأدنى {minWords} كلمة",
-  "@aiMinWordsRequired": {
-    "description": "رسالة تظهر الحد الأدنى من الكلمات المطلوبة لتوليد الذكاء الاصطناعي",
-    "placeholders": {
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      }
-    }
-  },
   "aiWordsReadyToGenerate": "{wordCount} كلمة ✓ جاهز للتوليد",
-  "@aiWordsReadyToGenerate": {
-    "description": "رسالة عند توفير كلمات كافية لتوليد الذكاء الاصطناعي",
-    "placeholders": {
-      "wordCount": {
-        "type": "int",
-        "example": "75"
-      }
-    }
-  },
   "aiWordsProgress": "{currentWords}/{minWords} كلمة (نحتاج {moreNeeded} أكثر)",
-  "@aiWordsProgress": {
-    "description": "رسالة تظهر تقدم عدد الكلمات",
-    "placeholders": {
-      "currentWords": {
-        "type": "int",
-        "example": "30"
-      },
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      },
-      "moreNeeded": {
-        "type": "int",
-        "example": "20"
-      }
-    }
-  },
   "aiValidationMinWords": "مطلوب الحد الأدنى {minWords} كلمة (نحتاج {moreNeeded} أكثر)",
-  "@aiValidationMinWords": {
-    "description": "رسالة التحقق عند عدم توفير كلمات كافية",
-    "placeholders": {
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      },
-      "moreNeeded": {
-        "type": "int",
-        "example": "20"
-      }
-    }
-  },
   "enableQuestion": "تفعيل السؤال",
-  "@enableQuestion": {
-    "description": "نص تلميح لتفعيل السؤال"
-  },
   "disableQuestion": "تعطيل السؤال",
-  "@disableQuestion": {
-    "description": "نص تلميح لتعطيل السؤال"
-  },
   "questionDisabled": "معطل",
-  "@questionDisabled": {
-    "description": "نص شارة للسؤال المعطل"
-  },
   "noEnabledQuestionsError": "لا توجد أسئلة مفعلة لتشغيل الاختبار",
-  "@noEnabledQuestionsError": {
-    "description": "رسالة خطأ عند عدم وجود أسئلة مفعلة"
-  },
   "aiEvaluationError": "خطأ في تقييم الإجابة: {error}",
-  "@aiEvaluationError": {
-    "description": "رسالة خطأ عند فشل تقييم الذكاء الاصطناعي",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "خطأ في الشبكة"
-      }
-    }
-  },
   "aiEvaluationPromptSystemRole": "أنت مدرس خبير تقيم إجابة طالب على سؤال مقال. مهمتك هي تقديم تقييم مفصل وبناء. أجب بنفس لغة إجابة الطالب.",
-  "@aiEvaluationPromptSystemRole": {
-    "description": "دور النظام لطلب تقييم الذكاء الاصطناعي"
-  },
   "aiEvaluationPromptQuestion": "السؤال:",
-  "@aiEvaluationPromptQuestion": {
-    "description": "تسمية السؤال في طلب التقييم"
-  },
   "aiEvaluationPromptStudentAnswer": "إجابة الطالب:",
-  "@aiEvaluationPromptStudentAnswer": {
-    "description": "تسمية إجابة الطالب في طلب التقييم"
-  },
   "aiEvaluationPromptCriteria": "معايير التقييم (بناءً على شرح المعلم):",
-  "@aiEvaluationPromptCriteria": {
-    "description": "تسمية معايير التقييم في الطلب"
-  },
   "aiEvaluationPromptSpecificInstructions": "تعليمات محددة:\n- قيم مدى توافق إجابة الطالب مع المعايير المحددة\n- حلل درجة التركيب والهيكل في الإجابة\n- حدد إذا كان هناك شيء مهم مفقود وفقاً للمعايير\n- اعتبر عمق ودقة التحليل",
-  "@aiEvaluationPromptSpecificInstructions": {
-    "description": "تعليمات محددة للتقييم مع المعايير"
-  },
   "aiEvaluationPromptGeneralInstructions": "تعليمات عامة:\n- بما أنه لا توجد معايير محددة، قيم الإجابة بناءً على المعايير الأكاديمية العامة\n- اعتبر الوضوح والتماسك وهيكل الإجابة\n- قيم إذا كانت الإجابة تظهر فهماً للموضوع\n- حلل عمق التحليل وجودة الحجج",
-  "@aiEvaluationPromptGeneralInstructions": {
-    "description": "تعليمات عامة للتقييم بدون معايير"
-  },
   "aiEvaluationPromptResponseFormat": "تنسيق الإجابة:\n1. الدرجة: [X/10] - اذكر مبرراً مختصراً للدرجة\n2. نقاط القوة: اذكر الجوانب الإيجابية في الإجابة\n3. مجالات التحسين: أشر إلى الجوانب التي يمكن تحسينها\n4. تعليقات محددة: قدم ملاحظات مفصلة وبناءة\n5. اقتراحات: قدم توصيات محددة للتحسين\n\nكن بناءً ومحدداً وتعليمياً في تقييمك. الهدف هو مساعدة الطالب على التعلم والتحسن. اخاطبه بصيغة المخاطب واستخدم نبرة مهنية وودية.",
-  "@aiEvaluationPromptResponseFormat": {
-    "description": "تعليمات تنسيق الإجابة للتقييم"
-  },
   "aiModeTopicTitle": "وضع الموضوع",
-  "@aiModeTopicTitle": {
-    "description": "عنوان وضع الموضوع في مساعد الذكاء الاصطناعي"
-  },
   "aiModeTopicDescription": "استكشاف إبداعي للموضوع",
-  "@aiModeTopicDescription": {
-    "description": "وصف وضع الموضوع"
-  },
   "aiModeContentTitle": "وضع المحتوى",
-  "@aiModeContentTitle": {
-    "description": "عنوان وضع المحتوى في مساعد الذكاء الاصطناعي"
-  },
   "aiModeContentDescription": "أسئلة دقيقة بناءً على مدخلاتك",
-  "@aiModeContentDescription": {
-    "description": "وصف وضع المحتوى"
-  },
   "aiWordCountIndicator": "{count} كلمة",
-  "@aiWordCountIndicator": {
-    "description": "مؤشر عدد الكلمات",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "aiPrecisionIndicator": "الدقة: {level}",
-  "@aiPrecisionIndicator": {
-    "description": "مؤشر مستوى الدقة لوضع المحتوى",
-    "placeholders": {
-      "level": {
-        "type": "String",
-        "example": "عالية"
-      }
-    }
-  },
   "aiPrecisionLow": "منخفضة",
-  "@aiPrecisionLow": {
-    "description": "مستوى دقة منخفض"
-  },
   "aiPrecisionMedium": "متوسطة",
-  "@aiPrecisionMedium": {
-    "description": "مستوى دقة متوسط"
-  },
   "aiPrecisionHigh": "عالية",
-  "@aiPrecisionHigh": {
-    "description": "مستوى دقة عالٍ"
-  },
   "aiMoreWordsMorePrecision": "كلمات أكثر = دقة أعلى",
-  "@aiMoreWordsMorePrecision": {
-    "description": "نص تلميح يشرح أن المزيد من الكلمات يؤدي إلى إجابات أكثر دقة"
-  },
   "aiKeepDraftTitle": "حفظ مسودة الذكاء الاصطناعي",
-  "@aiKeepDraftTitle": {
-    "description": "عنوان لإعداد حفظ مسودة النص التي تم إنشاؤها بواسطة الذكاء الاصطناعي"
-  },
   "aiKeepDraftDescription": "حفظ النص المدخل في مربع حوار توليد الذكاء الاصطناعي تلقائيًا حتى لا يضيع إذا تم إغلاق مربع الحوار.",
-  "@aiKeepDraftDescription": {
-    "description": "وصف لإعداد حفظ مسودة النص التي تم إنشاؤها بواسطة الذكاء الاصطناعي"
-  },
   "aiAttachFile": "إرفاق ملف",
-  "@aiAttachFile": {
-    "description": "Label for the attach file button in AI generation dialog"
-  },
   "aiRemoveFile": "إزالة ملف",
-  "@aiRemoveFile": {
-    "description": "Tooltip for the remove file button"
-  },
   "aiFileMode": "وضع الملف",
-  "@aiFileMode": {
-    "description": "Title for the file mode indicator"
-  },
   "aiFileModeDescription": "سيتم توليد الأسئلة من الملف المرفق",
-  "@aiFileModeDescription": {
-    "description": "Description for the file mode indicator"
-  },
   "aiCommentsLabel": "تعليقات (اختياري)",
-  "@aiCommentsLabel": {
-    "description": "Label for the comments field when a file is attached"
-  },
   "aiCommentsHint": "أضف تعليمات أو تعليقات بخصوص الملف المرفق...",
-  "@aiCommentsHint": {
-    "description": "Hint text for the comments field when a file is attached"
-  },
   "aiCommentsHelperText": "يمكنك إضافة تعليمات اختيارية حول كيفية توليد الأسئلة من الملف",
-  "@aiCommentsHelperText": {
-    "description": "Helper text for the comments field when a file is attached"
-  },
   "aiFilePickerError": "تعذر تحميل الملف المحدد",
-  "@aiFilePickerError": {
-    "description": "Error message when file picker fails"
-  },
   "studyModeLabel": "وضع الدراسة",
-  "@studyModeLabel": {
-    "description": "Label for study mode option in start quiz"
-  },
   "generateStudyWithAI": "إنشاء دراسة بالذكاء الاصطناعي",
   "practiceModeLabel": "وضع التدريب",
-  "@practiceModeLabel": {
-    "description": "Label for practice mode option in start quiz"
-  },
   "smartModeLabel": "الوضع الذكي",
-  "@smartModeLabel": {
-    "description": "Label for smart exam mode option in start quiz"
-  },
   "smartModeDescription": "وضع اختبار خاص. يحدد التطبيق مجموعة الأسئلة وعددها تلقائيًا ويحدّث إحصاءات المراجعة.",
-  "@smartModeDescription": {
-    "description": "Description for smart exam mode"
-  },
   "studyModeDescription": "مساعدة الذكاء الاصطناعي متاحة. تعليقات فورية بعد كل إجابة بدون حدود زمنية أو عقوبات. لا يتم إنشاء أي إحصائيات.",
-  "@studyModeDescription": {
-    "description": "Description for the study mode"
-  },
   "examModeLabel": "وضع الاختبار",
-  "@examModeLabel": {
-    "description": "Label for the exam mode option"
-  },
   "examModeDescription": "بدون مساعدة الذكاء الاصطناعي. قد يتم تطبيق حدود زمنية وعقوبات على الإجابات غير الصحيحة. يولد إحصائيات التكرار المتباعد.",
-  "@examModeDescription": {
-    "description": "Description for the exam mode"
-  },
   "checkAnswer": "تحقق",
-  "@checkAnswer": {
-    "description": "Label for the check answer button in study mode"
-  },
   "quizModeTitle": "وضع الاختبار",
-  "@quizModeTitle": {
-    "description": "Title for the quiz mode selection screen"
-  },
   "askAiAssistant": "اسأل مساعد الذكاء الاصطناعي",
-  "@askAiAssistant": {
-    "description": "Label for the button to ask AI about a question"
-  },
   "askAiAboutQuestion": "اسأل الذكاء الاصطناعي عن هذا السؤال",
-  "@askAiAboutQuestion": {
-    "description": "Title for the AI chat dialog"
-  },
   "aiHelpWithQuestion": "ساعدني في فهم هذا السؤال",
-  "@aiHelpWithQuestion": {
-    "description": "Suggestion chip for AI chat"
-  },
   "evaluateWithAI": "تقييم بالذكاء الاصطناعي",
-  "@evaluateWithAI": {
-    "description": "Label for the button to evaluate an essay with AI"
-  },
   "aiEvaluation": "تقييم الذكاء الاصطناعي",
-  "@aiEvaluation": {
-    "description": "Label for the AI evaluation section in results"
-  },
   "edit": "تعديل",
-  "@edit": {
-    "description": "Generic edit button text"
-  },
   "enable": "تفعيل",
-  "@enable": {
-    "description": "Generic enable button text"
-  },
   "disable": "تعطيل",
-  "@disable": {
-    "description": "Generic disable button text"
-  },
   "reorderQuestionsTooltip": "إعادة ترتيب الأسئلة",
-  "@reorderQuestionsTooltip": {
-    "description": "Tooltip for the reorder questions button"
-  },
   "quizPreviewTitle": "معاينة الاختبار",
-  "@quizPreviewTitle": {
-    "description": "Title for the quiz preview screen"
-  },
   "quizLoadedNoQuestionsAvailable": "لا توجد أسئلة متاحة",
   "select": "تحديد",
-  "@select": {
-    "description": "Generic select button text"
-  },
   "done": "تم",
-  "@done": {
-    "description": "Generic done button text"
-  },
   "importButton": "استيراد",
-  "@importButton": {
-    "description": "Generic import button text"
-  },
   "reorderButton": "إعادة ترتيب",
-  "@reorderButton": {
-    "description": "Generic reorder button text"
-  },
   "startQuizButton": "بدء الاختبار",
-  "@startQuizButton": {
-    "description": "Label for the button that starts the quiz"
-  },
   "deleteConfirmation": "هل أنت متأكد أنك تريد حذف هذا الاختبار؟",
-  "@deleteConfirmation": {
-    "description": "Message for the quiz deletion confirmation dialog"
-  },
   "saveSuccess": "تم حفظ الملف بنجاح",
-  "@saveSuccess": {
-    "description": "Success message when a file is saved"
-  },
   "errorSavingFile": "خطأ في حفظ الملف",
-  "@errorSavingFile": {
-    "description": "Error message when a file cannot be saved"
-  },
   "deleteSingleQuestionConfirmation": "هل أنت متأكد أنك تريد حذف هذا السؤال؟",
-  "@deleteSingleQuestionConfirmation": {
-    "description": "Message for single question deletion confirmation"
-  },
   "deleteMultipleQuestionsConfirmation": "هل أنت متأكد أنك تريد حذف {count} أسئلة؟",
-  "@deleteMultipleQuestionsConfirmation": {
-    "description": "Message for multiple questions deletion confirmation",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "missingExplanation": "شرح مفقود",
-  "@missingExplanation": {
-    "description": "Label indicating that a question is missing an explanation"
-  },
   "missingExplanationTooltip": "هذا السؤال يفتقد للشرح",
-  "@missingExplanationTooltip": {
-    "description": "Tooltip text for the missing explanation badge"
-  },
   "missingStudySectionTooltip": "غير مرتبط بقسم دراسي",
-  "@missingStudySectionTooltip": {
-    "description": "Tooltip text for the unlinked study section warning"
-  },
   "questionTypeTooltip": "نوع السؤال: {type}",
-  "@questionTypeTooltip": {
-    "description": "Tooltip text for the question type badge",
-    "placeholders": {
-      "type": {
-        "type": "String",
-        "example": "Multiple Choice"
-      }
-    }
-  },
   "settingsTitle": "الإعدادات",
-  "@settingsTitle": {
-    "description": "Title for the settings screen"
-  },
   "keepPracticing": "استمر في التدريب للتحسن!",
-  "@keepPracticing": {
-    "description": "Encouragement message in the results screen"
-  },
   "tryAgain": "إعادة المحاولة",
-  "@tryAgain": {
-    "description": "Generic try again button text"
-  },
   "review": "مراجعة",
-  "@review": {
-    "description": "Label for the review answers button"
-  },
   "home": "الرئيسية",
-  "@home": {
-    "description": "Label for the home/dashboard navigation item"
-  },
   "allLabel": "الكل",
-  "@allLabel": {
-    "description": "تسمية لخيار اختيار جميع الأسئلة"
-  },
   "finishQuizUnansweredQuestions": "لديك {unansweredCount,plural, =1{سؤال واحد غير مجاب}other{{unansweredCount} أسئلة غير مجابة}}. هل أنت متأكد أنك تريد إنهاء الاختبار؟",
-  "@finishQuizUnansweredQuestions": {
-    "description": "Message shown when there are unanswered questions.",
-    "placeholders": {
-      "unansweredCount": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "subtractPointsLabel": "خصم نقاط للإجابة الخاطئة",
   "subtractPointsDescription": "خصم نقاط عن كل إجابة خاطئة.",
-  "@subtractPointsDescription": {
-    "description": "Description for the subtract points for incorrect answers setting"
-  },
-  "@subtractPointsLabel": {
-    "description": "Label for the checkbox to subtract points for incorrect answers"
-  },
   "subtractPointsOffDescription": "الإجابات الخاطئة لا تخصم نقاطا.",
-  "@subtractPointsOffDescription": {
-    "description": "Description shown when subtract points for incorrect answers is disabled"
-  },
   "penaltyAmountLabel": "مبلغ الغرامة",
-  "@penaltyAmountLabel": {
-    "description": "Label for the input field to set the penalty amount"
-  },
   "penaltyPointsLabel": "-{amount} نقاط / خطأ",
-  "@penaltyPointsLabel": {
-    "description": "Label showing the points deducted per mistake",
-    "placeholders": {
-      "amount": {
-        "type": "String",
-        "example": "0.50"
-      }
-    }
-  },
   "allQuestionsLabel": "جميع الأسئلة",
-  "@allQuestionsLabel": {
-    "description": "Label for the option to select all questions"
-  },
   "startWithSelectedQuestions": "ابدأ بـ {count} محددة",
-  "@startWithSelectedQuestions": {
-    "description": "Label for the button that starts the quiz with only selected questions",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "advancedSettingsTitle": "إعدادات متقدمة (تصحيح الأخطاء)",
-  "@advancedSettingsTitle": {
-    "description": "Title for the advanced settings section"
-  },
   "appLanguageLabel": "لغة التطبيق",
-  "@appLanguageLabel": {
-    "description": "Label for the app language selection"
-  },
   "appLanguageDescription": "تجاوز لغة التطبيق للاختبار",
-  "@appLanguageDescription": {
-    "description": "Description for the app language override setting"
-  },
   "pasteFromClipboard": "لصق من الحافظة",
-  "@pasteFromClipboard": {
-    "description": "Generic paste from clipboard button text"
-  },
   "pasteImage": "لصق",
-  "@pasteImage": {
-    "description": "Label for the button to paste an image"
-  },
   "clipboardNoImage": "لم يتم العثور على صورة في الحافظة",
-  "@clipboardNoImage": {
-    "description": "Error message when trying to paste an image but the clipboard is empty or has non-image content"
-  },
   "maxIncorrectAnswersLabel": "تقييد الإجابات الخاطئة",
-  "@maxIncorrectAnswersLabel": {
-    "description": "Label for the toggle to limit incorrect answers"
-  },
   "maxIncorrectAnswersDescription": "امتحان نجاح/رسوب. لا توجد درجة رقمية، إما أن تنجح أو ترسب.",
-  "@maxIncorrectAnswersDescription": {
-    "description": "Description for the limit incorrect answers feature"
-  },
   "maxIncorrectAnswersOffDescription": "للامتحان درجة رقمية من 0 إلى 100.",
-  "@maxIncorrectAnswersOffDescription": {
-    "description": "Description shown when max incorrect answers is disabled"
-  },
   "maxIncorrectAnswersLimitLabel": "الحد الأقصى للأخطاء المسموح بها",
-  "@maxIncorrectAnswersLimitLabel": {
-    "description": "Label for the input field of maximum incorrect answers"
-  },
   "examFailedStatus": "اختبار لم يجتز",
-  "@examFailedStatus": {
-    "description": "Status label for an exam that was not passed based on incorrect answers limit"
-  },
   "examPassedStatus": "اختبار اجتيز",
-  "@examPassedStatus": {
-    "description": "Status label for an exam that was passed based on incorrect answers limit"
-  },
   "quizFailedLimitReached": "انتهى الاختبار: تم تجاوز الحد الأقصى للأخطاء المسموح بها",
-  "@quizFailedLimitReached": {
-    "description": "Title for the results screen when the error limit is reached"
-  },
   "close": "إغلاق",
-  "@close": {
-    "description": "Close button text"
-  },
   "randomizeAnswersOffDescription": "ستظهر خيارات الإجابة بترتيبها الأصلي",
-  "@randomizeAnswersOffDescription": {
-    "description": "Description for the randomize answers setting when disabled."
-  },
   "scoringAndLimitsTitle": "الدرجات والحدود",
-  "@scoringAndLimitsTitle": {
-    "description": "Title for the scoring and limits section in advanced settings"
-  },
   "congratulations": "🎉 تهانينا! 🎉",
-  "@congratulations": {
-    "description": "Congratulations message in winner dialog"
-  },
   "examConfigurationTitle": "إعدادات الامتحان",
-  "@examConfigurationTitle": {
-    "description": "Title for the advanced settings / exam configuration section"
-  },
   "generationConfigurationTitle": "إعدادات التوليد",
-  "@generationConfigurationTitle": {
-    "description": "Title for the generation configuration section in AI dialog"
-  },
   "validationMin1Error": "دقيقة واحدة كحد أدنى",
-  "@validationMin1Error": {
-    "description": "Error message for invalid duration (less than 1 minute)"
-  },
   "remainingTimeWithDays": "{days}ي {hours}:{minutes}:{seconds}",
-  "@remainingTimeWithDays": {
-    "description": "Format for remaining time display when it exceeds 24 hours",
-    "placeholders": {
-      "days": {
-        "type": "String",
-        "example": "2"
-      },
-      "hours": {
-        "type": "String",
-        "example": "03"
-      },
-      "minutes": {
-        "type": "String",
-        "example": "45"
-      },
-      "seconds": {
-        "type": "String",
-        "example": "30"
-      }
-    }
-  },
   "remainingTimeWithWeeks": "{weeks}أ {days}ي {hours}:{minutes}:{seconds}",
-  "@remainingTimeWithWeeks": {
-    "description": "Format for remaining time display when it exceeds 7 days",
-    "placeholders": {
-      "weeks": {
-        "type": "String",
-        "example": "1"
-      },
-      "days": {
-        "type": "String",
-        "example": "2"
-      },
-      "hours": {
-        "type": "String",
-        "example": "03"
-      },
-      "minutes": {
-        "type": "String",
-        "example": "45"
-      },
-      "seconds": {
-        "type": "String",
-        "example": "30"
-      }
-    }
-  },
   "validationMax30DaysError": "كحد أقصى 30 يومًا",
-  "@validationMax30DaysError": {
-    "description": "Error message for invalid duration (more than 30 days)"
-  },
   "validationMin0GenericError": "بحد أدنى 0",
-  "@validationMin0GenericError": {
-    "description": "Error message for fields that must be at least 0"
-  },
   "errorStatus": "خطأ",
-  "@errorStatus": {
-    "description": "Status label for generic errors or failed processes"
-  },
   "evaluatingResponses": "جاري تقييم الردود...",
-  "@evaluatingResponses": {
-    "description": "النص المعروض في شاشة النتائج عندما تكون تقييمات الذكاء الاصطناعي قيد الانتظار"
-  },
   "pendingEvaluationsCount": "{count, plural, =1{سؤال مقالي واحد قيد انتظار تقييم الذكاء الاصطناعي} other{{count} أسئلة مقالية قيد انتظار تقييم الذكاء الاصطناعي}}",
-  "@pendingEvaluationsCount": {
-    "description": "عنوان فرعي يوضح عدد تقييمات الذكاء الاصطناعي قيد الانتظار",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "pendingStatus": "قيد الانتظار",
-  "@pendingStatus": {
-    "description": "تسمية الحالة لتقييم ذكاء اصطناعي قيد الانتظار"
-  },
   "notEvaluatedStatus": "لم يتم التقييم",
-  "@notEvaluatedStatus": {
-    "description": "تسمية الحالة لسؤال مقالي لم يتم تقييمه بواسطة الذكاء الاصطناعي"
-  },
   "retryButton": "إعادة محاولة التقييم",
-  "@retryButton": {
-    "description": "نص الزر لإعادة محاولة تقييم الذكاء الاصطناعي"
-  },
   "featureComingSoon": "الميزة قادمة قريبا! ابقَ على اطلاع على التحديثات.",
-  "@featureComingSoon": {
-    "description": "رسالة للميزات التي لم تتوفر بعد"
-  },
   "showOnboarding": "عرض العرض الترحيبي",
-  "@showOnboarding": {
-    "description": "تسمية الزر لإعادة فتح تدفق العرض الترحيبي"
-  },
   "showOnboardingDescription": "عرض البرنامج التعليمي الترحيبي مرة أخرى",
-  "@showOnboardingDescription": {
-    "description": "وصف الزر لإعادة فتح تدفق العرض الترحيبي"
-  },
   "onboardingBack": "عودة",
-  "@onboardingBack": {
-    "description": "زر العودة في التنقل عبر العرض الترحيبي"
-  },
   "onboardingGetStarted": "ابدأ الآن",
-  "@onboardingGetStarted": {
-    "description": "زر ابدأ الآن في الصفحة الأخيرة من العرض الترحيبي"
-  },
   "onboardingWelcomeTitle": "مرحباً بك في Quizdy",
-  "@onboardingWelcomeTitle": {
-    "description": "عنوان الصفحة الأولى من العرض الترحيبي"
-  },
   "onboardingWelcomeDescription": "مع ميزات مدعومة بالذكاء الاصطناعي، وأسئلة قابلة للتخصيص، وتسجيل في الوقت الفعلي.",
-  "@onboardingWelcomeDescription": {
-    "description": "وصف الصفحة الأولى من العرض الترحيبي"
-  },
   "onboardingWelcomeSubtitle": "رفيقك التفاعلي للدراسة والاختبارات",
-  "@onboardingWelcomeSubtitle": {
-    "description": "العنوان الفرعي للصفحة الأولى من العرض الترحيبي في تخطيط سطح المكتب"
-  },
   "onboardingStartQuizTitle": "ابدأ اختباراً",
-  "@onboardingStartQuizTitle": {
-    "description": "عنوان الصفحة الثانية من العرض الترحيبي"
-  },
   "onboardingStartQuizDescription": "قم بتحميل ملف .quiz موجود أو أنشئ ملفاً جديداً من الصفر. اسحب الملفات وأفلتها مباشرة أو استخدم منتقي الملفات.",
-  "@onboardingStartQuizDescription": {
-    "description": "وصف الصفحة الثانية من العرض الترحيبي"
-  },
   "onboardingStartQuizSubtitle": "تحميل، إنشاء، ولعب",
-  "@onboardingStartQuizSubtitle": {
-    "description": "العنوان الفرعي للصفحة الثانية من العرض الترحيبي في تخطيط سطح المكتب"
-  },
   "onboardingCreateQuestionsTitle": "إنشاء أسئلة",
-  "@onboardingCreateQuestionsTitle": {
-    "description": "عنوان الصفحة الثالثة من العرض الترحيبي"
-  },
   "onboardingCreateQuestionsDescription": "قم ببناء اختبارات بأنواع أسئلة متعددة. خصص كل سؤال بالخيارات، والإجابات الصحيحة، والشروحات.",
-  "@onboardingCreateQuestionsDescription": {
-    "description": "وصف الصفحة الثالثة من العرض الترحيبي"
-  },
   "onboardingCreateQuestionsSubtitle": "صمم اختباراتك الخاصة",
-  "@onboardingCreateQuestionsSubtitle": {
-    "description": "العنوان الفرعي للصفحة الثالثة من العرض الترحيبي في تخطيط سطح المكتب"
-  },
   "onboardingAiFeaturesTitle": "ميزات مدعومة بالذكاء الاصطناعي",
-  "@onboardingAiFeaturesTitle": {
-    "description": "عنوان الصفحة الرابعة من العرض الترحيبي"
-  },
   "onboardingAiFeaturesDescription": "قم بتوليد الأسئلة تلقائياً باستخدام الذكاء الاصطناعي، واحصل على مساعدة دراسية في الوقت الفعلي، وتعلّم بذكاء أكبر مع التدريس الذكي.",
-  "@onboardingAiFeaturesDescription": {
-    "description": "وصف الصفحة الرابعة من العرض الترحيبي"
-  },
   "onboardingAiFeaturesSubtitle": "مدعوم بالذكاء الاصطناعي",
-  "@onboardingAiFeaturesSubtitle": {
-    "description": "العنوان الفرعي للصفحة الرابعة من العرض الترحيبي في تخطيط سطح المكتب"
-  },
   "onboardingFeatureAiTitle": "توليد مواد الدراسة والأسئلة بالذكاء الاصطناعي",
-  "@onboardingFeatureAiTitle": {
-    "description": "عنوان الميزة في صفحة الترحيب بالعرض الترحيبي"
-  },
   "onboardingFeatureAiDescription": "توليد مواد الدراسة والأسئلة بالذكاء الاصطناعي",
-  "@onboardingFeatureAiDescription": {
-    "description": "وصف الميزة في صفحة الترحيب بالعرض الترحيبي"
-  },
   "onboardingFeatureTypesTitle": "أنواع أسئلة متعددة",
-  "@onboardingFeatureTypesTitle": {
-    "description": "عنوان الميزة في صفحة الترحيب بالعرض الترحيبي"
-  },
   "onboardingFeatureTypesDescription": "اختيار واحد، اختيار متعدد، صح/خطأ، ومقالي",
-  "@onboardingFeatureTypesDescription": {
-    "description": "وصف الميزة في صفحة الترحيب بالعرض الترحيبي"
-  },
   "onboardingFeatureLanguagesTitle": "دعم 18 لغة",
-  "@onboardingFeatureLanguagesTitle": {
-    "description": "عنوان الميزة في صفحة الترحيب بالعرض الترحيبي"
-  },
   "onboardingFeatureLanguagesDescription": "إنشاء وإجراء الاختبارات بلغات متعددة",
-  "@onboardingFeatureLanguagesDescription": {
-    "description": "وصف الميزة في صفحة الترحيب بالعرض الترحيبي"
-  },
   "onboardingStepCreateTitle": "إنشاء اختبار",
-  "@onboardingStepCreateTitle": {
-    "description": "عنوان الخطوة في صفحة بدء الاختبار بالعرض الترحيبي"
-  },
   "onboardingStepCreateDescription": "ابدأ من الصفر بأسئلتك الخاصة",
-  "@onboardingStepCreateDescription": {
-    "description": "وصف الخطوة في صفحة بدء الاختبار بالعرض الترحيبي"
-  },
   "onboardingStepLoadTitle": "تحميل ملف",
-  "@onboardingStepLoadTitle": {
-    "description": "عنوان الخطوة في صفحة بدء الاختبار بالعرض الترحيبي"
-  },
   "onboardingStepLoadDescription": "استيراد ملف .quiz من جهازك",
-  "@onboardingStepLoadDescription": {
-    "description": "وصف الخطوة في صفحة بدء الاختبار بالعرض الترحيبي"
-  },
   "onboardingStepTakeTitle": "إجراء الاختبار",
-  "@onboardingStepTakeTitle": {
-    "description": "عنوان الخطوة في صفحة بدء الاختبار بالعرض الترحيبي"
-  },
   "onboardingStepTakeDescription": "أجب عن الأسئلة واحصل على النتائج في الوقت الفعلي",
-  "@onboardingStepTakeDescription": {
-    "description": "وصف الخطوة في صفحة بدء الاختبار بالعرض الترحيبي"
-  },
   "onboardingAiAutoGenerateTitle": "توليد تلقائي للأسئلة",
-  "@onboardingAiAutoGenerateTitle": {
-    "description": "عنوان ميزة الذكاء الاصطناعي في العرض الترحيبي"
-  },
   "onboardingAiAutoGenerateDescription": "من أي نص باستخدام Gemini أو GPT",
-  "@onboardingAiAutoGenerateDescription": {
-    "description": "وصف ميزة الذكاء الاصطناعي في العرض الترحيبي"
-  },
   "onboardingAiStudyAssistantTitle": "مساعد الدراسة بالذكاء الاصطناعي",
-  "@onboardingAiStudyAssistantTitle": {
-    "description": "عنوان ميزة الذكاء الاصطناعي في العرض الترحيبي"
-  },
   "onboardingAiStudyAssistantDescription": "احصل على شروحات أثناء التعلم",
-  "@onboardingAiStudyAssistantDescription": {
-    "description": "وصف ميزة الذكاء الاصطناعي في العرض الترحيبي"
-  },
   "onboardingAiMultiLanguageTitle": "دعم لغات متعددة",
-  "@onboardingAiMultiLanguageTitle": {
-    "description": "عنوان ميزة الذكاء الاصطناعي في العرض الترحيبي"
-  },
   "onboardingAiMultiLanguageDescription": "توليد بـ 18 لغة مختلفة",
-  "@onboardingAiMultiLanguageDescription": {
-    "description": "وصف ميزة الذكاء الاصطناعي في العرض الترحيبي"
-  },
   "documentTooLongForProcessing": "قد يكون المستند طويلاً جدًا بحيث لا يمكن معالجته في مسار واحد في أفضل منتج ممكن (MVP).",
-  "@documentTooLongForProcessing": {
-    "description": "Error message when AI document processing fails due to document length"
-  },
   "studyScreenNoSlidesAvailable": "لا توجد أقسام دراسية متاحة",
-  "@studyScreenNoSlidesAvailable": {
-    "description": "Message shown when no study slides are available"
-  },
   "studyScreenGenerating": "جاري إنشاء مواد دراسية...",
-  "@studyScreenGenerating": {
-    "description": "Loading message while AI generates study material"
-  },
   "studyScreenError": "حدث خطأ أثناء إنشاء مواد دراسية.",
-  "@studyScreenError": {
-    "description": "Error message when study material generation fails"
-  },
   "studyScreenRetry": "إعادة المحاولة",
-  "@studyScreenRetry": {
-    "description": "نص إعادة المحاولة في حالة وجود خطأ في القسم."
-  },
   "studyScreenOmit": "تجاوز",
-  "@studyScreenOmit": {
-    "description": "نص زر التجاوز"
-  },
   "studyScreenNoSlidesGenerated": "لم يتم إنشاء شرائح.",
-  "@studyScreenNoSlidesGenerated": {
-    "description": "Message shown when the AI fails to generate any slides"
-  },
   "studyScreenPreviousSection": "الصفحة السابقة",
-  "@studyScreenPreviousSection": {
-    "description": "Label for the previous section button in study screen"
-  },
   "studyScreenNextSection": "الصفحة التالية",
-  "@studyScreenNextSection": {
-    "description": "Label for the next section button in study screen"
-  },
   "studyScreenSectionIndicator": "صفحة {current} من {total}",
-  "@studyScreenSectionIndicator": {
-    "description": "Indicator of current page vs total pages in study material",
-    "placeholders": {
-      "current": {
-        "type": "int",
-        "example": "1"
-      },
-      "total": {
-        "type": "int",
-        "example": "10"
-      }
-    }
-  },
   "studyScreenAiSummaryTitle": "ملخص الذكاء الاصطناعي",
-  "@studyScreenAiSummaryTitle": {
-    "description": "Title for the AI-generated summary section"
-  },
   "studyScreenNoSummary": "لا يوجد ملخص متاح.",
-  "@studyScreenNoSummary": {
-    "description": "Message shown when no AI summary is available"
-  },
   "studyScreenCoverage": "المحتوى المُنشأ",
-  "@studyScreenCoverage": {
-    "description": "Label for the study coverage percentage"
-  },
   "aiStudyLanguageLabel": "لغة الدراسة",
-  "@aiStudyLanguageLabel": {
-    "description": "Label for the language selector in study generation"
-  },
   "studyScreenStudyGuide": "دليل الدراسة",
-  "@studyScreenStudyGuide": {
-    "description": "Label for the study guide/summary button in the study screen"
-  },
   "studyScreenSections": "الأقسام",
-  "@studyScreenSections": {
-    "description": "Label for the sections list in the study screen"
-  },
   "studyScreenChaptersCount": "{count} فصول",
-  "@studyScreenChaptersCount": {
-    "description": "Label showing the number of chapters in the study material",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "12"
-      }
-    }
-  },
   "studyScreenCompleted": "مكتمل",
-  "@studyScreenCompleted": {
-    "description": "Label for the completed sections section"
-  },
   "aiDifficultyTitle": "مستوى الصعوبة",
-  "@aiDifficultyTitle": {
-    "description": "Title for the difficulty selection section"
-  },
   "aiDifficultyAutoTurnedOn": "نفس صعوبة المستند",
-  "@aiDifficultyAutoTurnedOn": {
-    "description": "Toggle label for automatic difficulty (on)"
-  },
   "aiDifficultyAutoTurnedOff": "وضع الصعوبة اليدوي",
-  "@aiDifficultyAutoTurnedOff": {
-    "description": "Toggle label for automatic difficulty (off/manual)"
-  },
   "aiDifficultyElementary": "مدرسة ابتدائية",
-  "@aiDifficultyElementary": {
-    "description": "Difficulty level: Elementary/School"
-  },
   "aiDifficultyHighSchool": "مدرسة ثانوية",
-  "@aiDifficultyHighSchool": {
-    "description": "Difficulty level: High School"
-  },
   "aiDifficultyBachelors": "درجة البكالوريوس",
-  "@aiDifficultyBachelors": {
-    "description": "Difficulty level: Bachelor's degree (pre-university)"
-  },
   "aiDifficultyUniversity": "جامعة",
-  "@aiDifficultyUniversity": {
-    "description": "Difficulty level: University degree"
-  },
   "aiDifficultyMasters": "درجة الماجستير",
-  "@aiDifficultyMasters": {
-    "description": "Difficulty level: Master's degree"
-  },
   "aiDifficultyDoctorate": "دكتوراه",
-  "@aiDifficultyDoctorate": {
-    "description": "Difficulty level: Doctorate"
-  },
   "aiDifficultyAutoDescription": "سيتم تعديل مستوى الصعوبة تلقائيًا وفقًا للمستند الذي تم تحميله",
-  "@aiDifficultyAutoDescription": {
-    "description": "Description for automatic difficulty mode"
-  },
   "aiDifficultyManualDescription": "حدد مستوى الصعوبة يدويًا الذي يناسب المحتوى بشكل أفضل",
-  "@aiDifficultyManualDescription": {
-    "description": "Description for manual difficulty mode"
-  },
   "chooseModeDialogTitle": "اختر الوضع",
-  "@chooseModeDialogTitle": {
-    "description": "Title for the dialog that asks which mode to open when a file has both questions and study content"
-  },
   "chooseModeDialogMessage": "يحتوي هذا الملف على أسئلة اختبار ومحتوى دراسي. أي وضع ترغب في فتحه؟",
-  "@chooseModeDialogMessage": {
-    "description": "Message for the mode selection dialog"
-  },
   "studyModeSubtitle": "راجع المادة بالسرعة التي تناسبك",
-  "@studyModeSubtitle": {
-    "description": "Subtitle for the study mode option"
-  },
   "examModeSubtitle": "اختبر معلوماتك",
-  "@examModeSubtitle": {
-    "description": "Subtitle for the exam mode option"
-  },
   "dropHereToStudy": "اترك هنا لمراجعة المادة بالسرعة التي تناسبك",
-  "@dropHereToStudy": {
-    "description": "Text shown in the drop zone when dragging over the study mode option"
-  },
   "dropHereToQuiz": "اترك هنا لاختبار معلوماتك",
-  "@dropHereToQuiz": {
-    "description": "Text shown in the drop zone when dragging over the exam mode option"
-  },
   "aiStudyGenerationTitle": "توليد الدراسة بالذكاء الاصطناعي",
-  "@aiStudyGenerationTitle": {
-    "description": "Title for the study generation configuration dialog"
-  },
   "reattachFileDialogTitle": "الملف الأصلي مطلوب",
-  "@reattachFileDialogTitle": {
-    "description": "Title for the reattach file dialog"
-  },
   "reattachFileDialogMessage": "لتوليد محتوى لهذا القسم، يرجى إرفاق الملف الأصلي المستخدم لإنشاء هذه الدراسة.",
-  "@reattachFileDialogMessage": {
-    "description": "Message for the reattach file dialog"
-  },
   "fileHashMismatchError": "الملف المحدد لا يتطابق مع الملف الأصلي المستخدم لإنشاء هذه الدراسة.",
-  "@fileHashMismatchError": {
-    "description": "Error message when the reattached file is different from the original"
-  },
   "showMoreLabel": "عرض المزيد",
-  "@showMoreLabel": {
-    "description": "Label for the button to expand content"
-  },
   "showLessLabel": "عرض أقل",
-  "@showLessLabel": {
-    "description": "Label for the button to collapse content"
-  },
   "startQuizFromStudy": "اختبر معرفتك",
   "studySectionPracticePrompt": "تدريب على أسئلة القسم",
   "studySectionPracticeSubtitle": "يحتوي هذا القسم على {count, plural, =1{سؤال واحد مرتبط} =2{سؤالين مرتبطين} other{{count} أسئلة مرتبطة}}. تدرب عليها الآن لتعزيز تعلمك!",
   "studySectionMasteryTooltip": "إتقان القسم: {percentage}% (أجاب {correct} من {total} أسئلة بشكل صحيح في المحاولة الأخيرة)",
   "studyScreenLearnedContent": "المحتوى المتعلم",
   "studyScreenLearnedQuestionsCount": "تم إتقان {correct} من أصل {total} أسئلة",
-  "@startQuizFromStudy": {
-    "description": "Label for the button to start a quiz based on study material"
-  },
   "studyScreenCustomChapter": "فصل مخصص",
-  "@studyScreenCustomChapter": {
-    "description": "Label for a study chapter created manually"
-  },
   "addSection": "إضافة قسم",
-  "@addSection": {
-    "description": "Generic add section button text"
-  },
   "editSection": "تعديل القسم",
-  "@editSection": {
-    "description": "Title for editing an existing section dialog"
-  },
   "sectionTitleLabel": "العنوان",
-  "@sectionTitleLabel": {
-    "description": "Label for section title input field in add/edit section dialog"
-  },
   "sectionTitleHint": "أدخل عنوان القسم",
-  "@sectionTitleHint": {
-    "description": "Hint for section title input field in add/edit section dialog"
-  },
   "sectionDescriptionLabel": "الوصف",
-  "@sectionDescriptionLabel": {
-    "description": "Label for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionHint": "أدخل وصف القسم",
-  "@sectionDescriptionHint": {
-    "description": "Hint for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionAiHint": "سيتم استخدام هذه المعلومات لاحقًا بواسطة الذكاء الاصطناعي لإنشاء محتوى الدراسة.",
-  "@sectionDescriptionAiHint": {
-    "description": "Helper text shown below section description input, indicating AI will use this information later"
-  },
   "generateSectionsWithAI": "إنشاء أقسام باستخدام الذكاء الاصطناعي",
-  "@generateSectionsWithAI": {
-    "description": "Tooltip for generating sections from scratch with AI"
-  },
   "addSectionsWithAI": "إضافة أقسام باستخدام الذكاء الاصطناعي",
-  "@addSectionsWithAI": {
-    "description": "Label for adding more sections using AI"
-  },
   "studyScreenReminder": "تذكير",
-  "@studyScreenReminder": {
-    "description": "Label for the reminder/tip component in the study screen"
-  },
   "studyScreenKeyDefinition": "تعريف رئيسي",
-  "@studyScreenKeyDefinition": {
-    "description": "Label for the key definition component in the study screen"
-  },
   "studyScreenImportant": "هام",
-  "@studyScreenImportant": {
-    "description": "Label for the warning/important component in the study screen"
-  },
   "studyComponentNoItems": "لا توجد عناصر",
-  "@studyComponentNoItems": {
-    "description": "Label shown when there are no items in a study component"
-  },
   "studyComponentAdvantages": "المزايا",
-  "@studyComponentAdvantages": {
-    "description": "Header for the advantages section in a study component"
-  },
   "studyComponentLimitations": "القيود",
-  "@studyComponentLimitations": {
-    "description": "Header for the limitations section in a study component"
-  },
   "studyScreenDownloadChunk": "توليد",
   "aiStudyChapterSystemPrompt": "أنت مساعد دراسة بالذكاء الاصطناعي تساعد الطالب على فهم محتوى فصل دراسي. اشرح المفاهيم بعمق، وقدم أمثلة، واذكر الروابط مع الأجزاء الأخرى من المادة الدراسية عندما يكون ذلك مناسباً. أجب بنفس اللغة التي سُئلت بها.",
-  "@aiStudyChapterSystemPrompt": {
-    "description": "System prompt for the AI study assistant when chatting about a study chapter"
-  },
   "aiStudyChapterGuardrail": "ابقَ مركزاً على محتوى الفصل المقدم والمادة الدراسية. إذا كان سؤال الطالب يتعلق بفصل آخر، فاذكر عنوان الفصل ذي الصلة.",
-  "@aiStudyChapterGuardrail": {
-    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
-  },
   "askAIStudyTooltip": "اسأل الذكاء الاصطناعي عن هذا الفصل",
-  "@askAIStudyTooltip": {
-    "description": "Tooltip for the Ask AI button shown in the study chapter view"
-  },
   "studyScreenPendingSections": "بعض الأقسام لم يتم إنشاؤها بعد",
-  "@studyScreenPendingSections": {
-    "description": "تحذير يظهر في فهرس الدراسة عندما لا تكون بعض الأجزاء قد تم إنشاؤها بعد"
-  },
   "aiErrorRedirect": "إعادة توجيه (302) إلى: {location}",
-  "@aiErrorRedirect": {
-    "description": "رسالة خطأ عند حدوث إعادة توجيه 302 أثناء طلب الذكاء الاصطناعي",
-    "placeholders": {
-      "location": {
-        "type": "String",
-        "example": "https://example.com"
-      }
-    }
-  },
   "aiErrorConnectionAborted": "انقطع الطلب لأن التطبيق انتقل إلى الخلفية. يرجى إبقاء التطبيق مفتوحاً أثناء إنشاء المحتوى.",
-  "@aiErrorConnectionAborted": {
-    "description": "Error message when a request is aborted because the app is minimized."
-  },
   "noInternetConnection": "لا يوجد اتصال بالإنترنت. يرجى التحقق من إعدادات الشبكة والمحاولة مرة أخرى.",
-  "@noInternetConnection": {
-    "description": "Error message shown when the device has no internet connection."
-  },
   "duplicatedTag": "مكرر",
-  "@duplicatedTag": {
-    "description": "Tag to indicate an item is duplicated"
-  },
   "aiSelectSectionsTitle": "تحديد الأقسام",
-  "@aiSelectSectionsTitle": {
-    "description": "Title for the chunk section selector in AI content step"
-  },
   "aiSelectSectionsSubtitle": "اختر أقسام الدراسة التي ستُستخدم لإنشاء الأسئلة",
-  "@aiSelectSectionsSubtitle": {
-    "description": "Subtitle explaining what the section selector does"
-  },
   "aiAllSections": "جميع الأقسام",
   "aiSelectQuestionsTitle": "تحديد الأسئلة",
-  "@aiSelectQuestionsTitle": {
-    "description": "Title for the question selector in AI study generation"
-  },
   "aiSelectQuestionsSubtitle": "اختر أسئلة وضع الاختبار كسياق للإنشاء",
-  "@aiSelectQuestionsSubtitle": {
-    "description": "Subtitle explaining what the question selector does"
-  },
   "aiAllQuestions": "جميع الأسئلة",
   "onboardingStudyContentTitle": "ادرس المحتوى الخاص بك",
-  "@onboardingStudyContentTitle": {
-    "description": "Title of the study content onboarding page"
-  },
   "onboardingStudyContentDescription": "نظّم موادك في أقسام دراسية. استورد الملفات، أو أضفها يدويًا، أو دع الذكاء الاصطناعي يولد المحتوى.",
-  "@onboardingStudyContentDescription": {
-    "description": "Description of the study content onboarding page"
-  },
   "onboardingStudyContentSubtitle": "نظم، وولد، وادرس",
-  "@onboardingStudyContentSubtitle": {
-    "description": "Subtitle of the study content onboarding page"
-  },
   "onboardingStudyStepAddTitle": "أضف مادة",
-  "@onboardingStudyStepAddTitle": {
-    "description": "Step 1 title in study content onboarding page"
-  },
   "onboardingStudyStepAddDescription": "اكتب أقسامًا أو استورد من ملفات .quiz",
-  "@onboardingStudyStepAddDescription": {
-    "description": "Step 1 description in study content onboarding page"
-  },
   "onboardingStudyStepGenerateTitle": "توليد بواسطة الذكاء الاصطناعي",
-  "@onboardingStudyStepGenerateTitle": {
-    "description": "Step 2 title in study content onboarding page"
-  },
   "onboardingStudyStepGenerateDescription": "الذكاء الاصطناعي ينشئ أقسامًا دراسية من مستنداتك",
-  "@onboardingStudyStepGenerateDescription": {
-    "description": "Step 2 description in study content onboarding page"
-  },
   "onboardingStudyStepStudyTitle": "ادرس الأقسام التي تم إنشاؤها",
-  "@onboardingStudyStepStudyTitle": {
-    "description": "Step 3 title in study content onboarding page"
-  },
   "onboardingStudyStepStudyDescription": "تصفح كل قسم وعزز تعلمك",
-  "@onboardingStudyStepStudyDescription": {
-    "description": "Step 3 description in study content onboarding page"
-  },
   "onboardingStudyStepPdfTitle": "تصدير كـ PDF",
-  "@onboardingStudyStepPdfTitle": {
-    "description": "Step 4 title in study content onboarding page"
-  },
   "onboardingStudyStepPdfDescription": "قم بتنزيل ومشاركة دراستك كملف PDF",
-  "@onboardingStudyStepPdfDescription": {
-    "description": "Step 4 description in study content onboarding page"
-  },
   "privacyPolicyLabel": "سياسة الخصوصية",
-  "@privacyPolicyLabel": {
-    "description": "Label for the privacy policy action in settings and title on the privacy policy screen"
-  },
   "privacyPolicyDescription": "اطلع على كيفية التعامل مع بياناتك في Quizdy",
-  "@privacyPolicyDescription": {
-    "description": "Description for the privacy policy action in settings"
-  },
   "privacyPolicyRequiredDescription": "يرجى مراجعة سياسة الخصوصية والموافقة عليها للمتابعة.",
-  "@privacyPolicyRequiredDescription": {
-    "description": "Message shown when privacy policy acceptance is required after onboarding"
-  },
   "privacyPolicyLoadError": "تعذر تحميل محتوى سياسة الخصوصية.",
-  "@privacyPolicyLoadError": {
-    "description": "Error shown when PRIVACY.md cannot be loaded"
-  },
   "privacyPolicyCanonicalNotice": "النسخة القانونية الرسمية لهذه السياسة هي النص الإنجليزي المستضاف في مستودع المشروع.",
-  "@privacyPolicyCanonicalNotice": {
-    "description": "Short legal notice indicating the canonical version of the privacy policy"
-  },
   "privacyPolicyOpenInBrowser": "فتح السياسة الكاملة على GitHub",
-  "@privacyPolicyOpenInBrowser": {
-    "description": "Button label to open the privacy policy URL in an external browser"
-  },
   "supportLabel": "الدعم",
-  "@supportLabel": {
-    "description": "Label for the support action in settings"
-  },
   "supportDescription": "فتح مشكلات GitHub مع تفاصيل التطبيق والمنصة",
-  "@supportDescription": {
-    "description": "Description for the support action in settings"
-  },
   "feedbackTitle": "ملاحظاتك تهمنا",
-  "@feedbackTitle": {
-    "description": "Title for the home screen feedback prompt"
-  },
   "feedbackDescription": "أجب عن استبيان سريع وساعدنا في تحسين Quizdy",
-  "@feedbackDescription": {
-    "description": "Description for the home screen feedback prompt"
-  },
   "studyEditorToggleEdit": "تحرير المحتوى",
   "studyEditorExitEdit": "الخروج من وضع التحرير",
   "studyEditorPages": "الصفحات",
@@ -2487,272 +548,59 @@
   "studyEditorEditName": "تحرير {name}",
   "studyEditorPageN": "الصفحة {n}",
   "componentTypeSectionTitle": "عنوان القسم",
-  "@componentTypeSectionTitle": {
-    "description": "Display name for the sectionTitle component type"
-  },
   "componentTypeParagraph": "فقرة",
-  "@componentTypeParagraph": {
-    "description": "Display name for the paragraph component type"
-  },
   "componentTypeKeyDefinition": "تعريف المفتاح",
-  "@componentTypeKeyDefinition": {
-    "description": "Display name for the keyDefinition component type"
-  },
   "componentTypeNumberedList": "قائمة مرقمة",
-  "@componentTypeNumberedList": {
-    "description": "Display name for the numberedList component type"
-  },
   "componentTypeComparisonTable": "جدول المقارنة",
-  "@componentTypeComparisonTable": {
-    "description": "Display name for the comparisonTable component type"
-  },
   "componentTypeQuote": "يقتبس",
-  "@componentTypeQuote": {
-    "description": "Display name for the quote component type"
-  },
   "componentTypeWarning": "تحذير",
-  "@componentTypeWarning": {
-    "description": "Display name for the warning component type"
-  },
   "componentTypeFormula": "صيغة",
-  "@componentTypeFormula": {
-    "description": "Display name for the formula component type"
-  },
   "componentTypeTimeline": "الجدول الزمني",
-  "@componentTypeTimeline": {
-    "description": "Display name for the timeline component type"
-  },
   "componentTypeProsCons": "إيجابيات وسلبيات",
-  "@componentTypeProsCons": {
-    "description": "Display name for the prosCons component type"
-  },
   "componentTypeKeyConcepts": "المفاهيم الأساسية",
-  "@componentTypeKeyConcepts": {
-    "description": "Display name for the keyConcepts component type"
-  },
   "componentTypeReminder": "تذكير",
-  "@componentTypeReminder": {
-    "description": "Display name for the reminder component type"
-  },
   "componentTypeIconCards": "بطاقات الأيقونات",
-  "@componentTypeIconCards": {
-    "description": "Display name for the iconCards component type"
-  },
   "componentFieldSubtitle": "الترجمة",
-  "@componentFieldSubtitle": {
-    "description": "Form field label for subtitle"
-  },
   "componentFieldTerm": "شرط",
-  "@componentFieldTerm": {
-    "description": "Form field label for term (key definition)"
-  },
   "componentFieldDefinition": "تعريف",
-  "@componentFieldDefinition": {
-    "description": "Form field label for definition"
-  },
   "componentFieldQuote": "يقتبس",
-  "@componentFieldQuote": {
-    "description": "Form field label for quote text"
-  },
   "componentFieldAuthor": "مؤلف",
-  "@componentFieldAuthor": {
-    "description": "Form field label for quote author"
-  },
   "componentFieldEquation": "معادلة",
-  "@componentFieldEquation": {
-    "description": "Form field label for formula equation"
-  },
   "componentFieldEquationLabel": "تسمية المعادلة",
-  "@componentFieldEquationLabel": {
-    "description": "Form field label for formula equation label"
-  },
   "componentFieldExplanation": "توضيح",
-  "@componentFieldExplanation": {
-    "description": "Form field label for formula explanation"
-  },
   "componentFieldItems": "أغراض",
-  "@componentFieldItems": {
-    "description": "Form section label for a list of items"
-  },
   "componentFieldConcept": "مفهوم",
-  "@componentFieldConcept": {
-    "description": "Form field label for a single concept item"
-  },
   "componentFieldEvents": "الأحداث",
-  "@componentFieldEvents": {
-    "description": "Form section label for timeline events"
-  },
   "componentFieldDate": "تاريخ",
-  "@componentFieldDate": {
-    "description": "Form field label for timeline event date"
-  },
   "componentFieldDescription": "وصف",
-  "@componentFieldDescription": {
-    "description": "Form field label for item description"
-  },
   "componentFieldCards": "بطاقات",
-  "@componentFieldCards": {
-    "description": "Form section label for icon cards"
-  },
   "componentFieldPros": "الايجابيات",
-  "@componentFieldPros": {
-    "description": "Form section label for pros list"
-  },
   "componentFieldPro": "برو",
-  "@componentFieldPro": {
-    "description": "Form field label for a single pro item"
-  },
   "componentFieldCons": "سلبيات",
-  "@componentFieldCons": {
-    "description": "Form section label for cons list"
-  },
   "componentFieldCon": "يخدع",
-  "@componentFieldCon": {
-    "description": "Form field label for a single con item"
-  },
   "componentFieldColumns": "أعمدة",
-  "@componentFieldColumns": {
-    "description": "Form section label for table columns"
-  },
   "componentFieldColumn": "عمود",
-  "@componentFieldColumn": {
-    "description": "Form field label for a single table column"
-  },
   "componentFieldRows": "الصفوف",
-  "@componentFieldRows": {
-    "description": "Form section label for table rows"
-  },
   "componentFieldRow": "صف",
-  "@componentFieldRow": {
-    "description": "Form field label for a single table row"
-  },
   "componentFieldLabel": "ملصق",
-  "@componentFieldLabel": {
-    "description": "Form field label for a row label in comparison table"
-  },
   "componentFieldLabelColumn": "عمود التسميات",
-  "@componentFieldLabelColumn": {
-    "description": "Form field label for the header of the label column in a comparison table"
-  },
   "componentFieldAdd": "إضافة {item}",
-  "@componentFieldAdd": {
-    "description": "Button label to add a new item to a list",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "componentFieldOptional": "خياري",
-  "@componentFieldOptional": {
-    "description": "Label shown next to optional form fields"
-  },
   "componentFieldRequired": "هذا الحقل مطلوب",
   "addComponentTitle": "إضافة مكون",
-  "@addComponentTitle": {
-    "description": "Title for the Add Component picker screen"
-  },
-  "@studyEditorComponents": {
-    "description": "Section header for the list of components in the component editor"
-  },
-  "@studyEditorPages": {
-    "description": "Section header for the list of pages in the section page manager"
-  },
-  "@studyEditorSaveChanges": {
-    "description": "Button label to save edited component properties"
-  },
-  "@studyEditorExitEdit": {
-    "description": "Tooltip for the FAB button that disables study content edit mode"
-  },
-  "@studyEditorEmptyComponents": {
-    "description": "Empty state message in the component editor"
-  },
-  "@studyEditorFieldTitle": {
-    "description": "Label for the optional title field in component editors"
-  },
-  "@studyEditorToggleEdit": {
-    "description": "Tooltip for the FAB button that enables study content edit mode"
-  },
-  "@studyEditorEmptyPages": {
-    "description": "Empty state message in the section page manager"
-  },
-  "@studyEditorFieldBody": {
-    "description": "Label for the main body text field in component editors"
-  },
-  "@studyEditorDeletePage": {
-    "description": "Button label to delete a page from a section"
-  },
-  "@studyEditorAddPage": {
-    "description": "Button label to add a new page to a section"
-  },
-  "@studyEditorEditName": {
-    "description": "Navigation header title: Edit [section name]",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "@studyEditorEditParagraph": {
-    "description": "Navigation header title for the paragraph property panel"
-  },
-  "@studyEditorPageN": {
-    "description": "Label for page number n in the section page manager",
-    "placeholders": {
-      "n": {
-        "type": "int"
-      }
-    }
-  },
   "addComponentsWithAI": "إضافة مكونات بالذكاء الاصطناعي",
-  "@addComponentsWithAI": {
-    "description": "Button label to add study components using AI"
-  },
   "aiSelectComponentTypesTitle": "تحديد أنواع المكونات",
-  "@aiSelectComponentTypesTitle": {
-    "description": "Title for the component type filter in AI study generation"
-  },
   "aiSelectComponentTypesSubtitle": "تمكين التصفية لتحديد أنواع المكونات التي سيتم تضمينها في محتوى الدراسة المنشأ",
-  "@aiSelectComponentTypesSubtitle": {
-    "description": "Subtitle for the component type filter in AI study generation"
-  },
   "aiComponentsGeneratedSuccess": "تم إنشاء المحتوى بنجاح",
-  "@aiComponentsGeneratedSuccess": {
-    "description": "Snackbar message shown when AI component generation completes successfully"
-  },
   "duplicate": "تكرار",
-  "@duplicate": {
-    "description": "Tooltip for the duplicate button in the component card"
-  },
   "moveUp": "تحريك لأعلى",
-  "@moveUp": {
-    "description": "Tooltip for the move up button in the component card"
-  },
   "moveDown": "تحريك لأسفل",
-  "@moveDown": {
-    "description": "Tooltip for the move down button in the component card"
-  },
   "aiDifficultyRequiresFileTooltip": "يتطلب إرفاق ملف لاستخدام هذا الخيار",
-  "@aiDifficultyRequiresFileTooltip": {
-    "description": "Tooltip when auto difficulty is disabled due to missing file"
-  },
   "exportAsPdf": "تصدير كـ PDF",
   "exportPdfSuccess": "تم تصدير PDF بنجاح",
   "exportPdfError": "فشل تصدير PDF",
   "deleteDuplicatesButton": "حذف التكرارات",
-  "@deleteDuplicatesButton": {
-    "description": "Button to delete duplicated items"
-  },
   "deleteDuplicatesConfirmationMessage": "هل أنت متأكد أنك تريد حذف {count} عنصر مكرر؟ سيتم الاحتفاظ بنسخة واحدة فقط من كل منها.",
-  "@deleteDuplicatesConfirmationMessage": {
-    "description": "Confirmation message when deleting duplicates",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "onboardingDownloadAppTitle": "قم بتثبيت Quizdy على أجهزتك",
   "onboardingDownloadAppDescription": "ثبّت Quizdy على الهاتف باستخدام رموز QR أو افتح روابط متاجر سطح المكتب مباشرة.",
   "onboardingDownloadAppSubtitle": "ثبّت على الهاتف أو سطح المكتب بخطوة واحدة.",
@@ -2768,77 +616,24 @@
   "onboardingDownloadQrTitle": "امسح للمتابعة",
   "onboardingDownloadQrDescription": "استخدم كاميرا هاتفك لفتح رابط المتجر.",
   "studyPdfTableOfContents": "جدول المحتويات",
-  "@studyPdfTableOfContents": {
-    "description": "Title of the table of contents page in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudy": "تضمين الدراسة",
-  "@exportPdfOptionsIncludeStudy": {
-    "description": "Switch label to include the study content pages in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudySubtitle": "إضافة صفحات محتوى الدراسة",
-  "@exportPdfOptionsIncludeStudySubtitle": {
-    "description": "Subtitle for the include study switch in the export PDF dialog"
-  },
   "exportPdfOptionsTitle": "تصدير كـ PDF",
-  "@exportPdfOptionsTitle": {
-    "description": "Title of the export PDF options dialog"
-  },
   "exportPdfOptionsIncludeQuestions": "تضمين صفحة الأسئلة",
-  "@exportPdfOptionsIncludeQuestions": {
-    "description": "Switch label to include a questions page in the exported PDF"
-  },
   "exportPdfOptionsIncludeQuestionsSubtitle": "إضافة صفحة بجميع أسئلة الاختبار",
-  "@exportPdfOptionsIncludeQuestionsSubtitle": {
-    "description": "Subtitle for the include questions switch in the export PDF dialog"
-  },
   "exportPdfOptionsIncludeAnswers": "تضمين الإجابات",
-  "@exportPdfOptionsIncludeAnswers": {
-    "description": "Switch label to include correct answers in the questions page"
-  },
   "exportPdfOptionsIncludeAnswersSubtitle": "إضافة صفحة منفصلة بالإجابات الصحيحة",
-  "@exportPdfOptionsIncludeAnswersSubtitle": {
-    "description": "Subtitle for the include answers switch in the export PDF dialog"
-  },
   "exportPdfQuestionsPageTitle": "الأسئلة",
-  "@exportPdfQuestionsPageTitle": {
-    "description": "Section title for the questions page in the exported PDF"
-  },
   "exportPdfAnswersLabel": "الإجابات",
-  "@exportPdfAnswersLabel": {
-    "description": "Title of the answers page in the exported PDF"
-  },
   "exportButton": "تصدير",
-  "@exportButton": {
-    "description": "Label for the Export button in the export PDF options dialog"
-  },
   "openInQuizdyApp": "افتح في تطبيق Quizdy",
   "open": "افتح",
   "installApp": "تثبيت التطبيق",
   "updateAvailableTitle": "تحديث متاح",
-  "@updateAvailableTitle": {
-    "description": "Title shown in the update banner when a newer app version is available."
-  },
   "updateAvailableMessage": "الإصدار {version} من Quizdy متاح.",
-  "@updateAvailableMessage": {
-    "description": "Subtitle in the update banner indicating which version is available.",
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
   "updateButton": "تحديث",
-  "@updateButton": {
-    "description": "Label for the update button in the update banner."
-  },
   "forceUpdateTitle": "التحديث مطلوب",
-  "@forceUpdateTitle": {
-    "description": "Title of the force update dialog."
-  },
   "forceUpdateMessage": "مطلوب تحديث إلزامي لمتابعة استخدام Quizdy. يرجى تحديث التطبيق.",
-  "@forceUpdateMessage": {
-    "description": "Body message of the force update dialog."
-  },
   "questionOrderBySection": "ترتيب حسب الأقسام",
   "questionOrderBySectionDesc": "اجمع الأسئلة حسب القسم واعرض كل قسم بالترتيب التصاعدي",
   "srsStatsTitle": "إحصائيات",

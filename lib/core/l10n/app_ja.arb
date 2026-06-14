@@ -4,1467 +4,307 @@
   "abortQuizMessage": "新しいファイルを開くと、現在のクイズが停止します。",
   "stopAndOpenButton": "停止して開く",
   "titleAppBar": "クイズ - 試験シミュレーター",
-  "@titleAppBar": {
-    "description": "アプリケーションのタイトルバーに表示されます。"
-  },
   "create": "作成",
-  "@create": {
-    "description": "AppBarでQuizファイルを作成するためのボタンのラベル。"
-  },
   "preview": "プレビュー",
-  "@preview": {
-    "description": "問題ダイアログ内のLaTeXプレビューセクションのラベル。"
-  },
   "load": "読み込み",
-  "@load": {
-    "description": "AppBarでQuizファイルを読み込むためのボタンのラベル。"
-  },
   "fileLoaded": "ファイルを読み込みました：{filePath}",
-  "@fileLoaded": {
-    "description": "ファイルを読み込むときに表示されるメッセージ。",
-    "placeholders": {
-      "filePath": {
-        "type": "String",
-        "example": "/path/to/file.quiz"
-      }
-    }
-  },
   "fileSaved": "ファイルを保存しました：{filePath}",
-  "@fileSaved": {
-    "description": "ファイルを保存するときに表示されるメッセージ。",
-    "placeholders": {
-      "filePath": {
-        "type": "String",
-        "example": "/path/to/file.quiz"
-      }
-    }
-  },
   "errorOpeningFile": "ファイルを開く際にエラーが発生しました",
-  "@errorOpeningFile": {
-    "description": "ファイルを開くときに表示されるエラーメッセージ。"
-  },
   "replaceFileTitle": "新しいQuizを読み込む",
-  "@replaceFileTitle": {
-    "description": "ファイルを置き換えるための確認ダイアログのタイトル。"
-  },
   "replaceFileMessage": "Quizはすでに読み込まれています。新しいファイルに置き換えますか？",
-  "@replaceFileMessage": {
-    "description": "ファイルを置き換えるための確認ダイアログのメッセージ。"
-  },
   "replaceButton": "読み込む",
-  "@replaceButton": {
-    "description": "ファイルを置き換えるための確認ダイアログのボタンのラベル。"
-  },
   "dropFileHere": "ここをクリックするか、.quizファイルを画面にドラッグしてください",
-  "@dropFileHere": {
-    "description": "ファイルを置き換えるための確認ダイアログのメッセージ。"
-  },
   "clickOrDragFile": "クリックしてロードするか、.quizファイルを画面にドラッグしてください",
-  "@clickOrDragFile": {
-    "description": "ファイルを置き換えるための確認ダイアログのメッセージ。"
-  },
   "errorInvalidFile": "エラー：無効なファイルです。.quizファイルである必要があります。",
-  "@errorInvalidFile": {
-    "description": "ファイルを置き換えるための確認ダイアログのメッセージ。"
-  },
   "errorLoadingFile": "クイズファイルの読み込みエラー：{error}",
-  "@errorLoadingFile": {
-    "description": "ファイルを読み込むときに表示されるエラーメッセージ。",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "File not found"
-      }
-    }
-  },
   "errorExportingFile": "ファイルのエクスポートエラー：{error}",
-  "@errorExportingFile": {
-    "description": "ファイルをエクスポートするときに表示されるエラーメッセージ。",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "File not found"
-      }
-    }
-  },
   "cancelButton": "キャンセル",
-  "@cancelButton": {
-    "description": "キャンセルボタン。"
-  },
   "saveButton": "保存",
-  "@saveButton": {
-    "description": "保存ボタン。"
-  },
   "newTag": "新規",
-  "@newTag": {
-    "description": "新規または変更されたアイテムを示すタグ"
-  },
   "modifiedTag": "変更済み",
-  "@modifiedTag": {
-    "description": "アイテムが変更されたことを示すタグ"
-  },
   "confirmDeleteTitle": "削除の確認",
-  "@confirmDeleteTitle": {
-    "description": "プロセスを削除するための確認ダイアログのタイトル。"
-  },
   "confirmDeleteMessage": "本当に`{processName}`プロセスを削除しますか？",
-  "@confirmDeleteMessage": {
-    "description": "プロセスを削除するための確認ダイアログのメッセージ。",
-    "placeholders": {
-      "processName": {
-        "type": "String",
-        "example": "Question 1"
-      }
-    }
-  },
   "deleteButton": "削除",
-  "@deleteButton": {
-    "description": "削除を確認するためのボタン。"
-  },
   "confirmExitTitle": "終了の確認",
-  "@confirmExitTitle": {
-    "description": "終了するための確認ダイアログのタイトル。"
-  },
   "confirmExitMessage": "保存されていない変更があります。変更を破棄して終了しますか？",
-  "@confirmExitMessage": {
-    "description": "終了するための確認ダイアログのメッセージ。"
-  },
   "exitButton": "保存せずに終了",
-  "@exitButton": {
-    "description": "終了するための確認ダイアログのボタンのラベル。"
-  },
   "saveDialogTitle": "出力ファイルを選択してください：",
-  "@saveDialogTitle": {
-    "description": "保存ダイアログのタイトル。"
-  },
   "createQuizFileTitle": "クイズファイルを作成",
-  "@createQuizFileTitle": {
-    "description": "クイズファイルを作成するためのダイアログのタイトル。"
-  },
   "editQuizFileTitle": "クイズファイルを編集",
-  "@editQuizFileTitle": {
-    "description": "クイズファイルを編集するためのダイアログのタイトル。"
-  },
   "fileNameLabel": "ファイル名",
-  "@fileNameLabel": {
-    "description": "ファイル名入力のラベル。"
-  },
   "fileDescriptionLabel": "ファイルの説明",
-  "@fileDescriptionLabel": {
-    "description": "ファイル説明入力のラベル。"
-  },
   "createButton": "作成",
-  "@createButton": {
-    "description": "作成ボタン。"
-  },
   "fileNameRequiredError": "ファイル名は必須です。",
-  "@fileNameRequiredError": {
-    "description": "ファイル名が空のときに表示されるエラーメッセージ。"
-  },
   "fileDescriptionRequiredError": "ファイルの説明は必須です。",
-  "@fileDescriptionRequiredError": {
-    "description": "ファイル説明が空のときに表示されるエラーメッセージ。"
-  },
   "versionLabel": "バージョン",
-  "@versionLabel": {
-    "description": "バージョン入力のラベル。"
-  },
   "authorLabel": "作成者",
-  "@authorLabel": {
-    "description": "作成者入力のラベル。"
-  },
   "authorRequiredError": "作成者は必須です。",
-  "@authorRequiredError": {
-    "description": "作成者入力が空のときに表示されるエラーメッセージ。"
-  },
   "requiredFieldsError": "すべての必須フィールドを入力してください。",
-  "@requiredFieldsError": {
-    "description": "必須フィールドが空のときに表示されるエラーメッセージ。"
-  },
   "requestFileNameTitle": "クイズファイル名を入力",
-  "@requestFileNameTitle": {
-    "description": "ファイル名入力のダイアログのタイトル。"
-  },
   "fileNameHint": "ファイル名（必須）",
-  "@fileNameHint": {
-    "description": "ファイル名入力のヒントテキスト。"
-  },
   "emptyFileNameMessage": "ファイル名を空にすることはできません。",
-  "@emptyFileNameMessage": {
-    "description": "ファイル名が空のときに表示されるエラーメッセージ。"
-  },
   "acceptButton": "承認",
-  "@acceptButton": {
-    "description": "承認ボタン。"
-  },
   "saveTooltip": "ファイルを保存",
-  "@saveTooltip": {
-    "description": "保存ボタンのツールチップ。"
-  },
   "saveDisabledTooltip": "保存する変更がありません",
-  "@saveDisabledTooltip": {
-    "description": "保存ボタンが無効のときに表示されるツールチップ。"
-  },
   "executeTooltip": "試験を実行",
-  "@executeTooltip": {
-    "description": "実行ボタンのツールチップ。"
-  },
   "addTooltip": "新しい問題を追加",
-  "@addTooltip": {
-    "description": "追加ボタンのツールチップ。"
-  },
   "backSemanticLabel": "戻るボタン",
-  "@backSemanticLabel": {
-    "description": "戻るボタンのセマンティックラベル。"
-  },
   "createFileTooltip": "新しいクイズファイルを作成",
-  "@createFileTooltip": {
-    "description": "ファイル作成ボタンのツールチップ。"
-  },
   "loadFileTooltip": "既存のクイズファイルを読み込み",
-  "@loadFileTooltip": {
-    "description": "ファイル読み込みボタンのツールチップ。"
-  },
   "questionNumber": "問題 {number}",
-  "@questionNumber": {
-    "description": "問題番号ラベル。",
-    "placeholders": {
-      "number": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "questionOfTotal": "{total} 問中 {current} 問目",
-  "@questionOfTotal": {
-    "description": "現在の問題番号と全問題数を表示するラベル。",
-    "placeholders": {
-      "current": {
-        "type": "int",
-        "example": "1"
-      },
-      "total": {
-        "type": "int",
-        "example": "10"
-      }
-    }
-  },
   "previous": "前へ",
-  "@previous": {
-    "description": "前へボタン。"
-  },
   "skip": "スキップ",
-  "@skip": {
-    "description": "スキップボタン。"
-  },
   "questionsOverview": "Questions Map",
-  "@questionsOverview": {
-    "description": "問題マップのタイトル。"
-  },
   "next": "次へ",
-  "@next": {
-    "description": "次へボタン。"
-  },
   "finish": "完了",
-  "@finish": {
-    "description": "完了ボタン。"
-  },
   "finishQuiz": "クイズを完了",
-  "@finishQuiz": {
-    "description": "クイズ完了ダイアログのタイトル。"
-  },
   "finishQuizConfirmation": "本当にクイズを完了しますか？その後、回答を変更することはできません。",
-  "@finishQuizConfirmation": {
-    "description": "クイズ完了ダイアログのメッセージ。"
-  },
   "abandonQuiz": "クイズを放棄",
-  "@abandonQuiz": {
-    "description": "クイズ放棄ダイアログのタイトル。"
-  },
   "abandonQuizConfirmation": "本当にクイズを放棄しますか？すべての進捗が失われます。",
-  "@abandonQuizConfirmation": {
-    "description": "クイズ放棄ダイアログのメッセージ。"
-  },
   "abandon": "放棄",
-  "@abandon": {
-    "description": "放棄ボタン。"
-  },
   "quizCompleted": "クイズ完了！",
-  "@quizCompleted": {
-    "description": "クイズ完了メッセージ。"
-  },
   "score": "スコア：{score}%",
-  "@score": {
-    "description": "スコア表示。",
-    "placeholders": {
-      "score": {
-        "type": "String",
-        "example": "85.5"
-      }
-    }
-  },
   "correctAnswers": "{total}問中{correct}問正解",
-  "@correctAnswers": {
-    "description": "正解数表示。",
-    "placeholders": {
-      "correct": {
-        "type": "String",
-        "example": "8"
-      },
-      "total": {
-        "type": "int",
-        "example": "10"
-      }
-    }
-  },
   "retry": "再試行",
-  "@retry": {
-    "description": "再試行ボタン。"
-  },
   "studyScreenRetry": "再試行",
-  "@studyScreenRetry": {
-    "description": "エラーセクションの再試行テキスト。"
-  },
   "studyScreenOmit": "省略",
-  "@studyScreenOmit": {
-    "description": "省略ボタンのテキスト"
-  },
   "goBack": "完了",
-  "@goBack": {
-    "description": "戻るボタン。"
-  },
   "retryFailedQuestions": "不正解を再試行",
-  "@retryFailedQuestions": {
-    "description": "不正解を再試行ボタン。"
-  },
   "question": "問題：{question}",
-  "@question": {
-    "description": "結果表示の問題テキスト。",
-    "placeholders": {
-      "question": {
-        "type": "String",
-        "example": "What is the capital of France?"
-      }
-    }
-  },
   "selectQuestionCountTitle": "問題数を選択",
-  "@selectQuestionCountTitle": {
-    "description": "問題数選択ダイアログのタイトル。"
-  },
   "selectQuestionCountMessage": "このクイズで何問に回答しますか？",
-  "@selectQuestionCountMessage": {
-    "description": "問題数選択ダイアログのメッセージ。"
-  },
   "allQuestions": "すべての問題（{count}問）",
-  "@allQuestions": {
-    "description": "すべての問題選択オプション。",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "25"
-      }
-    }
-  },
   "resolveUnansweredQuestions": "未回答の問題を解く",
-  "@resolveUnansweredQuestions": {
-    "description": "未回答の問題を解くボタン。"
-  },
   "startQuiz": "クイズ開始",
-  "@startQuiz": {
-    "description": "クイズ開始ボタン。"
-  },
   "customNumberLabel": "またはカスタム数を入力：",
-  "@customNumberLabel": {
-    "description": "カスタム数入力セクションのラベル。"
-  },
   "numberInputLabel": "問題数",
-  "@numberInputLabel": {
-    "description": "問題数入力フィールドのラベル。"
-  },
   "errorInvalidNumber": "有効な数字を入力してください",
-  "@errorInvalidNumber": {
-    "description": "有効な数字を入力してください。"
-  },
   "errorNumberMustBePositive": "数字は0より大きい必要があります",
-  "@errorNumberMustBePositive": {
-    "description": "数字は0より大きい必要があります。"
-  },
   "questionOrderConfigTitle": "問題順序の設定",
-  "@questionOrderConfigTitle": {
-    "description": "問題順序設定ダイアログのタイトル。"
-  },
   "questionOrderConfigDescription": "試験中に問題を表示する順序を選択してください：",
-  "@questionOrderConfigDescription": {
-    "description": "問題順序設定ダイアログの説明。"
-  },
   "questionOrderAscending": "昇順",
-  "@questionOrderAscending": {
-    "description": "昇順問題順序設定オプション。"
-  },
   "questionOrderAscendingDesc": "問題は1から最後まで順番に表示されます",
-  "@questionOrderAscendingDesc": {
-    "description": "昇順問題順序設定オプションの説明。"
-  },
   "questionOrderDescending": "降順",
-  "@questionOrderDescending": {
-    "description": "降順問題順序設定オプション。"
-  },
   "questionOrderDescendingDesc": "問題は最後から1まで表示されます",
-  "@questionOrderDescendingDesc": {
-    "description": "降順問題順序設定オプションの説明。"
-  },
   "questionOrderRandom": "問題の順序をランダム化",
-  "@questionOrderRandom": {
-    "description": "ランダム問題順序設定オプション。"
-  },
   "questionOrderRandomDesc": "問題はランダム順で表示されます",
-  "@questionOrderRandomDesc": {
-    "description": "ランダム問題順序設定オプションの説明。"
-  },
   "questionOrderConfigTooltip": "問題順序の設定",
-  "@questionOrderConfigTooltip": {
-    "description": "問題順序設定ダイアログのツールチップ。"
-  },
   "save": "保存",
-  "@save": {
-    "description": "保存ボタン。"
-  },
   "examTimeLimitTitle": "試験時間制限",
-  "@examTimeLimitTitle": {
-    "description": "試験時間制限セクションのタイトル。"
-  },
   "examTimeLimitDescription": "試験の時間制限を設定します。クイズ中にカウントダウンタイマーが表示されます。",
-  "@examTimeLimitDescription": {
-    "description": "試験時間制限セクションの説明。"
-  },
   "examTimeLimitOffDescription": "この試験には時間制限がありません。",
-  "@examTimeLimitOffDescription": {
-    "description": "Description shown when time limit is disabled"
-  },
   "enableTimeLimit": "時間制限を有効にする",
-  "@enableTimeLimit": {
-    "description": "時間制限を有効にするスイッチ。"
-  },
   "timeLimitMinutes": "時間制限（分）",
-  "@timeLimitMinutes": {
-    "description": "時間制限（分）入力フィールドのラベル。"
-  },
   "examTimeExpiredTitle": "時間切れ！",
-  "@examTimeExpiredTitle": {
-    "description": "時間切れ！ダイアログのタイトル。"
-  },
   "examTimeExpiredMessage": "試験時間が終了しました。回答が自動的に提出されました。",
-  "@examTimeExpiredMessage": {
-    "description": "時間切れ！ダイアログのメッセージ。"
-  },
   "remainingTime": "{hours}:{minutes}:{seconds}",
-  "@remainingTime": {
-    "description": "残り時間表示フォーマット。",
-    "placeholders": {
-      "hours": {
-        "type": "String",
-        "example": "01"
-      },
-      "minutes": {
-        "type": "String",
-        "example": "30"
-      },
-      "seconds": {
-        "type": "String",
-        "example": "45"
-      }
-    }
-  },
   "questionTypeMultipleChoice": "複数選択",
-  "@questionTypeMultipleChoice": {
-    "description": "複数選択問題のラベル。"
-  },
   "questionTypeSingleChoice": "単一選択",
-  "@questionTypeSingleChoice": {
-    "description": "単一選択問題のラベル。"
-  },
   "questionTypeTrueFalse": "真偽",
-  "@questionTypeTrueFalse": {
-    "description": "真偽問題のラベル。"
-  },
   "questionTypeEssay": "記述式",
-  "@questionTypeEssay": {
-    "description": "記述式問題のラベル。"
-  },
   "questionTypeRandom": "すべて",
-  "@questionTypeRandom": {
-    "description": "すべて問題のラベル。"
-  },
   "questionTypeUnknown": "不明",
-  "@questionTypeUnknown": {
-    "description": "不明問題のラベル。"
-  },
   "optionsCount": "{count, plural, =1{1つの選択肢} other{{count}つの選択肢}}",
-  "@optionsCount": {
-    "description": "問題の回答選択肢の数を表示するテキスト。",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "optionsTooltip": "この問題の回答選択肢の数",
-  "@optionsTooltip": {
-    "description": "回答選択肢数のバッジのツールチップ。"
-  },
   "imageTooltip": "この問題には関連する画像があります",
-  "@imageTooltip": {
-    "description": "画像表示のバッジのツールチップ。"
-  },
   "explanationTooltip": "この問題には解説があります",
-  "@explanationTooltip": {
-    "description": "解説表示のバッジのツールチップ。"
-  },
   "aiPrompt": "元の試験問題に直接答えるのではなく、学生の質問に焦点を当ててください。教育的なアプローチで説明してください。実践的な演習や数学の問題については、ステップバイステップの指示を提供してください。理論的な質問については、回答をセクションに分けずに簡潔な説明を提供してください。質問されたのと同じ言語で回答してください。",
-  "@aiPrompt": {
-    "description": "AIアシスタントのベースプロンプト。"
-  },
   "aiChatGuardrail": "重要：あなたはこのQuiz専用の学習アシスタントです。現在のQuizの質問、その選択肢、説明、またはカバーしている教育的トピックに関連する質問にのみ回答してください。学生がQuizに関係のないことを質問した場合（例：あなたの内部モデル、システムの詳細、質問に関係のない一般知識、またはトピック外のリクエスト）、次のメッセージのみで回答してください：「このQuizのお手伝いをするためにここにいます！質問に集中しましょう。トピック、回答の選択肢、またはこの質問に関連することについて、お気軽にお聞きください。」自分自身、システム、または使用されているAIモデルに関する技術的な詳細は決して明かさないでください。",
-  "@aiChatGuardrail": {
-    "description": "AIアシスタントのガードレールプロンプト。"
-  },
   "questionLabel": "問題",
-  "@questionLabel": {
-    "description": "AIダイアログ内の問題のラベル。"
-  },
   "optionsLabel": "選択肢",
-  "@optionsLabel": {
-    "description": "AIダイアログ内の選択肢のラベル。"
-  },
   "studentComment": "学生のコメント",
-  "@studentComment": {
-    "description": "AIダイアログ内の学生コメントのラベル。"
-  },
   "aiAssistantTitle": "AI学習アシスタント",
-  "@aiAssistantTitle": {
-    "description": "AIアシスタントダイアログのタイトル"
-  },
   "questionContext": "問題の背景",
-  "@questionContext": {
-    "description": "AIダイアログ内の問題背景のラベル"
-  },
   "aiAssistant": "AIアシスタント",
-  "@aiAssistant": {
-    "description": "AIアシスタントチャットのラベル"
-  },
   "aiThinking": "AIが考えています...",
-  "@aiThinking": {
-    "description": "AIが考えているときのメッセージ"
-  },
   "askAIHint": "このトピックについて質問してください...",
-  "@askAIHint": {
-    "description": "AIの質問入力フィールドのヒントテキスト"
-  },
   "aiPlaceholderResponse": "これはプレースホルダー応答です。実際の実装では、問題について有用な説明を提供するAIサービスに接続されます。",
-  "@aiPlaceholderResponse": {
-    "description": "プレースホルダー応答のメッセージ"
-  },
   "aiErrorResponse": "申し訳ございませんが、質問の処理中にエラーが発生しました。もう一度お試しください。",
-  "@aiErrorResponse": {
-    "description": "AIのエラーメッセージ"
-  },
   "configureApiKeyMessage": "設定でAI APIキーを設定してください。",
-  "@configureApiKeyMessage": {
-    "description": "AI APIキーが設定されていないときのメッセージ"
-  },
   "errorLabel": "エラー：",
-  "@errorLabel": {
-    "description": "エラーメッセージのプレフィックス"
-  },
   "noResponseReceived": "応答を受信しませんでした",
-  "@noResponseReceived": {
-    "description": "AIから応答を受信しないときのメッセージ"
-  },
   "invalidApiKeyError": "無効なAPIキーです。設定でOpenAI APIキーを確認してください。",
-  "@invalidApiKeyError": {
-    "description": "無効なAPIキーのエラーメッセージ"
-  },
   "rateLimitError": "クォータを超過したか、プランでモデルが利用できません。プランを確認してください。",
-  "@rateLimitError": {
-    "description": "クォータを超過したか、プランでモデルが利用できないときのエラーメッセージ"
-  },
   "modelNotFoundError": "モデルが見つかりません。APIアクセスを確認してください。",
-  "@modelNotFoundError": {
-    "description": "モデルが見つからないときのエラーメッセージ"
-  },
   "unknownError": "不明なエラー",
-  "@unknownError": {
-    "description": "不明なエラーのメッセージ"
-  },
   "networkErrorOpenAI": "ネットワークエラー：OpenAIに接続できません。インターネット接続を確認してください。",
-  "@networkErrorOpenAI": {
-    "description": "ネットワーク接続エラーのメッセージ"
-  },
   "networkErrorGemini": "ネットワークエラー：Geminiに接続できません。インターネット接続を確認してください。",
-  "@networkErrorGemini": {
-    "description": "ネットワーク接続エラーのメッセージ"
-  },
   "openaiApiKeyNotConfigured": "OpenAI APIキーが設定されていません",
-  "@openaiApiKeyNotConfigured": {
-    "description": "OpenAI APIキーが設定されていないときのエラーメッセージ"
-  },
   "geminiApiKeyNotConfigured": "Gemini APIキーが設定されていません",
-  "@geminiApiKeyNotConfigured": {
-    "description": "Gemini APIキーが設定されていないときのエラーメッセージ"
-  },
   "geminiApiKeyLabel": "Gemini APIキー",
-  "@geminiApiKeyLabel": {
-    "description": "Gemini APIキー入力フィールドのラベル"
-  },
   "geminiApiKeyHint": "Gemini APIキーを入力してください",
-  "@geminiApiKeyHint": {
-    "description": "Gemini APIキー入力フィールドのヒントテキスト"
-  },
   "geminiApiKeyDescription": "Gemini AI機能に必要です。キーは安全に保存されます。",
-  "@geminiApiKeyDescription": {
-    "description": "Gemini APIキー入力フィールドの説明"
-  },
   "getGeminiApiKeyTooltip": "Google AI StudioからAPIキーを取得",
-  "@getGeminiApiKeyTooltip": {
-    "description": "Gemini APIキー取得ボタンのツールチップ"
-  },
   "aiRequiresAtLeastOneApiKeyError": "AI学習アシスタントには、少なくとも1つのAPIキー（GeminiまたはOpenAI）が必要です。APIキーを入力するか、AIアシスタントを無効にしてください。",
-  "@aiRequiresAtLeastOneApiKeyError": {
-    "description": "AIアシスタントが有効になっているが、APIキーが提供されていないときのエラーメッセージ"
-  },
   "minutesAbbreviation": "分",
-  "@minutesAbbreviation": {
-    "description": "分の略称"
-  },
   "aiButtonTooltip": "AI学習アシスタント",
-  "@aiButtonTooltip": {
-    "description": "AIアシスタントボタンのツールチップ"
-  },
   "aiButtonText": "AI",
-  "@aiButtonText": {
-    "description": "AIアシスタントボタンのテキスト"
-  },
   "aiAssistantSettingsTitle": "AI学習アシスタント（プレビュー）",
-  "@aiAssistantSettingsTitle": {
-    "description": "AIアシスタント設定セクションのタイトル"
-  },
   "aiAssistantSettingsDescription": "問題のAI学習アシスタントを有効または無効にする",
-  "@aiAssistantSettingsDescription": {
-    "description": "AIアシスタント設定セクションの説明"
-  },
   "aiDefaultModelTitle": "デフォルトAIモデル",
-  "@aiDefaultModelTitle": {
-    "description": "AIアシスタント設定セクションのタイトル"
-  },
   "aiDefaultModelDescription": "質問生成のデフォルトAIサービスとモデルを選択",
-  "@aiDefaultModelDescription": {
-    "description": "AIアシスタント設定セクションの説明"
-  },
   "openaiApiKeyLabel": "OpenAI APIキー",
-  "@openaiApiKeyLabel": {
-    "description": "OpenAI APIキー入力フィールドのラベル"
-  },
   "openaiApiKeyHint": "OpenAI APIキーを入力してください（sk-...）",
-  "@openaiApiKeyHint": {
-    "description": "OpenAI APIキー入力フィールドのヒントテキスト"
-  },
   "openaiApiKeyDescription": "OpenAI連携に必要です。OpenAIキーは安全に保存されます。",
-  "@openaiApiKeyDescription": {
-    "description": "OpenAI APIキー入力フィールドの説明"
-  },
   "aiAssistantRequiresApiKeyError": "AI学習アシスタントにはOpenAI APIキーが必要です。APIキーを入力するか、AIアシスタントを無効にしてください。",
-  "@aiAssistantRequiresApiKeyError": {
-    "description": "AIアシスタントが有効になっているがAPIキーが提供されていないときのエラーメッセージ"
-  },
   "getApiKeyTooltip": "OpenAIからAPIキーを取得",
-  "@getApiKeyTooltip": {
-    "description": "OpenAIからAPIキーを取得するボタンのツールチップ"
-  },
   "deleteAction": "削除",
-  "@deleteAction": {
-    "description": "スワイプして削除するときに表示されるアクションテキスト"
-  },
   "explanationLabel": "解説（任意）",
-  "@explanationLabel": {
-    "description": "解説入力フィールドのラベル"
-  },
   "explanationHint": "正解の解説を入力してください",
-  "@explanationHint": {
-    "description": "解説入力フィールドのヒントテキスト"
-  },
   "explanationTitle": "解説",
-  "@explanationTitle": {
-    "description": "クイズ結果の解説セクションのタイトル"
-  },
   "imageLabel": "画像",
-  "@imageLabel": {
-    "description": "問題エディタの画像セクションのラベル"
-  },
   "changeImage": "画像を変更",
-  "@changeImage": {
-    "description": "現在の画像を変更するボタンのテキスト"
-  },
   "removeImage": "画像を削除",
-  "@removeImage": {
-    "description": "現在の画像を削除するボタンのテキスト"
-  },
   "addImageTap": "タップして画像を追加",
-  "@addImageTap": {
-    "description": "画像追加のための説明テキスト"
-  },
   "imageFormats": "形式：JPG、PNG、GIF",
-  "@imageFormats": {
-    "description": "サポートされている画像形式を示すテキスト"
-  },
   "imageLoadError": "画像読み込みエラー",
-  "@imageLoadError": {
-    "description": "画像が読み込めないときのエラーメッセージ"
-  },
   "imagePickError": "画像読み込みエラー：{error}",
-  "@imagePickError": {
-    "description": "画像選択に失敗したときのエラーメッセージ",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Invalid file"
-      }
-    }
-  },
   "tapToZoom": "タップして拡大",
-  "@tapToZoom": {
-    "description": "画像が拡大できることを示すための説明テキスト"
-  },
   "trueLabel": "真",
-  "@trueLabel": {
-    "description": "正誤問題の「真」の選択肢のラベル"
-  },
   "falseLabel": "偽",
-  "@falseLabel": {
-    "description": "正誤問題の「偽」の選択肢のラベル"
-  },
   "addQuestion": "問題を追加",
-  "@addQuestion": {
-    "description": "新しい問題を追加するダイアログのタイトル"
-  },
   "editQuestion": "問題を編集",
-  "@editQuestion": {
-    "description": "既存の問題を編集するダイアログのタイトル"
-  },
   "questionText": "問題文",
-  "@questionText": {
-    "description": "問題文入力フィールドのラベル"
-  },
   "questionType": "問題の種類",
-  "@questionType": {
-    "description": "問題の種類ドロップダウンのラベル"
-  },
   "addOption": "選択肢を追加",
-  "@addOption": {
-    "description": "選択肢を追加するボタンのラベル"
-  },
   "optionLabel": "選択肢",
-  "@optionLabel": {
-    "description": "個々の選択肢入力フィールドのラベル"
-  },
   "questionTextRequired": "問題文は必須です",
-  "@questionTextRequired": {
-    "description": "問題文が空の場合のエラーメッセージ"
-  },
   "atLeastOneOptionRequired": "少なくとも1つの選択肢にテキストが必要です",
-  "@atLeastOneOptionRequired": {
-    "description": "すべての選択肢が空の場合のエラーメッセージ"
-  },
   "atLeastOneCorrectAnswerRequired": "少なくとも1つの正解を選択する必要があります",
-  "@atLeastOneCorrectAnswerRequired": {
-    "description": "正解が選択されていないときのエラーメッセージ"
-  },
   "onlyOneCorrectAnswerAllowed": "この問題の種類では正解は1つのみ許可されています",
-  "@onlyOneCorrectAnswerAllowed": {
-    "description": "単一選択問題で複数の正解が選択されたときのエラーメッセージ"
-  },
   "removeOption": "選択肢を削除",
-  "@removeOption": {
-    "description": "選択肢を削除するボタンのツールチップ"
-  },
   "selectCorrectAnswer": "正解を選択",
-  "@selectCorrectAnswer": {
-    "description": "正解を選択するためのラジオボタンのツールチップ"
-  },
   "selectCorrectAnswers": "正解を選択",
-  "@selectCorrectAnswers": {
-    "description": "正解を選択するためのチェックボックスのツールチップ"
-  },
   "emptyOptionsError": "選択肢{optionNumbers}が空です。テキストを追加するか削除してください。",
-  "@emptyOptionsError": {
-    "description": "一部の選択肢が空の場合のエラーメッセージ",
-    "placeholders": {
-      "optionNumbers": {
-        "type": "String",
-        "example": "1, 3, 4"
-      }
-    }
-  },
   "emptyOptionError": "選択肢{optionNumber}が空です。テキストを追加するか削除してください。",
-  "@emptyOptionError": {
-    "description": "1つの選択肢が空の場合のエラーメッセージ",
-    "placeholders": {
-      "optionNumber": {
-        "type": "String",
-        "example": "3"
-      }
-    }
-  },
   "errorDuplicatedOption": "オプションを重複させることはできません。",
-  "@errorDuplicatedOption": {
-    "description": "Error message when options have duplicate text"
-  },
   "optionEmptyError": "この選択肢を空にすることはできません",
-  "@optionEmptyError": {
-    "description": "個々の空の選択肢フィールドのエラーメッセージ"
-  },
   "hasImage": "画像",
-  "@hasImage": {
-    "description": "問題に画像があることを示すラベル"
-  },
   "hasExplanation": "解説",
-  "@hasExplanation": {
-    "description": "問題に解説があることを示すラベル"
-  },
   "errorLoadingSettings": "設定の読み込みエラー：{error}",
-  "@errorLoadingSettings": {
-    "description": "アプリケーション設定の読み込み中にエラーが発生した場合に表示されるメッセージ",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "description": "The error message"
-      }
-    }
-  },
   "couldNotOpenUrl": "{url}を開けませんでした",
-  "@couldNotOpenUrl": {
-    "description": "URLを開けなかったときに表示されるメッセージ",
-    "placeholders": {
-      "url": {
-        "type": "String",
-        "description": "開けなかったURL"
-      }
-    }
-  },
   "loadingAiServices": "AIサービスを読み込み中...",
-  "@loadingAiServices": {
-    "description": "利用可能なAIサービスを読み込み中に表示されるメッセージ"
-  },
   "usingAiService": "使用中：{serviceName}",
-  "@usingAiService": {
-    "description": "使用中のAIサービスを示すメッセージ",
-    "placeholders": {
-      "serviceName": {
-        "type": "String",
-        "description": "The name of the AI service"
-      }
-    }
-  },
   "aiServiceLabel": "AIサービス：",
-  "@aiServiceLabel": {
-    "description": "AIサービスセレクタのラベル"
-  },
   "aiModelLabel": "モデル：",
-  "@aiModelLabel": {
-    "description": "AIモデルセレクタのラベル"
-  },
   "importQuestionsTitle": "問題をインポート",
-  "@importQuestionsTitle": {
-    "description": "問題をインポートダイアログのタイトル"
-  },
   "importQuestionsMessage": "\"{fileName}\"に{count}個の問題が見つかりました。どこにインポートしますか？",
-  "@importQuestionsMessage": {
-    "description": "別のファイルから問題をインポートする場所を尋ねるメッセージ",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "questions.quiz"
-      }
-    }
-  },
   "importQuestionsPositionQuestion": "これらの問題をどこに追加しますか？",
-  "@importQuestionsPositionQuestion": {
-    "description": "インポート位置に関する質問"
-  },
   "importAtBeginning": "最初",
-  "@importAtBeginning": {
-    "description": "リストの先頭に問題をインポートするボタン"
-  },
   "importAtEnd": "最後",
-  "@importAtEnd": {
-    "description": "リストの最後に問題をインポートするボタン"
-  },
   "questionsImportedSuccess": "{count}個の問題を正常にインポートしました",
-  "@questionsImportedSuccess": {
-    "description": "問題が正常にインポートされたときの成功メッセージ",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "importChunksTitle": "セクションをインポート",
-  "@importChunksTitle": {
-    "description": "Title for the import chunks dialog."
-  },
   "importChunksMessage": "\"{fileName}\"に{count}セクションが見つかりました。どこにインポートしますか？",
-  "@importChunksMessage": {
-    "description": "Message asking where to import sections from another file.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "study.quiz"
-      }
-    }
-  },
   "importChunksPositionQuestion": "これらのセクションをどこに追加しますか？",
-  "@importChunksPositionQuestion": {
-    "description": "Question asking about import position for chunks."
-  },
   "chunksImportedSuccess": "{count}セクションを正常にインポートしました",
-  "@chunksImportedSuccess": {
-    "description": "Success message when chunks are imported.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "noChunksInFile": "インポートされたファイルにセクションが見つかりません",
-  "@noChunksInFile": {
-    "description": "Error message when the imported file has no study sections."
-  },
   "importQuestionsTooltip": "別のクイズファイルから問題をインポート",
-  "@importQuestionsTooltip": {
-    "description": "インポートする問題ボタンのツールチップ"
-  },
   "dragDropHintText": "問題をインポートするために.quizファイルをここにドラッグ&ドロップすることもできます",
-  "@dragDropHintText": {
-    "description": "問題リストが空のときに表示されるヒントテキスト。ドラッグ＆ドロップ機能を示します。"
-  },
   "randomizeQuestionsTitle": "問題をランダム化",
-  "@randomizeQuestionsTitle": {
-    "description": "問題のランダム化設定のタイトル"
-  },
   "randomizeQuestionsDescription": "クイズ実行中に問題の順序をシャッフル",
-  "@randomizeQuestionsDescription": {
-    "description": "問題のランダム化設定の説明"
-  },
   "randomizeQuestionsOffDescription": "問題は元の順序で表示されます",
-  "@randomizeQuestionsOffDescription": {
-    "description": "ランダム化設定が無効な場合の問題のランダム化説明。"
-  },
   "randomizeAnswersTitle": "回答の順序をランダム化",
-  "@randomizeAnswersTitle": {
-    "description": "回答選択肢のランダム化設定のタイトル"
-  },
   "randomizeAnswersDescription": "クイズ実行中に回答選択肢の順序をシャッフル",
-  "@randomizeAnswersDescription": {
-    "description": "回答選択肢のランダム化設定の説明"
-  },
   "showCorrectAnswerCountTitle": "正解数を表示",
-  "@showCorrectAnswerCountTitle": {
-    "description": "正解数表示設定のタイトル"
-  },
   "showCorrectAnswerCountDescription": "複数選択問題で正解の数を表示",
-  "@showCorrectAnswerCountDescription": {
-    "description": "複数選択問題で正解数を表示する設定の説明"
-  },
   "showCorrectAnswerCountOffDescription": "選択式問題の正解数は表示されません",
-  "@showCorrectAnswerCountOffDescription": {
-    "description": "複数選択問題で正解数を表示する設定を無効にしたときの説明"
-  },
   "correctAnswersCount": "{count}つの正解を選択",
-  "@correctAnswersCount": {
-    "description": "複数選択問題で正解の数を表示する設定の説明",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "correctSelectedLabel": "正解",
-  "@correctSelectedLabel": {
-    "description": "クイズ結果で正しく選択された回答のラベル"
-  },
   "correctMissedLabel": "正解",
-  "@correctMissedLabel": {
-    "description": "クイズ結果で選択されなかった正解のラベル"
-  },
   "incorrectSelectedLabel": "不正解",
-  "@incorrectSelectedLabel": {
-    "description": "クイズ結果で不正に選択された回答のラベル"
-  },
   "generateQuestionsWithAI": "AIで問題を生成",
-  "@generateQuestionsWithAI": {
-    "description": "AIで問題を生成するボタンのツールチップ"
-  },
   "addQuestionsWithAI": "AIで質問を追加",
-  "@addQuestionsWithAI": {
-    "description": "AIで質問を追加するボタンのラベル"
-  },
   "aiGenerateDialogTitle": "AIで問題を生成",
-  "@aiGenerateDialogTitle": {
-    "description": "AIで問題を生成するダイアログのタイトル"
-  },
   "aiQuestionCountLabel": "問題数（任意）",
-  "@aiQuestionCountLabel": {
-    "description": "問題数フィールドのラベル"
-  },
   "aiQuestionCountHint": "AIに決めさせる場合は空白のままにしてください",
-  "@aiQuestionCountHint": {
-    "description": "問題数フィールドのヒントテキスト"
-  },
   "aiQuestionCountValidation": "1から50までの数字である必要があります",
-  "@aiQuestionCountValidation": {
-    "description": "問題数フィールドのバリデーションメッセージ"
-  },
   "aiQuestionTypeLabel": "問題の種類",
-  "@aiQuestionTypeLabel": {
-    "description": "問題の種類セレクターのラベル"
-  },
   "aiQuestionTypeRandom": "ランダム（混合）",
-  "@aiQuestionTypeRandom": {
-    "description": "問題のランダムタイプオプション"
-  },
   "aiLanguageLabel": "問題の言語",
-  "@aiLanguageLabel": {
-    "description": "言語セレクターのラベル"
-  },
   "aiContentLabel": "問題生成元のコンテンツ",
-  "@aiContentLabel": {
-    "description": "コンテンツフィールドのラベル"
-  },
   "aiWordCount": "{current} / {max} 語",
-  "@aiWordCount": {
-    "description": "コンテンツのワードカウンター",
-    "placeholders": {
-      "current": {
-        "type": "int",
-        "example": "150"
-      },
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiContentHint": "問題を生成したいテキスト、トピック、またはコンテンツを入力してください...",
-  "@aiContentHint": {
-    "description": "コンテンツフィールドのヒントテキスト"
-  },
   "aiContentHelperText": "AIはこのコンテンツに基づいて問題を作成します",
-  "@aiContentHelperText": {
-    "description": "コンテンツフィールドの追加ヘルパーテキスト"
-  },
   "aiWordLimitError": "{max}語の制限を超えています",
-  "@aiWordLimitError": {
-    "description": "ワード制限を超えたときのバリデーションエラー",
-    "placeholders": {
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiContentRequiredError": "問題を生成するためにコンテンツを提供する必要があります",
-  "@aiContentRequiredError": {
-    "description": "コンテンツが提供されていないときのバリデーションエラー"
-  },
   "aiContentLimitError": "コンテンツが{max}語の制限を超えています",
-  "@aiContentLimitError": {
-    "description": "ワード制限を超えたときのバリデーションエラー",
-    "placeholders": {
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiMinWordsError": "質の高い問題を生成するために少なくとも10語を提供してください",
-  "@aiMinWordsError": {
-    "description": "コンテンツが短すぎる場合のバリデーションエラー"
-  },
   "aiInfoTitle": "情報",
-  "@aiInfoTitle": {
-    "description": "情報セクションのタイトル"
-  },
   "aiInfoDescription": "• AIがコンテンツを分析して関連する問題を生成します\n• 10語未満であれば「トピックモード」になり、特定のテーマについて質問します\n• 10語以上であれば「コンテンツモード」になり、入力されたテキストに基づいて質問します（単語数が多いほど、精度が高まります）\n• テキスト、定義、説明、または任意の教育材料を含めることができます\n• 問題には回答選択肢と解説が含まれます\n• 処理には数秒かかる場合があります",
-  "@aiInfoDescription": {
-    "description": "AI生成プロセスの説明"
-  },
   "aiGenerateButton": "問題を生成",
-  "@aiGenerateButton": {
-    "description": "問題を生成するボタンのテキスト"
-  },
   "languageSpanish": "スペイン語",
-  "@languageSpanish": {
-    "description": "スペイン語の言語名"
-  },
   "languageEnglish": "英語",
-  "@languageEnglish": {
-    "description": "英語の言語名"
-  },
   "languageFrench": "フランス語",
-  "@languageFrench": {
-    "description": "フランス語の言語名"
-  },
   "languageGerman": "ドイツ語",
-  "@languageGerman": {
-    "description": "ドイツ語の言語名"
-  },
   "languageGreek": "ギリシャ語",
-  "@languageGreek": {
-    "description": "ギリシャ語の言語名"
-  },
   "languageItalian": "イタリア語",
-  "@languageItalian": {
-    "description": "イタリア語の言語名"
-  },
   "languagePortuguese": "ポルトガル語",
-  "@languagePortuguese": {
-    "description": "ポルトガル語の言語名"
-  },
   "languageCatalan": "カタルーニャ語",
-  "@languageCatalan": {
-    "description": "カタルーニャ語の言語名"
-  },
   "languageBasque": "バスク語",
-  "@languageBasque": {
-    "description": "バスク語の言語名"
-  },
   "languageGalician": "ガリシア語",
-  "@languageGalician": {
-    "description": "ガリシア語の言語名"
-  },
   "languageHindi": "ヒンディー語",
-  "@languageHindi": {
-    "description": "ヒンディー語の言語名"
-  },
   "languageChinese": "中国語",
-  "@languageChinese": {
-    "description": "中国語の言語名"
-  },
   "languageArabic": "アラビア語",
-  "@languageArabic": {
-    "description": "アラビア語の言語名"
-  },
   "languageJapanese": "日本語",
-  "@languageJapanese": {
-    "description": "日本語の言語名"
-  },
   "languageRussian": "ロシア語",
-  "@languageRussian": {
-    "description": "ロシア語の言語名"
-  },
   "languageGeorgian": "ジョージア語",
-  "@languageGeorgian": {
-    "description": "ジョージア語の言語名"
-  },
   "languageUkrainian": "ウクライナ語",
-  "@languageUkrainian": {
-    "description": "ウクライナ語の言語名"
-  },
   "languageKorean": "韓国語",
-  "@languageKorean": {
-    "description": "韓国語の言語名"
-  },
   "aiServicesLoading": "AIサービスを読み込み中...",
-  "@aiServicesLoading": {
-    "description": "利用可能なAIサービスを読み込み中に表示されるメッセージ"
-  },
   "aiServicesNotConfigured": "AIサービスが設定されていません",
-  "@aiServicesNotConfigured": {
-    "description": "AIサービスが設定されていないときに表示されるメッセージ"
-  },
   "aiGeneratedQuestions": "AI生成",
-  "@aiGeneratedQuestions": {
-    "description": "インポートダイアログでのAI生成問題の名前"
-  },
   "aiApiKeyRequired": "AI生成を使用するには、設定で少なくとも1つのAI APIキーを設定してください。",
-  "@aiApiKeyRequired": {
-    "description": "AIのAPIキーが設定されていないときに表示されるメッセージ"
-  },
   "aiGenerationFailed": "問題を生成できませんでした。異なるコンテンツで試してください。",
-  "@aiGenerationFailed": {
-    "description": "AIによる問題生成に失敗したときに表示されるメッセージ"
-  },
   "aiGenerationErrorTitle": "問題生成エラー",
-  "@aiGenerationErrorTitle": {
-    "description": "AIによる問題生成時のエラーダイアログのタイトル"
-  },
   "noQuestionsInFile": "インポートされたファイルに問題が見つかりませんでした",
-  "@noQuestionsInFile": {
-    "description": "インポートされたファイルに問題が見つからなかったときに表示されるメッセージ"
-  },
   "couldNotAccessFile": "選択されたファイルにアクセスできませんでした",
-  "@couldNotAccessFile": {
-    "description": "選択されたファイルにアクセスできなかったときに表示されるメッセージ"
-  },
   "defaultOutputFileName": "output-file.quiz",
-  "@defaultOutputFileName": {
-    "description": "出力ファイルのデフォルト名"
-  },
   "aiServiceLimitsWithChars": "制限：{words}語または{chars}文字",
-  "@aiServiceLimitsWithChars": {
-    "description": "単語数と文字数の両方の制限があるAIサービスの制限の説明",
-    "placeholders": {
-      "words": {
-        "type": "int",
-        "example": "3000"
-      },
-      "chars": {
-        "type": "int",
-        "example": "12000"
-      }
-    }
-  },
   "aiServiceLimitsWordsOnly": "制限：{words}語",
-  "@aiServiceLimitsWordsOnly": {
-    "description": "単語数のみの制限があるAIサービスの制限の説明",
-    "placeholders": {
-      "words": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiAssistantDisabled": "AI学習アシスタントが無効",
-  "@aiAssistantDisabled": {
-    "description": "AI学習アシスタントが無効な場合のダイアログのタイトル"
-  },
   "enableAiAssistant": "AIアシスタントが無効になっています。AI機能を使用するために設定で有効にしてください。",
-  "@enableAiAssistant": {
-    "description": "AIアシスタントが無効になっている時に表示するメッセージ"
-  },
   "aiMinWordsRequired": "最低{minWords}語が必要です",
-  "@aiMinWordsRequired": {
-    "description": "AI生成に必要な最小単語数を示すメッセージ",
-    "placeholders": {
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      }
-    }
-  },
   "aiWordsReadyToGenerate": "{wordCount}語 ✓ 生成準備完了",
-  "@aiWordsReadyToGenerate": {
-    "description": "AI生成に十分な単語が提供された時のメッセージ",
-    "placeholders": {
-      "wordCount": {
-        "type": "int",
-        "example": "75"
-      }
-    }
-  },
   "aiWordsProgress": "{currentWords}/{minWords}語 (あと{moreNeeded}語必要)",
-  "@aiWordsProgress": {
-    "description": "単語数の進捗を示すメッセージ",
-    "placeholders": {
-      "currentWords": {
-        "type": "int",
-        "example": "30"
-      },
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      },
-      "moreNeeded": {
-        "type": "int",
-        "example": "20"
-      }
-    }
-  },
   "aiValidationMinWords": "最低{minWords}語が必要です（あと{moreNeeded}語必要）",
-  "@aiValidationMinWords": {
-    "description": "十分な単語が提供されていない時の検証メッセージ",
-    "placeholders": {
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      },
-      "moreNeeded": {
-        "type": "int",
-        "example": "20"
-      }
-    }
-  },
   "enableQuestion": "質問を有効にする",
-  "@enableQuestion": {
-    "description": "質問を有効にするためのツールチップテキスト"
-  },
   "disableQuestion": "質問を無効にする",
-  "@disableQuestion": {
-    "description": "質問を無効にするためのツールチップテキスト"
-  },
   "questionDisabled": "無効",
-  "@questionDisabled": {
-    "description": "無効な質問のバッジテキスト"
-  },
   "noEnabledQuestionsError": "クイズを実行するための有効な質問がありません",
-  "@noEnabledQuestionsError": {
-    "description": "有効な質問がない場合のエラーメッセージ"
-  },
   "aiEvaluationError": "回答の評価中にエラーが発生しました：{error}",
-  "@aiEvaluationError": {
-    "description": "AI評価が失敗した場合のエラーメッセージ",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "ネットワークエラー"
-      }
-    }
-  },
   "aiEvaluationPromptSystemRole": "あなたはエッセイ問題に対する学生の回答を評価する専門の教師です。あなたの任務は、詳細で建設的な評価を提供することです。学生の回答と同じ言語で回答してください。",
-  "@aiEvaluationPromptSystemRole": {
-    "description": "AI評価プロンプトのシステム役割"
-  },
   "aiEvaluationPromptQuestion": "問題：",
-  "@aiEvaluationPromptQuestion": {
-    "description": "評価プロンプトの質問ラベル"
-  },
   "aiEvaluationPromptStudentAnswer": "学生の回答：",
-  "@aiEvaluationPromptStudentAnswer": {
-    "description": "評価プロンプトの学生回答ラベル"
-  },
   "aiEvaluationPromptCriteria": "評価基準（教師の説明に基づく）：",
-  "@aiEvaluationPromptCriteria": {
-    "description": "プロンプトの評価基準ラベル"
-  },
   "aiEvaluationPromptSpecificInstructions": "具体的な指示：\n- 学生の回答が確立された基準とどの程度一致しているかを評価する\n- 回答における統合と構造の程度を分析する\n- 基準に従って重要なことが見落とされていないかを特定する\n- 分析の深さと正確性を考慮する",
-  "@aiEvaluationPromptSpecificInstructions": {
-    "description": "基準ありの評価のための具体的指示"
-  },
   "aiEvaluationPromptGeneralInstructions": "一般的な指示：\n- 特定の基準が確立されていないため、一般的な学術基準に基づいて回答を評価する\n- 回答の明確さ、一貫性、構造を考慮する\n- 回答がトピックの理解を示しているかを評価する\n- 分析の深さと議論の質を分析する",
-  "@aiEvaluationPromptGeneralInstructions": {
-    "description": "基準なしの評価のための一般的指示"
-  },
   "aiEvaluationPromptResponseFormat": "回答形式：\n1. 評点：[X/10] - 評点を簡潔に正当化する\n2. 長所：回答の肯定的な側面を述べる\n3. 改善領域：改善できる側面を指摘する\n4. 具体的なコメント：詳細で建設的なフィードバックを提供する\n5. 提案：改善のための具体的な推奨事項を提供する\n\n評価において建設的、具体的、教育的であること。目標は学生の学習と改善を助けることです。二人称で話しかけ、専門的で親しみやすい口調を使用してください。",
-  "@aiEvaluationPromptResponseFormat": {
-    "description": "評価の回答形式指示"
-  },
   "aiModeTopicTitle": "トピックモード",
-  "@aiModeTopicTitle": {
-    "description": "AIアシスタントのトピックモードのタイトル"
-  },
   "aiModeTopicDescription": "トピックの創造的な探求",
-  "@aiModeTopicDescription": {
-    "description": "トピックモードの説明"
-  },
   "aiModeContentTitle": "コンテンツモード",
-  "@aiModeContentTitle": {
-    "description": "AIアシスタントのコンテンツモードのタイトル"
-  },
   "aiModeContentDescription": "入力に基づいた正確な質問",
-  "@aiModeContentDescription": {
-    "description": "コンテンツモードの説明"
-  },
   "aiWordCountIndicator": "{count} 単語",
-  "@aiWordCountIndicator": {
-    "description": "単語数インジケーター",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "aiPrecisionIndicator": "精度: {level}",
-  "@aiPrecisionIndicator": {
-    "description": "コンテンツモードの精度レベルインジケーター",
-    "placeholders": {
-      "level": {
-        "type": "String",
-        "example": "高"
-      }
-    }
-  },
   "aiPrecisionLow": "低",
-  "@aiPrecisionLow": {
-    "description": "低い精度レベル"
-  },
   "aiPrecisionMedium": "中",
-  "@aiPrecisionMedium": {
-    "description": "中程度の精度レベル"
-  },
   "aiPrecisionHigh": "高",
-  "@aiPrecisionHigh": {
-    "description": "高い精度レベル"
-  },
   "aiMoreWordsMorePrecision": "単語が多いほど精度が高い",
-  "@aiMoreWordsMorePrecision": {
-    "description": "より多くの単語がより正確な回答につながることを説明するヒントテキスト"
-  },
   "aiKeepDraftTitle": "AIドラフトを保持",
-  "@aiKeepDraftTitle": {
-    "description": "AI生成テキストのドラフトを保持する設定のタイトル"
-  },
   "aiKeepDraftDescription": "AI生成ダイアログに入力されたテキストを自動的に保存し、ダイアログが閉じられても失われないようにします。",
-  "@aiKeepDraftDescription": {
-    "description": "AI生成テキストのドラフトを保持する設定の説明"
-  },
   "aiAttachFile": "ファイルを添付",
-  "@aiAttachFile": {
-    "description": "AI生成ダイアログのファイル添付ボタンのラベル"
-  },
   "aiRemoveFile": "ファイルを削除",
-  "@aiRemoveFile": {
-    "description": "ファイル削除ボタンのツールチップ"
-  },
   "aiFileMode": "ファイルモード",
-  "@aiFileMode": {
-    "description": "ファイルモードインジケーターのタイトル"
-  },
   "aiFileModeDescription": "添付されたファイルから質問が生成されます",
-  "@aiFileModeDescription": {
-    "description": "ファイルモードインジケーターの説明"
-  },
   "aiCommentsLabel": "コメント（任意）",
-  "@aiCommentsLabel": {
-    "description": "添付ファイルがある場合のコメントフィールドのラベル"
-  },
   "aiCommentsHint": "添付ファイルに関する指示やコメントを追加...",
-  "@aiCommentsHint": {
-    "description": "添付ファイルがある場合のコメントフィールドのヒントテキスト"
-  },
   "aiCommentsHelperText": "必要に応じて、ファイルから質問を生成する方法に関する指示を追加してください",
-  "@aiCommentsHelperText": {
-    "description": "添付ファイルがある場合のコメントフィールドのヘルパーテキスト"
-  },
   "aiFilePickerError": "選択したファイルを読み込めませんでした",
-  "@aiFilePickerError": {
-    "description": "ファイルピッカーが失敗したときのエラーメッセージ"
-  },
   "studyModeLabel": "学習モード",
   "generateStudyWithAI": "AIで学習を生成",
   "practiceModeLabel": "練習モード",
-  "@practiceModeLabel": {
-    "description": "Label for practice mode option in start quiz"
-  },
   "smartModeLabel": "スマートモード",
-  "@smartModeLabel": {
-    "description": "Label for smart exam mode option in start quiz"
-  },
   "smartModeDescription": "特別な試験モードです。アプリが問題のセットと数を自動で決定し、復習統計を更新します。",
-  "@smartModeDescription": {
-    "description": "Description for smart exam mode"
-  },
   "studyModeDescription": "AIアシスタンス利用可能。回答直後のインスタント・フィードバック、時間制限や減点はありません。 統計は生成されません。",
   "examModeLabel": "試験モード",
   "examModeDescription": "AIアシスタンスなし。時間制限や不正解による減点が適用される場合があります。 SRS統計を生成します。",
@@ -1479,9 +319,6 @@
   "enable": "有効化",
   "disable": "無効化",
   "reorderQuestionsTooltip": "質問を並べ替える",
-  "@reorderQuestionsTooltip": {
-    "description": "質問並べ替えボタンのツールチップ"
-  },
   "quizPreviewTitle": "クイズプレビュー",
   "quizLoadedNoQuestionsAvailable": "利用可能な質問はありません。",
   "select": "選択",
@@ -1495,27 +332,9 @@
   "deleteSingleQuestionConfirmation": "この質問を削除してもよろしいですか？",
   "deleteMultipleQuestionsConfirmation": "{count} 個の質問を削除してもよろしいですか？",
   "missingExplanation": "説明がありません",
-  "@missingExplanation": {
-    "description": "説明がない質問を示すラベル"
-  },
   "missingExplanationTooltip": "この質問には説明がありません",
-  "@missingExplanationTooltip": {
-    "description": "説明欠落バッジのツールチップテキスト"
-  },
   "missingStudySectionTooltip": "学習セクションにリンクされていません",
-  "@missingStudySectionTooltip": {
-    "description": "Tooltip text for the unlinked study section warning"
-  },
   "questionTypeTooltip": "質問の種類: {type}",
-  "@questionTypeTooltip": {
-    "description": "質問タイプバッジのツールチップテキスト",
-    "placeholders": {
-      "type": {
-        "type": "String",
-        "example": "複数選択"
-      }
-    }
-  },
   "settingsTitle": "設定",
   "keepPracticing": "改善のために練習を続けましょう！",
   "tryAgain": "もう一度試す",
@@ -1532,71 +351,23 @@
   "aiContentFieldHint": "「第二次世界大戦の歴史」のようなトピックを入力するか、ここにテキストを貼り付けてください...",
   "aiAttachFileHint": "ファイルを添付 (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "ファイルをここにドロップ",
-  "@dropAttachmentHere": {
-    "description": "ファイルを添付領域にドラッグしたときに表示されるヒント"
-  },
   "dropImageHere": "画像をここにドロップ",
-  "@dropImageHere": {
-    "description": "画像を画像セクションにドラッグしたときに表示されるヒント"
-  },
   "aiNumberQuestionsLabel": "質問数",
   "backButton": "戻る",
   "generateButton": "生成",
   "aiTopicModeCount": "トピックモード ({count} 語)",
   "aiTextModeCount": "テキストモード ({count} 語)",
   "aiGenerationCategoryLabel": "コンテンツモード",
-  "@aiGenerationCategoryLabel": {
-    "description": "AI生成カテゴリセレクタのラベル"
-  },
   "aiGenerationCategoryTheory": "理論",
-  "@aiGenerationCategoryTheory": {
-    "description": "理論カテゴリのラベル"
-  },
   "aiGenerationCategoryExercises": "演習",
-  "@aiGenerationCategoryExercises": {
-    "description": "演習カテゴリのラベル"
-  },
   "aiGenerationCategoryBoth": "混合",
-  "@aiGenerationCategoryBoth": {
-    "description": "混合カテゴリのラベル"
-  },
   "allLabel": "すべて",
-  "@allLabel": {
-    "description": "すべての質問を選択するオプションのラベル"
-  },
   "finishQuizUnansweredQuestions": "{unansweredCount,plural, =1{1 問の未回答があります}other{{unansweredCount} 問の未回答があります}}。クイズを終了してもよろしいですか？",
-  "@finishQuizUnansweredQuestions": {
-    "description": "未回答の質問があるときに表示されるメッセージ",
-    "placeholders": {
-      "unansweredCount": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "subtractPointsLabel": "不正解でポイントを減点",
   "subtractPointsDescription": "不正解ごとにポイントを減点します。",
-  "@subtractPointsLabel": {
-    "description": "不正解でポイントを減点するチェックボックスのラベル"
-  },
   "subtractPointsOffDescription": "不正解でも減点されません。",
-  "@subtractPointsOffDescription": {
-    "description": "Description shown when subtract points for incorrect answers is disabled"
-  },
   "penaltyAmountLabel": "ペナルティ額",
-  "@penaltyAmountLabel": {
-    "description": "ペナルティ額を設定する入力フィールドのラベル"
-  },
   "penaltyPointsLabel": "-{amount} 点 / 誤答",
-  "@penaltyPointsLabel": {
-    "description": "誤答ごとに減点されるポイントを示すラベル",
-    "placeholders": {
-      "amount": {
-        "type": "String",
-        "example": "0.50"
-      }
-    }
-  },
   "allQuestionsLabel": "すべての問題",
   "startWithSelectedQuestions": "{count}問を選択して開始",
   "advancedSettingsTitle": "詳細設定 (デバッグ)",
@@ -1606,51 +377,18 @@
   "pasteImage": "貼り付け",
   "clipboardNoImage": "クリップボードに画像が見つかりません",
   "maxIncorrectAnswersLabel": "不正解数を制限する",
-  "@maxIncorrectAnswersLabel": {
-    "description": "不正解数を制限するトグルのラベル"
-  },
   "maxIncorrectAnswersDescription": "合否試験。数字による成績はなく、合格か不合格かのみです。",
-  "@maxIncorrectAnswersDescription": {
-    "description": "不正解数制限機能の説明"
-  },
   "maxIncorrectAnswersOffDescription": "試験には0から100までの数字による成績があります。",
-  "@maxIncorrectAnswersOffDescription": {
-    "description": "Description shown when max incorrect answers is disabled"
-  },
   "maxIncorrectAnswersLimitLabel": "最大許容エラー数",
-  "@maxIncorrectAnswersLimitLabel": {
-    "description": "最大許容エラー数の入力フィールドのラベル"
-  },
   "examFailedStatus": "試験不合格",
   "examPassedStatus": "試験合格",
   "quizFailedLimitReached": "試験終了：エラー制限に達しました",
-  "@quizFailedLimitReached": {
-    "description": "エラー制限に達したときの結果画面のタイトル"
-  },
   "close": "閉じる",
-  "@close": {
-    "description": "閉じるボタンのテキスト"
-  },
   "randomizeAnswersOffDescription": "回答の選択肢は元の順序で表示されます",
-  "@randomizeAnswersOffDescription": {
-    "description": "回答の選択肢をランダムに表示する設定を無効にしたときの説明"
-  },
   "scoringAndLimitsTitle": "スコアと制限",
-  "@scoringAndLimitsTitle": {
-    "description": "スコアと制限セクションのタイトル"
-  },
   "congratulations": "🎉 おめでとうございます！ 🎉",
-  "@congratulations": {
-    "description": "勝者ダイアログの「おめでとうございます」メッセージ"
-  },
   "examConfigurationTitle": "試験の設定",
-  "@examConfigurationTitle": {
-    "description": "試験の設定セクションのタイトル"
-  },
   "generationConfigurationTitle": "生成設定",
-  "@generationConfigurationTitle": {
-    "description": "AIダイアログの生成設定セクションのタイトル"
-  },
   "validationMin1Error": "最小 1 分",
   "remainingTimeWithDays": "{days}日 {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}週 {days}日 {hours}:{minutes}:{seconds}",
@@ -1658,175 +396,46 @@
   "validationMin0GenericError": "最小 0",
   "errorStatus": "エラー",
   "evaluatingResponses": "回答を評価中...",
-  "@evaluatingResponses": {
-    "description": "AIによる評価が保留中の際に結果画面に表示されるテキスト"
-  },
   "pendingEvaluationsCount": "{count, plural, =1{1つの記述問題がAI評価待ちです} other{{count}つの記述問題がAI評価待ちです}}",
-  "@pendingEvaluationsCount": {
-    "description": "保留中のAI評価の数を示すサブタイトル",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "pendingStatus": "保留中",
-  "@pendingStatus": {
-    "description": "保留中のAI評価のステータスラベル"
-  },
   "notEvaluatedStatus": "未評価",
-  "@notEvaluatedStatus": {
-    "description": "AIによって評価されなかった記述問題のステータスラベル"
-  },
   "retryButton": "評価を再試行",
-  "@retryButton": {
-    "description": "AI評価を再試行するためのボタンテキスト"
-  },
   "featureComingSoon": "近日公開！最新情報をお楽しみに。",
-  "@featureComingSoon": {
-    "description": "未リリースの機能に関するメッセージ"
-  },
   "showOnboarding": "オンボーディングを表示",
-  "@showOnboarding": {
-    "description": "オンボーディング画面を再開するためのボタンのラベル"
-  },
   "showOnboardingDescription": "ウェルカムチュートリアルをもう一度見る",
-  "@showOnboardingDescription": {
-    "description": "オンボーディング画面を再開するためのボタンの説明"
-  },
   "onboardingBack": "戻る",
-  "@onboardingBack": {
-    "description": "オンボーディング内の戻るボタン"
-  },
   "onboardingGetStarted": "はじめる",
-  "@onboardingGetStarted": {
-    "description": "オンボーディングの最後のページにある開始ボタン"
-  },
   "onboardingWelcomeTitle": "Quizdy へようこそ",
-  "@onboardingWelcomeTitle": {
-    "description": "オンボーディングの最初のページのタイトル"
-  },
   "onboardingWelcomeDescription": "AI機能、カスタマイズ可能な問題、リアルタイム採点を備えています。",
-  "@onboardingWelcomeDescription": {
-    "description": "オンボーディングの最初のページの説明"
-  },
   "onboardingWelcomeSubtitle": "インタラクティブな学習とクイズのお供",
-  "@onboardingWelcomeSubtitle": {
-    "description": "デスクトップレイアウトの最初のページのサブタイトル"
-  },
   "onboardingStartQuizTitle": "クイズをはじめる",
-  "@onboardingStartQuizTitle": {
-    "description": "オンボーディングの2番目のページのタイトル"
-  },
   "onboardingStartQuizDescription": "既存の .quiz ファイルを読み込むか、新しく作成します。ファイルを直接ドラッグ＆ドロップするか、ファイル選択を使用してください。",
-  "@onboardingStartQuizDescription": {
-    "description": "オンボーディングの2番目のページの説明"
-  },
   "onboardingStartQuizSubtitle": "読み込み、作成、プレイ",
-  "@onboardingStartQuizSubtitle": {
-    "description": "デスクトップレイアウトの2番目のページのサブタイトル"
-  },
   "onboardingCreateQuestionsTitle": "問題を作成する",
-  "@onboardingCreateQuestionsTitle": {
-    "description": "オンボーディングの3番目のページのタイトル"
-  },
   "onboardingCreateQuestionsDescription": "複数の問題タイプでクイズを作成できます。選択肢、正解、解説を自由にカスタマイズしてください。",
-  "@onboardingCreateQuestionsDescription": {
-    "description": "オンボーディングの3番目のページの説明"
-  },
   "onboardingCreateQuestionsSubtitle": "自分だけのクイズをデザイン",
-  "@onboardingCreateQuestionsSubtitle": {
-    "description": "デスクトップレイアウトの3番目のページのサブタイトル"
-  },
   "onboardingAiFeaturesTitle": "AI機能",
-  "@onboardingAiFeaturesTitle": {
-    "description": "オンボーディングの4番目のページのタイトル"
-  },
   "onboardingAiFeaturesDescription": "AIで問題を自動生成し、リアルタイムの学習支援やインテリジェントな個別指導で、よりスマートに学習しましょう。",
-  "@onboardingAiFeaturesDescription": {
-    "description": "オンボーディングの4番目のページの説明"
-  },
   "onboardingAiFeaturesSubtitle": "AIによるパワーアップ",
-  "@onboardingAiFeaturesSubtitle": {
-    "description": "デスクトップレイアウトの4番目のページのサブタイトル"
-  },
   "onboardingFeatureAiTitle": "AIによる学習と問題生成",
-  "@onboardingFeatureAiTitle": {
-    "description": "ウェルカムページの機能タイトル"
-  },
   "onboardingFeatureAiDescription": "AIによる学習と問題生成",
-  "@onboardingFeatureAiDescription": {
-    "description": "ウェルカムページの機能説明"
-  },
   "onboardingFeatureTypesTitle": "豊富な問題タイプ",
-  "@onboardingFeatureTypesTitle": {
-    "description": "ウェルカムページの機能タイトル"
-  },
   "onboardingFeatureTypesDescription": "単一選択、複数選択、正誤判定、記述式に対応",
-  "@onboardingFeatureTypesDescription": {
-    "description": "ウェルカムページの機能説明"
-  },
   "onboardingFeatureLanguagesTitle": "18言語に対応",
-  "@onboardingFeatureLanguagesTitle": {
-    "description": "ウェルカムページの機能タイトル"
-  },
   "onboardingFeatureLanguagesDescription": "複数の言語でクイズの作成と実施が可能",
-  "@onboardingFeatureLanguagesDescription": {
-    "description": "ウェルカムページの機能説明"
-  },
   "onboardingStepCreateTitle": "クイズ作成",
-  "@onboardingStepCreateTitle": {
-    "description": "クイズ開始ページのステップタイトル"
-  },
   "onboardingStepCreateDescription": "オリジナルの問題で一から作成",
-  "@onboardingStepCreateDescription": {
-    "description": "クイズ開始ページのステップ説明"
-  },
   "onboardingStepLoadTitle": "ファイルを読み込む",
-  "@onboardingStepLoadTitle": {
-    "description": "クイズ開始ページのステップタイトル"
-  },
   "onboardingStepLoadDescription": "デバイスから .quiz ファイルをインポート",
-  "@onboardingStepLoadDescription": {
-    "description": "クイズ開始ページのステップ説明"
-  },
   "onboardingStepTakeTitle": "クイズに挑戦",
-  "@onboardingStepTakeTitle": {
-    "description": "クイズ開始ページのステップタイトル"
-  },
   "onboardingStepTakeDescription": "問題を解いてリアルタイムで採点",
-  "@onboardingStepTakeDescription": {
-    "description": "クイズ開始ページのステップ説明"
-  },
   "onboardingAiAutoGenerateTitle": "問題の自動生成",
-  "@onboardingAiAutoGenerateTitle": {
-    "description": "オンボーディングのAI機能タイトル"
-  },
   "onboardingAiAutoGenerateDescription": "GeminiやGPTであらゆるテキストから生成",
-  "@onboardingAiAutoGenerateDescription": {
-    "description": "オンボーディングのAI機能説明"
-  },
   "onboardingAiStudyAssistantTitle": "AI学習アシスタント",
-  "@onboardingAiStudyAssistantTitle": {
-    "description": "オンボーディングのAI機能タイトル"
-  },
   "onboardingAiStudyAssistantDescription": "学習中に解説を得る",
-  "@onboardingAiStudyAssistantDescription": {
-    "description": "オンボーディングのAI機能説明"
-  },
   "onboardingAiMultiLanguageTitle": "多言語サポート",
-  "@onboardingAiMultiLanguageTitle": {
-    "description": "オンボーディングのAI機能タイトル"
-  },
   "onboardingAiMultiLanguageDescription": "18の異なる言語で生成可能",
-  "@onboardingAiMultiLanguageDescription": {
-    "description": "オンボーディングのAI機能説明"
-  },
   "documentTooLongForProcessing": "ドキュメントが長すぎて、このMVPでは1回のパスで処理できない可能性があります。",
-  "@documentTooLongForProcessing": {
-    "description": "Error message when AI document processing fails due to document length"
-  },
   "studyScreenNoSlidesAvailable": "利用可能な学習セクションはありません。",
   "studyScreenGenerating": "学習資料を生成中...",
   "studyScreenError": "学習資料の生成中にエラーが発生しました。",
@@ -1834,36 +443,13 @@
   "studyScreenPreviousSection": "前のページ",
   "studyScreenNextSection": "次のページ",
   "studyScreenSectionIndicator": "{total}ページ中{current}ページ",
-  "@studyScreenSectionIndicator": {
-    "placeholders": {
-      "current": {
-        "type": "int"
-      },
-      "total": {
-        "type": "int"
-      }
-    }
-  },
   "studyScreenAiSummaryTitle": "AIの要約",
   "studyScreenNoSummary": "利用可能な要約はありません。",
   "studyScreenCoverage": "生成されたコンテンツ",
-  "@studyScreenCoverage": {
-    "description": "Label for the study coverage percentage"
-  },
   "aiStudyLanguageLabel": "学習言語",
-  "@aiStudyLanguageLabel": {
-    "description": "Label for the language selector in study generation"
-  },
   "studyScreenStudyGuide": "学習ガイド",
   "studyScreenSections": "セクション",
   "studyScreenChaptersCount": "{count} 章",
-  "@studyScreenChaptersCount": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "studyScreenCompleted": "完了",
   "aiDifficultyTitle": "難易度",
   "aiDifficultyAutoTurnedOn": "ドキュメントと同じ難易度",
@@ -1889,9 +475,6 @@
   "showMoreLabel": "もっと見る",
   "showLessLabel": "少なく表示",
   "aiContextMode": "コンテキストモード",
-  "@aiContextMode": {
-    "description": "Label for context mode when a file is uploaded"
-  },
   "startQuizFromStudy": "知識をテストする",
   "studySectionPracticePrompt": "このセクションの質問を練習する",
   "studySectionPracticeSubtitle": "このセクションには {count} 個のリンクされた質問があります。今すぐ練習して学習を強化しましょう！",
@@ -1901,29 +484,11 @@
   "studyScreenCustomChapter": "カスタムチャプター",
   "addSection": "セクションを追加",
   "editSection": "セクションを編集",
-  "@editSection": {
-    "description": "Title for editing an existing section dialog"
-  },
   "sectionTitleLabel": "タイトル",
-  "@sectionTitleLabel": {
-    "description": "Label for section title input field in add/edit section dialog"
-  },
   "sectionTitleHint": "セクションタイトルを入力",
-  "@sectionTitleHint": {
-    "description": "Hint for section title input field in add/edit section dialog"
-  },
   "sectionDescriptionLabel": "説明",
-  "@sectionDescriptionLabel": {
-    "description": "Label for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionHint": "セクションの説明を入力",
-  "@sectionDescriptionHint": {
-    "description": "Hint for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionAiHint": "この情報は後でAIが学習コンテンツを生成するために使用します。",
-  "@sectionDescriptionAiHint": {
-    "description": "Helper text shown below section description input, indicating AI will use this information later"
-  },
   "generateSectionsWithAI": "AIでセクションを生成",
   "addSectionsWithAI": "AIでセクションを追加",
   "studyScreenReminder": "リマインダー",
@@ -1934,414 +499,108 @@
   "studyComponentLimitations": "制限事項",
   "studyScreenDownloadChunk": "生成",
   "aiStudyChapterSystemPrompt": "あなたは、学生が学習章の内容を理解するのを助けるAI学習アシスタントです。概念を深く説明し、例を示し、関連がある場合は学習教材の他の部分との関連付けを行ってください。質問されたのと同じ言語で回答してください。",
-  "@aiStudyChapterSystemPrompt": {
-    "description": "System prompt for the AI study assistant when chatting about a study chapter"
-  },
   "aiStudyChapterGuardrail": "提供された章の内容と学習教材に集中してください。学生の質問が別の章に関連している場合は、関連する章のタイトルに言及してください。",
-  "@aiStudyChapterGuardrail": {
-    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
-  },
   "askAIStudyTooltip": "この章についてAIに質問する",
-  "@askAIStudyTooltip": {
-    "description": "Tooltip for the Ask AI button shown in the study chapter view"
-  },
   "studyScreenPendingSections": "一部のセクションはまだ生成されていません",
-  "@studyScreenPendingSections": {
-    "description": "一部のチャンクがまだ生成されていないときに学習インデックスに表示される警告"
-  },
   "aiErrorRedirect": "{location} にリダイレクト (302) されました",
-  "@aiErrorRedirect": {
-    "description": "AIリクエスト中に302リダイレクトが発生した際のエラーメッセージ",
-    "placeholders": {
-      "location": {
-        "type": "String",
-        "example": "https://example.com"
-      }
-    }
-  },
   "aiErrorConnectionAborted": "アプリがバックグラウンドに移動したため、リクエストが中断されました。コンテンツの生成中はアプリを開いたままにしてください。",
-  "@aiErrorConnectionAborted": {
-    "description": "Error message when a request is aborted because the app is minimized."
-  },
   "noInternetConnection": "インターネット接続がありません。ネットワーク設定を確認して、もう一度やり直してください。",
-  "@noInternetConnection": {
-    "description": "Error message shown when the device has no internet connection."
-  },
   "duplicatedTag": "重複",
-  "@duplicatedTag": {
-    "description": "Tag to indicate an item is duplicated"
-  },
   "aiSelectSectionsTitle": "セクションの選択",
-  "@aiSelectSectionsTitle": {
-    "description": "Title for the chunk section selector in AI content step"
-  },
   "aiSelectSectionsSubtitle": "問題の生成に使用する学習セクションを選択してください",
-  "@aiSelectSectionsSubtitle": {
-    "description": "Subtitle explaining what the section selector does"
-  },
   "aiAllSections": "すべてのセクション",
   "aiSelectQuestionsTitle": "問題を選択",
-  "@aiSelectQuestionsTitle": {
-    "description": "Title for the question selector in AI study generation"
-  },
   "aiSelectQuestionsSubtitle": "クイズモードの問題を生成コンテキストとして選択してください",
-  "@aiSelectQuestionsSubtitle": {
-    "description": "Subtitle explaining what the question selector does"
-  },
   "aiAllQuestions": "すべての問題",
   "onboardingStudyContentTitle": "コンテンツを学習",
-  "@onboardingStudyContentTitle": {
-    "description": "Title of the study content onboarding page"
-  },
   "onboardingStudyContentDescription": "教材を学習セクションに整理。ファイルをインポート、手動で追加、またはAIがコンテンツを生成します。",
-  "@onboardingStudyContentDescription": {
-    "description": "Description of the study content onboarding page"
-  },
   "onboardingStudyContentSubtitle": "整理、生成、学習",
-  "@onboardingStudyContentSubtitle": {
-    "description": "Subtitle of the study content onboarding page"
-  },
   "onboardingStudyStepAddTitle": "資料を追加",
-  "@onboardingStudyStepAddTitle": {
-    "description": "Step 1 title in study content onboarding page"
-  },
   "onboardingStudyStepAddDescription": "セクションを作成、または.quizファイルからインポート",
-  "@onboardingStudyStepAddDescription": {
-    "description": "Step 1 description in study content onboarding page"
-  },
   "onboardingStudyStepGenerateTitle": "AIで生成",
-  "@onboardingStudyStepGenerateTitle": {
-    "description": "Step 2 title in study content onboarding page"
-  },
   "onboardingStudyStepGenerateDescription": "AIがあなたのドキュメントから学習セクションを作成します",
-  "@onboardingStudyStepGenerateDescription": {
-    "description": "Step 2 description in study content onboarding page"
-  },
   "onboardingStudyStepStudyTitle": "生成されたセクションを学習",
-  "@onboardingStudyStepStudyTitle": {
-    "description": "Step 3 title in study content onboarding page"
-  },
   "onboardingStudyStepStudyDescription": "各セクションを進めて学習を定着させましょう",
-  "@onboardingStudyStepStudyDescription": {
-    "description": "Step 3 description in study content onboarding page"
-  },
   "onboardingStudyStepPdfTitle": "PDFとしてエクスポート",
-  "@onboardingStudyStepPdfTitle": {
-    "description": "Step 4 title in study content onboarding page"
-  },
   "onboardingStudyStepPdfDescription": "学習内容をPDFファイルとしてダウンロードして共有できます",
-  "@onboardingStudyStepPdfDescription": {
-    "description": "Step 4 description in study content onboarding page"
-  },
   "privacyPolicyLabel": "プライバシーポリシー",
   "privacyPolicyDescription": "Quizdyでデータがどのように扱われるかを確認してください",
   "privacyPolicyRequiredDescription": "続行するには、プライバシーポリシーを確認して同意してください。",
   "privacyPolicyLoadError": "プライバシーポリシーの内容を読み込めませんでした。",
   "privacyPolicyCanonicalNotice": "このポリシーの公式な法的版は、プロジェクトのリポジトリで公開されている英語版です。",
-  "@privacyPolicyCanonicalNotice": {
-    "description": "Short legal notice indicating the canonical version of the privacy policy"
-  },
   "privacyPolicyOpenInBrowser": "GitHubで完全なポリシーを開く",
-  "@privacyPolicyOpenInBrowser": {
-    "description": "Button label to open the privacy policy URL in an external browser"
-  },
   "supportLabel": "サポート",
-  "@supportLabel": {
-    "description": "Label for the support action in settings"
-  },
   "supportDescription": "アプリとプラットフォームの詳細を含めて GitHub Issues を開く",
-  "@supportDescription": {
-    "description": "Description for the support action in settings"
-  },
   "feedbackTitle": "あなたのご意見をお聞かせください",
-  "@feedbackTitle": {
-    "description": "Title for the home screen feedback prompt"
-  },
   "feedbackDescription": "短いアンケートに回答して Quizdy の改善にご協力ください",
-  "@feedbackDescription": {
-    "description": "Description for the home screen feedback prompt"
-  },
   "studyEditorComponents": "コンポーネント",
-  "@studyEditorComponents": {
-    "description": "Section header for the list of components in the component editor"
-  },
   "studyEditorSaveChanges": "変更を保存",
-  "@studyEditorSaveChanges": {
-    "description": "Button label to save edited component properties"
-  },
   "studyEditorPages": "ページ",
-  "@studyEditorPages": {
-    "description": "Section header for the list of pages in the section page manager"
-  },
   "studyEditorEmptyComponents": "このページにはコンポーネントがありません。",
-  "@studyEditorEmptyComponents": {
-    "description": "Empty state message in the component editor"
-  },
   "studyEditorToggleEdit": "コンテンツの編集",
-  "@studyEditorToggleEdit": {
-    "description": "Tooltip for the FAB button that enables study content edit mode"
-  },
   "studyEditorEditName": "{name}を編集",
-  "@studyEditorEditName": {
-    "description": "Navigation header title: Edit [section name]",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "studyEditorEmptyPages": "まだページがありません。 + をタップして追加します。",
-  "@studyEditorEmptyPages": {
-    "description": "Empty state message in the section page manager"
-  },
   "studyEditorFieldBody": "本文",
-  "@studyEditorFieldBody": {
-    "description": "Label for the main body text field in component editors"
-  },
   "studyEditorExitEdit": "編集モードを終了する",
-  "@studyEditorExitEdit": {
-    "description": "Tooltip for the FAB button that disables study content edit mode"
-  },
   "studyEditorFieldTitle": "タイトル",
-  "@studyEditorFieldTitle": {
-    "description": "Label for the optional title field in component editors"
-  },
   "studyEditorAddPage": "ページを追加",
-  "@studyEditorAddPage": {
-    "description": "Button label to add a new page to a section"
-  },
   "studyEditorEditParagraph": "段落の編集",
-  "@studyEditorEditParagraph": {
-    "description": "Navigation header title for the paragraph property panel"
-  },
   "componentTypeFormula": "式",
-  "@componentTypeFormula": {
-    "description": "Display name for the formula component type"
-  },
   "componentTypeQuote": "引用",
-  "@componentTypeQuote": {
-    "description": "Display name for the quote component type"
-  },
   "componentTypeWarning": "警告",
-  "@componentTypeWarning": {
-    "description": "Display name for the warning component type"
-  },
   "componentTypeComparisonTable": "比較表",
-  "@componentTypeComparisonTable": {
-    "description": "Display name for the comparisonTable component type"
-  },
   "componentTypeProsCons": "長所と短所",
-  "@componentTypeProsCons": {
-    "description": "Display name for the prosCons component type"
-  },
   "componentTypeTimeline": "タイムライン",
-  "@componentTypeTimeline": {
-    "description": "Display name for the timeline component type"
-  },
   "componentTypeReminder": "リマインダー",
-  "@componentTypeReminder": {
-    "description": "Display name for the reminder component type"
-  },
   "componentTypeKeyConcepts": "主要な概念",
-  "@componentTypeKeyConcepts": {
-    "description": "Display name for the keyConcepts component type"
-  },
   "componentFieldTerm": "学期",
-  "@componentFieldTerm": {
-    "description": "Form field label for term (key definition)"
-  },
   "componentFieldSubtitle": "字幕",
-  "@componentFieldSubtitle": {
-    "description": "Form field label for subtitle"
-  },
   "componentFieldDefinition": "意味",
-  "@componentFieldDefinition": {
-    "description": "Form field label for definition"
-  },
   "componentFieldAuthor": "著者",
-  "@componentFieldAuthor": {
-    "description": "Form field label for quote author"
-  },
   "componentFieldQuote": "引用",
-  "@componentFieldQuote": {
-    "description": "Form field label for quote text"
-  },
   "componentFieldExplanation": "説明",
-  "@componentFieldExplanation": {
-    "description": "Form field label for formula explanation"
-  },
   "componentTypeKeyDefinition": "キーの定義",
-  "@componentTypeKeyDefinition": {
-    "description": "Display name for the keyDefinition component type"
-  },
   "componentFieldEquation": "方程式",
-  "@componentFieldEquation": {
-    "description": "Form field label for formula equation"
-  },
   "studyEditorPageN": "ページ{n}",
-  "@studyEditorPageN": {
-    "description": "Label for page number n in the section page manager",
-    "placeholders": {
-      "n": {
-        "type": "int"
-      }
-    }
-  },
   "componentTypeParagraph": "段落",
-  "@componentTypeParagraph": {
-    "description": "Display name for the paragraph component type"
-  },
   "componentTypeSectionTitle": "セクションのタイトル",
-  "@componentTypeSectionTitle": {
-    "description": "Display name for the sectionTitle component type"
-  },
   "componentTypeIconCards": "アイコンカード",
-  "@componentTypeIconCards": {
-    "description": "Display name for the iconCards component type"
-  },
   "componentTypeNumberedList": "番号付きリスト",
-  "@componentTypeNumberedList": {
-    "description": "Display name for the numberedList component type"
-  },
   "studyEditorDeletePage": "ページの削除",
-  "@studyEditorDeletePage": {
-    "description": "Button label to delete a page from a section"
-  },
   "componentFieldItems": "アイテム",
-  "@componentFieldItems": {
-    "description": "Form section label for a list of items"
-  },
   "componentFieldPros": "長所",
-  "@componentFieldPros": {
-    "description": "Form section label for pros list"
-  },
   "componentFieldEvents": "イベント",
-  "@componentFieldEvents": {
-    "description": "Form section label for timeline events"
-  },
   "componentFieldConcept": "コンセプト",
-  "@componentFieldConcept": {
-    "description": "Form field label for a single concept item"
-  },
   "componentFieldDescription": "説明",
-  "@componentFieldDescription": {
-    "description": "Form field label for item description"
-  },
   "componentFieldCards": "カード",
-  "@componentFieldCards": {
-    "description": "Form section label for icon cards"
-  },
   "componentFieldDate": "日付",
-  "@componentFieldDate": {
-    "description": "Form field label for timeline event date"
-  },
   "componentFieldPro": "プロ",
-  "@componentFieldPro": {
-    "description": "Form field label for a single pro item"
-  },
   "componentFieldCons": "短所",
-  "@componentFieldCons": {
-    "description": "Form section label for cons list"
-  },
   "componentFieldCon": "コン",
-  "@componentFieldCon": {
-    "description": "Form field label for a single con item"
-  },
   "componentFieldColumns": "コラム",
-  "@componentFieldColumns": {
-    "description": "Form section label for table columns"
-  },
   "componentFieldColumn": "カラム",
-  "@componentFieldColumn": {
-    "description": "Form field label for a single table column"
-  },
   "componentFieldRow": "行",
-  "@componentFieldRow": {
-    "description": "Form field label for a single table row"
-  },
   "componentFieldOptional": "オプション",
-  "@componentFieldOptional": {
-    "description": "Label shown next to optional form fields"
-  },
   "componentFieldRequired": "このフィールドは必須です",
   "componentFieldLabel": "ラベル",
-  "@componentFieldLabel": {
-    "description": "Form field label for a row label in comparison table"
-  },
   "componentFieldLabelColumn": "ラベル列",
-  "@componentFieldLabelColumn": {
-    "description": "Form field label for the header of the label column in a comparison table"
-  },
   "addComponentTitle": "コンポーネントの追加",
-  "@addComponentTitle": {
-    "description": "Title for the Add Component picker screen"
-  },
   "componentFieldAdd": "{item} を追加",
-  "@componentFieldAdd": {
-    "description": "Button label to add a new item to a list",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "componentFieldRows": "行",
-  "@componentFieldRows": {
-    "description": "Form section label for table rows"
-  },
   "componentFieldEquationLabel": "方程式ラベル",
-  "@componentFieldEquationLabel": {
-    "description": "Form field label for formula equation label"
-  },
   "addComponentsWithAI": "AIでコンポーネントを追加",
-  "@addComponentsWithAI": {
-    "description": "Button label to add study components using AI"
-  },
   "aiSelectComponentTypesTitle": "コンポーネントの種類を選択",
-  "@aiSelectComponentTypesTitle": {
-    "description": "Title for the component type filter in AI study generation"
-  },
   "aiSelectComponentTypesSubtitle": "生成される学習コンテンツに含めるコンポーネントの種類をフィルタリングするには有効にします",
-  "@aiSelectComponentTypesSubtitle": {
-    "description": "Subtitle for the component type filter in AI study generation"
-  },
   "aiComponentsGeneratedSuccess": "コンテンツが正常に生成されました",
-  "@aiComponentsGeneratedSuccess": {
-    "description": "Snackbar message shown when AI component generation completes successfully"
-  },
   "duplicate": "複製",
-  "@duplicate": {
-    "description": "Tooltip for the duplicate button in the component card"
-  },
   "moveUp": "上に移動",
-  "@moveUp": {
-    "description": "Tooltip for the move up button in the component card"
-  },
   "moveDown": "下に移動",
-  "@moveDown": {
-    "description": "Tooltip for the move down button in the component card"
-  },
   "aiDifficultyRequiresFileTooltip": "このオプションを使用するにはファイルを添付する必要があります",
-  "@aiDifficultyRequiresFileTooltip": {
-    "description": "Tooltip when auto difficulty is disabled due to missing file"
-  },
   "exportAsPdf": "PDFとしてエクスポート",
   "exportPdfSuccess": "PDFのエクスポートに成功しました",
   "exportPdfError": "PDFのエクスポートに失敗しました",
   "deleteDuplicatesButton": "重複を削除",
-  "@deleteDuplicatesButton": {
-    "description": "Button to delete duplicated items"
-  },
   "deleteDuplicatesConfirmationMessage": "本当に{count}個の重複項目を削除しますか？それぞれの項目は1つだけ保持されます。",
-  "@deleteDuplicatesConfirmationMessage": {
-    "description": "Confirmation message when deleting duplicates",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "onboardingDownloadAppTitle": "デバイスにQuizdyをインストール",
   "onboardingDownloadAppDescription": "モバイルはQRコードでQuizdyをインストールし、デスクトップはストアリンクを直接開けます。",
   "onboardingDownloadAppSubtitle": "モバイルまたはデスクトップに1ステップでインストール。",
@@ -2357,77 +616,24 @@
   "onboardingDownloadQrTitle": "続行するにはスキャン",
   "onboardingDownloadQrDescription": "スマートフォンのカメラでストアリンクを開いてください。",
   "studyPdfTableOfContents": "目次",
-  "@studyPdfTableOfContents": {
-    "description": "Title of the table of contents page in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudy": "学習内容を含める",
-  "@exportPdfOptionsIncludeStudy": {
-    "description": "Switch label to include the study content pages in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudySubtitle": "学習コンテンツページを追加する",
-  "@exportPdfOptionsIncludeStudySubtitle": {
-    "description": "Subtitle for the include study switch in the export PDF dialog"
-  },
   "exportPdfOptionsTitle": "PDFとして書き出す",
-  "@exportPdfOptionsTitle": {
-    "description": "Title of the export PDF options dialog"
-  },
   "exportPdfOptionsIncludeQuestions": "問題ページを含める",
-  "@exportPdfOptionsIncludeQuestions": {
-    "description": "Switch label to include a questions page in the exported PDF"
-  },
   "exportPdfOptionsIncludeQuestionsSubtitle": "すべてのクイズ問題を含むページを追加する",
-  "@exportPdfOptionsIncludeQuestionsSubtitle": {
-    "description": "Subtitle for the include questions switch in the export PDF dialog"
-  },
   "exportPdfOptionsIncludeAnswers": "解答を含める",
-  "@exportPdfOptionsIncludeAnswers": {
-    "description": "Switch label to include correct answers in the questions page"
-  },
   "exportPdfOptionsIncludeAnswersSubtitle": "正解を含む別のページを追加する",
-  "@exportPdfOptionsIncludeAnswersSubtitle": {
-    "description": "Subtitle for the include answers switch in the export PDF dialog"
-  },
   "exportPdfQuestionsPageTitle": "問題",
-  "@exportPdfQuestionsPageTitle": {
-    "description": "Section title for the questions page in the exported PDF"
-  },
   "exportPdfAnswersLabel": "解答",
-  "@exportPdfAnswersLabel": {
-    "description": "Title of the answers page in the exported PDF"
-  },
   "exportButton": "書き出す",
-  "@exportButton": {
-    "description": "Label for the Export button in the export PDF options dialog"
-  },
   "openInQuizdyApp": "Quizdyアプリで開く",
   "open": "開く",
   "installApp": "アプリをインストール",
   "updateAvailableTitle": "アップデートが利用可能です",
-  "@updateAvailableTitle": {
-    "description": "Title shown in the update banner when a newer app version is available."
-  },
   "updateAvailableMessage": "Quizdyのバージョン{version}が利用可能です。",
-  "@updateAvailableMessage": {
-    "description": "Subtitle in the update banner indicating which version is available.",
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
   "updateButton": "アップデート",
-  "@updateButton": {
-    "description": "Label for the update button in the update banner."
-  },
   "forceUpdateTitle": "アップデートが必要です",
-  "@forceUpdateTitle": {
-    "description": "Title of the force update dialog."
-  },
   "forceUpdateMessage": "Quizdyを引き続き使用するには、強制アップデートが必要です。アプリをアップデートしてください。",
-  "@forceUpdateMessage": {
-    "description": "Body message of the force update dialog."
-  },
   "questionOrderBySection": "セクション順",
   "questionOrderBySectionDesc": "質問をセクションごとにまとめ、各セクションを昇順で表示します",
   "srsStatsTitle": "統計",

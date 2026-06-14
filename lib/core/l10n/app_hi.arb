@@ -4,1459 +4,305 @@
   "abortQuizMessage": "नई फ़ाइल खोलने से वर्तमान क्विज़ रुक जाएगा।",
   "stopAndOpenButton": "रोकें और खोलें",
   "titleAppBar": "क्विज़ - परीक्षा सिमुलेटर",
-  "@titleAppBar": {
-    "description": "Title of the application displayed in the AppBar."
-  },
   "create": "बनाएं",
-  "@create": {
-    "description": "Label for the Create Quiz file button in the AppBar."
-  },
   "preview": "पूर्वावलोकन",
-  "@preview": {
-    "description": "Label for the LaTeX preview section in question dialogs."
-  },
   "load": "लोड करें",
-  "@load": {
-    "description": "Label for the Load Quiz file button in the AppBar."
-  },
   "fileLoaded": "फ़ाइल लोड हुई: {filePath}",
-  "@fileLoaded": {
-    "description": "Message displayed when a file is successfully loaded.",
-    "placeholders": {
-      "filePath": {
-        "type": "String",
-        "example": "/path/to/file.quiz"
-      }
-    }
-  },
   "fileSaved": "फ़ाइल सेव हुई: {filePath}",
-  "@fileSaved": {
-    "description": "Message displayed when a file is successfully saved.",
-    "placeholders": {
-      "filePath": {
-        "type": "String",
-        "example": "/path/to/file.quiz"
-      }
-    }
-  },
   "dropFileHere": "लोगो पर क्लिक करें या किसी .quiz फ़ाइल को स्क्रीन पर खींचें",
   "errorOpeningFile": "फ़ाइल खोलने में त्रुटि",
-  "@errorOpeningFile": {
-    "description": "Generic error message when opening a file fails."
-  },
   "replaceFileTitle": "नया क्विज़ (Quiz) लोड करें",
-  "@replaceFileTitle": {
-    "description": "Title of the confirmation dialog to replace the current file."
-  },
   "replaceFileMessage": "एक क्विज़ (Quiz) पहले से लोड है। क्या आप इसे नई फ़ाइल से बदलना चाहते हैं?",
-  "@replaceFileMessage": {
-    "description": "Message of the confirmation dialog to replace the current file."
-  },
   "replaceButton": "लोड करें",
-  "@replaceButton": {
-    "description": "Button to confirm replacing the file."
-  },
-  "@dropFileHere": {
-    "description": "Text displayed inside the drop area for dragging files."
-  },
   "clickOrDragFile": "Load karne ke liye click karen ya screen par .quiz file drag karen",
-  "@clickOrDragFile": {
-    "description": "Text displayed below the drop area"
-  },
   "errorInvalidFile": "त्रुटि: अमान्य फ़ाइल। .quiz फ़ाइल होनी चाहिए।",
-  "@errorInvalidFile": {
-    "description": "Message displayed when the dropped file is not a .quiz file."
-  },
   "errorLoadingFile": "क्विज़ फ़ाइल लोड करने में त्रुटि: {error}",
-  "@errorLoadingFile": {
-    "description": "Message displayed when there is an error while loading a Quiz file.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "File not found"
-      }
-    }
-  },
   "errorExportingFile": "फ़ाइल एक्सपोर्ट करने में त्रुटि: {error}",
-  "@errorExportingFile": {
-    "description": "Message displayed when there is an error while exporting a file.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "File not found"
-      }
-    }
-  },
   "cancelButton": "रद्द करें",
-  "@cancelButton": {
-    "description": "Cancel button."
-  },
   "saveButton": "सेव करें",
-  "@saveButton": {
-    "description": "Save button."
-  },
   "newTag": "नया",
-  "@newTag": {
-    "description": "नए या संशोधित आइटम को इंगित करने के लिए टैग"
-  },
   "modifiedTag": "संशोधित",
-  "@modifiedTag": {
-    "description": "यह इंगित करने के लिए टैग कि एक आइटम को संशोधित किया गया है"
-  },
   "confirmDeleteTitle": "हटाने की पुष्टि करें",
-  "@confirmDeleteTitle": {
-    "description": "Title for the confirmation dialog when deleting a process."
-  },
   "confirmDeleteMessage": "क्या आप वाकई `{processName}` प्रक्रिया को हटाना चाहते हैं?",
-  "@confirmDeleteMessage": {
-    "description": "Message in the confirmation dialog for deletion.",
-    "placeholders": {
-      "processName": {
-        "type": "String",
-        "example": "Question 1"
-      }
-    }
-  },
   "deleteButton": "हटाएं",
-  "@deleteButton": {
-    "description": "Button text for confirming deletion."
-  },
   "confirmExitTitle": "बाहर निकलने की पुष्टि करें",
-  "@confirmExitTitle": {
-    "description": "Title for the confirmation dialog when exiting."
-  },
   "confirmExitMessage": "बिना सहेजे गए बदलाव मौजूद हैं। क्या आप बदलावों को रद्द करके बाहर निकलना चाहते हैं?",
-  "@confirmExitMessage": {
-    "description": "Message in the confirmation dialog for exiting."
-  },
   "exitButton": "बिना सहेजे बाहर निकलें",
-  "@exitButton": {
-    "description": "Exit button text."
-  },
   "saveDialogTitle": "कृपया आउटपुट फ़ाइल चुनें:",
-  "@saveDialogTitle": {
-    "description": "Title for the save dialog."
-  },
   "createQuizFileTitle": "क्विज़ फ़ाइल बनाएं",
-  "@createQuizFileTitle": {
-    "description": "Title for create quiz file dialog."
-  },
   "editQuizFileTitle": "क्विज़ फ़ाइल संपादित करें",
-  "@editQuizFileTitle": {
-    "description": "Title for edit quiz file dialog."
-  },
   "fileNameLabel": "फ़ाइल का नाम",
-  "@fileNameLabel": {
-    "description": "Label for file name input."
-  },
   "fileDescriptionLabel": "फ़ाइल का विवरण",
-  "@fileDescriptionLabel": {
-    "description": "Label for file description input."
-  },
   "createButton": "बनाएं",
-  "@createButton": {
-    "description": "Create button text."
-  },
   "fileNameRequiredError": "फ़ाइल का नाम आवश्यक है।",
-  "@fileNameRequiredError": {
-    "description": "Error message when file name is empty."
-  },
   "fileDescriptionRequiredError": "फ़ाइल का विवरण आवश्यक है।",
-  "@fileDescriptionRequiredError": {
-    "description": "Error message when file description is empty."
-  },
   "versionLabel": "संस्करण",
-  "@versionLabel": {
-    "description": "Label for quiz version field"
-  },
   "authorLabel": "लेखक",
-  "@authorLabel": {
-    "description": "Label for quiz author field"
-  },
   "authorRequiredError": "लेखक का नाम आवश्यक है।",
-  "@authorRequiredError": {
-    "description": "Error message when author field is empty"
-  },
   "requiredFieldsError": "सभी आवश्यक फ़ील्ड भरे जाने चाहिए।",
-  "@requiredFieldsError": {
-    "description": "Error message when required fields are missing"
-  },
   "requestFileNameTitle": "क्विज़ फ़ाइल का नाम दर्ज करें",
-  "@requestFileNameTitle": {
-    "description": "Title for request file name dialog."
-  },
   "fileNameHint": "फ़ाइल का नाम (आवश्यक)",
-  "@fileNameHint": {
-    "description": "Hint text for file name input."
-  },
   "emptyFileNameMessage": "फ़ाइल का नाम खाली नहीं हो सकता।",
-  "@emptyFileNameMessage": {
-    "description": "Error message when file name is empty."
-  },
   "acceptButton": "स्वीकार करें",
-  "@acceptButton": {
-    "description": "Accept button text."
-  },
   "saveTooltip": "फ़ाइल सेव करें",
-  "@saveTooltip": {
-    "description": "Tooltip for save button."
-  },
   "saveDisabledTooltip": "सेव करने के लिए कोई बदलाव नहीं",
-  "@saveDisabledTooltip": {
-    "description": "Tooltip for disabled save button."
-  },
   "executeTooltip": "परीक्षा शुरू करें",
-  "@executeTooltip": {
-    "description": "Tooltip for execute button."
-  },
   "addTooltip": "नया प्रश्न जोड़ें",
-  "@addTooltip": {
-    "description": "Tooltip for add button."
-  },
   "backSemanticLabel": "वापस जाएं बटन",
-  "@backSemanticLabel": {
-    "description": "Semantic label for back button."
-  },
   "createFileTooltip": "नई क्विज़ फ़ाइल बनाएं",
-  "@createFileTooltip": {
-    "description": "Tooltip for create file button."
-  },
   "loadFileTooltip": "मौजूदा क्विज़ फ़ाइल लोड करें",
-  "@loadFileTooltip": {
-    "description": "Tooltip for load file button."
-  },
   "questionNumber": "प्रश्न {number}",
-  "@questionNumber": {
-    "description": "Question number label in quiz execution",
-    "placeholders": {
-      "number": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "questionOfTotal": "प्रश्न {current} / {total}",
-  "@questionOfTotal": {
-    "description": "वर्तमान प्रश्न संख्या और कुल प्रश्नों को दर्शाने वाला लेबल",
-    "placeholders": {
-      "current": {
-        "type": "int",
-        "example": "1"
-      },
-      "total": {
-        "type": "int",
-        "example": "10"
-      }
-    }
-  },
   "previous": "पिछला",
-  "@previous": {
-    "description": "Previous button text in quiz navigation"
-  },
   "skip": "छोड़ें",
-  "@skip": {
-    "description": "Skip button text in quiz navigation"
-  },
   "questionsOverview": "Questions Map",
-  "@questionsOverview": {
-    "description": "Title for the questions overview bottom sheet"
-  },
   "next": "अगला",
-  "@next": {
-    "description": "Next button text in quiz navigation"
-  },
   "finish": "समाप्त करें",
-  "@finish": {
-    "description": "Finish button text in quiz navigation"
-  },
   "finishQuiz": "क्विज़ समाप्त करें",
-  "@finishQuiz": {
-    "description": "Title of finish quiz dialog"
-  },
   "finishQuizConfirmation": "क्या आप वाकई क्विज़ समाप्त करना चाहते हैं? इसके बाद आप अपने उत्तर नहीं बदल सकेंगे।",
-  "@finishQuizConfirmation": {
-    "description": "Confirmation message for finishing quiz"
-  },
   "resolveUnansweredQuestions": "प्रश्न हल करें",
-  "@resolveUnansweredQuestions": {
-    "description": "Button text to resolve unanswered questions"
-  },
   "abandonQuiz": "क्विज़ छोड़ें",
-  "@abandonQuiz": {
-    "description": "Title of abandon quiz dialog"
-  },
   "abandonQuizConfirmation": "क्या आप वाकई क्विज़ छोड़ना चाहते हैं? सभी प्रगति खो जाएगी।",
-  "@abandonQuizConfirmation": {
-    "description": "Confirmation message for abandoning quiz"
-  },
   "abandon": "छोड़ें",
-  "@abandon": {
-    "description": "Abandon button text"
-  },
   "quizCompleted": "क्विज़ पूरी हुई!",
-  "@quizCompleted": {
-    "description": "Quiz completed message"
-  },
   "score": "स्कोर: {score}%",
-  "@score": {
-    "description": "Score display",
-    "placeholders": {
-      "score": {
-        "type": "String",
-        "example": "85.5"
-      }
-    }
-  },
   "correctAnswers": "{total} में से {correct} सही उत्तर",
-  "@correctAnswers": {
-    "description": "Correct answers count",
-    "placeholders": {
-      "correct": {
-        "type": "String",
-        "example": "8"
-      },
-      "total": {
-        "type": "int",
-        "example": "10"
-      }
-    }
-  },
   "retry": "दोहराएं",
-  "@retry": {
-    "description": "Retry button text"
-  },
   "goBack": "समाप्त करें",
-  "@goBack": {
-    "description": "Go back button text"
-  },
   "retryFailedQuestions": "गलत प्रश्न दोहराएं",
-  "@retryFailedQuestions": {
-    "description": "Button text to retry only the questions that were answered incorrectly"
-  },
   "question": "प्रश्न: {question}",
-  "@question": {
-    "description": "Question text in results",
-    "placeholders": {
-      "question": {
-        "type": "String",
-        "example": "What is the capital of France?"
-      }
-    }
-  },
   "selectQuestionCountTitle": "प्रश्नों की संख्या चुनें",
-  "@selectQuestionCountTitle": {
-    "description": "Title for the dialog to select number of questions for the quiz"
-  },
   "selectQuestionCountMessage": "इस क्विज़ में आप कितने प्रश्नों का उत्तर देना चाहते हैं?",
-  "@selectQuestionCountMessage": {
-    "description": "Message explaining the question count selection"
-  },
   "allQuestions": "सभी प्रश्न ({count})",
-  "@allQuestions": {
-    "description": "Option to select all available questions",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "25"
-      }
-    }
-  },
   "startQuiz": "क्विज़ शुरू करें",
-  "@startQuiz": {
-    "description": "Button text to start the quiz"
-  },
   "customNumberLabel": "या कस्टम संख्या दर्ज करें:",
-  "@customNumberLabel": {
-    "description": "Label for custom number input section"
-  },
   "numberInputLabel": "प्रश्नों की संख्या",
-  "@numberInputLabel": {
-    "description": "Label for the number input field"
-  },
   "errorInvalidNumber": "कृपया वैध संख्या दर्ज करें",
-  "@errorInvalidNumber": {
-    "description": "Error message for invalid number input"
-  },
   "errorNumberMustBePositive": "संख्या 0 से अधिक होनी चाहिए",
-  "@errorNumberMustBePositive": {
-    "description": "Error message when number is zero or negative"
-  },
   "questionOrderConfigTitle": "प्रश्न क्रम कॉन्फ़िगरेशन",
-  "@questionOrderConfigTitle": {
-    "description": "Title for the question order configuration dialog"
-  },
   "questionOrderConfigDescription": "परीक्षा के दौरान प्रश्न किस क्रम में दिखाए जाएं, यह चुनें:",
-  "@questionOrderConfigDescription": {
-    "description": "Description text for the question order configuration dialog"
-  },
   "questionOrderAscending": "आरोही क्रम",
-  "@questionOrderAscending": {
-    "description": "Label for ascending question order option"
-  },
   "questionOrderAscendingDesc": "प्रश्न 1 से अंत तक क्रम में दिखेंगे",
-  "@questionOrderAscendingDesc": {
-    "description": "Description for ascending question order option"
-  },
   "questionOrderDescending": "अवरोही क्रम",
-  "@questionOrderDescending": {
-    "description": "Label for descending question order option"
-  },
   "questionOrderDescendingDesc": "प्रश्न अंत से 1 तक दिखेंगे",
-  "@questionOrderDescendingDesc": {
-    "description": "Description for descending question order option"
-  },
   "questionOrderRandom": "प्रश्नों का क्रम यादृच्छिक करें",
-  "@questionOrderRandom": {
-    "description": "Label for random question order option"
-  },
   "questionOrderRandomDesc": "प्रश्न यादृच्छिक क्रम में दिखेंगे",
-  "@questionOrderRandomDesc": {
-    "description": "Description for random question order option"
-  },
   "questionOrderConfigTooltip": "प्रश्न क्रम कॉन्फ़िगरेशन",
-  "@questionOrderConfigTooltip": {
-    "description": "Tooltip for the question order configuration button"
-  },
   "save": "सेव करें",
-  "@save": {
-    "description": "Label for the save button"
-  },
   "examTimeLimitTitle": "परीक्षा समय सीमा",
-  "@examTimeLimitTitle": {
-    "description": "Title for exam time limit section"
-  },
   "examTimeLimitDescription": "परीक्षा के लिए समय सीमा निर्धारित करें। क्विज़ के दौरान काउंटडाउन टाइमर दिखेगा।",
-  "@examTimeLimitDescription": {
-    "description": "Description for exam time limit feature"
-  },
   "examTimeLimitOffDescription": "इस परीक्षा के लिए कोई समय सीमा नहीं है।",
-  "@examTimeLimitOffDescription": {
-    "description": "Description shown when time limit is disabled"
-  },
   "enableTimeLimit": "समय सीमा सक्षम करें",
-  "@enableTimeLimit": {
-    "description": "Label for enable exam time limit switch"
-  },
   "timeLimitMinutes": "समय सीमा (मिनट)",
-  "@timeLimitMinutes": {
-    "description": "Label for exam time minutes input"
-  },
   "examTimeExpiredTitle": "समय समाप्त!",
-  "@examTimeExpiredTitle": {
-    "description": "Title for exam time expired dialog"
-  },
   "examTimeExpiredMessage": "परीक्षा का समय समाप्त हो गया है। आपके उत्तर स्वचालित रूप से जमा कर दिए गए हैं।",
-  "@examTimeExpiredMessage": {
-    "description": "Message for exam time expired dialog"
-  },
   "remainingTime": "{hours}:{minutes}:{seconds}",
-  "@remainingTime": {
-    "description": "Format for remaining time display (hours:minutes:seconds)",
-    "placeholders": {
-      "hours": {
-        "type": "String",
-        "example": "01"
-      },
-      "minutes": {
-        "type": "String",
-        "example": "30"
-      },
-      "seconds": {
-        "type": "String",
-        "example": "45"
-      }
-    }
-  },
   "questionTypeMultipleChoice": "बहुविकल्पीय",
-  "@questionTypeMultipleChoice": {
-    "description": "Label for multiple choice question type"
-  },
   "questionTypeSingleChoice": "एकल विकल्प",
-  "@questionTypeSingleChoice": {
-    "description": "Label for single choice question type"
-  },
   "questionTypeTrueFalse": "सही/गलत",
-  "@questionTypeTrueFalse": {
-    "description": "Label for true/false question type"
-  },
   "questionTypeEssay": "निबंध",
-  "@questionTypeEssay": {
-    "description": "निबंध प्रश्न प्रकार के लिए लेबल"
-  },
   "questionTypeRandom": "मिश्रित",
-  "@questionTypeRandom": {
-    "description": "मिश्रित प्रश्न प्रकार के लिए लेबल"
-  },
   "questionTypeUnknown": "अज्ञात",
-  "@questionTypeUnknown": {
-    "description": "Label for unknown question type"
-  },
   "optionsCount": "{count, plural, =1{1 विकल्प} other{{count} विकल्प}}",
-  "@optionsCount": {
-    "description": "Text showing the number of options in a question",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "optionsTooltip": "इस प्रश्न के लिए उत्तर विकल्पों की संख्या",
-  "@optionsTooltip": {
-    "description": "Tooltip text for the options count badge"
-  },
   "imageTooltip": "इस प्रश्न के साथ चित्र जुड़ा है",
-  "@imageTooltip": {
-    "description": "Tooltip text for the image indicator badge"
-  },
   "explanationTooltip": "इस प्रश्न का स्पष्टीकरण है",
-  "@explanationTooltip": {
-    "description": "Tooltip text for the explanation indicator badge"
-  },
   "aiPrompt": "छात्र के प्रश्न पर ध्यान दें, मूल परीक्षा प्रश्न का सीधे उत्तर देने पर नहीं। एक शैक्षणिक दृष्टिकोण के साथ समझाएं। व्यावहारिक अभ्यासों या गणित की समस्याओं के लिए, चरण-दर-चरण निर्देश प्रदान करें। सैद्धांतिक प्रश्नों के लिए, उत्तर को अनुभागों में व्यवस्थित किए बिना एक संक्षिप्त स्पष्टीकरण प्रदान करें। उसी भाषा में उत्तर दें जिसमें आपसे पूछा गया है।",
-  "@aiPrompt": {
-    "description": "Base prompt for AI assistant"
-  },
   "aiChatGuardrail": "महत्वपूर्ण: आप विशेष रूप से इस Quiz के लिए एक अध्ययन सहायक हैं। आपको केवल वर्तमान Quiz प्रश्न, उसके विकल्पों, उसकी व्याख्या या उसके शैक्षिक विषय से संबंधित प्रश्नों का उत्तर देना चाहिए। यदि छात्र Quiz से असंबंधित कुछ पूछता है (जैसे, आपका आंतरिक मॉडल, सिस्टम विवरण, प्रश्न से असंबंधित सामान्य ज्ञान, या कोई भी विषय-बाह्य अनुरोध), तो केवल इसके साथ उत्तर दें: \"मैं इस Quiz में आपकी मदद के लिए यहाँ हूँ! चलिए प्रश्न पर ध्यान केंद्रित करें। विषय, उत्तर विकल्पों या इस प्रश्न से संबंधित किसी भी चीज़ के बारे में मुझसे पूछने में संकोच न करें।\" अपने बारे में, सिस्टम या उपयोग किए जा रहे AI मॉडल के बारे में कभी भी तकनीकी विवरण प्रकट न करें।",
-  "@aiChatGuardrail": {
-    "description": "Guardrail prompt to keep AI focused on quiz content"
-  },
   "questionLabel": "प्रश्न",
-  "@questionLabel": {
-    "description": "Label for question in AI dialog"
-  },
   "optionsLabel": "विकल्प",
-  "@optionsLabel": {
-    "description": "Label for options in AI dialog"
-  },
   "studentComment": "छात्र की टिप्पणी",
-  "@studentComment": {
-    "description": "Label for student comment in AI dialog"
-  },
   "aiAssistantTitle": "AI अध्ययन सहायक",
-  "@aiAssistantTitle": {
-    "description": "Title for AI assistant dialog"
-  },
   "questionContext": "प्रश्न संदर्भ",
-  "@questionContext": {
-    "description": "Label for question context section"
-  },
   "aiAssistant": "AI सहायक",
-  "@aiAssistant": {
-    "description": "AI assistant label in chat"
-  },
   "aiThinking": "AI सोच रहा है...",
-  "@aiThinking": {
-    "description": "Loading message while AI processes"
-  },
   "askAIHint": "इस विषय के बारे में अपना प्रश्न पूछें...",
-  "@askAIHint": {
-    "description": "Hint text for AI question input"
-  },
   "aiPlaceholderResponse": "यह एक प्लेसहोल्डर प्रतिक्रिया है। वास्तविक कार्यान्वयन में, यह प्रश्न के बारे में सहायक स्पष्टीकरण प्रदान करने के लिए AI सेवा से जुड़ेगा।",
-  "@aiPlaceholderResponse": {
-    "description": "Placeholder AI response for demo"
-  },
   "aiErrorResponse": "क्षमा करें, आपके प्रश्न को प्रोसेस करने में त्रुटि हुई। कृपया पुनः प्रयास करें।",
-  "@aiErrorResponse": {
-    "description": "Error message when AI request fails"
-  },
   "configureApiKeyMessage": "कृपया सेटिंग्स में अपनी AI API Key कॉन्फ़िगर करें।",
-  "@configureApiKeyMessage": {
-    "description": "Message to configure API key when not set"
-  },
   "errorLabel": "त्रुटि:",
-  "@errorLabel": {
-    "description": "Error label prefix for error messages"
-  },
   "noResponseReceived": "कोई प्रतिक्रिया प्राप्त नहीं हुई",
-  "@noResponseReceived": {
-    "description": "Message when no response is received from AI"
-  },
   "invalidApiKeyError": "अमान्य API Key। कृपया सेटिंग्स में अपनी OpenAI API Key जांचें।",
-  "@invalidApiKeyError": {
-    "description": "Error message for invalid API key"
-  },
   "rateLimitError": "कोटा पार हो गया है या मॉडल आपकी योजना में उपलब्ध नहीं है। अपनी योजना की जाँच करें।",
-  "@rateLimitError": {
-    "description": "Error message for rate limit exceeded or quota issues"
-  },
   "modelNotFoundError": "मॉडल नहीं मिला। कृपया अपनी API पहुंच जांचें।",
-  "@modelNotFoundError": {
-    "description": "Error message for model not found"
-  },
   "unknownError": "अज्ञात त्रुटि",
-  "@unknownError": {
-    "description": "Generic unknown error message"
-  },
   "networkErrorOpenAI": "नेटवर्क त्रुटि: OpenAI से कनेक्ट नहीं हो सका। कृपया अपना इंटरनेट कनेक्शन जांचें।",
-  "@networkErrorOpenAI": {
-    "description": "नेटवर्क कनेक्टिविटी त्रुटि संदेश OpenAI के लिए"
-  },
   "networkErrorGemini": "नेटवर्क त्रुटि: Gemini से कनेक्ट नहीं हो सका। कृपया अपना इंटरनेट कनेक्शन जांचें।",
-  "@networkErrorGemini": {
-    "description": "नेटवर्क कनेक्टिविटी त्रुटि संदेश Gemini के लिए"
-  },
   "openaiApiKeyNotConfigured": "OpenAI API Key कॉन्फ़िगर नहीं की गई",
-  "@openaiApiKeyNotConfigured": {
-    "description": "Error message when API key is not configured"
-  },
   "geminiApiKeyNotConfigured": "Gemini API Key कॉन्फ़िगर नहीं की गई",
-  "@geminiApiKeyNotConfigured": {
-    "description": "Error message when Gemini API key is not configured"
-  },
   "geminiApiKeyLabel": "Gemini API Key",
-  "@geminiApiKeyLabel": {
-    "description": "Label for Gemini API Key field"
-  },
   "geminiApiKeyHint": "अपनी Gemini API Key दर्ज करें",
-  "@geminiApiKeyHint": {
-    "description": "Hint text for Gemini API Key field"
-  },
   "geminiApiKeyDescription": "Gemini AI कार्यक्षमता के लिए आवश्यक। आपकी key सुरक्षित रूप से संग्रहीत की जाती है।",
-  "@geminiApiKeyDescription": {
-    "description": "Description for Gemini API Key field"
-  },
   "getGeminiApiKeyTooltip": "Google AI Studio से API Key प्राप्त करें",
-  "@getGeminiApiKeyTooltip": {
-    "description": "Tooltip for the button to get Gemini API key"
-  },
   "aiRequiresAtLeastOneApiKeyError": "AI अध्ययन सहायक को कम से कम एक API कुंजी (Gemini या OpenAI) की आवश्यकता है। कृपया एक API कुंजी दर्ज करें या AI सहायक को अक्षम करें।",
-  "@aiRequiresAtLeastOneApiKeyError": {
-    "description": "AI सहायक सक्षम होने पर त्रुटि संदेश लेकिन कोई API कुंजी प्रदान नहीं की गई"
-  },
   "minutesAbbreviation": "मिन",
-  "@minutesAbbreviation": {
-    "description": "Abbreviation for minutes"
-  },
   "aiButtonTooltip": "AI अध्ययन सहायक",
-  "@aiButtonTooltip": {
-    "description": "Tooltip for AI assistant button"
-  },
   "aiButtonText": "AI",
-  "@aiButtonText": {
-    "description": "Text for AI assistant button"
-  },
   "aiAssistantSettingsTitle": "AI अध्ययन सहायक (पूर्वावलोकन)",
-  "@aiAssistantSettingsTitle": {
-    "description": "Title for AI assistant settings section"
-  },
   "aiAssistantSettingsDescription": "प्रश्नों के लिए AI अध्ययन सहायक को सक्षम या अक्षम करें",
-  "@aiAssistantSettingsDescription": {
-    "description": "Description for AI assistant settings"
-  },
   "aiDefaultModelTitle": "डिफ़ॉल्ट AI मॉडल",
-  "@aiDefaultModelTitle": {
-    "description": "Title for default AI model settings section"
-  },
   "aiDefaultModelDescription": "प्रश्न निर्माण के लिए डिफ़ॉल्ट AI सेवा और मॉडल चुनें",
-  "@aiDefaultModelDescription": {
-    "description": "Description for default AI model settings"
-  },
   "openaiApiKeyLabel": "OpenAI API Key",
-  "@openaiApiKeyLabel": {
-    "description": "Label for OpenAI API Key field"
-  },
   "openaiApiKeyHint": "अपनी OpenAI API Key दर्ज करें (sk-...)",
-  "@openaiApiKeyHint": {
-    "description": "Hint text for OpenAI API Key field"
-  },
   "openaiApiKeyDescription": "OpenAI एकीकरण के लिए आवश्यक। आपकी OpenAI key सुरक्षित रूप से संग्रहीत की जाती है।",
-  "@openaiApiKeyDescription": {
-    "description": "Description for OpenAI API Key field"
-  },
   "aiAssistantRequiresApiKeyError": "AI अध्ययन सहायक के लिए OpenAI API Key की आवश्यकता है। कृपया अपनी API key दर्ज करें या AI सहायक को अक्षम करें।",
-  "@aiAssistantRequiresApiKeyError": {
-    "description": "Error message when AI Assistant is enabled but no API key is provided"
-  },
   "getApiKeyTooltip": "OpenAI से API Key प्राप्त करें",
-  "@getApiKeyTooltip": {
-    "description": "Tooltip for the button to get API key from OpenAI"
-  },
   "deleteAction": "हटाएं",
-  "@deleteAction": {
-    "description": "Delete action text shown when swiping to delete"
-  },
   "explanationLabel": "स्पष्टीकरण (वैकल्पिक)",
-  "@explanationLabel": {
-    "description": "Label for the explanation input field"
-  },
   "explanationHint": "सही उत्तर(रों) के लिए स्पष्टीकरण दर्ज करें",
-  "@explanationHint": {
-    "description": "Hint text for the explanation input field"
-  },
   "explanationTitle": "स्पष्टीकरण",
-  "@explanationTitle": {
-    "description": "Title for the explanation section in quiz results"
-  },
   "imageLabel": "चित्र",
-  "@imageLabel": {
-    "description": "Label for the image section in question editor"
-  },
   "changeImage": "चित्र बदलें",
-  "@changeImage": {
-    "description": "Text for button to change current image"
-  },
   "removeImage": "चित्र हटाएं",
-  "@removeImage": {
-    "description": "Text for button to remove current image"
-  },
   "addImageTap": "चित्र जोड़ने के लिए टैप करें",
-  "@addImageTap": {
-    "description": "Instructional text for adding an image"
-  },
   "imageFormats": "प्रारूप: JPG, PNG, GIF",
-  "@imageFormats": {
-    "description": "Text indicating supported image formats"
-  },
   "imageLoadError": "चित्र लोड करने में त्रुटि",
-  "@imageLoadError": {
-    "description": "Error message when image cannot be loaded"
-  },
   "imagePickError": "चित्र लोड करने में त्रुटि: {error}",
-  "@imagePickError": {
-    "description": "Error message when image selection fails",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Invalid file"
-      }
-    }
-  },
   "tapToZoom": "ज़ूम करने के लिए टैप करें",
-  "@tapToZoom": {
-    "description": "Instructional text to indicate image can be zoomed"
-  },
   "trueLabel": "सही",
-  "@trueLabel": {
-    "description": "Label for true option in true/false questions"
-  },
   "falseLabel": "गलत",
-  "@falseLabel": {
-    "description": "Label for false option in true/false questions"
-  },
   "addQuestion": "प्रश्न जोड़ें",
-  "@addQuestion": {
-    "description": "Title for adding a new question dialog"
-  },
   "editQuestion": "प्रश्न संपादित करें",
-  "@editQuestion": {
-    "description": "Title for editing an existing question dialog"
-  },
   "questionText": "प्रश्न पाठ",
-  "@questionText": {
-    "description": "Label for question text input field"
-  },
   "questionType": "प्रश्न प्रकार",
-  "@questionType": {
-    "description": "Label for question type dropdown"
-  },
   "addOption": "विकल्प जोड़ें",
-  "@addOption": {
-    "description": "Label for add option button"
-  },
   "optionLabel": "विकल्प",
-  "@optionLabel": {
-    "description": "Label for individual option input field"
-  },
   "questionTextRequired": "प्रश्न पाठ आवश्यक है",
-  "@questionTextRequired": {
-    "description": "Error message when question text is empty"
-  },
   "atLeastOneOptionRequired": "कम से कम एक विकल्प में पाठ होना चाहिए",
-  "@atLeastOneOptionRequired": {
-    "description": "Error message when all options are empty"
-  },
   "atLeastOneCorrectAnswerRequired": "कम से कम एक सही उत्तर चुना जाना चाहिए",
-  "@atLeastOneCorrectAnswerRequired": {
-    "description": "Error message when no correct answer is selected"
-  },
   "onlyOneCorrectAnswerAllowed": "इस प्रश्न प्रकार के लिए केवल एक सही उत्तर की अनुमति है",
-  "@onlyOneCorrectAnswerAllowed": {
-    "description": "Error message when multiple correct answers are selected for single choice questions"
-  },
   "removeOption": "विकल्प हटाएं",
-  "@removeOption": {
-    "description": "Tooltip for remove option button"
-  },
   "selectCorrectAnswer": "सही उत्तर चुनें",
-  "@selectCorrectAnswer": {
-    "description": "Tooltip for radio button to select correct answer"
-  },
   "selectCorrectAnswers": "सही उत्तर चुनें",
-  "@selectCorrectAnswers": {
-    "description": "Tooltip for checkbox to select correct answers"
-  },
   "emptyOptionsError": "विकल्प {optionNumbers} खाली हैं। कृपया उनमें पाठ जोड़ें या उन्हें हटा दें।",
-  "@emptyOptionsError": {
-    "description": "Error message when some options are empty",
-    "placeholders": {
-      "optionNumbers": {
-        "type": "String",
-        "example": "1, 3, 4"
-      }
-    }
-  },
   "emptyOptionError": "विकल्प {optionNumber} खाली है। कृपया इसमें पाठ जोड़ें या इसे हटा दें।",
-  "@emptyOptionError": {
-    "description": "Error message when one option is empty",
-    "placeholders": {
-      "optionNumber": {
-        "type": "String",
-        "example": "3"
-      }
-    }
-  },
   "errorDuplicatedOption": "विकल्प दोहराए नहीं जा सकते।",
-  "@errorDuplicatedOption": {
-    "description": "Error message when options have duplicate text"
-  },
   "optionEmptyError": "यह विकल्प खाली नहीं हो सकता",
-  "@optionEmptyError": {
-    "description": "Error message for individual empty option field"
-  },
   "hasImage": "चित्र",
-  "@hasImage": {
-    "description": "Label indicating that a question has an image"
-  },
   "hasExplanation": "स्पष्टीकरण",
-  "@hasExplanation": {
-    "description": "Label indicating that a question has an explanation"
-  },
   "errorLoadingSettings": "सेटिंग्स लोड करने में त्रुटि: {error}",
-  "@errorLoadingSettings": {
-    "description": "Message displayed when there is an error while loading application settings.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "description": "The error message"
-      }
-    }
-  },
   "couldNotOpenUrl": "{url} खोला नहीं जा सका",
-  "@couldNotOpenUrl": {
-    "description": "Message displayed when a URL cannot be opened.",
-    "placeholders": {
-      "url": {
-        "type": "String",
-        "description": "The URL that could not be opened"
-      }
-    }
-  },
   "loadingAiServices": "AI सेवाएं लोड हो रही हैं...",
-  "@loadingAiServices": {
-    "description": "Message displayed while loading available AI services."
-  },
   "usingAiService": "उपयोग में: {serviceName}",
-  "@usingAiService": {
-    "description": "Message displayed showing which AI service is being used.",
-    "placeholders": {
-      "serviceName": {
-        "type": "String",
-        "description": "The name of the AI service"
-      }
-    }
-  },
   "aiServiceLabel": "AI सेवा:",
-  "@aiServiceLabel": {
-    "description": "Label for the AI service selector."
-  },
   "aiModelLabel": "मॉडल:",
-  "@aiModelLabel": {
-    "description": "Label for the AI model selector."
-  },
   "importQuestionsTitle": "प्रश्न आयात करें",
-  "@importQuestionsTitle": {
-    "description": "Title for the import questions dialog."
-  },
   "importQuestionsMessage": "\"{fileName}\" में {count} प्रश्न मिले। आप इन्हें कहाँ आयात करना चाहते हैं?",
-  "@importQuestionsMessage": {
-    "description": "Message asking where to import questions from another file.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "questions.quiz"
-      }
-    }
-  },
   "importQuestionsPositionQuestion": "आप इन प्रश्नों को कहाँ जोड़ना चाहते हैं?",
-  "@importQuestionsPositionQuestion": {
-    "description": "Question asking about import position."
-  },
   "importAtBeginning": "शुरुआत में",
-  "@importAtBeginning": {
-    "description": "Button to import questions at the beginning of the list."
-  },
   "importAtEnd": "अंत में",
-  "@importAtEnd": {
-    "description": "Button to import questions at the end of the list."
-  },
   "questionsImportedSuccess": "सफलतापूर्वक {count} प्रश्न आयात किए गए",
-  "@questionsImportedSuccess": {
-    "description": "Success message when questions are imported.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "importChunksTitle": "अनुभाग आयात करें",
-  "@importChunksTitle": {
-    "description": "Title for the import chunks dialog."
-  },
   "importChunksMessage": "\"{fileName}\" में {count} अनुभाग मिले। आप उन्हें कहाँ आयात करना चाहते हैं?",
-  "@importChunksMessage": {
-    "description": "Message asking where to import sections from another file.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "study.quiz"
-      }
-    }
-  },
   "importChunksPositionQuestion": "आप इन अनुभागों को कहाँ जोड़ना चाहते हैं?",
-  "@importChunksPositionQuestion": {
-    "description": "Question asking about import position for chunks."
-  },
   "chunksImportedSuccess": "{count} अनुभाग सफलतापूर्वक आयात किए गए",
-  "@chunksImportedSuccess": {
-    "description": "Success message when chunks are imported.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "noChunksInFile": "आयात की गई फ़ाइल में कोई अनुभाग नहीं मिला",
-  "@noChunksInFile": {
-    "description": "Error message when the imported file has no study sections."
-  },
   "importQuestionsTooltip": "दूसरी क्विज़ फ़ाइल से प्रश्न आयात करें",
-  "@importQuestionsTooltip": {
-    "description": "Tooltip for the import questions button."
-  },
   "dragDropHintText": "प्रश्न आयात करने के लिए आप .quiz फ़ाइलों को यहाँ ड्रैग और ड्रॉप भी कर सकते हैं",
-  "@dragDropHintText": {
-    "description": "Hint text shown when the question list is empty, indicating drag and drop functionality."
-  },
   "randomizeQuestionsTitle": "प्रश्नों को मिलाएं",
-  "@randomizeQuestionsTitle": {
-    "description": "Title for the setting to randomize questions."
-  },
   "randomizeQuestionsDescription": "क्विज़ निष्पादन के दौरान प्रश्नों का क्रम बदलें",
-  "@randomizeQuestionsDescription": {
-    "description": "Description for the randomize questions setting."
-  },
   "randomizeQuestionsOffDescription": "प्रश्न अपने मूल क्रम में दिखाई देंगे",
-  "@randomizeQuestionsOffDescription": {
-    "description": "Description for the randomize questions setting when disabled."
-  },
   "randomizeAnswersTitle": "उत्तरों का क्रम यादृच्छिक करें",
-  "@randomizeAnswersTitle": {
-    "description": "Title for the setting to randomize answer options."
-  },
   "randomizeAnswersDescription": "क्विज़ निष्पादन के दौरान उत्तर विकल्पों का क्रम मिलाएं",
-  "@randomizeAnswersDescription": {
-    "description": "Description for the randomize answers setting."
-  },
   "showCorrectAnswerCountTitle": "सही उत्तर संख्या दिखाएं",
-  "@showCorrectAnswerCountTitle": {
-    "description": "Title for the setting to show correct answer count."
-  },
   "showCorrectAnswerCountDescription": "बहुविकल्पीय प्रश्नों में सही उत्तरों की संख्या प्रदर्शित करें",
-  "@showCorrectAnswerCountDescription": {
-    "description": "Description for the show correct answer count setting."
-  },
   "showCorrectAnswerCountOffDescription": "बहुविकल्पीय प्रश्नों के लिए सही उत्तरों की संख्या नहीं दिखाई जाएगी",
-  "@showCorrectAnswerCountOffDescription": {
-    "description": "Description for the show correct answer count setting when disabled."
-  },
   "correctAnswersCount": "{count} सही उत्तर चुनें",
-  "@correctAnswersCount": {
-    "description": "Text showing how many correct answers to select in a multiple choice question.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "correctSelectedLabel": "सही",
-  "@correctSelectedLabel": {
-    "description": "Label for correctly selected answers in quiz results."
-  },
   "correctMissedLabel": "सही",
-  "@correctMissedLabel": {
-    "description": "Label for correct answers that were not selected in quiz results."
-  },
   "incorrectSelectedLabel": "गलत",
-  "@incorrectSelectedLabel": {
-    "description": "Label for incorrectly selected answers in quiz results."
-  },
   "generateQuestionsWithAI": "AI के साथ प्रश्न बनाएं",
-  "@generateQuestionsWithAI": {
-    "description": "Tooltip for the generate questions with AI button."
-  },
   "addQuestionsWithAI": "AI के साथ प्रश्न जोड़ें",
-  "@addQuestionsWithAI": {
-    "description": "Label for the button to add more questions using AI when some already exist."
-  },
   "aiGenerateDialogTitle": "AI के साथ प्रश्न बनाएं",
-  "@aiGenerateDialogTitle": {
-    "description": "Title of the AI question generation dialog."
-  },
   "aiQuestionCountLabel": "प्रश्नों की संख्या (वैकल्पिक)",
-  "@aiQuestionCountLabel": {
-    "description": "Label for the question count field."
-  },
   "aiQuestionCountHint": "AI को निर्णय लेने के लिए खाली छोड़ें",
-  "@aiQuestionCountHint": {
-    "description": "Hint text for the question count field."
-  },
   "aiQuestionCountValidation": "1 से 50 के बीच संख्या होनी चाहिए",
-  "@aiQuestionCountValidation": {
-    "description": "Validation message for question count."
-  },
   "aiQuestionTypeLabel": "प्रश्न प्रकार",
-  "@aiQuestionTypeLabel": {
-    "description": "Label for the question type selector."
-  },
   "aiQuestionTypeRandom": "यादृच्छिक (मिश्रित)",
-  "@aiQuestionTypeRandom": {
-    "description": "Random type option for questions."
-  },
   "aiLanguageLabel": "प्रश्न भाषा",
-  "@aiLanguageLabel": {
-    "description": "Label for the language selector."
-  },
   "aiContentLabel": "प्रश्न बनाने के लिए सामग्री",
-  "@aiContentLabel": {
-    "description": "Label for the content field."
-  },
   "aiWordCount": "{current} / {max} शब्द",
-  "@aiWordCount": {
-    "description": "Word counter for content.",
-    "placeholders": {
-      "current": {
-        "type": "int",
-        "example": "150"
-      },
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiContentHint": "वह पाठ, विषय या सामग्री दर्ज करें जिससे आप प्रश्न बनाना चाहते हैं...",
-  "@aiContentHint": {
-    "description": "Hint text for the content field."
-  },
   "aiContentHelperText": "AI इस सामग्री के आधार पर प्रश्न बनाएगा",
-  "@aiContentHelperText": {
-    "description": "Additional helper text for the content field."
-  },
   "aiWordLimitError": "आपने {max} शब्दों की सीमा पार कर दी है",
-  "@aiWordLimitError": {
-    "description": "Error when word limit is exceeded.",
-    "placeholders": {
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiContentRequiredError": "प्रश्न बनाने के लिए आपको सामग्री प्रदान करनी होगी",
-  "@aiContentRequiredError": {
-    "description": "Error when no content is provided."
-  },
   "aiContentLimitError": "सामग्री {max} शब्दों की सीमा से अधिक है",
-  "@aiContentLimitError": {
-    "description": "Validation error for word limit.",
-    "placeholders": {
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiMinWordsError": "गुणवत्तापूर्ण प्रश्न बनाने के लिए कम से कम 10 शब्द प्रदान करें",
-  "@aiMinWordsError": {
-    "description": "Error when content is too short."
-  },
   "aiInfoTitle": "जानकारी",
-  "@aiInfoTitle": {
-    "description": "Title of the information section."
-  },
   "aiInfoDescription": "• AI सामग्री का विश्लेषण करके प्रासंगिक प्रश्न बनाएगा\n• यदि तुम 10 से कम शब्द लिखते हो, तो यह 'विषय' (Topic) मोड में चला जाएगा जहाँ उन विशिष्ट विषयों के बारे में प्रश्न पूछे जाएंगे\n• 10 से अधिक शब्दों के साथ, यह 'सामग्री' (Content) मोड में चला जाएगा जो उसी पाठ के बारे में प्रश्न पूछेगा (अधिक शब्द = अधिक सटीकता)\n• तुम पाठ, परिभाषाएं, स्पष्टीकरण या कोई भी शैक्षिक सामग्री शामिल कर सकते हो\n• प्रश्नों में उत्तर विकल्प और स्पष्टीकरण शामिल होंगे\n• इस प्रक्रिया में कुछ सेकंड लग सकते हैं",
-  "@aiInfoDescription": {
-    "description": "Informative description about the AI generation process."
-  },
   "aiGenerateButton": "प्रश्न बनाएं",
-  "@aiGenerateButton": {
-    "description": "Text for the generate questions button."
-  },
   "languageSpanish": "स्पेनिश",
-  "@languageSpanish": {
-    "description": "स्पेनिश भाषा का नाम।"
-  },
   "languageEnglish": "अंग्रेज़ी",
-  "@languageEnglish": {
-    "description": "अंग्रेज़ी भाषा का नाम।"
-  },
   "languageFrench": "फ़्रेंच",
-  "@languageFrench": {
-    "description": "फ़्रेंच भाषा का नाम।"
-  },
   "languageGerman": "जर्मन",
-  "@languageGerman": {
-    "description": "जर्मन भाषा का नाम।"
-  },
   "languageGreek": "ग्रीक",
-  "@languageGreek": {
-    "description": "ग्रीक भाषा का नाम।"
-  },
   "languageItalian": "इतालवी",
-  "@languageItalian": {
-    "description": "इतालवी भाषा का नाम।"
-  },
   "languagePortuguese": "पुर्तगाली",
-  "@languagePortuguese": {
-    "description": "पुर्तगाली भाषा का नाम।"
-  },
   "languageCatalan": "कैटलन",
-  "@languageCatalan": {
-    "description": "कैटलन भाषा का नाम।"
-  },
   "languageBasque": "बास्क",
-  "@languageBasque": {
-    "description": "बास्क भाषा का नाम।"
-  },
   "languageGalician": "गैलिशियाई",
-  "@languageGalician": {
-    "description": "गैलिशियाई भाषा का नाम।"
-  },
   "languageHindi": "हिन्दी",
-  "@languageHindi": {
-    "description": "हिन्दी भाषा का नाम।"
-  },
   "languageChinese": "चीनी",
-  "@languageChinese": {
-    "description": "चीनी भाषा का नाम।"
-  },
   "languageArabic": "अरबी",
-  "@languageArabic": {
-    "description": "अरबी भाषा का नाम।"
-  },
   "languageJapanese": "जापानी",
-  "@languageJapanese": {
-    "description": "जापानी भाषा का नाम।"
-  },
   "languageRussian": "रूसी",
-  "@languageRussian": {
-    "description": "रूसी भाषा का नाम।"
-  },
   "languageGeorgian": "जॉर्जियाई",
-  "@languageGeorgian": {
-    "description": "जॉर्जियाई भाषा का नाम।"
-  },
   "languageUkrainian": "यूक्रेनी",
-  "@languageUkrainian": {
-    "description": "यूक्रेनी भाषा का नाम।"
-  },
   "languageKorean": "कोरियाई",
-  "@languageKorean": {
-    "description": "कोरियाई भाषा का नाम।"
-  },
   "aiServicesLoading": "AI सेवाएं लोड हो रही हैं...",
-  "@aiServicesLoading": {
-    "description": "Message shown while loading available AI services."
-  },
   "aiServicesNotConfigured": "कोई AI सेवा कॉन्फ़िगर नहीं की गई",
-  "@aiServicesNotConfigured": {
-    "description": "Message shown when no AI services are configured."
-  },
   "aiGeneratedQuestions": "AI द्वारा बनाए गए",
-  "@aiGeneratedQuestions": {
-    "description": "Name for AI generated questions in the import dialog."
-  },
   "aiApiKeyRequired": "AI जेनरेशन का उपयोग करने के लिए कृपया सेटिंग्स में कम से कम एक AI API key कॉन्फ़िगर करें।",
-  "@aiApiKeyRequired": {
-    "description": "Message shown when no API keys are configured for AI."
-  },
   "aiGenerationFailed": "प्रश्न नहीं बना सके। अलग सामग्री के साथ प्रयास करें।",
-  "@aiGenerationFailed": {
-    "description": "Message shown when AI question generation fails."
-  },
   "aiGenerationErrorTitle": "प्रश्न बनाने में त्रुटि",
-  "@aiGenerationErrorTitle": {
-    "description": "AI के साथ प्रश्न बनाने में त्रुटि संवाद के लिए शीर्षक।"
-  },
   "noQuestionsInFile": "आयातित फ़ाइल में कोई प्रश्न नहीं मिले",
-  "@noQuestionsInFile": {
-    "description": "Message shown when an imported file contains no questions."
-  },
   "couldNotAccessFile": "चयनित फ़ाइल तक पहुंच नहीं सकी",
-  "@couldNotAccessFile": {
-    "description": "Message shown when a selected file cannot be accessed."
-  },
   "defaultOutputFileName": "output-file.quiz",
-  "@defaultOutputFileName": {
-    "description": "Default name for output files."
-  },
   "aiServiceLimitsWithChars": "सीमा: {words} शब्द या {chars} अक्षर",
-  "@aiServiceLimitsWithChars": {
-    "description": "Description of AI service limits with both word and character limits.",
-    "placeholders": {
-      "words": {
-        "type": "int",
-        "example": "3000"
-      },
-      "chars": {
-        "type": "int",
-        "example": "12000"
-      }
-    }
-  },
   "aiServiceLimitsWordsOnly": "सीमा: {words} शब्द",
-  "@aiServiceLimitsWordsOnly": {
-    "description": "Description of AI service limits with only word limit.",
-    "placeholders": {
-      "words": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiAssistantDisabled": "AI सहायक अक्षम",
-  "@aiAssistantDisabled": {
-    "description": "AI सहायक अक्षम होने पर डायलॉग का शीर्षक"
-  },
   "enableAiAssistant": "AI सहायक अक्षम है। AI सुविधाओं का उपयोग करने के लिए कृपया इसे सेटिंग्स में सक्षम करें।",
-  "@enableAiAssistant": {
-    "description": "AI सहायक अक्षम होने पर दिखाया जाने वाला संदेश"
-  },
   "aiMinWordsRequired": "न्यूनतम {minWords} शब्द आवश्यक",
-  "@aiMinWordsRequired": {
-    "description": "AI पीढ़ी के लिए आवश्यक न्यूनतम शब्दों को दर्शाने वाला संदेश",
-    "placeholders": {
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      }
-    }
-  },
   "aiWordsReadyToGenerate": "{wordCount} शब्द ✓ उत्पन्न करने के लिए तैयार",
-  "@aiWordsReadyToGenerate": {
-    "description": "AI पीढ़ी के लिए पर्याप्त शब्द प्रदान किए जाने पर संदेश",
-    "placeholders": {
-      "wordCount": {
-        "type": "int",
-        "example": "75"
-      }
-    }
-  },
   "aiWordsProgress": "{currentWords}/{minWords} शब्द ({moreNeeded} और चाहिए)",
-  "@aiWordsProgress": {
-    "description": "शब्द गिनती की प्रगति दिखाने वाला संदेश",
-    "placeholders": {
-      "currentWords": {
-        "type": "int",
-        "example": "30"
-      },
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      },
-      "moreNeeded": {
-        "type": "int",
-        "example": "20"
-      }
-    }
-  },
   "aiValidationMinWords": "न्यूनतम {minWords} शब्द आवश्यक ({moreNeeded} और चाहिए)",
-  "@aiValidationMinWords": {
-    "description": "अपर्याप्त शब्द प्रदान किए जाने पर सत्यापन संदेश",
-    "placeholders": {
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      },
-      "moreNeeded": {
-        "type": "int",
-        "example": "20"
-      }
-    }
-  },
   "enableQuestion": "प्रश्न सक्रिय करें",
-  "@enableQuestion": {
-    "description": "निष्क्रिय प्रश्न को सक्रिय करने के लिए टूलटिप टेक्स्ट"
-  },
   "disableQuestion": "प्रश्न निष्क्रिय करें",
-  "@disableQuestion": {
-    "description": "सक्रिय प्रश्न को निष्क्रिय करने के लिए टूलटिप टेक्स्ट"
-  },
   "questionDisabled": "निष्क्रिय",
-  "@questionDisabled": {
-    "description": "निष्क्रिय प्रश्नों पर दिखाया गया बैज टेक्स्ट"
-  },
   "noEnabledQuestionsError": "क्विज़ चलाने के लिए कोई सक्रिय प्रश्न उपलब्ध नहीं है",
-  "@noEnabledQuestionsError": {
-    "description": "सक्रिय प्रश्नों के बिना क्विज़ शुरू करने का प्रयास करते समय त्रुटि संदेश"
-  },
   "aiEvaluationError": "उत्तर का मूल्यांकन करने में त्रुटि: {error}",
-  "@aiEvaluationError": {
-    "description": "AI मूल्यांकन असफल होने पर त्रुटि संदेश",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "नेटवर्क त्रुटि"
-      }
-    }
-  },
   "aiEvaluationPromptSystemRole": "आप एक विशेषज्ञ शिक्षक हैं जो एक निबंध प्रश्न के लिए छात्र के उत्तर का मूल्यांकन कर रहे हैं। आपका कार्य विस्तृत और रचनात्मक मूल्यांकन प्रदान करना है। कृपया छात्र के उत्तर की भाषा में ही जवाब दें।",
-  "@aiEvaluationPromptSystemRole": {
-    "description": "AI मूल्यांकन प्रॉम्प्ट के लिए सिस्टम भूमिका"
-  },
   "aiEvaluationPromptQuestion": "प्रश्न:",
-  "@aiEvaluationPromptQuestion": {
-    "description": "मूल्यांकन प्रॉम्प्ट में प्रश्न लेबल"
-  },
   "aiEvaluationPromptStudentAnswer": "छात्र का उत्तर:",
-  "@aiEvaluationPromptStudentAnswer": {
-    "description": "मूल्यांकन प्रॉम्प्ट में छात्र उत्तर लेबल"
-  },
   "aiEvaluationPromptCriteria": "मूल्यांकन मानदंड (शिक्षक की व्याख्या के आधार पर):",
-  "@aiEvaluationPromptCriteria": {
-    "description": "प्रॉम्प्ट में मूल्यांकन मानदंड लेबल"
-  },
   "aiEvaluationPromptSpecificInstructions": "विशिष्ट निर्देश:\n- मूल्यांकन करें कि छात्र का उत्तर स्थापित मानदंडों के साथ कितनी अच्छी तरह मेल खाता है\n- उत्तर में संश्लेषण और संरचना की डिग्री का विश्लेषण करें\n- पहचानें कि क्या मानदंडों के अनुसार कुछ महत्वपूर्ण छूट गया है\n- विश्लेषण की गहराई और सटीकता पर विचार करें",
-  "@aiEvaluationPromptSpecificInstructions": {
-    "description": "मानदंडों के साथ मूल्यांकन के लिए विशिष्ट निर्देश"
-  },
   "aiEvaluationPromptGeneralInstructions": "सामान्य निर्देश:\n- चूंकि कोई विशिष्ट मानदंड स्थापित नहीं हैं, सामान्य शैक्षणिक मानकों के आधार पर उत्तर का मूल्यांकन करें\n- उत्तर की स्पष्टता, सुसंगति और संरचना पर विचार करें\n- मूल्यांकन करें कि क्या उत्तर विषय की समझ प्रदर्शित करता है\n- विश्लेषण की गहराई और तर्कों की गुणवत्ता का विश्लेषण करें",
-  "@aiEvaluationPromptGeneralInstructions": {
-    "description": "मानदंडों के बिना मूल्यांकन के लिए सामान्य निर्देश"
-  },
   "aiEvaluationPromptResponseFormat": "उत्तर प्रारूप:\n1. ग्रेड: [X/10] - ग्रेड के लिए संक्षेप में औचित्य दें\n2. शक्तियां: उत्तर के सकारात्मक पहलुओं का उल्लेख करें\n3. सुधार के क्षेत्र: उन पहलुओं को इंगित करें जिन्हें सुधारा जा सकता है\n4. विशिष्ट टिप्पणियां: विस्तृत और रचनात्मक प्रतिक्रिया प्रदान करें\n5. सुझाव: सुधार के लिए विशिष्ट सिफारिशें प्रदान करें\n\nअपने मूल्यांकन में रचनात्मक, विशिष्ट और शैक्षिक बनें। लक्ष्य छात्र को सीखने और सुधारने में मदद करना है। उन्हें द्वितीय व्यक्ति में संबोधित करें और एक पेशेवर और मित्रवत स्वर का उपयोग करें।",
-  "@aiEvaluationPromptResponseFormat": {
-    "description": "मूल्यांकन के लिए उत्तर प्रारूप निर्देश"
-  },
   "aiModeTopicTitle": "विषय मोड",
-  "@aiModeTopicTitle": {
-    "description": "AI सहायक में विषय मोड के लिए शीर्षक"
-  },
   "aiModeTopicDescription": "विषय का रचनात्मक अन्वेषण",
-  "@aiModeTopicDescription": {
-    "description": "विषय मोड के लिए विवरण"
-  },
   "aiModeContentTitle": "सामग्री मोड",
-  "@aiModeContentTitle": {
-    "description": "AI सहायक में सामग्री मोड के लिए शीर्षक"
-  },
   "aiModeContentDescription": "आपके इनपुट पर आधारित सटीक प्रश्न",
-  "@aiModeContentDescription": {
-    "description": "सामग्री मोड के लिए विवरण"
-  },
   "aiWordCountIndicator": "{count} शब्द",
-  "@aiWordCountIndicator": {
-    "description": "शब्द गणना संकेतक",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "aiPrecisionIndicator": "सटीकता: {level}",
-  "@aiPrecisionIndicator": {
-    "description": "सामग्री मोड के लिए सटीकता स्तर संकेतक",
-    "placeholders": {
-      "level": {
-        "type": "String",
-        "example": "उच्च"
-      }
-    }
-  },
   "aiPrecisionLow": "कम",
-  "@aiPrecisionLow": {
-    "description": "कम सटीकता स्तर"
-  },
   "aiPrecisionMedium": "मध्यम",
-  "@aiPrecisionMedium": {
-    "description": "मध्यम सटीकता स्तर"
-  },
   "aiPrecisionHigh": "उच्च",
-  "@aiPrecisionHigh": {
-    "description": "उच्च सटीकता स्तर"
-  },
   "aiMoreWordsMorePrecision": "अधिक शब्द = अधिक सटीकता",
-  "@aiMoreWordsMorePrecision": {
-    "description": "संकेत टेक्स्ट समझाता है कि अधिक शब्द अधिक सटीक उत्तर देते हैं"
-  },
   "aiKeepDraftTitle": "AI ड्राफ्ट सुरक्षित रखें",
-  "@aiKeepDraftTitle": {
-    "description": "AI जनरेशन डायलॉग में दर्ज टेक्स्ट को अपने आप सेव करें।"
-  },
   "aiKeepDraftDescription": "AI जनरेशन डायलॉग में दर्ज टेक्स्ट को अपने आप सेव करें ताकि डायलॉग बंद होने पर वह खो न जाए।",
-  "@aiKeepDraftDescription": {
-    "description": "AI जनरेशन डायलॉग में दर्ज टेक्स्ट को अपने आप सेव करें।"
-  },
   "aiAttachFile": "फ़ाइल संलग्न करें",
-  "@aiAttachFile": {
-    "description": "Label for the attach file button in AI generation dialog"
-  },
   "aiRemoveFile": "फ़ाइल निकालें",
-  "@aiRemoveFile": {
-    "description": "Tooltip for the remove file button"
-  },
   "aiFileMode": "फ़ाइल मोड",
-  "@aiFileMode": {
-    "description": "Title for the file mode indicator"
-  },
   "aiFileModeDescription": "संलग्न फ़ाइल से प्रश्न उत्पन्न किए जाएंगे",
-  "@aiFileModeDescription": {
-    "description": "Description for the file mode indicator"
-  },
   "aiCommentsLabel": "टिप्पणियाँ (वैकल्पिक)",
-  "@aiCommentsLabel": {
-    "description": "Label for the comments field when a file is attached"
-  },
   "aiCommentsHint": "संलग्न फ़ाइल के बारे में निर्देश या टिप्पणियाँ जोड़ें...",
-  "@aiCommentsHint": {
-    "description": "Hint text for the comments field when a file is attached"
-  },
   "aiCommentsHelperText": "वैकल्पिक रूप से फ़ाइल से प्रश्न कैसे उत्पन्न करें, इस पर निर्देश जोड़ें",
-  "@aiCommentsHelperText": {
-    "description": "Helper text for the comments field when a file is attached"
-  },
   "aiFilePickerError": "चयनित फ़ाइल लोड नहीं की जा सकी",
-  "@aiFilePickerError": {
-    "description": "Error message when file picker fails"
-  },
   "studyModeLabel": "अध्ययन मोड",
   "generateStudyWithAI": "AI के साथ अध्ययन बनाएं",
   "practiceModeLabel": "अभ्यास मोड",
-  "@practiceModeLabel": {
-    "description": "Label for practice mode option in start quiz"
-  },
   "smartModeLabel": "स्मार्ट मोड",
-  "@smartModeLabel": {
-    "description": "Label for smart exam mode option in start quiz"
-  },
   "smartModeDescription": "विशेष परीक्षा मोड। ऐप प्रश्नों का सेट और संख्या अपने आप तय करती है और रिवीजन आँकड़े अपडेट करती है।",
-  "@smartModeDescription": {
-    "description": "Description for smart exam mode"
-  },
   "studyModeDescription": "AI सहायता उपलब्ध है। समय सीमा या दंड के बिना प्रत्येक उत्तर के बाद त्वरित प्रतिक्रिया। कोई आँकड़े उत्पन्न नहीं किए गए।",
   "examModeLabel": "परीक्षा मोड",
   "examModeDescription": "कोई AI सहायता नहीं। समय सीमा और गलत उत्तरों के लिए जुर्माना लागू हो सकता है। SRS आँकड़े उत्पन्न करता है।",
@@ -1471,9 +317,6 @@
   "enable": "सक्षम करें",
   "disable": "अक्षम करें",
   "reorderQuestionsTooltip": "प्रश्नों को पुनः व्यवस्थित करें",
-  "@reorderQuestionsTooltip": {
-    "description": "Tooltip for the reorder questions button"
-  },
   "quizPreviewTitle": "प्रश्नोत्तरी पूर्वावलोकन",
   "quizLoadedNoQuestionsAvailable": "कोई प्रश्न उपलब्ध नहीं है।",
   "select": "चुनें",
@@ -1487,27 +330,9 @@
   "deleteSingleQuestionConfirmation": "क्या आप वाकई इस प्रश्न को हटाना चाहते हैं?",
   "deleteMultipleQuestionsConfirmation": "क्या आप वाकई {count} प्रश्नों को हटाना चाहते हैं?",
   "missingExplanation": "स्पष्टीकरण गायब है",
-  "@missingExplanation": {
-    "description": "Label indicating that a question is missing an explanation"
-  },
   "missingExplanationTooltip": "इस प्रश्न का कोई स्पष्टीकरण नहीं है",
-  "@missingExplanationTooltip": {
-    "description": "Tooltip text for the missing explanation badge"
-  },
   "missingStudySectionTooltip": "किसी अध्ययन अनुभाग से नहीं जुड़ा",
-  "@missingStudySectionTooltip": {
-    "description": "Tooltip text for the unlinked study section warning"
-  },
   "questionTypeTooltip": "प्रश्न का प्रकार: {type}",
-  "@questionTypeTooltip": {
-    "description": "Tooltip text for the question type badge",
-    "placeholders": {
-      "type": {
-        "type": "String",
-        "example": "Multiple Choice"
-      }
-    }
-  },
   "settingsTitle": "सेटिंग्स",
   "keepPracticing": "सुधार के लिए अभ्यास जारी रखें!",
   "tryAgain": "फिर कोशिश करें",
@@ -1524,71 +349,23 @@
   "aiContentFieldHint": "\"द्वितीय विश्व युद्ध का इतिहास\" जैसा कोई विषय दर्ज करें या यहां पाठ पेस्ट करें...",
   "aiAttachFileHint": "फ़ाइल संलग्न करें (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "फ़ाइल यहाँ छोड़ें",
-  "@dropAttachmentHere": {
-    "description": "Hint shown when dragging a file over the attachment area"
-  },
   "dropImageHere": "छवि यहाँ छोड़ें",
-  "@dropImageHere": {
-    "description": "Hint shown when dragging an image over the image section"
-  },
   "aiNumberQuestionsLabel": "प्रश्नों की संख्या",
   "backButton": "वापस",
   "generateButton": "उत्पन्न करें",
   "aiTopicModeCount": "विषय मोड ({count} शब्द)",
   "aiTextModeCount": "पाठ मोड ({count} शब्द)",
   "aiGenerationCategoryLabel": "सामग्री मोड",
-  "@aiGenerationCategoryLabel": {
-    "description": "Label for AI generation category selector"
-  },
   "aiGenerationCategoryTheory": "सिद्धांत",
-  "@aiGenerationCategoryTheory": {
-    "description": "Label for theory category"
-  },
   "aiGenerationCategoryExercises": "अभ्यास",
-  "@aiGenerationCategoryExercises": {
-    "description": "Label for exercises category"
-  },
   "aiGenerationCategoryBoth": "मिश्रित",
-  "@aiGenerationCategoryBoth": {
-    "description": "Label for mixed category"
-  },
   "allLabel": "सभी",
-  "@allLabel": {
-    "description": "सभी प्रश्नों का चयन करने के विकल्प के लिए लेबल"
-  },
   "finishQuizUnansweredQuestions": "आपके पास {unansweredCount,plural, =1{1 निरुत्तरित प्रश्न है}other{{unansweredCount} निरुत्तरित प्रश्न हैं}}। क्या आप वाकई क्विज़ समाप्त करना चाहते हैं?",
-  "@finishQuizUnansweredQuestions": {
-    "description": "Message shown when there are unanswered questions.",
-    "placeholders": {
-      "unansweredCount": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "subtractPointsLabel": "गलत उत्तर के लिए अंक घटाएं",
   "subtractPointsDescription": "प्रत्येक गलत उत्तर के लिए अंक घटाएं।",
-  "@subtractPointsLabel": {
-    "description": "Label for the checkbox to subtract points for incorrect answers"
-  },
   "subtractPointsOffDescription": "गलत उत्तर अंक नहीं घटाते हैं।",
-  "@subtractPointsOffDescription": {
-    "description": "Description shown when subtract points for incorrect answers is disabled"
-  },
   "penaltyAmountLabel": "दंड राशि",
-  "@penaltyAmountLabel": {
-    "description": "Label for the input field to set the penalty amount"
-  },
   "penaltyPointsLabel": "-{amount} अंक / गलती",
-  "@penaltyPointsLabel": {
-    "description": "Label showing the points deducted per mistake",
-    "placeholders": {
-      "amount": {
-        "type": "String",
-        "example": "0.50"
-      }
-    }
-  },
   "allQuestionsLabel": "सभी प्रश्न",
   "startWithSelectedQuestions": "{count} चयनित के साथ शुरू करें",
   "advancedSettingsTitle": "उन्नत सेटिंग्स (डिबग)",
@@ -1598,51 +375,18 @@
   "pasteImage": "पेस्ट",
   "clipboardNoImage": "क्लिपबोर्ड में कोई छवि नहीं मिली",
   "maxIncorrectAnswersLabel": "गलत उत्तरों को सीमित करें",
-  "@maxIncorrectAnswersLabel": {
-    "description": "Label for the toggle to limit incorrect answers"
-  },
   "maxIncorrectAnswersDescription": "उत्तीर्ण/अनुत्तीर्ण परीक्षा। कोई संख्यात्मक ग्रेड नहीं है।",
-  "@maxIncorrectAnswersDescription": {
-    "description": "Description for the limit incorrect answers feature"
-  },
   "maxIncorrectAnswersOffDescription": "परीक्षा में 0 से 100 तक संख्यात्मक ग्रेड होता है।",
-  "@maxIncorrectAnswersOffDescription": {
-    "description": "Description shown when max incorrect answers is disabled"
-  },
   "maxIncorrectAnswersLimitLabel": "अधिकतम अनुमत त्रुटियां",
-  "@maxIncorrectAnswersLimitLabel": {
-    "description": "Label for the input field of maximum incorrect answers"
-  },
   "examFailedStatus": "परीक्षा अनुत्तीर्ण (Fail)",
   "examPassedStatus": "परीक्षा उत्तीर्ण (Pass)",
   "quizFailedLimitReached": "परीक्षा समाप्त: अधिकतम त्रुटि सीमा समाप्त हो गई है",
-  "@quizFailedLimitReached": {
-    "description": "Title for the results screen when the error limit is reached"
-  },
   "close": "बंद करें",
-  "@close": {
-    "description": "Close button text"
-  },
   "randomizeAnswersOffDescription": "उत्तर विकल्प अपने मूल क्रम में दिखाई देंगे",
-  "@randomizeAnswersOffDescription": {
-    "description": "Description for the randomize answers setting when disabled."
-  },
   "scoringAndLimitsTitle": "स्कोरिंग और सीमाएँ",
-  "@scoringAndLimitsTitle": {
-    "description": "Title for the scoring and limits section in advanced settings"
-  },
   "congratulations": "🎉 बधाई हो! 🎉",
-  "@congratulations": {
-    "description": "Congratulations message in winner dialog"
-  },
   "examConfigurationTitle": "परीक्षा कॉन्फ़िगरेशन",
-  "@examConfigurationTitle": {
-    "description": "Title for the advanced settings / exam configuration section"
-  },
   "generationConfigurationTitle": "जेनरेशन कॉन्फ़िगरेशन",
-  "@generationConfigurationTitle": {
-    "description": "Title for the generation configuration section in AI dialog"
-  },
   "validationMin1Error": "न्यूनतम 1 मिनट",
   "remainingTimeWithDays": "{days}दिन {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}सप्ताह {days}दिन {hours}:{minutes}:{seconds}",
@@ -1650,220 +394,62 @@
   "validationMin0GenericError": "न्यूनतम 0",
   "errorStatus": "Error",
   "evaluatingResponses": "प्रतिक्रियाओं का मूल्यांकन किया जा रहा है...",
-  "@evaluatingResponses": {
-    "description": "एआई मूल्यांकन लंबित होने पर परिणाम स्क्रीन में दिखाया गया टेक्स्ट"
-  },
   "pendingEvaluationsCount": "{count, plural, =1{1 निबंध प्रश्न AI मूल्यांकन के लिए लंबित है} other{{count} निबंध प्रश्न AI मूल्यांकन के लिए लंबित हैं}}",
-  "@pendingEvaluationsCount": {
-    "description": "लंबित एआई मूल्यांकनों की संख्या दिखाने वाला उपशीर्षक",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "pendingStatus": "लंबित",
-  "@pendingStatus": {
-    "description": "लंबित एआई मूल्यांकन के लिए स्थिति लेबल"
-  },
   "notEvaluatedStatus": "मूल्यांकन नहीं किया गया",
-  "@notEvaluatedStatus": {
-    "description": "एक निबंध प्रश्न के लिए स्थिति लेबल जिसका एआई द्वारा मूल्यांकन नहीं किया गया था"
-  },
   "retryButton": "मूल्यांकन पुन: प्रयास करें",
-  "@retryButton": {
-    "description": "एआई मूल्यांकन पुन: प्रयास करने के लिए बटन टेक्स्ट"
-  },
   "featureComingSoon": "जल्द ही आ रहा है! अपडेट के लिए बने रहें।",
-  "@featureComingSoon": {
-    "description": "उन सुविधाओं के लिए संदेश जो अभी उपलब्ध नहीं हैं"
-  },
   "showOnboarding": "स्वागत स्क्रीन दिखाएं",
-  "@showOnboarding": {
-    "description": "स्वागत प्रवाह को फिर से खोलने के लिए बटन का लेबल"
-  },
   "showOnboardingDescription": "स्वागत ट्यूटोरियल फिर से देखें",
-  "@showOnboardingDescription": {
-    "description": "स्वागत प्रवाह को फिर से खोलने के लिए बटन का विवरण"
-  },
   "onboardingBack": "पीछे",
-  "@onboardingBack": {
-    "description": "स्वागत नेविगेशन में पीछे का बटन"
-  },
   "onboardingGetStarted": "शुरू करें",
-  "@onboardingGetStarted": {
-    "description": "अंतिम स्वागत पृष्ठ पर शुरू करें बटन"
-  },
   "onboardingWelcomeTitle": "Quizdy में आपका स्वागत है",
-  "@onboardingWelcomeTitle": {
-    "description": "पहले स्वागत पृष्ठ के लिए शीर्षक"
-  },
   "onboardingWelcomeDescription": "एआई-संचालित सुविधाओं, अनुकूलन योग्य प्रश्नों और रीयल-टाइम स्कोरिंग के साथ।",
-  "@onboardingWelcomeDescription": {
-    "description": "पहले स्वागत पृष्ठ के लिए विवरण"
-  },
   "onboardingWelcomeSubtitle": "आपका इंटरैक्टिव अध्ययन और प्रश्नोत्तरी साथी",
-  "@onboardingWelcomeSubtitle": {
-    "description": "डेस्कटॉप लेआउट में पहले स्वागत पृष्ठ के लिए उपशीर्षक"
-  },
   "onboardingStartQuizTitle": "प्रश्नोत्तरी शुरू करें",
-  "@onboardingStartQuizTitle": {
-    "description": "दूसरे स्वागत पृष्ठ के लिए शीर्षक"
-  },
   "onboardingStartQuizDescription": "एक मौजूदा .quiz फ़ाइल लोड करें या शुरुआत से एक नई फ़ाइल बनाएं। फ़ाइलों को सीधे ड्रैग और ड्रॉप करें या फ़ाइल पिकर का उपयोग करें।",
-  "@onboardingStartQuizDescription": {
-    "description": "दूसरे स्वागत पृष्ठ के लिए विवरण"
-  },
   "onboardingStartQuizSubtitle": "लोड करें, बनाएं और खेलें",
-  "@onboardingStartQuizSubtitle": {
-    "description": "डेस्कटॉप लेआउट में दूसरे स्वागत पृष्ठ के लिए उपशीर्षक"
-  },
   "onboardingCreateQuestionsTitle": "प्रश्न बनाएं",
-  "@onboardingCreateQuestionsTitle": {
-    "description": "तीसरे स्वागत पृष्ठ के लिए शीर्षक"
-  },
   "onboardingCreateQuestionsDescription": "विभिन्न प्रकार के प्रश्नों के साथ प्रश्नोत्तरी बनाएं। प्रत्येक प्रश्न को विकल्पों, सही उत्तरों और स्पष्टीकरणों के साथ अनुकूलित करें।",
-  "@onboardingCreateQuestionsDescription": {
-    "description": "तीसरे स्वागत पृष्ठ के लिए विवरण"
-  },
   "onboardingCreateQuestionsSubtitle": "अपनी खुद की प्रश्नोत्तरी डिजाइन करें",
-  "@onboardingCreateQuestionsSubtitle": {
-    "description": "डेस्कटॉप लेआउट में तीसरे स्वागत पृष्ठ के लिए उपशीर्षक"
-  },
   "onboardingAiFeaturesTitle": "एआई-संचालित विशेषताएं",
-  "@onboardingAiFeaturesTitle": {
-    "description": "चौथे स्वागत पृष्ठ के लिए शीर्षक"
-  },
   "onboardingAiFeaturesDescription": "एआई के साथ स्वचालित रूप से प्रश्न उत्पन्न करें, रीयल-टाइम अध्ययन सहायता प्राप्त करें, और इंटेलिजेंट ट्यूटरिंग के साथ स्मार्ट तरीके से सीखें।",
-  "@onboardingAiFeaturesDescription": {
-    "description": "चौथे स्वागत पृष्ठ के लिए विवरण"
-  },
   "onboardingAiFeaturesSubtitle": "एआई द्वारा संचालित",
-  "@onboardingAiFeaturesSubtitle": {
-    "description": "डेस्कटॉप लेआउट में चौथे स्वागत पृष्ठ के लिए उपशीर्षक"
-  },
   "onboardingFeatureAiTitle": "एआई अध्ययन और प्रश्न निर्माण",
-  "@onboardingFeatureAiTitle": {
-    "description": "स्वागत पृष्ठ पर सुविधा शीर्षक"
-  },
   "onboardingFeatureAiDescription": "एआई अध्ययन और प्रश्न निर्माण",
-  "@onboardingFeatureAiDescription": {
-    "description": "स्वागत पृष्ठ पर सुविधा विवरण"
-  },
   "onboardingFeatureTypesTitle": "विभिन्न प्रकार के प्रश्न",
-  "@onboardingFeatureTypesTitle": {
-    "description": "स्वागत पृष्ठ पर सुविधा शीर्षक"
-  },
   "onboardingFeatureTypesDescription": "एकल विकल्प, बहुविकल्पी, सही/गलत और निबंध",
-  "@onboardingFeatureTypesDescription": {
-    "description": "स्वागत पृष्ठ पर सुविधा विवरण"
-  },
   "onboardingFeatureLanguagesTitle": "18 भाषाओं का समर्थन",
-  "@onboardingFeatureLanguagesTitle": {
-    "description": "स्वागत पृष्ठ पर सुविधा शीर्षक"
-  },
   "onboardingFeatureLanguagesDescription": "कई भाषाओं में प्रश्नोत्तरी बनाएं और दें",
-  "@onboardingFeatureLanguagesDescription": {
-    "description": "स्वागत पृष्ठ पर सुविधा विवरण"
-  },
   "onboardingStepCreateTitle": "प्रश्नोत्तरी बनाएं",
-  "@onboardingStepCreateTitle": {
-    "description": "प्रश्नोत्तरी शुरू करने वाले पृष्ठ पर चरण शीर्षक"
-  },
   "onboardingStepCreateDescription": "अपने स्वयं के प्रश्नों के साथ शुरुआत से शुरू करें",
-  "@onboardingStepCreateDescription": {
-    "description": "प्रश्नोत्तरी शुरू करने वाले पृष्ठ पर चरण विवरण"
-  },
   "onboardingStepLoadTitle": "फ़ाइल लोड करें",
-  "@onboardingStepLoadTitle": {
-    "description": "प्रश्नोत्तरी शुरू करने वाले पृष्ठ पर चरण शीर्षक"
-  },
   "onboardingStepLoadDescription": "अपने डिवाइस से .quiz फ़ाइल आयात करें",
-  "@onboardingStepLoadDescription": {
-    "description": "प्रश्नोत्तरी शुरू करने वाले पृष्ठ पर चरण विवरण"
-  },
   "onboardingStepTakeTitle": "प्रश्नोत्तरी दें",
-  "@onboardingStepTakeTitle": {
-    "description": "प्रश्नोत्तरी शुरू करने वाले पृष्ठ पर चरण शीर्षक"
-  },
   "onboardingStepTakeDescription": "प्रश्नों के उत्तर दें और वास्तविक समय में स्कोर प्राप्त करें",
-  "@onboardingStepTakeDescription": {
-    "description": "प्रश्नोत्तरी शुरू करने वाले पृष्ठ पर चरण विवरण"
-  },
   "onboardingAiAutoGenerateTitle": "स्वचालित रूप से प्रश्न उत्पन्न करें",
-  "@onboardingAiAutoGenerateTitle": {
-    "description": "स्वागत प्रवाह में एआई सुविधा शीर्षक"
-  },
   "onboardingAiAutoGenerateDescription": "Gemini या GPT के साथ किसी भी टेक्स्ट से",
-  "@onboardingAiAutoGenerateDescription": {
-    "description": "स्वागत प्रवाह में एआई सुविधा विवरण"
-  },
   "onboardingAiStudyAssistantTitle": "एआई अध्ययन सहायक",
-  "@onboardingAiStudyAssistantTitle": {
-    "description": "स्वागत प्रवाह में एआई सुविधा शीर्षक"
-  },
   "onboardingAiStudyAssistantDescription": "सीखते समय स्पष्टीकरण प्राप्त करें",
-  "@onboardingAiStudyAssistantDescription": {
-    "description": "स्वागत प्रवाह में एआई सुविधा विवरण"
-  },
   "onboardingAiMultiLanguageTitle": "बहु-भाषा समर्थन",
-  "@onboardingAiMultiLanguageTitle": {
-    "description": "स्वागत प्रवाह में एआई सुविधा शीर्षक"
-  },
   "onboardingAiMultiLanguageDescription": "18 अलग-अलग भाषाओं में उत्पन्न करें",
-  "@onboardingAiMultiLanguageDescription": {
-    "description": "स्वागत प्रवाह में एआई सुविधा विवरण"
-  },
   "documentTooLongForProcessing": "सकता है कि दस्तावेज़ इस MVP में एक ही पास में संसाधित करने के लिए बहुत लंबा हो।",
-  "@documentTooLongForProcessing": {
-    "description": "Error message when AI document processing fails due to document length"
-  },
   "studyScreenNoSlidesAvailable": "कोई अध्ययन अनुभाग उपलब्ध नहीं है।",
   "studyScreenGenerating": "अध्ययन सामग्री तैयार की जा रही है...",
   "studyScreenError": "अध्ययन सामग्री तैयार करते समय एक त्रुटि हुई।",
   "studyScreenRetry": "पुनः प्रयास करें",
-  "@studyScreenRetry": {
-    "description": "गलत अनुभाग पर पुनः प्रयास टेक्स्ट।"
-  },
   "studyScreenOmit": "छोड़ें",
-  "@studyScreenOmit": {
-    "description": "छोड़ें बटन टेक्स्ट"
-  },
   "studyScreenNoSlidesGenerated": "कोई स्लाइड नहीं बनाई गई।",
   "studyScreenPreviousSection": "पिछला पृष्ठ",
   "studyScreenNextSection": "अगला पृष्ठ",
   "studyScreenSectionIndicator": "पृष्ठ {total} में से {current}",
-  "@studyScreenSectionIndicator": {
-    "placeholders": {
-      "current": {
-        "type": "int"
-      },
-      "total": {
-        "type": "int"
-      }
-    }
-  },
   "studyScreenAiSummaryTitle": "AI सारांश",
   "studyScreenNoSummary": "कोई सारांश उपलब्ध नहीं है।",
   "studyScreenCoverage": "जनरेट की गई सामग्री",
-  "@studyScreenCoverage": {
-    "description": "Label for the study coverage percentage"
-  },
   "aiStudyLanguageLabel": "अध्ययन भाषा",
-  "@aiStudyLanguageLabel": {
-    "description": "Label for the language selector in study generation"
-  },
   "studyScreenStudyGuide": "अध्ययन मार्गदर्शिका",
   "studyScreenSections": "अनुभाग",
   "studyScreenChaptersCount": "{count} अध्याय",
-  "@studyScreenChaptersCount": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "studyScreenCompleted": "पूर्ण",
   "aiDifficultyTitle": "कठिनाई स्तर",
   "aiDifficultyAutoTurnedOn": "दस्तावेज़ के समान कठिनाई",
@@ -1889,9 +475,6 @@
   "showMoreLabel": "और दिखाएं",
   "showLessLabel": "कम दिखाएं",
   "aiContextMode": "संदर्भ मोड",
-  "@aiContextMode": {
-    "description": "Label for context mode when a file is uploaded"
-  },
   "startQuizFromStudy": "अपने ज्ञान का परीक्षण करें",
   "studySectionPracticePrompt": "इस अनुभाग के प्रश्नों का अभ्यास करें",
   "studySectionPracticeSubtitle": "इस अनुभाग में {count} संबद्ध प्रश्न हैं। अपने सीखने को सुदृढ़ करने के लिए अभी उनका अभ्यास करें!",
@@ -1901,29 +484,11 @@
   "studyScreenCustomChapter": "कस्टम अध्याय",
   "addSection": "अनुभाग जोड़ें",
   "editSection": "अनुभाग संपादित करें",
-  "@editSection": {
-    "description": "Title for editing an existing section dialog"
-  },
   "sectionTitleLabel": "शीर्षक",
-  "@sectionTitleLabel": {
-    "description": "Label for section title input field in add/edit section dialog"
-  },
   "sectionTitleHint": "अनुभाग शीर्षक दर्ज करें",
-  "@sectionTitleHint": {
-    "description": "Hint for section title input field in add/edit section dialog"
-  },
   "sectionDescriptionLabel": "विवरण",
-  "@sectionDescriptionLabel": {
-    "description": "Label for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionHint": "अनुभाग विवरण दर्ज करें",
-  "@sectionDescriptionHint": {
-    "description": "Hint for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionAiHint": "इस जानकारी का उपयोग बाद में एआई द्वारा अध्ययन सामग्री बनाने के लिए किया जाएगा।",
-  "@sectionDescriptionAiHint": {
-    "description": "Helper text shown below section description input, indicating AI will use this information later"
-  },
   "generateSectionsWithAI": "AI के साथ अनुभाग उत्पन्न करें",
   "addSectionsWithAI": "AI के साथ अनुभाग जोड़ें",
   "studyScreenReminder": "अनुस्मारक",
@@ -1934,414 +499,108 @@
   "studyComponentLimitations": "सीमाएं",
   "studyScreenDownloadChunk": "जनरेट करें",
   "aiStudyChapterSystemPrompt": "आप एक AI अध्ययन सहायक हैं जो एक छात्र को अध्ययन अध्याय की सामग्री को समझने में मदद कर रहे हैं। अवधारणाओं को गहराई से समझाएं, उदाहरण प्रदान करें और प्रासंगिक होने पर अध्ययन सामग्री के अन्य भागों से संबंध बनाएं। उसी भाषा में उत्तर दें जिसमें आपसे पूछा गया है।",
-  "@aiStudyChapterSystemPrompt": {
-    "description": "System prompt for the AI study assistant when chatting about a study chapter"
-  },
   "aiStudyChapterGuardrail": "प्रदान की गई अध्याय सामग्री और अध्ययन सामग्री पर ध्यान केंद्रित रखें। यदि छात्र का प्रश्न किसी अन्य अध्याय से संबंधित है, तो संबंधित अध्याय शीर्षक का उल्लेख करें।",
-  "@aiStudyChapterGuardrail": {
-    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
-  },
   "askAIStudyTooltip": "इस अध्याय के बारे में AI से पूछें",
-  "@askAIStudyTooltip": {
-    "description": "Tooltip for the Ask AI button shown in the study chapter view"
-  },
   "studyScreenPendingSections": "कुछ अनुभाग अभी तक जेनरेट नहीं हुए हैं",
-  "@studyScreenPendingSections": {
-    "description": "अध्ययन सूचकांक में दिखाई देने वाली चेतावनी जब कुछ हिस्से अभी तक जेनरेट नहीं हुए हैं"
-  },
   "aiErrorRedirect": "{location} पर पुनः निर्देशित (302)",
-  "@aiErrorRedirect": {
-    "description": "एआई अनुरोध के दौरान 302 रीडायरेक्ट होने पर त्रुटि संदेश",
-    "placeholders": {
-      "location": {
-        "type": "String",
-        "example": "https://example.com"
-      }
-    }
-  },
   "aiErrorConnectionAborted": "अनुरोध बीच में ही रुक गया क्योंकि एप्लिकेशन बैकग्राउंड में चला गया था। कृपया सामग्री जेनरेट होने तक एप्लिकेशन को खुला रखें।",
-  "@aiErrorConnectionAborted": {
-    "description": "Error message when a request is aborted because the app is minimized."
-  },
   "noInternetConnection": "कोई इंटरनेट कनेक्शन नहीं है। कृपया अपनी नेटवर्क सेटिंग्स जांचें और फिर से प्रयास करें।",
-  "@noInternetConnection": {
-    "description": "Error message shown when the device has no internet connection."
-  },
   "duplicatedTag": "डुप्लिकेट",
-  "@duplicatedTag": {
-    "description": "Tag to indicate an item is duplicated"
-  },
   "aiSelectSectionsTitle": "अनुभाग चुनें",
-  "@aiSelectSectionsTitle": {
-    "description": "Title for the chunk section selector in AI content step"
-  },
   "aiSelectSectionsSubtitle": "चुनें कि प्रश्न बनाने के लिए कौन से अध्ययन अनुभागों का उपयोग किया जाएगा",
-  "@aiSelectSectionsSubtitle": {
-    "description": "Subtitle explaining what the section selector does"
-  },
   "aiAllSections": "सभी अनुभाग",
   "aiSelectQuestionsTitle": "प्रश्न चुनें",
-  "@aiSelectQuestionsTitle": {
-    "description": "Title for the question selector in AI study generation"
-  },
   "aiSelectQuestionsSubtitle": "जनरेशन संदर्भ के रूप में Quiz मोड के प्रश्न चुनें",
-  "@aiSelectQuestionsSubtitle": {
-    "description": "Subtitle explaining what the question selector does"
-  },
   "aiAllQuestions": "सभी प्रश्न",
   "onboardingStudyContentTitle": "अपनी सामग्री का अध्ययन करें",
-  "@onboardingStudyContentTitle": {
-    "description": "Title of the study content onboarding page"
-  },
   "onboardingStudyContentDescription": "अपनी सामग्री को अध्ययन अनुभागों में व्यवस्थित करें। फ़ाइलें आयात करें, मैन्युअल रूप से जोड़ें, या एआई को सामग्री उत्पन्न करने दें।",
-  "@onboardingStudyContentDescription": {
-    "description": "Description of the study content onboarding page"
-  },
   "onboardingStudyContentSubtitle": "व्यवस्थित करें, उत्पन्न करें और अध्ययन करें",
-  "@onboardingStudyContentSubtitle": {
-    "description": "Subtitle of the study content onboarding page"
-  },
   "onboardingStudyStepAddTitle": "सामग्री जोड़ें",
-  "@onboardingStudyStepAddTitle": {
-    "description": "Step 1 title in study content onboarding page"
-  },
   "onboardingStudyStepAddDescription": "अनुभाग लिखें या .quiz फ़ाइलों से आयात करें",
-  "@onboardingStudyStepAddDescription": {
-    "description": "Step 1 description in study content onboarding page"
-  },
   "onboardingStudyStepGenerateTitle": "एआई उत्पन्न करें",
-  "@onboardingStudyStepGenerateTitle": {
-    "description": "Step 2 title in study content onboarding page"
-  },
   "onboardingStudyStepGenerateDescription": "एआई आपके दस्तावेज़ों से अध्ययन अनुभाग बनाता है",
-  "@onboardingStudyStepGenerateDescription": {
-    "description": "Step 2 description in study content onboarding page"
-  },
   "onboardingStudyStepStudyTitle": "उत्पन्न अनुभागों का अध्ययन करें",
-  "@onboardingStudyStepStudyTitle": {
-    "description": "Step 3 title in study content onboarding page"
-  },
   "onboardingStudyStepStudyDescription": "प्रत्येक अनुभाग को नेविगेट करें और अपनी शिक्षा को सुदृढ़ करें",
-  "@onboardingStudyStepStudyDescription": {
-    "description": "Step 3 description in study content onboarding page"
-  },
   "onboardingStudyStepPdfTitle": "PDF के रूप में निर्यात करें",
-  "@onboardingStudyStepPdfTitle": {
-    "description": "Step 4 title in study content onboarding page"
-  },
   "onboardingStudyStepPdfDescription": "अपने अध्ययन को PDF फ़ाइल के रूप में डाउनलोड और साझा करें",
-  "@onboardingStudyStepPdfDescription": {
-    "description": "Step 4 description in study content onboarding page"
-  },
   "privacyPolicyLabel": "गोपनीयता नीति",
   "privacyPolicyDescription": "Quizdy में आपके डेटा को कैसे संभाला जाता है, यह देखें",
   "privacyPolicyRequiredDescription": "जारी रखने के लिए कृपया गोपनीयता नीति की समीक्षा करें और उसे स्वीकार करें।",
   "privacyPolicyLoadError": "गोपनीयता नीति की सामग्री लोड नहीं की जा सकी।",
   "privacyPolicyCanonicalNotice": "इस नीति का आधिकारिक कानूनी संस्करण प्रोजेक्ट रिपॉजिटरी में उपलब्ध अंग्रेज़ी पाठ है।",
-  "@privacyPolicyCanonicalNotice": {
-    "description": "Short legal notice indicating the canonical version of the privacy policy"
-  },
   "privacyPolicyOpenInBrowser": "GitHub पर पूरी नीति खोलें",
-  "@privacyPolicyOpenInBrowser": {
-    "description": "Button label to open the privacy policy URL in an external browser"
-  },
   "supportLabel": "सहायता",
-  "@supportLabel": {
-    "description": "Label for the support action in settings"
-  },
   "supportDescription": "ऐप और प्लेटफ़ॉर्म विवरण के साथ GitHub Issues खोलें",
-  "@supportDescription": {
-    "description": "Description for the support action in settings"
-  },
   "feedbackTitle": "आपकी राय हमारे लिए महत्वपूर्ण है",
-  "@feedbackTitle": {
-    "description": "Title for the home screen feedback prompt"
-  },
   "feedbackDescription": "एक छोटा सर्वे पूरा करें और Quizdy को बेहतर बनाने में मदद करें",
-  "@feedbackDescription": {
-    "description": "Description for the home screen feedback prompt"
-  },
   "studyEditorSaveChanges": "परिवर्तनों को सुरक्षित करें",
-  "@studyEditorSaveChanges": {
-    "description": "Button label to save edited component properties"
-  },
   "studyEditorFieldBody": "मुख्य भाग",
-  "@studyEditorFieldBody": {
-    "description": "Label for the main body text field in component editors"
-  },
   "studyEditorComponents": "अवयव",
-  "@studyEditorComponents": {
-    "description": "Section header for the list of components in the component editor"
-  },
   "studyEditorAddPage": "पृष्ठ जोड़ें",
-  "@studyEditorAddPage": {
-    "description": "Button label to add a new page to a section"
-  },
   "studyEditorEmptyComponents": "इस पृष्ठ पर कोई घटक नहीं.",
-  "@studyEditorEmptyComponents": {
-    "description": "Empty state message in the component editor"
-  },
   "studyEditorPages": "पृष्ठों",
-  "@studyEditorPages": {
-    "description": "Section header for the list of pages in the section page manager"
-  },
   "componentTypeParagraph": "अनुच्छेद",
-  "@componentTypeParagraph": {
-    "description": "Display name for the paragraph component type"
-  },
   "componentTypeSectionTitle": "अनुभाग शीर्षक",
-  "@componentTypeSectionTitle": {
-    "description": "Display name for the sectionTitle component type"
-  },
   "studyEditorDeletePage": "पृष्ठ हटाएँ",
-  "@studyEditorDeletePage": {
-    "description": "Button label to delete a page from a section"
-  },
   "studyEditorFieldTitle": "शीर्षक",
-  "@studyEditorFieldTitle": {
-    "description": "Label for the optional title field in component editors"
-  },
   "studyEditorExitEdit": "संपादन मोड से बाहर निकलें",
-  "@studyEditorExitEdit": {
-    "description": "Tooltip for the FAB button that disables study content edit mode"
-  },
   "studyEditorToggleEdit": "सामग्री संपादित करें",
-  "@studyEditorToggleEdit": {
-    "description": "Tooltip for the FAB button that enables study content edit mode"
-  },
   "studyEditorEmptyPages": "अभी तक कोई पेज नहीं. एक जोड़ने के लिए + टैप करें.",
-  "@studyEditorEmptyPages": {
-    "description": "Empty state message in the section page manager"
-  },
   "studyEditorEditParagraph": "अनुच्छेद संपादित करें",
-  "@studyEditorEditParagraph": {
-    "description": "Navigation header title for the paragraph property panel"
-  },
   "componentTypeNumberedList": "क्रमांकित सूची",
-  "@componentTypeNumberedList": {
-    "description": "Display name for the numberedList component type"
-  },
   "componentTypeProsCons": "पक्ष विपक्ष",
-  "@componentTypeProsCons": {
-    "description": "Display name for the prosCons component type"
-  },
   "componentTypeTimeline": "समय",
-  "@componentTypeTimeline": {
-    "description": "Display name for the timeline component type"
-  },
   "componentTypeQuote": "उद्धरण",
-  "@componentTypeQuote": {
-    "description": "Display name for the quote component type"
-  },
   "componentTypeComparisonTable": "तुलना तालिका",
-  "@componentTypeComparisonTable": {
-    "description": "Display name for the comparisonTable component type"
-  },
   "componentTypeWarning": "चेतावनी",
-  "@componentTypeWarning": {
-    "description": "Display name for the warning component type"
-  },
   "componentTypeFormula": "FORMULA",
-  "@componentTypeFormula": {
-    "description": "Display name for the formula component type"
-  },
   "componentTypeKeyConcepts": "महत्वपूर्ण अवधारणाएं",
-  "@componentTypeKeyConcepts": {
-    "description": "Display name for the keyConcepts component type"
-  },
   "componentFieldDefinition": "परिभाषा",
-  "@componentFieldDefinition": {
-    "description": "Form field label for definition"
-  },
   "componentTypeReminder": "अनुस्मारक",
-  "@componentTypeReminder": {
-    "description": "Display name for the reminder component type"
-  },
   "componentFieldQuote": "उद्धरण",
-  "@componentFieldQuote": {
-    "description": "Form field label for quote text"
-  },
   "componentFieldTerm": "अवधि",
-  "@componentFieldTerm": {
-    "description": "Form field label for term (key definition)"
-  },
   "componentFieldSubtitle": "उपशीर्षक",
-  "@componentFieldSubtitle": {
-    "description": "Form field label for subtitle"
-  },
   "componentFieldAuthor": "लेखक",
-  "@componentFieldAuthor": {
-    "description": "Form field label for quote author"
-  },
   "componentFieldExplanation": "स्पष्टीकरण",
-  "@componentFieldExplanation": {
-    "description": "Form field label for formula explanation"
-  },
   "componentFieldConcept": "अवधारणा",
-  "@componentFieldConcept": {
-    "description": "Form field label for a single concept item"
-  },
   "componentTypeIconCards": "चिह्न कार्ड",
-  "@componentTypeIconCards": {
-    "description": "Display name for the iconCards component type"
-  },
   "studyEditorPageN": "पेज {n}",
-  "@studyEditorPageN": {
-    "description": "Label for page number n in the section page manager",
-    "placeholders": {
-      "n": {
-        "type": "int"
-      }
-    }
-  },
   "componentFieldEquation": "समीकरण",
-  "@componentFieldEquation": {
-    "description": "Form field label for formula equation"
-  },
   "studyEditorEditName": "संपादित करें {name}",
-  "@studyEditorEditName": {
-    "description": "Navigation header title: Edit [section name]",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "componentTypeKeyDefinition": "मुख्य परिभाषा",
-  "@componentTypeKeyDefinition": {
-    "description": "Display name for the keyDefinition component type"
-  },
   "componentFieldEvents": "घटनाएँ",
-  "@componentFieldEvents": {
-    "description": "Form section label for timeline events"
-  },
   "componentFieldDate": "तारीख",
-  "@componentFieldDate": {
-    "description": "Form field label for timeline event date"
-  },
   "componentFieldItems": "सामान",
-  "@componentFieldItems": {
-    "description": "Form section label for a list of items"
-  },
   "componentFieldDescription": "विवरण",
-  "@componentFieldDescription": {
-    "description": "Form field label for item description"
-  },
   "componentFieldColumns": "कॉलम",
-  "@componentFieldColumns": {
-    "description": "Form section label for table columns"
-  },
   "componentFieldCons": "दोष",
-  "@componentFieldCons": {
-    "description": "Form section label for cons list"
-  },
   "componentFieldPros": "पेशेवरों",
-  "@componentFieldPros": {
-    "description": "Form section label for pros list"
-  },
   "componentFieldCards": "कार्ड",
-  "@componentFieldCards": {
-    "description": "Form section label for icon cards"
-  },
   "componentFieldCon": "चोर",
-  "@componentFieldCon": {
-    "description": "Form field label for a single con item"
-  },
   "componentFieldPro": "प्रो",
-  "@componentFieldPro": {
-    "description": "Form field label for a single pro item"
-  },
   "componentFieldColumn": "स्तंभ",
-  "@componentFieldColumn": {
-    "description": "Form field label for a single table column"
-  },
   "componentFieldRows": "पंक्तियों",
-  "@componentFieldRows": {
-    "description": "Form section label for table rows"
-  },
   "componentFieldOptional": "वैकल्पिक",
-  "@componentFieldOptional": {
-    "description": "Label shown next to optional form fields"
-  },
   "componentFieldRequired": "यह फ़ील्ड आवश्यक है",
   "componentFieldRow": "पंक्ति",
-  "@componentFieldRow": {
-    "description": "Form field label for a single table row"
-  },
   "componentFieldLabel": "लेबल",
-  "@componentFieldLabel": {
-    "description": "Form field label for a row label in comparison table"
-  },
   "componentFieldLabelColumn": "लेबल कॉलम",
-  "@componentFieldLabelColumn": {
-    "description": "Form field label for the header of the label column in a comparison table"
-  },
   "addComponentTitle": "घटक जोड़ें",
-  "@addComponentTitle": {
-    "description": "Title for the Add Component picker screen"
-  },
   "componentFieldAdd": "{item} जोड़ें",
-  "@componentFieldAdd": {
-    "description": "Button label to add a new item to a list",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "componentFieldEquationLabel": "समीकरण लेबल",
-  "@componentFieldEquationLabel": {
-    "description": "Form field label for formula equation label"
-  },
   "addComponentsWithAI": "AI से घटक जोड़ें",
-  "@addComponentsWithAI": {
-    "description": "Button label to add study components using AI"
-  },
   "aiSelectComponentTypesTitle": "घटक प्रकार चुनें",
-  "@aiSelectComponentTypesTitle": {
-    "description": "Title for the component type filter in AI study generation"
-  },
   "aiSelectComponentTypesSubtitle": "उत्पन्न अध्ययन सामग्री में किन घटक प्रकारों को शामिल करना है, इसे फ़िल्टर करने के लिए सक्षम करें",
-  "@aiSelectComponentTypesSubtitle": {
-    "description": "Subtitle for the component type filter in AI study generation"
-  },
   "aiComponentsGeneratedSuccess": "सामग्री सफलतापूर्वक उत्पन्न हुई",
-  "@aiComponentsGeneratedSuccess": {
-    "description": "Snackbar message shown when AI component generation completes successfully"
-  },
   "duplicate": "डुप्लिकेट",
-  "@duplicate": {
-    "description": "Tooltip for the duplicate button in the component card"
-  },
   "moveUp": "ऊपर ले जाएं",
-  "@moveUp": {
-    "description": "Tooltip for the move up button in the component card"
-  },
   "moveDown": "नीचे ले जाएं",
-  "@moveDown": {
-    "description": "Tooltip for the move down button in the component card"
-  },
   "aiDifficultyRequiresFileTooltip": "इस विकल्प का उपयोग करने के लिए फ़ाइल संलग्न करना आवश्यक है",
-  "@aiDifficultyRequiresFileTooltip": {
-    "description": "Tooltip when auto difficulty is disabled due to missing file"
-  },
   "exportAsPdf": "PDF के रूप में निर्यात करें",
   "exportPdfSuccess": "PDF सफलतापूर्वक निर्यात किया गया",
   "exportPdfError": "PDF निर्यात विफल हुआ",
   "deleteDuplicatesButton": "डुप्लिेकेट हटाएं",
-  "@deleteDuplicatesButton": {
-    "description": "Button to delete duplicated items"
-  },
   "deleteDuplicatesConfirmationMessage": "क्या आप वाकई {count} डुप्लिकेट आइटम हटाना चाहते हैं? प्रत्येक की केवल एक प्रति रखी जाएगी।",
-  "@deleteDuplicatesConfirmationMessage": {
-    "description": "Confirmation message when deleting duplicates",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "onboardingDownloadAppTitle": "अपने डिवाइस पर Quizdy इंस्टॉल करें",
   "onboardingDownloadAppDescription": "मोबाइल पर QR कोड से Quizdy इंस्टॉल करें या डेस्कटॉप स्टोर लिंक सीधे खोलें।",
   "onboardingDownloadAppSubtitle": "मोबाइल या डेस्कटॉप पर एक ही चरण में इंस्टॉल करें।",
@@ -2357,77 +616,24 @@
   "onboardingDownloadQrTitle": "जारी रखने के लिए स्कैन करें",
   "onboardingDownloadQrDescription": "स्टोर लिंक खोलने के लिए अपने फोन का कैमरा इस्तेमाल करें।",
   "studyPdfTableOfContents": "विषय सूची",
-  "@studyPdfTableOfContents": {
-    "description": "Title of the table of contents page in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudy": "अध्ययन शामिल करें",
-  "@exportPdfOptionsIncludeStudy": {
-    "description": "Switch label to include the study content pages in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudySubtitle": "अध्ययन सामग्री पृष्ठ जोड़ें",
-  "@exportPdfOptionsIncludeStudySubtitle": {
-    "description": "Subtitle for the include study switch in the export PDF dialog"
-  },
   "exportPdfOptionsTitle": "PDF के रूप में निर्यात करें",
-  "@exportPdfOptionsTitle": {
-    "description": "Title of the export PDF options dialog"
-  },
   "exportPdfOptionsIncludeQuestions": "प्रश्न पृष्ठ शामिल करें",
-  "@exportPdfOptionsIncludeQuestions": {
-    "description": "Switch label to include a questions page in the exported PDF"
-  },
   "exportPdfOptionsIncludeQuestionsSubtitle": "सभी प्रश्नोत्तरी प्रश्नों के साथ एक पृष्ठ जोड़ें",
-  "@exportPdfOptionsIncludeQuestionsSubtitle": {
-    "description": "Subtitle for the include questions switch in the export PDF dialog"
-  },
   "exportPdfOptionsIncludeAnswers": "उत्तर शामिल करें",
-  "@exportPdfOptionsIncludeAnswers": {
-    "description": "Switch label to include correct answers in the questions page"
-  },
   "exportPdfOptionsIncludeAnswersSubtitle": "सही उत्तरों के साथ एक अलग पृष्ठ जोड़ें",
-  "@exportPdfOptionsIncludeAnswersSubtitle": {
-    "description": "Subtitle for the include answers switch in the export PDF dialog"
-  },
   "exportPdfQuestionsPageTitle": "प्रश्न",
-  "@exportPdfQuestionsPageTitle": {
-    "description": "Section title for the questions page in the exported PDF"
-  },
   "exportPdfAnswersLabel": "उत्तर",
-  "@exportPdfAnswersLabel": {
-    "description": "Title of the answers page in the exported PDF"
-  },
   "exportButton": "निर्यात",
-  "@exportButton": {
-    "description": "Label for the Export button in the export PDF options dialog"
-  },
   "openInQuizdyApp": "Quizdy ऐप में खोलें",
   "open": "खोलें",
   "installApp": "ऐप इंस्टॉल करें",
   "updateAvailableTitle": "अपडेट उपलब्ध है",
-  "@updateAvailableTitle": {
-    "description": "Title shown in the update banner when a newer app version is available."
-  },
   "updateAvailableMessage": "Quizdy का संस्करण {version} उपलब्ध है।",
-  "@updateAvailableMessage": {
-    "description": "Subtitle in the update banner indicating which version is available.",
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
   "updateButton": "अपडेट करें",
-  "@updateButton": {
-    "description": "Label for the update button in the update banner."
-  },
   "forceUpdateTitle": "अपडेट आवश्यक है",
-  "@forceUpdateTitle": {
-    "description": "Title of the force update dialog."
-  },
   "forceUpdateMessage": "Quizdy का उपयोग जारी रखने के लिए एक अनिवार्य अपडेट आवश्यक है। कृपया ऐप अपडेट करें।",
-  "@forceUpdateMessage": {
-    "description": "Body message of the force update dialog."
-  },
   "questionOrderBySection": "अनुभागों के अनुसार",
   "questionOrderBySectionDesc": "प्रश्नों को उनके अनुभाग के आधार पर समूहित करें और प्रत्येक अनुभाग को आरोही क्रम में दिखाएँ",
   "srsStatsTitle": "आँकड़े",

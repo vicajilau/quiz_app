@@ -4,1477 +4,311 @@
   "abortQuizMessage": "Fitxategi berri bat irekitzeak uneko galdetegia geldituko du.",
   "stopAndOpenButton": "Gelditu eta Ireki",
   "titleAppBar": "Quiz - Azterketa Simuladorea",
-  "@titleAppBar": {
-    "description": "AppBar-ean erakutsitako aplikazioaren izenburua."
-  },
   "create": "Sortu",
-  "@create": {
-    "description": "Quiz fitxategia sortzeko botoiaren etiketa AppBar-ean."
-  },
   "preview": "Aurrebista",
-  "@preview": {
-    "description": "Galdera elkarrizketuetan LaTeX aurrebista sekzioaren etiketa."
-  },
   "load": "Kargatu",
-  "@load": {
-    "description": "Quiz fitxategia kargatzeko botoiaren etiketa AppBar-ean."
-  },
   "fileLoaded": "Fitxategia kargatuta: {filePath}",
-  "@fileLoaded": {
-    "description": "Fitxategia arrakastaz kargatzen denean erakusten den mezua.",
-    "placeholders": {
-      "filePath": {
-        "type": "String",
-        "example": "/bide/hau/fitxategia.quiz"
-      }
-    }
-  },
   "fileSaved": "Fitxategia gordeta: {filePath}",
-  "@fileSaved": {
-    "description": "Fitxategia arrakastaz gordetzen denean erakusten den mezua.",
-    "placeholders": {
-      "filePath": {
-        "type": "String",
-        "example": "/bide/hau/fitxategia.quiz"
-      }
-    }
-  },
   "errorOpeningFile": "Errorea fitxategia irekitzean",
-  "@errorOpeningFile": {
-    "description": "Generic error message when opening a file fails."
-  },
   "replaceFileTitle": "Quiz berria kargatu",
-  "@replaceFileTitle": {
-    "description": "Title of the confirmation dialog to replace the current file."
-  },
   "replaceFileMessage": "Dagoeneko Quiz bat kargatuta dago. Fitxategi berriarekin ordezkatu nahi duzu?",
-  "@replaceFileMessage": {
-    "description": "Message of the confirmation dialog to replace the current file."
-  },
   "replaceButton": "Kargatu",
-  "@replaceButton": {
-    "description": "Button to confirm replacing the file."
-  },
   "dropFileHere": "Egin klik logoan edo arrastatu .quiz fitxategi bat pantailara",
-  "@dropFileHere": {
-    "description": "Fitxategiak arrastatzeko eremuan erakusten den testua."
-  },
   "clickOrDragFile": "Egin klik kargatzeko edo arrastatu .quiz fitxategi bat pantailara",
-  "@clickOrDragFile": {
-    "description": "Kargatzeko eremuaren azpian agertzen den testua"
-  },
   "errorInvalidFile": "Errorea: Fitxategi baliogabea. .quiz fitxategia izan behar da.",
-  "@errorInvalidFile": {
-    "description": "Uzten den fitxategia .quiz fitxategia ez denean erakusten den mezua."
-  },
   "errorLoadingFile": "Errorea Quiz fitxategia kargatzean: {error}",
-  "@errorLoadingFile": {
-    "description": "Quiz fitxategia kargatzean errorea gertatzen denean erakusten den mezua.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Fitxategia ez da aurkitu"
-      }
-    }
-  },
   "errorExportingFile": "Errorea fitxategia esportatzen: {error}",
-  "@errorExportingFile": {
-    "description": "Fitxategia esportatzen errorea gertatzen denean erakusten den mezua.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Fitxategia ez da aurkitu"
-      }
-    }
-  },
   "cancelButton": "Utzi",
-  "@cancelButton": {
-    "description": "Utzi botoia."
-  },
   "saveButton": "Gorde",
-  "@saveButton": {
-    "description": "Gorde botoia."
-  },
   "newTag": "Berria",
-  "@newTag": {
-    "description": "Elementu berri edo aldatu bat adierazteko etiketa"
-  },
   "modifiedTag": "Aldatuta",
-  "@modifiedTag": {
-    "description": "Elementu bat aldatu dela adierazteko etiketa"
-  },
   "confirmDeleteTitle": "Ezabaketa Berretsi",
-  "@confirmDeleteTitle": {
-    "description": "Prozesua ezabatzeko berrespen elkarrizketaren izenburua."
-  },
   "confirmDeleteMessage": "Ziur zaude `{processName}` prozesua ezabatu nahi duzula?",
-  "@confirmDeleteMessage": {
-    "description": "Ezabatzearen berrespen elkarrizketaren mezua.",
-    "placeholders": {
-      "processName": {
-        "type": "String",
-        "example": "Galdera 1"
-      }
-    }
-  },
   "deleteButton": "Ezabatu",
-  "@deleteButton": {
-    "description": "Ezabaketa berresteko botoiaren testua."
-  },
   "confirmExitTitle": "Irteera Berretsi",
-  "@confirmExitTitle": {
-    "description": "Irtetzearen berrespen elkarrizketaren izenburua."
-  },
   "confirmExitMessage": "Gorde gabeko aldaketak daude. Aldaketak baztertuz irten nahi duzu?",
-  "@confirmExitMessage": {
-    "description": "Irtetzearen berrespen elkarrizketaren mezua."
-  },
   "exitButton": "Irten gorde gabe",
-  "@exitButton": {
-    "description": "Irten botoiaren testua."
-  },
   "saveDialogTitle": "Hautatu irteera fitxategia:",
-  "@saveDialogTitle": {
-    "description": "Gordetzeko elkarrizketaren izenburua."
-  },
   "createQuizFileTitle": "Quiz Fitxategia Sortu",
-  "@createQuizFileTitle": {
-    "description": "Quiz fitxategia sortzeko elkarrizketaren izenburua."
-  },
   "editQuizFileTitle": "Quiz Fitxategia Editatu",
-  "@editQuizFileTitle": {
-    "description": "Quiz fitxategia editatzeko elkarrizketaren izenburua."
-  },
   "fileNameLabel": "Fitxategiaren Izena",
-  "@fileNameLabel": {
-    "description": "Fitxategiaren izena sartzeko etiketak."
-  },
   "fileDescriptionLabel": "Fitxategiaren Deskribapena",
-  "@fileDescriptionLabel": {
-    "description": "Fitxategiaren deskribapena sartzeko etiketak."
-  },
   "createButton": "Sortu",
-  "@createButton": {
-    "description": "Sortu botoiaren testua."
-  },
   "fileNameRequiredError": "Fitxategiaren izena beharrezkoa da.",
-  "@fileNameRequiredError": {
-    "description": "Fitxategiaren izena hutsik dagoenean errore mezua."
-  },
   "fileDescriptionRequiredError": "Fitxategiaren deskribapena beharrezkoa da.",
-  "@fileDescriptionRequiredError": {
-    "description": "Fitxategiaren deskribapena hutsik dagoenean errore mezua."
-  },
   "versionLabel": "Bertsioa",
-  "@versionLabel": {
-    "description": "Quiz bertsio eremuaren etiketa"
-  },
   "authorLabel": "Egilea",
-  "@authorLabel": {
-    "description": "Quiz egile eremuaren etiketa"
-  },
   "authorRequiredError": "Egilea beharrezkoa da.",
-  "@authorRequiredError": {
-    "description": "Egile eremua hutsik dagoenean errore mezua"
-  },
   "requiredFieldsError": "Beharrezko eremu guztiak bete behar dira.",
-  "@requiredFieldsError": {
-    "description": "Beharrezko eremuak falta direnean errore mezua"
-  },
   "requestFileNameTitle": "Sartu Quiz fitxategiaren izena",
-  "@requestFileNameTitle": {
-    "description": "Fitxategiaren izena eskatzeko elkarrizketaren izenburua."
-  },
   "fileNameHint": "Fitxategiaren izena (derrigorra)",
-  "@fileNameHint": {
-    "description": "Fitxategiaren izena sartzeko aholku testua."
-  },
   "emptyFileNameMessage": "Fitxategiaren izena ezin da hutsik egon.",
-  "@emptyFileNameMessage": {
-    "description": "Fitxategiaren izena hutsik dagoenean errore mezua."
-  },
   "acceptButton": "Onartu",
-  "@acceptButton": {
-    "description": "Onartu botoiaren testua."
-  },
   "saveTooltip": "Fitxategia gorde",
-  "@saveTooltip": {
-    "description": "Gorde botoiarentzako tooltip-a."
-  },
   "saveDisabledTooltip": "Ez da aldaketarik gorde behar",
-  "@saveDisabledTooltip": {
-    "description": "Gorde botoi desaktibaturaren tooltip-a."
-  },
   "executeTooltip": "Azterketa exekutatu",
-  "@executeTooltip": {
-    "description": "Exekutatu botoiarentzako tooltip-a."
-  },
   "addTooltip": "Galdera berria gehitu",
-  "@addTooltip": {
-    "description": "Gehitu botoiarentzako tooltip-a."
-  },
   "backSemanticLabel": "Itzuli botoia",
-  "@backSemanticLabel": {
-    "description": "Itzuli botoiarentzako etiketa semantikoa."
-  },
   "createFileTooltip": "Quiz fitxategi berria sortu",
-  "@createFileTooltip": {
-    "description": "Fitxategia sortu botoiarentzako tooltip-a."
-  },
   "loadFileTooltip": "Dagoen Quiz fitxategia kargatu",
-  "@loadFileTooltip": {
-    "description": "Fitxategia kargatu botoiarentzako tooltip-a."
-  },
   "questionNumber": "Galdera {number}",
-  "@questionNumber": {
-    "description": "Quiz exekuzioan galdera zenbakiaren etiketa",
-    "placeholders": {
-      "number": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "questionOfTotal": "{current}. galdera {total}(e)tik",
-  "@questionOfTotal": {
-    "description": "Uneko galdera-zenbakia eta galdera guztiak erakusten dituen etiketa",
-    "placeholders": {
-      "current": {
-        "type": "int",
-        "example": "1"
-      },
-      "total": {
-        "type": "int",
-        "example": "10"
-      }
-    }
-  },
   "previous": "Aurrekoa",
-  "@previous": {
-    "description": "Quiz nabigazioan aurrekoa botoiaren testua"
-  },
   "next": "Hurrengoa",
-  "@next": {
-    "description": "Quiz nabigazioan hurrengoa botoiaren testua"
-  },
   "finish": "Amaitu",
-  "@finish": {
-    "description": "Quiz nabigazioan amaitu botoiaren testua"
-  },
   "finishQuiz": "Quiz Amaitu",
-  "@finishQuiz": {
-    "description": "Quiz amaitu elkarrizketaren izenburua"
-  },
   "finishQuizConfirmation": "Ziur zaude quiz-a amaitu nahi duzula? Ezingo dituzu zure erantzunak aldatu gero.",
-  "@finishQuizConfirmation": {
-    "description": "Quiz amaitzeko berrespen mezua"
-  },
   "abandonQuiz": "Quiz Utzi",
-  "@abandonQuiz": {
-    "description": "Quiz utzi elkarrizketaren izenburua"
-  },
   "abandonQuizConfirmation": "Ziur zaude quiz-a utzi nahi duzula? Aurrerapen guztia galduko da.",
-  "@abandonQuizConfirmation": {
-    "description": "Quiz uzteko berrespen mezua"
-  },
   "abandon": "Utzi",
-  "@abandon": {
-    "description": "Utzi botoiaren testua"
-  },
   "quizCompleted": "Quiz Osatuta!",
-  "@quizCompleted": {
-    "description": "Quiz osatua mezua"
-  },
   "score": "Puntuazioa: {score}%",
-  "@score": {
-    "description": "Puntuazioaren bistaratzea",
-    "placeholders": {
-      "score": {
-        "type": "String",
-        "example": "85.5"
-      }
-    }
-  },
   "correctAnswers": "{correct} / {total} erantzun zuzen",
-  "@correctAnswers": {
-    "description": "Erantzun zuzenen kontaketa",
-    "placeholders": {
-      "correct": {
-        "type": "String",
-        "example": "8"
-      },
-      "total": {
-        "type": "int",
-        "example": "10"
-      }
-    }
-  },
   "retry": "Berriro saiatu",
-  "@retry": {
-    "description": "Berriro saiatu botoiaren testua"
-  },
   "studyScreenRetry": "Saiatu berriro",
-  "@studyScreenRetry": {
-    "description": "Berriro saiatzeko testua atal okerrean."
-  },
   "studyScreenOmit": "Omititu",
-  "@studyScreenOmit": {
-    "description": "Omititu botoiaren testua"
-  },
   "goBack": "Amaitu",
-  "@goBack": {
-    "description": "Itzuli botoiaren testua"
-  },
   "retryFailedQuestions": "Huts egindakoak Berriro",
-  "@retryFailedQuestions": {
-    "description": "Erantzun okerrak dituzten galderak soilik berriro egiteko botoiaren testua"
-  },
   "question": "Galdera: {question}",
-  "@question": {
-    "description": "Emaitzetan galderaren testua",
-    "placeholders": {
-      "question": {
-        "type": "String",
-        "example": "Zein da Euskadiko hiriburua?"
-      }
-    }
-  },
   "selectQuestionCountTitle": "Galdera Kopurua Hautatu",
-  "@selectQuestionCountTitle": {
-    "description": "Quiz-erako galdera kopurua hautatzeko elkarrizketaren izenburua"
-  },
   "selectQuestionCountMessage": "Zenbat galderari erantzun nahi diezu quiz honetan?",
-  "@selectQuestionCountMessage": {
-    "description": "Galdera kopurua hautatzea azaltzen duen mezua"
-  },
   "allQuestions": "Galdera guztiak ({count})",
-  "@allQuestions": {
-    "description": "Eskuragarri dauden galdera guztiak hautatzeko aukera",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "25"
-      }
-    }
-  },
   "resolveUnansweredQuestions": "Galderak ebatzi",
-  "@resolveUnansweredQuestions": {
-    "description": "Erantzun gabeko galderak ebazteko botoiaren testua"
-  },
   "startQuiz": "Quiz Hasi",
-  "@startQuiz": {
-    "description": "Quiz hasteko botoiaren testua"
-  },
   "customNumberLabel": "Edo sartu zenbaki pertsonalizatua:",
-  "@customNumberLabel": {
-    "description": "Zenbaki pertsonalizatuaren sarrera atalaren etiketa"
-  },
   "numberInputLabel": "Galdera kopurua",
-  "@numberInputLabel": {
-    "description": "Zenbaki sarrera eremuaren etiketa"
-  },
   "errorInvalidNumber": "Mesedez, sartu zenbaki baliozkoa",
-  "@errorInvalidNumber": {
-    "description": "Zenbaki sarrera baliogabearen errore mezua"
-  },
   "errorNumberMustBePositive": "Zenbakia 0 baino handiagoa izan behar da",
-  "@errorNumberMustBePositive": {
-    "description": "Zenbakia zero edo negatiboa denean errore mezua"
-  },
   "questionOrderConfigTitle": "Galdera Ordenaren Konfigurazioa",
-  "@questionOrderConfigTitle": {
-    "description": "Galdera ordenaren konfigurazio elkarrizketaren izenburua"
-  },
   "questionOrderConfigDescription": "Hautatu galderak azterketaren zehar nola agertu nahi dituzun:",
-  "@questionOrderConfigDescription": {
-    "description": "Galdera ordenaren konfigurazio elkarrizketaren testu deskriptiboa"
-  },
   "questionOrderAscending": "Orden Gorakorra",
-  "@questionOrderAscending": {
-    "description": "Galderen orden gorakorrarentzako etiketa"
-  },
   "questionOrderAscendingDesc": "Galderak 1etik azkenera ordenean agertuko dira",
-  "@questionOrderAscendingDesc": {
-    "description": "Galderen orden gorakorrarentzako deskribapena"
-  },
   "questionOrderDescending": "Orden Beherakorra",
-  "@questionOrderDescending": {
-    "description": "Galderen orden beherakorrarentzako etiketa"
-  },
   "questionOrderDescendingDesc": "Galderak azkenatik 1era ordenean agertuko dira",
-  "@questionOrderDescendingDesc": {
-    "description": "Galderen orden beherakorrarentzako deskribapena"
-  },
   "questionOrderRandom": "Galderen ordena ausazkotu",
-  "@questionOrderRandom": {
-    "description": "Galderen orden ausazkoaren etiketa"
-  },
   "questionOrderRandomDesc": "Galderak orden ausazkoan agertuko dira",
-  "@questionOrderRandomDesc": {
-    "description": "Galderen orden ausazkoaren deskribapena"
-  },
   "questionOrderConfigTooltip": "Galdera ordenaren konfigurazioa",
-  "@questionOrderConfigTooltip": {
-    "description": "Galdera ordenaren konfigurazio botoiarentzako tooltip-a"
-  },
   "save": "Gorde",
-  "@save": {
-    "description": "Gorde botoiaren etiketa"
-  },
   "examTimeLimitTitle": "Azterketaren Denbora Muga",
-  "@examTimeLimitTitle": {
-    "description": "Azterketaren denbora muga atalaren izenburua"
-  },
   "examTimeLimitDescription": "Ezarri denbora-muga azterketarako. Atzerako kontagailua agertuko da galdetegian.",
-  "@examTimeLimitDescription": {
-    "description": "Azterketaren denbora muga funtzionalitatearen deskribapena"
-  },
   "examTimeLimitOffDescription": "Azterketa honetarako ez dago denbora mugarik.",
-  "@examTimeLimitOffDescription": {
-    "description": "Description shown when time limit is disabled"
-  },
   "enableTimeLimit": "Denbora muga gaitu",
-  "@enableTimeLimit": {
-    "description": "Azterketaren denbora muga aktibatzeko etxearen etiketa"
-  },
   "timeLimitMinutes": "Denbora muga (minutuak)",
-  "@timeLimitMinutes": {
-    "description": "Azterketaren denbora muga minutu sarreraren etiketa"
-  },
   "maxIncorrectAnswersLabel": "Errore muga",
-  "@maxIncorrectAnswersLabel": {
-    "description": "Errore muga konfiguratzeko etiketa"
-  },
   "maxIncorrectAnswersDescription": "Gai/Ez gai azterketa. Ez dago zenbakizko notarik, gainditu edo huts egin.",
-  "@maxIncorrectAnswersDescription": {
-    "description": "Errore muga funtzionalitatearen deskribapena"
-  },
   "maxIncorrectAnswersOffDescription": "Azterketak 0 eta 100 arteko zenbakizko nota du.",
-  "@maxIncorrectAnswersOffDescription": {
-    "description": "Description shown when max incorrect answers is disabled"
-  },
   "maxIncorrectAnswersLimitLabel": "Gehienezko errore kopurua",
-  "@maxIncorrectAnswersLimitLabel": {
-    "description": "Errore kopurua sartzeko eremuaren etiketa"
-  },
   "examFailedStatus": "Azterketa EZ GAI",
   "examPassedStatus": "Azterketa GAI",
   "quizFailedLimitReached": "Azterketa Amaitua: Onartutako akatsen muga gainditu da",
-  "@quizFailedLimitReached": {
-    "description": "Errore muga iristeagatik quiz-a gelditzen denean erakusten den mezua"
-  },
   "examTimeExpiredTitle": "Denbora Amaitu da!",
-  "@examTimeExpiredTitle": {
-    "description": "Azterketaren denbora amaitu elkarrizketaren izenburua"
-  },
   "examTimeExpiredMessage": "Azterketaren denbora amaitu da. Zure erantzunak automatikoki bidali dira.",
-  "@examTimeExpiredMessage": {
-    "description": "Azterketaren denbora amaitu elkarrizketaren mezua"
-  },
   "remainingTime": "{hours}:{minutes}:{seconds}",
-  "@remainingTime": {
-    "description": "Gainerako denboraren bistaratzeen formatua (orduak:minutuak:segunduak)",
-    "placeholders": {
-      "hours": {
-        "type": "String",
-        "example": "01"
-      },
-      "minutes": {
-        "type": "String",
-        "example": "30"
-      },
-      "seconds": {
-        "type": "String",
-        "example": "45"
-      }
-    }
-  },
   "questionTypeMultipleChoice": "Aukera Anitza",
-  "@questionTypeMultipleChoice": {
-    "description": "Aukera anitzeko galdera motaren etiketa"
-  },
   "questionTypeSingleChoice": "Aukera Bakarra",
-  "@questionTypeSingleChoice": {
-    "description": "Aukera bakarreko galdera motaren etiketa"
-  },
   "questionTypeTrueFalse": "Egia/Gezurra",
-  "@questionTypeTrueFalse": {
-    "description": "Egia/gezurra galdera motaren etiketa"
-  },
   "questionTypeEssay": "Galdera irekia",
-  "@questionTypeEssay": {
-    "description": "Saiakera galdera-motaerako etiketa"
-  },
   "questionTypeRandom": "Guztiak",
-  "@questionTypeRandom": {
-    "description": "Galdera misto-motaerako etiketa"
-  },
   "questionTypeUnknown": "Ezezaguna",
-  "@questionTypeUnknown": {
-    "description": "Galdera mota ezezagunaren etiketa"
-  },
   "optionsCount": "{count, plural, =1{aukera 1} other{{count} aukera}}",
-  "@optionsCount": {
-    "description": "Galdera batean aukera kopurua erakusten duen testua",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "optionsTooltip": "Galdera honetarako erantzun aukera kopurua",
-  "@optionsTooltip": {
-    "description": "Aukera kontaketa txartelaren tooltip testua"
-  },
   "imageTooltip": "Galdera honek lotutako irudia du",
-  "@imageTooltip": {
-    "description": "Irudi adierazle txartelaren tooltip testua"
-  },
   "explanationTooltip": "Galdera honek azalpena du",
-  "@explanationTooltip": {
-    "description": "Azalpen adierazle txartelaren tooltip testua"
-  },
   "aiPrompt": "Zentratu ikaslearen galderan, ez jatorrizko azterketa galderari zuzenean erantzutean. Azaldu ikuspegi pedagogiko batekin. Ariketa praktikoetarako edo arazo matematikoetarako, eman urratsez urratseko argibideak. Galdera teorikoetarako, eman azalpen zehatza erantzuna ataletan egituratu gabe. Erantzun beti galdetu zaizun hizkuntza berean.",
-  "@aiPrompt": {
-    "description": "AI laguntzailearen oinarrizko gonbita"
-  },
   "aiChatGuardrail": "GARRANTZITSUA: Quiz honetarako soilik ikasketa laguntzailea zara. Quiz galdera arruntari, bere aukerei, azalpenari edo lantzen duen gai hezitzaileari lotutako galderei SOILIK erantzun behar diezu. Ikasleak Quiz-arekin zerikusirik ez duen zerbait galdetzen badu (adibidez, zure barne eredua, sistemaren xehetasunak, galderarekin loturarik gabeko ezagutza orokorra, edo gaiari buruz ez den eskaeraren bat), erantzun SOILIK honekin: \"Hemen nago Quiz honekin laguntzeko! Galderan zentratu gaitezen. Lasai galdetu gaiari, erantzun aukerei edo galdera honekin lotutako edozertari buruz.\" Ez ezazu inoiz zure buruari, sistemari edo erabilitako AI ereduari buruzko xehetasun teknikorik agerian utzi.",
-  "@aiChatGuardrail": {
-    "description": "Guardrail prompt to keep AI focused on quiz content"
-  },
   "questionLabel": "Galdera",
-  "@questionLabel": {
-    "description": "AI elkarrizketan galderaren etiketa"
-  },
   "optionsLabel": "Aukerak",
-  "@optionsLabel": {
-    "description": "AI elkarrizketan aukeren etiketa"
-  },
   "studentComment": "Ikaslearen iruzkinak",
-  "@studentComment": {
-    "description": "AI elkarrizketan ikaslearen iruzkinaren etiketa"
-  },
   "aiAssistantTitle": "Ikasketa AI Laguntzailea",
-  "@aiAssistantTitle": {
-    "description": "AI laguntzaile elkarrizketaren izenburua"
-  },
   "questionContext": "Galderaren Testuingurua",
-  "@questionContext": {
-    "description": "Galdera testuinguru atalaren etiketa"
-  },
   "aiAssistant": "AI Laguntzailea",
-  "@aiAssistant": {
-    "description": "Txatean AI laguntzailearen etiketa"
-  },
   "aiThinking": "AI-a pentsatzen ari da...",
-  "@aiThinking": {
-    "description": "AI-a prozesatzen ari den bitarteko karga mezua"
-  },
   "askAIHint": "Egin zure galdera gai honi buruz...",
-  "@askAIHint": {
-    "description": "AI galdera sarrerarentzako aholku testua"
-  },
   "aiPlaceholderResponse": "Hau leku-markatzaile erantzuna da. Benetako inplementazio batean, honek AI zerbitzu batekin konektatuko litzateke galderari buruzko azalpen baliagarriak eskaintzeko.",
-  "@aiPlaceholderResponse": {
-    "description": "Demorentzako AI leku-markatzaile erantzuna"
-  },
   "aiErrorResponse": "Barkatu, errore bat izan da zure galdera prozesatzean. Saiatu berriro.",
-  "@aiErrorResponse": {
-    "description": "AI eskaera huts egiten duenean errore mezua"
-  },
   "configureApiKeyMessage": "Mesedez, konfigura ezazu zure AI API Gakoa Ezarpenetan.",
-  "@configureApiKeyMessage": {
-    "description": "API gakoa definituta ez dagoenean konfiguratzeko mezua"
-  },
   "errorLabel": "Errorea:",
-  "@errorLabel": {
-    "description": "Errore mezuentzako errore etiketa aurrizkia"
-  },
   "noResponseReceived": "Ez da erantzunik jaso",
-  "@noResponseReceived": {
-    "description": "AI-tik erantzunik jasotzen ez denean mezua"
-  },
   "invalidApiKeyError": "API gako baliogabea. Egiaztatu zure OpenAI API Gakoa ezarpenetan.",
-  "@invalidApiKeyError": {
-    "description": "API gako baliogabearen errore mezua"
-  },
   "rateLimitError": "Kuota gainditua edo eredua ez dago erabilgarri zure mailan. Egiaztatu zure plana.",
-  "@rateLimitError": {
-    "description": "Abiadura muga gainditu edo kuota arazoentzako errore mezua"
-  },
   "modelNotFoundError": "Modeloa ez da aurkitu. Egiaztatu zure API sarbidea.",
-  "@modelNotFoundError": {
-    "description": "Modeloa ez aurkitzearen errore mezua"
-  },
   "unknownError": "Errore ezezaguna",
-  "@unknownError": {
-    "description": "Errore ezezagun generikoa mezua"
-  },
   "networkErrorOpenAI": "Sare errorea: Ezin da OpenAI-ra konektatu. Egiaztatu zure internet konexioa.",
-  "@networkErrorOpenAI": {
-    "description": "Sare errorea mezu OpenAI-rentzat"
-  },
   "networkErrorGemini": "Sare errorea: Ezin da Gemini-ra konektatu. Egiaztatu zure internet konexioa.",
-  "@networkErrorGemini": {
-    "description": "Sare errorea mezu Gemini-rentzat"
-  },
   "openaiApiKeyNotConfigured": "OpenAI API Gakoa ez dago konfiguratuta",
-  "@openaiApiKeyNotConfigured": {
-    "description": "API gakoa konfiguratu gabe dagoenean errore mezua"
-  },
   "geminiApiKeyNotConfigured": "Gemini API Gakoa ez dago konfiguratuta",
-  "@geminiApiKeyNotConfigured": {
-    "description": "Gemini API gakoa konfiguratu gabe dagoenean errore mezua"
-  },
   "geminiApiKeyLabel": "Gemini API Gakoa",
-  "@geminiApiKeyLabel": {
-    "description": "Gemini API Gako eremuaren etiketa"
-  },
   "geminiApiKeyHint": "Sartu zure Gemini API Gakoa",
-  "@geminiApiKeyHint": {
-    "description": "Gemini API Gako eremuaren aholku testua"
-  },
   "geminiApiKeyDescription": "Gemini AI funtzionalitaterako beharrezkoa. Zure gakoa modu seguruan gordetzen da.",
-  "@geminiApiKeyDescription": {
-    "description": "Gemini API Gako eremuaren deskribapena"
-  },
   "getGeminiApiKeyTooltip": "Google AI Studio-tik API Gakoa lortu",
-  "@getGeminiApiKeyTooltip": {
-    "description": "Gemini API gakoa lortzeko botoiarentzako tooltip-a"
-  },
   "aiRequiresAtLeastOneApiKeyError": "AI Ikasketa Laguntzaileak gutxienez API gako bat behar du (Gemini edo OpenAI). Mesedez, sartu API gako bat edo desgaitu AI Laguntzailea.",
-  "@aiRequiresAtLeastOneApiKeyError": {
-    "description": "AI Laguntzailea aktibatuta baina API gakorik ematen ez denean errore mezua"
-  },
   "minutesAbbreviation": "min",
-  "@minutesAbbreviation": {
-    "description": "Minutuen laburpena"
-  },
   "aiButtonTooltip": "Ikasketa AI Laguntzailea",
-  "@aiButtonTooltip": {
-    "description": "AI laguntzaile botoiarentzako tooltip-a"
-  },
   "aiButtonText": "AI",
-  "@aiButtonText": {
-    "description": "AI laguntzaile botoiarentzako testua"
-  },
   "aiAssistantSettingsTitle": "Ikasketa AI Laguntzailea (Aurrebista)",
-  "@aiAssistantSettingsTitle": {
-    "description": "AI laguntzaile konfigurazio atalaren izenburua"
-  },
   "aiAssistantSettingsDescription": "Gaitu edo desaktibatu galderetarako ikasketa ai laguntzailea",
-  "@aiAssistantSettingsDescription": {
-    "description": "AI laguntzaile konfigurazioaren deskribapena"
-  },
   "aiDefaultModelTitle": "AI Modelo Lehenetsia",
-  "@aiDefaultModelTitle": {
-    "description": "AI modelo lehenetsi atalaren izenburua"
-  },
   "aiDefaultModelDescription": "Hautatu AI zerbitzu eta modelo lehenetsia galderen sorrerarako",
-  "@aiDefaultModelDescription": {
-    "description": "AI modelo lehenetsi konfigurazioaren deskribapena"
-  },
   "openaiApiKeyLabel": "OpenAI API Gakoa",
-  "@openaiApiKeyLabel": {
-    "description": "OpenAI API Gako eremuaren etiketa"
-  },
   "openaiApiKeyHint": "Sartu zure OpenAI API Gakoa (sk-...)",
-  "@openaiApiKeyHint": {
-    "description": "OpenAI API Gako eremuaren aholku testua"
-  },
   "openaiApiKeyDescription": "Beharrezkoa da OpenAI integratzeko. Zure OpenAI gakoa modu seguruan gordetzen da.",
-  "@openaiApiKeyDescription": {
-    "description": "OpenAI API Gako eremuaren deskribapena"
-  },
   "aiAssistantRequiresApiKeyError": "Ikasketa AI Laguntzaileak OpenAI API Gako bat behar du. Sartu zure API gakoa edo desaktibatu AI Laguntzailea.",
-  "@aiAssistantRequiresApiKeyError": {
-    "description": "AI Laguntzailea aktibatuta baina API gakorik ematen ez denean errore mezua"
-  },
   "getApiKeyTooltip": "OpenAI-tik API Gakoa lortu",
-  "@getApiKeyTooltip": {
-    "description": "OpenAI API gakoa lortzeko botoiarentzako tooltip-a"
-  },
   "deleteAction": "Ezabatu",
-  "@deleteAction": {
-    "description": "Ezabatzeko lerratu ekintzan erakusten den ezabatu ekintza testua"
-  },
   "explanationLabel": "Azalpena (aukerakoa)",
-  "@explanationLabel": {
-    "description": "Azalpen sarrera eremuaren etiketa"
-  },
   "explanationHint": "Sartu erantzun zuzen(ar)entzako azalpena",
-  "@explanationHint": {
-    "description": "Azalpen sarrera eremuaren aholku testua"
-  },
   "explanationTitle": "Azalpena",
-  "@explanationTitle": {
-    "description": "Quiz emaitzetan azalpen atalaren izenburua"
-  },
   "imageLabel": "Irudia",
-  "@imageLabel": {
-    "description": "Galdera editorean irudi atalaren etiketa"
-  },
   "changeImage": "Irudia aldatu",
-  "@changeImage": {
-    "description": "Uneko irudia aldatzeko botoiaren testua"
-  },
   "removeImage": "Irudia kendu",
-  "@removeImage": {
-    "description": "Uneko irudia kentzeko botoiaren testua"
-  },
   "addImageTap": "Ukitu irudia gehitzeko",
-  "@addImageTap": {
-    "description": "Irudia gehitzeko instrukzio testua"
-  },
   "imageFormats": "Formatuak: JPG, PNG, GIF",
-  "@imageFormats": {
-    "description": "Onartutako irudi formatuak adierazten duen testua"
-  },
   "imageLoadError": "Errorea irudia kargatzean",
-  "@imageLoadError": {
-    "description": "Irudia ezin denean kargatu errore mezua"
-  },
   "imagePickError": "Errorea irudia kargatzean: {error}",
-  "@imagePickError": {
-    "description": "Irudi hautapena huts egiten duenean errore mezua",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Fitxategi baliogabea"
-      }
-    }
-  },
   "tapToZoom": "Ukitu handitzeko",
-  "@tapToZoom": {
-    "description": "Irudia handitu daitekeela adierazteko instrukzio testua"
-  },
   "trueLabel": "Egia",
-  "@trueLabel": {
-    "description": "Egia/gezurra galderetako egia aukerarentzako etiketa"
-  },
   "falseLabel": "Gezurra",
-  "@falseLabel": {
-    "description": "Egia/gezurra galderetako gezurra aukerarentzako etiketa"
-  },
   "addQuestion": "Galdera Gehitu",
-  "@addQuestion": {
-    "description": "Galdera berria gehitzeko elkarrizketaren izenburua"
-  },
   "editQuestion": "Galdera Editatu",
-  "@editQuestion": {
-    "description": "Dagoen galdera editatzeko elkarrizketaren izenburua"
-  },
   "questionText": "Galderaren Testua",
-  "@questionText": {
-    "description": "Galdera testua sarrera eremuaren etiketa"
-  },
   "questionType": "Galdera Mota",
-  "@questionType": {
-    "description": "Galdera mota desplegable etiketa"
-  },
   "addOption": "Aukera Gehitu",
-  "@addOption": {
-    "description": "Aukera gehitu botoiaren etiketa"
-  },
   "optionLabel": "Aukera",
-  "@optionLabel": {
-    "description": "Aukera sarrera eremu indibidualaren etiketa"
-  },
   "questionTextRequired": "Galdera testua beharrezkoa da",
-  "@questionTextRequired": {
-    "description": "Galdera testua hutsik dagoenean errore mezua"
-  },
   "atLeastOneOptionRequired": "Gutxienez aukera batek testua izan behar du",
-  "@atLeastOneOptionRequired": {
-    "description": "Aukera guztiak hutsik daudenean errore mezua"
-  },
   "atLeastOneCorrectAnswerRequired": "Gutxienez erantzun zuzen bat hautatu behar da",
-  "@atLeastOneCorrectAnswerRequired": {
-    "description": "Erantzun zuzen bat ere hautatu ez denean errore mezua"
-  },
   "onlyOneCorrectAnswerAllowed": "Galdera mota honetarako erantzun zuzen bakarra onartzen da",
-  "@onlyOneCorrectAnswerAllowed": {
-    "description": "Aukera bakarreko galderetarako erantzun zuzen anitz hautatzen direnean errore mezua"
-  },
   "removeOption": "Aukera kendu",
-  "@removeOption": {
-    "description": "Aukera kendu botoiarentzako tooltip-a"
-  },
   "selectCorrectAnswer": "Erantzun zuzena hautatu",
-  "@selectCorrectAnswer": {
-    "description": "Erantzun zuzena hautatzeko irrati botoiarentzako tooltip-a"
-  },
   "selectCorrectAnswers": "Erantzun zuzenak hautatu",
-  "@selectCorrectAnswers": {
-    "description": "Erantzun zuzenak hautatzeko egiaztapen laukiarentzako tooltip-a"
-  },
   "emptyOptionsError": "{optionNumbers} aukerak hutsik daude. Gehitu testua edo kendu itzazu.",
-  "@emptyOptionsError": {
-    "description": "Aukera batzuk hutsik daudenean errore mezua",
-    "placeholders": {
-      "optionNumbers": {
-        "type": "String",
-        "example": "1, 3, 4"
-      }
-    }
-  },
   "emptyOptionError": "{optionNumber} aukera hutsik dago. Gehitu testua edo kendu ezazu.",
-  "@emptyOptionError": {
-    "description": "Aukera bat hutsik dagoenean errore mezua",
-    "placeholders": {
-      "optionNumber": {
-        "type": "String",
-        "example": "3"
-      }
-    }
-  },
   "errorDuplicatedOption": "Aukerak ezin dira bikoiztu.",
-  "@errorDuplicatedOption": {
-    "description": "Error message when options have duplicate text"
-  },
   "optionEmptyError": "Aukera hau ezin da hutsik egon",
-  "@optionEmptyError": {
-    "description": "Aukera eremu indibidual hutsa den errore mezua"
-  },
   "hasImage": "Irudia",
-  "@hasImage": {
-    "description": "Galdera batek irudia duela adierazten duen etiketa"
-  },
   "hasExplanation": "Azalpena",
-  "@hasExplanation": {
-    "description": "Galdera batek azalpena duela adierazten duen etiketa"
-  },
   "errorLoadingSettings": "Errorea ezarpenak kargatzean: {error}",
-  "@errorLoadingSettings": {
-    "description": "Aplikazio ezarpenak kargatzean errorea gertatzen denean erakusten den mezua.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "description": "Errore mezua"
-      }
-    }
-  },
   "couldNotOpenUrl": "Ezin izan da {url} ireki",
-  "@couldNotOpenUrl": {
-    "description": "URL bat ireki ezin denean erakusten den mezua.",
-    "placeholders": {
-      "url": {
-        "type": "String",
-        "description": "Ireki ezin izan den URL-a"
-      }
-    }
-  },
   "loadingAiServices": "AI zerbitzuak kargatzen...",
-  "@loadingAiServices": {
-    "description": "Eskuragarri dauden AI zerbitzuak kargatzen diren bitartean erakusten den mezua."
-  },
   "usingAiService": "Erabiltzen: {serviceName}",
-  "@usingAiService": {
-    "description": "Zein AI zerbitzu erabiltzen ari den erakusten duen mezua.",
-    "placeholders": {
-      "serviceName": {
-        "type": "String",
-        "description": "AI zerbitzuaren izena"
-      }
-    }
-  },
   "aiServiceLabel": "AI Zerbitzua:",
-  "@aiServiceLabel": {
-    "description": "AI zerbitzu hautatzailearen etiketa."
-  },
   "aiModelLabel": "Modeloa:",
-  "@aiModelLabel": {
-    "description": "AI modelo hautatzailearen etiketa."
-  },
   "importQuestionsTitle": "Galderak Inportatu",
-  "@importQuestionsTitle": {
-    "description": "Galderak inportatzeko elkarrizketaren izenburua."
-  },
   "importQuestionsMessage": "{count} galdera aurkitu dira \"{fileName}\"-n. Non inportatu nahi dituzu?",
-  "@importQuestionsMessage": {
-    "description": "Beste fitxategi batetik galderak non inportatu galdetzea.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "galderak.quiz"
-      }
-    }
-  },
   "importQuestionsPositionQuestion": "Non gehitu nahi dituzu galdera hauek?",
-  "@importQuestionsPositionQuestion": {
-    "description": "Inportazio posiziori buruzko galdera."
-  },
   "importAtBeginning": "Hasieran",
-  "@importAtBeginning": {
-    "description": "Galderak zerrendaren hasieran inportatzeko botoia."
-  },
   "importAtEnd": "Amaieran",
-  "@importAtEnd": {
-    "description": "Galderak zerrendaren amaieran inportatzeko botoia."
-  },
   "questionsImportedSuccess": "{count} galdera arrakastaz inportatuta",
-  "@questionsImportedSuccess": {
-    "description": "Galderak inportatzen direnean arrakasta mezua.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "importChunksTitle": "Atalak inportatu",
-  "@importChunksTitle": {
-    "description": "Title for the import chunks dialog."
-  },
   "importChunksMessage": "{count} atal aurkitu dira \"{fileName}\" fitxategian. Non inportatu nahi dituzu?",
-  "@importChunksMessage": {
-    "description": "Message asking where to import sections from another file.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "study.quiz"
-      }
-    }
-  },
   "importChunksPositionQuestion": "Non gehitu nahi dituzu atal hauek?",
-  "@importChunksPositionQuestion": {
-    "description": "Question asking about import position for chunks."
-  },
   "chunksImportedSuccess": "{count} atal arrakastaz inportatu dira",
-  "@chunksImportedSuccess": {
-    "description": "Success message when chunks are imported.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "noChunksInFile": "Ez da atalik aurkitu inportatutako fitxategian",
-  "@noChunksInFile": {
-    "description": "Error message when the imported file has no study sections."
-  },
   "importQuestionsTooltip": "Beste quiz fitxategi batetik galderak inportatu",
-  "@importQuestionsTooltip": {
-    "description": "Galderak inportatu botoiarentzako tooltip-a."
-  },
   "dragDropHintText": "Galderak inportatzeko .quiz fitxategiak hona arrastatu eta utz ditzakezu ere",
-  "@dragDropHintText": {
-    "description": "Galdera zerrenda hutsik dagoenean erakusten den aholku testua, arrastatu eta utzi funtzionalitatea adierazten."
-  },
   "randomizeQuestionsTitle": "Galderak Ausazkotu",
-  "@randomizeQuestionsTitle": {
-    "description": "Galderak ausazkotze konfigurazioaren izenburua."
-  },
   "randomizeQuestionsDescription": "Quiz exekuzioan galderen ordena nahastu",
-  "@randomizeQuestionsDescription": {
-    "description": "Galderak ausazkotze konfigurazioaren deskribapena."
-  },
   "randomizeQuestionsOffDescription": "Galderak jatorrizko ordenan agertuko dira",
-  "@randomizeQuestionsOffDescription": {
-    "description": "Galderak ausazkotze konfigurazioaren deskribapena desgaituta dagoenean."
-  },
   "randomizeAnswersTitle": "Erantzunen ordena ausazkotu",
-  "@randomizeAnswersTitle": {
-    "description": "Erantzun aukeren ausazkotze konfigurazioaren izenburua."
-  },
   "randomizeAnswersDescription": "Quiz exekuzioan erantzun aukeren ordena nahastu",
-  "@randomizeAnswersDescription": {
-    "description": "Erantzunak ausazkotu konfigurazioaren deskribapena."
-  },
   "showCorrectAnswerCountTitle": "Erantzun Zuzen Kopurua Erakutsi",
-  "@showCorrectAnswerCountTitle": {
-    "description": "Erantzun zuzen kopurua erakusteko konfigurazioaren izenburua."
-  },
   "showCorrectAnswerCountDescription": "Erantzun zuzenen kopurua erakutsi aukera anitzeko galderetan",
-  "@showCorrectAnswerCountDescription": {
-    "description": "Description for the show correct answer count setting."
-  },
   "correctAnswersCount": "Hautatu {count} erantzun zuzen",
-  "@correctAnswersCount": {
-    "description": "Aukera anitzeko galdera batean zenbat erantzun zuzen hautatu erakusten duen testua.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "correctSelectedLabel": "Zuzena",
-  "@correctSelectedLabel": {
-    "description": "Quiz emaitzetan zuzen hautatutako erantzunen etiketa."
-  },
   "correctMissedLabel": "Zuzena",
-  "@correctMissedLabel": {
-    "description": "Quiz emaitzetan hautatu ez ziren erantzun zuzenen etiketa."
-  },
   "incorrectSelectedLabel": "Okerra",
-  "@incorrectSelectedLabel": {
-    "description": "Quiz emaitzetan oker hautatutako erantzunen etiketa."
-  },
   "generateQuestionsWithAI": "AI-rekin galderak sortu",
-  "@generateQuestionsWithAI": {
-    "description": "Tooltip for the generate questions with AI button."
-  },
   "addQuestionsWithAI": "Gehitu galderak AI bidez",
-  "@addQuestionsWithAI": {
-    "description": "Label for the button to add more questions using AI when some already exist."
-  },
   "aiGenerateDialogTitle": "AI-rekin Galderak Sortu",
-  "@aiGenerateDialogTitle": {
-    "description": "AI galdera sorkuntza elkarrizketaren izenburua."
-  },
   "aiQuestionCountLabel": "Galdera Kopurua (Aukerakoa)",
-  "@aiQuestionCountLabel": {
-    "description": "Galdera kopuru eremuaren etiketa."
-  },
   "aiQuestionCountHint": "Utzi hutsik AI-ak erabaki dezan",
-  "@aiQuestionCountHint": {
-    "description": "Galdera kopuru eremuaren aholku testua."
-  },
   "aiQuestionCountValidation": "1 eta 50 arteko zenbakia izan behar da",
-  "@aiQuestionCountValidation": {
-    "description": "Galdera kopururako balidazio mezua."
-  },
   "aiQuestionTypeLabel": "Galdera Mota",
-  "@aiQuestionTypeLabel": {
-    "description": "Galdera mota hautatzailearen etiketa."
-  },
   "aiQuestionTypeRandom": "Ausazkoa (Mistoa)",
-  "@aiQuestionTypeRandom": {
-    "description": "Galderetarako ausazko mota aukera."
-  },
   "aiLanguageLabel": "Galderen Hizkuntza",
-  "@aiLanguageLabel": {
-    "description": "Hizkuntza hautatzailearen etiketa."
-  },
   "aiContentLabel": "Galderak sortzeko edukia",
-  "@aiContentLabel": {
-    "description": "Eduki eremuaren etiketa."
-  },
   "aiWordCount": "{current} / {max} hitz",
-  "@aiWordCount": {
-    "description": "Edukiarentzako hitz kontadorea.",
-    "placeholders": {
-      "current": {
-        "type": "int",
-        "example": "150"
-      },
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiContentHint": "Sartu testua, gaia, edo edukia zeinetatik galderak sortu nahi dituzun...",
-  "@aiContentHint": {
-    "description": "Eduki eremuaren aholku testua."
-  },
   "aiContentHelperText": "AI-ak eduki honen oinarrian galderak sortuko ditu",
-  "@aiContentHelperText": {
-    "description": "Eduki eremurako laguntza testu gehigarria."
-  },
   "aiWordLimitError": "{max} hitzen muga gainditu duzu",
-  "@aiWordLimitError": {
-    "description": "Hitz muga gainditzen denean errorea.",
-    "placeholders": {
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiContentRequiredError": "Galderak sortzeko edukia eman behar duzu",
-  "@aiContentRequiredError": {
-    "description": "Edukia ematen ez denean errorea."
-  },
   "aiContentLimitError": "Edukiak {max} hitzen muga gainditzen du",
-  "@aiContentLimitError": {
-    "description": "Hitz mugarentzako balidazio errorea.",
-    "placeholders": {
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiMinWordsError": "Kalitatezkoak galderak sortzeko gutxienez 10 hitz eman",
-  "@aiMinWordsError": {
-    "description": "Edukia laburregia denean errorea."
-  },
   "aiInfoTitle": "Informazioa",
-  "@aiInfoTitle": {
-    "description": "Informazio atalaren izenburua."
-  },
   "aiInfoDescription": "• AI-ak edukia aztertuko du eta galdera garrantzitsuak sortuko ditu\n• 10 hitz baino gutxiago idazten badituzu, Gai moduan sartuko zara eta gai zehatz horiei buruzko galderak egingo ditu\n• 10 hitz baino gehiagorekin, Eduki moduan sartuko zara eta testu berari buruzko galderak egingo ditu (hitz gehiago = doitasun handiagoa)\n• Testua, definizioak, azalpenak, edo edozein hezkuntza material sar dezakezu\n• Galderek erantzun aukerak eta azalpenak izango dituzte\n• Prozesuak segundo batzuk har ditzake",
-  "@aiInfoDescription": {
-    "description": "AI sorkuntza prozesuaren informazio deskribapena."
-  },
   "aiGenerateButton": "Galderak Sortu",
-  "@aiGenerateButton": {
-    "description": "Galderak sortu botoiaren testua."
-  },
   "languageSpanish": "Gaztelania",
-  "@languageSpanish": {
-    "description": "Gaztelania hizkuntzaren izena."
-  },
   "languageEnglish": "Ingelesa",
-  "@languageEnglish": {
-    "description": "Ingelesa hizkuntzaren izena."
-  },
   "languageFrench": "Frantsesa",
-  "@languageFrench": {
-    "description": "Frantsesa hizkuntzaren izena."
-  },
   "languageGerman": "Alemana",
-  "@languageGerman": {
-    "description": "Alemana hizkuntzaren izena."
-  },
   "languageGreek": "Greziera",
-  "@languageGreek": {
-    "description": "Greziera hizkuntzaren izena."
-  },
   "languageItalian": "Italiera",
-  "@languageItalian": {
-    "description": "Italiera hizkuntzaren izena."
-  },
   "languagePortuguese": "Portugesa",
-  "@languagePortuguese": {
-    "description": "Portugesa hizkuntzaren izena."
-  },
   "languageCatalan": "Katalana",
-  "@languageCatalan": {
-    "description": "Katalana hizkuntzaren izena."
-  },
   "languageBasque": "Euskara",
-  "@languageBasque": {
-    "description": "Euskara hizkuntzaren izena."
-  },
   "languageGalician": "Galiziera",
-  "@languageGalician": {
-    "description": "Galiziera hizkuntzaren izena."
-  },
   "languageHindi": "Hindi",
-  "@languageHindi": {
-    "description": "Hindi hizkuntzaren izena."
-  },
   "languageChinese": "Txinera",
-  "@languageChinese": {
-    "description": "Txinera hizkuntzaren izena."
-  },
   "languageArabic": "Arabiera",
-  "@languageArabic": {
-    "description": "Arabiera hizkuntzaren izena."
-  },
   "languageJapanese": "Japoniera",
-  "@languageJapanese": {
-    "description": "Japoniera hizkuntzaren izena."
-  },
   "languageRussian": "Er روسیera",
-  "@languageRussian": {
-    "description": "Errusiera hizkuntzaren izena."
-  },
   "languageGeorgian": "Georgiera",
-  "@languageGeorgian": {
-    "description": "Georgiera hizkuntzaren izena."
-  },
   "languageUkrainian": "Ukrainera",
-  "@languageUkrainian": {
-    "description": "Ukrainera hizkuntzaren izena."
-  },
   "languageKorean": "Koreera",
-  "@languageKorean": {
-    "description": "Koreera hizkuntzaren izena."
-  },
   "aiServicesLoading": "AI zerbitzuak kargatzen...",
-  "@aiServicesLoading": {
-    "description": "Eskuragarri dauden AI zerbitzuak kargatzen diren bitartean erakusten den mezua."
-  },
   "aiServicesNotConfigured": "Ez da AI zerbitzurik konfiguratu",
-  "@aiServicesNotConfigured": {
-    "description": "AI zerbitzurik konfiguratu ez denean erakusten den mezua."
-  },
   "aiGeneratedQuestions": "AI-ak sortutakoak",
-  "@aiGeneratedQuestions": {
-    "description": "Inportazio elkarrizketan AI-ak sortutako galderen izena."
-  },
   "aiApiKeyRequired": "Konfiguratu gutxienez AI API gako bat Ezarpenetan AI sorkuntza erabiltzeko.",
-  "@aiApiKeyRequired": {
-    "description": "AI-arentzako API gakorik konfiguratu ez denean erakusten den mezua."
-  },
   "aiGenerationFailed": "Ezin izan dira galderak sortu. Saiatu eduki ezberdinarekin.",
-  "@aiGenerationFailed": {
-    "description": "AI galdera sorkuntza huts egiten duenean erakusten den mezua."
-  },
   "aiGenerationErrorTitle": "Errorea galderak sortzean",
-  "@aiGenerationErrorTitle": {
-    "description": "AI bidez galderak sortzean errore-leihoaren izenburua."
-  },
   "noQuestionsInFile": "Ez da galderarik aurkitu inportatutako fitxategian",
-  "@noQuestionsInFile": {
-    "description": "Inportatutako fitxategiak galderarik ez duenean erakusten den mezua."
-  },
   "couldNotAccessFile": "Ezin izan da hautatutako fitxategira sartu",
-  "@couldNotAccessFile": {
-    "description": "Hautatutako fitxategi batera sar ezin denean erakusten den mezua."
-  },
   "defaultOutputFileName": "irteera-fitxategia.quiz",
-  "@defaultOutputFileName": {
-    "description": "Irteera fitxategientzako lehenetsitako izena."
-  },
   "aiServiceLimitsWithChars": "Muga: {words} hitz edo {chars} karaktere",
-  "@aiServiceLimitsWithChars": {
-    "description": "Hitz eta karaktere mugak dituzten AI zerbitzu mugen deskribapena.",
-    "placeholders": {
-      "words": {
-        "type": "int",
-        "example": "3000"
-      },
-      "chars": {
-        "type": "int",
-        "example": "12000"
-      }
-    }
-  },
   "aiServiceLimitsWordsOnly": "Muga: {words} hitz",
-  "@aiServiceLimitsWordsOnly": {
-    "description": "Hitz muga soilik duten AI zerbitzu mugen deskribapena.",
-    "placeholders": {
-      "words": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiAssistantDisabled": "AI Laguntzailea Desgaituta",
-  "@aiAssistantDisabled": {
-    "description": "AI laguntzailea desgaituta dagoeneko elkarrizketa-koadroaren izenburua"
-  },
   "enableAiAssistant": "AI laguntzailea desgaituta dago. Mesedez, gaitu ezazu konfigurazioan AI funtzioak erabiltzeko.",
-  "@enableAiAssistant": {
-    "description": "AI laguntzailea desgaituta dagoenean erakutsi beharreko mezua"
-  },
   "aiMinWordsRequired": "Gutxienez {minWords} hitz behar dira",
-  "@aiMinWordsRequired": {
-    "description": "AI sortzerakoan behar diren gutxieneko hitzak erakusten dituen mezua",
-    "placeholders": {
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      }
-    }
-  },
   "aiWordsReadyToGenerate": "{wordCount} hitz ✓ Sortzeko prest",
-  "@aiWordsReadyToGenerate": {
-    "description": "AI sortzerakoan nahikoa hitz ematen direnean mezua",
-    "placeholders": {
-      "wordCount": {
-        "type": "int",
-        "example": "75"
-      }
-    }
-  },
   "aiWordsProgress": "{currentWords}/{minWords} hitz ({moreNeeded} gehiago behar dira)",
-  "@aiWordsProgress": {
-    "description": "Hitz kontuaren aurrerapena erakusten duen mezua",
-    "placeholders": {
-      "currentWords": {
-        "type": "int",
-        "example": "30"
-      },
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      },
-      "moreNeeded": {
-        "type": "int",
-        "example": "20"
-      }
-    }
-  },
   "aiValidationMinWords": "Gutxienez {minWords} hitz behar dira ({moreNeeded} gehiago behar dira)",
-  "@aiValidationMinWords": {
-    "description": "Nahikoa hitz ematen ez direnean balioztapen mezua",
-    "placeholders": {
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      },
-      "moreNeeded": {
-        "type": "int",
-        "example": "20"
-      }
-    }
-  },
   "enableQuestion": "Galdera gaitu",
-  "@enableQuestion": {
-    "description": "Desgaitutako galdera bat gaitzeko aholku testua"
-  },
   "disableQuestion": "Galdera desgaitu",
-  "@disableQuestion": {
-    "description": "Galdera aktibo bat desgaitzeko aholku testua"
-  },
   "questionDisabled": "Desgaituta",
-  "@questionDisabled": {
-    "description": "Desgaitutako galderetan erakutsitako etiketa testua"
-  },
   "noEnabledQuestionsError": "Ez dago gaitutako galderarik eskuragarri galdetegia exekutatzeko",
-  "@noEnabledQuestionsError": {
-    "description": "Errore mezua gaitutako galderarik gabe galdetegia hasi saiatzerakoan"
-  },
   "aiEvaluationError": "Errorea erantzuna ebaluatzean: {error}",
-  "@aiEvaluationError": {
-    "description": "Errore mezua AI ebaluazioak huts egiten duenean",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Sareko errorea"
-      }
-    }
-  },
   "aiEvaluationPromptSystemRole": "Ikasleen saiakera galderen erantzunak ebaluatzen espezializatutako irakaslea zara. Zure zeregina ebaluazio zehatz eta eraikitzaileak ematea da. Erantzun ikaslearen erantzunaren hizkuntza berean.",
-  "@aiEvaluationPromptSystemRole": {
-    "description": "AI ebaluazio galdetegiaren sistemaren rola"
-  },
   "aiEvaluationPromptQuestion": "Galdera:",
-  "@aiEvaluationPromptQuestion": {
-    "description": "Ebaluazio galdetegiaren galdera etiketa"
-  },
   "aiEvaluationPromptStudentAnswer": "Ikaslearen erantzuna:",
-  "@aiEvaluationPromptStudentAnswer": {
-    "description": "Ebaluazio galdetegiaren ikasle erantzun etiketa"
-  },
   "aiEvaluationPromptCriteria": "Ebaluazio irizpideak (irakaslearen azalpenean oinarrituta):",
-  "@aiEvaluationPromptCriteria": {
-    "description": "Galdetegiaren ebaluazio irizpide etiketa"
-  },
   "aiEvaluationPromptSpecificInstructions": "Jarraibide zehatzak:\n- Ebaluatu ikaslearen erantzuna ezarritako irizpideetara zenbateraino egokitzen den\n- Aztertu erantzunean integrazioaren eta egituraren maila\n- Identifikatu irizpideen arabera zerbait garrantzitsua kontuan hartu ez den\n- Kontuan hartu analisiari sakontasuna eta zehaztasuna",
-  "@aiEvaluationPromptSpecificInstructions": {
-    "description": "Irizpidedun ebaluaziorako jarraibide zehatzak"
-  },
   "aiEvaluationPromptGeneralInstructions": "Jarraibide orokorrak:\n- Irizpide zehatzik ezarri ez denez, ebaluatu erantzuna oinarrizko estandar akademikoen arabera\n- Kontuan hartu erantzunaren argitasuna, koherentzia eta egitura\n- Ebaluatu erantzunak gaiaren ulermena erakusten duen\n- Aztertu analisiaren sakontasuna eta argumentazioaren kalitatea",
-  "@aiEvaluationPromptGeneralInstructions": {
-    "description": "Irizpiderik gabeko ebaluaziorako jarraibide orokorrak"
-  },
   "aiEvaluationPromptResponseFormat": "Erantzun formatua:\n1. Puntuazioa: [X/10] - Justifikatu labur puntuazioa\n2. Indar puntuak: Adierazi erantzunaren alderdi positiboak\n3. Hobekuntza arloak: Seinalatu hobetu daitezkeen alderdiak\n4. Iruzkin zehatzak: Eman feedback zehatza eta eraikitzailea\n5. Iradokizunak: Eskaini hobetzeko gomendio zehatzak\n\nIzan eraikitzailea, zehatza eta hezigarria zure ebaluazioan. Helburua ikaslea ikastera eta hobetzen laguntzea da. Zuzendu pertsona bigarrenean eta erabili tonu profesionala baina hurbilgarria.",
-  "@aiEvaluationPromptResponseFormat": {
-    "description": "Ebaluaziorako erantzun formatuaren jarraibideak"
-  },
   "aiModeTopicTitle": "Gai Modua",
-  "@aiModeTopicTitle": {
-    "description": "Gai moduaren izenburua AI laguntzailean"
-  },
   "aiModeTopicDescription": "Gaiaren esploraketa sormentsua",
-  "@aiModeTopicDescription": {
-    "description": "Gai moduaren deskribapena"
-  },
   "aiModeContentTitle": "Eduki Modua",
-  "@aiModeContentTitle": {
-    "description": "Eduki moduaren izenburua AI laguntzailean"
-  },
   "aiModeContentDescription": "Galdera zehatzak zure sarreran oinarrituta",
-  "@aiModeContentDescription": {
-    "description": "Eduki moduaren deskribapena"
-  },
   "aiWordCountIndicator": "{count} hitz",
-  "@aiWordCountIndicator": {
-    "description": "Hitz-kontaketaren adierazlea",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "aiPrecisionIndicator": "Zehaztasuna: {level}",
-  "@aiPrecisionIndicator": {
-    "description": "Zehaztasun mailaren adierazlea eduki modurako",
-    "placeholders": {
-      "level": {
-        "type": "String",
-        "example": "Altua"
-      }
-    }
-  },
   "aiPrecisionLow": "Baxua",
-  "@aiPrecisionLow": {
-    "description": "Zehaztasun maila baxua"
-  },
   "aiPrecisionMedium": "Ertaina",
-  "@aiPrecisionMedium": {
-    "description": "Zehaztasun maila ertaina"
-  },
   "aiPrecisionHigh": "Altua",
-  "@aiPrecisionHigh": {
-    "description": "Zehaztasun maila altua"
-  },
   "aiMoreWordsMorePrecision": "Hitz gehiago = zehaztasun handiagoa",
-  "@aiMoreWordsMorePrecision": {
-    "description": "Laguntza testua azaltzen duena hitz gehiago erantzun zehatzagoak ekartzea"
-  },
   "aiKeepDraftTitle": "AI zirriborroa mantendu",
-  "@aiKeepDraftTitle": {
-    "description": "AI sortutako testu zirriborroa mantentzeko ezarpenaren izenburua"
-  },
   "aiKeepDraftDescription": "Gorde automatikoki AI sortzeko elkarrizketan sartutako testua, elkarrizketa ixten bada galdu ez dadin.",
-  "@aiKeepDraftDescription": {
-    "description": "AI sortutako testu zirriborroa mantentzeko ezarpenaren deskribapena"
-  },
   "aiAttachFile": "Erantsi fitxategia",
-  "@aiAttachFile": {
-    "description": "Label for the attach file button in AI generation dialog"
-  },
   "aiRemoveFile": "Kendu fitxategia",
-  "@aiRemoveFile": {
-    "description": "Tooltip for the remove file button"
-  },
   "aiFileMode": "Fitxategi modua",
-  "@aiFileMode": {
-    "description": "Title for the file mode indicator"
-  },
   "aiFileModeDescription": "Galderak erantsitako fitxategitik sortuko dira",
-  "@aiFileModeDescription": {
-    "description": "Description for the file mode indicator"
-  },
   "aiCommentsLabel": "Iruzkinak (Aukerakoa)",
-  "@aiCommentsLabel": {
-    "description": "Label for the comments field when a file is attached"
-  },
   "aiCommentsHint": "Gehitu erantsitako fitxategiari buruzko argibideak edo iruzkinak...",
-  "@aiCommentsHint": {
-    "description": "Hint text for the comments field when a file is attached"
-  },
   "aiCommentsHelperText": "Aukeran, gehitu fitxategitik galderak nola sortu jakiteko argibideak",
-  "@aiCommentsHelperText": {
-    "description": "Helper text for the comments field when a file is attached"
-  },
   "aiFilePickerError": "Ezin izan da hautatutako fitxategia kargatu",
-  "@aiFilePickerError": {
-    "description": "Error message when file picker fails"
-  },
   "studyModeLabel": "Ikasteko Modua",
   "generateStudyWithAI": "AI-rekin ikasketa sortu",
   "practiceModeLabel": "Praktika Modua",
-  "@practiceModeLabel": {
-    "description": "Label for practice mode option in start quiz"
-  },
   "smartModeLabel": "Modu adimenduna",
-  "@smartModeLabel": {
-    "description": "Label for smart exam mode option in start quiz"
-  },
   "smartModeDescription": "Azterketa modu berezia. Aplikazioak automatikoki zehazten du galdera multzoa eta kopurua, eta errepaso-estatistikak eguneratzen ditu.",
-  "@smartModeDescription": {
-    "description": "Description for smart exam mode"
-  },
   "studyModeDescription": "AI laguntza eskuragarri. Erantzun bakoitzaren ondoren feedbacka berehala, denbora-mugarik eta zigorrrik gabe. Ez du estatistikarik sortzen.",
   "examModeLabel": "Azterketa Modua",
   "examModeDescription": "AI laguntzarik gabe. Denbora-mugak eta erantzun okerrengatiko zigorrak aplika daitezke. SRS estatistikak sortzen ditu.",
@@ -1490,9 +324,6 @@
   "enable": "Gaitu",
   "disable": "Desgaitu",
   "reorderQuestionsTooltip": "Galderak berrantolatu",
-  "@reorderQuestionsTooltip": {
-    "description": "Tooltip for the reorder questions button"
-  },
   "quizPreviewTitle": "Galdetegiaren Aurrebista",
   "quizLoadedNoQuestionsAvailable": "Ez dago galderarik erabilgarri",
   "select": "Hautatu",
@@ -1506,32 +337,11 @@
   "deleteSingleQuestionConfirmation": "Ziur zaude galdera hau ezabatu nahi duzula?",
   "deleteMultipleQuestionsConfirmation": "Ziur zaude {count} galdera ezabatu nahi dituzula?",
   "missingExplanation": "Azalpena falta da",
-  "@missingExplanation": {
-    "description": "Label indicating that a question is missing an explanation"
-  },
   "missingExplanationTooltip": "Galdera honek ez du azalpenik",
-  "@missingExplanationTooltip": {
-    "description": "Tooltip text for the missing explanation badge"
-  },
   "missingStudySectionTooltip": "Ez dago ikasketa-atal batekin lotuta",
-  "@missingStudySectionTooltip": {
-    "description": "Tooltip text for the unlinked study section warning"
-  },
   "questionTypeTooltip": "Galdera mota: {type}",
-  "@questionTypeTooltip": {
-    "description": "Tooltip text for the question type badge",
-    "placeholders": {
-      "type": {
-        "type": "String",
-        "example": "Multiple Choice"
-      }
-    }
-  },
   "settingsTitle": "Ezarpenak",
   "questionsOverview": "Galdera mapa",
-  "@questionsOverview": {
-    "description": "Title for the questions overview bottom sheet"
-  },
   "keepPracticing": "Jarraitu praktikatzen hobetzeko!",
   "tryAgain": "Berriro saiatu",
   "review": "Berrikusi",
@@ -1547,71 +357,23 @@
   "aiContentFieldHint": "Sartu gai bat, adibidez \"Bigarren Mundu Gerrako historia\" edo itsatsi testua hemen...",
   "aiAttachFileHint": "Erantsi fitxategia (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "Askatu fitxategia hemen",
-  "@dropAttachmentHere": {
-    "description": "Hint shown when dragging a file over the attachment area"
-  },
   "dropImageHere": "Askatu irudia hemen",
-  "@dropImageHere": {
-    "description": "Hint shown when dragging an image over the image section"
-  },
   "aiNumberQuestionsLabel": "Galdera kopurua",
   "backButton": "Itzuli",
   "generateButton": "Sortu",
   "aiTopicModeCount": "Gai modua ({count} hitz)",
   "aiTextModeCount": "Testu modua ({count} hitz)",
   "aiGenerationCategoryLabel": "Eduki Modua",
-  "@aiGenerationCategoryLabel": {
-    "description": "Label for AI generation category selector"
-  },
   "aiGenerationCategoryTheory": "Teoria",
-  "@aiGenerationCategoryTheory": {
-    "description": "Label for theory category"
-  },
   "aiGenerationCategoryExercises": "Ariketak",
-  "@aiGenerationCategoryExercises": {
-    "description": "Label for exercises category"
-  },
   "aiGenerationCategoryBoth": "Nahasia",
-  "@aiGenerationCategoryBoth": {
-    "description": "Label for mixed category"
-  },
   "allLabel": "Guztiak",
-  "@allLabel": {
-    "description": "Galdera guztiak hautatzeko aukeraren etiketa"
-  },
   "finishQuizUnansweredQuestions": "{unansweredCount,plural, =1{erantzun gabeko galdera 1}other{{unansweredCount} erantzun gabeko galdera}} dituzu. Ziur galdetegia amaitu nahi duzula?",
-  "@finishQuizUnansweredQuestions": {
-    "description": "Message shown when there are unanswered questions.",
-    "placeholders": {
-      "unansweredCount": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "subtractPointsLabel": "Kendu puntuak erantzun okerrengatik",
   "subtractPointsDescription": "Kendu puntuak erantzun oker bakoitzeko.",
-  "@subtractPointsLabel": {
-    "description": "Label for the checkbox to subtract points for incorrect answers"
-  },
   "subtractPointsOffDescription": "Erantzun okerrek ez dute punturik kentzen.",
-  "@subtractPointsOffDescription": {
-    "description": "Description shown when subtract points for incorrect answers is disabled"
-  },
   "penaltyAmountLabel": "Penalizazio kopurua",
-  "@penaltyAmountLabel": {
-    "description": "Label for the input field to set the penalty amount"
-  },
   "penaltyPointsLabel": "-{amount} puntu / errore",
-  "@penaltyPointsLabel": {
-    "description": "Label showing the points deducted per mistake",
-    "placeholders": {
-      "amount": {
-        "type": "String",
-        "example": "0.50"
-      }
-    }
-  },
   "allQuestionsLabel": "Galdera guztiak",
   "startWithSelectedQuestions": "Hasi {count} hautatuekin",
   "advancedSettingsTitle": "Ezarpen Aurreratuak (Debug)",
@@ -1621,33 +383,12 @@
   "pasteImage": "Itsatsi",
   "clipboardNoImage": "Ez da irudirik aurkitu arbelean",
   "close": "Itxi",
-  "@close": {
-    "description": "Close button text"
-  },
   "showCorrectAnswerCountOffDescription": "Aukera anitzeko galderetan ez da erantzun zuzenen kopurua erakutsiko",
-  "@showCorrectAnswerCountOffDescription": {
-    "description": "Description for the show correct answer count setting when disabled."
-  },
   "randomizeAnswersOffDescription": "Erantzun-aukerak jatorrizko ordenan agertuko dira",
-  "@randomizeAnswersOffDescription": {
-    "description": "Description for the randomize answers setting when disabled."
-  },
   "scoringAndLimitsTitle": "Puntuazioa eta mugak",
-  "@scoringAndLimitsTitle": {
-    "description": "Title for the scoring and limits section in advanced settings"
-  },
   "congratulations": "🎉 Zorionak! 🎉",
-  "@congratulations": {
-    "description": "Congratulations message in winner dialog"
-  },
   "examConfigurationTitle": "Azterketaren konfigurazioa",
-  "@examConfigurationTitle": {
-    "description": "Title for the advanced settings / exam configuration section"
-  },
   "generationConfigurationTitle": "Sorkuntza konfigurazioa",
-  "@generationConfigurationTitle": {
-    "description": "Title for the generation configuration section in AI dialog"
-  },
   "validationMin1Error": "Gutxienez minutu 1",
   "remainingTimeWithDays": "{days}e {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}a {days}e {hours}:{minutes}:{seconds}",
@@ -1655,175 +396,46 @@
   "validationMin0GenericError": "Gutxienez 0",
   "errorStatus": "Error",
   "evaluatingResponses": "Erantzunak baloratzen...",
-  "@evaluatingResponses": {
-    "description": "Emaitzen pantailan bistaratzen den testua IAren ebaluazioak zain daudenean"
-  },
   "pendingEvaluationsCount": "{count, plural, =1{Garapen-galdera bat IA ebaluazioaren zain} other{{count} garapen-galdera IA ebaluazioaren zain}}",
-  "@pendingEvaluationsCount": {
-    "description": "Zain dauden IA ebaluazioen kopurua erakusten duen azpititulua",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "pendingStatus": "Zain",
-  "@pendingStatus": {
-    "description": "Zain dagoen IA ebaluazio baten egoera-etiketa"
-  },
   "notEvaluatedStatus": "Ebaluatu gabea",
-  "@notEvaluatedStatus": {
-    "description": "IAk ebaluatu ez duen saiakera-galdera baten egoera-etiketa"
-  },
   "retryButton": "Ebaluazioa berriro saiatu",
-  "@retryButton": {
-    "description": "IA ebaluazioa berriro saiatzeko botoiaren testua"
-  },
   "featureComingSoon": "Laster eskuragarri! Egon adi albisteetara.",
-  "@featureComingSoon": {
-    "description": "Oraindik erabilgarri ez dauden funtzionalitateentzako mezua"
-  },
   "showOnboarding": "Erakutsi ongietorria",
-  "@showOnboarding": {
-    "description": "Ongietorri fluxua berriro irekitzeko botoiaren etiketa"
-  },
   "showOnboardingDescription": "Ikusi ongietorri tutoriala berriro",
-  "@showOnboardingDescription": {
-    "description": "Ongietorri fluxua berriro irekitzeko botoiaren deskribapena"
-  },
   "onboardingBack": "Atzera",
-  "@onboardingBack": {
-    "description": "Atzera botoia ongietorri nabigazioan"
-  },
   "onboardingGetStarted": "Hasi",
-  "@onboardingGetStarted": {
-    "description": "Hasi botoia ongietorriko azken orrialdean"
-  },
   "onboardingWelcomeTitle": "Ongi etorri Quizdy-ra",
-  "@onboardingWelcomeTitle": {
-    "description": "Ongietorriko lehen orrialdeko titulua"
-  },
   "onboardingWelcomeDescription": "IAk bultzatutako funtzioekin, galdera pertsonalizagarriekin eta denbora errealeko puntuazioarekin.",
-  "@onboardingWelcomeDescription": {
-    "description": "Ongietorriko lehen orrialdeko deskribapena"
-  },
   "onboardingWelcomeSubtitle": "Zure ikasketa eta galdetegi interaktiboen laguntzailea",
-  "@onboardingWelcomeSubtitle": {
-    "description": "Ongietorriko lehen orrialdeko azpititulua mahaigaineko diseinuan"
-  },
   "onboardingStartQuizTitle": "Hasi galdetegi bat",
-  "@onboardingStartQuizTitle": {
-    "description": "Ongietorriko bigarren orrialdeko titulua"
-  },
   "onboardingStartQuizDescription": "Kargatu existitzen den .quiz fitxategi bat edo sortu berri bat hasieratik. Arrastatu eta askatu fitxategiak zuzenean edo erabili fitxategi-hautatzailea.",
-  "@onboardingStartQuizDescription": {
-    "description": "Ongietorriko bigarren orrialdeko deskribapena"
-  },
   "onboardingStartQuizSubtitle": "Kargatu, sortu eta jolastu",
-  "@onboardingStartQuizSubtitle": {
-    "description": "Ongietorriko bigarren orrialdeko azpititulua mahaigaineko diseinuan"
-  },
   "onboardingCreateQuestionsTitle": "Sortu Galderak",
-  "@onboardingCreateQuestionsTitle": {
-    "description": "Ongietorriko hirugarren orrialdeko titulua"
-  },
   "onboardingCreateQuestionsDescription": "Eraiki galdetegiak galdera mota anitzekin. Pertsonalizatu galdera bakoitza aukerekin, erantzun zuzenekin eta azalpenekin.",
-  "@onboardingCreateQuestionsDescription": {
-    "description": "Ongietorriko hirugarren orrialdeko deskribapena"
-  },
   "onboardingCreateQuestionsSubtitle": "Diseinatu zure galdetegiak",
-  "@onboardingCreateQuestionsSubtitle": {
-    "description": "Ongietorriko hirugarren orrialdeko azpititulua mahaigaineko diseinuan"
-  },
   "onboardingAiFeaturesTitle": "IAk bultzatutako funtzioak",
-  "@onboardingAiFeaturesTitle": {
-    "description": "Ongietorriko laugarren orrialdeko titulua"
-  },
   "onboardingAiFeaturesDescription": "Sortu galderak automatikament IArekin, lortu ikasketa laguntza denbora errealean eta ikasi modu adimentsuagoan tutoretza adimentsuarekin.",
-  "@onboardingAiFeaturesDescription": {
-    "description": "Ongietorriko laugarren orrialdeko deskribapena"
-  },
   "onboardingAiFeaturesSubtitle": "IAk bultzatuta",
-  "@onboardingAiFeaturesSubtitle": {
-    "description": "Ongietorriko laugarren orrialdeko azpititulua mahaigaineko diseinuan"
-  },
   "onboardingFeatureAiTitle": "IArekin ikasketa eta galderak sortzea",
-  "@onboardingFeatureAiTitle": {
-    "description": "Funtzioaren titulua ongietorri orrialdean"
-  },
   "onboardingFeatureAiDescription": "IArekin ikasketa eta galderak sortzea",
-  "@onboardingFeatureAiDescription": {
-    "description": "Funtzioaren deskribapena ongietorri orrialdean"
-  },
   "onboardingFeatureTypesTitle": "Galdera mota anitz",
-  "@onboardingFeatureTypesTitle": {
-    "description": "Funtzioaren titulua ongietorri orrialdean"
-  },
   "onboardingFeatureTypesDescription": "Aukera bakarra, aukera anitza, egia/gezurra eta galdera irekia",
-  "@onboardingFeatureTypesDescription": {
-    "description": "Funtzioaren deskribapena ongietorri orrialdean"
-  },
   "onboardingFeatureLanguagesTitle": "18 hizkuntza onartzen dira",
-  "@onboardingFeatureLanguagesTitle": {
-    "description": "Funtzioaren titulua ongietorri orrialdean"
-  },
   "onboardingFeatureLanguagesDescription": "Sortu eta egin galdetegiak hainbat hizkuntzatan",
-  "@onboardingFeatureLanguagesDescription": {
-    "description": "Funtzioaren deskribapena ongietorri orrialdean"
-  },
   "onboardingStepCreateTitle": "Sortu Galdetegia",
-  "@onboardingStepCreateTitle": {
-    "description": "Urratsaren titulua galdetegia hasteko orrialdean"
-  },
   "onboardingStepCreateDescription": "Hasi hutsetik zure galderekin",
-  "@onboardingStepCreateDescription": {
-    "description": "Urratsaren deskribapena galdetegia hasteko orrialdean"
-  },
   "onboardingStepLoadTitle": "Kargatu Fitxategia",
-  "@onboardingStepLoadTitle": {
-    "description": "Urratsaren titulua galdetegia hasteko orrialdean"
-  },
   "onboardingStepLoadDescription": "Inportatu .quiz fitxategi bat zure gailutik",
-  "@onboardingStepLoadDescription": {
-    "description": "Urratsaren deskribapena galdetegia hasteko orrialdean"
-  },
   "onboardingStepTakeTitle": "Egin Galdetegia",
-  "@onboardingStepTakeTitle": {
-    "description": "Urratsaren titulua galdetegia hasteko orrialdean"
-  },
   "onboardingStepTakeDescription": "Erantzun galderak eta lortu puntuazioa denbora errealean",
-  "@onboardingStepTakeDescription": {
-    "description": "Urratsaren deskribapena galdetegia hasteko orrialdean"
-  },
   "onboardingAiAutoGenerateTitle": "Sortu galderak automatikoki",
-  "@onboardingAiAutoGenerateTitle": {
-    "description": "IA funtzioaren titulua ongietorrian"
-  },
   "onboardingAiAutoGenerateDescription": "Edozein testutik Gemini edo GPTrekin",
-  "@onboardingAiAutoGenerateDescription": {
-    "description": "IA funtzioaren deskribapena ongietorrian"
-  },
   "onboardingAiStudyAssistantTitle": "IA Ikasketa Laguntzailea",
-  "@onboardingAiStudyAssistantTitle": {
-    "description": "IA funtzioaren titulua ongietorrian"
-  },
   "onboardingAiStudyAssistantDescription": "Lortu azalpenak ikasten duzun bitartean",
-  "@onboardingAiStudyAssistantDescription": {
-    "description": "IA funtzioaren deskribapena ongietorrian"
-  },
   "onboardingAiMultiLanguageTitle": "Hizkuntza anitzeko euskarria",
-  "@onboardingAiMultiLanguageTitle": {
-    "description": "IA funtzioaren titulua ongietorrian"
-  },
   "onboardingAiMultiLanguageDescription": "Sortu 18 hizkuntza desberdinetan",
-  "@onboardingAiMultiLanguageDescription": {
-    "description": "IA funtzioaren deskribapena ongietorrian"
-  },
   "documentTooLongForProcessing": "Dokumentua luzeegia izan daiteke MVP honetan pasaldi batean prozesatzeko.",
-  "@documentTooLongForProcessing": {
-    "description": "Error message when AI document processing fails due to document length"
-  },
   "studyScreenNoSlidesAvailable": "Ez dago ikasketa atalik erabilgarri",
   "studyScreenGenerating": "Ikasketa materiala sortzen...",
   "studyScreenError": "Errore bat gertatu da ikasketa materiala sortzean.",
@@ -1831,36 +443,13 @@
   "studyScreenPreviousSection": "Aurreko orria",
   "studyScreenNextSection": "Hurrengo orria",
   "studyScreenSectionIndicator": "{current}/{total} orria",
-  "@studyScreenSectionIndicator": {
-    "placeholders": {
-      "current": {
-        "type": "int"
-      },
-      "total": {
-        "type": "int"
-      }
-    }
-  },
   "studyScreenAiSummaryTitle": "AI Laburpena",
   "studyScreenNoSummary": "Ez dago laburpenik erabilgarri.",
   "studyScreenCoverage": "Sortutako edukia",
-  "@studyScreenCoverage": {
-    "description": "Label for the study coverage percentage"
-  },
   "aiStudyLanguageLabel": "Ikasketa hizkuntza",
-  "@aiStudyLanguageLabel": {
-    "description": "Label for the language selector in study generation"
-  },
   "studyScreenStudyGuide": "Ikasketa-gida",
   "studyScreenSections": "Atalak",
   "studyScreenChaptersCount": "{count} kapitulu",
-  "@studyScreenChaptersCount": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "studyScreenCompleted": "Burututa",
   "chooseModeDialogTitle": "Modua aukeratu",
   "chooseModeDialogMessage": "Fitxategi honek galdetegiko galderak eta ikasketa-edukia ditu. Zein modu ireki nahi duzu?",
@@ -1886,9 +475,6 @@
   "aiDifficultyAutoDescription": "Zailtasun maila automatikoki egokituko da kargatutako dokumentuaren arabera",
   "aiDifficultyManualDescription": "Hautatu eskuz edukirako ondoen egokitzen den zailtasun maila",
   "aiContextMode": "Testuinguru Modua",
-  "@aiContextMode": {
-    "description": "Label for context mode when a file is uploaded"
-  },
   "startQuizFromStudy": "Probatu zure ezagutzak",
   "studySectionPracticePrompt": "Ataleko galderak praktikatu",
   "studySectionPracticeSubtitle": "Atal honek {count, plural, =1{galdera lotu 1} other{{count} galdera lotu}} ditu. Praktika itzazu orain zure ikaskuntza sendotzeko!",
@@ -1898,29 +484,11 @@
   "studyScreenCustomChapter": "Kapitulu pertsonalizatua",
   "addSection": "Gehitu atala",
   "editSection": "Atala editatu",
-  "@editSection": {
-    "description": "Title for editing an existing section dialog"
-  },
   "sectionTitleLabel": "Izenburua",
-  "@sectionTitleLabel": {
-    "description": "Label for section title input field in add/edit section dialog"
-  },
   "sectionTitleHint": "Sartu atalaren izenburua",
-  "@sectionTitleHint": {
-    "description": "Hint for section title input field in add/edit section dialog"
-  },
   "sectionDescriptionLabel": "Deskribapena",
-  "@sectionDescriptionLabel": {
-    "description": "Label for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionHint": "Sartu atalaren deskribapena",
-  "@sectionDescriptionHint": {
-    "description": "Hint for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionAiHint": "Informazio hau AIak geroago erabiliko du ikasketa-edukia sortzeko.",
-  "@sectionDescriptionAiHint": {
-    "description": "Helper text shown below section description input, indicating AI will use this information later"
-  },
   "generateSectionsWithAI": "Sortu atalak AIarekin",
   "addSectionsWithAI": "Gehitu atalak AIarekin",
   "studyScreenReminder": "Oroigarria",
@@ -1931,414 +499,108 @@
   "studyComponentLimitations": "Mugak",
   "studyScreenDownloadChunk": "Sortu",
   "aiStudyChapterSystemPrompt": "Ikasketarako AI laguntzailea zara, ikasle bati ikasketa-kapitulu baten edukia ulertzen laguntzen diona. Azaldu kontzeptuak sakon, eman adibideak eta egin loturak ikasmaterialaren beste atal batzuekin hala dagokionean. Erantzun galdetu dizun hizkuntza berean.",
-  "@aiStudyChapterSystemPrompt": {
-    "description": "System prompt for the AI study assistant when chatting about a study chapter"
-  },
   "aiStudyChapterGuardrail": "Mantendu arreta emandako kapituluaren edukian eta ikasmaterialean. Ikaslearen galderak beste kapitulu bati buruzkoa bada, aipatu dagokion kapituluaren izenburua.",
-  "@aiStudyChapterGuardrail": {
-    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
-  },
   "askAIStudyTooltip": "Galdeiozu AIari kapitulu honi buruz",
-  "@askAIStudyTooltip": {
-    "description": "Tooltip for the Ask AI button shown in the study chapter view"
-  },
   "studyScreenPendingSections": "Sekzio batzuk oraindik ez dira sortu",
-  "@studyScreenPendingSections": {
-    "description": "Ikasketa aurkibidean agertzen den oharra zati batzuk oraindik sortu ez direnean"
-  },
   "aiErrorRedirect": "(302) birzuzendua hona: {location}",
-  "@aiErrorRedirect": {
-    "description": "Errore mezua IA eskaera baten bitartean 302 birzuzenketa bat gertatzen denean",
-    "placeholders": {
-      "location": {
-        "type": "String",
-        "example": "https://example.com"
-      }
-    }
-  },
   "aiErrorConnectionAborted": "Eskaera eten egin da aplikazioa atzeko planora pasatu delako. Mesedez, mantendu aplikazioa irekita edukia sortzen den bitartean.",
-  "@aiErrorConnectionAborted": {
-    "description": "Error message when a request is aborted because the app is minimized."
-  },
   "noInternetConnection": "Interneterako konexiorik gabe. Mesedez, egiaztatu zure sareko ezarpenak eta saiatu berriro.",
-  "@noInternetConnection": {
-    "description": "Error message shown when the device has no internet connection."
-  },
   "duplicatedTag": "Bikoiztua",
-  "@duplicatedTag": {
-    "description": "Tag to indicate an item is duplicated"
-  },
   "aiSelectSectionsTitle": "Hautatu atalak",
-  "@aiSelectSectionsTitle": {
-    "description": "Title for the chunk section selector in AI content step"
-  },
   "aiSelectSectionsSubtitle": "Aukeratu zein ikasketa-atal erabiliko diren galderak sortzeko",
-  "@aiSelectSectionsSubtitle": {
-    "description": "Subtitle explaining what the section selector does"
-  },
   "aiAllSections": "Atal guztiak",
   "aiSelectQuestionsTitle": "Hautatu galderak",
-  "@aiSelectQuestionsTitle": {
-    "description": "Title for the question selector in AI study generation"
-  },
   "aiSelectQuestionsSubtitle": "Aukeratu Quiz moduko galderak sorkuntza-testuinguru gisa",
-  "@aiSelectQuestionsSubtitle": {
-    "description": "Subtitle explaining what the question selector does"
-  },
   "aiAllQuestions": "Galdera guztiak",
   "onboardingStudyContentTitle": "Ikasi zure edukia",
-  "@onboardingStudyContentTitle": {
-    "description": "Title of the study content onboarding page"
-  },
   "onboardingStudyContentDescription": "Antolatu zure materiala ikasketa-ataletan. Fitxategiak inportatu, eskuz gehitu edo utzi AI-ari edukia sortzen.",
-  "@onboardingStudyContentDescription": {
-    "description": "Description of the study content onboarding page"
-  },
   "onboardingStudyContentSubtitle": "Antolatu, sortu eta ikasi",
-  "@onboardingStudyContentSubtitle": {
-    "description": "Subtitle of the study content onboarding page"
-  },
   "onboardingStudyStepAddTitle": "Gehitu materiala",
-  "@onboardingStudyStepAddTitle": {
-    "description": "Step 1 title in study content onboarding page"
-  },
   "onboardingStudyStepAddDescription": "Idatzi atalak edo inportatu .quiz fitxategietatik",
-  "@onboardingStudyStepAddDescription": {
-    "description": "Step 1 description in study content onboarding page"
-  },
   "onboardingStudyStepGenerateTitle": "AI Sorkuntza",
-  "@onboardingStudyStepGenerateTitle": {
-    "description": "Step 2 title in study content onboarding page"
-  },
   "onboardingStudyStepGenerateDescription": "AI-ak ikasketa-atalak sortzen ditu zure dokumentuetatik",
-  "@onboardingStudyStepGenerateDescription": {
-    "description": "Step 2 description in study content onboarding page"
-  },
   "onboardingStudyStepStudyTitle": "Ikasi sortutako atalak",
-  "@onboardingStudyStepStudyTitle": {
-    "description": "Step 3 title in study content onboarding page"
-  },
   "onboardingStudyStepStudyDescription": "Nabigatu atal bakoitzean eta indartu zure ikaskuntza",
-  "@onboardingStudyStepStudyDescription": {
-    "description": "Step 3 description in study content onboarding page"
-  },
   "onboardingStudyStepPdfTitle": "PDF gisa esportatu",
-  "@onboardingStudyStepPdfTitle": {
-    "description": "Step 4 title in study content onboarding page"
-  },
   "onboardingStudyStepPdfDescription": "Deskargatu eta partekatu zure ikasketa PDF fitxategi gisa",
-  "@onboardingStudyStepPdfDescription": {
-    "description": "Step 4 description in study content onboarding page"
-  },
   "privacyPolicyLabel": "Pribatutasun politika",
   "privacyPolicyDescription": "Irakurri nola kudeatzen diren zure datuak Quizdy-n",
   "privacyPolicyRequiredDescription": "Mesedez, berrikusi eta onartu pribatutasun politika jarraitzeko.",
   "privacyPolicyLoadError": "Ezin izan da pribatutasun politikaren edukia kargatu.",
   "privacyPolicyCanonicalNotice": "Politika honen legezko bertsio ofiziala proiektuaren biltegian argitaratutako ingelesezko testua da.",
-  "@privacyPolicyCanonicalNotice": {
-    "description": "Short legal notice indicating the canonical version of the privacy policy"
-  },
   "privacyPolicyOpenInBrowser": "Ireki politika osoa GitHub-en",
-  "@privacyPolicyOpenInBrowser": {
-    "description": "Button label to open the privacy policy URL in an external browser"
-  },
   "supportLabel": "Laguntza",
-  "@supportLabel": {
-    "description": "Label for the support action in settings"
-  },
   "supportDescription": "Ireki GitHub arazoak aplikazioaren eta plataformaren xehetasunekin",
-  "@supportDescription": {
-    "description": "Description for the support action in settings"
-  },
   "feedbackTitle": "Zure iritzia garrantzitsua da guretzat",
-  "@feedbackTitle": {
-    "description": "Title for the home screen feedback prompt"
-  },
   "feedbackDescription": "Erantzun inkesta labur bati eta lagundu Quizdy hobetzen",
-  "@feedbackDescription": {
-    "description": "Description for the home screen feedback prompt"
-  },
   "studyEditorComponents": "Osagaiak",
-  "@studyEditorComponents": {
-    "description": "Section header for the list of components in the component editor"
-  },
   "studyEditorEmptyComponents": "Orrialde honetan ez dago osagairik.",
-  "@studyEditorEmptyComponents": {
-    "description": "Empty state message in the component editor"
-  },
   "studyEditorToggleEdit": "Editatu edukia",
-  "@studyEditorToggleEdit": {
-    "description": "Tooltip for the FAB button that enables study content edit mode"
-  },
   "studyEditorFieldBody": "Gorputz testua",
-  "@studyEditorFieldBody": {
-    "description": "Label for the main body text field in component editors"
-  },
   "studyEditorSaveChanges": "Gorde aldaketak",
-  "@studyEditorSaveChanges": {
-    "description": "Button label to save edited component properties"
-  },
   "studyEditorPages": "Orriak",
-  "@studyEditorPages": {
-    "description": "Section header for the list of pages in the section page manager"
-  },
   "studyEditorFieldTitle": "Izenburua",
-  "@studyEditorFieldTitle": {
-    "description": "Label for the optional title field in component editors"
-  },
   "studyEditorExitEdit": "Irten edizio modua",
-  "@studyEditorExitEdit": {
-    "description": "Tooltip for the FAB button that disables study content edit mode"
-  },
   "studyEditorEmptyPages": "Oraindik ez dago orrialderik. Sakatu + bat gehitzeko.",
-  "@studyEditorEmptyPages": {
-    "description": "Empty state message in the section page manager"
-  },
   "studyEditorEditParagraph": "Editatu paragrafoa",
-  "@studyEditorEditParagraph": {
-    "description": "Navigation header title for the paragraph property panel"
-  },
   "studyEditorDeletePage": "Ezabatu orria",
-  "@studyEditorDeletePage": {
-    "description": "Button label to delete a page from a section"
-  },
   "componentTypeParagraph": "Paragrafoa",
-  "@componentTypeParagraph": {
-    "description": "Display name for the paragraph component type"
-  },
   "componentTypeSectionTitle": "Atalaren Izenburua",
-  "@componentTypeSectionTitle": {
-    "description": "Display name for the sectionTitle component type"
-  },
   "studyEditorPageN": "{n} orrialdea",
-  "@studyEditorPageN": {
-    "description": "Label for page number n in the section page manager",
-    "placeholders": {
-      "n": {
-        "type": "int"
-      }
-    }
-  },
   "studyEditorEditName": "Editatu {name}",
-  "@studyEditorEditName": {
-    "description": "Navigation header title: Edit [section name]",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "studyEditorAddPage": "Gehitu orria",
-  "@studyEditorAddPage": {
-    "description": "Button label to add a new page to a section"
-  },
   "componentTypeComparisonTable": "Konparazio taula",
-  "@componentTypeComparisonTable": {
-    "description": "Display name for the comparisonTable component type"
-  },
   "componentTypeProsCons": "Alde onak eta txarrak",
-  "@componentTypeProsCons": {
-    "description": "Display name for the prosCons component type"
-  },
   "componentTypeQuote": "Aipatu",
-  "@componentTypeQuote": {
-    "description": "Display name for the quote component type"
-  },
   "componentTypeTimeline": "Denbora-lerroa",
-  "@componentTypeTimeline": {
-    "description": "Display name for the timeline component type"
-  },
   "componentTypeWarning": "Abisua",
-  "@componentTypeWarning": {
-    "description": "Display name for the warning component type"
-  },
   "componentFieldDefinition": "Definizioa",
-  "@componentFieldDefinition": {
-    "description": "Form field label for definition"
-  },
   "componentFieldTerm": "Epea",
-  "@componentFieldTerm": {
-    "description": "Form field label for term (key definition)"
-  },
   "componentFieldQuote": "Aipatu",
-  "@componentFieldQuote": {
-    "description": "Form field label for quote text"
-  },
   "componentFieldAuthor": "Egilea",
-  "@componentFieldAuthor": {
-    "description": "Form field label for quote author"
-  },
   "componentFieldEquation": "Ekuazioa",
-  "@componentFieldEquation": {
-    "description": "Form field label for formula equation"
-  },
   "componentFieldEquationLabel": "Ekuazioaren etiketa",
-  "@componentFieldEquationLabel": {
-    "description": "Form field label for formula equation label"
-  },
   "componentTypeNumberedList": "Zenbakidun Zerrenda",
-  "@componentTypeNumberedList": {
-    "description": "Display name for the numberedList component type"
-  },
   "componentFieldSubtitle": "Azpititulua",
-  "@componentFieldSubtitle": {
-    "description": "Form field label for subtitle"
-  },
   "componentTypeIconCards": "Ikono Txartelak",
-  "@componentTypeIconCards": {
-    "description": "Display name for the iconCards component type"
-  },
   "componentTypeFormula": "Formula",
-  "@componentTypeFormula": {
-    "description": "Display name for the formula component type"
-  },
   "componentTypeKeyConcepts": "Funtsezko kontzeptuak",
-  "@componentTypeKeyConcepts": {
-    "description": "Display name for the keyConcepts component type"
-  },
   "componentTypeKeyDefinition": "Gako Definizioa",
-  "@componentTypeKeyDefinition": {
-    "description": "Display name for the keyDefinition component type"
-  },
   "componentFieldItems": "Elementuak",
-  "@componentFieldItems": {
-    "description": "Form section label for a list of items"
-  },
   "componentFieldExplanation": "Azalpena",
-  "@componentFieldExplanation": {
-    "description": "Form field label for formula explanation"
-  },
   "componentFieldDate": "Data",
-  "@componentFieldDate": {
-    "description": "Form field label for timeline event date"
-  },
   "componentFieldDescription": "Deskribapena",
-  "@componentFieldDescription": {
-    "description": "Form field label for item description"
-  },
   "componentFieldEvents": "Gertaerak",
-  "@componentFieldEvents": {
-    "description": "Form section label for timeline events"
-  },
   "componentFieldPros": "Aldekoak",
-  "@componentFieldPros": {
-    "description": "Form section label for pros list"
-  },
   "componentFieldCons": "Cons",
-  "@componentFieldCons": {
-    "description": "Form section label for cons list"
-  },
   "componentFieldColumn": "Zutabea",
-  "@componentFieldColumn": {
-    "description": "Form field label for a single table column"
-  },
   "componentFieldRow": "Errenkada",
-  "@componentFieldRow": {
-    "description": "Form field label for a single table row"
-  },
   "componentFieldColumns": "Zutabeak",
-  "@componentFieldColumns": {
-    "description": "Form section label for table columns"
-  },
   "componentTypeReminder": "Oroigarria",
-  "@componentTypeReminder": {
-    "description": "Display name for the reminder component type"
-  },
   "componentFieldLabel": "Etiketa",
-  "@componentFieldLabel": {
-    "description": "Form field label for a row label in comparison table"
-  },
   "componentFieldLabelColumn": "Etiketen zutabea",
-  "@componentFieldLabelColumn": {
-    "description": "Form field label for the header of the label column in a comparison table"
-  },
   "componentFieldOptional": "aukerakoa",
-  "@componentFieldOptional": {
-    "description": "Label shown next to optional form fields"
-  },
   "componentFieldRequired": "Eremu hau nahitaezkoa da",
   "componentFieldAdd": "Gehitu {item}",
-  "@componentFieldAdd": {
-    "description": "Button label to add a new item to a list",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "componentFieldRows": "Errenkadak",
-  "@componentFieldRows": {
-    "description": "Form section label for table rows"
-  },
   "componentFieldCards": "Txartelak",
-  "@componentFieldCards": {
-    "description": "Form section label for icon cards"
-  },
   "componentFieldConcept": "Kontzeptua",
-  "@componentFieldConcept": {
-    "description": "Form field label for a single concept item"
-  },
   "componentFieldPro": "Pro",
-  "@componentFieldPro": {
-    "description": "Form field label for a single pro item"
-  },
   "addComponentTitle": "Gehitu osagaia",
-  "@addComponentTitle": {
-    "description": "Title for the Add Component picker screen"
-  },
   "componentFieldCon": "Kon",
-  "@componentFieldCon": {
-    "description": "Form field label for a single con item"
-  },
   "addComponentsWithAI": "Gehitu osagaiak IArekin",
-  "@addComponentsWithAI": {
-    "description": "Button label to add study components using AI"
-  },
   "aiSelectComponentTypesTitle": "Hautatu osagai motak",
-  "@aiSelectComponentTypesTitle": {
-    "description": "Title for the component type filter in AI study generation"
-  },
   "aiSelectComponentTypesSubtitle": "Gaitu sortutako ikasketa-edukian zein osagai mota sartuko diren iragazteko",
-  "@aiSelectComponentTypesSubtitle": {
-    "description": "Subtitle for the component type filter in AI study generation"
-  },
   "aiComponentsGeneratedSuccess": "Edukia behar bezala sortu da",
-  "@aiComponentsGeneratedSuccess": {
-    "description": "Snackbar message shown when AI component generation completes successfully"
-  },
   "duplicate": "Bikoiztu",
-  "@duplicate": {
-    "description": "Tooltip for the duplicate button in the component card"
-  },
   "moveUp": "Mugitu gora",
-  "@moveUp": {
-    "description": "Tooltip for the move up button in the component card"
-  },
   "moveDown": "Mugitu behera",
-  "@moveDown": {
-    "description": "Tooltip for the move down button in the component card"
-  },
   "aiDifficultyRequiresFileTooltip": "Aukera hau erabiltzeko fitxategi bat erantsi behar da",
-  "@aiDifficultyRequiresFileTooltip": {
-    "description": "Tooltip when auto difficulty is disabled due to missing file"
-  },
   "exportAsPdf": "PDF gisa esportatu",
   "exportPdfSuccess": "PDF-a arrakastaz esportatu da",
   "exportPdfError": "PDF esportatzean errorea",
   "deleteDuplicatesButton": "Ezabatu bikoiztuak",
-  "@deleteDuplicatesButton": {
-    "description": "Button to delete duplicated items"
-  },
   "deleteDuplicatesConfirmationMessage": "Ziur zaude {count} elementu bikoiztu ezabatu nahi dituzula? Bakoitzaren kopia bakarra gordeko da.",
-  "@deleteDuplicatesConfirmationMessage": {
-    "description": "Confirmation message when deleting duplicates",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "onboardingDownloadAppTitle": "Instalatu Quizdy zure gailuetan",
   "onboardingDownloadAppDescription": "Instalatu Quizdy mugikorrean QR kodeekin edo ireki zuzenean mahaigaineko denden estekak.",
   "onboardingDownloadAppSubtitle": "Instalatu mugikorrean edo mahaigainean pauso bakarrean.",
@@ -2354,77 +616,24 @@
   "onboardingDownloadQrTitle": "Eskaneatu jarraitzeko",
   "onboardingDownloadQrDescription": "Erabili telefonoaren kamera dendaren esteka irekitzeko.",
   "studyPdfTableOfContents": "Aurkibidea",
-  "@studyPdfTableOfContents": {
-    "description": "Title of the table of contents page in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudy": "Ikasketa sartu",
-  "@exportPdfOptionsIncludeStudy": {
-    "description": "Switch label to include the study content pages in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudySubtitle": "Ikasketa edukiaren orrialdeak gehitu",
-  "@exportPdfOptionsIncludeStudySubtitle": {
-    "description": "Subtitle for the include study switch in the export PDF dialog"
-  },
   "exportPdfOptionsTitle": "PDF gisa esportatu",
-  "@exportPdfOptionsTitle": {
-    "description": "Title of the export PDF options dialog"
-  },
   "exportPdfOptionsIncludeQuestions": "Galdera-orria sartu",
-  "@exportPdfOptionsIncludeQuestions": {
-    "description": "Switch label to include a questions page in the exported PDF"
-  },
   "exportPdfOptionsIncludeQuestionsSubtitle": "Galdetegiko galdera guztiekin orrialde bat gehitu",
-  "@exportPdfOptionsIncludeQuestionsSubtitle": {
-    "description": "Subtitle for the include questions switch in the export PDF dialog"
-  },
   "exportPdfOptionsIncludeAnswers": "Erantzunak sartu",
-  "@exportPdfOptionsIncludeAnswers": {
-    "description": "Switch label to include correct answers in the questions page"
-  },
   "exportPdfOptionsIncludeAnswersSubtitle": "Erantzun zuzenekin orrialde bereizi bat gehitu",
-  "@exportPdfOptionsIncludeAnswersSubtitle": {
-    "description": "Subtitle for the include answers switch in the export PDF dialog"
-  },
   "exportPdfQuestionsPageTitle": "Galderak",
-  "@exportPdfQuestionsPageTitle": {
-    "description": "Section title for the questions page in the exported PDF"
-  },
   "exportPdfAnswersLabel": "Erantzunak",
-  "@exportPdfAnswersLabel": {
-    "description": "Title of the answers page in the exported PDF"
-  },
   "exportButton": "Esportatu",
-  "@exportButton": {
-    "description": "Label for the Export button in the export PDF options dialog"
-  },
   "openInQuizdyApp": "Ireki Quizdy aplikazioan",
   "open": "Ireki",
   "installApp": "Instalatu aplikazioa",
   "updateAvailableTitle": "Eguneratzea eskuragarri",
-  "@updateAvailableTitle": {
-    "description": "Title shown in the update banner when a newer app version is available."
-  },
   "updateAvailableMessage": "Quizdy-ren {version} bertsioa eskuragarri dago.",
-  "@updateAvailableMessage": {
-    "description": "Subtitle in the update banner indicating which version is available.",
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
   "updateButton": "Eguneratu",
-  "@updateButton": {
-    "description": "Label for the update button in the update banner."
-  },
   "forceUpdateTitle": "Eguneratzea beharrezkoa",
-  "@forceUpdateTitle": {
-    "description": "Title of the force update dialog."
-  },
   "forceUpdateMessage": "Derrigorrezko eguneratzea beharrezkoa da Quizdy erabiltzen jarraitzak. Mesedez, eguneratu aplikazioa.",
-  "@forceUpdateMessage": {
-    "description": "Body message of the force update dialog."
-  },
   "questionOrderBySection": "Atalen arabera",
   "questionOrderBySectionDesc": "Taldekatu galderak atalez eta erakutsi atal bakoitza goranzko ordenan",
   "srsStatsTitle": "Estatistikak",

@@ -4,1439 +4,300 @@
   "abortQuizMessage": "打开新文件将停止当前测验。",
   "stopAndOpenButton": "停止并打开",
   "titleAppBar": "测验 - 考试模拟器",
-  "@titleAppBar": {
-    "description": "Title of the application displayed in the AppBar."
-  },
   "create": "创建",
-  "@create": {
-    "description": "Label for the Create Quiz file button in the AppBar."
-  },
   "preview": "预览",
-  "@preview": {
-    "description": "Label for the LaTeX preview section in question dialogs."
-  },
   "load": "加载",
-  "@load": {
-    "description": "Label for the Load Quiz file button in the AppBar."
-  },
   "fileLoaded": "文件已加载：{filePath}",
-  "@fileLoaded": {
-    "description": "Message displayed when a file is successfully loaded.",
-    "placeholders": {
-      "filePath": {
-        "type": "String",
-        "example": "/path/to/file.quiz"
-      }
-    }
-  },
   "fileSaved": "文件已保存：{filePath}",
-  "@fileSaved": {
-    "description": "Message displayed when a file is successfully saved.",
-    "placeholders": {
-      "filePath": {
-        "type": "String",
-        "example": "/path/to/file.quiz"
-      }
-    }
-  },
   "dropFileHere": "点击徽标或将 .quiz 文件拖到屏幕上",
   "errorOpeningFile": "打开文件时出错",
-  "@errorOpeningFile": {
-    "description": "Generic error message when opening a file fails."
-  },
   "replaceFileTitle": "加载新 Quiz",
-  "@replaceFileTitle": {
-    "description": "Title of the confirmation dialog to replace the current file."
-  },
   "replaceFileMessage": "已加载一个 Quiz。您要用新文件替换它吗？",
-  "@replaceFileMessage": {
-    "description": "Message of the confirmation dialog to replace the current file."
-  },
   "replaceButton": "加载",
-  "@replaceButton": {
-    "description": "Button to confirm replacing the file."
-  },
-  "@dropFileHere": {
-    "description": "Text displayed inside the drop area for dragging files."
-  },
   "clickOrDragFile": "点击加载或将 .quiz 文件拖动到屏幕上",
-  "@clickOrDragFile": {
-    "description": "加载区域下方显示的文本"
-  },
   "errorInvalidFile": "错误：无效文件。必须是.quiz文件。",
-  "@errorInvalidFile": {
-    "description": "Message displayed when the dropped file is not a .quiz file."
-  },
   "errorLoadingFile": "加载测验文件时出错：{error}",
-  "@errorLoadingFile": {
-    "description": "Message displayed when there is an error while loading a Quiz file.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "File not found"
-      }
-    }
-  },
   "errorExportingFile": "导出文件时出错：{error}",
-  "@errorExportingFile": {
-    "description": "Message displayed when there is an error while exporting a file.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "File not found"
-      }
-    }
-  },
   "cancelButton": "取消",
-  "@cancelButton": {
-    "description": "Cancel button."
-  },
   "saveButton": "保存",
-  "@saveButton": {
-    "description": "Save button."
-  },
   "newTag": "新建",
-  "@newTag": {
-    "description": "用于指示新项目或已修改项目的标签"
-  },
   "modifiedTag": "已修改",
-  "@modifiedTag": {
-    "description": "用于指示项目已修改的标签"
-  },
   "confirmDeleteTitle": "确认删除",
-  "@confirmDeleteTitle": {
-    "description": "Title for the confirmation dialog when deleting a process."
-  },
   "confirmDeleteMessage": "您确定要删除\"{processName}\"过程吗？",
-  "@confirmDeleteMessage": {
-    "description": "Message in the confirmation dialog for deletion.",
-    "placeholders": {
-      "processName": {
-        "type": "String",
-        "example": "Question 1"
-      }
-    }
-  },
   "deleteButton": "删除",
-  "@deleteButton": {
-    "description": "Button text for confirming deletion."
-  },
   "confirmExitTitle": "确认退出",
-  "@confirmExitTitle": {
-    "description": "Title for the confirmation dialog when exiting."
-  },
   "confirmExitMessage": "有未保存的更改。您要放弃更改并离开吗？",
-  "@confirmExitMessage": {
-    "description": "Message in the confirmation dialog for exiting."
-  },
   "exitButton": "退出不保存",
-  "@exitButton": {
-    "description": "Exit button text."
-  },
   "saveDialogTitle": "请选择输出文件：",
-  "@saveDialogTitle": {
-    "description": "Title for the save dialog."
-  },
   "createQuizFileTitle": "创建测验文件",
-  "@createQuizFileTitle": {
-    "description": "Title for create quiz file dialog."
-  },
   "editQuizFileTitle": "编辑测验文件",
-  "@editQuizFileTitle": {
-    "description": "编辑测验文件对话框的标题。"
-  },
   "fileNameLabel": "文件名",
-  "@fileNameLabel": {
-    "description": "Label for file name input."
-  },
   "fileDescriptionLabel": "文件描述",
-  "@fileDescriptionLabel": {
-    "description": "Label for file description input."
-  },
   "createButton": "创建",
-  "@createButton": {
-    "description": "Create button text."
-  },
   "fileNameRequiredError": "文件名是必需的。",
-  "@fileNameRequiredError": {
-    "description": "Error message when file name is empty."
-  },
   "fileDescriptionRequiredError": "文件描述是必需的。",
-  "@fileDescriptionRequiredError": {
-    "description": "Error message when file description is empty."
-  },
   "versionLabel": "版本",
-  "@versionLabel": {
-    "description": "Label for quiz version field"
-  },
   "authorLabel": "作者",
-  "@authorLabel": {
-    "description": "Label for quiz author field"
-  },
   "authorRequiredError": "作者是必需的。",
-  "@authorRequiredError": {
-    "description": "Error message when author field is empty"
-  },
   "requiredFieldsError": "所有必填字段都必须填写。",
-  "@requiredFieldsError": {
-    "description": "Error message when required fields are missing"
-  },
   "requestFileNameTitle": "输入测验文件名",
-  "@requestFileNameTitle": {
-    "description": "Title for request file name dialog."
-  },
   "fileNameHint": "文件名（必需）",
-  "@fileNameHint": {
-    "description": "Hint text for file name input."
-  },
   "emptyFileNameMessage": "文件名不能为空。",
-  "@emptyFileNameMessage": {
-    "description": "Error message when file name is empty."
-  },
   "acceptButton": "接受",
-  "@acceptButton": {
-    "description": "Accept button text."
-  },
   "saveTooltip": "保存文件",
-  "@saveTooltip": {
-    "description": "Tooltip for save button."
-  },
   "saveDisabledTooltip": "没有需要保存的更改",
-  "@saveDisabledTooltip": {
-    "description": "Tooltip for disabled save button."
-  },
   "executeTooltip": "执行考试",
-  "@executeTooltip": {
-    "description": "Tooltip for execute button."
-  },
   "addTooltip": "添加新问题",
-  "@addTooltip": {
-    "description": "Tooltip for add button."
-  },
   "backSemanticLabel": "返回按钮",
-  "@backSemanticLabel": {
-    "description": "Semantic label for back button."
-  },
   "createFileTooltip": "创建新的测验文件",
-  "@createFileTooltip": {
-    "description": "Tooltip for create file button."
-  },
   "loadFileTooltip": "加载现有的测验文件",
-  "@loadFileTooltip": {
-    "description": "Tooltip for load file button."
-  },
   "questionNumber": "问题 {number}",
-  "@questionNumber": {
-    "description": "Question number label in quiz execution",
-    "placeholders": {
-      "number": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "questionOfTotal": "第 {current} 题，共 {total} 题",
-  "@questionOfTotal": {
-    "description": "显示当前问题编号和问题总数的标签",
-    "placeholders": {
-      "current": {
-        "type": "int",
-        "example": "1"
-      },
-      "total": {
-        "type": "int",
-        "example": "10"
-      }
-    }
-  },
   "previous": "上一个",
-  "@previous": {
-    "description": "Previous button text in quiz navigation"
-  },
   "next": "下一个",
-  "@next": {
-    "description": "Next button text in quiz navigation"
-  },
   "finish": "完成",
-  "@finish": {
-    "description": "Finish button text in quiz navigation"
-  },
   "finishQuiz": "完成测验",
-  "@finishQuiz": {
-    "description": "Title of finish quiz dialog"
-  },
   "finishQuizConfirmation": "您确定要完成测验吗？之后您将无法更改答案。",
-  "@finishQuizConfirmation": {
-    "description": "Confirmation message for finishing quiz"
-  },
   "abandonQuiz": "放弃测验",
-  "@abandonQuiz": {
-    "description": "Title of abandon quiz dialog"
-  },
   "abandonQuizConfirmation": "您确定要放弃测验吗？所有进度都将丢失。",
-  "@abandonQuizConfirmation": {
-    "description": "Confirmation message for abandoning quiz"
-  },
   "abandon": "放弃",
-  "@abandon": {
-    "description": "Abandon button text"
-  },
   "quizCompleted": "测验完成！",
-  "@quizCompleted": {
-    "description": "Quiz completed message"
-  },
   "score": "得分：{score}%",
-  "@score": {
-    "description": "Score display",
-    "placeholders": {
-      "score": {
-        "type": "String",
-        "example": "85.5"
-      }
-    }
-  },
   "correctAnswers": "{total}个问题中答对{correct}个",
-  "@correctAnswers": {
-    "description": "Correct answers count",
-    "placeholders": {
-      "correct": {
-        "type": "String",
-        "example": "8"
-      },
-      "total": {
-        "type": "int",
-        "example": "10"
-      }
-    }
-  },
   "retry": "重试",
-  "@retry": {
-    "description": "Retry button text"
-  },
   "goBack": "完成",
-  "@goBack": {
-    "description": "Go back button text"
-  },
   "retryFailedQuestions": "重做错题",
-  "@retryFailedQuestions": {
-    "description": "Button text to retry only the questions that were answered incorrectly"
-  },
   "question": "问题：{question}",
-  "@question": {
-    "description": "Question text in results",
-    "placeholders": {
-      "question": {
-        "type": "String",
-        "example": "What is the capital of France?"
-      }
-    }
-  },
   "selectQuestionCountTitle": "选择问题数量",
-  "@selectQuestionCountTitle": {
-    "description": "Title for the dialog to select number of questions for the quiz"
-  },
   "selectQuestionCountMessage": "您想在这个测验中回答多少个问题？",
-  "@selectQuestionCountMessage": {
-    "description": "Message explaining the question count selection"
-  },
   "allQuestions": "所有问题（{count}个）",
-  "@allQuestions": {
-    "description": "Option to select all available questions",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "25"
-      }
-    }
-  },
   "resolveUnansweredQuestions": "解决未回答的问题",
-  "@resolveUnansweredQuestions": {
-    "description": "Button text to resolve unanswered questions"
-  },
   "startQuiz": "开始测验",
-  "@startQuiz": {
-    "description": "Button text to start the quiz"
-  },
   "customNumberLabel": "或输入自定义数量：",
-  "@customNumberLabel": {
-    "description": "Label for custom number input section"
-  },
   "numberInputLabel": "问题数量",
-  "@numberInputLabel": {
-    "description": "Label for the number input field"
-  },
   "errorInvalidNumber": "请输入有效数字",
-  "@errorInvalidNumber": {
-    "description": "Error message for invalid number input"
-  },
   "errorNumberMustBePositive": "数字必须大于0",
-  "@errorNumberMustBePositive": {
-    "description": "Error message when number is zero or negative"
-  },
   "questionOrderConfigTitle": "问题顺序配置",
-  "@questionOrderConfigTitle": {
-    "description": "Title for the question order configuration dialog"
-  },
   "questionOrderConfigDescription": "选择考试期间问题的显示顺序：",
-  "@questionOrderConfigDescription": {
-    "description": "Description text for the question order configuration dialog"
-  },
   "questionOrderAscending": "升序",
-  "@questionOrderAscending": {
-    "description": "Label for ascending question order option"
-  },
   "questionOrderAscendingDesc": "问题将按从1到结尾的顺序显示",
-  "@questionOrderAscendingDesc": {
-    "description": "Description for ascending question order option"
-  },
   "questionOrderDescending": "降序",
-  "@questionOrderDescending": {
-    "description": "Label for descending question order option"
-  },
   "questionOrderDescendingDesc": "问题将从结尾到1显示",
-  "@questionOrderDescendingDesc": {
-    "description": "Description for descending question order option"
-  },
   "questionOrderRandom": "随机化问题顺序",
-  "@questionOrderRandom": {
-    "description": "Label for random question order option"
-  },
   "questionOrderRandomDesc": "问题将随机显示",
-  "@questionOrderRandomDesc": {
-    "description": "Description for random question order option"
-  },
   "questionOrderConfigTooltip": "问题顺序配置",
-  "@questionOrderConfigTooltip": {
-    "description": "Tooltip for the question order configuration button"
-  },
   "save": "保存",
-  "@save": {
-    "description": "Label for the save button"
-  },
   "examTimeLimitTitle": "考试时间限制",
-  "@examTimeLimitTitle": {
-    "description": "Title for exam time limit section"
-  },
   "examTimeLimitDescription": "为考试设置时间限制。测验期间将显示倒计时器。",
-  "@examTimeLimitDescription": {
-    "description": "Description for exam time limit feature"
-  },
   "examTimeLimitOffDescription": "本次考试没有时间限制。",
-  "@examTimeLimitOffDescription": {
-    "description": "Description shown when time limit is disabled"
-  },
   "enableTimeLimit": "启用时间限制",
-  "@enableTimeLimit": {
-    "description": "Label for enable exam time limit switch"
-  },
   "timeLimitMinutes": "时间限制（分钟）",
-  "@timeLimitMinutes": {
-    "description": "Label for exam time minutes input"
-  },
   "examTimeExpiredTitle": "时间到！",
-  "@examTimeExpiredTitle": {
-    "description": "Title for exam time expired dialog"
-  },
   "examTimeExpiredMessage": "考试时间已到。您的答案已自动提交。",
-  "@examTimeExpiredMessage": {
-    "description": "Message for exam time expired dialog"
-  },
   "remainingTime": "{hours}:{minutes}:{seconds}",
-  "@remainingTime": {
-    "description": "Format for remaining time display (hours:minutes:seconds)",
-    "placeholders": {
-      "hours": {
-        "type": "String",
-        "example": "01"
-      },
-      "minutes": {
-        "type": "String",
-        "example": "30"
-      },
-      "seconds": {
-        "type": "String",
-        "example": "45"
-      }
-    }
-  },
   "questionTypeMultipleChoice": "多选题",
-  "@questionTypeMultipleChoice": {
-    "description": "Label for multiple choice question type"
-  },
   "questionTypeSingleChoice": "单选题",
-  "@questionTypeSingleChoice": {
-    "description": "Label for single choice question type"
-  },
   "questionTypeTrueFalse": "判断题",
-  "@questionTypeTrueFalse": {
-    "description": "Label for true/false question type"
-  },
   "questionTypeEssay": "论述题",
-  "@questionTypeEssay": {
-    "description": "问答题类型的标签"
-  },
   "questionTypeRandom": "全部",
-  "@questionTypeRandom": {
-    "description": "混合题类型的标签"
-  },
   "questionTypeUnknown": "未知",
-  "@questionTypeUnknown": {
-    "description": "Label for unknown question type"
-  },
   "optionsCount": "{count, plural, =1{1个选项} other{{count}个选项}}",
-  "@optionsCount": {
-    "description": "Text showing the number of options in a question",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "optionsTooltip": "此问题的答案选项数量",
-  "@optionsTooltip": {
-    "description": "Tooltip text for the options count badge"
-  },
   "imageTooltip": "此问题有关联的图片",
-  "@imageTooltip": {
-    "description": "Tooltip text for the image indicator badge"
-  },
   "explanationTooltip": "此问题有解释",
-  "@explanationTooltip": {
-    "description": "Tooltip text for the explanation indicator badge"
-  },
   "aiPrompt": "专注于学生的问题，而不是直接回答原始考试题目。用教学方法解释。对于实践练习或数学问题，提供逐步说明。对于理论问题，提供简明的解释，不要将回答分成章节。用被问到的相同语言回答。",
-  "@aiPrompt": {
-    "description": "Base prompt for AI assistant"
-  },
   "aiChatGuardrail": "重要：你是专门为本Quiz服务的学习助手。你只能回答与当前Quiz问题、其选项、解释或所涉及的教育主题相关的问题。如果学生询问与Quiz无关的内容（例如你的内部模型、系统详情、与问题无关的一般知识或任何离题请求），请仅回复：\"我在这里帮助你完成这个Quiz！让我们专注于当前的问题。请随时向我询问关于主题、答案选项或与这个问题相关的任何内容。\"绝不要透露关于你自己、系统或所使用的AI模型的技术细节。",
-  "@aiChatGuardrail": {
-    "description": "Guardrail prompt to keep AI focused on quiz content"
-  },
   "questionLabel": "问题",
-  "@questionLabel": {
-    "description": "Label for question in AI dialog"
-  },
   "optionsLabel": "选项",
-  "@optionsLabel": {
-    "description": "Label for options in AI dialog"
-  },
   "studentComment": "学生评论",
-  "@studentComment": {
-    "description": "Label for student comment in AI dialog"
-  },
   "aiAssistantTitle": "AI学习助手",
-  "@aiAssistantTitle": {
-    "description": "Title for AI assistant dialog"
-  },
   "questionContext": "问题背景",
-  "@questionContext": {
-    "description": "Label for question context section"
-  },
   "aiAssistant": "AI助手",
-  "@aiAssistant": {
-    "description": "AI assistant label in chat"
-  },
   "aiThinking": "AI正在思考...",
-  "@aiThinking": {
-    "description": "Loading message while AI processes"
-  },
   "askAIHint": "询问关于这个主题的问题...",
-  "@askAIHint": {
-    "description": "Hint text for AI question input"
-  },
   "aiPlaceholderResponse": "这是一个占位符响应。在实际实现中，这将连接到AI服务，提供有关问题的有用解释。",
-  "@aiPlaceholderResponse": {
-    "description": "Placeholder AI response for demo"
-  },
   "aiErrorResponse": "抱歉，处理您的问题时出现错误。请重试。",
-  "@aiErrorResponse": {
-    "description": "Error message when AI request fails"
-  },
   "configureApiKeyMessage": "请在设置中配置您的AI API密钥。",
-  "@configureApiKeyMessage": {
-    "description": "Message to configure API key when not set"
-  },
   "errorLabel": "错误：",
-  "@errorLabel": {
-    "description": "Error label prefix for error messages"
-  },
   "noResponseReceived": "未收到响应",
-  "@noResponseReceived": {
-    "description": "Message when no response is received from AI"
-  },
   "invalidApiKeyError": "无效的API密钥。请在设置中检查您的OpenAI API密钥。",
-  "@invalidApiKeyError": {
-    "description": "Error message for invalid API key"
-  },
   "rateLimitError": "配额已用完或该模型在您的套餐中不可用。请检查您的计划。",
-  "@rateLimitError": {
-    "description": "Error message for rate limit exceeded or quota issues"
-  },
   "modelNotFoundError": "未找到模型。请检查您的API访问权限。",
-  "@modelNotFoundError": {
-    "description": "Error message for model not found"
-  },
   "unknownError": "未知错误",
-  "@unknownError": {
-    "description": "Generic unknown error message"
-  },
   "networkErrorOpenAI": "网络错误：无法连接到OpenAI。请检查您的网络连接。",
-  "@networkErrorOpenAI": {
-    "description": "Network connectivity error message for OpenAI"
-  },
   "networkErrorGemini": "网络错误：无法连接到Gemini。请检查您的网络连接。",
-  "@networkErrorGemini": {
-    "description": "Network connectivity error message for Gemini"
-  },
   "openaiApiKeyNotConfigured": "OpenAI API密钥未配置",
-  "@openaiApiKeyNotConfigured": {
-    "description": "Error message when API key is not configured"
-  },
   "geminiApiKeyNotConfigured": "Gemini API密钥未配置",
-  "@geminiApiKeyNotConfigured": {
-    "description": "Error message when Gemini API key is not configured"
-  },
   "geminiApiKeyLabel": "Gemini API密钥",
-  "@geminiApiKeyLabel": {
-    "description": "Label for Gemini API Key field"
-  },
   "geminiApiKeyHint": "输入您的Gemini API密钥",
-  "@geminiApiKeyHint": {
-    "description": "Hint text for Gemini API Key field"
-  },
   "geminiApiKeyDescription": "Gemini AI功能所需。您的密钥会安全存储。",
-  "@geminiApiKeyDescription": {
-    "description": "Description for Gemini API Key field"
-  },
   "getGeminiApiKeyTooltip": "从Google AI Studio获取API密钥",
-  "@getGeminiApiKeyTooltip": {
-    "description": "Tooltip for the button to get Gemini API key"
-  },
   "aiRequiresAtLeastOneApiKeyError": "AI学习助手至少需要一个API密钥（Gemini或OpenAI）。请输入API密钥或禁用AI助手。",
-  "@aiRequiresAtLeastOneApiKeyError": {
-    "description": "启用AI助手但未提供API密钥时的错误消息"
-  },
   "minutesAbbreviation": "分钟",
-  "@minutesAbbreviation": {
-    "description": "Abbreviation for minutes"
-  },
   "aiButtonTooltip": "AI学习助手",
-  "@aiButtonTooltip": {
-    "description": "Tooltip for AI assistant button"
-  },
   "aiButtonText": "AI",
-  "@aiButtonText": {
-    "description": "Text for AI assistant button"
-  },
   "aiAssistantSettingsTitle": "AI学习助手（预览）",
-  "@aiAssistantSettingsTitle": {
-    "description": "Title for AI assistant settings section"
-  },
   "aiAssistantSettingsDescription": "启用或禁用问题的AI学习助手",
-  "@aiAssistantSettingsDescription": {
-    "description": "Description for AI assistant settings"
-  },
   "aiDefaultModelTitle": "默认AI模型",
-  "@aiDefaultModelTitle": {
-    "description": "Title for default AI model settings section"
-  },
   "aiDefaultModelDescription": "选择用于生成问题的默认AI服务和模型",
-  "@aiDefaultModelDescription": {
-    "description": "Description for default AI model settings"
-  },
   "openaiApiKeyLabel": "OpenAI API密钥",
-  "@openaiApiKeyLabel": {
-    "description": "Label for OpenAI API Key field"
-  },
   "openaiApiKeyHint": "输入您的OpenAI API密钥（sk-...）",
-  "@openaiApiKeyHint": {
-    "description": "Hint text for OpenAI API Key field"
-  },
   "openaiApiKeyDescription": "用于与OpenAI集成。您的OpenAI密钥会安全存储。",
-  "@openaiApiKeyDescription": {
-    "description": "Description for OpenAI API Key field"
-  },
   "aiAssistantRequiresApiKeyError": "AI学习助手需要OpenAI API密钥。请输入您的API密钥或禁用AI助手。",
-  "@aiAssistantRequiresApiKeyError": {
-    "description": "Error message when AI Assistant is enabled but no API key is provided"
-  },
   "getApiKeyTooltip": "从OpenAI获取API密钥",
-  "@getApiKeyTooltip": {
-    "description": "Tooltip for the button to get API key from OpenAI"
-  },
   "deleteAction": "删除",
-  "@deleteAction": {
-    "description": "Delete action text shown when swiping to delete"
-  },
   "explanationLabel": "解释（可选）",
-  "@explanationLabel": {
-    "description": "Label for the explanation input field"
-  },
   "explanationHint": "输入正确答案的解释",
-  "@explanationHint": {
-    "description": "Hint text for the explanation input field"
-  },
   "explanationTitle": "解释",
-  "@explanationTitle": {
-    "description": "Title for the explanation section in quiz results"
-  },
   "imageLabel": "图片",
-  "@imageLabel": {
-    "description": "Label for the image section in question editor"
-  },
   "changeImage": "更换图片",
-  "@changeImage": {
-    "description": "Text for button to change current image"
-  },
   "removeImage": "移除图片",
-  "@removeImage": {
-    "description": "Text for button to remove current image"
-  },
   "addImageTap": "点击添加图片",
-  "@addImageTap": {
-    "description": "Instructional text for adding an image"
-  },
   "imageFormats": "格式：JPG、PNG、GIF",
-  "@imageFormats": {
-    "description": "Text indicating supported image formats"
-  },
   "imageLoadError": "图片加载错误",
-  "@imageLoadError": {
-    "description": "Error message when image cannot be loaded"
-  },
   "imagePickError": "图片加载错误：{error}",
-  "@imagePickError": {
-    "description": "Error message when image selection fails",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Invalid file"
-      }
-    }
-  },
   "tapToZoom": "点击放大",
-  "@tapToZoom": {
-    "description": "Instructional text to indicate image can be zoomed"
-  },
   "trueLabel": "正确",
-  "@trueLabel": {
-    "description": "Label for true option in true/false questions"
-  },
   "falseLabel": "错误",
-  "@falseLabel": {
-    "description": "Label for false option in true/false questions"
-  },
   "addQuestion": "添加问题",
-  "@addQuestion": {
-    "description": "Title for adding a new question dialog"
-  },
   "editQuestion": "编辑问题",
-  "@editQuestion": {
-    "description": "Title for editing an existing question dialog"
-  },
   "questionText": "问题文本",
-  "@questionText": {
-    "description": "Label for question text input field"
-  },
   "questionType": "问题类型",
-  "@questionType": {
-    "description": "Label for question type dropdown"
-  },
   "addOption": "添加选项",
-  "@addOption": {
-    "description": "Label for add option button"
-  },
   "optionLabel": "选项",
-  "@optionLabel": {
-    "description": "Label for individual option input field"
-  },
   "questionTextRequired": "问题文本是必需的",
-  "@questionTextRequired": {
-    "description": "Error message when question text is empty"
-  },
   "atLeastOneOptionRequired": "至少一个选项必须有文本",
-  "@atLeastOneOptionRequired": {
-    "description": "Error message when all options are empty"
-  },
   "atLeastOneCorrectAnswerRequired": "至少必须选择一个正确答案",
-  "@atLeastOneCorrectAnswerRequired": {
-    "description": "Error message when no correct answer is selected"
-  },
   "onlyOneCorrectAnswerAllowed": "此问题类型只允许一个正确答案",
-  "@onlyOneCorrectAnswerAllowed": {
-    "description": "Error message when multiple correct answers are selected for single choice questions"
-  },
   "removeOption": "移除选项",
-  "@removeOption": {
-    "description": "Tooltip for remove option button"
-  },
   "selectCorrectAnswer": "选择正确答案",
-  "@selectCorrectAnswer": {
-    "description": "Tooltip for radio button to select correct answer"
-  },
   "selectCorrectAnswers": "选择正确答案",
-  "@selectCorrectAnswers": {
-    "description": "Tooltip for checkbox to select correct answers"
-  },
   "emptyOptionsError": "选项{optionNumbers}为空。请为它们添加文本或删除它们。",
-  "@emptyOptionsError": {
-    "description": "Error message when some options are empty",
-    "placeholders": {
-      "optionNumbers": {
-        "type": "String",
-        "example": "1, 3, 4"
-      }
-    }
-  },
   "emptyOptionError": "选项{optionNumber}为空。请为其添加文本或删除它。",
-  "@emptyOptionError": {
-    "description": "Error message when one option is empty",
-    "placeholders": {
-      "optionNumber": {
-        "type": "String",
-        "example": "3"
-      }
-    }
-  },
   "errorDuplicatedOption": "选项不能重复。",
-  "@errorDuplicatedOption": {
-    "description": "Error message when options have duplicate text"
-  },
   "optionEmptyError": "此选项不能为空",
-  "@optionEmptyError": {
-    "description": "Error message for individual empty option field"
-  },
   "hasImage": "图片",
-  "@hasImage": {
-    "description": "Label indicating that a question has an image"
-  },
   "hasExplanation": "解释",
-  "@hasExplanation": {
-    "description": "Label indicating that a question has an explanation"
-  },
   "errorLoadingSettings": "加载设置时出错：{error}",
-  "@errorLoadingSettings": {
-    "description": "Message displayed when there is an error while loading application settings.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "description": "The error message"
-      }
-    }
-  },
   "couldNotOpenUrl": "无法打开{url}",
-  "@couldNotOpenUrl": {
-    "description": "Message displayed when a URL cannot be opened.",
-    "placeholders": {
-      "url": {
-        "type": "String",
-        "description": "The URL that could not be opened"
-      }
-    }
-  },
   "loadingAiServices": "正在加载AI服务...",
-  "@loadingAiServices": {
-    "description": "Message displayed while loading available AI services."
-  },
   "usingAiService": "使用：{serviceName}",
-  "@usingAiService": {
-    "description": "Message displayed showing which AI service is being used.",
-    "placeholders": {
-      "serviceName": {
-        "type": "String",
-        "description": "The name of the AI service"
-      }
-    }
-  },
   "aiServiceLabel": "AI服务：",
-  "@aiServiceLabel": {
-    "description": "Label for the AI service selector."
-  },
   "aiModelLabel": "模型：",
-  "@aiModelLabel": {
-    "description": "Label for the AI model selector."
-  },
   "importQuestionsTitle": "导入问题",
-  "@importQuestionsTitle": {
-    "description": "Title for the import questions dialog."
-  },
   "importQuestionsMessage": "在\"{fileName}\"中找到{count}个问题。您想将它们导入到哪里？",
-  "@importQuestionsMessage": {
-    "description": "Message asking where to import questions from another file.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "questions.quiz"
-      }
-    }
-  },
   "importQuestionsPositionQuestion": "您想将这些问题添加到哪里？",
-  "@importQuestionsPositionQuestion": {
-    "description": "Question asking about import position."
-  },
   "importAtBeginning": "开头",
-  "@importAtBeginning": {
-    "description": "Button to import questions at the beginning of the list."
-  },
   "importAtEnd": "结尾",
-  "@importAtEnd": {
-    "description": "Button to import questions at the end of the list."
-  },
   "questionsImportedSuccess": "成功导入{count}个问题",
-  "@questionsImportedSuccess": {
-    "description": "Success message when questions are imported.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "importChunksTitle": "导入章节",
-  "@importChunksTitle": {
-    "description": "Title for the import chunks dialog."
-  },
   "importChunksMessage": "在\"{fileName}\"中找到{count}个章节。您想将其导入到哪里？",
-  "@importChunksMessage": {
-    "description": "Message asking where to import sections from another file.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "study.quiz"
-      }
-    }
-  },
   "importChunksPositionQuestion": "您想将这些章节添加到哪里？",
-  "@importChunksPositionQuestion": {
-    "description": "Question asking about import position for chunks."
-  },
   "chunksImportedSuccess": "成功导入{count}个章节",
-  "@chunksImportedSuccess": {
-    "description": "Success message when chunks are imported.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "noChunksInFile": "导入的文件中没有找到章节",
-  "@noChunksInFile": {
-    "description": "Error message when the imported file has no study sections."
-  },
   "importQuestionsTooltip": "从另一个测验文件导入问题",
-  "@importQuestionsTooltip": {
-    "description": "Tooltip for the import questions button."
-  },
   "dragDropHintText": "您也可以将.quiz文件拖拽到这里导入问题",
-  "@dragDropHintText": {
-    "description": "Hint text shown when the question list is empty, indicating drag and drop functionality."
-  },
   "randomizeAnswersTitle": "随机化答案顺序",
-  "@randomizeAnswersTitle": {
-    "description": "Title for the setting to randomize answer options."
-  },
   "randomizeAnswersDescription": "在测验执行期间打乱答案选项的顺序",
-  "@randomizeAnswersDescription": {
-    "description": "Description for the randomize answers setting."
-  },
   "showCorrectAnswerCountTitle": "显示正确答案数量",
-  "@showCorrectAnswerCountTitle": {
-    "description": "Title for the setting to show correct answer count."
-  },
   "showCorrectAnswerCountDescription": "在多选题中显示正确答案的数量",
-  "@showCorrectAnswerCountDescription": {
-    "description": "Description for the show correct answer count setting."
-  },
   "showCorrectAnswerCountOffDescription": "多选题将不显示正确答案的数量",
-  "@showCorrectAnswerCountOffDescription": {
-    "description": "Description for the show correct answer count setting when disabled."
-  },
   "correctAnswersCount": "选择{count}个正确答案",
-  "@correctAnswersCount": {
-    "description": "Text showing how many correct answers to select in a multiple choice question.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "correctSelectedLabel": "正确",
-  "@correctSelectedLabel": {
-    "description": "Label for correctly selected answers in quiz results."
-  },
   "correctMissedLabel": "正确",
-  "@correctMissedLabel": {
-    "description": "Label for correct answers that were not selected in quiz results."
-  },
   "incorrectSelectedLabel": "错误",
-  "@incorrectSelectedLabel": {
-    "description": "Label for incorrectly selected answers in quiz results."
-  },
   "generateQuestionsWithAI": "使用AI生成问题",
-  "@generateQuestionsWithAI": {
-    "description": "Tooltip for the generate questions with AI button."
-  },
   "addQuestionsWithAI": "使用 AI 添加问题",
-  "@addQuestionsWithAI": {
-    "description": "Label for the button to add more questions using AI when some already exist."
-  },
   "aiGenerateDialogTitle": "使用AI生成问题",
-  "@aiGenerateDialogTitle": {
-    "description": "Title of the AI question generation dialog."
-  },
   "aiQuestionCountLabel": "问题数量（可选）",
-  "@aiQuestionCountLabel": {
-    "description": "Label for the question count field."
-  },
   "aiQuestionCountHint": "留空让AI决定",
-  "@aiQuestionCountHint": {
-    "description": "Hint text for the question count field."
-  },
   "aiQuestionCountValidation": "必须是1到50之间的数字",
-  "@aiQuestionCountValidation": {
-    "description": "Validation message for question count."
-  },
   "aiQuestionTypeLabel": "问题类型",
-  "@aiQuestionTypeLabel": {
-    "description": "Label for the question type selector."
-  },
   "aiQuestionTypeRandom": "随机（混合）",
-  "@aiQuestionTypeRandom": {
-    "description": "Random type option for questions."
-  },
   "aiLanguageLabel": "问题语言",
-  "@aiLanguageLabel": {
-    "description": "Label for the language selector."
-  },
   "aiContentLabel": "生成问题的内容",
-  "@aiContentLabel": {
-    "description": "Label for the content field."
-  },
   "aiWordCount": "{current} / {max} 词",
-  "@aiWordCount": {
-    "description": "Word counter for content.",
-    "placeholders": {
-      "current": {
-        "type": "int",
-        "example": "150"
-      },
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiContentHint": "输入您想生成问题的文本、主题或内容...",
-  "@aiContentHint": {
-    "description": "Hint text for the content field."
-  },
   "aiContentHelperText": "AI将基于此内容创建问题",
-  "@aiContentHelperText": {
-    "description": "Additional helper text for the content field."
-  },
   "aiWordLimitError": "您已超过{max}词的限制",
-  "@aiWordLimitError": {
-    "description": "Error when word limit is exceeded.",
-    "placeholders": {
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiContentRequiredError": "您必须提供内容来生成问题",
-  "@aiContentRequiredError": {
-    "description": "Error when no content is provided."
-  },
   "aiContentLimitError": "内容超过{max}词限制",
-  "@aiContentLimitError": {
-    "description": "Validation error for word limit.",
-    "placeholders": {
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiMinWordsError": "至少提供10个词以生成高质量问题",
-  "@aiMinWordsError": {
-    "description": "Error when content is too short."
-  },
   "aiInfoTitle": "信息",
-  "@aiInfoTitle": {
-    "description": "Title of the information section."
-  },
   "aiInfoDescription": "• AI将分析内容并生成相关问题\n• 如果你输入的字数少于10个词，将进入“主题模式”，针对特定话题进行提问\n• 字数超过10个词，将进入“内容模式”，针对你提供的文本进行提问（字数越多 = 精确度越高）\n• 你可以包含文本、定义、解释或任何教育材料\n• 问题将包括答案选项和解释\n• 该过程可能需要几秒钟",
-  "@aiInfoDescription": {
-    "description": "Informative description about the AI generation process."
-  },
   "aiGenerateButton": "生成问题",
-  "@aiGenerateButton": {
-    "description": "Text for the generate questions button."
-  },
   "languageSpanish": "西班牙语",
-  "@languageSpanish": {
-    "description": "西班牙语语言名称。"
-  },
   "languageEnglish": "英语",
-  "@languageEnglish": {
-    "description": "英语语言名称。"
-  },
   "languageFrench": "法语",
-  "@languageFrench": {
-    "description": "法语语言名称。"
-  },
   "languageGerman": "德语",
-  "@languageGerman": {
-    "description": "德语语言名称。"
-  },
   "languageGreek": "希腊语",
-  "@languageGreek": {
-    "description": "希腊语语言名称。"
-  },
   "languageItalian": "意大利语",
-  "@languageItalian": {
-    "description": "意大利语语言名称。"
-  },
   "languagePortuguese": "葡萄牙语",
-  "@languagePortuguese": {
-    "description": "葡萄牙语语言名称。"
-  },
   "languageCatalan": "加泰罗尼亚语",
-  "@languageCatalan": {
-    "description": "加泰罗尼亚语语言名称。"
-  },
   "languageBasque": "巴斯克语",
-  "@languageBasque": {
-    "description": "巴斯克语语言名称。"
-  },
   "languageGalician": "加利西亚语",
-  "@languageGalician": {
-    "description": "加利西亚语语言名称。"
-  },
   "languageHindi": "印地语",
-  "@languageHindi": {
-    "description": "印地语语言名称。"
-  },
   "languageChinese": "中文",
-  "@languageChinese": {
-    "description": "中文语言名称。"
-  },
   "languageArabic": "阿拉伯语",
-  "@languageArabic": {
-    "description": "阿拉伯语语言名称。"
-  },
   "languageJapanese": "日语",
-  "@languageJapanese": {
-    "description": "日语语言名称。"
-  },
   "languageRussian": "俄语",
-  "@languageRussian": {
-    "description": "俄语语言名称。"
-  },
   "languageGeorgian": "格鲁吉亚语",
-  "@languageGeorgian": {
-    "description": "格鲁吉亚语语言名称。"
-  },
   "languageUkrainian": "乌克兰语",
-  "@languageUkrainian": {
-    "description": "乌克兰语语言名称。"
-  },
   "languageKorean": "韩语",
-  "@languageKorean": {
-    "description": "韩语语言名称。"
-  },
   "aiServicesLoading": "正在加载AI服务...",
-  "@aiServicesLoading": {
-    "description": "Message shown while loading available AI services."
-  },
   "aiServicesNotConfigured": "未配置AI服务",
-  "@aiServicesNotConfigured": {
-    "description": "Message shown when no AI services are configured."
-  },
   "aiGeneratedQuestions": "AI生成",
-  "@aiGeneratedQuestions": {
-    "description": "Name for AI generated questions in the import dialog."
-  },
   "aiApiKeyRequired": "请在设置中配置至少一个AI API密钥以使用AI生成。",
-  "@aiApiKeyRequired": {
-    "description": "Message shown when no API keys are configured for AI."
-  },
   "aiGenerationFailed": "无法生成问题。请尝试不同的内容。",
-  "@aiGenerationFailed": {
-    "description": "Message shown when AI question generation fails."
-  },
   "aiGenerationErrorTitle": "生成问题时出错",
-  "@aiGenerationErrorTitle": {
-    "description": "AI 生成问题出错时的对话框标题。"
-  },
   "noQuestionsInFile": "导入的文件中未找到问题",
-  "@noQuestionsInFile": {
-    "description": "Message shown when an imported file contains no questions."
-  },
   "couldNotAccessFile": "无法访问所选文件",
-  "@couldNotAccessFile": {
-    "description": "Message shown when a selected file cannot be accessed."
-  },
   "defaultOutputFileName": "output-file.quiz",
-  "@defaultOutputFileName": {
-    "description": "Default name for output files."
-  },
   "aiServiceLimitsWithChars": "限制：{words}词或{chars}字符",
-  "@aiServiceLimitsWithChars": {
-    "description": "Description of AI service limits with both word and character limits.",
-    "placeholders": {
-      "words": {
-        "type": "int",
-        "example": "3000"
-      },
-      "chars": {
-        "type": "int",
-        "example": "12000"
-      }
-    }
-  },
   "aiServiceLimitsWordsOnly": "限制：{words}词",
-  "@aiServiceLimitsWordsOnly": {
-    "description": "Description of AI service limits with only word limit.",
-    "placeholders": {
-      "words": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiAssistantDisabled": "AI助手已禁用",
-  "@aiAssistantDisabled": {
-    "description": "AI助手禁用时对话框的标题"
-  },
   "enableAiAssistant": "AI助手已禁用。请在设置中启用它以使用AI功能。",
-  "@enableAiAssistant": {
-    "description": "AI助手被禁用时显示的消息"
-  },
   "aiMinWordsRequired": "需要至少{minWords}个单词",
-  "@aiMinWordsRequired": {
-    "description": "显示AI生成所需最少单词数的消息",
-    "placeholders": {
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      }
-    }
-  },
   "aiWordsReadyToGenerate": "{wordCount}个单词 ✓ 准备生成",
-  "@aiWordsReadyToGenerate": {
-    "description": "当提供足够单词进行AI生成时的消息",
-    "placeholders": {
-      "wordCount": {
-        "type": "int",
-        "example": "75"
-      }
-    }
-  },
   "aiWordsProgress": "{currentWords}/{minWords}个单词（还需要{moreNeeded}个）",
-  "@aiWordsProgress": {
-    "description": "显示单词计数进度的消息",
-    "placeholders": {
-      "currentWords": {
-        "type": "int",
-        "example": "30"
-      },
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      },
-      "moreNeeded": {
-        "type": "int",
-        "example": "20"
-      }
-    }
-  },
   "aiValidationMinWords": "需要至少{minWords}个单词（还需要{moreNeeded}个）",
-  "@aiValidationMinWords": {
-    "description": "当提供的单词不足时的验证消息",
-    "placeholders": {
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      },
-      "moreNeeded": {
-        "type": "int",
-        "example": "20"
-      }
-    }
-  },
   "enableQuestion": "启用问题",
-  "@enableQuestion": {
-    "description": "启用已禁用问题的工具提示文本"
-  },
   "disableQuestion": "禁用问题",
-  "@disableQuestion": {
-    "description": "禁用活动问题的工具提示文本"
-  },
   "questionDisabled": "已禁用",
-  "@questionDisabled": {
-    "description": "在禁用问题上显示的徽章文本"
-  },
   "noEnabledQuestionsError": "没有启用的问题可以运行测验",
-  "@noEnabledQuestionsError": {
-    "description": "尝试在没有启用问题的情况下开始测验时的错误消息"
-  },
   "aiEvaluationError": "评估回答时出错：{error}",
-  "@aiEvaluationError": {
-    "description": "AI评估失败时的错误消息",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "网络错误"
-      }
-    }
-  },
   "aiEvaluationPromptSystemRole": "您是一位专家教师，正在评估学生对论述题的回答。您的任务是提供详细和建设性的评估。请用与学生回答相同的语言回答。",
-  "@aiEvaluationPromptSystemRole": {
-    "description": "AI评估提示的系统角色"
-  },
   "aiEvaluationPromptQuestion": "题目：",
-  "@aiEvaluationPromptQuestion": {
-    "description": "评估提示中的问题标签"
-  },
   "aiEvaluationPromptStudentAnswer": "学生答案：",
-  "@aiEvaluationPromptStudentAnswer": {
-    "description": "评估提示中的学生答案标签"
-  },
   "aiEvaluationPromptCriteria": "评估标准（基于教师解释）：",
-  "@aiEvaluationPromptCriteria": {
-    "description": "提示中的评估标准标签"
-  },
   "aiEvaluationPromptSpecificInstructions": "具体指示：\n- 评估学生回答与既定标准的契合程度\n- 分析回答中的综合程度和结构\n- 识别根据标准是否遗漏了重要内容\n- 考虑分析的深度和准确性",
-  "@aiEvaluationPromptSpecificInstructions": {
-    "description": "有标准的评估具体指示"
-  },
   "aiEvaluationPromptGeneralInstructions": "一般指示：\n- 由于没有建立具体标准，请基于一般学术标准评估回答\n- 考虑回答的清晰度、连贯性和结构\n- 评估回答是否展示了对主题的理解\n- 分析分析的深度和论证的质量",
-  "@aiEvaluationPromptGeneralInstructions": {
-    "description": "无标准的评估一般指示"
-  },
   "aiEvaluationPromptResponseFormat": "回答格式：\n1. 评分：[X/10] - 简要说明评分理由\n2. 优点：提及回答的积极方面\n3. 改进领域：指出可以改进的方面\n4. 具体评论：提供详细和建设性的反馈\n5. 建议：提供具体的改进建议\n\n在评估中要有建设性、具体性和教育性。目标是帮助学生学习和改进。用第二人称称呼他们，使用专业友好的语调。",
-  "@aiEvaluationPromptResponseFormat": {
-    "description": "评估的回答格式指示"
-  },
   "aiModeTopicTitle": "主题模式",
-  "@aiModeTopicTitle": {
-    "description": "AI助手中主题模式的标题"
-  },
   "aiModeTopicDescription": "主题的创意探索",
-  "@aiModeTopicDescription": {
-    "description": "主题模式的描述"
-  },
   "aiModeContentTitle": "内容模式",
-  "@aiModeContentTitle": {
-    "description": "AI助手中内容模式的标题"
-  },
   "aiModeContentDescription": "基于您输入的精确问题",
-  "@aiModeContentDescription": {
-    "description": "内容模式的描述"
-  },
   "aiWordCountIndicator": "{count} 个词",
-  "@aiWordCountIndicator": {
-    "description": "词数指示器",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "aiPrecisionIndicator": "精确度: {level}",
-  "@aiPrecisionIndicator": {
-    "description": "内容模式的精确度级别指示器",
-    "placeholders": {
-      "level": {
-        "type": "String",
-        "example": "高"
-      }
-    }
-  },
   "aiPrecisionLow": "低",
-  "@aiPrecisionLow": {
-    "description": "低精确度级别"
-  },
   "aiPrecisionMedium": "中",
-  "@aiPrecisionMedium": {
-    "description": "中精确度级别"
-  },
   "aiPrecisionHigh": "高",
-  "@aiPrecisionHigh": {
-    "description": "高精确度级别"
-  },
   "aiMoreWordsMorePrecision": "更多词汇 = 更高精度",
-  "@aiMoreWordsMorePrecision": {
-    "description": "提示文字说明更多词汇会带来更精确的答案"
-  },
   "aiKeepDraftTitle": "保留 AI 草稿",
-  "@aiKeepDraftTitle": {
-    "description": "保留 AI 生成文本草稿的设置标题"
-  },
   "aiKeepDraftDescription": "自动保存 AI 生成对话框中输入的文本，以防对话框关闭时丢失。",
-  "@aiKeepDraftDescription": {
-    "description": "保留 AI 生成文本草稿的设置说明"
-  },
   "aiAttachFile": "附加文件",
-  "@aiAttachFile": {
-    "description": "Label for the attach file button in AI generation dialog"
-  },
   "aiRemoveFile": "删除文件",
-  "@aiRemoveFile": {
-    "description": "Tooltip for the remove file button"
-  },
   "aiFileMode": "文件模式",
-  "@aiFileMode": {
-    "description": "Title for the file mode indicator"
-  },
   "aiFileModeDescription": "将从附件文件中生成问题",
-  "@aiFileModeDescription": {
-    "description": "Description for the file mode indicator"
-  },
   "aiCommentsLabel": "评论（可选）",
-  "@aiCommentsLabel": {
-    "description": "Label for the comments field when a file is attached"
-  },
   "aiCommentsHint": "添加关于附件文件的说明或评论...",
-  "@aiCommentsHint": {
-    "description": "Hint text for the comments field when a file is attached"
-  },
   "aiCommentsHelperText": "可选地添加关于如何从文件生成问题的说明",
-  "@aiCommentsHelperText": {
-    "description": "Helper text for the comments field when a file is attached"
-  },
   "aiFilePickerError": "无法加载所选文件",
-  "@aiFilePickerError": {
-    "description": "Error message when file picker fails"
-  },
   "studyModeLabel": "学习模式",
   "generateStudyWithAI": "使用AI生成学习",
   "practiceModeLabel": "练习模式",
-  "@practiceModeLabel": {
-    "description": "Label for practice mode option in start quiz"
-  },
   "smartModeLabel": "智能模式",
-  "@smartModeLabel": {
-    "description": "Label for smart exam mode option in start quiz"
-  },
   "smartModeDescription": "特殊考试模式。应用会自动决定题目集合和数量，并更新复习统计。",
-  "@smartModeDescription": {
-    "description": "Description for smart exam mode"
-  },
   "studyModeDescription": "提供 AI 辅助。每题回答后提供即时反馈，无时间限制或扣分。 不生成统计数据。",
   "examModeLabel": "考试模式",
   "examModeDescription": "无 AI 辅助。可能适用时间限制和答错扣分。 生成SRS统计数据。",
@@ -1452,9 +313,6 @@
   "enable": "启用",
   "disable": "禁用",
   "reorderQuestionsTooltip": "重新排序问题",
-  "@reorderQuestionsTooltip": {
-    "description": "Tooltip for the reorder questions button"
-  },
   "quizPreviewTitle": "测验预览",
   "quizLoadedNoQuestionsAvailable": "没有可用的问题。",
   "select": "选择",
@@ -1468,32 +326,11 @@
   "deleteSingleQuestionConfirmation": "您确定要删除这个问题吗？",
   "deleteMultipleQuestionsConfirmation": "您确定要删除 {count} 个问题吗？",
   "missingExplanation": "缺少解释",
-  "@missingExplanation": {
-    "description": "Label indicating that a question is missing an explanation"
-  },
   "missingExplanationTooltip": "此问题没有解释",
-  "@missingExplanationTooltip": {
-    "description": "Tooltip text for the missing explanation badge"
-  },
   "missingStudySectionTooltip": "未链接到学习章节",
-  "@missingStudySectionTooltip": {
-    "description": "Tooltip text for the unlinked study section warning"
-  },
   "questionTypeTooltip": "问题类型：{type}",
-  "@questionTypeTooltip": {
-    "description": "Tooltip text for the question type badge",
-    "placeholders": {
-      "type": {
-        "type": "String",
-        "example": "Multiple Choice"
-      }
-    }
-  },
   "settingsTitle": "设置",
   "questionsOverview": "题目概览",
-  "@questionsOverview": {
-    "description": "Title for the questions overview bottom sheet"
-  },
   "keepPracticing": "继续练习以提高！",
   "tryAgain": "再试一次",
   "review": "复习",
@@ -1509,71 +346,23 @@
   "aiContentFieldHint": "输入主题如“二战史”或在此粘贴文本...",
   "aiAttachFileHint": "附加文件 (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "在此处放置文件",
-  "@dropAttachmentHere": {
-    "description": "Hint shown when dragging a file over the attachment area"
-  },
   "dropImageHere": "在此处放置图片",
-  "@dropImageHere": {
-    "description": "Hint shown when dragging an image over the image section"
-  },
   "aiNumberQuestionsLabel": "问题数量",
   "backButton": "返回",
   "generateButton": "生成",
   "aiTopicModeCount": "主题模式 ({count} 字)",
   "aiTextModeCount": "文本模式 ({count} 字)",
   "aiGenerationCategoryLabel": "内容模式",
-  "@aiGenerationCategoryLabel": {
-    "description": "Label for AI generation category selector"
-  },
   "aiGenerationCategoryTheory": "理论",
-  "@aiGenerationCategoryTheory": {
-    "description": "Label for theory category"
-  },
   "aiGenerationCategoryExercises": "练习",
-  "@aiGenerationCategoryExercises": {
-    "description": "Label for exercises category"
-  },
   "aiGenerationCategoryBoth": "混合",
-  "@aiGenerationCategoryBoth": {
-    "description": "Label for mixed category"
-  },
   "allLabel": "全部",
-  "@allLabel": {
-    "description": "选择所有问题的选项标签"
-  },
   "finishQuizUnansweredQuestions": "你还有 {unansweredCount,plural, =1{1 道未回答的问题}other{{unansweredCount} 道未回答的问题}}。你确定要结束测验吗？",
-  "@finishQuizUnansweredQuestions": {
-    "description": "Message shown when there are unanswered questions.",
-    "placeholders": {
-      "unansweredCount": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "subtractPointsLabel": "答错扣分",
   "subtractPointsDescription": "每答错一题扣除分数。",
-  "@subtractPointsLabel": {
-    "description": "Label for the checkbox to subtract points for incorrect answers"
-  },
   "subtractPointsOffDescription": "回答错误不会扣分。",
-  "@subtractPointsOffDescription": {
-    "description": "Description shown when subtract points for incorrect answers is disabled"
-  },
   "penaltyAmountLabel": "扣分金额",
-  "@penaltyAmountLabel": {
-    "description": "Label for the input field to set the penalty amount"
-  },
   "penaltyPointsLabel": "-{amount} 分 / 错误",
-  "@penaltyPointsLabel": {
-    "description": "Label showing the points deducted per mistake",
-    "placeholders": {
-      "amount": {
-        "type": "String",
-        "example": "0.50"
-      }
-    }
-  },
   "allQuestionsLabel": "所有题目",
   "startWithSelectedQuestions": "开始 {count} 道已选题目",
   "advancedSettingsTitle": "高级设置 (调试)",
@@ -1583,291 +372,68 @@
   "pasteImage": "粘贴",
   "clipboardNoImage": "剪贴板中未找到图片",
   "maxIncorrectAnswersLabel": "限制错误答案",
-  "@maxIncorrectAnswersLabel": {
-    "description": "Label for the toggle to limit incorrect answers"
-  },
   "maxIncorrectAnswersDescription": "及格/不及格考试。没有具体分数，只有及格或不及格。",
-  "@maxIncorrectAnswersDescription": {
-    "description": "Description for the limit incorrect answers feature"
-  },
   "maxIncorrectAnswersOffDescription": "考试将有 0 到 100 的数值评分。",
-  "@maxIncorrectAnswersOffDescription": {
-    "description": "Description shown when max incorrect answers is disabled"
-  },
   "maxIncorrectAnswersLimitLabel": "允许的最大错误数",
-  "@maxIncorrectAnswersLimitLabel": {
-    "description": "Label for the input field of maximum incorrect answers"
-  },
   "examFailedStatus": "考试不及格",
   "examPassedStatus": "考试及格",
   "quizFailedLimitReached": "考试结束：已达到最大错误限制",
-  "@quizFailedLimitReached": {
-    "description": "Title for the results screen when the error limit is reached"
-  },
   "close": "关闭",
-  "@close": {
-    "description": "Close button text"
-  },
   "randomizeQuestionsTitle": "随机问题",
-  "@randomizeQuestionsTitle": {
-    "description": "Title for the setting to randomize questions."
-  },
   "randomizeQuestionsDescription": "在测验执行期间打乱问题顺序",
-  "@randomizeQuestionsDescription": {
-    "description": "Description for the randomize questions setting."
-  },
   "randomizeQuestionsOffDescription": "问题将按其原始顺序出现",
-  "@randomizeQuestionsOffDescription": {
-    "description": "Description for the randomize questions setting when disabled."
-  },
   "randomizeAnswersOffDescription": "答案选项将按原始顺序出现",
-  "@randomizeAnswersOffDescription": {
-    "description": "Description for the randomize answers setting when disabled."
-  },
   "scoringAndLimitsTitle": "评分和限制",
-  "@scoringAndLimitsTitle": {
-    "description": "Title for the scoring and limits section in advanced settings"
-  },
   "congratulations": "🎉 恭喜！ 🎉",
-  "@congratulations": {
-    "description": "Congratulations message in winner dialog"
-  },
   "examConfigurationTitle": "考试配置",
-  "@examConfigurationTitle": {
-    "description": "Title for the advanced settings / exam configuration section"
-  },
   "generationConfigurationTitle": "生成配置",
-  "@generationConfigurationTitle": {
-    "description": "Title for the generation configuration section in AI dialog"
-  },
   "validationMin0GenericError": "至少 0",
   "validationMin1Error": "最少1分钟",
-  "@validationMin1Error": {
-    "description": "Validation message indicating the time limit must be at least 1 minute."
-  },
   "remainingTimeWithDays": "{days}天 {hours}:{minutes}:{seconds}",
-  "@remainingTimeWithDays": {
-    "description": "Format for remaining time display when it exceeds 24 hours (days hours:minutes:seconds)",
-    "placeholders": {
-      "days": {
-        "type": "String",
-        "example": "2"
-      },
-      "hours": {
-        "type": "String",
-        "example": "03"
-      },
-      "minutes": {
-        "type": "String",
-        "example": "45"
-      },
-      "seconds": {
-        "type": "String",
-        "example": "30"
-      }
-    }
-  },
   "remainingTimeWithWeeks": "{weeks}周 {days}天 {hours}:{minutes}:{seconds}",
-  "@remainingTimeWithWeeks": {
-    "description": "Format for remaining time display when it exceeds 7 days (weeks days hours:minutes:seconds)",
-    "placeholders": {
-      "weeks": {
-        "type": "String",
-        "example": "1"
-      },
-      "days": {
-        "type": "String",
-        "example": "2"
-      },
-      "hours": {
-        "type": "String",
-        "example": "03"
-      },
-      "minutes": {
-        "type": "String",
-        "example": "45"
-      },
-      "seconds": {
-        "type": "String",
-        "example": "30"
-      }
-    }
-  },
   "validationMax30DaysError": "最多30天",
-  "@validationMax30DaysError": {
-    "description": "Validation message indicating the time limit cannot exceed 30 days."
-  },
   "errorStatus": "错误",
   "evaluatingResponses": "正在评估回答...",
-  "@evaluatingResponses": {
-    "description": "当 AI 评估待处理时，在结果屏幕中显示的文本"
-  },
   "pendingEvaluationsCount": "{count, plural, =1{1个简答题等待 AI 评估} other{{count}个简答题等待 AI 评估}}",
-  "@pendingEvaluationsCount": {
-    "description": "显示待处理 AI 评估数量的副标题",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "pendingStatus": "待处理",
-  "@pendingStatus": {
-    "description": "待处理 AI 评估的状态标签"
-  },
   "notEvaluatedStatus": "未评估",
-  "@notEvaluatedStatus": {
-    "description": "未由 AI 评估的简答题的状态标签"
-  },
   "retryButton": "重试评估",
-  "@retryButton": {
-    "description": "重试 AI 评估的按钮文本"
-  },
   "featureComingSoon": "即将推出！敬请关注。",
-  "@featureComingSoon": {
-    "description": "尚未发布的功能的消息"
-  },
   "showOnboarding": "显示欢迎界面",
-  "@showOnboarding": {
-    "description": "重新打开欢迎流程的按钮标签"
-  },
   "showOnboardingDescription": "再次查看欢迎教程",
-  "@showOnboardingDescription": {
-    "description": "重新打开欢迎流程的按钮描述"
-  },
   "onboardingBack": "返回",
-  "@onboardingBack": {
-    "description": "欢迎导航中的返回按钮"
-  },
   "onboardingGetStarted": "开始体验",
-  "@onboardingGetStarted": {
-    "description": "欢迎流程最后一页的开始按钮"
-  },
   "onboardingWelcomeTitle": "欢迎使用 Quizdy",
-  "@onboardingWelcomeTitle": {
-    "description": "第一页欢迎页面的标题"
-  },
   "onboardingWelcomeDescription": "具备 AI 驱动的功能、可自定义的问题和实时评分。",
-  "@onboardingWelcomeDescription": {
-    "description": "第一页欢迎页面的描述"
-  },
   "onboardingWelcomeSubtitle": "您的互动学习和测验伙伴",
-  "@onboardingWelcomeSubtitle": {
-    "description": "桌面布局下第一页欢迎页面的副标题"
-  },
   "onboardingStartQuizTitle": "开始测验",
-  "@onboardingStartQuizTitle": {
-    "description": "第二页欢迎页面的标题"
-  },
   "onboardingStartQuizDescription": "加载现有的 .quiz 文件或从头开始创建。直接拖放文件或使用文件选择器。",
-  "@onboardingStartQuizDescription": {
-    "description": "第二页欢迎页面的描述"
-  },
   "onboardingStartQuizSubtitle": "加载、创建并玩转",
-  "@onboardingStartQuizSubtitle": {
-    "description": "桌面布局下第二页欢迎页面的副标题"
-  },
   "onboardingCreateQuestionsTitle": "创意出题",
-  "@onboardingCreateQuestionsTitle": {
-    "description": "第三页欢迎页面的标题"
-  },
   "onboardingCreateQuestionsDescription": "构建包含多种题型的测验。通过选项、正确答案和解析来自定义每个问题。",
-  "@onboardingCreateQuestionsDescription": {
-    "description": "第三页欢迎页面的描述"
-  },
   "onboardingCreateQuestionsSubtitle": "设计您自己的测验",
-  "@onboardingCreateQuestionsSubtitle": {
-    "description": "桌面布局下第三页欢迎页面的副标题"
-  },
   "onboardingAiFeaturesTitle": "AI 强大功能",
-  "@onboardingAiFeaturesTitle": {
-    "description": "第四页欢迎页面的标题"
-  },
   "onboardingAiFeaturesDescription": "使用 AI 自动生成问题，获取实时学习辅助，并通过智能辅导更高效地学习。",
-  "@onboardingAiFeaturesDescription": {
-    "description": "第四页欢迎页面的描述"
-  },
   "onboardingAiFeaturesSubtitle": "由 AI 驱动",
-  "@onboardingAiFeaturesSubtitle": {
-    "description": "桌面布局下第四页欢迎页面的副标题"
-  },
   "onboardingFeatureAiTitle": "AI学习和题目生成",
-  "@onboardingFeatureAiTitle": {
-    "description": "欢迎页面的功能标题"
-  },
   "onboardingFeatureAiDescription": "AI学习和题目生成",
-  "@onboardingFeatureAiDescription": {
-    "description": "欢迎页面的功能描述"
-  },
   "onboardingFeatureTypesTitle": "多种题目类型",
-  "@onboardingFeatureTypesTitle": {
-    "description": "欢迎页面的功能标题"
-  },
   "onboardingFeatureTypesDescription": "单选、多选、判断和简答题",
-  "@onboardingFeatureTypesDescription": {
-    "description": "欢迎页面的功能描述"
-  },
   "onboardingFeatureLanguagesTitle": "支持 18 种语言",
-  "@onboardingFeatureLanguagesTitle": {
-    "description": "欢迎页面的功能标题"
-  },
   "onboardingFeatureLanguagesDescription": "支持多种语言创建和进行测验",
-  "@onboardingFeatureLanguagesDescription": {
-    "description": "欢迎页面的功能描述"
-  },
   "onboardingStepCreateTitle": "创建测验",
-  "@onboardingStepCreateTitle": {
-    "description": "开始测验页面的步骤标题"
-  },
   "onboardingStepCreateDescription": "从头开始输入您自己的问题",
-  "@onboardingStepCreateDescription": {
-    "description": "开始测验页面的步骤描述"
-  },
   "onboardingStepLoadTitle": "加载文件",
-  "@onboardingStepLoadTitle": {
-    "description": "开始测验页面的步骤标题"
-  },
   "onboardingStepLoadDescription": "从您的设备导入 .quiz 文件",
-  "@onboardingStepLoadDescription": {
-    "description": "开始测验页面的步骤描述"
-  },
   "onboardingStepTakeTitle": "进行测验",
-  "@onboardingStepTakeTitle": {
-    "description": "开始测验页面的步骤标题"
-  },
   "onboardingStepTakeDescription": "回答问题并实时获取评分",
-  "@onboardingStepTakeDescription": {
-    "description": "开始测验页面的步骤描述"
-  },
   "onboardingAiAutoGenerateTitle": "自动生成题目",
-  "@onboardingAiAutoGenerateTitle": {
-    "description": "欢迎流程中的 AI 功能标题"
-  },
   "onboardingAiAutoGenerateDescription": "通过 Gemini 或 GPT 从任何文本生成",
-  "@onboardingAiAutoGenerateDescription": {
-    "description": "欢迎流程中的 AI 功能描述"
-  },
   "onboardingAiStudyAssistantTitle": "AI 学习助手",
-  "@onboardingAiStudyAssistantTitle": {
-    "description": "欢迎流程中的 AI 功能标题"
-  },
   "onboardingAiStudyAssistantDescription": "在学习过程中获取解析",
-  "@onboardingAiStudyAssistantDescription": {
-    "description": "欢迎流程中的 AI 功能描述"
-  },
   "onboardingAiMultiLanguageTitle": "多语言支持",
-  "@onboardingAiMultiLanguageTitle": {
-    "description": "欢迎流程中的 AI 功能标题"
-  },
   "onboardingAiMultiLanguageDescription": "支持 18 种不同语言生成",
-  "@onboardingAiMultiLanguageDescription": {
-    "description": "欢迎流程中的 AI 功能描述"
-  },
   "documentTooLongForProcessing": "该文档可能太长，无法在此MVP中一次性处理。",
-  "@documentTooLongForProcessing": {
-    "description": "Error message when AI document processing fails due to document length"
-  },
   "studyScreenNoSlidesAvailable": "没有可用的学习部分。",
   "studyScreenGenerating": "正在生成学习材料...",
   "studyScreenError": "生成学习材料时发生错误。",
@@ -1876,43 +442,14 @@
   "studyScreenPreviousSection": "上一页",
   "studyScreenNextSection": "下一页",
   "studyScreenSectionIndicator": "第 {current} 页，共 {total} 页",
-  "@studyScreenSectionIndicator": {
-    "placeholders": {
-      "current": {
-        "type": "int"
-      },
-      "total": {
-        "type": "int"
-      }
-    }
-  },
   "studyScreenAiSummaryTitle": "AI 总结",
   "studyScreenNoSummary": "没有可用的总结。",
-  "@studyScreenRetry": {
-    "description": "错误部分的重试文本。"
-  },
   "studyScreenOmit": "忽略",
-  "@studyScreenOmit": {
-    "description": "忽略按钮文本"
-  },
   "studyScreenCoverage": "生成的内容",
-  "@studyScreenCoverage": {
-    "description": "Label for the study coverage percentage"
-  },
   "aiStudyLanguageLabel": "学习语言",
-  "@aiStudyLanguageLabel": {
-    "description": "Label for the language selector in study generation"
-  },
   "studyScreenStudyGuide": "学习指南",
   "studyScreenSections": "章节",
   "studyScreenChaptersCount": "{count} 个章节",
-  "@studyScreenChaptersCount": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "studyScreenCompleted": "已完成",
   "aiDifficultyTitle": "难度级别",
   "aiDifficultyAutoTurnedOn": "与文档难度相同",
@@ -1938,9 +475,6 @@
   "showMoreLabel": "显示更多",
   "showLessLabel": "显示更少",
   "aiContextMode": "上下文模式",
-  "@aiContextMode": {
-    "description": "Label for context mode when a file is uploaded"
-  },
   "startQuizFromStudy": "测试你的知识",
   "studySectionPracticePrompt": "练习本节问题",
   "studySectionPracticeSubtitle": "本节有 {count} 个关联问题。现在练习以巩固您的学习成果！",
@@ -1950,29 +484,11 @@
   "studyScreenCustomChapter": "自定义章节",
   "addSection": "添加章节",
   "editSection": "编辑章节",
-  "@editSection": {
-    "description": "Title for editing an existing section dialog"
-  },
   "sectionTitleLabel": "标题",
-  "@sectionTitleLabel": {
-    "description": "Label for section title input field in add/edit section dialog"
-  },
   "sectionTitleHint": "输入章节标题",
-  "@sectionTitleHint": {
-    "description": "Hint for section title input field in add/edit section dialog"
-  },
   "sectionDescriptionLabel": "描述",
-  "@sectionDescriptionLabel": {
-    "description": "Label for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionHint": "输入章节描述",
-  "@sectionDescriptionHint": {
-    "description": "Hint for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionAiHint": "这些信息稍后将被 AI 用于生成学习内容。",
-  "@sectionDescriptionAiHint": {
-    "description": "Helper text shown below section description input, indicating AI will use this information later"
-  },
   "generateSectionsWithAI": "使用 AI 生成章节",
   "addSectionsWithAI": "使用 AI 添加章节",
   "studyScreenReminder": "提醒",
@@ -1983,414 +499,108 @@
   "studyComponentLimitations": "局限性",
   "studyScreenDownloadChunk": "生成",
   "aiStudyChapterSystemPrompt": "你是一位 AI 学习助手，正在帮助学生理解学习章节的内容。请深入解释概念，提供示例，并在相关时通过学习材料的其他部分建立联系。请使用学生提问的同种语言进行回答。",
-  "@aiStudyChapterSystemPrompt": {
-    "description": "System prompt for the AI study assistant when chatting about a study chapter"
-  },
   "aiStudyChapterGuardrail": "请专注于提供的章节内容和学习材料。如果学生的问题涉及其他章节，请提及相关章节标题。",
-  "@aiStudyChapterGuardrail": {
-    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
-  },
   "askAIStudyTooltip": "向 AI 咨询本章节内容",
-  "@askAIStudyTooltip": {
-    "description": "Tooltip for the Ask AI button shown in the study chapter view"
-  },
   "studyScreenPendingSections": "部分章节尚未生成",
-  "@studyScreenPendingSections": {
-    "description": "当某些部分尚未生成时在学习索引中显示的警告"
-  },
   "aiErrorRedirect": "重定向 (302) 至：{location}",
-  "@aiErrorRedirect": {
-    "description": "AI 请求期间发生 302 重定向时的错误消息",
-    "placeholders": {
-      "location": {
-        "type": "String",
-        "example": "https://example.com"
-      }
-    }
-  },
   "aiErrorConnectionAborted": "由于应用程序进入后台，请求已中断。生成内容时，请保持应用程序处于打开状态。",
-  "@aiErrorConnectionAborted": {
-    "description": "Error message when a request is aborted because the app is minimized."
-  },
   "noInternetConnection": "无网络连接。请检查您的网络设置并重试。",
-  "@noInternetConnection": {
-    "description": "Error message shown when the device has no internet connection."
-  },
   "duplicatedTag": "重复",
-  "@duplicatedTag": {
-    "description": "Tag to indicate an item is duplicated"
-  },
   "aiSelectSectionsTitle": "选择部分",
-  "@aiSelectSectionsTitle": {
-    "description": "Title for the chunk section selector in AI content step"
-  },
   "aiSelectSectionsSubtitle": "选择将用于生成问题的学习部分",
-  "@aiSelectSectionsSubtitle": {
-    "description": "Subtitle explaining what the section selector does"
-  },
   "aiAllSections": "所有部分",
   "aiSelectQuestionsTitle": "选择问题",
-  "@aiSelectQuestionsTitle": {
-    "description": "Title for the question selector in AI study generation"
-  },
   "aiSelectQuestionsSubtitle": "选择测验模式问题作为生成上下文",
-  "@aiSelectQuestionsSubtitle": {
-    "description": "Subtitle explaining what the question selector does"
-  },
   "aiAllQuestions": "所有问题",
   "onboardingStudyContentTitle": "学习您的内容",
-  "@onboardingStudyContentTitle": {
-    "description": "Title of the study content onboarding page"
-  },
   "onboardingStudyContentDescription": "将您的材料整理成学习部分。导入文件、手动添加或让 AI 生成内容。",
-  "@onboardingStudyContentDescription": {
-    "description": "Description of the study content onboarding page"
-  },
   "onboardingStudyContentSubtitle": "整理、生成和学习",
-  "@onboardingStudyContentSubtitle": {
-    "description": "Subtitle of the study content onboarding page"
-  },
   "onboardingStudyStepAddTitle": "添加材料",
-  "@onboardingStudyStepAddTitle": {
-    "description": "Step 1 title in study content onboarding page"
-  },
   "onboardingStudyStepAddDescription": "编写章节或从.quiz文件导入",
-  "@onboardingStudyStepAddDescription": {
-    "description": "Step 1 description in study content onboarding page"
-  },
   "onboardingStudyStepGenerateTitle": "AI 生成",
-  "@onboardingStudyStepGenerateTitle": {
-    "description": "Step 2 title in study content onboarding page"
-  },
   "onboardingStudyStepGenerateDescription": "AI 从您的文档创建学习部分",
-  "@onboardingStudyStepGenerateDescription": {
-    "description": "Step 2 description in study content onboarding page"
-  },
   "onboardingStudyStepStudyTitle": "学习生成的章节",
-  "@onboardingStudyStepStudyTitle": {
-    "description": "Step 3 title in study content onboarding page"
-  },
   "onboardingStudyStepStudyDescription": "浏览每个部分并巩固您的学习",
-  "@onboardingStudyStepStudyDescription": {
-    "description": "Step 3 description in study content onboarding page"
-  },
   "onboardingStudyStepPdfTitle": "导出为PDF",
-  "@onboardingStudyStepPdfTitle": {
-    "description": "Step 4 title in study content onboarding page"
-  },
   "onboardingStudyStepPdfDescription": "将您的学习内容下载并分享为PDF文件",
-  "@onboardingStudyStepPdfDescription": {
-    "description": "Step 4 description in study content onboarding page"
-  },
   "privacyPolicyLabel": "隐私政策",
   "privacyPolicyDescription": "查看 Quizdy 如何处理你的数据",
   "privacyPolicyRequiredDescription": "请先阅读并接受隐私政策以继续。",
   "privacyPolicyLoadError": "无法加载隐私政策内容。",
   "privacyPolicyCanonicalNotice": "本政策的官方法律版本为项目仓库中提供的英文文本。",
-  "@privacyPolicyCanonicalNotice": {
-    "description": "Short legal notice indicating the canonical version of the privacy policy"
-  },
   "privacyPolicyOpenInBrowser": "在 GitHub 上打开完整政策",
-  "@privacyPolicyOpenInBrowser": {
-    "description": "Button label to open the privacy policy URL in an external browser"
-  },
   "supportLabel": "支持",
-  "@supportLabel": {
-    "description": "Label for the support action in settings"
-  },
   "supportDescription": "使用应用和平台详细信息打开 GitHub Issues",
-  "@supportDescription": {
-    "description": "Description for the support action in settings"
-  },
   "feedbackTitle": "你的反馈很重要",
-  "@feedbackTitle": {
-    "description": "Title for the home screen feedback prompt"
-  },
   "feedbackDescription": "填写一份简短问卷，帮助改进 Quizdy",
-  "@feedbackDescription": {
-    "description": "Description for the home screen feedback prompt"
-  },
   "studyEditorToggleEdit": "编辑内容",
-  "@studyEditorToggleEdit": {
-    "description": "Tooltip for the FAB button that enables study content edit mode"
-  },
   "studyEditorSaveChanges": "保存更改",
-  "@studyEditorSaveChanges": {
-    "description": "Button label to save edited component properties"
-  },
   "studyEditorPages": "页数",
-  "@studyEditorPages": {
-    "description": "Section header for the list of pages in the section page manager"
-  },
   "studyEditorAddPage": "添加页面",
-  "@studyEditorAddPage": {
-    "description": "Button label to add a new page to a section"
-  },
   "studyEditorComponents": "成分",
-  "@studyEditorComponents": {
-    "description": "Section header for the list of components in the component editor"
-  },
   "studyEditorDeletePage": "删除页面",
-  "@studyEditorDeletePage": {
-    "description": "Button label to delete a page from a section"
-  },
   "studyEditorEmptyPages": "还没有页面。点击 + 添加一个。",
-  "@studyEditorEmptyPages": {
-    "description": "Empty state message in the section page manager"
-  },
   "studyEditorFieldBody": "正文",
-  "@studyEditorFieldBody": {
-    "description": "Label for the main body text field in component editors"
-  },
   "studyEditorFieldTitle": "标题",
-  "@studyEditorFieldTitle": {
-    "description": "Label for the optional title field in component editors"
-  },
   "studyEditorExitEdit": "退出编辑模式",
-  "@studyEditorExitEdit": {
-    "description": "Tooltip for the FAB button that disables study content edit mode"
-  },
   "studyEditorEditParagraph": "编辑段落",
-  "@studyEditorEditParagraph": {
-    "description": "Navigation header title for the paragraph property panel"
-  },
   "componentTypeWarning": "警告",
-  "@componentTypeWarning": {
-    "description": "Display name for the warning component type"
-  },
   "componentTypeNumberedList": "编号列表",
-  "@componentTypeNumberedList": {
-    "description": "Display name for the numberedList component type"
-  },
   "componentTypeSectionTitle": "章节标题",
-  "@componentTypeSectionTitle": {
-    "description": "Display name for the sectionTitle component type"
-  },
   "componentTypeQuote": "引用",
-  "@componentTypeQuote": {
-    "description": "Display name for the quote component type"
-  },
   "componentTypeComparisonTable": "比较表",
-  "@componentTypeComparisonTable": {
-    "description": "Display name for the comparisonTable component type"
-  },
   "componentTypeParagraph": "段落",
-  "@componentTypeParagraph": {
-    "description": "Display name for the paragraph component type"
-  },
   "studyEditorEmptyComponents": "此页面上没有组件。",
-  "@studyEditorEmptyComponents": {
-    "description": "Empty state message in the component editor"
-  },
   "componentTypeKeyConcepts": "关键概念",
-  "@componentTypeKeyConcepts": {
-    "description": "Display name for the keyConcepts component type"
-  },
   "componentTypeTimeline": "时间轴",
-  "@componentTypeTimeline": {
-    "description": "Display name for the timeline component type"
-  },
   "componentTypeReminder": "提醒",
-  "@componentTypeReminder": {
-    "description": "Display name for the reminder component type"
-  },
   "componentTypeFormula": "公式",
-  "@componentTypeFormula": {
-    "description": "Display name for the formula component type"
-  },
   "componentTypeProsCons": "优点和缺点",
-  "@componentTypeProsCons": {
-    "description": "Display name for the prosCons component type"
-  },
   "studyEditorEditName": "编辑 {name}",
-  "@studyEditorEditName": {
-    "description": "Navigation header title: Edit [section name]",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "componentFieldSubtitle": "字幕",
-  "@componentFieldSubtitle": {
-    "description": "Form field label for subtitle"
-  },
   "studyEditorPageN": "页{n}",
-  "@studyEditorPageN": {
-    "description": "Label for page number n in the section page manager",
-    "placeholders": {
-      "n": {
-        "type": "int"
-      }
-    }
-  },
   "componentFieldTerm": "学期",
-  "@componentFieldTerm": {
-    "description": "Form field label for term (key definition)"
-  },
   "componentTypeKeyDefinition": "按键定义",
-  "@componentTypeKeyDefinition": {
-    "description": "Display name for the keyDefinition component type"
-  },
   "componentFieldDefinition": "定义",
-  "@componentFieldDefinition": {
-    "description": "Form field label for definition"
-  },
   "componentFieldEquation": "方程",
-  "@componentFieldEquation": {
-    "description": "Form field label for formula equation"
-  },
   "componentFieldItems": "项目",
-  "@componentFieldItems": {
-    "description": "Form section label for a list of items"
-  },
   "componentFieldAuthor": "作者",
-  "@componentFieldAuthor": {
-    "description": "Form field label for quote author"
-  },
   "componentFieldQuote": "引用",
-  "@componentFieldQuote": {
-    "description": "Form field label for quote text"
-  },
   "componentFieldExplanation": "解释",
-  "@componentFieldExplanation": {
-    "description": "Form field label for formula explanation"
-  },
   "componentFieldConcept": "概念",
-  "@componentFieldConcept": {
-    "description": "Form field label for a single concept item"
-  },
   "componentFieldDate": "日期",
-  "@componentFieldDate": {
-    "description": "Form field label for timeline event date"
-  },
   "componentFieldEvents": "活动",
-  "@componentFieldEvents": {
-    "description": "Form section label for timeline events"
-  },
   "componentFieldCards": "牌",
-  "@componentFieldCards": {
-    "description": "Form section label for icon cards"
-  },
   "componentFieldCons": "缺点",
-  "@componentFieldCons": {
-    "description": "Form section label for cons list"
-  },
   "componentFieldPro": "专业版",
-  "@componentFieldPro": {
-    "description": "Form field label for a single pro item"
-  },
   "componentFieldDescription": "描述",
-  "@componentFieldDescription": {
-    "description": "Form field label for item description"
-  },
   "componentFieldPros": "优点",
-  "@componentFieldPros": {
-    "description": "Form section label for pros list"
-  },
   "componentFieldCon": "骗局",
-  "@componentFieldCon": {
-    "description": "Form field label for a single con item"
-  },
   "componentTypeIconCards": "图标卡",
-  "@componentTypeIconCards": {
-    "description": "Display name for the iconCards component type"
-  },
   "componentFieldColumn": "柱子",
-  "@componentFieldColumn": {
-    "description": "Form field label for a single table column"
-  },
   "componentFieldColumns": "专栏",
-  "@componentFieldColumns": {
-    "description": "Form section label for table columns"
-  },
   "componentFieldEquationLabel": "方程标签",
-  "@componentFieldEquationLabel": {
-    "description": "Form field label for formula equation label"
-  },
   "componentFieldLabel": "标签",
-  "@componentFieldLabel": {
-    "description": "Form field label for a row label in comparison table"
-  },
   "componentFieldLabelColumn": "标签列",
-  "@componentFieldLabelColumn": {
-    "description": "Form field label for the header of the label column in a comparison table"
-  },
   "componentFieldRow": "排",
-  "@componentFieldRow": {
-    "description": "Form field label for a single table row"
-  },
   "componentFieldOptional": "选修的",
-  "@componentFieldOptional": {
-    "description": "Label shown next to optional form fields"
-  },
   "componentFieldRequired": "此字段为必填项",
   "componentFieldRows": "行数",
-  "@componentFieldRows": {
-    "description": "Form section label for table rows"
-  },
   "addComponentTitle": "添加组件",
-  "@addComponentTitle": {
-    "description": "Title for the Add Component picker screen"
-  },
   "componentFieldAdd": "添加 {item}",
-  "@componentFieldAdd": {
-    "description": "Button label to add a new item to a list",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "addComponentsWithAI": "用 AI 添加组件",
-  "@addComponentsWithAI": {
-    "description": "Button label to add study components using AI"
-  },
   "aiSelectComponentTypesTitle": "选择组件类型",
-  "@aiSelectComponentTypesTitle": {
-    "description": "Title for the component type filter in AI study generation"
-  },
   "aiSelectComponentTypesSubtitle": "启用以过滤要包含在生成的学习内容中的组件类型",
-  "@aiSelectComponentTypesSubtitle": {
-    "description": "Subtitle for the component type filter in AI study generation"
-  },
   "aiComponentsGeneratedSuccess": "内容生成成功",
-  "@aiComponentsGeneratedSuccess": {
-    "description": "Snackbar message shown when AI component generation completes successfully"
-  },
   "duplicate": "复制",
-  "@duplicate": {
-    "description": "Tooltip for the duplicate button in the component card"
-  },
   "moveUp": "上移",
-  "@moveUp": {
-    "description": "Tooltip for the move up button in the component card"
-  },
   "moveDown": "下移",
-  "@moveDown": {
-    "description": "Tooltip for the move down button in the component card"
-  },
   "aiDifficultyRequiresFileTooltip": "需要附加文件才能使用此选项",
-  "@aiDifficultyRequiresFileTooltip": {
-    "description": "Tooltip when auto difficulty is disabled due to missing file"
-  },
   "exportAsPdf": "导出为PDF",
   "exportPdfSuccess": "PDF导出成功",
   "exportPdfError": "PDF导出失败",
   "deleteDuplicatesButton": "删除重复项",
-  "@deleteDuplicatesButton": {
-    "description": "Button to delete duplicated items"
-  },
   "deleteDuplicatesConfirmationMessage": "您确定要删除 {count} 个重复项目吗？每个项目只保留一份。",
-  "@deleteDuplicatesConfirmationMessage": {
-    "description": "Confirmation message when deleting duplicates",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "onboardingDownloadAppTitle": "在你的设备上安装 Quizdy",
   "onboardingDownloadAppDescription": "可通过二维码在手机上安装 Quizdy，或直接打开桌面端应用商店链接。",
   "onboardingDownloadAppSubtitle": "一步即可安装到手机或桌面端。",
@@ -2406,77 +616,24 @@
   "onboardingDownloadQrTitle": "扫码继续",
   "onboardingDownloadQrDescription": "使用手机相机打开商店链接",
   "studyPdfTableOfContents": "目录",
-  "@studyPdfTableOfContents": {
-    "description": "Title of the table of contents page in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudy": "包含学习内容",
-  "@exportPdfOptionsIncludeStudy": {
-    "description": "Switch label to include the study content pages in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudySubtitle": "添加学习内容页面",
-  "@exportPdfOptionsIncludeStudySubtitle": {
-    "description": "Subtitle for the include study switch in the export PDF dialog"
-  },
   "exportPdfOptionsTitle": "导出为 PDF",
-  "@exportPdfOptionsTitle": {
-    "description": "Title of the export PDF options dialog"
-  },
   "exportPdfOptionsIncludeQuestions": "包含问题页面",
-  "@exportPdfOptionsIncludeQuestions": {
-    "description": "Switch label to include a questions page in the exported PDF"
-  },
   "exportPdfOptionsIncludeQuestionsSubtitle": "添加包含所有测验问题的页面",
-  "@exportPdfOptionsIncludeQuestionsSubtitle": {
-    "description": "Subtitle for the include questions switch in the export PDF dialog"
-  },
   "exportPdfOptionsIncludeAnswers": "包含答案",
-  "@exportPdfOptionsIncludeAnswers": {
-    "description": "Switch label to include correct answers in the questions page"
-  },
   "exportPdfOptionsIncludeAnswersSubtitle": "添加包含正确答案的单独页面",
-  "@exportPdfOptionsIncludeAnswersSubtitle": {
-    "description": "Subtitle for the include answers switch in the export PDF dialog"
-  },
   "exportPdfQuestionsPageTitle": "问题",
-  "@exportPdfQuestionsPageTitle": {
-    "description": "Section title for the questions page in the exported PDF"
-  },
   "exportPdfAnswersLabel": "答案",
-  "@exportPdfAnswersLabel": {
-    "description": "Title of the answers page in the exported PDF"
-  },
   "exportButton": "导出",
-  "@exportButton": {
-    "description": "Label for the Export button in the export PDF options dialog"
-  },
   "openInQuizdyApp": "在 Quizdy 应用中打开",
   "open": "打开",
   "installApp": "安装应用",
   "updateAvailableTitle": "有可用更新",
-  "@updateAvailableTitle": {
-    "description": "Title shown in the update banner when a newer app version is available."
-  },
   "updateAvailableMessage": "Quizdy 版本 {version} 已发布。",
-  "@updateAvailableMessage": {
-    "description": "Subtitle in the update banner indicating which version is available.",
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
   "updateButton": "更新",
-  "@updateButton": {
-    "description": "Label for the update button in the update banner."
-  },
   "forceUpdateTitle": "需要更新",
-  "@forceUpdateTitle": {
-    "description": "Title of the force update dialog."
-  },
   "forceUpdateMessage": "需要强制更新才能继续使用 Quizdy。请更新应用。",
-  "@forceUpdateMessage": {
-    "description": "Body message of the force update dialog."
-  },
   "questionOrderBySection": "按章节",
   "questionOrderBySectionDesc": "按章节分组并按升序显示每个章节",
   "srsStatsTitle": "统计",

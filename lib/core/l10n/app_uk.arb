@@ -5,152 +5,44 @@
   "addQuestion": "Додати питання",
   "addSection": "Додати розділ",
   "editSection": "Редагувати розділ",
-  "@editSection": {
-    "description": "Title for editing an existing section dialog"
-  },
   "sectionTitleLabel": "Заголовок",
-  "@sectionTitleLabel": {
-    "description": "Label for section title input field in add/edit section dialog"
-  },
   "sectionTitleHint": "Введіть заголовок розділу",
-  "@sectionTitleHint": {
-    "description": "Hint for section title input field in add/edit section dialog"
-  },
   "sectionDescriptionLabel": "Опис",
-  "@sectionDescriptionLabel": {
-    "description": "Label for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionHint": "Введіть опис розділу",
-  "@sectionDescriptionHint": {
-    "description": "Hint for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionAiHint": "Ця інформація пізніше буде використана ШІ для генерації навчального контенту.",
-  "@sectionDescriptionAiHint": {
-    "description": "Helper text shown below section description input, indicating AI will use this information later"
-  },
   "editQuestion": "Редагувати питання",
   "questionText": "Текст питання",
   "questionType": "Тип питання",
   "addOption": "Додати варіант",
   "optionsLabel": "Варіанти",
   "optionLabel": "Варіант",
-  "delete": "Видалити",
-  "@delete": {
-    "description": "Generic delete button text"
-  },
   "edit": "Редагувати",
   "save": "Зберегти",
-  "cancel": "Скасувати",
-  "@cancel": {
-    "description": "Generic cancel button text"
-  },
-  "confirm": "Підтвердити",
-  "@confirm": {
-    "description": "Generic confirm button text"
-  },
-  "ok": "ОК",
-  "@ok": {
-    "description": "Generic OK button text"
-  },
-  "error": "Помилка",
-  "@error": {
-    "description": "Generic error text"
-  },
-  "loading": "Завантаження...",
-  "@loading": {
-    "description": "Generic loading text"
-  },
   "settingsTitle": "Налаштування",
   "appLanguageLabel": "Мова додатка",
   "appLanguageDescription": "Змінити мову додатка для тестування",
   "languageRussian": "Російська",
-  "@languageRussian": {
-    "description": "Назва російської мови."
-  },
   "languageEnglish": "Англійська",
-  "@languageEnglish": {
-    "description": "Назва англійської мови."
-  },
   "languageSpanish": "Іспанська",
-  "@languageSpanish": {
-    "description": "Назва іспанської мови."
-  },
   "languageFrench": "Французька",
-  "@languageFrench": {
-    "description": "Назва французької мови."
-  },
   "languageGerman": "Німецька",
-  "@languageGerman": {
-    "description": "Назва німецької мови."
-  },
   "languageItalian": "Італійська",
-  "@languageItalian": {
-    "description": "Назва італійської мови."
-  },
   "languagePortuguese": "Португальська",
-  "@languagePortuguese": {
-    "description": "Назва португальської мови."
-  },
   "languageGeorgian": "Грузинська",
-  "@languageGeorgian": {
-    "description": "Назва грузинської мови."
-  },
   "languageUkrainian": "Українська",
-  "@languageUkrainian": {
-    "description": "Назва української мови."
-  },
   "languageKorean": "Корейська",
-  "@languageKorean": {
-    "description": "Назва корейської мови."
-  },
   "languageGreek": "Грецька",
-  "@languageGreek": {
-    "description": "Назва грецької мови."
-  },
   "languageCatalan": "Каталанська",
-  "@languageCatalan": {
-    "description": "Назва каталанської мови."
-  },
   "languageBasque": "Баскська",
-  "@languageBasque": {
-    "description": "Назва баскської мови."
-  },
   "languageGalician": "Галісійська",
-  "@languageGalician": {
-    "description": "Назва галісійської мови."
-  },
   "languageHindi": "Хінді",
-  "@languageHindi": {
-    "description": "Назва мови хінді."
-  },
   "languageChinese": "Китайська",
-  "@languageChinese": {
-    "description": "Назва китайської мови."
-  },
   "languageArabic": "Арабська",
-  "@languageArabic": {
-    "description": "Назва арабської мови."
-  },
   "languageJapanese": "Японська",
-  "@languageJapanese": {
-    "description": "Назва японської мови."
-  },
   "startQuizButton": "Почати вікторину",
   "quizPreviewTitle": "Предпросмотр вікторини",
   "quizLoadedNoQuestionsAvailable": "Немає доступних питань",
-  "resultsTitle": "Результати",
-  "@resultsTitle": {
-    "description": "Title for the results screen"
-  },
-  "scoreLabel": "Рахунок",
-  "@scoreLabel": {
-    "description": "Label for the score display"
-  },
   "correctAnswers": "Правильні відповіді",
-  "incorrectAnswers": "Неправильні відповіді",
-  "@incorrectAnswers": {
-    "description": "Label for incorrect answers count"
-  },
   "tryAgain": "Спробувати знову",
   "home": "Головна",
   "done": "Готово",
@@ -193,13 +85,7 @@
   "cancelButton": "Скасувати",
   "saveButton": "Зберегти",
   "newTag": "Новий",
-  "@newTag": {
-    "description": "Тег для позначення нового або зміненого елемента"
-  },
   "modifiedTag": "Змінено",
-  "@modifiedTag": {
-    "description": "Тег для позначення того, що елемент було змінено"
-  },
   "confirmDeleteTitle": "Підтвердження видалення",
   "confirmDeleteMessage": "Ви впевнені, що хочете видалити процес `{processName}`?",
   "deleteButton": "Видалити",
@@ -388,41 +274,10 @@
   "importAtEnd": "В кінець",
   "questionsImportedSuccess": "Успішно імпортовано {count} питань",
   "importChunksTitle": "Імпорт розділів",
-  "@importChunksTitle": {
-    "description": "Title for the import chunks dialog."
-  },
   "importChunksMessage": "У файлі \"{fileName}\" знайдено {count} розділів. Куди ви хочете їх імпортувати?",
-  "@importChunksMessage": {
-    "description": "Message asking where to import sections from another file.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "study.quiz"
-      }
-    }
-  },
   "importChunksPositionQuestion": "Куди ви хочете додати ці розділи?",
-  "@importChunksPositionQuestion": {
-    "description": "Question asking about import position for chunks."
-  },
   "chunksImportedSuccess": "{count} розділів успішно імпортовано",
-  "@chunksImportedSuccess": {
-    "description": "Success message when chunks are imported.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "noChunksInFile": "У імпортованому файлі не знайдено розділів",
-  "@noChunksInFile": {
-    "description": "Error message when the imported file has no study sections."
-  },
   "importQuestionsTooltip": "Імпортувати питання з іншого файлу квізу",
   "dragDropHintText": "Ви також можете перетягнути сюди файли .quiz для імпорту питань",
   "randomizeQuestionsTitle": "Випадковий порядок питань",
@@ -535,13 +390,7 @@
   "aiFilePickerError": "Не вдалося завантажити вибраний файл",
   "practiceModeLabel": "Практичний режим",
   "smartModeLabel": "Розумний режим",
-  "@smartModeLabel": {
-    "description": "Label for smart exam mode option in start quiz"
-  },
   "smartModeDescription": "Спеціальний режим іспиту. Додаток автоматично визначає набір і кількість запитань та оновлює статистику повторення.",
-  "@smartModeDescription": {
-    "description": "Description for smart exam mode"
-  },
   "studyModeDescription": "Доступна допомога ШІ. Миттєвий зворотний зв'язок після кожної відповіді без обмежень у часі та штрафів. Статистика не генерується.",
   "examModeDescription": "Допомога ШІ недоступна. Можуть застосовуватися обмеження у часі та штрафи за неправильні відповіді. Генерує статистику SRS.",
   "quizModeTitle": "Режим квізу",
@@ -650,417 +499,108 @@
   "studyComponentAdvantages": "Переваги",
   "studyComponentLimitations": "Обмеження",
   "aiStudyChapterSystemPrompt": "Ви — ШІ-помічник у навчанні, який допомагає студенту зрозуміти зміст навчального розділу. Глибоко пояснюйте концепції, наводьте приклади та встановлюйте зв'язки з іншими частинами навчального матеріалу, коли це доречно. Відповідайте тією ж мовою, якою вас запитали.",
-  "@aiStudyChapterSystemPrompt": {
-    "description": "System prompt for the AI study assistant when chatting about a study chapter"
-  },
   "aiStudyChapterGuardrail": "Зосередьтеся на змісті наданого розділу та навчальних матеріалах. Якщо запитання студента стосується іншого розділу, вкажіть назву відповідного розділу.",
-  "@aiStudyChapterGuardrail": {
-    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
-  },
   "askAIStudyTooltip": "Запитати ШІ про цей розділ",
-  "@askAIStudyTooltip": {
-    "description": "Tooltip for the Ask AI button shown in the study chapter view"
-  },
   "studyScreenPendingSections": "Деякі розділи ще не створені",
-  "@studyScreenPendingSections": {
-    "description": "Попередження, що відображається в навчальному покажчику, коли деякі частини ще не створені"
-  },
-  "@aiErrorResponse": {
-    "description": "Error message when AI request fails"
-  },
   "aiErrorRedirect": "Перенаправлено (302) на: {location}",
-  "@aiErrorRedirect": {
-    "description": "Повідомлення про помилку, коли виникає перенаправлення 302 під час запиту ШІ",
-    "placeholders": {
-      "location": {
-        "type": "String",
-        "example": "https://example.com"
-      }
-    }
-  },
   "aiErrorConnectionAborted": "Запит було перервано, оскільки програму було переведено у фоновий режим. Будь ласка, тримайте програму відкритою під час генерації вмісту.",
-  "@aiErrorConnectionAborted": {
-    "description": "Error message when a request is aborted because the app is minimized."
-  },
   "noInternetConnection": "Немає підключення до інтернету. Будь ласка, перевірте налаштування мережі та спробуйте ще раз.",
-  "@noInternetConnection": {
-    "description": "Error message shown when the device has no internet connection."
-  },
   "duplicatedTag": "Дублікат",
-  "@duplicatedTag": {
-    "description": "Tag to indicate an item is duplicated"
-  },
   "aiSelectSectionsTitle": "Вибрати розділи",
-  "@aiSelectSectionsTitle": {
-    "description": "Title for the chunk section selector in AI content step"
-  },
   "aiSelectSectionsSubtitle": "Оберіть розділи навчання, які будуть використовуватись для генерації питань",
-  "@aiSelectSectionsSubtitle": {
-    "description": "Subtitle explaining what the section selector does"
-  },
   "aiAllSections": "Всі розділи",
   "aiSelectQuestionsTitle": "Вибрати питання",
-  "@aiSelectQuestionsTitle": {
-    "description": "Title for the question selector in AI study generation"
-  },
   "aiSelectQuestionsSubtitle": "Оберіть питання режиму Quiz як контекст генерації",
-  "@aiSelectQuestionsSubtitle": {
-    "description": "Subtitle explaining what the question selector does"
-  },
   "aiAllQuestions": "Всі питання",
   "onboardingStudyContentTitle": "Вивчайте свій контент",
-  "@onboardingStudyContentTitle": {
-    "description": "Title of the study content onboarding page"
-  },
   "onboardingStudyContentDescription": "Організуйте свій матеріал у навчальні розділи. Імпортуйте файли, додавайте вручну або дозвольте ШІ генерувати контент.",
-  "@onboardingStudyContentDescription": {
-    "description": "Description of the study content onboarding page"
-  },
   "onboardingStudyContentSubtitle": "Організовуйте, генеруйте та вивчайте",
-  "@onboardingStudyContentSubtitle": {
-    "description": "Subtitle of the study content onboarding page"
-  },
   "onboardingStudyStepAddTitle": "Додати матеріал",
-  "@onboardingStudyStepAddTitle": {
-    "description": "Step 1 title in study content onboarding page"
-  },
   "onboardingStudyStepAddDescription": "Пишіть розділи або імпортуйте з файлів .quiz",
-  "@onboardingStudyStepAddDescription": {
-    "description": "Step 1 description in study content onboarding page"
-  },
   "onboardingStudyStepGenerateTitle": "Згенерувати ШІ",
-  "@onboardingStudyStepGenerateTitle": {
-    "description": "Step 2 title in study content onboarding page"
-  },
   "onboardingStudyStepGenerateDescription": "ШІ створює навчальні розділи з ваших документів",
-  "@onboardingStudyStepGenerateDescription": {
-    "description": "Step 2 description in study content onboarding page"
-  },
   "onboardingStudyStepStudyTitle": "Вивчайте згенеровані розділи",
-  "@onboardingStudyStepStudyTitle": {
-    "description": "Step 3 title in study content onboarding page"
-  },
   "onboardingStudyStepStudyDescription": "Переглядайте кожен розділ і закріплюйте свої знання",
-  "@onboardingStudyStepStudyDescription": {
-    "description": "Step 3 description in study content onboarding page"
-  },
   "onboardingStudyStepPdfTitle": "Експорт у PDF",
-  "@onboardingStudyStepPdfTitle": {
-    "description": "Step 4 title in study content onboarding page"
-  },
   "onboardingStudyStepPdfDescription": "Завантажте та поділіться своїм навчанням у форматі PDF",
-  "@onboardingStudyStepPdfDescription": {
-    "description": "Step 4 description in study content onboarding page"
-  },
   "privacyPolicyLabel": "Политика конфиденциальности",
   "privacyPolicyDescription": "Дізнайтеся, як ваші дані обробляються у Quizdy",
   "privacyPolicyRequiredDescription": "Щоб продовжити, перегляньте та прийміть політику конфіденційності.",
   "privacyPolicyLoadError": "Не вдалося завантажити вміст політики конфіденційності.",
   "privacyPolicyCanonicalNotice": "Офіційна юридична версія цієї політики - англомовний текст, розміщений у репозиторії проєкту.",
-  "@privacyPolicyCanonicalNotice": {
-    "description": "Short legal notice indicating the canonical version of the privacy policy"
-  },
   "privacyPolicyOpenInBrowser": "Відкрити повну політику на GitHub",
-  "@privacyPolicyOpenInBrowser": {
-    "description": "Button label to open the privacy policy URL in an external browser"
-  },
   "supportLabel": "Підтримка",
-  "@supportLabel": {
-    "description": "Label for the support action in settings"
-  },
   "supportDescription": "Відкрити GitHub Issues з даними застосунку та платформи",
-  "@supportDescription": {
-    "description": "Description for the support action in settings"
-  },
   "feedbackTitle": "Ваша думка важлива для нас",
-  "@feedbackTitle": {
-    "description": "Title for the home screen feedback prompt"
-  },
   "feedbackDescription": "Пройдіть коротке опитування та допоможіть покращити Quizdy",
-  "@feedbackDescription": {
-    "description": "Description for the home screen feedback prompt"
-  },
   "studyEditorComponents": "компоненти",
-  "@studyEditorComponents": {
-    "description": "Section header for the list of components in the component editor"
-  },
   "studyEditorPages": "сторінки",
-  "@studyEditorPages": {
-    "description": "Section header for the list of pages in the section page manager"
-  },
   "studyEditorSaveChanges": "Зберегти зміни",
-  "@studyEditorSaveChanges": {
-    "description": "Button label to save edited component properties"
-  },
   "studyEditorFieldTitle": "Назва",
-  "@studyEditorFieldTitle": {
-    "description": "Label for the optional title field in component editors"
-  },
   "studyEditorExitEdit": "Вийти з режиму редагування",
-  "@studyEditorExitEdit": {
-    "description": "Tooltip for the FAB button that disables study content edit mode"
-  },
   "studyEditorEmptyPages": "Сторінок ще немає. Торкніться +, щоб додати.",
-  "@studyEditorEmptyPages": {
-    "description": "Empty state message in the section page manager"
-  },
   "studyEditorEditParagraph": "Редагувати абзац",
-  "@studyEditorEditParagraph": {
-    "description": "Navigation header title for the paragraph property panel"
-  },
   "componentTypeParagraph": "Абзац",
-  "@componentTypeParagraph": {
-    "description": "Display name for the paragraph component type"
-  },
   "studyEditorEmptyComponents": "На цій сторінці немає компонентів.",
-  "@studyEditorEmptyComponents": {
-    "description": "Empty state message in the component editor"
-  },
   "studyEditorEditName": "Редагувати {name}",
-  "@studyEditorEditName": {
-    "description": "Navigation header title: Edit [section name]",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "componentTypeNumberedList": "Нумерований список",
-  "@componentTypeNumberedList": {
-    "description": "Display name for the numberedList component type"
-  },
   "studyEditorFieldBody": "Основний текст",
-  "@studyEditorFieldBody": {
-    "description": "Label for the main body text field in component editors"
-  },
   "componentTypeKeyDefinition": "Визначення ключа",
-  "@componentTypeKeyDefinition": {
-    "description": "Display name for the keyDefinition component type"
-  },
   "studyEditorAddPage": "Додати сторінку",
-  "@studyEditorAddPage": {
-    "description": "Button label to add a new page to a section"
-  },
   "componentTypeSectionTitle": "Назва розділу",
-  "@componentTypeSectionTitle": {
-    "description": "Display name for the sectionTitle component type"
-  },
   "studyEditorDeletePage": "Видалити сторінку",
-  "@studyEditorDeletePage": {
-    "description": "Button label to delete a page from a section"
-  },
   "studyEditorPageN": "Сторінка {n}",
-  "@studyEditorPageN": {
-    "description": "Label for page number n in the section page manager",
-    "placeholders": {
-      "n": {
-        "type": "int"
-      }
-    }
-  },
   "studyEditorToggleEdit": "Редагувати вміст",
-  "@studyEditorToggleEdit": {
-    "description": "Tooltip for the FAB button that enables study content edit mode"
-  },
   "componentTypeQuote": "Цитата",
-  "@componentTypeQuote": {
-    "description": "Display name for the quote component type"
-  },
   "componentFieldSubtitle": "Підзаголовок",
-  "@componentFieldSubtitle": {
-    "description": "Form field label for subtitle"
-  },
   "componentTypeTimeline": "Хронологія",
-  "@componentTypeTimeline": {
-    "description": "Display name for the timeline component type"
-  },
   "componentTypeReminder": "Нагадування",
-  "@componentTypeReminder": {
-    "description": "Display name for the reminder component type"
-  },
   "componentTypeWarning": "УВАГА",
-  "@componentTypeWarning": {
-    "description": "Display name for the warning component type"
-  },
   "componentFieldTerm": "термін",
-  "@componentFieldTerm": {
-    "description": "Form field label for term (key definition)"
-  },
   "componentFieldDefinition": "Визначення",
-  "@componentFieldDefinition": {
-    "description": "Form field label for definition"
-  },
   "componentFieldQuote": "Цитата",
-  "@componentFieldQuote": {
-    "description": "Form field label for quote text"
-  },
   "componentFieldAuthor": "Автор",
-  "@componentFieldAuthor": {
-    "description": "Form field label for quote author"
-  },
   "componentTypeComparisonTable": "Порівняльна таблиця",
-  "@componentTypeComparisonTable": {
-    "description": "Display name for the comparisonTable component type"
-  },
   "componentFieldEquation": "Рівняння",
-  "@componentFieldEquation": {
-    "description": "Form field label for formula equation"
-  },
   "componentFieldItems": "Предмети",
-  "@componentFieldItems": {
-    "description": "Form section label for a list of items"
-  },
   "componentFieldExplanation": "Пояснення",
-  "@componentFieldExplanation": {
-    "description": "Form field label for formula explanation"
-  },
   "componentFieldEvents": "Події",
-  "@componentFieldEvents": {
-    "description": "Form section label for timeline events"
-  },
   "componentFieldDate": "Дата",
-  "@componentFieldDate": {
-    "description": "Form field label for timeline event date"
-  },
   "componentFieldDescription": "опис",
-  "@componentFieldDescription": {
-    "description": "Form field label for item description"
-  },
   "componentFieldCards": "картки",
-  "@componentFieldCards": {
-    "description": "Form section label for icon cards"
-  },
   "componentFieldPro": "Pro",
-  "@componentFieldPro": {
-    "description": "Form field label for a single pro item"
-  },
   "componentFieldPros": "плюси",
-  "@componentFieldPros": {
-    "description": "Form section label for pros list"
-  },
   "componentTypeKeyConcepts": "Ключові поняття",
-  "@componentTypeKeyConcepts": {
-    "description": "Display name for the keyConcepts component type"
-  },
   "componentTypeFormula": "Формула",
-  "@componentTypeFormula": {
-    "description": "Display name for the formula component type"
-  },
   "componentTypeIconCards": "Іконні картки",
-  "@componentTypeIconCards": {
-    "description": "Display name for the iconCards component type"
-  },
   "componentFieldEquationLabel": "Мітка рівняння",
-  "@componentFieldEquationLabel": {
-    "description": "Form field label for formula equation label"
-  },
   "componentFieldConcept": "Концепція",
-  "@componentFieldConcept": {
-    "description": "Form field label for a single concept item"
-  },
   "componentTypeProsCons": "Плюси і мінуси",
-  "@componentTypeProsCons": {
-    "description": "Display name for the prosCons component type"
-  },
   "componentFieldCons": "мінуси",
-  "@componentFieldCons": {
-    "description": "Form section label for cons list"
-  },
   "componentFieldCon": "проти",
-  "@componentFieldCon": {
-    "description": "Form field label for a single con item"
-  },
   "componentFieldColumns": "Стовпці",
-  "@componentFieldColumns": {
-    "description": "Form section label for table columns"
-  },
   "componentFieldColumn": "Колонка",
-  "@componentFieldColumn": {
-    "description": "Form field label for a single table column"
-  },
   "componentFieldOptional": "необов'язковий",
-  "@componentFieldOptional": {
-    "description": "Label shown next to optional form fields"
-  },
   "componentFieldRequired": "Це поле є обов'язковим",
   "componentFieldRows": "рядки",
-  "@componentFieldRows": {
-    "description": "Form section label for table rows"
-  },
   "componentFieldLabel": "Мітка",
-  "@componentFieldLabel": {
-    "description": "Form field label for a row label in comparison table"
-  },
   "componentFieldLabelColumn": "Стовпець міток",
-  "@componentFieldLabelColumn": {
-    "description": "Form field label for the header of the label column in a comparison table"
-  },
   "componentFieldRow": "рядок",
-  "@componentFieldRow": {
-    "description": "Form field label for a single table row"
-  },
   "componentFieldAdd": "Додати {item}",
-  "@componentFieldAdd": {
-    "description": "Button label to add a new item to a list",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "addComponentTitle": "Додати компонент",
-  "@addComponentTitle": {
-    "description": "Title for the Add Component picker screen"
-  },
   "addComponentsWithAI": "Додати компоненти за допомогою ШІ",
-  "@addComponentsWithAI": {
-    "description": "Button label to add study components using AI"
-  },
   "aiSelectComponentTypesTitle": "Виберіть типи компонентів",
-  "@aiSelectComponentTypesTitle": {
-    "description": "Title for the component type filter in AI study generation"
-  },
   "aiSelectComponentTypesSubtitle": "Увімкніть, щоб відфільтрувати, які типи компонентів будуть включені до згенерованого навчального контенту",
-  "@aiSelectComponentTypesSubtitle": {
-    "description": "Subtitle for the component type filter in AI study generation"
-  },
   "aiComponentsGeneratedSuccess": "Контент успішно згенеровано",
-  "@aiComponentsGeneratedSuccess": {
-    "description": "Snackbar message shown when AI component generation completes successfully"
-  },
   "duplicate": "Дублювати",
-  "@duplicate": {
-    "description": "Tooltip for the duplicate button in the component card"
-  },
   "moveUp": "Перемістити вгору",
-  "@moveUp": {
-    "description": "Tooltip for the move up button in the component card"
-  },
   "moveDown": "Перемістити вниз",
-  "@moveDown": {
-    "description": "Tooltip for the move down button in the component card"
-  },
   "aiDifficultyRequiresFileTooltip": "Для використання цієї опції необхідно прикріпити файл",
-  "@aiDifficultyRequiresFileTooltip": {
-    "description": "Tooltip when auto difficulty is disabled due to missing file"
-  },
   "exportAsPdf": "Експортувати як PDF",
   "exportPdfSuccess": "PDF успішно експортовано",
   "exportPdfError": "Помилка експорту PDF",
   "deleteDuplicatesButton": "Видалити дублікати",
-  "@deleteDuplicatesButton": {
-    "description": "Button to delete duplicated items"
-  },
   "deleteDuplicatesConfirmationMessage": "Ви впевнені, що хочете видалити {count} повторюваних елементів? Буде збережено лише одну копію кожного з них.",
-  "@deleteDuplicatesConfirmationMessage": {
-    "description": "Confirmation message when deleting duplicates",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "onboardingDownloadAppTitle": "Встановіть Quizdy на свої пристрої",
   "onboardingDownloadAppDescription": "Встановіть Quizdy на мобільний через QR-коди або відкрийте посилання магазинів для комп'ютера напряму.",
   "onboardingDownloadAppSubtitle": "Встановіть на мобільний або комп'ютер за один крок.",
@@ -1076,77 +616,24 @@
   "onboardingDownloadQrTitle": "Скануйте, щоб продовжити",
   "onboardingDownloadQrDescription": "Скористайтеся камерою телефона, щоб відкрити посилання магазину",
   "studyPdfTableOfContents": "Зміст",
-  "@studyPdfTableOfContents": {
-    "description": "Title of the table of contents page in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudy": "Включити навчання",
-  "@exportPdfOptionsIncludeStudy": {
-    "description": "Switch label to include the study content pages in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudySubtitle": "Додати сторінки з навчальним контентом",
-  "@exportPdfOptionsIncludeStudySubtitle": {
-    "description": "Subtitle for the include study switch in the export PDF dialog"
-  },
   "exportPdfOptionsTitle": "Експорт у PDF",
-  "@exportPdfOptionsTitle": {
-    "description": "Title of the export PDF options dialog"
-  },
   "exportPdfOptionsIncludeQuestions": "Включити сторінку з питаннями",
-  "@exportPdfOptionsIncludeQuestions": {
-    "description": "Switch label to include a questions page in the exported PDF"
-  },
   "exportPdfOptionsIncludeQuestionsSubtitle": "Додати сторінку з усіма питаннями тесту",
-  "@exportPdfOptionsIncludeQuestionsSubtitle": {
-    "description": "Subtitle for the include questions switch in the export PDF dialog"
-  },
   "exportPdfOptionsIncludeAnswers": "Включити відповіді",
-  "@exportPdfOptionsIncludeAnswers": {
-    "description": "Switch label to include correct answers in the questions page"
-  },
   "exportPdfOptionsIncludeAnswersSubtitle": "Додати окрему сторінку з правильними відповідями",
-  "@exportPdfOptionsIncludeAnswersSubtitle": {
-    "description": "Subtitle for the include answers switch in the export PDF dialog"
-  },
   "exportPdfQuestionsPageTitle": "Питання",
-  "@exportPdfQuestionsPageTitle": {
-    "description": "Section title for the questions page in the exported PDF"
-  },
   "exportPdfAnswersLabel": "Відповіді",
-  "@exportPdfAnswersLabel": {
-    "description": "Title of the answers page in the exported PDF"
-  },
   "exportButton": "Експорт",
-  "@exportButton": {
-    "description": "Label for the Export button in the export PDF options dialog"
-  },
   "openInQuizdyApp": "Відкрити в додатку Quizdy",
   "open": "Відкрити",
   "installApp": "Встановити додаток",
   "updateAvailableTitle": "Доступне оновлення",
-  "@updateAvailableTitle": {
-    "description": "Title shown in the update banner when a newer app version is available."
-  },
   "updateAvailableMessage": "Доступна версія {version} Quizdy.",
-  "@updateAvailableMessage": {
-    "description": "Subtitle in the update banner indicating which version is available.",
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
   "updateButton": "Оновити",
-  "@updateButton": {
-    "description": "Label for the update button in the update banner."
-  },
   "forceUpdateTitle": "Необхідне оновлення",
-  "@forceUpdateTitle": {
-    "description": "Title of the force update dialog."
-  },
   "forceUpdateMessage": "Для продовження використання Quizdy необхідне обов'язкове оновлення. Будь ласка, оновіть програму.",
-  "@forceUpdateMessage": {
-    "description": "Body message of the force update dialog."
-  },
   "questionOrderBySection": "За розділами",
   "questionOrderBySectionDesc": "Групуйте запитання за розділами та показуйте кожен розділ у порядку зростання",
   "srsStatsTitle": "Статистика",

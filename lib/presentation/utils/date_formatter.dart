@@ -31,7 +31,7 @@ class DateFormatter {
     } else if (difference.inDays == 1) {
       return localizations.homeRecentYesterday;
     } else if (difference.inDays < 7) {
-      return localizations.homeRecentDaysAgo(difference.inDays.toString());
+      return localizations.homeRecentDaysAgo(difference.inDays);
     } else {
       return '${lastOpened.day.toString().padLeft(2, '0')}/${lastOpened.month.toString().padLeft(2, '0')}/${lastOpened.year}';
     }

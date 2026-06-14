@@ -4,1638 +4,349 @@
   "abortQuizMessage": "Das Öffnen einer neuen Datei beendet das aktuelle Quiz.",
   "stopAndOpenButton": "Stoppen & Öffnen",
   "titleAppBar": "Quiz - Prüfungssimulator",
-  "@titleAppBar": {
-    "description": "Titel der Anwendung in der AppBar angezeigt."
-  },
   "create": "Erstellen",
-  "@create": {
-    "description": "Beschriftung für die Schaltfläche Quiz-Datei erstellen in der AppBar."
-  },
   "preview": "Vorschau",
-  "@preview": {
-    "description": "Beschriftung für den LaTeX-Vorschaubereich in Fragen-Dialogen."
-  },
   "previewLabel": "Vorschau:",
-  "@previewLabel": {
-    "description": "Label text for preview section"
-  },
   "emptyPlaceholder": "(leer)",
-  "@emptyPlaceholder": {
-    "description": "Placeholder text when content is empty"
-  },
   "latexSyntaxTitle": "LaTeX-Syntax:",
-  "@latexSyntaxTitle": {
-    "description": "Title for LaTeX syntax help section"
-  },
   "latexSyntaxHelp": "Inline-Mathematik: Verwenden Sie $...$ für LaTeX-Ausdrücke\nBeispiel: $x^2 + y^2 = z^2$",
-  "@latexSyntaxHelp": {
-    "description": "Help text explaining LaTeX syntax"
-  },
   "previewLatexTooltip": "LaTeX-Rendering-Vorschau",
-  "@previewLatexTooltip": {
-    "description": "Tooltip for preview LaTeX button"
-  },
   "okButton": "OK",
-  "@okButton": {
-    "description": "Generic OK button text"
-  },
   "aiEnterContentTitle": "Inhalt eingeben",
-  "@aiEnterContentTitle": {
-    "description": "Title for the step 2 of AI question generation"
-  },
   "aiEnterContentDescription": "Füge beliebigen Text ein oder hänge Dateien als Inhaltsquelle an",
-  "@aiEnterContentDescription": {
-    "description": "Description for the content input step"
-  },
   "aiContentFieldHint": "Geben Sie ein Thema wie \"Geschichte des Zweiten Weltkriegs\" ein oder fügen Sie hier Textinhalt ein...",
-  "@aiContentFieldHint": {
-    "description": "Hint text for the content input field"
-  },
   "aiAttachFileHint": "Datei anhängen (PDF, TXT, MP3, MP4,...)",
-  "@aiAttachFileHint": {
-    "description": "Hint text for the file attachment area"
-  },
   "dropAttachmentHere": "Datei hier ablegen",
-  "@dropAttachmentHere": {
-    "description": "Hint shown when dragging a file over the attachment area"
-  },
   "dropImageHere": "Bild hier ablegen",
-  "@dropImageHere": {
-    "description": "Hint shown when dragging an image over the image section"
-  },
   "aiNumberQuestionsLabel": "Anzahl der Fragen",
-  "@aiNumberQuestionsLabel": {
-    "description": "Label for number of questions input"
-  },
   "backButton": "Zurück",
-  "@backButton": {
-    "description": "Generic back button text"
-  },
   "generateButton": "Generieren",
-  "@generateButton": {
-    "description": "Generic generate button text"
-  },
   "aiTopicModeCount": "Themenmodus ({count} Wörter)",
-  "@aiTopicModeCount": {
-    "description": "Topic mode with word count",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "aiTextModeCount": "Textmodus ({count} Wörter)",
   "aiGenerationCategoryLabel": "Inhaltsmodus",
-  "@aiGenerationCategoryLabel": {
-    "description": "Label for AI generation category selector"
-  },
   "aiGenerationCategoryTheory": "Theorie",
-  "@aiGenerationCategoryTheory": {
-    "description": "Label for theory category"
-  },
   "aiGenerationCategoryExercises": "Übungen",
-  "@aiGenerationCategoryExercises": {
-    "description": "Label for exercises category"
-  },
   "aiGenerationCategoryBoth": "Gemischt",
-  "@aiGenerationCategoryBoth": {
-    "description": "Label for mixed category"
-  },
-  "@aiTextModeCount": {
-    "description": "Text mode with word count",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "150"
-      }
-    }
-  },
   "aiContextMode": "Kontextmodus",
-  "@aiContextMode": {
-    "description": "Label for context mode when a file is uploaded"
-  },
   "load": "Laden",
-  "@load": {
-    "description": "Beschriftung für die Schaltfläche Quiz-Datei laden in der AppBar."
-  },
   "fileLoaded": "Datei geladen: {filePath}",
-  "@fileLoaded": {
-    "description": "Nachricht, die angezeigt wird, wenn eine Datei erfolgreich geladen wurde.",
-    "placeholders": {
-      "filePath": {
-        "type": "String",
-        "example": "/pfad/zur/datei.quiz"
-      }
-    }
-  },
   "fileSaved": "Datei gespeichert: {filePath}",
-  "@fileSaved": {
-    "description": "Nachricht, die angezeigt wird, wenn eine Datei erfolgreich gespeichert wurde.",
-    "placeholders": {
-      "filePath": {
-        "type": "String",
-        "example": "/pfad/zur/datei.quiz"
-      }
-    }
-  },
   "dropFileHere": "Klicken Sie auf das Logo oder ziehen Sie eine .quiz-Datei auf den Bildschirm",
   "errorOpeningFile": "Fehler beim Öffnen der Datei",
-  "@errorOpeningFile": {
-    "description": "Generic error message when opening a file fails."
-  },
   "replaceFileTitle": "Neues Quiz laden",
-  "@replaceFileTitle": {
-    "description": "Title of the confirmation dialog to replace the current file."
-  },
   "replaceFileMessage": "Ein Quiz ist bereits geladen. Möchten Sie es durch die neue Datei ersetzen?",
-  "@replaceFileMessage": {
-    "description": "Message of the confirmation dialog to replace the current file."
-  },
   "replaceButton": "Laden",
-  "@replaceButton": {
-    "description": "Button to confirm replacing the file."
-  },
-  "@dropFileHere": {
-    "description": "Text, der im Ablagebereich zum Ziehen von Dateien angezeigt wird."
-  },
   "clickOrDragFile": "Klicken zum Laden oder .quiz-Datei auf den Bildschirm ziehen",
-  "@clickOrDragFile": {
-    "description": "Text unter dem Ladebereich"
-  },
   "errorInvalidFile": "Fehler: Ungültige Datei. Muss eine .quiz-Datei sein.",
-  "@errorInvalidFile": {
-    "description": "Nachricht, die angezeigt wird, wenn die abgelegte Datei keine .quiz-Datei ist."
-  },
   "errorLoadingFile": "Fehler beim Laden der Quiz-Datei: {error}",
-  "@errorLoadingFile": {
-    "description": "Nachricht, die angezeigt wird, wenn beim Laden einer Quiz-Datei ein Fehler auftritt.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Datei nicht gefunden"
-      }
-    }
-  },
   "errorExportingFile": "Fehler beim Exportieren der Datei: {error}",
-  "@errorExportingFile": {
-    "description": "Nachricht, die angezeigt wird, wenn beim Exportieren einer Datei ein Fehler auftritt.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Datei nicht gefunden"
-      }
-    }
-  },
   "cancelButton": "Abbrechen",
-  "@cancelButton": {
-    "description": "Abbrechen-Schaltfläche."
-  },
   "saveButton": "Speichern",
-  "@saveButton": {
-    "description": "Speichern-Schaltfläche."
-  },
   "newTag": "Neu",
-  "@newTag": {
-    "description": "Tag, um ein neues oder geändertes Element anzuzeigen"
-  },
   "modifiedTag": "Geändert",
-  "@modifiedTag": {
-    "description": "Tag, um anzuzeigen, dass ein Element geändert wurde"
-  },
   "confirmDeleteTitle": "Löschung bestätigen",
-  "@confirmDeleteTitle": {
-    "description": "Titel für den Bestätigungsdialog beim Löschen eines Prozesses."
-  },
   "confirmDeleteMessage": "Sind Sie sicher, dass Sie den Prozess `{processName}` löschen möchten?",
-  "@confirmDeleteMessage": {
-    "description": "Nachricht im Bestätigungsdialog für das Löschen.",
-    "placeholders": {
-      "processName": {
-        "type": "String",
-        "example": "Frage 1"
-      }
-    }
-  },
   "deleteButton": "Löschen",
-  "@deleteButton": {
-    "description": "Schaltflächentext zum Bestätigen der Löschung."
-  },
   "confirmExitTitle": "Beenden bestätigen",
-  "@confirmExitTitle": {
-    "description": "Titel für den Bestätigungsdialog beim Beenden."
-  },
   "confirmExitMessage": "Es gibt ungespeicherte Änderungen. Möchten Sie verlassen und die Änderungen verwerfen?",
-  "@confirmExitMessage": {
-    "description": "Nachricht im Bestätigungsdialog für das Beenden."
-  },
   "exitButton": "Beenden ohne zu speichern",
-  "@exitButton": {
-    "description": "Beenden-Schaltflächentext."
-  },
   "saveDialogTitle": "Bitte wählen Sie eine Ausgabedatei:",
-  "@saveDialogTitle": {
-    "description": "Titel für den Speicherdialog."
-  },
   "createQuizFileTitle": "Quiz-Datei erstellen",
-  "@createQuizFileTitle": {
-    "description": "Titel für den Dialog zum Erstellen einer Quiz-Datei."
-  },
   "editQuizFileTitle": "Quizdatei bearbeiten",
-  "@editQuizFileTitle": {
-    "description": "Titel für den Dialog zum Bearbeiten der Quizdatei."
-  },
   "fileNameLabel": "Dateiname",
-  "@fileNameLabel": {
-    "description": "Beschriftung für die Dateiname-Eingabe."
-  },
   "fileDescriptionLabel": "Dateibeschreibung",
-  "@fileDescriptionLabel": {
-    "description": "Beschriftung für die Dateibeschreibung-Eingabe."
-  },
   "createButton": "Erstellen",
-  "@createButton": {
-    "description": "Erstellen-Schaltflächentext."
-  },
   "fileNameRequiredError": "Der Dateiname ist erforderlich.",
-  "@fileNameRequiredError": {
-    "description": "Fehlermeldung, wenn der Dateiname leer ist."
-  },
   "fileDescriptionRequiredError": "Die Dateibeschreibung ist erforderlich.",
-  "@fileDescriptionRequiredError": {
-    "description": "Fehlermeldung, wenn die Dateibeschreibung leer ist."
-  },
   "versionLabel": "Version",
-  "@versionLabel": {
-    "description": "Beschriftung für das Quiz-Versionsfeld"
-  },
   "authorLabel": "Autor",
-  "@authorLabel": {
-    "description": "Beschriftung für das Quiz-Autorfeld"
-  },
   "authorRequiredError": "Der Autor ist erforderlich.",
-  "@authorRequiredError": {
-    "description": "Fehlermeldung, wenn das Autorfeld leer ist"
-  },
   "requiredFieldsError": "Alle erforderlichen Felder müssen ausgefüllt werden.",
-  "@requiredFieldsError": {
-    "description": "Fehlermeldung, wenn erforderliche Felder fehlen"
-  },
   "requestFileNameTitle": "Geben Sie den Quiz-Dateinamen ein",
-  "@requestFileNameTitle": {
-    "description": "Titel für den Dialog zur Anfrage des Dateinamens."
-  },
   "fileNameHint": "Dateiname",
-  "@fileNameHint": {
-    "description": "Hinweistext für die Dateiname-Eingabe."
-  },
   "emptyFileNameMessage": "Der Dateiname darf nicht leer sein.",
-  "@emptyFileNameMessage": {
-    "description": "Fehlermeldung, wenn der Dateiname leer ist."
-  },
   "acceptButton": "Akzeptieren",
-  "@acceptButton": {
-    "description": "Akzeptieren-Schaltflächentext."
-  },
   "saveTooltip": "Datei speichern",
-  "@saveTooltip": {
-    "description": "Tooltip für die Speichern-Schaltfläche."
-  },
   "saveDisabledTooltip": "Keine Änderungen zu speichern",
-  "@saveDisabledTooltip": {
-    "description": "Tooltip für die deaktivierte Speichern-Schaltfläche."
-  },
   "executeTooltip": "Prüfung ausführen",
-  "@executeTooltip": {
-    "description": "Tooltip für die Ausführen-Schaltfläche."
-  },
   "addTooltip": "Neue Frage hinzufügen",
-  "@addTooltip": {
-    "description": "Tooltip für die Hinzufügen-Schaltfläche."
-  },
   "backSemanticLabel": "Zurück-Schaltfläche",
-  "@backSemanticLabel": {
-    "description": "Semantische Beschriftung für die Zurück-Schaltfläche."
-  },
   "createFileTooltip": "Neue Quiz-Datei erstellen",
-  "@createFileTooltip": {
-    "description": "Tooltip für die Datei erstellen-Schaltfläche."
-  },
   "loadFileTooltip": "Vorhandene Quiz-Datei laden",
-  "@loadFileTooltip": {
-    "description": "Tooltip für die Datei laden-Schaltfläche."
-  },
   "questionNumber": "Frage {number}",
-  "@questionNumber": {
-    "description": "Fragennummer-Beschriftung in der Quiz-Ausführung",
-    "placeholders": {
-      "number": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "questionOfTotal": "Frage {current} von {total}",
-  "@questionOfTotal": {
-    "description": "Bezeichnung, die die aktuelle Fragennummer und die Gesamtzahl der Fragen anzeigt",
-    "placeholders": {
-      "current": {
-        "type": "int",
-        "example": "1"
-      },
-      "total": {
-        "type": "int",
-        "example": "10"
-      }
-    }
-  },
   "previous": "Zurück",
-  "@previous": {
-    "description": "Zurück-Schaltflächentext in der Quiz-Navigation"
-  },
   "next": "Weiter",
-  "@next": {
-    "description": "Weiter-Schaltflächentext in der Quiz-Navigation"
-  },
   "finish": "Beenden",
-  "@finish": {
-    "description": "Beenden-Schaltflächentext in der Quiz-Navigation"
-  },
   "finishQuiz": "Quiz beenden",
-  "@finishQuiz": {
-    "description": "Titel des Quiz beenden-Dialogs"
-  },
   "finishQuizConfirmation": "Sind Sie sicher, dass Sie das Quiz beenden möchten? Sie können Ihre Antworten danach nicht mehr ändern.",
-  "@finishQuizConfirmation": {
-    "description": "Bestätigungsnachricht für das Beenden des Quiz"
-  },
   "abandonQuiz": "Quiz aufgeben",
-  "@abandonQuiz": {
-    "description": "Titel des Quiz aufgeben-Dialogs"
-  },
   "abandonQuizConfirmation": "Sind Sie sicher, dass Sie das Quiz aufgeben möchten? Der gesamte Fortschritt geht verloren.",
-  "@abandonQuizConfirmation": {
-    "description": "Bestätigungsnachricht für das Aufgeben des Quiz"
-  },
   "abandon": "Aufgeben",
-  "@abandon": {
-    "description": "Aufgeben-Schaltflächentext"
-  },
   "quizCompleted": "Quiz abgeschlossen!",
-  "@quizCompleted": {
-    "description": "Quiz abgeschlossen-Nachricht"
-  },
   "score": "Punktzahl: {score}%",
-  "@score": {
-    "description": "Punktzahl-Anzeige",
-    "placeholders": {
-      "score": {
-        "type": "String",
-        "example": "85.5"
-      }
-    }
-  },
   "correctAnswers": "{correct} von {total} richtige Antworten",
-  "@correctAnswers": {
-    "description": "Anzahl richtiger Antworten",
-    "placeholders": {
-      "correct": {
-        "type": "String",
-        "example": "8"
-      },
-      "total": {
-        "type": "int",
-        "example": "10"
-      }
-    }
-  },
   "retry": "Wiederholen",
-  "@retry": {
-    "description": "Wiederholen-Schaltflächentext"
-  },
   "studyScreenRetry": "Wiederholen",
-  "@studyScreenRetry": {
-    "description": "Wiederholungstext für fehlerhaften Abschnitt."
-  },
   "studyScreenOmit": "Auslassen",
-  "@studyScreenOmit": {
-    "description": "Text für Auslassen-Schaltfläche"
-  },
   "goBack": "Beenden",
-  "@goBack": {
-    "description": "Zurückgehen-Schaltflächentext"
-  },
   "retryFailedQuestions": "Fehlgeschlagene wiederholen",
-  "@retryFailedQuestions": {
-    "description": "Schaltflächentext, um nur die falsch beantworteten Fragen zu wiederholen"
-  },
   "question": "Frage: {question}",
-  "@question": {
-    "description": "Fragentext in den Ergebnissen",
-    "placeholders": {
-      "question": {
-        "type": "String",
-        "example": "Was ist die Hauptstadt von Deutschland?"
-      }
-    }
-  },
   "selectQuestionCountTitle": "Anzahl der Fragen auswählen",
-  "@selectQuestionCountTitle": {
-    "description": "Titel für den Dialog zur Auswahl der Anzahl der Fragen für das Quiz"
-  },
   "selectQuestionCountMessage": "Wie viele Fragen möchten Sie in diesem Quiz beantworten?",
-  "@selectQuestionCountMessage": {
-    "description": "Nachricht zur Erklärung der Fragenanzahl-Auswahl"
-  },
   "allQuestions": "Alle Fragen ({count})",
-  "@allQuestions": {
-    "description": "Option zur Auswahl aller verfügbaren Fragen",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "25"
-      }
-    }
-  },
   "resolveUnansweredQuestions": "Fragen lösen",
-  "@resolveUnansweredQuestions": {
-    "description": "Schaltflächentext zum Lösen unbeantworteter Fragen"
-  },
   "startQuiz": "Quiz starten",
-  "@startQuiz": {
-    "description": "Schaltflächentext zum Starten des Quiz"
-  },
   "maxIncorrectAnswersLabel": "Falsche Antworten begrenzen",
-  "@maxIncorrectAnswersLabel": {
-    "description": "Bezeichnung für den Schalter zum Begrenzen falscher Antworten"
-  },
   "maxIncorrectAnswersDescription": "Bestanden/Nicht bestanden Prüfung. Es gibt keine numerische Note.",
-  "@maxIncorrectAnswersDescription": {
-    "description": "Beschreibung für die Funktion zum Begrenzen falscher Antworten"
-  },
   "maxIncorrectAnswersOffDescription": "Die Prüfung hat eine numerische Note von 0 bis 100.",
-  "@maxIncorrectAnswersOffDescription": {
-    "description": "Description shown when max incorrect answers is disabled"
-  },
   "maxIncorrectAnswersLimitLabel": "Maximal zulässige Fehler",
-  "@maxIncorrectAnswersLimitLabel": {
-    "description": "Bezeichnung für das Eingabefeld der maximalen falschen Antworten"
-  },
   "examFailedStatus": "Prüfung NICHT BESTANDEN",
   "examPassedStatus": "Prüfung BESTANDEN",
   "quizFailedLimitReached": "Prüfung Beendet: Das maximale Fehlerlimit wurde überschritten",
-  "@quizFailedLimitReached": {
-    "description": "Titel für den Ergebnisbildschirm, wenn das Fehlerlimit erreicht ist"
-  },
   "customNumberLabel": "Oder geben Sie eine benutzerdefinierte Zahl ein:",
-  "@customNumberLabel": {
-    "description": "Beschriftung für den benutzerdefinierten Zahlen-Eingabebereich"
-  },
   "numberInputLabel": "Anzahl der Fragen",
-  "@numberInputLabel": {
-    "description": "Beschriftung für das Zahlen-Eingabefeld"
-  },
   "errorInvalidNumber": "Bitte geben Sie eine gültige Zahl ein",
-  "@errorInvalidNumber": {
-    "description": "Fehlermeldung für ungültige Zahleneingabe"
-  },
   "errorNumberMustBePositive": "Die Zahl muss größer als 0 sein",
-  "@errorNumberMustBePositive": {
-    "description": "Fehlermeldung, wenn die Zahl null oder negativ ist"
-  },
   "questionOrderConfigTitle": "Fragenreihenfolge-Konfiguration",
-  "@questionOrderConfigTitle": {
-    "description": "Titel für den Fragenreihenfolge-Konfigurationsdialog"
-  },
   "questionOrderConfigDescription": "Wählen Sie die Reihenfolge, in der die Fragen während der Prüfung erscheinen sollen:",
-  "@questionOrderConfigDescription": {
-    "description": "Beschreibungstext für den Fragenreihenfolge-Konfigurationsdialog"
-  },
   "questionOrderAscending": "Aufsteigende Reihenfolge",
-  "@questionOrderAscending": {
-    "description": "Beschriftung für die aufsteigende Fragenreihenfolge-Option"
-  },
   "questionOrderAscendingDesc": "Fragen erscheinen in der Reihenfolge von 1 bis zum Ende",
-  "@questionOrderAscendingDesc": {
-    "description": "Beschreibung für die aufsteigende Fragenreihenfolge-Option"
-  },
   "questionOrderDescending": "Absteigende Reihenfolge",
-  "@questionOrderDescending": {
-    "description": "Beschriftung für die absteigende Fragenreihenfolge-Option"
-  },
   "questionOrderDescendingDesc": "Fragen erscheinen vom Ende bis 1",
-  "@questionOrderDescendingDesc": {
-    "description": "Beschreibung für die absteigende Fragenreihenfolge-Option"
-  },
   "questionOrderRandom": "Fragenreihenfolge zufällig anordnen",
-  "@questionOrderRandom": {
-    "description": "Beschriftung für die zufällige Fragenreihenfolge-Option"
-  },
   "questionOrderRandomDesc": "Fragen erscheinen in zufälliger Reihenfolge",
-  "@questionOrderRandomDesc": {
-    "description": "Beschreibung für die zufällige Fragenreihenfolge-Option"
-  },
   "questionOrderConfigTooltip": "Fragenreihenfolge-Konfiguration",
-  "@questionOrderConfigTooltip": {
-    "description": "Tooltip für die Fragenreihenfolge-Konfiguration-Schaltfläche"
-  },
   "save": "Speichern",
-  "@save": {
-    "description": "Beschriftung für die Speichern-Schaltfläche"
-  },
   "examTimeLimitTitle": "Prüfungszeit-Limit",
-  "@examTimeLimitTitle": {
-    "description": "Titel für den Prüfungszeit-Limit-Bereich"
-  },
   "examTimeLimitDescription": "Legen Sie ein Zeitlimit für die Prüfung fest. Während des Quiz wird ein Countdown-Timer angezeigt.",
-  "@examTimeLimitDescription": {
-    "description": "Beschreibung für die Prüfungszeit-Limit-Funktion"
-  },
   "examTimeLimitOffDescription": "Für diese Prüfung gibt es kein Zeitlimit.",
-  "@examTimeLimitOffDescription": {
-    "description": "Description shown when time limit is disabled"
-  },
   "enableTimeLimit": "Zeitlimit aktivieren",
-  "@enableTimeLimit": {
-    "description": "Beschriftung für den Prüfungszeit-Limit-Aktivierungsschalter"
-  },
   "timeLimitMinutes": "Zeitlimit (Minuten)",
-  "@timeLimitMinutes": {
-    "description": "Beschriftung für die Prüfungszeit-Minuten-Eingabe"
-  },
   "examTimeExpiredTitle": "Zeit abgelaufen!",
-  "@examTimeExpiredTitle": {
-    "description": "Titel für den Dialog Zeit abgelaufen"
-  },
   "examTimeExpiredMessage": "Die Prüfungszeit ist abgelaufen. Ihre Antworten wurden automatisch übermittelt.",
-  "@examTimeExpiredMessage": {
-    "description": "Nachricht für den Dialog Zeit abgelaufen"
-  },
   "remainingTime": "{hours}:{minutes}:{seconds}",
-  "@remainingTime": {
-    "description": "Format für die Anzeige der verbleibenden Zeit (Stunden:Minuten:Sekunden)",
-    "placeholders": {
-      "hours": {
-        "type": "String",
-        "example": "01"
-      },
-      "minutes": {
-        "type": "String",
-        "example": "30"
-      },
-      "seconds": {
-        "type": "String",
-        "example": "45"
-      }
-    }
-  },
   "questionTypeMultipleChoice": "Mehrfachauswahl",
-  "@questionTypeMultipleChoice": {
-    "description": "Beschriftung für den Mehrfachauswahl-Fragentyp"
-  },
   "questionTypeSingleChoice": "Einfachauswahl",
-  "@questionTypeSingleChoice": {
-    "description": "Beschriftung für den Einfachauswahl-Fragentyp"
-  },
   "questionTypeTrueFalse": "Wahr/Falsch",
-  "@questionTypeTrueFalse": {
-    "description": "Beschriftung für den Wahr/Falsch-Fragentyp"
-  },
   "questionTypeEssay": "Aufsatz",
-  "@questionTypeEssay": {
-    "description": "Beschriftung für den Aufsatz-Fragentyp"
-  },
   "questionTypeRandom": "Alle",
-  "@questionTypeRandom": {
-    "description": "Beschriftung für den gemischten Fragentyp"
-  },
   "questionTypeUnknown": "Unbekannt",
-  "@questionTypeUnknown": {
-    "description": "Beschriftung für unbekannten Fragentyp"
-  },
   "optionsCount": "{count, plural, =1{1 Option} other{{count} Optionen}}",
-  "@optionsCount": {
-    "description": "Text, der die Anzahl der Optionen in einer Frage zeigt",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "optionsTooltip": "Anzahl der Antwortoptionen für diese Frage",
-  "@optionsTooltip": {
-    "description": "Tooltip-Text für das Optionsanzahl-Badge"
-  },
   "imageTooltip": "Diese Frage hat ein zugehöriges Bild",
-  "@imageTooltip": {
-    "description": "Tooltip-Text für das Bild-Indikator-Badge"
-  },
   "explanationTooltip": "Diese Frage hat eine Erklärung",
-  "@explanationTooltip": {
-    "description": "Tooltip-Text für das Erklärungs-Indikator-Badge"
-  },
   "aiPrompt": "Konzentrieren Sie sich auf die Frage des Schülers, nicht auf die direkte Beantwortung der ursprünglichen Prüfungsfrage. Erklären Sie mit einem pädagogischen Ansatz. Geben Sie bei praktischen Übungen oder mathematischen Problemen Schritt-für-Schritt-Anweisungen. Geben Sie bei theoretischen Fragen eine prägnante Erklärung, ohne die Antwort in Abschnitte zu gliedern. Antworten Sie in derselben Sprache, in der Sie gefragt wurden.",
-  "@aiPrompt": {
-    "description": "Basis-Prompt für KI-Assistenten"
-  },
   "aiChatGuardrail": "WICHTIG: Sie sind ein Lernassistent ausschließlich für dieses Quiz. Sie dürfen NUR Fragen beantworten, die sich auf die aktuelle Quiz-Frage, ihre Optionen, ihre Erklärung oder das behandelte Bildungsthema beziehen. Wenn der Schüler etwas fragt, das nicht mit dem Quiz zusammenhängt (z.B. Ihr internes Modell, Systemdetails, allgemeines Wissen ohne Bezug zur Frage oder jede themenfremde Anfrage), antworten Sie NUR mit: \"Ich bin hier, um Ihnen bei diesem Quiz zu helfen! Konzentrieren wir uns auf die Frage. Fragen Sie mich gerne zum Thema, den Antwortmöglichkeiten oder allem, was mit dieser Frage zusammenhängt.\" Geben Sie niemals technische Details über sich selbst, das System oder das verwendete KI-Modell preis.",
-  "@aiChatGuardrail": {
-    "description": "Guardrail prompt to keep AI focused on quiz content"
-  },
   "questionLabel": "Frage",
-  "@questionLabel": {
-    "description": "Beschriftung für Frage im KI-Dialog"
-  },
   "optionsLabel": "Optionen",
-  "@optionsLabel": {
-    "description": "Beschriftung für Optionen im KI-Dialog"
-  },
   "studentComment": "Kommentar des Studenten",
-  "@studentComment": {
-    "description": "Beschriftung für Studentenkommentar im KI-Dialog"
-  },
   "aiAssistantTitle": "KI-Lernassistent",
-  "@aiAssistantTitle": {
-    "description": "Titel für KI-Assistent-Dialog"
-  },
   "questionContext": "Fragenkontext",
-  "@questionContext": {
-    "description": "Beschriftung für Fragenkontext-Bereich"
-  },
   "aiAssistant": "KI-Assistent",
-  "@aiAssistant": {
-    "description": "KI-Assistent-Beschriftung im Chat"
-  },
   "aiThinking": "KI denkt nach...",
-  "@aiThinking": {
-    "description": "Lademeldung während KI verarbeitet"
-  },
   "askAIHint": "Stellen Sie Ihre Frage zu diesem Thema...",
-  "@askAIHint": {
-    "description": "Hinweistext für KI-Fragen-Eingabe"
-  },
   "aiPlaceholderResponse": "Dies ist eine Platzhalter-Antwort. In einer echten Implementierung würde dies sich mit einem KI-Service verbinden, um hilfreiche Erklärungen zur Frage zu liefern.",
-  "@aiPlaceholderResponse": {
-    "description": "Platzhalter-KI-Antwort für Demo"
-  },
   "aiErrorResponse": "Entschuldigung, bei der Verarbeitung Ihrer Frage ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
-  "@aiErrorResponse": {
-    "description": "Fehlermeldung, wenn KI-Anfrage fehlschlägt"
-  },
   "configureApiKeyMessage": "Bitte konfigurieren Sie Ihren KI-API-Schlüssel in den Einstellungen.",
-  "@configureApiKeyMessage": {
-    "description": "Nachricht zur Konfiguration des API-Schlüssels, wenn er nicht gesetzt ist"
-  },
   "errorLabel": "Fehler:",
-  "@errorLabel": {
-    "description": "Fehler-Label-Präfix für Fehlermeldungen"
-  },
   "noResponseReceived": "Keine Antwort erhalten",
-  "@noResponseReceived": {
-    "description": "Nachricht, wenn keine Antwort von der KI erhalten wird"
-  },
   "invalidApiKeyError": "Ungültiger API-Schlüssel. Bitte überprüfen Sie Ihren OpenAI-API-Schlüssel in den Einstellungen.",
-  "@invalidApiKeyError": {
-    "description": "Fehlermeldung für ungültigen API-Schlüssel"
-  },
   "rateLimitError": "Rate-Limit überschritten. Bitte versuchen Sie es später erneut.",
-  "@rateLimitError": {
-    "description": "Fehlermeldung für überschrittenes Rate-Limit"
-  },
   "modelNotFoundError": "Modell nicht gefunden. Bitte überprüfen Sie Ihren API-Zugang.",
-  "@modelNotFoundError": {
-    "description": "Fehlermeldung für nicht gefundenes Modell"
-  },
   "unknownError": "Unbekannter Fehler",
-  "@unknownError": {
-    "description": "Generische unbekannte Fehlermeldung"
-  },
   "networkErrorOpenAI": "Netzwerkfehler: Verbindung zu OpenAI konnte nicht hergestellt werden. Bitte überprüfen Sie Ihre Internetverbindung.",
-  "@networkErrorOpenAI": {
-    "description": "Netzwerkverbindungsfehler für OpenAI"
-  },
   "networkErrorGemini": "Netzwerkfehler: Verbindung zu Gemini konnte nicht hergestellt werden. Bitte überprüfen Sie Ihre Internetverbindung.",
-  "@networkErrorGemini": {
-    "description": "Netzwerkverbindungsfehler für Gemini"
-  },
   "openaiApiKeyNotConfigured": "OpenAI-API-Schlüssel nicht konfiguriert",
-  "@openaiApiKeyNotConfigured": {
-    "description": "Fehlermeldung, wenn API-Schlüssel nicht konfiguriert ist"
-  },
   "geminiApiKeyNotConfigured": "Gemini-API-Schlüssel nicht konfiguriert",
-  "@geminiApiKeyNotConfigured": {
-    "description": "Fehlermeldung, wenn Gemini-API-Schlüssel nicht konfiguriert ist"
-  },
   "geminiApiKeyLabel": "Gemini API-Schlüssel",
-  "@geminiApiKeyLabel": {
-    "description": "Beschriftung für Gemini-API-Schlüssel-Feld"
-  },
   "geminiApiKeyHint": "Geben Sie Ihren Gemini-API-Schlüssel ein",
-  "@geminiApiKeyHint": {
-    "description": "Hinweistext für Gemini-API-Schlüssel-Feld"
-  },
   "geminiApiKeyDescription": "Erforderlich für Gemini-KI-Funktionalität. Ihr Schlüssel wird sicher gespeichert.",
-  "@geminiApiKeyDescription": {
-    "description": "Beschreibung für Gemini-API-Schlüssel-Feld"
-  },
   "getGeminiApiKeyTooltip": "API-Schlüssel von Google AI Studio erhalten",
-  "@getGeminiApiKeyTooltip": {
-    "description": "Tooltip für die Schaltfläche zum Erhalten des Gemini-API-Schlüssels"
-  },
   "aiRequiresAtLeastOneApiKeyError": "Der KI-Lernassistent benötigt mindestens einen API-Schlüssel (Gemini oder OpenAI). Bitte geben Sie einen API-Schlüssel ein oder deaktivieren Sie den KI-Assistenten.",
-  "@aiRequiresAtLeastOneApiKeyError": {
-    "description": "Fehlermeldung, wenn KI-Assistent aktiviert ist, aber keine API-Schlüssel bereitgestellt sind"
-  },
   "minutesAbbreviation": "min",
-  "@minutesAbbreviation": {
-    "description": "Abkürzung für Minuten"
-  },
   "aiButtonTooltip": "KI-Lernassistent",
-  "@aiButtonTooltip": {
-    "description": "Tooltip für KI-Assistent-Schaltfläche"
-  },
   "aiButtonText": "KI",
-  "@aiButtonText": {
-    "description": "Text für KI-Assistent-Schaltfläche"
-  },
   "aiAssistantSettingsTitle": "KI-Lernassistent (Vorschau)",
-  "@aiAssistantSettingsTitle": {
-    "description": "Titel für KI-Assistent-Einstellungsbereich"
-  },
   "aiAssistantSettingsDescription": "KI-Lernassistenten für Fragen aktivieren oder deaktivieren",
-  "@aiAssistantSettingsDescription": {
-    "description": "Beschreibung für KI-Assistent-Einstellungen"
-  },
   "aiDefaultModelTitle": "Standard-KI-Modell",
-  "@aiDefaultModelTitle": {
-    "description": "Titel für Standard-KI-Modell-Einstellungsbereich"
-  },
   "aiDefaultModelDescription": "Wählen Sie den Standard-KI-Service und das Modell für die Fragengenerierung",
-  "@aiDefaultModelDescription": {
-    "description": "Beschreibung für Standard-KI-Modell-Einstellungen"
-  },
   "openaiApiKeyLabel": "OpenAI-API-Schlüssel",
-  "@openaiApiKeyLabel": {
-    "description": "Beschriftung für OpenAI-API-Schlüssel-Feld"
-  },
   "openaiApiKeyHint": "Geben Sie Ihren OpenAI-API-Schlüssel ein (sk-...)",
-  "@openaiApiKeyHint": {
-    "description": "Hinweistext für OpenAI-API-Schlüssel-Feld"
-  },
   "openaiApiKeyDescription": "Erforderlich für die Integration mit OpenAI. Ihr OpenAI-Schlüssel wird sicher gespeichert.",
-  "@openaiApiKeyDescription": {
-    "description": "Beschreibung für OpenAI-API-Schlüssel-Feld"
-  },
   "aiAssistantRequiresApiKeyError": "KI-Lernassistent benötigt einen OpenAI-API-Schlüssel. Bitte geben Sie Ihren API-Schlüssel ein oder deaktivieren Sie den KI-Assistenten.",
-  "@aiAssistantRequiresApiKeyError": {
-    "description": "Fehlermeldung, wenn KI-Assistent aktiviert ist, aber kein API-Schlüssel bereitgestellt ist"
-  },
   "getApiKeyTooltip": "API-Schlüssel von OpenAI erhalten",
-  "@getApiKeyTooltip": {
-    "description": "Tooltip für die Schaltfläche zum Erhalten des API-Schlüssels von OpenAI"
-  },
   "deleteAction": "Löschen",
-  "@deleteAction": {
-    "description": "Löschaktions-Text beim Wischen zum Löschen angezeigt"
-  },
   "explanationLabel": "Erklärung (optional)",
-  "@explanationLabel": {
-    "description": "Beschriftung für das Erklärungs-Eingabefeld"
-  },
   "explanationHint": "Geben Sie eine Erklärung für die richtige(n) Antwort(en) ein",
-  "@explanationHint": {
-    "description": "Hinweistext für das Erklärungs-Eingabefeld"
-  },
   "explanationTitle": "Erklärung",
-  "@explanationTitle": {
-    "description": "Titel für den Erklärungs-Bereich in Quiz-Ergebnissen"
-  },
   "imageLabel": "Bild",
-  "@imageLabel": {
-    "description": "Beschriftung für den Bild-Bereich im Fragen-Editor"
-  },
   "changeImage": "Bild ändern",
-  "@changeImage": {
-    "description": "Text für Schaltfläche zum Ändern des aktuellen Bildes"
-  },
   "removeImage": "Bild entfernen",
-  "@removeImage": {
-    "description": "Text für Schaltfläche zum Entfernen des aktuellen Bildes"
-  },
   "addImageTap": "Tippen Sie, um ein Bild hinzuzufügen",
-  "@addImageTap": {
-    "description": "Anweisungstext zum Hinzufügen eines Bildes"
-  },
   "imageFormats": "Formate: JPG, PNG, GIF",
-  "@imageFormats": {
-    "description": "Text, der unterstützte Bildformate anzeigt"
-  },
   "imageLoadError": "Fehler beim Laden des Bildes",
-  "@imageLoadError": {
-    "description": "Fehlermeldung, wenn das Bild nicht geladen werden kann"
-  },
   "imagePickError": "Fehler beim Laden des Bildes: {error}",
-  "@imagePickError": {
-    "description": "Fehlermeldung, wenn die Bildauswahl fehlschlägt",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Ungültige Datei"
-      }
-    }
-  },
   "tapToZoom": "Tippen zum Zoomen",
-  "@tapToZoom": {
-    "description": "Anweisungstext, um anzuzeigen, dass das Bild gezoomt werden kann"
-  },
   "trueLabel": "Wahr",
-  "@trueLabel": {
-    "description": "Beschriftung für Wahr-Option in Wahr/Falsch-Fragen"
-  },
   "falseLabel": "Falsch",
-  "@falseLabel": {
-    "description": "Beschriftung für Falsch-Option in Wahr/Falsch-Fragen"
-  },
   "addQuestion": "Frage hinzufügen",
-  "@addQuestion": {
-    "description": "Titel für Dialog zum Hinzufügen einer neuen Frage"
-  },
   "editQuestion": "Frage bearbeiten",
-  "@editQuestion": {
-    "description": "Titel für Dialog zum Bearbeiten einer vorhandenen Frage"
-  },
   "questionText": "Fragentext",
-  "@questionText": {
-    "description": "Beschriftung für Fragentext-Eingabefeld"
-  },
   "questionType": "Fragentyp",
-  "@questionType": {
-    "description": "Beschriftung für Fragentyp-Dropdown"
-  },
   "addOption": "Option hinzufügen",
-  "@addOption": {
-    "description": "Beschriftung für Option hinzufügen-Schaltfläche"
-  },
   "optionLabel": "Option",
-  "@optionLabel": {
-    "description": "Beschriftung für individuelles Options-Eingabefeld"
-  },
   "questionTextRequired": "Fragentext ist erforderlich",
-  "@questionTextRequired": {
-    "description": "Fehlermeldung, wenn Fragentext leer ist"
-  },
   "atLeastOneOptionRequired": "Mindestens eine Option muss Text haben",
-  "@atLeastOneOptionRequired": {
-    "description": "Fehlermeldung, wenn alle Optionen leer sind"
-  },
   "atLeastOneCorrectAnswerRequired": "Mindestens eine richtige Antwort muss ausgewählt werden",
-  "@atLeastOneCorrectAnswerRequired": {
-    "description": "Fehlermeldung, wenn keine richtige Antwort ausgewählt ist"
-  },
   "onlyOneCorrectAnswerAllowed": "Nur eine richtige Antwort ist für diesen Fragentyp erlaubt",
-  "@onlyOneCorrectAnswerAllowed": {
-    "description": "Fehlermeldung, wenn mehrere richtige Antworten für Einfachauswahl-Fragen ausgewählt sind"
-  },
   "removeOption": "Option entfernen",
-  "@removeOption": {
-    "description": "Tooltip für Option entfernen-Schaltfläche"
-  },
   "selectCorrectAnswer": "Richtige Antwort auswählen",
-  "@selectCorrectAnswer": {
-    "description": "Tooltip für Radiobutton zur Auswahl der richtigen Antwort"
-  },
   "selectCorrectAnswers": "Richtige Antworten auswählen",
-  "@selectCorrectAnswers": {
-    "description": "Tooltip für Checkbox zur Auswahl richtiger Antworten"
-  },
   "emptyOptionsError": "Optionen {optionNumbers} sind leer. Bitte fügen Sie Text hinzu oder entfernen Sie sie.",
-  "@emptyOptionsError": {
-    "description": "Fehlermeldung, wenn einige Optionen leer sind",
-    "placeholders": {
-      "optionNumbers": {
-        "type": "String",
-        "example": "1, 3, 4"
-      }
-    }
-  },
   "emptyOptionError": "Option {optionNumber} ist leer. Bitte fügen Sie Text hinzu oder entfernen Sie sie.",
-  "@emptyOptionError": {
-    "description": "Fehlermeldung, wenn eine Option leer ist",
-    "placeholders": {
-      "optionNumber": {
-        "type": "String",
-        "example": "3"
-      }
-    }
-  },
   "errorDuplicatedOption": "Optionen dürfen nicht dupliziert werden.",
-  "@errorDuplicatedOption": {
-    "description": "Error message when options have duplicate text"
-  },
   "optionEmptyError": "Diese Option darf nicht leer sein",
-  "@optionEmptyError": {
-    "description": "Fehlermeldung für individuelles leeres Optionsfeld"
-  },
   "hasImage": "Bild",
-  "@hasImage": {
-    "description": "Beschriftung, die anzeigt, dass eine Frage ein Bild hat"
-  },
   "hasExplanation": "Erklärung",
-  "@hasExplanation": {
-    "description": "Beschriftung, die anzeigt, dass eine Frage eine Erklärung hat"
-  },
   "errorLoadingSettings": "Fehler beim Laden der Einstellungen: {error}",
-  "@errorLoadingSettings": {
-    "description": "Nachricht, die angezeigt wird, wenn beim Laden der Anwendungseinstellungen ein Fehler auftritt.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "description": "Die Fehlermeldung"
-      }
-    }
-  },
   "couldNotOpenUrl": "Konnte {url} nicht öffnen",
-  "@couldNotOpenUrl": {
-    "description": "Nachricht, die angezeigt wird, wenn eine URL nicht geöffnet werden kann.",
-    "placeholders": {
-      "url": {
-        "type": "String",
-        "description": "Die URL, die nicht geöffnet werden konnte"
-      }
-    }
-  },
   "loadingAiServices": "KI-Services werden geladen...",
-  "@loadingAiServices": {
-    "description": "Nachricht, die während des Ladens verfügbarer KI-Services angezeigt wird."
-  },
   "usingAiService": "Verwende: {serviceName}",
-  "@usingAiService": {
-    "description": "Nachricht, die zeigt, welcher KI-Service verwendet wird.",
-    "placeholders": {
-      "serviceName": {
-        "type": "String",
-        "description": "Der Name des KI-Service"
-      }
-    }
-  },
   "aiServiceLabel": "KI-Service:",
-  "@aiServiceLabel": {
-    "description": "Beschriftung für den KI-Service-Selektor."
-  },
   "aiModelLabel": "Modell:",
-  "@aiModelLabel": {
-    "description": "Beschriftung für den KI-Modell-Selektor."
-  },
   "importQuestionsTitle": "Fragen importieren",
-  "@importQuestionsTitle": {
-    "description": "Titel für den Fragen importieren-Dialog."
-  },
   "importQuestionsMessage": "{count} Fragen in \"{fileName}\" gefunden. Wo möchten Sie sie importieren?",
-  "@importQuestionsMessage": {
-    "description": "Nachricht, die fragt, wo Fragen aus einer anderen Datei importiert werden sollen.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "fragen.quiz"
-      }
-    }
-  },
   "importQuestionsPositionQuestion": "Wo möchten Sie diese Fragen hinzufügen?",
-  "@importQuestionsPositionQuestion": {
-    "description": "Frage zur Import-Position."
-  },
   "importAtBeginning": "Am Anfang",
-  "@importAtBeginning": {
-    "description": "Schaltfläche zum Importieren von Fragen am Anfang der Liste."
-  },
   "importAtEnd": "Am Ende",
-  "@importAtEnd": {
-    "description": "Schaltfläche zum Importieren von Fragen am Ende der Liste."
-  },
   "questionsImportedSuccess": "Erfolgreich {count} Fragen importiert",
-  "@questionsImportedSuccess": {
-    "description": "Erfolgsmeldung beim Importieren von Fragen.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "importChunksTitle": "Abschnitte importieren",
-  "@importChunksTitle": {
-    "description": "Title for the import chunks dialog."
-  },
   "importChunksMessage": "{count} Abschnitte in \"{fileName}\" gefunden. Wo möchten Sie sie importieren?",
-  "@importChunksMessage": {
-    "description": "Message asking where to import sections from another file.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "study.quiz"
-      }
-    }
-  },
   "importChunksPositionQuestion": "Wo möchten Sie diese Abschnitte hinzufügen?",
-  "@importChunksPositionQuestion": {
-    "description": "Question asking about import position for chunks."
-  },
   "chunksImportedSuccess": "{count} Abschnitte erfolgreich importiert",
-  "@chunksImportedSuccess": {
-    "description": "Success message when chunks are imported.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "noChunksInFile": "Keine Abschnitte in der importierten Datei gefunden",
-  "@noChunksInFile": {
-    "description": "Error message when the imported file has no study sections."
-  },
   "importQuestionsTooltip": "Fragen aus einer anderen Quiz-Datei importieren",
-  "@importQuestionsTooltip": {
-    "description": "Tooltip für die Fragen importieren-Schaltfläche."
-  },
   "dragDropHintText": "Sie können auch .quiz-Dateien hierher ziehen und ablegen, um Fragen zu importieren",
-  "@dragDropHintText": {
-    "description": "Hinweistext, der angezeigt wird, wenn die Fragenliste leer ist, und die Drag-and-Drop-Funktionalität anzeigt."
-  },
   "randomizeQuestionsTitle": "Fragen randomisieren",
-  "@randomizeQuestionsTitle": {
-    "description": "Titel für die Einstellung zum Randomisieren von Fragen."
-  },
   "randomizeQuestionsDescription": "Reihenfolge der Fragen während der Quiz-Ausführung mischen",
-  "@randomizeQuestionsDescription": {
-    "description": "Beschreibung für die Einstellung zum Randomisieren von Fragen."
-  },
   "randomizeQuestionsOffDescription": "Die Fragen erscheinen in ihrer ursprünglichen Reihenfolge",
-  "@randomizeQuestionsOffDescription": {
-    "description": "Description for the randomize questions setting when disabled."
-  },
   "randomizeAnswersTitle": "Antwortreihenfolge zufällig anordnen",
-  "@randomizeAnswersTitle": {
-    "description": "Titel für die Einstellung zum Randomisieren von Antwortoptionen."
-  },
   "randomizeAnswersDescription": "Reihenfolge der Antwortoptionen während der Quiz-Ausführung mischen",
-  "@randomizeAnswersDescription": {
-    "description": "Beschreibung für die Antworten randomisieren-Einstellung."
-  },
   "showCorrectAnswerCountTitle": "Anzahl richtiger Antworten anzeigen",
-  "@showCorrectAnswerCountTitle": {
-    "description": "Titel für die Einstellung zur Anzeige der Anzahl richtiger Antworten."
-  },
   "showCorrectAnswerCountDescription": "Anzahl der richtigen Antworten in Mehrfachauswahl-Fragen anzeigen",
-  "@showCorrectAnswerCountDescription": {
-    "description": "Beschreibung für die Einstellung zur Anzeige der Anzahl richtiger Antworten."
-  },
   "showCorrectAnswerCountOffDescription": "Die Anzahl der richtigen Antworten wird bei Multiple-Choice-Fragen nicht angezeigt",
-  "@showCorrectAnswerCountOffDescription": {
-    "description": "Description for the show correct answer count setting when disabled."
-  },
   "correctAnswersCount": "Wählen Sie {count} richtige Antworten",
-  "@correctAnswersCount": {
-    "description": "Text, der zeigt, wie viele richtige Antworten in einer Mehrfachauswahl-Frage ausgewählt werden sollen.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "correctSelectedLabel": "Richtig",
-  "@correctSelectedLabel": {
-    "description": "Beschriftung für richtig ausgewählte Antworten in Quiz-Ergebnissen."
-  },
   "correctMissedLabel": "Richtig",
-  "@correctMissedLabel": {
-    "description": "Beschriftung für richtige Antworten, die nicht ausgewählt wurden in Quiz-Ergebnissen."
-  },
   "incorrectSelectedLabel": "Falsch",
-  "@incorrectSelectedLabel": {
-    "description": "Beschriftung für falsch ausgewählte Antworten in Quiz-Ergebnissen."
-  },
   "generateQuestionsWithAI": "Fragen mit KI generieren",
-  "@generateQuestionsWithAI": {
-    "description": "Tooltip für die Schaltfläche Fragen mit KI generieren."
-  },
   "addQuestionsWithAI": "Fragen mit KI hinzufügen",
-  "@addQuestionsWithAI": {
-    "description": "Label for the button to add more questions using IA when some already exist."
-  },
   "aiGenerateDialogTitle": "Fragen mit KI generieren",
-  "@aiGenerateDialogTitle": {
-    "description": "Titel des KI-Fragen-Generierungsdialogs."
-  },
   "aiQuestionCountLabel": "Anzahl der Fragen (Optional)",
-  "@aiQuestionCountLabel": {
-    "description": "Beschriftung für das Fragenanzahl-Feld."
-  },
   "aiQuestionCountHint": "Leer lassen, damit KI entscheidet",
-  "@aiQuestionCountHint": {
-    "description": "Hinweistext für das Fragenanzahl-Feld."
-  },
   "aiQuestionCountValidation": "Muss eine Zahl zwischen 1 und 50 sein",
-  "@aiQuestionCountValidation": {
-    "description": "Validierungsnachricht für Fragenanzahl."
-  },
   "aiQuestionTypeLabel": "Fragentyp",
-  "@aiQuestionTypeLabel": {
-    "description": "Beschriftung für den Fragentyp-Selektor."
-  },
   "aiQuestionTypeRandom": "Zufällig (Gemischt)",
-  "@aiQuestionTypeRandom": {
-    "description": "Zufällige Typ-Option für Fragen."
-  },
   "aiLanguageLabel": "Fragensprache",
-  "@aiLanguageLabel": {
-    "description": "Beschriftung für den Sprach-Selektor."
-  },
   "aiContentLabel": "Inhalt für die Fragengenerierung",
-  "@aiContentLabel": {
-    "description": "Beschriftung für das Inhalts-Feld."
-  },
   "aiWordCount": "{current} / {max} Wörter",
-  "@aiWordCount": {
-    "description": "Wortzähler für Inhalt.",
-    "placeholders": {
-      "current": {
-        "type": "int",
-        "example": "150"
-      },
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiContentHint": "Geben Sie den Text, das Thema oder den Inhalt ein, aus dem Sie Fragen generieren möchten...",
-  "@aiContentHint": {
-    "description": "Hinweistext für das Inhalts-Feld."
-  },
   "aiContentHelperText": "KI wird basierend auf diesem Inhalt Fragen erstellen",
-  "@aiContentHelperText": {
-    "description": "Zusätzlicher Hilfstext für das Inhalts-Feld."
-  },
   "aiWordLimitError": "Sie haben das Limit von {max} Wörtern überschritten",
-  "@aiWordLimitError": {
-    "description": "Fehler bei Überschreitung des Wortlimits.",
-    "placeholders": {
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiContentRequiredError": "Sie müssen Inhalt bereitstellen, um Fragen zu generieren",
-  "@aiContentRequiredError": {
-    "description": "Fehler, wenn kein Inhalt bereitgestellt wird."
-  },
   "aiContentLimitError": "Inhalt überschreitet das Limit von {max} Wörtern",
-  "@aiContentLimitError": {
-    "description": "Validierungsfehler für Wortlimit.",
-    "placeholders": {
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiMinWordsError": "Geben Sie mindestens 10 Wörter an, um qualitativ hochwertige Fragen zu generieren",
-  "@aiMinWordsError": {
-    "description": "Fehler, wenn der Inhalt zu kurz ist."
-  },
   "aiInfoTitle": "Information",
-  "@aiInfoTitle": {
-    "description": "Titel des Informationsbereichs."
-  },
   "aiInfoDescription": "• KI wird den Inhalt analysieren und relevante Fragen generieren\n• Wenn du weniger als 10 Wörter schreibst, gelangst du in den Themenmodus, in dem Fragen zu diesen spezifischen Themen gestellt werden\n• Mit mehr als 10 Wörtern gelangst du in den Inhaltsmodus, in dem Fragen zu demselben Text gestellt werden (mehr Wörter = mehr Präzision)\n• Du kannst Text, Definitionen, Erklärungen oder beliebiges Lernmaterial einschließen\n• Fragen werden Antwortoptionen und Erklärungen beinhalten\n• Der Vorgang kann einige Sekunden dauern",
-  "@aiInfoDescription": {
-    "description": "Informative Beschreibung des KI-Generierungsprozesses."
-  },
   "aiGenerateButton": "Fragen generieren",
-  "@aiGenerateButton": {
-    "description": "Text für die Fragen generieren-Schaltfläche."
-  },
   "languageSpanish": "Spanisch",
-  "@languageSpanish": {
-    "description": "Spanischer Sprachname."
-  },
   "languageEnglish": "Englisch",
-  "@languageEnglish": {
-    "description": "Englischer Sprachname."
-  },
   "languageFrench": "Französisch",
-  "@languageFrench": {
-    "description": "Französischer Sprachname."
-  },
   "languageGerman": "Deutsch",
-  "@languageGerman": {
-    "description": "Deutscher Sprachname."
-  },
   "languageGreek": "Griechisch",
-  "@languageGreek": {
-    "description": "Griechischer Sprachname."
-  },
   "languageItalian": "Italienisch",
-  "@languageItalian": {
-    "description": "Italienischer Sprachname."
-  },
   "languagePortuguese": "Portugiesisch",
-  "@languagePortuguese": {
-    "description": "Portugiesischer Sprachname."
-  },
   "languageCatalan": "Katalanisch",
-  "@languageCatalan": {
-    "description": "Katalanischer Sprachname."
-  },
   "languageBasque": "Baskisch",
-  "@languageBasque": {
-    "description": "Baskischer Sprachname."
-  },
   "languageGalician": "Galizisch",
-  "@languageGalician": {
-    "description": "Galizischer Sprachname."
-  },
   "languageHindi": "Hindi",
-  "@languageHindi": {
-    "description": "Hindi-Sprachname."
-  },
   "languageChinese": "Chinesisch",
-  "@languageChinese": {
-    "description": "Chinesischer Sprachname."
-  },
   "languageArabic": "Arabisch",
-  "@languageArabic": {
-    "description": "Arabischer Sprachname."
-  },
   "languageJapanese": "Japanisch",
-  "@languageJapanese": {
-    "description": "Japanischer Sprachname."
-  },
   "languageRussian": "Russisch",
-  "@languageRussian": {
-    "description": "Russischer Sprachname."
-  },
   "languageGeorgian": "Georgisch",
-  "@languageGeorgian": {
-    "description": "Georgischer Sprachname."
-  },
   "languageUkrainian": "Ukrainisch",
-  "@languageUkrainian": {
-    "description": "Ukrainischer Sprachname."
-  },
   "languageKorean": "Koreanisch",
-  "@languageKorean": {
-    "description": "Koreanischer Sprachname."
-  },
   "aiServicesLoading": "KI-Services werden geladen...",
-  "@aiServicesLoading": {
-    "description": "Nachricht, die während des Ladens verfügbarer KI-Services angezeigt wird."
-  },
   "aiServicesNotConfigured": "Keine KI-Services konfiguriert",
-  "@aiServicesNotConfigured": {
-    "description": "Nachricht, die angezeigt wird, wenn keine KI-Services konfiguriert sind."
-  },
   "aiGeneratedQuestions": "KI-generiert",
-  "@aiGeneratedQuestions": {
-    "description": "Name für KI-generierte Fragen im Import-Dialog."
-  },
   "aiApiKeyRequired": "Bitte konfigurieren Sie mindestens einen KI-API-Schlüssel in den Einstellungen, um KI-Generierung zu verwenden.",
-  "@aiApiKeyRequired": {
-    "description": "Nachricht, die angezeigt wird, wenn keine API-Schlüssel für KI konfiguriert sind."
-  },
   "aiGenerationFailed": "Fragen konnten nicht generiert werden. Versuchen Sie es mit anderem Inhalt.",
-  "@aiGenerationFailed": {
-    "description": "Nachricht, die angezeigt wird, wenn die KI-Fragengenerierung fehlschlägt."
-  },
   "aiGenerationErrorTitle": "Fehler beim Generieren von Fragen",
-  "@aiGenerationErrorTitle": {
-    "description": "Titel für den Fehlerdialog beim Generieren von Fragen mit KI."
-  },
   "noQuestionsInFile": "Keine Fragen in der importierten Datei gefunden",
-  "@noQuestionsInFile": {
-    "description": "Nachricht, die angezeigt wird, wenn eine importierte Datei keine Fragen enthält."
-  },
   "couldNotAccessFile": "Zugriff auf die ausgewählte Datei nicht möglich",
-  "@couldNotAccessFile": {
-    "description": "Nachricht, die angezeigt wird, wenn auf eine ausgewählte Datei nicht zugegriffen werden kann."
-  },
   "defaultOutputFileName": "ausgabe-datei.quiz",
-  "@defaultOutputFileName": {
-    "description": "Standardname für Ausgabedateien."
-  },
   "aiServiceLimitsWithChars": "Limit: {words} Wörter oder {chars} Zeichen",
-  "@aiServiceLimitsWithChars": {
-    "description": "Beschreibung der KI-Service-Limits mit Wort- und Zeichenlimits.",
-    "placeholders": {
-      "words": {
-        "type": "int",
-        "example": "3000"
-      },
-      "chars": {
-        "type": "int",
-        "example": "12000"
-      }
-    }
-  },
   "aiServiceLimitsWordsOnly": "Limit: {words} Wörter",
-  "@aiServiceLimitsWordsOnly": {
-    "description": "Beschreibung der KI-Service-Limits nur mit Wortlimit.",
-    "placeholders": {
-      "words": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiAssistantDisabled": "KI-Assistent Deaktiviert",
-  "@aiAssistantDisabled": {
-    "description": "Titel für Dialog wenn KI-Assistent deaktiviert ist"
-  },
   "enableAiAssistant": "KI-Assistent ist deaktiviert. Bitte aktivieren Sie ihn in den Einstellungen, um KI-Funktionen zu nutzen.",
-  "@enableAiAssistant": {
-    "description": "Nachricht, die angezeigt wird, wenn der KI-Assistent deaktiviert ist"
-  },
   "aiMinWordsRequired": "Mindestens {minWords} Wörter erforderlich",
-  "@aiMinWordsRequired": {
-    "description": "Nachricht, die die Mindestanzahl von Wörtern für KI-Generierung anzeigt",
-    "placeholders": {
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      }
-    }
-  },
   "aiWordsReadyToGenerate": "{wordCount} Wörter ✓ Bereit zu generieren",
-  "@aiWordsReadyToGenerate": {
-    "description": "Nachricht, wenn genügend Wörter für KI-Generierung bereitgestellt wurden",
-    "placeholders": {
-      "wordCount": {
-        "type": "int",
-        "example": "75"
-      }
-    }
-  },
   "aiWordsProgress": "{currentWords}/{minWords} Wörter ({moreNeeded} weitere benötigt)",
-  "@aiWordsProgress": {
-    "description": "Nachricht, die den Fortschritt der Wortzählung anzeigt",
-    "placeholders": {
-      "currentWords": {
-        "type": "int",
-        "example": "30"
-      },
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      },
-      "moreNeeded": {
-        "type": "int",
-        "example": "20"
-      }
-    }
-  },
   "aiValidationMinWords": "Mindestens {minWords} Wörter erforderlich ({moreNeeded} weitere benötigt)",
-  "@aiValidationMinWords": {
-    "description": "Validierungsnachricht, wenn nicht genügend Wörter bereitgestellt wurden",
-    "placeholders": {
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      },
-      "moreNeeded": {
-        "type": "int",
-        "example": "20"
-      }
-    }
-  },
   "enableQuestion": "Frage aktivieren",
-  "@enableQuestion": {
-    "description": "Tooltip-Text zum Aktivieren einer deaktivierten Frage"
-  },
   "disableQuestion": "Frage deaktivieren",
-  "@disableQuestion": {
-    "description": "Tooltip-Text zum Deaktivieren einer aktiven Frage"
-  },
   "questionDisabled": "Deaktiviert",
-  "@questionDisabled": {
-    "description": "Badge-Text, der bei deaktivierten Fragen angezeigt wird"
-  },
   "noEnabledQuestionsError": "Keine aktivierten Fragen verfügbar, um das Quiz zu starten",
-  "@noEnabledQuestionsError": {
-    "description": "Fehlermeldung beim Versuch, ein Quiz ohne aktivierte Fragen zu starten"
-  },
   "aiEvaluationError": "Fehler beim Bewerten der Antwort: {error}",
-  "@aiEvaluationError": {
-    "description": "Fehlermeldung wenn KI-Bewertung fehlschlägt",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Netzwerkfehler"
-      }
-    }
-  },
   "aiEvaluationPromptSystemRole": "Sie sind ein Experte-Lehrer, der die Antwort eines Studenten auf eine Essay-Frage bewertet. Ihre Aufgabe ist es, eine detaillierte und konstruktive Bewertung zu geben. Antworten Sie in derselben Sprache wie die Antwort des Studenten.",
-  "@aiEvaluationPromptSystemRole": {
-    "description": "Systemrolle für KI-Bewertungsaufforderung"
-  },
   "aiEvaluationPromptQuestion": "FRAGE:",
-  "@aiEvaluationPromptQuestion": {
-    "description": "Fragenbezeichnung in der Bewertungsaufforderung"
-  },
   "aiEvaluationPromptStudentAnswer": "ANTWORT DES STUDENTEN:",
-  "@aiEvaluationPromptStudentAnswer": {
-    "description": "Studentenantwort-Bezeichnung in der Bewertungsaufforderung"
-  },
   "aiEvaluationPromptCriteria": "BEWERTUNGSKRITERIEN (basierend auf der Erklärung des Lehrers):",
-  "@aiEvaluationPromptCriteria": {
-    "description": "Bewertungskriterien-Bezeichnung in der Aufforderung"
-  },
   "aiEvaluationPromptSpecificInstructions": "SPEZIFISCHE ANWEISUNGEN:\n- Bewerten Sie, wie gut die Antwort des Studenten mit den etablierten Kriterien übereinstimmt\n- Analysieren Sie den Grad der Synthese und Struktur in der Antwort\n- Identifizieren Sie, ob etwas Wichtiges gemäß den Kriterien ausgelassen wurde\n- Berücksichtigen Sie die Tiefe und Genauigkeit der Analyse",
-  "@aiEvaluationPromptSpecificInstructions": {
-    "description": "Spezifische Anweisungen für Bewertung mit Kriterien"
-  },
   "aiEvaluationPromptGeneralInstructions": "ALLGEMEINE ANWEISUNGEN:\n- Da keine spezifischen Kriterien festgelegt sind, bewerten Sie die Antwort basierend auf allgemeinen akademischen Standards\n- Berücksichtigen Sie Klarheit, Kohärenz und Struktur der Antwort\n- Bewerten Sie, ob die Antwort Verständnis des Themas zeigt\n- Analysieren Sie die Tiefe der Analyse und Qualität der Argumente",
-  "@aiEvaluationPromptGeneralInstructions": {
-    "description": "Allgemeine Anweisungen für Bewertung ohne Kriterien"
-  },
   "aiEvaluationPromptResponseFormat": "ANTWORTFORMAT:\n1. BEWERTUNG: [X/10] - Begründen Sie kurz die Note\n2. STÄRKEN: Erwähnen Sie positive Aspekte der Antwort\n3. VERBESSERUNGSBEREICHE: Weisen Sie auf Aspekte hin, die verbessert werden könnten\n4. SPEZIFISCHE KOMMENTARE: Geben Sie detailliertes und konstruktives Feedback\n5. VORSCHLÄGE: Bieten Sie spezifische Empfehlungen zur Verbesserung\n\nSeien Sie konstruktiv, spezifisch und lehrreich in Ihrer Bewertung. Das Ziel ist es, dem Studenten beim Lernen und Verbessern zu helfen. Sprechen Sie ihn in der zweiten Person an und verwenden Sie einen professionellen und freundlichen Ton.",
-  "@aiEvaluationPromptResponseFormat": {
-    "description": "Antwortformat-Anweisungen für Bewertung"
-  },
   "aiModeTopicTitle": "Themenmodus",
-  "@aiModeTopicTitle": {
-    "description": "Titel für den Themenmodus im AI-Assistenten"
-  },
   "aiModeTopicDescription": "Kreative Erkundung des Themas",
-  "@aiModeTopicDescription": {
-    "description": "Beschreibung für den Themenmodus"
-  },
   "aiModeContentTitle": "Inhaltsmodus",
-  "@aiModeContentTitle": {
-    "description": "Titel für den Inhaltsmodus im AI-Assistenten"
-  },
   "aiModeContentDescription": "Präzise Fragen basierend auf Ihrer Eingabe",
-  "@aiModeContentDescription": {
-    "description": "Beschreibung für den Inhaltsmodus"
-  },
   "aiWordCountIndicator": "{count} Wörter",
-  "@aiWordCountIndicator": {
-    "description": "Wortanzahl-Anzeige",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "aiPrecisionIndicator": "Präzision: {level}",
-  "@aiPrecisionIndicator": {
-    "description": "Präzisionslevel-Anzeige für den Inhaltsmodus",
-    "placeholders": {
-      "level": {
-        "type": "String",
-        "example": "Hoch"
-      }
-    }
-  },
   "aiPrecisionLow": "Niedrig",
-  "@aiPrecisionLow": {
-    "description": "Niedriges Präzisionslevel"
-  },
   "aiPrecisionMedium": "Mittel",
-  "@aiPrecisionMedium": {
-    "description": "Mittleres Präzisionslevel"
-  },
   "aiPrecisionHigh": "Hoch",
-  "@aiPrecisionHigh": {
-    "description": "Hohes Präzisionslevel"
-  },
   "aiMoreWordsMorePrecision": "Mehr Wörter = mehr Präzision",
-  "@aiMoreWordsMorePrecision": {
-    "description": "Hilfetext, der erklärt, dass mehr Wörter zu präziseren Antworten führen"
-  },
   "aiKeepDraftTitle": "KI-Entwurf behalten",
-  "@aiKeepDraftTitle": {
-    "description": "Titel für die Einstellung zum Behalten des KI-generierten Textentwurfs"
-  },
   "aiKeepDraftDescription": "Speichern Sie den im KI-Generierungsdialog eingegebenen Text automatisch, damit er nicht verloren geht, wenn der Dialog geschlossen wird.",
-  "@aiKeepDraftDescription": {
-    "description": "Beschreibung für die Einstellung zum Behalten des KI-generierten Textentwurfs"
-  },
   "aiAttachFile": "Datei anhängen",
-  "@aiAttachFile": {
-    "description": "Label for the attach file button in AI generation dialog"
-  },
   "aiRemoveFile": "Datei entfernen",
-  "@aiRemoveFile": {
-    "description": "Tooltip for the remove file button"
-  },
   "aiFileMode": "Dateimodus",
-  "@aiFileMode": {
-    "description": "Title for the file mode indicator"
-  },
   "aiFileModeDescription": "Fragen werden aus der angehängten Datei generiert",
-  "@aiFileModeDescription": {
-    "description": "Description for the file mode indicator"
-  },
   "aiCommentsLabel": "Kommentare (Optional)",
-  "@aiCommentsLabel": {
-    "description": "Label for the comments field when a file is attached"
-  },
   "aiCommentsHint": "Anweisungen oder Kommentare zur angehängten Datei hinzufügen...",
-  "@aiCommentsHint": {
-    "description": "Hint text for the comments field when a file is attached"
-  },
   "aiCommentsHelperText": "Optional Anweisungen hinzufügen, wie Fragen aus der Datei generiert werden sollen",
-  "@aiCommentsHelperText": {
-    "description": "Helper text for the comments field when a file is attached"
-  },
   "aiFilePickerError": "Die ausgewählte Datei konnte nicht geladen werden",
-  "@aiFilePickerError": {
-    "description": "Error message when file picker fails"
-  },
   "studyModeLabel": "Lernmodus",
   "generateStudyWithAI": "Studie mit KI generieren",
   "practiceModeLabel": "Übungsmodus",
-  "@practiceModeLabel": {
-    "description": "Label for practice mode option in start quiz"
-  },
   "smartModeLabel": "Intelligenter Modus",
-  "@smartModeLabel": {
-    "description": "Label for smart exam mode option in start quiz"
-  },
   "smartModeDescription": "Spezieller Prüfungsmodus. Die App bestimmt Fragen und Anzahl automatisch und aktualisiert die Wiederholungsstatistiken.",
-  "@smartModeDescription": {
-    "description": "Description for smart exam mode"
-  },
-  "@studyModeLabel": {
-    "description": "Label for study mode option"
-  },
   "studyModeDescription": "KI-Unterstützung verfügbar. Sofortiges Feedback nach jeder Antwort, ohne Zeitlimits oder Punktabzüge. Keine Statistiken generiert.",
-  "@studyModeDescription": {
-    "description": "Description for study mode"
-  },
   "examModeLabel": "Prüfungsmodus",
-  "@examModeLabel": {
-    "description": "Label for exam mode option"
-  },
   "examModeDescription": "Keine KI-Unterstützung. Zeitlimits und Punktabzüge für falsche Antworten können anfallen. Erzeugt SRS-Statistiken.",
-  "@examModeDescription": {
-    "description": "Description for exam mode"
-  },
   "checkAnswer": "Überprüfen",
-  "@checkAnswer": {
-    "description": "Button label to check the answer in study mode"
-  },
   "quizModeTitle": "Quizmodus",
-  "@quizModeTitle": {
-    "description": "Title for the quiz mode selection section"
-  },
   "skip": "Überspringen",
-  "@skip": {
-    "description": "Label for skip button"
-  },
   "askAiAssistant": "KI-Assistenten fragen",
-  "@askAiAssistant": {
-    "description": "Button label to open AI assistant for current question"
-  },
   "askAiAboutQuestion": "KI zu dieser Frage befragen",
   "aiHelpWithQuestion": "Hilf mir, diese Frage zu verstehen",
   "evaluateWithAI": "Mit KI bewerten",
-  "@evaluateWithAI": {
-    "description": "Button label to evaluate essay answer with AI"
-  },
   "aiEvaluation": "KI-Bewertung",
-  "@aiEvaluation": {
-    "description": "Label for AI evaluation section"
-  },
   "edit": "Bearbeiten",
-  "@edit": {
-    "description": "Button label to edit a question"
-  },
   "enable": "Aktivieren",
-  "@enable": {
-    "description": "Button label to enable a question"
-  },
   "disable": "Deaktivieren",
-  "@disable": {
-    "description": "Button label to disable a question"
-  },
   "reorderQuestionsTooltip": "Fragen neu ordnen",
-  "@reorderQuestionsTooltip": {
-    "description": "Tooltip for the reorder questions button"
-  },
   "quizPreviewTitle": "Quiz-Vorschau",
   "quizLoadedNoQuestionsAvailable": "Keine Fragen verfügbar",
   "select": "Auswählen",
@@ -1649,73 +360,22 @@
   "deleteSingleQuestionConfirmation": "Sind Sie sicher, dass Sie diese Frage löschen möchten?",
   "deleteMultipleQuestionsConfirmation": "Sind Sie sicher, dass Sie {count} Fragen löschen möchten?",
   "missingExplanation": "Erklärung fehlt",
-  "@missingExplanation": {
-    "description": "Label indicating that a question is missing an explanation"
-  },
   "missingExplanationTooltip": "Dieser Frage fehlt eine Erklärung",
-  "@missingExplanationTooltip": {
-    "description": "Tooltip text for the missing explanation badge"
-  },
   "missingStudySectionTooltip": "Nicht mit einem Lernabschnitt verknüpft",
-  "@missingStudySectionTooltip": {
-    "description": "Tooltip text for the unlinked study section warning"
-  },
   "questionTypeTooltip": "Fragetyp: {type}",
-  "@questionTypeTooltip": {
-    "description": "Tooltip text for the question type badge",
-    "placeholders": {
-      "type": {
-        "type": "String",
-        "example": "Multiple Choice"
-      }
-    }
-  },
   "settingsTitle": "Einstellungen",
   "questionsOverview": "Questions Map",
-  "@questionsOverview": {
-    "description": "Title for the questions overview bottom sheet"
-  },
   "keepPracticing": "Übe weiter, um dich zu verbessern!",
   "tryAgain": "Erneut versuchen",
   "review": "Überprüfen",
   "home": "Startseite",
   "allLabel": "Alle",
-  "@allLabel": {
-    "description": "Label für die Option, alle Fragen auszuwählen"
-  },
   "finishQuizUnansweredQuestions": "Du hast {unansweredCount,plural, =1{1 unbeantwortete Frage}other{{unansweredCount} unbeantwortete Fragen}}. Bist du sicher, dass du das Quiz beenden möchtest?",
-  "@finishQuizUnansweredQuestions": {
-    "description": "Message shown when there are unanswered questions.",
-    "placeholders": {
-      "unansweredCount": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "subtractPointsLabel": "Punkte für falsche Antwort abziehen",
   "subtractPointsDescription": "Punkte für jede falsche Antwort abziehen.",
-  "@subtractPointsLabel": {
-    "description": "Label for the checkbox to subtract points for incorrect answers"
-  },
   "subtractPointsOffDescription": "Falsche Antworten führen nicht zu Punktabzug.",
-  "@subtractPointsOffDescription": {
-    "description": "Description shown when subtract points for incorrect answers is disabled"
-  },
   "penaltyAmountLabel": "Strafbetrag",
-  "@penaltyAmountLabel": {
-    "description": "Label for the input field to set the penalty amount"
-  },
   "penaltyPointsLabel": "-{amount} Pkt. / Fehler",
-  "@penaltyPointsLabel": {
-    "description": "Label showing the points deducted per mistake",
-    "placeholders": {
-      "amount": {
-        "type": "String",
-        "example": "0.50"
-      }
-    }
-  },
   "allQuestionsLabel": "Alle Fragen",
   "startWithSelectedQuestions": "Mit {count} ausgewählten starten",
   "advancedSettingsTitle": "Erweiterte Einstellungen (Debug)",
@@ -1725,29 +385,11 @@
   "pasteImage": "Einfügen",
   "clipboardNoImage": "Kein Bild in der Zwischenablage gefunden",
   "close": "Schließen",
-  "@close": {
-    "description": "Close button text"
-  },
   "randomizeAnswersOffDescription": "Die Antwortoptionen erscheinen in ihrer ursprünglichen Reihenfolge",
-  "@randomizeAnswersOffDescription": {
-    "description": "Description for the randomize answers setting when disabled."
-  },
   "scoringAndLimitsTitle": "Bewertung und Limits",
-  "@scoringAndLimitsTitle": {
-    "description": "Title for the scoring and limits section in advanced settings"
-  },
   "congratulations": "🎉 Herzlichen Glückwunsch! 🎉",
-  "@congratulations": {
-    "description": "Congratulations message in winner dialog"
-  },
   "examConfigurationTitle": "Prüfungskonfiguration",
-  "@examConfigurationTitle": {
-    "description": "Title for the advanced settings / exam configuration section"
-  },
   "generationConfigurationTitle": "Generierungskonfiguration",
-  "@generationConfigurationTitle": {
-    "description": "Title for the generation configuration section in AI dialog"
-  },
   "validationMin1Error": "Mindestens 1 Minute",
   "remainingTimeWithDays": "{days}T {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}W {days}T {hours}:{minutes}:{seconds}",
@@ -1755,175 +397,46 @@
   "validationMin0GenericError": "Mindestens 0",
   "errorStatus": "Fehler",
   "evaluatingResponses": "Antworten werden ausgewertet...",
-  "@evaluatingResponses": {
-    "description": "Text, der im Ergebnisbildschirm angezeigt wird, wenn KI-Auswertungen ausstehen"
-  },
   "pendingEvaluationsCount": "{count, plural, =1{1 Entwicklungsfrage wartet auf KI-Auswertung} other{{count} Entwicklungsfragen warten auf KI-Auswertung}}",
-  "@pendingEvaluationsCount": {
-    "description": "Untertitel mit der Anzahl der ausstehenden KI-Auswertungen",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "pendingStatus": "Ausstehend",
-  "@pendingStatus": {
-    "description": "Statusbezeichnung for eine ausstehende KI-Auswertung"
-  },
   "notEvaluatedStatus": "Nicht bewertet",
-  "@notEvaluatedStatus": {
-    "description": "Statusbezeichnung for eine Aufsatzfrage, die nicht von der KI ausgewertet wurde"
-  },
   "retryButton": "Auswertung wiederholen",
-  "@retryButton": {
-    "description": "Button-Text zum Wiederholen einer KI-Auswertung"
-  },
   "featureComingSoon": "Demnächst verfügbar! Bleiben Sie auf dem Laufenden.",
-  "@featureComingSoon": {
-    "description": "Nachricht für Funktionen, die noch nicht verfügbar sind"
-  },
   "showOnboarding": "Onboarding anzeigen",
-  "@showOnboarding": {
-    "description": "Beschriftung der Schaltfläche zum erneuten Öffnen des Onboarding-Flows"
-  },
   "showOnboardingDescription": "Das Begrüßungs-Tutorial erneut ansehen",
-  "@showOnboardingDescription": {
-    "description": "Beschreibung der Schaltfläche zum erneuten Öffnen des Onboarding-Flows"
-  },
   "onboardingBack": "Zurück",
-  "@onboardingBack": {
-    "description": "Zurück-Schaltfläche in der Onboarding-Navigation"
-  },
   "onboardingGetStarted": "Loslegen",
-  "@onboardingGetStarted": {
-    "description": "Loslegen-Schaltfläche auf der letzten Onboarding-Seite"
-  },
   "onboardingWelcomeTitle": "Willkommen bei Quizdy",
-  "@onboardingWelcomeTitle": {
-    "description": "Titel für die erste Onboarding-Seite"
-  },
   "onboardingWelcomeDescription": "Mit KI-gestützten Funktionen, anpassbaren Fragen und Echtzeit-Auswertung.",
-  "@onboardingWelcomeDescription": {
-    "description": "Beschreibung für die erste Onboarding-Seite"
-  },
   "onboardingWelcomeSubtitle": "Ihr interaktiver Lern- und Quiz-Begleiter",
-  "@onboardingWelcomeSubtitle": {
-    "description": "Untertitel für die erste Onboarding-Seite im Desktop-Layout"
-  },
   "onboardingStartQuizTitle": "Ein Quiz starten",
-  "@onboardingStartQuizTitle": {
-    "description": "Titel für die zweite Onboarding-Seite"
-  },
   "onboardingStartQuizDescription": "Laden Sie eine vorhandene .quiz-Datei oder erstellen Sie eine neue von Grund auf. Ziehen Sie Dateien direkt per Drag & Drop oder nutzen Sie die Dateiauswahl.",
-  "@onboardingStartQuizDescription": {
-    "description": "Beschreibung für die zweite Onboarding-Seite"
-  },
   "onboardingStartQuizSubtitle": "Laden, erstellen und spielen",
-  "@onboardingStartQuizSubtitle": {
-    "description": "Untertitel für die zweite Onboarding-Seite im Desktop-Layout"
-  },
   "onboardingCreateQuestionsTitle": "Fragen erstellen",
-  "@onboardingCreateQuestionsTitle": {
-    "description": "Titel für die dritte Onboarding-Seite"
-  },
   "onboardingCreateQuestionsDescription": "Erstellen Sie Quizze mit mehreren Fragetypen. Passen Sie jede Frage mit Optionen, richtigen Antworten und Erklärungen an.",
-  "@onboardingCreateQuestionsDescription": {
-    "description": "Beschreibung für die dritte Onboarding-Seite"
-  },
   "onboardingCreateQuestionsSubtitle": "Eigene Quizze entwerfen",
-  "@onboardingCreateQuestionsSubtitle": {
-    "description": "Untertitel für die dritte Onboarding-Seite im Desktop-Layout"
-  },
   "onboardingAiFeaturesTitle": "KI-gestützte Funktionen",
-  "@onboardingAiFeaturesTitle": {
-    "description": "Titel für die vierte Onboarding-Seite"
-  },
   "onboardingAiFeaturesDescription": "Erstellen Sie Fragen automatisch mit KI, erhalten Sie Studienunterstützung in Echtzeit und lernen Sie intelligenter mit intelligentem Tutoring.",
-  "@onboardingAiFeaturesDescription": {
-    "description": "Beschreibung für die vierte Onboarding-Seite"
-  },
   "onboardingAiFeaturesSubtitle": "Unterstützt durch KI",
-  "@onboardingAiFeaturesSubtitle": {
-    "description": "Untertitel für die vierte Onboarding-Seite im Desktop-Layout"
-  },
   "onboardingFeatureAiTitle": "KI-gestützte Lern- und Fragengenerierung",
-  "@onboardingFeatureAiTitle": {
-    "description": "Funktionstitel auf der Onboarding-Begrüßungsseite"
-  },
   "onboardingFeatureAiDescription": "KI-gestützte Lern- und Fragengenerierung",
-  "@onboardingFeatureAiDescription": {
-    "description": "Funktionsbeschreibung auf der Onboarding-Begrüßungsseite"
-  },
   "onboardingFeatureTypesTitle": "Mehrere Fragetypen",
-  "@onboardingFeatureTypesTitle": {
-    "description": "Funktionstitel auf der Onboarding-Begrüßungsseite"
-  },
   "onboardingFeatureTypesDescription": "Single Choice, Multiple Choice, Wahr/Falsch und Aufsatz",
-  "@onboardingFeatureTypesDescription": {
-    "description": "Funktionsbeschreibung auf der Onboarding-Begrüßungsseite"
-  },
   "onboardingFeatureLanguagesTitle": "18 Sprachen unterstützt",
-  "@onboardingFeatureLanguagesTitle": {
-    "description": "Funktionstitel auf der Onboarding-Begrüßungsseite"
-  },
   "onboardingFeatureLanguagesDescription": "Erstellen und absolvieren Sie Quizze in mehreren Sprachen",
-  "@onboardingFeatureLanguagesDescription": {
-    "description": "Funktionsbeschreibung auf der Onboarding-Begrüßungsseite"
-  },
   "onboardingStepCreateTitle": "Quiz erstellen",
-  "@onboardingStepCreateTitle": {
-    "description": "Schritt-Titel auf der Onboarding-Seite 'Quiz starten'"
-  },
   "onboardingStepCreateDescription": "Beginnen Sie von Grund auf mit Ihren eigenen Fragen",
-  "@onboardingStepCreateDescription": {
-    "description": "Schritt-Beschreibung auf der Onboarding-Seite 'Quiz starten'"
-  },
   "onboardingStepLoadTitle": "Datei laden",
-  "@onboardingStepLoadTitle": {
-    "description": "Schritt-Titel auf der Onboarding-Seite 'Quiz starten'"
-  },
   "onboardingStepLoadDescription": "Importieren Sie eine .quiz-Datei von Ihrem Gerät",
-  "@onboardingStepLoadDescription": {
-    "description": "Schritt-Beschreibung auf der Onboarding-Seite 'Quiz starten'"
-  },
   "onboardingStepTakeTitle": "Das Quiz absolvieren",
-  "@onboardingStepTakeTitle": {
-    "description": "Schritt-Titel auf der Onboarding-Seite 'Quiz starten'"
-  },
   "onboardingStepTakeDescription": "Fragen beantworten und Ergebnisse in Echtzeit erhalten",
-  "@onboardingStepTakeDescription": {
-    "description": "Schritt-Beschreibung auf der Onboarding-Seite 'Quiz starten'"
-  },
   "onboardingAiAutoGenerateTitle": "Fragen automatisch generieren",
-  "@onboardingAiAutoGenerateTitle": {
-    "description": "KI-Funktionstitel im Onboarding"
-  },
   "onboardingAiAutoGenerateDescription": "Aus beliebigem Text mit Gemini oder GPT",
-  "@onboardingAiAutoGenerateDescription": {
-    "description": "KI-Funktionsbeschreibung im Onboarding"
-  },
   "onboardingAiStudyAssistantTitle": "KI-Studienassistent",
-  "@onboardingAiStudyAssistantTitle": {
-    "description": "KI-Funktionstitel im Onboarding"
-  },
   "onboardingAiStudyAssistantDescription": "Erhalten Sie Erklärungen während des Lernens",
-  "@onboardingAiStudyAssistantDescription": {
-    "description": "KI-Funktionsbeschreibung im Onboarding"
-  },
   "onboardingAiMultiLanguageTitle": "Mehrsprachige Unterstützung",
-  "@onboardingAiMultiLanguageTitle": {
-    "description": "KI-Funktionstitel im Onboarding"
-  },
   "onboardingAiMultiLanguageDescription": "In 18 verschiedenen Sprachen generieren",
-  "@onboardingAiMultiLanguageDescription": {
-    "description": "KI-Funktionsbeschreibung im Onboarding"
-  },
   "documentTooLongForProcessing": "Das Dokument ist möglicherweise zu lang, um in diesem MVP in einem Durchgang verarbeitet zu werden.",
-  "@documentTooLongForProcessing": {
-    "description": "Error message when AI document processing fails due to document length"
-  },
   "studyScreenNoSlidesAvailable": "Keine Lernabschnitte verfügbar",
   "studyScreenGenerating": "Lernmaterialien werden erstellt...",
   "studyScreenError": "Beim Erstellen des Lernmaterials ist ein Fehler aufgetreten.",
@@ -1931,36 +444,13 @@
   "studyScreenPreviousSection": "Vorherige Seite",
   "studyScreenNextSection": "Nächste Seite",
   "studyScreenSectionIndicator": "Seite {current} von {total}",
-  "@studyScreenSectionIndicator": {
-    "placeholders": {
-      "current": {
-        "type": "int"
-      },
-      "total": {
-        "type": "int"
-      }
-    }
-  },
   "studyScreenAiSummaryTitle": "KI-Zusammenfassung",
   "studyScreenNoSummary": "Keine Zusammenfassung verfügbar.",
   "studyScreenCoverage": "Generierter Inhalt",
-  "@studyScreenCoverage": {
-    "description": "Label for the study coverage percentage"
-  },
   "aiStudyLanguageLabel": "Studiensprache",
-  "@aiStudyLanguageLabel": {
-    "description": "Label for the language selector in study generation"
-  },
   "studyScreenStudyGuide": "Studienleitfaden",
   "studyScreenSections": "Abschnitte",
   "studyScreenChaptersCount": "{count} Kapitel",
-  "@studyScreenChaptersCount": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "studyScreenCompleted": "Abgeschlossen",
   "aiDifficultyTitle": "Schwierigkeitsgrad",
   "aiDifficultyAutoTurnedOn": "Gleiche Schwierigkeit wie das Dokument",
@@ -1994,29 +484,11 @@
   "studyScreenCustomChapter": "Benutzerdefiniertes Kapitel",
   "addSection": "Abschnitt hinzufügen",
   "editSection": "Abschnitt bearbeiten",
-  "@editSection": {
-    "description": "Title for editing an existing section dialog"
-  },
   "sectionTitleLabel": "Titel",
-  "@sectionTitleLabel": {
-    "description": "Label for section title input field in add/edit section dialog"
-  },
   "sectionTitleHint": "Abschnittstitel eingeben",
-  "@sectionTitleHint": {
-    "description": "Hint for section title input field in add/edit section dialog"
-  },
   "sectionDescriptionLabel": "Beschreibung",
-  "@sectionDescriptionLabel": {
-    "description": "Label for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionHint": "Abschnittsbeschreibung eingeben",
-  "@sectionDescriptionHint": {
-    "description": "Hint for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionAiHint": "Diese Informationen werden später von der KI verwendet, um Lerninhalte zu erstellen.",
-  "@sectionDescriptionAiHint": {
-    "description": "Helper text shown below section description input, indicating AI will use this information later"
-  },
   "generateSectionsWithAI": "Abschnitte mit KI generieren",
   "addSectionsWithAI": "Abschnitte mit KI hinzufügen",
   "studyScreenReminder": "Erinnerung",
@@ -2027,133 +499,40 @@
   "studyComponentLimitations": "Einschränkungen",
   "studyScreenDownloadChunk": "Generieren",
   "aiStudyChapterSystemPrompt": "Du bist ein KI-Lernassistent, der einem Studenten hilft, den Inhalt eines Lernkapitels zu verstehen. Erkläre Konzepte ausführliche, nenne Beispiele und stelle bei Bedarf Verbindungen zu anderen Teilen des Lernmaterials her. Antworte in derselben Sprache, in der du gefragt wirst.",
-  "@aiStudyChapterSystemPrompt": {
-    "description": "System prompt for the AI study assistant when chatting about a study chapter"
-  },
   "aiStudyChapterGuardrail": "Konzentriere dich auf den bereitgestellten Kapitelinhalt und das Lernmaterial. Wenn sich die Frage des Studenten auf ein anderes Kapitel bezieht, nenne den entsprechenden Kapiteltitel.",
-  "@aiStudyChapterGuardrail": {
-    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
-  },
   "askAIStudyTooltip": "KI zu diesem Kapitel fragen",
-  "@askAIStudyTooltip": {
-    "description": "Tooltip for the Ask AI button shown in the study chapter view"
-  },
   "studyScreenPendingSections": "Einige Abschnitte wurden noch nicht generiert",
-  "@studyScreenPendingSections": {
-    "description": "Warnung im Studienindex, wenn einige Teile noch nicht generiert wurden"
-  },
   "aiErrorRedirect": "Weitergeleitet (302) zu: {location}",
-  "@aiErrorRedirect": {
-    "description": "Fehlermeldung, wenn während einer KI-Anfrage eine 302-Weiterleitung erfolgt",
-    "placeholders": {
-      "location": {
-        "type": "String",
-        "example": "https://example.com"
-      }
-    }
-  },
   "aiErrorConnectionAborted": "Die Anfrage wurde unterbrochen, da die Anwendung in den Hintergrund verschoben wurde. Bitte lassen Sie die Anwendung geöffnet, während der Inhalt generiert wird.",
-  "@aiErrorConnectionAborted": {
-    "description": "Error message when a request is aborted because the app is minimized."
-  },
   "noInternetConnection": "Keine Internetverbindung. Bitte überprüfen Sie Ihre Netzwerkeinstellungen und versuchen Sie es erneut.",
-  "@noInternetConnection": {
-    "description": "Error message shown when the device has no internet connection."
-  },
   "duplicatedTag": "Dupliziert",
-  "@duplicatedTag": {
-    "description": "Tag to indicate an item is duplicated"
-  },
   "aiSelectSectionsTitle": "Abschnitte auswählen",
-  "@aiSelectSectionsTitle": {
-    "description": "Title for the chunk section selector in AI content step"
-  },
   "aiSelectSectionsSubtitle": "Wähle aus, welche Lernabschnitte für die Fragenerstellung verwendet werden",
-  "@aiSelectSectionsSubtitle": {
-    "description": "Subtitle explaining what the section selector does"
-  },
   "aiAllSections": "Alle Abschnitte",
   "aiSelectQuestionsTitle": "Fragen auswählen",
-  "@aiSelectQuestionsTitle": {
-    "description": "Title for the question selector in AI study generation"
-  },
   "aiSelectQuestionsSubtitle": "Wähle Quiz-Fragen als Kontext für die Generierung",
-  "@aiSelectQuestionsSubtitle": {
-    "description": "Subtitle explaining what the question selector does"
-  },
   "aiAllQuestions": "Alle Fragen",
   "onboardingStudyContentTitle": "Lerne deine Inhalte",
-  "@onboardingStudyContentTitle": {
-    "description": "Title of the study content onboarding page"
-  },
   "onboardingStudyContentDescription": "Organisiere dein Material in Lerneinheiten. Importiere Dateien, füge sie manuell hinzu oder lass die KI den Inhalt generieren.",
-  "@onboardingStudyContentDescription": {
-    "description": "Description of the study content onboarding page"
-  },
   "onboardingStudyContentSubtitle": "Organisieren, generieren und lernen",
-  "@onboardingStudyContentSubtitle": {
-    "description": "Subtitle of the study content onboarding page"
-  },
   "onboardingStudyStepAddTitle": "Material hinzufügen",
-  "@onboardingStudyStepAddTitle": {
-    "description": "Step 1 title in study content onboarding page"
-  },
   "onboardingStudyStepAddDescription": "Schreibe Abschnitte oder importiere aus .quiz-Dateien",
-  "@onboardingStudyStepAddDescription": {
-    "description": "Step 1 description in study content onboarding page"
-  },
   "onboardingStudyStepGenerateTitle": "KI-Generierung",
-  "@onboardingStudyStepGenerateTitle": {
-    "description": "Step 2 title in study content onboarding page"
-  },
   "onboardingStudyStepGenerateDescription": "KI erstellt Lernabschnitte aus deinen Dokumenten",
-  "@onboardingStudyStepGenerateDescription": {
-    "description": "Step 2 description in study content onboarding page"
-  },
   "onboardingStudyStepStudyTitle": "Generierte Abschnitte lernen",
-  "@onboardingStudyStepStudyTitle": {
-    "description": "Step 3 title in study content onboarding page"
-  },
   "onboardingStudyStepStudyDescription": "Navigiere durch jeden Abschnitt und festige dein Wissen",
-  "@onboardingStudyStepStudyDescription": {
-    "description": "Step 3 description in study content onboarding page"
-  },
   "onboardingStudyStepPdfTitle": "Als PDF exportieren",
-  "@onboardingStudyStepPdfTitle": {
-    "description": "Step 4 title in study content onboarding page"
-  },
   "onboardingStudyStepPdfDescription": "Lade dein Lernmaterial als PDF herunter und teile es",
-  "@onboardingStudyStepPdfDescription": {
-    "description": "Step 4 description in study content onboarding page"
-  },
   "privacyPolicyLabel": "Datenschutzrichtlinie",
   "privacyPolicyDescription": "Erfahre, wie deine Daten in Quizdy verarbeitet werden",
   "privacyPolicyRequiredDescription": "Bitte lies und akzeptiere die Datenschutzrichtlinie, um fortzufahren.",
   "privacyPolicyLoadError": "Der Inhalt der Datenschutzrichtlinie konnte nicht geladen werden.",
   "privacyPolicyCanonicalNotice": "Die offizielle rechtliche Version dieser Richtlinie ist der englische Text im Projekt-Repository.",
-  "@privacyPolicyCanonicalNotice": {
-    "description": "Short legal notice indicating the canonical version of the privacy policy"
-  },
   "privacyPolicyOpenInBrowser": "Vollstandige Richtlinie auf GitHub offnen",
-  "@privacyPolicyOpenInBrowser": {
-    "description": "Button label to open the privacy policy URL in an external browser"
-  },
   "supportLabel": "Unterstutzung",
-  "@supportLabel": {
-    "description": "Label for the support action in settings"
-  },
   "supportDescription": "GitHub-Issues mit App- und Plattformdetails öffnen",
-  "@supportDescription": {
-    "description": "Description for the support action in settings"
-  },
   "feedbackTitle": "Dein Feedback ist uns wichtig",
-  "@feedbackTitle": {
-    "description": "Title for the home screen feedback prompt"
-  },
   "feedbackDescription": "Beantworte eine kurze Umfrage und hilf dabei, Quizdy zu verbessern",
-  "@feedbackDescription": {
-    "description": "Description for the home screen feedback prompt"
-  },
   "studyEditorToggleEdit": "Inhalte bearbeiten",
   "studyEditorExitEdit": "Bearbeitungsmodus verlassen",
   "studyEditorPages": "Seiten",
@@ -2169,272 +548,59 @@
   "studyEditorEditName": "Bearbeiten {name}",
   "studyEditorPageN": "Seite {n}",
   "componentTypeSectionTitle": "Abschnittstitel",
-  "@componentTypeSectionTitle": {
-    "description": "Display name for the sectionTitle component type"
-  },
   "componentTypeParagraph": "Absatz",
-  "@componentTypeParagraph": {
-    "description": "Display name for the paragraph component type"
-  },
   "componentTypeKeyDefinition": "Schlüsseldefinition",
-  "@componentTypeKeyDefinition": {
-    "description": "Display name for the keyDefinition component type"
-  },
   "componentTypeNumberedList": "Nummerierte Liste",
-  "@componentTypeNumberedList": {
-    "description": "Display name for the numberedList component type"
-  },
   "componentTypeComparisonTable": "Vergleichstabelle",
-  "@componentTypeComparisonTable": {
-    "description": "Display name for the comparisonTable component type"
-  },
   "componentTypeQuote": "Zitat",
-  "@componentTypeQuote": {
-    "description": "Display name for the quote component type"
-  },
   "componentTypeWarning": "Warnung",
-  "@componentTypeWarning": {
-    "description": "Display name for the warning component type"
-  },
   "componentTypeFormula": "Formel",
-  "@componentTypeFormula": {
-    "description": "Display name for the formula component type"
-  },
   "componentTypeTimeline": "Zeitleiste",
-  "@componentTypeTimeline": {
-    "description": "Display name for the timeline component type"
-  },
   "componentTypeProsCons": "Vor- und Nachteile",
-  "@componentTypeProsCons": {
-    "description": "Display name for the prosCons component type"
-  },
   "componentTypeKeyConcepts": "Schlüsselkonzepte",
-  "@componentTypeKeyConcepts": {
-    "description": "Display name for the keyConcepts component type"
-  },
   "componentTypeReminder": "Erinnerung",
-  "@componentTypeReminder": {
-    "description": "Display name for the reminder component type"
-  },
   "componentTypeIconCards": "Symbolkarten",
-  "@componentTypeIconCards": {
-    "description": "Display name for the iconCards component type"
-  },
   "componentFieldSubtitle": "Untertitel",
-  "@componentFieldSubtitle": {
-    "description": "Form field label for subtitle"
-  },
   "componentFieldTerm": "Begriff",
-  "@componentFieldTerm": {
-    "description": "Form field label for term (key definition)"
-  },
   "componentFieldDefinition": "Definition",
-  "@componentFieldDefinition": {
-    "description": "Form field label for definition"
-  },
   "componentFieldQuote": "Zitat",
-  "@componentFieldQuote": {
-    "description": "Form field label for quote text"
-  },
   "componentFieldAuthor": "Autor",
-  "@componentFieldAuthor": {
-    "description": "Form field label for quote author"
-  },
   "componentFieldEquation": "Gleichung",
-  "@componentFieldEquation": {
-    "description": "Form field label for formula equation"
-  },
   "componentFieldEquationLabel": "Gleichungsbeschriftung",
-  "@componentFieldEquationLabel": {
-    "description": "Form field label for formula equation label"
-  },
   "componentFieldExplanation": "Erläuterung",
-  "@componentFieldExplanation": {
-    "description": "Form field label for formula explanation"
-  },
   "componentFieldItems": "Artikel",
-  "@componentFieldItems": {
-    "description": "Form section label for a list of items"
-  },
   "componentFieldConcept": "Konzept",
-  "@componentFieldConcept": {
-    "description": "Form field label for a single concept item"
-  },
   "componentFieldEvents": "Veranstaltungen",
-  "@componentFieldEvents": {
-    "description": "Form section label for timeline events"
-  },
   "componentFieldDate": "Datum",
-  "@componentFieldDate": {
-    "description": "Form field label for timeline event date"
-  },
   "componentFieldDescription": "Beschreibung",
-  "@componentFieldDescription": {
-    "description": "Form field label for item description"
-  },
   "componentFieldCards": "Karten",
-  "@componentFieldCards": {
-    "description": "Form section label for icon cards"
-  },
   "componentFieldPros": "Vorteile",
-  "@componentFieldPros": {
-    "description": "Form section label for pros list"
-  },
   "componentFieldPro": "Profi",
-  "@componentFieldPro": {
-    "description": "Form field label for a single pro item"
-  },
   "componentFieldCons": "Nachteile",
-  "@componentFieldCons": {
-    "description": "Form section label for cons list"
-  },
   "componentFieldCon": "Con",
-  "@componentFieldCon": {
-    "description": "Form field label for a single con item"
-  },
   "componentFieldColumns": "Spalten",
-  "@componentFieldColumns": {
-    "description": "Form section label for table columns"
-  },
   "componentFieldColumn": "Spalte",
-  "@componentFieldColumn": {
-    "description": "Form field label for a single table column"
-  },
   "componentFieldRows": "Reihen",
-  "@componentFieldRows": {
-    "description": "Form section label for table rows"
-  },
   "componentFieldRow": "Reihe",
-  "@componentFieldRow": {
-    "description": "Form field label for a single table row"
-  },
   "componentFieldLabel": "Etikett",
-  "@componentFieldLabel": {
-    "description": "Form field label for a row label in comparison table"
-  },
   "componentFieldLabelColumn": "Beschriftungsspalte",
-  "@componentFieldLabelColumn": {
-    "description": "Form field label for the header of the label column in a comparison table"
-  },
   "componentFieldAdd": "{item} hinzufügen",
-  "@componentFieldAdd": {
-    "description": "Button label to add a new item to a list",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "componentFieldOptional": "optional",
-  "@componentFieldOptional": {
-    "description": "Label shown next to optional form fields"
-  },
   "componentFieldRequired": "Dieses Feld ist erforderlich",
   "addComponentTitle": "Komponente hinzufügen",
-  "@addComponentTitle": {
-    "description": "Title for the Add Component picker screen"
-  },
-  "@studyEditorPages": {
-    "description": "Section header for the list of pages in the section page manager"
-  },
-  "@studyEditorComponents": {
-    "description": "Section header for the list of components in the component editor"
-  },
-  "@studyEditorSaveChanges": {
-    "description": "Button label to save edited component properties"
-  },
-  "@studyEditorEmptyComponents": {
-    "description": "Empty state message in the component editor"
-  },
-  "@studyEditorFieldTitle": {
-    "description": "Label for the optional title field in component editors"
-  },
-  "@studyEditorToggleEdit": {
-    "description": "Tooltip for the FAB button that enables study content edit mode"
-  },
-  "@studyEditorEmptyPages": {
-    "description": "Empty state message in the section page manager"
-  },
-  "@studyEditorExitEdit": {
-    "description": "Tooltip for the FAB button that disables study content edit mode"
-  },
-  "@studyEditorEditParagraph": {
-    "description": "Navigation header title for the paragraph property panel"
-  },
-  "@studyEditorAddPage": {
-    "description": "Button label to add a new page to a section"
-  },
-  "@studyEditorEditName": {
-    "description": "Navigation header title: Edit [section name]",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "@studyEditorFieldBody": {
-    "description": "Label for the main body text field in component editors"
-  },
-  "@studyEditorPageN": {
-    "description": "Label for page number n in the section page manager",
-    "placeholders": {
-      "n": {
-        "type": "int"
-      }
-    }
-  },
-  "@studyEditorDeletePage": {
-    "description": "Button label to delete a page from a section"
-  },
   "addComponentsWithAI": "Komponenten mit KI hinzufügen",
-  "@addComponentsWithAI": {
-    "description": "Button label to add study components using AI"
-  },
   "aiSelectComponentTypesTitle": "Komponententypen auswählen",
-  "@aiSelectComponentTypesTitle": {
-    "description": "Title for the component type filter in AI study generation"
-  },
   "aiSelectComponentTypesSubtitle": "Aktivieren, um zu filtern, welche Komponententypen in die generierten Lerninhalte aufgenommen werden sollen",
-  "@aiSelectComponentTypesSubtitle": {
-    "description": "Subtitle for the component type filter in AI study generation"
-  },
   "aiComponentsGeneratedSuccess": "Inhalt erfolgreich generiert",
-  "@aiComponentsGeneratedSuccess": {
-    "description": "Snackbar message shown when AI component generation completes successfully"
-  },
   "duplicate": "Duplizieren",
-  "@duplicate": {
-    "description": "Tooltip for the duplicate button in the component card"
-  },
   "moveUp": "Nach oben verschieben",
-  "@moveUp": {
-    "description": "Tooltip for the move up button in the component card"
-  },
   "moveDown": "Nach unten verschieben",
-  "@moveDown": {
-    "description": "Tooltip for the move down button in the component card"
-  },
   "aiDifficultyRequiresFileTooltip": "Zum Verwenden dieser Option muss eine Datei angehängt werden",
-  "@aiDifficultyRequiresFileTooltip": {
-    "description": "Tooltip when auto difficulty is disabled due to missing file"
-  },
   "exportAsPdf": "Als PDF exportieren",
   "exportPdfSuccess": "PDF erfolgreich exportiert",
   "exportPdfError": "PDF-Export fehlgeschlagen",
   "deleteDuplicatesButton": "Duplikate löschen",
-  "@deleteDuplicatesButton": {
-    "description": "Button to delete duplicated items"
-  },
   "deleteDuplicatesConfirmationMessage": "Sind Sie sicher, dass Sie {count} doppelte Elemente löschen möchten? Es wird nur eine Kopie von jedem Element aufbewahrt.",
-  "@deleteDuplicatesConfirmationMessage": {
-    "description": "Confirmation message when deleting duplicates",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "onboardingDownloadAppTitle": "Installiere Quizdy auf deinen Geräten",
   "onboardingDownloadAppDescription": "Installiere Quizdy mobil per QR-Code oder öffne die Desktop-Store-Links direkt.",
   "onboardingDownloadAppSubtitle": "Installiere auf Mobilgerät oder Desktop in einem Schritt.",
@@ -2450,77 +616,24 @@
   "onboardingDownloadQrTitle": "Zum Fortfahren scannen",
   "onboardingDownloadQrDescription": "Nutze die Kamera deines Smartphones, um den Store-Link zu öffnen.",
   "studyPdfTableOfContents": "Inhaltsverzeichnis",
-  "@studyPdfTableOfContents": {
-    "description": "Title of the table of contents page in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudy": "Studieninhalt einschließen",
-  "@exportPdfOptionsIncludeStudy": {
-    "description": "Switch label to include the study content pages in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudySubtitle": "Studieninhaltsseiten hinzufügen",
-  "@exportPdfOptionsIncludeStudySubtitle": {
-    "description": "Subtitle for the include study switch in the export PDF dialog"
-  },
   "exportPdfOptionsTitle": "Als PDF exportieren",
-  "@exportPdfOptionsTitle": {
-    "description": "Title of the export PDF options dialog"
-  },
   "exportPdfOptionsIncludeQuestions": "Frageseite einschließen",
-  "@exportPdfOptionsIncludeQuestions": {
-    "description": "Switch label to include a questions page in the exported PDF"
-  },
   "exportPdfOptionsIncludeQuestionsSubtitle": "Eine Seite mit allen Quizfragen hinzufügen",
-  "@exportPdfOptionsIncludeQuestionsSubtitle": {
-    "description": "Subtitle for the include questions switch in the export PDF dialog"
-  },
   "exportPdfOptionsIncludeAnswers": "Antworten einschließen",
-  "@exportPdfOptionsIncludeAnswers": {
-    "description": "Switch label to include correct answers in the questions page"
-  },
   "exportPdfOptionsIncludeAnswersSubtitle": "Eine separate Seite mit den richtigen Antworten hinzufügen",
-  "@exportPdfOptionsIncludeAnswersSubtitle": {
-    "description": "Subtitle for the include answers switch in the export PDF dialog"
-  },
   "exportPdfQuestionsPageTitle": "Fragen",
-  "@exportPdfQuestionsPageTitle": {
-    "description": "Section title for the questions page in the exported PDF"
-  },
   "exportPdfAnswersLabel": "Antworten",
-  "@exportPdfAnswersLabel": {
-    "description": "Title of the answers page in the exported PDF"
-  },
   "exportButton": "Exportieren",
-  "@exportButton": {
-    "description": "Label for the Export button in the export PDF options dialog"
-  },
   "openInQuizdyApp": "In der Quizdy-App öffnen",
   "open": "Öffnen",
   "installApp": "App installieren",
   "updateAvailableTitle": "Update verfügbar",
-  "@updateAvailableTitle": {
-    "description": "Title shown in the update banner when a newer app version is available."
-  },
   "updateAvailableMessage": "Version {version} von Quizdy ist verfügbar.",
-  "@updateAvailableMessage": {
-    "description": "Subtitle in the update banner indicating which version is available.",
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
   "updateButton": "Update",
-  "@updateButton": {
-    "description": "Label for the update button in the update banner."
-  },
   "forceUpdateTitle": "Update erforderlich",
-  "@forceUpdateTitle": {
-    "description": "Title of the force update dialog."
-  },
   "forceUpdateMessage": "Ein obligatorisches Update ist erforderlich, um Quizdy weiterhin zu verwenden. Bitte aktualisieren Sie die App.",
-  "@forceUpdateMessage": {
-    "description": "Body message of the force update dialog."
-  },
   "questionOrderBySection": "Nach Abschnitten ordnen",
   "questionOrderBySectionDesc": "Gruppiere die Fragen nach Abschnitt und zeige jeden Abschnitt in aufsteigender Reihenfolge an",
   "srsStatsTitle": "Statistiken",

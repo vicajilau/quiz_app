@@ -73,6 +73,9 @@
     }
   },
   "dropFileHere": "Click logo or drag a .quiz file to the screen",
+  "@dropFileHere": {
+    "description": "Text displayed inside the drop area for dragging files."
+  },
   "errorOpeningFile": "Error opening file",
   "@errorOpeningFile": {
     "description": "Generic error message when opening a file fails."
@@ -88,9 +91,6 @@
   "replaceButton": "Load",
   "@replaceButton": {
     "description": "Button to confirm replacing the file."
-  },
-  "@dropFileHere": {
-    "description": "Text displayed inside the drop area for dragging files."
   },
   "clickOrDragFile": "Click to load or drag a .quiz file to the screen",
   "@clickOrDragFile": {
@@ -437,30 +437,24 @@
     "description": "Button text to start the quiz"
   },
   "startQuizFromStudy": "Test your knowledge",
+  "@startQuizFromStudy": {
+    "description": "Button text to start the quiz from the study screen"
+  },
   "studySectionPracticePrompt": "Practice Section Questions",
   "@studySectionPracticePrompt": {
     "description": "Title of the banner prompting to practice the questions linked to this section"
   },
   "studySectionPracticeSubtitle": "This section has {count, plural, =1{1 linked question} other{{count} linked questions}}. Practice them now to reinforce your learning!",
-  "studySectionMasteryTooltip": "Section mastery: {percentage}% ({correct} of {total} questions correct on the latest attempt)",
-  "studyScreenLearnedContent": "Learned content",
-  "@studyScreenLearnedContent": {
-    "description": "Label for the card displaying the overall percentage of learned content"
-  },
-  "studyScreenLearnedQuestionsCount": "{correct} of {total} questions mastered",
-  "@studyScreenLearnedQuestionsCount": {
-    "description": "Label indicating the count of questions learned/mastered out of the total in the content",
+  "@studySectionPracticeSubtitle": {
+    "description": "Subtitle explaining how many questions are linked to the section",
     "placeholders": {
-      "correct": {
+      "count": {
         "type": "int",
-        "example": "12"
-      },
-      "total": {
-        "type": "int",
-        "example": "15"
+        "example": "5"
       }
     }
   },
+  "studySectionMasteryTooltip": "Section mastery: {percentage}% ({correct} of {total} questions correct on the latest attempt)",
   "@studySectionMasteryTooltip": {
     "description": "Tooltip showing the correct answer percentage for the questions in the study section based on latest SRS results",
     "placeholders": {
@@ -478,17 +472,23 @@
       }
     }
   },
-  "@studySectionPracticeSubtitle": {
-    "description": "Subtitle explaining how many questions are linked to the section",
+  "studyScreenLearnedContent": "Learned content",
+  "@studyScreenLearnedContent": {
+    "description": "Label for the card displaying the overall percentage of learned content"
+  },
+  "studyScreenLearnedQuestionsCount": "{correct} of {total} questions mastered",
+  "@studyScreenLearnedQuestionsCount": {
+    "description": "Label indicating the count of questions learned/mastered out of the total in the content",
     "placeholders": {
-      "count": {
+      "correct": {
         "type": "int",
-        "example": "5"
+        "example": "12"
+      },
+      "total": {
+        "type": "int",
+        "example": "15"
       }
     }
-  },
-  "@startQuizFromStudy": {
-    "description": "Button text to start the quiz from the study screen"
   },
   "studyScreenCustomChapter": "Custom Chapter",
   "@studyScreenCustomChapter": {
@@ -2039,12 +2039,12 @@
     "description": "Label for the option to select all questions"
   },
   "subtractPointsLabel": "Subtract points for wrong answer",
+  "@subtractPointsLabel": {
+    "description": "Label for the checkbox to subtract points for incorrect answers"
+  },
   "subtractPointsDescription": "Subtract points for each incorrect answer.",
   "@subtractPointsDescription": {
     "description": "Description for the subtract points for incorrect answers setting when enabled"
-  },
-  "@subtractPointsLabel": {
-    "description": "Label for the checkbox to subtract points for incorrect answers"
   },
   "subtractPointsOffDescription": "Incorrect answers do not deduct points.",
   "@subtractPointsOffDescription": {
@@ -3131,13 +3131,6 @@
     "description": "Option in the dropdown to not link the question to any study section"
   },
   "srsSortTooltip": "Sort",
-  "srsSortByName": "Name (A-Z)",
-  "srsSortBySectionOrder": "Section order",
-  "srsSortByPendingQuestions": "Pending questions",
-  "srsSortByHitRate": "Hit rate",
-  "srsSortAscending": "Ascending",
-  "srsSortDescending": "Descending",
-  "srsSortTooltip": "Sort",
   "@srsSortTooltip": {
     "description": "Tooltip for the sort button in SRS stats appbar"
   },
@@ -3170,33 +3163,128 @@
     "description": "Label shown when a question has no study section assigned"
   },
   "homeMenuInicio": "Home",
+  "@homeMenuInicio": {
+    "description": "Home menu tab label"
+  },
   "homeMenuStudy": "Study",
+  "@homeMenuStudy": {
+    "description": "Study menu tab label"
+  },
   "homeMenuQuiz": "Quiz",
+  "@homeMenuQuiz": {
+    "description": "Quiz menu tab label"
+  },
   "homeMenuEstadisticas": "Stats",
+  "@homeMenuEstadisticas": {
+    "description": "Statistics menu tab label"
+  },
   "homeMenuSettings": "Settings",
+  "@homeMenuSettings": {
+    "description": "Settings menu tab label"
+  },
   "homeWelcomeTitle": "Welcome back!",
+  "@homeWelcomeTitle": {
+    "description": "Welcome title shown on the home screen"
+  },
   "homeWelcomeSubtitle": "What would you like to do today?",
+  "@homeWelcomeSubtitle": {
+    "description": "Welcome subtitle shown on the home screen"
+  },
   "homeRecentSectionTitle": "Recent studies",
+  "@homeRecentSectionTitle": {
+    "description": "Title of the recent studies section"
+  },
   "homeRecentViewAll": "View all",
+  "@homeRecentViewAll": {
+    "description": "Label of the button to view all recent items"
+  },
   "homeRecentDaysAgo": "{days} days ago",
+  "@homeRecentDaysAgo": {
+    "description": "Text showing how many days ago a quiz was opened",
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "homeRecentDaysAgoOne": "1 day ago",
+  "@homeRecentDaysAgoOne": {
+    "description": "Text showing that a quiz was opened 1 day ago"
+  },
   "homeRecentToday": "Today",
+  "@homeRecentToday": {
+    "description": "Text showing that a quiz was opened today"
+  },
   "homeRecentYesterday": "Yesterday",
+  "@homeRecentYesterday": {
+    "description": "Text showing that a quiz was opened yesterday"
+  },
   "homeCardStudyAiTitle": "Generate Study with AI",
+  "@homeCardStudyAiTitle": {
+    "description": "Title of the generate study material with AI card"
+  },
   "homeCardStudyAiDesc": "Generate summaries, flashcards, and personalized study material from any document or topic",
+  "@homeCardStudyAiDesc": {
+    "description": "Description of the generate study material with AI card"
+  },
   "homeCardStudyAiBadge": "Integrated AI",
+  "@homeCardStudyAiBadge": {
+    "description": "Badge text of the generate study material with AI card"
+  },
   "homeCardQuizAiTitle": "Generate Questions with AI",
+  "@homeCardQuizAiTitle": {
+    "description": "Title of the generate questions with AI card"
+  },
   "homeCardQuizAiDesc": "Convert documents, notes, or PDFs into multiple choice, true/false, or free response questions",
+  "@homeCardQuizAiDesc": {
+    "description": "Description of the generate questions with AI card"
+  },
   "homeCardQuizAiBadge": "Auto-generation",
+  "@homeCardQuizAiBadge": {
+    "description": "Badge text of the generate questions with AI card"
+  },
   "homeCardCreateQuizTitle": "Create Quiz",
+  "@homeCardCreateQuizTitle": {
+    "description": "Title of the manual quiz creation card"
+  },
   "homeCardCreateQuizDesc": "Design your own questions, add custom settings, and share it easily",
+  "@homeCardCreateQuizDesc": {
+    "description": "Description of the manual quiz creation card"
+  },
   "homeCardCreateQuizBadge": "From scratch",
+  "@homeCardCreateQuizBadge": {
+    "description": "Badge text of the manual quiz creation card"
+  },
   "homeCardLoadFileTitle": "Load File",
+  "@homeCardLoadFileTitle": {
+    "description": "Title of the load file card"
+  },
   "homeCardLoadFileDesc": "Open an existing .quiz file from your device and pick up where you left off",
+  "@homeCardLoadFileDesc": {
+    "description": "Description of the load file card"
+  },
   "homeCardLoadFileBadge": "Quiz format",
+  "@homeCardLoadFileBadge": {
+    "description": "Badge text of the load file card"
+  },
   "homeGlobalDragHint": "Drag a .quiz file anywhere on the screen",
+  "@homeGlobalDragHint": {
+    "description": "Instruction to drag and drop a .quiz file"
+  },
   "homeFeedbackCardTitle": "Your feedback matters",
+  "@homeFeedbackCardTitle": {
+    "description": "Title of the user feedback card"
+  },
   "homeFeedbackCardDesc": "Take a quick survey and help improve Quizdy",
+  "@homeFeedbackCardDesc": {
+    "description": "Description of the user feedback card"
+  },
   "homeNoActiveFileError": "No active quiz loaded. Please open or drag a file first.",
-  "homeClearHistoryButton": "Clear history"
+  "@homeNoActiveFileError": {
+    "description": "Error message shown when no active quiz file is loaded"
+  },
+  "homeClearHistoryButton": "Clear history",
+  "@homeClearHistoryButton": {
+    "description": "Button label to clear the recent quizzes history"
+  }
 }

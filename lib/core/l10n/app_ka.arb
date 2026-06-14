@@ -1,77 +1,23 @@
 {
   "@@locale": "ka",
   "languageSpanish": "ესპანური",
-  "@languageSpanish": {
-    "description": "ესპანური ენის სახელი"
-  },
   "languageEnglish": "ინგლისური",
-  "@languageEnglish": {
-    "description": "ინგლისური ენის სახელი"
-  },
   "languageFrench": "ფრანგული",
-  "@languageFrench": {
-    "description": "ფრანგული ენის სახელი"
-  },
   "languageGerman": "გერმანული",
-  "@languageGerman": {
-    "description": "გერმანული ენის სახელი"
-  },
   "languageGreek": "ბერძნული",
-  "@languageGreek": {
-    "description": "ბერძნული ენის სახელი"
-  },
   "languageItalian": "იტალიური",
-  "@languageItalian": {
-    "description": "იტალიური ენის სახელი"
-  },
   "languagePortuguese": "პორტუგალიური",
-  "@languagePortuguese": {
-    "description": "პორტუგალიური ენის სახელი"
-  },
   "languageCatalan": "კატალანური",
-  "@languageCatalan": {
-    "description": "კატალანური ენის სახელი"
-  },
   "languageBasque": "ბასკური",
-  "@languageBasque": {
-    "description": "ბასკური ენის სახელი"
-  },
   "languageGalician": "გალისიური",
-  "@languageGalician": {
-    "description": "გალისიური ენის სახელი"
-  },
   "languageHindi": "ჰინდი",
-  "@languageHindi": {
-    "description": "ჰინდი ენის სახელი"
-  },
   "languageChinese": "ჩინური",
-  "@languageChinese": {
-    "description": "ჩინური ენის სახელი"
-  },
   "languageArabic": "არაბული",
-  "@languageArabic": {
-    "description": "არაბული ენის სახელი"
-  },
   "languageJapanese": "იაპონური",
-  "@languageJapanese": {
-    "description": "იაპონური ენის სახელი"
-  },
   "languageRussian": "რუსული",
-  "@languageRussian": {
-    "description": "რუსული ენის სახელი"
-  },
   "languageGeorgian": "ქართული",
-  "@languageGeorgian": {
-    "description": "ქართული ენის სახელი"
-  },
   "languageUkrainian": "უკრაინული",
-  "@languageUkrainian": {
-    "description": "უკრაინული ენის სახელი"
-  },
   "languageKorean": "კორეული",
-  "@languageKorean": {
-    "description": "კორეული ენის სახელი"
-  },
   "abortQuizTitle": "გნებავთ ქვიზის შეწყვეტა?",
   "abortQuizMessage": "ახალი ფაილის გახსნა შეაჩერებს მიმდინარე ქვიზს.",
   "stopAndOpenButton": "შეჩერება და გახსნა",
@@ -99,17 +45,8 @@
   "cancelButton": "გაუქმება",
   "saveButton": "შენახვა",
   "newTag": "ახალი",
-  "@newTag": {
-    "description": "ახალი ან შეცვლილი ელემენტის აღნიშვნის თეგი"
-  },
   "modifiedTag": "შეცვლილი",
-  "@modifiedTag": {
-    "description": "თეგი რომელიც მიუთითებს რომ ელემენტი შეიცვალა"
-  },
   "save": "შენახვა",
-  "@save": {
-    "description": "Label for the save button"
-  },
   "confirmDeleteTitle": "წაშლის დადასტურება",
   "confirmDeleteMessage": "დარწმუნებული ხართ, რომ გსურთ `{processName}`-ის წაშლა?",
   "deleteButton": "წაშლა",
@@ -277,29 +214,11 @@
   "addQuestion": "კითხვის დამატება",
   "addSection": "სექციის დამატება",
   "editSection": "სექციის რედაქტირება",
-  "@editSection": {
-    "description": "Title for editing an existing section dialog"
-  },
   "sectionTitleLabel": "სათაური",
-  "@sectionTitleLabel": {
-    "description": "Label for section title input field in add/edit section dialog"
-  },
   "sectionTitleHint": "შეიყვანეთ სექციის სათაური",
-  "@sectionTitleHint": {
-    "description": "Hint for section title input field in add/edit section dialog"
-  },
   "sectionDescriptionLabel": "აღწერა",
-  "@sectionDescriptionLabel": {
-    "description": "Label for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionHint": "შეიყვანეთ სექციის აღწერა",
-  "@sectionDescriptionHint": {
-    "description": "Hint for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionAiHint": "ეს ინფორმაცია მოგვიანებით გამოყენებული იქნება AI-ის მიერ სასწავლო შინაარსის გენერირებისთვის.",
-  "@sectionDescriptionAiHint": {
-    "description": "Helper text shown below section description input, indicating AI will use this information later"
-  },
   "editQuestion": "კითხვის რედაქტირება",
   "questionText": "კითხვის ტექსტი",
   "questionType": "კითხვის ტიპი",
@@ -332,41 +251,10 @@
   "importAtEnd": "ბოლოში",
   "questionsImportedSuccess": "წარმატებით დაიმპორტირდა {count} კითხვა",
   "importChunksTitle": "განყოფილებების იმპორტი",
-  "@importChunksTitle": {
-    "description": "Title for the import chunks dialog."
-  },
   "importChunksMessage": "\"{fileName}\" ფაილში ნაპოვნია {count} განყოფილება. სად გსურთ მათი იმპორტი?",
-  "@importChunksMessage": {
-    "description": "Message asking where to import sections from another file.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "study.quiz"
-      }
-    }
-  },
   "importChunksPositionQuestion": "სად გსურთ ამ განყოფილებების დამატება?",
-  "@importChunksPositionQuestion": {
-    "description": "Question asking about import position for chunks."
-  },
   "chunksImportedSuccess": "{count} განყოფილება წარმატებით იმპორტირებულია",
-  "@chunksImportedSuccess": {
-    "description": "Success message when chunks are imported.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "noChunksInFile": "იმპორტირებულ ფაილში განყოფილებები ვერ მოიძებნა",
-  "@noChunksInFile": {
-    "description": "Error message when the imported file has no study sections."
-  },
   "importQuestionsTooltip": "კითხვების იმპორტი სხვა ქვიზ ფაილიდან",
   "dragDropHintText": "თქვენ ასევე შეგიძლიათ გადმოიტანოთ .quiz ფაილები აქ კითხვების იმპორტისთვის",
   "randomizeQuestionsTitle": "კითხვების არევა",
@@ -487,13 +375,7 @@
   "generateStudyWithAI": "სწავლის გენერირება AI-ით",
   "practiceModeLabel": "პრაქტიკის რეჟიმი",
   "smartModeLabel": "ჭკვიანი რეჟიმი",
-  "@smartModeLabel": {
-    "description": "Label for smart exam mode option in start quiz"
-  },
   "smartModeDescription": "სპეციალური გამოცდის რეჟიმი. აპი ავტომატურად განსაზღვრავს კითხვების ნაკრებსა და რაოდენობას და აახლებას გამეორების სტატისტიკას.",
-  "@smartModeDescription": {
-    "description": "Description for smart exam mode"
-  },
   "studyModeDescription": "AI დახმარება ხელმისაწვდომია. მყისიერი უკუკავშირი ყოველი პასუხის შემდეგ, დროის ლიმიტისა და ჯარიმების გარეშე. სტატისტიკა არ იქმნება.",
   "examModeLabel": "გამოცდის რეჟიმი",
   "examModeDescription": "AI დახმარების გარეშე. მოქმედებს დროის ლიმიტები და ჯარიმები არასწორი პასუხებისთვის. ქმნის SRS სტატისტიკას.",
@@ -617,417 +499,108 @@
   "studyComponentAdvantages": "უპირატესობები",
   "studyComponentLimitations": "შეზღუდვები",
   "aiStudyChapterSystemPrompt": "თქვენ ხართ AI სასწავლო ასისტენტი, რომელიც ეხმარება სტუდენტს სასწავლო თავის შინაარსის გაგებაში. სიღრმისეულად განმარტეთ ცნებები, მოიტანეთ მაგალითები და დაამყარეთ კავშირები სასწავლო მასალის სხვა ნაწილებთან, როდესაც ეს რელევανტურია. უპასუხეთ იმავε ენაზე, რომელზეც დაგისვეს კითხვა.",
-  "@aiStudyChapterSystemPrompt": {
-    "description": "System prompt for the AI study assistant when chatting about a study chapter"
-  },
   "aiStudyChapterGuardrail": "დარჩით ფოკუსირებული მოცემული თავის შინაარსსა და სასწავლო მასალაზე. თუ სტუდენტის კითხვა ეხება სხვა თავს, მიუთითეთ შესაბამისი თავის სათაური.",
-  "@aiStudyChapterGuardrail": {
-    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
-  },
   "askAIStudyTooltip": "ჰკითხეთ AI-ს ამ თავის შესახებ",
-  "@askAIStudyTooltip": {
-    "description": "Tooltip for the Ask AI button shown in the study chapter view"
-  },
   "studyScreenPendingSections": "ზოგიერთი სექცია ჯერ არ არის გენერირებული",
-  "@studyScreenPendingSections": {
-    "description": "გაფრთხილება, რომელიც ჩანს სასწავლო ინდექსში, როდესაც ზოგიერთი ნაწილი ჯერ არ არის გენერირებული"
-  },
-  "@aiErrorResponse": {
-    "description": "Error message when AI request fails"
-  },
   "aiErrorRedirect": "გადამისამართდა (302): {location}",
-  "@aiErrorRedirect": {
-    "description": "შეცდომის შეტყობინება, როდესაც ხდება 302 გადამისამართება AI მოთხოვნისას",
-    "placeholders": {
-      "location": {
-        "type": "String",
-        "example": "https://example.com"
-      }
-    }
-  },
   "aiErrorConnectionAborted": "მოთხოვნა შეწყდა, რადგან აპლიკაცია გადავიდა ფონურ რეჟიმში. გთხოვთ, შეინარჩუნოთ აპლიკაცია ღია კონტენტის გენერირებისას.",
-  "@aiErrorConnectionAborted": {
-    "description": "Error message when a request is aborted because the app is minimized."
-  },
   "noInternetConnection": "ინტერნეტთან კავშირი არ არის. გთხოვთ, შემოწმოთ ქსელის პარამეტრები და სცადოთ ხელახლა.",
-  "@noInternetConnection": {
-    "description": "Error message shown when the device has no internet connection."
-  },
   "duplicatedTag": "დუბლირებული",
-  "@duplicatedTag": {
-    "description": "Tag to indicate an item is duplicated"
-  },
   "aiSelectSectionsTitle": "სექციების არჩევა",
-  "@aiSelectSectionsTitle": {
-    "description": "Title for the chunk section selector in AI content step"
-  },
   "aiSelectSectionsSubtitle": "აირჩიეთ სასწავლო სექციები, რომლებიც გამოყენებული იქნება კითხვების შესაქმნელად",
-  "@aiSelectSectionsSubtitle": {
-    "description": "Subtitle explaining what the section selector does"
-  },
   "aiAllSections": "ყველა სექცია",
   "aiSelectQuestionsTitle": "კითხვების არჩევა",
-  "@aiSelectQuestionsTitle": {
-    "description": "Title for the question selector in AI study generation"
-  },
   "aiSelectQuestionsSubtitle": "აირჩიეთ Quiz რეჟიმის კითხვები, როგორც გენერაციის კონტექსტი",
-  "@aiSelectQuestionsSubtitle": {
-    "description": "Subtitle explaining what the question selector does"
-  },
   "aiAllQuestions": "ყველა კითხვა",
   "onboardingStudyContentTitle": "შეისწავლეთ თქვენი კონტენტი",
-  "@onboardingStudyContentTitle": {
-    "description": "Title of the study content onboarding page"
-  },
   "onboardingStudyContentDescription": "მოაწყვეთ თქვენი მასალა სასწავლო სექციებად. შემოიტანეთ ფაილები, დაამატეთ ხელით, ან მიეცით ხელოვნურ ინტელექტს კონტენტის გენერირების უფლება.",
-  "@onboardingStudyContentDescription": {
-    "description": "Description of the study content onboarding page"
-  },
   "onboardingStudyContentSubtitle": "მოაწყვეთ, შექმენით და ისწავლეთ",
-  "@onboardingStudyContentSubtitle": {
-    "description": "Subtitle of the study content onboarding page"
-  },
   "onboardingStudyStepAddTitle": "მასალის დამატება",
-  "@onboardingStudyStepAddTitle": {
-    "description": "Step 1 title in study content onboarding page"
-  },
   "onboardingStudyStepAddDescription": "დაწერეთ სექციები ან შემოიტანეთ .quiz ფაილებიდან",
-  "@onboardingStudyStepAddDescription": {
-    "description": "Step 1 description in study content onboarding page"
-  },
   "onboardingStudyStepGenerateTitle": "ხელოვნური ინტელექტის გენერირება",
-  "@onboardingStudyStepGenerateTitle": {
-    "description": "Step 2 title in study content onboarding page"
-  },
   "onboardingStudyStepGenerateDescription": "ხელოვნური ინტელექტი ქმნის სასწავლო სექციებს თქვენი დოკუმენტებიდან",
-  "@onboardingStudyStepGenerateDescription": {
-    "description": "Step 2 description in study content onboarding page"
-  },
   "onboardingStudyStepStudyTitle": "შექმნილი სექციების შესწავლა",
-  "@onboardingStudyStepStudyTitle": {
-    "description": "Step 3 title in study content onboarding page"
-  },
   "onboardingStudyStepStudyDescription": "ნავიგაცია გაუკეთეთ თითოეულ სექციას და გაიუმჯობესეთ სწავლა",
-  "@onboardingStudyStepStudyDescription": {
-    "description": "Step 3 description in study content onboarding page"
-  },
   "onboardingStudyStepPdfTitle": "PDF-ად ექსპორტი",
-  "@onboardingStudyStepPdfTitle": {
-    "description": "Step 4 title in study content onboarding page"
-  },
   "onboardingStudyStepPdfDescription": "გადმოწერეთ და გააზიარეთ თქვენი სწავლა PDF ფაილის სახით",
-  "@onboardingStudyStepPdfDescription": {
-    "description": "Step 4 description in study content onboarding page"
-  },
   "privacyPolicyLabel": "კონფიდენციალურობის პოლიტიკა",
   "privacyPolicyDescription": "გაეცანით, როგორ მუშავდება თქვენი მონაცემები Quizdy-ში",
   "privacyPolicyRequiredDescription": "გასაგრძელებლად გთხოვთ გაეცნოთ და დაეთანხმოთ კონფიდენციალურობის პოლიტიკას.",
   "privacyPolicyLoadError": "კონფიდენციალურობის პოლიტიკის შინაარსის ჩატვირთვა ვერ მოხერხდა.",
   "privacyPolicyCanonicalNotice": "ამ პოლიტიკის ოფიციალური იურიდიული ვერსია არის პროექტის რეპოზიტორიაში განთავსებული ინგლისური ტექსტი.",
-  "@privacyPolicyCanonicalNotice": {
-    "description": "Short legal notice indicating the canonical version of the privacy policy"
-  },
   "privacyPolicyOpenInBrowser": "გახსენით სრული პოლიტიკა GitHub-ზე",
-  "@privacyPolicyOpenInBrowser": {
-    "description": "Button label to open the privacy policy URL in an external browser"
-  },
   "supportLabel": "მხარდაჭერა",
-  "@supportLabel": {
-    "description": "Label for the support action in settings"
-  },
   "supportDescription": "გახსენით GitHub Issues აპისა და პლატფორმის დეტალებით",
-  "@supportDescription": {
-    "description": "Description for the support action in settings"
-  },
   "feedbackTitle": "თქვენი აზრი ჩვენთვის მნიშვნელოვანია",
-  "@feedbackTitle": {
-    "description": "Title for the home screen feedback prompt"
-  },
   "feedbackDescription": "უპასუხეთ მოკლე გამოკითხვას და დაგვეხმარეთ Quizdy-ის გაუმჯობესებაში",
-  "@feedbackDescription": {
-    "description": "Description for the home screen feedback prompt"
-  },
   "studyEditorComponents": "კომპონენტები",
-  "@studyEditorComponents": {
-    "description": "Section header for the list of components in the component editor"
-  },
   "studyEditorEmptyComponents": "ამ გვერდზე კომპონენტები არ არის.",
-  "@studyEditorEmptyComponents": {
-    "description": "Empty state message in the component editor"
-  },
   "studyEditorExitEdit": "რედაქტირების რეჟიმიდან გამოსვლა",
-  "@studyEditorExitEdit": {
-    "description": "Tooltip for the FAB button that disables study content edit mode"
-  },
   "studyEditorFieldBody": "სხეულის ტექსტი",
-  "@studyEditorFieldBody": {
-    "description": "Label for the main body text field in component editors"
-  },
   "studyEditorFieldTitle": "სათაური",
-  "@studyEditorFieldTitle": {
-    "description": "Label for the optional title field in component editors"
-  },
   "studyEditorEmptyPages": "ჯერ არ არის გვერდები. ერთის დასამატებლად შეეხეთ +.",
-  "@studyEditorEmptyPages": {
-    "description": "Empty state message in the section page manager"
-  },
   "studyEditorSaveChanges": "ცვლილებების შენახვა",
-  "@studyEditorSaveChanges": {
-    "description": "Button label to save edited component properties"
-  },
   "studyEditorEditParagraph": "პარაგრაფის რედაქტირება",
-  "@studyEditorEditParagraph": {
-    "description": "Navigation header title for the paragraph property panel"
-  },
   "studyEditorPages": "გვერდები",
-  "@studyEditorPages": {
-    "description": "Section header for the list of pages in the section page manager"
-  },
   "studyEditorToggleEdit": "შინაარსის რედაქტირება",
-  "@studyEditorToggleEdit": {
-    "description": "Tooltip for the FAB button that enables study content edit mode"
-  },
   "componentTypeQuote": "ციტატა",
-  "@componentTypeQuote": {
-    "description": "Display name for the quote component type"
-  },
   "studyEditorAddPage": "გვერდის დამატება",
-  "@studyEditorAddPage": {
-    "description": "Button label to add a new page to a section"
-  },
   "componentTypeWarning": "გაფრთხილება",
-  "@componentTypeWarning": {
-    "description": "Display name for the warning component type"
-  },
   "studyEditorDeletePage": "გვერდის წაშლა",
-  "@studyEditorDeletePage": {
-    "description": "Button label to delete a page from a section"
-  },
   "studyEditorEditName": "რედაქტირება {name}",
-  "@studyEditorEditName": {
-    "description": "Navigation header title: Edit [section name]",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "componentTypeProsCons": "დადებითი და უარყოფითი მხარეები",
-  "@componentTypeProsCons": {
-    "description": "Display name for the prosCons component type"
-  },
   "componentTypeTimeline": "ვადები",
-  "@componentTypeTimeline": {
-    "description": "Display name for the timeline component type"
-  },
   "componentTypeNumberedList": "დანომრილი სია",
-  "@componentTypeNumberedList": {
-    "description": "Display name for the numberedList component type"
-  },
   "studyEditorPageN": "გვერდი {n}",
-  "@studyEditorPageN": {
-    "description": "Label for page number n in the section page manager",
-    "placeholders": {
-      "n": {
-        "type": "int"
-      }
-    }
-  },
   "componentTypeSectionTitle": "განყოფილების სათაური",
-  "@componentTypeSectionTitle": {
-    "description": "Display name for the sectionTitle component type"
-  },
   "componentTypeKeyDefinition": "გასაღების განმარტება",
-  "@componentTypeKeyDefinition": {
-    "description": "Display name for the keyDefinition component type"
-  },
   "componentTypeParagraph": "პარაგრაფი",
-  "@componentTypeParagraph": {
-    "description": "Display name for the paragraph component type"
-  },
   "componentTypeComparisonTable": "შედარების ცხრილი",
-  "@componentTypeComparisonTable": {
-    "description": "Display name for the comparisonTable component type"
-  },
   "componentTypeFormula": "ფორმულა",
-  "@componentTypeFormula": {
-    "description": "Display name for the formula component type"
-  },
   "componentTypeReminder": "შეხსენება",
-  "@componentTypeReminder": {
-    "description": "Display name for the reminder component type"
-  },
   "componentTypeKeyConcepts": "ძირითადი ცნებები",
-  "@componentTypeKeyConcepts": {
-    "description": "Display name for the keyConcepts component type"
-  },
   "componentFieldTerm": "ვადა",
-  "@componentFieldTerm": {
-    "description": "Form field label for term (key definition)"
-  },
   "componentTypeIconCards": "ხატულა ბარათები",
-  "@componentTypeIconCards": {
-    "description": "Display name for the iconCards component type"
-  },
   "componentFieldDefinition": "განმარტება",
-  "@componentFieldDefinition": {
-    "description": "Form field label for definition"
-  },
   "componentFieldAuthor": "ავტორი",
-  "@componentFieldAuthor": {
-    "description": "Form field label for quote author"
-  },
   "componentFieldSubtitle": "სუბტიტრები",
-  "@componentFieldSubtitle": {
-    "description": "Form field label for subtitle"
-  },
   "componentFieldEquation": "განტოლება",
-  "@componentFieldEquation": {
-    "description": "Form field label for formula equation"
-  },
   "componentFieldItems": "ნივთები",
-  "@componentFieldItems": {
-    "description": "Form section label for a list of items"
-  },
   "componentFieldDate": "თარიღი",
-  "@componentFieldDate": {
-    "description": "Form field label for timeline event date"
-  },
   "componentFieldExplanation": "ახსნა",
-  "@componentFieldExplanation": {
-    "description": "Form field label for formula explanation"
-  },
   "componentFieldDescription": "აღწერა",
-  "@componentFieldDescription": {
-    "description": "Form field label for item description"
-  },
   "componentFieldPros": "დადებითი",
-  "@componentFieldPros": {
-    "description": "Form section label for pros list"
-  },
   "componentFieldQuote": "ციტატა",
-  "@componentFieldQuote": {
-    "description": "Form field label for quote text"
-  },
   "componentFieldConcept": "კონცეფცია",
-  "@componentFieldConcept": {
-    "description": "Form field label for a single concept item"
-  },
   "componentFieldCons": "მინუსები",
-  "@componentFieldCons": {
-    "description": "Form section label for cons list"
-  },
   "componentFieldEquationLabel": "განტოლების ეტიკეტი",
-  "@componentFieldEquationLabel": {
-    "description": "Form field label for formula equation label"
-  },
   "componentFieldEvents": "ღონისძიებები",
-  "@componentFieldEvents": {
-    "description": "Form section label for timeline events"
-  },
   "componentFieldCards": "ბარათები",
-  "@componentFieldCards": {
-    "description": "Form section label for icon cards"
-  },
   "componentFieldCon": "კონ",
-  "@componentFieldCon": {
-    "description": "Form field label for a single con item"
-  },
   "componentFieldRows": "რიგები",
-  "@componentFieldRows": {
-    "description": "Form section label for table rows"
-  },
   "componentFieldColumn": "სვეტი",
-  "@componentFieldColumn": {
-    "description": "Form field label for a single table column"
-  },
   "componentFieldColumns": "სვეტები",
-  "@componentFieldColumns": {
-    "description": "Form section label for table columns"
-  },
   "componentFieldLabel": "ლეიბლი",
-  "@componentFieldLabel": {
-    "description": "Form field label for a row label in comparison table"
-  },
   "componentFieldLabelColumn": "ლეიბლის სვეტი",
-  "@componentFieldLabelColumn": {
-    "description": "Form field label for the header of the label column in a comparison table"
-  },
   "componentFieldPro": "პრო",
-  "@componentFieldPro": {
-    "description": "Form field label for a single pro item"
-  },
   "componentFieldRow": "მწკრივი",
-  "@componentFieldRow": {
-    "description": "Form field label for a single table row"
-  },
   "componentFieldOptional": "სურვილისამებრ",
-  "@componentFieldOptional": {
-    "description": "Label shown next to optional form fields"
-  },
   "componentFieldRequired": "ეს ველი სავალდებულოა",
   "addComponentTitle": "კომპონენტის დამატება",
-  "@addComponentTitle": {
-    "description": "Title for the Add Component picker screen"
-  },
   "componentFieldAdd": "დაამატეთ {item}",
-  "@componentFieldAdd": {
-    "description": "Button label to add a new item to a list",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "addComponentsWithAI": "კომპონენტების AI-ით დამატება",
-  "@addComponentsWithAI": {
-    "description": "Button label to add study components using AI"
-  },
   "aiSelectComponentTypesTitle": "აირჩიეთ კომპონენტის ტიპები",
-  "@aiSelectComponentTypesTitle": {
-    "description": "Title for the component type filter in AI study generation"
-  },
   "aiSelectComponentTypesSubtitle": "ჩართეთ, რათა გაფილტროთ, რომელი კომპონენტის ტიპები ჩაირთოს გენერირებულ სასწავლო შინაარსში",
-  "@aiSelectComponentTypesSubtitle": {
-    "description": "Subtitle for the component type filter in AI study generation"
-  },
   "aiComponentsGeneratedSuccess": "კონტენტი წარმატებით შეიქმნა",
-  "@aiComponentsGeneratedSuccess": {
-    "description": "Snackbar message shown when AI component generation completes successfully"
-  },
   "duplicate": "დუბლირება",
-  "@duplicate": {
-    "description": "Tooltip for the duplicate button in the component card"
-  },
   "moveUp": "ზემოთ გადატანა",
-  "@moveUp": {
-    "description": "Tooltip for the move up button in the component card"
-  },
   "moveDown": "ქვემოთ გადატანა",
-  "@moveDown": {
-    "description": "Tooltip for the move down button in the component card"
-  },
   "aiDifficultyRequiresFileTooltip": "ამ პარამეტრის გამოსაყენებლად საჭიროა ფაილის მიმაგრება",
-  "@aiDifficultyRequiresFileTooltip": {
-    "description": "Tooltip when auto difficulty is disabled due to missing file"
-  },
   "exportAsPdf": "PDF-ად ექსპორტი",
   "exportPdfSuccess": "PDF წარმატებით ექსპორტირდა",
   "exportPdfError": "PDF-ის ექსპორტი ვერ მოხერხდა",
   "deleteDuplicatesButton": "დუბლიკატების წაშლა",
-  "@deleteDuplicatesButton": {
-    "description": "Button to delete duplicated items"
-  },
   "deleteDuplicatesConfirmationMessage": "დარწმუნებული ხართ, რომ გსურთ {count} დუბლირებული ერთეულის წაშლა? თითოეულის მხოლოდ ერთი ასლი შენარჩუნდება.",
-  "@deleteDuplicatesConfirmationMessage": {
-    "description": "Confirmation message when deleting duplicates",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "onboardingDownloadAppTitle": "დააინსტალირეთ Quizdy თქვენს მოწყობილობებზე",
   "onboardingDownloadAppDescription": "დააყენეთ Quizdy მობილურზე QR კოდებით ან პირდაპირ გახსენით დესკტოპის მაღაზიების ბმულები.",
   "onboardingDownloadAppSubtitle": "დააყენეთ მობილურზე ან დესკტოპზე ერთ ნაბიჯში.",
@@ -1043,77 +616,24 @@
   "onboardingDownloadQrTitle": "დაასკანერეთ გასაგრძელებლად",
   "onboardingDownloadQrDescription": "მაღაზიის ბმულის გასახსნელად გამოიყენეთ ტელეფონის კამერა.",
   "studyPdfTableOfContents": "სარჩევი",
-  "@studyPdfTableOfContents": {
-    "description": "Title of the table of contents page in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudy": "სწავლის ჩართვა",
-  "@exportPdfOptionsIncludeStudy": {
-    "description": "Switch label to include the study content pages in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudySubtitle": "სასწავლო შინაარსის გვერდების დამატება",
-  "@exportPdfOptionsIncludeStudySubtitle": {
-    "description": "Subtitle for the include study switch in the export PDF dialog"
-  },
   "exportPdfOptionsTitle": "PDF-ის სახით ექსპორტი",
-  "@exportPdfOptionsTitle": {
-    "description": "Title of the export PDF options dialog"
-  },
   "exportPdfOptionsIncludeQuestions": "კითხვების გვერდის ჩართვა",
-  "@exportPdfOptionsIncludeQuestions": {
-    "description": "Switch label to include a questions page in the exported PDF"
-  },
   "exportPdfOptionsIncludeQuestionsSubtitle": "ტესტის ყველა კითხვის შემცველი გვერდის დამატება",
-  "@exportPdfOptionsIncludeQuestionsSubtitle": {
-    "description": "Subtitle for the include questions switch in the export PDF dialog"
-  },
   "exportPdfOptionsIncludeAnswers": "პასუხების ჩართვა",
-  "@exportPdfOptionsIncludeAnswers": {
-    "description": "Switch label to include correct answers in the questions page"
-  },
   "exportPdfOptionsIncludeAnswersSubtitle": "სწორი პასუხების ცალკე გვერდის დამატება",
-  "@exportPdfOptionsIncludeAnswersSubtitle": {
-    "description": "Subtitle for the include answers switch in the export PDF dialog"
-  },
   "exportPdfQuestionsPageTitle": "კითხვები",
-  "@exportPdfQuestionsPageTitle": {
-    "description": "Section title for the questions page in the exported PDF"
-  },
   "exportPdfAnswersLabel": "პასუხები",
-  "@exportPdfAnswersLabel": {
-    "description": "Title of the answers page in the exported PDF"
-  },
   "exportButton": "ექსპორტი",
-  "@exportButton": {
-    "description": "Label for the Export button in the export PDF options dialog"
-  },
   "openInQuizdyApp": "გახსნა Quizdy აპში",
   "open": "გახსნა",
   "installApp": "აპლიკაციის ინსტალაცია",
   "updateAvailableTitle": "განახლება ხელმისაწვდომია",
-  "@updateAvailableTitle": {
-    "description": "Title shown in the update banner when a newer app version is available."
-  },
   "updateAvailableMessage": "Quizdy-ს ვერსია {version} ხელმისაწვდომია.",
-  "@updateAvailableMessage": {
-    "description": "Subtitle in the update banner indicating which version is available.",
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
   "updateButton": "განახლება",
-  "@updateButton": {
-    "description": "Label for the update button in the update banner."
-  },
   "forceUpdateTitle": "საჭიროა განახლება",
-  "@forceUpdateTitle": {
-    "description": "Title of the force update dialog."
-  },
   "forceUpdateMessage": "Quizdy-ს გამოყენების გასაგრძელებლად საჭიროა სავალდებულო განახლება. გთხოვთ, განაახლოთ აპი.",
-  "@forceUpdateMessage": {
-    "description": "Body message of the force update dialog."
-  },
   "questionOrderBySection": "სექციების მიხედვით",
   "questionOrderBySectionDesc": "შეკრიბეთ კითხვები სექციების მიხედვით და აჩვენეთ თითოეული სექცია ზრდადი თანმიმდევრობით",
   "srsStatsTitle": "სტატისტიკა",

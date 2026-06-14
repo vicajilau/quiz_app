@@ -4,1518 +4,322 @@
   "abortQuizMessage": "Abrir um novo arquivo interromperá o quiz atual.",
   "stopAndOpenButton": "Parar e Abrir",
   "titleAppBar": "Quiz - Simulador de Exames",
-  "@titleAppBar": {
-    "description": "Título da aplicação exibido na AppBar."
-  },
   "create": "Criar",
-  "@create": {
-    "description": "Rótulo para o botão Criar arquivo Quiz na AppBar."
-  },
   "preview": "Visualização",
-  "@preview": {
-    "description": "Rótulo para a seção de visualização LaTeX em diálogos de questões."
-  },
   "load": "Carregar",
-  "@load": {
-    "description": "Rótulo para o botão Carregar arquivo Quiz na AppBar."
-  },
   "fileLoaded": "Arquivo carregado: {filePath}",
-  "@fileLoaded": {
-    "description": "Mensagem exibida quando um arquivo é carregado com sucesso.",
-    "placeholders": {
-      "filePath": {
-        "type": "String",
-        "example": "/caminho/para/arquivo.quiz"
-      }
-    }
-  },
   "fileSaved": "Arquivo salvo: {filePath}",
-  "@fileSaved": {
-    "description": "Mensagem exibida quando um arquivo é salvo com sucesso.",
-    "placeholders": {
-      "filePath": {
-        "type": "String",
-        "example": "/caminho/para/arquivo.quiz"
-      }
-    }
-  },
   "dropFileHere": "Clique no logotipo ou arraste um arquivo .quiz para a tela",
   "errorOpeningFile": "Erro ao abrir o arquivo",
-  "@errorOpeningFile": {
-    "description": "Generic error message when opening a file fails."
-  },
   "replaceFileTitle": "Carregar novo Quiz",
-  "@replaceFileTitle": {
-    "description": "Title of the confirmation dialog to replace the current file."
-  },
   "replaceFileMessage": "Um Quiz já está carregado. Deseja substituí-lo pelo novo arquivo?",
-  "@replaceFileMessage": {
-    "description": "Message of the confirmation dialog to replace the current file."
-  },
   "replaceButton": "Carregar",
-  "@replaceButton": {
-    "description": "Button to confirm replacing the file."
-  },
-  "@dropFileHere": {
-    "description": "Texto exibido dentro da área de soltar arquivos."
-  },
   "clickOrDragFile": "Clique para carregar ou arraste um arquiro .quiz para a tela",
-  "@clickOrDragFile": {
-    "description": "Texto exibido abaixo da área de carregamento"
-  },
   "errorInvalidFile": "Erro: Arquivo inválido. Deve ser um arquivo .quiz.",
-  "@errorInvalidFile": {
-    "description": "Mensagem exibida quando o arquivo solto não é um arquivo .quiz."
-  },
   "errorLoadingFile": "Erro ao carregar o arquivo Quiz: {error}",
-  "@errorLoadingFile": {
-    "description": "Mensagem exibida quando há erro durante o carregamento de um arquivo Quiz.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Arquivo não encontrado"
-      }
-    }
-  },
   "errorExportingFile": "Erro ao exportar o arquivo: {error}",
-  "@errorExportingFile": {
-    "description": "Mensagem exibida quando há erro durante a exportação de um arquivo.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Arquivo não encontrado"
-      }
-    }
-  },
   "cancelButton": "Cancelar",
-  "@cancelButton": {
-    "description": "Botão Cancelar."
-  },
   "saveButton": "Salvar",
-  "@saveButton": {
-    "description": "Botão Salvar."
-  },
   "newTag": "Novo",
-  "@newTag": {
-    "description": "Etiqueta para indicar um item novo ou modificado"
-  },
   "modifiedTag": "Modificado",
-  "@modifiedTag": {
-    "description": "Etiqueta para indicar que um item foi modificado"
-  },
   "confirmDeleteTitle": "Confirmar exclusão",
-  "@confirmDeleteTitle": {
-    "description": "Título para a caixa de diálogo de confirmação ao excluir um processo."
-  },
   "confirmDeleteMessage": "Tem certeza de que deseja excluir o processo `{processName}`?",
-  "@confirmDeleteMessage": {
-    "description": "Mensagem na caixa de diálogo de confirmação para exclusão.",
-    "placeholders": {
-      "processName": {
-        "type": "String",
-        "example": "Pergunta 1"
-      }
-    }
-  },
   "deleteButton": "Excluir",
-  "@deleteButton": {
-    "description": "Texto do botão para confirmar exclusão."
-  },
   "confirmExitTitle": "Confirmar saída",
-  "@confirmExitTitle": {
-    "description": "Título para a caixa de diálogo de confirmação ao sair."
-  },
   "confirmExitMessage": "Existem alterações não salvas. Deseja sair e descartar as alterações?",
-  "@confirmExitMessage": {
-    "description": "Mensagem na caixa de diálogo de confirmação para sair."
-  },
   "exitButton": "Sair sem guardar",
-  "@exitButton": {
-    "description": "Texto do botão Sair."
-  },
   "saveDialogTitle": "Selecione um arquivo de saída:",
-  "@saveDialogTitle": {
-    "description": "Título para a caixa de diálogo de salvamento."
-  },
   "createQuizFileTitle": "Criar arquivo Quiz",
-  "@createQuizFileTitle": {
-    "description": "Título para a caixa de diálogo de criação de arquivo quiz."
-  },
   "editQuizFileTitle": "Editar arquivo Quiz",
-  "@editQuizFileTitle": {
-    "description": "Título para a caixa de diálogo de edição de arquivo de quiz."
-  },
   "fileNameLabel": "Nome do arquivo",
-  "@fileNameLabel": {
-    "description": "Rótulo para entrada do nome do arquivo."
-  },
   "fileDescriptionLabel": "Descrição do arquivo",
-  "@fileDescriptionLabel": {
-    "description": "Rótulo para entrada da descrição do arquivo."
-  },
   "createButton": "Criar",
-  "@createButton": {
-    "description": "Texto do botão Criar."
-  },
   "fileNameRequiredError": "O nome do arquivo é obrigatório.",
-  "@fileNameRequiredError": {
-    "description": "Mensagem de erro quando o nome do arquivo está vazio."
-  },
   "fileDescriptionRequiredError": "A descrição do arquivo é obrigatória.",
-  "@fileDescriptionRequiredError": {
-    "description": "Mensagem de erro quando a descrição do arquivo está vazia."
-  },
   "versionLabel": "Versão",
-  "@versionLabel": {
-    "description": "Rótulo para o campo versão do quiz"
-  },
   "authorLabel": "Autor",
-  "@authorLabel": {
-    "description": "Rótulo para o campo autor do quiz"
-  },
   "authorRequiredError": "O autor é obrigatório.",
-  "@authorRequiredError": {
-    "description": "Mensagem de erro quando o campo autor está vazio"
-  },
   "requiredFieldsError": "Todos os campos obrigatórios devem ser preenchidos.",
-  "@requiredFieldsError": {
-    "description": "Mensagem de erro quando campos obrigatórios estão faltando"
-  },
   "requestFileNameTitle": "Digite o nome do arquivo Quiz",
-  "@requestFileNameTitle": {
-    "description": "Título para a caixa de diálogo de solicitação de nome do arquivo."
-  },
   "fileNameHint": "Nome do arquivo (obrigatório)",
-  "@fileNameHint": {
-    "description": "Texto de dica para entrada do nome do arquivo."
-  },
   "emptyFileNameMessage": "O nome do arquivo não pode estar vazio.",
-  "@emptyFileNameMessage": {
-    "description": "Mensagem de erro quando o nome do arquivo está vazio."
-  },
   "acceptButton": "Aceitar",
-  "@acceptButton": {
-    "description": "Texto do botão Aceitar."
-  },
   "saveTooltip": "Salvar o arquivo",
-  "@saveTooltip": {
-    "description": "Tooltip para o botão salvar."
-  },
   "saveDisabledTooltip": "Nenhuma alteração para salvar",
-  "@saveDisabledTooltip": {
-    "description": "Tooltip para o botão salvar desabilitado."
-  },
   "executeTooltip": "Executar o exame",
-  "@executeTooltip": {
-    "description": "Tooltip para o botão executar."
-  },
   "addTooltip": "Adicionar uma nova pergunta",
-  "@addTooltip": {
-    "description": "Tooltip para o botão adicionar."
-  },
   "backSemanticLabel": "Botão voltar",
-  "@backSemanticLabel": {
-    "description": "Rótulo semântico para o botão voltar."
-  },
   "createFileTooltip": "Criar um novo arquivo Quiz",
-  "@createFileTooltip": {
-    "description": "Tooltip para o botão criar arquivo."
-  },
   "loadFileTooltip": "Carregar um arquivo Quiz existente",
-  "@loadFileTooltip": {
-    "description": "Tooltip para o botão carregar arquivo."
-  },
   "questionNumber": "Pergunta {number}",
-  "@questionNumber": {
-    "description": "Rótulo do número da pergunta na execução do quiz",
-    "placeholders": {
-      "number": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "questionOfTotal": "Pergunta {current} de {total}",
-  "@questionOfTotal": {
-    "description": "Rótulo que mostra o número da pergunta atual e o total de perguntas",
-    "placeholders": {
-      "current": {
-        "type": "int",
-        "example": "1"
-      },
-      "total": {
-        "type": "int",
-        "example": "10"
-      }
-    }
-  },
   "previous": "Anterior",
-  "@previous": {
-    "description": "Texto do botão anterior na navegação do quiz"
-  },
   "next": "Próximo",
-  "@next": {
-    "description": "Texto do botão próximo na navegação do quiz"
-  },
   "finish": "Finalizar",
-  "@finish": {
-    "description": "Texto do botão finalizar na navegação do quiz"
-  },
   "finishQuiz": "Finalizar quiz",
-  "@finishQuiz": {
-    "description": "Título da caixa de diálogo finalizar quiz"
-  },
   "finishQuizConfirmation": "Tem certeza de que deseja finalizar o quiz? Você não poderá mais alterar suas respostas depois.",
-  "@finishQuizConfirmation": {
-    "description": "Mensagem de confirmação para finalizar o quiz"
-  },
   "resolveUnansweredQuestions": "Resolver perguntas",
-  "@resolveUnansweredQuestions": {
-    "description": "Texto do botão para resolver perguntas não respondidas"
-  },
   "abandonQuiz": "Abandone o questionário",
-  "@abandonQuiz": {
-    "description": "Título da caixa de diálogo abandonar quiz"
-  },
   "abandonQuizConfirmation": "Tem certeza de que deseja abandonar o quiz? Todo o progresso será perdido.",
-  "@abandonQuizConfirmation": {
-    "description": "Mensagem de confirmação para abandonar o quiz"
-  },
   "abandon": "Abandonar",
-  "@abandon": {
-    "description": "Texto do botão abandonar"
-  },
   "quizCompleted": "Quiz Concluído!",
-  "@quizCompleted": {
-    "description": "Mensagem quiz concluído"
-  },
   "score": "Pontuação: {score}%",
-  "@score": {
-    "description": "Exibição da pontuação",
-    "placeholders": {
-      "score": {
-        "type": "String",
-        "example": "85.5"
-      }
-    }
-  },
   "correctAnswers": "{correct} de {total} respostas corretas",
-  "@correctAnswers": {
-    "description": "Contagem de respostas corretas",
-    "placeholders": {
-      "correct": {
-        "type": "String",
-        "example": "8"
-      },
-      "total": {
-        "type": "int",
-        "example": "10"
-      }
-    }
-  },
   "retry": "Repetir",
-  "@retry": {
-    "description": "Texto do botão repetir"
-  },
   "goBack": "Finalizar",
-  "@goBack": {
-    "description": "Texto do botão voltar"
-  },
   "retryFailedQuestions": "Repetir Falhadas",
-  "@retryFailedQuestions": {
-    "description": "Texto do botão para repetir apenas as perguntas respondidas incorretamente"
-  },
   "question": "Pergunta: {question}",
-  "@question": {
-    "description": "Texto da pergunta nos resultados",
-    "placeholders": {
-      "question": {
-        "type": "String",
-        "example": "Qual é a capital do Brasil?"
-      }
-    }
-  },
   "selectQuestionCountTitle": "Selecionar número de perguntas",
-  "@selectQuestionCountTitle": {
-    "description": "Título para a caixa de diálogo para selecionar o número de perguntas para o quiz"
-  },
   "selectQuestionCountMessage": "Quantas perguntas você gostaria de responder neste quiz?",
-  "@selectQuestionCountMessage": {
-    "description": "Mensagem explicando a seleção do número de perguntas"
-  },
   "allQuestions": "Todas as perguntas ({count})",
-  "@allQuestions": {
-    "description": "Opção para selecionar todas as perguntas disponíveis",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "25"
-      }
-    }
-  },
   "startQuiz": "Iniciar Quiz",
-  "@startQuiz": {
-    "description": "Texto do botão para iniciar o quiz"
-  },
   "maxIncorrectAnswersLabel": "Limitar respostas incorretas",
-  "@maxIncorrectAnswersLabel": {
-    "description": "Rótulo para a alternância de limitar respostas incorretas"
-  },
   "maxIncorrectAnswersDescription": "Exame de Apto/Não Apto. Não há nota numérica, você é aprovado ou reprovado.",
-  "@maxIncorrectAnswersDescription": {
-    "description": "Descrição para a funcionalidade de limitar respostas incorretas"
-  },
   "maxIncorrectAnswersOffDescription": "O exame tem uma nota numérica de 0 a 100.",
-  "@maxIncorrectAnswersOffDescription": {
-    "description": "Description shown when max incorrect answers is disabled"
-  },
   "maxIncorrectAnswersLimitLabel": "Máximo de erros permitidos",
-  "@maxIncorrectAnswersLimitLabel": {
-    "description": "Rótulo para o campo de entrada do máximo de respostas incorretas"
-  },
   "examFailedStatus": "Exame NÃO APTO",
   "examPassedStatus": "Exame APTO",
   "quizFailedLimitReached": "Exame Finalizado: O limite máximo de erros foi atingido",
-  "@quizFailedLimitReached": {
-    "description": "Título para o ecrã de resultados quando o limite de erros é atingido"
-  },
   "customNumberLabel": "Ou digite um número personalizado:",
-  "@customNumberLabel": {
-    "description": "Rótulo para a seção de entrada de número personalizado"
-  },
   "numberInputLabel": "Número de perguntas",
-  "@numberInputLabel": {
-    "description": "Rótulo para o campo de entrada de número"
-  },
   "errorInvalidNumber": "Por favor, digite um número válido",
-  "@errorInvalidNumber": {
-    "description": "Mensagem de erro para entrada de número inválido"
-  },
   "errorNumberMustBePositive": "O número deve ser maior que 0",
-  "@errorNumberMustBePositive": {
-    "description": "Mensagem de erro quando o número é zero ou negativo"
-  },
   "questionOrderConfigTitle": "Configuração da ordem das perguntas",
-  "@questionOrderConfigTitle": {
-    "description": "Título para a caixa de diálogo de configuração da ordem das perguntas"
-  },
   "questionOrderConfigDescription": "Selecione a ordem na qual deseja que as perguntas apareçam durante o exame:",
-  "@questionOrderConfigDescription": {
-    "description": "Texto descritivo para a caixa de diálogo de configuração da ordem das perguntas"
-  },
   "questionOrderAscending": "Ordem crescente",
-  "@questionOrderAscending": {
-    "description": "Rótulo para a opção ordem crescente das perguntas"
-  },
   "questionOrderAscendingDesc": "As perguntas aparecerão em ordem de 1 ao final",
-  "@questionOrderAscendingDesc": {
-    "description": "Descrição para a opção ordem crescente das perguntas"
-  },
   "questionOrderDescending": "Ordem decrescente",
-  "@questionOrderDescending": {
-    "description": "Rótulo para a opção ordem decrescente das perguntas"
-  },
   "questionOrderDescendingDesc": "As perguntas aparecerão do final a 1",
-  "@questionOrderDescendingDesc": {
-    "description": "Descrição para a opção ordem decrescente das perguntas"
-  },
   "questionOrderRandom": "Aleatorizar a ordem das perguntas",
-  "@questionOrderRandom": {
-    "description": "Rótulo para a opção ordem aleatória das perguntas"
-  },
   "questionOrderRandomDesc": "As perguntas aparecerão em ordem aleatória",
-  "@questionOrderRandomDesc": {
-    "description": "Descrição para a opção ordem aleatória das perguntas"
-  },
   "questionOrderConfigTooltip": "Configuração da ordem das perguntas",
-  "@questionOrderConfigTooltip": {
-    "description": "Tooltip para o botão de configuração da ordem das perguntas"
-  },
   "save": "Salvar",
-  "@save": {
-    "description": "Rótulo para o botão salvar"
-  },
   "examTimeLimitTitle": "Limite de tempo do exame",
-  "@examTimeLimitTitle": {
-    "description": "Título para a seção limite de tempo do exame"
-  },
   "examTimeLimitDescription": "Defina um limite de tempo para o exame. Um cronômetro regressivo será exibido durante o quiz.",
-  "@examTimeLimitDescription": {
-    "description": "Descrição para a funcionalidade limite de tempo do exame"
-  },
   "examTimeLimitOffDescription": "Não há limite de tempo para este exame.",
-  "@examTimeLimitOffDescription": {
-    "description": "Description shown when time limit is disabled"
-  },
   "enableTimeLimit": "Habilitar limite de tempo",
-  "@enableTimeLimit": {
-    "description": "Rótulo para o interruptor de habilitação do limite de tempo do exame"
-  },
   "timeLimitMinutes": "Limite de tempo (minutos)",
-  "@timeLimitMinutes": {
-    "description": "Rótulo para a entrada de minutos do limite de tempo do exame"
-  },
   "examTimeExpiredTitle": "Tempo esgotado!",
-  "@examTimeExpiredTitle": {
-    "description": "Título para a caixa de diálogo tempo do exame esgotado"
-  },
   "examTimeExpiredMessage": "O tempo do exame expirou. Suas respostas foram automaticamente enviadas.",
-  "@examTimeExpiredMessage": {
-    "description": "Mensagem para a caixa de diálogo tempo do exame esgotado"
-  },
   "remainingTime": "{hours}:{minutes}:{seconds}",
-  "@remainingTime": {
-    "description": "Formato para exibição do tempo restante (horas:minutos:segundos)",
-    "placeholders": {
-      "hours": {
-        "type": "String",
-        "example": "01"
-      },
-      "minutes": {
-        "type": "String",
-        "example": "30"
-      },
-      "seconds": {
-        "type": "String",
-        "example": "45"
-      }
-    }
-  },
   "questionTypeMultipleChoice": "Múltipla escolha",
-  "@questionTypeMultipleChoice": {
-    "description": "Rótulo para o tipo de pergunta múltipla escolha"
-  },
   "questionTypeSingleChoice": "Escolha única",
-  "@questionTypeSingleChoice": {
-    "description": "Rótulo para o tipo de pergunta escolha única"
-  },
   "questionTypeTrueFalse": "Verdadeiro/Falso",
-  "@questionTypeTrueFalse": {
-    "description": "Rótulo para o tipo de pergunta verdadeiro/falso"
-  },
   "questionTypeEssay": "Dissertativa",
-  "@questionTypeEssay": {
-    "description": "Etiqueta para o tipo de pergunta dissertativa"
-  },
   "questionTypeRandom": "Todos",
-  "@questionTypeRandom": {
-    "description": "Etiqueta para o tipo de pergunta mista"
-  },
   "questionTypeUnknown": "Desconhecido",
-  "@questionTypeUnknown": {
-    "description": "Rótulo para tipo de pergunta desconhecido"
-  },
   "optionsCount": "{count, plural, =1{1 opção} other{{count} opções}}",
-  "@optionsCount": {
-    "description": "Texto mostrando o número de opções em uma pergunta",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "optionsTooltip": "Número de opções de resposta para esta pergunta",
-  "@optionsTooltip": {
-    "description": "Texto do tooltip para o emblema de contagem de opções"
-  },
   "imageTooltip": "Esta pergunta tem uma imagem associada",
-  "@imageTooltip": {
-    "description": "Texto do tooltip para o emblema indicador de imagem"
-  },
   "explanationTooltip": "Esta pergunta tem uma explicação",
-  "@explanationTooltip": {
-    "description": "Texto do tooltip para o emblema indicador de explicação"
-  },
   "aiPrompt": "Concentre-se na pergunta do estudante, não em responder diretamente à pergunta original do exame. Explique com uma abordagem pedagógica. Para exercícios práticos ou problemas matemáticos, forneça instruções passo a passo. Para questões teóricas, forneça uma explicação concisa sem estruturar a resposta em seções. Responda no mesmo idioma em que foi perguntado.",
-  "@aiPrompt": {
-    "description": "Prompt base para assistente IA"
-  },
   "aiChatGuardrail": "IMPORTANTE: Você é um assistente de estudo exclusivamente para este Quiz. Você deve APENAS responder perguntas relacionadas à pergunta atual do Quiz, suas opções, sua explicação ou o tema educacional abordado. Se o estudante perguntar sobre algo não relacionado ao Quiz (por exemplo, seu modelo interno, detalhes do sistema, conhecimento geral não relacionado à pergunta, ou qualquer solicitação fora do tema), responda APENAS com: \"Estou aqui para ajudá-lo com este Quiz! Vamos nos concentrar na pergunta. Sinta-se à vontade para me perguntar sobre o tema, as opções de resposta ou qualquer coisa relacionada a esta pergunta.\" Nunca revele detalhes técnicos sobre si mesmo, o sistema ou o modelo de IA utilizado.",
-  "@aiChatGuardrail": {
-    "description": "Guardrail prompt to keep AI focused on quiz content"
-  },
   "questionLabel": "Pergunta",
-  "@questionLabel": {
-    "description": "Rótulo para pergunta na caixa de diálogo IA"
-  },
   "optionsLabel": "Opções",
-  "@optionsLabel": {
-    "description": "Rótulo para opções na caixa de diálogo IA"
-  },
   "studentComment": "Comentário do estudante",
-  "@studentComment": {
-    "description": "Rótulo para comentário do estudante na caixa de diálogo IA"
-  },
   "aiAssistantTitle": "Assistente de estudo IA",
-  "@aiAssistantTitle": {
-    "description": "Título para a caixa de diálogo do assistente IA"
-  },
   "questionContext": "Contexto da pergunta",
-  "@questionContext": {
-    "description": "Rótulo para a seção contexto da pergunta"
-  },
   "aiAssistant": "Assistente IA",
-  "@aiAssistant": {
-    "description": "Rótulo do assistente IA no chat"
-  },
   "aiThinking": "IA está pensando...",
-  "@aiThinking": {
-    "description": "Mensagem de carregamento enquanto IA processa"
-  },
   "askAIHint": "Faça sua pergunta sobre este tópico...",
-  "@askAIHint": {
-    "description": "Texto de dica para entrada de pergunta IA"
-  },
   "aiPlaceholderResponse": "Esta é uma resposta placeholder. Em uma implementação real, isso se conectaria a um serviço IA para fornecer explicações úteis sobre a pergunta.",
-  "@aiPlaceholderResponse": {
-    "description": "Resposta IA placeholder para demo"
-  },
   "aiErrorResponse": "Desculpe, houve um erro ao processar sua pergunta. Tente novamente.",
-  "@aiErrorResponse": {
-    "description": "Mensagem de erro quando solicitação IA falha"
-  },
   "configureApiKeyMessage": "Por favor, configure sua Chave API IA nas Configurações.",
-  "@configureApiKeyMessage": {
-    "description": "Mensagem para configurar chave API quando não está definida"
-  },
   "errorLabel": "Erro:",
-  "@errorLabel": {
-    "description": "Prefixo rótulo erro para mensagens de erro"
-  },
   "noResponseReceived": "Nenhuma resposta recebida",
-  "@noResponseReceived": {
-    "description": "Mensagem quando nenhuma resposta é recebida da IA"
-  },
   "invalidApiKeyError": "Chave API inválida. Verifique sua Chave API OpenAI nas configurações.",
-  "@invalidApiKeyError": {
-    "description": "Mensagem de erro para chave API inválida"
-  },
   "rateLimitError": "Cota excedida ou modelo não disponível no seu plano. Verifique seu plano.",
-  "@rateLimitError": {
-    "description": "Mensagem de erro para limite de taxa excedido ou problemas de cota"
-  },
   "modelNotFoundError": "Modelo não encontrado. Verifique seu acesso à API.",
-  "@modelNotFoundError": {
-    "description": "Mensagem de erro para modelo não encontrado"
-  },
   "unknownError": "Erro desconhecido",
-  "@unknownError": {
-    "description": "Mensagem de erro genérica desconhecida"
-  },
   "networkErrorOpenAI": "Erro de rede: Não foi possível conectar ao OpenAI. Verifique sua conexão com a internet.",
-  "@networkErrorOpenAI": {
-    "description": "Mensagem de erro de conectividade de rede para OpenAI"
-  },
   "networkErrorGemini": "Erro de rede: Não foi possível conectar ao Gemini. Verifique sua conexão com a internet.",
-  "@networkErrorGemini": {
-    "description": "Mensagem de erro de conectividade de rede para Gemini"
-  },
   "openaiApiKeyNotConfigured": "Chave API OpenAI não configurada",
-  "@openaiApiKeyNotConfigured": {
-    "description": "Mensagem de erro quando chave API não está configurada"
-  },
   "geminiApiKeyNotConfigured": "Chave API Gemini não configurada",
-  "@geminiApiKeyNotConfigured": {
-    "description": "Mensagem de erro quando chave API Gemini não está configurada"
-  },
   "geminiApiKeyLabel": "Chave API Gemini",
-  "@geminiApiKeyLabel": {
-    "description": "Rótulo para o campo Chave API Gemini"
-  },
   "geminiApiKeyHint": "Digite sua Chave API Gemini",
-  "@geminiApiKeyHint": {
-    "description": "Texto de dica para o campo Chave API Gemini"
-  },
   "geminiApiKeyDescription": "Necessário para funcionalidade IA Gemini. Sua chave é armazenada com segurança.",
-  "@geminiApiKeyDescription": {
-    "description": "Descrição para o campo Chave API Gemini"
-  },
   "getGeminiApiKeyTooltip": "Obter Chave API do Google AI Studio",
-  "@getGeminiApiKeyTooltip": {
-    "description": "Tooltip para o botão para obter chave API Gemini"
-  },
   "aiRequiresAtLeastOneApiKeyError": "O Assistente de Estudo IA requer pelo menos uma Chave API (Gemini ou OpenAI). Por favor, insira uma chave API ou desative o Assistente de IA.",
-  "@aiRequiresAtLeastOneApiKeyError": {
-    "description": "Mensagem de erro quando Assistente IA está habilitado mas nenhuma chave API é fornecida"
-  },
   "minutesAbbreviation": "min",
-  "@minutesAbbreviation": {
-    "description": "Abreviação para minutos"
-  },
   "aiButtonTooltip": "Assistente de Estudo IA",
-  "@aiButtonTooltip": {
-    "description": "Tooltip para o botão assistente IA"
-  },
   "aiButtonText": "IA",
-  "@aiButtonText": {
-    "description": "Texto para o botão assistente IA"
-  },
   "aiAssistantSettingsTitle": "Assistente de Estudo IA (Prévia)",
-  "@aiAssistantSettingsTitle": {
-    "description": "Título para a seção configurações assistente IA"
-  },
   "aiAssistantSettingsDescription": "Habilitar ou desabilitar o assistente de estudo IA para perguntas",
-  "@aiAssistantSettingsDescription": {
-    "description": "Descrição para configurações assistente IA"
-  },
   "aiDefaultModelTitle": "Modelo IA padrão",
-  "@aiDefaultModelTitle": {
-    "description": "Título para a seção modelo IA padrão"
-  },
   "aiDefaultModelDescription": "Selecione o serviço e modelo IA padrão para a geração de perguntas",
-  "@aiDefaultModelDescription": {
-    "description": "Descrição para configurações modelo IA padrão"
-  },
   "openaiApiKeyLabel": "Chave API OpenAI",
-  "@openaiApiKeyLabel": {
-    "description": "Rótulo para o campo Chave API OpenAI"
-  },
   "openaiApiKeyHint": "Digite sua Chave API OpenAI (sk-...)",
-  "@openaiApiKeyHint": {
-    "description": "Texto de dica para o campo Chave API OpenAI"
-  },
   "openaiApiKeyDescription": "Necessário para integração com OpenAI. Sua chave OpenAI é armazenada com segurança.",
-  "@openaiApiKeyDescription": {
-    "description": "Descrição para o campo Chave API OpenAI"
-  },
   "aiAssistantRequiresApiKeyError": "Assistente de Estudo IA requer uma Chave API OpenAI. Digite sua chave API ou desabilite o Assistente IA.",
-  "@aiAssistantRequiresApiKeyError": {
-    "description": "Mensagem de erro quando Assistente IA está habilitado mas nenhuma chave API é fornecida"
-  },
   "getApiKeyTooltip": "Obter Chave API do OpenAI",
-  "@getApiKeyTooltip": {
-    "description": "Tooltip para o botão para obter chave API do OpenAI"
-  },
   "deleteAction": "Excluir",
-  "@deleteAction": {
-    "description": "Texto da ação excluir mostrado ao deslizar para excluir"
-  },
   "explanationLabel": "Explicação (opcional)",
-  "@explanationLabel": {
-    "description": "Rótulo para o campo de entrada explicação"
-  },
   "explanationHint": "Digite uma explicação para a(s) resposta(s) correta(s)",
-  "@explanationHint": {
-    "description": "Texto de dica para o campo de entrada explicação"
-  },
   "explanationTitle": "Explicação",
-  "@explanationTitle": {
-    "description": "Título para a seção explicação nos resultados do quiz"
-  },
   "imageLabel": "Imagem",
-  "@imageLabel": {
-    "description": "Rótulo para a seção imagem no editor de perguntas"
-  },
   "changeImage": "Alterar imagem",
-  "@changeImage": {
-    "description": "Texto para o botão para alterar a imagem atual"
-  },
   "removeImage": "Remover imagem",
-  "@removeImage": {
-    "description": "Texto para o botão para remover a imagem atual"
-  },
   "addImageTap": "Toque para adicionar imagem",
-  "@addImageTap": {
-    "description": "Texto instrucional para adicionar uma imagem"
-  },
   "imageFormats": "Formatos: JPG, PNG, GIF",
-  "@imageFormats": {
-    "description": "Texto indicando formatos de imagem suportados"
-  },
   "imageLoadError": "Erro ao carregar imagem",
-  "@imageLoadError": {
-    "description": "Mensagem de erro quando imagem não pode ser carregada"
-  },
   "imagePickError": "Erro ao carregar imagem: {error}",
-  "@imagePickError": {
-    "description": "Mensagem de erro quando seleção de imagem falha",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Arquivo inválido"
-      }
-    }
-  },
   "tapToZoom": "Toque para ampliar",
-  "@tapToZoom": {
-    "description": "Texto instrucional para indicar que imagem pode ser ampliada"
-  },
   "trueLabel": "Verdadeiro",
-  "@trueLabel": {
-    "description": "Rótulo para opção verdadeiro em perguntas verdadeiro/falso"
-  },
   "falseLabel": "Falso",
-  "@falseLabel": {
-    "description": "Rótulo para opção falso em perguntas verdadeiro/falso"
-  },
   "addQuestion": "Adicionar pergunta",
-  "@addQuestion": {
-    "description": "Título para caixa de diálogo adicionar nova pergunta"
-  },
   "editQuestion": "Editar pergunta",
-  "@editQuestion": {
-    "description": "Título para caixa de diálogo editar pergunta existente"
-  },
   "questionText": "Texto da pergunta",
-  "@questionText": {
-    "description": "Rótulo para campo de entrada texto da pergunta"
-  },
   "questionType": "Tipo de pergunta",
-  "@questionType": {
-    "description": "Rótulo para dropdown tipo de pergunta"
-  },
   "addOption": "Adicionar opção",
-  "@addOption": {
-    "description": "Rótulo para botão adicionar opção"
-  },
   "optionLabel": "Opção",
-  "@optionLabel": {
-    "description": "Rótulo para campo de entrada opção individual"
-  },
   "questionTextRequired": "Texto da pergunta é obrigatório",
-  "@questionTextRequired": {
-    "description": "Mensagem de erro quando texto da pergunta está vazio"
-  },
   "atLeastOneOptionRequired": "Pelo menos uma opção deve ter texto",
-  "@atLeastOneOptionRequired": {
-    "description": "Mensagem de erro quando todas as opções estão vazias"
-  },
   "atLeastOneCorrectAnswerRequired": "Pelo menos uma resposta correta deve ser selecionada",
-  "@atLeastOneCorrectAnswerRequired": {
-    "description": "Mensagem de erro quando nenhuma resposta correta está selecionada"
-  },
   "onlyOneCorrectAnswerAllowed": "Apenas uma resposta correta é permitida para este tipo de pergunta",
-  "@onlyOneCorrectAnswerAllowed": {
-    "description": "Mensagem de erro quando múltiplas respostas corretas são selecionadas para perguntas de escolha única"
-  },
   "removeOption": "Remover opção",
-  "@removeOption": {
-    "description": "Tooltip para botão remover opção"
-  },
   "selectCorrectAnswer": "Selecionar resposta correta",
-  "@selectCorrectAnswer": {
-    "description": "Tooltip para botão de rádio para selecionar resposta correta"
-  },
   "selectCorrectAnswers": "Selecionar respostas corretas",
-  "@selectCorrectAnswers": {
-    "description": "Tooltip para checkbox para selecionar respostas corretas"
-  },
   "emptyOptionsError": "Opções {optionNumbers} estão vazias. Adicione texto a elas ou remova-as.",
-  "@emptyOptionsError": {
-    "description": "Mensagem de erro quando algumas opções estão vazias",
-    "placeholders": {
-      "optionNumbers": {
-        "type": "String",
-        "example": "1, 3, 4"
-      }
-    }
-  },
   "emptyOptionError": "Opção {optionNumber} está vazia. Adicione texto a ela ou remova-a.",
-  "@emptyOptionError": {
-    "description": "Mensagem de erro quando uma opção está vazia",
-    "placeholders": {
-      "optionNumber": {
-        "type": "String",
-        "example": "3"
-      }
-    }
-  },
   "errorDuplicatedOption": "As opções não podem ser duplicadas.",
-  "@errorDuplicatedOption": {
-    "description": "Error message when options have duplicate text"
-  },
   "optionEmptyError": "Esta opção não pode estar vazia",
-  "@optionEmptyError": {
-    "description": "Mensagem de erro para campo opção individual vazio"
-  },
   "hasImage": "Imagem",
-  "@hasImage": {
-    "description": "Rótulo indicando que uma pergunta tem uma imagem"
-  },
   "hasExplanation": "Explicação",
-  "@hasExplanation": {
-    "description": "Rótulo indicando que uma pergunta tem uma explicação"
-  },
   "errorLoadingSettings": "Erro ao carregar configurações: {error}",
-  "@errorLoadingSettings": {
-    "description": "Mensagem exibida quando há erro durante o carregamento das configurações da aplicação.",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "description": "A mensagem de erro"
-      }
-    }
-  },
   "couldNotOpenUrl": "Não foi possível abrir {url}",
-  "@couldNotOpenUrl": {
-    "description": "Mensagem exibida quando uma URL não pode ser aberta.",
-    "placeholders": {
-      "url": {
-        "type": "String",
-        "description": "A URL que não pôde ser aberta"
-      }
-    }
-  },
   "loadingAiServices": "Carregando serviços IA...",
-  "@loadingAiServices": {
-    "description": "Mensagem exibida durante carregamento de serviços IA disponíveis."
-  },
   "usingAiService": "Usando: {serviceName}",
-  "@usingAiService": {
-    "description": "Mensagem exibida mostrando qual serviço IA está sendo usado.",
-    "placeholders": {
-      "serviceName": {
-        "type": "String",
-        "description": "O nome do serviço IA"
-      }
-    }
-  },
   "aiServiceLabel": "Serviço IA:",
-  "@aiServiceLabel": {
-    "description": "Rótulo para o seletor de serviço IA."
-  },
   "aiModelLabel": "Modelo:",
-  "@aiModelLabel": {
-    "description": "Rótulo para o seletor de modelo IA."
-  },
   "importQuestionsTitle": "Importar perguntas",
-  "@importQuestionsTitle": {
-    "description": "Título para a caixa de diálogo importar perguntas."
-  },
   "importQuestionsMessage": "Encontradas {count} perguntas em \"{fileName}\". Onde você gostaria de importá-las?",
-  "@importQuestionsMessage": {
-    "description": "Mensagem perguntando onde importar perguntas de outro arquivo.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "perguntas.quiz"
-      }
-    }
-  },
   "importQuestionsPositionQuestion": "Onde você gostaria de adicionar essas perguntas?",
-  "@importQuestionsPositionQuestion": {
-    "description": "Pergunta sobre posição de importação."
-  },
   "importAtBeginning": "No início",
-  "@importAtBeginning": {
-    "description": "Botão para importar perguntas no início da lista."
-  },
   "importAtEnd": "No final",
-  "@importAtEnd": {
-    "description": "Botão para importar perguntas no final da lista."
-  },
   "questionsImportedSuccess": "Importadas com sucesso {count} perguntas",
-  "@questionsImportedSuccess": {
-    "description": "Mensagem de sucesso quando perguntas são importadas.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "importChunksTitle": "Importar Seções",
-  "@importChunksTitle": {
-    "description": "Title for the import chunks dialog."
-  },
   "importChunksMessage": "{count} seções encontradas em \"{fileName}\". Onde você gostaria de importá-las?",
-  "@importChunksMessage": {
-    "description": "Message asking where to import sections from another file.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "study.quiz"
-      }
-    }
-  },
   "importChunksPositionQuestion": "Onde você gostaria de adicionar essas seções?",
-  "@importChunksPositionQuestion": {
-    "description": "Question asking about import position for chunks."
-  },
   "chunksImportedSuccess": "{count} seções importadas com sucesso",
-  "@chunksImportedSuccess": {
-    "description": "Success message when chunks are imported.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "noChunksInFile": "Nenhuma seção encontrada no arquivo importado",
-  "@noChunksInFile": {
-    "description": "Error message when the imported file has no study sections."
-  },
   "importQuestionsTooltip": "Importar perguntas de outro arquivo quiz",
-  "@importQuestionsTooltip": {
-    "description": "Tooltip para o botão importar perguntas."
-  },
   "dragDropHintText": "Você também pode arrastar e soltar arquivos .quiz aqui para importar perguntas",
-  "@dragDropHintText": {
-    "description": "Texto de dica mostrado quando a lista de perguntas está vazia, indicando funcionalidade drag and drop."
-  },
   "randomizeAnswersTitle": "Aleatorizar a ordem das respostas",
-  "@randomizeAnswersTitle": {
-    "description": "Título para a configuração de aleatorização das opções de resposta."
-  },
   "randomizeAnswersDescription": "Embaralhar a ordem das opções de resposta durante a execução do quiz",
-  "@randomizeAnswersDescription": {
-    "description": "Descrição para a configuração aleatorizar respostas."
-  },
   "showCorrectAnswerCountTitle": "Mostrar número de respostas corretas",
-  "@showCorrectAnswerCountTitle": {
-    "description": "Título para a configuração mostrar número de respostas corretas."
-  },
   "showCorrectAnswerCountDescription": "Exibir o número de respostas corretas em perguntas de múltipla escolha",
-  "@showCorrectAnswerCountDescription": {
-    "description": "Description for the show correct answer count setting."
-  },
   "showCorrectAnswerCountOffDescription": "O número de respostas corretas não será mostrado para perguntas de múltipla escolha",
-  "@showCorrectAnswerCountOffDescription": {
-    "description": "Description for the show correct answer count setting when disabled."
-  },
   "correctAnswersCount": "Selecione {count} respostas corretas",
-  "@correctAnswersCount": {
-    "description": "Texto mostrando quantas respostas corretas selecionar em uma pergunta de múltipla escolha.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "correctSelectedLabel": "Correto",
-  "@correctSelectedLabel": {
-    "description": "Rótulo para respostas selecionadas corretamente nos resultados do quiz."
-  },
   "correctMissedLabel": "Correto",
-  "@correctMissedLabel": {
-    "description": "Rótulo para respostas corretas que não foram selecionadas nos resultados do quiz."
-  },
   "incorrectSelectedLabel": "Incorreto",
-  "@incorrectSelectedLabel": {
-    "description": "Rótulo para respostas selecionadas incorretamente nos resultados do quiz."
-  },
   "generateQuestionsWithAI": "Gerar perguntas com IA",
-  "@generateQuestionsWithAI": {
-    "description": "Tooltip para o botão gerar perguntas com IA."
-  },
   "addQuestionsWithAI": "Adicionar perguntas com IA",
-  "@addQuestionsWithAI": {
-    "description": "Label for the button to add more questions using AI when some already exist."
-  },
   "aiGenerateDialogTitle": "Gerar perguntas com IA",
-  "@aiGenerateDialogTitle": {
-    "description": "Título da caixa de diálogo geração de perguntas IA."
-  },
   "aiQuestionCountLabel": "Número de perguntas (Opcional)",
-  "@aiQuestionCountLabel": {
-    "description": "Rótulo para o campo número de perguntas."
-  },
   "aiQuestionCountHint": "Deixe vazio para a IA decidir",
-  "@aiQuestionCountHint": {
-    "description": "Texto de dica para o campo número de perguntas."
-  },
   "aiQuestionCountValidation": "Deve ser um número entre 1 e 50",
-  "@aiQuestionCountValidation": {
-    "description": "Mensagem de validação para número de perguntas."
-  },
   "aiQuestionTypeLabel": "Tipo de pergunta",
-  "@aiQuestionTypeLabel": {
-    "description": "Rótulo para o seletor tipo de pergunta."
-  },
   "aiQuestionTypeRandom": "Aleatório (Misto)",
-  "@aiQuestionTypeRandom": {
-    "description": "Opção tipo aleatório para perguntas."
-  },
   "aiLanguageLabel": "Idioma das perguntas",
-  "@aiLanguageLabel": {
-    "description": "Rótulo para o seletor de idioma."
-  },
   "aiContentLabel": "Conteúdo para gerar perguntas",
-  "@aiContentLabel": {
-    "description": "Rótulo para o campo conteúdo."
-  },
   "aiWordCount": "{current} / {max} palavras",
-  "@aiWordCount": {
-    "description": "Contador de palavras para conteúdo.",
-    "placeholders": {
-      "current": {
-        "type": "int",
-        "example": "150"
-      },
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiContentHint": "Digite o texto, tópico, ou conteúdo a partir do qual deseja gerar perguntas...",
-  "@aiContentHint": {
-    "description": "Texto de dica para o campo conteúdo."
-  },
   "aiContentHelperText": "IA criará perguntas baseadas neste conteúdo",
-  "@aiContentHelperText": {
-    "description": "Texto de ajuda adicional para o campo conteúdo."
-  },
   "aiWordLimitError": "Você excedeu o limite de {max} palavras",
-  "@aiWordLimitError": {
-    "description": "Erro quando limite de palavras é excedido.",
-    "placeholders": {
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiContentRequiredError": "Você deve fornecer conteúdo para gerar perguntas",
-  "@aiContentRequiredError": {
-    "description": "Erro quando nenhum conteúdo é fornecido."
-  },
   "aiContentLimitError": "Conteúdo excede o limite de {max} palavras",
-  "@aiContentLimitError": {
-    "description": "Erro de validação para limite de palavras.",
-    "placeholders": {
-      "max": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiMinWordsError": "Forneça pelo menos 10 palavras para gerar perguntas de qualidade",
-  "@aiMinWordsError": {
-    "description": "Erro quando conteúdo é muito curto."
-  },
   "aiInfoTitle": "Informação",
-  "@aiInfoTitle": {
-    "description": "Título da seção informação."
-  },
   "aiInfoDescription": "• IA analisará o conteúdo e gerará perguntas relevantes\n• Se escreveres menos de 10 palavras entrarás no modo Tema, onde serão feitas perguntas sobre esses temas específicos\n• Com mais de 10 palavras entrarás no modo Conteúdo, que fará perguntas sobre o mesmo texto (mais palavras = mais precisão)\n• Você pode incluir texto, definições, explicações, o qualquer material educativo\n• Perguntas incluirão opções de resposta e explicações\n• O processo pode levar alguns segundos",
-  "@aiInfoDescription": {
-    "description": "Descrição informativa do processo de geração IA."
-  },
   "aiGenerateButton": "Gerar Perguntas",
-  "@aiGenerateButton": {
-    "description": "Texto para o botão gerar perguntas."
-  },
   "languageSpanish": "Espanhol",
-  "@languageSpanish": {
-    "description": "Nome da língua espanhola."
-  },
   "languageEnglish": "Inglês",
-  "@languageEnglish": {
-    "description": "Nome da língua inglesa."
-  },
   "languageFrench": "Francês",
-  "@languageFrench": {
-    "description": "Nome da língua francesa."
-  },
   "languageGerman": "Alemão",
-  "@languageGerman": {
-    "description": "Nome da língua alemã."
-  },
   "languageGreek": "Grego",
-  "@languageGreek": {
-    "description": "Nome da língua grega."
-  },
   "languageItalian": "Italiano",
-  "@languageItalian": {
-    "description": "Nome da língua italiana."
-  },
   "languagePortuguese": "Português",
-  "@languagePortuguese": {
-    "description": "Nome da língua portuguesa."
-  },
   "languageCatalan": "Catalão",
-  "@languageCatalan": {
-    "description": "Nome da língua catalã."
-  },
   "languageBasque": "Basco",
-  "@languageBasque": {
-    "description": "Nome da língua basca."
-  },
   "languageGalician": "Galego",
-  "@languageGalician": {
-    "description": "Nome da língua galega."
-  },
   "languageHindi": "Hindi",
-  "@languageHindi": {
-    "description": "Nome da língua hindi."
-  },
   "languageChinese": "Chinês",
-  "@languageChinese": {
-    "description": "Nome da língua chinesa."
-  },
   "languageArabic": "Árabe",
-  "@languageArabic": {
-    "description": "Nome da língua árabe."
-  },
   "languageJapanese": "Japonês",
-  "@languageJapanese": {
-    "description": "Nome da língua japonesa."
-  },
   "languageRussian": "Russo",
-  "@languageRussian": {
-    "description": "Nome da língua russa."
-  },
   "languageGeorgian": "Georgiano",
-  "@languageGeorgian": {
-    "description": "Nome da língua georgiana."
-  },
   "languageUkrainian": "Ucraniano",
-  "@languageUkrainian": {
-    "description": "Nome da língua ucraniana."
-  },
   "languageKorean": "Coreano",
-  "@languageKorean": {
-    "description": "Nome da língua coreana."
-  },
   "aiServicesLoading": "Carregando serviços IA...",
-  "@aiServicesLoading": {
-    "description": "Mensagem mostrada durante carregamento de serviços IA disponíveis."
-  },
   "aiServicesNotConfigured": "Nenhum serviço IA configurado",
-  "@aiServicesNotConfigured": {
-    "description": "Mensagem mostrada quando nenhum serviço IA está configurado."
-  },
   "aiGeneratedQuestions": "Gerado por IA",
-  "@aiGeneratedQuestions": {
-    "description": "Nome para perguntas geradas por IA na caixa de diálogo importação."
-  },
   "aiApiKeyRequired": "Configure pelo menos uma chave API IA nas Configurações para usar geração IA.",
-  "@aiApiKeyRequired": {
-    "description": "Mensagem mostrada quando nenhuma chave API está configurada para IA."
-  },
   "aiGenerationFailed": "Não foi possível gerar perguntas. Tente com conteúdo diferente.",
-  "@aiGenerationFailed": {
-    "description": "Mensagem mostrada quando geração de perguntas IA falha."
-  },
   "aiGenerationErrorTitle": "Erro ao gerar perguntas",
-  "@aiGenerationErrorTitle": {
-    "description": "Título para o diálogo de erro ao gerar perguntas com IA."
-  },
   "noQuestionsInFile": "Nenhuma pergunta encontrada no arquivo importado",
-  "@noQuestionsInFile": {
-    "description": "Mensagem mostrada quando arquivo importado não contém perguntas."
-  },
   "couldNotAccessFile": "Não foi possível acessar o arquivo selecionado",
-  "@couldNotAccessFile": {
-    "description": "Mensagem mostrada quando arquivo selecionado não pode ser acessado."
-  },
   "defaultOutputFileName": "arquivo-saida.quiz",
-  "@defaultOutputFileName": {
-    "description": "Nome padrão para arquivos de saída."
-  },
   "aiServiceLimitsWithChars": "Limite: {words} palavras ou {chars} caracteres",
-  "@aiServiceLimitsWithChars": {
-    "description": "Descrição dos limites de serviço IA com limites de palavras e caracteres.",
-    "placeholders": {
-      "words": {
-        "type": "int",
-        "example": "3000"
-      },
-      "chars": {
-        "type": "int",
-        "example": "12000"
-      }
-    }
-  },
   "aiServiceLimitsWordsOnly": "Limite: {words} palavras",
-  "@aiServiceLimitsWordsOnly": {
-    "description": "Descrição dos limites de serviço IA apenas com limite de palavras.",
-    "placeholders": {
-      "words": {
-        "type": "int",
-        "example": "3000"
-      }
-    }
-  },
   "aiAssistantDisabled": "Assistente IA Desabilitado",
-  "@aiAssistantDisabled": {
-    "description": "Título para diálogo quando assistente IA está desabilitado"
-  },
   "enableAiAssistant": "O assistente de IA está desabilitado. Por favor, habilite-o nas configurações para usar recursos de IA.",
-  "@enableAiAssistant": {
-    "description": "Mensagem a ser exibida quando o assistente de IA está desabilitado"
-  },
   "aiMinWordsRequired": "Mínimo de {minWords} palavras necessárias",
-  "@aiMinWordsRequired": {
-    "description": "Mensagem mostrando o mínimo de palavras necessárias para geração de IA",
-    "placeholders": {
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      }
-    }
-  },
   "aiWordsReadyToGenerate": "{wordCount} palavras ✓ Pronto para gerar",
-  "@aiWordsReadyToGenerate": {
-    "description": "Mensagem quando palavras suficientes são fornecidas para geração de IA",
-    "placeholders": {
-      "wordCount": {
-        "type": "int",
-        "example": "75"
-      }
-    }
-  },
   "aiWordsProgress": "{currentWords}/{minWords} palavras ({moreNeeded} mais necessárias)",
-  "@aiWordsProgress": {
-    "description": "Mensagem mostrando o progresso da contagem de palavras",
-    "placeholders": {
-      "currentWords": {
-        "type": "int",
-        "example": "30"
-      },
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      },
-      "moreNeeded": {
-        "type": "int",
-        "example": "20"
-      }
-    }
-  },
   "aiValidationMinWords": "Mínimo de {minWords} palavras necessárias ({moreNeeded} mais necessárias)",
-  "@aiValidationMinWords": {
-    "description": "Mensagem de validação quando palavras insuficientes são fornecidas",
-    "placeholders": {
-      "minWords": {
-        "type": "int",
-        "example": "50"
-      },
-      "moreNeeded": {
-        "type": "int",
-        "example": "20"
-      }
-    }
-  },
   "enableQuestion": "Ativar pergunta",
-  "@enableQuestion": {
-    "description": "Texto da dica para ativar uma pergunta desativada"
-  },
   "disableQuestion": "Desativar pergunta",
-  "@disableQuestion": {
-    "description": "Texto da dica para desativar uma pergunta ativa"
-  },
   "questionDisabled": "Desativada",
-  "@questionDisabled": {
-    "description": "Texto do distintivo mostrado em perguntas desativadas"
-  },
   "noEnabledQuestionsError": "Nenhuma pergunta ativada disponível para executar o quiz",
-  "@noEnabledQuestionsError": {
-    "description": "Mensagem de erro ao tentar iniciar um quiz sem perguntas ativadas"
-  },
   "aiEvaluationError": "Erro ao avaliar a resposta: {error}",
-  "@aiEvaluationError": {
-    "description": "Mensagem de erro quando a avaliação IA falha",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Erro de rede"
-      }
-    }
-  },
   "aiEvaluationPromptSystemRole": "Você é um professor especialista avaliando a resposta de um estudante a uma questão dissertativa. Sua tarefa é fornecer uma avaliação detalhada e construtiva. Responda no mesmo idioma da resposta do estudante.",
-  "@aiEvaluationPromptSystemRole": {
-    "description": "Papel do sistema para prompt de avaliação IA"
-  },
   "aiEvaluationPromptQuestion": "PERGUNTA:",
-  "@aiEvaluationPromptQuestion": {
-    "description": "Rótulo da pergunta no prompt de avaliação"
-  },
   "aiEvaluationPromptStudentAnswer": "RESPOSTA DO ESTUDANTE:",
-  "@aiEvaluationPromptStudentAnswer": {
-    "description": "Rótulo resposta do estudante no prompt de avaliação"
-  },
   "aiEvaluationPromptCriteria": "CRITÉRIOS DE AVALIAÇÃO (baseados na explicação do professor):",
-  "@aiEvaluationPromptCriteria": {
-    "description": "Rótulo critérios de avaliação no prompt"
-  },
   "aiEvaluationPromptSpecificInstructions": "INSTRUÇÕES ESPECÍFICAS:\n- Avalie quão bem a resposta do estudante se alinha com os critérios estabelecidos\n- Analise o grau de síntese e estrutura na resposta\n- Identifique se algo importante foi deixado de fora segundo os critérios\n- Considere a profundidade e precisão da análise",
-  "@aiEvaluationPromptSpecificInstructions": {
-    "description": "Instruções específicas para avaliação com critérios"
-  },
   "aiEvaluationPromptGeneralInstructions": "INSTRUÇÕES GERAIS:\n- Como não há critérios específicos estabelecidos, avalie a resposta baseando-se em padrões acadêmicos gerais\n- Considere clareza, coerência e estrutura da resposta\n- Avalie se a resposta demonstra compreensão do tópico\n- Analise a profundidade da análise e qualidade dos argumentos",
-  "@aiEvaluationPromptGeneralInstructions": {
-    "description": "Instruções gerais para avaliação sem critérios"
-  },
   "aiEvaluationPromptResponseFormat": "FORMATO DA RESPOSTA:\n1. NOTA: [X/10] - Justifique brevemente a nota\n2. PONTOS FORTES: Mencione os aspectos positivos da resposta\n3. ÁREAS DE MELHORIA: Aponte aspectos que poderiam ser melhorados\n4. COMENTÁRIOS ESPECÍFICOS: Forneça feedback detalhado e construtivo\n5. SUGERÊNCIAS: Ofereça recomendações específicas para melhoria\n\nSeja construtivo, específico e educativo em sua avaliação. O objetivo é ajudar o estudante a aprender e melhorar. Dirija-se a ele em segunda pessoa e use um tom profissional e amigável.",
-  "@aiEvaluationPromptResponseFormat": {
-    "description": "Instruções de formato de resposta para avaliação"
-  },
   "aiModeTopicTitle": "Modo tópico",
-  "@aiModeTopicTitle": {
-    "description": "Título para o modo tópico no assistente AI"
-  },
   "aiModeTopicDescription": "Exploração criativa do tema",
-  "@aiModeTopicDescription": {
-    "description": "Descrição para o modo tópico"
-  },
   "aiModeContentTitle": "Modo conteúdo",
-  "@aiModeContentTitle": {
-    "description": "Título para o modo conteúdo no assistente AI"
-  },
   "aiModeContentDescription": "Perguntas precisas baseadas na sua entrada",
-  "@aiModeContentDescription": {
-    "description": "Descrição para o modo conteúdo"
-  },
   "aiWordCountIndicator": "{count} palavras",
-  "@aiWordCountIndicator": {
-    "description": "Indicador de contagem de palavras",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "5"
-      }
-    }
-  },
   "aiPrecisionIndicator": "Precisão: {level}",
-  "@aiPrecisionIndicator": {
-    "description": "Indicador de nível de precisão para o modo conteúdo",
-    "placeholders": {
-      "level": {
-        "type": "String",
-        "example": "Alta"
-      }
-    }
-  },
   "aiPrecisionLow": "Baixa",
-  "@aiPrecisionLow": {
-    "description": "Nível de precisão baixa"
-  },
   "aiPrecisionMedium": "Média",
-  "@aiPrecisionMedium": {
-    "description": "Nível de precisão média"
-  },
   "aiPrecisionHigh": "Alta",
-  "@aiPrecisionHigh": {
-    "description": "Nível de precisão alta"
-  },
   "aiMoreWordsMorePrecision": "Mais palavras = mais precisão",
-  "@aiMoreWordsMorePrecision": {
-    "description": "Texto de ajuda explicando que mais palavras levam a respostas mais precisas"
-  },
   "aiKeepDraftTitle": "Manter rascunho de IA",
-  "@aiKeepDraftTitle": {
-    "description": "Título para a configuração de manter o rascunho de texto gerado por IA"
-  },
   "aiKeepDraftDescription": "Salvar automaticamente o texto inserido na caixa de diálogo de geração de IA para que não seja perdido se a caixa de diálogo for fechada.",
-  "@aiKeepDraftDescription": {
-    "description": "Descrição para a configuração de manter o rascunho de texto gerado por IA"
-  },
   "aiAttachFile": "Anexar arquivo",
-  "@aiAttachFile": {
-    "description": "Label for the attach file button in AI generation dialog"
-  },
   "aiRemoveFile": "Remover arquivo",
-  "@aiRemoveFile": {
-    "description": "Tooltip for the remove file button"
-  },
   "aiFileMode": "Modo de arquivo",
-  "@aiFileMode": {
-    "description": "Title for the file mode indicator"
-  },
   "aiFileModeDescription": "As perguntas serão geradas a partir do arquivo anexo",
-  "@aiFileModeDescription": {
-    "description": "Description for the file mode indicator"
-  },
   "aiCommentsLabel": "Comentários (Opcional)",
-  "@aiCommentsLabel": {
-    "description": "Label for the comments field when a file is attached"
-  },
   "aiCommentsHint": "Adicionar instruções ou comentários sobre o arquivo anexo...",
-  "@aiCommentsHint": {
-    "description": "Hint text for the comments field when a file is attached"
-  },
   "aiCommentsHelperText": "Opcionalmente, adicione instruções sobre como gerar perguntas a partir do arquivo",
-  "@aiCommentsHelperText": {
-    "description": "Helper text for the comments field when a file is attached"
-  },
   "aiFilePickerError": "Não foi possível carregar o arquivo selecionato",
-  "@aiFilePickerError": {
-    "description": "Error message when file picker fails"
-  },
   "studyModeLabel": "Modo estudo",
   "generateStudyWithAI": "Gerar estudo com IA",
   "practiceModeLabel": "Modo Prática",
-  "@practiceModeLabel": {
-    "description": "Label for practice mode option in start quiz"
-  },
   "smartModeLabel": "Modo inteligente",
-  "@smartModeLabel": {
-    "description": "Label for smart exam mode option in start quiz"
-  },
   "smartModeDescription": "Modo de exame especial. A app determina automaticamente o conjunto e o número de perguntas e atualiza as estatísticas de revisão.",
-  "@smartModeDescription": {
-    "description": "Description for smart exam mode"
-  },
-  "@studyModeLabel": {
-    "description": "Label for study mode option"
-  },
   "studyModeDescription": "Assistência de IA disponível. Feedback instantâneo após cada resposta, sem limites de tempo ou penalidades. Nenhuma estatística gerada.",
-  "@studyModeDescription": {
-    "description": "Description for study mode"
-  },
   "examModeLabel": "Modo exame",
-  "@examModeLabel": {
-    "description": "Label for exam mode option"
-  },
   "examModeDescription": "Sem assistência de IA. Podem aplicar-se limites de tempo e penalidades por respostas incorretas. Gera estatísticas SRS.",
-  "@examModeDescription": {
-    "description": "Description for exam mode"
-  },
   "checkAnswer": "Verificar",
-  "@checkAnswer": {
-    "description": "Button label to check the answer in study mode"
-  },
   "quizModeTitle": "Modo quiz",
-  "@quizModeTitle": {
-    "description": "Title for the quiz mode selection section"
-  },
   "skip": "Pular",
-  "@skip": {
-    "description": "Label for skip button"
-  },
   "askAiAssistant": "Perguntar ao Assistente de IA",
-  "@askAiAssistant": {
-    "description": "Button label to open AI assistant for current question"
-  },
   "askAiAboutQuestion": "Perguntar à IA sobre esta questão",
   "aiHelpWithQuestion": "Ajuda-me a entender esta questão",
   "evaluateWithAI": "Avaliar com IA",
-  "@evaluateWithAI": {
-    "description": "Button label to evaluate essay answer with AI"
-  },
   "aiEvaluation": "Avaliação da IA",
-  "@aiEvaluation": {
-    "description": "Label for AI evaluation section"
-  },
   "edit": "Editar",
-  "@edit": {
-    "description": "Button label to edit a question"
-  },
   "enable": "Ativar",
-  "@enable": {
-    "description": "Button label to enable a question"
-  },
   "disable": "Desativar",
-  "@disable": {
-    "description": "Button label to disable a question"
-  },
   "reorderQuestionsTooltip": "Reordenar perguntas",
-  "@reorderQuestionsTooltip": {
-    "description": "Tooltip for the reorder questions button"
-  },
   "quizPreviewTitle": "Pré-visualização do Quiz",
   "quizLoadedNoQuestionsAvailable": "Nenhuma pergunta disponível",
   "select": "Selecionar",
@@ -1529,32 +333,11 @@
   "deleteSingleQuestionConfirmation": "Tem certeza de que deseja excluir esta pergunta?",
   "deleteMultipleQuestionsConfirmation": "Tem certeza de que deseja excluir {count} perguntas?",
   "missingExplanation": "Explicação em falta",
-  "@missingExplanation": {
-    "description": "Label indicating that a question is missing an explanation"
-  },
   "missingExplanationTooltip": "Esta pergunta não tem explicação",
-  "@missingExplanationTooltip": {
-    "description": "Tooltip text for the missing explanation badge"
-  },
   "missingStudySectionTooltip": "Sem vínculo com uma seção de estudo",
-  "@missingStudySectionTooltip": {
-    "description": "Tooltip text for the unlinked study section warning"
-  },
   "questionTypeTooltip": "Tipo de pergunta: {type}",
-  "@questionTypeTooltip": {
-    "description": "Tooltip text for the question type badge",
-    "placeholders": {
-      "type": {
-        "type": "String",
-        "example": "Multiple Choice"
-      }
-    }
-  },
   "settingsTitle": "Configurações",
   "questionsOverview": "Mapa de questões",
-  "@questionsOverview": {
-    "description": "Title for the questions overview bottom sheet"
-  },
   "keepPracticing": "Continue praticando para melhorar!",
   "tryAgain": "Tentar novamente",
   "review": "Revisar",
@@ -1570,71 +353,23 @@
   "aiContentFieldHint": "Insira um tópico como \"História da Segunda Guerra Mundial\" ou cole o texto aqui...",
   "aiAttachFileHint": "Anexar arquivo (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "Solte o arquivo aqui",
-  "@dropAttachmentHere": {
-    "description": "Hint shown when dragging a file over the attachment area"
-  },
   "dropImageHere": "Solte a imagem aqui",
-  "@dropImageHere": {
-    "description": "Hint shown when dragging an image over the image section"
-  },
   "aiNumberQuestionsLabel": "Número de perguntas",
   "backButton": "Voltar",
   "generateButton": "Gerar",
   "aiTopicModeCount": "Modo Tópico ({count} palavras)",
   "aiTextModeCount": "Modo Texto ({count} palavras)",
   "aiGenerationCategoryLabel": "Modo de Conteúdo",
-  "@aiGenerationCategoryLabel": {
-    "description": "Label for AI generation category selector"
-  },
   "aiGenerationCategoryTheory": "Teoria",
-  "@aiGenerationCategoryTheory": {
-    "description": "Label for theory category"
-  },
   "aiGenerationCategoryExercises": "Exercícios",
-  "@aiGenerationCategoryExercises": {
-    "description": "Label for exercises category"
-  },
   "aiGenerationCategoryBoth": "Misto",
-  "@aiGenerationCategoryBoth": {
-    "description": "Label for mixed category"
-  },
   "allLabel": "Todas",
-  "@allLabel": {
-    "description": "Rótulo para a opção de selecionar todas as perguntas"
-  },
   "finishQuizUnansweredQuestions": "Você tem {unansweredCount,plural, =1{1 pergunta não respondida}other{{unansweredCount} perguntas não respondidas}}. Tem certeza de que deseja finalizar o quiz?",
-  "@finishQuizUnansweredQuestions": {
-    "description": "Message shown when there are unanswered questions.",
-    "placeholders": {
-      "unansweredCount": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "subtractPointsLabel": "Subtrair pontos por resposta errada",
   "subtractPointsDescription": "Subtrai pontos por cada resposta incorreta.",
-  "@subtractPointsLabel": {
-    "description": "Label for the checkbox to subtract points for incorrect answers"
-  },
   "subtractPointsOffDescription": "Respostas incorretas não subtraem pontos.",
-  "@subtractPointsOffDescription": {
-    "description": "Description shown when subtract points for incorrect answers is disabled"
-  },
   "penaltyAmountLabel": "Valor da penalidade",
-  "@penaltyAmountLabel": {
-    "description": "Label for the input field to set the penalty amount"
-  },
   "penaltyPointsLabel": "-{amount} pts / erro",
-  "@penaltyPointsLabel": {
-    "description": "Label showing the points deducted per mistake",
-    "placeholders": {
-      "amount": {
-        "type": "String",
-        "example": "0.50"
-      }
-    }
-  },
   "allQuestionsLabel": "Todas as perguntas",
   "startWithSelectedQuestions": "Iniciar com {count} selecionadas",
   "advancedSettingsTitle": "Configurações Avançadas (Debug)",
@@ -1644,314 +379,77 @@
   "pasteImage": "Colar",
   "clipboardNoImage": "Nenhuma imagem encontrada na área de transferência",
   "close": "Fechar",
-  "@close": {
-    "description": "Close button text"
-  },
   "randomizeQuestionsTitle": "Aleatorizar perguntas",
-  "@randomizeQuestionsTitle": {
-    "description": "Title for the setting to randomize questions."
-  },
   "randomizeQuestionsDescription": "Misturar a ordem das perguntas durante a execução do quiz",
-  "@randomizeQuestionsDescription": {
-    "description": "Description for the randomize questions setting."
-  },
   "randomizeQuestionsOffDescription": "As perguntas aparecerão na sua ordem original",
-  "@randomizeQuestionsOffDescription": {
-    "description": "Description for the randomize questions setting when disabled."
-  },
   "randomizeAnswersOffDescription": "As opções de resposta aparecerão na ordem original",
-  "@randomizeAnswersOffDescription": {
-    "description": "Description for the randomize answers setting when disabled."
-  },
   "scoringAndLimitsTitle": "Pontuação e limites",
-  "@scoringAndLimitsTitle": {
-    "description": "Title for the scoring and limits section in advanced settings"
-  },
   "congratulations": "🎉 Parabéns! 🎉",
-  "@congratulations": {
-    "description": "Congratulations message in winner dialog"
-  },
   "examConfigurationTitle": "Configuração do exame",
-  "@examConfigurationTitle": {
-    "description": "Title for the advanced settings / exam configuration section"
-  },
   "generationConfigurationTitle": "Configuração da geração",
-  "@generationConfigurationTitle": {
-    "description": "Title for the generation configuration section in AI dialog"
-  },
   "validationMin0GenericError": "Mínimo 0",
   "validationMin1Error": "Mínimo 1 minuto",
-  "@validationMin1Error": {
-    "description": "Validation message indicating the time limit must be at least 1 minute."
-  },
   "remainingTimeWithDays": "{days}d {hours}:{minutes}:{seconds}",
-  "@remainingTimeWithDays": {
-    "description": "Format for remaining time display when it exceeds 24 hours (days hours:minutes:seconds)",
-    "placeholders": {
-      "days": {
-        "type": "String",
-        "example": "2"
-      },
-      "hours": {
-        "type": "String",
-        "example": "03"
-      },
-      "minutes": {
-        "type": "String",
-        "example": "45"
-      },
-      "seconds": {
-        "type": "String",
-        "example": "30"
-      }
-    }
-  },
   "remainingTimeWithWeeks": "{weeks}sem {days}d {hours}:{minutes}:{seconds}",
-  "@remainingTimeWithWeeks": {
-    "description": "Format for remaining time display when it exceeds 7 days (weeks days hours:minutes:seconds)",
-    "placeholders": {
-      "weeks": {
-        "type": "String",
-        "example": "1"
-      },
-      "days": {
-        "type": "String",
-        "example": "2"
-      },
-      "hours": {
-        "type": "String",
-        "example": "03"
-      },
-      "minutes": {
-        "type": "String",
-        "example": "45"
-      },
-      "seconds": {
-        "type": "String",
-        "example": "30"
-      }
-    }
-  },
   "validationMax30DaysError": "Máximo 30 dias",
-  "@validationMax30DaysError": {
-    "description": "Validation message indicating the time limit cannot exceed 30 days."
-  },
   "errorStatus": "Erro",
   "evaluatingResponses": "Avaliando respostas...",
-  "@evaluatingResponses": {
-    "description": "Texto exibido na tela de resultados quando as avaliações de IA estão pendentes"
-  },
   "pendingEvaluationsCount": "{count, plural, =1{1 pergunta de desenvolvimento aguardando avaliação de IA} other{{count} perguntas de desenvolvimento aguardando avaliação de IA}}",
-  "@pendingEvaluationsCount": {
-    "description": "Subtítulo mostrando o número de avaliações de IA pendentes",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "pendingStatus": "Pendente",
-  "@pendingStatus": {
-    "description": "Rótulo de status para uma avaliação de IA pendente"
-  },
   "notEvaluatedStatus": "Não avaliado",
-  "@notEvaluatedStatus": {
-    "description": "Rótulo de status para uma pergunta de ensaio que não foi avaliada por IA"
-  },
   "retryButton": "Repetir avaliação",
-  "@retryButton": {
-    "description": "Texto do botão para repetir uma avaliação de IA"
-  },
   "featureComingSoon": "Em breve disponível! Fique atento às novidades.",
-  "@featureComingSoon": {
-    "description": "Mensagem para funcionalidades que ainda não estão disponíveis"
-  },
   "showOnboarding": "Mostrar as boas-vindas",
-  "@showOnboarding": {
-    "description": "Rótulo do botão para reabrir o fluxo de boas-vindas"
-  },
   "showOnboardingDescription": "Ver o tutorial de boas-vindas novamente",
-  "@showOnboardingDescription": {
-    "description": "Descrição do botão para reabrir o fluxo de boas-vindas"
-  },
   "onboardingBack": "Voltar",
-  "@onboardingBack": {
-    "description": "Botão voltar na navegação de boas-vindas"
-  },
   "onboardingGetStarted": "Começar",
-  "@onboardingGetStarted": {
-    "description": "Botão começar na última página de boas-vindas"
-  },
   "onboardingWelcomeTitle": "Bem-vindo ao Quizdy",
-  "@onboardingWelcomeTitle": {
-    "description": "Título da primeira página de boas-vindas"
-  },
   "onboardingWelcomeDescription": "Com recursos baseados em IA, perguntas personalizáveis e pontuação em tempo real.",
-  "@onboardingWelcomeDescription": {
-    "description": "Descrição da primeira página de boas-vindas"
-  },
   "onboardingWelcomeSubtitle": "Seu companheiro interativo de estudo e quizzes",
-  "@onboardingWelcomeSubtitle": {
-    "description": "Subtítulo da primeira página de boas-vindas em layout desktop"
-  },
   "onboardingStartQuizTitle": "Iniciar um Quiz",
-  "@onboardingStartQuizTitle": {
-    "description": "Título da segunda página de boas-vindas"
-  },
   "onboardingStartQuizDescription": "Carregue um arquivo .quiz existente ou crie um novo do zero. Arraste e solte arquivos diretamente ou use o seletor de arquivos.",
-  "@onboardingStartQuizDescription": {
-    "description": "Descrição da segunda página de boas-vindas"
-  },
   "onboardingStartQuizSubtitle": "Carregar, criar e jogar",
-  "@onboardingStartQuizSubtitle": {
-    "description": "Subtítulo da segunda página de boas-vindas em layout desktop"
-  },
   "onboardingCreateQuestionsTitle": "Criar Perguntas",
-  "@onboardingCreateQuestionsTitle": {
-    "description": "Título da terceira página de boas-vindas"
-  },
   "onboardingCreateQuestionsDescription": "Crie quizzes com múltiplos tipos de perguntas. Personalize cada pergunta com opções, respostas corretas e explicações.",
-  "@onboardingCreateQuestionsDescription": {
-    "description": "Descrição da terceira página de boas-vindas"
-  },
   "onboardingCreateQuestionsSubtitle": "Desenvolva seus próprios quizzes",
-  "@onboardingCreateQuestionsSubtitle": {
-    "description": "Subtítulo da terceira página de boas-vindas em layout desktop"
-  },
   "onboardingAiFeaturesTitle": "Recursos de IA",
-  "@onboardingAiFeaturesTitle": {
-    "description": "Título da quarta página de boas-vindas"
-  },
   "onboardingAiFeaturesDescription": "Gere perguntas automaticamente com IA, obtenha ajuda de estudo em tempo real e aprenda de forma mais inteligente com tutoria inteligente.",
-  "@onboardingAiFeaturesDescription": {
-    "description": "Descrição da quarta página de boas-vindas"
-  },
   "onboardingAiFeaturesSubtitle": "Potencializado por IA",
-  "@onboardingAiFeaturesSubtitle": {
-    "description": "Subtítulo da quarta página de boas-vindas em layout desktop"
-  },
   "onboardingFeatureAiTitle": "Geração de estudo e perguntas com IA",
-  "@onboardingFeatureAiTitle": {
-    "description": "Título do recurso na página de boas-vindas"
-  },
   "onboardingFeatureAiDescription": "Geração de estudo e perguntas com IA",
-  "@onboardingFeatureAiDescription": {
-    "description": "Descrição do recurso na página de boas-vindas"
-  },
   "onboardingFeatureTypesTitle": "Múltiplos tipos de perguntas",
-  "@onboardingFeatureTypesTitle": {
-    "description": "Título do recurso na página de boas-vindas"
-  },
   "onboardingFeatureTypesDescription": "Escolha única, múltipla escolha, verdadeiro/falso e dissertativa",
-  "@onboardingFeatureTypesDescription": {
-    "description": "Descrição do recurso na página de boas-vindas"
-  },
   "onboardingFeatureLanguagesTitle": "18 idiomas suportados",
-  "@onboardingFeatureLanguagesTitle": {
-    "description": "Título do recurso na página de boas-vindas"
-  },
   "onboardingFeatureLanguagesDescription": "Crie e responda quizzes em vários idiomas",
-  "@onboardingFeatureLanguagesDescription": {
-    "description": "Descrição do recurso na página de boas-vindas"
-  },
   "onboardingStepCreateTitle": "Criar Quiz",
-  "@onboardingStepCreateTitle": {
-    "description": "Título da etapa na página de início do quiz"
-  },
   "onboardingStepCreateDescription": "Comece do zero com suas próprias perguntas",
-  "@onboardingStepCreateDescription": {
-    "description": "Descrição da etapa na página de início do quiz"
-  },
   "onboardingStepLoadTitle": "Carregar Arquivo",
-  "@onboardingStepLoadTitle": {
-    "description": "Título da etapa na página de início do quiz"
-  },
   "onboardingStepLoadDescription": "Importe um arquivo .quiz do seu dispositivo",
-  "@onboardingStepLoadDescription": {
-    "description": "Descrição da etapa na página de início do quiz"
-  },
   "onboardingStepTakeTitle": "Responder Quiz",
-  "@onboardingStepTakeTitle": {
-    "description": "Título da etapa na página de início do quiz"
-  },
   "onboardingStepTakeDescription": "Responda às perguntas e obtenha a pontuação em tempo real",
-  "@onboardingStepTakeDescription": {
-    "description": "Descrição da etapa na página de início do quiz"
-  },
   "onboardingAiAutoGenerateTitle": "Auto-geração de perguntas",
-  "@onboardingAiAutoGenerateTitle": {
-    "description": "Título do recurso de IA nas boas-vindas"
-  },
   "onboardingAiAutoGenerateDescription": "De qualquer texto com Gemini ou GPT",
-  "@onboardingAiAutoGenerateDescription": {
-    "description": "Descrição do recurso de IA nas boas-vindas"
-  },
   "onboardingAiStudyAssistantTitle": "Assistente de Estudo IA",
-  "@onboardingAiStudyAssistantTitle": {
-    "description": "Título do recurso de IA nas boas-vindas"
-  },
   "onboardingAiStudyAssistantDescription": "Obtenha explicações enquanto aprende",
-  "@onboardingAiStudyAssistantDescription": {
-    "description": "Descrição do recurso de IA nas boas-vindas"
-  },
   "onboardingAiMultiLanguageTitle": "Suporte multi-idioma",
-  "@onboardingAiMultiLanguageTitle": {
-    "description": "Título do recurso de IA nas boas-vindas"
-  },
   "onboardingAiMultiLanguageDescription": "Gere em 18 idiomas diferentes",
-  "@onboardingAiMultiLanguageDescription": {
-    "description": "Descrição do recurso de IA nas boas-vindas"
-  },
   "documentTooLongForProcessing": "O documento pode ser muito longo para ser processado de uma só vez neste MVP.",
-  "@documentTooLongForProcessing": {
-    "description": "Error message when AI document processing fails due to document length"
-  },
   "studyScreenNoSlidesAvailable": "Nenhuma seção de estudo disponível",
   "studyScreenGenerating": "Gerando material de estudo...",
   "studyScreenError": "Ocorreu um erro ao gerar o material de estudo.",
   "studyScreenRetry": "Tentar novamente",
-  "@studyScreenRetry": {
-    "description": "Texto de reintento sobre seccion erronea."
-  },
   "studyScreenOmit": "Omitir",
-  "@studyScreenOmit": {
-    "description": "Texto botón omitir"
-  },
   "studyScreenNoSlidesGenerated": "Nenhum slide gerado.",
   "studyScreenPreviousSection": "Página anterior",
   "studyScreenNextSection": "Próxima página",
   "studyScreenSectionIndicator": "Página {current} de {total}",
-  "@studyScreenSectionIndicator": {
-    "placeholders": {
-      "current": {
-        "type": "int"
-      },
-      "total": {
-        "type": "int"
-      }
-    }
-  },
   "studyScreenAiSummaryTitle": "Resumo da IA",
   "studyScreenNoSummary": "Nenhum resumo disponível.",
   "studyScreenCoverage": "Conteúdo Gerado",
-  "@studyScreenCoverage": {
-    "description": "Label for the study coverage percentage"
-  },
   "aiStudyLanguageLabel": "Idioma de estudo",
-  "@aiStudyLanguageLabel": {
-    "description": "Label for the language selector in study generation"
-  },
   "studyScreenStudyGuide": "Guia de estudo",
   "studyScreenSections": "Seções",
   "studyScreenChaptersCount": "{count} capítulos",
-  "@studyScreenChaptersCount": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "studyScreenCompleted": "Concluído",
   "aiDifficultyTitle": "Nível de dificuldade",
   "aiDifficultyAutoTurnedOn": "Mesma dificuldade do documento",
@@ -1977,9 +475,6 @@
   "showMoreLabel": "Mostrar mais",
   "showLessLabel": "Mostrar menos",
   "aiContextMode": "Modo Contexto",
-  "@aiContextMode": {
-    "description": "Label for context mode when a file is uploaded"
-  },
   "startQuizFromStudy": "Teste seus conhecimentos",
   "studySectionPracticePrompt": "Praticar perguntas da seção",
   "studySectionPracticeSubtitle": "Esta seção possui {count, plural, =1{1 pergunta vinculada} other{{count} perguntas vinculadas}}. Pratique-as agora para reforçar seu aprendizado!",
@@ -1989,29 +484,11 @@
   "studyScreenCustomChapter": "Capítulo personalizado",
   "addSection": "Adicionar seção",
   "editSection": "Editar secção",
-  "@editSection": {
-    "description": "Title for editing an existing section dialog"
-  },
   "sectionTitleLabel": "Título",
-  "@sectionTitleLabel": {
-    "description": "Label for section title input field in add/edit section dialog"
-  },
   "sectionTitleHint": "Introduza o título da secção",
-  "@sectionTitleHint": {
-    "description": "Hint for section title input field in add/edit section dialog"
-  },
   "sectionDescriptionLabel": "Descrição",
-  "@sectionDescriptionLabel": {
-    "description": "Label for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionHint": "Introduza a descrição da secção",
-  "@sectionDescriptionHint": {
-    "description": "Hint for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionAiHint": "Esta informação será utilizada mais tarde pela IA para gerar conteúdo de estudo.",
-  "@sectionDescriptionAiHint": {
-    "description": "Helper text shown below section description input, indicating AI will use this information later"
-  },
   "generateSectionsWithAI": "Gerar seções com IA",
   "addSectionsWithAI": "Adicionar seções com IA",
   "studyScreenReminder": "Lembrete",
@@ -2022,414 +499,108 @@
   "studyComponentLimitations": "Limitações",
   "studyScreenDownloadChunk": "Gerar",
   "aiStudyChapterSystemPrompt": "Você é um assistente de estudo de IA que ajuda um aluno a entender o conteúdo de um capítulo de estudo. Explique os conceitos em profundidade, forneça exemplos e faça conexões com outras partes do material de estudo quando relevante. Responda no mesmo idioma em que for perguntado.",
-  "@aiStudyChapterSystemPrompt": {
-    "description": "System prompt for the AI study assistant when chatting about a study chapter"
-  },
   "aiStudyChapterGuardrail": "Mantenha o foco no conteúdo do capítulo fornecido e no material de estudo. Se a pergunta do aluno se referir a outro capítulo, mencione o título do capítulo relevante.",
-  "@aiStudyChapterGuardrail": {
-    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
-  },
   "askAIStudyTooltip": "Perguntar à IA sobre este capítulo",
-  "@askAIStudyTooltip": {
-    "description": "Tooltip for the Ask AI button shown in the study chapter view"
-  },
   "studyScreenPendingSections": "Algumas seções ainda não foram geradas",
-  "@studyScreenPendingSections": {
-    "description": "Aviso mostrado no índice de estudo quando alguns fragmentos ainda não foram gerados"
-  },
   "aiErrorRedirect": "Redirecionado (302) para: {location}",
-  "@aiErrorRedirect": {
-    "description": "Mensagem de erro quando ocorre um redirecionamento 302 durante uma solicitação de IA",
-    "placeholders": {
-      "location": {
-        "type": "String",
-        "example": "https://example.com"
-      }
-    }
-  },
   "aiErrorConnectionAborted": "O pedido foi interrompido porque a aplicação foi enviada para segundo plano. Por favor, mantenha a aplicação aberta enquanto o conteúdo está a ser gerado.",
-  "@aiErrorConnectionAborted": {
-    "description": "Error message when a request is aborted because the app is minimized."
-  },
   "noInternetConnection": "Sem ligação à internet. Por favor, verifique as suas definições de rede e tente novamente.",
-  "@noInternetConnection": {
-    "description": "Error message shown when the device has no internet connection."
-  },
   "duplicatedTag": "Duplicado",
-  "@duplicatedTag": {
-    "description": "Tag to indicate an item is duplicated"
-  },
   "aiSelectSectionsTitle": "Selecionar seções",
-  "@aiSelectSectionsTitle": {
-    "description": "Title for the chunk section selector in AI content step"
-  },
   "aiSelectSectionsSubtitle": "Escolha quais seções de estudo serão usadas para gerar perguntas",
-  "@aiSelectSectionsSubtitle": {
-    "description": "Subtitle explaining what the section selector does"
-  },
   "aiAllSections": "Todas as seções",
   "aiSelectQuestionsTitle": "Selecionar perguntas",
-  "@aiSelectQuestionsTitle": {
-    "description": "Title for the question selector in AI study generation"
-  },
   "aiSelectQuestionsSubtitle": "Escolha perguntas do modo Quiz como contexto de geração",
-  "@aiSelectQuestionsSubtitle": {
-    "description": "Subtitle explaining what the question selector does"
-  },
   "aiAllQuestions": "Todas as perguntas",
   "onboardingStudyContentTitle": "Estude o seu conteúdo",
-  "@onboardingStudyContentTitle": {
-    "description": "Title of the study content onboarding page"
-  },
   "onboardingStudyContentDescription": "Organize o seu material em seções de estudo. Importe arquivos, adicione manualmente ou deixe que a IA gere o conteúdo.",
-  "@onboardingStudyContentDescription": {
-    "description": "Description of the study content onboarding page"
-  },
   "onboardingStudyContentSubtitle": "Organize, gere e estude",
-  "@onboardingStudyContentSubtitle": {
-    "description": "Subtitle of the study content onboarding page"
-  },
   "onboardingStudyStepAddTitle": "Adicionar material",
-  "@onboardingStudyStepAddTitle": {
-    "description": "Step 1 title in study content onboarding page"
-  },
   "onboardingStudyStepAddDescription": "Escreva seções ou importe de arquivos .quiz",
-  "@onboardingStudyStepAddDescription": {
-    "description": "Step 1 description in study content onboarding page"
-  },
   "onboardingStudyStepGenerateTitle": "Gerar com IA",
-  "@onboardingStudyStepGenerateTitle": {
-    "description": "Step 2 title in study content onboarding page"
-  },
   "onboardingStudyStepGenerateDescription": "A IA cria seções de estudo a partir dos seus documentos",
-  "@onboardingStudyStepGenerateDescription": {
-    "description": "Step 2 description in study content onboarding page"
-  },
   "onboardingStudyStepStudyTitle": "Estude as seções geradas",
-  "@onboardingStudyStepStudyTitle": {
-    "description": "Step 3 title in study content onboarding page"
-  },
   "onboardingStudyStepStudyDescription": "Navegue por cada seção e reforce o seu aprendizado",
-  "@onboardingStudyStepStudyDescription": {
-    "description": "Step 3 description in study content onboarding page"
-  },
   "onboardingStudyStepPdfTitle": "Exportar como PDF",
-  "@onboardingStudyStepPdfTitle": {
-    "description": "Step 4 title in study content onboarding page"
-  },
   "onboardingStudyStepPdfDescription": "Baixe e compartilhe seu estudo como arquivo PDF",
-  "@onboardingStudyStepPdfDescription": {
-    "description": "Step 4 description in study content onboarding page"
-  },
   "privacyPolicyLabel": "Politica de privacidade",
   "privacyPolicyDescription": "Veja como os seus dados sao tratados no Quizdy",
   "privacyPolicyRequiredDescription": "Revise e aceite a politica de privacidade para continuar.",
   "privacyPolicyLoadError": "Nao foi possivel carregar o conteudo da politica de privacidade.",
   "privacyPolicyCanonicalNotice": "A versao legal oficial desta politica e o texto em ingles hospedado no repositorio do projeto.",
-  "@privacyPolicyCanonicalNotice": {
-    "description": "Short legal notice indicating the canonical version of the privacy policy"
-  },
   "privacyPolicyOpenInBrowser": "Abrir politica completa no GitHub",
-  "@privacyPolicyOpenInBrowser": {
-    "description": "Button label to open the privacy policy URL in an external browser"
-  },
   "supportLabel": "Suporte",
-  "@supportLabel": {
-    "description": "Label for the support action in settings"
-  },
   "supportDescription": "Abrir issues no GitHub com detalhes da aplicação e da plataforma",
-  "@supportDescription": {
-    "description": "Description for the support action in settings"
-  },
   "feedbackTitle": "A sua opinião é importante",
-  "@feedbackTitle": {
-    "description": "Title for the home screen feedback prompt"
-  },
   "feedbackDescription": "Responda a uma pesquisa rápida e ajude a melhorar o Quizdy",
-  "@feedbackDescription": {
-    "description": "Description for the home screen feedback prompt"
-  },
   "studyEditorPages": "Páginas",
-  "@studyEditorPages": {
-    "description": "Section header for the list of pages in the section page manager"
-  },
   "studyEditorComponents": "Componentes",
-  "@studyEditorComponents": {
-    "description": "Section header for the list of components in the component editor"
-  },
   "studyEditorSaveChanges": "Salvar alterações",
-  "@studyEditorSaveChanges": {
-    "description": "Button label to save edited component properties"
-  },
   "studyEditorExitEdit": "Sair do modo de edição",
-  "@studyEditorExitEdit": {
-    "description": "Tooltip for the FAB button that disables study content edit mode"
-  },
   "studyEditorEditParagraph": "Editar parágrafo",
-  "@studyEditorEditParagraph": {
-    "description": "Navigation header title for the paragraph property panel"
-  },
   "studyEditorToggleEdit": "Editar conteúdo",
-  "@studyEditorToggleEdit": {
-    "description": "Tooltip for the FAB button that enables study content edit mode"
-  },
   "studyEditorEmptyPages": "Nenhuma página ainda. Toque em + para adicionar um.",
-  "@studyEditorEmptyPages": {
-    "description": "Empty state message in the section page manager"
-  },
   "studyEditorAddPage": "Adicionar página",
-  "@studyEditorAddPage": {
-    "description": "Button label to add a new page to a section"
-  },
   "componentTypeSectionTitle": "Título da seção",
-  "@componentTypeSectionTitle": {
-    "description": "Display name for the sectionTitle component type"
-  },
   "componentTypeParagraph": "Parágrafo",
-  "@componentTypeParagraph": {
-    "description": "Display name for the paragraph component type"
-  },
   "componentTypeQuote": "Citar",
-  "@componentTypeQuote": {
-    "description": "Display name for the quote component type"
-  },
   "componentTypeComparisonTable": "Tabela de comparação",
-  "@componentTypeComparisonTable": {
-    "description": "Display name for the comparisonTable component type"
-  },
   "studyEditorEmptyComponents": "Nenhum componente nesta página.",
-  "@studyEditorEmptyComponents": {
-    "description": "Empty state message in the component editor"
-  },
   "componentTypeKeyDefinition": "Definição-chave",
-  "@componentTypeKeyDefinition": {
-    "description": "Display name for the keyDefinition component type"
-  },
   "componentTypeNumberedList": "Lista Numerada",
-  "@componentTypeNumberedList": {
-    "description": "Display name for the numberedList component type"
-  },
   "studyEditorDeletePage": "Excluir página",
-  "@studyEditorDeletePage": {
-    "description": "Button label to delete a page from a section"
-  },
   "studyEditorFieldBody": "Corpo do texto",
-  "@studyEditorFieldBody": {
-    "description": "Label for the main body text field in component editors"
-  },
   "studyEditorPageN": "Página {n}",
-  "@studyEditorPageN": {
-    "description": "Label for page number n in the section page manager",
-    "placeholders": {
-      "n": {
-        "type": "int"
-      }
-    }
-  },
   "studyEditorFieldTitle": "Título",
-  "@studyEditorFieldTitle": {
-    "description": "Label for the optional title field in component editors"
-  },
   "studyEditorEditName": "Editar {name}",
-  "@studyEditorEditName": {
-    "description": "Navigation header title: Edit [section name]",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "componentTypeTimeline": "Linha do tempo",
-  "@componentTypeTimeline": {
-    "description": "Display name for the timeline component type"
-  },
   "componentTypeWarning": "Aviso",
-  "@componentTypeWarning": {
-    "description": "Display name for the warning component type"
-  },
   "componentTypeFormula": "Fórmula",
-  "@componentTypeFormula": {
-    "description": "Display name for the formula component type"
-  },
   "componentTypeProsCons": "Prós e Contras",
-  "@componentTypeProsCons": {
-    "description": "Display name for the prosCons component type"
-  },
   "componentFieldTerm": "Prazo",
-  "@componentFieldTerm": {
-    "description": "Form field label for term (key definition)"
-  },
   "componentTypeReminder": "Lembrete",
-  "@componentTypeReminder": {
-    "description": "Display name for the reminder component type"
-  },
   "componentFieldDefinition": "Definição",
-  "@componentFieldDefinition": {
-    "description": "Form field label for definition"
-  },
   "componentFieldSubtitle": "Legenda",
-  "@componentFieldSubtitle": {
-    "description": "Form field label for subtitle"
-  },
   "componentFieldAuthor": "Autor",
-  "@componentFieldAuthor": {
-    "description": "Form field label for quote author"
-  },
   "componentFieldQuote": "Citar",
-  "@componentFieldQuote": {
-    "description": "Form field label for quote text"
-  },
   "componentFieldEquation": "Equação",
-  "@componentFieldEquation": {
-    "description": "Form field label for formula equation"
-  },
   "componentFieldExplanation": "Explicação",
-  "@componentFieldExplanation": {
-    "description": "Form field label for formula explanation"
-  },
   "componentFieldConcept": "Conceito",
-  "@componentFieldConcept": {
-    "description": "Form field label for a single concept item"
-  },
   "componentFieldEvents": "Eventos",
-  "@componentFieldEvents": {
-    "description": "Form section label for timeline events"
-  },
   "componentFieldItems": "Unid",
-  "@componentFieldItems": {
-    "description": "Form section label for a list of items"
-  },
   "componentFieldDescription": "Descrição",
-  "@componentFieldDescription": {
-    "description": "Form field label for item description"
-  },
   "componentFieldDate": "Data",
-  "@componentFieldDate": {
-    "description": "Form field label for timeline event date"
-  },
   "componentFieldEquationLabel": "Etiqueta da equação",
-  "@componentFieldEquationLabel": {
-    "description": "Form field label for formula equation label"
-  },
   "componentTypeIconCards": "Cartões de ícone",
-  "@componentTypeIconCards": {
-    "description": "Display name for the iconCards component type"
-  },
   "componentFieldCards": "Cartões",
-  "@componentFieldCards": {
-    "description": "Form section label for icon cards"
-  },
   "componentTypeKeyConcepts": "Conceitos-chave",
-  "@componentTypeKeyConcepts": {
-    "description": "Display name for the keyConcepts component type"
-  },
   "componentFieldPros": "Prós",
-  "@componentFieldPros": {
-    "description": "Form section label for pros list"
-  },
   "componentFieldPro": "Pró",
-  "@componentFieldPro": {
-    "description": "Form field label for a single pro item"
-  },
   "componentFieldColumns": "Colunas",
-  "@componentFieldColumns": {
-    "description": "Form section label for table columns"
-  },
   "componentFieldCons": "Contras",
-  "@componentFieldCons": {
-    "description": "Form section label for cons list"
-  },
   "componentFieldColumn": "Coluna",
-  "@componentFieldColumn": {
-    "description": "Form field label for a single table column"
-  },
   "componentFieldCon": "Contra",
-  "@componentFieldCon": {
-    "description": "Form field label for a single con item"
-  },
   "componentFieldRows": "Linhas",
-  "@componentFieldRows": {
-    "description": "Form section label for table rows"
-  },
   "componentFieldLabel": "Rótulo",
-  "@componentFieldLabel": {
-    "description": "Form field label for a row label in comparison table"
-  },
   "componentFieldLabelColumn": "Coluna de etiquetas",
-  "@componentFieldLabelColumn": {
-    "description": "Form field label for the header of the label column in a comparison table"
-  },
   "componentFieldRow": "Linha",
-  "@componentFieldRow": {
-    "description": "Form field label for a single table row"
-  },
   "componentFieldOptional": "opcional",
-  "@componentFieldOptional": {
-    "description": "Label shown next to optional form fields"
-  },
   "componentFieldRequired": "Este campo é obrigatório",
   "componentFieldAdd": "Adicionar {item}",
-  "@componentFieldAdd": {
-    "description": "Button label to add a new item to a list",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "addComponentTitle": "Adicionar componente",
-  "@addComponentTitle": {
-    "description": "Title for the Add Component picker screen"
-  },
   "addComponentsWithAI": "Adicionar componentes com IA",
-  "@addComponentsWithAI": {
-    "description": "Button label to add study components using AI"
-  },
   "aiSelectComponentTypesTitle": "Selecionar tipos de componentes",
-  "@aiSelectComponentTypesTitle": {
-    "description": "Title for the component type filter in AI study generation"
-  },
   "aiSelectComponentTypesSubtitle": "Ative para filtrar quais tipos de componentes serão incluídos no conteúdo de estudo gerado",
-  "@aiSelectComponentTypesSubtitle": {
-    "description": "Subtitle for the component type filter in AI study generation"
-  },
   "aiComponentsGeneratedSuccess": "Conteúdo gerado com sucesso",
-  "@aiComponentsGeneratedSuccess": {
-    "description": "Snackbar message shown when AI component generation completes successfully"
-  },
   "duplicate": "Duplicar",
-  "@duplicate": {
-    "description": "Tooltip for the duplicate button in the component card"
-  },
   "moveUp": "Mover para cima",
-  "@moveUp": {
-    "description": "Tooltip for the move up button in the component card"
-  },
   "moveDown": "Mover para baixo",
-  "@moveDown": {
-    "description": "Tooltip for the move down button in the component card"
-  },
   "aiDifficultyRequiresFileTooltip": "Requer anexar um arquivo para usar esta opção",
-  "@aiDifficultyRequiresFileTooltip": {
-    "description": "Tooltip when auto difficulty is disabled due to missing file"
-  },
   "exportAsPdf": "Exportar como PDF",
   "exportPdfSuccess": "PDF exportado com sucesso",
   "exportPdfError": "Falha ao exportar PDF",
   "deleteDuplicatesButton": "Excluir duplicados",
-  "@deleteDuplicatesButton": {
-    "description": "Button to delete duplicated items"
-  },
   "deleteDuplicatesConfirmationMessage": "Tem certeza de que deseja excluir {count} itens duplicados? Apenas uma cópia de cada será mantida.",
-  "@deleteDuplicatesConfirmationMessage": {
-    "description": "Confirmation message when deleting duplicates",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "onboardingDownloadAppTitle": "Instale o Quizdy nos seus dispositivos",
   "onboardingDownloadAppDescription": "Instale o Quizdy no celular com códigos QR ou abra diretamente os links das lojas de desktop.",
   "onboardingDownloadAppSubtitle": "Instale no celular ou no desktop em uma única etapa.",
@@ -2445,77 +616,24 @@
   "onboardingDownloadQrTitle": "Escaneie para continuar",
   "onboardingDownloadQrDescription": "Use a câmera do seu celular para abrir o link da loja.",
   "studyPdfTableOfContents": "Sumário",
-  "@studyPdfTableOfContents": {
-    "description": "Title of the table of contents page in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudy": "Incluir estudo",
-  "@exportPdfOptionsIncludeStudy": {
-    "description": "Switch label to include the study content pages in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudySubtitle": "Adicionar as páginas de conteúdo de estudo",
-  "@exportPdfOptionsIncludeStudySubtitle": {
-    "description": "Subtitle for the include study switch in the export PDF dialog"
-  },
   "exportPdfOptionsTitle": "Exportar como PDF",
-  "@exportPdfOptionsTitle": {
-    "description": "Title of the export PDF options dialog"
-  },
   "exportPdfOptionsIncludeQuestions": "Incluir página de perguntas",
-  "@exportPdfOptionsIncludeQuestions": {
-    "description": "Switch label to include a questions page in the exported PDF"
-  },
   "exportPdfOptionsIncludeQuestionsSubtitle": "Adicionar uma página com todas as perguntas do quiz",
-  "@exportPdfOptionsIncludeQuestionsSubtitle": {
-    "description": "Subtitle for the include questions switch in the export PDF dialog"
-  },
   "exportPdfOptionsIncludeAnswers": "Incluir respostas",
-  "@exportPdfOptionsIncludeAnswers": {
-    "description": "Switch label to include correct answers in the questions page"
-  },
   "exportPdfOptionsIncludeAnswersSubtitle": "Adicionar uma página separada com as respostas corretas",
-  "@exportPdfOptionsIncludeAnswersSubtitle": {
-    "description": "Subtitle for the include answers switch in the export PDF dialog"
-  },
   "exportPdfQuestionsPageTitle": "Perguntas",
-  "@exportPdfQuestionsPageTitle": {
-    "description": "Section title for the questions page in the exported PDF"
-  },
   "exportPdfAnswersLabel": "Respostas",
-  "@exportPdfAnswersLabel": {
-    "description": "Title of the answers page in the exported PDF"
-  },
   "exportButton": "Exportar",
-  "@exportButton": {
-    "description": "Label for the Export button in the export PDF options dialog"
-  },
   "openInQuizdyApp": "Abrir no app Quizdy",
   "open": "Abrir",
   "installApp": "Instalar App",
   "updateAvailableTitle": "Atualização disponível",
-  "@updateAvailableTitle": {
-    "description": "Title shown in the update banner when a newer app version is available."
-  },
   "updateAvailableMessage": "A versão {version} do Quizdy está disponível.",
-  "@updateAvailableMessage": {
-    "description": "Subtitle in the update banner indicating which version is available.",
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
   "updateButton": "Atualizar",
-  "@updateButton": {
-    "description": "Label for the update button in the update banner."
-  },
   "forceUpdateTitle": "Atualização obrigatória",
-  "@forceUpdateTitle": {
-    "description": "Title of the force update dialog."
-  },
   "forceUpdateMessage": "É necessária uma atualização obrigatória para continuar a utilizar o Quizdy. Por favor, atualize a aplicação.",
-  "@forceUpdateMessage": {
-    "description": "Body message of the force update dialog."
-  },
   "questionOrderBySection": "Por seções",
   "questionOrderBySectionDesc": "Agrupe as perguntas por seção e mostre cada seção em ordem crescente",
   "srsStatsTitle": "Estatísticas",

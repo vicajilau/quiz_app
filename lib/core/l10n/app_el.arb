@@ -17,71 +17,32 @@
   "aiContentFieldHint": "Εισάγετε ένα θέμα όπως \"Ιστορία του Β' Παγκόσμιου Πολέμου\" ή επικολλήστε κείμενο εδώ...",
   "aiAttachFileHint": "Επισύναψη αρχείου (PDF, TXT, MP3, MP4,...)",
   "dropAttachmentHere": "Αφήστε το αρχείο εδώ",
-  "@dropAttachmentHere": {
-    "description": "Hint shown when dragging a file over the attachment area"
-  },
   "dropImageHere": "Αφήστε την εικόνα εδώ",
-  "@dropImageHere": {
-    "description": "Hint shown when dragging an image over the image section"
-  },
   "aiNumberQuestionsLabel": "Αριθμός ερωτήσεων",
   "backButton": "Πίσω",
   "generateButton": "Δημιουργία",
   "aiTopicModeCount": "Λειτουργία θέματος ({count} λέξεις)",
   "aiTextModeCount": "Λειτουργία κειμένου ({count} λέξεις)",
   "aiGenerationCategoryLabel": "Λειτουργία Περιεχομένου",
-  "@aiGenerationCategoryLabel": {
-    "description": "Label for AI generation category selector"
-  },
   "aiGenerationCategoryTheory": "Θεωρία",
-  "@aiGenerationCategoryTheory": {
-    "description": "Label for theory category"
-  },
   "aiGenerationCategoryExercises": "Ασκήσεις",
-  "@aiGenerationCategoryExercises": {
-    "description": "Label for exercises category"
-  },
   "aiGenerationCategoryBoth": "Μικτό",
-  "@aiGenerationCategoryBoth": {
-    "description": "Label for mixed category"
-  },
   "load": "Φόρτωση",
   "fileLoaded": "Το αρχείο φορτώθηκε: {filePath}",
   "fileSaved": "Το αρχείο αποθηκεύτηκε: {filePath}",
   "dropFileHere": "Κάντε κλικ στο λογότυπο ή σύρετε ένα αρχείο .quiz στην οθόνη",
   "errorOpeningFile": "Σφάλμα κατά το άνοιγμα του αρχείου",
-  "@errorOpeningFile": {
-    "description": "Generic error message when opening a file fails."
-  },
   "replaceFileTitle": "Φόρτωση νέου Quiz",
-  "@replaceFileTitle": {
-    "description": "Title of the confirmation dialog to replace the current file."
-  },
   "replaceFileMessage": "Ένα Quiz είναι ήδη φορτωμένο. Θέλετε να το αντικαταστήσετε με το νέο αρχείο;",
-  "@replaceFileMessage": {
-    "description": "Message of the confirmation dialog to replace the current file."
-  },
   "replaceButton": "Φόρτωση",
-  "@replaceButton": {
-    "description": "Button to confirm replacing the file."
-  },
   "clickOrDragFile": "Κάντε κλικ για φόρτωση ή σύρετε ένα αρχείο .quiz στην οθόνη",
-  "@clickOrDragFile": {
-    "description": "Κείμενο που εμφανίζεται κάτω από την περιοχή φόρτωσης"
-  },
   "errorInvalidFile": "Σφάλμα: Μη έγκυρο αρχείο. Πρέπει να είναι αρχείο .quiz.",
   "errorLoadingFile": "Σφάλμα κατά τη φόρτωση του αρχείου Quiz: {error}",
   "errorExportingFile": "Σφάλμα κατά την εξαγωγή του αρχείου: {error}",
   "cancelButton": "Ακύρωση",
   "saveButton": "Αποθήκευση",
   "newTag": "Νέο",
-  "@newTag": {
-    "description": "Tag to indicate a new or modified item"
-  },
   "modifiedTag": "Τροποποιημένο",
-  "@modifiedTag": {
-    "description": "Tag to indicate an item has been modified"
-  },
   "confirmDeleteTitle": "Επιβεβαίωση Διαγραφής",
   "confirmDeleteMessage": "Είστε σίγουροι ότι θέλετε να διαγράψετε τη διαδικασία `{processName}`;",
   "deleteButton": "Διαγραφή",
@@ -119,9 +80,6 @@
   "finishQuiz": "Ολοκλήρωση Κουίζ",
   "finishQuizConfirmation": "Είστε σίγουροι ότι θέλετε να ολοκληρώσετε το κουίζ; Δεν θα μπορείτε να αλλάξετε τις απαντήσεις σας μετά.",
   "resolveUnansweredQuestions": "Επίλυση ερωτήσεων",
-  "@resolveUnansweredQuestions": {
-    "description": "Κείμενο κουμπιού για την επίλυση αναπάντητων ερωτήσεων"
-  },
   "abandonQuiz": "Εγκατάλειψη Κουίζ",
   "abandonQuizConfirmation": "Είστε σίγουροι ότι θέλετε να εγκαταλείψετε το κουίζ; Όλη η πρόοδος θα χαθεί.",
   "abandon": "Εγκατάλειψη",
@@ -153,9 +111,6 @@
   "examTimeLimitTitle": "Χρονικό Όριο Εξέτασης",
   "examTimeLimitDescription": "Ορίστε χρονικό όριο για την εξέταση. Θα εμφανίζεται χρονόμετρο κατά τη διάρκεια του κουίζ.",
   "examTimeLimitOffDescription": "Δεν υπάρχει χρονικό όριο για αυτήν την εξέταση.",
-  "@examTimeLimitOffDescription": {
-    "description": "Description shown when time limit is disabled"
-  },
   "enableTimeLimit": "Ενεργοποίηση χρονικού ορίου",
   "timeLimitMinutes": "Χρονικό όριο (λεπτά)",
   "examTimeExpiredTitle": "Τέλος Χρόνου!",
@@ -165,13 +120,7 @@
   "questionTypeSingleChoice": "Μονής Επιλογής",
   "questionTypeTrueFalse": "Σωστό/Λάθος",
   "questionTypeEssay": "Ανάπτυξης",
-  "@questionTypeEssay": {
-    "description": "Ετικέτα για τον τύπο ερώτησης δοκιμίου"
-  },
   "questionTypeRandom": "Μεικτό",
-  "@questionTypeRandom": {
-    "description": "Ετικέτα για τον μεικτό τύπο ερώτησης"
-  },
   "questionTypeUnknown": "Άγνωστο",
   "optionsCount": "{count, plural, =1{1 επιλογή} other{{count} επιλογές}}",
   "optionsTooltip": "Αριθμός επιλογών απάντησης για αυτή την ερώτηση",
@@ -196,13 +145,7 @@
   "modelNotFoundError": "Το μοντέλο δεν βρέθηκε. Παρακαλώ ελέγξτε την πρόσβασή σας στο API.",
   "unknownError": "Άγνωστο σφάλμα",
   "networkErrorOpenAI": "Σφάλμα δικτύου: Αδυναμία σύνδεσης με το OpenAI. Ελέγξτε τη σύνδεσή σας στο διαδίκτυο.",
-  "@networkErrorOpenAI": {
-    "description": "Μήνυμα σφάλματος σύνδεσης δικτύου για OpenAI"
-  },
   "networkErrorGemini": "Σφάλμα δικτύου: Αδυναμία σύνδεσης με το Gemini. Ελέγξτε τη σύνδεσή σας στο διαδίκτυο.",
-  "@networkErrorGemini": {
-    "description": "Μήνυμα σφάλματος σύνδεσης δικτύου για Gemini"
-  },
   "openaiApiKeyNotConfigured": "Το κλειδί API OpenAI δεν έχει ρυθμιστεί",
   "geminiApiKeyNotConfigured": "Το κλειδί API Gemini δεν έχει ρυθμιστεί",
   "geminiApiKeyLabel": "Κλειδί API Gemini",
@@ -269,41 +212,10 @@
   "importAtEnd": "Στο Τέλος",
   "questionsImportedSuccess": "Εισήχθησαν επιτυχώς {count} ερωτήσεις",
   "importChunksTitle": "Εισαγωγή ενοτήτων",
-  "@importChunksTitle": {
-    "description": "Title for the import chunks dialog."
-  },
   "importChunksMessage": "Βρέθηκαν {count} ενότητες στο \"{fileName}\". Πού θέλετε να τις εισάγετε;",
-  "@importChunksMessage": {
-    "description": "Message asking where to import sections from another file.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      },
-      "fileName": {
-        "type": "String",
-        "example": "study.quiz"
-      }
-    }
-  },
   "importChunksPositionQuestion": "Πού θέλετε να προσθέσετε αυτές τις ενότητες;",
-  "@importChunksPositionQuestion": {
-    "description": "Question asking about import position for chunks."
-  },
   "chunksImportedSuccess": "{count} ενότητες εισήχθησαν επιτυχώς",
-  "@chunksImportedSuccess": {
-    "description": "Success message when chunks are imported.",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "noChunksInFile": "Δεν βρέθηκαν ενότητες στο εισαγόμενο αρχείο",
-  "@noChunksInFile": {
-    "description": "Error message when the imported file has no study sections."
-  },
   "importQuestionsTooltip": "Εισαγωγή ερωτήσεων από άλλο αρχείο quiz",
   "dragDropHintText": "Μπορείτε επίσης να σύρετε και να αποθέσετε αρχεία .quiz εδώ για εισαγωγή ερωτήσεων",
   "randomizeQuestionsTitle": "Τυχαία Σειρά Ερωτήσεων",
@@ -313,13 +225,7 @@
   "randomizeAnswersDescription": "Ανακάτεμα της σειράς των επιλογών απάντησης κατά την εκτέλεση του κουίζ",
   "showCorrectAnswerCountTitle": "Εμφάνιση Αριθμού Σωστών Απαντήσεων",
   "showCorrectAnswerCountDescription": "Εμφάνιση του αριθμού των σωστών απαντήσεων σε ερωτήσεις πολλαπλής επιλογής",
-  "@showCorrectAnswerCountDescription": {
-    "description": "Description for the show correct answer count setting."
-  },
   "showCorrectAnswerCountOffDescription": "Ο αριθμός των σωστών απαντήσεων δεν θα εμφανίζεται για ερωτήσεις πολλαπλής επιλογής",
-  "@showCorrectAnswerCountOffDescription": {
-    "description": "Description for the show correct answer count setting when disabled."
-  },
   "correctAnswersCount": "Επιλέξτε {count} σωστές απαντήσεις",
   "correctSelectedLabel": "Σωστό",
   "correctMissedLabel": "Σωστό",
@@ -343,94 +249,34 @@
   "aiInfoDescription": "• Το AI θα αναλύσει το περιεχόμενο και θα δημιουργήσει σχετικές ερωτήσεις\n• Εάν γράψεις λιγότερες από 10 λέξεις, θα μπεις στη λειτουργία Θέμα όπου θα γίνουν ερωτήσεις για αυτά τα συγκεκριμένα θέματα\n• Με περισσότερες από 10 λέξεις, θα μπεις στη λειτουργία Περιεχόμενο που θα κάνει ερωτήσεις για το ίδιο κείμενο (περισσότερες λέξεις = μεγαλύτερη ακρίβεια)\n• Μπορείτε να συμπεριλάβετε κείμενο, ορισμούς, εξηγήσεις ή οποιοδήποτε εκπαιδευτικό υλικό\n• Οι ερωτήσεις θα περιλαμβάνουν επιλογές απάντησης και εξηγήσεις\n• Η διαδικασία μπορεί να διαρκέσει μερικά δευτερόλεπτα",
   "aiGenerateButton": "Δημιουργία Ερωτήσεων",
   "languageSpanish": "Ισπανικά",
-  "@languageSpanish": {
-    "description": "Όνομα ισπανικής γλώσσας."
-  },
   "languageEnglish": "Αγγλικά",
-  "@languageEnglish": {
-    "description": "Όνομα αγγλικής γλώσσας."
-  },
   "languageFrench": "Γαλλικά",
-  "@languageFrench": {
-    "description": "Όνομα γαλλικής γλώσσας."
-  },
   "languageGerman": "Γερμανικά",
-  "@languageGerman": {
-    "description": "Όνομα γερμανικής γλώσσας."
-  },
   "languageGreek": "Ελληνικά",
-  "@languageGreek": {
-    "description": "Όνομα ελληνικής γλώσσας."
-  },
   "languageItalian": "Ιταλικά",
-  "@languageItalian": {
-    "description": "Όνομα ιταλικής γλώσσας."
-  },
   "languagePortuguese": "Πορτογαλικά",
-  "@languagePortuguese": {
-    "description": "Όνομα πορτογαλικής γλώσσας."
-  },
   "languageCatalan": "Καταλανικά",
-  "@languageCatalan": {
-    "description": "Όνομα καταλανικής γλώσσας."
-  },
   "languageBasque": "Βασκικά",
-  "@languageBasque": {
-    "description": "Όνομα βασκικής γλώσσας."
-  },
   "languageGalician": "Γαλικιανά",
-  "@languageGalician": {
-    "description": "Όνομα γαλικιανής γλώσσας."
-  },
   "languageHindi": "Χίντι",
-  "@languageHindi": {
-    "description": "Όνομα ινδικής γλώσσας."
-  },
   "languageChinese": "Κινεζικά",
-  "@languageChinese": {
-    "description": "Όνομα κινεζικής γλώσσας."
-  },
   "languageArabic": "Αραβικά",
-  "@languageArabic": {
-    "description": "Όνομα αραβικής γλώσσας."
-  },
   "languageJapanese": "Ιαπωνικά",
-  "@languageJapanese": {
-    "description": "Όνομα ιαπωνικής γλώσσας."
-  },
   "languageRussian": "Ρωσικά",
-  "@languageRussian": {
-    "description": "Όνομα ρωσικής γλώσσας."
-  },
   "languageGeorgian": "Γεωργιανά",
-  "@languageGeorgian": {
-    "description": "Όνομα γεωργιανής γλώσσας."
-  },
   "languageUkrainian": "Ουκρανικά",
-  "@languageUkrainian": {
-    "description": "Όνομα ουκρανικής γλώσσας."
-  },
   "languageKorean": "Κορεατικά",
-  "@languageKorean": {
-    "description": "Όνομα κορεατικής γλώσσας."
-  },
   "aiServicesLoading": "Φόρτωση υπηρεσιών AI...",
   "aiServicesNotConfigured": "Δεν έχουν ρυθμιστεί υπηρεσίες AI",
   "aiGeneratedQuestions": "Δημιουργήθηκε από AI",
   "aiApiKeyRequired": "Παρακαλώ ρυθμίστε τουλάχιστον ένα κλειδί API AI στις Ρυθμίσεις για να χρησιμοποιήσετε τη δημιουργία AI.",
   "aiGenerationFailed": "Αδυναμία δημιουργίας ερωτήσεων. Δοκιμάστε με διαφορετικό περιεχόμενο.",
   "aiGenerationErrorTitle": "Σφάλμα δημιουργίας ερωτήσεων",
-  "@aiGenerationErrorTitle": {
-    "description": "Τίτλος για το παράθυρο διαλόγου σφάλματος κατά τη δημιουργία ερωτήσεων με AI."
-  },
   "noQuestionsInFile": "Δεν βρέθηκαν ερωτήσεις στο εισαγόμενο αρχείο",
   "couldNotAccessFile": "Αδυναμία πρόσβασης στο επιλεγμένο αρχείο",
   "defaultOutputFileName": "output-file.quiz",
   "generateQuestionsWithAI": "Δημιουργία ερωτήσεων με AI",
   "addQuestionsWithAI": "Προσθήκη ερωτήσεων με AI",
-  "@addQuestionsWithAI": {
-    "description": "Label for the button to add more questions using AI when some already exist."
-  },
   "aiServiceLimitsWithChars": "Όριο: {words} λέξεις ή {chars} χαρακτήρες",
   "aiServiceLimitsWordsOnly": "Όριο: {words} λέξεις",
   "aiAssistantDisabled": "Βοηθός AI Απενεργοποιημένος",
@@ -476,17 +322,8 @@
   "studyModeLabel": "Λειτουργία Μελέτης",
   "generateStudyWithAI": "Δημιουργία Μελέτης με AI",
   "practiceModeLabel": "Λειτουργία Πρακτικής",
-  "@practiceModeLabel": {
-    "description": "Label for practice mode option in start quiz"
-  },
   "smartModeLabel": "Έξυπνη λειτουργία",
-  "@smartModeLabel": {
-    "description": "Label for smart exam mode option in start quiz"
-  },
   "smartModeDescription": "Ειδική λειτουργία εξέτασης. Η εφαρμογή καθορίζει αυτόματα το σύνολο και τον αριθμό των ερωτήσεων και ενημερώνει τα στατιστικά επανάληψης.",
-  "@smartModeDescription": {
-    "description": "Description for smart exam mode"
-  },
   "studyModeDescription": "Διαθέσιμη βοήθεια AI. Άμεση ανατροφοδότηση μετά από κάθε απάντηση, χωρίς χρονικά όρια ή ποινές. Δεν παράγονται στατιστικά.",
   "examModeLabel": "Λειτουργία Εξέτασης",
   "examModeDescription": "Χωρίς βοήθεια AI. Ενδέχεται να ισχύουν χρονικά όρια και ποινές για λανθασμένες απαντήσεις. Παράγει στατιστικά SRS.",
@@ -500,9 +337,6 @@
   "enable": "Ενεργοποίηση",
   "disable": "Απενεργοποίηση",
   "reorderQuestionsTooltip": "Αναδιάταξη ερωτήσεων",
-  "@reorderQuestionsTooltip": {
-    "description": "Tooltip for the reorder questions button"
-  },
   "quizPreviewTitle": "Προεπισκόπηση Κουίζ",
   "quizLoadedNoQuestionsAvailable": "Δεν υπάρχουν διαθέσιμες ερωτήσεις",
   "select": "Επιλογή",
@@ -516,73 +350,22 @@
   "deleteSingleQuestionConfirmation": "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτή την ερώτηση;",
   "deleteMultipleQuestionsConfirmation": "Είστε σίγουροι ότι θέλετε να διαγράψετε {count} ερωτήσεις;",
   "missingExplanation": "Λείπει η επεξήγηση",
-  "@missingExplanation": {
-    "description": "Label indicating that a question is missing an explanation"
-  },
   "missingExplanationTooltip": "Αυτή η ερώτηση δεν έχει επεξήγηση",
-  "@missingExplanationTooltip": {
-    "description": "Tooltip text for the missing explanation badge"
-  },
   "missingStudySectionTooltip": "Δεν συνδέεται με ενότητα μελέτης",
-  "@missingStudySectionTooltip": {
-    "description": "Tooltip text for the unlinked study section warning"
-  },
   "questionTypeTooltip": "Τύπος ερώτησης: {type}",
-  "@questionTypeTooltip": {
-    "description": "Tooltip text for the question type badge",
-    "placeholders": {
-      "type": {
-        "type": "String",
-        "example": "Multiple Choice"
-      }
-    }
-  },
   "settingsTitle": "Ρυθμίσεις",
   "questionsOverview": "Χάρτης Ερωτήσεων",
-  "@questionsOverview": {
-    "description": "Title for the questions overview bottom sheet"
-  },
   "keepPracticing": "Συνεχίστε την εξάσκηση για να βελτιωθείτε!",
   "tryAgain": "Δοκιμάστε ξανά",
   "review": "Ανασκόπηση",
   "home": "Αρχική",
   "allLabel": "Όλες",
-  "@allLabel": {
-    "description": "Ετικέτα για την επιλογή όλων των ερωτήσεων"
-  },
   "finishQuizUnansweredQuestions": "Έχετε {unansweredCount,plural, =1{1 αναπάντητη ερώτηση}other{{unansweredCount} αναπάντητες ερωτήσεις}}. Είστε σίγουροι ότι θέλετε να ολοκληρώσετε το κουίζ?",
-  "@finishQuizUnansweredQuestions": {
-    "description": "Message shown when there are unanswered questions.",
-    "placeholders": {
-      "unansweredCount": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "subtractPointsLabel": "Αφαίρεση πόντων για λάθος απάντηση",
   "subtractPointsDescription": "Αφαίρεση πόντων για κάθε λάθος απάντηση.",
-  "@subtractPointsLabel": {
-    "description": "Label for the checkbox to subtract points for incorrect answers"
-  },
   "subtractPointsOffDescription": "Οι λάθος απαντήσεις δεν αφαιρούν πόντους.",
-  "@subtractPointsOffDescription": {
-    "description": "Description shown when subtract points for incorrect answers is disabled"
-  },
   "penaltyAmountLabel": "Ποσό ποινής",
-  "@penaltyAmountLabel": {
-    "description": "Label for the input field to set the penalty amount"
-  },
   "penaltyPointsLabel": "-{amount} πόντοι / λάθος",
-  "@penaltyPointsLabel": {
-    "description": "Label showing the points deducted per mistake",
-    "placeholders": {
-      "amount": {
-        "type": "String",
-        "example": "0.50"
-      }
-    }
-  },
   "allQuestionsLabel": "Όλες οι ερωτήσεις",
   "startWithSelectedQuestions": "Έναρξη με {count} επιλεγμένες",
   "advancedSettingsTitle": "Σύνθετες Ρυθμίσεις (Debug)",
@@ -592,51 +375,18 @@
   "pasteImage": "Επικόλληση",
   "clipboardNoImage": "Δεν βρέθηκε εικόνα στο πρόχειρο",
   "maxIncorrectAnswersLabel": "Περιορισμός λανθασμένων απαντήσεων",
-  "@maxIncorrectAnswersLabel": {
-    "description": "Label for the toggle to limit incorrect answers"
-  },
   "maxIncorrectAnswersDescription": "Εξέταση Επιτυχίας/Αποτυχίας. Δεν υπάρχει αριθμητική βαθμολογία.",
-  "@maxIncorrectAnswersDescription": {
-    "description": "Description for the limit incorrect answers feature"
-  },
   "maxIncorrectAnswersOffDescription": "Η εξέταση έχει αριθμητική βαθμολογία από 0 έως 100.",
-  "@maxIncorrectAnswersOffDescription": {
-    "description": "Description shown when max incorrect answers is disabled"
-  },
   "maxIncorrectAnswersLimitLabel": "Μέγιστος αριθμός επιτρεπόμενων σφαλμάτων",
-  "@maxIncorrectAnswersLimitLabel": {
-    "description": "Label for the input field of maximum incorrect answers"
-  },
   "examFailedStatus": "Η εξέταση ΑΠΕΤΥΧΕ",
   "examPassedStatus": "Η εξέταση ΠΕΤΥΧΕ",
   "quizFailedLimitReached": "Η εξέταση ολοκληρώθηκε: Συμπληρώθηκε το μέγιστο όριο σφαλμάτων",
-  "@quizFailedLimitReached": {
-    "description": "Title for the results screen when the error limit is reached"
-  },
   "close": "Κλείσιμο",
-  "@close": {
-    "description": "Close button text"
-  },
   "randomizeAnswersOffDescription": "Οι επιλογές απάντησης θα εμφανίζονται με την αρχική τους σειρά",
-  "@randomizeAnswersOffDescription": {
-    "description": "Description for the randomize answers setting when disabled."
-  },
   "scoringAndLimitsTitle": "Βαθμολογία και όρια",
-  "@scoringAndLimitsTitle": {
-    "description": "Title for the scoring and limits section in advanced settings"
-  },
   "congratulations": "🎉 Συγχαρητήρια! 🎉",
-  "@congratulations": {
-    "description": "Congratulations message in winner dialog"
-  },
   "examConfigurationTitle": "Διαμόρφωση Εξέτασης",
-  "@examConfigurationTitle": {
-    "description": "Title for the advanced settings / exam configuration section"
-  },
   "generationConfigurationTitle": "Διαμόρφωση Παραγωγής",
-  "@generationConfigurationTitle": {
-    "description": "Title for the generation configuration section in AI dialog"
-  },
   "validationMin1Error": "Ελάχιστο 1 λεπτό",
   "remainingTimeWithDays": "{days}ημ {hours}:{minutes}:{seconds}",
   "remainingTimeWithWeeks": "{weeks}ε {days}ημ {hours}:{minutes}:{seconds}",
@@ -644,220 +394,62 @@
   "validationMin0GenericError": "Minimum 0",
   "errorStatus": "Error",
   "evaluatingResponses": "Αξιολόγηση απαντήσεων...",
-  "@evaluatingResponses": {
-    "description": "Κείμενο που εμφανίζεται στην οθόνη αποτελεσμάτων όταν οι αξιολογήσεις AI εκκρεμούν"
-  },
   "pendingEvaluationsCount": "{count, plural, =1{1 ερώτηση ανάπτυξης σε αναμονή αξιολόγησης AI} other{{count} ερωτήσεις ανάπτυξης σε αναμονή αξιολόγησης AI}}",
-  "@pendingEvaluationsCount": {
-    "description": "Υπότιτλος που δείχνει τον αριθμό των εκκρεμών αξιολογήσεων AI",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "pendingStatus": "Σε εκκρεμότητα",
-  "@pendingStatus": {
-    "description": "Ετικέτα κατάστασης για μια εκκρεμή αξιολόγηση AI"
-  },
   "notEvaluatedStatus": "Δεν αξιολογήθηκε",
-  "@notEvaluatedStatus": {
-    "description": "Ετικέτα κατάστασης για μια ερώτηση ανάπτυξης που δεν αξιολογήθηκε από το AI"
-  },
   "retryButton": "Επανάλυψη αξιολόγησης",
-  "@retryButton": {
-    "description": "Κείμενο κουμπιού για επανάληψη μιας αξιολόγησης AI"
-  },
   "featureComingSoon": "Σύντομα διαθέσιμο! Μείνετε συντονισμένοι.",
-  "@featureComingSoon": {
-    "description": "Μήνυμα για λειτουργίες που δεν είναι ακόμη διαθέσιμες"
-  },
   "showOnboarding": "Εμφάνιση καλωσορίσματος",
-  "@showOnboarding": {
-    "description": "Ετικέτα για το κουμπί επανεκκίνησης της ροής καλωσορίσματος"
-  },
   "showOnboardingDescription": "Δείτε ξανά το σεμινάριο καλωσορίσματος",
-  "@showOnboardingDescription": {
-    "description": "Περιγραφή για το κουμπί επανεκκίνησης της ροής καλωσορίσματος"
-  },
   "onboardingBack": "Πίσω",
-  "@onboardingBack": {
-    "description": "Κουμπί πίσω στην πλοήγηση καλωσορίσματος"
-  },
   "onboardingGetStarted": "Ξεκινήστε",
-  "@onboardingGetStarted": {
-    "description": "Κουμπί έναρξης στην τελευταία σελίδα καλωσορίσματος"
-  },
   "onboardingWelcomeTitle": "Καλώς ήρθατε στο Quizdy",
-  "@onboardingWelcomeTitle": {
-    "description": "Τίτλος για την πρώτη σελίδα καλωσορίσματος"
-  },
   "onboardingWelcomeDescription": "Με λειτουργίες που υποστηρίζονται από AI, προσαρμόσιμες ερωτήσεις και βαθμολογία σε πραγματικό χρόνο.",
-  "@onboardingWelcomeDescription": {
-    "description": "Περιγραφή για την πρώτη σελίδα καλωσορίσματος"
-  },
   "onboardingWelcomeSubtitle": "Ο διαδραστικός σας σύντροφος μελέτης και κουίζ",
-  "@onboardingWelcomeSubtitle": {
-    "description": "Υπότιτλος για την πρώτη σελίδα καλωσορίσματος σε διάταξη επιφάνειας εργασίας"
-  },
   "onboardingStartQuizTitle": "Ξεκινήστε ένα Κουίζ",
-  "@onboardingStartQuizTitle": {
-    "description": "Τίτλος για τη δεύτερη σελίδα καλωσορίσματος"
-  },
   "onboardingStartQuizDescription": "Φορτώστε ένα υπάρχον αρχείο .quiz ή δημιουργήστε ένα νέο από το μηδέν. Σύρετε και αποθέστε αρχεία απευθείας ή χρησιμοποιήστε τον επιλογέα αρχείων.",
-  "@onboardingStartQuizDescription": {
-    "description": "Περιγραφή για τη δεύτερη σελίδα καλωσορίσματος"
-  },
   "onboardingStartQuizSubtitle": "Φόρτωση, δημιουργία και παιχνίδι",
-  "@onboardingStartQuizSubtitle": {
-    "description": "Υπότιτλος για τη δεύτερη σελίδα καλωσορίσματος σε διάταξη επιφάνειας εργασίας"
-  },
   "onboardingCreateQuestionsTitle": "Δημιουργία Ερωτήσεων",
-  "@onboardingCreateQuestionsTitle": {
-    "description": "Τίτλος για την τρίτη σελίδα καλωσορίσματος"
-  },
   "onboardingCreateQuestionsDescription": "Δημιουργήστε κουίζ με πολλαπλούς τύπους ερωτήσεων. Προσαρμόστε κάθε ερώτηση με επιλογές, σωστές απαντήσεις και επεξηγήσεις.",
-  "@onboardingCreateQuestionsDescription": {
-    "description": "Περιγραφή για την τρίτη σελίδα καλωσορίσματος"
-  },
   "onboardingCreateQuestionsSubtitle": "Σχεδιάστε τα δικά σας κουίζ",
-  "@onboardingCreateQuestionsSubtitle": {
-    "description": "Υπότιτλος για την τρίτη σελίδα καλωσορίσματος σε διάταξη επιφάνειας εργασίας"
-  },
   "onboardingAiFeaturesTitle": "Λειτουργίες με βάση το AI",
-  "@onboardingAiFeaturesTitle": {
-    "description": "Τίτλος για την τέταρτη σελίδα καλωσορίσματος"
-  },
   "onboardingAiFeaturesDescription": "Δημιουργήστε ερωτήσεις αυτόματα με το AI, λάβετε βοήθεια μελέτης σε πραγματικό χρόνο και μάθετε πιο έξυπνα με έξυπνη διδασκαλία.",
-  "@onboardingAiFeaturesDescription": {
-    "description": "Περιγραφή για την τέταρτη σελίδα καλωσορίσματος"
-  },
   "onboardingAiFeaturesSubtitle": "Με την υποστήριξη του AI",
-  "@onboardingAiFeaturesSubtitle": {
-    "description": "Υπότιτλος για την τέταρτη σελίδα καλωσορίσματος σε διάταξη επιφάνειας εργασίας"
-  },
   "onboardingFeatureAiTitle": "Δημιουργία μελέτης και ερωτήσεων με AI",
-  "@onboardingFeatureAiTitle": {
-    "description": "Τίτλος λειτουργίας στη σελίδα καλωσορίσματος"
-  },
   "onboardingFeatureAiDescription": "Δημιουργία μελέτης και ερωτήσεων με AI",
-  "@onboardingFeatureAiDescription": {
-    "description": "Περιγραφή λειτουργίας στη σελίδα καλωσορίσματος"
-  },
   "onboardingFeatureTypesTitle": "Πολλαπλοί τύποι ερωτήσεων",
-  "@onboardingFeatureTypesTitle": {
-    "description": "Τίτλος λειτουργίας στη σελίδα καλωσορίσματος"
-  },
   "onboardingFeatureTypesDescription": "Μονή επιλογή, πολλαπλή επιλογή, σωστό/λάθος και ανάπτυξης",
-  "@onboardingFeatureTypesDescription": {
-    "description": "Περιγραφή λειτουργίας στη σελίδα καλωσορίσματος"
-  },
   "onboardingFeatureLanguagesTitle": "Υποστήριξη 18 γλωσσών",
-  "@onboardingFeatureLanguagesTitle": {
-    "description": "Τίτλος λειτουργίας στη σελίδα καλωσορίσματος"
-  },
   "onboardingFeatureLanguagesDescription": "Δημιουργήστε και κάντε κουίζ σε πολλές γλώσσες",
-  "@onboardingFeatureLanguagesDescription": {
-    "description": "Περιγραφή λειτουργίας στη σελίδα καλωσορίσματος"
-  },
   "onboardingStepCreateTitle": "Δημιουργία Κουίζ",
-  "@onboardingStepCreateTitle": {
-    "description": "Τίτλος βήματος στη σελίδα έναρξης κουίζ"
-  },
   "onboardingStepCreateDescription": "Ξεκινήστε από το μηδέν με τις δικές σας ερωτήσεις",
-  "@onboardingStepCreateDescription": {
-    "description": "Περιγραφή βήματος στη σελίδα έναρξης κουίζ"
-  },
   "onboardingStepLoadTitle": "Φόρτωση Αρχείου",
-  "@onboardingStepLoadTitle": {
-    "description": "Τίτλος βήματος στη σελίδα έναρξης κουίζ"
-  },
   "onboardingStepLoadDescription": "Εισαγωγή αρχείου .quiz από τη συσκευή σας",
-  "@onboardingStepLoadDescription": {
-    "description": "Περιγραφή βήματος στη σελίδα έναρξης κουίζ"
-  },
   "onboardingStepTakeTitle": "Κάντε το Κουίζ",
-  "@onboardingStepTakeTitle": {
-    "description": "Τίτλος βήματος στη σελίδα έναρξης κουίζ"
-  },
   "onboardingStepTakeDescription": "Απαντήστε σε ερωτήσεις και λάβετε βαθμολογία σε πραγματικό χρόνο",
-  "@onboardingStepTakeDescription": {
-    "description": "Περιγραφή βήματος στη σελίδα έναρξης κουίζ"
-  },
   "onboardingAiAutoGenerateTitle": "Αυτόματη Δημιουργία Ερωτήσεων",
-  "@onboardingAiAutoGenerateTitle": {
-    "description": "Τίτλος λειτουργίας AI στο καλωσόρισμα"
-  },
   "onboardingAiAutoGenerateDescription": "Από οποιοδήποτε κείμενο με Gemini ή GPT",
-  "@onboardingAiAutoGenerateDescription": {
-    "description": "Περιγραφή λειτουργίας AI στο καλωσόρισμα"
-  },
   "onboardingAiStudyAssistantTitle": "Βοηθός Μελέτης AI",
-  "@onboardingAiStudyAssistantTitle": {
-    "description": "Τίτλος λειτουργίας AI στο καλωσόρισμα"
-  },
   "onboardingAiStudyAssistantDescription": "Λάβετε εξηγήσεις ενώ μαθαίνετε",
-  "@onboardingAiStudyAssistantDescription": {
-    "description": "Περιγραφή λειτουργίας AI στο καλωσόρισμα"
-  },
   "onboardingAiMultiLanguageTitle": "Υποστήριξη Πολλαπλών Γλωσσών",
-  "@onboardingAiMultiLanguageTitle": {
-    "description": "Τίτλος λειτουργίας AI στο καλωσόρισμα"
-  },
   "onboardingAiMultiLanguageDescription": "Δημιουργία σε 18 διαφορετικές γλώσσες",
-  "@onboardingAiMultiLanguageDescription": {
-    "description": "Περιγραφή λειτουργίας AI στο καλωσόρισμα"
-  },
   "documentTooLongForProcessing": "Το έγγραφο ενδέχεται να είναι πολύ μεγάλο για να επεξεργαστεί με ένα μόνο πέρασμα σε αυτό το MVP.",
-  "@documentTooLongForProcessing": {
-    "description": "Error message when AI document processing fails due to document length"
-  },
   "studyScreenNoSlidesAvailable": "Δεν υπάρχουν διαθέσιμες ενότητες μελέτης",
   "studyScreenGenerating": "Δημιουργία υλικού μελέτης...",
   "studyScreenError": "Παρουσιάστηκε σφάλμα κατά τη δημιουργία του υλικού μελέτης.",
   "studyScreenRetry": "Δοκιμάστε ξανά",
-  "@studyScreenRetry": {
-    "description": "Κείμενο επανάληψης προσπάθειας σε εσφαλμένη ενότητα."
-  },
   "studyScreenOmit": "Παράλειψη",
-  "@studyScreenOmit": {
-    "description": "Κείμενο κουμπιού παράλειψης"
-  },
   "studyScreenNoSlidesGenerated": "Δεν δημιουργήθηκαν διαφάνειες.",
   "studyScreenPreviousSection": "Προηγούμενη σελίδα",
   "studyScreenNextSection": "Επόμενη σελίδα",
   "studyScreenSectionIndicator": "Σελίδα {current} από {total}",
-  "@studyScreenSectionIndicator": {
-    "placeholders": {
-      "current": {
-        "type": "int"
-      },
-      "total": {
-        "type": "int"
-      }
-    }
-  },
   "studyScreenAiSummaryTitle": "Σύνοψη τεχνητής νοημοσύνης",
   "studyScreenNoSummary": "Δεν υπάρχει διαθέσιμη σύνοψη.",
   "studyScreenCoverage": "Περιεχόμενο που δημιουργήθηκε",
-  "@studyScreenCoverage": {
-    "description": "Label for the study coverage percentage"
-  },
   "aiStudyLanguageLabel": "Γλώσσα Μελέτης",
-  "@aiStudyLanguageLabel": {
-    "description": "Label for the language selector in study generation"
-  },
   "studyScreenStudyGuide": "Οδηγός μελέτης",
   "studyScreenSections": "Ενότητες",
   "studyScreenChaptersCount": "{count} κεφάλαια",
-  "@studyScreenChaptersCount": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "studyScreenCompleted": "Ολοκληρώθηκε",
   "aiDifficultyTitle": "Επίπεδο δυσκολίας",
   "aiDifficultyAutoTurnedOn": "Ίδια δυσκολία με το έγγραφο",
@@ -883,9 +475,6 @@
   "showMoreLabel": "Εμφάνιση περισσότερων",
   "showLessLabel": "Εμφάνιση λιγότερων",
   "aiContextMode": "Λειτουργία πλαισίου",
-  "@aiContextMode": {
-    "description": "Label for context mode when a file is uploaded"
-  },
   "startQuizFromStudy": "Δοκιμάστε τις γνώσεις σας",
   "studySectionPracticePrompt": "Εξάσκηση στις ερωτήσεις της ενότητας",
   "studySectionPracticeSubtitle": "Αυτή η ενότητα έχει {count, plural, =1{1 συνδεδεμένη ερώτηση} other{{count} συνδεδεμένες ερωτήσεις}}. Εξασκηθείτε τώρα για να ενισχύσετε τη μάθησή σας!",
@@ -895,29 +484,11 @@
   "studyScreenCustomChapter": "Προσαρμοσμένο κεφάλαιο",
   "addSection": "Προσθήκη ενότητας",
   "editSection": "Επεξεργασία ενότητας",
-  "@editSection": {
-    "description": "Title for editing an existing section dialog"
-  },
   "sectionTitleLabel": "Τίτλος",
-  "@sectionTitleLabel": {
-    "description": "Label for section title input field in add/edit section dialog"
-  },
   "sectionTitleHint": "Εισάγετε τίτλο ενότητας",
-  "@sectionTitleHint": {
-    "description": "Hint for section title input field in add/edit section dialog"
-  },
   "sectionDescriptionLabel": "Περιγραφή",
-  "@sectionDescriptionLabel": {
-    "description": "Label for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionHint": "Εισάγετε περιγραφή ενότητας",
-  "@sectionDescriptionHint": {
-    "description": "Hint for section description input field in add/edit section dialog"
-  },
   "sectionDescriptionAiHint": "Αυτές οι πληροφορίες θα χρησιμοποιηθούν αργότερα από την ΤΝ για τη δημιουργία εκπαιδευτικού περιεχομένου.",
-  "@sectionDescriptionAiHint": {
-    "description": "Helper text shown below section description input, indicating AI will use this information later"
-  },
   "generateSectionsWithAI": "Δημιουργία ενοτήτων με AI",
   "addSectionsWithAI": "Προσθήκη ενοτήτων με AI",
   "studyScreenReminder": "Υπενθύμιση",
@@ -928,417 +499,108 @@
   "studyComponentLimitations": "Περιορισμοί",
   "studyScreenDownloadChunk": "Δημιουργία",
   "aiStudyChapterSystemPrompt": "Είστε ένας βοηθός μελέτης AI που βοηθά έναν φοιτητή να κατανοήσει το περιεχόμενο ενός κεφαλαίου μελέτης. Εξηγήστε τις έννοιες σε βάθος, δώστε παραδείγματα και κάντε συνδέσεις με άλλα μέρη του υλικού μελέτης όταν είναι σχετικό. Απαντήστε στην ίδια γλώσσα που σας ρωτούν.",
-  "@aiStudyChapterSystemPrompt": {
-    "description": "System prompt for the AI study assistant when chatting about a study chapter"
-  },
   "aiStudyChapterGuardrail": "Παραμείνετε εστιασμένοι στο παρεχόμενο περιεχόμενο του κεφαλαίου και στο υλικό μελέτης. Εάν η ερώτηση του φοιτητή σχετίζεται με άλλο κεφάλαιο, αναφέρετε τον σχετικό τίτλο του κεφαλαίου.",
-  "@aiStudyChapterGuardrail": {
-    "description": "Guardrail instruction for the AI study chapter chat to keep the assistant on topic"
-  },
   "askAIStudyTooltip": "Ρωτήστε το AI για αυτό το κεφάλαιο",
-  "@askAIStudyTooltip": {
-    "description": "Tooltip for the Ask AI button shown in the study chapter view"
-  },
   "studyScreenPendingSections": "Ορισμένες ενότητες δεν έχουν δημιουργηθεί ακόμη",
-  "@studyScreenPendingSections": {
-    "description": "Προειδοποίηση που εμφανίζεται στο ευρετήριο μελέτης όταν ορισμένα τμήματα δεν έχουν δημιουργηθεί ακόμη"
-  },
-  "@aiErrorResponse": {
-    "description": "Error message when AI request fails"
-  },
   "aiErrorRedirect": "Ανακατεύθυνση (302) σε: {location}",
-  "@aiErrorRedirect": {
-    "description": "Μήνυμα σφάλματος όταν συμβαίνει ανακατεύθυνση 302 κατά τη διάρκεια αιτήματος IA",
-    "placeholders": {
-      "location": {
-        "type": "String",
-        "example": "https://example.com"
-      }
-    }
-  },
   "aiErrorConnectionAborted": "Το αίτημα διακόπηκε επειδή η εφαρμογή στάλθηκε στο υπόβαθρο. Παρακαλούμε κρατήστε την εφαρμογή ανοιχτή κατά τη δημιουργία περιεχομένου.",
-  "@aiErrorConnectionAborted": {
-    "description": "Error message when a request is aborted because the app is minimized."
-  },
   "noInternetConnection": "Δεν υπάρχει σύνδεση στο διαδίκτυο. Ελέγξτε τις ρυθμίσεις δικτύου σας και δοκιμάστε ξανά.",
-  "@noInternetConnection": {
-    "description": "Error message shown when the device has no internet connection."
-  },
   "duplicatedTag": "Διπλότυπο",
-  "@duplicatedTag": {
-    "description": "Tag to indicate an item is duplicated"
-  },
   "aiSelectSectionsTitle": "Επιλογή Ενοτήτων",
-  "@aiSelectSectionsTitle": {
-    "description": "Title for the chunk section selector in AI content step"
-  },
   "aiSelectSectionsSubtitle": "Επιλέξτε ποιες ενότητες μελέτης θα χρησιμοποιηθούν για τη δημιουργία ερωτήσεων",
-  "@aiSelectSectionsSubtitle": {
-    "description": "Subtitle explaining what the section selector does"
-  },
   "aiAllSections": "Όλες οι ενότητες",
   "aiSelectQuestionsTitle": "Επιλογή Ερωτήσεων",
-  "@aiSelectQuestionsTitle": {
-    "description": "Title for the question selector in AI study generation"
-  },
   "aiSelectQuestionsSubtitle": "Επιλέξτε ερωτήσεις Quiz ως πλαίσιο δημιουργίας",
-  "@aiSelectQuestionsSubtitle": {
-    "description": "Subtitle explaining what the question selector does"
-  },
   "aiAllQuestions": "Όλες οι ερωτήσεις",
   "onboardingStudyContentTitle": "Μελετήστε το Περιεχόμενό σας",
-  "@onboardingStudyContentTitle": {
-    "description": "Title of the study content onboarding page"
-  },
   "onboardingStudyContentDescription": "Οργανώστε το υλικό σας σε ενότητες μελέτης. Εισάγετε αρχεία, προσθέστε χειροκίνητα ή αφήστε την Τεχνητή Νοημοσύνη να δημιουργήσει το περιεχόμενο.",
-  "@onboardingStudyContentDescription": {
-    "description": "Description of the study content onboarding page"
-  },
   "onboardingStudyContentSubtitle": "Οργανώστε, δημιουργήστε και μελετήστε",
-  "@onboardingStudyContentSubtitle": {
-    "description": "Subtitle of the study content onboarding page"
-  },
   "onboardingStudyStepAddTitle": "Προσθήκη Υλικού",
-  "@onboardingStudyStepAddTitle": {
-    "description": "Step 1 title in study content onboarding page"
-  },
   "onboardingStudyStepAddDescription": "Γράψτε ενότητες ή εισάγετε από αρχεία .quiz",
-  "@onboardingStudyStepAddDescription": {
-    "description": "Step 1 description in study content onboarding page"
-  },
   "onboardingStudyStepGenerateTitle": "Δημιουργία με Τεχνητή Νοημοσύνη",
-  "@onboardingStudyStepGenerateTitle": {
-    "description": "Step 2 title in study content onboarding page"
-  },
   "onboardingStudyStepGenerateDescription": "Η Τεχνητή Νοημοσύνη δημιουργεί ενότητες μελέτης από τα έγγραφά σας",
-  "@onboardingStudyStepGenerateDescription": {
-    "description": "Step 2 description in study content onboarding page"
-  },
   "onboardingStudyStepStudyTitle": "Μελετήστε τις Δημιουργημένες Ενότητες",
-  "@onboardingStudyStepStudyTitle": {
-    "description": "Step 3 title in study content onboarding page"
-  },
   "onboardingStudyStepStudyDescription": "Πλοηγηθείτε σε κάθε ενότητα και ενισχύστε τη μάθησή σας",
-  "@onboardingStudyStepStudyDescription": {
-    "description": "Step 3 description in study content onboarding page"
-  },
   "onboardingStudyStepPdfTitle": "Εξαγωγή ως PDF",
-  "@onboardingStudyStepPdfTitle": {
-    "description": "Step 4 title in study content onboarding page"
-  },
   "onboardingStudyStepPdfDescription": "Κατεβάστε και μοιραστείτε τη μελέτη σας ως αρχείο PDF",
-  "@onboardingStudyStepPdfDescription": {
-    "description": "Step 4 description in study content onboarding page"
-  },
   "privacyPolicyLabel": "Πολιτικη απορρητου",
   "privacyPolicyDescription": "Δες πως διαχειριζεται το Quizdy τα δεδομενα σου",
   "privacyPolicyRequiredDescription": "Παρακαλουμε διαβασε και αποδεξου την πολιτικη απορρητου για να συνεχισεις.",
   "privacyPolicyLoadError": "Δεν ηταν δυνατη η φορτωση του περιεχομενου της πολιτικης απορρητου.",
   "privacyPolicyCanonicalNotice": "Η επισημη νομικη εκδοση αυτης της πολιτικης ειναι το αγγλικο κειμενο που φιλοξενειται στο αποθετηριο του εργου.",
-  "@privacyPolicyCanonicalNotice": {
-    "description": "Short legal notice indicating the canonical version of the privacy policy"
-  },
   "privacyPolicyOpenInBrowser": "Ανοιγμα πληρους πολιτικης στο GitHub",
-  "@privacyPolicyOpenInBrowser": {
-    "description": "Button label to open the privacy policy URL in an external browser"
-  },
   "supportLabel": "Υποστήριξη",
-  "@supportLabel": {
-    "description": "Label for the support action in settings"
-  },
   "supportDescription": "Άνοιγμα θεμάτων GitHub με λεπτομέρειες εφαρμογής και πλατφόρμας",
-  "@supportDescription": {
-    "description": "Description for the support action in settings"
-  },
   "feedbackTitle": "Η γνώμη σου μετράει",
-  "@feedbackTitle": {
-    "description": "Title for the home screen feedback prompt"
-  },
   "feedbackDescription": "Απάντησε σε μια σύντομη έρευνα και βοήθησε στη βελτίωση του Quizdy",
-  "@feedbackDescription": {
-    "description": "Description for the home screen feedback prompt"
-  },
   "studyEditorSaveChanges": "Αποθήκευση αλλαγών",
-  "@studyEditorSaveChanges": {
-    "description": "Button label to save edited component properties"
-  },
   "studyEditorFieldTitle": "Τίτλος",
-  "@studyEditorFieldTitle": {
-    "description": "Label for the optional title field in component editors"
-  },
   "studyEditorEmptyPages": "Δεν υπάρχουν ακόμα σελίδες. Πατήστε + για να προσθέσετε ένα.",
-  "@studyEditorEmptyPages": {
-    "description": "Empty state message in the section page manager"
-  },
   "studyEditorEmptyComponents": "Δεν υπάρχουν στοιχεία σε αυτήν τη σελίδα.",
-  "@studyEditorEmptyComponents": {
-    "description": "Empty state message in the component editor"
-  },
   "studyEditorComponents": "εξαρτήματα",
-  "@studyEditorComponents": {
-    "description": "Section header for the list of components in the component editor"
-  },
   "studyEditorExitEdit": "Έξοδος από τη λειτουργία επεξεργασίας",
-  "@studyEditorExitEdit": {
-    "description": "Tooltip for the FAB button that disables study content edit mode"
-  },
   "studyEditorPages": "Σελίδες",
-  "@studyEditorPages": {
-    "description": "Section header for the list of pages in the section page manager"
-  },
   "studyEditorToggleEdit": "Επεξεργασία περιεχομένου",
-  "@studyEditorToggleEdit": {
-    "description": "Tooltip for the FAB button that enables study content edit mode"
-  },
   "studyEditorEditParagraph": "Επεξεργασία παραγράφου",
-  "@studyEditorEditParagraph": {
-    "description": "Navigation header title for the paragraph property panel"
-  },
   "componentTypeParagraph": "Παράγραφος",
-  "@componentTypeParagraph": {
-    "description": "Display name for the paragraph component type"
-  },
   "studyEditorFieldBody": "Κείμενο σώματος",
-  "@studyEditorFieldBody": {
-    "description": "Label for the main body text field in component editors"
-  },
   "studyEditorAddPage": "Προσθήκη σελίδας",
-  "@studyEditorAddPage": {
-    "description": "Button label to add a new page to a section"
-  },
   "studyEditorEditName": "Επεξεργασία {name}",
-  "@studyEditorEditName": {
-    "description": "Navigation header title: Edit [section name]",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "studyEditorDeletePage": "Διαγραφή σελίδας",
-  "@studyEditorDeletePage": {
-    "description": "Button label to delete a page from a section"
-  },
   "studyEditorPageN": "Σελίδα {n}",
-  "@studyEditorPageN": {
-    "description": "Label for page number n in the section page manager",
-    "placeholders": {
-      "n": {
-        "type": "int"
-      }
-    }
-  },
   "componentTypeWarning": "Προειδοποίηση",
-  "@componentTypeWarning": {
-    "description": "Display name for the warning component type"
-  },
   "componentTypeComparisonTable": "Συγκριτικός Πίνακας",
-  "@componentTypeComparisonTable": {
-    "description": "Display name for the comparisonTable component type"
-  },
   "componentTypeSectionTitle": "Τίτλος Ενότητας",
-  "@componentTypeSectionTitle": {
-    "description": "Display name for the sectionTitle component type"
-  },
   "componentTypeQuote": "Παραθέτω",
-  "@componentTypeQuote": {
-    "description": "Display name for the quote component type"
-  },
   "componentTypeTimeline": "Χρονολόγιο",
-  "@componentTypeTimeline": {
-    "description": "Display name for the timeline component type"
-  },
   "componentTypeProsCons": "Πλεονεκτήματα & Μειονεκτήματα",
-  "@componentTypeProsCons": {
-    "description": "Display name for the prosCons component type"
-  },
   "componentTypeFormula": "Τύπος",
-  "@componentTypeFormula": {
-    "description": "Display name for the formula component type"
-  },
   "componentTypeKeyConcepts": "Βασικές Έννοιες",
-  "@componentTypeKeyConcepts": {
-    "description": "Display name for the keyConcepts component type"
-  },
   "componentTypeNumberedList": "Αριθμημένη λίστα",
-  "@componentTypeNumberedList": {
-    "description": "Display name for the numberedList component type"
-  },
   "componentTypeReminder": "Υπενθύμιση",
-  "@componentTypeReminder": {
-    "description": "Display name for the reminder component type"
-  },
   "componentFieldSubtitle": "Υπότιτλος",
-  "@componentFieldSubtitle": {
-    "description": "Form field label for subtitle"
-  },
   "componentFieldDefinition": "Ορισμός",
-  "@componentFieldDefinition": {
-    "description": "Form field label for definition"
-  },
   "componentFieldEquation": "Εξίσωση",
-  "@componentFieldEquation": {
-    "description": "Form field label for formula equation"
-  },
   "componentFieldQuote": "Παραθέτω",
-  "@componentFieldQuote": {
-    "description": "Form field label for quote text"
-  },
   "componentFieldAuthor": "Συγγραφέας",
-  "@componentFieldAuthor": {
-    "description": "Form field label for quote author"
-  },
   "componentTypeIconCards": "Κάρτες εικονιδίων",
-  "@componentTypeIconCards": {
-    "description": "Display name for the iconCards component type"
-  },
   "componentTypeKeyDefinition": "Ορισμός κλειδιού",
-  "@componentTypeKeyDefinition": {
-    "description": "Display name for the keyDefinition component type"
-  },
   "componentFieldTerm": "Ορος",
-  "@componentFieldTerm": {
-    "description": "Form field label for term (key definition)"
-  },
   "componentFieldExplanation": "Εξήγηση",
-  "@componentFieldExplanation": {
-    "description": "Form field label for formula explanation"
-  },
   "componentFieldConcept": "Εννοια",
-  "@componentFieldConcept": {
-    "description": "Form field label for a single concept item"
-  },
   "componentFieldEvents": "Εκδηλώσεις",
-  "@componentFieldEvents": {
-    "description": "Form section label for timeline events"
-  },
   "componentFieldDescription": "Περιγραφή",
-  "@componentFieldDescription": {
-    "description": "Form field label for item description"
-  },
   "componentFieldItems": "Είδη",
-  "@componentFieldItems": {
-    "description": "Form section label for a list of items"
-  },
   "componentFieldDate": "Ημερομηνία",
-  "@componentFieldDate": {
-    "description": "Form field label for timeline event date"
-  },
   "componentFieldPros": "Πλεονεκτήματα",
-  "@componentFieldPros": {
-    "description": "Form section label for pros list"
-  },
   "componentFieldCards": "Καρτέλλες",
-  "@componentFieldCards": {
-    "description": "Form section label for icon cards"
-  },
   "componentFieldCon": "Απατώ",
-  "@componentFieldCon": {
-    "description": "Form field label for a single con item"
-  },
   "componentFieldRow": "Σειρά",
-  "@componentFieldRow": {
-    "description": "Form field label for a single table row"
-  },
   "componentFieldColumns": "Στήλες",
-  "@componentFieldColumns": {
-    "description": "Form section label for table columns"
-  },
   "componentFieldLabel": "Επιγραφή",
-  "@componentFieldLabel": {
-    "description": "Form field label for a row label in comparison table"
-  },
   "componentFieldLabelColumn": "Στήλη ετικέτας",
-  "@componentFieldLabelColumn": {
-    "description": "Form field label for the header of the label column in a comparison table"
-  },
   "componentFieldRows": "Σειρές",
-  "@componentFieldRows": {
-    "description": "Form section label for table rows"
-  },
   "componentFieldColumn": "Στήλη",
-  "@componentFieldColumn": {
-    "description": "Form field label for a single table column"
-  },
   "componentFieldEquationLabel": "Ετικέτα εξίσωσης",
-  "@componentFieldEquationLabel": {
-    "description": "Form field label for formula equation label"
-  },
   "componentFieldPro": "Pro",
-  "@componentFieldPro": {
-    "description": "Form field label for a single pro item"
-  },
   "componentFieldCons": "Μειονεκτήματα",
-  "@componentFieldCons": {
-    "description": "Form section label for cons list"
-  },
   "componentFieldOptional": "προαιρετικός",
-  "@componentFieldOptional": {
-    "description": "Label shown next to optional form fields"
-  },
   "componentFieldRequired": "Αυτό το πεδίο είναι υποχρεωτικό",
   "componentFieldAdd": "Προσθήκη {item}",
-  "@componentFieldAdd": {
-    "description": "Button label to add a new item to a list",
-    "placeholders": {
-      "item": {
-        "type": "String"
-      }
-    }
-  },
   "addComponentTitle": "Προσθήκη στοιχείου",
-  "@addComponentTitle": {
-    "description": "Title for the Add Component picker screen"
-  },
   "addComponentsWithAI": "Προσθήκη στοιχείων με ΤΝ",
-  "@addComponentsWithAI": {
-    "description": "Button label to add study components using AI"
-  },
   "aiSelectComponentTypesTitle": "Επιλογή τύπων στοιχείων",
-  "@aiSelectComponentTypesTitle": {
-    "description": "Title for the component type filter in AI study generation"
-  },
   "aiSelectComponentTypesSubtitle": "Ενεργοποιήστε για να φιλτράρετε ποιοι τύποι στοιχείων θα συμπεριληφθούν στο παραγόμενο περιεχόμενο μελέτης",
-  "@aiSelectComponentTypesSubtitle": {
-    "description": "Subtitle for the component type filter in AI study generation"
-  },
   "aiComponentsGeneratedSuccess": "Το περιεχόμενο δημιουργήθηκε με επιτυχία",
-  "@aiComponentsGeneratedSuccess": {
-    "description": "Snackbar message shown when AI component generation completes successfully"
-  },
   "duplicate": "Διπλότυπο",
-  "@duplicate": {
-    "description": "Tooltip for the duplicate button in the component card"
-  },
   "moveUp": "Μετακίνηση πάνω",
-  "@moveUp": {
-    "description": "Tooltip for the move up button in the component card"
-  },
   "moveDown": "Μετακίνηση κάτω",
-  "@moveDown": {
-    "description": "Tooltip for the move down button in the component card"
-  },
   "aiDifficultyRequiresFileTooltip": "Απαιτείται η επισύναψη αρχείου για τη χρήση αυτής της επιλογής",
-  "@aiDifficultyRequiresFileTooltip": {
-    "description": "Tooltip when auto difficulty is disabled due to missing file"
-  },
   "exportAsPdf": "Εξαγωγή ως PDF",
   "exportPdfSuccess": "Το PDF εξήχθη με επιτυχία",
   "exportPdfError": "Αποτυχία εξαγωγής PDF",
   "deleteDuplicatesButton": "Διαγραφή διπλότυπων",
-  "@deleteDuplicatesButton": {
-    "description": "Button to delete duplicated items"
-  },
   "deleteDuplicatesConfirmationMessage": "Είστε βέβαιοι ότι θέλετε να διαγράψετε {count} διπλότυπα στοιχεία; Θα διατηρηθεί μόνο ένα αντίγραφο από το καθένα.",
-  "@deleteDuplicatesConfirmationMessage": {
-    "description": "Confirmation message when deleting duplicates",
-    "placeholders": {
-      "count": {
-        "type": "int",
-        "example": "3"
-      }
-    }
-  },
   "onboardingDownloadAppTitle": "Εγκαταστήστε το Quizdy στις συσκευές σας",
   "onboardingDownloadAppDescription": "Εγκαταστήστε το Quizdy σε κινητό με QR ή ανοίξτε απευθείας τους συνδέσμους καταστημάτων για υπολογιστή.",
   "onboardingDownloadAppSubtitle": "Εγκατάσταση σε κινητό ή υπολογιστή με ένα βήμα.",
@@ -1354,77 +616,24 @@
   "onboardingDownloadQrTitle": "Σαρώστε για συνέχεια",
   "onboardingDownloadQrDescription": "Χρησιμοποιήστε την κάμερα του κινητού σας για να ανοίξετε τον σύνδεσμο του καταστήματος.",
   "studyPdfTableOfContents": "Πίνακας περιεχομένων",
-  "@studyPdfTableOfContents": {
-    "description": "Title of the table of contents page in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudy": "Συμπερίληψη μελέτης",
-  "@exportPdfOptionsIncludeStudy": {
-    "description": "Switch label to include the study content pages in the exported PDF"
-  },
   "exportPdfOptionsIncludeStudySubtitle": "Προσθήκη σελίδων περιεχομένου μελέτης",
-  "@exportPdfOptionsIncludeStudySubtitle": {
-    "description": "Subtitle for the include study switch in the export PDF dialog"
-  },
   "exportPdfOptionsTitle": "Εξαγωγή ως PDF",
-  "@exportPdfOptionsTitle": {
-    "description": "Title of the export PDF options dialog"
-  },
   "exportPdfOptionsIncludeQuestions": "Συμπερίληψη σελίδας ερωτήσεων",
-  "@exportPdfOptionsIncludeQuestions": {
-    "description": "Switch label to include a questions page in the exported PDF"
-  },
   "exportPdfOptionsIncludeQuestionsSubtitle": "Προσθήκη σελίδας με όλες τις ερωτήσεις του κουίζ",
-  "@exportPdfOptionsIncludeQuestionsSubtitle": {
-    "description": "Subtitle for the include questions switch in the export PDF dialog"
-  },
   "exportPdfOptionsIncludeAnswers": "Συμπερίληψη απαντήσεων",
-  "@exportPdfOptionsIncludeAnswers": {
-    "description": "Switch label to include correct answers in the questions page"
-  },
   "exportPdfOptionsIncludeAnswersSubtitle": "Προσθήκη ξεχωριστής σελίδας με τις σωστές απαντήσεις",
-  "@exportPdfOptionsIncludeAnswersSubtitle": {
-    "description": "Subtitle for the include answers switch in the export PDF dialog"
-  },
   "exportPdfQuestionsPageTitle": "Ερωτήσεις",
-  "@exportPdfQuestionsPageTitle": {
-    "description": "Section title for the questions page in the exported PDF"
-  },
   "exportPdfAnswersLabel": "Απαντήσεις",
-  "@exportPdfAnswersLabel": {
-    "description": "Title of the answers page in the exported PDF"
-  },
   "exportButton": "Εξαγωγή",
-  "@exportButton": {
-    "description": "Label for the Export button in the export PDF options dialog"
-  },
   "openInQuizdyApp": "Άνοιγμα στην εφαρμογή Quizdy",
   "open": "Άνοιγμα",
   "installApp": "Εγκατάσταση εφαρμογής",
   "updateAvailableTitle": "Διαθέσιμη ενημέρωση",
-  "@updateAvailableTitle": {
-    "description": "Title shown in the update banner when a newer app version is available."
-  },
   "updateAvailableMessage": "Η έκδοση {version} του Quizdy είναι διαθέσιμη.",
-  "@updateAvailableMessage": {
-    "description": "Subtitle in the update banner indicating which version is available.",
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
   "updateButton": "Ενημέρωση",
-  "@updateButton": {
-    "description": "Label for the update button in the update banner."
-  },
   "forceUpdateTitle": "Απαιτείται ενημέρωση",
-  "@forceUpdateTitle": {
-    "description": "Title of the force update dialog."
-  },
   "forceUpdateMessage": "Απαιτείται υποχρεωτική ενημέρωση για να συνεχίσετε να χρησιμοποιείτε το Quizdy. Παρακαλούμε ενημερώστε την εφαρμογή.",
-  "@forceUpdateMessage": {
-    "description": "Body message of the force update dialog."
-  },
   "questionOrderBySection": "Κατά ενότητες",
   "questionOrderBySectionDesc": "Ομαδοποιήστε τις ερωτήσεις ανά ενότητα και εμφανίστε κάθε ενότητα σε αύξουσα σειρά",
   "srsStatsTitle": "Στατιστικά",
