@@ -121,19 +121,18 @@ class QuizFileService implements IFileService {
   /// - Returns: A `QuizFile` object if a valid file is selected, or `null` if no file is selected.
   @override
   Future<QuizFile?> pickFileContent() async {
-    // Open the file picker dialog
+    // Open the file picker dialog (single file)
     final result = await FilePicker.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['quiz'],
-      withData: true,
-      allowMultiple: false,
     );
 
-    // If a file is selected, read and return the file as a QuizFile object
-    if (result != null) {
-      final bytes = result.files.single.bytes;
+    // If a file is selected, read its bytes lazily and decode
+    if (result != null && result.files.isNotEmpty) {
+      final platformFile = result.files.single;
+      final bytes = await platformFile.readAsBytes();
       if (bytes != null) {
-        return decodeAndCreateQuizFile(result.files.single.path, bytes);
+        return decodeAndCreateQuizFile(platformFile.path, bytes);
       }
     }
     return null; // Return null if no file is selected

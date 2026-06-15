@@ -179,20 +179,19 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
     try {
       final result = await FilePicker.pickFiles(
         type: FileType.any,
-        withData: true,
-        allowMultiple: false,
       );
 
       if (result != null && result.files.isNotEmpty) {
         final pickedFile = result.files.first;
-        if (pickedFile.bytes != null) {
+        final bytes = await pickedFile.readAsBytes();
+        if (bytes != null && bytes.isNotEmpty) {
           setState(() {
             _fileAttachment = AiFileAttachment(
-              bytes: pickedFile.bytes!,
+              bytes: bytes,
               mimeType:
                   lookupMimeType(
                     pickedFile.name,
-                    headerBytes: pickedFile.bytes,
+                    headerBytes: bytes,
                   ) ??
                   'application/octet-stream',
               name: pickedFile.name,

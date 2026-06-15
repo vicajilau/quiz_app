@@ -232,8 +232,6 @@ class _StudyScreenViewState extends State<StudyScreenView> {
       FilePickerResult? result = await FilePicker.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['quiz'],
-        withData: true,
-        allowMultiple: false,
       );
 
       if (result != null && result.files.single.path != null) {
@@ -342,23 +340,22 @@ class _StudyScreenViewState extends State<StudyScreenView> {
 
     final result = await FilePicker.pickFiles(
       type: FileType.any,
-      withData: true,
-      allowMultiple: false,
     );
 
-    if (result == null ||
-        result.files.isEmpty ||
-        result.files.first.bytes == null) {
+    if (result == null || result.files.isEmpty) {
       return;
     }
 
     if (!context.mounted) return;
 
     final pickedFile = result.files.first;
+    final bytes = await pickedFile.readAsBytes();
+    if (bytes == null || bytes.isEmpty) return;
+
     final file = AiFileAttachment(
-      bytes: pickedFile.bytes!,
+      bytes: bytes,
       mimeType:
-          lookupMimeType(pickedFile.name, headerBytes: pickedFile.bytes) ??
+          lookupMimeType(pickedFile.name, headerBytes: bytes) ??
           'application/octet-stream',
       name: pickedFile.name,
     );

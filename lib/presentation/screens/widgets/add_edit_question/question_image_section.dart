@@ -270,22 +270,21 @@ class _QuestionImageSectionState extends State<QuestionImageSection> {
   /// Pick an image file and convert to base64
   Future<void> _pickImage(BuildContext context) async {
     try {
-      FilePickerResult? result = await FilePicker.pickFiles(
+      final result = await FilePicker.pickFiles(
         type: FileType.image,
-        allowMultiple: false,
-        withData: true,
       );
 
       if (result != null && result.files.isNotEmpty) {
         final file = result.files.first;
-        if (file.bytes != null) {
+        final bytes = await file.readAsBytes();
+        if (bytes != null && bytes.isNotEmpty) {
           // Get file extension to determine mime type
           String extension = file.extension?.toLowerCase() ?? 'png';
           String mimeType = 'image/$extension';
           if (extension == 'jpg') mimeType = 'image/jpeg';
 
           // Convert to base64
-          String base64String = base64Encode(file.bytes!);
+          String base64String = base64Encode(bytes);
           String imageData = 'data:$mimeType;base64,$base64String';
 
           widget.onImageChanged(imageData);
