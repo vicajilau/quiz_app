@@ -157,7 +157,6 @@ class QuizFileService implements IFileService {
     FilePickerResult? result = await FilePicker.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['quiz'],
-      // single-file selection: do not pass allowMultiple
     );
 
     if (result != null) {
