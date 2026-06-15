@@ -182,7 +182,7 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
       if (result != null && result.files.isNotEmpty) {
         final pickedFile = result.files.first;
         final bytes = await pickedFile.readAsBytes();
-        if (bytes != null && bytes.isNotEmpty) {
+        if (bytes.isNotEmpty) {
           setState(() {
             _fileAttachment = AiFileAttachment(
               bytes: bytes,

@@ -348,7 +348,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
 
     final pickedFile = result.files.first;
     final bytes = await pickedFile.readAsBytes();
-    if (bytes == null || bytes.isEmpty) return;
+    if (bytes.isEmpty) return;
 
     final file = AiFileAttachment(
       bytes: bytes,

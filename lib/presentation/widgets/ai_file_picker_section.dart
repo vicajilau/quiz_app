@@ -37,7 +37,7 @@ class AiFilePickerSection extends StatelessWidget {
       if (result != null && result.files.isNotEmpty) {
         final pickedFile = result.files.first;
         final bytes = await pickedFile.readAsBytes();
-        if (bytes != null && bytes.isNotEmpty) {
+        if (bytes.isNotEmpty) {
           onFileChanged(
             AiFileAttachment(
               bytes: bytes,

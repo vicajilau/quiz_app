@@ -275,7 +275,7 @@ class _QuestionImageSectionState extends State<QuestionImageSection> {
       if (result != null && result.files.isNotEmpty) {
         final file = result.files.first;
         final bytes = await file.readAsBytes();
-        if (bytes != null && bytes.isNotEmpty) {
+        if (bytes.isNotEmpty) {
           // Get file extension to determine mime type
           String extension = file.extension?.toLowerCase() ?? 'png';
           String mimeType = 'image/$extension';

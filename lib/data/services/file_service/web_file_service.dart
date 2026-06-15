@@ -131,7 +131,7 @@ class QuizFileService implements IFileService {
     if (result != null && result.files.isNotEmpty) {
       final platformFile = result.files.single;
       final bytes = await platformFile.readAsBytes();
-      if (bytes != null) {
+      if (bytes.isNotEmpty) {
         return decodeAndCreateQuizFile(platformFile.path, bytes);
       }
     }
