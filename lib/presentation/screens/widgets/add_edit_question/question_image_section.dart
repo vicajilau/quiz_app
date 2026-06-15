@@ -270,9 +270,7 @@ class _QuestionImageSectionState extends State<QuestionImageSection> {
   /// Pick an image file and convert to base64
   Future<void> _pickImage(BuildContext context) async {
     try {
-      final result = await FilePicker.pickFiles(
-        type: FileType.image,
-      );
+      final result = await FilePicker.pickFiles(type: FileType.image);
 
       if (result != null && result.files.isNotEmpty) {
         final file = result.files.first;

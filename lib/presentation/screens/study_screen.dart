@@ -338,9 +338,7 @@ class _StudyScreenViewState extends State<StudyScreenView> {
       return;
     }
 
-    final result = await FilePicker.pickFiles(
-      type: FileType.any,
-    );
+    final result = await FilePicker.pickFiles(type: FileType.any);
 
     if (result == null || result.files.isEmpty) {
       return;

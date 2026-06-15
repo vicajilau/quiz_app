@@ -32,9 +32,7 @@ class AiFilePickerSection extends StatelessWidget {
 
   Future<void> _pickFile(BuildContext context) async {
     try {
-      final result = await FilePicker.pickFiles(
-        type: FileType.any,
-      );
+      final result = await FilePicker.pickFiles(type: FileType.any);
 
       if (result != null && result.files.isNotEmpty) {
         final pickedFile = result.files.first;
@@ -44,10 +42,7 @@ class AiFilePickerSection extends StatelessWidget {
             AiFileAttachment(
               bytes: bytes,
               mimeType:
-                  lookupMimeType(
-                    pickedFile.name,
-                    headerBytes: bytes,
-                  ) ??
+                  lookupMimeType(pickedFile.name, headerBytes: bytes) ??
                   'application/octet-stream',
               name: pickedFile.name,
             ),

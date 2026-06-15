@@ -236,9 +236,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
 
   Future<void> _pickFile() async {
     try {
-      final result = await FilePicker.pickFiles(
-        type: FileType.any,
-      );
+      final result = await FilePicker.pickFiles(type: FileType.any);
 
       if (result != null && result.files.isNotEmpty) {
         final pickedFile = result.files.first;
@@ -248,10 +246,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
             _fileAttachment = AiFileAttachment(
               bytes: bytes,
               mimeType:
-                  lookupMimeType(
-                    pickedFile.name,
-                    headerBytes: bytes,
-                  ) ??
+                  lookupMimeType(pickedFile.name, headerBytes: bytes) ??
                   'application/octet-stream',
               name: pickedFile.name,
               path: pickedFile.path,
