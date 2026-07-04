@@ -229,15 +229,13 @@ class _StudyScreenViewState extends State<StudyScreenView> {
 
   Future<void> _handleChunkImport() async {
     try {
-      FilePickerResult? result = await FilePicker.pickFiles(
+      final pickedFile = await FilePicker.pickFile(
         type: FileType.custom,
         allowedExtensions: ['quiz'],
-        withData: true,
-        allowMultiple: false,
       );
 
-      if (result != null && result.files.single.path != null) {
-        await _importChunksFromFile(result.files.single.path!);
+      if (pickedFile != null && pickedFile.path != null) {
+        await _importChunksFromFile(pickedFile.path!);
       }
     } catch (e) {
       if (mounted) {
@@ -340,25 +338,20 @@ class _StudyScreenViewState extends State<StudyScreenView> {
       return;
     }
 
-    final result = await FilePicker.pickFiles(
-      type: FileType.any,
-      withData: true,
-      allowMultiple: false,
-    );
+    final pickedFile = await FilePicker.pickFile(type: FileType.any);
 
-    if (result == null ||
-        result.files.isEmpty ||
-        result.files.first.bytes == null) {
+    if (pickedFile == null) {
       return;
     }
 
+    final bytes = await pickedFile.readAsBytes();
+
     if (!context.mounted) return;
 
-    final pickedFile = result.files.first;
     final file = AiFileAttachment(
-      bytes: pickedFile.bytes!,
+      bytes: bytes,
       mimeType:
-          lookupMimeType(pickedFile.name, headerBytes: pickedFile.bytes) ??
+          lookupMimeType(pickedFile.name, headerBytes: bytes) ??
           'application/octet-stream',
       name: pickedFile.name,
     );
