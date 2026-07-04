@@ -56,7 +56,7 @@ dependencies:
   flutter_math_fork: ^0.7.2
   lucide_icons_flutter: ^3.1.14+1
   qr_flutter: ^4.1.0
-  path_provider: ^2.1.5
+  path_provider: ^2.1.6
   collection: ^1.19.1
   pasteboard: ^0.5.0
   dio: ^5.9.2
@@ -64,7 +64,7 @@ dependencies:
   lottie: ^3.3.3
   pdfrx: ^2.4.4
   share_plus: ^13.2.0
-  app_links: ^7.1.2
+  app_links: ^7.2.0
   in_app_update: ^4.2.3
   hive_ce: ^2.19.3
   hive_ce_flutter: ^2.3.4
