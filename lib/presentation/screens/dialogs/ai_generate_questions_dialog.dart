@@ -236,29 +236,20 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
 
   Future<void> _pickFile() async {
     try {
-      final result = await FilePicker.pickFiles(
-        type: FileType.any,
-        withData: true,
-        allowMultiple: false,
-      );
+      final pickedFile = await FilePicker.pickFile(type: FileType.any);
 
-      if (result != null && result.files.isNotEmpty) {
-        final pickedFile = result.files.first;
-        if (pickedFile.bytes != null) {
-          setState(() {
-            _fileAttachment = AiFileAttachment(
-              bytes: pickedFile.bytes!,
-              mimeType:
-                  lookupMimeType(
-                    pickedFile.name,
-                    headerBytes: pickedFile.bytes,
-                  ) ??
-                  'application/octet-stream',
-              name: pickedFile.name,
-              path: pickedFile.path,
-            );
-          });
-        }
+      if (pickedFile != null) {
+        final bytes = await pickedFile.readAsBytes();
+        setState(() {
+          _fileAttachment = AiFileAttachment(
+            bytes: bytes,
+            mimeType:
+                lookupMimeType(pickedFile.name, headerBytes: bytes) ??
+                'application/octet-stream',
+            name: pickedFile.name,
+            path: pickedFile.path,
+          );
+        });
       }
     } catch (e) {
       if (mounted) {
