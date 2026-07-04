@@ -177,7 +177,7 @@ class StudyPdfGenerator {
                   children: [
                     pw.Text(
                       labels.tableOfContents,
-                      style: pw.TextStyle(
+                      style: const pw.TextStyle(
                         fontSize: 20,
                         fontWeight: pw.FontWeight.bold,
                       ),
@@ -240,7 +240,10 @@ class StudyPdfGenerator {
         level: 0,
         child: pw.Text(
           labels.questionsPageTitle,
-          style: pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold),
+          style: const pw.TextStyle(
+            fontSize: 20,
+            fontWeight: pw.FontWeight.bold,
+          ),
         ),
       ),
       pw.SizedBox(height: 8),
@@ -258,7 +261,7 @@ class StudyPdfGenerator {
             children: [
               pw.Text(
                 '${i + 1}. ${_strip(q.text)}',
-                style: pw.TextStyle(
+                style: const pw.TextStyle(
                   fontSize: 11,
                   fontWeight: pw.FontWeight.bold,
                 ),
@@ -319,7 +322,10 @@ class StudyPdfGenerator {
         level: 0,
         child: pw.Text(
           labels.answersLabel,
-          style: pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold),
+          style: const pw.TextStyle(
+            fontSize: 20,
+            fontWeight: pw.FontWeight.bold,
+          ),
         ),
       ),
       pw.SizedBox(height: 8),
@@ -345,7 +351,7 @@ class StudyPdfGenerator {
             children: [
               pw.Text(
                 '${i + 1}. ',
-                style: pw.TextStyle(
+                style: const pw.TextStyle(
                   fontSize: 10,
                   fontWeight: pw.FontWeight.bold,
                 ),
@@ -370,7 +376,7 @@ class StudyPdfGenerator {
                             (idx) => [
                               pw.Text(
                                 '${String.fromCharCode(65 + idx)}. ${_strip(q.options[idx])}',
-                                style: pw.TextStyle(
+                                style: const pw.TextStyle(
                                   fontSize: 10,
                                   fontWeight: pw.FontWeight.bold,
                                   color: PdfColors.green800,
@@ -385,7 +391,7 @@ class StudyPdfGenerator {
                     else if (q.explanation.isNotEmpty) ...[
                       pw.Text(
                         _strip(q.explanation),
-                        style: pw.TextStyle(
+                        style: const pw.TextStyle(
                           fontSize: 10,
                           fontWeight: pw.FontWeight.bold,
                           color: PdfColors.green800,
@@ -449,7 +455,10 @@ class StudyPdfGenerator {
           pw.Text(
             title,
             textAlign: pw.TextAlign.center,
-            style: pw.TextStyle(fontSize: 40, fontWeight: pw.FontWeight.bold),
+            style: const pw.TextStyle(
+              fontSize: 40,
+              fontWeight: pw.FontWeight.bold,
+            ),
           ),
           if (summary != null && summary.isNotEmpty) ...[
             pw.SizedBox(height: 20),
@@ -458,7 +467,7 @@ class StudyPdfGenerator {
               child: pw.Text(
                 _strip(summary),
                 textAlign: pw.TextAlign.center,
-                style: pw.TextStyle(
+                style: const pw.TextStyle(
                   fontSize: 14,
                   fontStyle: pw.FontStyle.italic,
                   color: PdfColors.grey600,
@@ -505,7 +514,10 @@ class StudyPdfGenerator {
         level: 0,
         child: pw.Text(
           chunkLabel,
-          style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold),
+          style: const pw.TextStyle(
+            fontSize: 18,
+            fontWeight: pw.FontWeight.bold,
+          ),
         ),
       ),
     );
@@ -586,12 +598,12 @@ class StudyPdfGenerator {
       pw.SizedBox(height: 6),
       pw.Text(
         _strip(title),
-        style: pw.TextStyle(fontSize: 15, fontWeight: pw.FontWeight.bold),
+        style: const pw.TextStyle(fontSize: 15, fontWeight: pw.FontWeight.bold),
       ),
       if (subtitle != null && subtitle.isNotEmpty)
         pw.Text(
           _strip(subtitle),
-          style: pw.TextStyle(
+          style: const pw.TextStyle(
             fontSize: 12,
             fontStyle: pw.FontStyle.italic,
             color: PdfColors.grey700,
@@ -609,7 +621,10 @@ class StudyPdfGenerator {
       if (title != null && title.isNotEmpty)
         pw.Text(
           _strip(title),
-          style: pw.TextStyle(fontSize: 13, fontWeight: pw.FontWeight.bold),
+          style: const pw.TextStyle(
+            fontSize: 13,
+            fontWeight: pw.FontWeight.bold,
+          ),
         ),
       if (body.isNotEmpty)
         pw.Padding(
@@ -628,7 +643,10 @@ class StudyPdfGenerator {
         children: [
           pw.Text(
             '${_strip(term)}: ',
-            style: pw.TextStyle(fontSize: 11, fontWeight: pw.FontWeight.bold),
+            style: const pw.TextStyle(
+              fontSize: 11,
+              fontWeight: pw.FontWeight.bold,
+            ),
           ),
           pw.Expanded(
             child: pw.Text(
@@ -649,7 +667,10 @@ class StudyPdfGenerator {
       if (title != null && title.isNotEmpty)
         pw.Text(
           _strip(title),
-          style: pw.TextStyle(fontSize: 13, fontWeight: pw.FontWeight.bold),
+          style: const pw.TextStyle(
+            fontSize: 13,
+            fontWeight: pw.FontWeight.bold,
+          ),
         ),
       pw.SizedBox(height: 4),
       ...List.generate(rawItems.length, (i) {
@@ -671,7 +692,7 @@ class StudyPdfGenerator {
             children: [
               pw.Text(
                 '${i + 1}. ',
-                style: pw.TextStyle(
+                style: const pw.TextStyle(
                   fontSize: 11,
                   fontWeight: pw.FontWeight.bold,
                 ),
@@ -733,7 +754,10 @@ class StudyPdfGenerator {
         padding: const pw.EdgeInsets.all(6),
         child: pw.Text(
           _strip(col),
-          style: pw.TextStyle(fontSize: 10, fontWeight: pw.FontWeight.bold),
+          style: const pw.TextStyle(
+            fontSize: 10,
+            fontWeight: pw.FontWeight.bold,
+          ),
         ),
       );
     }).toList();
@@ -754,7 +778,10 @@ class StudyPdfGenerator {
             padding: const pw.EdgeInsets.all(6),
             child: pw.Text(
               _strip(label),
-              style: pw.TextStyle(fontSize: 10, fontWeight: pw.FontWeight.bold),
+              style: const pw.TextStyle(
+                fontSize: 10,
+                fontWeight: pw.FontWeight.bold,
+              ),
             ),
           ),
         );
@@ -776,7 +803,10 @@ class StudyPdfGenerator {
       if (title != null && title.isNotEmpty)
         pw.Text(
           _strip(title),
-          style: pw.TextStyle(fontSize: 13, fontWeight: pw.FontWeight.bold),
+          style: const pw.TextStyle(
+            fontSize: 13,
+            fontWeight: pw.FontWeight.bold,
+          ),
         ),
       pw.SizedBox(height: 4),
       if (tableRows.isNotEmpty)
@@ -804,7 +834,10 @@ class StudyPdfGenerator {
           children: [
             pw.Text(
               '"${_strip(body)}"',
-              style: pw.TextStyle(fontSize: 12, fontStyle: pw.FontStyle.italic),
+              style: const pw.TextStyle(
+                fontSize: 12,
+                fontStyle: pw.FontStyle.italic,
+              ),
             ),
             if (author != null && author.isNotEmpty) ...[
               pw.SizedBox(height: 4),
@@ -853,7 +886,10 @@ class StudyPdfGenerator {
       if (title != null && title.isNotEmpty)
         pw.Text(
           _strip(title),
-          style: pw.TextStyle(fontSize: 13, fontWeight: pw.FontWeight.bold),
+          style: const pw.TextStyle(
+            fontSize: 13,
+            fontWeight: pw.FontWeight.bold,
+          ),
         ),
       pw.SizedBox(height: 4),
       if (equation.isNotEmpty)
@@ -908,7 +944,10 @@ class StudyPdfGenerator {
       if (title != null && title.isNotEmpty)
         pw.Text(
           _strip(title),
-          style: pw.TextStyle(fontSize: 13, fontWeight: pw.FontWeight.bold),
+          style: const pw.TextStyle(
+            fontSize: 13,
+            fontWeight: pw.FontWeight.bold,
+          ),
         ),
       pw.SizedBox(height: 4),
       ...items.map((item) {
@@ -925,7 +964,7 @@ class StudyPdfGenerator {
                   if (date.isNotEmpty) ...[
                     pw.Text(
                       '[$date] ',
-                      style: pw.TextStyle(
+                      style: const pw.TextStyle(
                         fontSize: 10,
                         fontWeight: pw.FontWeight.bold,
                         color: PdfColors.grey700,
@@ -935,7 +974,7 @@ class StudyPdfGenerator {
                   pw.Expanded(
                     child: pw.Text(
                       _strip(itemTitle),
-                      style: pw.TextStyle(
+                      style: const pw.TextStyle(
                         fontSize: 11,
                         fontWeight: pw.FontWeight.bold,
                       ),
@@ -1036,7 +1075,10 @@ class StudyPdfGenerator {
       if (title != null && title.isNotEmpty)
         pw.Text(
           _strip(title),
-          style: pw.TextStyle(fontSize: 13, fontWeight: pw.FontWeight.bold),
+          style: const pw.TextStyle(
+            fontSize: 13,
+            fontWeight: pw.FontWeight.bold,
+          ),
         ),
       pw.SizedBox(height: 4),
       pw.Wrap(
@@ -1106,7 +1148,10 @@ class StudyPdfGenerator {
       if (title != null && title.isNotEmpty)
         pw.Text(
           _strip(title),
-          style: pw.TextStyle(fontSize: 13, fontWeight: pw.FontWeight.bold),
+          style: const pw.TextStyle(
+            fontSize: 13,
+            fontWeight: pw.FontWeight.bold,
+          ),
         ),
       pw.SizedBox(height: 4),
       ...items.map((item) {
@@ -1126,7 +1171,7 @@ class StudyPdfGenerator {
                 if (cardTitle.isNotEmpty)
                   pw.Text(
                     _strip(cardTitle),
-                    style: pw.TextStyle(
+                    style: const pw.TextStyle(
                       fontSize: 11,
                       fontWeight: pw.FontWeight.bold,
                     ),
