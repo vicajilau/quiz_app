@@ -17,6 +17,8 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
+import 'package:genkit/genkit.dart';
+import 'package:genkit_google_genai/genkit_google_genai.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
@@ -30,12 +32,8 @@ import 'package:quizdy/domain/repositories/ai_repository.dart';
 /// Handles the Gemini wire format, authentication, rate-limit errors, and
 /// file uploads via the Gemini File API.  Contains no prompt text.
 class GeminiRepository implements AiRepository {
-  static const String _baseUrlBeta =
-      'https://generativelanguage.googleapis.com/v1beta';
   static const String _uploadBaseUrlBeta =
       'https://generativelanguage.googleapis.com/upload/v1beta';
-  static const String _baseUrlAlpha =
-      'https://generativelanguage.googleapis.com/v1alpha';
 
   final Dio _dioClient;
   final ConfigurationService _configurationService;
@@ -58,11 +56,6 @@ class GeminiRepository implements AiRepository {
     final key = await _configurationService.getGeminiApiKey();
     return key != null && key.isNotEmpty;
   }
-
-  // ── URL helpers ──────────────────────────────────────────────────────────
-
-  String _baseUrl() =>
-      modelId == 'gemini-3.1-pro-preview' ? _baseUrlAlpha : _baseUrlBeta;
 
   // ── Error helpers ────────────────────────────────────────────────────────
 
@@ -100,43 +93,6 @@ class GeminiRepository implements AiRepository {
     };
   }
 
-  // ── Shared generation config ─────────────────────────────────────────────
-
-  Map<String, dynamic> _generationConfig({String? responseMimeType}) => {
-    'responseMimeType': ?responseMimeType,
-    'temperature': 0.2,
-    'topK': 5,
-    'topP': 0.95,
-  };
-
-  List<Map<String, dynamic>> get _safetySettings => [
-    {
-      'category': 'HARM_CATEGORY_HARASSMENT',
-      'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
-    },
-    {
-      'category': 'HARM_CATEGORY_HATE_SPEECH',
-      'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
-    },
-    {
-      'category': 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
-      'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
-    },
-    {
-      'category': 'HARM_CATEGORY_DANGEROUS_CONTENT',
-      'threshold': 'BLOCK_MEDIUM_AND_ABOVE',
-    },
-  ];
-
-  String _extractText(dynamic jsonResponse, AppLocalizations localizations) {
-    final candidates = jsonResponse['candidates'] as List?;
-    if (candidates != null && candidates.isNotEmpty) {
-      final text = candidates[0]['content']['parts'][0]['text'];
-      return text?.toString().trim() ?? localizations.noResponseReceived;
-    }
-    return localizations.noResponseReceived;
-  }
-
   // ── AiRepository interface ───────────────────────────────────────────────
 
   @override
@@ -150,31 +106,40 @@ class GeminiRepository implements AiRepository {
       throw Exception(localizations.geminiApiKeyNotConfigured);
     }
 
-    final url = '${_baseUrl()}/models/$modelId:generateContent?key=$apiKey';
+    final ai = Genkit(plugins: [googleAI(apiKey: apiKey)]);
 
     try {
-      final response = await _dioClient.post(
-        url,
-        options: Options(headers: {'Content-Type': 'application/json'}),
-        data: {
-          'contents': [
-            {
-              'parts': [
-                {'text': prompt},
-              ],
-            },
+      final response = await ai.generate(
+        model: googleAI.gemini(modelId),
+        prompt: prompt,
+        config: GeminiOptions(
+          temperature: 0.2,
+          topK: 5,
+          topP: 0.95,
+          responseMimeType: responseMimeType,
+          safetySettings: [
+            SafetySettings(
+              category: 'HARM_CATEGORY_HARASSMENT',
+              threshold: 'BLOCK_MEDIUM_AND_ABOVE',
+            ),
+            SafetySettings(
+              category: 'HARM_CATEGORY_HATE_SPEECH',
+              threshold: 'BLOCK_MEDIUM_AND_ABOVE',
+            ),
+            SafetySettings(
+              category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+              threshold: 'BLOCK_MEDIUM_AND_ABOVE',
+            ),
+            SafetySettings(
+              category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
+              threshold: 'BLOCK_MEDIUM_AND_ABOVE',
+            ),
           ],
-          'generationConfig': _generationConfig(
-            responseMimeType: responseMimeType,
-          ),
-          'safetySettings': _safetySettings,
-        },
+        ),
       );
-      return _extractText(response.data, localizations);
-    } on DioException catch (e) {
-      throw _buildException(e, localizations);
-    } catch (_) {
-      throw Exception(localizations.networkErrorGemini);
+      return response.text;
+    } catch (e) {
+      throw Exception('${localizations.networkErrorGemini}: $e');
     }
   }
 
@@ -185,14 +150,58 @@ class GeminiRepository implements AiRepository {
     required AiFileAttachment file,
     String? responseMimeType,
   }) async {
-    final uploadResult = await uploadFile(file, localizations);
-    return sendMessagesWithFileUri(
-      prompt,
-      localizations,
-      fileUri: uploadResult.fileUri,
-      fileMimeType: file.mimeType,
-      responseMimeType: responseMimeType,
-    );
+    final apiKey = await _configurationService.getGeminiApiKey();
+    if (apiKey == null || apiKey.isEmpty) {
+      throw Exception(localizations.geminiApiKeyNotConfigured);
+    }
+
+    final ai = Genkit(plugins: [googleAI(apiKey: apiKey)]);
+    final base64Data = base64Encode(file.bytes);
+    final dataUrl = 'data:${file.mimeType};base64,$base64Data';
+
+    try {
+      final response = await ai.generate(
+        model: googleAI.gemini(modelId),
+        messages: [
+          Message(
+            role: Role.user,
+            content: [
+              MediaPart(
+                media: Media(contentType: file.mimeType, url: dataUrl),
+              ),
+              TextPart(text: prompt),
+            ],
+          ),
+        ],
+        config: GeminiOptions(
+          temperature: 0.2,
+          topK: 5,
+          topP: 0.95,
+          responseMimeType: responseMimeType,
+          safetySettings: [
+            SafetySettings(
+              category: 'HARM_CATEGORY_HARASSMENT',
+              threshold: 'BLOCK_MEDIUM_AND_ABOVE',
+            ),
+            SafetySettings(
+              category: 'HARM_CATEGORY_HATE_SPEECH',
+              threshold: 'BLOCK_MEDIUM_AND_ABOVE',
+            ),
+            SafetySettings(
+              category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+              threshold: 'BLOCK_MEDIUM_AND_ABOVE',
+            ),
+            SafetySettings(
+              category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
+              threshold: 'BLOCK_MEDIUM_AND_ABOVE',
+            ),
+          ],
+        ),
+      );
+      return response.text;
+    } catch (e) {
+      throw Exception('${localizations.networkErrorGemini}: $e');
+    }
   }
 
   @override
@@ -264,34 +273,50 @@ class GeminiRepository implements AiRepository {
       throw Exception(localizations.geminiApiKeyNotConfigured);
     }
 
-    final url = '${_baseUrl()}/models/$modelId:generateContent?key=$apiKey';
+    final ai = Genkit(plugins: [googleAI(apiKey: apiKey)]);
 
     try {
-      final response = await _dioClient.post(
-        url,
-        options: Options(headers: {'Content-Type': 'application/json'}),
-        data: {
-          'contents': [
-            {
-              'parts': [
-                {'text': prompt},
-                {
-                  'file_data': {'mime_type': fileMimeType, 'file_uri': fileUri},
-                },
-              ],
-            },
-          ],
-          'generationConfig': _generationConfig(
-            responseMimeType: responseMimeType,
+      final response = await ai.generate(
+        model: googleAI.gemini(modelId),
+        messages: [
+          Message(
+            role: Role.user,
+            content: [
+              MediaPart(
+                media: Media(contentType: fileMimeType, url: fileUri),
+              ),
+              TextPart(text: prompt),
+            ],
           ),
-          'safetySettings': _safetySettings,
-        },
+        ],
+        config: GeminiOptions(
+          temperature: 0.2,
+          topK: 5,
+          topP: 0.95,
+          responseMimeType: responseMimeType,
+          safetySettings: [
+            SafetySettings(
+              category: 'HARM_CATEGORY_HARASSMENT',
+              threshold: 'BLOCK_MEDIUM_AND_ABOVE',
+            ),
+            SafetySettings(
+              category: 'HARM_CATEGORY_HATE_SPEECH',
+              threshold: 'BLOCK_MEDIUM_AND_ABOVE',
+            ),
+            SafetySettings(
+              category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+              threshold: 'BLOCK_MEDIUM_AND_ABOVE',
+            ),
+            SafetySettings(
+              category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
+              threshold: 'BLOCK_MEDIUM_AND_ABOVE',
+            ),
+          ],
+        ),
       );
-      return _extractText(response.data, localizations);
-    } on DioException catch (e) {
-      throw _buildException(e, localizations);
-    } catch (_) {
-      throw Exception(localizations.networkErrorGemini);
+      return response.text;
+    } catch (e) {
+      throw Exception('${localizations.networkErrorGemini}: $e');
     }
   }
 }

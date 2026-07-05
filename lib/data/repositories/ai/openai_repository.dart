@@ -13,13 +13,16 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:genkit/genkit.dart';
+import 'package:genkit_openai/genkit_openai.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_file_upload_result.dart';
 import 'package:quizdy/domain/models/ai/ai_model_catalog.dart';
-import 'package:quizdy/domain/models/ai/openai_content_block.dart';
 import 'package:quizdy/domain/repositories/ai_repository.dart';
 
 /// OpenAI implementation of [AiRepository].
@@ -97,36 +100,20 @@ class OpenAiRepository implements AiRepository {
       throw Exception(localizations.openaiApiKeyNotConfigured);
     }
 
-    final data = <String, dynamic>{
-      'model': modelId,
-      'messages': [
-        {'role': 'user', 'content': prompt},
-      ],
-      'max_tokens': 8192,
-      'temperature': 0.2,
-    };
-    if (responseMimeType == 'application/json') {
-      data['response_format'] = {'type': 'json_object'};
-    }
+    final ai = Genkit(plugins: [openAI(apiKey: apiKey)]);
 
     try {
-      final response = await _dioClient.post(
-        '$_baseUrl$_chatEndpoint',
-        options: Options(
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer $apiKey',
-          },
+      final response = await ai.generate(
+        model: openAI.model(modelId),
+        prompt: prompt,
+        config: OpenAIChatOptions(
+          temperature: 0.2,
+          jsonMode: responseMimeType == 'application/json',
         ),
-        data: data,
       );
-      final content =
-          response.data['choices'][0]['message']['content'] as String?;
-      return content?.trim() ?? localizations.noResponseReceived;
-    } on DioException catch (e) {
-      throw _buildException(e, localizations);
-    } catch (_) {
-      throw Exception(localizations.networkErrorOpenAI);
+      return response.text;
+    } catch (e) {
+      throw Exception('${localizations.networkErrorOpenAI}: $e');
     }
   }
 
@@ -142,41 +129,32 @@ class OpenAiRepository implements AiRepository {
       throw Exception(localizations.openaiApiKeyNotConfigured);
     }
 
-    final contentBlocks = OpenAIContentBlock.fromPromptAndFile(prompt, file);
-
-    final data = <String, dynamic>{
-      'model': modelId,
-      'messages': [
-        {
-          'role': 'user',
-          'content': contentBlocks.map((b) => b.toJson()).toList(),
-        },
-      ],
-      'max_tokens': 8192,
-      'temperature': 0.2,
-    };
-    if (responseMimeType == 'application/json') {
-      data['response_format'] = {'type': 'json_object'};
-    }
+    final ai = Genkit(plugins: [openAI(apiKey: apiKey)]);
+    final base64Data = base64Encode(file.bytes);
+    final dataUrl = 'data:${file.mimeType};base64,$base64Data';
 
     try {
-      final response = await _dioClient.post(
-        '$_baseUrl$_chatEndpoint',
-        options: Options(
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer $apiKey',
-          },
+      final response = await ai.generate(
+        model: openAI.model(modelId),
+        messages: [
+          Message(
+            role: Role.user,
+            content: [
+              MediaPart(
+                media: Media(contentType: file.mimeType, url: dataUrl),
+              ),
+              TextPart(text: prompt),
+            ],
+          ),
+        ],
+        config: OpenAIChatOptions(
+          temperature: 0.2,
+          jsonMode: responseMimeType == 'application/json',
         ),
-        data: data,
       );
-      final content =
-          response.data['choices'][0]['message']['content'] as String?;
-      return content?.trim() ?? localizations.noResponseReceived;
-    } on DioException catch (e) {
-      throw _buildException(e, localizations);
-    } catch (_) {
-      throw Exception(localizations.networkErrorOpenAI);
+      return response.text;
+    } catch (e) {
+      throw Exception('${localizations.networkErrorOpenAI}: $e');
     }
   }
 

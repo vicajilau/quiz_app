@@ -68,6 +68,9 @@ dependencies:
   in_app_update: ^4.2.3
   hive_ce: ^2.19.3
   hive_ce_flutter: ^2.3.4
+  genkit: ^0.14.1
+  genkit_google_genai: ^0.2.9
+  genkit_openai: ^0.3.0
 
 dev_dependencies:
   flutter_test:

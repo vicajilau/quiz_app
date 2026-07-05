@@ -18,6 +18,7 @@ import 'package:get_it/get_it.dart';
 import 'package:quizdy/data/interceptors/ai_logging_interceptor.dart';
 import 'package:quizdy/data/interceptors/connectivity_interceptor.dart';
 import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
+import 'package:quizdy/domain/models/ai/ai_model_catalog.dart';
 import 'package:quizdy/data/services/ai/ai_document_chunking_service.dart';
 import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
@@ -123,6 +124,14 @@ class ServiceLocator {
         aiRepositoryFactory: getIt.get<AiRepositoryFactory>(),
         srsRepository: getIt.get<SrsRepository>(),
       ),
+    );
+
+    // Load dynamic models at startup if API keys are configured
+    final geminiKey = await configurationService.getGeminiApiKey();
+    final openaiKey = await configurationService.getOpenAIApiKey();
+    await AiModelCatalog.loadDynamicModels(
+      geminiApiKey: geminiKey,
+      openaiApiKey: openaiKey,
     );
   }
 
