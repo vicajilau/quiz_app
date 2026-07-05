@@ -33,10 +33,17 @@ class StudyIndexChunkDownloadButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final bgColor = isError
+    final isDisabled = onDownload == null;
+    final bgColor = isDisabled
+        ? (isDark ? AppTheme.zinc900 : AppTheme.zinc100)
+        : isError
         ? (isDark ? AppTheme.zinc800 : AppTheme.zinc100)
         : AppTheme.primaryColor.withValues(alpha: 0.1);
-    final fgColor = isError ? AppTheme.zinc500 : AppTheme.primaryColor;
+    final fgColor = isDisabled
+        ? (isDark ? AppTheme.zinc700 : AppTheme.zinc400)
+        : isError
+        ? AppTheme.zinc500
+        : AppTheme.primaryColor;
 
     return GestureDetector(
       onTap: onDownload,
@@ -57,14 +64,18 @@ class StudyIndexChunkDownloadButton extends StatelessWidget {
               color: fgColor,
             ),
             const SizedBox(width: 6),
-            Text(
-              isError
-                  ? localizations.studyScreenRetry
-                  : localizations.studyScreenDownloadChunk,
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: fgColor,
+            Flexible(
+              child: Text(
+                isError
+                    ? localizations.studyScreenRetry
+                    : localizations.studyScreenDownloadChunk,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: fgColor,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],

@@ -2571,5 +2571,83 @@
   "srsSortByHitRate": "Taxa d'encerts",
   "srsSortAscending": "Ascendent",
   "srsSortDescending": "Descendent",
-  "srsUnassignedSection": "Sense secció"
+  "srsUnassignedSection": "Sense secció",
+  "customAiProviderLabel": "IA Personalitzada / Local (Ollama, Groq...)",
+  "@customAiProviderLabel": {
+    "description": "Label for Custom / Local AI provider"
+  },
+  "customAiBaseUrlLabel": "URL Base Personalitzada",
+  "@customAiBaseUrlLabel": {
+    "description": "Label for custom AI base URL input"
+  },
+  "customAiBaseUrlHint": "ex. http://localhost:11434/v1",
+  "@customAiBaseUrlHint": {
+    "description": "Hint text for custom AI base URL"
+  },
+  "customAiBaseUrlDescription": "La URL base de la teva API compatible amb OpenAI (com Ollama, Groq, LM Studio, etc.)",
+  "@customAiBaseUrlDescription": {
+    "description": "Description of the custom AI base URL requirement"
+  },
+  "customAiApiKeyLabel": "Clau API Personalitzada (Opcional)",
+  "@customAiApiKeyLabel": {
+    "description": "Label for custom AI API key input"
+  },
+  "customAiApiKeyHint": "Introdueix la clau API si la requereix el teu proveïdor personalitzat",
+  "@customAiApiKeyHint": {
+    "description": "Hint text for custom AI API key"
+  },
+  "customAiApiKeyDescription": "Només cal si el teu punt final d'API personalitzat requereix autenticació (ex. Groq, OpenRouter).",
+  "@customAiApiKeyDescription": {
+    "description": "Description for custom API key field"
+  },
+  "customAiLoadModelsButton": "Connectar i Carregar Models",
+  "@customAiLoadModelsButton": {
+    "description": "Button to connect and fetch models from custom AI provider"
+  },
+  "customAiLoadModelsLoading": "Connectant...",
+  "@customAiLoadModelsLoading": {
+    "description": "Loading text when connecting to custom AI"
+  },
+  "customAiLoadModelsSuccess": "S'han carregat correctament {count} models!",
+  "@customAiLoadModelsSuccess": {
+    "description": "Success message when custom models are loaded",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "customAiLoadModelsError": "Error en connectar o obtenir els models: {error}",
+  "@customAiLoadModelsError": {
+    "description": "Error message when custom model loading fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "customAiNoModelsError": "No s'han trobat models en aquest punt final. Assegura't que el servei s'està executant i els models estan descarregats.",
+  "@customAiNoModelsError": {
+    "description": "Error message when connection succeeded but no models were returned"
+  },
+  "studyScreenDownloadAllButton": "Descarregar totes les seccions",
+  "@studyScreenDownloadAllButton": {
+    "description": "Label for the button that downloads all study chunks/sections sequentially using AI."
+  },
+  "downloadingSectionsTitle": "Generant Seccions...",
+  "@downloadingSectionsTitle": {
+    "description": "Title for the modal dialog shown while downloading all sections sequentially"
+  },
+  "downloadingSectionsProgress": "Processades {completed} de {total} seccions",
+  "@downloadingSectionsProgress": {
+    "description": "Progress text shown inside the downloading sections dialog",
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }

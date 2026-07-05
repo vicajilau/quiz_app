@@ -58,6 +58,12 @@ class AiRepositoryFactory {
         configurationService: _configurationService,
         modelId: modelId,
       ),
+      AiModelCatalog.customProviderId => OpenAiRepository(
+        dioClient: _dioClient,
+        configurationService: _configurationService,
+        modelId: modelId,
+        isCustom: true,
+      ),
       _ => throw ArgumentError.value(
         entry.providerId,
         'providerId',

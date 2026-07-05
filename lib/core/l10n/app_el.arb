@@ -1469,5 +1469,83 @@
   "srsSortByHitRate": "Ποσοστό επιτυχίας",
   "srsSortAscending": "Αύξουσα",
   "srsSortDescending": "Φθίνουσα",
-  "srsUnassignedSection": "Χωρίς τμήμα"
+  "srsUnassignedSection": "Χωρίς τμήμα",
+  "customAiProviderLabel": "Προσαρμοσμένη / Τοπική AI (Ollama, Groq...)",
+  "@customAiProviderLabel": {
+    "description": "Label for Custom / Local AI provider"
+  },
+  "customAiBaseUrlLabel": "Προσαρμοσμένη Διεύθυνση URL Βάσης",
+  "@customAiBaseUrlLabel": {
+    "description": "Label for custom AI base URL input"
+  },
+  "customAiBaseUrlHint": "π.χ. http://localhost:11434/v1",
+  "@customAiBaseUrlHint": {
+    "description": "Hint text for custom AI base URL"
+  },
+  "customAiBaseUrlDescription": "Η βασική διεύθυνση URL του API συμβατού με OpenAI (όπως Ollama, Groq, LM Studio κ.λπ.)",
+  "@customAiBaseUrlDescription": {
+    "description": "Description of the custom AI base URL requirement"
+  },
+  "customAiApiKeyLabel": "Προσαρμοσμένο Κλειδί API (Προαιρετικό)",
+  "@customAiApiKeyLabel": {
+    "description": "Label for custom AI API key input"
+  },
+  "customAiApiKeyHint": "Εισαγάγετε το κλειδί API εάν απαιτείται από τον προσαρμοσμένο πάροχο",
+  "@customAiApiKeyHint": {
+    "description": "Hint text for custom AI API key"
+  },
+  "customAiApiKeyDescription": "Απαιτείται μόνο εάν το προσαρμοσμένο τελικό σημείο API απαιτεί έλεγχο ταυτότητας (π.χ. Groq, OpenRouter).",
+  "@customAiApiKeyDescription": {
+    "description": "Description for custom API key field"
+  },
+  "customAiLoadModelsButton": "Σύνδεση & Φόρτωση Μοντέλων",
+  "@customAiLoadModelsButton": {
+    "description": "Button to connect and fetch models from custom AI provider"
+  },
+  "customAiLoadModelsLoading": "Σύνδεση...",
+  "@customAiLoadModelsLoading": {
+    "description": "Loading text when connecting to custom AI"
+  },
+  "customAiLoadModelsSuccess": "Επιτυχής φόρτωση {count} μοντέλων!",
+  "@customAiLoadModelsSuccess": {
+    "description": "Success message when custom models are loaded",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "customAiLoadModelsError": "Αποτυχία σύνδεσης ή λήψης μοντέλων: {error}",
+  "@customAiLoadModelsError": {
+    "description": "Error message when custom model loading fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "customAiNoModelsError": "Δεν βρέθηκαν μοντέλα σε αυτό το τελικό σημείο. Βεβαιωθείτε ότι η υπηρεσία εκτελείται και ότι έχουν ληφθεί μοντέλα.",
+  "@customAiNoModelsError": {
+    "description": "Error message when connection succeeded but no models were returned"
+  },
+  "studyScreenDownloadAllButton": "Λήψη όλων των ενοτήτων",
+  "@studyScreenDownloadAllButton": {
+    "description": "Label for the button that downloads all study chunks/sections sequentially using AI."
+  },
+  "downloadingSectionsTitle": "Δημιουργία Ενοτήτων...",
+  "@downloadingSectionsTitle": {
+    "description": "Title for the modal dialog shown while downloading all sections sequentially"
+  },
+  "downloadingSectionsProgress": "Έγινε επεξεργασία {completed} από {total} ενότητες",
+  "@downloadingSectionsProgress": {
+    "description": "Progress text shown inside the downloading sections dialog",
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }

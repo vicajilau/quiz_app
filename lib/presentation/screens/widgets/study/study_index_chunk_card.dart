@@ -404,12 +404,16 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
                           ),
                         ),
                         const SizedBox(width: 8),
-                        Text(
-                          localizations.studyScreenGenerating,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: subtitleColor,
-                            fontWeight: FontWeight.w500,
+                        Flexible(
+                          child: Text(
+                            localizations.studyScreenGenerating,
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: subtitleColor,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ],

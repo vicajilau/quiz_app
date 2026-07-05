@@ -30,6 +30,9 @@ class ConfigurationService {
   static const String _aiAssistantEnabledKey = 'ai_assistant_enabled';
   static const String _openaiApiKeyKey = 'openai_api_key';
   static const String _geminiApiKeyKey = 'gemini_api_key';
+  static const String _customAiBaseUrlKey = 'custom_ai_base_url';
+  static const String _customAiApiKeyKey = 'custom_ai_api_key';
+  static const String _customAiModelsKey = 'custom_ai_models';
   static const String _randomizeAnswersKey = 'randomize_answers';
   static const String _showCorrectAnswerCountKey = 'show_correct_answer_count';
   static const String _defaultAIModelKey = 'default_ai_model';
@@ -490,14 +493,84 @@ class ConfigurationService {
     );
   }
 
-  /// Checks if AI Assistant is available (enabled and has at least one API key)
+  /// Saves Custom AI Base URL
+  Future<void> saveCustomAiBaseUrl(String baseUrl) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_customAiBaseUrlKey, baseUrl);
+    await _refreshAiAvailability();
+  }
+
+  /// Gets Custom AI Base URL
+  Future<String?> getCustomAiBaseUrl() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_customAiBaseUrlKey);
+  }
+
+  /// Deletes Custom AI Base URL
+  Future<void> deleteCustomAiBaseUrl() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_customAiBaseUrlKey);
+    await _refreshAiAvailability();
+  }
+
+  /// Saves Custom AI API Key securely (encrypted)
+  Future<void> saveCustomAiApiKey(String apiKey) async {
+    final prefs = await SharedPreferences.getInstance();
+    final encryptedApiKey = EncryptionService.encrypt(apiKey);
+    await prefs.setString(_customAiApiKeyKey, encryptedApiKey);
+  }
+
+  /// Gets Custom AI API Key (decrypted)
+  Future<String?> getCustomAiApiKey() async {
+    final prefs = await SharedPreferences.getInstance();
+    final encryptedApiKey = prefs.getString(_customAiApiKeyKey);
+
+    if (encryptedApiKey == null || encryptedApiKey.isEmpty) {
+      return null;
+    }
+
+    return EncryptionService.decrypt(encryptedApiKey);
+  }
+
+  /// Deletes Custom AI API Key
+  Future<void> deleteCustomAiApiKey() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_customAiApiKeyKey);
+  }
+
+  /// Saves Custom AI Models list
+  Future<void> saveCustomAiModels(List<String> models) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList(_customAiModelsKey, models);
+    await _refreshAiAvailability();
+  }
+
+  /// Gets Custom AI Models list
+  Future<List<String>> getCustomAiModels() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getStringList(_customAiModelsKey) ?? const [];
+  }
+
+  /// Deletes Custom AI Models list
+  Future<void> deleteCustomAiModels() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_customAiModelsKey);
+    await _refreshAiAvailability();
+  }
+
+  /// Checks if AI Assistant is available (enabled and has at least one API key or custom config)
   Future<bool> getIsAiAvailable() async {
     final isEnabled = await _getAIAssistantEnabled();
     final openAiKey = await getOpenAIApiKey();
     final geminiKey = await getGeminiApiKey();
+    final customBaseUrl = await getCustomAiBaseUrl();
+    final customModels = await getCustomAiModels();
 
     return isEnabled &&
         ((openAiKey != null && openAiKey.isNotEmpty) ||
-            (geminiKey != null && geminiKey.isNotEmpty));
+            (geminiKey != null && geminiKey.isNotEmpty) ||
+            (customBaseUrl != null &&
+                customBaseUrl.isNotEmpty &&
+                customModels.isNotEmpty));
   }
 }

@@ -129,9 +129,21 @@ class ServiceLocator {
     // Load dynamic models at startup if API keys are configured
     final geminiKey = await configurationService.getGeminiApiKey();
     final openaiKey = await configurationService.getOpenAIApiKey();
+    final customBaseUrl = await configurationService.getCustomAiBaseUrl();
+    final customApiKey = await configurationService.getCustomAiApiKey();
+    final customModels = await configurationService.getCustomAiModels();
+
+    // Register previously saved custom models so they are immediately recognized
+    if (customModels.isNotEmpty) {
+      AiModelCatalog.registerCustomModels(customModels);
+    }
+
     await AiModelCatalog.loadDynamicModels(
       geminiApiKey: geminiKey,
       openaiApiKey: openaiKey,
+      customBaseUrl: customBaseUrl,
+      customApiKey: customApiKey,
+      customModels: customModels,
     );
   }
 

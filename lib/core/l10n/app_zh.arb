@@ -2521,5 +2521,83 @@
   "srsSortByHitRate": "正确率",
   "srsSortAscending": "升序",
   "srsSortDescending": "降序",
-  "srsUnassignedSection": "未分配"
+  "srsUnassignedSection": "未分配",
+  "customAiProviderLabel": "自定义 / 本地 AI (Ollama, Groq...)",
+  "@customAiProviderLabel": {
+    "description": "Label for Custom / Local AI provider"
+  },
+  "customAiBaseUrlLabel": "自定义 API 根地址",
+  "@customAiBaseUrlLabel": {
+    "description": "Label for custom AI base URL input"
+  },
+  "customAiBaseUrlHint": "例如 http://localhost:11434/v1",
+  "@customAiBaseUrlHint": {
+    "description": "Hint text for custom AI base URL"
+  },
+  "customAiBaseUrlDescription": "与 OpenAI 兼容的 API 的根地址 (例如 Ollama, Groq, LM Studio 等)",
+  "@customAiBaseUrlDescription": {
+    "description": "Description of the custom AI base URL requirement"
+  },
+  "customAiApiKeyLabel": "自定义 API 密钥 (可选)",
+  "@customAiApiKeyLabel": {
+    "description": "Label for custom API key input"
+  },
+  "customAiApiKeyHint": "如果自定义提供商需要，请输入 API 密钥",
+  "@customAiApiKeyHint": {
+    "description": "Hint text for custom AI API key"
+  },
+  "customAiApiKeyDescription": "仅在您的自定义 API 端点需要身份验证时才需要 (例如 Groq, OpenRouter)。",
+  "@customAiApiKeyDescription": {
+    "description": "Description for custom API key field"
+  },
+  "customAiLoadModelsButton": "连接并加载模型",
+  "@customAiLoadModelsButton": {
+    "description": "Button to connect and fetch models from custom AI provider"
+  },
+  "customAiLoadModelsLoading": "正在连接...",
+  "@customAiLoadModelsLoading": {
+    "description": "Loading text when connecting to custom AI"
+  },
+  "customAiLoadModelsSuccess": "成功加载了 {count} 个模型！",
+  "@customAiLoadModelsSuccess": {
+    "description": "Success message when custom models are loaded",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "customAiLoadModelsError": "无法连接或获取模型：{error}",
+  "@customAiLoadModelsError": {
+    "description": "Error message when custom model loading fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "customAiNoModelsError": "在此端点上未找到任何模型。请确保服务正在运行且模型已下载。",
+  "@customAiNoModelsError": {
+    "description": "Error message when connection succeeded but no models were returned"
+  },
+  "studyScreenDownloadAllButton": "下载所有章节",
+  "@studyScreenDownloadAllButton": {
+    "description": "Label for the button that downloads all study chunks/sections sequentially using AI."
+  },
+  "downloadingSectionsTitle": "正在生成章节...",
+  "@downloadingSectionsTitle": {
+    "description": "Title for the modal dialog shown while downloading all sections sequentially"
+  },
+  "downloadingSectionsProgress": "已处理 {completed} / {total} 个章节",
+  "@downloadingSectionsProgress": {
+    "description": "Progress text shown inside the downloading sections dialog",
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }

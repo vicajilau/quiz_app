@@ -1173,5 +1173,83 @@
   "srsSortByHitRate": "Процент успеха",
   "srsSortAscending": "По возрастанию",
   "srsSortDescending": "По убыванию",
-  "srsUnassignedSection": "Без раздела"
+  "srsUnassignedSection": "Без раздела",
+  "customAiProviderLabel": "Пользовательский / локальный ИИ (Ollama, Groq...)",
+  "@customAiProviderLabel": {
+    "description": "Label for Custom / Local AI provider"
+  },
+  "customAiBaseUrlLabel": "Пользовательский базовый URL",
+  "@customAiBaseUrlLabel": {
+    "description": "Label for custom AI base URL input"
+  },
+  "customAiBaseUrlHint": "например, http://localhost:11434/v1",
+  "@customAiBaseUrlHint": {
+    "description": "Hint text for custom AI base URL"
+  },
+  "customAiBaseUrlDescription": "Базовый URL вашего OpenAI-совместимого API (например, Ollama, Groq, LM Studio и т. д.)",
+  "@customAiBaseUrlDescription": {
+    "description": "Description of the custom AI base URL requirement"
+  },
+  "customAiApiKeyLabel": "Пользовательский API-ключ (необязательно)",
+  "@customAiApiKeyLabel": {
+    "description": "Label for custom AI API key input"
+  },
+  "customAiApiKeyHint": "Введите API-ключ, если он требуется вашим провайдером",
+  "@customAiApiKeyHint": {
+    "description": "Hint text for custom AI API key"
+  },
+  "customAiApiKeyDescription": "Требуется только в том случае, если ваша пользовательская конечная точка API требует аутентификации (например, Groq, OpenRouter).",
+  "@customAiApiKeyDescription": {
+    "description": "Description for custom API key field"
+  },
+  "customAiLoadModelsButton": "Подключиться и загрузить модели",
+  "@customAiLoadModelsButton": {
+    "description": "Button to connect and fetch models from custom AI provider"
+  },
+  "customAiLoadModelsLoading": "Подключение...",
+  "@customAiLoadModelsLoading": {
+    "description": "Loading text when connecting to custom AI"
+  },
+  "customAiLoadModelsSuccess": "Успешно загружено моделей: {count}!",
+  "@customAiLoadModelsSuccess": {
+    "description": "Success message when custom models are loaded",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "customAiLoadModelsError": "Ошибка подключения или получения моделей: {error}",
+  "@customAiLoadModelsError": {
+    "description": "Error message when custom model loading fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "customAiNoModelsError": "Модели не найдены на этой конечной точке. Убедитесь, что служба запущена и модели загружены.",
+  "@customAiNoModelsError": {
+    "description": "Error message when connection succeeded but no models were returned"
+  },
+  "studyScreenDownloadAllButton": "Скачать все разделы",
+  "@studyScreenDownloadAllButton": {
+    "description": "Label for the button that downloads all study chunks/sections sequentially using AI."
+  },
+  "downloadingSectionsTitle": "Создание разделов...",
+  "@downloadingSectionsTitle": {
+    "description": "Title for the modal dialog shown while downloading all sections sequentially"
+  },
+  "downloadingSectionsProgress": "Обработано разделов: {completed} из {total}",
+  "@downloadingSectionsProgress": {
+    "description": "Progress text shown inside the downloading sections dialog",
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }

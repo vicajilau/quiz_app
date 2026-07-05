@@ -47,6 +47,9 @@ class StudyIndexView extends StatelessWidget {
   /// on a chunk card while in edit mode. `null` when not in edit mode.
   final void Function(int chunkIndex)? onChunkEditTap;
 
+  bool get _isProcessingAny =>
+      state.chunks.any((c) => c.status == StudyChunkState.processing);
+
   const StudyIndexView({
     super.key,
     required this.state,
@@ -246,7 +249,9 @@ class StudyIndexView extends StatelessWidget {
                   _onChunkTap(context, index);
                 }
               },
-              onDownload: () => _onChunkDownload(context, index),
+              onDownload: _isProcessingAny
+                  ? null
+                  : () => _onChunkDownload(context, index),
               onEdit: onChunkEditTap != null
                   ? () => onChunkEditTap!(index)
                   : null,
@@ -312,7 +317,9 @@ class StudyIndexView extends StatelessWidget {
                     _onChunkTap(context, index);
                   }
                 },
-                onDownload: () => _onChunkDownload(context, index),
+                onDownload: _isProcessingAny
+                    ? null
+                    : () => _onChunkDownload(context, index),
                 onEdit: onChunkEditTap != null
                     ? () => onChunkEditTap!(index)
                     : null,
@@ -416,7 +423,9 @@ class StudyIndexView extends StatelessWidget {
                                     _onChunkTap(context, i);
                                   }
                                 },
-                                onDownload: () => _onChunkDownload(context, i),
+                                onDownload: _isProcessingAny
+                                    ? null
+                                    : () => _onChunkDownload(context, i),
                                 onEdit: onChunkEditTap != null
                                     ? () => onChunkEditTap!(i)
                                     : null,
@@ -475,7 +484,9 @@ class StudyIndexView extends StatelessWidget {
                                     _onChunkTap(context, i);
                                   }
                                 },
-                                onDownload: () => _onChunkDownload(context, i),
+                                onDownload: _isProcessingAny
+                                    ? null
+                                    : () => _onChunkDownload(context, i),
                                 onEdit: onChunkEditTap != null
                                     ? () => onChunkEditTap!(i)
                                     : null,

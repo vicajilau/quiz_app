@@ -43,6 +43,15 @@ class AiServiceModelSelector extends StatefulWidget {
   /// react to it changing without waiting for a save.
   final String? openaiApiKey;
 
+  /// Pass the current (possibly unconfirmed) Custom Base URL.
+  final String? customBaseUrl;
+
+  /// Pass the current (possibly unconfirmed) Custom API Key.
+  final String? customApiKey;
+
+  /// Pass the current custom models list.
+  final List<String>? customModels;
+
   const AiServiceModelSelector({
     super.key,
     this.initialModel,
@@ -52,6 +61,9 @@ class AiServiceModelSelector extends StatefulWidget {
     this.saveToPreferences = false,
     this.geminiApiKey,
     this.openaiApiKey,
+    this.customBaseUrl,
+    this.customApiKey,
+    this.customModels,
   });
 
   @override
@@ -74,9 +86,11 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
   @override
   void didUpdateWidget(AiServiceModelSelector oldWidget) {
     super.didUpdateWidget(oldWidget);
-    // Only reload when API keys change — same guard as the old widget.
+    // Only reload when API keys or custom config change
     if (oldWidget.geminiApiKey != widget.geminiApiKey ||
-        oldWidget.openaiApiKey != widget.openaiApiKey) {
+        oldWidget.openaiApiKey != widget.openaiApiKey ||
+        oldWidget.customBaseUrl != widget.customBaseUrl ||
+        oldWidget.customModels != widget.customModels) {
       _loadAvailableProviders();
     }
   }
@@ -86,18 +100,35 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
       final configService = ServiceLocator.getIt<ConfigurationService>();
 
       // Determine which providers have a key configured.
-      final geminiKey = await configService.getGeminiApiKey();
-      final openaiKey = await configService.getOpenAIApiKey();
+      final geminiKey =
+          widget.geminiApiKey ?? await configService.getGeminiApiKey();
+      final openaiKey =
+          widget.openaiApiKey ?? await configService.getOpenAIApiKey();
+      final customBaseUrl =
+          widget.customBaseUrl ?? await configService.getCustomAiBaseUrl();
+      final customApiKey =
+          widget.customApiKey ?? await configService.getCustomAiApiKey();
+      final customModels =
+          widget.customModels ?? await configService.getCustomAiModels();
+
+      if (customModels.isNotEmpty) {
+        AiModelCatalog.registerCustomModels(customModels);
+      }
 
       // Dynamically load models from Genkit registry using the configured keys
       await AiModelCatalog.loadDynamicModels(
         geminiApiKey: geminiKey,
         openaiApiKey: openaiKey,
+        customBaseUrl: customBaseUrl,
+        customApiKey: customApiKey,
+        customModels: customModels,
       );
 
       final available = <String>[
         if ((geminiKey?.isNotEmpty ?? false)) AiModelCatalog.geminiProviderId,
         if ((openaiKey?.isNotEmpty ?? false)) AiModelCatalog.openaiProviderId,
+        if ((customBaseUrl?.isNotEmpty ?? false) && customModels.isNotEmpty)
+          AiModelCatalog.customProviderId,
       ];
 
       if (!mounted) return;
@@ -314,12 +345,19 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
       );
     }
 
+    String getProviderDisplayName(String id) {
+      if (id == AiModelCatalog.customProviderId) {
+        return localizations.customAiProviderLabel;
+      }
+      return AiModelCatalog.providerDisplayNames[id] ?? id;
+    }
+
     // Provider items — only configured providers.
     final providerItems = _availableProviderIds
         .map(
           (id) => DropdownMenuItem<String>(
             value: id,
-            child: Text(AiModelCatalog.providerDisplayNames[id] ?? id),
+            child: Text(getProviderDisplayName(id)),
           ),
         )
         .toList();
@@ -386,8 +424,7 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                         onChanged: _onProviderSelected,
                         loadingText: localizations.aiServicesLoading,
                         emptyText: localizations.aiServicesNotConfigured,
-                        selectedLabelOf: (id) =>
-                            AiModelCatalog.providerDisplayNames[id] ?? id,
+                        selectedLabelOf: (id) => getProviderDisplayName(id),
                       ),
                       if (!_isLoading &&
                           _selectedProviderId != null &&

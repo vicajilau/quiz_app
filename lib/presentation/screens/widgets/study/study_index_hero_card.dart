@@ -13,16 +13,22 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';
-import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
-import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
-import 'package:quizdy/domain/models/quiz/quiz_file.dart';
-import 'package:quizdy/data/repositories/srs/srs_repository.dart';
 import 'package:quizdy/core/service_locator.dart';
+import 'package:quizdy/data/repositories/srs/srs_repository.dart';
+import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
+import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
+import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
+import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
+import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 
 class StudyIndexHeroCard extends StatelessWidget {
   final StudyExecutionState state;
@@ -256,9 +262,151 @@ class StudyIndexHeroCard extends StatelessWidget {
               ],
             ),
           ),
+          const SizedBox(height: 12),
+          SizedBox(
+            width: double.infinity,
+            child: QuizdyButton(
+              type: QuizdyButtonType.primary,
+              title: localizations.studyScreenDownloadAllButton,
+              icon: LucideIcons.download,
+              expanded: true,
+              onPressed: () {
+                _showDownloadingDialog(context);
+                context.read<StudyExecutionBloc>().add(
+                  const DownloadAllStudyChunksRequested(),
+                );
+              },
+            ),
+          ),
         ],
       ],
     );
+  }
+
+  void _showDownloadingDialog(BuildContext context) {
+    final studyExecutionBloc = context.read<StudyExecutionBloc>();
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (dialogContext) {
+        bool hasStarted = false;
+        return BlocProvider.value(
+          value: studyExecutionBloc,
+          child: StatefulBuilder(
+            builder: (context, setState) {
+              return BlocConsumer<StudyExecutionBloc, StudyExecutionState>(
+                listener: (context, state) {
+                  final isProcessingAny = state.chunks.any(
+                    (c) => c.status == StudyChunkState.processing,
+                  );
+                  if (isProcessingAny) {
+                    hasStarted = true;
+                  }
+                  if (hasStarted && !isProcessingAny) {
+                    Navigator.of(dialogContext).pop();
+                  }
+                },
+                builder: (context, state) {
+                  final total = state.chunks.length;
+                  final completed = state.chunks
+                      .where(
+                        (c) =>
+                            c.status == StudyChunkState.completed ||
+                            c.status == StudyChunkState.downloaded,
+                      )
+                      .length;
+                  final percent = total > 0 ? (completed / total) : 0.0;
+
+                  return PopScope(
+                    canPop: false,
+                    child: AlertDialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      title: Row(
+                        children: [
+                          const Icon(
+                            LucideIcons.download,
+                            color: AppTheme.primaryColor,
+                          ),
+                          const SizedBox(width: 8),
+                          _LoadingDotsText(
+                            baseText: _stripTrailingDots(
+                              localizations.downloadingSectionsTitle,
+                            ),
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const SizedBox(height: 12),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(4),
+                            child: LinearProgressIndicator(
+                              value: percent,
+                              color: AppTheme.primaryColor,
+                              backgroundColor: AppTheme.zinc100,
+                              minHeight: 6,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Center(
+                            child: Text(
+                              localizations.downloadingSectionsProgress(
+                                completed,
+                                total,
+                              ),
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                color:
+                                    Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? AppTheme.zinc400
+                                    : AppTheme.zinc600,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            context.read<StudyExecutionBloc>().add(
+                              const CancelDownloadAllRequested(),
+                            );
+                            Navigator.of(dialogContext).pop();
+                          },
+                          child: Text(
+                            localizations.cancelButton.toUpperCase(),
+                            style: const TextStyle(
+                              color: AppTheme.errorColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  String _stripTrailingDots(String text) {
+    while (text.endsWith('.')) {
+      text = text.substring(0, text.length - 1);
+    }
+    return text;
   }
 
   Widget _buildStatCard(
@@ -299,6 +447,56 @@ class StudyIndexHeroCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _LoadingDotsText extends StatefulWidget {
+  final String baseText;
+  final TextStyle? style;
+
+  const _LoadingDotsText({required this.baseText, this.style});
+
+  @override
+  State<_LoadingDotsText> createState() => _LoadingDotsTextState();
+}
+
+class _LoadingDotsTextState extends State<_LoadingDotsText> {
+  late Timer _timer;
+  int _dotCount = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
+      if (mounted) {
+        setState(() {
+          _dotCount = (_dotCount % 3) + 1;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text.rich(
+      TextSpan(
+        style: widget.style,
+        children: [
+          TextSpan(text: widget.baseText),
+          TextSpan(text: '.' * _dotCount),
+          TextSpan(
+            text: '.' * (3 - _dotCount),
+            style: const TextStyle(color: Colors.transparent),
+          ),
+        ],
       ),
     );
   }

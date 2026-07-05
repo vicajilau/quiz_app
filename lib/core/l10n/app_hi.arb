@@ -2472,5 +2472,83 @@
   "srsSortByHitRate": "सफलता दर",
   "srsSortAscending": "आरोही",
   "srsSortDescending": "अवरोही",
-  "srsUnassignedSection": "अनिर्धारित"
+  "srsUnassignedSection": "अनिर्धारित",
+  "customAiProviderLabel": "कस्टम / स्थानीय एआई (Ollama, Groq...)",
+  "@customAiProviderLabel": {
+    "description": "Label for Custom / Local AI provider"
+  },
+  "customAiBaseUrlLabel": "कस्टम बेस यूआरएल",
+  "@customAiBaseUrlLabel": {
+    "description": "Label for custom AI base URL input"
+  },
+  "customAiBaseUrlHint": "जैसे http://localhost:11434/v1",
+  "@customAiBaseUrlHint": {
+    "description": "Hint text for custom AI base URL"
+  },
+  "customAiBaseUrlDescription": "आपके OpenAI-संगत API का बेस URL (जैसे Ollama, Groq, LM Studio, आदि)",
+  "@customAiBaseUrlDescription": {
+    "description": "Description of the custom AI base URL requirement"
+  },
+  "customAiApiKeyLabel": "कस्टम एपीआई कुंजी (वैकल्पिक)",
+  "@customAiApiKeyLabel": {
+    "description": "Label for custom AI API key input"
+  },
+  "customAiApiKeyHint": "यदि आपके कस्टम प्रदाता द्वारा आवश्यक हो तो एपीआई कुंजी दर्ज करें",
+  "@customAiApiKeyHint": {
+    "description": "Hint text for custom AI API key"
+  },
+  "customAiApiKeyDescription": "केवल तभी आवश्यक है जब आपके कस्टम एपीआई एंडपॉइंट को प्रमाणीकरण की आवश्यकता हो (जैसे Groq, OpenRouter)।",
+  "@customAiApiKeyDescription": {
+    "description": "Description for custom API key field"
+  },
+  "customAiLoadModelsButton": "कनेक्ट करें और मॉडल लोड करें",
+  "@customAiLoadModelsButton": {
+    "description": "Button to connect and fetch models from custom AI provider"
+  },
+  "customAiLoadModelsLoading": "कनेक्ट किया जा रहा है...",
+  "@customAiLoadModelsLoading": {
+    "description": "Loading text when connecting to custom AI"
+  },
+  "customAiLoadModelsSuccess": "सफलतापूर्वक {count} मॉडल लोड किए गए!",
+  "@customAiLoadModelsSuccess": {
+    "description": "Success message when custom models are loaded",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "customAiLoadModelsError": "कनेक्ट करने या मॉडल प्राप्त करने में विफल: {error}",
+  "@customAiLoadModelsError": {
+    "description": "Error message when custom model loading fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "customAiNoModelsError": "इस एंडपॉइंट पर कोई मॉडल नहीं मिला। सुनिश्चित करें कि सेवा चल रही है और मॉडल डाउनलोड किए गए हैं।",
+  "@customAiNoModelsError": {
+    "description": "Error message when connection succeeded but no models were returned"
+  },
+  "studyScreenDownloadAllButton": "सभी अनुभाग डाउनलोड करें",
+  "@studyScreenDownloadAllButton": {
+    "description": "Label for the button that downloads all study chunks/sections sequentially using AI."
+  },
+  "downloadingSectionsTitle": "अनुभाग जनरेट किए जा रहे हैं...",
+  "@downloadingSectionsTitle": {
+    "description": "Title for the modal dialog shown while downloading all sections sequentially"
+  },
+  "downloadingSectionsProgress": "{total} में से {completed} अनुभाग संसाधित किए गए",
+  "@downloadingSectionsProgress": {
+    "description": "Progress text shown inside the downloading sections dialog",
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }
