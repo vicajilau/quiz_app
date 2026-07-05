@@ -89,6 +89,12 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
       final geminiKey = await configService.getGeminiApiKey();
       final openaiKey = await configService.getOpenAIApiKey();
 
+      // Dynamically load models from Genkit registry using the configured keys
+      await AiModelCatalog.loadDynamicModels(
+        geminiApiKey: geminiKey,
+        openaiApiKey: openaiKey,
+      );
+
       final available = <String>[
         if ((geminiKey?.isNotEmpty ?? false)) AiModelCatalog.geminiProviderId,
         if ((openaiKey?.isNotEmpty ?? false)) AiModelCatalog.openaiProviderId,
