@@ -26,9 +26,8 @@ part 'app_update_state.dart';
 class AppUpdateCubit extends Cubit<AppUpdateState> {
   final AppRemoteConfigService _remoteConfigService;
 
-  AppUpdateCubit({required AppRemoteConfigService remoteConfigService})
-    : _remoteConfigService = remoteConfigService,
-      super(const AppUpdateInitial()) {
+  AppUpdateCubit({required this._remoteConfigService})
+    : super(const AppUpdateInitial()) {
     checkForUpdate();
   }
 

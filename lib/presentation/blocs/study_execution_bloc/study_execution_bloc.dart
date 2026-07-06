@@ -49,28 +49,21 @@ class StudyExecutionBloc
   bool _isDownloadAllCancelled = false;
 
   StudyExecutionBloc({
-    required AiJitProcessingService jitProcessingService,
-    required AppLocalizations localizations,
+    required this._jitProcessingService,
+    required this._localizations,
     required List<StudyChunk> initialChunks,
     required String documentTitle,
     String? documentSummary,
     AiFileAttachment? fileAttachment,
     String? fileUri,
-    bool isAutoDifficulty = true,
-    AiDifficultyLevel? difficultyLevel,
-    String? originalText,
-    String? language,
-    AiGenerationMode? generationMode,
+    this._isAutoDifficulty = true,
+    this._difficultyLevel,
+    this._originalText,
+    this._language,
+    this._generationMode,
     DateTime? fileExpirationTime,
     this.onProgressChanged,
-  }) : _jitProcessingService = jitProcessingService,
-       _localizations = localizations,
-       _isAutoDifficulty = isAutoDifficulty,
-       _difficultyLevel = difficultyLevel,
-       _originalText = originalText,
-       _language = language,
-       _generationMode = generationMode,
-       super(
+  }) : super(
          _initialProgress(
            initialChunks,
            documentTitle,

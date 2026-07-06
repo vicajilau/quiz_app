@@ -15,6 +15,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:genui/genui.dart';
+import 'package:genui_annotations/genui_annotations.dart';
+import 'package:json_schema_builder/json_schema_builder.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
@@ -23,6 +26,9 @@ import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_feedback_banner.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 
+part 'home_footer_widget.genui.g.dart';
+
+@generativeUI
 class HomeFooterWidget extends StatelessWidget {
   final bool isLoading;
   final bool showFeedbackBanner;

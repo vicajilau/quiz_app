@@ -33,8 +33,7 @@ class QuizFileRepository {
   /// This allows for the delegation of file-related tasks.
   ///
   /// - [fileService]: The `FileService` instance that handles file operations.
-  QuizFileRepository({required IFileService fileService})
-    : _fileService = fileService;
+  QuizFileRepository({required this._fileService});
 
   /// Loads a `QuizFile` from a file at the specified [filePath].
   /// This method calls `readQuizFile` from `QuizFileService` to read the file,

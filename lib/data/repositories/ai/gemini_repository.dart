@@ -42,11 +42,10 @@ class GeminiRepository implements AiRepository {
   final String modelId;
 
   GeminiRepository({
-    required Dio dioClient,
-    required ConfigurationService configurationService,
+    required this._dioClient,
+    required this._configurationService,
     required this.modelId,
-  }) : _dioClient = dioClient,
-       _configurationService = configurationService;
+  });
 
   @override
   String get providerId => AiModelCatalog.geminiProviderId;

@@ -29,10 +29,9 @@ class AiRepositoryFactory {
   final ConfigurationService _configurationService;
 
   AiRepositoryFactory({
-    required Dio dioClient,
-    required ConfigurationService configurationService,
-  }) : _dioClient = dioClient,
-       _configurationService = configurationService;
+    required this._dioClient,
+    required this._configurationService,
+  });
 
   /// Returns a repository configured for [modelId].
   ///

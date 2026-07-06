@@ -42,12 +42,11 @@ class OpenAiRepository implements AiRepository {
   final String modelId;
 
   OpenAiRepository({
-    required Dio dioClient,
-    required ConfigurationService configurationService,
+    required this._dioClient,
+    required this._configurationService,
     required this.modelId,
     this.isCustom = false,
-  }) : _dioClient = dioClient,
-       _configurationService = configurationService;
+  });
 
   @override
   String get providerId => isCustom

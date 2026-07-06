@@ -43,11 +43,9 @@ class StudyEditorCubit extends Cubit<StudyEditorState> {
 
   StudyEditorCubit({
     required List<StudyChunk> initialChunks,
-    QuizFile? quizFile,
-    required QuizFileRepository repository,
-  }) : _repository = repository,
-       _quizFile = quizFile,
-       super(StudyEditorState(chunks: List<StudyChunk>.from(initialChunks)));
+    this._quizFile,
+    required this._repository,
+  }) : super(StudyEditorState(chunks: List<StudyChunk>.from(initialChunks)));
 
   /// Toggles the study index edit mode on or off.
   void toggleEditMode() {
