@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:quizdy/data/interceptors/ai_logging_interceptor.dart';
@@ -138,12 +139,15 @@ class ServiceLocator {
       AiModelCatalog.registerCustomModels(customModels);
     }
 
-    await AiModelCatalog.loadDynamicModels(
-      geminiApiKey: geminiKey,
-      openaiApiKey: openaiKey,
-      customBaseUrl: customBaseUrl,
-      customApiKey: customApiKey,
-      customModels: customModels,
+    // Load dynamic models in the background to avoid blocking the app startup/first frame
+    unawaited(
+      AiModelCatalog.loadDynamicModels(
+        geminiApiKey: geminiKey,
+        openaiApiKey: openaiKey,
+        customBaseUrl: customBaseUrl,
+        customApiKey: customApiKey,
+        customModels: customModels,
+      ),
     );
   }
 
