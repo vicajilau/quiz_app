@@ -65,7 +65,7 @@ dependencies:
   pdfrx: ^2.4.4
   share_plus: ^13.2.0
   app_links: ^7.2.0
-  in_app_update: ^4.2.3
+  in_app_update: ^5.0.0
   hive_ce: ^2.19.3
   hive_ce_flutter: ^2.3.4
   genkit: ^0.14.1
