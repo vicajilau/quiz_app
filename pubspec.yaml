@@ -59,13 +59,13 @@ dependencies:
   path_provider: ^2.1.6
   collection: ^1.19.1
   pasteboard: ^0.5.0
-  dio: ^5.9.2
+  dio: ^5.10.0
   cross_file: ^0.3.5+2
-  lottie: ^3.3.3
+  lottie: ^3.4.0
   pdfrx: ^2.4.4
   share_plus: ^13.2.0
   app_links: ^7.2.0
-  in_app_update: ^4.2.3
+  in_app_update: ^5.0.0
   hive_ce: ^2.19.3
   hive_ce_flutter: ^2.3.4
   genui: ^0.9.2
@@ -89,7 +89,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
-  msix: ^3.17.0
+  msix: ^3.18.0
   bloc_test: ^10.0.0
   mocktail: ^1.0.5
   build_runner: ^2.15.0
