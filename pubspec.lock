@@ -633,10 +633,10 @@ packages:
     dependency: "direct main"
     description:
       name: in_app_update
-      sha256: "9924a3efe592e1c0ec89dda3683b3cfec3d4cd02d908e6de00c24b759038ddb1"
+      sha256: c55b4da41baf34b440ba627843932aa6f1689b5c499cfac98aec156b3113d89e
       url: "https://pub.dev"
     source: hosted
-    version: "4.2.5"
+    version: "5.0.0"
   intl:
     dependency: transitive
     description:
@@ -737,10 +737,10 @@ packages:
     dependency: "direct main"
     description:
       name: lottie
-      sha256: "8b6359a7422167014aa73ce763fa133fb832065dcc0ac4d1dec1f603a5cef7d0"
+      sha256: "9f050d75e94e783537454b4f14a10f690fc24e83dab6520ef5a4bb185b6d6da3"
       url: "https://pub.dev"
     source: hosted
-    version: "3.3.3"
+    version: "3.4.0"
   lucide_icons_flutter:
     dependency: "direct main"
     description:
@@ -793,10 +793,10 @@ packages:
     dependency: "direct dev"
     description:
       name: msix
-      sha256: bed33b53662c7eac66dc4f9b4176d03140307e6a892ab21ce529be6f74393db0
+      sha256: "61415c352e8aea084332b8a5514e6408c961c8cdeca202804fff1040eb555ac7"
       url: "https://pub.dev"
     source: hosted
-    version: "3.17.0"
+    version: "3.18.0"
   native_toolchain_c:
     dependency: transitive
     description:
