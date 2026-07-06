@@ -14,19 +14,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:genui/genui.dart';
+import 'package:genui_annotations/genui_annotations.dart';
+import 'package:json_schema_builder/json_schema_builder.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
-class SectionTitleComponent extends StatelessWidget {
-  final StudyComponent element;
+part 'section_title_component.genui.g.dart';
 
-  const SectionTitleComponent({super.key, required this.element});
+@GenerativeUI(name: 'section_title')
+class SectionTitleComponent extends StatelessWidget {
+  final String title;
+  final String? subtitle;
+
+  const SectionTitleComponent({super.key, required this.title, this.subtitle});
 
   @override
   Widget build(BuildContext context) {
-    final title = element.props['title']?.toString() ?? '';
-    final subtitle = element.props['subtitle']?.toString();
+    final subtitle = this.subtitle;
     final studyTheme = context.studyTheme;
 
     return Padding(

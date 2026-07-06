@@ -123,4 +123,66 @@ extension StringExtension on String {
     // Remove leading/trailing underscores or dots if desired, or just trim
     return sanitized.trim();
   }
+
+  /// Repairs a truncated JSON string by finding and balancing unclosed brackets and braces.
+  /// Handles strings and escape characters to ignore false positive brackets.
+  String repairJsonBrackets() {
+    final List<int> stack = [];
+    bool inString = false;
+    bool isEscaped = false;
+
+    for (int i = 0; i < length; i++) {
+      final char = codeUnitAt(i);
+
+      if (inString) {
+        if (isEscaped) {
+          isEscaped = false;
+        } else if (char == 92) {
+          // backslash '\'
+          isEscaped = true;
+        } else if (char == 34) {
+          // double quote '"'
+          inString = false;
+        }
+      } else {
+        if (char == 34) {
+          // double quote '"'
+          inString = true;
+        } else if (char == 123) {
+          // '{'
+          stack.add(123);
+        } else if (char == 125) {
+          // '}'
+          if (stack.isNotEmpty && stack.last == 123) {
+            stack.removeLast();
+          }
+        } else if (char == 91) {
+          // '['
+          stack.add(91);
+        } else if (char == 93) {
+          // ']'
+          if (stack.isNotEmpty && stack.last == 91) {
+            stack.removeLast();
+          }
+        }
+      }
+    }
+
+    final buffer = StringBuffer(this);
+
+    if (inString) {
+      buffer.write('"');
+    }
+
+    for (int i = stack.length - 1; i >= 0; i--) {
+      final openSymbol = stack[i];
+      if (openSymbol == 123) {
+        buffer.write('}');
+      } else if (openSymbol == 91) {
+        buffer.write(']');
+      }
+    }
+
+    return buffer.toString();
+  }
 }

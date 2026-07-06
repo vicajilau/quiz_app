@@ -182,4 +182,96 @@ void main() {
       getIt.unregister<AiRepositoryFactory>();
     },
   );
+
+  test(
+    'AiQuestionGenerationService parses markdown JSON successfully',
+    () async {
+      const mockJson = '''
+    Some intro text
+    ```json
+    [
+      {
+        "text": "What is the capital of France?",
+        "type": "single_choice",
+        "options": ["Paris", "London", "Berlin", "Madrid"],
+        "correctAnswers": [0],
+        "explanation": "Paris is the capital."
+      }
+    ]
+    ```
+    Some outro text
+    ''';
+
+      final fakeRepo = FakeAiRepository(mockJson);
+      final fakeFactory = FakeAiRepositoryFactory(fakeRepo);
+
+      final getIt = ServiceLocator.getIt;
+      getIt.registerSingleton<AiRepositoryFactory>(fakeFactory);
+
+      final config = const AiQuestionGenerationConfig(
+        questionTypes: [AiQuestionType.singleChoice],
+        language: 'en',
+        content: 'France info',
+      );
+
+      final service = AiQuestionGenerationService(
+        configurationService: getIt(),
+      );
+
+      final questions = await service.generateQuestions(
+        config,
+        localizations: MockAppLocalizations(),
+      );
+
+      expect(questions.length, 1);
+      expect(questions.first.text, 'What is the capital of France?');
+
+      getIt.unregister<AiRepositoryFactory>();
+    },
+  );
+
+  test(
+    'AiQuestionGenerationService parses wrapped JSON map successfully',
+    () async {
+      const mockJson = '''
+      {
+        "questions": [
+          {
+            "text": "What is the capital of France?",
+            "type": "single_choice",
+            "options": ["Paris", "London", "Berlin", "Madrid"],
+            "correctAnswers": [0],
+            "explanation": "Paris is the capital."
+          }
+        ]
+      }
+    ''';
+
+      final fakeRepo = FakeAiRepository(mockJson);
+      final fakeFactory = FakeAiRepositoryFactory(fakeRepo);
+
+      final getIt = ServiceLocator.getIt;
+      getIt.registerSingleton<AiRepositoryFactory>(fakeFactory);
+
+      final config = const AiQuestionGenerationConfig(
+        questionTypes: [AiQuestionType.singleChoice],
+        language: 'en',
+        content: 'France info',
+      );
+
+      final service = AiQuestionGenerationService(
+        configurationService: getIt(),
+      );
+
+      final questions = await service.generateQuestions(
+        config,
+        localizations: MockAppLocalizations(),
+      );
+
+      expect(questions.length, 1);
+      expect(questions.first.text, 'What is the capital of France?');
+
+      getIt.unregister<AiRepositoryFactory>();
+    },
+  );
 }

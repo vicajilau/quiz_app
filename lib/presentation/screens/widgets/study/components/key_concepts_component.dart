@@ -14,22 +14,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:genui/genui.dart';
+import 'package:genui_annotations/genui_annotations.dart';
+import 'package:json_schema_builder/json_schema_builder.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:quizdy/domain/models/quiz/study_component.dart';
-import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
+import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
-class KeyConceptsComponent extends StatelessWidget {
-  final StudyComponent element;
+part 'key_concepts_component.genui.g.dart';
 
-  const KeyConceptsComponent({super.key, required this.element});
+@GenerativeUI(name: 'key_concepts')
+class KeyConceptsComponent extends StatelessWidget {
+  final String? title;
+  final List<dynamic> items;
+
+  const KeyConceptsComponent({super.key, this.title, required this.items});
 
   @override
   Widget build(BuildContext context) {
-    final title = element.props['title']?.toString();
-    final itemsList = element.props['items'] as List<dynamic>? ?? [];
+    final title = this.title;
+    final itemsList = items;
 
-    final items = itemsList.map((e) => e.toString()).toList();
+    final conceptItems = itemsList.map((e) => e.toString()).toList();
     final studyTheme = context.studyTheme;
 
     return Container(
@@ -67,11 +73,11 @@ class KeyConceptsComponent extends StatelessWidget {
             Divider(color: studyTheme.cardDivider),
             const SizedBox(height: 16),
           ],
-          if (items.isNotEmpty)
+          if (conceptItems.isNotEmpty)
             Wrap(
               spacing: 8.0,
               runSpacing: 12.0,
-              children: items.map((concept) {
+              children: conceptItems.map((concept) {
                 return Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 14.0,
@@ -88,8 +94,8 @@ class KeyConceptsComponent extends StatelessWidget {
                       ).primaryColor.withValues(alpha: 0.3),
                     ),
                   ),
-                  child: QuizdyLatexText(
-                    concept,
+                  child: QuizdyMarkdown(
+                    data: concept,
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontWeight: FontWeight.w600,

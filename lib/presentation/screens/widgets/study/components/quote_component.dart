@@ -14,20 +14,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:genui/genui.dart';
+import 'package:genui_annotations/genui_annotations.dart';
+import 'package:json_schema_builder/json_schema_builder.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
-class QuoteComponent extends StatelessWidget {
-  final StudyComponent element;
+part 'quote_component.genui.g.dart';
 
-  const QuoteComponent({super.key, required this.element});
+@GenerativeUI(name: 'quote')
+class QuoteComponent extends StatelessWidget {
+  final String body;
+  final String? author;
+
+  const QuoteComponent({super.key, required this.body, this.author});
 
   @override
   Widget build(BuildContext context) {
-    final body = element.props['body']?.toString() ?? '';
-    final author = element.props['author']?.toString();
+    final author = this.author;
     final studyTheme = context.studyTheme;
 
     return Container(

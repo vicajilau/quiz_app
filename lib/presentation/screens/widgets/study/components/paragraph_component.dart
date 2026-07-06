@@ -14,19 +14,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:quizdy/domain/models/quiz/study_component.dart';
+import 'package:genui/genui.dart';
+import 'package:genui_annotations/genui_annotations.dart';
+import 'package:json_schema_builder/json_schema_builder.dart';
 import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
-class ParagraphComponent extends StatelessWidget {
-  final StudyComponent element;
+part 'paragraph_component.genui.g.dart';
 
-  const ParagraphComponent({super.key, required this.element});
+@GenerativeUI(name: 'paragraph')
+class ParagraphComponent extends StatelessWidget {
+  final String? title;
+  final String body;
+
+  const ParagraphComponent({super.key, this.title, required this.body});
 
   @override
   Widget build(BuildContext context) {
-    final title = element.props['title']?.toString();
-    final body = element.props['body']?.toString() ?? '';
+    final title = this.title;
     final studyTheme = context.studyTheme;
 
     return Padding(

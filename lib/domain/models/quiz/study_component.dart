@@ -53,22 +53,35 @@ class StudyComponent {
   /// - [json]: The JSON map containing the dynamic layout data.
   /// - Returns: A populated `StudyComponent` instance.
   factory StudyComponent.fromJson(Map<String, dynamic> json) {
-    // Determine the type: check both the new issue #221 'type' and legacy 'component_type'.
-    // Normalise snake_case → camelCase so values like "section_title" match enum
-    // names like "sectionTitle".
-    String toCamelCase(String s) => s.replaceAllMapped(
-      RegExp(r'_([a-z])'),
-      (m) => m.group(1)!.toUpperCase(),
-    );
-
+    // Determine the type: check both the new issue #221 'type', legacy 'component_type', and fallback 'component'.
     final rawType =
         (json['type'] as String?)?.trim() ??
+        (json['component'] as String?)?.trim() ??
         (json['component_type'] as String?)?.trim();
-    final normalised = rawType != null ? toCamelCase(rawType) : null;
 
-    final type = StudyComponentType.values.firstWhereOrNull(
-      (e) => e.name == normalised,
-    );
+    StudyComponentType? type;
+    if (rawType != null && rawType.isNotEmpty) {
+      // 1. Strip component suffix case-insensitively (e.g., ParagraphComponent, paragraph_component, paragraph-component)
+      var cleanType = rawType.replaceAll(
+        RegExp(r'[-_]?component$', caseSensitive: false),
+        '',
+      );
+
+      // 2. Convert snake_case or kebab-case to camelCase
+      cleanType = cleanType.replaceAllMapped(
+        RegExp(r'[_-]([a-zA-Z])'),
+        (m) => m.group(1)!.toUpperCase(),
+      );
+
+      // 3. Ensure the first letter is lowercase to match enum names (e.g., Paragraph -> paragraph)
+      if (cleanType.isNotEmpty) {
+        cleanType = cleanType[0].toLowerCase() + cleanType.substring(1);
+      }
+
+      type = StudyComponentType.values.firstWhereOrNull(
+        (e) => e.name == cleanType,
+      );
+    }
 
     // Collect all properties dynamically.
     // In legacy format, properties were inside 'props'.
@@ -78,9 +91,12 @@ class StudyComponent {
       extractedProps = Map<String, dynamic>.from(json['props']);
     }
 
-    // Extract all other keys (excluding 'type' and 'props') into props
+    // Extract all other keys (excluding 'type', 'component', 'component_type' and 'props') into props
     json.forEach((key, value) {
-      if (key != 'type' && key != 'component_type' && key != 'props') {
+      if (key != 'type' &&
+          key != 'component' &&
+          key != 'component_type' &&
+          key != 'props') {
         extractedProps[key] = value;
       }
     });
