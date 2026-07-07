@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
@@ -94,7 +94,7 @@ class OnboardingDownloadAppSection extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Icon(
-                          LucideIcons.qrCode,
+                          LucideIcons.qr_code,
                           size: 20,
                           color: colors.subtitle,
                         ),
@@ -198,7 +198,7 @@ class OnboardingDownloadAppSection extends StatelessWidget {
             child: QuizdyButton(
               type: QuizdyButtonType.secondary,
               title: storeLink.title(context),
-              icon: LucideIcons.qrCode,
+              icon: LucideIcons.qr_code,
               expanded: true,
               onPressed: () => _showQrDialog(context, storeLink),
             ),
@@ -218,7 +218,7 @@ class OnboardingDownloadAppSection extends StatelessWidget {
             child: QuizdyButton(
               type: QuizdyButtonType.secondary,
               title: storeLink.title(context),
-              icon: LucideIcons.externalLink,
+              icon: LucideIcons.external_link,
               expanded: true,
               onPressed: () => _openDesktopStore(context, storeLink),
             ),

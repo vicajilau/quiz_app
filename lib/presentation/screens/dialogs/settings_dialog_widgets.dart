@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
@@ -40,7 +40,7 @@ class SettingsOnboardingRow extends StatelessWidget {
         }
       },
       child: _SettingsRow(
-        icon: LucideIcons.graduationCap,
+        icon: LucideIcons.graduation_cap,
         title: AppLocalizations.of(context)!.showOnboarding,
         description: AppLocalizations.of(context)!.showOnboardingDescription,
         colors: colors,
@@ -115,7 +115,7 @@ class SettingsSupportRow extends StatelessWidget {
       borderRadius: BorderRadius.circular(12),
       onTap: onTap,
       child: _SettingsRow(
-        icon: LucideIcons.lifeBuoy,
+        icon: LucideIcons.life_buoy,
         title: AppLocalizations.of(context)!.supportLabel,
         description: AppLocalizations.of(context)!.supportDescription,
         colors: colors,
@@ -172,7 +172,7 @@ class _SettingsRow extends StatelessWidget {
               ],
             ),
           ),
-          Icon(LucideIcons.chevronRight, size: 18, color: colors.subtitle),
+          Icon(LucideIcons.chevron_right, size: 18, color: colors.subtitle),
         ],
       ),
     );

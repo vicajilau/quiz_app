@@ -18,7 +18,7 @@ import 'package:genui/genui.dart';
 import 'package:genui_annotations/genui_annotations.dart';
 import 'package:json_schema_builder/json_schema_builder.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 

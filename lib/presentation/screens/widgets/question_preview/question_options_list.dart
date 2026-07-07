@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';

@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:genui/genui.dart';
 import 'package:genui_annotations/genui_annotations.dart';
 import 'package:json_schema_builder/json_schema_builder.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
@@ -51,7 +51,7 @@ class WarningComponent extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(LucideIcons.alertTriangle, color: iconColor, size: 16),
+              Icon(LucideIcons.triangle_alert, color: iconColor, size: 16),
               const SizedBox(width: 8),
               Text(
                 AppLocalizations.of(context)!.studyScreenImportant,

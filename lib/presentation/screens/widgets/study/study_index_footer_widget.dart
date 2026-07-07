@@ -16,7 +16,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_progress_bar.dart';
@@ -169,7 +169,7 @@ class _StudyIndexFooterWidgetState extends State<StudyIndexFooterWidget> {
                           backgroundColor: Theme.of(
                             context,
                           ).extension<CustomColors>()?.onWarningContainer,
-                          icon: LucideIcons.copyX,
+                          icon: LucideIcons.copy_x,
                           expanded: true,
                           title: widget.localizations.deleteDuplicatesButton,
                           onPressed: widget.onDeleteDuplicates,
@@ -180,7 +180,7 @@ class _StudyIndexFooterWidgetState extends State<StudyIndexFooterWidget> {
                       (
                         button: QuizdyButton(
                           type: QuizdyButtonType.warning,
-                          icon: LucideIcons.trash2,
+                          icon: LucideIcons.trash_2,
                           expanded: true,
                           title:
                               '${widget.localizations.deleteButton} (${widget.selectedChunkCount})',
@@ -235,7 +235,7 @@ class _StudyIndexFooterWidgetState extends State<StudyIndexFooterWidget> {
                       (
                         button: QuizdyButton(
                           type: QuizdyButtonType.secondary,
-                          icon: LucideIcons.fileDown,
+                          icon: LucideIcons.file_down,
                           expanded: true,
                           title: widget.localizations.exportAsPdf,
                           onPressed: widget.onExportPdf,

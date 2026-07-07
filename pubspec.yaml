@@ -54,7 +54,7 @@ dependencies:
   url_launcher: ^6.3.2
   gpt_markdown: ^1.1.7
   flutter_math_fork: ^0.7.2
-  lucide_icons_flutter: ^3.1.14+1
+  flutter_lucide: ^1.11.0
   qr_flutter: ^4.1.0
   path_provider: ^2.1.6
   collection: ^1.19.1

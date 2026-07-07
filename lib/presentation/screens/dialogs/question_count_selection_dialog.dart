@@ -16,7 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
@@ -778,7 +778,7 @@ class _QuestionCountSelectionDialogState
                           title: l10n.startWithSelectedQuestions(
                             widget.selectedQuestionCount,
                           ),
-                          icon: LucideIcons.checkCircle,
+                          icon: LucideIcons.circle_check,
                           expanded: true,
                           onPressed:
                               ((_examTimeEnabled && _hasExamTimeError) ||

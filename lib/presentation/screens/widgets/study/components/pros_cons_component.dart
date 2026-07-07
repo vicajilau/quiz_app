@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:genui/genui.dart';
 import 'package:genui_annotations/genui_annotations.dart';
 import 'package:json_schema_builder/json_schema_builder.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
@@ -96,7 +96,7 @@ class ProsConsComponent extends StatelessWidget {
         : studyTheme.consBackground;
     final borderColor = isPros ? studyTheme.prosBorder : studyTheme.consBorder;
     final iconColor = isPros ? studyTheme.prosIcon : studyTheme.consIcon;
-    final icon = isPros ? LucideIcons.checkCircle2 : LucideIcons.xCircle;
+    final icon = isPros ? LucideIcons.circle_check : LucideIcons.circle_x;
 
     return Container(
       padding: const EdgeInsets.all(20.0),

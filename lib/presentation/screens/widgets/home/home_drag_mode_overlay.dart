@@ -16,7 +16,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
@@ -38,7 +38,7 @@ class HomeDragModeOverlay extends StatelessWidget {
     final quizColor = customColors.onWarningContainer!;
 
     final studyZone = _DragZone(
-      icon: LucideIcons.bookOpen,
+      icon: LucideIcons.book_open,
       label: localizations.studyModeLabel,
       hint: localizations.dropHereToStudy,
       accentColor: studyColor,

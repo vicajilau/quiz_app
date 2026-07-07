@@ -18,7 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dio/dio.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:platform_detail/platform_detail.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/extensions/string_extension.dart';

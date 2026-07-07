@@ -15,7 +15,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/extensions/quiz_loaded_theme.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
@@ -60,7 +60,7 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: IconButton(
                   padding: EdgeInsets.zero,
                   icon: Icon(
-                    state.isIndexMode ? Icons.close : LucideIcons.arrowLeft,
+                    state.isIndexMode ? Icons.close : LucideIcons.arrow_left,
                     color: Theme.of(context).colorScheme.onPrimary,
                     size: 20,
                   ),
@@ -248,8 +248,8 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                                     children: [
                                       Icon(
                                         state.isSelectionMode
-                                            ? LucideIcons.checkSquare
-                                            : LucideIcons.mousePointer2,
+                                            ? LucideIcons.square_check
+                                            : LucideIcons.mouse_pointer_2,
                                         color: Theme.of(
                                           context,
                                         ).colorScheme.onPrimary,

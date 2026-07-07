@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
@@ -475,7 +475,7 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
 
                 if (showDirectOnMobile) {
                   return _buildIconButton(
-                    icon: LucideIcons.trash2,
+                    icon: LucideIcons.trash_2,
                     color: theme.colorScheme.error,
                     onPressed: widget.onDelete!,
                     tooltip: localizations.deleteButton,
@@ -505,7 +505,7 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
                                 ],
                                 if (hasDeleteAction) ...[
                                   _buildIconButton(
-                                    icon: LucideIcons.trash2,
+                                    icon: LucideIcons.trash_2,
                                     color: theme.colorScheme.error,
                                     onPressed: widget.onDelete!,
                                     tooltip: localizations.deleteButton,
@@ -519,7 +519,7 @@ class _StudyIndexChunkCardState extends State<StudyIndexChunkCard> {
                     if (isMobile)
                       _buildIconButton(
                         icon: _isActionsExpanded
-                            ? LucideIcons.chevronRight
+                            ? LucideIcons.chevron_right
                             : Icons.more_horiz,
                         color: Theme.of(context).hintColor,
                         onPressed: () => setState(

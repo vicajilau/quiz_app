@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:genui/genui.dart';
 import 'package:genui_annotations/genui_annotations.dart';
 import 'package:json_schema_builder/json_schema_builder.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
 part 'section_title_component.genui.g.dart';
@@ -45,7 +45,7 @@ class SectionTitleComponent extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),
                 child: Icon(
-                  LucideIcons.bookOpen,
+                  LucideIcons.book_open,
                   color: Theme.of(context).primaryColor,
                   size: 24,
                 ),

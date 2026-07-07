@@ -507,6 +507,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_lucide:
+    dependency: "direct main"
+    description:
+      name: flutter_lucide
+      sha256: d2866c9ba75b2300e73a888489f0d7ef1d225e1c352d7e7f5c7fdff7d04e294c
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.11.0"
   flutter_markdown_plus:
     dependency: transitive
     description:
@@ -853,14 +861,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.4.0"
-  lucide_icons_flutter:
-    dependency: "direct main"
-    description:
-      name: lucide_icons_flutter
-      sha256: f9fd5d49b93bf14b89e0ff4818658a74ab16899bdaf7aa745358ee1a34f54eed
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.14+1"
   markdown:
     dependency: transitive
     description:

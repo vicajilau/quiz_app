@@ -16,7 +16,7 @@
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:mime/mime.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
@@ -397,7 +397,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                           QuizdyButton(
                             type: QuizdyButtonType.secondary,
                             title: localizations.pasteFromClipboard,
-                            icon: LucideIcons.clipboardPaste,
+                            icon: LucideIcons.clipboard_paste,
                             expanded: true,
                             onPressed: widget.onPasteFromClipboard,
                           ),
@@ -456,7 +456,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                           child: QuizdyButton(
                             type: QuizdyButtonType.secondary,
                             title: localizations.backButton,
-                            icon: LucideIcons.arrowLeft,
+                            icon: LucideIcons.arrow_left,
                             expanded: true,
                             onPressed: widget.onBack,
                           ),

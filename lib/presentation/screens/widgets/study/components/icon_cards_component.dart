@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:genui/genui.dart';
 import 'package:genui_annotations/genui_annotations.dart';
 import 'package:json_schema_builder/json_schema_builder.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
@@ -97,7 +97,7 @@ class IconCardsComponent extends StatelessWidget {
                           Row(
                             children: [
                               Icon(
-                                LucideIcons.chevronRightSquare,
+                                LucideIcons.square_chevron_right,
                                 color: Theme.of(context).primaryColor,
                                 size: 18,
                               ),

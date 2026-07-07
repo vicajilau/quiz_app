@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/extensions/ai_assistant_theme.dart';
@@ -273,7 +273,7 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                       value: value,
                       isExpanded: true,
                       icon: Icon(
-                        LucideIcons.chevronDown,
+                        LucideIcons.chevron_down,
                         color: chevronColor,
                         size: 16,
                       ),
@@ -336,7 +336,7 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
               ),
             ),
             Icon(
-              expanded ? LucideIcons.chevronUp : LucideIcons.chevronDown,
+              expanded ? LucideIcons.chevron_up : LucideIcons.chevron_down,
               size: 16,
               color: chevronColor,
             ),
