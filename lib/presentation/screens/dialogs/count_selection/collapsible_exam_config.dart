@@ -90,7 +90,9 @@ class _CollapsibleExamConfigState extends State<CollapsibleExamConfig> {
                   ),
                 ),
                 Icon(
-                  _isExpanded ? LucideIcons.chevron_up : LucideIcons.chevron_down,
+                  _isExpanded
+                      ? LucideIcons.chevron_up
+                      : LucideIcons.chevron_down,
                   size: 18,
                   color: iconColor,
                 ),

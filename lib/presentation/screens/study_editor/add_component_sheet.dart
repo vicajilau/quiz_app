@@ -68,44 +68,49 @@ class AddComponentSheet extends StatelessWidget {
 
   // ── Icon + accent color per type ───────────────────────────────────────────
 
-  static (IconData, Color) _typeStyle(
-    StudyComponentType type,
-  ) => switch (type) {
-    StudyComponentType.paragraph => (
-      LucideIcons.file_text,
-      AppTheme.primaryColor,
-    ),
-    StudyComponentType.sectionTitle => (
-      LucideIcons.type,
-      AppTheme.primaryColor,
-    ),
-    StudyComponentType.quote => (LucideIcons.quote, AppTheme.teal300),
-    StudyComponentType.formula => (LucideIcons.sigma, AppTheme.sky400),
-    StudyComponentType.numberedList => (
-      LucideIcons.list_ordered,
-      AppTheme.amber400,
-    ),
-    StudyComponentType.keyConcepts => (
-      LucideIcons.lightbulb,
-      AppTheme.purple400,
-    ),
-    StudyComponentType.comparisonTable => (
-      LucideIcons.table_2,
-      AppTheme.violet400,
-    ),
-    StudyComponentType.timeline => (LucideIcons.git_commit_horizontal, AppTheme.teal300),
-    StudyComponentType.warning => (
-      LucideIcons.triangle_alert,
-      AppTheme.amber400,
-    ),
-    StudyComponentType.keyDefinition => (LucideIcons.book_open, AppTheme.sky400),
-    StudyComponentType.prosCons => (LucideIcons.scale, AppTheme.emerald400),
-    StudyComponentType.reminder => (LucideIcons.bell, AppTheme.purple400),
-    StudyComponentType.iconCards => (
-      LucideIcons.layout_grid,
-      AppTheme.violet400,
-    ),
-  };
+  static (IconData, Color) _typeStyle(StudyComponentType type) =>
+      switch (type) {
+        StudyComponentType.paragraph => (
+          LucideIcons.file_text,
+          AppTheme.primaryColor,
+        ),
+        StudyComponentType.sectionTitle => (
+          LucideIcons.type,
+          AppTheme.primaryColor,
+        ),
+        StudyComponentType.quote => (LucideIcons.quote, AppTheme.teal300),
+        StudyComponentType.formula => (LucideIcons.sigma, AppTheme.sky400),
+        StudyComponentType.numberedList => (
+          LucideIcons.list_ordered,
+          AppTheme.amber400,
+        ),
+        StudyComponentType.keyConcepts => (
+          LucideIcons.lightbulb,
+          AppTheme.purple400,
+        ),
+        StudyComponentType.comparisonTable => (
+          LucideIcons.table_2,
+          AppTheme.violet400,
+        ),
+        StudyComponentType.timeline => (
+          LucideIcons.git_commit_horizontal,
+          AppTheme.teal300,
+        ),
+        StudyComponentType.warning => (
+          LucideIcons.triangle_alert,
+          AppTheme.amber400,
+        ),
+        StudyComponentType.keyDefinition => (
+          LucideIcons.book_open,
+          AppTheme.sky400,
+        ),
+        StudyComponentType.prosCons => (LucideIcons.scale, AppTheme.emerald400),
+        StudyComponentType.reminder => (LucideIcons.bell, AppTheme.purple400),
+        StudyComponentType.iconCards => (
+          LucideIcons.layout_grid,
+          AppTheme.violet400,
+        ),
+      };
 
   @override
   Widget build(BuildContext context) {

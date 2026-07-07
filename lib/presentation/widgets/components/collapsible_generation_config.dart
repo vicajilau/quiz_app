@@ -92,7 +92,9 @@ class _CollapsibleGenerationConfigState
                   ),
                 ),
                 Icon(
-                  _isExpanded ? LucideIcons.chevron_up : LucideIcons.chevron_down,
+                  _isExpanded
+                      ? LucideIcons.chevron_up
+                      : LucideIcons.chevron_down,
                   size: 18,
                   color: iconColor,
                 ),

@@ -101,7 +101,11 @@ class _DefaultLeadingButton extends StatelessWidget {
           ),
           child: IconButton(
             padding: EdgeInsets.zero,
-            icon: Icon(LucideIcons.arrow_left, color: foregroundColor, size: 20),
+            icon: Icon(
+              LucideIcons.arrow_left,
+              color: foregroundColor,
+              size: 20,
+            ),
             tooltip: tooltip,
             onPressed: onPressed,
           ),
