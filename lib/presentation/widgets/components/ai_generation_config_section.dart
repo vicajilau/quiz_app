@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
@@ -233,7 +233,7 @@ class AiGenerationConfigSection extends StatelessWidget {
               : '',
           triggerMode: TooltipTriggerMode.tap,
           child: QuizdySelectableCard(
-            icon: LucideIcons.fileText,
+            icon: LucideIcons.file_text,
             title: localizations.aiDifficultyAutoTurnedOn,
             description: localizations.aiDifficultyAutoDescription,
             isSelected: isEffectivelyAuto,
@@ -245,7 +245,7 @@ class AiGenerationConfigSection extends StatelessWidget {
 
         // Option 2: Manual Selection
         QuizdySelectableCard(
-          icon: LucideIcons.settings2,
+          icon: LucideIcons.settings_2,
           title: localizations.aiDifficultyAutoTurnedOff,
           description: localizations.aiDifficultyManualDescription,
           isSelected: !isEffectivelyAuto,
@@ -263,7 +263,7 @@ class AiGenerationConfigSection extends StatelessWidget {
                 value: selectedDifficulty,
                 isExpanded: true,
                 icon: Icon(
-                  LucideIcons.chevronDown,
+                  LucideIcons.chevron_down,
                   color: colors.subtitle,
                   size: 16,
                 ),

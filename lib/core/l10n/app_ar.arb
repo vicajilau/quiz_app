@@ -2883,5 +2883,83 @@
   "srsSortByHitRate": "معدل الإجابة",
   "srsSortAscending": "تصاعدي",
   "srsSortDescending": "تنازلي",
-  "srsUnassignedSection": "غير مُعيَّن"
+  "srsUnassignedSection": "غير مُعيَّن",
+  "customAiProviderLabel": "ذكاء اصطناعي مخصص / محلي (Ollama، Groq...)",
+  "@customAiProviderLabel": {
+    "description": "Label for Custom / Local AI provider"
+  },
+  "customAiBaseUrlLabel": "رابط URL الأساسي المخصص",
+  "@customAiBaseUrlLabel": {
+    "description": "Label for custom AI base URL input"
+  },
+  "customAiBaseUrlHint": "مثال: http://localhost:11434/v1",
+  "@customAiBaseUrlHint": {
+    "description": "Hint text for custom AI base URL"
+  },
+  "customAiBaseUrlDescription": "رابط URL الأساسي لواجهة برمجة التطبيقات المتوافقة مع OpenAI (مثل Ollama، Groq، LM Studio، إلخ.)",
+  "@customAiBaseUrlDescription": {
+    "description": "Description of the custom AI base URL requirement"
+  },
+  "customAiApiKeyLabel": "مفتاح واجهة برمجة التطبيقات المخصص (اختياري)",
+  "@customAiApiKeyLabel": {
+    "description": "Label for custom AI API key input"
+  },
+  "customAiApiKeyHint": "أدخل مفتاح واجهة برمجة التطبيقات إذا كان مطلوبًا من مزود الخدمة المخصص",
+  "@customAiApiKeyHint": {
+    "description": "Hint text for custom AI API key"
+  },
+  "customAiApiKeyDescription": "مطلوب فقط إذا كانت نقطة نهاية واجهة برمجة التطبيقات المخصصة تتطلب مصادقة (مثل Groq، OpenRouter).",
+  "@customAiApiKeyDescription": {
+    "description": "Description for custom API key field"
+  },
+  "customAiLoadModelsButton": "الاتصال وتحميل النماذج",
+  "@customAiLoadModelsButton": {
+    "description": "Button to connect and fetch models from custom AI provider"
+  },
+  "customAiLoadModelsLoading": "جاري الاتصال...",
+  "@customAiLoadModelsLoading": {
+    "description": "Loading text when connecting to custom AI"
+  },
+  "customAiLoadModelsSuccess": "تم تحميل {count} من النماذج بنجاح!",
+  "@customAiLoadModelsSuccess": {
+    "description": "Success message when custom models are loaded",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "customAiLoadModelsError": "فشل الاتصال أو جلب النماذج: {error}",
+  "@customAiLoadModelsError": {
+    "description": "Error message when custom model loading fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "customAiNoModelsError": "لم يتم العثور على نماذج في نقطة النهاية هذه. تأكد من تشغيل الخدمة وتنزيل النماذج.",
+  "@customAiNoModelsError": {
+    "description": "Error message when connection succeeded but no models were returned"
+  },
+  "studyScreenDownloadAllButton": "تحميل جميع الأقسام",
+  "@studyScreenDownloadAllButton": {
+    "description": "Label for the button that downloads all study chunks/sections sequentially using AI."
+  },
+  "downloadingSectionsTitle": "جاري إنشاء الأقسام...",
+  "@downloadingSectionsTitle": {
+    "description": "Title for the modal dialog shown while downloading all sections sequentially"
+  },
+  "downloadingSectionsProgress": "تمت معالجة {completed} من أصل {total} من الأقسام",
+  "@downloadingSectionsProgress": {
+    "description": "Progress text shown inside the downloading sections dialog",
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }

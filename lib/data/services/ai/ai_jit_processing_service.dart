@@ -15,6 +15,8 @@
 
 import 'dart:convert';
 
+import 'package:quizdy/core/debug_print.dart';
+import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
@@ -23,6 +25,7 @@ import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/models/quiz/study_page.dart';
+import 'package:quizdy/genui_registry.g.dart';
 
 /// Service responsible for Just-In-Time (JIT) processing of study chunks.
 class AiJitProcessingService {
@@ -104,6 +107,7 @@ class AiJitProcessingService {
       }
 
       final cleanJsonString = _extractJsonFromResponse(responseBody);
+      printInDebug('DEBUG JIT AI RESPONSE: $cleanJsonString');
       final parsedData = _parseJsonResponse(cleanJsonString);
 
       return chunk.copyWith(
@@ -158,6 +162,31 @@ class AiJitProcessingService {
 
     final targetLanguage = language ?? localizations.localeName;
 
+    final studyComponentNames = {
+      'section_title',
+      'paragraph',
+      'key_definition',
+      'numbered_list',
+      'comparison_table',
+      'quote',
+      'warning',
+      'formula',
+      'timeline',
+      'pros_cons',
+      'key_concepts',
+      'reminder',
+      'icon_cards',
+    };
+
+    final buffer = StringBuffer();
+    globalGenUISchemas.forEach((name, schema) {
+      if (studyComponentNames.contains(name)) {
+        buffer.writeln('- Component Type: "$name"');
+        buffer.writeln('  Schema: ${jsonEncode(schema)}');
+      }
+    });
+    final schemasDescription = buffer.toString();
+
     return '''
 You are an expert educational content generator. Your task is to analyze the provided pages of the document and generate study material for them.
 
@@ -181,25 +210,32 @@ The output MUST be a JSON object with two fields:
 Each Page object in the "pages" array must have the following schema:
 {
   "components": [
-    // Array of component objects. Each object MUST have a "type" field and its specific required fields.
-    // Allowed values for "type" and their required structures are:
-    // 1. { "type": "section_title", "title": "Main topic", "subtitle": "Optional context" }
-    // 2. { "type": "paragraph", "title": "Optional heading", "body": "Main text block" }
-    // 3. { "type": "key_definition", "term": "Vocabulary word/concept", "body": "Clear definition" }
-    // 4. { "type": "numbered_list", "title": "Optional heading", "items": [{"title": "Step 1", "description": "Details for step 1"}] }
-    // 5. { "type": "comparison_table", "title": "Optional", "columns": ["Feature", "A", "B"], "rows": [{"label": "Row 1", "values": ["A's val", "B's val"]}] }
-    // 6. { "type": "quote", "body": "The quote text", "author": "Optional source" }
-    // 7. { "type": "warning", "body": "Important caveat or common misconception" }
-    // 8. { "type": "formula", "title": "Optional", "equation": "E = mc^2", "equation_label": "Optional name", "body": "Explanation" }
-    // 9. { "type": "timeline", "title": "Optional", "items": [{"date": "1990", "title": "Event", "description": "Optional details"}] }
-    // 10. { "type": "pros_cons", "items": {"pros": ["Advantage 1"], "cons": ["Disadvantage 1"]} }
-    // 11. { "type": "key_concepts", "title": "Optional", "items": ["Concept 1", "Concept 2"] }
-    // 12. { "type": "reminder", "body": "A quick tip or study reminder" }
-    // 13. { "type": "icon_cards", "title": "Optional", "items": [{"title": "Card title", "description": "Card details"}] }
+    // Array of component objects. Each object MUST have a "type" field (exactly named "type", NOT "component" or "component_type") matching one of the allowed components below, with its specific schema:
+$schemasDescription
+    // For list/array properties, here are their expected item structures:
+    // - "numbered_list" ("items" array): Each item must be a JSON object containing:
+    //   - "title": string (the step title)
+    //   - "description": string (the step details)
+    // - "comparison_table":
+    //   - "columns" (array of strings): column headers
+    //   - "rows" (array of objects): each object must contain:
+    //     - "label": string (row header)
+    //     - "values" (array of strings): values corresponding to each column
+    // - "timeline" ("items" array): Each item must be a JSON object containing:
+    //   - "date": string
+    //   - "title": string
+    //   - "description": string (optional details)
+    // - "pros_cons":
+    //   - "pros" (array of strings): list of advantages
+    //   - "cons" (array of strings): list of limitations
+    // - "key_concepts" ("items" array): Array of strings representing main concepts
+    // - "icon_cards" ("items" array): Each item must be a JSON object containing:
+    //   - "title": string
+    //   - "description": string
   ]
 }
 
-Ensure the structure of the JSON is exactly as specified so it can be parsed programmatically. You must only use the 13 component types listed above. Do not invent new types.
+Ensure the structure of the JSON is exactly as specified so it can be parsed programmatically. You must only use the allowed component types listed above. Do not invent new types.
 
 Text Portion to Analyze:
 """
@@ -229,8 +265,20 @@ Analyzing document range: Pages $startPage to $endPage.
 
   /// Parses the raw JSON object string into the summary and pages mapping.
   Map<String, dynamic> _parseJsonResponse(String jsonString) {
+    dynamic decoded;
     try {
-      final decoded = jsonDecode(jsonString);
+      decoded = jsonDecode(jsonString);
+    } on FormatException {
+      try {
+        final repairedJson = jsonString.repairJsonBrackets();
+        decoded = jsonDecode(repairedJson);
+        printInDebug('Successfully repaired truncated JIT JSON response!');
+      } catch (repairError) {
+        rethrow;
+      }
+    }
+
+    try {
       if (decoded is! Map<String, dynamic>) {
         throw const FormatException('Expected a JSON object.');
       }

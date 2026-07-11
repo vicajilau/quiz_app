@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/extensions/app_localizations_extension.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';
@@ -173,7 +173,7 @@ class AiGenerateStep1Widget extends StatelessWidget {
                           value: selectedLanguage,
                           isExpanded: true,
                           icon: Icon(
-                            LucideIcons.chevronDown,
+                            LucideIcons.chevron_down,
                             color: colors.title,
                             size: 18,
                           ),
@@ -217,7 +217,7 @@ class AiGenerateStep1Widget extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(32, 24, 32, 32),
                   child: QuizdyButton(
                     title: AppLocalizations.of(context)!.next,
-                    icon: LucideIcons.arrowRight,
+                    icon: LucideIcons.arrow_right,
                     expanded: true,
                     onPressed: selectedModel != null ? onNext : null,
                   ),

@@ -15,7 +15,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:genui/genui.dart';
+import 'package:genui_annotations/genui_annotations.dart';
+import 'package:json_schema_builder/json_schema_builder.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
@@ -23,6 +26,9 @@ import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/screens/widgets/home/home_feedback_banner.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 
+part 'home_footer_widget.genui.g.dart';
+
+@generativeUI
 class HomeFooterWidget extends StatelessWidget {
   final bool isLoading;
   final bool showFeedbackBanner;
@@ -50,7 +56,7 @@ class HomeFooterWidget extends StatelessWidget {
         children: [
           QuizdyButton(
             title: AppLocalizations.of(context)!.generateStudyWithAI,
-            icon: LucideIcons.bookOpen,
+            icon: LucideIcons.book_open,
             onPressed: isLoading ? null : onStudyModeTap,
             expanded: true,
           ),
@@ -79,7 +85,7 @@ class HomeFooterWidget extends StatelessWidget {
                   child: QuizdyButton(
                     type: QuizdyButtonType.secondary,
                     title: AppLocalizations.of(context)!.load,
-                    icon: LucideIcons.folderOpen,
+                    icon: LucideIcons.folder_open,
                     expanded: true,
                     onPressed: isLoading
                         ? null

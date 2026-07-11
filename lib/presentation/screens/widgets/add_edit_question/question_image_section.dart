@@ -18,7 +18,7 @@ import 'dart:typed_data';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
@@ -175,7 +175,7 @@ class _QuestionImageSectionState extends State<QuestionImageSection> {
                   QuizdyButton(
                     type: QuizdyButtonType.secondary,
                     title: localizations.pasteImage,
-                    icon: LucideIcons.clipboardPaste,
+                    icon: LucideIcons.clipboard_paste,
                     onPressed: () => _pasteFromClipboard(context),
                   ),
                   const SizedBox(width: 8),
@@ -246,7 +246,7 @@ class _QuestionImageSectionState extends State<QuestionImageSection> {
             QuizdyButton(
               type: QuizdyButtonType.secondary,
               title: localizations.pasteFromClipboard,
-              icon: LucideIcons.clipboardPaste,
+              icon: LucideIcons.clipboard_paste,
               expanded: true,
               onPressed: () => _pasteFromClipboard(context),
             ),

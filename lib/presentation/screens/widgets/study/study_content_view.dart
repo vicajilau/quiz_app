@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
@@ -141,7 +141,7 @@ class StudyContentView extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
-                  LucideIcons.graduationCap,
+                  LucideIcons.graduation_cap,
                   color: primaryColor,
                   size: 24,
                 ),
@@ -270,7 +270,7 @@ class SidebarOpenButton extends StatelessWidget {
         ),
         alignment: Alignment.center,
         child: Icon(
-          LucideIcons.panelRightClose,
+          LucideIcons.panel_right_close,
           size: 18,
           color: isDark ? AppTheme.zinc400 : AppTheme.zinc500,
         ),

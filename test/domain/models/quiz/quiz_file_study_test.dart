@@ -19,6 +19,7 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
+import 'package:quizdy/domain/models/quiz/study_component.dart';
 
 void main() {
   group('QuizFile with Study Model Data', () {
@@ -65,6 +66,47 @@ void main() {
         filePath: filePath,
       );
       expect(reserializedQuizFile, equals(quizFile));
+    });
+
+    test('StudyComponent.fromJson parsing test', () {
+      final pJson = {'type': 'paragraph', 'title': 'Intro', 'body': 'Hello'};
+      var comp = StudyComponent.fromJson(pJson);
+      expect(comp.componentType, StudyComponentType.paragraph);
+      expect(comp.props['title'], 'Intro');
+      expect(comp.props['body'], 'Hello');
+
+      // Test suffix removal and capitalisation normalization
+      final componentWithSuffix = {
+        'type': 'ParagraphComponent',
+        'body': 'Hello',
+      };
+      comp = StudyComponent.fromJson(componentWithSuffix);
+      expect(comp.componentType, StudyComponentType.paragraph);
+
+      final snakeCaseWithSuffix = {
+        'type': 'paragraph_component',
+        'body': 'Hello',
+      };
+      comp = StudyComponent.fromJson(snakeCaseWithSuffix);
+      expect(comp.componentType, StudyComponentType.paragraph);
+
+      final kebabCaseComponent = {'type': 'pros-cons', 'pros': [], 'cons': []};
+      comp = StudyComponent.fromJson(kebabCaseComponent);
+      expect(comp.componentType, StudyComponentType.prosCons);
+
+      final pascalCaseComponent = {
+        'type': 'ProsConsComponent',
+        'pros': [],
+        'cons': [],
+      };
+      comp = StudyComponent.fromJson(pascalCaseComponent);
+      expect(comp.componentType, StudyComponentType.prosCons);
+
+      final componentKeyVariant = {'component': 'paragraph', 'body': 'Hello'};
+      comp = StudyComponent.fromJson(componentKeyVariant);
+      expect(comp.componentType, StudyComponentType.paragraph);
+      expect(comp.props['body'], 'Hello');
+      expect(comp.props.containsKey('component'), isFalse);
     });
   });
 }

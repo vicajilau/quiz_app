@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/extensions/quiz_loaded_theme.dart';
@@ -267,8 +267,8 @@ class _SortMenuButton extends StatelessWidget {
   });
 
   IconData get _directionIcon => sortDirection == _SrsSortDirection.ascending
-      ? LucideIcons.arrowUp
-      : LucideIcons.arrowDown;
+      ? LucideIcons.arrow_up
+      : LucideIcons.arrow_down;
 
   @override
   Widget build(BuildContext context) {
@@ -293,7 +293,7 @@ class _SortMenuButton extends StatelessWidget {
       child: PopupMenuButton<_SrsSortField>(
         padding: EdgeInsets.zero,
         tooltip: l10n.srsSortTooltip,
-        icon: Icon(LucideIcons.arrowUpDown, color: onPrimary, size: 20),
+        icon: Icon(LucideIcons.arrow_up_down, color: onPrimary, size: 20),
         onSelected: onSelected,
         itemBuilder: (context) => fields.map((entry) {
           final (field, label) = entry;

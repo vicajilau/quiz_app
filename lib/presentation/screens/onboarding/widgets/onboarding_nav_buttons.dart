@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 
@@ -40,7 +40,7 @@ class OnboardingNavButtons extends StatelessWidget {
     if (isFirstPage) {
       return QuizdyButton(
         title: localizations.next,
-        icon: LucideIcons.arrowRight,
+        icon: LucideIcons.arrow_right,
         expanded: true,
         onPressed: onNext,
       );
@@ -52,7 +52,7 @@ class OnboardingNavButtons extends StatelessWidget {
           child: QuizdyButton(
             type: QuizdyButtonType.secondary,
             title: localizations.onboardingBack,
-            icon: LucideIcons.arrowLeft,
+            icon: LucideIcons.arrow_left,
             expanded: true,
             onPressed: onBack,
           ),
@@ -63,7 +63,7 @@ class OnboardingNavButtons extends StatelessWidget {
             title: isLastPage
                 ? localizations.onboardingGetStarted
                 : localizations.next,
-            icon: isLastPage ? LucideIcons.rocket : LucideIcons.arrowRight,
+            icon: isLastPage ? LucideIcons.rocket : LucideIcons.arrow_right,
             expanded: true,
             onPressed: isLastPage ? onFinish : onNext,
           ),

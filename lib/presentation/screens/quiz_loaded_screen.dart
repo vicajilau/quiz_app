@@ -19,7 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:desktop_drop/desktop_drop.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/presentation/utils/dialog_drop_guard.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
@@ -703,7 +703,7 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                       message: AppLocalizations.of(
                         context,
                       )!.quizLoadedNoQuestionsAvailable,
-                      icon: LucideIcons.fileQuestion,
+                      icon: LucideIcons.file_question_mark,
                     )
                   else
                     Padding(

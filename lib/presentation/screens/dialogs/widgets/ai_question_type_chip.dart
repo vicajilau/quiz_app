@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/ai/ai_question_type.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
@@ -76,7 +76,7 @@ class AiQuestionTypeChip extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
-              isSelected ? LucideIcons.checkCircle2 : icon,
+              isSelected ? LucideIcons.circle_check : icon,
               size: 14,
               color: isSelected ? Colors.white : colors.subtitle,
             ),

@@ -14,25 +14,31 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:genui/genui.dart';
+import 'package:genui_annotations/genui_annotations.dart';
+import 'package:json_schema_builder/json_schema_builder.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/context_extension.dart';
-import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
-class IconCardsComponent extends StatelessWidget {
-  final StudyComponent element;
+part 'icon_cards_component.genui.g.dart';
 
-  const IconCardsComponent({super.key, required this.element});
+@GenerativeUI(name: 'icon_cards')
+class IconCardsComponent extends StatelessWidget {
+  final String? title;
+  final List<dynamic> items;
+
+  const IconCardsComponent({super.key, this.title, required this.items});
 
   @override
   Widget build(BuildContext context) {
-    final title = element.props['title']?.toString();
-    final itemsList = element.props['items'] as List<dynamic>? ?? [];
+    final title = this.title;
+    final itemsList = items;
     final studyTheme = context.studyTheme;
 
-    final items = itemsList.map((item) {
+    final parsedItems = itemsList.map((item) {
       if (item is Map<String, dynamic>) {
         return {
           'title': item['title']?.toString() ?? '',
@@ -61,7 +67,7 @@ class IconCardsComponent extends StatelessWidget {
           Wrap(
             spacing: 16.0,
             runSpacing: 16.0,
-            children: items.map((item) {
+            children: parsedItems.map((item) {
               final itemTitle = item['title'] as String;
               final itemDesc = item['description'] as String;
 
@@ -91,7 +97,7 @@ class IconCardsComponent extends StatelessWidget {
                           Row(
                             children: [
                               Icon(
-                                LucideIcons.chevronRightSquare,
+                                LucideIcons.square_chevron_right,
                                 color: Theme.of(context).primaryColor,
                                 size: 18,
                               ),

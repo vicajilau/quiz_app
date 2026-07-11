@@ -16,10 +16,10 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.14.0+46
+version: 1.15.0+47
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.12.0
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -54,7 +54,7 @@ dependencies:
   url_launcher: ^6.3.2
   gpt_markdown: ^1.1.7
   flutter_math_fork: ^0.7.2
-  lucide_icons_flutter: ^3.1.14+1
+  flutter_lucide: ^1.11.0
   qr_flutter: ^4.1.0
   path_provider: ^2.1.6
   collection: ^1.19.1
@@ -68,9 +68,17 @@ dependencies:
   in_app_update: ^5.0.0
   hive_ce: ^2.19.3
   hive_ce_flutter: ^2.3.4
+  genui: ^0.9.2
+  genui_annotations: ^1.0.0
+  json_schema_builder: ^0.1.5
   genkit: ^0.14.1
   genkit_google_genai: ^0.2.9
   genkit_openai: ^0.3.0
+
+dependency_overrides:
+  test: 1.31.2
+  test_api: 0.7.13
+  analyzer: ^13.0.0
 
 dev_dependencies:
   flutter_test:
@@ -85,8 +93,9 @@ dev_dependencies:
   msix: ^3.18.0
   bloc_test: ^10.0.0
   mocktail: ^1.0.5
-  hive_ce_generator: ^1.11.2
   build_runner: ^2.15.0
+  genui_builder: ^1.0.0
+  hive_ce_generator: ^1.11.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

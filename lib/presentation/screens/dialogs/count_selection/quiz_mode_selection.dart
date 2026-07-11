@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 
 enum QuizSelectionMode { exam, practice, smart }
@@ -54,7 +54,7 @@ class QuizModeSelection extends StatelessWidget {
         _buildModeOption(
           context: context,
           title: localizations.examModeLabel,
-          icon: LucideIcons.fileText,
+          icon: LucideIcons.file_text,
           isSelected: selectedMode == QuizSelectionMode.exam,
           onTap: () => onModeChanged(QuizSelectionMode.exam),
           primaryColor: primaryColor,
@@ -69,7 +69,7 @@ class QuizModeSelection extends StatelessWidget {
               child: _buildModeOption(
                 context: context,
                 title: localizations.practiceModeLabel,
-                icon: LucideIcons.bookOpen,
+                icon: LucideIcons.book_open,
                 isSelected: selectedMode == QuizSelectionMode.practice,
                 onTap: () => onModeChanged(QuizSelectionMode.practice),
                 primaryColor: primaryColor,

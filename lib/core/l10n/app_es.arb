@@ -857,6 +857,64 @@
   "@getApiKeyTooltip": {
     "description": "Tooltip para el botón de obtener clave API de OpenAI"
   },
+  "customAiProviderLabel": "IA Personalizada / Local (Ollama, Groq...)",
+  "@customAiProviderLabel": {
+    "description": "Label for Custom / Local AI provider"
+  },
+  "customAiBaseUrlLabel": "URL Base Personalizada",
+  "@customAiBaseUrlLabel": {
+    "description": "Label for custom AI base URL input"
+  },
+  "customAiBaseUrlHint": "ej. http://localhost:11434/v1",
+  "@customAiBaseUrlHint": {
+    "description": "Hint text for custom AI base URL"
+  },
+  "customAiBaseUrlDescription": "La URL base de tu API compatible con OpenAI (como Ollama, Groq, LM Studio, etc.)",
+  "@customAiBaseUrlDescription": {
+    "description": "Description of the custom AI base URL requirement"
+  },
+  "customAiApiKeyLabel": "Clave API Personalizada (Opcional)",
+  "@customAiApiKeyLabel": {
+    "description": "Label for custom AI API key input"
+  },
+  "customAiApiKeyHint": "Introduce la clave API si la requiere tu proveedor",
+  "@customAiApiKeyHint": {
+    "description": "Hint text for custom AI API key"
+  },
+  "customAiApiKeyDescription": "Solo es necesaria si tu endpoint personalizado requiere autenticación (ej. Groq, OpenRouter).",
+  "@customAiApiKeyDescription": {
+    "description": "Description for custom API key field"
+  },
+  "customAiLoadModelsButton": "Conectar y cargar modelos",
+  "@customAiLoadModelsButton": {
+    "description": "Button to connect and fetch models from custom AI provider"
+  },
+  "customAiLoadModelsLoading": "Conectando...",
+  "@customAiLoadModelsLoading": {
+    "description": "Loading text when connecting to custom AI"
+  },
+  "customAiLoadModelsSuccess": "¡Se cargaron {count} modelos con éxito!",
+  "@customAiLoadModelsSuccess": {
+    "description": "Success message when custom models are loaded",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "customAiLoadModelsError": "Error al conectar o cargar modelos: {error}",
+  "@customAiLoadModelsError": {
+    "description": "Error message when custom model loading fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "customAiNoModelsError": "No se encontraron modelos en este endpoint. Asegúrate de que el servicio está activo y los modelos descargados.",
+  "@customAiNoModelsError": {
+    "description": "Error message when connection succeeded but no models were returned"
+  },
   "deleteAction": "Eliminar",
   "@deleteAction": {
     "description": "Texto de acción eliminar mostrado al deslizar para eliminar"
@@ -2281,6 +2339,26 @@
   "studyScreenPendingSections": "Algunas secciones aún no están generadas",
   "@studyScreenPendingSections": {
     "description": "Warning shown in study index when some chunks are not yet generated"
+  },
+  "studyScreenDownloadAllButton": "Descargar todas las secciones",
+  "@studyScreenDownloadAllButton": {
+    "description": "Label for the button that downloads all study chunks/sections sequentially using AI."
+  },
+  "downloadingSectionsTitle": "Generando secciones...",
+  "@downloadingSectionsTitle": {
+    "description": "Title for the modal dialog shown while downloading all sections sequentially"
+  },
+  "downloadingSectionsProgress": "Procesadas {completed} de {total} secciones",
+  "@downloadingSectionsProgress": {
+    "description": "Progress text shown inside the downloading sections dialog",
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
   },
   "aiDifficultyTitle": "Grado de dificultad",
   "@aiDifficultyTitle": {

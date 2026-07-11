@@ -14,20 +14,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:genui/genui.dart';
+import 'package:genui_annotations/genui_annotations.dart';
+import 'package:json_schema_builder/json_schema_builder.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:quizdy/domain/models/quiz/study_component.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
-class ReminderComponent extends StatelessWidget {
-  final StudyComponent element;
+part 'reminder_component.genui.g.dart';
 
-  const ReminderComponent({super.key, required this.element});
+@GenerativeUI(name: 'reminder')
+class ReminderComponent extends StatelessWidget {
+  final String body;
+
+  const ReminderComponent({super.key, required this.body});
 
   @override
   Widget build(BuildContext context) {
-    final body = element.props['body']?.toString() ?? '';
     final studyTheme = context.studyTheme;
 
     final backgroundColor = studyTheme.reminderBackground;

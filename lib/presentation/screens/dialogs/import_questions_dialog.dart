@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
@@ -105,14 +105,14 @@ class ImportPositionDialog extends StatelessWidget {
             const SizedBox(height: 24),
             QuizdyButton(
               title: importAtBeginning,
-              icon: LucideIcons.arrowUpToLine,
+              icon: LucideIcons.arrow_up_to_line,
               expanded: true,
               onPressed: () => context.pop(QuestionsPosition.beginning),
             ),
             const SizedBox(height: 8),
             QuizdyButton(
               title: importAtEnd,
-              icon: LucideIcons.arrowDownToLine,
+              icon: LucideIcons.arrow_down_to_line,
               expanded: true,
               onPressed: () => context.pop(QuestionsPosition.end),
             ),

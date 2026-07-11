@@ -45,15 +45,21 @@ class AiModelEntry {
 abstract final class AiModelCatalog {
   static const String geminiProviderId = 'gemini';
   static const String openaiProviderId = 'openai';
+  static const String customProviderId = 'custom';
 
   /// Display name shown in the UI for each provider.
   static const Map<String, String> providerDisplayNames = {
     geminiProviderId: 'Google Gemini',
     openaiProviderId: 'OpenAI GPT',
+    customProviderId: 'Custom / Local',
   };
 
   /// Ordered list of provider IDs (determines dropdown order).
-  static const List<String> providerIds = [geminiProviderId, openaiProviderId];
+  static const List<String> providerIds = [
+    geminiProviderId,
+    openaiProviderId,
+    customProviderId,
+  ];
 
   static const String defaultModelId = 'gemini-flash-latest';
 
@@ -155,17 +161,47 @@ abstract final class AiModelCatalog {
     models = updated;
   }
 
+  /// Registers custom models directly into the catalog.
+  static void registerCustomModels(List<String> modelIds) {
+    final fetched = modelIds
+        .map(
+          (id) => AiModelEntry(
+            modelId: id,
+            providerId: customProviderId,
+            displayName: _formatDisplayName(id),
+          ),
+        )
+        .toList();
+    updateCatalog(fetched);
+  }
+
   /// Dynamically queries the Genkit registry using the supplied API keys
   /// and updates the catalog list with any newly discovered models.
   static Future<void> loadDynamicModels({
     String? geminiApiKey,
     String? openaiApiKey,
+    String? customBaseUrl,
+    String? customApiKey,
+    List<String>? customModels,
   }) async {
     final plugins = [
       if (geminiApiKey != null && geminiApiKey.isNotEmpty)
         googleAI(apiKey: geminiApiKey),
       if (openaiApiKey != null && openaiApiKey.isNotEmpty)
         openAI(apiKey: openaiApiKey),
+      if (customBaseUrl != null && customBaseUrl.isNotEmpty)
+        openAI(
+          name: 'custom',
+          apiKey: (customApiKey != null && customApiKey.isNotEmpty)
+              ? customApiKey
+              : 'dummy-key',
+          baseUrl: customBaseUrl,
+          models:
+              customModels
+                  ?.map((m) => CustomModelDefinition(name: m))
+                  .toList() ??
+              [],
+        ),
     ];
 
     if (plugins.isEmpty) return;
@@ -192,6 +228,15 @@ abstract final class AiModelCatalog {
             AiModelEntry(
               modelId: modelId,
               providerId: openaiProviderId,
+              displayName: _formatDisplayName(modelId),
+            ),
+          );
+        } else if (action.name.startsWith('custom/')) {
+          final modelId = action.name.replaceFirst('custom/', '');
+          fetchedModels.add(
+            AiModelEntry(
+              modelId: modelId,
+              providerId: customProviderId,
               displayName: _formatDisplayName(modelId),
             ),
           );

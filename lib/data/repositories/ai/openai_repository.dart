@@ -36,22 +36,29 @@ class OpenAiRepository implements AiRepository {
 
   final Dio _dioClient;
   final ConfigurationService _configurationService;
+  final bool isCustom;
 
   @override
   final String modelId;
 
   OpenAiRepository({
-    required Dio dioClient,
-    required ConfigurationService configurationService,
+    required this._dioClient,
+    required this._configurationService,
     required this.modelId,
-  }) : _dioClient = dioClient,
-       _configurationService = configurationService;
+    this.isCustom = false,
+  });
 
   @override
-  String get providerId => AiModelCatalog.openaiProviderId;
+  String get providerId => isCustom
+      ? AiModelCatalog.customProviderId
+      : AiModelCatalog.openaiProviderId;
 
   @override
   Future<bool> isAvailable() async {
+    if (isCustom) {
+      final customBaseUrl = await _configurationService.getCustomAiBaseUrl();
+      return customBaseUrl != null && customBaseUrl.isNotEmpty;
+    }
     final key = await _configurationService.getOpenAIApiKey();
     return key != null && key.isNotEmpty;
   }
@@ -87,6 +94,35 @@ class OpenAiRepository implements AiRepository {
     };
   }
 
+  Future<Genkit> _initGenkit(AppLocalizations localizations) async {
+    if (isCustom) {
+      final customBaseUrl = await _configurationService.getCustomAiBaseUrl();
+      if (customBaseUrl == null || customBaseUrl.isEmpty) {
+        throw Exception('Custom Base URL not configured');
+      }
+      final customApiKey = await _configurationService.getCustomAiApiKey();
+      final apiKeyToUse = (customApiKey != null && customApiKey.isNotEmpty)
+          ? customApiKey
+          : 'dummy-key';
+      return Genkit(
+        plugins: [
+          openAI(
+            name: 'custom',
+            apiKey: apiKeyToUse,
+            baseUrl: customBaseUrl,
+            models: [CustomModelDefinition(name: modelId)],
+          ),
+        ],
+      );
+    } else {
+      final apiKey = await _configurationService.getOpenAIApiKey();
+      if (apiKey == null || apiKey.isEmpty) {
+        throw Exception(localizations.openaiApiKeyNotConfigured);
+      }
+      return Genkit(plugins: [openAI(apiKey: apiKey)]);
+    }
+  }
+
   // ── AiRepository interface ───────────────────────────────────────────────
 
   @override
@@ -95,16 +131,15 @@ class OpenAiRepository implements AiRepository {
     AppLocalizations localizations, {
     String? responseMimeType,
   }) async {
-    final apiKey = await _configurationService.getOpenAIApiKey();
-    if (apiKey == null || apiKey.isEmpty) {
-      throw Exception(localizations.openaiApiKeyNotConfigured);
-    }
-
-    final ai = Genkit(plugins: [openAI(apiKey: apiKey)]);
+    final ai = await _initGenkit(localizations);
+    final modelRef = openAI.model(
+      modelId,
+      namespace: isCustom ? 'custom' : 'openai',
+    );
 
     try {
       final response = await ai.generate(
-        model: openAI.model(modelId),
+        model: modelRef,
         prompt: prompt,
         config: OpenAIChatOptions(
           temperature: 0.2,
@@ -124,18 +159,17 @@ class OpenAiRepository implements AiRepository {
     required AiFileAttachment file,
     String? responseMimeType,
   }) async {
-    final apiKey = await _configurationService.getOpenAIApiKey();
-    if (apiKey == null || apiKey.isEmpty) {
-      throw Exception(localizations.openaiApiKeyNotConfigured);
-    }
-
-    final ai = Genkit(plugins: [openAI(apiKey: apiKey)]);
+    final ai = await _initGenkit(localizations);
+    final modelRef = openAI.model(
+      modelId,
+      namespace: isCustom ? 'custom' : 'openai',
+    );
     final base64Data = base64Encode(file.bytes);
     final dataUrl = 'data:${file.mimeType};base64,$base64Data';
 
     try {
       final response = await ai.generate(
-        model: openAI.model(modelId),
+        model: modelRef,
         messages: [
           Message(
             role: Role.user,
@@ -163,10 +197,15 @@ class OpenAiRepository implements AiRepository {
     AiFileAttachment file,
     AppLocalizations localizations,
   ) async {
-    final apiKey = await _configurationService.getOpenAIApiKey();
-    if (apiKey == null || apiKey.isEmpty) {
+    final apiKey = isCustom
+        ? (await _configurationService.getCustomAiApiKey() ?? 'dummy-key')
+        : await _configurationService.getOpenAIApiKey();
+    if (!isCustom && (apiKey == null || apiKey.isEmpty)) {
       throw Exception(localizations.openaiApiKeyNotConfigured);
     }
+    final baseUrlToUse = isCustom
+        ? await _configurationService.getCustomAiBaseUrl()
+        : _baseUrl;
 
     try {
       final formData = FormData.fromMap({
@@ -175,7 +214,7 @@ class OpenAiRepository implements AiRepository {
       });
 
       final response = await _dioClient.post(
-        '$_baseUrl$_filesEndpoint',
+        '$baseUrlToUse$_filesEndpoint',
         options: Options(headers: {'Authorization': 'Bearer $apiKey'}),
         data: formData,
       );
@@ -204,10 +243,15 @@ class OpenAiRepository implements AiRepository {
     required String fileMimeType,
     String? responseMimeType,
   }) async {
-    final apiKey = await _configurationService.getOpenAIApiKey();
-    if (apiKey == null || apiKey.isEmpty) {
+    final apiKey = isCustom
+        ? (await _configurationService.getCustomAiApiKey() ?? 'dummy-key')
+        : await _configurationService.getOpenAIApiKey();
+    if (!isCustom && (apiKey == null || apiKey.isEmpty)) {
       throw Exception(localizations.openaiApiKeyNotConfigured);
     }
+    final baseUrlToUse = isCustom
+        ? await _configurationService.getCustomAiBaseUrl()
+        : _baseUrl;
 
     final data = <String, dynamic>{
       'model': modelId,
@@ -232,7 +276,7 @@ class OpenAiRepository implements AiRepository {
 
     try {
       final response = await _dioClient.post(
-        '$_baseUrl$_chatEndpoint',
+        '$baseUrlToUse$_chatEndpoint',
         options: Options(
           headers: {
             'Content-Type': 'application/json',

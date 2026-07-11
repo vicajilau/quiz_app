@@ -14,9 +14,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:genui/genui.dart';
+import 'package:genui_annotations/genui_annotations.dart';
+import 'package:json_schema_builder/json_schema_builder.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 
+part 'home_feedback_banner.genui.g.dart';
+
+@generativeUI
 class HomeFeedbackBanner extends StatelessWidget {
   final bool isLoading;
   final VoidCallback onTap;
@@ -81,7 +87,7 @@ class HomeFeedbackBanner extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 12),
-              Icon(LucideIcons.chevronRight, color: primary, size: 18),
+              Icon(LucideIcons.chevron_right, color: primary, size: 18),
             ],
           ),
         ),

@@ -1158,5 +1158,83 @@
   "srsSortByHitRate": "სიზუსტის მაჩვენებელი",
   "srsSortAscending": "ზრდადობით",
   "srsSortDescending": "კლებადობით",
-  "srsUnassignedSection": "მინიჭებული არ არის"
+  "srsUnassignedSection": "მინიჭებული არ არის",
+  "customAiProviderLabel": "პერსონალური / ლოკალური AI (Ollama, Groq...)",
+  "@customAiProviderLabel": {
+    "description": "Label for Custom / Local AI provider"
+  },
+  "customAiBaseUrlLabel": "პერსონალური საბაზისო URL",
+  "@customAiBaseUrlLabel": {
+    "description": "Label for custom AI base URL input"
+  },
+  "customAiBaseUrlHint": "მაგ. http://localhost:11434/v1",
+  "@customAiBaseUrlHint": {
+    "description": "Hint text for custom AI base URL"
+  },
+  "customAiBaseUrlDescription": "თქვენი OpenAI-თავსებადი API-ის საბაზისო URL (როგორიცაა Ollama, Groq, LM Studio და ა.შ.)",
+  "@customAiBaseUrlDescription": {
+    "description": "Description of the custom AI base URL requirement"
+  },
+  "customAiApiKeyLabel": "პერსონალური API გასაღები (არასავალდებულო)",
+  "@customAiApiKeyLabel": {
+    "description": "Label for custom AI API key input"
+  },
+  "customAiApiKeyHint": "შეიყვანეთ API გასაღები, თუ ამას მოითხოვს თქვენი პროვაიდერი",
+  "@customAiApiKeyHint": {
+    "description": "Hint text for custom AI API key"
+  },
+  "customAiApiKeyDescription": "საჭიროა მხოლოდ მაშინ, როდესაც თქვენი პერსონალური API ენდპოინტი მოითხოვს ავტორიზაციას (მაგ. Groq, OpenRouter).",
+  "@customAiApiKeyDescription": {
+    "description": "Description for custom API key field"
+  },
+  "customAiLoadModelsButton": "დაკავშირება და მოდელების ჩატვირთვა",
+  "@customAiLoadModelsButton": {
+    "description": "Button to connect and fetch models from custom AI provider"
+  },
+  "customAiLoadModelsLoading": "მიმდინარეობს დაკავშირება...",
+  "@customAiLoadModelsLoading": {
+    "description": "Loading text when connecting to custom AI"
+  },
+  "customAiLoadModelsSuccess": "წარმატებით ჩაიტვირთა {count} მოდელი!",
+  "@customAiLoadModelsSuccess": {
+    "description": "Success message when custom models are loaded",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "customAiLoadModelsError": "დაკავშირება ან მოდელების ჩამოტვირთვა ვერ მოხერხდა: {error}",
+  "@customAiLoadModelsError": {
+    "description": "Error message when custom model loading fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "customAiNoModelsError": "ამ ენდპოინტზე მოდელები ვერ მოიძებნა. დარწმუნდით, რომ სერვისი გაშვებულია და მოდელები ჩამოტვირთულია.",
+  "@customAiNoModelsError": {
+    "description": "Error message when connection succeeded but no models were returned"
+  },
+  "studyScreenDownloadAllButton": "ყველა სექციის ჩამოტვირთვა",
+  "@studyScreenDownloadAllButton": {
+    "description": "Label for the button that downloads all study chunks/sections sequentially using AI."
+  },
+  "downloadingSectionsTitle": "მიმდინარეობს სექციების გენერირება...",
+  "@downloadingSectionsTitle": {
+    "description": "Title for the modal dialog shown while downloading all sections sequentially"
+  },
+  "downloadingSectionsProgress": "დამუშავებულია {completed} სექცია {total}-დან",
+  "@downloadingSectionsProgress": {
+    "description": "Progress text shown inside the downloading sections dialog",
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }

@@ -17,7 +17,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
@@ -608,8 +608,8 @@ class _SelectToggleButton extends StatelessWidget {
                     children: [
                       Icon(
                         isSelectionMode
-                            ? LucideIcons.checkSquare
-                            : LucideIcons.mousePointer2,
+                            ? LucideIcons.square_check
+                            : LucideIcons.mouse_pointer_2,
                         color: Theme.of(context).colorScheme.onPrimary,
                         size: 18,
                       ),

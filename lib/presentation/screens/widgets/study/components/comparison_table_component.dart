@@ -14,16 +14,30 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:quizdy/domain/models/quiz/study_component.dart';
+import 'package:genui/genui.dart';
+import 'package:genui_annotations/genui_annotations.dart';
+import 'package:json_schema_builder/json_schema_builder.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
-class ComparisonTableComponent extends StatefulWidget {
-  final StudyComponent element;
+part 'comparison_table_component.genui.g.dart';
 
-  const ComparisonTableComponent({super.key, required this.element});
+@GenerativeUI(name: 'comparison_table')
+class ComparisonTableComponent extends StatefulWidget {
+  final String? title;
+  final List<dynamic> columns;
+  final List<dynamic> rows;
+  final String? labelHeader;
+
+  const ComparisonTableComponent({
+    super.key,
+    this.title,
+    required this.columns,
+    required this.rows,
+    this.labelHeader,
+  });
 
   @override
   State<ComparisonTableComponent> createState() =>
@@ -47,11 +61,9 @@ class _ComparisonTableComponentState extends State<ComparisonTableComponent> {
 
   @override
   Widget build(BuildContext context) {
-    final title = widget.element.props['title']?.toString();
-    final rawRows = (widget.element.props['rows'] as List<dynamic>? ?? []);
-    final rawColumns = (widget.element.props['columns'] as List<dynamic>? ?? [])
-        .map((e) => e.toString())
-        .toList();
+    final title = widget.title;
+    final rawRows = widget.rows;
+    final rawColumns = widget.columns.map((e) => e.toString()).toList();
 
     // Determine if the first column header should be used for the label column.
     // This happens if number of columns equals (values in row + 1 for the label).
@@ -96,7 +108,7 @@ class _ComparisonTableComponentState extends State<ComparisonTableComponent> {
             Row(
               children: [
                 Icon(
-                  LucideIcons.gitCompare,
+                  LucideIcons.git_compare,
                   color: Theme.of(context).primaryColor,
                   size: 20,
                 ),
@@ -143,12 +155,7 @@ class _ComparisonTableComponentState extends State<ComparisonTableComponent> {
                       dividerThickness: 1,
                       columns: [
                         if (!useFirstColumnAsLabel)
-                          DataColumn(
-                            label: Text(
-                              widget.element.props['labelHeader']?.toString() ??
-                                  '',
-                            ),
-                          ),
+                          DataColumn(label: Text(widget.labelHeader ?? '')),
                         ...columns.map(
                           (col) => DataColumn(
                             label: Expanded(

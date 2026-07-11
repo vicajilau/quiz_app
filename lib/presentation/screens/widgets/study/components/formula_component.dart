@@ -14,22 +14,35 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:quizdy/domain/models/quiz/study_component.dart';
+import 'package:genui/genui.dart';
+import 'package:genui_annotations/genui_annotations.dart';
+import 'package:json_schema_builder/json_schema_builder.dart';
 import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/presentation/widgets/quizdy_latex_text.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
-class FormulaComponent extends StatelessWidget {
-  final StudyComponent element;
+part 'formula_component.genui.g.dart';
 
-  const FormulaComponent({super.key, required this.element});
+@GenerativeUI(name: 'formula')
+class FormulaComponent extends StatelessWidget {
+  final String? title;
+  final String equation;
+  final String? equationLabel;
+  final String? body;
+
+  const FormulaComponent({
+    super.key,
+    this.title,
+    required this.equation,
+    this.equationLabel,
+    this.body,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final title = element.props['title']?.toString();
-    final equation = element.props['equation']?.toString() ?? '';
-    final equationLabel = element.props['equation_label']?.toString();
-    final body = element.props['body']?.toString();
+    final title = this.title;
+    final equationLabel = this.equationLabel;
+    final body = this.body;
     final studyTheme = context.studyTheme;
 
     return Padding(

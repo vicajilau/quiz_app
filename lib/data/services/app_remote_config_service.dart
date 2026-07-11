@@ -90,10 +90,9 @@ class AppRemoteConfigService {
   final Dio _dio;
 
   AppRemoteConfigService({
-    required SharedPreferences sharedPreferences,
-    required Dio dio,
-  }) : _sharedPreferences = sharedPreferences,
-       _dio = dio;
+    required this._sharedPreferences,
+    required this._dio,
+  });
 
   Future<AppRemoteConfig> getConfig({bool forceRefresh = false}) async {
     final cachedConfig = _readCachedConfig();

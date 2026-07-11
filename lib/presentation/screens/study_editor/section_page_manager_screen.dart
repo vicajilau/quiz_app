@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart' hide Page;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/quiz/study_page.dart';
 import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_cubit.dart';
@@ -184,14 +184,14 @@ class _PageCard extends StatelessWidget {
             ),
             IconButton(
               icon: Icon(
-                LucideIcons.trash2,
+                LucideIcons.trash_2,
                 size: 18,
                 color: colorScheme.error,
               ),
               onPressed: onDelete,
               visualDensity: VisualDensity.compact,
             ),
-            const Icon(LucideIcons.chevronRight),
+            const Icon(LucideIcons.chevron_right),
           ],
         ),
       ),

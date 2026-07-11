@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/extensions/ai_assistant_theme.dart';
 
@@ -92,7 +92,9 @@ class _CollapsibleGenerationConfigState
                   ),
                 ),
                 Icon(
-                  _isExpanded ? LucideIcons.chevronUp : LucideIcons.chevronDown,
+                  _isExpanded
+                      ? LucideIcons.chevron_up
+                      : LucideIcons.chevron_down,
                   size: 18,
                   color: iconColor,
                 ),

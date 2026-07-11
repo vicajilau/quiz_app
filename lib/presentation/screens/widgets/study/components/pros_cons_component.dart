@@ -14,26 +14,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:genui/genui.dart';
+import 'package:genui_annotations/genui_annotations.dart';
+import 'package:json_schema_builder/json_schema_builder.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
-class ProsConsComponent extends StatelessWidget {
-  final StudyComponent element;
+part 'pros_cons_component.genui.g.dart';
 
-  const ProsConsComponent({super.key, required this.element});
+@GenerativeUI(name: 'pros_cons')
+class ProsConsComponent extends StatelessWidget {
+  final List<dynamic> pros;
+  final List<dynamic> cons;
+
+  const ProsConsComponent({super.key, required this.pros, required this.cons});
 
   @override
   Widget build(BuildContext context) {
-    final items = element.props['items'] as Map<String, dynamic>?;
-    final prosList = items?['pros'] as List<dynamic>? ?? [];
-    final consList = items?['cons'] as List<dynamic>? ?? [];
-
-    final pros = prosList.map((e) => e.toString()).toList();
-    final cons = consList.map((e) => e.toString()).toList();
+    final parsedPros = pros.map((e) => e.toString()).toList();
+    final parsedCons = cons.map((e) => e.toString()).toList();
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 24.0),
@@ -44,14 +46,14 @@ class ProsConsComponent extends StatelessWidget {
                 _buildList(
                   context,
                   AppLocalizations.of(context)!.studyComponentAdvantages,
-                  pros,
+                  parsedPros,
                   true,
                 ),
                 const SizedBox(height: 16),
                 _buildList(
                   context,
                   AppLocalizations.of(context)!.studyComponentLimitations,
-                  cons,
+                  parsedCons,
                   false,
                 ),
               ],
@@ -63,7 +65,7 @@ class ProsConsComponent extends StatelessWidget {
                   child: _buildList(
                     context,
                     AppLocalizations.of(context)!.studyComponentAdvantages,
-                    pros,
+                    parsedPros,
                     true,
                   ),
                 ),
@@ -72,7 +74,7 @@ class ProsConsComponent extends StatelessWidget {
                   child: _buildList(
                     context,
                     AppLocalizations.of(context)!.studyComponentLimitations,
-                    cons,
+                    parsedCons,
                     false,
                   ),
                 ),
@@ -94,7 +96,7 @@ class ProsConsComponent extends StatelessWidget {
         : studyTheme.consBackground;
     final borderColor = isPros ? studyTheme.prosBorder : studyTheme.consBorder;
     final iconColor = isPros ? studyTheme.prosIcon : studyTheme.consIcon;
-    final icon = isPros ? LucideIcons.checkCircle2 : LucideIcons.xCircle;
+    final icon = isPros ? LucideIcons.circle_check : LucideIcons.circle_x;
 
     return Container(
       padding: const EdgeInsets.all(20.0),

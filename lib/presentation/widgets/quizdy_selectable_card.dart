@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 
 class QuizdySelectableCard extends StatelessWidget {
@@ -115,7 +115,7 @@ class QuizdySelectableCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Icon(
-                      LucideIcons.checkCircle2,
+                      LucideIcons.circle_check,
                       color: Theme.of(context).primaryColor,
                       size: 20,
                     ),

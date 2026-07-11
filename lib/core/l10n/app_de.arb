@@ -2565,5 +2565,83 @@
   "srsSortByHitRate": "Trefferquote",
   "srsSortAscending": "Aufsteigend",
   "srsSortDescending": "Absteigend",
-  "srsUnassignedSection": "Nicht zugewiesen"
+  "srsUnassignedSection": "Nicht zugewiesen",
+  "customAiProviderLabel": "Eigene / Lokale KI (Ollama, Groq...)",
+  "@customAiProviderLabel": {
+    "description": "Label for Custom / Local AI provider"
+  },
+  "customAiBaseUrlLabel": "Eigene Basis-URL",
+  "@customAiBaseUrlLabel": {
+    "description": "Label for custom AI base URL input"
+  },
+  "customAiBaseUrlHint": "z.B. http://localhost:11434/v1",
+  "@customAiBaseUrlHint": {
+    "description": "Hint text for custom AI base URL"
+  },
+  "customAiBaseUrlDescription": "Die Basis-URL Ihrer OpenAI-kompatiblen API (wie Ollama, Groq, LM Studio usw.)",
+  "@customAiBaseUrlDescription": {
+    "description": "Description of the custom AI base URL requirement"
+  },
+  "customAiApiKeyLabel": "Eigener API-Schlüssel (Optional)",
+  "@customAiApiKeyLabel": {
+    "description": "Label for custom AI API key input"
+  },
+  "customAiApiKeyHint": "Geben Sie den API-Schlüssel ein, falls Ihr eigener Anbieter dies erfordert",
+  "@customAiApiKeyHint": {
+    "description": "Hint text for custom AI API key"
+  },
+  "customAiApiKeyDescription": "Nur erforderlich, wenn Ihr eigener API-Endpunkt eine Authentifizierung benötigt (z. B. Groq, OpenRouter).",
+  "@customAiApiKeyDescription": {
+    "description": "Description for custom API key field"
+  },
+  "customAiLoadModelsButton": "Verbinden & Modelle laden",
+  "@customAiLoadModelsButton": {
+    "description": "Button to connect and fetch models from custom AI provider"
+  },
+  "customAiLoadModelsLoading": "Verbindung wird hergestellt...",
+  "@customAiLoadModelsLoading": {
+    "description": "Loading text when connecting to custom AI"
+  },
+  "customAiLoadModelsSuccess": "Erfolgreich {count} Modelle geladen!",
+  "@customAiLoadModelsSuccess": {
+    "description": "Success message when custom models are loaded",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "customAiLoadModelsError": "Verbindung oder Abrufen der Modelle fehlgeschlagen: {error}",
+  "@customAiLoadModelsError": {
+    "description": "Error message when custom model loading fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "customAiNoModelsError": "Auf diesem Endpunkt wurden keine Modelle gefunden. Stellen Sie sicher, dass der Dienst ausgeführt wird und Modelle heruntergeladen sind.",
+  "@customAiNoModelsError": {
+    "description": "Error message when connection succeeded but no models were returned"
+  },
+  "studyScreenDownloadAllButton": "Alle Abschnitte herunterladen",
+  "@studyScreenDownloadAllButton": {
+    "description": "Label for the button that downloads all study chunks/sections sequentially using AI."
+  },
+  "downloadingSectionsTitle": "Abschnitte werden generiert...",
+  "@downloadingSectionsTitle": {
+    "description": "Title for the modal dialog shown while downloading all sections sequentially"
+  },
+  "downloadingSectionsProgress": "Abschnitt {completed} von {total} verarbeitet",
+  "@downloadingSectionsProgress": {
+    "description": "Progress text shown inside the downloading sections dialog",
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }

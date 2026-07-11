@@ -46,30 +46,24 @@ class StudyExecutionBloc
   final String? _originalText;
   final String? _language;
   final AiGenerationMode? _generationMode;
+  bool _isDownloadAllCancelled = false;
 
   StudyExecutionBloc({
-    required AiJitProcessingService jitProcessingService,
-    required AppLocalizations localizations,
+    required this._jitProcessingService,
+    required this._localizations,
     required List<StudyChunk> initialChunks,
     required String documentTitle,
     String? documentSummary,
     AiFileAttachment? fileAttachment,
     String? fileUri,
-    bool isAutoDifficulty = true,
-    AiDifficultyLevel? difficultyLevel,
-    String? originalText,
-    String? language,
-    AiGenerationMode? generationMode,
+    this._isAutoDifficulty = true,
+    this._difficultyLevel,
+    this._originalText,
+    this._language,
+    this._generationMode,
     DateTime? fileExpirationTime,
     this.onProgressChanged,
-  }) : _jitProcessingService = jitProcessingService,
-       _localizations = localizations,
-       _isAutoDifficulty = isAutoDifficulty,
-       _difficultyLevel = difficultyLevel,
-       _originalText = originalText,
-       _language = language,
-       _generationMode = generationMode,
-       super(
+  }) : super(
          _initialProgress(
            initialChunks,
            documentTitle,
@@ -91,6 +85,8 @@ class StudyExecutionBloc
     on<ToggleChunkSelection>(_onToggleChunkSelection);
     on<ClearSelectionRequested>(_onClearSelectionRequested);
     on<DownloadStudyChunkRequested>(_onDownloadStudyChunkRequested);
+    on<DownloadAllStudyChunksRequested>(_onDownloadAllStudyChunksRequested);
+    on<CancelDownloadAllRequested>(_onCancelDownloadAllRequested);
     on<GenerateAiStudyChunksRequested>(_onGenerateAiStudyChunksRequested);
     on<DeleteChunkAtIndexRequested>(_onDeleteChunkAtIndexRequested);
     on<DeleteSelectedChunksRequested>(_onDeleteSelectedChunksRequested);
@@ -263,11 +259,43 @@ class StudyExecutionBloc
     DownloadStudyChunkRequested event,
     Emitter<StudyExecutionState> emit,
   ) async {
-    if (event.chunkIndex < 0 || event.chunkIndex >= state.chunks.length) {
+    await _downloadChunk(event.chunkIndex, emit);
+  }
+
+  Future<void> _onDownloadAllStudyChunksRequested(
+    DownloadAllStudyChunksRequested event,
+    Emitter<StudyExecutionState> emit,
+  ) async {
+    _isDownloadAllCancelled = false;
+    for (int i = 0; i < state.chunks.length; i++) {
+      if (_isDownloadAllCancelled) {
+        break;
+      }
+      final chunk = state.chunks[i];
+      if (chunk.status != StudyChunkState.completed &&
+          chunk.status != StudyChunkState.downloaded &&
+          chunk.status != StudyChunkState.processing) {
+        await _downloadChunk(i, emit);
+      }
+    }
+  }
+
+  void _onCancelDownloadAllRequested(
+    CancelDownloadAllRequested event,
+    Emitter<StudyExecutionState> emit,
+  ) {
+    _isDownloadAllCancelled = true;
+  }
+
+  Future<void> _downloadChunk(
+    int chunkIndex,
+    Emitter<StudyExecutionState> emit,
+  ) async {
+    if (chunkIndex < 0 || chunkIndex >= state.chunks.length) {
       return;
     }
 
-    final chunk = state.chunks[event.chunkIndex];
+    final chunk = state.chunks[chunkIndex];
 
     // Only download chunks that need processing.
     if (chunk.status == StudyChunkState.completed ||
@@ -279,7 +307,7 @@ class StudyExecutionBloc
     // Mark as processing (stays in index mode).
     final processingChunk = chunk.copyWith(status: StudyChunkState.processing);
     final chunksProcessing = List<StudyChunk>.from(state.chunks);
-    chunksProcessing[event.chunkIndex] = processingChunk;
+    chunksProcessing[chunkIndex] = processingChunk;
     emit(state.copyWith(chunks: chunksProcessing));
 
     String? fileUri = state.fileUri;
@@ -311,39 +339,46 @@ class StudyExecutionBloc
       } catch (e) {
         final errorChunk = chunk.copyWith(status: StudyChunkState.error);
         final chunksError = List<StudyChunk>.from(state.chunks);
-        chunksError[event.chunkIndex] = errorChunk;
+        chunksError[chunkIndex] = errorChunk;
         emit(state.copyWith(chunks: chunksError, error: e.toString()));
         return;
       }
     }
 
-    final processedChunk = await _jitProcessingService.processChunk(
-      chunk: processingChunk,
-      fileUri: fileUri,
-      fileMimeType: fileMimeType,
-      originalText: _originalText,
-      localizations: _localizations,
-      docTitle: state.documentTitle,
-      docSummary: state.documentSummary,
-      isAutoDifficulty: _isAutoDifficulty,
-      difficultyLevel: _difficultyLevel,
-      language: _language ?? _localizations.localeName,
-      generationMode: _generationMode,
-    );
+    try {
+      final processedChunk = await _jitProcessingService.processChunk(
+        chunk: processingChunk,
+        fileUri: fileUri,
+        fileMimeType: fileMimeType,
+        originalText: _originalText,
+        localizations: _localizations,
+        docTitle: state.documentTitle,
+        docSummary: state.documentSummary,
+        isAutoDifficulty: _isAutoDifficulty,
+        difficultyLevel: _difficultyLevel,
+        language: _language ?? _localizations.localeName,
+        generationMode: _generationMode,
+      );
 
-    final chunksFinished = List<StudyChunk>.from(state.chunks);
-    chunksFinished[event.chunkIndex] = processedChunk;
+      final chunksFinished = List<StudyChunk>.from(state.chunks);
+      chunksFinished[chunkIndex] = processedChunk;
 
-    final newState = _updateProgress(state.copyWith(chunks: chunksFinished));
-    emit(newState);
+      final newState = _updateProgress(state.copyWith(chunks: chunksFinished));
+      emit(newState);
 
-    onProgressChanged?.call(
-      newState.progressPercentage,
-      newState.processedChunks,
-      newState.chunks,
-      newState.fileUri,
-      newState.fileExpirationTime,
-    );
+      onProgressChanged?.call(
+        newState.progressPercentage,
+        newState.processedChunks,
+        newState.chunks,
+        newState.fileUri,
+        newState.fileExpirationTime,
+      );
+    } catch (e) {
+      final errorChunk = chunk.copyWith(status: StudyChunkState.error);
+      final chunksError = List<StudyChunk>.from(state.chunks);
+      chunksError[chunkIndex] = errorChunk;
+      emit(state.copyWith(chunks: chunksError, error: e.toString()));
+    }
   }
 
   StudyExecutionState _updateProgress(StudyExecutionState currentState) {

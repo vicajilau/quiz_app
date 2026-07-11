@@ -15,7 +15,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
@@ -130,7 +130,7 @@ class _SrsFileStatsCardState extends State<SrsFileStatsCard> {
                       ),
                       alignment: Alignment.center,
                       child: Icon(
-                        LucideIcons.fileText,
+                        LucideIcons.file_text,
                         size: 16,
                         color: _isExpanded ? Colors.white : subtitleColor,
                       ),
@@ -156,7 +156,7 @@ class _SrsFileStatsCardState extends State<SrsFileStatsCard> {
                           Row(
                             children: [
                               _CompactStat(
-                                icon: LucideIcons.listOrdered,
+                                icon: LucideIcons.list_ordered,
                                 value: '$_totalQuestions',
                                 color: subtitleColor,
                               ),
@@ -172,7 +172,7 @@ class _SrsFileStatsCardState extends State<SrsFileStatsCard> {
                               ],
                               const SizedBox(width: 12),
                               _CompactStat(
-                                icon: LucideIcons.barChart2,
+                                icon: LucideIcons.chart_bar,
                                 value: '${_retentionRate.toStringAsFixed(1)}%',
                                 color: _retentionRate >= 50
                                     ? Colors.green.shade600
@@ -191,7 +191,7 @@ class _SrsFileStatsCardState extends State<SrsFileStatsCard> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 _CardIconButton(
-                                  icon: LucideIcons.trash2,
+                                  icon: LucideIcons.trash_2,
                                   color: theme.colorScheme.error,
                                   onPressed: widget.onDelete,
                                   tooltip: l10n.srsDeleteFileStatsTooltip,
@@ -203,8 +203,8 @@ class _SrsFileStatsCardState extends State<SrsFileStatsCard> {
                     ),
                     Icon(
                       _isExpanded
-                          ? LucideIcons.chevronUp
-                          : LucideIcons.chevronDown,
+                          ? LucideIcons.chevron_up
+                          : LucideIcons.chevron_down,
                       size: 18,
                       color: subtitleColor,
                     ),
@@ -343,7 +343,7 @@ class _ExpandedContent extends StatelessWidget {
             SrsStatMetric(
               label: l10n.srsQuestions,
               value: totalQuestions.toString(),
-              icon: LucideIcons.listOrdered,
+              icon: LucideIcons.list_ordered,
               color: AppTheme.primaryColor,
             ),
             if (kDebugMode) ...[
@@ -357,7 +357,7 @@ class _ExpandedContent extends StatelessWidget {
             SrsStatMetric(
               label: l10n.srsRetention,
               value: '${retentionRate.toStringAsFixed(1)}%',
-              icon: LucideIcons.barChart2,
+              icon: LucideIcons.chart_bar,
               color: retentionRate >= 50 ? Colors.green.shade600 : Colors.red,
             ),
           ],

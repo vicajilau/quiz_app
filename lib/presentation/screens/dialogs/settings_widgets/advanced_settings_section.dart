@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/extensions/app_localizations_extension.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
@@ -106,7 +106,7 @@ class AdvancedSettingsSection extends StatelessWidget {
                             value:
                                 state.locale ?? Localizations.localeOf(context),
                             icon: Icon(
-                              LucideIcons.chevronDown,
+                              LucideIcons.chevron_down,
                               size: 16,
                               color: colors.subtitle,
                             ),
