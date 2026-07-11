@@ -97,6 +97,8 @@ class _HomeScreenState extends State<HomeScreen> {
   String? _feedbackFormUrl = AppRemoteConfig.defaults().homeFeedbackUrl;
   QuizMode? _hoveredDropMode;
   QuizMode? _pendingDropMode;
+  bool _isAutomaticLoad = false;
+  bool _isAutoLoading = false;
 
   bool _isSidebarCollapsed = false;
   late int _selectedTabIndex;
@@ -528,6 +530,11 @@ class _HomeScreenState extends State<HomeScreen> {
               final dropMode = _pendingDropMode;
               _pendingDropMode = null;
 
+              if (_isAutomaticLoad) {
+                _isAutomaticLoad = false;
+                return;
+              }
+
               final QuizMode? choice;
               if (_selectedTabIndex == 1) {
                 choice = QuizMode.study;
@@ -549,7 +556,11 @@ class _HomeScreenState extends State<HomeScreen> {
               }
             }
             if (state is FileError && context.mounted) {
-              setState(() => _isLoading = false);
+              setState(() {
+                _isLoading = false;
+                _isAutoLoading = false;
+                _isAutomaticLoad = false;
+              });
               if (state.error is BadQuizFileException) {
                 final badFileException = state.error as BadQuizFileException;
                 context.presentSnackBar(badFileException.toString());
@@ -872,11 +883,15 @@ class _HomeScreenState extends State<HomeScreen> {
           final list = recentState.recentQuizzes;
           if (list.length == 1) {
             final recent = list.first;
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (mounted) {
-                _handleRecentQuizTap(context, recent);
-              }
-            });
+            if (!_isAutoLoading) {
+              _isAutoLoading = true;
+              _isAutomaticLoad = true;
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (mounted) {
+                  _handleRecentQuizTap(context, recent);
+                }
+              });
+            }
             return const Center(child: QuizdyLoading());
           } else if (list.length > 1) {
             return HomeRecentSelectorView(
