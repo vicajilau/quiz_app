@@ -222,6 +222,7 @@
   "openaiApiKeyDescription": "Απαιτείται για ενσωμάτωση με OpenAI. Το κλειδί OpenAI αποθηκεύεται με ασφάλεια.",
   "aiAssistantRequiresApiKeyError": "Ο Βοηθός Μελέτης AI απαιτεί κλειδί API OpenAI. Παρακαλώ εισάγετε το κλειδί API σας ή απενεργοποιήστε τον Βοηθό AI.",
   "getApiKeyTooltip": "Λήψη κλειδιού API από OpenAI",
+  "customAiFileUploadNotSupported": "Τα τοπικά / προσαρμοσμένα μοντέλα AI δεν υποστηρίζουν τη μεταφόρτωση εγγράφων.",
   "deleteAction": "Διαγραφή",
   "explanationLabel": "Εξήγηση (προαιρετικό)",
   "explanationHint": "Εισάγετε μια εξήγηση για τη/τις σωστή/ές απάντηση/εις",

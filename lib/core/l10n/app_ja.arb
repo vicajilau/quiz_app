@@ -681,6 +681,7 @@
   "@getApiKeyTooltip": {
     "description": "OpenAIからAPIキーを取得するボタンのツールチップ"
   },
+  "customAiFileUploadNotSupported": "ローカル/カスタムAIモデルはドキュメントのアップロードをサポートしていません。",
   "deleteAction": "削除",
   "@deleteAction": {
     "description": "スワイプして削除するときに表示されるアクションテキスト"

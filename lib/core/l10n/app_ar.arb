@@ -782,6 +782,7 @@
   "@getApiKeyTooltip": {
     "description": "Tooltip for the button to get API key from OpenAI"
   },
+  "customAiFileUploadNotSupported": "لا تدعم نماذج الذكاء الاصطناعي المحلية/المخصصة تحميل المستندات.",
   "deleteAction": "حذف",
   "@deleteAction": {
     "description": "Delete action text shown when swiping to delete"

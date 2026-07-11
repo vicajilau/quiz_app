@@ -312,6 +312,7 @@
   "openaiApiKeyDescription": "Требуется для интеграции с OpenAI. Ваш ключ OpenAI хранится в безопасности.",
   "aiAssistantRequiresApiKeyError": "Учебный ассистент ИИ требует API-ключ OpenAI. Пожалуйста, введите ваш API-ключ или отключите ассистента ИИ.",
   "getApiKeyTooltip": "Получить API-ключ в OpenAI",
+  "customAiFileUploadNotSupported": "Локальные / пользовательские модели ИИ не поддерживают загрузку документов.",
   "deleteAction": "Удалить",
   "explanationLabel": "Объяснение (необязательно)",
   "explanationHint": "Введите объяснение правильного ответа(ов)",
