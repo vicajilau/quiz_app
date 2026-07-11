@@ -795,6 +795,7 @@
   "@getApiKeyTooltip": {
     "description": "Tooltip für die Schaltfläche zum Erhalten des API-Schlüssels von OpenAI"
   },
+  "customAiFileUploadNotSupported": "Lokale / benutzerdefinierte KI-Modelle unterstützen das Hochladen von Dokumenten nicht.",
   "deleteAction": "Löschen",
   "@deleteAction": {
     "description": "Löschaktions-Text beim Wischen zum Löschen angezeigt"

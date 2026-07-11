@@ -260,6 +260,7 @@
   "openaiApiKeyDescription": "აუცილებელია OpenAI-სთან ინტეგრაციისთვის. თქვენი OpenAI გასაღები დაცულია.",
   "aiAssistantRequiresApiKeyError": "AI სწავლის ასისტენტს სჭირდება OpenAI API Key. შეიყვანეთ თქვენი API გასაღები ან გამორთეთ AI ასისტენტი.",
   "getApiKeyTooltip": "მიიღეთ API Key OpenAI-დან",
+  "customAiFileUploadNotSupported": "ლოკალური / პერსონალური AI მოდელები არ უჭერენ მხარს დოკუმენტების ატვირთვას.",
   "deleteAction": "წაშლა",
   "explanationLabel": "განმარტება (არასავალდებულო)",
   "explanationHint": "შეიყვანეთ განმარტება სწორი პასუხ(ებ)ისთვის",

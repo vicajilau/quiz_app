@@ -801,6 +801,7 @@
   "@getApiKeyTooltip": {
     "description": "Tooltip pel botó per obtenir clau API d'OpenAI"
   },
+  "customAiFileUploadNotSupported": "Els models d'IA locals/personalitzats no admeten la càrrega de documents.",
   "deleteAction": "Eliminar",
   "@deleteAction": {
     "description": "Text d'acció eliminar mostrat en fer lliscar per eliminar"

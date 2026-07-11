@@ -962,6 +962,10 @@
   "@customAiNoModelsError": {
     "description": "Error message when connection succeeded but no models were returned"
   },
+  "customAiFileUploadNotSupported": "Local / Custom AI models do not support document upload.",
+  "@customAiFileUploadNotSupported": {
+    "description": "Warning message displayed when trying to upload a file while using custom / local AI"
+  },
   "deleteAction": "Delete",
   "@deleteAction": {
     "description": "Delete action text shown when swiping to delete"

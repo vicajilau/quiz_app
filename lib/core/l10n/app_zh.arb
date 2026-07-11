@@ -665,6 +665,7 @@
   "@getApiKeyTooltip": {
     "description": "Tooltip for the button to get API key from OpenAI"
   },
+  "customAiFileUploadNotSupported": "本地/自定义 AI 模型不支持上传文档。",
   "deleteAction": "删除",
   "@deleteAction": {
     "description": "Delete action text shown when swiping to delete"

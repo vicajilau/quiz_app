@@ -673,6 +673,7 @@
   "@getApiKeyTooltip": {
     "description": "Tooltip for the button to get API key from OpenAI"
   },
+  "customAiFileUploadNotSupported": "स्थानीय / कस्टम एआई मॉडल दस्तावेज़ अपलोड का समर्थन नहीं करते हैं।",
   "deleteAction": "हटाएं",
   "@deleteAction": {
     "description": "Delete action text shown when swiping to delete"

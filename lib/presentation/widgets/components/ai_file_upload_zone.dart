@@ -25,6 +25,8 @@ class AiFileUploadZone extends StatelessWidget {
   final ValueChanged<bool> onAutoDifficultyChanged;
   final AiFileAttachment? fileAttachment;
   final bool isDragging;
+  final bool isDisabled;
+  final String? disabledMessage;
 
   const AiFileUploadZone({
     super.key,
@@ -33,6 +35,8 @@ class AiFileUploadZone extends StatelessWidget {
     required this.onAutoDifficultyChanged,
     this.fileAttachment,
     this.isDragging = false,
+    this.isDisabled = false,
+    this.disabledMessage,
   });
 
   @override
@@ -45,17 +49,23 @@ class AiFileUploadZone extends StatelessWidget {
         : const Color(0xFFD4D4D8);
 
     return GestureDetector(
-      onTap: onPickFile,
+      onTap: isDisabled ? null : onPickFile,
       child: Container(
         height: 64,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: isDragging
-              ? Theme.of(context).primaryColor.withValues(alpha: 0.05)
-              : Colors.transparent,
+          color: isDisabled
+              ? (isDark
+                    ? Colors.white.withValues(alpha: 0.02)
+                    : Colors.black.withValues(alpha: 0.02))
+              : (isDragging
+                    ? Theme.of(context).primaryColor.withValues(alpha: 0.05)
+                    : Colors.transparent),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: isDragging ? Theme.of(context).primaryColor : attachStroke,
+            color: isDisabled
+                ? attachStroke.withValues(alpha: 0.5)
+                : (isDragging ? Theme.of(context).primaryColor : attachStroke),
             width: 2,
           ),
         ),
@@ -68,14 +78,31 @@ class AiFileUploadZone extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  isDragging ? LucideIcons.download : LucideIcons.paperclip,
-                  color: isDragging
-                      ? Theme.of(context).primaryColor
-                      : colors.subtitle,
+                  isDisabled
+                      ? LucideIcons.triangle_alert
+                      : (isDragging
+                            ? LucideIcons.download
+                            : LucideIcons.paperclip),
+                  color: isDisabled
+                      ? colors.subtitle.withValues(alpha: 0.4)
+                      : (isDragging
+                            ? Theme.of(context).primaryColor
+                            : colors.subtitle),
                   size: 20,
                 ),
                 const SizedBox(width: 12),
-                if (isDragging)
+                if (isDisabled)
+                  Text(
+                    disabledMessage ??
+                        localizations.customAiFileUploadNotSupported,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: colors.subtitle.withValues(alpha: 0.5),
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  )
+                else if (isDragging)
                   Text(
                     localizations.dropAttachmentHere,
                     style: TextStyle(
@@ -105,7 +132,7 @@ class AiFileUploadZone extends StatelessWidget {
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),
-                if (fileAttachment != null && !isDragging)
+                if (fileAttachment != null && !isDragging && !isDisabled)
                   Padding(
                     padding: const EdgeInsets.only(left: 12.0, right: 16.0),
                     child: GestureDetector(

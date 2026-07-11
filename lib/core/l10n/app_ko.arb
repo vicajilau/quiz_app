@@ -260,6 +260,7 @@
   "openaiApiKeyDescription": "OpenAI 통합을 위해 필요합니다. OpenAI 키는 안전하게 저장됩니다.",
   "aiAssistantRequiresApiKeyError": "AI 학습 어시스턴트를 사용하려면 OpenAI API 키가 필요합니다. API 키를 입력하거나 AI 어시스턴트를 비활성화하십시오.",
   "getApiKeyTooltip": "OpenAI에서 API 키 받기",
+  "customAiFileUploadNotSupported": "로컬 / 사용자 정의 AI 모델은 문서 업로드를 지원하지 않습니다.",
   "deleteAction": "삭제",
   "explanationLabel": "설명 (선택 사항)",
   "explanationHint": "정답에 대한 설명을 입력하세요",

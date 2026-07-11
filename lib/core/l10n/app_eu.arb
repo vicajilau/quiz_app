@@ -695,6 +695,7 @@
   "@getApiKeyTooltip": {
     "description": "OpenAI API gakoa lortzeko botoiarentzako tooltip-a"
   },
+  "customAiFileUploadNotSupported": "AI lokalek/pertsonalizatuek ez dute dokumenturik kargatzen uzten.",
   "deleteAction": "Ezabatu",
   "@deleteAction": {
     "description": "Ezabatzeko lerratu ekintzan erakusten den ezabatu ekintza testua"

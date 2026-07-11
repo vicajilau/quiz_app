@@ -701,6 +701,7 @@
   "@getApiKeyTooltip": {
     "description": "Info-bulle pour le bouton d'obtention de clé API depuis OpenAI"
   },
+  "customAiFileUploadNotSupported": "Les modèles d'IA locaux / personnalisés ne prennent pas en charge le chargement de documents.",
   "deleteAction": "Supprimer",
   "@deleteAction": {
     "description": "Texte d'action de suppression affiché lors du glissement pour supprimer"
