@@ -49,12 +49,12 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
 
-    return QuizdyAppBar(
-      showLeading: showLeading,
-      leading: Center(
-        child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-          builder: (context, state) {
-            return AbsorbPointer(
+    return BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+      builder: (context, state) {
+        return QuizdyAppBar(
+          showLeading: showLeading || !state.isIndexMode,
+          leading: Center(
+            child: AbsorbPointer(
               absorbing: state.isLoading,
               child: Container(
                 width: 40,
@@ -97,22 +97,18 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                   tooltip: AppLocalizations.of(context)!.close,
                 ),
               ),
-            );
-          },
-        ),
-      ),
-      title: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-                  builder: (context, state) {
-                    return Text(
+            ),
+          ),
+          title: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
                       state.documentTitle,
                       style: TextStyle(
                         color: context.homeTheme.textPrimaryColor,
@@ -120,18 +116,14 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                         fontWeight: FontWeight.w700,
                       ),
                       overflow: TextOverflow.ellipsis,
-                    );
-                  },
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
-      actions: [
-        BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
-          builder: (context, state) {
-            return AbsorbPointer(
+          actions: [
+            AbsorbPointer(
               absorbing: state.isLoading,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -325,10 +317,10 @@ class StudyAppBar extends StatelessWidget implements PreferredSizeWidget {
                     ),
                 ],
               ),
-            );
-          },
-        ),
-      ],
+            ),
+          ],
+        );
+      },
     );
   }
 }
