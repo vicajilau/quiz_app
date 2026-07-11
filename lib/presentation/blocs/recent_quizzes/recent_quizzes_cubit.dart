@@ -22,9 +22,8 @@ import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 class RecentQuizzesCubit extends Cubit<RecentQuizzesState> {
   final RecentQuizRepository _recentQuizRepository;
 
-  RecentQuizzesCubit({required RecentQuizRepository recentQuizRepository})
-    : _recentQuizRepository = recentQuizRepository,
-      super(RecentQuizzesInitial());
+  RecentQuizzesCubit({required this._recentQuizRepository})
+    : super(RecentQuizzesInitial());
 
   /// Loads/reloads the list of recent quizzes from the database.
   void loadRecentQuizzes() {
