@@ -34,6 +34,8 @@
   "confirmDeleteTitle": "Confirmar exclusão",
   "confirmDeleteMessage": "Tem certeza de que deseja excluir o processo `{processName}`?",
   "confirmDeleteSectionWithQuestionsMessage": "Esta seção possui perguntas associadas. Tem certeza de que deseja excluir `{sectionName}`?",
+  "confirmRegenerateTitle": "Confirmar regeneração",
+  "confirmRegenerateMessage": "Tem certeza de que deseja regenerar esta seção? Todas as edições personalizadas nesta seção serão perdidas.",
   "deleteButton": "Excluir",
   "confirmExitTitle": "Confirmar saída",
   "confirmExitMessage": "Existem alterações não salvas. Deseja sair e descartar as alterações?",

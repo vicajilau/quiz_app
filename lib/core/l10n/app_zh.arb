@@ -34,6 +34,8 @@
   "confirmDeleteTitle": "确认删除",
   "confirmDeleteMessage": "您确定要删除\"{processName}\"过程吗？",
   "confirmDeleteSectionWithQuestionsMessage": "此章节包含关联问题。您确定要删除 `{sectionName}` 吗？",
+  "confirmRegenerateTitle": "确认重新生成",
+  "confirmRegenerateMessage": "您确定要重新生成此章节吗？此章节的所有自定义编辑都将丢失。",
   "deleteButton": "删除",
   "confirmExitTitle": "确认退出",
   "confirmExitMessage": "有未保存的更改。您要放弃更改并离开吗？",

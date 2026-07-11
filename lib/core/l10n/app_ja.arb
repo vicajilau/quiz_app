@@ -34,6 +34,8 @@
   "confirmDeleteTitle": "削除の確認",
   "confirmDeleteMessage": "本当に`{processName}`プロセスを削除しますか？",
   "confirmDeleteSectionWithQuestionsMessage": "このセクションには関連する問題があります。本当に `{sectionName}` を削除しますか？",
+  "confirmRegenerateTitle": "再生成の確認",
+  "confirmRegenerateMessage": "このセクションを再生成してもよろしいですか？このセクションに対するすべてのカスタム編集は失われます。",
   "deleteButton": "削除",
   "confirmExitTitle": "終了の確認",
   "confirmExitMessage": "保存されていない変更があります。変更を破棄して終了しますか？",

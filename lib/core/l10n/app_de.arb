@@ -34,6 +34,8 @@
   "confirmDeleteTitle": "Löschung bestätigen",
   "confirmDeleteMessage": "Sind Sie sicher, dass Sie den Prozess `{processName}` löschen möchten?",
   "confirmDeleteSectionWithQuestionsMessage": "Dieser Bereich hat zugeordnete Fragen. Sind Sie sicher, dass Sie `{sectionName}` löschen möchten?",
+  "confirmRegenerateTitle": "Regeneration bestätigen",
+  "confirmRegenerateMessage": "Sind Sie sicher, dass Sie diesen Abschnitt regenerieren möchten? Alle benutzerdefinierten Bearbeitungen in diesem Abschnitt gehen verloren.",
   "deleteButton": "Löschen",
   "confirmExitTitle": "Beenden bestätigen",
   "confirmExitMessage": "Es gibt ungespeicherte Änderungen. Möchten Sie verlassen und die Änderungen verwerfen?",

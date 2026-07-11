@@ -34,6 +34,8 @@
   "confirmDeleteTitle": "تأكيد الحذف",
   "confirmDeleteMessage": "هل أنت متأكد من أنك تريد حذف العملية `{processName}`؟",
   "confirmDeleteSectionWithQuestionsMessage": "هذا القسم يحتوي على أسئلة مرتبطة به. هل أنت متأكد أنك تريد حذف `{sectionName}`؟",
+  "confirmRegenerateTitle": "تأكيد إعادة الإنشاء",
+  "confirmRegenerateMessage": "هل أنت متأكد أنك تريد إعادة إنشاء هذا القسم؟ ستفقد جميع التعديلات المخصصة لهذا القسم.",
   "deleteButton": "حذف",
   "confirmExitTitle": "تأكيد الخروج",
   "confirmExitMessage": "هناك تغييرات غير محفوظة. هل تريد الخروج وتجاهل التغييرات؟",

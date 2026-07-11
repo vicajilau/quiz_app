@@ -34,6 +34,8 @@
   "confirmDeleteTitle": "Confirmar eliminació",
   "confirmDeleteMessage": "Esteu segur que voleu eliminar el procés `{processName}`?",
   "confirmDeleteSectionWithQuestionsMessage": "Aquesta secció té preguntes associades. Segur que vols eliminar `{sectionName}`?",
+  "confirmRegenerateTitle": "Confirmar regeneració",
+  "confirmRegenerateMessage": "Estàs segur que vols regenerar aquesta secció? Es perdran totes les edicions personalitzades d'aquesta secció.",
   "deleteButton": "Eliminar",
   "confirmExitTitle": "Confirmar sortida",
   "confirmExitMessage": "Hi ha canvis sense desar. Voleu sortir descartant els canvis?",

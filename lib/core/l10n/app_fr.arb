@@ -34,6 +34,8 @@
   "confirmDeleteTitle": "Confirmer la suppression",
   "confirmDeleteMessage": "Êtes-vous sûr de vouloir supprimer le processus `{processName}` ?",
   "confirmDeleteSectionWithQuestionsMessage": "Cette section a des questions associées. Voulez-vous vraiment supprimer `{sectionName}` ?",
+  "confirmRegenerateTitle": "Confirmer la régénération",
+  "confirmRegenerateMessage": "Êtes-vous sûr de vouloir régénérer cette section ? Toutes les modifications personnalisées de cette section seront perdues.",
   "deleteButton": "Supprimer",
   "confirmExitTitle": "Confirmer la sortie",
   "confirmExitMessage": "Il y a des modifications non enregistrées. Voulez-vous quitter et ignorer les modifications ?",

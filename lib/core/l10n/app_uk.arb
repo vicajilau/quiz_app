@@ -34,6 +34,8 @@
   "confirmDeleteTitle": "Підтвердження видалення",
   "confirmDeleteMessage": "Ви впевнені, що хочете видалити процес `{processName}`?",
   "confirmDeleteSectionWithQuestionsMessage": "З цим розділом пов'язані питання. Ви дійсно хочете видалити `{sectionName}`?",
+  "confirmRegenerateTitle": "Підтвердження регенерації",
+  "confirmRegenerateMessage": "Ви впевнені, що хочете регенерувати цей розділ? Усі користувацькі зміни в цьому розділі будуть втрачені.",
   "deleteButton": "Видалити",
   "confirmExitTitle": "Підтвердження виходу",
   "confirmExitMessage": "Є незбережені зміни. Ви хочете вийти та скасувати зміни?",

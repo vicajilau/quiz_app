@@ -34,6 +34,8 @@
   "confirmDeleteTitle": "Επιβεβαίωση Διαγραφής",
   "confirmDeleteMessage": "Είστε σίγουροι ότι θέλετε να διαγράψετε τη διαδικασία `{processName}`;",
   "confirmDeleteSectionWithQuestionsMessage": "Αυτή η ενότητα έχει συσχετισμένες ερωτήσεις. Είστε βέβαιοι ότι θέλετε να διαγράψετε το `{sectionName}`;",
+  "confirmRegenerateTitle": "Επιβεβαίωση Αναγέννησης",
+  "confirmRegenerateMessage": "Είστε σίγουροι ότι θέλετε να αναγεννήσετε αυτήν την ενότητα; Όλες οι προσαρμοσμένες αλλαγές σε αυτήν την ενότητα θα χαθούν.",
   "deleteButton": "Διαγραφή",
   "confirmExitTitle": "Επιβεβαίωση Εξόδου",
   "confirmExitMessage": "Υπάρχουν μη αποθηκευμένες αλλαγές. Θέλετε να φύγετε απορρίπτοντας τις αλλαγές;",

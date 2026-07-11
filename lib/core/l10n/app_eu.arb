@@ -34,6 +34,8 @@
   "confirmDeleteTitle": "Ezabaketa Berretsi",
   "confirmDeleteMessage": "Ziur zaude `{processName}` prozesua ezabatu nahi duzula?",
   "confirmDeleteSectionWithQuestionsMessage": "Atal honek lotutako galderak ditu. Ziur zaude `{sectionName}` ezabatu nahi duzula?",
+  "confirmRegenerateTitle": "Birsortzea berretsi",
+  "confirmRegenerateMessage": "Ziur al zaude atal hau birsortu nahi duzula? Atal honetako aldaketa pertsonalizatu guztiak galduko dira.",
   "deleteButton": "Ezabatu",
   "confirmExitTitle": "Irteera Berretsi",
   "confirmExitMessage": "Gorde gabeko aldaketak daude. Aldaketak baztertuz irten nahi duzu?",

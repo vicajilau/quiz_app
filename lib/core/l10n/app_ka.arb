@@ -34,6 +34,8 @@
   "confirmDeleteTitle": "წაშლის დადასტურება",
   "confirmDeleteMessage": "დარწმუნებული ხართ, რომ გსურთ `{processName}`-ის წაშლა?",
   "confirmDeleteSectionWithQuestionsMessage": "ამ სექციასთან დაკავშირებულია კითხვები. ნამდვილად გსურთ წაშალოთ `{sectionName}`?",
+  "confirmRegenerateTitle": "რეგენერაციის დადასტურება",
+  "confirmRegenerateMessage": "დარწმუნებული ხართ, რომ გსურთ ამ სექციის რეგენერაცია? ამ სექციის ყველა პერსონალური ცვლილება დაიკარგება.",
   "deleteButton": "წაშლა",
   "confirmExitTitle": "გასვლის დადასტურება",
   "confirmExitMessage": "არსებობს შეუნახავი ცვლილებები. გსურთ გასვლა და ცვლილებების გაუქმება?",

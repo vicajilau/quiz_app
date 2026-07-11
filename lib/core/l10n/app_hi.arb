@@ -34,6 +34,8 @@
   "confirmDeleteTitle": "हटाने की पुष्टि करें",
   "confirmDeleteMessage": "क्या आप वाकई `{processName}` प्रक्रिया को हटाना चाहते हैं?",
   "confirmDeleteSectionWithQuestionsMessage": "इस अनुभाग में जुड़े हुए प्रश्न हैं। क्या आप वाकई `{sectionName}` को हटाना चाहते हैं?",
+  "confirmRegenerateTitle": "पुनरुत्पादन की पुष्टि करें",
+  "confirmRegenerateMessage": "क्या आप वाकई इस अनुभाग को पुनरुत्पादित करना चाहते हैं? इस अनुभाग के सभी कस्टम संपादन खो जाएंगे।",
   "deleteButton": "हटाएं",
   "confirmExitTitle": "बाहर निकलने की पुष्टि करें",
   "confirmExitMessage": "बिना सहेजे गए बदलाव मौजूद हैं। क्या आप बदलावों को रद्द करके बाहर निकलना चाहते हैं?",

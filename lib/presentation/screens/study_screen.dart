@@ -46,6 +46,7 @@ import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_e
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
 import 'package:quizdy/presentation/screens/dialogs/ai_generate_study_dialog.dart';
 import 'package:quizdy/presentation/screens/dialogs/exit_confirmation_dialog.dart';
+import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
 import 'package:quizdy/domain/models/ai/ai_study_generation_config.dart';
 import 'package:quizdy/presentation/screens/dialogs/import_chunks_dialog.dart';
 import 'package:quizdy/presentation/screens/dialogs/import_questions_dialog.dart';
@@ -466,11 +467,25 @@ class _StudyScreenViewState extends State<StudyScreenView> {
             onConfirmExit: _confirmExit,
             onExit: widget.onExit,
             showLeading: widget.showLeading,
-            onRegenerateCurrentChunk: () {
-              final bloc = context.read<StudyExecutionBloc>();
-              final chunkIndex = bloc.state.currentChunkIndex;
-              if (chunkIndex >= 0 && chunkIndex < bloc.state.chunks.length) {
-                bloc.add(RegenerateStudyChunkRequested(chunkIndex));
+            onRegenerateCurrentChunk: () async {
+              final localizations = AppLocalizations.of(context)!;
+              final confirmed =
+                  await showDialog<bool>(
+                    context: context,
+                    builder: (context) => CustomConfirmDialog(
+                      title: localizations.confirmRegenerateTitle,
+                      message: localizations.confirmRegenerateMessage,
+                      confirmText: localizations.regenerate,
+                    ),
+                  ) ??
+                  false;
+
+              if (confirmed && context.mounted) {
+                final bloc = context.read<StudyExecutionBloc>();
+                final chunkIndex = bloc.state.currentChunkIndex;
+                if (chunkIndex >= 0 && chunkIndex < bloc.state.chunks.length) {
+                  bloc.add(RegenerateStudyChunkRequested(chunkIndex));
+                }
               }
             },
             onEditCurrentChunk: () async {

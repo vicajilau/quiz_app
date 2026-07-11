@@ -178,6 +178,14 @@
       }
     }
   },
+  "confirmRegenerateTitle": "Confirm Regeneration",
+  "@confirmRegenerateTitle": {
+    "description": "Title for the confirmation dialog when regenerating a study section."
+  },
+  "confirmRegenerateMessage": "Are you sure you want to regenerate this section? All custom edits to this section will be lost.",
+  "@confirmRegenerateMessage": {
+    "description": "Message in the confirmation dialog for regenerating a section."
+  },
   "deleteButton": "Delete",
   "@deleteButton": {
     "description": "Button text for confirming deletion."
