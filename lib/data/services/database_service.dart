@@ -26,7 +26,7 @@ class DatabaseService {
     if (path != null) {
       Hive.init(path);
     } else {
-      await Hive.initFlutter();
+      await Hive.initFlutter('quizdy');
     }
 
     // Register all custom adapters
