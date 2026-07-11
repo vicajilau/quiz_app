@@ -27,6 +27,7 @@ import 'package:quizdy/data/services/app_remote_config_service.dart';
 import 'package:quizdy/presentation/blocs/app_update_cubit/app_update_cubit.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
+import 'package:quizdy/domain/use_cases/initialize_quiz_chunks_use_case.dart';
 
 import 'package:quizdy/data/repositories/quiz_file_repository.dart';
 import 'package:quizdy/data/services/file_service/mobile_desktop_file_service.dart'
@@ -109,6 +110,12 @@ class ServiceLocator {
     getIt.registerLazySingleton<CheckFileChangesUseCase>(
       () =>
           CheckFileChangesUseCase(fileRepository: getIt<QuizFileRepository>()),
+    );
+    getIt.registerLazySingleton<InitializeQuizChunksUseCase>(
+      () => InitializeQuizChunksUseCase(
+        chunkingService: getIt<AiDocumentChunkingService>(),
+        repositoryFactory: getIt<AiRepositoryFactory>(),
+      ),
     );
     getIt.registerLazySingleton<QuizFileRepository>(
       () => QuizFileRepository(fileService: getIt<QuizFileService>()),
