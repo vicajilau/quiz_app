@@ -2018,6 +2018,10 @@
   "@edit": {
     "description": "Button label to edit a question"
   },
+  "regenerate": "Regenerate",
+  "@regenerate": {
+    "description": "Tooltip/Button label to regenerate a section using AI"
+  },
   "enable": "Enable",
   "@enable": {
     "description": "Button label to enable a question"

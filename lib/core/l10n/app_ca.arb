@@ -415,6 +415,7 @@
   "askAiAboutQuestion": "Pregunta a l'IA sobre aquesta pregunta",
   "aiHelpWithQuestion": "Ajuda'm a entendre aquesta pregunta",
   "edit": "Editar",
+  "regenerate": "Regenerar",
   "enable": "Activar",
   "disable": "Desactivar",
   "quizPreviewTitle": "Vista prèvia del qüestionari",

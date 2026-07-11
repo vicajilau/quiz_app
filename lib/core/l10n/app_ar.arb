@@ -415,6 +415,7 @@
   "askAiAboutQuestion": "اسأل الذكاء الاصطناعي عن هذا السؤال",
   "aiHelpWithQuestion": "ساعدني في فهم هذا السؤال",
   "edit": "تعديل",
+  "regenerate": "إعادة إنشاء",
   "enable": "تفعيل",
   "disable": "تعطيل",
   "quizPreviewTitle": "معاينة الاختبار",

@@ -415,6 +415,7 @@
   "askAiAboutQuestion": "この問題についてAIに聞く",
   "aiHelpWithQuestion": "この問題を理解するのを手伝って",
   "edit": "編集",
+  "regenerate": "再生成",
   "enable": "有効化",
   "disable": "無効化",
   "quizPreviewTitle": "クイズプレビュー",

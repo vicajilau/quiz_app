@@ -415,6 +415,7 @@
   "askAiAboutQuestion": "KI zu dieser Frage befragen",
   "aiHelpWithQuestion": "Hilf mir, diese Frage zu verstehen",
   "edit": "Bearbeiten",
+  "regenerate": "Regenerieren",
   "enable": "Aktivieren",
   "disable": "Deaktivieren",
   "quizPreviewTitle": "Quiz-Vorschau",

@@ -415,6 +415,7 @@
   "askAiAboutQuestion": "Chiedi all'AI su questa domanda",
   "aiHelpWithQuestion": "Aiutami a capire questa domanda",
   "edit": "Modifica",
+  "regenerate": "Rigenera",
   "enable": "Abilita",
   "disable": "Disabilita",
   "quizPreviewTitle": "Anteprima Quiz",

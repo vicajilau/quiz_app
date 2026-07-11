@@ -466,6 +466,13 @@ class _StudyScreenViewState extends State<StudyScreenView> {
             onConfirmExit: _confirmExit,
             onExit: widget.onExit,
             showLeading: widget.showLeading,
+            onRegenerateCurrentChunk: () {
+              final bloc = context.read<StudyExecutionBloc>();
+              final chunkIndex = bloc.state.currentChunkIndex;
+              if (chunkIndex >= 0 && chunkIndex < bloc.state.chunks.length) {
+                bloc.add(RegenerateStudyChunkRequested(chunkIndex));
+              }
+            },
             onEditCurrentChunk: () async {
               final cubit = context.read<StudyEditorCubit>();
               final bloc = context.read<StudyExecutionBloc>();

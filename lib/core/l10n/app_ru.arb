@@ -415,6 +415,7 @@
   "askAiAboutQuestion": "Спросить ИИ об этом вопросе",
   "aiHelpWithQuestion": "Помоги мне понять этот вопрос",
   "edit": "Редактировать",
+  "regenerate": "Регенерировать",
   "enable": "Включить",
   "disable": "Отключить",
   "quizPreviewTitle": "Предпросмотр квиза",

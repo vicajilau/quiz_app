@@ -415,6 +415,7 @@
   "askAiAboutQuestion": "이 질문에 대해 AI에게 묻기",
   "aiHelpWithQuestion": "이 문제를 이해하도록 도와주세요",
   "edit": "편집",
+  "regenerate": "재생성",
   "enable": "활성화",
   "disable": "비활성화",
   "quizPreviewTitle": "퀴즈 미리보기",

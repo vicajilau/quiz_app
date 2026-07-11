@@ -415,6 +415,7 @@
   "askAiAboutQuestion": "ჰკითხეთ AI-ს ამ კითხვის შესახებ",
   "aiHelpWithQuestion": "დამეხმარე ამ კითხვის გაგებაში",
   "edit": "რედაქტირება",
+  "regenerate": "რეგენერაცია",
   "enable": "ჩართვა",
   "disable": "გამორთვა",
   "quizPreviewTitle": "ქვიზის წინასწარი ნახვა",

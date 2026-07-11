@@ -415,6 +415,7 @@
   "askAiAboutQuestion": "Запитати ШІ про це питання",
   "aiHelpWithQuestion": "Допоможи мені зрозуміти це питання",
   "edit": "Редагувати",
+  "regenerate": "Регенерувати",
   "enable": "Увімкнути",
   "disable": "Вимкнути",
   "quizPreviewTitle": "Предпросмотр вікторини",

@@ -702,7 +702,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                       _navigateTab(context, index),
                                   selectedIndex: _selectedTabIndex,
                                 ),
-                              Expanded(child: _buildActiveTabContent(context)),
+                              Expanded(
+                                child: IndexedStack(
+                                  index: _selectedTabIndex,
+                                  children: [
+                                    _buildTabContent(context, 0),
+                                    _buildTabContent(context, 1),
+                                    _buildTabContent(context, 2),
+                                    _buildTabContent(context, 3),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                           if (_isDragging)
@@ -740,10 +750,10 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildActiveTabContent(BuildContext context) {
+  Widget _buildTabContent(BuildContext context, int tabIndex) {
     final hasActiveFile = ServiceLocator.getIt.isRegistered<QuizFile>();
 
-    switch (_selectedTabIndex) {
+    switch (tabIndex) {
       case 0:
         return HomeInicioTabView(
           showFeedbackBanner: _showFeedbackBanner,

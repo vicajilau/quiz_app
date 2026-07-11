@@ -415,6 +415,7 @@
   "askAiAboutQuestion": "Ρωτήστε την AI για αυτήν την ερώτηση",
   "aiHelpWithQuestion": "Βοήθησέ με να κατανοήσω αυτήν την ερώτηση",
   "edit": "Επεξεργασία",
+  "regenerate": "Αναγέννηση",
   "enable": "Ενεργοποίηση",
   "disable": "Απενεργοποίηση",
   "quizPreviewTitle": "Προεπισκόπηση Κουίζ",

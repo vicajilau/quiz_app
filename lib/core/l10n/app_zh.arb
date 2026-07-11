@@ -415,6 +415,7 @@
   "askAiAboutQuestion": "向 AI 询问此问题",
   "aiHelpWithQuestion": "帮我理解这道题",
   "edit": "编辑",
+  "regenerate": "重新生成",
   "enable": "启用",
   "disable": "禁用",
   "quizPreviewTitle": "测验预览",

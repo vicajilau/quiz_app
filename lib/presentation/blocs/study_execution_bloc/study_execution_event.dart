@@ -157,3 +157,10 @@ class DownloadAllStudyChunksRequested extends StudyExecutionEvent {
 class CancelDownloadAllRequested extends StudyExecutionEvent {
   const CancelDownloadAllRequested();
 }
+
+/// Dispatched to regenerate a study chunk using AI.
+class RegenerateStudyChunkRequested extends StudyExecutionEvent {
+  final int chunkIndex;
+
+  const RegenerateStudyChunkRequested(this.chunkIndex);
+}

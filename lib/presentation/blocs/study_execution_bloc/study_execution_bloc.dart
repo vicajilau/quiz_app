@@ -93,6 +93,7 @@ class StudyExecutionBloc
     on<DeleteDuplicateChunksRequested>(_onDeleteDuplicateChunksRequested);
     on<ImportStudyChunksRequested>(_onImportStudyChunksRequested);
     on<StudyChunksUpdated>(_onStudyChunksUpdated);
+    on<RegenerateStudyChunkRequested>(_onRegenerateStudyChunkRequested);
     on<StudyFileSaved>(
       (_, emit) => emit(state.copyWith(savedVersion: state.savedVersion + 1)),
     );
@@ -868,5 +869,96 @@ class StudyExecutionBloc
 
     final newState = _updateProgress(state.copyWith(chunks: normalizedChunks));
     emit(newState);
+  }
+
+  Future<void> _onRegenerateStudyChunkRequested(
+    RegenerateStudyChunkRequested event,
+    Emitter<StudyExecutionState> emit,
+  ) async {
+    final chunkIndex = event.chunkIndex;
+    if (chunkIndex < 0 || chunkIndex >= state.chunks.length) {
+      return;
+    }
+
+    final chunk = state.chunks[chunkIndex];
+
+    // Mark as processing, clearing the old summary and studyPage content
+    final processingChunk = chunk.copyWith(
+      status: StudyChunkState.processing,
+      pages: const [],
+    );
+    final chunksProcessing = List<StudyChunk>.from(state.chunks);
+    chunksProcessing[chunkIndex] = processingChunk;
+    emit(state.copyWith(chunks: chunksProcessing));
+
+    String? fileUri = state.fileUri;
+    DateTime? fileExpirationTime = state.fileExpirationTime;
+    final String? fileMimeType = state.fileAttachment?.mimeType;
+
+    final bool isExpired =
+        fileExpirationTime != null &&
+        DateTime.now()
+            .add(const Duration(minutes: 10))
+            .isAfter(fileExpirationTime);
+
+    if ((fileUri == null || isExpired) && state.fileAttachment != null) {
+      try {
+        final repository = await ServiceLocator.getIt<AiRepositoryFactory>()
+            .createDefault();
+        final uploadResult = await repository.uploadFile(
+          state.fileAttachment!,
+          _localizations,
+        );
+        fileUri = uploadResult.fileUri;
+        fileExpirationTime = uploadResult.expirationTime;
+        emit(
+          state.copyWith(
+            fileUri: fileUri,
+            fileExpirationTime: fileExpirationTime,
+          ),
+        );
+      } catch (e) {
+        final errorChunk = chunk.copyWith(status: StudyChunkState.error);
+        final chunksError = List<StudyChunk>.from(state.chunks);
+        chunksError[chunkIndex] = errorChunk;
+        emit(state.copyWith(chunks: chunksError, error: e.toString()));
+        return;
+      }
+    }
+
+    try {
+      final processedChunk = await _jitProcessingService.processChunk(
+        chunk: processingChunk,
+        fileUri: fileUri,
+        fileMimeType: fileMimeType,
+        originalText: _originalText,
+        localizations: _localizations,
+        docTitle: state.documentTitle,
+        docSummary: state.documentSummary,
+        isAutoDifficulty: _isAutoDifficulty,
+        difficultyLevel: _difficultyLevel,
+        language: _language ?? _localizations.localeName,
+        generationMode: _generationMode,
+      );
+
+      final chunksFinished = List<StudyChunk>.from(state.chunks);
+      chunksFinished[chunkIndex] = processedChunk;
+
+      final newState = _updateProgress(state.copyWith(chunks: chunksFinished));
+      emit(newState);
+
+      onProgressChanged?.call(
+        newState.progressPercentage,
+        newState.processedChunks,
+        newState.chunks,
+        newState.fileUri,
+        newState.fileExpirationTime,
+      );
+    } catch (e) {
+      final errorChunk = chunk.copyWith(status: StudyChunkState.error);
+      final chunksError = List<StudyChunk>.from(state.chunks);
+      chunksError[chunkIndex] = errorChunk;
+      emit(state.copyWith(chunks: chunksError, error: e.toString()));
+    }
   }
 }
