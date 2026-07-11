@@ -539,6 +539,10 @@ class _HomeScreenState extends State<HomeScreen> {
               if (!context.mounted || choice == null) return;
               navigateByMode(context, choice, quizFile);
             }
+            if (state is FileSaved) {
+              setState(() => _isLoading = false);
+              context.read<RecentQuizzesCubit>().loadRecentQuizzes();
+            }
             if (state is FileReplacementRequest) {
               if (context.currentRoute == AppRoutes.home) {
                 context.read<FileBloc>().add(ConfirmFileReplacement());
@@ -771,9 +775,10 @@ class _HomeScreenState extends State<HomeScreen> {
           final study = file.study;
           final chunks = study?.content.cache ?? [];
 
-          final initialChunks =
-              widget.studyExtra?['initialChunks'] as List<StudyChunk>? ??
-              chunks;
+          final initialChunks = chunks.isNotEmpty
+              ? chunks
+              : (widget.studyExtra?['initialChunks'] as List<StudyChunk>? ??
+                    const []);
           final fileAttachment =
               widget.studyExtra?['fileAttachment'] as AiFileAttachment? ??
               file.fileAttachment;
