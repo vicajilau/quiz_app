@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/theme/extensions/home_theme.dart';
 
 class HomeActionCard extends StatelessWidget {
@@ -134,7 +134,7 @@ class HomeActionCard extends StatelessWidget {
                   ),
                 ),
                 Icon(
-                  LucideIcons.arrowRight,
+                  LucideIcons.arrow_right,
                   color: isPrimary
                       ? Colors.white
                       : homeTheme.textSecondaryColor,

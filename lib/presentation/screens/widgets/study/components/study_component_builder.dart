@@ -39,31 +39,76 @@ class StudyComponentBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (element.componentType) {
       case StudyComponentType.sectionTitle:
-        return SectionTitleComponent(element: element);
+        return SectionTitleComponent(
+          title: element.props['title']?.toString() ?? '',
+          subtitle: element.props['subtitle']?.toString(),
+        );
       case StudyComponentType.paragraph:
-        return ParagraphComponent(element: element);
+        return ParagraphComponent(
+          title: element.props['title']?.toString(),
+          body: element.props['body']?.toString() ?? '',
+        );
       case StudyComponentType.keyDefinition:
-        return KeyDefinitionComponent(element: element);
+        return KeyDefinitionComponent(
+          term: element.props['term']?.toString() ?? '',
+          body: element.props['body']?.toString() ?? '',
+        );
       case StudyComponentType.numberedList:
-        return NumberedListComponent(element: element);
+        return NumberedListComponent(
+          title: element.props['title']?.toString(),
+          items: element.props['items'] as List<dynamic>? ?? const [],
+        );
       case StudyComponentType.comparisonTable:
-        return ComparisonTableComponent(element: element);
+        return ComparisonTableComponent(
+          title: element.props['title']?.toString(),
+          columns: element.props['columns'] as List<dynamic>? ?? const [],
+          rows: element.props['rows'] as List<dynamic>? ?? const [],
+          labelHeader: element.props['labelHeader']?.toString(),
+        );
       case StudyComponentType.quote:
-        return QuoteComponent(element: element);
+        return QuoteComponent(
+          body: element.props['body']?.toString() ?? '',
+          author: element.props['author']?.toString(),
+        );
       case StudyComponentType.warning:
-        return WarningComponent(element: element);
+        return WarningComponent(body: element.props['body']?.toString() ?? '');
       case StudyComponentType.formula:
-        return FormulaComponent(element: element);
+        return FormulaComponent(
+          title: element.props['title']?.toString(),
+          equation: element.props['equation']?.toString() ?? '',
+          equationLabel:
+              element.props['equationLabel']?.toString() ??
+              element.props['equation_label']?.toString(),
+          body: element.props['body']?.toString(),
+        );
       case StudyComponentType.timeline:
-        return TimelineComponent(element: element);
+        return TimelineComponent(
+          title: element.props['title']?.toString(),
+          items: element.props['items'] as List<dynamic>? ?? const [],
+        );
       case StudyComponentType.prosCons:
-        return ProsConsComponent(element: element);
+        final itemsMap = element.props['items'];
+        final pros =
+            (element.props['pros'] as List<dynamic>?) ??
+            (itemsMap is Map ? itemsMap['pros'] as List<dynamic>? : null) ??
+            const [];
+        final cons =
+            (element.props['cons'] as List<dynamic>?) ??
+            (itemsMap is Map ? itemsMap['cons'] as List<dynamic>? : null) ??
+            const [];
+        return ProsConsComponent(pros: pros, cons: cons);
       case StudyComponentType.keyConcepts:
-        return KeyConceptsComponent(element: element);
+        return KeyConceptsComponent(
+          title: element.props['title']?.toString(),
+          items: element.props['items'] as List<dynamic>? ?? const [],
+        );
       case StudyComponentType.reminder:
-        return ReminderComponent(element: element);
+        return ReminderComponent(body: element.props['body']?.toString() ?? '');
       case StudyComponentType.iconCards:
-        return IconCardsComponent(element: element);
+        return IconCardsComponent(
+          title: element.props['title']?.toString(),
+          items: element.props['items'] as List<dynamic>? ?? const [],
+        );
     }
   }
 }

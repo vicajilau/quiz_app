@@ -33,15 +33,24 @@ class AiSettingsSection extends StatelessWidget {
   final bool keepDraft;
   final TextEditingController geminiController;
   final TextEditingController openAiController;
+  final TextEditingController customBaseUrlController;
+  final TextEditingController customApiKeyController;
+  final List<String> customModels;
+  final bool isTestingCustomAi;
+  final String? customAiTestResult;
+  final String? customAiTestError;
   final String? defaultModel;
   final String? errorMessage;
   final bool isGeminiVisible;
   final bool isOpenAiVisible;
+  final bool isCustomAiKeyVisible;
   final GlobalKey? errorKey;
   final ValueChanged<bool> onEnabledChanged;
   final ValueChanged<bool> onKeepDraftChanged;
   final VoidCallback onToggleGeminiVisibility;
   final VoidCallback onToggleOpenAiVisibility;
+  final VoidCallback onToggleCustomAiVisibility;
+  final VoidCallback onTestCustomAi;
   final VoidCallback onApiKeyChanged;
 
   const AiSettingsSection({
@@ -50,15 +59,24 @@ class AiSettingsSection extends StatelessWidget {
     required this.keepDraft,
     required this.geminiController,
     required this.openAiController,
+    required this.customBaseUrlController,
+    required this.customApiKeyController,
+    required this.customModels,
+    required this.isTestingCustomAi,
+    this.customAiTestResult,
+    this.customAiTestError,
     this.defaultModel,
     this.errorMessage,
     required this.isGeminiVisible,
     required this.isOpenAiVisible,
+    required this.isCustomAiKeyVisible,
     this.errorKey,
     required this.onEnabledChanged,
     required this.onKeepDraftChanged,
     required this.onToggleGeminiVisibility,
     required this.onToggleOpenAiVisibility,
+    required this.onToggleCustomAiVisibility,
+    required this.onTestCustomAi,
     required this.onApiKeyChanged,
   });
 
@@ -230,6 +248,9 @@ class AiSettingsSection extends StatelessWidget {
             onInfoPressed: () => _openAiApiKeysUrl(context),
             buttonLabel: AppLocalizations.of(context)!.getApiKeyTooltip,
           ),
+
+          _buildCustomAiFields(context),
+
           if (errorMessage != null) ...[
             const SizedBox(height: 12),
             Container(
@@ -266,10 +287,10 @@ class AiSettingsSection extends StatelessWidget {
             ),
           ],
           if (geminiController.text.isValidGeminiApiKey ||
-              openAiController.text.isValidOpenAIApiKey) ...[
+              openAiController.text.isValidOpenAIApiKey ||
+              (customBaseUrlController.text.isNotEmpty &&
+                  customModels.isNotEmpty)) ...[
             const SizedBox(height: 24),
-            // Note: AiServiceModelSelector might need internal styling updates too,
-            // but for now we place it here.
             AiServiceModelSelector(
               initialModel: defaultModel,
               saveToPreferences: true,
@@ -279,8 +300,212 @@ class AiSettingsSection extends StatelessWidget {
               openaiApiKey: openAiController.text.isValidOpenAIApiKey
                   ? openAiController.text.trim()
                   : null,
+              customBaseUrl:
+                  customBaseUrlController.text.isNotEmpty &&
+                      customModels.isNotEmpty
+                  ? customBaseUrlController.text.trim()
+                  : null,
+              customApiKey: customApiKeyController.text.trim(),
+              customModels: customModels,
             ),
           ],
+        ],
+      ],
+    );
+  }
+
+  Widget _buildCustomAiFields(BuildContext context) {
+    final colors = context.appColors;
+    final localizations = AppLocalizations.of(context)!;
+    final isUrlEmpty = customBaseUrlController.text.trim().isEmpty;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 8),
+        Divider(color: colors.border),
+        const SizedBox(height: 16),
+
+        // Section Title
+        Row(
+          children: [
+            Icon(
+              Icons.dns_outlined,
+              size: 16,
+              color: Theme.of(context).primaryColor,
+            ),
+            const SizedBox(width: 6),
+            Text(
+              localizations.customAiProviderLabel,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: colors.title,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+
+        // Base URL Field
+        QuizdyFieldLabel(label: localizations.customAiBaseUrlLabel),
+        const SizedBox(height: 8),
+        QuizdyTextField(
+          controller: customBaseUrlController,
+          hint: localizations.customAiBaseUrlHint,
+          prefixIcon: const Icon(Icons.link),
+          onChanged: (val) {
+            onApiKeyChanged();
+          },
+        ),
+        const SizedBox(height: 4),
+        Text(
+          localizations.customAiBaseUrlDescription,
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
+        const SizedBox(height: 16),
+
+        // API Key Field
+        QuizdyFieldLabel(label: localizations.customAiApiKeyLabel),
+        const SizedBox(height: 8),
+        QuizdyTextField(
+          controller: customApiKeyController,
+          hint: localizations.customAiApiKeyHint,
+          obscureText: !isCustomAiKeyVisible,
+          prefixIcon: const Icon(Icons.key),
+          suffixIcon: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                tooltip: localizations.pasteFromClipboard,
+                icon: const Icon(Icons.paste),
+                onPressed: () async {
+                  final clipboardContent = await Pasteboard.text;
+                  if (clipboardContent != null && clipboardContent.isNotEmpty) {
+                    customApiKeyController.text = clipboardContent;
+                    onApiKeyChanged();
+                  }
+                },
+              ),
+              IconButton(
+                icon: Icon(
+                  isCustomAiKeyVisible
+                      ? Icons.visibility_off
+                      : Icons.visibility,
+                ),
+                onPressed: onToggleCustomAiVisibility,
+              ),
+            ],
+          ),
+          onChanged: (val) {
+            onApiKeyChanged();
+          },
+        ),
+        const SizedBox(height: 4),
+        Text(
+          localizations.customAiApiKeyDescription,
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
+        const SizedBox(height: 16),
+
+        // Test and Connect Button
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            QuizdyButton(
+              type: QuizdyButtonType.secondary,
+              title: localizations.customAiLoadModelsButton,
+              isLoading: isTestingCustomAi,
+              onPressed: isUrlEmpty ? null : onTestCustomAi,
+            ),
+          ],
+        ),
+
+        // Results Card
+        if (customAiTestResult == 'success') ...[
+          const SizedBox(height: 16),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.green.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.green, width: 1),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.check_circle,
+                      color: Colors.green,
+                      size: 18,
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        localizations.customAiLoadModelsSuccess(
+                          customModels.length,
+                        ),
+                        style: const TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  customModels.join(', '),
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Colors.green,
+                    height: 1.4,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ] else if (customAiTestResult == 'error') ...[
+          const SizedBox(height: 16),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.errorContainer,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: Theme.of(context).colorScheme.error,
+                width: 1,
+              ),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  Icons.error_outline,
+                  color: Theme.of(context).colorScheme.error,
+                  size: 18,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    localizations.customAiLoadModelsError(
+                      customAiTestError ?? '',
+                    ),
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Theme.of(context).colorScheme.onErrorContainer,
+                      height: 1.4,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ],
     );

@@ -16,9 +16,10 @@
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:mime/mime.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
+import 'package:quizdy/domain/models/ai/ai_model_catalog.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
@@ -179,6 +180,13 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
   }
 
   Future<void> _handleDroppedFile(DropDoneDetails details) async {
+    final modelEntry = widget.selectedModel != null
+        ? AiModelCatalog.forModelId(widget.selectedModel!)
+        : null;
+    final isCustomAi =
+        modelEntry?.providerId == AiModelCatalog.customProviderId;
+    if (isCustomAi) return;
+
     if (details.files.isEmpty) return;
     final file = details.files.first;
     final bytes = await file.readAsBytes();
@@ -197,6 +205,12 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
   }
 
   bool _isGenerateEnabled() {
+    final modelEntry = widget.selectedModel != null
+        ? AiModelCatalog.forModelId(widget.selectedModel!)
+        : null;
+    final isCustomAi =
+        modelEntry?.providerId == AiModelCatalog.customProviderId;
+
     if (_componentTypeSelectorEnabled && _selectedComponentTypes.isEmpty) {
       return false;
     }
@@ -205,6 +219,9 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
     }
     if (_chunkSelectorEnabled) {
       return _selectedChunkIndices.isNotEmpty;
+    }
+    if (isCustomAi) {
+      return widget.textController.text.isNotEmpty;
     }
     return widget.textController.text.isNotEmpty ||
         widget.fileAttachment != null;
@@ -216,6 +233,12 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final colors = context.appColors;
     final borderColor = isDark ? Colors.transparent : AppTheme.borderColor;
+
+    final modelEntry = widget.selectedModel != null
+        ? AiModelCatalog.forModelId(widget.selectedModel!)
+        : null;
+    final isCustomAi =
+        modelEntry?.providerId == AiModelCatalog.customProviderId;
 
     return DialogDropZone(
       onFilesDropped: _handleDroppedFile,
@@ -391,13 +414,14 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                               widget.onAutoDifficultyChanged,
                           fileAttachment: widget.fileAttachment,
                           isDragging: _isDragging,
+                          isDisabled: isCustomAi,
                         ),
-                        if (widget.fileAttachment == null) ...[
+                        if (widget.fileAttachment == null && !isCustomAi) ...[
                           const SizedBox(height: 8),
                           QuizdyButton(
                             type: QuizdyButtonType.secondary,
                             title: localizations.pasteFromClipboard,
-                            icon: LucideIcons.clipboardPaste,
+                            icon: LucideIcons.clipboard_paste,
                             expanded: true,
                             onPressed: widget.onPasteFromClipboard,
                           ),
@@ -456,7 +480,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                           child: QuizdyButton(
                             type: QuizdyButtonType.secondary,
                             title: localizations.backButton,
-                            icon: LucideIcons.arrowLeft,
+                            icon: LucideIcons.arrow_left,
                             expanded: true,
                             onPressed: widget.onBack,
                           ),

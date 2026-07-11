@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/extensions/home_theme.dart';
@@ -171,7 +171,7 @@ class _HomeInicioTabViewState extends State<HomeInicioTabView> {
                                   context,
                                 )!.homeCardQuizAiBadge,
                                 backgroundColor: homeTheme.quizAiCardColor,
-                                icon: LucideIcons.graduationCap,
+                                icon: LucideIcons.graduation_cap,
                                 isPrimary: true,
                                 onTap: widget.onGenerateQuestionsWithAI,
                               ),
@@ -225,7 +225,7 @@ class _HomeInicioTabViewState extends State<HomeInicioTabView> {
                                   context,
                                 )!.homeCardCreateQuizBadge,
                                 backgroundColor: homeTheme.cardBackgroundColor,
-                                icon: LucideIcons.plusCircle,
+                                icon: LucideIcons.circle_plus,
                                 isPrimary: false,
                                 accentColor: Theme.of(
                                   context,
@@ -349,7 +349,10 @@ class _HomeInicioTabViewState extends State<HomeInicioTabView> {
           children: [
             if (_showAllRecents)
               IconButton(
-                icon: Icon(LucideIcons.arrowLeft, color: homeTheme.borderColor),
+                icon: Icon(
+                  LucideIcons.arrow_left,
+                  color: homeTheme.borderColor,
+                ),
                 onPressed: () {
                   setState(() {
                     _showAllRecents = false;
@@ -385,7 +388,7 @@ class _HomeInicioTabViewState extends State<HomeInicioTabView> {
                 ),
                 const SizedBox(width: 4),
                 Icon(
-                  LucideIcons.chevronRight,
+                  LucideIcons.chevron_right,
                   size: 14,
                   color: Theme.of(context).colorScheme.primary,
                 ),

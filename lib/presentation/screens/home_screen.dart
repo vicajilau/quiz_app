@@ -19,7 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:quizdy/core/constants/quiz_metadata.dart';
@@ -593,25 +593,27 @@ class _HomeScreenState extends State<HomeScreen> {
                             onTap: (index) => _navigateTab(context, index),
                             items: [
                               BottomNavigationBarItem(
-                                icon: const Icon(LucideIcons.home),
+                                icon: const Icon(LucideIcons.house),
                                 label: AppLocalizations.of(
                                   context,
                                 )!.homeMenuInicio,
                               ),
                               BottomNavigationBarItem(
-                                icon: const Icon(LucideIcons.bookOpen),
+                                icon: const Icon(LucideIcons.book_open),
                                 label: AppLocalizations.of(
                                   context,
                                 )!.homeMenuStudy,
                               ),
                               BottomNavigationBarItem(
-                                icon: const Icon(LucideIcons.fileQuestion),
+                                icon: const Icon(
+                                  LucideIcons.file_question_mark,
+                                ),
                                 label: AppLocalizations.of(
                                   context,
                                 )!.homeMenuQuiz,
                               ),
                               BottomNavigationBarItem(
-                                icon: const Icon(LucideIcons.barChart2),
+                                icon: const Icon(LucideIcons.chart_column),
                                 label: AppLocalizations.of(
                                   context,
                                 )!.homeMenuEstadisticas,

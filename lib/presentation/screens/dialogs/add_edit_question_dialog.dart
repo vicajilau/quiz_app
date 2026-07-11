@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
@@ -261,7 +261,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                               shape: const CircleBorder(),
                             ),
                             icon: Icon(
-                              LucideIcons.trash2,
+                              LucideIcons.trash_2,
                               color: Theme.of(context).colorScheme.error,
                               size: 20,
                             ),
@@ -400,7 +400,7 @@ class _AddEditQuestionDialogState extends State<AddEditQuestionDialog>
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Icon(
-                              LucideIcons.bookOpen,
+                              LucideIcons.book_open,
                               color: Theme.of(
                                 context,
                               ).colorScheme.onPrimaryContainer,

@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.15.0] - 2026-07-05
+
+- feat(ai): Migrate the AI capabilities to use the Genkit Dart SDK for dynamic and extensible model integration.
+- feat(ai): Add support for Custom / Local AI providers (such as Ollama, Groq, LM Studio) with custom base URLs, optional API keys, and dynamic model fetching.
+- feat(study): Add capability to download all study sections sequentially using AI, featuring a real-time progress dialog and cancellation option.
+- fix(ui): Correct the "Download all sections" button layout in the study index hero card to expand to the full width of the card on wider screens.
+
 ## [1.14.0] - 2026-05-22
 
 - feat(quiz): Allow selecting and linking a question to a specific study section upon question creation (#417).

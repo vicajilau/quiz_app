@@ -18,7 +18,7 @@ import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_progress_bar.dart';
 
 class StudyExecutionBottomBar extends StatelessWidget {
@@ -81,7 +81,7 @@ class StudyExecutionBottomBar extends StatelessWidget {
                       title: isMobile
                           ? ''
                           : localizations.studyScreenPreviousSection,
-                      icon: LucideIcons.chevronLeft,
+                      icon: LucideIcons.chevron_left,
                       type: QuizdyButtonType.primary,
                       onPressed: onPrevious,
                     ),
@@ -117,7 +117,7 @@ class StudyExecutionBottomBar extends StatelessWidget {
                       title: isMobile
                           ? ''
                           : localizations.studyScreenNextSection,
-                      icon: LucideIcons.chevronRight,
+                      icon: LucideIcons.chevron_right,
                       onPressed: onNext,
                     ),
                   ),

@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
@@ -198,7 +198,7 @@ class _SidebarToggleButton extends StatelessWidget {
         ),
         alignment: Alignment.center,
         child: Icon(
-          LucideIcons.panelRightOpen,
+          LucideIcons.panel_right_open,
           size: 18,
           color: isDark ? AppTheme.zinc400 : AppTheme.zinc500,
         ),

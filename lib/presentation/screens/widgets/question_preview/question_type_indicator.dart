@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/quiz/question_type.dart';
 
@@ -43,19 +43,19 @@ class QuestionTypeIndicator extends StatelessWidget {
     IconData icon;
     switch (questionType.value) {
       case 'multiple_choice':
-        icon = LucideIcons.checkSquare;
+        icon = LucideIcons.square_check;
         break;
       case 'true_false':
-        icon = LucideIcons.circleDot;
+        icon = LucideIcons.circle_dot;
         break;
       case 'single_choice':
         icon = LucideIcons.list;
         break;
       case 'essay':
-        icon = LucideIcons.fileText;
+        icon = LucideIcons.file_text;
         break;
       default:
-        icon = LucideIcons.helpCircle;
+        icon = LucideIcons.circle_question_mark;
     }
 
     return Icon(icon, size: 13, color: Theme.of(context).colorScheme.onSurface);

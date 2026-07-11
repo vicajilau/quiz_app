@@ -147,3 +147,13 @@ class GenerateAiStudyChunksRequested extends StudyExecutionEvent {
     required this.quizContext,
   });
 }
+
+/// Dispatched to download (JIT-process) all pending chunks sequentially.
+class DownloadAllStudyChunksRequested extends StudyExecutionEvent {
+  const DownloadAllStudyChunksRequested();
+}
+
+/// Dispatched to cancel the sequential download of all sections.
+class CancelDownloadAllRequested extends StudyExecutionEvent {
+  const CancelDownloadAllRequested();
+}

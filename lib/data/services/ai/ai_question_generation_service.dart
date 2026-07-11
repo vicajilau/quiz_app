@@ -15,6 +15,8 @@
 
 import 'dart:convert';
 
+import 'package:quizdy/core/debug_print.dart';
+import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
@@ -295,41 +297,129 @@ IMPORTANT!: Respond ONLY with the JSON, no additional text before or after.
   List<Question> _parseAiResponse(String content) {
     try {
       // Clean the response in case it has additional text
-      String cleanContent = content.trim();
+      final cleanContent = content.trim();
 
-      // Search for JSON in the response
-      final startIndex = cleanContent.indexOf('[');
-      final endIndex = cleanContent.lastIndexOf(']');
+      // 1. Try to extract JSON string robustly
+      String jsonStr = '';
 
-      if (startIndex == -1 || endIndex == -1) {
-        throw Exception('No valid JSON found in AI response');
+      // Try markdown code blocks first
+      final markdownRegex = RegExp(
+        r'```json\s*([\s\S]*?)\s*```',
+        multiLine: true,
+      );
+      final match = markdownRegex.firstMatch(cleanContent);
+      if (match != null && match.groupCount >= 1) {
+        jsonStr = match.group(1)!.trim();
+      } else {
+        // Fallback: look for boundaries of [ ... ] or { ... }
+        final firstBracket = cleanContent.indexOf('[');
+        final lastBracket = cleanContent.lastIndexOf(']');
+        final firstBrace = cleanContent.indexOf('{');
+        final lastBrace = cleanContent.lastIndexOf('}');
+
+        if (firstBracket == -1 && firstBrace == -1) {
+          throw const FormatException(
+            'No JSON brackets or braces found in AI response',
+          );
+        }
+
+        // Determine which boundary to use based on which one starts first
+        final bool startsWithBracket =
+            firstBracket != -1 &&
+            (firstBrace == -1 || firstBracket < firstBrace);
+
+        if (startsWithBracket && lastBracket != -1) {
+          jsonStr = cleanContent.substring(firstBracket, lastBracket + 1);
+        } else if (firstBrace != -1 && lastBrace != -1) {
+          jsonStr = cleanContent.substring(firstBrace, lastBrace + 1);
+        } else {
+          // Fallback to whatever bracket/brace is found
+          if (firstBracket != -1 && lastBracket != -1) {
+            jsonStr = cleanContent.substring(firstBracket, lastBracket + 1);
+          } else if (firstBrace != -1 && lastBrace != -1) {
+            jsonStr = cleanContent.substring(firstBrace, lastBrace + 1);
+          } else {
+            jsonStr = cleanContent;
+          }
+        }
       }
 
-      cleanContent = cleanContent.substring(startIndex, endIndex + 1);
+      dynamic decoded;
+      try {
+        decoded = jsonDecode(jsonStr);
+      } on FormatException catch (e) {
+        printInDebug(
+          'Initial jsonDecode failed, attempting to repair truncated JSON: $e',
+        );
+        try {
+          final repairedJson = jsonStr.repairJsonBrackets();
+          decoded = jsonDecode(repairedJson);
+          printInDebug('Successfully repaired truncated JSON!');
+        } catch (repairError) {
+          printInDebug('Failed to repair JSON: $repairError');
+          rethrow;
+        }
+      }
+      List<dynamic>? jsonList;
 
-      final List<dynamic> jsonList = jsonDecode(cleanContent);
+      if (decoded is List) {
+        jsonList = decoded;
+      } else if (decoded is Map<String, dynamic>) {
+        // Look for common list keys
+        final listKeys = ['questions', 'questionsList', 'quiz', 'list', 'data'];
+        for (final key in listKeys) {
+          if (decoded[key] is List) {
+            jsonList = decoded[key] as List<dynamic>;
+            break;
+          }
+        }
+        // If not found in common keys, search values for the first list
+        if (jsonList == null) {
+          for (final value in decoded.values) {
+            if (value is List) {
+              jsonList = value;
+              break;
+            }
+          }
+        }
+      }
+
+      if (jsonList == null) {
+        throw const FormatException(
+          'Could not extract a JSON list of questions from response',
+        );
+      }
+
       final List<Question> questions = [];
-
       for (final item in jsonList) {
         if (item is Map<String, dynamic>) {
           try {
             final question = _createQuestionFromJson(item);
             questions.add(question);
           } catch (e) {
+            printInDebug(
+              'Failed to parse single question: $e. Item was: $item',
+            );
             // If one question fails, continue with the others
-            // In production, use appropriate logging
             continue;
           }
         }
       }
 
       if (questions.isEmpty) {
-        throw Exception('Could not create valid questions from AI response');
+        throw const FormatException(
+          'No valid questions could be created from the JSON list',
+        );
       }
 
       return questions;
-    } catch (e) {
-      throw Exception('Could not create valid questions from AI response');
+    } catch (e, stackTrace) {
+      printInDebug(
+        'ERROR parsing AI response in AiQuestionGenerationService: $e',
+      );
+      printInDebug('Raw content was:\n$content');
+      printInDebug('StackTrace:\n$stackTrace');
+      throw Exception('Could not create valid questions from AI response: $e');
     }
   }
 

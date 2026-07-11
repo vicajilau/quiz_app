@@ -16,8 +16,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:dio/dio.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:platform_detail/platform_detail.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/extensions/string_extension.dart';
@@ -25,6 +26,7 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
+import 'package:quizdy/domain/models/ai/ai_model_catalog.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_dialog_widgets.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_widgets/ai_settings_section.dart';
 import 'package:quizdy/presentation/screens/dialogs/settings_widgets/advanced_settings_section.dart';
@@ -46,6 +48,16 @@ class _SettingsDialogState extends State<SettingsDialog> {
   bool _keepAiDraft = true;
   final TextEditingController _openAiApiKeyController = TextEditingController();
   final TextEditingController _geminiApiKeyController = TextEditingController();
+  final TextEditingController _customAiBaseUrlController =
+      TextEditingController();
+  final TextEditingController _customAiApiKeyController =
+      TextEditingController();
+  List<String> _customAiModels = [];
+  bool _isCustomAiKeyVisible = false;
+  bool _isTestingCustomAi = false;
+  String? _customAiTestResult;
+  String? _customAiTestError;
+
   String? _apiKeyErrorMessage;
   String? _defaultAIModel;
   final ScrollController _scrollController = ScrollController();
@@ -67,6 +79,9 @@ class _SettingsDialogState extends State<SettingsDialog> {
       // Load all configurations
       final apiKey = await configurationService.getOpenAIApiKey();
       final geminiApiKey = await configurationService.getGeminiApiKey();
+      final customBaseUrl = await configurationService.getCustomAiBaseUrl();
+      final customApiKey = await configurationService.getCustomAiApiKey();
+      final customModels = await configurationService.getCustomAiModels();
       _keepAiDraft = await configurationService.getAiKeepDraft();
       _defaultAIModel = await configurationService.getDefaultAIModel();
       _aiAssistantEnabled = await configurationService.getIsAiAvailable();
@@ -79,6 +94,9 @@ class _SettingsDialogState extends State<SettingsDialog> {
         setState(() {
           _openAiApiKeyController.text = apiKey ?? '';
           _geminiApiKeyController.text = geminiApiKey ?? '';
+          _customAiBaseUrlController.text = customBaseUrl ?? '';
+          _customAiApiKeyController.text = customApiKey ?? '';
+          _customAiModels = List.from(customModels);
           _appVersion = versionLabel;
           _isLoading = false; // Important: set as finished
         });
@@ -101,13 +119,20 @@ class _SettingsDialogState extends State<SettingsDialog> {
       _apiKeyErrorMessage = null;
     });
 
-    // Validate that if AI Assistant is enabled, at least one valid API Key must be provided
+    // Validate that if AI Assistant is enabled, at least one valid config must be provided
     final apiKey = _openAiApiKeyController.text.trim();
     final geminiApiKey = _geminiApiKeyController.text.trim();
+    final customBaseUrl = _customAiBaseUrlController.text.trim();
+    final customApiKey = _customAiApiKeyController.text.trim();
     final hasValidOpenAI = apiKey.isValidOpenAIApiKey;
     final hasValidGemini = geminiApiKey.isValidGeminiApiKey;
+    final hasValidCustom =
+        customBaseUrl.isNotEmpty && _customAiModels.isNotEmpty;
 
-    if (_aiAssistantEnabled && !hasValidOpenAI && !hasValidGemini) {
+    if (_aiAssistantEnabled &&
+        !hasValidOpenAI &&
+        !hasValidGemini &&
+        !hasValidCustom) {
       setState(() {
         _apiKeyErrorMessage = AppLocalizations.of(
           context,
@@ -143,8 +168,111 @@ class _SettingsDialogState extends State<SettingsDialog> {
       await configurationService.deleteGeminiApiKey();
     }
 
+    // Save Custom AI settings
+    if (customBaseUrl.isNotEmpty) {
+      await configurationService.saveCustomAiBaseUrl(customBaseUrl);
+      if (customApiKey.isNotEmpty) {
+        await configurationService.saveCustomAiApiKey(customApiKey);
+      } else {
+        await configurationService.deleteCustomAiApiKey();
+      }
+      await configurationService.saveCustomAiModels(_customAiModels);
+    } else {
+      await configurationService.deleteCustomAiBaseUrl();
+      await configurationService.deleteCustomAiApiKey();
+      await configurationService.deleteCustomAiModels();
+    }
+
+    // Reload models in the catalog immediately so dropdowns update
+    final geminiKey = await configurationService.getGeminiApiKey();
+    final openaiKey = await configurationService.getOpenAIApiKey();
+    final savedCustomBaseUrl = await configurationService.getCustomAiBaseUrl();
+    final savedCustomApiKey = await configurationService.getCustomAiApiKey();
+    final savedCustomModels = await configurationService.getCustomAiModels();
+
+    if (savedCustomModels.isNotEmpty) {
+      AiModelCatalog.registerCustomModels(savedCustomModels);
+    }
+
+    await AiModelCatalog.loadDynamicModels(
+      geminiApiKey: geminiKey,
+      openaiApiKey: openaiKey,
+      customBaseUrl: savedCustomBaseUrl,
+      customApiKey: savedCustomApiKey,
+      customModels: savedCustomModels,
+    );
+
     if (mounted) {
       context.pop();
+    }
+  }
+
+  Future<void> _testAndLoadCustomModels() async {
+    final baseUrl = _customAiBaseUrlController.text.trim();
+    if (baseUrl.isEmpty) return;
+
+    setState(() {
+      _isTestingCustomAi = true;
+      _customAiTestResult = 'loading';
+      _customAiTestError = null;
+    });
+
+    final dio = Dio();
+    dio.options.connectTimeout = const Duration(seconds: 10);
+    dio.options.receiveTimeout = const Duration(seconds: 10);
+
+    final apiKey = _customAiApiKeyController.text.trim();
+    final headers = <String, String>{};
+    if (apiKey.isNotEmpty) {
+      headers['Authorization'] = 'Bearer $apiKey';
+    }
+
+    final url = baseUrl.endsWith('/') ? '${baseUrl}models' : '$baseUrl/models';
+
+    try {
+      final response = await dio.get(url, options: Options(headers: headers));
+
+      final data = response.data;
+      if (data is Map && data['data'] is List) {
+        final list = data['data'] as List;
+        final models = list
+            .map((item) {
+              if (item is Map && item['id'] is String) {
+                return item['id'] as String;
+              }
+              return null;
+            })
+            .whereType<String>()
+            .toList();
+
+        if (models.isNotEmpty) {
+          setState(() {
+            _customAiModels = models;
+            _customAiTestResult = 'success';
+            _isTestingCustomAi = false;
+          });
+        } else {
+          setState(() {
+            _customAiTestResult = 'error';
+            _customAiTestError = AppLocalizations.of(
+              context,
+            )!.customAiNoModelsError;
+            _isTestingCustomAi = false;
+          });
+        }
+      } else {
+        setState(() {
+          _customAiTestResult = 'error';
+          _customAiTestError = 'Invalid response format from /models';
+          _isTestingCustomAi = false;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        _customAiTestResult = 'error';
+        _customAiTestError = e.toString();
+        _isTestingCustomAi = false;
+      });
     }
   }
 
@@ -152,6 +280,8 @@ class _SettingsDialogState extends State<SettingsDialog> {
   void dispose() {
     _openAiApiKeyController.dispose();
     _geminiApiKeyController.dispose();
+    _customAiBaseUrlController.dispose();
+    _customAiApiKeyController.dispose();
     _scrollController.dispose();
     super.dispose();
   }
@@ -434,10 +564,17 @@ class _SettingsDialogState extends State<SettingsDialog> {
                             keepDraft: _keepAiDraft,
                             geminiController: _geminiApiKeyController,
                             openAiController: _openAiApiKeyController,
+                            customBaseUrlController: _customAiBaseUrlController,
+                            customApiKeyController: _customAiApiKeyController,
+                            customModels: _customAiModels,
+                            isTestingCustomAi: _isTestingCustomAi,
+                            customAiTestResult: _customAiTestResult,
+                            customAiTestError: _customAiTestError,
                             defaultModel: _defaultAIModel,
                             errorMessage: _apiKeyErrorMessage,
                             isGeminiVisible: _isGeminiKeyVisible,
                             isOpenAiVisible: _isOpenAiKeyVisible,
+                            isCustomAiKeyVisible: _isCustomAiKeyVisible,
                             errorKey: _errorKey,
                             onEnabledChanged: (value) {
                               setState(() => _aiAssistantEnabled = value);
@@ -465,12 +602,15 @@ class _SettingsDialogState extends State<SettingsDialog> {
                             onToggleOpenAiVisibility: () => setState(
                               () => _isOpenAiKeyVisible = !_isOpenAiKeyVisible,
                             ),
+                            onToggleCustomAiVisibility: () => setState(
+                              () => _isCustomAiKeyVisible =
+                                  !_isCustomAiKeyVisible,
+                            ),
+                            onTestCustomAi: _testAndLoadCustomModels,
                             onApiKeyChanged: () async {
                               _clearApiKeyError();
                               await _onApiKeyChanged();
-                              setState(() {
-                                // Rebuild
-                              });
+                              setState(() {});
                             },
                           ),
                           if (kDebugMode) ...[

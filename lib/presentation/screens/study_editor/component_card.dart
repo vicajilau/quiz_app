@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/extensions/study_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
@@ -176,7 +176,7 @@ class ComponentCard extends StatelessWidget {
                       IconButton(
                         onPressed: index > 0 ? onMoveUp : null,
                         icon: Icon(
-                          LucideIcons.chevronUp,
+                          LucideIcons.chevron_up,
                           size: 18,
                           color: index > 0 ? chevronColor : disabledColor,
                         ),
@@ -194,7 +194,7 @@ class ComponentCard extends StatelessWidget {
                       IconButton(
                         onPressed: index < totalCount - 1 ? onMoveDown : null,
                         icon: Icon(
-                          LucideIcons.chevronDown,
+                          LucideIcons.chevron_down,
                           size: 18,
                           color: index < totalCount - 1
                               ? chevronColor
@@ -214,7 +214,7 @@ class ComponentCard extends StatelessWidget {
                       IconButton(
                         onPressed: onDelete,
                         icon: const Icon(
-                          LucideIcons.trash2,
+                          LucideIcons.trash_2,
                           size: 18,
                           color: AppTheme.errorColor,
                         ),
@@ -295,7 +295,7 @@ class _ComponentTypeChip extends StatelessWidget {
       StudyComponentType.warning => (
         AppTheme.amber400.withValues(alpha: 0.12),
         AppTheme.amber400,
-        LucideIcons.alertTriangle,
+        LucideIcons.triangle_alert,
       ),
       StudyComponentType.reminder => (
         AppTheme.blue400.withValues(alpha: 0.12),
@@ -312,17 +312,17 @@ class _ComponentTypeChip extends StatelessWidget {
 
   IconData _iconForType() => switch (type) {
     StudyComponentType.sectionTitle => LucideIcons.type,
-    StudyComponentType.paragraph => LucideIcons.fileText,
-    StudyComponentType.keyDefinition => LucideIcons.bookOpen,
-    StudyComponentType.numberedList => LucideIcons.listOrdered,
-    StudyComponentType.comparisonTable => LucideIcons.table2,
+    StudyComponentType.paragraph => LucideIcons.file_text,
+    StudyComponentType.keyDefinition => LucideIcons.book_open,
+    StudyComponentType.numberedList => LucideIcons.list_ordered,
+    StudyComponentType.comparisonTable => LucideIcons.table_2,
     StudyComponentType.quote => LucideIcons.quote,
-    StudyComponentType.warning => LucideIcons.alertTriangle,
+    StudyComponentType.warning => LucideIcons.triangle_alert,
     StudyComponentType.formula => LucideIcons.sigma,
-    StudyComponentType.timeline => LucideIcons.gitCommit,
+    StudyComponentType.timeline => LucideIcons.git_commit_horizontal,
     StudyComponentType.prosCons => LucideIcons.scale,
     StudyComponentType.keyConcepts => LucideIcons.lightbulb,
     StudyComponentType.reminder => LucideIcons.bell,
-    StudyComponentType.iconCards => LucideIcons.layoutGrid,
+    StudyComponentType.iconCards => LucideIcons.layout_grid,
   };
 }

@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/extensions/home_theme.dart';
 import 'package:quizdy/core/theme/extensions/quiz_loaded_theme.dart';
@@ -103,7 +103,7 @@ class QuizLoadedStudyModeButton extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        LucideIcons.bookOpen,
+                        LucideIcons.book_open,
                         color: Theme.of(context).colorScheme.onPrimary,
                         size: 18,
                       ),
@@ -225,8 +225,8 @@ class QuizLoadedSelectionToggleButton extends StatelessWidget {
                     children: [
                       Icon(
                         isSelectionMode
-                            ? LucideIcons.checkSquare
-                            : LucideIcons.mousePointer2,
+                            ? LucideIcons.square_check
+                            : LucideIcons.mouse_pointer_2,
                         color: context.homeTheme.textPrimaryColor,
                         size: 18,
                       ),

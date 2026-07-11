@@ -72,6 +72,7 @@ Supported AI providers:
 
 - Google Gemini
 - OpenAI
+- Custom / Local AI (Ollama, LM Studio, Groq, etc. to run models like Gemma 4 or Llama 3 via OpenAI-compatible endpoints)
 
 Supported generation formats:
 
@@ -95,15 +96,20 @@ Supported generation formats:
 git clone https://github.com/vicajilau/quizdy.git
 cd quizdy
 flutter pub get
+dart run build_runner build -d
 flutter run
 ```
 
 ### Optional AI Setup
 
-To enable AI features, configure at least one API key inside the app:
+To enable AI features, configure at least one provider inside the app's settings:
 
-- Gemini API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
-- OpenAI API key from [OpenAI Platform](https://platform.openai.com/api-keys)
+- **Google Gemini**: Get an API key from [Google AI Studio](https://aistudio.google.com/app/apikey).
+- **OpenAI**: Get an API key from [OpenAI Platform](https://platform.openai.com/api-keys).
+- **Custom / Local AI (Ollama, LM Studio, Groq, etc.)**: Run open local models (such as Gemma 4 or Llama 3) or connect to other custom endpoints:
+  - **Base URL**: Set the custom endpoint URL (e.g., `http://localhost:11434/v1` for Ollama or `http://localhost:1234/v1` for LM Studio).
+  - **API Key**: Input your API key if required by the custom provider (otherwise, a dummy key is automatically used).
+  - **Models**: Use the **Load Models** button to dynamically retrieve and register available models from your custom/local endpoint.
 
 ## Development
 

@@ -18,7 +18,7 @@ import 'dart:typed_data';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
@@ -175,7 +175,7 @@ class _QuestionImageSectionState extends State<QuestionImageSection> {
                   QuizdyButton(
                     type: QuizdyButtonType.secondary,
                     title: localizations.pasteImage,
-                    icon: LucideIcons.clipboardPaste,
+                    icon: LucideIcons.clipboard_paste,
                     onPressed: () => _pasteFromClipboard(context),
                   ),
                   const SizedBox(width: 8),
@@ -246,7 +246,7 @@ class _QuestionImageSectionState extends State<QuestionImageSection> {
             QuizdyButton(
               type: QuizdyButtonType.secondary,
               title: localizations.pasteFromClipboard,
-              icon: LucideIcons.clipboardPaste,
+              icon: LucideIcons.clipboard_paste,
               expanded: true,
               onPressed: () => _pasteFromClipboard(context),
             ),
@@ -270,26 +270,20 @@ class _QuestionImageSectionState extends State<QuestionImageSection> {
   /// Pick an image file and convert to base64
   Future<void> _pickImage(BuildContext context) async {
     try {
-      FilePickerResult? result = await FilePicker.pickFiles(
-        type: FileType.image,
-        allowMultiple: false,
-        withData: true,
-      );
+      final file = await FilePicker.pickFile(type: FileType.image);
 
-      if (result != null && result.files.isNotEmpty) {
-        final file = result.files.first;
-        if (file.bytes != null) {
-          // Get file extension to determine mime type
-          String extension = file.extension?.toLowerCase() ?? 'png';
-          String mimeType = 'image/$extension';
-          if (extension == 'jpg') mimeType = 'image/jpeg';
+      if (file != null) {
+        final bytes = await file.readAsBytes();
+        // Get file extension to determine mime type
+        String extension = file.extension?.toLowerCase() ?? 'png';
+        String mimeType = 'image/$extension';
+        if (extension == 'jpg') mimeType = 'image/jpeg';
 
-          // Convert to base64
-          String base64String = base64Encode(file.bytes!);
-          String imageData = 'data:$mimeType;base64,$base64String';
+        // Convert to base64
+        String base64String = base64Encode(bytes);
+        String imageData = 'data:$mimeType;base64,$base64String';
 
-          widget.onImageChanged(imageData);
-        }
+        widget.onImageChanged(imageData);
       }
     } catch (e) {
       // Handle error - could show a snackbar or dialog

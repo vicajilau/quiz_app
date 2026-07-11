@@ -16,7 +16,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/custom_colors.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
@@ -158,7 +158,7 @@ class _QuizLoadedBottomBarState extends State<QuizLoadedBottomBar> {
                       (
                         button: QuizdyButton(
                           backgroundColor: customColors?.onWarningContainer,
-                          icon: LucideIcons.copyMinus,
+                          icon: LucideIcons.copy_minus,
                           expanded: true,
                           title: localizations.deleteDuplicatesButton,
                           onPressed: widget.onDeleteDuplicates,
@@ -169,7 +169,7 @@ class _QuizLoadedBottomBarState extends State<QuizLoadedBottomBar> {
                       (
                         button: QuizdyButton(
                           type: QuizdyButtonType.warning,
-                          icon: LucideIcons.trash2,
+                          icon: LucideIcons.trash_2,
                           expanded: true,
                           title:
                               '${localizations.deleteButton} (${widget.selectedQuestionCount})',
@@ -224,7 +224,7 @@ class _QuizLoadedBottomBarState extends State<QuizLoadedBottomBar> {
                       (
                         button: QuizdyButton(
                           type: QuizdyButtonType.secondary,
-                          icon: LucideIcons.fileDown,
+                          icon: LucideIcons.file_down,
                           expanded: true,
                           title: localizations.exportAsPdf,
                           onPressed: widget.onExportPdf,

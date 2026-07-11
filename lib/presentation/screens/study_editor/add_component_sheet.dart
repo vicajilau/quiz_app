@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/extensions/study_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
@@ -68,44 +68,49 @@ class AddComponentSheet extends StatelessWidget {
 
   // ── Icon + accent color per type ───────────────────────────────────────────
 
-  static (IconData, Color) _typeStyle(
-    StudyComponentType type,
-  ) => switch (type) {
-    StudyComponentType.paragraph => (
-      LucideIcons.fileText,
-      AppTheme.primaryColor,
-    ),
-    StudyComponentType.sectionTitle => (
-      LucideIcons.type,
-      AppTheme.primaryColor,
-    ),
-    StudyComponentType.quote => (LucideIcons.quote, AppTheme.teal300),
-    StudyComponentType.formula => (LucideIcons.sigma, AppTheme.sky400),
-    StudyComponentType.numberedList => (
-      LucideIcons.listOrdered,
-      AppTheme.amber400,
-    ),
-    StudyComponentType.keyConcepts => (
-      LucideIcons.lightbulb,
-      AppTheme.purple400,
-    ),
-    StudyComponentType.comparisonTable => (
-      LucideIcons.table2,
-      AppTheme.violet400,
-    ),
-    StudyComponentType.timeline => (LucideIcons.gitCommit, AppTheme.teal300),
-    StudyComponentType.warning => (
-      LucideIcons.alertTriangle,
-      AppTheme.amber400,
-    ),
-    StudyComponentType.keyDefinition => (LucideIcons.bookOpen, AppTheme.sky400),
-    StudyComponentType.prosCons => (LucideIcons.scale, AppTheme.emerald400),
-    StudyComponentType.reminder => (LucideIcons.bell, AppTheme.purple400),
-    StudyComponentType.iconCards => (
-      LucideIcons.layoutGrid,
-      AppTheme.violet400,
-    ),
-  };
+  static (IconData, Color) _typeStyle(StudyComponentType type) =>
+      switch (type) {
+        StudyComponentType.paragraph => (
+          LucideIcons.file_text,
+          AppTheme.primaryColor,
+        ),
+        StudyComponentType.sectionTitle => (
+          LucideIcons.type,
+          AppTheme.primaryColor,
+        ),
+        StudyComponentType.quote => (LucideIcons.quote, AppTheme.teal300),
+        StudyComponentType.formula => (LucideIcons.sigma, AppTheme.sky400),
+        StudyComponentType.numberedList => (
+          LucideIcons.list_ordered,
+          AppTheme.amber400,
+        ),
+        StudyComponentType.keyConcepts => (
+          LucideIcons.lightbulb,
+          AppTheme.purple400,
+        ),
+        StudyComponentType.comparisonTable => (
+          LucideIcons.table_2,
+          AppTheme.violet400,
+        ),
+        StudyComponentType.timeline => (
+          LucideIcons.git_commit_horizontal,
+          AppTheme.teal300,
+        ),
+        StudyComponentType.warning => (
+          LucideIcons.triangle_alert,
+          AppTheme.amber400,
+        ),
+        StudyComponentType.keyDefinition => (
+          LucideIcons.book_open,
+          AppTheme.sky400,
+        ),
+        StudyComponentType.prosCons => (LucideIcons.scale, AppTheme.emerald400),
+        StudyComponentType.reminder => (LucideIcons.bell, AppTheme.purple400),
+        StudyComponentType.iconCards => (
+          LucideIcons.layout_grid,
+          AppTheme.violet400,
+        ),
+      };
 
   @override
   Widget build(BuildContext context) {
@@ -194,7 +199,7 @@ class AddComponentSheet extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4),
                     child: Icon(
-                      LucideIcons.chevronLeft,
+                      LucideIcons.chevron_left,
                       size: 22,
                       color: isDark ? AppTheme.zinc400 : AppTheme.zinc500,
                     ),

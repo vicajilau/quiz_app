@@ -14,20 +14,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:genui/genui.dart';
+import 'package:genui_annotations/genui_annotations.dart';
+import 'package:json_schema_builder/json_schema_builder.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:quizdy/domain/models/quiz/study_component.dart';
 import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
-class WarningComponent extends StatelessWidget {
-  final StudyComponent element;
+part 'warning_component.genui.g.dart';
 
-  const WarningComponent({super.key, required this.element});
+@GenerativeUI(name: 'warning')
+class WarningComponent extends StatelessWidget {
+  final String body;
+
+  const WarningComponent({super.key, required this.body});
 
   @override
   Widget build(BuildContext context) {
-    final body = element.props['body']?.toString() ?? '';
     final studyTheme = context.studyTheme;
 
     final backgroundColor = studyTheme.warningBackground;
@@ -47,7 +51,7 @@ class WarningComponent extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(LucideIcons.alertTriangle, color: iconColor, size: 16),
+              Icon(LucideIcons.triangle_alert, color: iconColor, size: 16),
               const SizedBox(width: 8),
               Text(
                 AppLocalizations.of(context)!.studyScreenImportant,

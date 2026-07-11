@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/presentation/screens/dialogs/count_selection/count_control_button.dart';
 

@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/extensions/home_theme.dart';
 
@@ -52,7 +52,7 @@ class HomeNoActiveFileView extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
-                  LucideIcons.fileWarning,
+                  LucideIcons.file_exclamation_point,
                   size: 32,
                   color: Theme.of(context).colorScheme.primary,
                 ),
@@ -94,7 +94,7 @@ class HomeNoActiveFileView extends StatelessWidget {
                   const SizedBox(width: 12),
                   OutlinedButton.icon(
                     onPressed: onCreateFile,
-                    icon: const Icon(LucideIcons.plusCircle, size: 16),
+                    icon: const Icon(LucideIcons.circle_plus, size: 16),
                     label: Text(l10n.homeCardCreateQuizTitle),
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(

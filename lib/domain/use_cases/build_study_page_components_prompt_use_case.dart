@@ -13,11 +13,14 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:convert';
+
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/domain/models/ai/ai_study_generation_config.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
+import 'package:quizdy/genui_registry.g.dart';
 
 /// Assembles the prompt used to generate [StudyComponent] arrays for a
 /// single study page.
@@ -52,6 +55,31 @@ abstract final class BuildStudyPageComponentsPromptUseCase {
         ? 'Topic to cover: ${config.content}'
         : 'Source text:\n${config.content}';
 
+    final studyComponentNames = {
+      'section_title',
+      'paragraph',
+      'key_definition',
+      'numbered_list',
+      'comparison_table',
+      'quote',
+      'warning',
+      'formula',
+      'timeline',
+      'pros_cons',
+      'key_concepts',
+      'reminder',
+      'icon_cards',
+    };
+
+    final buffer = StringBuffer();
+    globalGenUISchemas.forEach((name, schema) {
+      if (studyComponentNames.contains(name)) {
+        buffer.writeln('- Component Type: "$name"');
+        buffer.writeln('  Schema: ${jsonEncode(schema)}');
+      }
+    });
+    final schemasDescription = buffer.toString();
+
     return '''
 You are an expert educational content generator. Generate study components based on the provided content.
 
@@ -61,20 +89,29 @@ $difficultyInstruction$typeConstraint
 
 Return ONLY a valid JSON array of component objects. Do not include any other text, markdown formatting (like ```json), or explanations.
 
-Each element in the array MUST have a "type" field and its specific required fields. Allowed component types:
-1. { "type": "section_title", "title": "Main topic", "subtitle": "Optional context" }
-2. { "type": "paragraph", "title": "Optional heading", "body": "Main text block" }
-3. { "type": "key_definition", "term": "Vocabulary word/concept", "body": "Clear definition" }
-4. { "type": "numbered_list", "title": "Optional heading", "items": [{"title": "Step 1", "description": "Details"}] }
-5. { "type": "comparison_table", "title": "Optional", "columns": ["Feature", "A", "B"], "rows": [{"label": "Row 1", "values": ["A val", "B val"]}] }
-6. { "type": "quote", "body": "The quote text", "author": "Optional source" }
-7. { "type": "warning", "body": "Important caveat or common misconception" }
-8. { "type": "formula", "title": "Optional", "equation": "E = mc^2", "equation_label": "Optional name", "body": "Explanation" }
-9. { "type": "timeline", "title": "Optional", "items": [{"date": "1990", "title": "Event", "description": "Optional details"}] }
-10. { "type": "pros_cons", "items": {"pros": ["Advantage 1"], "cons": ["Disadvantage 1"]} }
-11. { "type": "key_concepts", "title": "Optional", "items": ["Concept 1", "Concept 2"] }
-12. { "type": "reminder", "body": "A quick tip or study reminder" }
-13. { "type": "icon_cards", "title": "Optional", "items": [{"title": "Card title", "description": "Card details"}] }
+Each element in the array MUST have a "type" field (exactly named "type", NOT "component" or "component_type") matching one of the allowed components below, with its specific schema:
+
+$schemasDescription
+For list/array properties, here are their expected item structures:
+- "numbered_list" ("items" array): Each item must be a JSON object containing:
+  - "title": string (the step title)
+  - "description": string (the step details)
+- "comparison_table":
+  - "columns" (array of strings): column headers
+  - "rows" (array of objects): each object must contain:
+    - "label": string (row header)
+    - "values" (array of strings): values corresponding to each column
+- "timeline" ("items" array): Each item must be a JSON object containing:
+  - "date": string
+  - "title": string
+  - "description": string (optional details)
+- "pros_cons":
+  - "pros" (array of strings): list of advantages
+  - "cons" (array of strings): list of limitations
+- "key_concepts" ("items" array): Array of strings representing main concepts
+- "icon_cards" ("items" array): Each item must be a JSON object containing:
+  - "title": string
+  - "description": string
 
 $contentHeader
 ''';

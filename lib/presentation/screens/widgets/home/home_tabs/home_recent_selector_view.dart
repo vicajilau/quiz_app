@@ -15,7 +15,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/extensions/home_theme.dart';
 import 'package:quizdy/domain/models/recent_quiz/recent_quiz.dart';
@@ -61,7 +61,7 @@ class HomeRecentSelectorView extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
-                  LucideIcons.fileClock,
+                  LucideIcons.file_clock,
                   size: 32,
                   color: Theme.of(context).colorScheme.primary,
                 ),
@@ -137,7 +137,7 @@ class HomeRecentSelectorView extends StatelessWidget {
                   const SizedBox(width: 16),
                   OutlinedButton.icon(
                     onPressed: onCreateFile,
-                    icon: const Icon(LucideIcons.plusCircle, size: 16),
+                    icon: const Icon(LucideIcons.circle_plus, size: 16),
                     label: Text(l10n.homeCardCreateQuizTitle),
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(

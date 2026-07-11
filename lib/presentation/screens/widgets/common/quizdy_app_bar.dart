@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/extensions/quiz_loaded_theme.dart';
 import 'package:quizdy/core/theme/extensions/home_theme.dart';
@@ -106,7 +106,11 @@ class _DefaultLeadingButton extends StatelessWidget {
           ),
           child: IconButton(
             padding: EdgeInsets.zero,
-            icon: Icon(LucideIcons.arrowLeft, color: foregroundColor, size: 20),
+            icon: Icon(
+              LucideIcons.arrow_left,
+              color: foregroundColor,
+              size: 20,
+            ),
             tooltip: tooltip,
             onPressed: onPressed,
           ),

@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/extensions/home_theme.dart';
 
@@ -69,7 +69,7 @@ class HomeSidebar extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: const Icon(
-                          LucideIcons.graduationCap,
+                          LucideIcons.graduation_cap,
                           color: Colors.white,
                           size: 20,
                         ),
@@ -90,7 +90,7 @@ class HomeSidebar extends StatelessWidget {
                   if (!isCollapsed)
                     IconButton(
                       icon: Icon(
-                        LucideIcons.chevronLeft,
+                        LucideIcons.chevron_left,
                         color: homeTheme.textSecondaryColor,
                         size: 18,
                       ),
@@ -103,7 +103,7 @@ class HomeSidebar extends StatelessWidget {
           if (isCollapsed)
             IconButton(
               icon: Icon(
-                LucideIcons.chevronRight,
+                LucideIcons.chevron_right,
                 color: homeTheme.textSecondaryColor,
                 size: 18,
               ),
@@ -135,28 +135,28 @@ class HomeSidebar extends StatelessWidget {
                       ),
                     ),
                   SidebarItem(
-                    icon: LucideIcons.home,
+                    icon: LucideIcons.house,
                     label: AppLocalizations.of(context)!.homeMenuInicio,
                     isActive: selectedIndex == 0,
                     isCollapsed: isCollapsed,
                     onTap: () => onTabSelected(0),
                   ),
                   SidebarItem(
-                    icon: LucideIcons.bookOpen,
+                    icon: LucideIcons.book_open,
                     label: AppLocalizations.of(context)!.homeMenuStudy,
                     isActive: selectedIndex == 1,
                     isCollapsed: isCollapsed,
                     onTap: () => onTabSelected(1),
                   ),
                   SidebarItem(
-                    icon: LucideIcons.fileQuestion,
+                    icon: LucideIcons.file_question_mark,
                     label: AppLocalizations.of(context)!.homeMenuQuiz,
                     isActive: selectedIndex == 2,
                     isCollapsed: isCollapsed,
                     onTap: () => onTabSelected(2),
                   ),
                   SidebarItem(
-                    icon: LucideIcons.barChart2,
+                    icon: LucideIcons.chart_column,
                     label: AppLocalizations.of(context)!.homeMenuEstadisticas,
                     isActive: selectedIndex == 3,
                     isCollapsed: isCollapsed,

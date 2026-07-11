@@ -33,9 +33,7 @@ class FileBloc extends Bloc<FileEvent, FileState> {
   /// Constructor for `FileBloc` that initializes the state and event handlers.
   ///
   /// - [fileRepository]: An instance of `FileRepository` used to manage file operations.
-  FileBloc({required QuizFileRepository fileRepository})
-    : _fileRepository = fileRepository,
-      super(FileInitial()) {
+  FileBloc({required this._fileRepository}) : super(FileInitial()) {
     // Handling the FileDropped event
     on<FileDropped>((event, emit) async {
       // Check if a file is already loaded

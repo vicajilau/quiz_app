@@ -17,7 +17,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
@@ -231,7 +231,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                               child: Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: Icon(
-                                  LucideIcons.gripVertical,
+                                  LucideIcons.grip_vertical,
                                   color: Theme.of(context).hintColor,
                                   size: 20,
                                 ),
@@ -273,7 +273,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                             ),
                                             const SizedBox(width: 4),
                                             _buildIconButton(
-                                              icon: LucideIcons.trash2,
+                                              icon: LucideIcons.trash_2,
                                               color: Theme.of(
                                                 context,
                                               ).colorScheme.error,
@@ -290,7 +290,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                 if (isMobile)
                                   _buildIconButton(
                                     icon: _isActionsExpanded
-                                        ? LucideIcons.chevronRight
+                                        ? LucideIcons.chevron_right
                                         : Icons.more_horiz,
                                     color: Theme.of(context).hintColor,
                                     onPressed: () {
@@ -306,8 +306,8 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                 else
                                   _buildIconButton(
                                     icon: _isExpanded
-                                        ? LucideIcons.chevronUp
-                                        : LucideIcons.chevronDown,
+                                        ? LucideIcons.chevron_up
+                                        : LucideIcons.chevron_down,
                                     color: Theme.of(context).hintColor,
                                     onPressed: _toggleExpanded,
                                     tooltip: _isExpanded
@@ -326,7 +326,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                         child: Row(
                           children: [
                             Icon(
-                              LucideIcons.alertTriangle,
+                              LucideIcons.triangle_alert,
                               size: 14,
                               color: customColors.warning,
                             ),
@@ -353,7 +353,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                         child: Row(
                           children: [
                             Icon(
-                              LucideIcons.alertTriangle,
+                              LucideIcons.triangle_alert,
                               size: 14,
                               color: customColors.warning,
                             ),
@@ -425,7 +425,7 @@ class _QuestionPreviewCardState extends State<QuestionPreviewCard> {
                                           context,
                                         ).scaffoldBackgroundColor,
                                         child: Icon(
-                                          LucideIcons.imageOff,
+                                          LucideIcons.image_off,
                                           color: Theme.of(context).hintColor,
                                         ),
                                       ),

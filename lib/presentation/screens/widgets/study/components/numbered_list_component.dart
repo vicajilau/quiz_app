@@ -14,24 +14,30 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:quizdy/domain/models/quiz/study_component.dart';
+import 'package:genui/genui.dart';
+import 'package:genui_annotations/genui_annotations.dart';
+import 'package:json_schema_builder/json_schema_builder.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/presentation/widgets/quizdy_markdown.dart';
 import 'package:quizdy/core/theme/extensions/study_theme_extension.dart';
 
-class NumberedListComponent extends StatelessWidget {
-  final StudyComponent element;
+part 'numbered_list_component.genui.g.dart';
 
-  const NumberedListComponent({super.key, required this.element});
+@GenerativeUI(name: 'numbered_list')
+class NumberedListComponent extends StatelessWidget {
+  final String? title;
+  final List<dynamic> items;
+
+  const NumberedListComponent({super.key, this.title, required this.items});
 
   @override
   Widget build(BuildContext context) {
-    final title = element.props['title']?.toString();
-    final itemsList = element.props['items'] as List<dynamic>? ?? [];
+    final title = this.title;
+    final itemsList = items;
     final studyTheme = context.studyTheme;
 
     // Parse items into a structured format
-    final items = itemsList.map((item) {
+    final parsedItems = itemsList.map((item) {
       if (item is Map<String, dynamic>) {
         return {
           'title': item['title']?.toString() ?? '',
@@ -56,7 +62,7 @@ class NumberedListComponent extends StatelessWidget {
             Row(
               children: [
                 Icon(
-                  LucideIcons.listOrdered,
+                  LucideIcons.list_ordered,
                   color: Theme.of(context).primaryColor,
                   size: 20,
                 ),
@@ -76,7 +82,7 @@ class NumberedListComponent extends StatelessWidget {
             Divider(color: studyTheme.cardDivider),
             const SizedBox(height: 16),
           ],
-          ...items.asMap().entries.map((entry) {
+          ...parsedItems.asMap().entries.map((entry) {
             final index = entry.key + 1;
             final item = entry.value;
             final itemTitle = item['title'] as String;
