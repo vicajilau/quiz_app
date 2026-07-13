@@ -22,6 +22,8 @@ import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
+import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
+import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:bloc_test/bloc_test.dart';
 
 class MockAppLocalizations implements AppLocalizations {
@@ -30,9 +32,30 @@ class MockAppLocalizations implements AppLocalizations {
   @override
   String studyScreenSectionIndicator(Object current, Object total) =>
       'Page $current of $total';
+  @override
+  String get localeName => 'en';
 
   @override
   noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+class FakeAiJitProcessingService extends AiJitProcessingService {
+  @override
+  Future<StudyChunk> processChunk({
+    required StudyChunk chunk,
+    String? fileUri,
+    String? fileMimeType,
+    String? originalText,
+    required AppLocalizations localizations,
+    String? docTitle,
+    String? docSummary,
+    bool isAutoDifficulty = true,
+    AiDifficultyLevel? difficultyLevel,
+    required String language,
+    AiGenerationMode? generationMode,
+  }) async {
+    return chunk.copyWith(status: StudyChunkState.downloaded);
+  }
 }
 
 void main() {
@@ -41,7 +64,7 @@ void main() {
 
   setUp(() {
     mockLocalizations = MockAppLocalizations();
-    mockJitService = AiJitProcessingService();
+    mockJitService = FakeAiJitProcessingService();
   });
 
   group('StudyExecutionBloc Coverage Calculation', () {
@@ -102,6 +125,27 @@ void main() {
       verify: (bloc) {
         expect(bloc.state.processedChunks, 2);
         expect(bloc.state.progressPercentage, equals(100.0));
+      },
+    );
+
+    blocTest<StudyExecutionBloc, StudyExecutionState>(
+      'DownloadAllStudyChunksRequested updates isDownloadingAll correctly and processes pending chunks',
+      build: () => StudyExecutionBloc(
+        jitProcessingService: mockJitService,
+        localizations: mockLocalizations,
+        initialChunks: [chunk1, chunk2],
+        documentTitle: 'Test Doc',
+      ),
+      act: (bloc) => bloc.add(const DownloadAllStudyChunksRequested()),
+      expect: () => [
+        isA<StudyExecutionState>().having((s) => s.isDownloadingAll, 'isDownloadingAll', true),
+        isA<StudyExecutionState>().having((s) => s.isDownloadingAll, 'isDownloadingAll', true),
+        isA<StudyExecutionState>().having((s) => s.isDownloadingAll, 'isDownloadingAll', true),
+        isA<StudyExecutionState>().having((s) => s.isDownloadingAll, 'isDownloadingAll', false),
+      ],
+      verify: (bloc) {
+        expect(bloc.state.chunks[1].status, StudyChunkState.downloaded);
+        expect(bloc.state.isDownloadingAll, false);
       },
     );
   });

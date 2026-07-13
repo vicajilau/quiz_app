@@ -445,7 +445,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
         if (context.mounted) {
           setState(() => _isLoading = false);
-          ServiceLocator.registerQuizFile(updatedQuizFile);
+          _isAutomaticLoad = true;
+          context.read<FileBloc>().add(LoadQuizFileFromData(updatedQuizFile));
 
           context.push(
             AppRoutes.studyScreen,
@@ -817,8 +818,9 @@ class _HomeScreenState extends State<HomeScreen> {
           final language =
               widget.studyExtra?['language'] as String? ?? study?.language;
 
+          final studyScreenKeyStr = 'study_${file.filePath ?? file.metadata.title}';
           return StudyScreen(
-            key: ValueKey('study_${file.filePath ?? file.metadata.title}'),
+            key: ValueKey(studyScreenKeyStr),
             initialChunks: initialChunks,
             fileAttachment: fileAttachment,
             documentTitle: documentTitle,

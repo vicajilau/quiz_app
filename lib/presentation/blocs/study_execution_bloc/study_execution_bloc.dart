@@ -268,16 +268,21 @@ class StudyExecutionBloc
     Emitter<StudyExecutionState> emit,
   ) async {
     _isDownloadAllCancelled = false;
-    for (int i = 0; i < state.chunks.length; i++) {
-      if (_isDownloadAllCancelled) {
-        break;
+    emit(state.copyWith(isDownloadingAll: true));
+    try {
+      for (int i = 0; i < state.chunks.length; i++) {
+        if (_isDownloadAllCancelled) {
+          break;
+        }
+        final chunk = state.chunks[i];
+        if (chunk.status != StudyChunkState.completed &&
+            chunk.status != StudyChunkState.downloaded &&
+            chunk.status != StudyChunkState.processing) {
+          await _downloadChunk(i, emit);
+        }
       }
-      final chunk = state.chunks[i];
-      if (chunk.status != StudyChunkState.completed &&
-          chunk.status != StudyChunkState.downloaded &&
-          chunk.status != StudyChunkState.processing) {
-        await _downloadChunk(i, emit);
-      }
+    } finally {
+      emit(state.copyWith(isDownloadingAll: false));
     }
   }
 
@@ -286,6 +291,7 @@ class StudyExecutionBloc
     Emitter<StudyExecutionState> emit,
   ) {
     _isDownloadAllCancelled = true;
+    emit(state.copyWith(isDownloadingAll: false));
   }
 
   Future<void> _downloadChunk(

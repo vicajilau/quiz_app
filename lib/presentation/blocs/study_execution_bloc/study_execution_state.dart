@@ -35,6 +35,7 @@ class StudyExecutionState {
   final bool isSelectionMode;
   final Set<int> selectedIndices;
   final int savedVersion;
+  final bool isDownloadingAll;
 
   const StudyExecutionState({
     this.chunks = const [],
@@ -53,6 +54,7 @@ class StudyExecutionState {
     this.isSelectionMode = false,
     this.selectedIndices = const {},
     this.savedVersion = 0,
+    this.isDownloadingAll = false,
   });
 
   StudyExecutionState copyWith({
@@ -72,6 +74,7 @@ class StudyExecutionState {
     bool? isSelectionMode,
     Set<int>? selectedIndices,
     int? savedVersion,
+    bool? isDownloadingAll,
   }) {
     return StudyExecutionState(
       chunks: chunks ?? this.chunks,
@@ -90,6 +93,7 @@ class StudyExecutionState {
       isSelectionMode: isSelectionMode ?? this.isSelectionMode,
       selectedIndices: selectedIndices ?? this.selectedIndices,
       savedVersion: savedVersion ?? this.savedVersion,
+      isDownloadingAll: isDownloadingAll ?? this.isDownloadingAll,
     );
   }
 
@@ -153,7 +157,8 @@ class StudyExecutionState {
         other.needsFileReattachment == needsFileReattachment &&
         other.isSelectionMode == isSelectionMode &&
         listEquals(other.selectedIndices, selectedIndices) &&
-        other.savedVersion == savedVersion;
+        other.savedVersion == savedVersion &&
+        other.isDownloadingAll == isDownloadingAll;
   }
 
   @override
@@ -173,6 +178,7 @@ class StudyExecutionState {
         needsFileReattachment.hashCode ^
         isSelectionMode.hashCode ^
         selectedIndices.hashCode ^
-        savedVersion.hashCode;
+        savedVersion.hashCode ^
+        isDownloadingAll.hashCode;
   }
 }

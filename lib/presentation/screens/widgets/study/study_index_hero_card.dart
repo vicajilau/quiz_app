@@ -283,132 +283,6 @@ class StudyIndexHeroCard extends StatelessWidget {
     );
   }
 
-  void _showDownloadingDialog(BuildContext context) {
-    final studyExecutionBloc = context.read<StudyExecutionBloc>();
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (dialogContext) {
-        bool hasStarted = false;
-        return BlocProvider.value(
-          value: studyExecutionBloc,
-          child: StatefulBuilder(
-            builder: (context, setState) {
-              return BlocConsumer<StudyExecutionBloc, StudyExecutionState>(
-                listener: (context, state) {
-                  final isProcessingAny = state.chunks.any(
-                    (c) => c.status == StudyChunkState.processing,
-                  );
-                  if (isProcessingAny) {
-                    hasStarted = true;
-                  }
-                  if (hasStarted && !isProcessingAny) {
-                    Navigator.of(dialogContext).pop();
-                  }
-                },
-                builder: (context, state) {
-                  final total = state.chunks.length;
-                  final completed = state.chunks
-                      .where(
-                        (c) =>
-                            c.status == StudyChunkState.completed ||
-                            c.status == StudyChunkState.downloaded,
-                      )
-                      .length;
-                  final percent = total > 0 ? (completed / total) : 0.0;
-
-                  return PopScope(
-                    canPop: false,
-                    child: AlertDialog(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      title: Row(
-                        children: [
-                          const Icon(
-                            LucideIcons.download,
-                            color: AppTheme.primaryColor,
-                          ),
-                          const SizedBox(width: 8),
-                          _LoadingDotsText(
-                            baseText: _stripTrailingDots(
-                              localizations.downloadingSectionsTitle,
-                            ),
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const SizedBox(height: 12),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(4),
-                            child: LinearProgressIndicator(
-                              value: percent,
-                              color: AppTheme.primaryColor,
-                              backgroundColor: AppTheme.zinc100,
-                              minHeight: 6,
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          Center(
-                            child: Text(
-                              localizations.downloadingSectionsProgress(
-                                completed,
-                                total,
-                              ),
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                color:
-                                    Theme.of(context).brightness ==
-                                        Brightness.dark
-                                    ? AppTheme.zinc400
-                                    : AppTheme.zinc600,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            context.read<StudyExecutionBloc>().add(
-                              const CancelDownloadAllRequested(),
-                            );
-                            Navigator.of(dialogContext).pop();
-                          },
-                          child: Text(
-                            localizations.cancelButton.toUpperCase(),
-                            style: const TextStyle(
-                              color: AppTheme.errorColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );
-            },
-          ),
-        );
-      },
-    );
-  }
-
-  String _stripTrailingDots(String text) {
-    while (text.endsWith('.')) {
-      text = text.substring(0, text.length - 1);
-    }
-    return text;
-  }
-
   Widget _buildStatCard(
     BuildContext context, {
     required String value,
@@ -449,6 +323,161 @@ class StudyIndexHeroCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _showDownloadingDialog(BuildContext context) {
+    final studyExecutionBloc = context.read<StudyExecutionBloc>();
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (dialogContext) {
+        return _DownloadAllDialog(
+          bloc: studyExecutionBloc,
+          localizations: localizations,
+        );
+      },
+    );
+  }
+}
+
+class _DownloadAllDialog extends StatefulWidget {
+  final StudyExecutionBloc bloc;
+  final AppLocalizations localizations;
+
+  const _DownloadAllDialog({required this.bloc, required this.localizations});
+
+  @override
+  State<_DownloadAllDialog> createState() => _DownloadAllDialogState();
+}
+
+class _DownloadAllDialogState extends State<_DownloadAllDialog> {
+  StreamSubscription? _doneSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    _doneSubscription = widget.bloc.stream.listen(
+      (state) {
+        if (!state.isDownloadingAll) {
+          if (mounted) {
+            Navigator.of(context).pop();
+          }
+        }
+      },
+      onDone: () {
+        if (mounted) {
+          Navigator.of(context).pop();
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _doneSubscription?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider.value(
+      value: widget.bloc,
+      child: BlocBuilder<StudyExecutionBloc, StudyExecutionState>(
+        builder: (context, state) {
+          final total = state.chunks.length;
+          final completed = state.chunks
+              .where(
+                (c) =>
+                    c.status == StudyChunkState.completed ||
+                    c.status == StudyChunkState.downloaded,
+              )
+              .length;
+          final percent = total > 0 ? (completed / total) : 0.0;
+
+          return PopScope(
+            canPop: false,
+            child: AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              title: Row(
+                children: [
+                  const Icon(
+                    LucideIcons.download,
+                    color: AppTheme.primaryColor,
+                  ),
+                  const SizedBox(width: 8),
+                  _LoadingDotsText(
+                    baseText: _stripTrailingDots(
+                      widget.localizations.downloadingSectionsTitle,
+                    ),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 12),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(4),
+                    child: LinearProgressIndicator(
+                      value: percent,
+                      color: AppTheme.primaryColor,
+                      backgroundColor: AppTheme.zinc100,
+                      minHeight: 6,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Center(
+                    child: Text(
+                      widget.localizations.downloadingSectionsProgress(
+                        completed,
+                        total,
+                      ),
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? AppTheme.zinc400
+                            : AppTheme.zinc600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    if (!widget.bloc.isClosed) {
+                      widget.bloc.add(const CancelDownloadAllRequested());
+                    }
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    widget.localizations.cancelButton.toUpperCase(),
+                    style: const TextStyle(
+                      color: AppTheme.errorColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  String _stripTrailingDots(String text) {
+    while (text.endsWith('.')) {
+      text = text.substring(0, text.length - 1);
+    }
+    return text;
   }
 }
 
