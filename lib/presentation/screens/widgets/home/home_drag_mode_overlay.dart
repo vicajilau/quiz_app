@@ -25,8 +25,13 @@ import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 
 class HomeDragModeOverlay extends StatelessWidget {
   final QuizMode? hoveredMode;
+  final bool isImportMode;
 
-  const HomeDragModeOverlay({super.key, required this.hoveredMode});
+  const HomeDragModeOverlay({
+    super.key,
+    required this.hoveredMode,
+    this.isImportMode = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +41,20 @@ class HomeDragModeOverlay extends StatelessWidget {
 
     final studyColor = Theme.of(context).colorScheme.primary;
     final quizColor = customColors.onWarningContainer!;
+
+    if (isImportMode) {
+      return _DragZone(
+        icon: LucideIcons.upload,
+        label: localizations.dropToImportTitle,
+        hint: localizations.dropToImportHint,
+        accentColor: studyColor,
+        gradientColors: [
+          studyColor.withValues(alpha: isDark ? 0.5 : 0.6),
+          studyColor.withValues(alpha: isDark ? 0.15 : 0.2),
+        ],
+        isHighlighted: true,
+      );
+    }
 
     final studyZone = _DragZone(
       icon: LucideIcons.book_open,
@@ -102,42 +121,80 @@ class _DragZone extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    final currentBgColor = isDark
+        ? Colors.black.withValues(alpha: 0.35)
+        : Colors.black.withValues(alpha: 0.2);
+
+    final cardBgColor = isHighlighted
+        ? accentColor
+        : (isDark ? AppTheme.zinc800 : Colors.white);
+
+    final currentBorderColor = isHighlighted
+        ? accentColor
+        : (isDark ? Colors.white12 : Colors.black12);
+
+    final currentTextColor = isHighlighted
+        ? Colors.white
+        : (isDark ? Colors.white.withValues(alpha: 0.9) : Colors.black87);
+
+    final currentIconColor = isHighlighted
+        ? Colors.white
+        : (isDark ? Colors.white.withValues(alpha: 0.7) : Colors.black54);
+
+    final hintColor = isHighlighted
+        ? Colors.white.withValues(alpha: 0.7)
+        : (isDark ? Colors.white.withValues(alpha: 0.38) : Colors.black45);
+
     return ClipRect(
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+        filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           curve: Curves.easeOut,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: gradientColors,
-            ),
-          ),
-          child: AnimatedOpacity(
-            duration: const Duration(milliseconds: 200),
-            opacity: isHighlighted ? 1.0 : 0.5,
-            child: Center(
+          color: currentBgColor,
+          child: Center(
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              curve: Curves.easeOut,
+              margin: const EdgeInsets.all(24),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+              constraints: const BoxConstraints(maxWidth: 320),
+              decoration: BoxDecoration(
+                color: cardBgColor,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: currentBorderColor, width: 1.5),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.08),
+                    blurRadius: 16,
+                    offset: const Offset(0, 8),
+                  ),
+                ],
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(icon, size: 48, color: accentColor),
-                  const SizedBox(height: 12),
+                  Icon(icon, size: 44, color: currentIconColor),
+                  const SizedBox(height: 16),
                   Text(
                     label,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: FontWeight.w700,
-                      color: accentColor,
+                      color: currentTextColor,
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     hint,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 14,
-                      color: accentColor.withValues(alpha: 0.7),
+                      fontSize: 13,
+                      height: 1.4,
+                      color: hintColor,
                     ),
                   ),
                 ],

@@ -195,6 +195,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _pickFile(BuildContext context) {
     if (_isLoading) return;
+    if (_selectedTabIndex == 0) {
+      _isAutomaticLoad = true;
+    }
     context.read<FileBloc>().add(QuizFilePickRequested());
   }
 
@@ -487,6 +490,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _handleRecentQuizTap(BuildContext context, RecentQuiz recent) {
+    if (_selectedTabIndex == 0) {
+      _isAutomaticLoad = true;
+    }
     context.read<FileBloc>().add(LoadQuizFileFromData(recent.quizFile));
   }
 
@@ -553,7 +559,72 @@ class _HomeScreenState extends State<HomeScreen> {
             }
             if (state is FileReplacementRequest) {
               if (context.currentRoute == AppRoutes.home) {
-                context.read<FileBloc>().add(ConfirmFileReplacement());
+                final newFile = state.newFile;
+                final id =
+                    newFile.filePath ??
+                    'unsaved_${newFile.metadata.title.hashCode}';
+                final recentsState = context.read<RecentQuizzesCubit>().state;
+                RecentQuiz? existingRecent;
+                if (recentsState is RecentQuizzesLoaded) {
+                  final normalizedId = id.replaceAll('\\', '/').toLowerCase();
+                  for (final q in recentsState.recentQuizzes) {
+                    final normalizedQId = q.id
+                        .replaceAll('\\', '/')
+                        .toLowerCase();
+                    if (normalizedQId == normalizedId) {
+                      existingRecent = q;
+                      break;
+                    }
+                  }
+                }
+
+                if (existingRecent != null) {
+                  final isSame = existingRecent.quizFile == newFile;
+                  final fileBloc = context.read<FileBloc>();
+                  final localizations = AppLocalizations.of(context)!;
+                  if (isSame) {
+                    if (mounted) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => CustomConfirmDialog(
+                          title: localizations.documentAlreadyImportedTitle,
+                          message: localizations.documentAlreadyImportedMessage(
+                            newFile.metadata.title,
+                          ),
+                          confirmText: localizations.okButton,
+                          showCloseButton: false,
+                        ),
+                      ).then((_) {
+                        if (mounted) {
+                          fileBloc.add(ConfirmFileReplacement());
+                        }
+                      });
+                    }
+                  } else {
+                    if (mounted) {
+                      showDialog<bool>(
+                        context: context,
+                        builder: (context) => CustomConfirmDialog(
+                          title: localizations.updateDocumentTitle,
+                          message: localizations.updateDocumentMessage(
+                            newFile.metadata.title,
+                          ),
+                          confirmText: localizations.updateButton,
+                        ),
+                      ).then((confirmed) {
+                        if (mounted) {
+                          if (confirmed == true) {
+                            fileBloc.add(ConfirmFileReplacement());
+                          } else {
+                            fileBloc.add(CancelFileReplacement());
+                          }
+                        }
+                      });
+                    }
+                  }
+                } else {
+                  context.read<FileBloc>().add(ConfirmFileReplacement());
+                }
               }
             }
             if (state is FileError && context.mounted) {
@@ -646,6 +717,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           });
                           return;
                         }
+                        if (_selectedTabIndex != 0) {
+                          setState(() {
+                            _isDragging = false;
+                            _hoveredDropMode = null;
+                          });
+                          return;
+                        }
                         if (details.files.isNotEmpty && !_isLoading) {
                           if (context.currentRoute != AppRoutes.home) return;
 
@@ -663,12 +741,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               });
                               return;
                             }
-                            final renderBox =
-                                context.findRenderObject() as RenderBox;
-                            _pendingDropMode = _modeFromPosition(
-                              details.localPosition,
-                              renderBox.size,
-                            );
+                            _isAutomaticLoad = true;
                             context.read<FileBloc>().add(QuizFileReset());
                             context.read<FileBloc>().add(
                               FileDropped(firstFile.path),
@@ -681,12 +754,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         });
                       },
                       onDragEntered: (_) {
-                        if (!ServiceLocator.getIt<DialogDropGuard>().isActive) {
+                        if (_selectedTabIndex == 0 &&
+                            !ServiceLocator.getIt<DialogDropGuard>().isActive) {
                           setState(() => _isDragging = true);
                         }
                       },
                       onDragUpdated: (details) {
-                        if (!_isDragging) return;
+                        if (!_isDragging || _selectedTabIndex != 0) return;
                         final renderBox =
                             context.findRenderObject() as RenderBox;
                         final mode = _modeFromPosition(
@@ -735,6 +809,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Positioned.fill(
                               child: HomeDragModeOverlay(
                                 hoveredMode: _hoveredDropMode,
+                                isImportMode: _selectedTabIndex == 0,
                               ),
                             ),
                           if (_isLoading)
@@ -780,6 +855,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onLoadFile: () => _pickFile(context),
           onTapRecent: (recent) => _handleRecentQuizTap(context, recent),
           onShowSettings: () => _showSettingsDialog(context),
+          activeQuiz: hasActiveFile ? ServiceLocator.getIt<QuizFile>() : null,
         );
       case 1:
         if (hasActiveFile) {
@@ -818,7 +894,8 @@ class _HomeScreenState extends State<HomeScreen> {
           final language =
               widget.studyExtra?['language'] as String? ?? study?.language;
 
-          final studyScreenKeyStr = 'study_${file.filePath ?? file.metadata.title}';
+          final studyScreenKeyStr =
+              'study_${file.filePath ?? file.metadata.title}';
           return StudyScreen(
             key: ValueKey(studyScreenKeyStr),
             initialChunks: initialChunks,
@@ -833,6 +910,7 @@ class _HomeScreenState extends State<HomeScreen> {
             originalText: originalText,
             language: language,
             showLeading: false,
+            isActiveTab: _selectedTabIndex == 1,
             onExit:
                 widget.onExit ??
                 () {
@@ -854,6 +932,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ServiceLocator.getIt<CheckFileChangesUseCase>(),
             quizFile: file,
             resetOnDispose: false,
+            isActiveTab: _selectedTabIndex == 2,
             onExit:
                 widget.onExit ??
                 () {
@@ -876,6 +955,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildNoActiveFileTab(BuildContext context) {
+    final hasActiveFile = ServiceLocator.getIt.isRegistered<QuizFile>();
     return BlocBuilder<RecentQuizzesCubit, RecentQuizzesState>(
       builder: (context, recentState) {
         if (recentState is RecentQuizzesLoading ||
@@ -901,6 +981,9 @@ class _HomeScreenState extends State<HomeScreen> {
               onTapRecent: (recent) => _handleRecentQuizTap(context, recent),
               onLoadFile: () => _pickFile(context),
               onCreateFile: () => _showCreateQuizFileDialog(context),
+              activeQuiz: hasActiveFile
+                  ? ServiceLocator.getIt<QuizFile>()
+                  : null,
             );
           }
         }

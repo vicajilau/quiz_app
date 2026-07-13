@@ -727,5 +727,12 @@
   "homeFeedbackCardTitle": "رأيك يهمنا",
   "homeFeedbackCardDesc": "أجب عن استبيان سريع وساعد في تحسين Quizdy",
   "homeNoActiveFileError": "لم يتم تحميل أي اختبار نشط. يرجى فتح أو سحب ملف أولاً.",
-  "homeClearHistoryButton": "مسح السجل"
+  "homeClearHistoryButton": "مسح السجل",
+  "activeQuizBadge": "نشط",
+  "dropToImportTitle": "إضافة إلى مواد الدراسة",
+  "dropToImportHint": "أفلت الملف هنا لإضافته إلى مكتبتك",
+  "documentAlreadyImportedTitle": "المستند مستورد بالفعل",
+  "documentAlreadyImportedMessage": "المستند \"{title}\" مستورد بالفعل في مواد الدراسة الخاصة بك ولم يتغير.",
+  "updateDocumentTitle": "تحديث المستند؟",
+  "updateDocumentMessage": "المستند \"{title}\" موجود بالفعل في مواد الدراسة الخاصة بك ولكنه تغير. هل تريد تحديثه بالإصدار الجديد؟"
 }

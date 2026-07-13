@@ -24,6 +24,7 @@ class HomeRecentCard extends StatelessWidget {
   final String lastOpenedText;
   final VoidCallback onTap;
   final VoidCallback onDelete;
+  final bool isActive;
 
   const HomeRecentCard({
     super.key,
@@ -32,6 +33,7 @@ class HomeRecentCard extends StatelessWidget {
     required this.lastOpenedText,
     required this.onTap,
     required this.onDelete,
+    this.isActive = false,
   });
 
   @override
@@ -52,7 +54,12 @@ class HomeRecentCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: homeTheme.cardBackgroundColor,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: homeTheme.borderColor, width: 1),
+          border: Border.all(
+            color: isActive
+                ? Theme.of(context).colorScheme.primary
+                : homeTheme.borderColor,
+            width: isActive ? 1.5 : 1.0,
+          ),
         ),
         child: Row(
           children: [
@@ -91,15 +98,55 @@ class HomeRecentCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: homeTheme.textPrimaryColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          title,
+                          style: TextStyle(
+                            color: homeTheme.textPrimaryColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      if (isActive) ...[
+                        const SizedBox(width: 6),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 6,
+                            vertical: 2,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.primary.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                LucideIcons.circle_check,
+                                size: 10,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                              const SizedBox(width: 3),
+                              Text(
+                                AppLocalizations.of(context)!.activeQuizBadge,
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontSize: 9,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ],
                   ),
                   const SizedBox(height: 6),
                   // Progress bar

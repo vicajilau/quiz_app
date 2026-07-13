@@ -727,5 +727,12 @@
   "homeFeedbackCardTitle": "La teva opinió importa",
   "homeFeedbackCardDesc": "Respon una enquesta ràpida i ajuda a millorar Quizdy",
   "homeNoActiveFileError": "No hi ha cap fitxer de preguntes actiu carregat. Si us plau, obre o arrossega un fitxer primer.",
-  "homeClearHistoryButton": "Esborrar historial"
+  "homeClearHistoryButton": "Esborrar historial",
+  "activeQuizBadge": "Actiu",
+  "dropToImportTitle": "Afegir a Materials d'estudi",
+  "dropToImportHint": "Deixa anar el fitxer aquí per afegir-lo a la teva biblioteca",
+  "documentAlreadyImportedTitle": "Document ja importat",
+  "documentAlreadyImportedMessage": "El document \"{title}\" ja està importat als teus materials d'estudi i no ha canviat.",
+  "updateDocumentTitle": "Actualitzar el document?",
+  "updateDocumentMessage": "El document \"{title}\" ja existeix als teus materials d'estudi peró ha canviat. Vols actualitzar-lo amb la nova versió?"
 }

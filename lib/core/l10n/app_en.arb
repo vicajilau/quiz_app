@@ -3380,5 +3380,49 @@
   "homeClearHistoryButton": "Clear history",
   "@homeClearHistoryButton": {
     "description": "Button label to clear the recent quizzes history"
+  },
+  "activeQuizBadge": "Active",
+  "@activeQuizBadge": {
+    "description": "Badge label shown on the active quiz card"
+  },
+  "dropToImportTitle": "Add to Study Materials",
+  "@dropToImportTitle": {
+    "description": "Title for the drop overlay when importing a file"
+  },
+  "dropToImportHint": "Drop the file here to add it to your library",
+  "@dropToImportHint": {
+    "description": "Hint for the drop overlay when importing a file"
+  },
+  "documentAlreadyImportedTitle": "Document Already Imported",
+  "@documentAlreadyImportedTitle": {
+    "description": "Title for the dialog indicating that the document is already imported and unchanged"
+  },
+  "documentAlreadyImportedMessage": "The document \"{title}\" is already imported in your study materials and has not changed.",
+  "@documentAlreadyImportedMessage": {
+    "description": "Message indicating that the document is already imported and unchanged",
+    "placeholders": {
+      "title": {
+        "type": "String",
+        "example": "Math"
+      }
+    }
+  },
+  "updateDocumentTitle": "Update Document?",
+  "@updateDocumentTitle": {
+    "description": "Title for the dialog asking to update an existing document that has changed"
+  },
+  "updateDocumentMessage": "The document \"{title}\" already exists in your study materials but has changed. Do you want to update it with the new version?",
+  "@updateDocumentMessage": {
+    "description": "Message asking to update an existing document that has changed",
+    "placeholders": {
+      "title": {
+        "type": "String",
+        "example": "Math"
+      }
+    }
+  },
+  "updateButton": "Update",
+  "@updateButton": {
+    "description": "Label for the update action button"
   }
 }

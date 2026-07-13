@@ -736,5 +736,12 @@
   "loading": "Завантаження...",
   "resultsTitle": "Результати",
   "scoreLabel": "Рахунок",
-  "incorrectAnswers": "Неправильні відповіді"
+  "incorrectAnswers": "Неправильні відповіді",
+  "activeQuizBadge": "Активний",
+  "dropToImportTitle": "Додати до навчальних матеріалів",
+  "dropToImportHint": "Перетягніть файл сюди, щоб додати його до бібліотеки",
+  "documentAlreadyImportedTitle": "Документ уже імпортовано",
+  "documentAlreadyImportedMessage": "Документ «{title}» уже імпортовано до ваших навчальних матеріалів і він не змінився.",
+  "updateDocumentTitle": "Оновити документ?",
+  "updateDocumentMessage": "Документ «{title}» вже існує у ваших навчальних матеріалах, але його було змінено. Бажаєте оновити його до нової версії?"
 }

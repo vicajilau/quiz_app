@@ -16,6 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
+import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/core/context_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/theme/extensions/home_theme.dart';
@@ -37,6 +38,7 @@ class HomeInicioTabView extends StatefulWidget {
   final VoidCallback onLoadFile;
   final ValueChanged<RecentQuiz> onTapRecent;
   final VoidCallback onShowSettings;
+  final QuizFile? activeQuiz;
 
   const HomeInicioTabView({
     super.key,
@@ -48,6 +50,7 @@ class HomeInicioTabView extends StatefulWidget {
     required this.onLoadFile,
     required this.onTapRecent,
     required this.onShowSettings,
+    this.activeQuiz,
   });
 
   @override
@@ -427,10 +430,15 @@ class _HomeInicioTabViewState extends State<HomeInicioTabView> {
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: 12,
             mainAxisSpacing: 12,
-            mainAxisExtent: 96,
+            mainAxisExtent: 108,
           ),
           itemBuilder: (context, index) {
             final item = items[index];
+            final isActive =
+                widget.activeQuiz != null &&
+                item.id ==
+                    (widget.activeQuiz!.filePath ??
+                        'unsaved_${widget.activeQuiz!.metadata.title.hashCode}');
             return HomeRecentCard(
               title: item.title,
               progress: item.progress,
@@ -442,6 +450,7 @@ class _HomeInicioTabViewState extends State<HomeInicioTabView> {
               onDelete: () {
                 context.read<RecentQuizzesCubit>().deleteRecentQuiz(item.id);
               },
+              isActive: isActive,
             );
           },
         );

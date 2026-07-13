@@ -138,10 +138,26 @@ void main() {
       ),
       act: (bloc) => bloc.add(const DownloadAllStudyChunksRequested()),
       expect: () => [
-        isA<StudyExecutionState>().having((s) => s.isDownloadingAll, 'isDownloadingAll', true),
-        isA<StudyExecutionState>().having((s) => s.isDownloadingAll, 'isDownloadingAll', true),
-        isA<StudyExecutionState>().having((s) => s.isDownloadingAll, 'isDownloadingAll', true),
-        isA<StudyExecutionState>().having((s) => s.isDownloadingAll, 'isDownloadingAll', false),
+        isA<StudyExecutionState>().having(
+          (s) => s.isDownloadingAll,
+          'isDownloadingAll',
+          true,
+        ),
+        isA<StudyExecutionState>().having(
+          (s) => s.isDownloadingAll,
+          'isDownloadingAll',
+          true,
+        ),
+        isA<StudyExecutionState>().having(
+          (s) => s.isDownloadingAll,
+          'isDownloadingAll',
+          true,
+        ),
+        isA<StudyExecutionState>().having(
+          (s) => s.isDownloadingAll,
+          'isDownloadingAll',
+          false,
+        ),
       ],
       verify: (bloc) {
         expect(bloc.state.chunks[1].status, StudyChunkState.downloaded);

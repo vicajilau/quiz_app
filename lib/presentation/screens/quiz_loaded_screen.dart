@@ -64,6 +64,7 @@ class QuizLoadedScreen extends StatefulWidget {
   final QuizFile quizFile;
   final VoidCallback? onExit;
   final bool resetOnDispose;
+  final bool isActiveTab;
 
   const QuizLoadedScreen({
     super.key,
@@ -72,6 +73,7 @@ class QuizLoadedScreen extends StatefulWidget {
     required this.quizFile,
     this.onExit,
     this.resetOnDispose = true,
+    this.isActiveTab = true,
   });
 
   @override
@@ -520,7 +522,8 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
               );
             }
             if (state is FileReplacementRequest &&
-                ModalRoute.of(context)?.isCurrent == true) {
+                ModalRoute.of(context)?.isCurrent == true &&
+                widget.isActiveTab) {
               showDialog(
                 context: context,
                 builder: (context) => CustomConfirmDialog(
@@ -647,7 +650,8 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
             ),
             body: DropTarget(
               onDragDone: (details) {
-                if (ModalRoute.of(context)?.isCurrent != true) {
+                if (ModalRoute.of(context)?.isCurrent != true ||
+                    !widget.isActiveTab) {
                   return;
                 }
                 setState(() => _isDragging = false);

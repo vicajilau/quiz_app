@@ -727,5 +727,12 @@
   "homeFeedbackCardTitle": "여러분의 의견은 중요합니다",
   "homeFeedbackCardDesc": "간단한 설문조사에 참여하여 Quizdy 개선에 도움을 주세요",
   "homeNoActiveFileError": "불러온 활성 퀴즈 파일이 없습니다. 먼저 파일을 열거나 끌어다 놓으세요.",
-  "homeClearHistoryButton": "기록 지우기"
+  "homeClearHistoryButton": "기록 지우기",
+  "activeQuizBadge": "활성",
+  "dropToImportTitle": "학습 자료에 추가",
+  "dropToImportHint": "라이브러리에 추가하려면 여기에 파일을 드롭하세요",
+  "documentAlreadyImportedTitle": "이미 가져온 문서",
+  "documentAlreadyImportedMessage": "\"{title}\" 문서는 이미 학습 자료에 가져왔으며 변경되지 않았습니다.",
+  "updateDocumentTitle": "문서를 업데이트하시겠습니까?",
+  "updateDocumentMessage": "\"{title}\" 문서는 이미 학습 자료에 존재하지만 변경되었습니다. 새 버전으로 업데이트하시겠습니까?"
 }

@@ -36,47 +36,25 @@ class FileBloc extends Bloc<FileEvent, FileState> {
   FileBloc({required this._fileRepository}) : super(FileInitial()) {
     // Handling the FileDropped event
     on<FileDropped>((event, emit) async {
-      // Check if a file is already loaded
-      if (state is FileReplacementRequest) {
-        return;
-      }
-
-      if (state is FileLoaded || state is FileSaved) {
-        try {
-          // Identify the current file
-          QuizFile currentFile;
-          if (state is FileLoaded) {
-            currentFile = (state as FileLoaded).quizFile;
-          } else {
-            currentFile = (state as FileSaved).quizFile;
-          }
-
-          // Load the new file to get its metadata/content but DONT emit FileLoaded yet
-          emit(FileLoading());
-          final newQuizFile = await _fileRepository.loadQuizFileContent(
-            event.filePath,
-          );
-
-          // Emit replacement request
-          emit(
-            FileReplacementRequest(
-              newFile: newQuizFile,
-              currentFile: currentFile,
-            ),
-          );
-        } catch (e) {
-          emit(FileError(reason: FileErrorType.errorOpeningFile, error: e));
-        }
-        return;
-      }
-
-      emit(
-        FileLoading(),
-      ); // Emit loading state while the file is being processed
+      final prevState = state;
+      emit(FileLoading());
       try {
-        final quizFile = await _fileRepository.loadQuizFile(event.filePath);
-        _saveToRecent(quizFile);
-        emit(FileLoaded(quizFile)); // Emit the loaded file state
+        final newQuizFile = await _fileRepository.loadQuizFileContent(
+          event.filePath,
+        );
+        QuizFile? currentFile;
+        if (prevState is FileLoaded) {
+          currentFile = prevState.quizFile;
+        } else if (prevState is FileSaved) {
+          currentFile = prevState.quizFile;
+        }
+
+        emit(
+          FileReplacementRequest(
+            newFile: newQuizFile,
+            currentFile: currentFile,
+          ),
+        );
       } catch (e) {
         emit(FileError(reason: FileErrorType.errorOpeningFile, error: e));
       }
@@ -148,39 +126,25 @@ class FileBloc extends Bloc<FileEvent, FileState> {
 
     // Handling the QuizFilePickRequested event
     on<QuizFilePickRequested>((event, emit) async {
-      // Check if a file is already loaded
-      if (state is FileLoaded || state is FileSaved) {
-        try {
-          QuizFile currentFile;
-          if (state is FileLoaded) {
-            currentFile = (state as FileLoaded).quizFile;
-          } else {
-            currentFile = (state as FileSaved).quizFile;
-          }
-
-          final newQuizFile = await _fileRepository.pickFileContent();
-          if (newQuizFile != null) {
-            emit(
-              FileReplacementRequest(
-                newFile: newQuizFile,
-                currentFile: currentFile,
-              ),
-            );
-          }
-        } catch (e) {
-          emit(FileError(reason: FileErrorType.errorOpeningFile, error: e));
-        }
-        return;
-      }
-
-      emit(FileLoading()); // Emit loading state while picking the file
+      final prevState = state;
+      emit(FileLoading());
       try {
-        final quizFile = await _fileRepository.pickFileManually();
-        if (quizFile != null) {
-          _saveToRecent(quizFile);
-          emit(FileLoaded(quizFile)); // Emit the loaded file state if picked
+        final newQuizFile = await _fileRepository.pickFileContent();
+        if (newQuizFile != null) {
+          QuizFile? currentFile;
+          if (prevState is FileLoaded) {
+            currentFile = prevState.quizFile;
+          } else if (prevState is FileSaved) {
+            currentFile = prevState.quizFile;
+          }
+          emit(
+            FileReplacementRequest(
+              newFile: newQuizFile,
+              currentFile: currentFile,
+            ),
+          );
         } else {
-          emit(FileInitial()); // Emit initial state if no file is picked
+          emit(prevState);
         }
       } catch (e) {
         emit(FileError(reason: FileErrorType.errorOpeningFile, error: e));
@@ -202,7 +166,12 @@ class FileBloc extends Bloc<FileEvent, FileState> {
     on<CancelFileReplacement>((event, emit) {
       debugPrint('FileBloc: CancelFileReplacement received');
       if (state is FileReplacementRequest) {
-        emit(FileLoaded((state as FileReplacementRequest).currentFile));
+        final current = (state as FileReplacementRequest).currentFile;
+        if (current != null) {
+          emit(FileLoaded(current));
+        } else {
+          emit(FileInitial());
+        }
       } else {
         debugPrint('FileBloc: CancelFileReplacement ignored (state: $state)');
       }

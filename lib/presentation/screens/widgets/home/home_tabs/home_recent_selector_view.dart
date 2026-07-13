@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
+import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/core/theme/extensions/home_theme.dart';
 import 'package:quizdy/domain/models/recent_quiz/recent_quiz.dart';
 import 'package:quizdy/presentation/blocs/recent_quizzes/recent_quizzes_cubit.dart';
@@ -28,6 +29,7 @@ class HomeRecentSelectorView extends StatelessWidget {
   final ValueChanged<RecentQuiz> onTapRecent;
   final VoidCallback onLoadFile;
   final VoidCallback onCreateFile;
+  final QuizFile? activeQuiz;
 
   const HomeRecentSelectorView({
     super.key,
@@ -35,6 +37,7 @@ class HomeRecentSelectorView extends StatelessWidget {
     required this.onTapRecent,
     required this.onLoadFile,
     required this.onCreateFile,
+    this.activeQuiz,
   });
 
   @override
@@ -97,10 +100,15 @@ class HomeRecentSelectorView extends StatelessWidget {
                       crossAxisCount: crossAxisCount,
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16,
-                      mainAxisExtent: 96,
+                      mainAxisExtent: 108,
                     ),
                     itemBuilder: (context, index) {
                       final item = items[index];
+                      final isActive =
+                          activeQuiz != null &&
+                          item.id ==
+                              (activeQuiz!.filePath ??
+                                  'unsaved_${activeQuiz!.metadata.title.hashCode}');
                       return HomeRecentCard(
                         title: item.title,
                         progress: item.progress,
@@ -114,6 +122,7 @@ class HomeRecentSelectorView extends StatelessWidget {
                             item.id,
                           );
                         },
+                        isActive: isActive,
                       );
                     },
                   );

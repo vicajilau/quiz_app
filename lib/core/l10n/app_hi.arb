@@ -727,5 +727,12 @@
   "homeFeedbackCardTitle": "आपकी प्रतिक्रिया महत्वपूर्ण है",
   "homeFeedbackCardDesc": "एक त्वरित सर्वेक्षण लें और Quizdy को बेहतर बनाने में मदद करें",
   "homeNoActiveFileError": "कोई सक्रिय क्विज़ फ़ाइल लोड नहीं है। कृपया पहले एक फ़ाइल खोलें या खींचें।",
-  "homeClearHistoryButton": "इतिहास साफ करें"
+  "homeClearHistoryButton": "इतिहास साफ करें",
+  "activeQuizBadge": "सक्रिय",
+  "dropToImportTitle": "अध्ययन सामग्री में जोड़ें",
+  "dropToImportHint": "अपनी लाइब्रेरी में जोड़ने के लिए फ़ाइल को यहाँ छोड़ें",
+  "documentAlreadyImportedTitle": "दस्तावेज़ पहले ही आयात किया जा चुका है",
+  "documentAlreadyImportedMessage": "दस्तावेज़ \"{title}\" पहले से ही आपकी अध्ययन सामग्री में आयातित है और इसमें कोई बदलाव नहीं हुआ है।",
+  "updateDocumentTitle": "दस्तावेज़ अपडेट करें?",
+  "updateDocumentMessage": "दस्तावेज़ \"{title}\" पहले से ही आपकी अध्ययन सामग्री में मौजूद है लेकिन बदल गया है। क्या आप इसे नए संस्करण के साथ अपडेट करना चाहते हैं?"
 }

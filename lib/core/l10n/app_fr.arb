@@ -727,5 +727,12 @@
   "homeFeedbackCardTitle": "Votre avis compte",
   "homeFeedbackCardDesc": "Répondez à un court sondage et aidez à améliorer Quizdy",
   "homeNoActiveFileError": "Aucun fichier de quiz actif chargé. Veuillez d'abord ouvrir ou glisser un fichier.",
-  "homeClearHistoryButton": "Effacer l'historique"
+  "homeClearHistoryButton": "Effacer l'historique",
+  "activeQuizBadge": "Actif",
+  "dropToImportTitle": "Ajouter aux documents d'étude",
+  "dropToImportHint": "Déposez le fichier ici pour l'ajouter à votre bibliothèque",
+  "documentAlreadyImportedTitle": "Document déjà importé",
+  "documentAlreadyImportedMessage": "Le document \"{title}\" est déjà importé dans vos documents d'étude et n'a pas changé.",
+  "updateDocumentTitle": "Mettre à jour le document ?",
+  "updateDocumentMessage": "Le document \"{title}\" existe déjà dans vos documents d'étude mais a changé. Voulez-vous le mettre à jour avec la nouvelle version ?"
 }

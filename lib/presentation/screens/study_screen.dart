@@ -72,6 +72,7 @@ class StudyScreen extends StatelessWidget {
   final bool hideStartQuizButton;
   final VoidCallback? onExit;
   final bool showLeading;
+  final bool isActiveTab;
 
   const StudyScreen({
     super.key,
@@ -88,6 +89,7 @@ class StudyScreen extends StatelessWidget {
     this.hideStartQuizButton = false,
     this.onExit,
     this.showLeading = true,
+    this.isActiveTab = true,
   });
 
   @override
@@ -143,6 +145,7 @@ class StudyScreen extends StatelessWidget {
         hideStartQuizButton: hideStartQuizButton,
         onExit: onExit,
         showLeading: showLeading,
+        isActiveTab: isActiveTab,
       ),
     );
   }
@@ -157,6 +160,7 @@ class StudyScreenView extends StatefulWidget {
     this.hideStartQuizButton = false,
     this.onExit,
     this.showLeading = true,
+    this.isActiveTab = true,
   });
 
   final QuizFile? quizFile;
@@ -165,6 +169,7 @@ class StudyScreenView extends StatefulWidget {
   final bool hideStartQuizButton;
   final VoidCallback? onExit;
   final bool showLeading;
+  final bool isActiveTab;
 
   @override
   State<StudyScreenView> createState() => _StudyScreenViewState();
@@ -531,7 +536,10 @@ class _StudyScreenViewState extends State<StudyScreenView> {
 
               return DropTarget(
                 onDragDone: (details) {
-                  if (ModalRoute.of(context)?.isCurrent != true) return;
+                  if (ModalRoute.of(context)?.isCurrent != true ||
+                      !widget.isActiveTab) {
+                    return;
+                  }
                   setState(() => _isDragging = false);
                   if (ServiceLocator.getIt<DialogDropGuard>().isActive) return;
                   if (details.files.isNotEmpty) {

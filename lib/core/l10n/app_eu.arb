@@ -727,5 +727,12 @@
   "homeFeedbackCardTitle": "Zure iritzia garrantzitsua da",
   "homeFeedbackCardDesc": "Erantzun inkesta azkar bati eta lagundu Quizdy hobetzen",
   "homeNoActiveFileError": "Ez dago kargatutako galdetegi-fitxategi aktiborik. Ireki edo arrastatu fitxategi bat lehenik.",
-  "homeClearHistoryButton": "Garbitu historia"
+  "homeClearHistoryButton": "Garbitu historia",
+  "activeQuizBadge": "Aktiboa",
+  "dropToImportTitle": "Gehitu Ikasketa Materialei",
+  "dropToImportHint": "Utzi fitxategia hemen zure liburutegira gehitzeko",
+  "documentAlreadyImportedTitle": "Dokumentua inportatuta dago dagoeneko",
+  "documentAlreadyImportedMessage": "\"{title}\" dokumentua inportatuta dago dagoeneko zure ikasketa-materialetan eta ez da aldatu.",
+  "updateDocumentTitle": "Dokumentua eguneratu?",
+  "updateDocumentMessage": "\"{title}\" dokumentua existitzen da dagoeneko zure ikasketa-materialetan baina aldatu egin da. Bertsio berriarekin eguneratu nahi duzu?"
 }

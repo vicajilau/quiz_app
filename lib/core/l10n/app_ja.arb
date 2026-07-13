@@ -727,5 +727,12 @@
   "homeFeedbackCardTitle": "ご意見をお聞かせください",
   "homeFeedbackCardDesc": "簡単なアンケートに答えて、Quizdyの改善にご協力ください",
   "homeNoActiveFileError": "アクティブなクイズファイルが読み込まれていません。まずファイルを開くかドラッグしてください。",
-  "homeClearHistoryButton": "履歴をクリア"
+  "homeClearHistoryButton": "履歴をクリア",
+  "activeQuizBadge": "アクティブ",
+  "dropToImportTitle": "学習教材に追加",
+  "dropToImportHint": "ファイルをここにドロップしてライブラリに追加します",
+  "documentAlreadyImportedTitle": "ドキュメントはすでにインポートされています",
+  "documentAlreadyImportedMessage": "ドキュメント「{title}」はすでに学習教材にインポートされており、変更されていません。",
+  "updateDocumentTitle": "ドキュメントを更新しますか？",
+  "updateDocumentMessage": "ドキュメント「{title}」はすでに学習教材に存在しますが、変更されています。新しいバージョンに更新しますか？"
 }

@@ -44,9 +44,9 @@ class FileSaved extends FileState {
 /// State when a file replacement is requested (user tries to open a new file while one is loaded).
 class FileReplacementRequest extends FileState {
   final QuizFile newFile; // The new file attempting to be loaded
-  final QuizFile currentFile; // The currently loaded file
+  final QuizFile? currentFile; // The currently loaded file
 
-  FileReplacementRequest({required this.newFile, required this.currentFile});
+  FileReplacementRequest({required this.newFile, this.currentFile});
 }
 
 /// State representing an error during file operation, with an error message.

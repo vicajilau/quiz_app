@@ -727,5 +727,12 @@
   "homeFeedbackCardTitle": "Ihre Meinung zählt",
   "homeFeedbackCardDesc": "Nehmen Sie an einer kurzen Umfrage teil und helfen Sie, Quizdy zu verbessern",
   "homeNoActiveFileError": "Keine aktive Quiz-Datei geladen. Bitte öffnen oder ziehen Sie zuerst eine Datei hierher.",
-  "homeClearHistoryButton": "Verlauf löschen"
+  "homeClearHistoryButton": "Verlauf löschen",
+  "activeQuizBadge": "Aktiv",
+  "dropToImportTitle": "Zu Lernmaterialien hinzufügen",
+  "dropToImportHint": "Ziehe die Datei hierher, um sie deiner Bibliothek hinzuzufügen",
+  "documentAlreadyImportedTitle": "Dokument bereits importiert",
+  "documentAlreadyImportedMessage": "Das Dokument \"{title}\" ist bereits in deinen Lernmaterialien importiert und hat sich nicht geändert.",
+  "updateDocumentTitle": "Dokument aktualisieren?",
+  "updateDocumentMessage": "Das Dokument \"{title}\" existiert bereits in deinen Lernmaterialien, hat sich aber geändert. Möchtest du es auf die neue Version aktualisieren?"
 }

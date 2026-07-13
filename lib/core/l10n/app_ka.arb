@@ -727,5 +727,12 @@
   "homeFeedbackCardTitle": "თქვენი აზრი მნიშვნელოვანია",
   "homeFeedbackCardDesc": "უპასუხეთ მოკლე გამოკითხვას და დაგვეხმარეთ Quizdy-ის გაუმჯობესებაში",
   "homeNoActiveFileError": "აქტიური ქვიზის ფაილი არ არის ჩატვირთული. გთხოვთ, ჯერ გახსნათ ან ჩააგდოთ ფაილი.",
-  "homeClearHistoryButton": "ისტორიის გასუფთავება"
+  "homeClearHistoryButton": "ისტორიის გასუფთავება",
+  "activeQuizBadge": "აქტიური",
+  "dropToImportTitle": "სასწავლო მასალებში დამატება",
+  "dropToImportHint": "ჩააგდეთ ფაილი აქ თქვენს ბიბლიოთეკაში დასამატებლად",
+  "documentAlreadyImportedTitle": "დოკუმენტი უკვე იმპორტირებულია",
+  "documentAlreadyImportedMessage": "დოკუმენტი \"{title}\" უკვე იმპორტირებულია თქვენს სასწავლო მასალებში და არ შეცვლილა.",
+  "updateDocumentTitle": "განვაახლოთ დოკუმენტი?",
+  "updateDocumentMessage": "დოკუმენტი \"{title}\" უკვე არსებობს თქვენს სასწავლო მასალებში, მაგრამ შეიცვალა. გსურთ მისი განახლება ახალი ვერსიით?"
 }

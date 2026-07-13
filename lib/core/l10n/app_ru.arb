@@ -736,5 +736,12 @@
   "loading": "Загрузка...",
   "resultsTitle": "Результаты",
   "scoreLabel": "Счет",
-  "incorrectAnswers": "Неправильные ответы"
+  "incorrectAnswers": "Неправильные ответы",
+  "activeQuizBadge": "Активный",
+  "dropToImportTitle": "Добавить в учебные материалы",
+  "dropToImportHint": "Перетащите файл сюда, чтобы добавить его в библиотеку",
+  "documentAlreadyImportedTitle": "Документ уже импортирован",
+  "documentAlreadyImportedMessage": "Документ «{title}» уже импортирован в ваши учебные материалы и не изменился.",
+  "updateDocumentTitle": "Обновить документ?",
+  "updateDocumentMessage": "Документ «{title}» уже существует в ваших учебных материалах, но был изменен. Хотите обновить его до новой версии?"
 }

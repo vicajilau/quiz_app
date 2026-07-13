@@ -727,5 +727,12 @@
   "homeFeedbackCardTitle": "Η γνώμη σας μετράει",
   "homeFeedbackCardDesc": "Απαντήστε σε μια σύντομη έρευνα και βοηθήστε στη βελτίωση του Quizdy",
   "homeNoActiveFileError": "Δεν έχει φορτωθεί ενεργό αρχείο κουίζ. Παρακαλώ ανοίξτε ή σύρετε ένα αρχείο πρώτα.",
-  "homeClearHistoryButton": "Καθαρισμός ιστορικού"
+  "homeClearHistoryButton": "Καθαρισμός ιστορικού",
+  "activeQuizBadge": "Ενεργό",
+  "dropToImportTitle": "Προσθήκη στο Υλικό Μελέτης",
+  "dropToImportHint": "Σύρετε το αρχείο εδώ για να το προσθέσετε στη βιβλιοθήκη σας",
+  "documentAlreadyImportedTitle": "Το έγγραφο έχει ήδη εισαχθεί",
+  "documentAlreadyImportedMessage": "Το έγγραφο \"{title}\" έχει ήδη εισαχθεί στο υλικό μελέτης σας και δεν έχει αλλάξει.",
+  "updateDocumentTitle": "Ενημέρωση εγγράφου;",
+  "updateDocumentMessage": "Το έγγραφο \"{title}\" υπάρχει ήδη στο υλικό μελέτης σας αλλά έχει αλλάξει. Θέλετε να το ενημερώσετε με τη νέα έκδοση;"
 }

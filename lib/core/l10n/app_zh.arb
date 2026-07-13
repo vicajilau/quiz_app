@@ -727,5 +727,12 @@
   "homeFeedbackCardTitle": "您的反馈很重要",
   "homeFeedbackCardDesc": "参与快速调查，帮助改进 Quizdy",
   "homeNoActiveFileError": "未加载任何活动测试文件。请先打开或拖放一个文件。",
-  "homeClearHistoryButton": "清除历史记录"
+  "homeClearHistoryButton": "清除历史记录",
+  "activeQuizBadge": "活动",
+  "dropToImportTitle": "添加到学习材料",
+  "dropToImportHint": "将文件拖放到此处以将其添加到您的库中",
+  "documentAlreadyImportedTitle": "文档已导入",
+  "documentAlreadyImportedMessage": "文档 \"{title}\" 已导入您的学习材料中，且未发生更改。",
+  "updateDocumentTitle": "更新文档？",
+  "updateDocumentMessage": "文档 \"{title}\" 已存在于您的学习材料中，但已发生更改。是否要更新为新版本？"
 }
