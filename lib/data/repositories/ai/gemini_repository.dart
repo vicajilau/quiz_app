@@ -19,6 +19,7 @@ import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:genkit/genkit.dart';
 import 'package:genkit_google_genai/genkit_google_genai.dart';
+import 'package:quizdy/core/debug_print.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
@@ -71,6 +72,7 @@ class GeminiRepository implements AiRepository {
   }
 
   Exception _buildException(DioException e, AppLocalizations localizations) {
+    printInDebug('[GeminiRepository._buildException] DioException error: $e');
     if (e.error is ConnectivityException) {
       final ce = e.error as ConnectivityException;
       return Exception(
@@ -138,7 +140,8 @@ class GeminiRepository implements AiRepository {
       );
       return response.text;
     } catch (e) {
-      throw Exception('${localizations.networkErrorGemini}: $e');
+      printInDebug('[GeminiRepository.sendMessages] error: $e');
+      throw Exception(localizations.networkErrorGemini);
     }
   }
 
@@ -199,7 +202,8 @@ class GeminiRepository implements AiRepository {
       );
       return response.text;
     } catch (e) {
-      throw Exception('${localizations.networkErrorGemini}: $e');
+      printInDebug('[GeminiRepository.sendMessagesWithFile] error: $e');
+      throw Exception(localizations.networkErrorGemini);
     }
   }
 
@@ -254,7 +258,8 @@ class GeminiRepository implements AiRepository {
       throw Exception(localizations.noResponseReceived);
     } on DioException catch (e) {
       throw _buildException(e, localizations);
-    } catch (_) {
+    } catch (err) {
+      printInDebug('[GeminiRepository.uploadFile] unexpected error: $err');
       throw Exception(localizations.networkErrorGemini);
     }
   }
@@ -315,7 +320,8 @@ class GeminiRepository implements AiRepository {
       );
       return response.text;
     } catch (e) {
-      throw Exception('${localizations.networkErrorGemini}: $e');
+      printInDebug('[GeminiRepository.sendMessagesWithFileUri] error: $e');
+      throw Exception(localizations.networkErrorGemini);
     }
   }
 }
