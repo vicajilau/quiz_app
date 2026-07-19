@@ -52,7 +52,7 @@ class GeminiRepository implements AiRepository {
 
   @override
   Future<bool> isAvailable() async {
-    final key = await _configurationService.getGeminiApiKey();
+    final key = _configurationService.getGeminiApiKey();
     return key != null && key.isNotEmpty;
   }
 
@@ -100,7 +100,7 @@ class GeminiRepository implements AiRepository {
     AppLocalizations localizations, {
     String? responseMimeType,
   }) async {
-    final apiKey = await _configurationService.getGeminiApiKey();
+    final apiKey = _configurationService.getGeminiApiKey();
     if (apiKey == null || apiKey.isEmpty) {
       throw Exception(localizations.geminiApiKeyNotConfigured);
     }
@@ -149,7 +149,7 @@ class GeminiRepository implements AiRepository {
     required AiFileAttachment file,
     String? responseMimeType,
   }) async {
-    final apiKey = await _configurationService.getGeminiApiKey();
+    final apiKey = _configurationService.getGeminiApiKey();
     if (apiKey == null || apiKey.isEmpty) {
       throw Exception(localizations.geminiApiKeyNotConfigured);
     }
@@ -208,7 +208,7 @@ class GeminiRepository implements AiRepository {
     AiFileAttachment file,
     AppLocalizations localizations,
   ) async {
-    final apiKey = await _configurationService.getGeminiApiKey();
+    final apiKey = _configurationService.getGeminiApiKey();
     if (apiKey == null || apiKey.isEmpty) {
       throw Exception(localizations.geminiApiKeyNotConfigured);
     }
@@ -267,7 +267,7 @@ class GeminiRepository implements AiRepository {
     required String fileMimeType,
     String? responseMimeType,
   }) async {
-    final apiKey = await _configurationService.getGeminiApiKey();
+    final apiKey = _configurationService.getGeminiApiKey();
     if (apiKey == null || apiKey.isEmpty) {
       throw Exception(localizations.geminiApiKeyNotConfigured);
     }

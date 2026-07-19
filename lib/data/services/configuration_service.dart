@@ -79,265 +79,246 @@ class ConfigurationService {
 
   ConfigurationService({required this.sharedPreferences});
 
-  Future<void> _refreshAiAvailability() async {
-    aiAvailabilityNotifier.value = await getIsAiAvailable();
+  void _refreshAiAvailability() {
+    aiAvailabilityNotifier.value = getIsAiAvailable();
   }
 
   /// Gets whether onboarding has been completed
-  Future<bool> getOnboardingCompleted() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(_onboardingCompletedKey) ?? false;
+  bool getOnboardingCompleted() {
+    return sharedPreferences.getBool(_onboardingCompletedKey) ?? false;
   }
 
   /// Marks onboarding as completed
   Future<void> setOnboardingCompleted(bool completed) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_onboardingCompletedKey, completed);
+    await sharedPreferences.setBool(_onboardingCompletedKey, completed);
   }
 
   /// Gets whether the privacy policy has been accepted
-  Future<bool> getPrivacyPolicyAccepted() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(_privacyPolicyAcceptedKey) ?? false;
+  bool getPrivacyPolicyAccepted() {
+    return sharedPreferences.getBool(_privacyPolicyAcceptedKey) ?? false;
   }
 
   /// Marks privacy policy as accepted
   Future<void> setPrivacyPolicyAccepted(bool accepted) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_privacyPolicyAcceptedKey, accepted);
+    await sharedPreferences.setBool(_privacyPolicyAcceptedKey, accepted);
   }
 
   /// Saves the selected question order to SharedPreferences
   Future<void> saveQuestionOrder(QuestionOrder order) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_questionOrderKey, order.name);
+    await sharedPreferences.setString(_questionOrderKey, order.name);
   }
 
   /// Gets the saved question order, defaults to random
-  Future<QuestionOrder> getQuestionOrder() async {
-    final prefs = await SharedPreferences.getInstance();
-    final orderValue = prefs.getString(_questionOrderKey);
-
+  QuestionOrder getQuestionOrder() {
+    final orderValue = sharedPreferences.getString(_questionOrderKey);
     if (orderValue != null) {
       return QuestionOrder.fromString(orderValue);
     }
-
-    return QuestionOrder.random; // Valor por defecto
+    return QuestionOrder.random;
   }
 
   /// Saves whether exam time limit is enabled
   Future<void> saveExamTimeEnabled(bool enabled) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_examTimeEnabledKey, enabled);
+    await sharedPreferences.setBool(_examTimeEnabledKey, enabled);
   }
 
   /// Gets whether exam time limit is enabled, defaults to false
-  Future<bool> getExamTimeEnabled() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(_examTimeEnabledKey) ?? false;
+  bool getExamTimeEnabled() {
+    return sharedPreferences.getBool(_examTimeEnabledKey) ?? false;
   }
 
   /// Saves the exam time limit in minutes
   Future<void> saveExamTimeMinutes(int minutes) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_examTimeMinutesKey, minutes);
+    await sharedPreferences.setInt(_examTimeMinutesKey, minutes);
   }
 
   /// Gets the exam time limit in minutes, defaults to 60
-  Future<int> getExamTimeMinutes() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getInt(_examTimeMinutesKey) ?? 60;
+  int getExamTimeMinutes() {
+    return sharedPreferences.getInt(_examTimeMinutesKey) ?? 60;
   }
 
   /// Saves whether AI assistant is enabled
   Future<void> saveAIAssistantEnabled(bool enabled) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_aiAssistantEnabledKey, enabled);
-    await _refreshAiAvailability();
+    await sharedPreferences.setBool(_aiAssistantEnabledKey, enabled);
+    _refreshAiAvailability();
   }
 
   /// Gets whether AI assistant is enabled, defaults to true
-  Future<bool> _getAIAssistantEnabled() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(_aiAssistantEnabledKey) ?? true;
+  bool _getAIAssistantEnabled() {
+    return sharedPreferences.getBool(_aiAssistantEnabledKey) ?? true;
   }
 
   /// Saves OpenAI API Key securely (encrypted)
   Future<void> saveOpenAIApiKey(String apiKey) async {
-    final prefs = await SharedPreferences.getInstance();
     final encryptedApiKey = EncryptionService.encrypt(apiKey);
-    await prefs.setString(_openaiApiKeyKey, encryptedApiKey);
-    await _refreshAiAvailability();
+    await sharedPreferences.setString(_openaiApiKeyKey, encryptedApiKey);
+    _refreshAiAvailability();
   }
 
   /// Gets OpenAI API Key (decrypted)
-  Future<String?> getOpenAIApiKey() async {
-    final prefs = await SharedPreferences.getInstance();
-    final encryptedApiKey = prefs.getString(_openaiApiKeyKey);
-
+  String? getOpenAIApiKey() {
+    final encryptedApiKey = sharedPreferences.getString(_openaiApiKeyKey);
     if (encryptedApiKey == null || encryptedApiKey.isEmpty) {
       return null;
     }
-
     return EncryptionService.decrypt(encryptedApiKey);
   }
 
   /// Deletes OpenAI API Key
   Future<void> deleteOpenAIApiKey() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_openaiApiKeyKey);
-    await _refreshAiAvailability();
+    await sharedPreferences.remove(_openaiApiKeyKey);
+    _refreshAiAvailability();
   }
 
   /// Saves Gemini API Key securely (encrypted)
   Future<void> saveGeminiApiKey(String apiKey) async {
-    final prefs = await SharedPreferences.getInstance();
     final encryptedApiKey = EncryptionService.encrypt(apiKey);
-    await prefs.setString(_geminiApiKeyKey, encryptedApiKey);
-    await _refreshAiAvailability();
+    await sharedPreferences.setString(_geminiApiKeyKey, encryptedApiKey);
+    _refreshAiAvailability();
   }
 
   /// Gets Gemini API Key (decrypted)
-  Future<String?> getGeminiApiKey() async {
-    final prefs = await SharedPreferences.getInstance();
-    final encryptedApiKey = prefs.getString(_geminiApiKeyKey);
-
+  String? getGeminiApiKey() {
+    final encryptedApiKey = sharedPreferences.getString(_geminiApiKeyKey);
     if (encryptedApiKey == null || encryptedApiKey.isEmpty) {
       return null;
     }
-
     return EncryptionService.decrypt(encryptedApiKey);
   }
 
   /// Deletes Gemini API Key
   Future<void> deleteGeminiApiKey() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_geminiApiKeyKey);
-    await _refreshAiAvailability();
+    await sharedPreferences.remove(_geminiApiKeyKey);
+    _refreshAiAvailability();
   }
 
   /// Saves whether answers should be randomized
   Future<void> saveRandomizeAnswers(bool randomize) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_randomizeAnswersKey, randomize);
+    await sharedPreferences.setBool(_randomizeAnswersKey, randomize);
   }
 
   /// Gets whether answers should be randomized, defaults to false
-  Future<bool> getRandomizeAnswers() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(_randomizeAnswersKey) ?? false;
+  bool getRandomizeAnswers() {
+    return sharedPreferences.getBool(_randomizeAnswersKey) ?? false;
   }
 
   /// Saves whether to show correct answer count
   Future<void> saveShowCorrectAnswerCount(bool show) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_showCorrectAnswerCountKey, show);
+    await sharedPreferences.setBool(_showCorrectAnswerCountKey, show);
   }
 
   /// Gets whether to show correct answer count, defaults to false
-  Future<bool> getShowCorrectAnswerCount() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(_showCorrectAnswerCountKey) ?? false;
+  bool getShowCorrectAnswerCount() {
+    return sharedPreferences.getBool(_showCorrectAnswerCountKey) ?? false;
   }
 
   /// Saves the default AI model
   Future<void> saveDefaultAIModel(String model) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_defaultAIModelKey, model);
+    await sharedPreferences.setString(_defaultAIModelKey, model);
   }
 
   /// Gets the default AI model, returns null if not set
-  Future<String?> getDefaultAIModel() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_defaultAIModelKey);
+  String? getDefaultAIModel() {
+    return sharedPreferences.getString(_defaultAIModelKey);
   }
 
   /// Deletes the default AI model setting
   Future<void> deleteDefaultAISettings() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_defaultAIModelKey);
+    await sharedPreferences.remove(_defaultAIModelKey);
   }
 
   /// Saves whether to keep AI text draft
   Future<void> saveAiKeepDraft(bool keep) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_aiKeepDraftKey, keep);
+    await sharedPreferences.setBool(_aiKeepDraftKey, keep);
   }
 
   /// Gets whether to keep AI text draft, defaults to true
-  Future<bool> getAiKeepDraft() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(_aiKeepDraftKey) ?? true;
+  bool getAiKeepDraft() {
+    return sharedPreferences.getBool(_aiKeepDraftKey) ?? true;
   }
 
   /// Saves the AI generation settings
   Future<void> saveAiGenerationSettings(
     AiGenerationStoredSettings settings,
   ) async {
-    final prefs = await SharedPreferences.getInstance();
-
     if (settings.modelName != null) {
-      await prefs.setString(_aiGenerationModelKey, settings.modelName!);
+      await sharedPreferences.setString(
+        _aiGenerationModelKey,
+        settings.modelName!,
+      );
     }
     if (settings.language != null) {
-      await prefs.setString(_aiGenerationLanguageKey, settings.language!);
+      await sharedPreferences.setString(
+        _aiGenerationLanguageKey,
+        settings.language!,
+      );
     }
     if (settings.questionCount != null) {
-      await prefs.setInt(
+      await sharedPreferences.setInt(
         _aiGenerationQuestionCountKey,
         settings.questionCount!,
       );
     }
     if (settings.questionTypes != null) {
-      await prefs.setStringList(
+      await sharedPreferences.setStringList(
         _aiGenerationQuestionTypesKey,
         settings.questionTypes!,
       );
     }
 
     if (settings.draftText != null) {
-      await prefs.setString(_aiDraftTextKey, settings.draftText!);
+      await sharedPreferences.setString(_aiDraftTextKey, settings.draftText!);
     } else {
-      await prefs.remove(_aiDraftTextKey);
+      await sharedPreferences.remove(_aiDraftTextKey);
     }
 
     if (settings.draftFilePath != null) {
-      await prefs.setString(_aiDraftFilePathKey, settings.draftFilePath!);
+      await sharedPreferences.setString(
+        _aiDraftFilePathKey,
+        settings.draftFilePath!,
+      );
     } else {
-      await prefs.remove(_aiDraftFilePathKey);
+      await sharedPreferences.remove(_aiDraftFilePathKey);
     }
 
     if (settings.isAutoDifficulty != null) {
-      await prefs.setBool(
+      await sharedPreferences.setBool(
         _aiGenerationIsAutoDifficultyKey,
         settings.isAutoDifficulty!,
       );
     }
     if (settings.difficultyLevel != null) {
-      await prefs.setString(
+      await sharedPreferences.setString(
         _aiGenerationDifficultyLevelKey,
         settings.difficultyLevel!.name,
       );
     }
     if (settings.category != null) {
-      await prefs.setString(_aiGenerationCategoryKey, settings.category!.name);
+      await sharedPreferences.setString(
+        _aiGenerationCategoryKey,
+        settings.category!.name,
+      );
     }
   }
 
   /// Gets the AI generation settings
-  Future<AiGenerationStoredSettings> getAiGenerationSettings() async {
-    final prefs = await SharedPreferences.getInstance();
-
+  AiGenerationStoredSettings getAiGenerationSettings() {
     return AiGenerationStoredSettings(
-      modelName: prefs.getString(_aiGenerationModelKey),
-      language: prefs.getString(_aiGenerationLanguageKey),
-      questionCount: prefs.getInt(_aiGenerationQuestionCountKey),
-      questionTypes: prefs.getStringList(_aiGenerationQuestionTypesKey),
-      draftText: prefs.getString(_aiDraftTextKey),
-      draftFilePath: prefs.getString(_aiDraftFilePathKey),
-      isAutoDifficulty: prefs.getBool(_aiGenerationIsAutoDifficultyKey),
+      modelName: sharedPreferences.getString(_aiGenerationModelKey),
+      language: sharedPreferences.getString(_aiGenerationLanguageKey),
+      questionCount: sharedPreferences.getInt(_aiGenerationQuestionCountKey),
+      questionTypes: sharedPreferences.getStringList(
+        _aiGenerationQuestionTypesKey,
+      ),
+      draftText: sharedPreferences.getString(_aiDraftTextKey),
+      draftFilePath: sharedPreferences.getString(_aiDraftFilePathKey),
+      isAutoDifficulty: sharedPreferences.getBool(
+        _aiGenerationIsAutoDifficultyKey,
+      ),
       difficultyLevel: () {
-        final name = prefs.getString(_aiGenerationDifficultyLevelKey);
+        final name = sharedPreferences.getString(
+          _aiGenerationDifficultyLevelKey,
+        );
         if (name == null) return null;
         try {
           return AiDifficultyLevel.values.byName(name);
@@ -346,7 +327,7 @@ class ConfigurationService {
         }
       }(),
       category: () {
-        final name = prefs.getString(_aiGenerationCategoryKey);
+        final name = sharedPreferences.getString(_aiGenerationCategoryKey);
         if (name == null) return null;
         try {
           return AiGenerationCategory.values.byName(name);
@@ -359,40 +340,45 @@ class ConfigurationService {
 
   /// Saves whether to keep AI study text draft
   Future<void> saveAiStudyKeepDraft(bool keep) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_aiStudyKeepDraftKey, keep);
+    await sharedPreferences.setBool(_aiStudyKeepDraftKey, keep);
   }
 
   /// Gets whether to keep AI study text draft, defaults to true
-  Future<bool> getAiStudyKeepDraft() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(_aiStudyKeepDraftKey) ?? true;
+  bool getAiStudyKeepDraft() {
+    return sharedPreferences.getBool(_aiStudyKeepDraftKey) ?? true;
   }
 
   /// Saves the AI Study generation settings
   Future<void> saveAiStudyGenerationSettings(
     AiStudyGenerationStoredSettings settings,
   ) async {
-    final prefs = await SharedPreferences.getInstance();
-
     if (settings.modelName != null) {
-      await prefs.setString(_aiStudyGenerationModelKey, settings.modelName!);
+      await sharedPreferences.setString(
+        _aiStudyGenerationModelKey,
+        settings.modelName!,
+      );
     }
     if (settings.language != null) {
-      await prefs.setString(_aiStudyGenerationLanguageKey, settings.language!);
+      await sharedPreferences.setString(
+        _aiStudyGenerationLanguageKey,
+        settings.language!,
+      );
     }
     if (settings.draftText != null) {
-      await prefs.setString(_aiStudyDraftTextKey, settings.draftText!);
+      await sharedPreferences.setString(
+        _aiStudyDraftTextKey,
+        settings.draftText!,
+      );
     }
 
     if (settings.isAutoDifficulty != null) {
-      await prefs.setBool(
+      await sharedPreferences.setBool(
         _aiStudyGenerationIsAutoDifficultyKey,
         settings.isAutoDifficulty!,
       );
     }
     if (settings.difficultyLevel != null) {
-      await prefs.setString(
+      await sharedPreferences.setString(
         _aiStudyGenerationDifficultyLevelKey,
         settings.difficultyLevel!.name,
       );
@@ -400,16 +386,18 @@ class ConfigurationService {
   }
 
   /// Gets the AI Study generation settings
-  Future<AiStudyGenerationStoredSettings> getAiStudyGenerationSettings() async {
-    final prefs = await SharedPreferences.getInstance();
-
+  AiStudyGenerationStoredSettings getAiStudyGenerationSettings() {
     return AiStudyGenerationStoredSettings(
-      modelName: prefs.getString(_aiStudyGenerationModelKey),
-      language: prefs.getString(_aiStudyGenerationLanguageKey),
-      draftText: prefs.getString(_aiStudyDraftTextKey),
-      isAutoDifficulty: prefs.getBool(_aiStudyGenerationIsAutoDifficultyKey),
+      modelName: sharedPreferences.getString(_aiStudyGenerationModelKey),
+      language: sharedPreferences.getString(_aiStudyGenerationLanguageKey),
+      draftText: sharedPreferences.getString(_aiStudyDraftTextKey),
+      isAutoDifficulty: sharedPreferences.getBool(
+        _aiStudyGenerationIsAutoDifficultyKey,
+      ),
       difficultyLevel: () {
-        final name = prefs.getString(_aiStudyGenerationDifficultyLevelKey);
+        final name = sharedPreferences.getString(
+          _aiStudyGenerationDifficultyLevelKey,
+        );
         if (name == null) return null;
         try {
           return AiDifficultyLevel.values.byName(name);
@@ -425,46 +413,62 @@ class ConfigurationService {
 
   /// Saves the Quiz Config settings
   Future<void> saveQuizConfigSettings(QuizConfigStoredSettings settings) async {
-    final prefs = await SharedPreferences.getInstance();
-
     if (settings.questionCount != null) {
-      await prefs.setInt(_lastQuestionCountKey, settings.questionCount!);
+      await sharedPreferences.setInt(
+        _lastQuestionCountKey,
+        settings.questionCount!,
+      );
     } else {
-      await prefs.remove(_lastQuestionCountKey);
+      await sharedPreferences.remove(_lastQuestionCountKey);
     }
     if (settings.isStudyMode != null) {
-      await prefs.setBool(_lastQuizModeKey, settings.isStudyMode!);
+      await sharedPreferences.setBool(_lastQuizModeKey, settings.isStudyMode!);
     }
     if (settings.isSmartMode != null) {
-      await prefs.setBool(_lastQuizSmartModeKey, settings.isSmartMode!);
+      await sharedPreferences.setBool(
+        _lastQuizSmartModeKey,
+        settings.isSmartMode!,
+      );
     }
     if (settings.subtractPoints != null) {
-      await prefs.setBool(_lastQuizSubtractPointsKey, settings.subtractPoints!);
+      await sharedPreferences.setBool(
+        _lastQuizSubtractPointsKey,
+        settings.subtractPoints!,
+      );
     }
     if (settings.penaltyAmount != null) {
-      await prefs.setDouble(_lastQuizPenaltyAmountKey, settings.penaltyAmount!);
+      await sharedPreferences.setDouble(
+        _lastQuizPenaltyAmountKey,
+        settings.penaltyAmount!,
+      );
     }
     if (settings.enableMaxIncorrectAnswers != null) {
-      await prefs.setBool(
+      await sharedPreferences.setBool(
         _lastQuizEnableMaxIncorrectAnswersKey,
         settings.enableMaxIncorrectAnswers!,
       );
     }
     if (settings.maxIncorrectAnswers != null) {
-      await prefs.setInt(
+      await sharedPreferences.setInt(
         _lastQuizMaxIncorrectAnswersKey,
         settings.maxIncorrectAnswers!,
       );
     }
 
     if (settings.questionOrder != null) {
-      await prefs.setString(_questionOrderKey, settings.questionOrder!.name);
+      await sharedPreferences.setString(
+        _questionOrderKey,
+        settings.questionOrder!.name,
+      );
     }
     if (settings.randomizeAnswers != null) {
-      await prefs.setBool(_randomizeAnswersKey, settings.randomizeAnswers!);
+      await sharedPreferences.setBool(
+        _randomizeAnswersKey,
+        settings.randomizeAnswers!,
+      );
     }
     if (settings.showCorrectAnswerCount != null) {
-      await prefs.setBool(
+      await sharedPreferences.setBool(
         _showCorrectAnswerCountKey,
         settings.showCorrectAnswerCount!,
       );
@@ -472,99 +476,90 @@ class ConfigurationService {
   }
 
   /// Gets the Quiz Config settings
-  Future<QuizConfigStoredSettings> getQuizConfigSettings() async {
-    final prefs = await SharedPreferences.getInstance();
-
+  QuizConfigStoredSettings getQuizConfigSettings() {
     return QuizConfigStoredSettings(
-      questionCount: prefs.getInt(_lastQuestionCountKey),
-      isStudyMode: prefs.getBool(_lastQuizModeKey),
-      isSmartMode: prefs.getBool(_lastQuizSmartModeKey),
-      subtractPoints: prefs.getBool(_lastQuizSubtractPointsKey),
-      penaltyAmount: prefs.getDouble(_lastQuizPenaltyAmountKey),
-      enableMaxIncorrectAnswers: prefs.getBool(
+      questionCount: sharedPreferences.getInt(_lastQuestionCountKey),
+      isStudyMode: sharedPreferences.getBool(_lastQuizModeKey),
+      isSmartMode: sharedPreferences.getBool(_lastQuizSmartModeKey),
+      subtractPoints: sharedPreferences.getBool(_lastQuizSubtractPointsKey),
+      penaltyAmount: sharedPreferences.getDouble(_lastQuizPenaltyAmountKey),
+      enableMaxIncorrectAnswers: sharedPreferences.getBool(
         _lastQuizEnableMaxIncorrectAnswersKey,
       ),
-      maxIncorrectAnswers: prefs.getInt(_lastQuizMaxIncorrectAnswersKey),
-      questionOrder: QuestionOrder.fromString(
-        prefs.getString(_questionOrderKey),
+      maxIncorrectAnswers: sharedPreferences.getInt(
+        _lastQuizMaxIncorrectAnswersKey,
       ),
-      randomizeAnswers: prefs.getBool(_randomizeAnswersKey),
-      showCorrectAnswerCount: prefs.getBool(_showCorrectAnswerCountKey),
+      questionOrder: QuestionOrder.fromString(
+        sharedPreferences.getString(_questionOrderKey),
+      ),
+      randomizeAnswers: sharedPreferences.getBool(_randomizeAnswersKey),
+      showCorrectAnswerCount: sharedPreferences.getBool(
+        _showCorrectAnswerCountKey,
+      ),
     );
   }
 
   /// Saves Custom AI Base URL
   Future<void> saveCustomAiBaseUrl(String baseUrl) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_customAiBaseUrlKey, baseUrl);
-    await _refreshAiAvailability();
+    await sharedPreferences.setString(_customAiBaseUrlKey, baseUrl);
+    _refreshAiAvailability();
   }
 
   /// Gets Custom AI Base URL
-  Future<String?> getCustomAiBaseUrl() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_customAiBaseUrlKey);
+  String? getCustomAiBaseUrl() {
+    return sharedPreferences.getString(_customAiBaseUrlKey);
   }
 
   /// Deletes Custom AI Base URL
   Future<void> deleteCustomAiBaseUrl() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_customAiBaseUrlKey);
-    await _refreshAiAvailability();
+    await sharedPreferences.remove(_customAiBaseUrlKey);
+    _refreshAiAvailability();
   }
 
   /// Saves Custom AI API Key securely (encrypted)
   Future<void> saveCustomAiApiKey(String apiKey) async {
-    final prefs = await SharedPreferences.getInstance();
     final encryptedApiKey = EncryptionService.encrypt(apiKey);
-    await prefs.setString(_customAiApiKeyKey, encryptedApiKey);
+    await sharedPreferences.setString(_customAiApiKeyKey, encryptedApiKey);
   }
 
   /// Gets Custom AI API Key (decrypted)
-  Future<String?> getCustomAiApiKey() async {
-    final prefs = await SharedPreferences.getInstance();
-    final encryptedApiKey = prefs.getString(_customAiApiKeyKey);
-
+  String? getCustomAiApiKey() {
+    final encryptedApiKey = sharedPreferences.getString(_customAiApiKeyKey);
     if (encryptedApiKey == null || encryptedApiKey.isEmpty) {
       return null;
     }
-
     return EncryptionService.decrypt(encryptedApiKey);
   }
 
   /// Deletes Custom AI API Key
   Future<void> deleteCustomAiApiKey() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_customAiApiKeyKey);
+    await sharedPreferences.remove(_customAiApiKeyKey);
   }
 
   /// Saves Custom AI Models list
   Future<void> saveCustomAiModels(List<String> models) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList(_customAiModelsKey, models);
-    await _refreshAiAvailability();
+    await sharedPreferences.setStringList(_customAiModelsKey, models);
+    _refreshAiAvailability();
   }
 
   /// Gets Custom AI Models list
-  Future<List<String>> getCustomAiModels() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getStringList(_customAiModelsKey) ?? const [];
+  List<String> getCustomAiModels() {
+    return sharedPreferences.getStringList(_customAiModelsKey) ?? const [];
   }
 
   /// Deletes Custom AI Models list
   Future<void> deleteCustomAiModels() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_customAiModelsKey);
-    await _refreshAiAvailability();
+    await sharedPreferences.remove(_customAiModelsKey);
+    _refreshAiAvailability();
   }
 
   /// Checks if AI Assistant is available (enabled and has at least one API key or custom config)
-  Future<bool> getIsAiAvailable() async {
-    final isEnabled = await _getAIAssistantEnabled();
-    final openAiKey = await getOpenAIApiKey();
-    final geminiKey = await getGeminiApiKey();
-    final customBaseUrl = await getCustomAiBaseUrl();
-    final customModels = await getCustomAiModels();
+  bool getIsAiAvailable() {
+    final isEnabled = _getAIAssistantEnabled();
+    final openAiKey = getOpenAIApiKey();
+    final geminiKey = getGeminiApiKey();
+    final customBaseUrl = getCustomAiBaseUrl();
+    final customModels = getCustomAiModels();
 
     return isEnabled &&
         ((openAiKey != null && openAiKey.isNotEmpty) ||

@@ -79,7 +79,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Future<void> _finish(BuildContext context) async {
     final configurationService = ServiceLocator.getIt<ConfigurationService>();
     await context.read<OnboardingCubit>().completeOnboarding();
-    final hasAcceptedPrivacyPolicy = await configurationService
+    final hasAcceptedPrivacyPolicy = configurationService
         .getPrivacyPolicyAccepted();
 
     if (context.mounted) {

@@ -79,10 +79,10 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   }
 
   Future<void> _loadDraft() async {
-    final keepDraft = await configurationService.getAiKeepDraft();
+    final keepDraft = configurationService.getAiKeepDraft();
 
     if (keepDraft) {
-      final settings = await configurationService.getAiGenerationSettings();
+      final settings = configurationService.getAiGenerationSettings();
 
       if (mounted) {
         setState(() {
@@ -210,7 +210,7 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
   }
 
   Future<void> _saveDraft() async {
-    final keepDraft = await configurationService.getAiKeepDraft();
+    final keepDraft = configurationService.getAiKeepDraft();
     if (keepDraft) {
       String? persistentPath = _fileAttachment?.path;
       if (_fileAttachment != null) {

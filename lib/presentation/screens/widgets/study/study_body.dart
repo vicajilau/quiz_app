@@ -124,8 +124,8 @@ class _StudyBodyState extends State<StudyBody>
     }
   }
 
-  Future<void> _checkAiAvailability() async {
-    final isAvailable = await ServiceLocator.getIt<ConfigurationService>()
+  void _checkAiAvailability() {
+    final isAvailable = ServiceLocator.getIt<ConfigurationService>()
         .getIsAiAvailable();
     if (mounted) {
       setState(() => _isAiAvailable = isAvailable);
@@ -159,7 +159,7 @@ class _StudyBodyState extends State<StudyBody>
 
   Future<void> _openChat() async {
     // Re-check availability every time so stale state is never shown to the user.
-    await _checkAiAvailability();
+    _checkAiAvailability();
     if (!mounted) return;
     if (!_isAiAvailable) {
       context.presentSnackBar(AppLocalizations.of(context)!.aiApiKeyRequired);
@@ -398,12 +398,12 @@ class _StudyBodyState extends State<StudyBody>
                     localizations: localizations,
                     isFullScreen: isMobile,
                     onClose: _closeSidebar,
-                    onChunkSelected: (index) async {
+                    onChunkSelected: (index) {
                       final targetChunk = state.chunks[index];
                       if (targetChunk.status != StudyChunkState.completed &&
                           targetChunk.status != StudyChunkState.downloaded) {
                         final isAiAvailable =
-                            await ServiceLocator.getIt<ConfigurationService>()
+                            ServiceLocator.getIt<ConfigurationService>()
                                 .getIsAiAvailable();
                         if (!isAiAvailable) {
                           if (context.mounted) {
@@ -420,9 +420,9 @@ class _StudyBodyState extends State<StudyBody>
                       );
                       if (isMobile) _closeSidebar();
                     },
-                    onChunkDownload: (index) async {
+                    onChunkDownload: (index) {
                       final isAiAvailable =
-                          await ServiceLocator.getIt<ConfigurationService>()
+                          ServiceLocator.getIt<ConfigurationService>()
                               .getIsAiAvailable();
                       if (!isAiAvailable) {
                         if (context.mounted) {

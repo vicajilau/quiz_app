@@ -28,7 +28,7 @@ import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
-import 'package:quizdy/data/repositories/quiz_file_repository.dart';
+import 'package:quizdy/domain/repositories/quiz_file_repository.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
@@ -434,9 +434,8 @@ class _StudyScreenViewState extends State<StudyScreenView> {
               }
             },
             onGenerateAI: () async {
-              final isAiAvailable =
-                  await ServiceLocator.getIt<ConfigurationService>()
-                      .getIsAiAvailable();
+              final isAiAvailable = ServiceLocator.getIt<ConfigurationService>()
+                  .getIsAiAvailable();
 
               if (!isAiAvailable) {
                 if (context.mounted) {

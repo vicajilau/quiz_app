@@ -56,10 +56,10 @@ class OpenAiRepository implements AiRepository {
   @override
   Future<bool> isAvailable() async {
     if (isCustom) {
-      final customBaseUrl = await _configurationService.getCustomAiBaseUrl();
+      final customBaseUrl = _configurationService.getCustomAiBaseUrl();
       return customBaseUrl != null && customBaseUrl.isNotEmpty;
     }
-    final key = await _configurationService.getOpenAIApiKey();
+    final key = _configurationService.getOpenAIApiKey();
     return key != null && key.isNotEmpty;
   }
 
@@ -96,11 +96,11 @@ class OpenAiRepository implements AiRepository {
 
   Future<Genkit> _initGenkit(AppLocalizations localizations) async {
     if (isCustom) {
-      final customBaseUrl = await _configurationService.getCustomAiBaseUrl();
+      final customBaseUrl = _configurationService.getCustomAiBaseUrl();
       if (customBaseUrl == null || customBaseUrl.isEmpty) {
         throw Exception('Custom Base URL not configured');
       }
-      final customApiKey = await _configurationService.getCustomAiApiKey();
+      final customApiKey = _configurationService.getCustomAiApiKey();
       final apiKeyToUse = (customApiKey != null && customApiKey.isNotEmpty)
           ? customApiKey
           : 'dummy-key';
@@ -115,7 +115,7 @@ class OpenAiRepository implements AiRepository {
         ],
       );
     } else {
-      final apiKey = await _configurationService.getOpenAIApiKey();
+      final apiKey = _configurationService.getOpenAIApiKey();
       if (apiKey == null || apiKey.isEmpty) {
         throw Exception(localizations.openaiApiKeyNotConfigured);
       }
@@ -198,13 +198,13 @@ class OpenAiRepository implements AiRepository {
     AppLocalizations localizations,
   ) async {
     final apiKey = isCustom
-        ? (await _configurationService.getCustomAiApiKey() ?? 'dummy-key')
-        : await _configurationService.getOpenAIApiKey();
+        ? (_configurationService.getCustomAiApiKey() ?? 'dummy-key')
+        : _configurationService.getOpenAIApiKey();
     if (!isCustom && (apiKey == null || apiKey.isEmpty)) {
       throw Exception(localizations.openaiApiKeyNotConfigured);
     }
     final baseUrlToUse = isCustom
-        ? await _configurationService.getCustomAiBaseUrl()
+        ? (_configurationService.getCustomAiBaseUrl() ?? _baseUrl)
         : _baseUrl;
 
     try {
@@ -244,13 +244,13 @@ class OpenAiRepository implements AiRepository {
     String? responseMimeType,
   }) async {
     final apiKey = isCustom
-        ? (await _configurationService.getCustomAiApiKey() ?? 'dummy-key')
-        : await _configurationService.getOpenAIApiKey();
+        ? (_configurationService.getCustomAiApiKey() ?? 'dummy-key')
+        : _configurationService.getOpenAIApiKey();
     if (!isCustom && (apiKey == null || apiKey.isEmpty)) {
       throw Exception(localizations.openaiApiKeyNotConfigured);
     }
     final baseUrlToUse = isCustom
-        ? await _configurationService.getCustomAiBaseUrl()
+        ? _configurationService.getCustomAiBaseUrl()
         : _baseUrl;
 
     final data = <String, dynamic>{

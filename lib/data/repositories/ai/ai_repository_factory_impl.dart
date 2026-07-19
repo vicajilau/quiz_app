@@ -19,23 +19,19 @@ import 'package:quizdy/data/repositories/ai/openai_repository.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/ai/ai_model_catalog.dart';
 import 'package:quizdy/domain/repositories/ai_repository.dart';
+import 'package:quizdy/domain/repositories/ai_repository_factory.dart';
 
-/// Creates the correct [AiRepository] implementation based on a model ID.
-///
-/// The factory consults [AiModelCatalog] to resolve the provider, then
-/// instantiates the matching repository with the supplied [modelId].
-class AiRepositoryFactory {
+/// Concrete implementation of [AiRepositoryFactory] in the data layer.
+class AiRepositoryFactoryImpl implements AiRepositoryFactory {
   final Dio _dioClient;
   final ConfigurationService _configurationService;
 
-  AiRepositoryFactory({
+  AiRepositoryFactoryImpl({
     required this._dioClient,
     required this._configurationService,
   });
 
-  /// Returns a repository configured for [modelId].
-  ///
-  /// Throws [ArgumentError] if [modelId] is not listed in [AiModelCatalog].
+  @override
   AiRepository createForModel(String modelId) {
     final entry = AiModelCatalog.forModelId(modelId);
     if (entry == null) {
@@ -71,11 +67,9 @@ class AiRepositoryFactory {
     };
   }
 
-  /// Returns a repository for the user's saved default model.
-  ///
-  /// Falls back to [AiModelCatalog.defaultModelId] when no preference is saved.
+  @override
   Future<AiRepository> createDefault() async {
-    final savedModel = await _configurationService.getDefaultAIModel();
+    final savedModel = _configurationService.getDefaultAIModel();
     final modelId =
         (savedModel != null && AiModelCatalog.forModelId(savedModel) != null)
         ? savedModel

@@ -16,7 +16,8 @@
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quizdy/core/service_locator.dart';
-import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
+import 'package:quizdy/domain/repositories/ai_repository_factory.dart';
+import 'package:quizdy/data/repositories/ai/ai_repository_factory_impl.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 
 /// Registers the minimum services needed for tests that access GetIt.
@@ -43,7 +44,7 @@ Future<ConfigurationService> setUpTestServiceLocator() async {
 AiRepositoryFactory createTestAiRepositoryFactory(
   ConfigurationService configurationService,
 ) {
-  return AiRepositoryFactory(
+  return AiRepositoryFactoryImpl(
     dioClient: Dio(),
     configurationService: configurationService,
   );

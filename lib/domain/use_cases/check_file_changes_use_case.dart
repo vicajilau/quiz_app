@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:quizdy/data/repositories/quiz_file_repository.dart';
+import 'package:quizdy/domain/repositories/quiz_file_repository.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';

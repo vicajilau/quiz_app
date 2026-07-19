@@ -27,7 +27,6 @@ import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/domain/models/quiz/quiz_config.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/presentation/widgets/quizdy_button.dart';
-import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/routes/app_router.dart';
 import 'package:go_router/go_router.dart';
 
@@ -182,14 +181,14 @@ class StudyContentView extends StatelessWidget {
               final sectionQuizFile = quizFile!.copyWith(
                 questions: linkedQuestions,
               );
-              ServiceLocator.registerQuizFile(sectionQuizFile);
-              ServiceLocator.registerQuizConfig(
-                QuizConfig(
-                  questionCount: linkedQuestions.length,
-                  isStudyMode: false,
-                ),
+              final quizConfig = QuizConfig(
+                questionCount: linkedQuestions.length,
+                isStudyMode: false,
               );
-              await context.push(AppRoutes.quizFileExecutionScreen);
+              await context.push(
+                AppRoutes.quizFileExecutionScreen,
+                extra: {'quizFile': sectionQuizFile, 'quizConfig': quizConfig},
+              );
               if (context.mounted) {
                 final studyBloc = context.read<StudyExecutionBloc>();
                 studyBloc.add(StudyChunksUpdated(studyBloc.state.chunks));

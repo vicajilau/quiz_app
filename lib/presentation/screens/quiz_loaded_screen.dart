@@ -39,7 +39,7 @@ import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
 import 'package:quizdy/presentation/screens/widgets/study/utils/study_export_pdf_handler.dart';
-import 'package:quizdy/data/repositories/quiz_file_repository.dart';
+import 'package:quizdy/domain/repositories/quiz_file_repository.dart';
 import 'package:quizdy/domain/models/custom_exceptions/bad_quiz_file_exception.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
@@ -257,7 +257,7 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
   /// Handle generating questions with AI
   Future<void> _generateQuestionsWithAI() async {
     try {
-      final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
+      final isAiAvailable = ServiceLocator.getIt<ConfigurationService>()
           .getIsAiAvailable();
 
       if (!isAiAvailable) {
@@ -804,9 +804,13 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
                     );
                   }
 
-                  ServiceLocator.registerQuizFile(quizFileToUse);
-                  ServiceLocator.registerQuizConfig(quizConfig);
-                  context.push(AppRoutes.quizFileExecutionScreen);
+                  context.push(
+                    AppRoutes.quizFileExecutionScreen,
+                    extra: {
+                      'quizFile': quizFileToUse,
+                      'quizConfig': quizConfig,
+                    },
+                  );
                 }
               },
             ),

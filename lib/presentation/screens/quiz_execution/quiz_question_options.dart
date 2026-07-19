@@ -70,8 +70,8 @@ class _QuizQuestionOptionsState extends State<QuizQuestionOptions> {
     _checkAiAvailability();
   }
 
-  Future<void> _checkAiAvailability() async {
-    final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
+  void _checkAiAvailability() {
+    final isAiAvailable = ServiceLocator.getIt<ConfigurationService>()
         .getIsAiAvailable();
 
     if (mounted) {

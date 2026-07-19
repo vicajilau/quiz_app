@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
-import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
+import 'package:quizdy/domain/repositories/ai_repository_factory.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/quiz/essay_ai_evaluation.dart';
@@ -64,12 +64,12 @@ class _QuizQuestionEssayResultState extends State<QuizQuestionEssayResult> {
   }
 
   /// Checks if AI services are enabled and available.
-  Future<void> _checkAIAvailability() async {
-    final aiEnabled = await ServiceLocator.getIt<ConfigurationService>()
+  void _checkAIAvailability() {
+    final aiEnabled = ServiceLocator.getIt<ConfigurationService>()
         .getIsAiAvailable();
-    final geminiKey = await ServiceLocator.getIt<ConfigurationService>()
+    final geminiKey = ServiceLocator.getIt<ConfigurationService>()
         .getGeminiApiKey();
-    final openaiKey = await ServiceLocator.getIt<ConfigurationService>()
+    final openaiKey = ServiceLocator.getIt<ConfigurationService>()
         .getOpenAIApiKey();
 
     if (mounted) {

@@ -23,6 +23,8 @@ import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/confirm_dialog_colors_extension.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
+import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_event.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
@@ -81,7 +83,7 @@ class _QuizInProgressViewState extends State<QuizInProgressView>
   }
 
   Future<void> _checkAiAvailability() async {
-    final isAvailable = await ServiceLocator.getIt<ConfigurationService>()
+    final isAvailable = ServiceLocator.getIt<ConfigurationService>()
         .getIsAiAvailable();
     if (mounted) {
       setState(() => _isAiAvailable = isAvailable);
@@ -161,20 +163,26 @@ class _QuizInProgressViewState extends State<QuizInProgressView>
 
   @override
   Widget build(BuildContext context) {
-    final quizConfig = ServiceLocator.getQuizConfig();
-    final isStudyMode = quizConfig?.isStudyMode ?? false;
+    final quizConfig = widget.state.quizConfig;
+    final isStudyMode = quizConfig.isStudyMode;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final colors = context.appColors;
 
     final closeBtnBorder = isDark ? Colors.transparent : AppTheme.zinc200;
     final cardBorder = isDark ? Colors.transparent : AppTheme.zinc200;
-    final showTimer = !isStudyMode && (quizConfig?.enableTimeLimit ?? false);
+    final showTimer = !isStudyMode && quizConfig.enableTimeLimit;
     final showAi = isStudyMode && _isAiAvailable;
 
     QuizFile? quizFileWithStudy;
-    if (ServiceLocator.getIt.isRegistered<QuizFile>()) {
-      final qf = ServiceLocator.getIt<QuizFile>();
-      if (qf.study != null) quizFileWithStudy = qf;
+    final fileState = context.read<FileBloc>().state;
+    if (fileState is FileLoaded) {
+      if (fileState.quizFile.study != null) {
+        quizFileWithStudy = fileState.quizFile;
+      }
+    } else if (fileState is FileSaved) {
+      if (fileState.quizFile.study != null) {
+        quizFileWithStudy = fileState.quizFile;
+      }
     }
 
     return BlocListener<QuizExecutionBloc, QuizExecutionState>(
@@ -270,7 +278,7 @@ class _QuizInProgressViewState extends State<QuizInProgressView>
                         if (showTimer) ...[
                           ExamTimerWidget(
                             initialDurationMinutes:
-                                quizConfig?.timeLimitMinutes ?? 0,
+                                quizConfig.timeLimitMinutes ?? 0,
                             onTimeExpired: () {
                               context.read<QuizExecutionBloc>().add(
                                 QuizSubmitted(),

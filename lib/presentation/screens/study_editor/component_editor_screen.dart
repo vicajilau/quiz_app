@@ -405,7 +405,7 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
                   onSave: () => context.pop(true),
                   onAI: () async {
                     final isAiAvailable =
-                        await ServiceLocator.getIt<ConfigurationService>()
+                        ServiceLocator.getIt<ConfigurationService>()
                             .getIsAiAvailable();
                     if (!context.mounted) return;
                     if (!isAiAvailable) {

@@ -14,58 +14,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/presentation/blocs/quiz_execution_bloc/quiz_execution_state.dart';
 import 'package:quizdy/presentation/screens/quiz_execution/quiz_question_options.dart';
 
-/// Wrapper widget that loads quiz configuration and passes it to QuizQuestionOptions
-class QuizOptionsWrapper extends StatefulWidget {
+/// Wrapper widget that loads quiz configuration síncronamente and passes it to QuizQuestionOptions
+class QuizOptionsWrapper extends StatelessWidget {
   final QuizExecutionInProgress state;
   final void Function({String? prefillText})? onAskAi;
 
   const QuizOptionsWrapper({super.key, required this.state, this.onAskAi});
 
   @override
-  State<QuizOptionsWrapper> createState() => _QuizOptionsWrapperState();
-}
-
-class _QuizOptionsWrapperState extends State<QuizOptionsWrapper> {
-  bool _showCorrectAnswerCount = false;
-  bool _isLoading = true;
-  bool _isStudyMode = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadConfiguration();
-  }
-
-  Future<void> _loadConfiguration() async {
-    // Get settings from ServiceLocator
-    final quizConfig = ServiceLocator.getQuizConfig();
-    final isStudyMode = quizConfig?.isStudyMode ?? false;
-    final showCorrectAnswerCount = quizConfig?.showCorrectAnswerCount ?? false;
-
-    if (mounted) {
-      setState(() {
-        _showCorrectAnswerCount = showCorrectAnswerCount;
-        _isStudyMode = isStudyMode;
-        _isLoading = false;
-      });
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (_isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
+    final quizConfig = state.quizConfig;
+    final isStudyMode = quizConfig.isStudyMode;
+    final showCorrectAnswerCount = quizConfig.showCorrectAnswerCount;
 
     return QuizQuestionOptions(
-      state: widget.state,
-      showCorrectAnswerCount: _showCorrectAnswerCount,
-      isStudyMode: _isStudyMode,
-      onAskAi: widget.onAskAi,
+      state: state,
+      showCorrectAnswerCount: showCorrectAnswerCount,
+      isStudyMode: isStudyMode,
+      onAskAi: onAskAi,
     );
   }
 }

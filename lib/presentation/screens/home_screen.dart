@@ -28,7 +28,7 @@ import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/extensions/home_theme.dart';
-import 'package:quizdy/data/repositories/quiz_file_repository.dart';
+import 'package:quizdy/domain/repositories/quiz_file_repository.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/data/services/app_remote_config_service.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
@@ -263,7 +263,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _generateQuestionsWithAI(BuildContext context) async {
     try {
-      final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
+      final isAiAvailable = ServiceLocator.getIt<ConfigurationService>()
           .getIsAiAvailable();
 
       if (!isAiAvailable) {
@@ -346,7 +346,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _startStudyModeWithAI(BuildContext context) async {
     try {
-      final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
+      final isAiAvailable = ServiceLocator.getIt<ConfigurationService>()
           .getIsAiAvailable();
 
       if (!isAiAvailable) {
@@ -793,14 +793,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                   selectedIndex: _selectedTabIndex,
                                 ),
                               Expanded(
-                                child: IndexedStack(
-                                  index: _selectedTabIndex,
-                                  children: [
-                                    _buildTabContent(context, 0),
-                                    _buildTabContent(context, 1),
-                                    _buildTabContent(context, 2),
-                                    _buildTabContent(context, 3),
-                                  ],
+                                child: BlocBuilder<FileBloc, FileState>(
+                                  builder: (context, fileState) {
+                                    return IndexedStack(
+                                      index: _selectedTabIndex,
+                                      children: [
+                                        _buildTabContent(context, 0, fileState),
+                                        _buildTabContent(context, 1, fileState),
+                                        _buildTabContent(context, 2, fileState),
+                                        _buildTabContent(context, 3, fileState),
+                                      ],
+                                    );
+                                  },
                                 ),
                               ),
                             ],
@@ -841,8 +845,20 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildTabContent(BuildContext context, int tabIndex) {
-    final hasActiveFile = ServiceLocator.getIt.isRegistered<QuizFile>();
+  Widget _buildTabContent(
+    BuildContext context,
+    int tabIndex,
+    FileState fileState,
+  ) {
+    QuizFile? activeQuizFile;
+    if (fileState is FileLoaded) {
+      activeQuizFile = fileState.quizFile;
+    } else if (fileState is FileSaved) {
+      activeQuizFile = fileState.quizFile;
+    } else if (fileState is FileReplacementRequest) {
+      activeQuizFile = fileState.currentFile;
+    }
+    final hasActiveFile = activeQuizFile != null;
 
     switch (tabIndex) {
       case 0:
@@ -855,11 +871,11 @@ class _HomeScreenState extends State<HomeScreen> {
           onLoadFile: () => _pickFile(context),
           onTapRecent: (recent) => _handleRecentQuizTap(context, recent),
           onShowSettings: () => _showSettingsDialog(context),
-          activeQuiz: hasActiveFile ? ServiceLocator.getIt<QuizFile>() : null,
+          activeQuiz: activeQuizFile,
         );
       case 1:
         if (hasActiveFile) {
-          final file = ServiceLocator.getIt<QuizFile>();
+          final file = activeQuizFile;
           final study = file.study;
           final chunks = study?.content.cache ?? [];
 
@@ -920,11 +936,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
           );
         } else {
-          return _buildNoActiveFileTab(context);
+          return _buildNoActiveFileTab(context, activeQuizFile);
         }
       case 2:
         if (hasActiveFile) {
-          final file = ServiceLocator.getIt<QuizFile>();
+          final file = activeQuizFile;
           return QuizLoadedScreen(
             key: ValueKey('quiz_${file.filePath ?? file.metadata.title}'),
             fileBloc: context.read<FileBloc>(),
@@ -942,7 +958,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
           );
         } else {
-          return _buildNoActiveFileTab(context);
+          return _buildNoActiveFileTab(context, activeQuizFile);
         }
       case 3:
         return const SrsStatsScreen(
@@ -954,8 +970,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  Widget _buildNoActiveFileTab(BuildContext context) {
-    final hasActiveFile = ServiceLocator.getIt.isRegistered<QuizFile>();
+  Widget _buildNoActiveFileTab(BuildContext context, QuizFile? activeQuiz) {
     return BlocBuilder<RecentQuizzesCubit, RecentQuizzesState>(
       builder: (context, recentState) {
         if (recentState is RecentQuizzesLoading ||
@@ -981,9 +996,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onTapRecent: (recent) => _handleRecentQuizTap(context, recent),
               onLoadFile: () => _pickFile(context),
               onCreateFile: () => _showCreateQuizFileDialog(context),
-              activeQuiz: hasActiveFile
-                  ? ServiceLocator.getIt<QuizFile>()
-                  : null,
+              activeQuiz: activeQuiz,
             );
           }
         }

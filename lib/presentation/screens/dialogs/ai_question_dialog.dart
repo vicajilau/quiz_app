@@ -19,7 +19,7 @@ import 'package:quizdy/core/extensions/string_extension.dart';
 import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
-import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
+import 'package:quizdy/domain/repositories/ai_repository_factory.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/ai/ai_model_catalog.dart';
@@ -128,7 +128,7 @@ class _AIQuestionDialogState extends State<AIQuestionDialog> {
 
     try {
       // Check if AI assistant is enabled
-      final isAiEnabled = await ServiceLocator.getIt<ConfigurationService>()
+      final isAiEnabled = ServiceLocator.getIt<ConfigurationService>()
           .getIsAiAvailable();
       if (!isAiEnabled) {
         setState(() {

@@ -18,9 +18,11 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:quizdy/data/interceptors/ai_logging_interceptor.dart';
 import 'package:quizdy/data/interceptors/connectivity_interceptor.dart';
-import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
+import 'package:quizdy/data/repositories/ai/ai_repository_factory_impl.dart';
+import 'package:quizdy/domain/repositories/ai_repository_factory.dart';
 import 'package:quizdy/domain/models/ai/ai_model_catalog.dart';
-import 'package:quizdy/data/services/ai/ai_document_chunking_service.dart';
+import 'package:quizdy/data/services/ai/ai_document_chunking_service_impl.dart';
+import 'package:quizdy/domain/services/ai_document_chunking_service.dart';
 import 'package:quizdy/data/services/ai/ai_jit_processing_service.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/data/services/app_remote_config_service.dart';
@@ -29,13 +31,12 @@ import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/domain/use_cases/initialize_quiz_chunks_use_case.dart';
 
-import 'package:quizdy/data/repositories/quiz_file_repository.dart';
+import 'package:quizdy/domain/repositories/quiz_file_repository.dart';
+import 'package:quizdy/data/repositories/quiz_file_repository_impl.dart';
 import 'package:quizdy/data/services/file_service/mobile_desktop_file_service.dart'
     if (dart.library.js_interop) '../../data/services/file_service/web_file_service.dart';
 import 'package:quizdy/data/services/pdf_export_service_io.dart'
     if (dart.library.js_interop) 'package:quizdy/data/services/pdf_export_service.dart';
-import 'package:quizdy/domain/models/quiz/quiz_file.dart';
-import 'package:quizdy/domain/models/quiz/quiz_config.dart';
 import 'package:quizdy/data/repositories/srs/srs_repository.dart';
 import 'package:quizdy/data/repositories/recent_quiz/recent_quiz_repository.dart';
 import 'package:quizdy/presentation/blocs/recent_quizzes/recent_quizzes_cubit.dart';
@@ -83,7 +84,7 @@ class ServiceLocator {
     );
 
     getIt.registerSingleton<AiRepositoryFactory>(
-      AiRepositoryFactory(
+      AiRepositoryFactoryImpl(
         dioClient: dioClient,
         configurationService: configurationService,
       ),
@@ -96,7 +97,7 @@ class ServiceLocator {
     getIt.registerSingleton<AiJitProcessingService>(AiJitProcessingService());
 
     getIt.registerSingleton<AiDocumentChunkingService>(
-      AiDocumentChunkingService(),
+      AiDocumentChunkingServiceImpl(),
     );
 
     getIt.registerSingleton<ClipboardImageHelper>(ClipboardImageHelper());
@@ -118,7 +119,7 @@ class ServiceLocator {
       ),
     );
     getIt.registerLazySingleton<QuizFileRepository>(
-      () => QuizFileRepository(fileService: getIt<QuizFileService>()),
+      () => QuizFileRepositoryImpl(fileService: getIt<QuizFileService>()),
     );
     getIt.registerLazySingleton<FileBloc>(
       () => FileBloc(fileRepository: getIt<QuizFileRepository>()),
@@ -148,11 +149,11 @@ class ServiceLocator {
     );
 
     // Load dynamic models at startup if API keys are configured
-    final geminiKey = await configurationService.getGeminiApiKey();
-    final openaiKey = await configurationService.getOpenAIApiKey();
-    final customBaseUrl = await configurationService.getCustomAiBaseUrl();
-    final customApiKey = await configurationService.getCustomAiApiKey();
-    final customModels = await configurationService.getCustomAiModels();
+    final geminiKey = configurationService.getGeminiApiKey();
+    final openaiKey = configurationService.getOpenAIApiKey();
+    final customBaseUrl = configurationService.getCustomAiBaseUrl();
+    final customApiKey = configurationService.getCustomAiApiKey();
+    final customModels = configurationService.getCustomAiModels();
 
     // Register previously saved custom models so they are immediately recognized
     if (customModels.isNotEmpty) {
@@ -169,29 +170,5 @@ class ServiceLocator {
         customModels: customModels,
       ),
     );
-  }
-
-  // Function to register or update QuizFile in GetIt
-  static void registerQuizFile(QuizFile quizFile) {
-    if (getIt.isRegistered<QuizFile>()) {
-      getIt.unregister<QuizFile>();
-    }
-    getIt.registerLazySingleton<QuizFile>(() => quizFile);
-  }
-
-  // Function to register quiz configuration
-  static void registerQuizConfig(QuizConfig config) {
-    if (getIt.isRegistered<QuizConfig>()) {
-      getIt.unregister<QuizConfig>();
-    }
-    getIt.registerSingleton<QuizConfig>(config);
-  }
-
-  // Function to get the registered quiz configuration
-  static QuizConfig? getQuizConfig() {
-    if (getIt.isRegistered<QuizConfig>()) {
-      return getIt<QuizConfig>();
-    }
-    return null;
   }
 }

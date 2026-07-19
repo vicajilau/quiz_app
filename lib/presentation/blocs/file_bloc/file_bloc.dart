@@ -16,7 +16,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizdy/core/service_locator.dart';
-import 'package:quizdy/data/repositories/quiz_file_repository.dart';
+import 'package:quizdy/domain/repositories/quiz_file_repository.dart';
 import 'package:quizdy/data/repositories/recent_quiz/recent_quiz_repository.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';

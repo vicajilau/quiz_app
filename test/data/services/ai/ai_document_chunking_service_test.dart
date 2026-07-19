@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quizdy/data/services/ai/ai_document_chunking_service.dart';
+import 'package:quizdy/data/services/ai/ai_document_chunking_service_impl.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 
 class MockAppLocalizations implements AppLocalizations {
@@ -34,7 +34,7 @@ void main() {
       final String longText = List.generate(1000, (i) => '1234567890').join('');
       expect(longText.length, 10000);
 
-      final refs = await AiDocumentChunkingService().chunkDocument(
+      final refs = await AiDocumentChunkingServiceImpl().chunkDocument(
         longText,
         'doc1',
         localizations,

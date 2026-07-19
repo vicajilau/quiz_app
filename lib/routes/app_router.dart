@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizdy/core/debug_print.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
+import 'package:quizdy/domain/models/quiz/quiz_config.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_cubit.dart';
 import 'package:quizdy/presentation/screens/quiz_file_execution_screen.dart';
@@ -70,8 +71,15 @@ GoRouter buildAppRouter({required bool showOnboarding}) => GoRouter(
     ),
     GoRoute(
       path: AppRoutes.quizFileExecutionScreen,
-      builder: (context, state) =>
-          QuizFileExecutionScreen(quizFile: ServiceLocator.getIt<QuizFile>()),
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>;
+        final quizFile = extra['quizFile'] as QuizFile;
+        final quizConfig = extra['quizConfig'] as QuizConfig;
+        return QuizFileExecutionScreen(
+          quizFile: quizFile,
+          quizConfig: quizConfig,
+        );
+      },
     ),
     GoRoute(
       path: AppRoutes.componentEditorScreen,
@@ -131,7 +139,7 @@ late final GoRouter appRouter;
 
 /// Initializes the global [appRouter] by checking the onboarding status.
 Future<void> initAppRouter() async {
-  final completed = await ServiceLocator.getIt<ConfigurationService>()
+  final completed = ServiceLocator.getIt<ConfigurationService>()
       .getOnboardingCompleted();
   appRouter = buildAppRouter(showOnboarding: !completed);
 }

@@ -79,11 +79,10 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
     });
   }
 
-  Future<void> _loadAISettings() async {
-    await _configService.getIsAiAvailable().then((aiEnabled) {
-      if (!mounted) return;
-      _configService.aiAvailabilityNotifier.value = aiEnabled;
-    });
+  void _loadAISettings() {
+    final aiEnabled = _configService.getIsAiAvailable();
+    if (!mounted) return;
+    _configService.aiAvailabilityNotifier.value = aiEnabled;
   }
 
   @override
@@ -271,9 +270,8 @@ class _QuestionListWidgetState extends State<QuestionListWidget> {
       onSelectionToggle: () => widget.onToggleSelection(index),
       onAiAssistant: (_aiAssistantEnabled && question.isEnabled)
           ? () async {
-              final isAiAvailable =
-                  await ServiceLocator.getIt<ConfigurationService>()
-                      .getIsAiAvailable();
+              final isAiAvailable = ServiceLocator.getIt<ConfigurationService>()
+                  .getIsAiAvailable();
 
               if (!mounted) return;
 

@@ -14,8 +14,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:quizdy/core/debug_print.dart';
-import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/data/services/file_service/i_file_service.dart';
+import 'package:quizdy/domain/repositories/quiz_file_repository.dart';
 
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
@@ -23,39 +23,20 @@ import 'package:quizdy/domain/models/quiz/quiz_metadata.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 
-/// The `QuizFileRepository` class manages file-related operations such as loading, saving,
-/// and selecting quiz files. It delegates these tasks to an instance of `FileService`.
-class QuizFileRepository {
+/// Concrete implementation of [QuizFileRepository] in the data layer.
+class QuizFileRepositoryImpl implements QuizFileRepository {
   /// Instance of `IFileService` to handle file operations.
   final IFileService _fileService;
 
-  /// Constructor to initialize `QuizFileRepository` with a `FileService` instance.
-  /// This allows for the delegation of file-related tasks.
-  ///
-  /// - [fileService]: The `FileService` instance that handles file operations.
-  QuizFileRepository({required this._fileService});
+  /// Constructor to initialize `QuizFileRepositoryImpl` with a `FileService` instance.
+  QuizFileRepositoryImpl({required this._fileService});
 
-  /// Loads a `QuizFile` from a file at the specified [filePath].
-  /// This method calls `readQuizFile` from `QuizFileService` to read the file,
-  /// and then registers the loaded file in the service locator.
-  ///
-  /// - [filePath]: The path to the file to load.
-  /// - Returns: A `Future<QuizFile>` containing the loaded `QuizFile`.
-  /// - Throws: An exception if there is an error loading the file.
+  @override
   Future<QuizFile> loadQuizFile(String filePath) async {
-    final quizFile = await _fileService.readQuizFile(filePath);
-    ServiceLocator.registerQuizFile(quizFile);
-    return quizFile;
+    return await _fileService.readQuizFile(filePath);
   }
 
-  /// Creates a new `QuizFile` with the specified metadata.
-  /// The method generates a new `QuizFile` with the provided metadata.
-  ///
-  /// - [title]: The title for the new `QuizFile`.
-  /// - [description]: The description for the new `QuizFile`.
-  /// - [version]: The version for the new `QuizFile`.
-  /// - [author]: The author for the new `QuizFile`.
-  /// - Returns: A `Future<QuizFile>` containing the created `QuizFile`.
+  @override
   Future<QuizFile> createQuizFile({
     required String title,
     required String description,
@@ -70,112 +51,51 @@ class QuizFileRepository {
       author: author,
     );
 
-    final quizFile = QuizFile(
-      metadata: metadata,
-      questions: questions ?? [], // Start with empty questions or provided ones
-    );
+    final quizFile = QuizFile(metadata: metadata, questions: questions ?? []);
 
-    ServiceLocator.registerQuizFile(quizFile);
     return quizFile;
   }
 
-  /// Saves a `QuizFile` to the file system.
-  /// This method calls `saveQuizFile` from `QuizFileService` to save the file.
-  ///
-  /// - [quizFile]: The `QuizFile` to save.
-  /// - [dialogTitle]: The title for the save dialog.
-  /// - [fileName]: The name of the file.
-  /// - Returns: A `Future<QuizFile?>` containing the saved `QuizFile` with updated path, or `null` if cancelled.
+  @override
   Future<QuizFile?> saveQuizFile(
     QuizFile quizFile,
     String dialogTitle,
     String fileName,
   ) async {
-    final savedFile = await _fileService.saveQuizFile(
-      quizFile,
-      dialogTitle,
-      fileName,
-    );
-    if (savedFile != null) {
-      ServiceLocator.registerQuizFile(savedFile);
-    }
-    return savedFile;
+    return await _fileService.saveQuizFile(quizFile, dialogTitle, fileName);
   }
 
-  /// Opens a file picker for the user to select a quiz file.
-  /// This method calls `pickFile` from `QuizFileService` to open the file picker.
-  ///
-  /// - Returns: A `Future<QuizFile?>` containing the selected `QuizFile`, or `null` if no file is selected.
+  @override
   Future<QuizFile?> pickFile() async {
-    final quizFile = await _fileService.pickFile();
-    if (quizFile != null) {
-      ServiceLocator.registerQuizFile(quizFile);
-    }
-    return quizFile;
+    return await _fileService.pickFile();
   }
 
-  /// Picks a file manually using the file picker dialog.
-  /// This method delegates the task of selecting a file to the `_fileService`'s
-  /// `pickFile` method, and registers the selected file in the service locator.
-  ///
-  /// - Returns: A `Future<QuizFile?>` containing the selected `QuizFile`, or `null` if no file was selected.
-  /// Loads a `QuizFile` from a file at the specified [filePath] WITHOUT registering it.
-  ///
-  /// - [filePath]: The path to the file to load.
-  /// - Returns: A `Future<QuizFile>` containing the loaded `QuizFile`.
+  @override
   Future<QuizFile> loadQuizFileContent(String filePath) async {
     return await _fileService.readQuizFileContent(filePath);
   }
 
-  /// Registers a `QuizFile` as the active file in the system.
+  @override
   void registerQuizFile(QuizFile quizFile) {
-    ServiceLocator.registerQuizFile(quizFile);
-    // Also update the originalFile in fileService to match this new file
-    // This is crucial because readQuizFileContent doesn't update it.
     _fileService.originalFile = quizFile.deepCopy();
   }
 
-  /// Updates the active `QuizFile` in the system without modifying the original file cache.
-  /// Use this when progress is made but the user hasn't saved the file yet.
+  @override
   void updateActiveQuizFile(QuizFile quizFile) {
-    ServiceLocator.registerQuizFile(quizFile);
+    // No-op (active state is now managed directly inside FileBloc/Cubit)
   }
 
-  /// Picks a file manually using the file picker dialog WITHOUT registering it.
-  ///
-  /// - Returns: A `Future<QuizFile?>` containing the selected `QuizFile`, or `null`.
+  @override
   Future<QuizFile?> pickFileContent() async {
-    // We need to access pickFile from service but service.pickFile() calls readQuizFile() which has side effects?
-    // Wait, service.pickFile calls readQuizFile.
-    // I need to update service.pickFile to use readQuizFileContent if possible?
-    // Or just let pickFile have side effects and refactor service.pickFile?
-    // Let's look at service.pickFile implementation again.
-    // IT CALLS readQuizFile. So it has side effects.
-
-    // I should refactor service.pickFile to NOT have side effects?
-    // But pickFile is "open file".
-    // I need a pickFileContent in service too?
     return await _fileService.pickFileContent();
   }
 
-  /// Picks a file manually using the file picker dialog.
-  ///
-  /// - Returns: A `Future<QuizFile?>` containing the selected `QuizFile`, or `null` if no file was selected.
+  @override
   Future<QuizFile?> pickFileManually() async {
-    final quizFile = await _fileService.pickFile();
-    if (quizFile != null) {
-      ServiceLocator.registerQuizFile(quizFile);
-    }
-    return quizFile;
+    return await _fileService.pickFile();
   }
 
-  /// Checks if a `QuizFile` has changed by comparing the current file content
-  /// with the cached version of the file. This method reads the original file
-  /// content from [filePath] and compares it with the [cachedQuizFile].
-  ///
-  /// - [filePath]: The path to the file to check.
-  /// - [cachedQuizFile]: The cached version of the `QuizFile` for comparison.
-  /// - Returns: A `Future<bool>` indicating whether the file content has changed (`true`) or not (`false`).
+  @override
   bool hasQuizFileChanged(QuizFile cachedQuizFile) {
     if (cachedQuizFile.filePath == null) return true;
 
@@ -230,6 +150,7 @@ class QuizFileRepository {
     return hasChanged;
   }
 
+  @override
   bool isQuestionNew(int index, Question question) {
     final originalFile = _fileService.originalFile;
     if (originalFile == null) return true;
@@ -241,6 +162,7 @@ class QuizFileRepository {
     );
   }
 
+  @override
   bool isQuestionModified(int index, Question question) {
     final originalFile = _fileService.originalFile;
     if (originalFile == null) return false;
@@ -251,6 +173,7 @@ class QuizFileRepository {
     return !originals.any((original) => original == question);
   }
 
+  @override
   bool isStudyChunkNew(int index, StudyChunk chunk) {
     final originalFile = _fileService.originalFile;
     if (originalFile == null) return true;
@@ -261,6 +184,7 @@ class QuizFileRepository {
     );
   }
 
+  @override
   bool isStudyChunkModified(int index, StudyChunk chunk) {
     if (chunk.status == StudyChunkState.error) return false;
     final originalFile = _fileService.originalFile;

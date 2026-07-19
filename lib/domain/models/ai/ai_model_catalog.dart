@@ -13,9 +13,11 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:flutter/foundation.dart';
 import 'package:genkit/genkit.dart';
 import 'package:genkit_google_genai/genkit_google_genai.dart';
 import 'package:genkit_openai/genkit_openai.dart';
+import 'package:http/http.dart' as http;
 import 'package:quizdy/core/debug_print.dart';
 
 /// A single entry in the AI model catalog.
@@ -46,6 +48,9 @@ abstract final class AiModelCatalog {
   static const String geminiProviderId = 'gemini';
   static const String openaiProviderId = 'openai';
   static const String customProviderId = 'custom';
+
+  /// Indicates if connection to the custom AI server endpoint failed.
+  static bool customAiConnectionFailed = false;
 
   /// Display name shown in the UI for each provider.
   static const Map<String, String> providerDisplayNames = {
@@ -175,6 +180,18 @@ abstract final class AiModelCatalog {
     updateCatalog(fetched);
   }
 
+  static Future<bool> _isUrlReachable(String url) async {
+    if (kIsWeb) return true; // Skip check on Web due to CORS constraints
+    try {
+      final uri = Uri.parse(url);
+      if (uri.host.isEmpty) return false;
+      await http.get(uri).timeout(const Duration(milliseconds: 500));
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
   /// Dynamically queries the Genkit registry using the supplied API keys
   /// and updates the catalog list with any newly discovered models.
   static Future<void> loadDynamicModels({
@@ -184,12 +201,23 @@ abstract final class AiModelCatalog {
     String? customApiKey,
     List<String>? customModels,
   }) async {
+    final isCustomReachable =
+        customBaseUrl != null &&
+        customBaseUrl.isNotEmpty &&
+        await _isUrlReachable(customBaseUrl);
+
+    if (customBaseUrl != null && customBaseUrl.isNotEmpty) {
+      customAiConnectionFailed = !isCustomReachable;
+    } else {
+      customAiConnectionFailed = false;
+    }
+
     final plugins = [
       if (geminiApiKey != null && geminiApiKey.isNotEmpty)
         googleAI(apiKey: geminiApiKey),
       if (openaiApiKey != null && openaiApiKey.isNotEmpty)
         openAI(apiKey: openaiApiKey),
-      if (customBaseUrl != null && customBaseUrl.isNotEmpty)
+      if (isCustomReachable)
         openAI(
           name: 'custom',
           apiKey: (customApiKey != null && customApiKey.isNotEmpty)

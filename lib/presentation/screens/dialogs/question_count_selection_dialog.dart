@@ -148,7 +148,7 @@ class _QuestionCountSelectionDialogState
   }
 
   Future<void> _loadSavedSettings() async {
-    final settings = await configurationService.getQuizConfigSettings();
+    final settings = configurationService.getQuizConfigSettings();
     if (mounted) {
       setState(() {
         if (settings.questionCount != null) {
@@ -205,8 +205,8 @@ class _QuestionCountSelectionDialogState
   }
 
   Future<void> _loadExamTimeSettings() async {
-    final enabled = await configurationService.getExamTimeEnabled();
-    final minutes = await configurationService.getExamTimeMinutes();
+    final enabled = configurationService.getExamTimeEnabled();
+    final minutes = configurationService.getExamTimeMinutes();
     if (mounted) {
       setState(() {
         _examTimeEnabled = enabled;

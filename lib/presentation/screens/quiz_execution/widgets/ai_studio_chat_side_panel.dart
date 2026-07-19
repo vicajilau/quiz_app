@@ -20,7 +20,7 @@ import 'package:quizdy/core/service_locator.dart';
 import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/core/theme/extensions/ai_assistant_theme.dart';
 import 'package:quizdy/core/extensions/focus_node_extension.dart';
-import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
+import 'package:quizdy/domain/repositories/ai_repository_factory.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/ai/ai_model_catalog.dart';
@@ -148,7 +148,7 @@ class AiStudioChatSidePanelState extends State<AiStudioChatSidePanel> {
     _scrollToBottom();
 
     try {
-      final isAiEnabled = await ServiceLocator.getIt<ConfigurationService>()
+      final isAiEnabled = ServiceLocator.getIt<ConfigurationService>()
           .getIsAiAvailable();
       if (!isAiEnabled) {
         setState(() {

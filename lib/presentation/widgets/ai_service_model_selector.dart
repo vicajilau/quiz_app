@@ -100,16 +100,14 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
       final configService = ServiceLocator.getIt<ConfigurationService>();
 
       // Determine which providers have a key configured.
-      final geminiKey =
-          widget.geminiApiKey ?? await configService.getGeminiApiKey();
-      final openaiKey =
-          widget.openaiApiKey ?? await configService.getOpenAIApiKey();
+      final geminiKey = widget.geminiApiKey ?? configService.getGeminiApiKey();
+      final openaiKey = widget.openaiApiKey ?? configService.getOpenAIApiKey();
       final customBaseUrl =
-          widget.customBaseUrl ?? await configService.getCustomAiBaseUrl();
+          widget.customBaseUrl ?? configService.getCustomAiBaseUrl();
       final customApiKey =
-          widget.customApiKey ?? await configService.getCustomAiApiKey();
+          widget.customApiKey ?? configService.getCustomAiApiKey();
       final customModels =
-          widget.customModels ?? await configService.getCustomAiModels();
+          widget.customModels ?? configService.getCustomAiModels();
 
       if (customModels.isNotEmpty) {
         AiModelCatalog.registerCustomModels(customModels);
@@ -134,7 +132,7 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
       if (!mounted) return;
 
       // Load saved model preference.
-      final savedModel = await configService.getDefaultAIModel();
+      final savedModel = configService.getDefaultAIModel();
 
       String? resolvedProviderId;
       String? resolvedModelId;
@@ -439,6 +437,43 @@ class _AiServiceModelSelectorState extends State<AiServiceModelSelector> {
                           selectedLabelOf: (modelId) =>
                               AiModelCatalog.forModelId(modelId)?.displayName ??
                               modelId,
+                        ),
+                      ],
+                      if (!_isLoading &&
+                          _selectedProviderId ==
+                              AiModelCatalog.customProviderId &&
+                          AiModelCatalog.customAiConnectionFailed) ...[
+                        const SizedBox(height: 12),
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: aiTheme.errorBubbleBg,
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(
+                              color: aiTheme.errorBubbleBorderColor,
+                            ),
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Icon(
+                                LucideIcons.triangle_alert,
+                                size: 16,
+                                color: Theme.of(context).colorScheme.error,
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  localizations.customAiNoModelsError,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Theme.of(context).colorScheme.error,
+                                    height: 1.3,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ],

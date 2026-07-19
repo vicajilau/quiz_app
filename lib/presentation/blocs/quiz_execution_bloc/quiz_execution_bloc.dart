@@ -25,7 +25,7 @@ import 'package:quizdy/domain/models/quiz/essay_ai_evaluation.dart';
 import 'package:quizdy/data/repositories/srs/srs_repository.dart';
 import 'package:quizdy/data/services/srs/anki_algorithm_service.dart';
 import 'package:quizdy/core/service_locator.dart';
-import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
+import 'package:quizdy/domain/repositories/ai_repository_factory.dart';
 import 'package:quizdy/data/services/ai/ai_question_generation_service.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/core/extensions/string_extension.dart';
@@ -262,7 +262,7 @@ class QuizExecutionBloc extends Bloc<QuizExecutionEvent, QuizExecutionState> {
           await _emitQuizCompleted(
             emit,
             currentState,
-            isAiAvailable: await ServiceLocator.getIt<ConfigurationService>()
+            isAiAvailable: ServiceLocator.getIt<ConfigurationService>()
                 .getIsAiAvailable(),
           );
           return;

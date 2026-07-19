@@ -7,11 +7,11 @@
 //
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program. If not, see <https://www.gnu.org/licenses/>.
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'dart:convert';
 
@@ -20,6 +20,7 @@ import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/source_reference.dart';
 import 'package:quizdy/domain/repositories/ai_repository.dart';
+import 'package:quizdy/domain/services/ai_document_chunking_service.dart';
 import 'package:quizdy/domain/use_cases/build_study_index_prompt_use_case.dart';
 
 class _TextBatch {
@@ -29,19 +30,11 @@ class _TextBatch {
   const _TextBatch({required this.text, required this.baseOffset});
 }
 
-/// Service responsible for parsing documents into semantic chunks locally.
-class AiDocumentChunkingService {
-  AiDocumentChunkingService();
+/// Concrete implementation of [AiDocumentChunkingService] in the data layer.
+class AiDocumentChunkingServiceImpl implements AiDocumentChunkingService {
+  AiDocumentChunkingServiceImpl();
 
-  /// Identifies structural chunks within a document locally.
-  ///
-  /// Splits the text iteratively in ~3000 character bursts suitable for
-  /// later Just-In-Time semantic processing while avoiding UI locks.
-  ///
-  /// - [documentText]: The full text extracted from the document.
-  /// - [documentId]: A unique identifier for the document.
-  /// - [localizations]: Localization bundle for default names.
-  /// - Returns: A mapped global list of `SourceReference` indicating the text slices.
+  @override
   Future<List<SourceReference>> chunkDocument(
     String documentText,
     String documentId,
@@ -83,12 +76,7 @@ class AiDocumentChunkingService {
     return allReferences;
   }
 
-  /// Generates logical chunks using AI analysis of the document.
-  ///
-  /// Returns a map with:
-  /// - `references`: list of [SourceReference] of identified chunks
-  /// - `title`: AI-generated document title
-  /// - `description`: AI-generated document description
+  @override
   Future<Map<String, dynamic>> generateIndexWithAi({
     required AiRepository aiRepository,
     required String fileUri,
@@ -157,27 +145,10 @@ class AiDocumentChunkingService {
       };
     } catch (e) {
       rethrow;
-      /* Testing purposes
-      return {
-        'references': List.generate(
-          4,
-          (_) => SourceReference(
-            documentId: documentId,
-            startPage: 1,
-            endPage: 1,
-            startOffset: 0,
-            endOffset: 0,
-            blockType: 'Full Document',
-          ),
-        ),
-        'title': null,
-        'description': null,
-      };
-      */
     }
   }
 
-  /// Generates logical chunks from text content using AI.
+  @override
   Future<Map<String, dynamic>> generateIndexFromTextWithAi({
     required AiRepository aiRepository,
     required String content,

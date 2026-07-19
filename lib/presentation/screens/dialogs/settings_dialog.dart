@@ -77,14 +77,14 @@ class _SettingsDialogState extends State<SettingsDialog> {
   Future<void> _loadSettings() async {
     try {
       // Load all configurations
-      final apiKey = await configurationService.getOpenAIApiKey();
-      final geminiApiKey = await configurationService.getGeminiApiKey();
-      final customBaseUrl = await configurationService.getCustomAiBaseUrl();
-      final customApiKey = await configurationService.getCustomAiApiKey();
-      final customModels = await configurationService.getCustomAiModels();
-      _keepAiDraft = await configurationService.getAiKeepDraft();
-      _defaultAIModel = await configurationService.getDefaultAIModel();
-      _aiAssistantEnabled = await configurationService.getIsAiAvailable();
+      final apiKey = configurationService.getOpenAIApiKey();
+      final geminiApiKey = configurationService.getGeminiApiKey();
+      final customBaseUrl = configurationService.getCustomAiBaseUrl();
+      final customApiKey = configurationService.getCustomAiApiKey();
+      final customModels = configurationService.getCustomAiModels();
+      _keepAiDraft = configurationService.getAiKeepDraft();
+      _defaultAIModel = configurationService.getDefaultAIModel();
+      _aiAssistantEnabled = configurationService.getIsAiAvailable();
       final versionDetails = await PlatformDetail.versionDetails();
       final versionLabel = kReleaseMode
           ? versionDetails.version
@@ -184,11 +184,11 @@ class _SettingsDialogState extends State<SettingsDialog> {
     }
 
     // Reload models in the catalog immediately so dropdowns update
-    final geminiKey = await configurationService.getGeminiApiKey();
-    final openaiKey = await configurationService.getOpenAIApiKey();
-    final savedCustomBaseUrl = await configurationService.getCustomAiBaseUrl();
-    final savedCustomApiKey = await configurationService.getCustomAiApiKey();
-    final savedCustomModels = await configurationService.getCustomAiModels();
+    final geminiKey = configurationService.getGeminiApiKey();
+    final openaiKey = configurationService.getOpenAIApiKey();
+    final savedCustomBaseUrl = configurationService.getCustomAiBaseUrl();
+    final savedCustomApiKey = configurationService.getCustomAiApiKey();
+    final savedCustomModels = configurationService.getCustomAiModels();
 
     if (savedCustomModels.isNotEmpty) {
       AiModelCatalog.registerCustomModels(savedCustomModels);

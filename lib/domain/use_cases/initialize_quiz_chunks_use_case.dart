@@ -15,8 +15,8 @@
 
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/core/service_locator.dart';
-import 'package:quizdy/data/repositories/ai/ai_repository_factory.dart';
-import 'package:quizdy/data/services/ai/ai_document_chunking_service.dart';
+import 'package:quizdy/domain/repositories/ai_repository_factory.dart';
+import 'package:quizdy/domain/services/ai_document_chunking_service.dart';
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';

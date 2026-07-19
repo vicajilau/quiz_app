@@ -61,11 +61,11 @@ class StudyIndexView extends StatelessWidget {
     this.quizFile,
   });
 
-  Future<void> _onChunkTap(BuildContext context, int index) async {
+  void _onChunkTap(BuildContext context, int index) {
     final targetChunk = state.chunks[index];
     if (targetChunk.status != StudyChunkState.completed &&
         targetChunk.status != StudyChunkState.downloaded) {
-      final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
+      final isAiAvailable = ServiceLocator.getIt<ConfigurationService>()
           .getIsAiAvailable();
       if (!isAiAvailable) {
         if (context.mounted) {
@@ -81,8 +81,8 @@ class StudyIndexView extends StatelessWidget {
     }
   }
 
-  Future<void> _onChunkDownload(BuildContext context, int index) async {
-    final isAiAvailable = await ServiceLocator.getIt<ConfigurationService>()
+  void _onChunkDownload(BuildContext context, int index) {
+    final isAiAvailable = ServiceLocator.getIt<ConfigurationService>()
         .getIsAiAvailable();
 
     if (!isAiAvailable) {

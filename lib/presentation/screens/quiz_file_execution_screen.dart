@@ -41,8 +41,13 @@ import 'package:quizdy/presentation/widgets/quizdy_button.dart';
 
 class QuizFileExecutionScreen extends StatefulWidget {
   final QuizFile quizFile;
+  final QuizConfig quizConfig;
 
-  const QuizFileExecutionScreen({super.key, required this.quizFile});
+  const QuizFileExecutionScreen({
+    super.key,
+    required this.quizFile,
+    required this.quizConfig,
+  });
 
   @override
   State<QuizFileExecutionScreen> createState() =>
@@ -61,8 +66,8 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
     _questionsFuture = _prepareQuizQuestions();
   }
 
-  Future<void> _loadQuizSettings() async {
-    final randomizeAnswers = await ServiceLocator.getIt<ConfigurationService>()
+  void _loadQuizSettings() {
+    final randomizeAnswers = ServiceLocator.getIt<ConfigurationService>()
         .getRandomizeAnswers();
 
     if (mounted) {
@@ -111,12 +116,7 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
           providers: [
             BlocProvider<QuizExecutionBloc>(
               create: (_) {
-                final quizConfig =
-                    ServiceLocator.getQuizConfig() ??
-                    QuizConfig(
-                      questionCount: questionsToUse.length,
-                      isStudyMode: false,
-                    );
+                final quizConfig = widget.quizConfig;
 
                 final studySectionNames = <String, String>{
                   for (final chunk
@@ -236,19 +236,17 @@ class _QuizFileExecutionScreenState extends State<QuizFileExecutionScreen> {
   }
 
   Future<List<Question>> _prepareQuizQuestions() async {
-    // Get the configured question count from service locator
-    final quizConfig = ServiceLocator.getQuizConfig();
+    // Get the configured question count from widget
+    final quizConfig = widget.quizConfig;
     final enabledQuestions = widget.quizFile.questions
         .where((question) => question.isEnabled)
         .toList();
-    final questionCount = quizConfig?.isSmartMode == true
+    final questionCount = quizConfig.isSmartMode
         ? enabledQuestions.length
-        : quizConfig?.questionCount ?? widget.quizFile.questions.length;
+        : quizConfig.questionCount;
 
     // Get the configured question order
-    final storedQuestionOrder =
-        await ServiceLocator.getIt<ConfigurationService>().getQuestionOrder();
-    final questionOrder = quizConfig?.questionOrder ?? storedQuestionOrder;
+    final questionOrder = quizConfig.questionOrder;
 
     // Select the questions to use for the quiz with the configured order
     final fileIdentifier =

@@ -24,6 +24,7 @@ import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/domain/use_cases/check_file_changes_use_case.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
+import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_event.dart';
@@ -177,7 +178,9 @@ class StudyBottomNavigation extends StatelessWidget {
                       }
                     },
                     onStartQuiz: () {
-                      ServiceLocator.registerQuizFile(currentQuizFile);
+                      context.read<FileBloc>().add(
+                        LoadQuizFileFromData(currentQuizFile),
+                      );
                       context.pushReplacement(AppRoutes.fileLoadedScreen);
                     },
                     onAddChunk: onAddChunk,
@@ -195,16 +198,14 @@ class StudyBottomNavigation extends StatelessWidget {
                   progressPercentage: state.progressPercentage,
                   localizations: localizations,
                   onPrevious: state.hasPrevious
-                      ? () async {
+                      ? () {
                           final targetChunk =
                               state.chunks[state.currentChunkIndex - 1];
                           if (targetChunk.status != StudyChunkState.completed &&
                               targetChunk.status !=
                                   StudyChunkState.downloaded) {
                             final isAiAvailable =
-                                await ServiceLocator.getIt<
-                                      ConfigurationService
-                                    >()
+                                ServiceLocator.getIt<ConfigurationService>()
                                     .getIsAiAvailable();
                             if (!isAiAvailable) {
                               if (context.mounted) {
@@ -223,16 +224,14 @@ class StudyBottomNavigation extends StatelessWidget {
                         }
                       : null,
                   onNext: state.hasNext
-                      ? () async {
+                      ? () {
                           final targetChunk =
                               state.chunks[state.currentChunkIndex + 1];
                           if (targetChunk.status != StudyChunkState.completed &&
                               targetChunk.status !=
                                   StudyChunkState.downloaded) {
                             final isAiAvailable =
-                                await ServiceLocator.getIt<
-                                      ConfigurationService
-                                    >()
+                                ServiceLocator.getIt<ConfigurationService>()
                                     .getIsAiAvailable();
                             if (!isAiAvailable) {
                               if (context.mounted) {

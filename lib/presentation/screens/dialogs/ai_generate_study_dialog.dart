@@ -69,11 +69,10 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
   }
 
   Future<void> _loadDraft() async {
-    final keepDraft = await configurationService.getAiStudyKeepDraft();
+    final keepDraft = configurationService.getAiStudyKeepDraft();
 
     if (keepDraft) {
-      final settings = await configurationService
-          .getAiStudyGenerationSettings();
+      final settings = configurationService.getAiStudyGenerationSettings();
 
       if (mounted) {
         setState(() {
@@ -152,7 +151,7 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
   }
 
   Future<void> _saveDraft() async {
-    final keepDraft = await configurationService.getAiStudyKeepDraft();
+    final keepDraft = configurationService.getAiStudyKeepDraft();
 
     if (!keepDraft) {
       // Clear draft explicitly if keep draft is disabled
