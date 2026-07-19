@@ -201,6 +201,7 @@
   "customAiLoadModelsError": "Échec de la connexion ou de la récupération des modèles : {error}",
   "customAiNoModelsError": "Aucun modèle trouvé sur ce point de terminaison. Assurez-vous que le service est en cours d'exécution et que des modèles sont téléchargés.",
   "customAiFileUploadNotSupported": "Les modèles d'IA locaux / personnalisés ne prennent pas en charge le chargement de documents.",
+  "networkErrorCustomAi": "Échec de connexion au service d'IA local. Veuillez vous assurer que le service local (Ollama, LM Studio...) est démarré et vérifiez vos paramètres.",
   "deleteAction": "Supprimer",
   "explanationLabel": "Explication (optionnelle)",
   "explanationHint": "Entrez une explication pour la ou les réponses correctes",

@@ -201,6 +201,7 @@
   "customAiLoadModelsError": "Verbindung oder Abrufen der Modelle fehlgeschlagen: {error}",
   "customAiNoModelsError": "Auf diesem Endpunkt wurden keine Modelle gefunden. Stellen Sie sicher, dass der Dienst ausgeführt wird und Modelle heruntergeladen sind.",
   "customAiFileUploadNotSupported": "Lokale / benutzerdefinierte KI-Modelle unterstützen das Hochladen von Dokumenten nicht.",
+  "networkErrorCustomAi": "Verbindung zum lokalen KI-Dienst fehlgeschlagen. Bitte stellen Sie sicher, dass der lokale Dienst (Ollama, LM Studio...) ausgeführt wird, und überprüfen Sie Ihre Einstellungen.",
   "deleteAction": "Löschen",
   "explanationLabel": "Erklärung (optional)",
   "explanationHint": "Geben Sie eine Erklärung für die richtige(n) Antwort(en) ein",

@@ -201,6 +201,7 @@
   "customAiLoadModelsError": "接続またはモデルの取得に失敗しました: {error}",
   "customAiNoModelsError": "このエンドポイントにモデルが見つかりませんでした。サービスが実行されており、モデルがダウンロードされていることを確認してください。",
   "customAiFileUploadNotSupported": "ローカル/カスタムAIモデルはドキュメントのアップロードをサポートしていません。",
+  "networkErrorCustomAi": "ローカルAIサービスへの接続に失敗しました。ローカルサービス（Ollama、LM Studioなど）が起動しているか確認し、設定を見直してください。",
   "deleteAction": "削除",
   "explanationLabel": "解説（任意）",
   "explanationHint": "正解の解説を入力してください",

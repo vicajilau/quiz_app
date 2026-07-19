@@ -974,6 +974,10 @@
   "@customAiFileUploadNotSupported": {
     "description": "Warning message displayed when trying to upload a file while using custom / local AI"
   },
+  "networkErrorCustomAi": "Connection to the local AI service failed. Please ensure the local service (Ollama, LM Studio...) is running and verify your settings.",
+  "@networkErrorCustomAi": {
+    "description": "Error message shown when a request to a local or custom AI endpoint fails"
+  },
   "deleteAction": "Delete",
   "@deleteAction": {
     "description": "Delete action text shown when swiping to delete"

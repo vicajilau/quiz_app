@@ -24,6 +24,21 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/presentation/widgets/ai_service_model_selector.dart';
 import 'package:quizdy/presentation/widgets/quizdy_text_field.dart';
 
+/// Represents the connection test status for a Custom AI endpoint.
+enum CustomAiTestStatus {
+  /// No connection test has been performed yet, or fields were modified.
+  idle,
+
+  /// The connection test is currently in progress.
+  loading,
+
+  /// The connection test was successful and models were retrieved.
+  success,
+
+  /// The connection test failed or returned an invalid response.
+  error,
+}
+
 /// A widget that handles the AI Assistant settings section.
 ///
 /// Allows the user to enable/disable the AI assistant, configure API keys for Gemini and OpenAI,
@@ -36,8 +51,7 @@ class AiSettingsSection extends StatelessWidget {
   final TextEditingController customBaseUrlController;
   final TextEditingController customApiKeyController;
   final List<String> customModels;
-  final bool isTestingCustomAi;
-  final String? customAiTestResult;
+  final CustomAiTestStatus customAiTestStatus;
   final String? customAiTestError;
   final String? defaultModel;
   final String? errorMessage;
@@ -62,8 +76,7 @@ class AiSettingsSection extends StatelessWidget {
     required this.customBaseUrlController,
     required this.customApiKeyController,
     required this.customModels,
-    required this.isTestingCustomAi,
-    this.customAiTestResult,
+    required this.customAiTestStatus,
     this.customAiTestError,
     this.defaultModel,
     this.errorMessage,
@@ -415,14 +428,14 @@ class AiSettingsSection extends StatelessWidget {
             QuizdyButton(
               type: QuizdyButtonType.secondary,
               title: localizations.customAiLoadModelsButton,
-              isLoading: isTestingCustomAi,
+              isLoading: customAiTestStatus == CustomAiTestStatus.loading,
               onPressed: isUrlEmpty ? null : onTestCustomAi,
             ),
           ],
         ),
 
         // Results Card
-        if (customAiTestResult == 'success') ...[
+        if (customAiTestStatus == CustomAiTestStatus.success) ...[
           const SizedBox(height: 16),
           Container(
             width: double.infinity,
@@ -469,7 +482,7 @@ class AiSettingsSection extends StatelessWidget {
               ],
             ),
           ),
-        ] else if (customAiTestResult == 'error') ...[
+        ] else if (customAiTestStatus == CustomAiTestStatus.error) ...[
           const SizedBox(height: 16),
           Container(
             width: double.infinity,

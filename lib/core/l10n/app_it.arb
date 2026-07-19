@@ -201,6 +201,7 @@
   "customAiLoadModelsError": "Impossibile connettersi o recuperare i modelli: {error}",
   "customAiNoModelsError": "Nessun modello trovato su questo endpoint. Assicurati che il servizio sia attivo e che i modelli siano stati scaricati.",
   "customAiFileUploadNotSupported": "I modelli IA locali/personalizzati non supportano il caricamento di documenti.",
+  "networkErrorCustomAi": "Impossibile connettersi al servizio IA locale. Assicurati che il servizio locale (Ollama, LM Studio...) sia avviato e controlla le tue impostazioni.",
   "deleteAction": "Elimina",
   "explanationLabel": "Spiegazione (opzionale)",
   "explanationHint": "Inserisci una spiegazione per la/e risposta/e corretta/e",

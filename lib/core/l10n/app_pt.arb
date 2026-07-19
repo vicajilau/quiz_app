@@ -201,6 +201,7 @@
   "customAiLoadModelsError": "Falha ao conectar ou buscar modelos: {error}",
   "customAiNoModelsError": "Nenhum modelo foi encontrado neste endpoint. Certifique-se de que o serviço está em execução e os modelos foram baixados.",
   "customAiFileUploadNotSupported": "Os modelos de IA locais/personalizados não suportam o envio de documentos.",
+  "networkErrorCustomAi": "Não foi possível conectar ao serviço de IA local. Certifique-se de que o serviço local (Ollama, LM Studio...) está iniciado e verifique suas configurações.",
   "deleteAction": "Excluir",
   "explanationLabel": "Explicação (opcional)",
   "explanationHint": "Digite uma explicação para a(s) resposta(s) correta(s)",

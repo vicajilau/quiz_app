@@ -201,6 +201,7 @@
   "customAiLoadModelsError": "Ezin izan da konektatu edo modeloak eskuratu: {error}",
   "customAiNoModelsError": "Ez da modelorik aurkitu helbide honetan. Ziurtatu zerbitzua martxan dagoela eta modeloak deskargatuta daudela.",
   "customAiFileUploadNotSupported": "AI lokalek/pertsonalizatuek ez dute dokumenturik kargatzen uzten.",
+  "networkErrorCustomAi": "Ezin izan da konektatu tokiko AI zerbitzuarekin. Mesedez, ziurtatu tokiko zerbitzua (Ollama, LM Studio...) abian dagoela eta egiaztatu zure ezarpenak.",
   "deleteAction": "Ezabatu",
   "explanationLabel": "Azalpena (aukerakoa)",
   "explanationHint": "Sartu erantzun zuzen(ar)entzako azalpena",

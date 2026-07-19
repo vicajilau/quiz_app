@@ -18,6 +18,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:genkit/genkit.dart';
 import 'package:genkit_openai/genkit_openai.dart';
+import 'package:quizdy/core/debug_print.dart';
 import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
@@ -78,6 +79,20 @@ class OpenAiRepository implements AiRepository {
   }
 
   Exception _buildException(DioException e, AppLocalizations localizations) {
+    printInDebug('[OpenAiRepository._buildException] DioException error: $e');
+    if (isCustom) {
+      final isConnectionErr =
+          e.type == DioExceptionType.connectionTimeout ||
+          e.type == DioExceptionType.sendTimeout ||
+          e.type == DioExceptionType.receiveTimeout ||
+          e.type == DioExceptionType.connectionError ||
+          e.error.toString().contains('SocketException') ||
+          e.type == DioExceptionType.unknown;
+      if (isConnectionErr) {
+        return Exception(localizations.networkErrorCustomAi);
+      }
+    }
+
     if (e.type == DioExceptionType.connectionError ||
         e.type == DioExceptionType.unknown) {
       final err = e.error.toString();
@@ -148,7 +163,11 @@ class OpenAiRepository implements AiRepository {
       );
       return response.text;
     } catch (e) {
-      throw Exception('${localizations.networkErrorOpenAI}: $e');
+      printInDebug('[OpenAiRepository.sendMessages] error: $e');
+      if (isCustom) {
+        throw Exception(localizations.networkErrorCustomAi);
+      }
+      throw Exception(localizations.networkErrorOpenAI);
     }
   }
 
@@ -188,7 +207,11 @@ class OpenAiRepository implements AiRepository {
       );
       return response.text;
     } catch (e) {
-      throw Exception('${localizations.networkErrorOpenAI}: $e');
+      printInDebug('[OpenAiRepository.sendMessagesWithFile] error: $e');
+      if (isCustom) {
+        throw Exception(localizations.networkErrorCustomAi);
+      }
+      throw Exception(localizations.networkErrorOpenAI);
     }
   }
 
@@ -230,7 +253,11 @@ class OpenAiRepository implements AiRepository {
       );
     } on DioException catch (e) {
       throw _buildException(e, localizations);
-    } catch (_) {
+    } catch (err) {
+      printInDebug('[OpenAiRepository.uploadFile] unexpected error: $err');
+      if (isCustom) {
+        throw Exception(localizations.networkErrorCustomAi);
+      }
       throw Exception(localizations.networkErrorOpenAI);
     }
   }
@@ -290,7 +317,13 @@ class OpenAiRepository implements AiRepository {
       return content?.trim() ?? localizations.noResponseReceived;
     } on DioException catch (e) {
       throw _buildException(e, localizations);
-    } catch (_) {
+    } catch (err) {
+      printInDebug(
+        '[OpenAiRepository.sendMessagesWithFileUri] unexpected error: $err',
+      );
+      if (isCustom) {
+        throw Exception(localizations.networkErrorCustomAi);
+      }
       throw Exception(localizations.networkErrorOpenAI);
     }
   }

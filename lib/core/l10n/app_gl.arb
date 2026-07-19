@@ -201,6 +201,7 @@
   "customAiLoadModelsError": "Erro ao conectar ou obter os modelos: {error}",
   "customAiNoModelsError": "Non se atoparon modelos neste punto final. Asegúrate de que o servizo está funcionando e os modelos están descargados.",
   "customAiFileUploadNotSupported": "Os modelos de IA locais/personalizados no admiten a carga de documentos.",
+  "networkErrorCustomAi": "Non se puido conectar co servizo de IA local. Por favor, comproba que o servizo (Ollama, LM Studio...) está iniciado e revisa a configuración en axustes.",
   "deleteAction": "Eliminar",
   "explanationLabel": "Explicación (opcional)",
   "explanationHint": "Introduce unha explicación para a/as resposta/as correcta/as",

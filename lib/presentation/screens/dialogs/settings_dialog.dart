@@ -54,9 +54,10 @@ class _SettingsDialogState extends State<SettingsDialog> {
       TextEditingController();
   List<String> _customAiModels = [];
   bool _isCustomAiKeyVisible = false;
-  bool _isTestingCustomAi = false;
-  String? _customAiTestResult;
+  CustomAiTestStatus _customAiTestStatus = CustomAiTestStatus.idle;
   String? _customAiTestError;
+  String? _testedCustomBaseUrl;
+  String? _testedCustomApiKey;
 
   String? _apiKeyErrorMessage;
   String? _defaultAIModel;
@@ -97,6 +98,8 @@ class _SettingsDialogState extends State<SettingsDialog> {
           _customAiBaseUrlController.text = customBaseUrl ?? '';
           _customAiApiKeyController.text = customApiKey ?? '';
           _customAiModels = List.from(customModels);
+          _testedCustomBaseUrl = customBaseUrl;
+          _testedCustomApiKey = customApiKey;
           _appVersion = versionLabel;
           _isLoading = false; // Important: set as finished
         });
@@ -128,6 +131,35 @@ class _SettingsDialogState extends State<SettingsDialog> {
     final hasValidGemini = geminiApiKey.isValidGeminiApiKey;
     final hasValidCustom =
         customBaseUrl.isNotEmpty && _customAiModels.isNotEmpty;
+
+    final customUrlModified =
+        customBaseUrl != _testedCustomBaseUrl ||
+        customApiKey != _testedCustomApiKey;
+    final isCustomAiInvalid =
+        _aiAssistantEnabled &&
+        customBaseUrl.isNotEmpty &&
+        (_customAiTestStatus == CustomAiTestStatus.error ||
+            (customUrlModified &&
+                _customAiTestStatus != CustomAiTestStatus.success) ||
+            _customAiModels.isEmpty);
+
+    if (isCustomAiInvalid) {
+      setState(() {
+        _apiKeyErrorMessage = AppLocalizations.of(
+          context,
+        )!.customAiNoModelsError;
+      });
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (_errorKey.currentContext != null) {
+          Scrollable.ensureVisible(
+            _errorKey.currentContext!,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeOut,
+          );
+        }
+      });
+      return;
+    }
 
     if (_aiAssistantEnabled &&
         !hasValidOpenAI &&
@@ -212,8 +244,8 @@ class _SettingsDialogState extends State<SettingsDialog> {
     if (baseUrl.isEmpty) return;
 
     setState(() {
-      _isTestingCustomAi = true;
-      _customAiTestResult = 'loading';
+      _customAiModels = [];
+      _customAiTestStatus = CustomAiTestStatus.loading;
       _customAiTestError = null;
     });
 
@@ -248,30 +280,28 @@ class _SettingsDialogState extends State<SettingsDialog> {
         if (models.isNotEmpty) {
           setState(() {
             _customAiModels = models;
-            _customAiTestResult = 'success';
-            _isTestingCustomAi = false;
+            _customAiTestStatus = CustomAiTestStatus.success;
+            _testedCustomBaseUrl = baseUrl;
+            _testedCustomApiKey = apiKey;
           });
         } else {
           setState(() {
-            _customAiTestResult = 'error';
+            _customAiTestStatus = CustomAiTestStatus.error;
             _customAiTestError = AppLocalizations.of(
               context,
             )!.customAiNoModelsError;
-            _isTestingCustomAi = false;
           });
         }
       } else {
         setState(() {
-          _customAiTestResult = 'error';
+          _customAiTestStatus = CustomAiTestStatus.error;
           _customAiTestError = 'Invalid response format from /models';
-          _isTestingCustomAi = false;
         });
       }
     } catch (e) {
       setState(() {
-        _customAiTestResult = 'error';
+        _customAiTestStatus = CustomAiTestStatus.error;
         _customAiTestError = e.toString();
-        _isTestingCustomAi = false;
       });
     }
   }
@@ -487,6 +517,17 @@ class _SettingsDialogState extends State<SettingsDialog> {
     } else {
       await configurationService.deleteGeminiApiKey();
     }
+
+    // Reset Custom AI verification state if edited
+    final customUrl = _customAiBaseUrlController.text.trim();
+    final customKey = _customAiApiKeyController.text.trim();
+    if (customUrl != _testedCustomBaseUrl || customKey != _testedCustomApiKey) {
+      setState(() {
+        _customAiModels = [];
+        _customAiTestStatus = CustomAiTestStatus.idle;
+        _customAiTestError = null;
+      });
+    }
   }
 
   @override
@@ -567,8 +608,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
                             customBaseUrlController: _customAiBaseUrlController,
                             customApiKeyController: _customAiApiKeyController,
                             customModels: _customAiModels,
-                            isTestingCustomAi: _isTestingCustomAi,
-                            customAiTestResult: _customAiTestResult,
+                            customAiTestStatus: _customAiTestStatus,
                             customAiTestError: _customAiTestError,
                             defaultModel: _defaultAIModel,
                             errorMessage: _apiKeyErrorMessage,

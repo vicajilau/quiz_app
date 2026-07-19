@@ -201,6 +201,7 @@
   "customAiLoadModelsError": "فشل الاتصال أو جلب النماذج: {error}",
   "customAiNoModelsError": "لم يتم العثور على نماذج في نقطة النهاية هذه. تأكد من تشغيل الخدمة وتنزيل النماذج.",
   "customAiFileUploadNotSupported": "لا تدعم نماذج الذكاء الاصطناعي المحلية/المخصصة تحميل المستندات.",
+  "networkErrorCustomAi": "تعذر الاتصال بخدمة الذكاء الاصطناعي المحلية. يرجى التأكد من تشغيل الخدمة المحلية (Ollama، LM Studio...) والتحقق من إعداداتك.",
   "deleteAction": "حذف",
   "explanationLabel": "الشرح (اختياري)",
   "explanationHint": "أدخل شرحاً للإجابة/الإجابات الصحيحة",

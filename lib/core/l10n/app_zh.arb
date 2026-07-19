@@ -201,6 +201,7 @@
   "customAiLoadModelsError": "无法连接或获取模型：{error}",
   "customAiNoModelsError": "在此端点上未找到任何模型。请确保服务正在运行且模型已下载。",
   "customAiFileUploadNotSupported": "本地/自定义 AI 模型不支持上传文档。",
+  "networkErrorCustomAi": "无法连接到本地 AI 服务。请确保本地服务（Ollama、LM Studio 等）已启动并检查您的设置。",
   "deleteAction": "删除",
   "explanationLabel": "解释（可选）",
   "explanationHint": "输入正确答案的解释",
