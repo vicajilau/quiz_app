@@ -164,3 +164,11 @@ class RegenerateStudyChunkRequested extends StudyExecutionEvent {
 
   const RegenerateStudyChunkRequested(this.chunkIndex);
 }
+
+/// Dispatched to update the study guide's title and summary.
+class UpdateStudyMetadataRequested extends StudyExecutionEvent {
+  final String title;
+  final String summary;
+
+  const UpdateStudyMetadataRequested({required this.title, required this.summary});
+}

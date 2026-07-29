@@ -42,6 +42,7 @@ class StudyIndexView extends StatelessWidget {
   final VoidCallback? onSave;
   final VoidCallback? onImport;
   final QuizFile? quizFile;
+  final VoidCallback? onEditMetadata;
 
   /// Called with the chunk index when the user taps the edit (pencil) button
   /// on a chunk card while in edit mode. `null` when not in edit mode.
@@ -59,6 +60,7 @@ class StudyIndexView extends StatelessWidget {
     this.onImport,
     this.onChunkEditTap,
     this.quizFile,
+    this.onEditMetadata,
   });
 
   void _onChunkTap(BuildContext context, int index) {
@@ -211,6 +213,7 @@ class StudyIndexView extends StatelessWidget {
               state: state,
               localizations: localizations,
               quizFile: quizFile,
+              onEditMetadata: onEditMetadata,
             ),
             const SizedBox(height: 24),
             StudyIndexSectionsHeader(
@@ -279,6 +282,7 @@ class StudyIndexView extends StatelessWidget {
           state: state,
           localizations: localizations,
           quizFile: quizFile,
+          onEditMetadata: onEditMetadata,
         ),
         const SizedBox(height: 24),
         StudyIndexSectionsHeader(
@@ -359,6 +363,7 @@ class StudyIndexView extends StatelessWidget {
                 state: state,
                 localizations: localizations,
                 quizFile: quizFile,
+                onEditMetadata: onEditMetadata,
               ),
             ],
           ),

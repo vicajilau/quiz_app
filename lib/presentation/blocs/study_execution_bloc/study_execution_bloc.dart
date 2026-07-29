@@ -94,6 +94,7 @@ class StudyExecutionBloc
     on<ImportStudyChunksRequested>(_onImportStudyChunksRequested);
     on<StudyChunksUpdated>(_onStudyChunksUpdated);
     on<RegenerateStudyChunkRequested>(_onRegenerateStudyChunkRequested);
+    on<UpdateStudyMetadataRequested>(_onUpdateStudyMetadataRequested);
     on<StudyFileSaved>(
       (_, emit) => emit(state.copyWith(savedVersion: state.savedVersion + 1)),
     );
@@ -966,5 +967,15 @@ class StudyExecutionBloc
       chunksError[chunkIndex] = errorChunk;
       emit(state.copyWith(chunks: chunksError, error: e.toString()));
     }
+  }
+
+  void _onUpdateStudyMetadataRequested(
+    UpdateStudyMetadataRequested event,
+    Emitter<StudyExecutionState> emit,
+  ) {
+    emit(state.copyWith(
+      documentTitle: event.title,
+      documentSummary: event.summary,
+    ));
   }
 }

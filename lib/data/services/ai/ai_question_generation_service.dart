@@ -65,6 +65,79 @@ class AiQuestionGenerationService {
     return _parseAiResponse(response);
   }
 
+  /// Generates a title and description for a quiz based on the provided configuration.
+  Future<Map<String, String>> generateQuizMetadata(
+    AiQuestionGenerationConfig config, {
+    required AppLocalizations localizations,
+  }) async {
+    final factory = ServiceLocator.getIt<AiRepositoryFactory>();
+    final repository = config.preferredModel != null
+        ? factory.createForModel(config.preferredModel!)
+        : await factory.createDefault();
+
+    final languageText = _getLanguageName(config.language);
+    final String sourceInfo;
+    if (config.hasFile) {
+      sourceInfo = 'the attached file contents';
+    } else if (config.generationMode == AiGenerationMode.topic) {
+      sourceInfo = 'the topics: ${config.content}';
+    } else {
+      sourceInfo = 'the content: ${config.content}';
+    }
+
+    final prompt = '''
+Act as an expert academic educator. Based on $sourceInfo, generate a concise title and a brief 1-2 sentence description for a quiz or study guide about this content.
+ALL fields in the JSON output MUST be written strictly in the following language: $languageText.
+
+Output ONLY a valid JSON object with this exact structure:
+{
+  "title": "Concise Subject Title",
+  "description": "Brief description of the quiz or study guide content."
+}
+''';
+
+    try {
+      final String response;
+      if (config.hasFile) {
+        response = await repository.sendMessagesWithFile(
+          prompt,
+          localizations,
+          file: config.file!,
+          responseMimeType: 'application/json',
+        );
+      } else {
+        response = await repository.sendMessages(
+          prompt,
+          localizations,
+          responseMimeType: 'application/json',
+        );
+      }
+
+      String cleanedJson = response.trim();
+      if (cleanedJson.startsWith('```json')) {
+        cleanedJson = cleanedJson.substring(7, cleanedJson.length - 3).trim();
+      } else if (cleanedJson.startsWith('```')) {
+        cleanedJson = cleanedJson.substring(3, cleanedJson.length - 3).trim();
+      }
+
+      final decoded = jsonDecode(cleanedJson);
+      if (decoded is Map<String, dynamic>) {
+        final title = decoded['title']?.toString() ?? '';
+        final description = decoded['description']?.toString() ?? '';
+        if (title.isNotEmpty) {
+          return {
+            'title': title,
+            'description': description,
+          };
+        }
+      }
+    } catch (e) {
+      printInDebug('Failed to generate quiz metadata: $e');
+    }
+
+    return {};
+  }
+
   /// Builds the prompt for the AI
   String _buildPrompt(
     AiQuestionGenerationConfig config,

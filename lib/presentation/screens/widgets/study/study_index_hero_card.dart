@@ -34,12 +34,14 @@ class StudyIndexHeroCard extends StatelessWidget {
   final StudyExecutionState state;
   final AppLocalizations localizations;
   final QuizFile? quizFile;
+  final VoidCallback? onEditMetadata;
 
   const StudyIndexHeroCard({
     super.key,
     required this.state,
     required this.localizations,
     this.quizFile,
+    this.onEditMetadata,
   });
 
   @override
@@ -90,35 +92,59 @@ class StudyIndexHeroCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          localizations.studyScreenStudyGuide.toUpperCase(),
-          style: theme.textTheme.titleMedium?.copyWith(
-            color: Colors.grey[600],
-            fontWeight: FontWeight.w600,
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              localizations.studyScreenStudyGuide.toUpperCase(),
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: Colors.grey[600],
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            if (onEditMetadata != null)
+              IconButton(
+                onPressed: onEditMetadata,
+                icon: const Icon(LucideIcons.pencil, size: 16),
+                tooltip: localizations.edit,
+                constraints: const BoxConstraints(),
+                padding: EdgeInsets.zero,
+              ),
+          ],
         ),
         const SizedBox(height: 8),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            state.documentTitle,
-            style: theme.textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.bold,
-              height: 1.3,
+        MouseRegion(
+          cursor: onEditMetadata != null ? SystemMouseCursors.click : SystemMouseCursors.basic,
+          child: GestureDetector(
+            onTap: onEditMetadata,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    state.documentTitle,
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      height: 1.3,
+                    ),
+                  ),
+                ),
+                if (state.documentSummary != null &&
+                    state.documentSummary!.isNotEmpty) ...[
+                  const SizedBox(height: 16),
+                  Text(
+                    state.documentSummary!,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: summaryColor,
+                      height: 1.5,
+                    ),
+                  ),
+                ],
+              ],
             ),
           ),
         ),
-        if (state.documentSummary != null &&
-            state.documentSummary!.isNotEmpty) ...[
-          const SizedBox(height: 16),
-          Text(
-            state.documentSummary!,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: summaryColor,
-              height: 1.5,
-            ),
-          ),
-        ],
         const SizedBox(height: 24),
         IntrinsicHeight(
           child: Row(

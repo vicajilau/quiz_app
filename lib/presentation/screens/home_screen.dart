@@ -305,16 +305,23 @@ class _HomeScreenState extends State<HomeScreen> {
           return;
         }
 
+        final metadata = await aiService.generateQuizMetadata(
+          config,
+          localizations: localizations,
+        );
+
         if (context.mounted) {
           final unknownValue = AppLocalizations.of(
             context,
           )!.questionTypeUnknown;
+          final title = metadata['title'] ?? unknownValue;
+          final description = metadata['description'] ?? unknownValue;
           setState(() => _pendingDropMode = QuizMode.quiz);
           context.read<FileBloc>().add(
             CreateQuizWithQuestions(
-              name: unknownValue,
+              name: title,
               version: QuizMetadataConstants.version,
-              description: unknownValue,
+              description: description,
               author: unknownValue,
               questions: generatedQuestions,
               generationMode: config.generationMode,

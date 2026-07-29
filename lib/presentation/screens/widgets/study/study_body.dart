@@ -22,6 +22,7 @@ import 'package:quizdy/core/theme/app_theme.dart';
 import 'package:quizdy/data/services/configuration_service.dart';
 import 'package:quizdy/domain/models/quiz/study_chunk_state.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_bloc.dart';
+import 'package:quizdy/presentation/blocs/file_bloc/file_event.dart';
 import 'package:quizdy/presentation/blocs/file_bloc/file_state.dart';
 import 'package:quizdy/presentation/blocs/study_editor_cubit/study_editor_cubit.dart';
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_bloc.dart';
@@ -29,6 +30,7 @@ import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_e
 import 'package:quizdy/presentation/blocs/study_execution_bloc/study_execution_state.dart';
 import 'package:quizdy/domain/models/quiz/quiz_file.dart';
 import 'package:quizdy/presentation/screens/dialogs/custom_confirm_dialog.dart';
+import 'package:quizdy/presentation/screens/dialogs/quiz_metadata_dialog.dart';
 import 'package:quizdy/presentation/screens/quiz_execution/widgets/ai_studio_chat_side_panel.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_index_view.dart';
 import 'package:quizdy/presentation/screens/widgets/study/study_sections_sidebar.dart';
@@ -287,7 +289,37 @@ class _StudyBodyState extends State<StudyBody>
                 return StudyIndexView(
                   state: state,
                   localizations: localizations,
-                  quizFile: widget.quizFile,
+                  quizFile: quizFile,
+                  onEditMetadata: () async {
+                    if (quizFile != null) {
+                      final result = await showDialog<Map<String, String>>(
+                        context: context,
+                        builder: (context) => QuizMetadataDialog(
+                          isEditing: true,
+                          initialName: quizFile!.metadata.title,
+                          initialDescription: quizFile.metadata.description,
+                          initialAuthor: quizFile.metadata.author,
+                        ),
+                      );
+
+                      if (result != null && context.mounted) {
+                        final updatedQuiz = quizFile.copyWith(
+                          metadata: quizFile.metadata.copyWith(
+                            title: result['name'],
+                            description: result['description'],
+                            author: result['author'],
+                          ),
+                        );
+                        context.read<FileBloc>().add(QuizFileUpdated(updatedQuiz));
+                        context.read<StudyExecutionBloc>().add(
+                          UpdateStudyMetadataRequested(
+                            title: result['name']!,
+                            summary: result['description']!,
+                          ),
+                        );
+                      }
+                    }
+                  },
                   onAddChunk: () async {
                     final result = await showDialog<Map<String, String>>(
                       context: context,
