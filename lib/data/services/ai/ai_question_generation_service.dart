@@ -85,7 +85,8 @@ class AiQuestionGenerationService {
       sourceInfo = 'the content: ${config.content}';
     }
 
-    final prompt = '''
+    final prompt =
+        '''
 Act as an expert academic educator. Based on $sourceInfo, generate a concise title and a brief 1-2 sentence description for a quiz or study guide about this content.
 ALL fields in the JSON output MUST be written strictly in the following language: $languageText.
 
@@ -125,10 +126,7 @@ Output ONLY a valid JSON object with this exact structure:
         final title = decoded['title']?.toString() ?? '';
         final description = decoded['description']?.toString() ?? '';
         if (title.isNotEmpty) {
-          return {
-            'title': title,
-            'description': description,
-          };
+          return {'title': title, 'description': description};
         }
       }
     } catch (e) {

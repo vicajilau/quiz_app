@@ -34,8 +34,15 @@ import 'package:file_picker/file_picker.dart';
 
 class AiGenerateQuestionsDialog extends StatefulWidget {
   final List<StudyChunk>? chunks;
+  final bool isCreatingNew;
+  final String? materialTitle;
 
-  const AiGenerateQuestionsDialog({super.key, this.chunks});
+  const AiGenerateQuestionsDialog({
+    super.key,
+    this.chunks,
+    this.isCreatingNew = false,
+    this.materialTitle,
+  });
 
   @override
   State<AiGenerateQuestionsDialog> createState() =>
@@ -276,8 +283,19 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+    final String customTitle = widget.isCreatingNew
+        ? localizations.generateQuestionsWithAI
+        : 'Generar Preguntas para el Material Actual';
+    final String? customSubtitle =
+        widget.materialTitle != null && widget.materialTitle!.isNotEmpty
+        ? 'Material: ${widget.materialTitle}'
+        : null;
+
     if (_currentStep == 0) {
       return AiGenerateStep1Widget(
+        customTitle: customTitle,
+        customSubtitle: customSubtitle,
         selectedModel: _selectedModel,
         selectedLanguage: _selectedLanguage,
         selectedQuestionTypes: _selectedQuestionTypes,
@@ -336,6 +354,8 @@ class _AiGenerateQuestionsDialogState extends State<AiGenerateQuestionsDialog> {
       );
     } else {
       return AiGenerateStep2Widget(
+        customTitle: customTitle,
+        customSubtitle: customSubtitle,
         chunks: widget.chunks,
         textController: _textController,
         questionCountController: _questionCountController,

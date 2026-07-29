@@ -170,5 +170,8 @@ class UpdateStudyMetadataRequested extends StudyExecutionEvent {
   final String title;
   final String summary;
 
-  const UpdateStudyMetadataRequested({required this.title, required this.summary});
+  const UpdateStudyMetadataRequested({
+    required this.title,
+    required this.summary,
+  });
 }

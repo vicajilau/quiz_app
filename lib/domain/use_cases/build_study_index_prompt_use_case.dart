@@ -15,6 +15,7 @@
 
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 
 /// Assembles the prompt text used for AI-powered study-index generation.
 ///
@@ -67,30 +68,47 @@ Rules:
 ''';
   }
 
-  /// Builds the prompt for generating a study index from plain text or topics
-  /// (no file involved).
+  /// Builds the prompt for generating a study index from plain text, topics,
+  /// selected questions, or selected study chunks.
   ///
   /// - [content]: The raw text or comma-separated topics.
   /// - [generationMode]: Whether [content] is a topic list or free text.
   /// - [language]: Target language for all JSON output fields.
   /// - [selectedQuestions]: Optional questions used as generation context.
+  /// - [selectedChunks]: Optional study chunks used as generation context.
   static String buildFromText({
     required String content,
     required AiGenerationMode generationMode,
     required String language,
     List<Question>? selectedQuestions,
+    List<StudyChunk>? selectedChunks,
   }) {
-    final header = selectedQuestions != null && selectedQuestions.isNotEmpty
-        ? '''
+    final String header;
+    if (selectedChunks != null && selectedChunks.isNotEmpty) {
+      header =
+          '''
+The user wants a personalized study plan based on the following selected study sections:
+
+${_buildSelectedChunksContent(selectedChunks)}
+
+Use these existing sections to infer the concepts, topics, and knowledge areas that should be expanded upon or structured into the new study plan.
+''';
+    } else if (selectedQuestions != null && selectedQuestions.isNotEmpty) {
+      header =
+          '''
 The user wants a personalized study plan based on the following selected quiz questions:
 
 ${_buildSelectedQuestionsContent(selectedQuestions)}
 
 Use these questions to infer the concepts, topics, skills, and knowledge areas that should be covered in the study plan.
-'''
-        : generationMode == AiGenerationMode.topic
-        ? 'The user wants a personalized study plan about the following topic/s: $content'
-        : 'The user has provided the following text for creating a study plan:\n\n$content';
+''';
+    } else if (generationMode == AiGenerationMode.topic) {
+      header =
+          'The user wants a personalized study plan about the following topic/s: $content';
+    } else {
+      header =
+          'The user has provided the following text for creating a study plan:\n\n$content';
+    }
 
     return '''
 Act as an expert academic educator. $header
@@ -118,6 +136,22 @@ Rules:
   ]
 }
 ''';
+  }
+
+  static String _buildSelectedChunksContent(List<StudyChunk> chunks) {
+    final buffer = StringBuffer();
+    for (var i = 0; i < chunks.length; i++) {
+      final chunk = chunks[i];
+      final title = chunk.sourceReference.blockType.isNotEmpty
+          ? chunk.sourceReference.blockType
+          : 'Section ${i + 1}';
+      buffer.writeln('Section ${i + 1}: $title');
+      if (chunk.aiSummary != null && chunk.aiSummary!.isNotEmpty) {
+        buffer.writeln('Summary: ${chunk.aiSummary}');
+      }
+      buffer.writeln();
+    }
+    return buffer.toString().trim();
   }
 
   static String _buildSelectedQuestionsContent(List<Question> questions) {

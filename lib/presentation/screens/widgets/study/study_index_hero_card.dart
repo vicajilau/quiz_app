@@ -114,7 +114,9 @@ class StudyIndexHeroCard extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         MouseRegion(
-          cursor: onEditMetadata != null ? SystemMouseCursors.click : SystemMouseCursors.basic,
+          cursor: onEditMetadata != null
+              ? SystemMouseCursors.click
+              : SystemMouseCursors.basic,
           child: GestureDetector(
             onTap: onEditMetadata,
             child: Column(

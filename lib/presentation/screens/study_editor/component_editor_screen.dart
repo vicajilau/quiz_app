@@ -412,10 +412,16 @@ class _ComponentEditorScreenState extends State<ComponentEditorScreen>
                       context.presentSnackBar(localizations.aiApiKeyRequired);
                       return;
                     }
+                    final studyCubit = context.read<StudyEditorCubit>();
                     final config = await showDialog<AiStudyGenerationConfig>(
                       context: context,
                       barrierDismissible: false,
-                      builder: (_) => const AiGenerateStudyDialog(),
+                      builder: (_) => AiGenerateStudyDialog(
+                        chunks: studyCubit.state.chunks,
+                        questions: studyCubit.quizFile?.questions,
+                        isCreatingNew: false,
+                        materialTitle: studyCubit.quizFile?.metadata.title,
+                      ),
                     );
                     if (config != null && context.mounted) {
                       context.read<StudyEditorCubit>().generateAndAddComponents(

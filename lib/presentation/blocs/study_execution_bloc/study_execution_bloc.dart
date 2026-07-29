@@ -652,6 +652,7 @@ class StudyExecutionBloc
           localizations: _localizations,
           language: event.config.language,
           selectedQuestions: event.config.selectedQuestions,
+          selectedChunks: event.config.selectedChunks,
         );
         generatedChunks = result['chunks'] as List<StudyChunk>;
       }
@@ -973,9 +974,11 @@ class StudyExecutionBloc
     UpdateStudyMetadataRequested event,
     Emitter<StudyExecutionState> emit,
   ) {
-    emit(state.copyWith(
-      documentTitle: event.title,
-      documentSummary: event.summary,
-    ));
+    emit(
+      state.copyWith(
+        documentTitle: event.title,
+        documentSummary: event.summary,
+      ),
+    );
   }
 }

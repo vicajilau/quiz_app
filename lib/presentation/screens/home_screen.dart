@@ -369,7 +369,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final config = await showDialog<AiStudyGenerationConfig>(
         context: context,
         barrierDismissible: false,
-        builder: (context) => const AiGenerateStudyDialog(),
+        builder: (context) => const AiGenerateStudyDialog(isCreatingNew: true),
       );
 
       if (config == null || !context.mounted) return;

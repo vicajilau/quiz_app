@@ -41,6 +41,8 @@ class StudyEditorCubit extends Cubit<StudyEditorState> {
   /// case [saveChanges] is a no-op.
   QuizFile? _quizFile;
 
+  QuizFile? get quizFile => _quizFile;
+
   StudyEditorCubit({
     required List<StudyChunk> initialChunks,
     this._quizFile,

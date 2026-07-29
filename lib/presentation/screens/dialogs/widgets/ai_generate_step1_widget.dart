@@ -27,6 +27,8 @@ import 'package:quizdy/presentation/widgets/ai_service_model_selector.dart';
 
 class AiGenerateStep1Widget extends StatelessWidget {
   final bool isStudyMode;
+  final String? customTitle;
+  final String? customSubtitle;
   final String? selectedModel;
   final String selectedLanguage;
   final Set<AiQuestionType>? selectedQuestionTypes;
@@ -39,6 +41,8 @@ class AiGenerateStep1Widget extends StatelessWidget {
   const AiGenerateStep1Widget({
     super.key,
     this.isStudyMode = false,
+    this.customTitle,
+    this.customSubtitle,
     required this.selectedModel,
     required this.selectedLanguage,
     this.selectedQuestionTypes,
@@ -81,15 +85,33 @@ class AiGenerateStep1Widget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    child: Text(
-                      isStudyMode
-                          ? localizations.aiStudyGenerationTitle
-                          : localizations.generateQuestionsWithAI,
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                        color: colors.title,
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          customTitle ??
+                              (isStudyMode
+                                  ? localizations.aiStudyGenerationTitle
+                                  : localizations.generateQuestionsWithAI),
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700,
+                            color: colors.title,
+                          ),
+                        ),
+                        if (customSubtitle != null) ...[
+                          const SizedBox(height: 4),
+                          Text(
+                            customSubtitle!,
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                              color: colors.subtitle,
+                            ),
+                          ),
+                        ],
+                      ],
                     ),
                   ),
                   IconButton(

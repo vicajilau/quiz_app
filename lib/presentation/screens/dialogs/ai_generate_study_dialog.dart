@@ -28,12 +28,22 @@ import 'package:quizdy/presentation/screens/dialogs/widgets/ai_generate_step2_wi
 import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_category.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/presentation/utils/clipboard_image_helper.dart';
 
 class AiGenerateStudyDialog extends StatefulWidget {
   final List<Question>? questions;
+  final List<StudyChunk>? chunks;
+  final bool isCreatingNew;
+  final String? materialTitle;
 
-  const AiGenerateStudyDialog({super.key, this.questions});
+  const AiGenerateStudyDialog({
+    super.key,
+    this.questions,
+    this.chunks,
+    this.isCreatingNew = false,
+    this.materialTitle,
+  });
 
   @override
   State<AiGenerateStudyDialog> createState() => _AiGenerateStudyDialogState();
@@ -215,9 +225,20 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+    final String customTitle = widget.isCreatingNew
+        ? localizations.aiStudyGenerationTitle
+        : 'Añadir Secciones al Material Actual';
+    final String? customSubtitle =
+        widget.materialTitle != null && widget.materialTitle!.isNotEmpty
+        ? 'Material: ${widget.materialTitle}'
+        : null;
+
     if (_currentStep == 0) {
       return AiGenerateStep1Widget(
         isStudyMode: true,
+        customTitle: customTitle,
+        customSubtitle: customSubtitle,
         selectedModel: _selectedModel,
         selectedLanguage: _selectedLanguage,
         supportedLanguages: _supportedLanguages,
@@ -240,7 +261,10 @@ class _AiGenerateStudyDialogState extends State<AiGenerateStudyDialog> {
     } else {
       return AiGenerateStep2Widget(
         isStudyMode: true,
+        customTitle: customTitle,
+        customSubtitle: customSubtitle,
         questions: widget.questions,
+        chunks: widget.chunks,
         textController: _textController,
         fileAttachment: _fileAttachment,
         selectedLanguage: _selectedLanguage,

@@ -447,11 +447,20 @@ class _StudyScreenViewState extends State<StudyScreenView> {
               }
 
               if (!context.mounted) return;
+              final studyChunks = context
+                  .read<StudyExecutionBloc>()
+                  .state
+                  .chunks;
               final config = await showDialog<AiStudyGenerationConfig>(
                 context: context,
                 barrierDismissible: false,
                 builder: (context) => AiGenerateStudyDialog(
                   questions: widget.quizFile?.questions,
+                  chunks: studyChunks,
+                  isCreatingNew: false,
+                  materialTitle:
+                      widget.quizFile?.metadata.title ??
+                      context.read<StudyExecutionBloc>().state.documentTitle,
                 ),
               );
 

@@ -276,6 +276,8 @@ class _QuizLoadedScreenState extends State<QuizLoadedScreen> {
         barrierDismissible: false,
         builder: (context) => AiGenerateQuestionsDialog(
           chunks: cachedQuizFile.study?.content.cache,
+          isCreatingNew: false,
+          materialTitle: cachedQuizFile.metadata.title,
         ),
       );
 

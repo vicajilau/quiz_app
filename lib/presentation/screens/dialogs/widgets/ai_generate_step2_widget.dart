@@ -45,6 +45,8 @@ import 'package:quizdy/presentation/widgets/components/collapsible_generation_co
 
 class AiGenerateStep2Widget extends StatefulWidget {
   final bool isStudyMode;
+  final String? customTitle;
+  final String? customSubtitle;
   final List<StudyChunk>? chunks;
   final List<Question>? questions;
   final TextEditingController textController;
@@ -74,6 +76,8 @@ class AiGenerateStep2Widget extends StatefulWidget {
   const AiGenerateStep2Widget({
     super.key,
     this.isStudyMode = false,
+    this.customTitle,
+    this.customSubtitle,
     this.chunks,
     this.questions,
     required this.textController,
@@ -269,13 +273,31 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: Text(
-                        localizations.aiEnterContentTitle,
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w700,
-                          color: colors.title,
-                        ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            widget.customTitle ??
+                                localizations.aiEnterContentTitle,
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w700,
+                              color: colors.title,
+                            ),
+                          ),
+                          if (widget.customSubtitle != null) ...[
+                            const SizedBox(height: 4),
+                            Text(
+                              widget.customSubtitle!,
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                color: colors.subtitle,
+                              ),
+                            ),
+                          ],
+                        ],
                       ),
                     ),
                     IconButton(
@@ -516,6 +538,7 @@ class _AiGenerateStep2WidgetState extends State<AiGenerateStep2Widget> {
                                                   widget.isAutoDifficulty
                                                   ? null
                                                   : widget.selectedDifficulty,
+                                              selectedChunks: selectedChunks,
                                               allowedComponentTypes:
                                                   _componentTypeSelectorEnabled
                                                   ? _selectedComponentTypes

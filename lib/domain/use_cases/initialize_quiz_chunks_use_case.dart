@@ -145,6 +145,7 @@ class InitializeQuizChunksUseCase {
     required AppLocalizations localizations,
     required String language,
     List<Question>? selectedQuestions,
+    List<StudyChunk>? selectedChunks,
   }) async {
     final aiRepository = await _repositoryFactory.createDefault();
 
@@ -156,6 +157,7 @@ class InitializeQuizChunksUseCase {
       localizations: localizations,
       language: language,
       selectedQuestions: selectedQuestions,
+      selectedChunks: selectedChunks,
     );
 
     final references = indexResult['references'] as List<SourceReference>;

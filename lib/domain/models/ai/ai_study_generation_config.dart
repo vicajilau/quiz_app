@@ -17,6 +17,7 @@ import 'package:quizdy/domain/models/ai/ai_difficulty_level.dart';
 import 'package:quizdy/domain/models/ai/ai_file_attachment.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/models/quiz/study_component.dart';
 
 /// Configuration settings for AI-powered interactive Study Mode generation.
@@ -45,6 +46,9 @@ class AiStudyGenerationConfig {
   /// Optional subset of quiz questions selected as generation context.
   final List<Question>? selectedQuestions;
 
+  /// Optional selected study chunks to generate new study material from.
+  final List<StudyChunk>? selectedChunks;
+
   /// Optional filter restricting which component types the AI should generate.
   /// When null, all component types are allowed.
   final List<StudyComponentType>? allowedComponentTypes;
@@ -55,6 +59,9 @@ class AiStudyGenerationConfig {
   /// Returns true if specific quiz questions are selected as source.
   bool get hasSelectedQuestions =>
       selectedQuestions != null && selectedQuestions!.isNotEmpty;
+
+  /// Returns true if specific study chunks are selected as source.
+  bool get hasChunks => selectedChunks != null && selectedChunks!.isNotEmpty;
 
   /// Returns true if a component type filter is active.
   bool get hasComponentTypeFilter =>
@@ -70,6 +77,7 @@ class AiStudyGenerationConfig {
     this.isAutoDifficulty = true,
     this.difficultyLevel,
     this.selectedQuestions,
+    this.selectedChunks,
     this.allowedComponentTypes,
   });
 }

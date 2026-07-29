@@ -3317,39 +3317,39 @@
   "@homeRecentYesterday": {
     "description": "Text showing that a quiz was opened yesterday"
   },
-  "homeCardStudyAiTitle": "Generate Study with AI",
+  "homeCardStudyAiTitle": "New Study Material with AI",
   "@homeCardStudyAiTitle": {
     "description": "Title of the generate study material with AI card"
   },
-  "homeCardStudyAiDesc": "Generate summaries, flashcards, and personalized study material from any document or topic",
+  "homeCardStudyAiDesc": "Generate summaries, flashcards, and a brand new study material from any document or topic",
   "@homeCardStudyAiDesc": {
     "description": "Description of the generate study material with AI card"
   },
-  "homeCardStudyAiBadge": "Integrated AI",
+  "homeCardStudyAiBadge": "New AI Material",
   "@homeCardStudyAiBadge": {
     "description": "Badge text of the generate study material with AI card"
   },
-  "homeCardQuizAiTitle": "Generate Questions with AI",
+  "homeCardQuizAiTitle": "New Quiz with AI",
   "@homeCardQuizAiTitle": {
     "description": "Title of the generate questions with AI card"
   },
-  "homeCardQuizAiDesc": "Convert documents, notes, or PDFs into multiple choice, true/false, or free response questions",
+  "homeCardQuizAiDesc": "Convert documents, notes, or PDFs into a brand new AI-generated quiz",
   "@homeCardQuizAiDesc": {
     "description": "Description of the generate questions with AI card"
   },
-  "homeCardQuizAiBadge": "Auto-generation",
+  "homeCardQuizAiBadge": "New AI Quiz",
   "@homeCardQuizAiBadge": {
     "description": "Badge text of the generate questions with AI card"
   },
-  "homeCardCreateQuizTitle": "Create Quiz",
+  "homeCardCreateQuizTitle": "Create Manual Quiz",
   "@homeCardCreateQuizTitle": {
     "description": "Title of the manual quiz creation card"
   },
-  "homeCardCreateQuizDesc": "Design your own questions, add custom settings, and share it easily",
+  "homeCardCreateQuizDesc": "Design your own quiz from scratch by manually adding questions and options",
   "@homeCardCreateQuizDesc": {
     "description": "Description of the manual quiz creation card"
   },
-  "homeCardCreateQuizBadge": "From scratch",
+  "homeCardCreateQuizBadge": "Manual",
   "@homeCardCreateQuizBadge": {
     "description": "Badge text of the manual quiz creation card"
   },

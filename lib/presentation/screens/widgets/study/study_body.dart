@@ -310,7 +310,9 @@ class _StudyBodyState extends State<StudyBody>
                             author: result['author'],
                           ),
                         );
-                        context.read<FileBloc>().add(QuizFileUpdated(updatedQuiz));
+                        context.read<FileBloc>().add(
+                          QuizFileUpdated(updatedQuiz),
+                        );
                         context.read<StudyExecutionBloc>().add(
                           UpdateStudyMetadataRequested(
                             title: result['name']!,

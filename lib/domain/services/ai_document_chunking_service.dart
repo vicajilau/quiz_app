@@ -17,6 +17,7 @@ import 'package:quizdy/core/l10n/app_localizations.dart';
 import 'package:quizdy/domain/models/ai/ai_generation_mode.dart';
 import 'package:quizdy/domain/models/quiz/question.dart';
 import 'package:quizdy/domain/models/quiz/source_reference.dart';
+import 'package:quizdy/domain/models/quiz/study_chunk.dart';
 import 'package:quizdy/domain/repositories/ai_repository.dart';
 
 /// Service interface to define logic for segmenting document text into study chunks.
@@ -48,5 +49,6 @@ abstract class AiDocumentChunkingService {
     required AppLocalizations localizations,
     required String language,
     List<Question>? selectedQuestions,
+    List<StudyChunk>? selectedChunks,
   });
 }

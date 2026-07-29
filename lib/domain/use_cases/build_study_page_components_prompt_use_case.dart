@@ -51,9 +51,25 @@ abstract final class BuildStudyPageComponentsPromptUseCase {
               '${allowedTypes.map((t) => t.name).join(', ')}. Do not use any other types.'
         : '';
 
-    final contentHeader = config.generationMode == AiGenerationMode.topic
-        ? 'Topic to cover: ${config.content}'
-        : 'Source text:\n${config.content}';
+    final String contentHeader;
+    if (config.hasChunks) {
+      final buffer = StringBuffer('Source document sections:\n');
+      for (var i = 0; i < config.selectedChunks!.length; i++) {
+        final chunk = config.selectedChunks![i];
+        final title = chunk.sourceReference.blockType.isNotEmpty
+            ? chunk.sourceReference.blockType
+            : 'Section ${i + 1}';
+        buffer.writeln('Section ${i + 1}: $title');
+        if (chunk.aiSummary != null && chunk.aiSummary!.isNotEmpty) {
+          buffer.writeln('Summary: ${chunk.aiSummary}');
+        }
+      }
+      contentHeader = buffer.toString().trim();
+    } else if (config.generationMode == AiGenerationMode.topic) {
+      contentHeader = 'Topic to cover: ${config.content}';
+    } else {
+      contentHeader = 'Source text:\n${config.content}';
+    }
 
     final studyComponentNames = {
       'section_title',
